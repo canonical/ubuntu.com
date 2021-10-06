@@ -1,32 +1,82 @@
 import React, { useEffect, useState } from "react";
 import { useQueryClient, useMutation } from "react-query";
-import {
-  User,
-  Users,
-  OrganisationName,
-  NewUserValues,
-  UserRole,
-} from "./types";
+import * as Sentry from "@sentry/react";
+import { User, AccountUsersData, NewUserValues, UserRole } from "./types";
 import Organisation from "./components/Organisation";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
 import UserSearch from "./components/UserSearch/UserSearch";
 
-import { requestAddUser, requestDeleteUser, requestUpdateUser } from "./api";
-import { getErrorMessage } from "./utils";
+import { requestAddUser, requestUpdateUser } from "./api";
+import { getErrorMessage, errorMessages } from "./utils";
 
-export type AccountUsersProps = {
-  organisationName: OrganisationName;
-  accountId: string;
-  users: Users;
+export type AccountUsersProps = AccountUsersData;
+
+const AccountUsersContainer = ({
+  accountId,
+  organisationName,
+  users,
+}: AccountUsersData) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
+  const [userInEditModeByEmail, setUserInEditModeByEmail] = useState<
+    string | null
+  >(null);
+
+  const setUserInEditMode = (user: User) =>
+    setUserInEditModeByEmail(user?.email);
+
+  const dismissEditMode = () => setUserInEditModeByEmail(null);
+
+  const handleSearch = (value: string) => {
+    dismissEditMode();
+    setSearchQuery(value);
+  };
+
+  const userInEditMode: User | undefined = React.useMemo(
+    () =>
+      typeof userInEditModeByEmail === "string"
+        ? filteredUsers.find((user) => user.email === userInEditModeByEmail)
+        : undefined,
+    [userInEditModeByEmail, filteredUsers]
+  );
+
+  useEffect(() => {
+    const filteredUsers = users.filter((user) =>
+      user.email.includes(searchQuery)
+    );
+
+    setFilteredUsers(filteredUsers);
+  }, [searchQuery, users]);
+
+  return (
+    <AccountUsers
+      accountId={accountId}
+      organisationName={organisationName}
+      users={filteredUsers}
+      userInEditMode={userInEditMode}
+      dismissEditMode={dismissEditMode}
+      setUserInEditMode={setUserInEditMode}
+      handleSearch={handleSearch}
+    />
+  );
 };
 
 const AccountUsers = ({
   accountId,
   organisationName,
   users,
-}: AccountUsersProps) => {
+  userInEditMode,
+  setUserInEditMode,
+  dismissEditMode,
+  handleSearch,
+}: AccountUsersData & {
+  handleSearch: (value: string) => void;
+  userInEditMode?: User;
+  setUserInEditMode: (user: User) => void;
+  dismissEditMode: () => void;
+}) => {
   const [notification, setNotification] = useState<{
     severity: string;
     message: string;
@@ -36,11 +86,6 @@ const AccountUsers = ({
 
   const userAddMutation = useMutation(
     (user: NewUserValues) => requestAddUser({ accountId, ...user }),
-    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
-  );
-
-  const userDeleteMutation = useMutation(
-    (email: string) => requestDeleteUser({ accountId, email }),
     { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
   );
 
@@ -56,79 +101,53 @@ const AccountUsers = ({
     }
   );
 
+  const handleMutationError = (error: unknown) => {
+    const errorMessage = getErrorMessage(error);
+    if (errorMessage === errorMessages.unknown) {
+      Sentry.captureException(error);
+    }
+
+    setNotification({
+      severity: "negative",
+      message: errorMessage,
+    });
+  };
+
   const handleUpdateUser = ({
     email,
     newUserRole,
   }: {
     email: string;
     newUserRole: UserRole;
-  }): Promise<any> =>
+  }) =>
     userUpdateMutation
       .mutateAsync({ email, role: newUserRole })
       .then(() => {
         dismissEditMode();
         setNotification({ severity: "positive", message: "User updated" });
       })
-      .catch((error) => {
-        setNotification({
-          severity: "negative",
-          message: getErrorMessage((error as any)?.message),
-        });
-      });
+      .catch(handleMutationError);
 
   const handleAddNewUser = (user: NewUserValues) =>
-    userAddMutation.mutateAsync(user).then(() => {
-      setNotification({
-        severity: "positive",
-        message: "User added successfully",
-      });
-    });
+    userAddMutation
+      .mutateAsync(user)
+      .then(() => {
+        setNotification({
+          severity: "positive",
+          message: "User added successfully",
+        });
+      })
+      .catch(handleMutationError);
 
   const [
     isDeleteConfirmationModalOpen,
     setIsDeleteConfirmationModalOpen,
   ] = useState(false);
-  const handleDeleteUser = (userId: string) =>
-    userDeleteMutation.mutateAsync(userId).then(() => {
-      dismissEditMode();
-      setNotification({ severity: "positive", message: "User deleted" });
-    });
 
-  const [userInEditModeById, setUserInEditModeById] = useState<string | null>(
-    null
-  );
-
-  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
-
-  const userInEditMode: User | undefined = React.useMemo(
-    () =>
-      typeof userInEditModeById === "string"
-        ? filteredUsers.find((user) => user.email === userInEditModeById)
-        : undefined,
-    [userInEditModeById, filteredUsers]
-  );
-
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const dismissEditMode = () => setUserInEditModeById(null);
-  const handleDeleteConfirmationModalClose = () => {
-    setIsDeleteConfirmationModalOpen(false);
-  };
-  const handleDeleteConfirmationModalOpen = () =>
-    setIsDeleteConfirmationModalOpen(true);
-
-  const handleSearch = (value: string) => {
+  const handleOnAfterDeleteSuccess = () => {
     dismissEditMode();
-    setSearchQuery(value);
+    setNotification({ severity: "positive", message: "User deleted" });
   };
-
-  useEffect(() => {
-    const filteredUsers = users.filter((user) =>
-      user.email.includes(searchQuery)
-    );
-
-    setFilteredUsers(filteredUsers);
-  }, [searchQuery, users]);
 
   return (
     <div>
@@ -167,21 +186,22 @@ const AccountUsers = ({
         ) : null}
         {isDeleteConfirmationModalOpen && userInEditMode ? (
           <DeleteConfirmationModal
+            accountId={accountId}
             user={userInEditMode}
-            handleConfirmDelete={handleDeleteUser}
-            handleClose={handleDeleteConfirmationModalClose}
+            onAfterDeleteSuccess={handleOnAfterDeleteSuccess}
+            handleClose={() => setIsDeleteConfirmationModalOpen(false)}
           />
         ) : null}
         <div className="row">
           <div className="col-12">
             <TableView
-              users={filteredUsers}
+              users={users}
               userInEditMode={userInEditMode}
-              setUserInEditModeById={setUserInEditModeById}
+              setUserInEditMode={setUserInEditMode}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleUpdateUser}
-              handleDeleteConfirmationModalOpen={
-                handleDeleteConfirmationModalOpen
+              handleDeleteConfirmationModalOpen={() =>
+                setIsDeleteConfirmationModalOpen(true)
               }
             />
           </div>
@@ -191,4 +211,4 @@ const AccountUsers = ({
   );
 };
 
-export default AccountUsers;
+export default AccountUsersContainer;

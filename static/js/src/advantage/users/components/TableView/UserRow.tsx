@@ -114,7 +114,7 @@ const FormattedDate = ({ dateISO }: { dateISO: string | null }) =>
   );
 
 type UserRowProps = {
-  setUserInEditModeById: (email: string) => void;
+  setUserInEditMode: (user: User) => void;
   dismissEditMode: () => void;
   handleEditSubmit: ({
     email,
@@ -176,7 +176,7 @@ const UserRowEditable = ({
             <FormattedDate dateISO={user.lastLoginAt} />
           </UserCell>
           <UserCell style={tdStyle} label="actions">
-            <Button small dense onClick={dismissEditMode}>
+            <Button small dense onClick={dismissEditMode} type="button">
               Cancel
             </Button>
             <Button
@@ -184,6 +184,7 @@ const UserRowEditable = ({
               dense
               appearance="positive"
               disabled={isSubmitting}
+              type="submit"
               onClick={() => handleSubmit()}
             >
               Save
@@ -198,7 +199,7 @@ const UserRowEditable = ({
 const UserRowNonEditable = ({
   user,
   variant,
-  setUserInEditModeById,
+  setUserInEditMode,
   handleDeleteConfirmationModalOpen,
 }: UserRowProps) => {
   return (
@@ -226,7 +227,7 @@ const UserRowNonEditable = ({
         <Button
           small
           dense
-          onClick={() => setUserInEditModeById(user.email)}
+          onClick={() => setUserInEditMode(user)}
           disabled={variant === "disabled"}
           aria-label={`Edit user ${user.email}`}
         >

@@ -7,10 +7,13 @@ export const mockUser: User = {
   lastLoginAt: "2021-06-10T09:05:00Z",
 };
 
-const organisationName = "ECorp";
+export const mockAccountId = "jUvgQTAmz3WvOKVHHKYE3UXUWTXF22NuRnDYEJhxAw8u";
+
+export const mockOrganisationName = "ECorp";
 
 export const mockData: AccountUsersData = {
-  organisationName,
+  accountId: mockAccountId,
+  organisationName: mockOrganisationName,
   users: [
     mockUser,
     {
