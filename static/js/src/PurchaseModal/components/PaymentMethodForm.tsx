@@ -177,6 +177,7 @@ function PaymentMethodForm({ setCardValid }: Props) {
             onChange={(e) => {
               if (e.complete && !e.error) {
                 setCardValid(true);
+                setCardFieldError(null);
               } else {
                 setCardValid(false);
                 if (e.error) {
