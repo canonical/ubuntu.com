@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "@canonical/react-components";
 
-const formRow = ({ label, children, error }) => {
+const formRow = ({ label, children, error = "" }) => {
   return (
     <Row className="p-form__group  u-no-padding u-vertically-center">
       <Col size="4" style={{ alignSelf: "start" }}>

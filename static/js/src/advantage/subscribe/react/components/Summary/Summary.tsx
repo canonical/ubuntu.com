@@ -2,8 +2,8 @@ import React from "react";
 import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
 import { formatter } from "../../../renderers/form-renderer";
-import usePreview from "../../APICalls/usePreview";
-import useProduct from "../../APICalls/useProduct";
+import usePreview from "../../hooks/usePreview";
+import useProduct from "../../hooks/useProduct";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 

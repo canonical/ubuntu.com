@@ -22,8 +22,8 @@
     "clean": "rm -rf node_modules yarn-error.log css static/css *.log *.sqlite _site/ build/ .jekyll-metadata .bundle static/js/dist etc/",
     "serve": "./entrypoint 0.0.0.0:${PORT}",
     "start": "yarn run build && concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js' 'yarn run serve'",
-    "cypress:run": "cypress run --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
-    "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://$(hostname -I | awk '{print $1;}'):${PORT}",
+    "cypress:run": "cypress run --config-file tests/cypress/cypress.json --config baseUrl=http://0.0.0.0:${PORT:-8001}/",
+    "cypress:open": "cypress open --config-file tests/cypress/cypress.json --config baseUrl=http://0.0.0.0:${PORT:-8001}/",
     "check-prettier": "prettier -c 'static/js/src/**/*.{js,jsx,ts,tsx}' 'static/sass/**/*.scss'"
   },
   "keywords": [
@@ -46,6 +46,7 @@
     "@testing-library/user-event": "^13.2.1",
     "@types/enzyme": "3.10.9",
     "@types/jest": "26.0.24",
+    "@types/lodash": "^4.14.175",
     "@typescript-eslint/eslint-plugin": "4.29.0",
     "@typescript-eslint/parser": "4.29.0",
     "@wojtekmaj/enzyme-adapter-react-17": "0.6.3",

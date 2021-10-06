@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { postPurchasePreviewData } from "../../../contracts-api";
 import useProduct from "./useProduct";
-import useStripeCustomerInfo from "./useStripeCustomerInfo";
+import useStripeCustomerInfo from "../../../../PurchaseModal/hooks/useStripeCustomerInfo";
 
 const usePreview = () => {
   const { product, quantity } = useProduct();

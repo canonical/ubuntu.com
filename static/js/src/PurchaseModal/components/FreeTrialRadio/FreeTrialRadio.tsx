@@ -1,19 +1,21 @@
 import React from "react";
 import { RadioInput, Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
-import { formatter } from "../../../renderers/form-renderer";
-import usePreview from "../../APICalls/usePreview";
+import { formatter } from "../../../advantage/subscribe/renderers/form-renderer";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 type Props = {
+  preview: any;
   isUsingFreeTrial: boolean;
   setIsUsingFreeTrial: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const FreeTrialRadio = ({ isUsingFreeTrial, setIsUsingFreeTrial }: Props) => {
-  const { data: preview } = usePreview();
-
+const FreeTrialRadio = ({
+  preview,
+  isUsingFreeTrial,
+  setIsUsingFreeTrial,
+}: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsUsingFreeTrial(e.target.value === "useFreeTrial");
   };

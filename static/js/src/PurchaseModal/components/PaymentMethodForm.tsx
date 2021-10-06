@@ -18,12 +18,24 @@ import {
   countries,
   USStates,
   vatCountries,
-} from "../../../countries-and-states";
-import { getErrorMessage } from "../../../error-handler";
+} from "../../advantage/countries-and-states";
+import { getErrorMessage } from "../../advantage/error-handler";
 import { Field, Form, useFormikContext } from "formik";
-function PaymentMethodForm({ setCardValid }) {
+import { FormValues } from "../utils/utils";
+
+type Error = {
+  type: "validation_error";
+  code: string;
+  message: string;
+};
+
+type Props = {
+  setCardValid: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function PaymentMethodForm({ setCardValid }: Props) {
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
-  const [cardFieldError, setCardFieldError] = useState(null);
+  const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
   const mutation = usePostCustomerInfoForPurchasePreview();
 
   const {
@@ -33,9 +45,9 @@ function PaymentMethodForm({ setCardValid }) {
     setTouched,
     setErrors,
     setSubmitting,
-  } = useFormikContext();
+  } = useFormikContext<FormValues>();
 
-  const validateEmail = (value) => {
+  const validateEmail = (value: string) => {
     let errorMessage;
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
       errorMessage = "Must be a valid email.";
@@ -46,7 +58,7 @@ function PaymentMethodForm({ setCardValid }) {
     return errorMessage;
   };
 
-  const validateRequired = (value) => {
+  const validateRequired = (value: string) => {
     let errorMessage;
     if (!value) {
       errorMessage = "This field is required.";
@@ -54,7 +66,7 @@ function PaymentMethodForm({ setCardValid }) {
     return errorMessage;
   };
 
-  const validateUSState = (value) => {
+  const validateUSState = (value: string) => {
     let errorMessage;
     if (!value && values.country === "US") {
       errorMessage = "This field is required.";
@@ -62,7 +74,7 @@ function PaymentMethodForm({ setCardValid }) {
     return errorMessage;
   };
 
-  const validatecaProvince = (value) => {
+  const validatecaProvince = (value: string) => {
     let errorMessage;
     if (!value && values.country === "CA") {
       errorMessage = "This field is required.";
@@ -70,7 +82,7 @@ function PaymentMethodForm({ setCardValid }) {
     return errorMessage;
   };
 
-  const validateOrganisationName = (value) => {
+  const validateOrganisationName = (value: string) => {
     let errorMessage;
     if (!value && values.buyingFor === "organisation") {
       errorMessage = "This field is required.";
@@ -88,11 +100,11 @@ function PaymentMethodForm({ setCardValid }) {
     }
   }, [values.buyingFor]);
 
-  const updateCustomerInfoForPurchasePreview = (formValues) => {
+  const updateCustomerInfoForPurchasePreview = (formValues: FormValues) => {
     setSubmitting(true);
     mutation.mutate(formValues, {
       onError: (error) => {
-        if (error.message === "tax_id_invalid") {
+        if (error instanceof Error && error.message === "tax_id_invalid") {
           setErrors({
             VATNumber:
               "That VAT number is invalid. Check the number and try again.",
@@ -110,7 +122,7 @@ function PaymentMethodForm({ setCardValid }) {
   );
 
   useEffect(() => {
-    if (!vatCountries.includes(values.country)) {
+    if (!vatCountries.includes(values.country ?? "")) {
       setTouched({ organisationName: false });
       values.VATNumber = "";
     }
@@ -146,7 +158,6 @@ function PaymentMethodForm({ setCardValid }) {
                   fontSmoothing: "antialiased",
                   fontSize: "16px",
                   lineHeight: "24px",
-                  border: "4px solid black",
 
                   "::placeholder": {
                     color: "#666",
@@ -166,9 +177,12 @@ function PaymentMethodForm({ setCardValid }) {
             onChange={(e) => {
               if (e.complete && !e.error) {
                 setCardValid(true);
+                setCardFieldError(null);
               } else {
                 setCardValid(false);
-                setCardFieldError(e.error);
+                if (e.error) {
+                  setCardFieldError(e.error);
+                }
               }
             }}
           />
@@ -181,7 +195,6 @@ function PaymentMethodForm({ setCardValid }) {
         help="We'll also send setup instructions to this address."
         label="Email my receipt to:"
         type="email"
-        pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
         id="email"
         name="email"
         validate={validateEmail}
@@ -290,7 +303,7 @@ function PaymentMethodForm({ setCardValid }) {
           error={touched?.caProvince && errors?.caProvince}
         />
       )}
-      {vatCountries.includes(values.country) && (
+      {vatCountries.includes(values.country ?? "") && (
         <Field
           as={Input}
           type="text"
@@ -304,7 +317,7 @@ function PaymentMethodForm({ setCardValid }) {
       )}
 
       <Row className="u-no-padding u-sv1">
-        <Col size="8" emptyLarge="5">
+        <Col size={8} emptyLarge={5}>
           <p>You will have a chance to review on the next step...</p>
         </Col>
       </Row>

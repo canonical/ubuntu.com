@@ -3,13 +3,14 @@ import { useMutation } from "react-query";
 import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
-} from "../../../contracts-api";
+} from "../../advantage/contracts-api";
+import { FormValues } from "../utils/utils";
 
 const registerPaymentMethod = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const mutation = useMutation(async (formData) => {
+  const mutation = useMutation(async (formData: FormValues) => {
     const {
       name,
       buyingFor,
@@ -24,7 +25,11 @@ const registerPaymentMethod = () => {
       VATNumber,
     } = formData;
 
-    const card = elements.getElement(CardElement);
+    const card = elements?.getElement(CardElement);
+
+    if (!stripe || !card) {
+      throw new Error("Stripe failed to initialise");
+    }
 
     const addressObject = {
       city: city,
@@ -47,13 +52,13 @@ const registerPaymentMethod = () => {
     if (error) {
       throw new Error(error.code);
     }
-    var accountRes = { accountID: window.accountId };
+    let accountRes = { accountID: window.accountId, code: null, message: "" };
 
     if (!accountRes.accountID) {
       accountRes = await ensurePurchaseAccount({
         email: email,
         accountName: buyingFor === "myself" ? name : organisationName,
-        paymentMethodID: paymentMethod.id,
+        paymentMethodID: paymentMethod?.id,
         country,
       });
 
@@ -69,7 +74,7 @@ const registerPaymentMethod = () => {
     }
 
     const customerInfoRes = await postCustomerInfoToStripeAccount({
-      paymentMethodID: paymentMethod.id,
+      paymentMethodID: paymentMethod?.id,
       accountID: accountRes.accountID,
       address: addressObject,
       name: name,
@@ -88,7 +93,7 @@ const registerPaymentMethod = () => {
 
     return {
       accountId: accountRes.accountID,
-      paymentMethod: paymentMethod.card,
+      paymentMethod: paymentMethod?.card,
     };
   });
 

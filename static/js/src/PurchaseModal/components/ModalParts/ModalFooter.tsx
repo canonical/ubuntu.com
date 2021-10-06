@@ -3,9 +3,10 @@ import { Row, ActionButton } from "@canonical/react-components";
 
 type ModalFooter = {
   children: React.ReactNode;
+  closeModal: () => void;
 };
 
-const ModalFooter = ({ children }: ModalFooter) => {
+const ModalFooter = ({ children, closeModal }: ModalFooter) => {
   return (
     <footer className="p-modal__footer">
       <Row className="u-no-padding">
@@ -14,7 +15,7 @@ const ModalFooter = ({ children }: ModalFooter) => {
           appearance="neutral"
           aria-controls="purchase-modal"
           style={{ textAlign: "center" }}
-          onClick={window.handleTogglePurchaseModal}
+          onClick={closeModal}
         >
           Cancel
         </ActionButton>
