@@ -2,6 +2,8 @@
 
 import { getTestURL, getRandomEmail } from "../utils";
 
+Cypress.config("defaultCommandTimeout", 10000);
+
 context("Advantage", () => {
   it("should display the modal when pressing 'Buy now'", () => {
     cy.visit(getTestURL("/advantage/subscribe"));
@@ -16,6 +18,7 @@ context("Advantage", () => {
     });
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
+    cy.findByText("Cancel").click();
   });
 
   it("should be able to start a free trial", () => {
@@ -161,9 +164,13 @@ context("Advantage", () => {
 
     // The purchase call is made
     cy.intercept("POST", "/advantage/subscribe*").as("purchase");
+    cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
+
     cy.wait("@purchase").then((interception) => {
       expect(interception.request.body.trialling).to.be.undefined;
     });
+
+    cy.wait("@pendingPurchase");
 
     // The user lands on the thank you page
     cy.findByText("Thanks for your purchase");
