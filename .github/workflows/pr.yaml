@@ -174,15 +174,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
 
       - name: Install dependencies
         run: yarn install --immutable
 
       - name: Test JS
         run: |
-          yarn test-js
-          bash <(curl -s https://codecov.io/bash) -cF javascript
+          yarn test-js --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: javascript
 
   lint-js:
     runs-on: ubuntu-latest
