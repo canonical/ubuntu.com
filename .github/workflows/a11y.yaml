@@ -46,7 +46,5 @@ jobs:
           wait-on: "http://0.0.0.0:8001/_status/check"
           wait-on-timeout: 180
           browser: chrome
-          config-file: tests/cypress/cypress.json
-          spec: |
-            tests/cypress/a11y/**/*.js
+          config-file: tests/cypress/cypress-a11y.json
           config: baseUrl=http://0.0.0.0:8001
