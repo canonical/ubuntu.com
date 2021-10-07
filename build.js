@@ -26,8 +26,10 @@ let entries = {
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
+
+// if CAPTCHA_TESTING_API_KEY doesn't exist then we are on demo / staging / production and use the real API key
 const captchaKey =
-  process && process.env && process.env.CAPTCHA_TESTING_API_KEY;
+  process && process.env && process.env.CAPTCHA_TESTING_API_KEY ?? "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if";
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
