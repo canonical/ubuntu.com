@@ -1,0 +1,52 @@
+name: Accessibility checks
+env:
+  SECRET_KEY: insecure_test_key
+  DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
+  PORT: 8001
+  CONTRACTS_LIVE_API_URL: contracts.canonical.com
+
+on: pull_request
+
+jobs:
+  run-cypress:
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: pw
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    if: github.repository == 'canonical-web-and-design/ubuntu.com'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+
+      - name: Install python dependencies
+        run: pip3 install -r requirements.txt
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          env: UBUNTU_USERNAME=peter.makowski+100@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq,MARKETO_CLIENT_ID=${{secrets.MARKETO_CLIENT_ID}},MARKETO_CLIENT_SECRET=${{secrets.MARKETO_CLIENT_SECRET}},MARKETO_AUTHORISED_USER=${{secrets.MARKETO_AUTHORISED_USER}},MARKETO_TOKEN=${{secrets.MARKETO_TOKEN}}
+          build: yarn run build
+          start: yarn run serve
+          wait-on: "http://0.0.0.0:8001/_status/check"
+          wait-on-timeout: 180
+          browser: chrome
+          config-file: tests/cypress/cypress.json
+          spec: |
+            tests/cypress/a11y/**/*.js
+          config: baseUrl=http://0.0.0.0:8001
