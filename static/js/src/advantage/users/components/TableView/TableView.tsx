@@ -67,6 +67,15 @@ const TableView = ({
     return users.slice(pageStart, pageEnd);
   }, [pageNumber, users, pageSize]);
 
+  React.useEffect(() => {
+    const totalPages = Math.ceil(users.length / pageSize);
+
+    // reset pagination to last available page if exceeded the limit
+    if (pageNumber > totalPages) {
+      setPageNumber(totalPages > 0 ? totalPages : 1);
+    }
+  }, [pageNumber, users.length]);
+
   return (
     <>
       <Table responsive={true}>
