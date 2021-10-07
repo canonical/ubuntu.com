@@ -1,0 +1,2 @@
+#!/bin/bash
+CAPTCHA_TESTING_API_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI; yarn run build
