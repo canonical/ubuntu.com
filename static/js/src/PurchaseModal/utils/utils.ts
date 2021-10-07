@@ -99,3 +99,8 @@ export type BuyButtonProps = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export type marketplace =
+  | "canonical-ua"
+  | "canonical-cube"
+  | "canonical-blender";

@@ -4,13 +4,18 @@ import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
 } from "../../advantage/contracts-api";
-import { FormValues } from "../utils/utils";
+import { FormValues, marketplace } from "../utils/utils";
+
+type Props = {
+  formData: FormValues;
+  marketplace: marketplace;
+};
 
 const registerPaymentMethod = () => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const mutation = useMutation(async (formData: FormValues) => {
+  const mutation = useMutation(async ({ formData, marketplace }: Props) => {
     const {
       name,
       buyingFor,
@@ -62,6 +67,7 @@ const registerPaymentMethod = () => {
         paymentMethodID: paymentMethod?.id,
         country,
         captchaValue,
+        marketplace,
       });
 
       if (accountRes.code) {
