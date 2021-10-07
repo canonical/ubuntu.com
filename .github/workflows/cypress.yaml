@@ -41,7 +41,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           env: UBUNTU_USERNAME=peter.makowski+100@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq,MARKETO_CLIENT_ID=${{secrets.MARKETO_CLIENT_ID}},MARKETO_CLIENT_SECRET=${{secrets.MARKETO_CLIENT_SECRET}},MARKETO_AUTHORISED_USER=${{secrets.MARKETO_AUTHORISED_USER}},MARKETO_TOKEN=${{secrets.MARKETO_TOKEN}}
-          build: .github/run_cypress
+          build: ./run_cypress
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"
           wait-on-timeout: 180
