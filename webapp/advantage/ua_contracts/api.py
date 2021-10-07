@@ -277,19 +277,22 @@ class UAContractsAPI:
 
     def ensure_purchase_account(
         self,
+        marketplace: str = "",
         email: str = "",
         account_name: str = "",
         payment_method_id: str = "",
         country: str = "",
+        captcha_value: str = "",
     ) -> dict:
         response = self._request(
             method="post",
-            path="v1/purchase-account",
+            path=f"v1/marketplace/{marketplace}/account",
             json={
                 "email": email,
                 "name": account_name,
                 "defaultPaymentMethod": {"Id": payment_method_id},
                 "address": {"country": country},
+                "recaptchaToken": captcha_value,
             },
             error_rules=["default", "ensure-purchase-account"],
         )

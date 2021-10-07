@@ -865,19 +865,21 @@ def ensure_purchase_account(**kwargs):
     contract API.
     """
 
+    marketplace = kwargs.get("marketplace")
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
     payment_method_id = kwargs.get("payment_method_id")
     country = kwargs.get("country")
-    captchaValue = kwargs.get("captchaValue")
+    captcha_value = kwargs.get("captcha_value")
 
     try:
         account = g.api.ensure_purchase_account(
+            marketplace=marketplace,
             email=email,
             account_name=account_name,
             payment_method_id=payment_method_id,
             country=country,
-            captchaValue=captchaValue,
+            captcha_value=captcha_value,
         )
     except UnauthorizedError as error:
         response = {

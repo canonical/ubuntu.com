@@ -1313,6 +1313,8 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                     account_name="Joe Doe",
                     payment_method_id="pm_abcdef",
                     country="GB",
+                    marketplace="canonical-ua",
+                    captcha_value="abcd1234",
                 )
 
             self.assertEqual(error.exception.response.json(), response_content)
@@ -1332,6 +1334,8 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
             account_name="Joe Doe",
             payment_method_id="pm_abcdef",
             country="GB",
+            marketplace="canonical-ua",
+            captcha_value="abcd1234",
         )
 
         expected_args = {
@@ -1341,10 +1345,11 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                 "defaultPaymentMethod": {"Id": "pm_abcdef"},
                 "email": "email@url",
                 "name": "Joe Doe",
+                "recaptchaToken": "abcd1234",
             },
             "method": "post",
             "params": None,
-            "url": "https://1.2.3.4/v1/purchase-account",
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
         self.assertEqual(response, json_ensure_account)
