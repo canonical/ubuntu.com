@@ -48,6 +48,7 @@ function StepOne({ error, closeModal }: StepOneProps) {
           style={{ textAlign: "center" }}
           onClick={submitForm}
           loading={isSubmitting}
+          data-captcha-key={process.env.CAPTCHA_TESTING_API_KEY}
         >
           Next step
         </ActionButton>
