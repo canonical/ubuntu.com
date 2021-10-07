@@ -7,11 +7,12 @@ from typing import Optional, List
 from dateutil.parser import parse
 import flask
 import pytz
-from flask import g
 from requests.exceptions import HTTPError
 from webargs.fields import String, Boolean
+import talisker.requests
 
 # Local
+from webapp.advantage.ua_contracts.api import UAContractsAPI
 from webapp.advantage.ua_contracts.primitives import Subscription
 from webapp.advantage.decorators import advantage_decorator
 from webapp.login import user_info
@@ -63,9 +64,48 @@ SERVICES = {
 }
 
 
+def _get_api_url():
+    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    if flask.request.args.get("test_backend", "").lower() == "true":
+        api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+
+    return api_url
+
+
+def _build_ua_contracts_api(session, api_url):
+    """
+    Make use of an active Flask session to build a UAAdvantageAPI object
+    from the session, headers and parameters
+    """
+
+    user_token = session.get("authentication_token")
+    guest_token = session.get("guest_authentication_token")
+
+    if user_token:
+        return UAContractsAPI(
+            session=session,
+            authentication_token=user_token,
+            token_type="Macaroon",
+            api_url=api_url,
+        )
+
+    elif guest_token:
+        return UAContractsAPI(
+            session=session,
+            authentication_token=guest_token,
+            token_type="Bearer",
+            api_url=api_url,
+        )
+
+
 @advantage_decorator(permission="user", response="html")
 @use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+
     open_subscription = kwargs.get("subscription", None)
 
     personal_account = None
@@ -85,14 +125,14 @@ def advantage_view(**kwargs):
 
     # Support admin "view as" functionality.
     email = kwargs.get("email", "").strip()
-    accounts = g.api.get_accounts(email=email)
+    accounts = api.get_accounts(email=email)
 
     for account in accounts:
         monthly_purchased_products = {}
         yearly_purchased_products = {}
-        account["contracts"] = g.api.get_account_contracts(account["id"])
+        account["contracts"] = api.get_account_contracts(account["id"])
 
-        all_subscriptions = g.api.get_account_subscriptions(
+        all_subscriptions = api.get_account_subscriptions(
             account_id=account["id"],
             marketplace="canonical-ua",
         )
@@ -158,7 +198,7 @@ def advantage_view(**kwargs):
                 continue
 
             contract_id = contract_info["id"]
-            contract["token"] = g.api.get_contract_token(contract_id)
+            contract["token"] = api.get_contract_token(contract_id)
 
             if contract_info.get("origin", "") == "free":
                 personal_account = account
@@ -207,7 +247,9 @@ def advantage_view(**kwargs):
             contract["contractInfo"]["daysTillExpiry"] = date_difference.days
 
             try:
-                contract["renewal"] = _make_renewal(contract["contractInfo"])
+                contract["renewal"] = _make_renewal(
+                    api, contract["contractInfo"]
+                )
             except KeyError:
                 flask.current_app.extensions["sentry"].captureException()
                 contract["renewal"] = None
@@ -345,17 +387,21 @@ def advantage_view(**kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
 def get_user_subscriptions(**kwargs):
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+
+    api.set_convert_response(True)
 
     email = kwargs.get("email")
 
-    listings = g.api.get_product_listings("canonical-ua")
-    accounts = g.api.get_accounts(email=email)
+    listings = api.get_product_listings("canonical-ua")
+    accounts = api.get_accounts(email=email)
 
     user_summary = []
     for account in accounts:
-        contracts = g.api.get_account_contracts(account_id=account.id)
-        subscriptions = g.api.get_account_subscriptions(
+        contracts = api.get_account_contracts(account_id=account.id)
+        subscriptions = api.get_account_subscriptions(
             account_id=account.id,
             marketplace="canonical-ua",
         )
@@ -376,9 +422,12 @@ def get_user_subscriptions(**kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs({"account_id": String()}, location="query")
 def get_last_purchase_ids(account_id):
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
-    subscriptions = g.api.get_account_subscriptions(
+    subscriptions = api.get_account_subscriptions(
         account_id=account_id,
         marketplace="canonical-ua",
     )
@@ -390,15 +439,18 @@ def get_last_purchase_ids(account_id):
 
 @advantage_decorator(permission="user", response="json")
 def get_account_users():
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
     try:
-        account = g.api.get_purchase_account()
+        account = api.get_purchase_account()
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
 
-    account_users = g.api.get_account_users(account_id=account.id)
+    account_users = api.get_account_users(account_id=account.id)
 
     return flask.jsonify(
         {
@@ -412,9 +464,12 @@ def get_account_users():
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(post_account_user_role, location="json")
 def post_account_user_role(account_id, **kwargs):
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
-    account_users = g.api.get_account_users(account_id=account_id)
+    account_users = api.get_account_users(account_id=account_id)
 
     user_exists = any(
         user for user in account_users if user.email == kwargs.get("email")
@@ -423,7 +478,7 @@ def post_account_user_role(account_id, **kwargs):
     if user_exists:
         return flask.jsonify({"error": "email already exists"}), 400
 
-    return g.api.put_account_user_role(
+    return api.put_account_user_role(
         account_id=account_id,
         user_role_request={
             "email": kwargs.get("email"),
@@ -436,7 +491,11 @@ def post_account_user_role(account_id, **kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(put_account_user_role, location="json")
 def put_account_user_role(account_id, **kwargs):
-    return g.api.put_account_user_role(
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+
+    return api.put_account_user_role(
         account_id=account_id,
         user_role_request={
             "email": kwargs.get("email"),
@@ -448,7 +507,11 @@ def put_account_user_role(account_id, **kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(delete_account_user_role, location="json")
 def delete_account_user_role(account_id, **kwargs):
-    return g.api.put_account_user_role(
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+
+    return api.put_account_user_role(
         account_id=account_id,
         user_role_request={
             "email": kwargs.get("email"),
@@ -460,24 +523,30 @@ def delete_account_user_role(account_id, **kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs({"contract_id": String()}, location="query")
 def get_contract_token(contract_id):
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
-    contract_token = g.api.get_contract_token(contract_id)
+    contract_token = api.get_contract_token(contract_id)
 
     return flask.jsonify({"contract_token": contract_token})
 
 
 @advantage_decorator(permission="user", response="json")
 def get_user_info():
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
     try:
-        account = g.api.get_purchase_account()
+        account = api.get_purchase_account()
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
 
-    subscriptions = g.api.get_account_subscriptions(
+    subscriptions = api.get_account_subscriptions(
         account_id=account.id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
@@ -489,7 +558,7 @@ def get_user_info():
 
     renewal_info = None
     if monthly_subscription and monthly_subscription.is_auto_renewing:
-        renewal_info = g.api.get_subscription_auto_renewal(
+        renewal_info = api.get_subscription_auto_renewal(
             monthly_subscription.id
         )
 
@@ -503,12 +572,15 @@ def get_user_info():
 
 @advantage_decorator(response="html")
 def advantage_shop_view():
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
     account = None
     if user_info(flask.session):
         try:
-            account = g.api.get_purchase_account()
+            account = api.get_purchase_account()
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -516,7 +588,7 @@ def advantage_shop_view():
 
     all_subscriptions = []
     if account:
-        all_subscriptions = g.api.get_account_subscriptions(
+        all_subscriptions = api.get_account_subscriptions(
             account_id=account.id,
             marketplace="canonical-ua",
         )
@@ -533,7 +605,7 @@ def advantage_shop_view():
         if subscription.in_trial
     )
 
-    listings = g.api.get_product_listings("canonical-ua")
+    listings = api.get_product_listings("canonical-ua")
 
     previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
     user_listings = set_listings_trial_status(listings, all_subscriptions)
@@ -554,13 +626,16 @@ def advantage_account_users_view():
 
 @advantage_decorator(permission="user", response="html")
 def payment_methods_view():
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     account = None
     default_payment_method = None
     account_id = ""
     pending_purchase_id = ""
 
     try:
-        account = g.api.get_purchase_account()
+        account = api.get_purchase_account()
     except UAContractsUserHasNoAccount:
         # No Stripe account
 
@@ -569,7 +644,7 @@ def payment_methods_view():
     if account:
         account_id = account["id"]
 
-        subscriptions = g.api.get_account_subscriptions(
+        subscriptions = api.get_account_subscriptions(
             account_id=account_id,
             marketplace="canonical-ua",
             filters={"status": "locked"},
@@ -581,7 +656,7 @@ def payment_methods_view():
                 break
 
         try:
-            account_info = g.api.get_customer_info(account_id)
+            account_info = api.get_customer_info(account_id)
             customer_info = account_info["customerInfo"]
             default_payment_method = customer_info.get("defaultPaymentMethod")
         except UAContractsUserHasNoAccount:
@@ -609,6 +684,9 @@ def advantage_thanks_view(**kwargs):
 @advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_advantage_subscriptions, location="json")
 def post_advantage_subscriptions(preview, **kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     period = kwargs.get("period")
@@ -618,7 +696,7 @@ def post_advantage_subscriptions(preview, **kwargs):
 
     current_subscription = {}
     if user_info(flask.session):
-        subscriptions = g.api.get_account_subscriptions(
+        subscriptions = api.get_account_subscriptions(
             account_id=account_id,
             marketplace="canonical-ua",
             filters={"status": "active"},
@@ -664,11 +742,11 @@ def post_advantage_subscriptions(preview, **kwargs):
 
     try:
         if not preview:
-            purchase = g.api.purchase_from_marketplace(
+            purchase = api.purchase_from_marketplace(
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
         else:
-            purchase = g.api.preview_purchase_from_marketplace(
+            purchase = api.preview_purchase_from_marketplace(
                 marketplace="canonical-ua", purchase_request=purchase_request
             )
     except CannotCancelLastContractError as error:
@@ -680,11 +758,14 @@ def post_advantage_subscriptions(preview, **kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(cancel_advantage_subscriptions, location="json")
 def cancel_advantage_subscriptions(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     product_listing_id = kwargs.get("product_listing_id")
 
-    monthly_subscriptions = g.api.get_account_subscriptions(
+    monthly_subscriptions = api.get_account_subscriptions(
         account_id=account_id,
         marketplace="canonical-ua",
         filters={"status": "active", "period": "monthly"},
@@ -709,11 +790,11 @@ def cancel_advantage_subscriptions(**kwargs):
     }
 
     try:
-        purchase = g.api.purchase_from_marketplace(
+        purchase = api.purchase_from_marketplace(
             marketplace="canonical-ua", purchase_request=purchase_request
         )
     except CannotCancelLastContractError:
-        g.api.cancel_subscription(
+        api.cancel_subscription(
             subscription_id=monthly_subscription["subscription"]["id"]
         )
 
@@ -728,7 +809,10 @@ def cancel_advantage_subscriptions(**kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(put_contract_entitlements, location="json")
 def put_contract_entitlements(contract_id, **kwargs):
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
     entitlements_request = []
     for setting in kwargs.get("entitlements"):
@@ -741,7 +825,7 @@ def put_contract_entitlements(contract_id, **kwargs):
             }
         )
 
-    return g.api.put_contract_entitlements(
+    return api.put_contract_entitlements(
         contract_id=contract_id, entitlements_request=entitlements_request
     )
 
@@ -749,6 +833,9 @@ def put_contract_entitlements(contract_id, **kwargs):
 @advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_anonymised_customer_info, location="json")
 def post_anonymised_customer_info(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     account_id = kwargs.get("account_id")
     name = kwargs.get("name")
     address = kwargs.get("address")
@@ -760,21 +847,24 @@ def post_anonymised_customer_info(**kwargs):
         if tax_id["value"] == "":
             tax_id["delete"] = True
 
-    return g.api.put_anonymous_customer_info(account_id, name, address, tax_id)
+    return api.put_anonymous_customer_info(account_id, name, address, tax_id)
 
 
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(post_payment_methods, location="json")
 def post_payment_methods(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     account_id = kwargs.get("account_id")
     payment_method_id = kwargs.get("payment_method_id")
 
     try:
-        response = g.api.put_payment_method(account_id, payment_method_id)
+        response = api.put_payment_method(account_id, payment_method_id)
     except UAContractsUserHasNoAccount:
         name = flask.session["openid"]["fullname"]
 
-        response = g.api.put_customer_info(
+        response = api.put_customer_info(
             account_id, payment_method_id, None, name, None
         )
 
@@ -784,19 +874,22 @@ def post_payment_methods(**kwargs):
 @advantage_decorator(permission="user", response="json")
 @use_kwargs({"should_auto_renew": Boolean()}, location="json")
 def post_auto_renewal_settings(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     should_auto_renew = kwargs.get("should_auto_renew", False)
 
-    accounts = g.api.get_accounts()
+    accounts = api.get_accounts()
 
     for account in accounts:
-        monthly_subscriptions = g.api.get_account_subscriptions(
+        monthly_subscriptions = api.get_account_subscriptions(
             account_id=account["id"],
             marketplace="canonical-ua",
             filters={"status": "active", "period": "monthly"},
         )
 
         for subscription in monthly_subscriptions:
-            g.api.post_subscription_auto_renewal(
+            api.post_subscription_auto_renewal(
                 subscription_id=subscription["subscription"]["id"],
                 should_auto_renew=should_auto_renew,
             )
@@ -809,10 +902,13 @@ def post_auto_renewal_settings(**kwargs):
 
 @advantage_decorator(permission="user", response="json")
 def get_customer_info(account_id, **kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     response = {"success": False, "data": {}}
 
     try:
-        response["data"] = g.api.get_customer_info(account_id)
+        response["data"] = api.get_customer_info(account_id)
         response["success"] = True
     except HTTPError as error:
         if error.response.status_code == 404:
@@ -828,6 +924,9 @@ def get_customer_info(account_id, **kwargs):
 @advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_customer_info, location="json")
 def post_customer_info(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     payment_method_id = kwargs.get("payment_method_id")
     account_id = kwargs.get("account_id")
     address = kwargs.get("address")
@@ -840,19 +939,27 @@ def post_customer_info(**kwargs):
         if tax_id["value"] == "":
             tax_id["delete"] = True
 
-    return g.api.put_customer_info(
+    return api.put_customer_info(
         account_id, payment_method_id, address, name, tax_id
     )
 
 
 @advantage_decorator(permission="user_or_guest", response="json")
 def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
-    return g.api.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+
+    return api.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
 
 
 @advantage_decorator(permission="user_or_guest", response="json")
 def get_purchase(purchase_id):
-    return g.api.get_purchase(purchase_id)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+
+    return api.get_purchase(purchase_id)
 
 
 @advantage_decorator()
@@ -865,13 +972,16 @@ def ensure_purchase_account(**kwargs):
     contract API.
     """
 
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
     payment_method_id = kwargs.get("payment_method_id")
     country = kwargs.get("country")
 
     try:
-        account = g.api.ensure_purchase_account(
+        account = api.ensure_purchase_account(
             email=email,
             account_name=account_name,
             payment_method_id=payment_method_id,
@@ -897,9 +1007,12 @@ def ensure_purchase_account(**kwargs):
 
 @advantage_decorator(permission="user", response="json")
 def cancel_trial(account_id):
-    g.api.set_convert_response(True)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    api.set_convert_response(True)
 
-    subscriptions: List[Subscription] = g.api.get_account_subscriptions(
+    subscriptions: List[Subscription] = api.get_account_subscriptions(
         account_id=account_id, marketplace="canonical-ua"
     )
 
@@ -913,17 +1026,23 @@ def cancel_trial(account_id):
     if not subscription_to_cancel:
         return flask.jsonify({"errors": "no subscription in trial"}), 500
 
-    return g.api.cancel_subscription(subscription_id=subscription_to_cancel.id)
+    return api.cancel_subscription(subscription_id=subscription_to_cancel.id)
 
 
 @advantage_decorator(permission="user", response="json")
 def get_renewal(renewal_id):
-    return g.api.get_renewal(renewal_id)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    return api.get_renewal(renewal_id)
 
 
 @advantage_decorator(permission="user", response="json")
 def accept_renewal(renewal_id):
-    return g.api.accept_renewal(renewal_id)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    return api.accept_renewal(renewal_id)
 
 
 @advantage_decorator(permission="user", response="html")
@@ -939,15 +1058,18 @@ def account_view():
 @advantage_decorator(permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
 def invoices_view(**kwargs):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     email = kwargs.get("email", "").strip()
     marketplace = kwargs.get("marketplace")
 
-    accounts = g.api.get_accounts(email=email)
+    accounts = api.get_accounts(email=email)
 
     total_payments = []
     filters = {"marketplace": marketplace} if marketplace else None
     for account in accounts:
-        raw_payments = g.api.get_account_purchases(
+        raw_payments = api.get_account_purchases(
             account_id=account["id"],
             filters=filters,
         )
@@ -1005,13 +1127,19 @@ def invoices_view(**kwargs):
 
 @advantage_decorator(permission="user", response="html")
 def download_invoice(purchase_id):
-    purchase = g.api.get_purchase(purchase_id)
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
+    purchase = api.get_purchase(purchase_id)
     download_link = purchase["invoice"]["url"]
 
     return flask.redirect(download_link)
 
 
 def _prepare_monthly_info(monthly_info, subscription):
+    api = _build_ua_contracts_api(
+        talisker.requests.get_session(), _get_api_url()
+    )
     purchased_products = subscription.get("purchasedProductListings")
     subscription_info = subscription.get("subscription")
     subscription_id = subscription_info.get("id")
@@ -1023,7 +1151,7 @@ def _prepare_monthly_info(monthly_info, subscription):
     monthly_info["is_auto_renewal_enabled"] = is_renewing
 
     if is_renewing:
-        renewal_info = g.api.get_subscription_auto_renewal(subscription_id)
+        renewal_info = api.get_subscription_auto_renewal(subscription_id)
         last_renewal = parse(renewal_info["subscriptionStartOfCycle"])
         next_renewal = parse(renewal_info["subscriptionEndOfCycle"])
         total = renewal_info["total"] / 100
@@ -1036,7 +1164,7 @@ def _prepare_monthly_info(monthly_info, subscription):
         }
 
 
-def _make_renewal(contract_info):
+def _make_renewal(api, contract_info):
     """Return the renewal as present in the given info, or None."""
     renewals = contract_info.get("renewals")
     if not renewals:
@@ -1057,7 +1185,7 @@ def _make_renewal(contract_info):
     # which is information only available in the fuller
     # renewal object get_renewal gives us.
     if renewal["status"] == "processing":
-        renewal = g.api.get_renewal(renewal["id"])
+        renewal = api.get_renewal(renewal["id"])
 
     renewal["renewable"] = False
 
