@@ -174,10 +174,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
+      - uses: actions/checkout@master
 
       - name: Install dependencies
         run: yarn install --immutable
