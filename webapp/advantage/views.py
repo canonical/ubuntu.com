@@ -1036,6 +1036,7 @@ def _prepare_monthly_info(monthly_info, subscription):
         }
 
 
+@advantage_decorator(permission="user", response="json")
 def _make_renewal(contract_info):
     """Return the renewal as present in the given info, or None."""
     renewals = contract_info.get("renewals")
