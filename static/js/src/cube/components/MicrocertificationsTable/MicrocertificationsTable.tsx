@@ -208,7 +208,6 @@ const TableView = () => {
               {
                 content: <img src={badgeURL} alt="" />,
                 className: "p-table--cube--grid__module-logo",
-                "aria-label": "Badge",
               },
               {
                 content: renderModuleName(name, topics),
