@@ -324,14 +324,18 @@ function PaymentMethodForm({ setCardValid }: Props) {
 
       <Row className="u-no-padding u-sv1">
         <Col size={8} emptyLarge={5}>
-          <p>You will have a chance to review on the next step...</p>
+          <ReCAPTCHA
+            sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
+            onChange={onCaptchaChange}
+          />
         </Col>
       </Row>
 
-      <ReCAPTCHA
-        sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
-        onChange={onCaptchaChange}
-      />
+      <Row className="u-no-padding u-sv1">
+        <Col size={8} emptyLarge={5}>
+          <p>You will have a chance to review on the next step...</p>
+        </Col>
+      </Row>
     </Form>
   );
 }
