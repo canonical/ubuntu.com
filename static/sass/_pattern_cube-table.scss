@@ -110,45 +110,49 @@
   }
 }
 
-.p-table--cube__badge-column {
-  @media only screen and (min-width: $breakpoint-medium) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  @media only screen and (max-width: $breakpoint-medium) {
-    align-items: center !important;
-    display: grid;
-    justify-content: flex-start;
-    padding-top: 0 !important;
-
-    > .p-table--cube__badge {
-      align-self: center !important;
-    }
-  }
-}
-
-.p-table__cell--share-actions {
-  overflow: visible;
-
-  .p-share-button {
-    margin-top: 0.5rem;
-    position: relative;
-  }
-}
-
 // styles for the react table (don't delete those)
 .p-table--cube--grid {
   @media only screen and (min-width: $breakpoint-medium) {
     tr {
       column-gap: 1rem;
       display: grid;
-      grid-template-columns: 1.6rem 3rem 2fr 2fr 1fr 1fr;
+      grid-template-columns: 1.6rem 3rem 2fr 2fr 1fr 1.4fr;
 
       td {
         padding-top: 1rem;
 
         &.p-table--cube--grid__module-logo {
           padding: 0.5rem 0;
+        }
+
+        li:first-of-type {
+          padding-top: 0;
+        }
+
+        li:last-of-type {
+          padding-bottom: 1rem;
+        }
+
+        a:not(:first-of-type) {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-medium) {
+    tr {
+      td {
+        white-space: normal;
+      }
+    }
+  }
+
+  @media only screen and (min-width: $breakpoint-x-small) and (max-width: $breakpoint-medium) {
+    tr {
+      td {
+        a:not(:first-of-type) {
+          margin-left: 1rem;
         }
       }
     }
