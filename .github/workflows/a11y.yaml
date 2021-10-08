@@ -8,7 +8,7 @@ env:
 on: pull_request
 
 jobs:
-  run-cypress:
+  run-cypress-a11y:
     services:
       postgres:
         image: postgres
