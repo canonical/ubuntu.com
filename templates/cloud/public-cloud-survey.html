@@ -1,0 +1,39 @@
+{% extends "cloud/_base-cloud.html" %}
+
+{% block title %}Public Cloud Operations Survey{% endblock %}
+
+{% block meta_description %}Public Cloud Operations Survey{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1tKpr0dpZx2K7S2wiBF7QKONNLs2fxz0sFoautszQR1o/edit#heading=h.fmnr02fzg6id{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped is-bordered">
+    <div class="row u-vertically-center">
+        <div class="col-6">
+            <h1>Public cloud operations survey</h1>
+            <p>The Public Cloud space has grown rapidly the last few years, and is now projected to grow 28.8% over the next 4 years. With this much growth we want to help everyone understand more about the market. What does cloud growth look like for your business? Where are people hitting walls? With this survey we hope to fill in the information gap that has everyone wondering what everyone else is thinking.</p>
+            <p>So click start to contribute and get early access to the community report.</p>
+            <p><a href="https://krzty8pox19.typeform.com/to/lZ0RY5km" class="p-button--positive typeform-share button" data-mode="popup" data-size="100" target="_blank">Take the survey</a></p>
+            <p>In submitting the survey, I confirm I have read and agreed to Canonical's <a href="/legal/data-privacy">Privacy Policy</a> and <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Kubernetes%20&%20CloudNative%20Survey%20-%20_Privacy%20Notice%20%E2%80%93%20Survey_.pdf" class="p-link--external">Privacy Notice</a>. Should you enter the raffle to win a T-shirt through this survey, you agree to the <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/US%20Operator%20Day%20Raffle%202021%20-%20Terms%20and%20Conditions%20%20%281%29.pdf" class="p-link--external">Competition Terms &amp; Conditions</a>.</p>
+        </div>
+        <div class="col-6 u-align--center">
+            {{ 
+                image (
+                url="https://assets.ubuntu.com/v1/2c03e7d0-Cloud+Survey.jpg",
+                alt="Cloud survey",
+                width="459",
+                height="348",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+{% block footer_extra %}
+<script>(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })()</script>
+{% endblock %}
