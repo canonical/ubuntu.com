@@ -3,6 +3,16 @@ const puppeteer = require("puppeteer");
 
 module.exports = async (on, config) => {
   on("task", {
+    log(message) {
+      console.log(message);
+
+      return null;
+    },
+    table(message) {
+      console.table(message);
+
+      return null;
+    },
     login({ username, password }) {
       return (async () => {
         const browser = await puppeteer.launch({
