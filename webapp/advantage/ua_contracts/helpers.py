@@ -148,7 +148,15 @@ def get_user_subscription_statuses(
         return statuses
 
     if type == "trial":
-        statuses["is_trialled"] = True
+        active_trial = [
+            subscription
+            for subscription in subscriptions
+            if subscription.started_with_trial
+            and subscription.in_trial
+            and subscription.status == "active"
+        ]
+
+        statuses["is_trialled"] = True if active_trial else False
 
     if type == "yearly":
         statuses["is_upsizeable"] = True

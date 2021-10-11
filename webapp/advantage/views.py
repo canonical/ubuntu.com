@@ -238,6 +238,17 @@ def advantage_view(**kwargs):
                 trial_contract = contract.copy()
                 trial_contract["is_detached"] = True
                 trial_contract["is_trialled"] = True
+                active_trial = [
+                    subscription
+                    for subscription in all_subscriptions
+                    if subscription["subscription"]["startedWithTrial"]
+                    and subscription["subscription"]["inTrial"]
+                    and subscription["subscription"]["status"] == "active"
+                ]
+
+                trial_contract["is_trialled_but_cancelled"] = (
+                    False if active_trial else True
+                )
                 trial_contract["machineCount"] = trial_contract_item["value"]
                 trial_contract["rowMachineCount"] = trial_contract_item[
                     "value"
