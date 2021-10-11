@@ -101,6 +101,7 @@ from webapp.advantage.views import (
     post_account_user_role,
     put_account_user_role,
     put_contract_entitlements,
+    blender_thanks_view,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -400,6 +401,8 @@ app.add_url_rule(
     view_func=put_contract_entitlements,
     methods=["PUT"],
 )
+
+app.add_url_rule("/advantage/blender/thank-you", view_func=blender_thanks_view)
 
 app.add_url_rule("/account", view_func=account_view)
 

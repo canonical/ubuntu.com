@@ -1114,3 +1114,12 @@ def _make_renewal(contract_info):
         ) and invoice["subscription_status"] == "incomplete"
 
     return renewal
+
+
+@advantage_decorator(response="html")
+@use_kwargs({"email": String()}, location="query")
+def blender_thanks_view(**kwargs):
+    return flask.render_template(
+        "advantage/blender/thank-you.html",
+        email=kwargs.get("email"),
+    )
