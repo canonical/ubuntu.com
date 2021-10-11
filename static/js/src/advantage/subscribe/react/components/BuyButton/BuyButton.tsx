@@ -38,15 +38,19 @@ const FreeTrialRadio = ({
     quantity: quantity,
   };
 
-  const onStartTrialClick = () => {
+  const handleOnPurchaseBegin = () => {
+    // The state of the product selector is stored in the local storage
+    // if a purchase is successful we empty it so the customer will see
+    // the default values pre-selected instead of what they just bought.
+    localStorage.removeItem("ua-subscribe-state");
     setIsLoading(true);
+  };
+
+  const onStartTrialClick = () => {
+    handleOnPurchaseBegin();
+
     freeTrialMutation.mutate(undefined, {
       onSuccess: () => {
-        // The state of the product selector is stored in the local storage
-        // if a purchase is successful we empty it so the customer will see
-        // the default values pre-selected instead of what they just bought.
-        localStorage.removeItem("ua-subscribe-state");
-
         //redirect
         if (window.isGuest) {
           location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
@@ -79,7 +83,7 @@ const FreeTrialRadio = ({
   };
 
   const onPayClick = () => {
-    setIsLoading(true);
+    handleOnPurchaseBegin();
     checkoutEvent(GAFriendlyProduct, "3");
     purchaseMutation.mutate(undefined, {
       onSuccess: (data) => {
@@ -116,6 +120,7 @@ const FreeTrialRadio = ({
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError instanceof Error) {
+      setIsLoading(false);
       if (
         purchaseError.message.includes(
           "We are unable to authenticate your payment method"
