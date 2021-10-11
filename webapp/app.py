@@ -45,6 +45,7 @@ from webapp.cube.views import (
     cube_microcerts,
     cube_study_labs_button,
     get_microcerts,
+    post_microcerts_purchase,
 )
 
 from webapp.views import (
@@ -795,6 +796,12 @@ app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
+app.add_url_rule(
+    "/cube/microcerts/purchase.json",
+    view_func=post_microcerts_purchase,
+    methods=["POST"],
+)
+
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
