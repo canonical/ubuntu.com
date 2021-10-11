@@ -18,6 +18,7 @@ const FreeTrialRadio = ({
   setError,
   setStep,
 }: BuyButtonProps) => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const { data: userInfo } = useStripeCustomerInfo();
 
   const purchaseMutation = usePurchase();
@@ -27,7 +28,6 @@ const FreeTrialRadio = ({
     data: pendingPurchase,
     setPendingPurchaseID,
     error: purchaseError,
-    isLoading: isPendingPurchaseLoading,
   } = usePendingPurchase();
 
   const { product, quantity } = useProduct();
@@ -39,6 +39,7 @@ const FreeTrialRadio = ({
   };
 
   const onStartTrialClick = () => {
+    setIsLoading(true);
     freeTrialMutation.mutate(undefined, {
       onSuccess: () => {
         // The state of the product selector is stored in the local storage
@@ -56,6 +57,7 @@ const FreeTrialRadio = ({
         }
       },
       onError: (error) => {
+        setIsLoading(false);
         if (
           error instanceof Error &&
           error.message.includes("account already had or has access to product")
@@ -77,6 +79,7 @@ const FreeTrialRadio = ({
   };
 
   const onPayClick = () => {
+    setIsLoading(true);
     checkoutEvent(GAFriendlyProduct, "3");
     purchaseMutation.mutate(undefined, {
       onSuccess: (data) => {
@@ -84,6 +87,7 @@ const FreeTrialRadio = ({
         setPendingPurchaseID(data);
       },
       onError: (error) => {
+        setIsLoading(false);
         if (
           error instanceof Error &&
           error.message.includes("can only make one purchase at a time")
@@ -198,13 +202,9 @@ const FreeTrialRadio = ({
       className="col-small-2 col-medium-2 col-3 u-no-margin"
       appearance="positive"
       style={{ textAlign: "center" }}
-      disabled={!areTermsChecked}
+      disabled={!areTermsChecked || isLoading}
       onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
-      loading={
-        purchaseMutation.isLoading ||
-        freeTrialMutation.isLoading ||
-        isPendingPurchaseLoading
-      }
+      loading={isLoading}
     >
       Buy
     </ActionButton>
