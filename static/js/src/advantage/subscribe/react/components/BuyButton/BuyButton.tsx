@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
@@ -11,14 +11,31 @@ import { BuyButtonProps } from "../../utils/utils";
 
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 
-const FreeTrialRadio = ({
+const BuyButton = ({
   areTermsChecked,
   isUsingFreeTrial,
   setTermsChecked,
   setError,
   setStep,
 }: BuyButtonProps) => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [sessionData, setSessionData] = useState({
+    gclid: "",
+    utm_campaign: "",
+    utm_source: "",
+    utm_medium: "",
+  });
+
+  useEffect(() => {
+    setSessionData({
+      gclid: getSessionData("gclid"),
+      utm_campaign: getSessionData("utm_campaign"),
+      utm_source: getSessionData("utm_source"),
+      utm_medium: getSessionData("utm_medium"),
+    });
+  }, []);
+
   const { data: userInfo } = useStripeCustomerInfo();
 
   const purchaseMutation = usePurchase();
@@ -39,9 +56,9 @@ const FreeTrialRadio = ({
   };
 
   const handleOnPurchaseBegin = () => {
-    // The state of the product selector is stored in the local storage
-    // if a purchase is successful we empty it so the customer will see
-    // the default values pre-selected instead of what they just bought.
+    // empty the product selector state persisted in the local storage
+    // after the user chooses to make a purchase
+    // to prevent page refreshes from causing accidental double purchasing
     localStorage.removeItem("ua-subscribe-state");
     setIsLoading(true);
   };
@@ -172,10 +189,10 @@ const FreeTrialRadio = ({
       formData.append("formVid", "3756");
       formData.append("Email", userInfo?.customerInfo?.email);
       formData.append("Consent_to_Processing__c", "yes");
-      formData.append("GCLID__c", getSessionData("gclid"));
-      formData.append("utm_campaign", getSessionData("utm_campaign"));
-      formData.append("utm_source", getSessionData("utm_source"));
-      formData.append("utm_medium", getSessionData("utm_medium"));
+      formData.append("GCLID__c", sessionData?.gclid || "");
+      formData.append("utm_campaign", sessionData?.utm_campaign || "");
+      formData.append("utm_source", sessionData?.utm_source || "");
+      formData.append("utm_medium", sessionData?.utm_medium || "");
 
       request.open(
         "POST",
@@ -206,6 +223,7 @@ const FreeTrialRadio = ({
     <ActionButton
       className="col-small-2 col-medium-2 col-3 u-no-margin"
       appearance="positive"
+      aria-label="Buy"
       style={{ textAlign: "center" }}
       disabled={!areTermsChecked || isLoading}
       onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
@@ -216,4 +234,4 @@ const FreeTrialRadio = ({
   );
 };
 
-export default FreeTrialRadio;
+export default BuyButton;
