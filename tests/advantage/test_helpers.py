@@ -12,6 +12,7 @@ from tests.advantage.helpers import (
     make_legacy_contract_item,
     make_renewal,
 )
+from webapp.advantage.models import Entitlement
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
     get_items_aggregated_values,
@@ -26,6 +27,8 @@ from webapp.advantage.ua_contracts.helpers import (
     get_price_info,
     get_subscription_by_period,
     set_listings_trial_status,
+    apply_entitlement_rules,
+    to_dict,
 )
 
 
@@ -699,3 +702,49 @@ class TestHelpers(unittest.TestCase):
 
         for listing in listings.values():
             self.assertEqual(listing.can_be_trialled, False)
+
+    def test_apply_entitlement_rules(self):
+        entitlements = [
+            Entitlement(
+                type="landscape",
+                enabled_by_default=False,
+            ),
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="standard",
+            ),
+            Entitlement(
+                type="esm-infra",
+                enabled_by_default=True,
+            ),
+        ]
+
+        final_entitlements = apply_entitlement_rules(entitlements)
+
+        expected_entitlements = [
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="standard",
+            ),
+            Entitlement(
+                type="esm-infra",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=False,
+                is_available=False,
+            ),
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="advanced",
+                is_available=False,
+            ),
+        ]
+
+        self.assertEqual(
+            to_dict(final_entitlements), to_dict(expected_entitlements)
+        )

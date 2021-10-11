@@ -8,6 +8,7 @@ from webapp.advantage.ua_contracts.helpers import (
     get_price_info,
     get_subscription_by_period,
     make_user_subscription_id,
+    apply_entitlement_rules,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -188,7 +189,7 @@ def build_final_user_subscriptions(
             id=id,
             type=type,
             account_id=account.id,
-            entitlements=contract.entitlements,
+            entitlements=apply_entitlement_rules(contract.entitlements),
             start_date=aggregated_values.get("start_date"),
             end_date=aggregated_values.get("end_date"),
             number_of_machines=number_of_machines,

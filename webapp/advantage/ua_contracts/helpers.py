@@ -4,7 +4,7 @@ from typing import List, Optional, Dict
 import pytz
 from dateutil.parser import parse
 
-from webapp.advantage.models import Listing
+from webapp.advantage.models import Listing, Entitlement
 from webapp.advantage.ua_contracts.primitives import (
     Subscription,
     ContractItem,
@@ -284,6 +284,82 @@ def make_user_subscription_id(
         id_elements.append(renewal.id)
 
     return "||".join(id_elements)
+
+
+def apply_entitlement_rules(
+    entitlements: List[Entitlement],
+) -> List[Entitlement]:
+    allowed_entitlements = [
+        "cis",
+        "esm-infra",
+        "esm-apps",
+        "fips",
+        "fips-updated",
+        "livepatch",
+        "livepatch-onprem",
+        "support",
+    ]
+
+    allowed_support_level = ["standard", "advanced"]
+
+    final_entitlements = []
+    for entitlement in entitlements:
+        if entitlement.type in allowed_entitlements:
+            if (
+                entitlement.type == "support"
+                and entitlement.support_level in allowed_support_level
+            ):
+                final_entitlements.append(entitlement)
+
+            if not entitlement.type == "support":
+                final_entitlements.append(entitlement)
+
+    # apply esm-apps rules
+    has_esm_apps = any(
+        entitlement
+        for entitlement in entitlements
+        if entitlement.type == "esm-apps"
+    )
+
+    if not has_esm_apps:
+        final_entitlements.append(
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=False,
+                is_available=False,
+            )
+        )
+
+    # apply support rules
+    support_entitlement = [
+        entitlement
+        for entitlement in entitlements
+        if entitlement.type == "support"
+        and entitlement.is_available
+        and entitlement.support_level not in ["advanced", "n/a"]
+    ]
+
+    if support_entitlement:
+        final_entitlements.append(
+            Entitlement(
+                type="support",
+                support_level="advanced",
+                enabled_by_default=False,
+                is_available=False,
+            )
+        )
+
+        if support_entitlement[0].support_level == "essential":
+            final_entitlements.append(
+                Entitlement(
+                    type="support",
+                    support_level="standard",
+                    enabled_by_default=False,
+                    is_available=False,
+                )
+            )
+
+    return final_entitlements
 
 
 def to_dict(structure, class_key=None):
