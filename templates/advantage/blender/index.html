@@ -18,8 +18,65 @@
       ) | safe
     }}
     <h1>Subscribe to Blender support</h1>
-    <p>If you have existing subscriptions or sales offers, <a href="/login">sign in</a> to access them.</p>
+    {% if not user_info %}
+      <p>If you have existing subscriptions or sales offers, <a href="/login">sign in</a> to access them.</p>
+    {% endif %}
   </div>
 </section>
+
+<form>
+  <section class="p-strip u-no-padding--top">
+    <div class="u-fixed-width">
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Choose your tech support</h3>
+          <div class="p-stepped-list__content">
+            {% include "/advantage/blender/_tech_support.html" %}
+            <p><a href="/legal/solution-support">Details of our coverage and response times&nbsp;&rsaquo;</a></p>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">How many users?</h3>
+          <div class="p-stepped-list__content">
+            <input autocomplete="off" id="quantity-input" type="number" name="quantity" placeholder="0" min="1" max="1000" step="1" pattern="\d+" style="max-width: 160px;">
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-shallow p-shop-cart p-shop-cart--hidden">
+    <div class="u-fixed-width">
+      <h3>Your chosen plan</h3>
+    </div>
+    <div id="cart-container"></div>
+  </section>
+</form>
+
+<template data-template="cart">
+  <div class="row u-sv3">
+    <div class="col-4">
+      <p class="u-no-padding--top">
+        <span data-prop="user-count">0</span> &times;
+        <img src="https://assets.ubuntu.com/v1/786ed546-blender.svg" width="30" height="24" style="position: relative; top: 3px;">
+        <span data-prop="selected-package">Blender Support Standard</span>
+      </p>
+    </div>
+    <div class="col-4">
+      <select name="billing-period" id="billing-period" data-prop="billing">
+        <option value="annual">Annual billing</option>
+        <option value="monthly">Monthly billing</option>
+      </select>
+    </div>
+    <div class="col-4 support-cart-summary">
+      <strong class="support-cart-total">
+        $<span data-prop="total-cost">0</span> / <span data-prop="period">year</span>
+      </strong>
+      <button class="p-button--positive">Buy now</button>
+    </div>
+  </div>
+</template>
+
+<script src="{{ versioned_static('js/dist/blenderStore.js') }}"></script>
 
 {% endblock content %}
