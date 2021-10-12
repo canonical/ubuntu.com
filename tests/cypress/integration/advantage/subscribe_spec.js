@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
 
-import { getTestURL, getRandomEmail } from "../utils";
+import { getTestURL, getRandomEmail } from "../../utils";
 
 Cypress.config("defaultCommandTimeout", 10000);
 
-context("Advantage", () => {
+context("/advantage/subscribe", () => {
   it("should display the modal when pressing 'Buy now'", () => {
     cy.visit(getTestURL("/advantage/subscribe"));
     cy.findByText("Accept all and visit site").click();
