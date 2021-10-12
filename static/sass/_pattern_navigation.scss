@@ -27,6 +27,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     background-color: $nav-bg-color;
     flex-direction: column;
     z-index: 40;
+    height: 48px;
 
     &__items {
       @media (max-width: $breakpoint-x-small - 1) {
@@ -46,6 +47,18 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
+    .p-navigation__strapline {
+      color: $color-mid-dark;
+      padding-left: 2rem;
+      min-width: 10rem;
+      display: flex;
+      align-self: center;
+    }
+
+    .p-navigation__item {
+      color: $color-dark;
+    }
+
     &__link-anchor {
       @media (max-width: $breakpoint-x-small - 1) {
         padding-left: $grid-margin-width / 4 !important;
@@ -54,12 +67,9 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     &__banner {
-      background-color: $color-brand;
-      padding-left: 1rem;
-
-      @media (max-width: $breakpoint-navigation-threshold - 1) {
-        padding-left: 1.5rem;
-      }
+      height: 48px;
+      min-width: 13.5rem;
+      padding-left: 0;
     }
 
     &::after {
@@ -96,7 +106,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     & &__link-anchor {
-      color: $color-light;
+      color: $color-dark;
       display: block;
       line-height: 1.5rem;
 
@@ -106,18 +116,18 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
 
       @media (min-width: $breakpoint-navigation-threshold + 1) {
-        padding: $spv-inner--large 2rem $spv-inner--large $sph-inner;
+        padding: 0.55rem 2rem 0.6rem 1rem;
       }
 
       &:focus,
       &:visited {
         background-color: $nav-bg-color;
-        color: $color-light;
+        color: $color-dark;
       }
 
       &:hover {
         background-color: darken($nav-bg-color, 3%);
-        color: $color-x-light;
+        color: $color-dark;
       }
 
       .p-icon--search {
@@ -174,7 +184,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       position: relative;
 
       &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
+        @include vf-icon-chevron(vf-url-friendly-color($color-dark));
 
         background-position: top 52% right 50%;
         background-repeat: no-repeat;
@@ -200,9 +210,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         }
 
         .p-navigation__link-anchor {
-          background-color: $color-x-light;
-          color: $color-dark;
-
           &::after {
             background-color: transparent;
           }
@@ -225,14 +232,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       background-color: transparent;
     }
 
-    &__image {
-      max-height: 1.5rem;
-      max-width: $ubuntu-logo-svg-width;
+    &__svg {
+      position: fixed;
+      top: 0;
     }
 
     &__logo {
-      background: $color-brand;
-      height: 3.5rem;
+      height: 48px;
     }
 
     &__search {
@@ -248,12 +254,14 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     &--secondary {
-      background-color: $color-light;
+      background-color: #262626;
       display: flex;
       margin-top: 0;
-      position: relative;
+      position: sticky;
+      top: 0;
       width: 100%;
       z-index: 36;
+      height: 48px;
 
       @media (max-width: $breakpoint-x-small - 1) {
         padding-bottom: $sp-medium;
@@ -261,9 +269,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
 
       &__banner {
-        background-color: $color-brand;
         float: left;
         font-weight: 300;
+        padding-left: 2rem;
+        min-width: 13.5rem;
 
         &:hover {
           color: $color-x-light;
@@ -271,20 +280,14 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
 
       &__logo {
-        @extend %paragraph;
-
         align-items: center;
         color: $color-x-light;
         display: flex;
-        font-size: 0.875rem;
+        font-size: 21px;
+        font-weight: 300;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
         padding-top: 0.55rem;
         position: relative;
-
-        @media (max-width: $breakpoint-navigation-threshold - 1) {
-          padding-left: $sp-small !important;
-          padding-right: 0 !important;
-        }
 
         a {
           border-left: 1px solid rgba(247, 247, 247, 0.3);
@@ -310,13 +313,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
             opacity: 0.3;
             right: $sph-inner - $circle-of-friends-compensation;
           }
-        }
-
-        @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          padding-left: $sph-inner;
-          padding-right: $sph-inner - $circle-of-friends-compensation;
-          width: $ubuntu-logo-svg-width + 2 * $sph-inner -
-            $circle-of-friends-compensation;
         }
       }
 
@@ -350,10 +346,9 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         }
 
         &__link {
-          font-size: 1rem / pow($ms-ratio, 1); //XXX: move font-sizes to map in vanilla so it can be changed globally
-          padding-left: $spv-inner--medium;
-          padding-right: $spv-inner--medium;
-          padding-top: $nudge--small;
+          padding: 0.45rem 0.5rem 0.4rem 0.5rem;
+          color: $color-x-light;
+          font-weight: 400;
 
           @media (max-width: $breakpoint-x-small - 1) {
             padding-bottom: 0;
@@ -366,14 +361,16 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
               $nudge--small;
           }
 
-          &:first-child {
-            padding-left: 1rem;
-          }
-
           &.p-link--active {
-            color: $color-brand;
+            color: $color-x-light;
+            border-bottom: 3px solid $color-x-light;
+            height: 48px;
           }
         }
+      }
+
+      .breadcrumbs__cta {
+        padding: 0.45rem 0;
       }
 
       .row {
