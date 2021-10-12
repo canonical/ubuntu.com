@@ -302,50 +302,48 @@ def apply_entitlement_rules(
         "esm-infra",
         "esm-apps",
         "fips",
-        "fips-updated",
+        "fips-updates",
         "livepatch",
-        "livepatch-onprem",
         "support",
     ]
 
     allowed_support_level = ["standard", "advanced"]
 
     final_entitlements = []
+    has_no_esm_apps = True
+    has_livepatch_on = False
+    has_fips_on = False
+    has_fips_updates_on = False
+    support_entitlement = None
     for entitlement in entitlements:
         if entitlement.type in allowed_entitlements:
-            if (
-                entitlement.type == "support"
-                and entitlement.support_level in allowed_support_level
-            ):
+            if entitlement.type == "esm-apps":
+                has_no_esm_apps = False
+            if entitlement.type == "livepatch":
+                has_livepatch_on = entitlement.enabled_by_default
+            if entitlement.type == "fips-updates":
+                has_fips_updates_on = entitlement.enabled_by_default
+            if entitlement.type == "fips":
+                has_fips_on = entitlement.enabled_by_default
+
+            if entitlement.type != "support":
+                final_entitlements.append(entitlement)
+                continue
+
+            if entitlement.support_level in allowed_support_level:
+                entitlement.enabled_by_default = True
+                support_entitlement = entitlement
                 final_entitlements.append(entitlement)
 
-            if not entitlement.type == "support":
-                final_entitlements.append(entitlement)
-
-    # apply esm-apps rules
-    has_esm_apps = any(
-        entitlement
-        for entitlement in entitlements
-        if entitlement.type == "esm-apps"
-    )
-
-    if not has_esm_apps:
+    if has_no_esm_apps:
         final_entitlements.append(
             Entitlement(
                 type="esm-apps",
                 enabled_by_default=False,
                 is_available=False,
+                is_editable=False,
             )
         )
-
-    # apply support rules
-    support_entitlement = [
-        entitlement
-        for entitlement in entitlements
-        if entitlement.type == "support"
-        and entitlement.is_available
-        and entitlement.support_level not in ["advanced", "n/a"]
-    ]
 
     if support_entitlement:
         final_entitlements.append(
@@ -354,18 +352,36 @@ def apply_entitlement_rules(
                 support_level="advanced",
                 enabled_by_default=False,
                 is_available=False,
+                is_editable=False,
             )
         )
 
-        if support_entitlement[0].support_level == "essential":
+        if support_entitlement.support_level == "essential":
             final_entitlements.append(
                 Entitlement(
                     type="support",
                     support_level="standard",
                     enabled_by_default=False,
                     is_available=False,
+                    is_editable=False,
                 )
             )
+
+    for entitlement in final_entitlements:
+        if entitlement.type == "support":
+            entitlement.is_editable = False
+
+        if has_fips_on:
+            if entitlement.type == "livepatch":
+                entitlement.is_editable = False
+                entitlement.enabled_by_default = False
+            if entitlement.type == "fips-updates":
+                entitlement.is_editable = False
+                entitlement.enabled_by_default = False
+        elif has_livepatch_on or has_fips_updates_on:
+            if entitlement.type == "fips":
+                entitlement.is_editable = False
+                entitlement.enabled_by_default = False
 
     return final_entitlements
 
