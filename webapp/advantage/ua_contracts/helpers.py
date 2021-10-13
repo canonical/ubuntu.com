@@ -189,7 +189,7 @@ def get_date_statuses(end_date: str) -> dict:
     delta_till_expiry = parsed_end_date - time_now
     days_till_expiry = delta_till_expiry.days
 
-    is_expiring_start = 30
+    is_expiring_start = 7
     is_expiring_end = 0
     grace_period_end = -14
 
