@@ -1,6 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import SubscriptionEdit, { generateSchema } from "./SubscriptionEdit";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -163,6 +165,34 @@ describe("SubscriptionEdit", () => {
     wrapper.update();
     expect(resizeContractSpy).toHaveBeenCalled();
     expect(setPendingPurchaseID).toHaveBeenCalledWith(123);
+  });
+
+  it("disables submit and cancel buttons when the form is submitted", async () => {
+    resizeContractSpy.mockImplementation(() => new Promise(jest.fn()));
+    const setPendingPurchaseID = jest.fn();
+    usePendingPurchaseSpy.mockImplementation(() => ({
+      isSuccess: true,
+      setPendingPurchaseID,
+    }));
+    render(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionEdit
+          onClose={jest.fn()}
+          selectedId={subscription.id}
+          setNotification={jest.fn()}
+          setShowingCancel={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+    userEvent.type(screen.getByLabelText("Number of machines"), "6");
+
+    expect(screen.getByTestId("resize-submit-button")).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: "Cancel" })).not.toBeDisabled();
+    userEvent.click(screen.getByRole("button", { name: "Resize" }));
+    await waitFor(() =>
+      expect(screen.queryByTestId("resize-submit-button")).toBeDisabled()
+    );
+    expect(screen.queryByRole("button", { name: "Cancel" })).toBeDisabled();
   });
 
   it("invalidates queries when the resize is successful", async () => {

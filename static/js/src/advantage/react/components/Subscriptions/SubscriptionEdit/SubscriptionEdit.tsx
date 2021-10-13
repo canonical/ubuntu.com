@@ -208,15 +208,17 @@ const SubscriptionEdit = ({
                 <Button
                   appearance="base"
                   className="p-subscription__resize-action"
+                  disabled={isResizing}
                   onClick={onClose}
                   type="button"
                 >
                   Cancel
                 </Button>
                 <ActionButton
+                  data-testId="resize-submit-button"
                   appearance="positive"
                   className="p-subscription__resize-action"
-                  disabled={!dirty || !isValid}
+                  disabled={!dirty || !isValid || isResizing}
                   loading={isResizing}
                   success={isResized}
                   type="submit"
