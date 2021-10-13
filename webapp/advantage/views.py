@@ -52,7 +52,7 @@ SERVICES = {
         "short": "ua",
         "name": "Canonical UA",
     },
-    "canonical-blender": {
+    "blender": {
         "short": "blender",
         "name": "Blender Support",
     },
@@ -664,17 +664,21 @@ def post_advantage_subscriptions(preview, **kwargs):
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
     trialling = kwargs.get("trialling", False)
+    marketplace = kwargs.get("marketplace", "canonical-ua")
 
     current_subscription = {}
     if user_info(flask.session):
         subscriptions = g.api.get_account_subscriptions(
             account_id=account_id,
-            marketplace="canonical-ua",
+            marketplace=marketplace,
             filters={"status": "active"},
         )
 
         for subscription in subscriptions:
-            if subscription["subscription"]["period"] == period:
+            if (
+                subscription["subscription"]["period"] == period
+                and subscription["subscription"]["marketplace"] == marketplace
+            ):
                 current_subscription = subscription
 
     # If there is a subscription we get the current metric
@@ -714,11 +718,11 @@ def post_advantage_subscriptions(preview, **kwargs):
     try:
         if not preview:
             purchase = g.api.purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
         else:
             purchase = g.api.preview_purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
     except CannotCancelLastContractError as error:
         raise UAContractsAPIError(error)
