@@ -102,6 +102,7 @@ from webapp.advantage.views import (
     put_account_user_role,
     put_contract_entitlements,
     blender_thanks_view,
+    blender_shop_view,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -316,6 +317,7 @@ app.add_url_rule(
     view_func=delete_account_user_role,
     methods=["DELETE"],
 )
+app.add_url_rule("/advantage/subscribe/blender", view_func=blender_shop_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
 app.add_url_rule(
