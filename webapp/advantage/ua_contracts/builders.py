@@ -1,4 +1,8 @@
+from datetime import datetime
 from typing import List, Dict, Optional
+
+import pytz
+from dateutil.parser import parse
 
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
@@ -205,7 +209,17 @@ def build_final_user_subscriptions(
             statuses=statuses,
         )
 
-        user_subscriptions.append(user_subscription)
+        # Do not return expired user subscriptions after 30 days
+        show_user_subscription = True
+        if type != "free":
+            parsed_end_date = parse(user_subscription.end_date)
+            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+            delta_till_expiry = parsed_end_date - time_now
+            days_till_expiry = delta_till_expiry.days
+            show_user_subscription = days_till_expiry >= -30
+
+        if show_user_subscription:
+            user_subscriptions.append(user_subscription)
 
     return user_subscriptions
 
