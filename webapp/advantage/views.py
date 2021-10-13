@@ -579,12 +579,15 @@ def payment_methods_view():
 
     if account:
         account_id = account["id"]
+        subscriptions = []
 
-        subscriptions = g.api.get_account_subscriptions(
-            account_id=account_id,
-            marketplace="canonical-ua",
-            filters={"status": "locked"},
-        )
+        for marketplace in SERVICES:
+            market_subscriptions = g.api.get_account_subscriptions(
+                account_id=account_id,
+                marketplace=marketplace,
+                filters={"status": "locked"},
+            )
+            subscriptions.extend(market_subscriptions)
 
         for subscription in subscriptions:
             if subscription.get("pendingPurchases"):
