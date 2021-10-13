@@ -39,8 +39,6 @@ function PaymentMethodForm({ setCardValid }: Props) {
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
   const mutation = usePostCustomerInfoForPurchasePreview();
 
-  console.log("Captcha key: ", process.env.CAPTCHA_TESTING_API_KEY);
-
   const {
     errors,
     touched,
