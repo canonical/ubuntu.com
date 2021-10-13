@@ -32,13 +32,13 @@
     <div class="u-fixed-width">
       <h2>Why use Ubuntu for development?</h2>
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">The fastest route from development to deployment on desktop, mobile, server or cloud</li>
-        <li class="p-list__item is-ticked">The broadest and best development tools and libraries</li>
-        <li class="p-list__item is-ticked">All the most popular productivity apps such as Slack, Skype, Telegram and Discord, available in the snap store</li>
-        <li class="p-list__item is-ticked">Official snaps for Visual Studio Code and the JetBrains suite of IDEs</li>
-        <li class="p-list__item is-ticked">Hassle free gaming and AI development with nVIDIA GPUs supported out the box</li>
-        <li class="p-list__item is-ticked">Certified AI and developer laptops and workstations available from Dell, Lenovo and HP &mdash; get a seamless, pre-installed Ubuntu experience</li>
-        <li class="p-list__item is-ticked">Lightweight; run natively or in a VMIdeal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
+        <li class="p-list__item is-ticked">Provides the fastest route from development to deployment on desktop, mobile, server or cloud</li>
+        <li class="p-list__item is-ticked">Offers the broadest and best development tools and libraries</li>
+        <li class="p-list__item is-ticked">Has all the most popular productivity apps such as Slack, Skype, Telegram and Discord, available in the snap store</li>
+        <li class="p-list__item is-ticked">Features official snaps for Visual Studio Code and the JetBrains suite of IDEs</li>
+        <li class="p-list__item is-ticked">Makes for hassle free gaming and AI development with NVIDIA GPUs supported out the box</li>
+        <li class="p-list__item is-ticked">Certified AI and developer laptops and workstations are available from Dell, Lenovo and HP – get a seamless, pre-installed Ubuntu experience</li>
+        <li class="p-list__item is-ticked">The lightweight OS runs natively or in a VM, ideal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
         <li class="p-list__item is-ticked">66% of experienced developers prefer Ubuntu</li>
       </ul>
     </div>
@@ -47,22 +47,21 @@
   <section class="p-strip">
     <div class="row">
       <div class="col-6">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/a9948f53-desktop_graph.png",
-            alt="17% use Ubuntu over 3% for Debian",
-            height="380",
-            width="439",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5dfbac32-20211012_a-developers-favourite.svg",
+            alt="Ubuntu is a developer's favourite linux",
+            width="600",
+            height="371",
             hi_def=True,
             loading="lazy"
-          ) | safe
-        }}
+            ) | safe
+          }}
         <p><small>Source: Behind the code - <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" class="p-link--external">The 2020 HackerEarth Developer Survey</a></small></p>
-        <p><small>* This graph excludes non-Linux OSs</small></p>
+        <p><small>* This graph excludes non-Linux OSs and allowed users to select multiple OSs</small></p>
       </div>
       <div class="col-6">
         <h2>With Ubuntu, you're in good company</h2>
-        <p>Ubuntu is used by thousands of development teams around the world because of its versatility, reliability, constantly updated features, and extensive developer libraries.</p>
+        <p>Ubuntu is trusted by thousands of development teams around the world because of its versatility, reliability, constantly updated features, and extensive developer libraries.</p>
         <p>If you're managing developers, Ubuntu is the best way to increase your team's productivity and guarantee a smooth transition from development all the way to production. Ubuntu is the world's most popular open source OS for both development and deployment, from the data centre to the cloud to the Internet of Things.</p>
         <p><a href="/cloud">Learn more about Ubuntu's cloud offering&nbsp;&rsaquo;</a></p>
       </div>
@@ -77,15 +76,23 @@
     </div>
     <div class="u-fixed-width">
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Linux 5.11 kernel</li>
-        <li class="p-list__item is-ticked">Redesigned Yaru dark GNOME shell theme is the default</li>
-        <li class="p-list__item is-ticked">New MIME type icons in the Yaru theme</li>
-        <li class="p-list__item is-ticked">Wayland is the default display server with improved security and performance</li>
-        <li class="p-list__item is-ticked">Active directory integration is included in the installer</li>
-        <li class="p-list__item is-ticked">Improved UI with new power profile modes</li>
-        <li class="p-list__item is-ticked">Recovery key option for encrypted installs</li>
+        <li class="p-list__item is-ticked">Linux 5.13 kernel with support for future Intel and AMD chips</li>
+        <li class="p-list__item is-ticked">GNOME 40 desktop environment supporting horizontal, interactive workspaces, an improved Activities Overview and intuitive keyboard shortcuts and touchpad gestures</li>
+        <li class="p-list__item is-ticked">NVIDIA driver support for Wayland sessions</li>
+        <li class="p-list__item is-ticked">PulseAudio 15 delivering improved audio quality over Bluetooth</li>
+        <li class="p-list__item is-ticked">Up to date toolchains including Python 3.9, PHP 8, Ruby 2.7,  Perl 5.32, Golang 1.17 and GCC-11</li>
+        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.2.1, Thunderbird 91.1.1 and Firefox 93</li>
+      </ul>
+      <p>
+        21.10 builds on key additions from 21.04, including:
+      </p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Default Yaru dark GNOME shell theme</li>
+        <li class="p-list__item is-ticked">Updated power profile modes</li>
+        <li class="p-list__item is-ticked">Wayland as the default display server, delivering improved security and performance</li>
+        <li class="p-list__item is-ticked">Active Directory integration with the Ubuntu installer</li>
         <li class="p-list__item is-ticked">Private home directory</li>
-        <li class="p-list__item is-ticked">LibreOffice 7.1.2, Python 3.9, Firefox 87, GNOME Desktop 3.38.5</li>
+        <li class="p-list__item is-ticked">Recovery key option for encrypted installations</li>
       </ul>
       <p>
         <a href="{{ releases.latest.release_notes_url }}">
@@ -110,9 +117,9 @@
         <li class="p-list__item is-ticked">Improved settings for WiFi, wallpaper and application groups in the Activities overview</li>
         <li class="p-list__item is-ticked">Change between a light or dark environment directly from system settings</li>
         <li class="p-list__item is-ticked">Support for ZFS as your root filesystem as well as zsys, with system snapshots, rolling backwards and forwards between snapshots and automated snapshots</li>
-        <li class="p-list__item is-ticked">Latest versions of the popular browsers</li>
+        <li class="p-list__item is-ticked">Latest versions of the most popular browsers</li>
         <li class="p-list__item is-ticked">LibreOffice 6.4</li>
-        <li class="p-list__item is-ticked">nVIDIA hardware is now supported out of the box</li>
+        <li class="p-list__item is-ticked">NVIDIA hardware is now supported out of the box</li>
       </ul>
       <p>
         <a class="p-link--external" href="{{ releases.lts.release_notes_url }}">
@@ -158,7 +165,7 @@
     <div class="row u-equal-height">
       <div class="col-6">
         <h2>Package, distribute, and update apps with Snapcraft</h2>
-        <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you're building for desktop, cloud, or the Internet of Things, publishing as a snap will keep users up to date and make system configuration issues less likely, freeing you to code more and debug less.</p>
+        <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you're building for desktop, cloud, or the Internet of Things, publishing as a snap keeps users up to date and makes system configuration issues less likely, freeing you to code more and debug less.</p>
         <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
         <p><a class="p-link--external" href="https://snapcraft.io/">Find out more about snaps</a></p>
       </div>
@@ -181,7 +188,7 @@
   <section class="p-strip--light">
     <div class="u-fixed-width">
       <h2>Get started with snaps</h2>
-      <p>The easiest way to build and publish a snap is with Snapcraft,<br>
+      <p>The easiest way to build and publish a snap is with snapcraft,<br>
         which supports building from source and from existing packages.</p>
     </div>
     <div class="row u-equal-height">
