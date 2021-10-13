@@ -1,1 +1,1 @@
-export { default } from "./MicrocertificationsTable";
+export { default, Status } from "./MicrocertificationsTable";

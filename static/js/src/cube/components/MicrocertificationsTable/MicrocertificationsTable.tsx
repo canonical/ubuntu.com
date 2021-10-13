@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Button, ContextualMenu, MainTable } from "@canonical/react-components";
 
-export const enum Status {
+export enum Status {
   Enrolled = "enrolled",
   NotEnrolled = "not-enrolled",
   Passed = "passed",
   Failed = "failed",
-  InProgress = "In Progress",
+  InProgress = "in-progress",
 }
 
-export const translateStatus = (status: Status) => {
+const translateStatus = (status: Status) => {
   return {
     [Status.Enrolled]: "Enrolled",
     [Status.NotEnrolled]: "Not Enrolled",
@@ -27,7 +27,7 @@ const TableView = () => {
   useEffect(() => {
     const getModules = async () => {
       try {
-        const response = await fetch("microcerts.json");
+        const response = await fetch("/cube/microcerts.json");
 
         if (response.status === 200) {
           let { modules } = await response.json();
