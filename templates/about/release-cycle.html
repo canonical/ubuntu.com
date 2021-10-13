@@ -88,13 +88,13 @@
               <td><strong>Ubuntu 14.04 LTS</strong></td>
               <td>Apr 2014</td>
               <td>Apr 2019</td>
-              <td>Apr 2022</td>
+              <td>Apr 2024</td>
             </tr>
             <tr>
               <td><strong>Ubuntu 16.04 LTS</strong></td>
               <td>Apr 2016</td>
               <td>Apr 2021</td>
-              <td>Apr 2024</td>
+              <td>Apr 2026</td>
             </tr>
             <tr>
               <td><strong>Ubuntu 18.04 LTS</strong></td>
@@ -175,7 +175,7 @@
           <thead>
             <tr>
               <th>&nbsp;</th>
-              <th scope="col">Base Packages</th>
+              <th scope="col">Ubuntu Base Packages</th>
               <th scope="col">Extended Packages</th>
             </tr>
           </thead>
@@ -196,8 +196,8 @@
     </div>
 
     <div class="u-fixed-width">
-      <p>The base system receives a commitment to public maintenance for the period where it is the current LTS or interim release and for a period thereafter.</p>
-      <p>Customers of Canonical often ask for an extended security maintenance commitment, either to 'main' for a longer period of time, or to 'universe' software packages during the initial maintenance period of the LTS. This is known as '<a href="/esm">Extended Security Maintenance</a>' or ESM and is available for LTS releases since Ubuntu 12.04 LTS.</p>
+      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year maintenance period, during which maintenance updates are publicly available without an Ubuntu Advantage Subscription, and five years of <a href="/security/esm">Extended Security Maintenance (ESM)</a>. The full lifecycle is available with an <a href="/advantage">Ubuntu Advantage subscription</a> or a <a href="/advantage">free personal subscription</a>.</p>
+      <p>Customers of Canonical often ask for an extended security maintenance commitment beyond the Ubuntu Base Packages such as the 'universe' software packages. You can <a href="/support/contact-us">contact us for more information</a>.</p>
     </div>
 
     <div class="row">
@@ -206,20 +206,25 @@
           <thead>
             <tr>
               <th>LTS security maintenance</th>
-              <th scope="col">5-year initial period</th>
-              <th scope="col">Up to an additional 5 years</th>
+              <th scope="col">Initial period (five years)</th>
+              <th scope="col">Extended period (five years)</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>main</strong></td>
               <td>public</td>
-              <td>ESM</td>
+              <td><a href="/advantage">Ubuntu Advantage</a></td>
             </tr>
             <tr>
               <td><strong>universe</strong></td>
               <td><a href="/contact-us/form/">Contact us</a></td>
               <td><a href="/contact-us/form/">Contact us</a></td>
+            </tr>
+            <tr>
+              <td><strong>kernel livepatching</strong></td>
+              <td><a href="/advantage">Ubuntu Advantage</a></td>
+              <td><a href="/advantage">Ubuntu Advantage</a></td>
             </tr>
           </tbody>
         </table>
@@ -228,16 +233,10 @@
 
     <div class="row">
       <div class="col-8">
-        <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public support window comes to a close. It is recommended for users and organisations to upgrade to the latest LTS release or <a href="/esm">subscribe to ESM</a> for continued security coverage.</p>
-        <p>To check the support status of your system:</p>
-        <p><em>On Ubuntu 20.04 LTS, use this command:</em></p>
+        <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public maintenance window comes to a close. Canonical recommends that users and organisations upgrade to the latest LTS release or <a href="/advantage">subscribe to Ubuntu Advantage</a> for continued security coverage with <a href="/security/esm">ESM</a> and <a href="/security/livepatch">kernel livepatching</a>.</p>
+        <p>To check the subscription status of your system, use this command:</p>
         <div class="p-code-copyable" style="margin-top: .5rem;">
-          <input class="p-code-copyable__input" value="ubuntu-security-status" readonly="readonly">
-          <button class="p-code-copyable__action">Copy to clipboard</button>
-        </div>
-        <p><em>For earlier versions of Ubuntu, use this command:</em></p>
-        <div class="p-code-copyable" style="margin-top: .5rem;">
-          <input class="p-code-copyable__input" value="ubuntu-support-status" readonly="readonly">
+          <input class="p-code-copyable__input" value="ua status" readonly="readonly">
           <button class="p-code-copyable__action">Copy to clipboard</button>
         </div>
         <p>The <a class="p-link--external" href="https://wiki.ubuntu.com/Releases">Ubuntu Releases wiki</a> has current information on previous and upcoming versions.</p>
@@ -409,7 +408,7 @@
           <a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu, however, since Canonical recommends using Ubuntu LTS in production environments, new versions of OpenStack are also available on Ubuntu LTS version through the <a class="p-link--external" href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a>.
         </p>
         <p>
-          OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) are supported by Canonical for 5 years. In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months. Enterprise customers can also extend their support for some interim OpenStack versions and subscribe to the <a href="/security/esm">Extended Security Maintenance (ESM) programme</a> for 10 years of security updates.
+          OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) are supported by Canonical for 5 years. In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months.
         </p>
         <p>
           Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack TLS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms</a> project.

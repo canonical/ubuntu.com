@@ -294,7 +294,7 @@
         Kubernetes works by joining a group of physical or virtual host machines referred to as "nodes", into a cluster to manage containers. This creates a "supercomputer" that has greater processing speed, more storage capacity and increased network capabilities than any single machine would have on its own. The nodes include all necessary services to run "pods", which in turn run single or multiple containers. A pod corresponds to a single instance of an application in Kubernetes.
       </p>
       <p>
-        One (or more for larger clusters, or High Availability) node of the cluster is designated as the "control plane". The control plane node then assumes responsibility for the cluster as the orchestration layer - scheduling and allocating tasks to the other "worker" nodes in a way which maximises the resources of the cluster. All operator interaction with the cluster goes through this master node, whether that is changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
+        One (or more for larger clusters, or High Availability) node of the cluster is designated as the "control plane". The control plane node then assumes responsibility for the cluster as the orchestration layer - scheduling and allocating tasks to the other "worker" nodes in a way which maximises the resources of the cluster. All operator interaction with the cluster goes through this main node, whether that is changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
       </p>
       <p>
         The control plane is also responsible for monitoring all aspects of the cluster, enabling it to perform additional useful functions such as automatically reallocating workloads in case of failure, scaling up tasks which need more resources and otherwise ensuring that the assigned workloads are always operating correctly.
@@ -488,15 +488,15 @@
           It is important to distinguish between the two solutions. Kubernetes, as opposed to PaaS does not:
         </p>
         <ul class="p-list is-split">
-          <li class="p-list__item is-ticked__cross">Limit the types of supported applications or require a dependency handling framework
+          <li class="p-list__item is-crossed">Limit the types of supported applications or require a dependency handling framework
           </li>
-          <li class="p-list__item is-ticked__cross">Require applications to be written in a specific programming language nor does it dictate a specific configuration language/system.
+          <li class="p-list__item is-crossed">Require applications to be written in a specific programming language nor does it dictate a specific configuration language/system.
           </li>
-          <li class="p-list__item is-ticked__cross">Deploy source code and does not build applications, although it can be used to build CI/CD pipelines
+          <li class="p-list__item is-crossed">Deploy source code and does not build applications, although it can be used to build CI/CD pipelines
           </li>
-          <li class="p-list__item is-ticked__cross">Provide application-level services, such as middleware, databases and storage clusters out-of-the box. Such components can be integrated with k8s through add-ons.
+          <li class="p-list__item is-crossed">Provide application-level services, such as middleware, databases and storage clusters out-of-the box. Such components can be integrated with k8s through add-ons.
           </li>
-          <li class="p-list__item is-ticked__cross">Provide nor dictate specific logging, monitoring and alerting components
+          <li class="p-list__item is-crossed">Provide nor dictate specific logging, monitoring and alerting components
           </li>
         </ul>
       </div>

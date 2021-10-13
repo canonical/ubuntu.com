@@ -20,6 +20,7 @@
 - [OpenStack integration](/kubernetes/docs/openstack-integration)
 - [vSphere integration](/kubernetes/docs/vsphere-integration)
 - [LXD](/kubernetes/docs/install-local)
+- [Equinix Metal](/kubernetes/docs/equinix)
 
 ## Networking
 - [CNI overview](/kubernetes/docs/cni-overview)

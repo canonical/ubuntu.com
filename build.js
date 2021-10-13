@@ -14,7 +14,6 @@ let entries = {
   costCalculator: "./static/js/src/openstack/react/app.jsx",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
-  imageBuilder: "./static/js/src/imageBuilder.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
@@ -27,23 +26,23 @@ let entries = {
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js"
 };
 
+const isDev = process && process.env && process.env.NODE_ENV === "development";
+
 for (const [key, value] of Object.entries(entries)) {
   const options = {
     entryPoints: [value],
     bundle: true,
-    minify: true,
+    minify: isDev ? false : true,
     nodePaths: [path.resolve(__dirname, "./static/js/src")],
-    sourcemap: true,
+    sourcemap: isDev ? false : true,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome58", "firefox57", "safari11", "edge16"],
     define: {
       "process.env.NODE_ENV":
         // Explicitly check for 'development' so that this defaults to
         // 'production' in all other cases.
-        process && process.env && process.env.NODE_ENV === "development"
-          ? '"development"'
-          : '"production"'
-    }
+        isDev ? '"development"' : '"production"',
+    },
   };
 
   esbuild

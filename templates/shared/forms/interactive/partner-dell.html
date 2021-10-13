@@ -149,8 +149,8 @@
             <input type="checkbox" id="platform-networking-Mellanox">
             <label for="platform-networking-Mellanox">Mellanox</label>
 
-            <input type="checkbox" id="platform-networking-Whitebox">
-            <label for="platform-networking-Whitebox">Whitebox</label>
+            <input type="checkbox" id="platform-networking-Open-box">
+            <label for="platform-networking-Open-box">Open-box</label>
 
             <div class="js-other-container">
               <input type="checkbox" class="js-other-container__checkbox" id="platform-networking-other">
@@ -207,7 +207,7 @@
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="email" class="mktoLabel">Work email:</label>
-                <input required id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" class="mktoField mktoEmailField mktoRequired" required="required" />
               </li>
               <li class="mktFormReq mktField p-list__item">
                 <label for="phone" class="mktoLabel ">Mobile/cell phone number:</label>

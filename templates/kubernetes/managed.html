@@ -2,24 +2,25 @@
 
 {% block title %}Managed Kubernetes | Kubernetes{% endblock %}
 
-{% block meta_description %}Canonical is the leading managed private cloud provider. We will build, support and manage your Kubernetes private cloud for only $5-15 per server per day.{% endblock meta_description %}
+{% block meta_description %}Canonical is the leading managed private cloud provider. We will build, support and manage your Ubuntu Kubernetes private cloud for only $5-15 per server per day.{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/1Qv379nYnod9e4jMrsdDND8D7mbPyqELi2lowjkfD-gU{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Qv379nYnod9e4jMrsdDND8D7mbPyqELi2lowjkfD-gU/edit#heading=h.oq0utgh3ss8u{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru-bottomed">
   <div class="row u-equal-height u-vertically-center">
-    <div class="col-6">
+    <div class="col-7">
       <h1>
-        Fully managed private Kubernetes clusters
+        Fully managed Kubernetes
       </h1>
-      <p class="p-heading--four">Cost effective. Pure upstream.</p>
-      <p>Focus on your business while Canonical builds and manages your Kubernetes clusters. Take advantage of your on-premises assets and leverage public clouds for your multi-cloud strategy.</p>
+      <p class="p-heading--four">Cost effective, on demand, container orchestration</p>
+      <p>Focus on your applications while Canonical builds and manages your Kubernetes clusters. Run your Kubernetes anywhere with a flexible pricing model. Take back control whenever you are ready.</p>
       <div>
-        <a href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf" class="p-button--positive">Read the datasheet</a>
+        <a href="/kubernetes/contact-us?product=kubernetes-managed" class="js-invoke-modal p-button--positive">Talk to an expert</a>
+        <a href="https://assets.ubuntu.com/v1/c5f59e1c-Enterprise_Kubernetes+Datasheet_16.09.21.pdf">Read the datasheet&nbsp;&rsaquo;</a>
       </div>
     </div>
-    <div class="col-6 u-align--center u-hide--small">
+    <div class="col-5 u-align--center u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/91154a9f-Managed+Kubernetes.svg",
@@ -37,485 +38,395 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <p>Canonical will set-up and operate your Kubernetes cluster for you, with in-house experts available at all times to stand-up and scale your cluster. And, when you're ready, we will hand over operational control. </p>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">Fully managed Kubernetes on your bare metal, VMWare, OpenStack or any public cloud</li>
-      <li class="p-list__item is-ticked">Built in one to three weeks using  a proven reference architecture with our <a href="/kubernetes">Kubernetes consulting packages</a></li>
-      <li class="p-list__item is-ticked">Customise the architecture in iterations based on workloads</li>
-      <li class="p-list__item is-ticked">Enterprise SLA for the infrastructure, upgrades included</li>
-      <li class="p-list__item is-ticked">Monitoring and log management integration</li>
-    </ul>
-    <a href="/kubernetes/contact-us?product=kubernetes-managed" class="js-invoke-modal">Talk to us&nbsp;&rsaquo;</a>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2>Budget friendly, reliable and supported</h2>
-    <p class="u-sv3">Private Kubernetes clusters should be economically competitive with the public cloud, and it needs to be fast and reliable. Our experience with Kubernetes at scale and meeting complex regulatory requirements ensures that we deliver efficient and resilient private Kubernetes clusters with an SLA to match.</p>
-  </div>
-  <div class="row p-divider u-equal-height">
-    <div class="col-4 p-divider__block">
-      <h2 class="p-heading--three">Friendly economics</h2>
-      <p>Predictable capital expenditures (CAPEX) and predictable operating expenses (OPEX) means the benefits of long-term density accrue to your bottom line directly.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h2 class="p-heading--three">Reliable</h2>
-      <p>Every Kubernetes cluster built by Canonical is always automatically upgradable to newer versions. Absolutely no snowflakes!</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h2 class="p-heading--three">Pure upstream</h2>
-      <p>We work directly with Google and the community to provide a pure Kubernetes experience on-premises and maximise compatibility across all public Kubernetes services such as Google GKE, Amazon EKS and Azure AKS.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-deep is-bordered">
-  <div class="u-fixed-width">
-    <h3>Resources</h3>
-    <div class="row p-divider u-no-padding--left u-no-padding--right">
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Datasheet</h4>
-          </div>
-          <h3 class="p-heading--four"><a class="p-link--external" href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></h3>
-        </div>
-      </div>
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Webinar</h4>
-          </div>
-          <h3 class="p-heading--four"><a class="p-link--external" href="/blog/kubernetes-for-the-enterprise-1-2-3-go" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'Kubernetes for the Enterprise: 1, 2, 3, Go!', 'eventValue' : undefined });">Kubernetes for the Enterprise: 1, 2, 3, Go!</a></h3>
-        </div>
-      </div>
-      <div class="col-4 p-divider__block">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
-              alt="",
-              width="32",
-              height="28",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-              ) | safe
-            }}
-            <h4 class="p-heading-icon__title">Whitepaper</h4>
-          </div>
-          <h3 class="p-heading--four"><a class="p-link--external" href="https://pages.ubuntu.com/container-whitepaper.html" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Managed cloud', 'eventLabel' : 'The no-nonsense way to accelerate your business with containers', 'eventValue' : undefined });">The no-nonsense way to accelerate your business with containers</a></h3>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip strip-light is-bordered">
-  <div class="u-fixed-width">
-    <h2>Build, operate, transfer and support</h2>
-    <p class="u-sv3">The best way to keep costs down and ensure a high-quality cloud is to use a repeatable, standardised methodology for workload analysis, requirements gathering, deployment and operations.</p>
-  </div>
-  <div class="u-fixed-width">
-    <ol class="p-stepped-list">
-      <li class="p-stepped-list__item">
-        <div class="row u-equal-height">
-          <div class="col-6">
-            <h3 class="p-stepped-list__title">
-              Design and&nbsp;<strong>build</strong>
-            </h3>
-            <p>Together, we design your Kubernetes cluster based on your hardware, scale, roadmap, applications and monitoring system. We'll guide you through the hardware specification process to maximise the efficiency of your CAPEX, and we'll tailor the architecture of your cloud to meet your application, security, regulatory and integration requirements.</p>
-          </div>
-          <div class="col-6 u-vertically-center u-align--center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/9fa25e69-Design+and+build.svg",
-              alt="",
-              width="134",
-              height="106",
-              hi_def=True,
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <div class="row u-equal-height">
-          <div class="col-6">
-            <h3 class="p-stepped-list__title">
-              We&nbsp;<strong>operate</strong>&nbsp;your Kubernetes
-            </h3>
-            <p>We take responsibility for the remote management and 24/7 availability of your Kubernetes clusters. Your SLA covers uptime and performance. Your hardware and software are proactively monitored. Scale on demand with additional racks.</p>
-            <p>For as long as you want, Canonical will tend to the infrastructure so that you can tend to your business workloads. The most important thing for a new private container initiative is engagement with development and operations teams, to build confidence in your private or multi-cloud strategy. This will prove the business case for on-prem or multi-cloud Kubernetes and ensure high service levels during the critical early stages of your journey.</p>
-          </div>
-          <div class="col-6 u-vertically-center u-align--center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
-              alt="",
-              width="134",
-              height="134",
-              hi_def=True,
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <div class="row u-equal-height">
-          <div class="col-6">
-            <h3 class="p-stepped-list__title">
-              We&nbsp;<strong>transfer</strong>&nbsp;control
-            </h3>
-            <p>On request, we'll give you the keys. We provide training and a handover process to ensure a smooth handover.</p>
-            <p>Not everyone wants to operate Kubernetes, and for many people, the benefit of the cloud is freedom from the infrastructure layer. Managed Kubernetes offers that in your own data centre. However, if you do want to take control, you have full visibility from the very beginning in every aspect of cloud management, performance tuning, log aggregation and monitoring. There's no better way to learn Kubernetes than to run a cloud shoulder to shoulder with Canonical.</p>
-          </div>
-          <div class="col-6 u-vertically-center u-align--center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/2131b805-We+transfer+control.svg",
-              alt="",
-              width="134",
-              height="134",
-              hi_def=True,
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <div class="row">
-          <div class="col-6">
-            <h3 class="p-stepped-list__title">
-              We&nbsp;<strong>support</strong>&nbsp;your operations
-            </h3>
-            <p>Once you have control of the cloud, Canonical provides 24/7 enterprise telephone support. Since we know the architecture of your Kubernetes clusters, problems are faster to debug and easier to resolve.</p>
-          </div>
-          <div class="col-6 u-vertically-center u-align--center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
-              alt="",
-              width="134",
-              height="134",
-              hi_def=True,
-              loading="lazy",
-              ) | safe
-            }}
-          </div>
-        </div>
-      </li>
-    </ol>
-    <p><a href="/kubernetes/contact-us?product=kubernetes-managed" class="p-button--positive js-invoke-modal">Free quote and architecture assessment</a></p>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Fits your multi-cloud strategy</h2>
-      <p class="u-sv3">We recommend a multi-cloud operations strategy for the best mix of latency and price across both fixed and variable workloads. Canonical is a leading partner for all major public clouds, so we deliver cloud-neutral advice for both private and public operations. The right location for a workload should be driven by economics, not habit. Give yourself the freedom to choose.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <h3>Fully Managed Kubernetes</h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item is-ticked">Controlled density and performance</li>
-        <li class="p-list__item is-ticked">Containers for bare metal speed</li>
-        <li class="p-list__item is-ticked">CAPEX for long-term workloads</li>
-        <li class="p-list__item is-ticked">Regulatory compliance</li>
-        <li class="p-list__item is-ticked">Data sovereignty</li>
-        <li class="p-list__item is-ticked">Existing footprint</li>
-      </ul>
-    </div>
-    <div class="col-6">
-      <h3>Multi-cloud ready</h3>
-      <ul class="p-list--divided">
-        <li class="p-list__item is-ticked">Deep integration with cloud features such as <abbr title="Load Balancing as a Service">LBaaS</abbr>, storage and networking</li>
-        <li class="p-list__item is-ticked">Elasticity for highly variable load</li>
-        <li class="p-list__item is-ticked">Many regions for low latency</li>
-        <li class="p-list__item is-ticked">OPEX as needed</li>
-        <li class="p-list__item is-ticked">Network isolation</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2 class="u-align--center p-muted-heading">
-      SUPPORTED CLOUDS
-    </h2>
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/79a533b8-google-cloud.png?w=144",
-          alt="Google Cloud Platform",
-          width="144",
-          height="88",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logos"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/208cd3a7-azure-logo-blue-on-white.svg",
-          alt="Azure",
-          width="144",
-          height="42",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
-          alt="VMware",
-          width="144",
-          height="22",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/39002345-AmazonWebservices_Logo.svg",
-          alt="AWS",
-          width="144",
-          height="54",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/33409c7b-logo-maas.svg",
-          alt="MAAS",
-          width="144",
-          height="47",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/eed716e9-logo-openstack.svg",
-          alt="OpenStack",
-          width="89",
-          height="90",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo", "style": "max-height:90px;"},
-          ) | safe
-        }}
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Refresh your data centre with Managed Kubernetes on OpenStack</h2>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <ul class="p-matrix is-trisected">
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Predictable CAPEX and OPEX</h3>
-          <p class="p-matrix__desc">Dedicated hardware is the most cost-effective for long-term workloads. Managed OpenStack and Kubernetes costs are predictable per server per month.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Elasticity and agility</h3>
-          <p class="p-matrix__desc">We scale your cloud on demand. Just call to let us know there are additional racks in the DC. We'll remotely test the hardware and expand your cloud with zero downtime.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">No distractions</h3>
-          <p class="p-matrix__desc">We operate OpenStack and Kubernetes, you run your apps. The real benefit of the cloud is the ability to focus exclusively on business apps and differentiation. Your private cloud should be the same.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">AI/ML ready</h3>
-          <p class="p-matrix__desc">Canonical OpenStack and Kubernetes are ready for your Machine Learning enabled applications. Trusted leaders in the industry, Ubuntu provides the best basis to run AI/ML frameworks.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">No lock-in</h3>
-          <p class="p-matrix__desc">Your team can monitor every machine in your private cluster, and be trained to operate the Kubernetes clusters themselves. We will transfer operations to them on request.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Upgrades built-in</h3>
-          <p class="p-matrix__desc">As OpenStack and Kubernetes evolve, your private cloud can be upgraded with zero downtime. Canonical guarantees upgrades to newer versions of OpenStack and Kubernetes on request. Nobody else does.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">App-store included</h3>
-          <p class="p-matrix__desc">Operate standard software workloads exactly the same way on public clouds and OpenStack, using Kubernetes. A large portfolio of open source solutions and best practices.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Perfect Portability</h3>
-          <p class="p-matrix__desc">Run your applications on the same container substrate as you would on the public cloud alternatives. Kubernetes on Ubuntu provides you with 100% compatibility with other conformant clusters, including those run by AWS, Google and Microsoft.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Flexible infrastructure</h3>
-          <p class="p-matrix__desc">Canonical OpenStack works with the widest range of SDNs, from Neutron OVS/OVN and flat provider networks to Cisco ACI, Calico and Juniper Contrail. With Kubernetes, your choices are Flannel and Calico.  Use proven software‐defined storage like Ceph and Swift, or integrate your existing SAN.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Count on Canonical's Kubernetes and OpenStack expertise</h2>
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <ul class="p-matrix is-trisected">
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Guaranteed SLA</h3>
-          <p class="p-matrix__desc">Our expertise, based on data from hundreds of clouds, underpins your Service Level Agreement. Our operations are certified, with regular independent audits.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">NFV ready</h3>
-          <p class="p-matrix__desc">Managed OpenStack is your fastest path to a modern VIM. As a VNF vendor, Managed OpenStack enables you to test your VNFs on the most widely used OpenStack in telco.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Security</h3>
-          <p class="p-matrix__desc">Operated to the high standard of Canonical's own production OpenStack, supporting critical public services for 60m users and devices.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Full stack support</h3>
-          <p class="p-matrix__desc">As the publisher of Ubuntu, Canonical uniquely supports the full stack. Complex problems in cloud infrastructure require analysis and fixes all the way down to the kernel. With us, there are no loose ends.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Log aggregation</h3>
-          <p class="p-matrix__desc">Canonical's team actively monitors your OpenStack and Kubernetes 24/7, providing observability, alerting, capacity planning and continuous service checks to ensure your cloud is healthy and stays that way.</p>
-        </div>
-      </li>
-      <li class="p-matrix__item">
-        <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--four">Transfer support</h3>
-          <p class="p-matrix__desc">Canonical offers training and on-premises Cloud Reliability Engineers to smooth your transition to internal operations when requested. Trust us to get you started in the best possible way.</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Shape it to your needs</h2>
-    </div>
+    <h2 class="u-sv2">Kubernetes-as-a-service from our team of experts</h2>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3>AI and Machine Learning</h3>
-      <p>Turn your data into automated decision making and dramatically improve service levels, optimise processes, and react instantly to real-time data.</p>
-      <p>With GPU and FPGA pass-through your Kubernetes cluster becomes a shared machine learning platform for your data scientists.</p>
-      <p>Ground-breaking initiatives such as Kubeflow provide your application developers a cloud-native framework for deploying AI/ML enabled applications at scale.</p>
-      <p><a href="/kubeflow">Canonical Artificial Intelligence&nbsp;&rsaquo;</a></p>
+    <div class="col-4">
+      <h3 class="p-heading--4">
+        Predictable economics
+      </h3>
+      <p>Predictable pricing model that gives you the flexibility to run Kubernetes on VMs, bare-metal or public cloud. Our predictive capacity planning helps you prepare for the future and grow your workloads without any spikes. </p>
     </div>
-    <div class="col-6 p-card">
-      <h3>Build services</h3>
-      <p>Even if you want to operate the Kubernetes cluster from the beginning, we can still help you design and build it. Get started fast with our Kubernetes consulting and reference architecture to optimise your workloads.</p>
-      <p><a href="/kubernetes">Kubernetes build service&nbsp;&rsaquo;</a></p>
+    <div class="col-4">
+      <h3 class="p-heading--4">
+        Customisable clusters
+      </h3>
+      <p>We work with you to design the Kubernetes you need, anywhere. We deploy it and manage it for you. We will scale it up to accommodate any traffic peaks, just let us know you're adding more nodes! We'll remotely test the hardware and expand your cloud with zero downtime.</p>
     </div>
+    <div class="col-4">
+      <h3 class="p-heading--4">
+        Transfer control
+      </h3>
+      <p>Our goal is to accelerate your Kubernetes adoption and help you optimise your operations. On request, we’ll give you back the keys when you want to drive. No hidden costs, no lock in. We can even provide training on demand to help get your team upskilled. Once you have control, we provide 24/7 enterprise support for your cloud.</p>
+    </div>
+    <hr class="p-separator"/>
+    <a href="/pricing/infra">Read more about our pricing&nbsp;&rsaquo;</a>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3>Containers for legacy apps</h3>
-      <p>Use the Linux Containers Daemon, LXD, for pure-container guests in OpenStack.</p>
-      <p>Faster to launch, with zero latency and amazing quality of service, LXD guests are the bridge between traditional VMs and next-generation Kubernetes.</p>
-      <p><a href="https://linuxcontainers.org/" class="p-link--external">More about LXD</a></p>
-    </div>
-    <div class="col-6 p-card">
-      <h3>Custom integration</h3>
-      <p>Integrate your Kubernetes with existing storage SANs, network and SDN controllers, authentication systems like LDAP or Active Directory, and monitoring systems using our professional services and consulting teams.</p>
-      <p><a href="/kubernetes">Charmed Kubernetes services&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-6">
-      <p><a href="/kubernetes/contact-us?product=kubernetes-managed" class="js-invoke-modal">Let's discuss your requirements&nbsp;&rsaquo;</a></p>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align-text--center">
+        They trust us to run their K8s
+      </p>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d1223243-ACI.png",
+            alt="ACI logo",
+            width="292",
+            height="290",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5edd473e-DSV_Logo.png",
+            alt="DSV logo",
+            width="292",
+            height="292",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f3dccef2-Hyperoptic_logo.png",
+            alt="Hyperoptic logo",
+            width="292",
+            height="292",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/716b9fa9-Tamkeen_logo.png",
+            alt="Tamkeen logo",
+            width="292",
+            height="292",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Leave the Kubernetes complexity to us</h2>
+    <p>Our 2021 industry <a href="https://juju.is/cloud-native-kubernetes-usage-report-2021?_ga=2.260861765.916320157.1629196100-23925654.1615804900#:~:text=Foundation%2C%20Edward%20Jones-,What%20are%20the%20top%20challenges%20Kubernetes%20brings%20to%20businesses%3F,-What%20are%20your" class="p-link--external">report</a> revealed the main challenges businesses face when moving to cloud native technologies:</p>
+    {{ image (
+      url="https://assets.ubuntu.com/v1/698de35c-Kubernetes-report-findings-2.png",
+      alt="Main challenges results:
+      54.5% - Lack of in-house skills/limited manpower - 628 responses,
+      37.3% - Company IT structure - 430 responses,
+      32.6% - Incompatibility with legacy systems - 376 responses,
+      29.7% - Difficulty training users - 343 responses,
+      24.7% - Security and compliance concerns not addressed adequately - 285 responses",
+      width="808",
+      height="163",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+    <p>Our managed Kubernetes service allows you to:</p>
+    <ul>
+      <li>Build a vendor agnostic open source Kubernetes, no lock-in </li>
+      <li>Maintain your business focus</li>
+      <li>Fill in skill gaps within your IT</li>
+      <li>Hire and train strategic roles only, eliminating the need to keep the lights on</li>
+      <li>Expand your operations globally without having to build a global team</li>
+      <li>Minimise risks with our security first approach</li>
+    </ul>
+    <a href="/kubernetes/contact-us?product=kubernetes-managed" class="js-invoke-modal p-button--positive">Let us manage your k8s</a>
+    <a href="/engage/managed-services-overcoming-cio-challenges-2021">Managed IT services - read the whitepaper&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>The most sophisticated management system</h2>
+    <p>Canonical Kubernetes is built from the ground up following best practices and according to your needs using our <a href="/kubernetes">Kubernetes consulting packages</a>. Free up your teams for strategic activities, as we manage it 24/7. We will provide you a full set of analytics on the health of your cluster and ensure it stays up-to-date and secure.</p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Care&ndash;free SLA</h2>
+      <ul>
+        <li>Enterprise SLA for your cloud, upgrades included</li>
+        <li>99.9% guaranteed uptime. All cluster components are highly available and proactively monitored to minimise unplanned downtime.</li>
+        <li>Scale on demand with additional nodes. We will remotely test new hardware and scale your Kubernetes with zero downtime.</li>
+        <li>We develop the technology, we know how to fix it in the shortest possible time. </li>
+        <li>Our operations are certified, and under regular independent audits to meet and exceed the industry standards for quality and security.</li>
+      </ul>
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4218366f-Operate_K8s-01.svg",
+        alt="Illustraion of K8s operation",
+        width="229",
+        height="180",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Kubernetes monitoring and analytics</h2>
+      <ul>
+        <li>We build a robust cloud solution for you that provides dashboards for logging, monitoring and alerting.</li>
+        <li>We actively monitor your Kubernetes 24/7, providing observability, alerting, capacity planning and continuous service checks to ensure your cloud stays healthy.</li>
+        <li>We provide proactive management and visibility to help you gain a clear predictability over the costs, avoiding any surprises.</li>
+      </ul>
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/db240da7-K8s_management_platform-01.svg",
+        alt="Illustration K8s management platform",
+        width="260",
+        height="180",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Security and compliance</h2>
+      <ul>
+        <li>Every Kubernetes cluster built by Canonical is always upgradable to newer versions. Absolutely no snowflakes!</li>
+        <li>Zero downtime upgrades. Canonical guarantees upgrades to newer versions of Kubernetes on request. Nobody else does.</li>
+        <li>Regulatory compliance, ISO 27000 certified, GDPR compliant, SOC2 Type 2</li>
+        <li><a class="/blog/canonicals-managed-services-achieve-msp-cloud-verify-certification">MSP Cloud Verify certified</a> - the only managed service provider certification program accredited worldwide</li>
+      </ul>
+    </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/81201fd0-Secure+cloud.svg",
+        alt="Illustraion of secure cloud",
+        width="310",
+        height="180",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <a href="/engage/MSPAlliance-Canonical-Webinar?utm_medium=takeover&utm_campaign=7014K000000mYJnQAM">Watch our webinar “How to manage risks with top 1% managed service providers”&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Multi&ndash;cloud ready</h2>
+    <p>We recommend a multi-cloud operations strategy for the best mix of latency and price across both fixed and variable workloads. Canonical is a leading partner for all major public clouds, so we provide cloud-neutral advice for both private and public operations. The right location for a workload should be driven by economics, not habit. Give yourself the freedom to choose.</p>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align-text--center">
+        Supported clouds
+      </p>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/901d5a91-Google+Cloud.png",
+            alt="Google cloud logo",
+            width="292",
+            height="290",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fc61db3b-Anbox-logo-azure.png",
+            alt="azure logo",
+            width="310",
+            height="310",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5dfc272a-vmware_logo.png",
+            alt="vmware logo",
+            width="292",
+            height="292",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/43d45da9-Anbox-logo-aws.png",
+            alt="aws logo",
+            width="310",
+            height="310",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/53d93b1d-Anbox-logo-maas.png",
+            alt="maas logo",
+            width="310",
+            height="310",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5daf7029-Openstack_logo.png",
+            alt="openstack logo",
+            width="292",
+            height="292",
+            hi_def=True,
+            loading="auto|lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="u-sv2">Managed IT services in a single hand&ndash;shake</h2>
+  </div>
   <div class="row">
-    <div class="col-8">
-      <h2>Managed Kubernetes pricing</h2>
-      {% include "shared/pricing/_kubernetes-managed.html" %}
+    <div class="col-6">
+      <h3 class="p-heading--4">Full stack support</h3>
+      <p>As the publisher of Ubuntu, Canonical uniquely supports the full stack. Complex problems in cloud infrastructure require analysis and fixes all the way down to the kernel. With us, there are no loose ends. The teams managing your clouds are working side by side with the engineers developing your clouds.</p>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--4">Flexible infrastructure</h3>
+      <p>Metal as a Service (<a class="p-link--external" href="https://maas.io/?_ga=2.238641412.542907870.1630927385-1660063247.1626983102">MAAS</a>) enables flexible lifecycle management of operating system loads on physical servers and VM hosts. Choose between the most popular Kubernetes CNIs, such as Calico, Flannel and Multus, or the widest range of SDNs if you're running on top of <a href="/openstack">OpenStack</a>. Use proven software‐defined storage like <a href="/ceph">Ceph</a> and Swift, or integrate your existing SAN.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3 class="p-heading--4">App&ndash;store included</h3>
+      <p>Operate standard software workloads exactly the same way on public clouds and on-prem, using Kubernetes. Benefit from a <a href="https://charmhub.io/" class="p-link--external">large portfolio of open source applications</a> that can easily be integrated with your cloud. </p>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--4">AI/ML ready</h3>
+      <p>Canonical OpenStack and Kubernetes are ready for your Machine Learning enabled applications. Trusted by leaders in the industry, Ubuntu provides the best basis to run <a href="/ai">AI/ML frameworks</a>.</p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="u-fixed-width">
+    <a href="/managed">Explore our Managed IT services&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip--suru is-dark">
+  <div class="row">
+    <h2>Managed Kubernetes resources</h2>
+  </div>
+  <div class="row p-divider is-dark">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <h3 class="p-heading--4">Whitepaper</h3>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="/engage/managed-services-overcoming-cio-challenges-2021">Managed IT Services &ndash; Overcoming CIOs biggest challenges&nbsp;&rsaquo;</a>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <h3 class="p-heading--4">Blog</h3>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="/blog/managed-kubernetes-cheaper-than-aws">Managed Kubernetes cheaper than AWS&nbsp;&rsaquo;</a>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          <h3 class="p-heading--4">Webinar</h3>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="/engage/MSPAlliance-Canonical-Webinar?utm_medium=takeover&utm_campaign=7014K000000mYJnQAM">The Kubernetes and cloud native operations report 2021&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
@@ -524,10 +435,10 @@
   <div class="row u-equal-height">
     <div class="col-7">
       <h3>
-        Talk to Canonical's remote operations team about building and operating your Kubernetes cluster today.
+        Talk to our Kubernetes experts about building and operating your cluster.
       </h3>
       <p>
-        <a href="/kubernetes/contact-us?product=kubernetes-managed" class="p-button--positive js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Schedule a Kubernetes demo', 'eventLabel' : 'Schedule a Kubernetes demo - Bottom CTA' : undefined });">Schedule a Kubernetes demo</a>
+        <a href="/kubernetes/contact-us?product=kubernetes-managed" class="p-button--positive js-invoke-modal">Get in touch</a>
       </p>
     </div>
     <div class="col-5 u-align--center u-hide--small">

@@ -4,7 +4,7 @@
   </header>
 
   <div class="blog-p-card__content">
-    <form action="/marketo/submit" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+    <form action="/marketo/submit" method="post" id="mktoForm_1212" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
       <h3 class="p-card--title p-heading--four">Select topics you're <br />interested in</h3>
 
       <ul class="p-list">
@@ -37,7 +37,7 @@
       <div class="mktFormReq mktField">
         <label>
           <span class="u-no-margin--top">Work email: <span>*</span></span>
-          <input required  id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+          <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" class="mktoField mktoEmailField mktoRequired" />
         </label>
       </div>
 
@@ -77,16 +77,5 @@
   </div>
 </div>
 
-<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
-<script>
-  $("#mktoForm_1212").validate({
-    errorPlacement: function(error, element) {
-      error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
-      error.appendTo( element.addClass( "p-form-validation__input" ));
-    },
-    errorElement: "span",
-    errorClass: "p-form-validation__message"
-  });
-</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
+

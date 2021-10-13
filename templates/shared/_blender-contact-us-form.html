@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{formid}}">
+      <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
 
         <fieldset class="u-no-margin--bottom">
           <label class="mktoLabel" for="Comments_from_lead_c">Tell us about your project and what problem(s) you’re looking to solve:</label>
@@ -28,10 +28,10 @@
             <li class="mktFormReq mktField p-list__item">
               <label for="CompanyName" class="mktoLabel">Company name:</label>
               <input required id="company" name="company" maxlength="255" type="text" class="mktoField mktoRequired" />
-            </li
+            </li>
             <li class="mktFormReq mktField p-list__item">
               <label for="Email" class="mktoLabel">Email address:</label>
-              <input required id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" class="mktoField mktoEmailField mktoRequired" />
             </li>
             <li class="mktFormReq mktField p-list__item">
               <label for="Phone" class="mktoLabel">Mobile/cell phone number:</label>

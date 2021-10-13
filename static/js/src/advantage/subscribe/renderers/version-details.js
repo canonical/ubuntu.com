@@ -4,21 +4,24 @@ const knowledgeBase = "Knowledge base access";
 const KVMDrivers = "Certified Windows drivers for KVM guests";
 const CISBenchmark = "CIS benchmark";
 const CISBenchmarkAndAutomation = "CIS benchmark and automation tooling";
-const FIPS = "FIPS 140-2 Level 1 certified crypto modules";
+const FIPS =
+  "Certified compliance with FIPS 140-2 Level 1 certified crypto modules validated by NIST";
 const DISA = "DISA STIG";
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate = "Extended Security Maintenance (ESM) until ";
 
 const versionDetails = {
   20.04: [
+    `${ESMEndDate} 2030`,
     livepatch,
+    KVMDrivers,
+    FIPS,
+    CISBenchmarkAndAutomation,
     landscape,
     knowledgeBase,
-    KVMDrivers,
-    CISBenchmark,
-    `${ESMEndDate} 2030`,
   ],
   18.04: [
+    `${ESMEndDate} 2028`,
     livepatch,
     landscape,
     knowledgeBase,
@@ -26,9 +29,9 @@ const versionDetails = {
     FIPS,
     CISBenchmarkAndAutomation,
     DISA,
-    `${ESMEndDate} 2028`,
   ],
   16.04: [
+    `${ESMEndDate} 2026`,
     livepatch,
     landscape,
     knowledgeBase,
@@ -37,10 +40,9 @@ const versionDetails = {
     CommonCriteria,
     CISBenchmarkAndAutomation,
     DISA,
-    `${ESMEndDate} 2024`,
   ],
   14.04: [
-    `${ESMEndDate} 2022`,
+    `${ESMEndDate} 2024`,
     livepatch,
     landscape,
     knowledgeBase,

@@ -11,9 +11,7 @@ import {
 import { CardElement } from "@stripe/react-stripe-js";
 import { debounce } from "lodash";
 
-import { formatter } from "../../renderers/form-renderer";
-import usePreview from "../APICalls/usePreview";
-import useProduct from "../APICalls/useProduct";
+import usePostCustomerInfoForPurchasePreview from "../hooks/usePostCustomerInfoForPurchasePreview";
 import FormRow from "./FormRow";
 import {
   caProvinces,
@@ -23,19 +21,19 @@ import {
 } from "../../../countries-and-states";
 import { getErrorMessage } from "../../../error-handler";
 import { Field, Form, useFormikContext } from "formik";
-import { useQueryClient } from "react-query";
-
-import usePostCustomerInfoForPurchasePreview from "../APICalls/usePostCustomerInfoForPurchasePreview";
-
 function PaymentMethodForm({ setCardValid }) {
-  const { product, quantity } = useProduct();
-  const { data: preview } = usePreview();
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState(null);
   const mutation = usePostCustomerInfoForPurchasePreview();
-  const queryClient = useQueryClient();
 
-  const { errors, touched, values, setTouched, setErrors } = useFormikContext();
+  const {
+    errors,
+    touched,
+    values,
+    setTouched,
+    setErrors,
+    setSubmitting,
+  } = useFormikContext();
 
   const validateEmail = (value) => {
     let errorMessage;
@@ -91,6 +89,7 @@ function PaymentMethodForm({ setCardValid }) {
   }, [values.buyingFor]);
 
   const updateCustomerInfoForPurchasePreview = (formValues) => {
+    setSubmitting(true);
     mutation.mutate(formValues, {
       onError: (error) => {
         if (error.message === "tax_id_invalid") {
@@ -100,8 +99,8 @@ function PaymentMethodForm({ setCardValid }) {
           });
         }
       },
-      onSuccess: () => {
-        queryClient.invalidateQueries("preview");
+      onSettled: () => {
+        setSubmitting(false);
       },
     });
   };
@@ -182,6 +181,7 @@ function PaymentMethodForm({ setCardValid }) {
         help="We'll also send setup instructions to this address."
         label="Email my receipt to:"
         type="email"
+        pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
         id="email"
         name="email"
         validate={validateEmail}
@@ -304,25 +304,9 @@ function PaymentMethodForm({ setCardValid }) {
       )}
 
       <Row className="u-no-padding u-sv1">
-        <Col size="4">
-          <div className="u-text-light">Total:</div>
+        <Col size="8" emptyLarge="5">
+          <p>You will have a chance to review on the next step...</p>
         </Col>
-        <Col size="8">
-          <div>
-            <strong>
-              {formatter.format(
-                preview
-                  ? preview.total / 100
-                  : (product?.price?.value * quantity) / 100
-              )}
-            </strong>
-          </div>
-        </Col>
-        {preview?.taxAmount ? null : (
-          <Col size="8" emptyLarge="5">
-            <div className="u-text-light">Excluding VAT</div>
-          </Col>
-        )}
       </Row>
     </Form>
   );

@@ -6,7 +6,7 @@
     <ul class="p-list">
       <li class="mktFormReq mktField p-list__item">
         <label for="email" class="mktoLabel contextual-footer__text--label">Work email:</label>
-        <input required id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+        <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" class="mktoField mktoEmailField mktoRequired">
       </li>
       <li class="p-list__item u-no-margin--top">
         <p>

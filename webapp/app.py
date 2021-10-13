@@ -52,17 +52,13 @@ from webapp.views import (
     BlogPressCentre,
     BlogSitemapIndex,
     BlogSitemapPage,
-    build,
     build_tutorials_index,
     download_server_steps,
     download_thank_you,
     appliance_install,
     appliance_portfolio,
-    post_build,
     releasenotes_redirect,
-    search_snaps,
     show_template,
-    notify_build,
     build_engage_index,
     engage_thank_you,
     sitemap_index,
@@ -70,6 +66,7 @@ from webapp.views import (
     sixteen_zero_four,
     openstack_install,
     marketo_submit,
+    thank_you,
     mirrors_query,
 )
 
@@ -103,6 +100,8 @@ from webapp.advantage.views import (
     delete_account_user_role,
     post_account_user_role,
     put_account_user_role,
+    put_contract_entitlements,
+    blender_thanks_view,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -287,6 +286,7 @@ app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
+app.add_url_rule("/thank-you", view_func=thank_you)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
     "/advantage/user-subscriptions", view_func=get_user_subscriptions
@@ -395,6 +395,14 @@ app.add_url_rule(
     view_func=accept_renewal,
     methods=["POST"],
 )
+
+app.add_url_rule(
+    "/advantage/contracts/<contract_id>/entitlements",
+    view_func=put_contract_entitlements,
+    methods=["PUT"],
+)
+
+app.add_url_rule("/advantage/blender/thank-you", view_func=blender_thanks_view)
 
 app.add_url_rule("/account", view_func=account_view)
 
@@ -591,12 +599,6 @@ engage_pages.init_app(app)
 template_finder_view = TemplateFinder.as_view("template_finder")
 template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
-app.add_url_rule("/snaps", view_func=search_snaps)
-app.add_url_rule("/core/build", view_func=build)
-app.add_url_rule("/core/build", view_func=post_build, methods=["POST"])
-app.add_url_rule(
-    "/core/build/notify", view_func=notify_build, methods=["POST"]
-)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"

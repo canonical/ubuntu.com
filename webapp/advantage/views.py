@@ -39,6 +39,7 @@ from webapp.advantage.schemas import (
     post_account_user_role,
     put_account_user_role,
     delete_account_user_role,
+    put_contract_entitlements,
 )
 
 
@@ -448,6 +449,27 @@ def cancel_advantage_subscriptions(**kwargs):
     return flask.jsonify(purchase), 200
 
 
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(put_contract_entitlements, location="json")
+def put_contract_entitlements(contract_id, **kwargs):
+    g.api.set_convert_response(True)
+
+    entitlements_request = []
+    for setting in kwargs.get("entitlements"):
+        entitlements_request.append(
+            {
+                "type": setting["type"],
+                "obligations": {
+                    "enableByDefault": setting["is_enabled"],
+                },
+            }
+        )
+
+    return g.api.put_contract_entitlements(
+        contract_id=contract_id, entitlements_request=entitlements_request
+    )
+
+
 @advantage_decorator(permission="user_or_guest", response="json")
 @use_kwargs(post_anonymised_customer_info, location="json")
 def post_anonymised_customer_info(**kwargs):
@@ -711,3 +733,12 @@ def download_invoice(purchase_id):
     download_link = purchase["invoice"]["url"]
 
     return flask.redirect(download_link)
+
+
+@advantage_decorator(response="html")
+@use_kwargs({"email": String()}, location="query")
+def blender_thanks_view(**kwargs):
+    return flask.render_template(
+        "advantage/blender/thank-you.html",
+        email=kwargs.get("email"),
+    )

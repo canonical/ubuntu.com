@@ -18,7 +18,7 @@
           <label for="title" class="mktoLabel">Job title:</label>
           <input required  id="title" name="title" maxlength="255" type="text" class="mktoField mktoRequired">
           <label for="email" class="mktoLabel ">Work email:</label>
-          <input required  id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+          <input required  id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" class="mktoField mktoEmailField mktoRequired">
           <label for="phone" class="mktoLabel ">Mobile/cell phone number:</label>
           <input required id="phone" name="phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
         </div>
