@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, ContextualMenu, MainTable } from "@canonical/react-components";
 
-const enum Status {
+export const enum Status {
   Enrolled = "enrolled",
   NotEnrolled = "not-enrolled",
   Passed = "passed",
@@ -9,7 +9,7 @@ const enum Status {
   InProgress = "In Progress",
 }
 
-const translateStatus = (status: Status) => {
+export const translateStatus = (status: Status) => {
   return {
     [Status.Enrolled]: "Enrolled",
     [Status.NotEnrolled]: "Not Enrolled",
@@ -202,15 +202,17 @@ const TableView = () => {
         }
       )}
       emptyStateMsg={
-        isLoading ? (
+        <section aria-live="polite" aria-busy={isLoading ? "true" : "false"}>
           <p>
-            <i className="p-icon--spinner u-animation--spin"></i>
+            {isLoading ? (
+              <i className="p-icon--spinner u-animation--spin"></i>
+            ) : error ? (
+              <i>{error}</i>
+            ) : (
+              <i>No microcerts were found</i>
+            )}
           </p>
-        ) : error ? (
-          <i>{error}</i>
-        ) : (
-          <i>No microcerts were found</i>
-        )
+        </section>
       }
     />
   );
