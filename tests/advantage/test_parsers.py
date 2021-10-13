@@ -276,16 +276,19 @@ class TestParsers(unittest.TestCase):
                 type="entitlement-type",
                 support_level=None,
                 enabled_by_default=True,
+                is_available=True,
             ),
             Entitlement(
                 type="entitlement-type-2",
                 support_level=None,
                 enabled_by_default=False,
+                is_available=True,
             ),
             Entitlement(
                 type="support",
                 support_level="advanced",
                 enabled_by_default=False,
+                is_available=True,
             ),
         ]
 

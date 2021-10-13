@@ -12,6 +12,7 @@ from tests.advantage.helpers import (
     make_legacy_contract_item,
     make_renewal,
 )
+from webapp.advantage.models import Entitlement
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
     get_items_aggregated_values,
@@ -26,6 +27,8 @@ from webapp.advantage.ua_contracts.helpers import (
     get_price_info,
     get_subscription_by_period,
     set_listings_trial_status,
+    apply_entitlement_rules,
+    to_dict,
 )
 
 
@@ -258,24 +261,24 @@ class TestHelpers(unittest.TestCase):
     def test_get_date_statuses(self):
         freeze_datetime = "2020-09-01T00:00:00Z"
         scenarios = {
-            "date_is_31_days_before_expiry": {
-                "date": "2020-10-02T00:00:00Z",
+            "date_is_8_days_before_expiry": {
+                "date": "2020-09-09T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
                     "is_expired": False,
                 },
             },
-            "date_is_30_days_and_one_second_before_expiry_start": {
-                "date": "2020-10-01T00:00:00Z",
+            "date_is_7_days_and_one_second_before_expiry_start": {
+                "date": "2020-09-08T00:00:01Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
                     "is_expired": False,
                 },
             },
-            "date_is_30_days_before_expiry": {
-                "date": "2020-09-30T23:59:59Z",
+            "date_is_7_days_before_expiry": {
+                "date": "2020-09-07T23:59:59Z",
                 "expectations": {
                     "is_expiring": True,
                     "is_in_grace_period": False,
@@ -462,7 +465,13 @@ class TestHelpers(unittest.TestCase):
                 "parameters": {
                     "type": "trial",
                     "end_date": "2020-08-18T00:00:00Z",
-                    "subscriptions": None,
+                    "subscriptions": [
+                        make_subscription(
+                            started_with_trial=True,
+                            in_trial=True,
+                            status="active",
+                        )
+                    ],
                     "listing": None,
                 },
                 "expectations": {
@@ -482,7 +491,7 @@ class TestHelpers(unittest.TestCase):
             "test_pending_purchases_user_subscription": {
                 "parameters": {
                     "type": "trial",
-                    "end_date": "2020-09-30T23:59:59Z",
+                    "end_date": "2020-09-07T23:59:59Z",
                     "subscriptions": [
                         make_subscription(
                             pending_purchases=["pAaBbCcDdEeFfgG"]
@@ -699,3 +708,49 @@ class TestHelpers(unittest.TestCase):
 
         for listing in listings.values():
             self.assertEqual(listing.can_be_trialled, False)
+
+    def test_apply_entitlement_rules(self):
+        entitlements = [
+            Entitlement(
+                type="landscape",
+                enabled_by_default=False,
+            ),
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="standard",
+            ),
+            Entitlement(
+                type="esm-infra",
+                enabled_by_default=True,
+            ),
+        ]
+
+        final_entitlements = apply_entitlement_rules(entitlements)
+
+        expected_entitlements = [
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="standard",
+            ),
+            Entitlement(
+                type="esm-infra",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=False,
+                is_available=False,
+            ),
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="advanced",
+                is_available=False,
+            ),
+        ]
+
+        self.assertEqual(
+            to_dict(final_entitlements), to_dict(expected_entitlements)
+        )
