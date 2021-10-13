@@ -558,44 +558,6 @@ def advantage_shop_view():
     )
 
 
-@advantage_decorator(response="html")
-def blender_shop_view():
-    g.api.set_convert_response(True)
-
-    account = None
-    if user_info(flask.session):
-        try:
-            account = g.api.get_purchase_account()
-        except UAContractsUserHasNoAccount:
-            # There is no purchase account yet for this user.
-            # One will need to be created later; expected condition.
-            pass
-
-    all_subscriptions = []
-    if account:
-        all_subscriptions = g.api.get_account_subscriptions(
-            account_id=account.id,
-            marketplace="blender",
-        )
-
-    current_subscriptions = [
-        subscription
-        for subscription in all_subscriptions
-        if subscription.status in ["active", "locked"]
-    ]
-
-    listings = g.api.get_product_listings("blender")
-
-    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
-
-    return flask.render_template(
-        "advantage/blender/index.html",
-        account=account,
-        previous_purchase_ids=previous_purchase_ids,
-        product_listings=listings,
-    )
-
-
 @advantage_decorator(permission="user", response="html")
 def advantage_account_users_view():
     return flask.render_template("advantage/users/index.html")
@@ -1156,6 +1118,43 @@ def _make_renewal(contract_info):
         ) and invoice["subscription_status"] == "incomplete"
 
     return renewal
+
+
+@advantage_decorator(response="html")
+def blender_shop_view():
+    g.api.set_convert_response(True)
+
+    account = None
+    if user_info(flask.session):
+        try:
+            account = g.api.get_purchase_account()
+        except UAContractsUserHasNoAccount:
+            # There is no purchase account yet for this user.
+            # One will need to be created later; expected condition.
+            pass
+
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="blender",
+        )
+
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
+
+    listings = g.api.get_product_listings("blender")
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
+
+    return flask.render_template(
+        "advantage/blender/index.html",
+        account=account,
+        previous_purchase_ids=previous_purchase_ids,
+        product_listings=listings,
+    )
 
 
 @advantage_decorator(response="html")
