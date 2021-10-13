@@ -64,7 +64,7 @@ context("Advantage", () => {
     cy.findByLabelText("City:").type("London");
 
     cy.clickRecaptcha();
-
+    
     cy.findByRole("button", { name: "Next step" }).click();
 
     // wait for request to be sent
@@ -87,10 +87,23 @@ context("Advantage", () => {
       // and cypress complains (it would usually indicate an issue, in our case it's intentional).
       force: true,
     });
-    cy.findByRole("button", { name: "Buy" }).click();
+
+    cy.intercept("POST", "/advantage/subscribe*").as("trial");
+
+    cy.findByRole("button", { name: "Buy" })
+      .should(() => {
+        expect(
+          JSON.parse(localStorage.getItem("ua-subscribe-state"))
+        ).to.have.keys("form", "ui");
+      })
+      .click()
+      .should("be.disabled")
+      .should(() => {
+        expect(JSON.parse(localStorage.getItem("ua-subscribe-state"))).to.be
+          .null;
+      });
 
     // The trial call is made
-    cy.intercept("POST", "/advantage/subscribe*").as("trial");
     cy.wait("@trial").then((interception) => {
       expect(interception.request.body.trialling).to.be.true;
     });
@@ -166,12 +179,24 @@ context("Advantage", () => {
       // and cypress complains (it would usually indicate an issue, in our case it's intentional).
       force: true,
     });
-    cy.findByRole("button", { name: "Buy" }).click();
 
-    // The purchase call is made
     cy.intercept("POST", "/advantage/subscribe*").as("purchase");
     cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
 
+    cy.findByRole("button", { name: "Buy" })
+      .should(() => {
+        expect(
+          JSON.parse(localStorage.getItem("ua-subscribe-state"))
+        ).to.have.keys("form", "ui");
+      })
+      .click()
+      .should("be.disabled")
+      .should(() => {
+        expect(JSON.parse(localStorage.getItem("ua-subscribe-state"))).to.be
+          .null;
+      });
+
+    // The purchase call is made
     cy.wait("@purchase").then((interception) => {
       expect(interception.request.body.trialling).to.be.undefined;
     });

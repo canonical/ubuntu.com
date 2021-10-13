@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    {% if contract['contractInfo']['status'] != "expired" %}
+    {% if contract['is_trialled_but_cancelled'] == False %}
       <div class="row">
         <div class="col-12 u-align--right">
           <button 

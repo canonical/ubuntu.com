@@ -76,6 +76,7 @@ def parse_entitlements(
     for raw_entitlement in raw_entitlements:
         affordances = raw_entitlement.get("affordances")
         obligations = raw_entitlement.get("obligations")
+        is_available = raw_entitlement.get("entitled")
 
         support_level = None
         if affordances:
@@ -85,6 +86,7 @@ def parse_entitlements(
             type=raw_entitlement.get("type"),
             support_level=support_level,
             enabled_by_default=obligations.get("enableByDefault"),
+            is_available=is_available,
         )
 
         entitlements.append(entitlement)

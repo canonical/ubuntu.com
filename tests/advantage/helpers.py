@@ -69,6 +69,7 @@ def make_subscription(
     status: str = None,
     last_purchase_id: str = None,
     started_with_trial: bool = None,
+    in_trial: bool = None,
     pending_purchases: List[str] = None,
     items: List[SubscriptionItem] = None,
 ) -> Subscription:
@@ -82,6 +83,7 @@ def make_subscription(
         pending_purchases=pending_purchases or [],
         items=items or [],
         started_with_trial=started_with_trial,
+        in_trial=in_trial,
     )
 
 
