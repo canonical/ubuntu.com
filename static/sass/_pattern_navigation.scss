@@ -30,6 +30,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     z-index: 40;
     height: 48px;
 
+    a:hover {
+      text-decoration: none;
+    }
+
     &__items {
       @media (max-width: $breakpoint-x-small - 1) {
         font-size: 0.875rem;
@@ -264,6 +268,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       width: 100%;
       z-index: 36;
 
+      a:hover {
+        text-decoration: none;
+      }
+
       @media (max-width: $breakpoint-x-small - 1) {
         padding-bottom: $sp-medium;
         padding-top: $sp-small / 2;
@@ -350,6 +358,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
           padding: 0.45rem 0.5rem 0.4rem 0.5rem;
           color: $color-x-light;
           font-weight: 400;
+
+          &:hover {
+            background: $color-dark;
+          }
 
           @media (max-width: $breakpoint-x-small - 1) {
             padding-bottom: 0;
