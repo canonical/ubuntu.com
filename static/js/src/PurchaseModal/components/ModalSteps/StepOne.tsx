@@ -41,7 +41,8 @@ function StepOne({ error, closeModal }: StepOneProps) {
             (!userInfo && !dirty) ||
             !isValid ||
             !isCardValid ||
-            !values.captchaValue
+            !values.captchaValue ||
+            isSubmitting
           }
           appearance="positive"
           className="col-small-2 col-medium-2 col-3 u-no-margin"
