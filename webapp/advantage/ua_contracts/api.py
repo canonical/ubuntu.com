@@ -82,7 +82,7 @@ class UAContractsAPI:
             method="get",
             path=(
                 f"v1/accounts/{account_id}/contracts"
-                f"?productTags=ua&productTags=classic&productTags=pro"
+                f"?productTags=ua,classic,pro,blender"
             ),
             error_rules=["default"],
         )
