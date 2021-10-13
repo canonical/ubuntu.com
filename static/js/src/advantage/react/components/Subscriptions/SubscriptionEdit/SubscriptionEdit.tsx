@@ -15,7 +15,7 @@ import { SelectedId } from "../Content/types";
 import { useResizeContract, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import usePendingPurchase from "advantage/subscribe/react/APICalls/usePendingPurchase";
+import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
 import { useQueryClient } from "react-query";
 import { UserSubscription } from "advantage/api/types";

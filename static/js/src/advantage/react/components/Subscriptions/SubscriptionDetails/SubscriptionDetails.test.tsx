@@ -11,7 +11,7 @@ import SubscriptionDetails from "./SubscriptionDetails";
 import { UserSubscription } from "advantage/api/types";
 import SubscriptionEdit from "../SubscriptionEdit";
 import { Notification } from "@canonical/react-components";
-import * as usePendingPurchase from "advantage/subscribe/react/APICalls/usePendingPurchase";
+import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 
 describe("SubscriptionDetails", () => {
   let queryClient: QueryClient;

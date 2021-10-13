@@ -16,7 +16,7 @@ import {
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import * as contracts from "advantage/api/contracts";
-import * as usePendingPurchase from "advantage/subscribe/react/APICalls/usePendingPurchase";
+import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 
 describe("SubscriptionEdit", () => {
   let queryClient: QueryClient;
