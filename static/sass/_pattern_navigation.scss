@@ -9,6 +9,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 @mixin ubuntu-p-navigation {
   html {
     overflow-x: hidden !important; // prevent horizontal overflow full width breakout
+    font-size: 1.125rem !important;
   }
 
   %row-no-margins-on-mobile {
@@ -49,6 +50,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
     .p-navigation__strapline {
       color: $color-mid-dark;
+      font-size: 21px;
       padding-left: 2rem;
       min-width: 10rem;
       display: flex;
@@ -106,7 +108,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     & &__link-anchor {
-      color: $color-dark;
+      color: $color-mid-dark;
       display: block;
       line-height: 1.5rem;
 
@@ -285,7 +287,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
         font-size: 21px;
         font-weight: 300;
         margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
-        padding-top: 0.55rem;
+        padding-top: $sp-unit * 2 - map-get($nudges, nudge--p);
         position: relative;
 
         a {
