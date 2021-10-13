@@ -22,6 +22,7 @@ const translateStatus = (status: Status) => {
 const TableView = () => {
   const [modules, setModules] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getModules = async () => {
@@ -42,7 +43,8 @@ const TableView = () => {
           setModules(modules);
         }
       } catch {
-        console.error("Error fetching data!");
+        const errorMessage = "An error occurred while loading the microcerts";
+        setError(errorMessage);
       } finally {
         setIsLoading(false);
       }
@@ -204,8 +206,10 @@ const TableView = () => {
           <p>
             <i className="p-icon--spinner u-animation--spin"></i>
           </p>
+        ) : error ? (
+          <i>{error}</i>
         ) : (
-          <i>No data could be loaded</i>
+          <i>No microcerts were found</i>
         )
       }
     />
