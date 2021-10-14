@@ -1,91 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, ContextualMenu, MainTable } from "@canonical/react-components";
 
-const TableView = () => {
-  const enum Status {
-    Enrolled = "Enrolled",
-    NotEnrolled = "Not Enrolled",
-    Passed = "Passed",
-    Failed = "Failed",
-    InProgress = "In Progress",
-  }
+export enum Status {
+  Enrolled = "enrolled",
+  NotEnrolled = "not-enrolled",
+  Passed = "passed",
+  Failed = "failed",
+  InProgress = "in-progress",
+}
 
-  // TODO: replace dummy data with data from endpoint
-  const modules = [
-    {
-      badgeURL: "https://assets.ubuntu.com/v1/9ef4a092-Architecture.svg",
-      name: "Ubuntu System Architecture",
-      topics: [
-        "Review and record relevant system information",
-        "Manage kernels and devices",
-        "Make administrative changes to devices and hardware",
-      ],
-      studyLabURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/sysarch/",
-      takeURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+sysarch+2020/courseware/2020/start/",
-      status: Status.Enrolled,
-    },
-    {
-      badgeURL: "https://assets.ubuntu.com/v1/c19e9931-Packages.svg",
-      name: "Managing Packages in Ubuntu",
-      topics: [
-        "Assess package information",
-        "Use and configure snaps",
-        "Manage Debian packages",
-        "Manage executables with alternatives",
-      ],
-      studyLabURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/package/",
-      takeURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+package+2020/courseware/2020/start/",
-      status: Status.NotEnrolled,
-    },
-    {
-      badgeURL: "https://assets.ubuntu.com/v1/43f7d2a3-Commands.svg",
-      name: "Using Command Line Tools",
-      topics: [
-        "Work with file contents",
-        "Process data using the command line",
-        "Use essential utilities",
-      ],
-      studyLabURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/commands/",
-      takeURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+commands+2020/courseware/2020/start/",
-      status: Status.Passed,
-    },
-    {
-      badgeURL: "https://assets.ubuntu.com/v1/093b57b6-Devices+%26+files.svg",
-      name: "Linux Devices and Filesystems",
-      topics: [
-        "Configure volumes and subvolumes",
-        "Create and configure partitions",
-        "Encrypt disks",
-        "Manage and configure block devices, Device Mapper, and filesystems",
-      ],
-      studyLabURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/devices/",
-      takeURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+devices+2020/courseware/2020/start/",
-      status: Status.Failed,
-    },
-    {
-      badgeURL: "https://assets.ubuntu.com/v1/30af430c-bash.svg",
-      name: "Bash Shell Scripting",
-      topics: [
-        "Create, check, and test files",
-        "Work with logs",
-        "Monitor and gather information from other systems",
-        "Automate tasks with loops and conditionals",
-      ],
-      studyLabURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+study_labs+2020/courseware/shellscript/",
-      takeURL:
-        "https://qa.cube.ubuntu.com/courses/course-v1:CUBE+shellscript+2020/courseware/2020/start/",
-      status: Status.InProgress,
-    },
-  ];
+const translateStatus = (status: Status) => {
+  return {
+    [Status.Enrolled]: "Enrolled",
+    [Status.NotEnrolled]: "Not Enrolled",
+    [Status.Passed]: "Passed",
+    [Status.Failed]: "Failed",
+    [Status.InProgress]: "In Progress",
+  }[status];
+};
+
+const TableView = () => {
+  const [modules, setModules] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const getModules = async () => {
+      try {
+        const response = await fetch("/cube/microcerts.json");
+
+        if (response.status === 200) {
+          let { modules } = await response.json();
+          modules = modules.map((module: Record<string, unknown>) => ({
+            name: module["name"],
+            badgeURL: module["badge-url"],
+            topics: module["topics"],
+            studyLabURL: module["study_lab"],
+            takeURL: module["take_url"],
+            status: module["status"],
+          }));
+
+          setModules(modules);
+        }
+      } catch {
+        const errorMessage = "An error occurred while loading the microcerts";
+        setError(errorMessage);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getModules();
+  }, []);
 
   const copyBadgeUrl = async (badgeUrl: string) => {
     try {
@@ -122,7 +87,7 @@ const TableView = () => {
         ) : status === Status.Failed ? (
           <i className="p-icon--error" />
         ) : null}
-        {status}
+        {translateStatus(status)}
       </>
     </p>
   );
@@ -203,6 +168,7 @@ const TableView = () => {
             columns: [
               {
                 content: <span className="u-text--muted">{index + 1}</span>,
+                className: "u-no-padding--right",
                 "aria-label": "Module number",
               },
               {
@@ -235,6 +201,19 @@ const TableView = () => {
           };
         }
       )}
+      emptyStateMsg={
+        <section aria-live="polite" aria-busy={isLoading ? "true" : "false"}>
+          <p>
+            {isLoading ? (
+              <i className="p-icon--spinner u-animation--spin"></i>
+            ) : error ? (
+              <i>{error}</i>
+            ) : (
+              <i>No microcerts were found</i>
+            )}
+          </p>
+        </section>
+      }
     />
   );
 };
