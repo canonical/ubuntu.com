@@ -44,8 +44,6 @@ module.exports = async (on, config) => {
           await page.click('button[type="submit"]'); // Click "Yes, log me in"
 
           await page.waitForNavigation({ waitUntil: "networkidle2" });
-          // await page.click("#proceed-button"); // dismiss Chrome built-in warning: "The information that you’re about to submit is not secure"
-          await page.waitForTimeout(5000); // puppeteer doesn't respond to waitForNavigation at this point
           cookies = await page.cookies();
           await browser.close();
           return { cookies };

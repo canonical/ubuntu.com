@@ -11,15 +11,12 @@ Cypress.Commands.add(
       username: Cypress.env("UBUNTU_USERNAME"),
       password: Cypress.env("UBUNTU_PASSWORD"),
     }
-  ) => {
-    cy.task("login", { username, password }, { timeout: 30000 }).then(
-      (user) => {
-        user.cookies.forEach(({ name, value }) => {
-          cy.setCookie(name, value);
-        });
-      }
-    );
-  }
+  ) =>
+    cy.task("login", { username, password }, { timeout: 30000 }).then((user) =>
+      user.cookies.forEach(({ name, value }) => {
+        cy.setCookie(name, value);
+      })
+    )
 );
 
 Cypress.Commands.add("iframeLoaded", { prevSubject: "element" }, ($iframe) => {
