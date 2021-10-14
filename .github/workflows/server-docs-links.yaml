@@ -2,33 +2,58 @@ name: docs links on ubuntu.com/server/docs
 
 on:
   schedule:
-    - cron: "0 13 * * 1"
+    - cron: "0 13 * * *"
+  workflow_dispatch:
 
 jobs:
   check-links:
-    if: github.repository == 'canonical-web-and-design/ubuntu.com'
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Install linkchecker
         run: sudo pip install LinkChecker
 
-      - name: Run linkchecker
+      - name: Write linkchecker config file
         run: |
-          linkchecker --no-follow-url '!https:\/\/ubuntu.com\/server\/docs' \
-            --ignore-url http://localhost* \
-          	--ignore-url https://res.cloudinary.com \
-          	--ignore-url q_auto \
-          	--ignore-url fl_sanitize \
-          	--ignore-url c_fill \
-          	--ignore-url e_sharpen \
-          	--ignore-url w_[0-9]* \
-          	--ignore-url h_[0-9]* \
-            --check-extern \
-            --no-status \
-            --timeout 1000 \
-            --no-warnings https://ubuntu.com/server/docs
+          mkdir -p ~/.linkchecker
+          cat > ~/.linkchecker/linkcheckerrc <<EOF
+          [checking]
+          maxrequestspersecond=5
+
+          [filtering]
+          nofollow=!https:\/\/ubuntu.com\/server\/docs
+          checkextern=1
+          ignore=
+            https://res\.cloudinary\.com
+            http://localhost*
+            /q_auto
+            c_fill
+            /fl_sanitize
+            e_sharpen
+            /w_
+            /h_
+
+          [output]
+          status=0
+          warnings=0
+          EOF
+
+      - name: Run linkchecker
+        continue-on-error: true
+        run: |
+          linkchecker https://ubuntu.com/server/docs > ~/.linkchecker/serverdocs-out.txt
+
+      - name: Parse linkchecker output
+        run: |
+          scripts/parseDocsLinkcheckerOutput serverdocs-out.txt
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
+        run: |
+          curl -X POST \
+          -F "workflow=${GITHUB_WORKFLOW}" \
+          -F "repo_name=${GITHUB_REPOSITORY}" \
+          -F "action_id=${GITHUB_RUN_ID}" \
+          ${{ secrets.BOT_URL }}?room=docs

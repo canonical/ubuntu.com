@@ -2,30 +2,55 @@ name: docs links on docs.openstack.org/charm-guide/latest/
 
 on:
   schedule:
-    - cron: "0 13 * * 1"
+    - cron: "0 13 * * *"
+  workflow_dispatch:
 
 jobs:
   check-links:
-    if: github.repository == 'canonical-web-and-design/ubuntu.com'
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Install linkchecker
         run: sudo pip install LinkChecker
 
-      - name: Run linkchecker
+      - name: Write linkchecker config file
         run: |
-          linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/charm-guide\/latest\/' \
-            --ignore-url http://localhost:8001\* \
-            --ignore-url https://groups.openstack.org \
-            --ignore-url https://openstack.org/projects/ \
-            --ignore-url https://openstack.org/projects/openstack-faq/ \
-            --ignore-url ^.*\.css \
-            --check-extern \
-            --no-status \
-            --timeout 1000 \
-            --no-warnings https://docs.openstack.org/charm-guide/latest/
+          mkdir -p ~/.linkchecker
+          cat > ~/.linkchecker/linkcheckerrc <<EOF
+          [checking]
+          maxrequestspersecond=5
+
+          [filtering]
+          nofollow=!https:\/\/docs.openstack.org\/charm-guide\/latest\/
+          checkextern=1
+          ignore=
+            http://localhost:8001\*
+            https://groups.openstack.org
+            https://openstack.org/projects/
+            https://openstack.org/projects/openstack-faq/
+            ^.*\.css
+
+          [output]
+          status=0
+          warnings=0
+          EOF
+
+      - name: Run linkchecker
+        continue-on-error: true
+        run: |
+          linkchecker https://docs.openstack.org/charm-guide/latest/ > ~/.linkchecker/openstackcharmguidedocs-out.txt
+
+      - name: Parse linkchecker output
+        run: |
+          scripts/parseDocsLinkcheckerOutput openstackcharmguidedocs-out.txt
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
+        run: |
+          curl -X POST \
+          -F "workflow=${GITHUB_WORKFLOW}" \
+          -F "repo_name=${GITHUB_REPOSITORY}" \
+          -F "action_id=${GITHUB_RUN_ID}" \
+          ${{ secrets.BOT_URL }}?room=docs
