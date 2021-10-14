@@ -65,7 +65,7 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
     >
       <div
         id="react-root"
-        className="p-modal__dialog"
+        className="p-modal__dialog ua-dialog"
         role="dialog"
         aria-labelledby="modal-title"
       >
