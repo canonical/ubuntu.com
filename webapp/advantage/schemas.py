@@ -41,6 +41,7 @@ post_advantage_subscriptions = {
     "previous_purchase_id": String(required=True),
     "products": List(Nested(ProductSchema), required=True),
     "resizing": Boolean(),
+    "marketplace": String(),
     "trialling": Boolean(),
 }
 
