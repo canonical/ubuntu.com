@@ -12,7 +12,7 @@ Cypress.Commands.add(
       password: Cypress.env("UBUNTU_PASSWORD"),
     }
   ) => {
-    cy.task("login", { username, password }, { timeout: 20000 }).then(
+    cy.task("login", { username, password }, { timeout: 30000 }).then(
       (user) => {
         user.cookies.forEach(({ name, value }) => {
           cy.setCookie(name, value);

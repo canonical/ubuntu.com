@@ -3,12 +3,6 @@
 import { getTestURL } from "../../utils";
 
 context("/advantage", () => {
-  beforeEach(() => {
-    cy.login();
-    cy.visit(getTestURL("/advantage"));
-    cy.acceptCookiePolicy();
-  });
-
   it("header links work correctly", () => {
     const links = [
       {
@@ -19,6 +13,10 @@ context("/advantage", () => {
       { name: "Payment methods", href: "/account/payment-methods" },
     ];
 
+    cy.login();
+    cy.visit(getTestURL("/advantage"));
+    cy.acceptCookiePolicy();
+
     links.forEach(({ name, href }) => {
       cy.findByRole("link", { name }).click();
       cy.url().should("include", href);
@@ -27,12 +25,20 @@ context("/advantage", () => {
   });
 
   it("free personal token is at the bottom of the list", () => {
+    cy.login();
+    cy.visit(getTestURL("/advantage"));
+    cy.acceptCookiePolicy();
+
     cy.get("[data-test=subscription-card-content] h5")
       .last()
       .should("have.text", "Free Personal Token");
   });
 
   it("sends a correct request when resizing a subscription", () => {
+    cy.login();
+    cy.visit(getTestURL("/advantage"));
+    cy.acceptCookiePolicy();
+
     cy.intercept("POST", "advantage/subscribe*", {}).as("subscribe");
 
     cy.get("[data-test=card-machines]")
