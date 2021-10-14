@@ -17,6 +17,7 @@ from requests.exceptions import HTTPError
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from bs4 import BeautifulSoup
+from werkzeug.exceptions import BadRequest
 from canonicalwebteam.discourse import (
     DiscourseAPI,
     Docs,
@@ -26,7 +27,6 @@ from canonicalwebteam.discourse import (
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
-
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -621,6 +621,24 @@ def marketo_submit():
     for key, value in flask.request.form.items():
         if value:
             form_fields[key] = value
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+
+    # There is logically difference between None and empty string here.
+    # 1. The first if check, we are working with a form that contains honeypots
+    # or the legacy ones using recaptcha.
+    # 2. The second that checks for empty string is actually testing if the
+    # honeypots have been triggered
+
+    if honeypots["name"] is None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
 
     form_fields.pop("thankyoumessage", None)
     form_fields.pop("g-recaptcha-response", None)
