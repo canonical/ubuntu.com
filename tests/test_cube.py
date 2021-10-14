@@ -89,6 +89,33 @@ class TestCube(VCRTestCase):
                 content = response.json()
                 self._test_microcerts_content(content)
 
+    def test_microcerts_purchase(self):
+        with self.client.session_transaction() as session:
+            session["authentication_token"] = "auth-token"
+            session["openid"] = {
+                "fullname": "Cube Engineer",
+                "email": "cube@canonical.com",
+            }
+            headers = {
+                "Content-type": "application/json",
+                "Accept": "application/json",
+            }
+
+            # Purchase preview
+            data = {
+                "preview": "true",
+                "account_id": "xxxx",
+                "product_listing_id": "CUBE-sys-arch",
+            }
+            with self.client:
+                # This URL should match the cassette URL
+                url = (
+                    "http://localhost:8001/cube/microcerts/"
+                    "purchase.json?test_backend=true"
+                )
+                response = requests.post(url, json=data, headers=headers)
+                self.assertEqual(response.status_code, 200)
+
     def test_study_login_required(self):
         response = self.client.get("/cube/study")
         self.assertEqual(response.status_code, 302)
