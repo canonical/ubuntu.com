@@ -16,6 +16,7 @@ import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import RenewalModal from "../RenewalModal";
 
 type Props = {
   modalActive?: boolean;
@@ -33,6 +34,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     const { data: subscription, isLoading } = useUserSubscriptions({
       select: selectSubscriptionById(selectedId),
     });
+    console.log(subscription);
     const isFree = isFreeSubscription(subscription);
     const isResizable =
       subscription?.statuses.is_upsizeable ||
@@ -153,6 +155,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             <DetailsContent selectedId={selectedId} />
           )}
         </section>
+        <RenewalModal subscription={subscription} closeModal={() => {}} />
       </div>
     );
   }
