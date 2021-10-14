@@ -1,6 +1,11 @@
 /// <reference types="cypress" />
 const puppeteer = require("puppeteer");
 
+async function clearBrowserCookies(page) {
+  const client = await page.target().createCDPSession();
+  await await client.send("Network.clearBrowserCookies");
+}
+
 module.exports = async (on, config) => {
   let cookies;
 
@@ -22,9 +27,10 @@ module.exports = async (on, config) => {
         return (async () => {
           const browser = await puppeteer.launch({
             ignoreHTTPSErrors: true,
-            headless: false,
+            headless: true,
           });
           const page = await browser.newPage();
+          clearBrowserCookies(page);
 
           await page.goto(config.baseUrl + "/login?test_backend=true", {
             // The app redirects to the login-page
@@ -38,7 +44,7 @@ module.exports = async (on, config) => {
           await page.click('button[type="submit"]'); // Click "Yes, log me in"
 
           await page.waitForNavigation({ waitUntil: "networkidle2" });
-          await page.click("#proceed-button"); // dismiss Chrome built-in warning: "The information that you’re about to submit is not secure"
+          // await page.click("#proceed-button"); // dismiss Chrome built-in warning: "The information that you’re about to submit is not secure"
           await page.waitForTimeout(5000); // puppeteer doesn't respond to waitForNavigation at this point
           cookies = await page.cookies();
           await browser.close();
