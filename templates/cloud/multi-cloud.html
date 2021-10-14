@@ -1,0 +1,395 @@
+{% extends "cloud/_base-cloud.html" %}
+
+{% block title %}What is multi-cloud?{% endblock %}
+
+{% block meta_description %}Multi-cloud is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. In conjunction with a hybrid cloud architecture, the multi-cloud approach enables organisations to optimise their infrastructure costs.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1nWsDaRiUzaupjKDzu1ZqjlmxHGv2HCgW8oBBEacYFLs/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-bottomed">
+  <div class="row">
+    <div class="col-7">
+      <h1>What is multi-cloud?</h1>
+      <p>Multi-cloud (also referred to as multi cloud or multi-cloud) is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. The term is also used to refer to the simultaneous running of bare metal, virtualised and containerised workloads.</p>
+      <p>In conjunction with a hybrid cloud architecture, the multi-cloud approach enables organisations to optimise their infrastructure costs. Multi-cloud reflects the reality of most organisations today and is expected to become the standard for cloud infrastructure in the coming years.</p>
+      <p>
+        <a href="/engage/multi-cloud-business-guide">Read the whitepaper&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+        alt="Multi-Cloud",
+        width="324",
+        height="185",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>How does a multi-<br/> cloud work?</h2>
+      <h4>Since multi-cloud is just a concept that refers to using multiple cloud platforms from more than one cloud service provider at the same time, the way it works is not significantly different from how public and private clouds work on their own.</h4>
+    </div>
+    <div class="col-7">
+      <p>Multi-cloud leverages virtualisation, containerisation, software-defined networking (SDN) and software-defined storage (SDS) technologies to divide physical resources, aggregated into pools, and allocate them to virtual machines (VMs) or containers. Dedicated <a href="/openstack/what-is-openstack">management software</a> is used to aggregate compute, network and storage resources, distributed across the data centre, and enable on-demand provisioning of virtualised resources through a self-service portal.</p>
+      <p>What differentiates multi-cloud from a single vendor model is an additional layer of abstraction provided by the <a href="https://juju.is" class="p-link--external">application management software</a> that runs on top of the existing clouds. This software treats each individual cloud platform as a resource provider and allows for deploying, integrating and managing Kubernetes, container and VM-native applications seamlessly across various clouds. This enables a substrate-agnostic approach to applications orchestration and results in time and cost savings usually spent on integration efforts.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>Multi-cloud vs<br/>Hybrid cloud</h2>
+      <h4>Multi-cloud and <a href="/cloud/hybrid-cloud">hybrid cloud</a> are two mutually exclusive terms that are often confused.</h4>
+    </div>
+    <div class="col-7">
+      <p>Multi-cloud simply refers to using multiple clouds from more than one cloud service provider at the same time. In this definition there are no assumptions  about the cloud types being used. In turn, hybrid cloud is a cloud architecture that consists of at least one public cloud, at least one private cloud and the hybrid cloud manager (HCM).</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Is every hybrid cloud a multi-cloud?</h5>
+      <p>No, imagine a <a href="/cloud">cloud architecture</a> that consists of <a href="https://aws.amazon.com/marketplace/pp/prodview-rhaqbfd6lepbw" class="p-link--external">AWS</a> and <a href="/aws/outposts">AWS Outposts</a> at the same time. It uses a public cloud and a private cloud infrastructure, but both are delivered by a single cloud provider.</p>
+      <h5 class="u-no-margin--bottom u-no-padding--top">Is every multi-cloud a hybrid cloud?</h5>
+      <p>No, it is not. Multi-cloud also refers to using multiple public clouds (e.g. <a href="https://azuremarketplace.microsoft.com/en-gb/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic?tab=overview" class="p-link--external">Azure</a> and <a href="https://cloud.google.com/blog/products/compute/ubuntu-pro-available-on-google-cloud" class="p-link--external">GCP</a>) or multiple private clouds (e.g. <a href="https://www.vmware.com/" class="p-link--external">VMware</a> and <a href="/openstack">OpenStack</a>) at the same time and this is not a hybrid cloud architecture.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Multi-cloud benefits</h2>
+      <p class="u-sv3">The main benefit of the multi-cloud approach is <a href="/engage/multi-cloud-business-guide">better economics</a> compared to using only one cloud platform at a time. Multi-cloud effectively combines the advantages brought by different cloud service providers, resulting in a number of benefits. Those include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
+        alt="Long-term cost savings",
+        width="64",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Long-term cost savings</h4>
+      <p class="u-sv3">In multi-cloud, workloads always run where it makes the most sense from an economical standpoint. This means organisations always pay as little as possible for the same amount of resources which results in long-term cost savings.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+          alt="Multi Cloud",
+          width="113",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Increased flexibility</h4>
+      <p class="u-sv3">Using more than one cloud platform at a time provides greater flexibility as businesses can choose the right place to run their workloads based on specific use cases and detailed requirements.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/86f2a978-vendor-lock-in.svg",
+          alt="Vendor lock-in",
+          width="92",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Reduced vendor lock-in</h4>
+      <p class="u-sv3">Being attached to a single service provider results in vendor lock-in. Being attached to more than one increases independence.</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/0e6c0ffc-Reliability.svg",
+          alt="Reliability",
+          width="53",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Improved reliability</h4>
+      <p class="u-sv3">Deploying applications across multiple availability zones, regions and clouds results in an increased redundancy, improved reliability and helps to meet service level agreement (SLA) goals.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c0a3f3e0-Continuity.svg",
+          alt="Continuity",
+          width="70",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Business continuity</h4>
+      <p class="u-sv3">Being able to deploy business applications across multiple cloud platforms and store copies of data in multiple locations facilitates implementing business continuity plans.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Multi-cloud challenges</h2>
+      <p class="u-sv3">While the multi-cloud approach brings a number of benefits to organisations, implementing a multi-cloud also entails a number of challenges. These include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
+          alt="Compatibility",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Compatibility</h4>
+      <p>Since various cloud platforms may use different application programming interfaces (APIs) and architectures, managing workloads in a multi-cloud model is challenging. Using <a href="https://juju.is" class="p-link--external">applications management software that is substrate-agnostic</a> helps to bypass those challenges, ensuring compatibility across various cloud providers.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
+        alt="Servers",
+        width="143",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Increased complexity</h4>
+      <p>With multi-cloud there is no longer a single cloud environment. There are at least two. This increases the complexity of the infrastructure and creates additional overhead for the cloud operations team. One way to deal with this is to leverage <a href="/openstack/managed">managed cloud services</a>.</p>
+    </div>
+    <div class="col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+          alt="Shields security",
+          width="112",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Greater attack surface</h4>
+      <p>When using multiple cloud platforms at the same time, organisations are much more exposed to potential network attacks and security breaches. Using an <a href="/security">operating system that provides the highest possible level of security</a> as a basis for applications implementation helps to mitigate this threat.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5">
+      <h2>Is multi-cloud right<br/>for you?</h2>
+      <h4>The main reason behind multi-cloud existence is better economics compared to a single vendor model.</h4>
+    </div>
+    <div class="col-7">
+      <p>Consuming services from more than one service provider at the same time allows organisations to negotiate better prices and always place their workloads where it makes the most sense from an economical standpoint. In addition, integrating with hybrid cloud architecture enables them to host the majority of their workloads in a private cloud and only using highly-scalable public cloud resources during heavy load periods. Since <a href="/engage/cloud-pricing-report-2021">private clouds prove to be more cost-effective</a> when running workloads in the long term and at scale, this approach allows for maximum infrastructure cost optimisation and results in long-term cost savings.</p>
+      <p><a href="/openstack/tco-calculator">Get cost estimates for an enterprise private cloud on Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Multi-cloud use cases</h2>
+      <p>Among hundreds of possibilities, typical multi-cloud use cases include:</p>
+    </div>
+  </div>
+  <div class="row">
+    <ul class="p-matrix p-matrix--three-col u-clearfix">
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Optimising infrastructure costs</h4>
+          <p class="p-matrix__desc">Always run your workloads where it makes the most sense from an economical standpoint. This may involve negotiating prices with leading public cloud providers or implementing a private cloud on-premises.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Running various types of workloads</h4>
+          <p class="p-matrix__desc">Always use a cloud platform that is most suitable for your workloads. Workloads may be heterogeneous, including bare metal ones, VMs, containers, etc.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Implementing geo redundancy</h4>
+          <p class="p-matrix__desc">Using various public clouds or a mix of public and private clouds helps to ensure application geo redundancy and meet bandwidth, and latency goals in all parts of the world.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Architecting disaster recovery</h4>
+          <p class="p-matrix__desc">Using multiple cloud platforms is just another layer in designing your disaster recovery plan. Use more than one to ensure your business continues to function after an unexpected event.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Moving to the cloud incrementally</h4>
+          <p class="p-matrix__desc">Migrating from one cloud platform to the other does not have to happen in a day. Move incrementally, while using both at the same time for a while.</p>
+        </div>
+      </li>
+      <li class="p-matrix__item">
+        <div class="p-matrix__content">
+          <h4 class="p-matrix__title">Ensuring data sovereignty</h4>
+          <p class="p-matrix__desc">Due to internal organisation’s regulations, confidential data might always have to be stored on-premises. Using the multi-cloud model enables you to ensure the sovereignty of your data while running other workloads in the public cloud.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Multi-cloud architecture</h2>
+      <p class="u-sv3">Multicloud leverages existing infrastructure components with an additional layer of applications management software that provides workload orchestration capabilities. In principle, multi-cloud consists of the following components:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/ab87e245-Private-v-Public-Mulit-Cloud.svg",
+          alt="Private Public Mulit Cloud",
+          width="72",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>At least two different cloud platforms</h4>
+      <p class="u-sv1">These can be leading public clouds, local ones built to bypass the <a href="/engage/public-cloud-openstack-implementation">challenges of hyperscalers</a> that organisations face in some parts of the world, private clouds, <a href="https://maas.io" class="p-link--external">bare metal clouds</a> or <a href="/kubernetes">Kubernetes clusters</a>.</p>
+    </div>
+    <div class="col-6">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/675369aa-fully-containerised.svg",
+          alt="Application management software",
+          width="79",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Application management software</h4>
+      <p class="u-sv1">Enables <a href="https://juju.is" class="p-link--external">deploying, integrating and managing</a> Kubernetes, container and VM-native applications seamlessly across various cloud platforms.</p>
+    </div>
+    <p>
+      When combined with the <a href="/cloud/hybrid-cloud">hybrid cloud architecture</a>, multi-cloud can be also integrated with the HCM software to enable dynamic placement of the workloads depending on capacity and cost conditions.
+    </p>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>How to build a multi-cloud</h2>
+      <p class="u-sv3">Building a multi-cloud usually entails a number of challenges:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/46439b10-2.+model_AW.svg",
+          alt="Cloud",
+          width="61",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/openstack/compare">What cloud platform to standardise on?</a></p>
+    </div>
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/23cbb344-Design.png",
+          alt="Architecture",
+          width="70",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="/engage/dell-openstack-reference-architecture">Which architecture to follow for private cloud implementation?</a></p>
+    </div>
+    <div class="p-card col-4">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cf4fdaba-Frame.svg",
+          alt="Frame",
+          width="57",
+          height="40",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p><a href="https://juju.is" class="p-link--external">How to manage workloads in a multi-cloud environment?</a></p>
+    </div>
+    <p>These are just a few examples of questions organisations have to ask themselves at the beginning of their multi-cloud journey. Fortunately, there are <a href="https://microstack.run" class="p-link--external">tools that enable single-node private cloud installation</a> for testing purposes or, in the case of more complex environments, platform integrators like Canonical offer <a href="/openstack/consulting">consulting services for private cloud implementation</a>. Those usually include existing workloads assessment, architecture guidance, TCO prediction, private cloud deployment, workloads migration and multi-cloud integration.</p>
+    <p><a href="/openstack/consulting#get-in-touch">Get in touch with Canonical for private cloud design and delivery&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2 class="u-sv2">All you need for your multi-cloud</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/623e36f9-OpenStack_Logo_Mark+%281%29.svg" alt="OpenStack" width="32" height="32" />
+          <h4 class="p-heading-icon__title">Charmed OpenStack</h4>
+        </div>
+      </div>
+      <hr/>
+      <div class="p-card__content">
+        <p>Charmed OpenStack is a pure upstream OpenStack distribution engineered for the best price-performance with full enterprise support for your production-grade private cloud.</p>
+        <p><a href="/openstack/features">Learn more about Charmed OpenStack&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="p-card col-6">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/31c507a5-image-juju.svg" alt="Juju Logo" width="32" height="32" />
+          <h4 class="p-heading-icon__title">Juju</h4>
+        </div>
+      </div>
+      <hr/>
+      <div class="p-card__content">
+        <p>Juju is a Charmed Operator Lifecycle Manager (OLM) that deploys, integrates, and manages Kubernetes, container and VM-native applications seamlessly across multi-cloud environments.</p>
+        <p><a href="https://juju.is" class="p-link--external">Learn more about Juju</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+

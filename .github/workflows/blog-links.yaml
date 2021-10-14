@@ -17,6 +17,7 @@ jobs:
         run: |
           linkchecker --recursion-level=2 \
           	--check-extern --no-warnings https://ubuntu.com/blog \
+            --timeout 1000 \
           	--no-follow-url '!https:\/\/ubuntu.com\/blog' \
           	--ignore-url https://res.cloudinary.com \
           	--ignore-url q_auto \

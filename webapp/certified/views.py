@@ -2,6 +2,8 @@ import talisker.requests
 import talisker.sentry
 import requests
 import math
+import yaml
+
 from flask import request, render_template, abort, current_app, redirect
 from requests import Session
 from webapp.certified.api import CertificationAPI
@@ -358,6 +360,12 @@ def certified_home():
         # Pagination
         total_results = models_response["meta"]["total_count"]
 
+        # Add static vendor data
+        with open("webapp/certified/vendors_data.yaml") as vendors_info:
+            vendors_strip = yaml.load(
+                vendors_info.read(), Loader=yaml.FullLoader
+            )
+
         return render_template(
             "certified/search-results.html",
             results=results,
@@ -368,6 +376,7 @@ def certified_home():
             release_filters=release_filters,
             vendor_filters=vendor_filters,
             vendors=vendors,
+            vendors_strip=vendors_strip,
             total_results=total_results,
             total_pages=math.ceil(total_results / limit),
             offset=offset,
@@ -519,6 +528,10 @@ def create_category_views(category, template_path):
     # Pagination
     total_results = models_response["meta"]["total_count"]
 
+    # Add static vendor data
+    with open("webapp/certified/vendors_data.yaml") as vendors_info:
+        vendors_strip = yaml.load(vendors_info.read(), Loader=yaml.FullLoader)
+
     return render_template(
         template_path,
         results=results,
@@ -527,6 +540,7 @@ def create_category_views(category, template_path):
         release_filters=release_filters,
         vendor_filters=vendor_filters,
         vendors=vendors,
+        vendors_strip=vendors_strip,
         total_results=total_results,
         total_pages=math.ceil(total_results / limit),
         offset=offset,

@@ -245,7 +245,12 @@ cloud:
   children:
     - title: Overview
       path: /cloud
-
+    - title: What is private cloud
+      path: /cloud/private-cloud
+    - title: What is hybrid cloud
+      path: /cloud/hybrid-cloud
+    - title: What is multi-cloud?
+      path: /cloud/multi-cloud
 server:
   title: Server
   path: /server
@@ -360,6 +365,9 @@ kubernetes:
           hidden: True
         - title: AWS integration
           path: /kubernetes/docs/aws-integration
+          hidden: True
+        - title: Equinix Metal
+          path: /kubernetes/docs/equinix
           hidden: True
         - title: GCP integration
           path: /kubernetes/docs/gcp-integration
@@ -1536,6 +1544,8 @@ observability:
   children:
     - title: Overview
       path: /observability
+    - title: What is observability
+      path: /observability/what-is-observability
     - title: Contact us
       path: /observability/contact-us
       hidden: True
@@ -1772,11 +1782,12 @@ telco:
       path: /telco/magma
     - title: OSM
       path: /telco/osm
-      persist: True
 
       children:
         - title: Onboarding Network Functions
           path: /telco/osm/onboarding-network-functions
+        - title: Multi-vendor
+          path: /telco/osm/multi-vendor
 
 certification:
   title: Hardware

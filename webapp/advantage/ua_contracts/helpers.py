@@ -4,11 +4,13 @@ from typing import List, Optional, Dict
 import pytz
 from dateutil.parser import parse
 
-from webapp.advantage.models import Listing
+from webapp.advantage.models import Listing, Entitlement
 from webapp.advantage.ua_contracts.primitives import (
     Subscription,
     ContractItem,
     Renewal,
+    Account,
+    Contract,
 )
 
 
@@ -146,7 +148,15 @@ def get_user_subscription_statuses(
         return statuses
 
     if type == "trial":
-        statuses["is_trialled"] = True
+        active_trial = [
+            subscription
+            for subscription in subscriptions
+            if subscription.started_with_trial
+            and subscription.in_trial
+            and subscription.status == "active"
+        ]
+
+        statuses["is_trialled"] = True if active_trial else False
 
     if type == "yearly":
         statuses["is_upsizeable"] = True
@@ -179,7 +189,7 @@ def get_date_statuses(end_date: str) -> dict:
     delta_till_expiry = parsed_end_date - time_now
     days_till_expiry = delta_till_expiry.days
 
-    is_expiring_start = 30
+    is_expiring_start = 7
     is_expiring_end = 0
     grace_period_end = -14
 
@@ -269,6 +279,95 @@ def set_listings_trial_status(
         listing.set_can_be_trialled(listing_can_be_trialled and user_can_trial)
 
     return listings
+
+
+def make_user_subscription_id(
+    account: Account,
+    type: str,
+    contract: Contract,
+    renewal: Renewal = None,
+) -> str:
+    id_elements = [type, account.id, contract.id]
+    if renewal:
+        id_elements.append(renewal.id)
+
+    return "||".join(id_elements)
+
+
+def apply_entitlement_rules(
+    entitlements: List[Entitlement],
+) -> List[Entitlement]:
+    allowed_entitlements = [
+        "cis",
+        "esm-infra",
+        "esm-apps",
+        "fips",
+        "fips-updated",
+        "livepatch",
+        "livepatch-onprem",
+        "support",
+    ]
+
+    allowed_support_level = ["standard", "advanced"]
+
+    final_entitlements = []
+    for entitlement in entitlements:
+        if entitlement.type in allowed_entitlements:
+            if (
+                entitlement.type == "support"
+                and entitlement.support_level in allowed_support_level
+            ):
+                final_entitlements.append(entitlement)
+
+            if not entitlement.type == "support":
+                final_entitlements.append(entitlement)
+
+    # apply esm-apps rules
+    has_esm_apps = any(
+        entitlement
+        for entitlement in entitlements
+        if entitlement.type == "esm-apps"
+    )
+
+    if not has_esm_apps:
+        final_entitlements.append(
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=False,
+                is_available=False,
+            )
+        )
+
+    # apply support rules
+    support_entitlement = [
+        entitlement
+        for entitlement in entitlements
+        if entitlement.type == "support"
+        and entitlement.is_available
+        and entitlement.support_level not in ["advanced", "n/a"]
+    ]
+
+    if support_entitlement:
+        final_entitlements.append(
+            Entitlement(
+                type="support",
+                support_level="advanced",
+                enabled_by_default=False,
+                is_available=False,
+            )
+        )
+
+        if support_entitlement[0].support_level == "essential":
+            final_entitlements.append(
+                Entitlement(
+                    type="support",
+                    support_level="standard",
+                    enabled_by_default=False,
+                    is_available=False,
+                )
+            )
+
+    return final_entitlements
 
 
 def to_dict(structure, class_key=None):

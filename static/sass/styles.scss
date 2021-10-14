@@ -53,7 +53,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_cube-table";
 @import "pattern_cve";
 @import "pattern_desktop-statistics";
-@import "pattern_divider";
 @import "pattern_gaming";
 @import "pattern_grid";
 @import "pattern_footer";
@@ -70,7 +69,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_ratings";
 @import "pattern_renewal-modal";
 @import "pattern_security-certs-table";
-@import "pattern_separator";
 @import "pattern_shop-cart";
 @import "pattern_strip";
 @import "pattern_strip-photos";
@@ -107,7 +105,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
 @include ubuntu-p-desktop-statistics;
-@include ubuntu-p-divider;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
 @include ubuntu-p-gaming;
@@ -124,7 +121,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-ua-shop-cart;
-@include ubuntu-p-separator;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-table-compliance-profiles;
 @include ubuntu-p-table-of-contents;
@@ -712,27 +708,6 @@ summary {
   }
 }
 
-.is-ticked__cross {
-  background-image: url("https://assets.ubuntu.com/v1/9cdb5b1e-cross-darkaubergine.svg");
-  background-position-y: 0.65rem;
-  background-repeat: no-repeat;
-  background-size: 0.875rem;
-  padding-left: 2rem;
-}
-
-// This is a custom style for a crossed list item
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3403
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3405
-.is-crossed {
-  @extend .is-ticked;
-
-  background-image: url("#{$assets-path}9cdb5b1e-cross-darkaubergine.svg");
-}
-
-.u-inline {
-  display: inline;
-}
-
 // XXX Steve: workaround for image template wrapping image in `div`
 // Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
 .p-heading-icon__header {
@@ -752,13 +727,6 @@ summary {
 .u-disable {
   opacity: 0.2;
   pointer-events: none;
-}
-
-.u-number-circle {
-  background: $color-mid-x-light;
-  border-radius: 50%;
-  margin-right: 1rem;
-  padding: 0.25rem 0.85rem;
 }
 
 td.p-accordion {

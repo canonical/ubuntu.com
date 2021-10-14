@@ -1,5 +1,3 @@
-import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
-
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
@@ -448,15 +446,14 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
 
       setCheckboxLimit();
 
-      // Assign listeners to forms added after initial DOM render
-      assignMarketoBackgroundSubmit();
-
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
         document.dispatchEvent(event);
       }
 
       fireLoadedEvent();
+
+      comment.value = createMessage();
     }
 
     // Opens the form when the initial hash matches the trigger

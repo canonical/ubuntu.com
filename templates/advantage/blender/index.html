@@ -1,0 +1,25 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage for Blender{% endblock %}
+{% block meta_description %}The support offering will include Blender LTS releases across Linux distributions, Microsoft Windows, and macOS. Canonical's engineers will engage directly with customers to provide comprehensive technical support to users by understanding, diagnosing and resolving issues as swiftly as possible. Canonical will manage the entire support process including integration with Blender’s support infrastructure.{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="u-fixed-width">
+    {{
+      image(
+        url="https://assets.ubuntu.com/v1/0e26dbb5-blender_logo.svg",
+        alt="",
+        height="60",
+        width="222",
+        hi_def=True,
+        loading="auto",
+      ) | safe
+    }}
+    <h1>Subscribe to Blender support</h1>
+    <p>If you have existing subscriptions or sales offers, <a href="/login">sign in</a> to access them.</p>
+  </div>
+</section>
+
+{% endblock content %}

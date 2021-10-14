@@ -221,7 +221,7 @@ request information it sees. Use this option if NGINX is exposed directly to
 the internet, or it's behind a L3/packet-based load balancer that doesn't alter
 the source IP in the packets.
 
-Reference: https://github.com/kubernetes/ingress-nginx/blob/a9c706be12a8be418c49ab1f60a02f52f9b14e55/
+Reference: https://github.com/kubernetes/ingress-nginx/
 docs/user-guide/nginx-configuration/configmap.md#use-forwarded-headers.
 
 [Back to table](#table-ingress-use-forwarded-headers)
@@ -413,7 +413,7 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 This requires configuration of both the `kubernetes-master` and
 `kubernetes-worker` charms. Please see the configuration section on
-the [kubernetes-master page](../charm-kubernetes-master#config-ipvs).
+the [kubernetes-master page](/kubernetes/docs/charm-kubernetes-master#config-ipvs).
 
 ### Configuring kubelet
 

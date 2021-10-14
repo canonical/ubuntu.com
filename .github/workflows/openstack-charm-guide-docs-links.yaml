@@ -23,6 +23,7 @@ jobs:
             --ignore-url ^.*\.css \
             --check-extern \
             --no-status \
+            --timeout 1000 \
             --no-warnings https://docs.openstack.org/charm-guide/latest/
 
       - name: Send message on failure

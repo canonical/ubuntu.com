@@ -1,4 +1,8 @@
+from datetime import datetime
 from typing import List, Dict, Optional
+
+import pytz
+from dateutil.parser import parse
 
 from webapp.advantage.ua_contracts.helpers import (
     group_items_by_listing,
@@ -7,6 +11,8 @@ from webapp.advantage.ua_contracts.helpers import (
     get_user_subscription_statuses,
     get_price_info,
     get_subscription_by_period,
+    make_user_subscription_id,
+    apply_entitlement_rules,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -181,10 +187,13 @@ def build_final_user_subscriptions(
             listing=listing or None,
         )
 
+        id = make_user_subscription_id(account, type, contract, renewal)
+
         user_subscription = UserSubscription(
+            id=id,
             type=type,
             account_id=account.id,
-            entitlements=contract.entitlements,
+            entitlements=apply_entitlement_rules(contract.entitlements),
             start_date=aggregated_values.get("start_date"),
             end_date=aggregated_values.get("end_date"),
             number_of_machines=number_of_machines,
@@ -201,7 +210,17 @@ def build_final_user_subscriptions(
             statuses=statuses,
         )
 
-        user_subscriptions.append(user_subscription)
+        # Do not return expired user subscriptions after 30 days
+        show_user_subscription = True
+        if type != "free":
+            parsed_end_date = parse(user_subscription.end_date)
+            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+            delta_till_expiry = parsed_end_date - time_now
+            days_till_expiry = delta_till_expiry.days
+            show_user_subscription = days_till_expiry >= -30
+
+        if show_user_subscription:
+            user_subscriptions.append(user_subscription)
 
     return user_subscriptions
 
@@ -214,11 +233,17 @@ def build_get_user_info(user_summary: dict = None) -> dict:
 
     renewal_info = user_summary["renewal_info"]
 
+    if renewal_info is None:
+        return {
+            "has_monthly_subscription": True,
+            "is_auto_renewing": False,
+        }
+
     return {
         "has_monthly_subscription": True,
         "is_auto_renewing": subscription.is_auto_renewing,
-        "last_payment_date": renewal_info["subscriptionStartOfCycle"],
-        "next_payment_date": renewal_info["subscriptionEndOfCycle"],
-        "total": renewal_info["total"],
-        "currency": renewal_info["currency"].upper(),
+        "last_payment_date": renewal_info.get("subscriptionStartOfCycle"),
+        "next_payment_date": renewal_info.get("subscriptionEndOfCycle"),
+        "total": renewal_info.get("total"),
+        "currency": renewal_info.get("currency").upper(),
     }

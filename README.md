@@ -27,7 +27,7 @@ The simplest way to run the site locally is using the [`dotrun`](https://github.
 
 ```bash
 docker-compose up -d
-dotrun
+NODE_ENV=development dotrun
 ```
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.

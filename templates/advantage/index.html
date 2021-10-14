@@ -20,6 +20,16 @@
 
     <div class="row">
       <div class="col-12">
+        <div class="p-notification">
+          <p class="p-notification__response" role="status">
+            Are you using Ubuntu in production? <a href="/support/contact-us" class="p-notification__action js-invoke-modal">Join our free beta programme for Ubuntu Pro on prem&nbsp;&rsaquo;</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
         <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
       </div>
     </div>
@@ -91,9 +101,13 @@
           {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
           <div class="p-card">
             <h4 class="p-card__title u-sv1 u-no-margin--bottom">
-              {% if contract["contractInfo"]["id"] == new_subscription_id %}
-                {% if "daysTillExpiry" in contract["contractInfo"] and contract["contractInfo"]["daysTillExpiry"] > 0 %}
-                  <div class="p-label--new">New</div>
+              {% if contract['is_trialled'] %}
+                <span class="p-label--new">Free trial</span>
+              {% else %}
+                {% if contract["contractInfo"]["id"] == new_subscription_id %}
+                    {% if "daysTillExpiry" in contract["contractInfo"] and contract["contractInfo"]["daysTillExpiry"] > 0 %}
+                      <div class="p-label--new">New</div>
+                    {% endif %}
                 {% endif %}
               {% endif %}
               {{ contract['contractInfo']['name'] }}
@@ -105,14 +119,21 @@
             <div class="row">
               {% with mobile="true" %}
 
-                {% if contract["period"] == "monthly" %}
+                {% if contract['is_trialled'] %}
 
-                  {% include "advantage/table/_manage-monthly.html" %}
+                  {% include "advantage/table/_free-trial.html" %}
 
                 {% else %}
 
-                  {% include "advantage/table/_manage-yearly.html" %}
+                  {% if contract["period"] == "monthly" %}
 
+                    {% include "advantage/table/_manage-monthly.html" %}
+
+                  {% else %}
+
+                    {% include "advantage/table/_manage-yearly.html" %}
+
+                  {% endif %}
                 {% endif %}
 
               {% endwith %}
@@ -225,7 +246,7 @@
               </thead>
               <tbody>
                 {% for contract in enterprise_contracts[account] %}
-                  {% if contract["contractInfo"]["status"] != 'expired' or contract["renewal"]["renewable"] %}
+                  {% if contract["contractInfo"]["status"] != 'expired' or contract["renewal"]["renewable"] or contract["is_trialled"] %}
                     {% set expired_renewable = contract['renewal'] and contract['contractInfo']['daysTillExpiry'] < 0 %}
                     {% if not open_subscription and not new_subscription_id and (loop.index == 1 and outer_loop.index == 1) %}
                       {% set default_open_cell = true %}
@@ -290,14 +311,21 @@
                       </td>
                       <td id="expanded-details-{{ outer_loop.index }}-{{ loop.index }}" class="p-table-expanding__panel" aria-hidden="{% if open_subscription == contract['contractInfo']['id'] %}false{% else %}true{% endif %}">
                         <div class="row">
-                          {% if contract["period"] == "monthly" %}
+                          {% if contract['is_trialled'] %}
 
-                            {% include "advantage/table/_manage-monthly.html" %}
+                            {% include "advantage/table/_free-trial.html" %}
 
                           {% else %}
 
-                            {% include "advantage/table/_manage-yearly.html" %}
+                            {% if contract["period"] == "monthly" %}
 
+                              {% include "advantage/table/_manage-monthly.html" %}
+
+                            {% else %}
+
+                              {% include "advantage/table/_manage-yearly.html" %}
+
+                            {% endif %}
                           {% endif %}
                         </div>
                       </td>

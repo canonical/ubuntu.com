@@ -1,31 +1,59 @@
 import React, { useState } from "react";
 import { Modal, Button } from "@canonical/react-components";
+import { useQueryClient, useMutation } from "react-query";
+import * as Sentry from "@sentry/react";
 
+import { requestDeleteUser } from "../../api";
 import { User } from "../../types";
-import { getErrorMessage, SubmissionErrorMessage } from "../../utils";
+import {
+  getErrorMessage,
+  errorMessages,
+  SubmissionErrorMessage,
+} from "../../utils";
 
 type DeleteConfirmationModalProps = {
+  accountId: string;
   user: User;
-  handleConfirmDelete: (userId: string) => Promise<any>;
+  onAfterDeleteSuccess: () => void;
   handleClose: () => void;
 };
 
 const DeleteConfirmationModal = ({
+  accountId,
   user,
-  handleConfirmDelete,
+  onAfterDeleteSuccess,
   handleClose,
 }: DeleteConfirmationModalProps) => {
+  const queryClient = useQueryClient();
+
+  const userDeleteMutation = useMutation(
+    (email: string) => requestDeleteUser({ accountId, email }),
+    { onSuccess: () => queryClient.invalidateQueries("accountUsers") }
+  );
+
+  const handleDeleteUser = (userEmail: string) =>
+    userDeleteMutation.mutateAsync(userEmail).then(() => {
+      onAfterDeleteSuccess();
+    });
+
   const [
     errorMessage,
     setErrorMessage,
   ] = useState<SubmissionErrorMessage | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async () => {
+    setIsLoading(true);
     try {
-      await handleConfirmDelete(user?.id);
+      await handleDeleteUser(user?.email);
       handleClose();
     } catch (error) {
-      setErrorMessage(getErrorMessage((error as any)?.message));
+      const errorMessage = getErrorMessage(error);
+      if (errorMessage === errorMessages.unknown) {
+        Sentry.captureException(error);
+      }
+      setIsLoading(false);
+      setErrorMessage(errorMessage);
     }
   };
 
@@ -41,6 +69,7 @@ const DeleteConfirmationModal = ({
           <Button
             className="u-no-margin--bottom"
             appearance="negative"
+            disabled={isLoading}
             onClick={onSubmit}
           >
             Yes, remove user

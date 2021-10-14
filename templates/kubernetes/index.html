@@ -165,7 +165,7 @@
           width="440",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logos u-sv3 u-hide--small"},
+          attrs={"class": "u-sv3 u-hide--small"},
           ) | safe
         }}
         <ul class="p-list">
@@ -193,7 +193,7 @@
           width="200",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logos u-sv3 u-hide--small"},
+          attrs={"class": "u-sv3 u-hide--small"},
           ) | safe
         }}
         <ul class="p-list">
@@ -204,9 +204,10 @@
           </li>
           <li class="p-list__item is-ticked">Fine-grained service placement</li>
         </ul>
-        <p>
-          <a href="/kubernetes/install#multi-node">Install Charmed Kubernetes&nbsp;&rsaquo;</a>
-        </p>
+        <ul class="p-inline-list">
+          <li class="p-inline-list__item"><a href="/kubernetes/install#multi-node">Install Charmed Kubernetes&nbsp;&rsaquo;</a></li>
+          <li class="p-inline-list__item"><a href="https://assets.ubuntu.com/v1/c5f59e1c-Enterprise_Kubernetes+Datasheet_16.09.21.pdf">Read the datasheet&nbsp;&rsaquo;</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -228,20 +229,20 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <h2 class="p-muted-heading u-align--center">FULLY-SUPPORTED KUBERNETES PRIVATE CLOUDS</h2>
+    <h2 class="p-muted-heading u-align--center">FULLY-SUPPORTED KUBERNETES CLOUDS</h2>
     <ul class="p-inline-images">
       <li class="p-inline-images__item">
         <a href="https://maas.io/">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/ab9dcc58-maas_black-orange.svg",
-          alt="MAAS",
-          width="158",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logos"},
-          ) | safe
-        }}
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/ab9dcc58-maas_black-orange.svg",
+            alt="MAAS",
+            width="158",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-inline-images__logos"},
+            ) | safe
+          }}
         </a>
       </li>
       <li class="p-inline-images__item">
@@ -283,6 +284,20 @@
           }}
         </li>
         <li class="p-inline-images__item">
+          <a href="/kubernetes/docs/equinix">
+            {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/659a637a-Equinix+Metal+Vertical+RGB.svg",
+            alt="Equinix",
+            width="104",
+            height="94",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+            }}
+          </a>
+        </li>
+        <li class="p-inline-images__item">
           {{
             image(
             url="https://assets.ubuntu.com/v1/760109ef-CloudSigma_Logo_Full.png",
@@ -295,30 +310,32 @@
           }}
         </li>
         <li class="p-inline-images__item">
-          <a href="/openstack">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
-            alt="Openstack",
-            width="156",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-inline-images__logos"},
-            ) | safe
-          }}
+          <a href="/kubernetes/docs/openstack-integration">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
+              alt="Openstack",
+              width="156",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logos"},
+              ) | safe
+            }}
           </a>
         </li>
         <li class="p-inline-images__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
-            alt="VMWARE",
-            width="170",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-inline-images__logos"},
-            ) | safe
-          }}
+          <a href="/kubernetes/docs/vsphere-integration">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
+              alt="VMWARE",
+              width="170",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-inline-images__logos"},
+              ) | safe
+            }}
+          </a>
         </li>
     </ul>
   </div>
@@ -341,7 +358,7 @@
         height="200",
         hi_def=True,
         loading="lazy",
-        attrs={"class": "p-inline-images__logos u-hide--small"},
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
     </div>
@@ -384,7 +401,7 @@
         height="200",
         hi_def=True,
         loading="lazy",
-        attrs={"class": "p-inline-images__logos u-hide--small"},
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
     </div>
@@ -426,7 +443,7 @@
         height="200",
         hi_def=True,
         loading="lazy",
-        attrs={"class": "p-inline-images__logos u-hide--small"},
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
     </div>
@@ -498,7 +515,7 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Full stack K8s services</h2>
+      <h2 id="services">Full stack K8s services</h2>
       <p class="p-heading--4 u-sv3">Transform your business and safeguard your infrastructure</p>
     </div>
   </div>
@@ -518,8 +535,7 @@
         alt="Enterprise support",
         width="150",
         hi_def=True,
-        loading="lazy",
-        attrs={"class": "p-inline-images__logos"},
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -603,8 +619,7 @@
         alt="Kubeadm",
         width="150",
         hi_def=True,
-        loading="lazy",
-        attrs={"class": "p-inline-images__logos"},
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -629,8 +644,7 @@
         alt="Kubeadm",
         width="300",
         hi_def=True,
-        loading="lazy",
-        attrs={"class": "p-inline-images__logos"},
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -665,7 +679,7 @@
         <div class="p-heading-icon__header">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
+            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
             alt="",
             width="32",
             height="28",
@@ -715,8 +729,7 @@
         width="240",
         height="171",
         hi_def=True,
-        loading="lazy",
-        attrs={"class": "p-inline-images__logos"},
+        loading="lazy"
         ) | safe
       }}
     </div>

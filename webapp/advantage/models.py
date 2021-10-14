@@ -7,10 +7,12 @@ class Entitlement:
         type: str,
         enabled_by_default: bool,
         support_level: str = None,
+        is_available: bool = True,
     ):
         self.type = type
         self.support_level = support_level
         self.enabled_by_default = enabled_by_default
+        self.is_available = is_available
 
 
 class Product:
@@ -54,6 +56,7 @@ class Listing:
 class UserSubscription:
     def __init__(
         self,
+        id: str,
         account_id: str,
         product_name: str,
         type: str,
@@ -72,6 +75,7 @@ class UserSubscription:
         listing_id: str = None,
         renewal_id: str = None,
     ):
+        self.id = id
         self.account_id = account_id
         self.product_name = product_name
         self.type = type

@@ -1,23 +1,28 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { getByTextContent } from "../../../tests/utils";
+import { getByTextContent, renderWithQueryClient } from "../../../tests/utils";
 
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import { mockUser } from "../../mockData";
+import { mockUser, mockAccountId } from "../../mockData";
+import { requestDeleteUser } from "../../api";
+
+jest.mock("../../api");
 
 it("displays confirmation message correctly", () => {
-  const mockHandleConfirmDelete = jest.fn();
+  const onAfterDeleteSuccess = jest.fn();
   const mockHandleClose = jest.fn();
 
-  render(
+  renderWithQueryClient(
     <DeleteConfirmationModal
+      accountId={mockAccountId}
       user={mockUser}
-      handleConfirmDelete={mockHandleConfirmDelete}
+      onAfterDeleteSuccess={onAfterDeleteSuccess}
       handleClose={mockHandleClose}
     />
   );
+
   expect(
     getByTextContent(
       "Are you sure you want to remove philip.p@ecorp.com from your organisation?"
@@ -25,17 +30,25 @@ it("displays confirmation message correctly", () => {
   ).toBeVisible();
 });
 
-it("makes a correct call to handleConfirmDelete", () => {
-  const mockHandleConfirmDelete = jest.fn();
+it("makes a correct call to requestDeleteUser", async () => {
+  const onAfterDeleteSuccess = jest.fn();
   const mockHandleClose = jest.fn();
 
-  render(
+  renderWithQueryClient(
     <DeleteConfirmationModal
+      accountId={mockAccountId}
       user={mockUser}
-      handleConfirmDelete={mockHandleConfirmDelete}
+      onAfterDeleteSuccess={onAfterDeleteSuccess}
       handleClose={mockHandleClose}
     />
   );
+
   userEvent.click(screen.getByText("Yes, remove user"));
-  expect(mockHandleConfirmDelete).toHaveBeenCalledWith(mockUser.id);
+
+  await waitFor(() =>
+    expect(requestDeleteUser).toHaveBeenCalledWith({
+      accountId: mockAccountId,
+      email: mockUser.email,
+    })
+  );
 });
