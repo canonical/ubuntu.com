@@ -48,6 +48,7 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
     return (
       <RenewButton
         renewalID={subscription.renewal_id}
+        closeModal={closeModal}
         areTermsChecked={areTermsChecked}
         setTermsChecked={setTermsChecked}
         setError={setError}

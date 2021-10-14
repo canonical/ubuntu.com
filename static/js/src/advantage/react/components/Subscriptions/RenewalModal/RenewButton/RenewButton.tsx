@@ -5,20 +5,24 @@ import useStripeCustomerInfo from "../../../../../../PurchaseModal/hooks/useStri
 import useRenewal from "../../../../hooks/useRenewal";
 import usePendingRenewal from "../../../../hooks/usePendingRenewal";
 import { getSessionData } from "../../../../../../utils/getSessionData";
+import { useQueryClient } from "react-query";
 import { BuyButtonProps } from "../../../../../subscribe/react/utils/utils";
 
 type Props = {
   renewalID: string | null;
+  closeModal: () => void;
 } & BuyButtonProps;
 
 const BuyButton = ({
   renewalID,
+  closeModal,
   areTermsChecked,
   setTermsChecked,
   setError,
   setStep,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+  const queryClient = useQueryClient();
 
   const [sessionData, setSessionData] = useState({
     gclid: "",
@@ -53,9 +57,9 @@ const BuyButton = ({
   const onPayClick = () => {
     handleOnRenewalBegin();
     renewalMutation.mutate(renewalID, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         //start polling
-        setPendingRenewalID(data);
+        setPendingRenewalID(renewalID);
       },
       onError: (error) => {
         setIsLoading(false);
@@ -138,8 +142,9 @@ const BuyButton = ({
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
-          //redirect
-          location.pathname = "/advantage";
+          //Renewal was successful we refresh the view
+          queryClient.invalidateQueries("userSubscriptions");
+          closeModal();
         }
       };
     }

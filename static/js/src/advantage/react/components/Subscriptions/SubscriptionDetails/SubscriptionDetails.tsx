@@ -35,7 +35,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     const { data: subscription, isLoading } = useUserSubscriptions({
       select: selectSubscriptionById(selectedId),
     });
-    console.log(subscription);
     const isFree = isFreeSubscription(subscription);
     const isResizable =
       subscription?.statuses.is_upsizeable ||

@@ -15,14 +15,14 @@ const requires3DSCheck = (
 };
 
 const usePendingRenewal = () => {
-  const [pendingRenewalID, setPendingRenewalID] = useState("");
+  const [pendingRenewalID, setPendingRenewalID] = useState<string | null>(null);
 
   const stripe = useStripe();
 
   if (!stripe) throw new Error("Stripe not initialized");
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
-    "pendingPurchase",
+    "pendingRenewal",
     async () => {
       const res = await getRenewal(pendingRenewalID);
 
