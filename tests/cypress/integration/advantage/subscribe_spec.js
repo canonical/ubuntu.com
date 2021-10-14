@@ -4,6 +4,14 @@ import { getTestURL, getRandomEmail } from "../../utils";
 
 Cypress.config("defaultCommandTimeout", 10000);
 
+const slowDownResponse = (req) => {
+  req.on("response", (res) => {
+    // throttle the response to reduce test flakiness
+    // this makes the UI loading & disabled states appear for longer
+    res.setThrottle(100);
+  });
+};
+
 context("/advantage/subscribe", () => {
   it("should display the modal when pressing 'Buy now'", () => {
     cy.visit(getTestURL("/advantage/subscribe"));
@@ -86,7 +94,7 @@ context("/advantage/subscribe", () => {
       force: true,
     });
 
-    cy.intercept("POST", "/advantage/subscribe*").as("trial");
+    cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as("trial");
 
     cy.findByRole("button", { name: "Buy" })
       .should(() => {
@@ -175,7 +183,9 @@ context("/advantage/subscribe", () => {
       force: true,
     });
 
-    cy.intercept("POST", "/advantage/subscribe*").as("purchase");
+    cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as(
+      "purchase"
+    );
     cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
 
     cy.findByRole("button", { name: "Buy" })
