@@ -5,11 +5,13 @@ Cypress.Commands.add("acceptCookiePolicy", () => {
 });
 
 Cypress.Commands.add("login", ({ username, password }) => {
-  cy.task("login", { username, password }).then(async (user) => {
-    user.cookies.forEach(({ name, value }) => {
-      cy.setCookie(name, value);
-    });
-  });
+  cy.task("login", { username, password }, { timeout: 20000 }).then(
+    async (user) => {
+      user.cookies.forEach(({ name, value }) => {
+        cy.setCookie(name, value);
+      });
+    }
+  );
 });
 
 Cypress.Commands.add("iframeLoaded", { prevSubject: "element" }, ($iframe) => {
