@@ -2,64 +2,64 @@
 <form action="/marketo/submit" method="post" id="mktoForm_{{ id }}" onSubmit="fbq('trackCustom', 'Download');">
   <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
     <ul class="p-list u-no-margin--bottom">
-      <li class="mktFormReq mktField p-list__item">
-        <label for="firstName" class="mktoLabel ">Vorname:</label>
-        <input required id="firstName" name="firstName" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="First Name">
+      <li class="p-list__item">
+        <label for="firstName">Vorname:</label>
+        <input required id="firstName" name="firstName" maxlength="255" type="text" aria-label="First Name">
       </li>
-      <li class="mktFormReq mktField">
-        <label for="lastName" class="mktoLabel ">Nachname:</label>
-        <input required id="lastName" name="lastName" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Last Name">
+      <li>
+        <label for="lastName">Nachname:</label>
+        <input required id="lastName" name="lastName" maxlength="255" type="text" aria-label="Last Name">
       </li>
-      <li class="mktFormReq mktField">
-        <label for="email" class="mktoLabel ">Email beruflich:</label>
-        <input required id="email" name="email" maxlength="255" class="mktoField mktoEmailField  mktoRequired" type="email" aria-label="Email">
+      <li>
+        <label for="email">Email beruflich:</label>
+        <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" aria-label="Email">
       </li>
-      <li class="mktFormReq mktField">
-        <label for="company" class="mktoLabel ">Name des Unternehmens:</label>
-        <input required id="company" name="company" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Company Name">
+      <li>
+        <label for="company">Name des Unternehmens:</label>
+        <input required id="company" name="company" maxlength="255" type="text" aria-label="Company Name">
       </li>
-      <li class="mktFormReq mktField">
-        <label for="title" class="mktoLabel ">Tätigkeitsbezeichnung:</label>
-        <input required id="title" name="title" maxlength="255" class="mktoField   mktoRequired" type="text" aria-label="Job Title">
+      <li>
+        <label for="title">Tätigkeitsbezeichnung:</label>
+        <input required id="title" name="title" maxlength="255" type="text" aria-label="Job Title">
       </li>
-      <li class="mktFormReq mktField">
-        <label for="phone" class="mktoLabel ">Handynummer:</label>
-        <input required id="phone" name="phone" maxlength="255" class="mktoField mktoTelField  mktoRequired" type="tel" aria-label="Phone Number">
+      <li>
+        <label for="phone">Handynummer:</label>
+        <input required id="phone" name="phone" maxlength="255" type="tel" aria-label="Phone Number">
       </li>
-      <li class="mktField">
-        <input name="utm_campaign" class="mktoField mktoFormCol" value="{{utm_campaign}}" type="hidden" aria-label="utm_campaign">
+      <li>
+        <input name="utm_campaign" value="{{utm_campaign}}" type="hidden" aria-label="utm_campaign">
       </li>
-      <li class="mktField">
-        <input name="utm_medium" class="mktoField mktoFormCol" value="{{utm_medium}}" type="hidden" aria-label="utm_medium">
+      <li>
+        <input name="utm_medium" value="{{utm_medium}}" type="hidden" aria-label="utm_medium">
       </li>
-      <li class="mktField">
-        <input name="utm_source" class="mktoField mktoFormCol" value="{{utm_source}}" type="hidden" aria-label="utm_source">
+      <li>
+        <input name="utm_source" value="{{utm_source}}" type="hidden" aria-label="utm_source">
       </li>
-      <li class="mktField">
-        <input name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" class="mktoField" type="checkbox">
-        <label for="canonicalUpdatesOptIn" class="mktoLabel">Ich erkläre mich damit einverstanden, Informationen zu Produkten und Services von Canoncical zu erhalten.</label>
+      <li>
+        <input name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox">
+        <label for="canonicalUpdatesOptIn">Ich erkläre mich damit einverstanden, Informationen zu Produkten und Services von Canoncical zu erhalten.</label>
       </li>
-      <li class="mktField">
+      <li>
         <p>Mit der Absendung dieses Formulars bestätige ich, dass ich die <a href="/legal/data-privacy" target="_blank" rel="noopener noreferrer" class="mchNoDecorate">Datenschutzrichtlinie von Canonical</a> gelesen habe und ihr zustimme.</p>
         <input name="RichText" type="hidden" aria-label="RichText">
       </li>
       <li class="p-list__item">
         <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
       </li>
-      <li class="mktField">
-        <input name="Consent_to_Processing__c" class="mktoField  mktoFormCol" value="Yes" type="hidden" aria-label="Consent_to_Processing__c">
+      <li>
+        <input name="Consent_to_Processing__c" value="Yes" type="hidden" aria-label="Consent_to_Processing__c">
       </li>
-      <li class="mktField">
-        <button type="submit" class="mktoButton">eBook herunterladen</button>
-        <input name="formid" class="mktoField" value="{{ id }}" type="hidden" aria-label="formid">
+      <li>
+        <button type="submit">eBook herunterladen</button>
+        <input name="formid" value="{{ id }}" type="hidden" aria-label="formid">
         <input type="hidden" name="returnURL" value="{{ returnURL }}" aria-label="returnURL">
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" class="mktoField" id="utm_content" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" class="mktoField" id="utm_term" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" class="mktoField" id="GCLID__c" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" class="mktoField" id="FBLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
       </li>
     </ul>
   </fieldset>

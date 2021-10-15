@@ -53,9 +53,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dotrun
-        run: |
-          sudo snap install dotrun
-          sudo chown root:root /
+        uses: canonical/install-dotrun@main
 
       - name: Install dependencies
         run: /snap/bin/dotrun install
@@ -102,7 +100,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Install python dependencies
-        run: | 
+        run: |
           python3 -m pip install --upgrade pip
           sudo pip3 install flake8 black
 
@@ -156,15 +154,13 @@ jobs:
           sudo pip3 install -r requirements.txt
 
       - name: Install dotrun
-        run: |
-          sudo snap install dotrun
-          sudo chown root:root /
-
-      - name: Install dependencies
-        run: sudo pip3 install coverage
+        uses: canonical/install-dotrun@main
 
       - name: Install node dependencies
         run: /snap/bin/dotrun install
+
+      - name: Install dependencies
+        run: /snap/bin/dotrun exec pip3 install coverage
 
       - name: Build resources
         run: /snap/bin/dotrun build
@@ -200,3 +196,30 @@ jobs:
       - name: Lint JS
         run: |
           yarn lint-js
+
+  lint-ts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Lint TS
+        run: |
+          yarn lint-ts
+
+  Inclusive-naming-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: woke
+        uses: canonical-web-and-design/inclusive-naming@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-check
+          fail-on-error: true

@@ -95,7 +95,7 @@ function updateResultsPerPage() {
 
   if (pageSizeTop) {
     pageSizeTop.addEventListener("change", (e) => {
-      // Needs to be set because the other dropdown is a dummy
+      // Needs to be set because the other dropdown is a placeholder
       searchResults.submit();
     });
   }

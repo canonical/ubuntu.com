@@ -408,7 +408,7 @@ Please see [this page][historic] for release notes of earlier versions.
 [bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [upgrading-docker]: /kubernetes/docs/upgrading#upgrading-docker
-[tigera-home]: https://www.tigera.io/tigera-secure-ee/
+[tigera-home]: https://www.tigera.io/tigera-products/calico-enterprise/
 [tigera-docs]: /kubernetes/docs/tigera-secure-ee
 [haoverview]: /kubernetes/docs/high-availability
 [metallb-docs]: /kubernetes/docs/metallb

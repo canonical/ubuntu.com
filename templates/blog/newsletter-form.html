@@ -4,50 +4,49 @@
   </header>
 
   <div class="blog-p-card__content">
-    <form action="/marketo/submit" method="post" id="mktoForm_1212" novalidate="novalidate" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
+    <form action="/marketo/submit" method="post" id="mktoForm_1212" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
       <h3 class="p-card--title p-heading--four">Select topics you're <br />interested in</h3>
 
       <ul class="p-list">
         <li class="p-list__item u-clearfix">
-          <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightscloudserver" name="insightscloudserver" value="true" />
+          <input type="checkbox" id="insightscloudserver" name="insightscloudserver" value="true" />
           <label for="insightscloudserver">Cloud and Server</label>
         </li>
 
         <li class="p-list__item u-clearfix">
-          <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsdesktop" name="insightsdesktop" value="true" />
+          <input type="checkbox" id="insightsdesktop" name="insightsdesktop" value="true" />
           <label for="insightsdesktop">Desktop</label>
         </li>
 
         <li class="p-list__item u-clearfix">
-          <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" type="checkbox" id="insightsiot" name="insightsiot" value="true" />
+          <input type="checkbox" id="insightsiot" name="insightsiot" value="true" />
           <label for="insightsiot">Internet of Things</label>
         </li>
 
         <li class="p-list__item u-clearfix">
-          <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
+          <input id="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
           <label for="insightsrobotics">Robotics</label>
         </li>
 
         <li class="p-list__item u-clearfix">
-          <input class="mktoLogicalField mktoCheckboxList mktoHasWidth" id="insightstutorials" name="insightstutorials" value="true" type="checkbox">
+          <input id="insightstutorials" name="insightstutorials" value="true" type="checkbox">
           <label for="insightstutorials">Tutorials</label>
         </li>
       </ul>
 
-      <div class="mktFormReq mktField">
+      <div>
         <label>
           <span class="u-no-margin--top">Work email: <span>*</span></span>
-          <input required  id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+          <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"/>
         </label>
       </div>
 
-      <div class="mktField mktLblRight">
-        <span class="mktInput mktLblRight">
-          <input class="u-no-margin--top mktFormCheckbox" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
+      <div>
+        <span>
+          <input class="u-no-margin--top" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
           <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
             <small>I agree to receive information about Canonical's products and services.</small>
           </label>
-          <span class="mktFormMsg"></span>
         </span>
       </div>
 
@@ -58,35 +57,24 @@
       </p>
 
       <div>
-        <span class="mktoButtonWrap p-card--content">
+        <span class="p-card--content">
           <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
         </span>
 
-        <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden">
+        <input value="1212" name="formid" type="hidden">
         <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" class="mktoField" id="utm_content" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" class="mktoField" id="utm_term" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" class="mktoField" id="GCLID__c" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" class="mktoField" id="FBLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
         <input type="hidden" name="thankyoumessage" value="Thank you for subscribing!<br />You will begin receiving emails as new content is posted. You may unsubscribe any time by clicking the link in the email.">
       </div>
     </form>
   </div>
 </div>
 
-<script src="https://assets.ubuntu.com/v1/5d7e5bbf-jquery-2.2.0.min.js"></script>
-<script src="https://assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
-<script>
-  $("#mktoForm_1212").validate({
-    errorPlacement: function(error, element) {
-      error.appendTo( element.parent().addClass( "p-form-validation is-error" ));
-      error.appendTo( element.addClass( "p-form-validation__input" ));
-    },
-    errorElement: "span",
-    errorClass: "p-form-validation__message"
-  });
-</script>
+<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
+

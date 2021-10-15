@@ -2,30 +2,56 @@ name: docs links on docs.openstack.org/project-deploy-guide/charm-deployment-gui
 
 on:
   schedule:
-    - cron: "0 13 * * 1"
+    - cron: "0 13 * * *"
+  workflow_dispatch:
 
 jobs:
   check-links:
-    if: github.repository == 'canonical-web-and-design/ubuntu.com'
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+
       - name: Install linkchecker
         run: sudo pip install LinkChecker
 
-      - name: Run linkchecker
+      - name: Write linkchecker config file
         run: |
-          linkchecker --no-follow-url '!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/' \
-            --ignore-url http://localhost* \
-            --ignore-url https://www.openstack.org/projects/openstack-faq/ \
-            --ignore-url https://www.openstack.org/projects/ \
-            --ignore-url https://openstack.org/projects/ \
-            --ignore-url https://groups.openstack.org \
-            --ignore-url ^.*\.css \
-            --check-extern \
-            --no-status \
-            --no-warnings https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
+          mkdir -p ~/.linkchecker
+          cat > ~/.linkchecker/linkcheckerrc <<EOF
+          [checking]
+          maxrequestspersecond=5
+
+          [filtering]
+          nofollow=!https:\/\/docs.openstack.org\/project-deploy-guide\/charm-deployment-guide\/latest\/
+          checkextern=1
+          ignore=
+            http://localhost\*
+            https://www\.openstack\.org\/projects
+            https://openstack\.org\/projects\/openstack-faq
+            https://openstack\.org/\projects
+            https://groups\.openstack\.org
+            ^.*\.css
+
+          [output]
+          status=0
+          warnings=0
+          EOF
+
+      - name: Run linkchecker
+        continue-on-error: true
+        run: |
+          linkchecker https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/ > ~/.linkchecker/openstackcharmdeploymentguidedocs-out.txt
+
+      - name: Parse linkchecker output
+        run: |
+          scripts/parseDocsLinkcheckerOutput openstackcharmdeploymentguidedocs-out.txt
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=docs
+        run: |
+          curl -X POST \
+          -F "workflow=${GITHUB_WORKFLOW}" \
+          -F "repo_name=${GITHUB_REPOSITORY}" \
+          -F "action_id=${GITHUB_RUN_ID}" \
+          ${{ secrets.BOT_URL }}?room=docs

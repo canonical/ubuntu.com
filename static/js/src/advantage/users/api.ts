@@ -1,30 +1,11 @@
-import { UserRole, Users } from "./types";
-
-type AccountUsersReponse = {
-  account_id: string;
-  name: string;
-  users: {
-    id: string;
-    name: string;
-    email: string;
-    user_role_on_account: "admin" | "technical" | "billing";
-    last_login_at: string;
-  }[];
-};
-
-type ParsedAccountUsersResponse = {
-  accountId: string;
-  organisationName: string;
-  users: Users;
-};
+import { AccountUsersApiResponse, AccountUsersData, UserRole } from "./types";
 
 const parseAccountsResponse = (
-  response: AccountUsersReponse
-): ParsedAccountUsersResponse => ({
+  response: AccountUsersApiResponse
+): AccountUsersData => ({
   accountId: response.account_id,
   organisationName: response.name,
   users: response.users.map((user) => ({
-    id: user.email,
     name: user.name,
     email: user.email,
     role: user.user_role_on_account,
@@ -32,16 +13,12 @@ const parseAccountsResponse = (
   })),
 });
 
-const requestAccountUsers = async (): Promise<ParsedAccountUsersResponse> => {
-  const response = await fetch(
-    `/advantage/account-users${window.location.search}`,
-    {
-      cache: "no-store",
-    }
+const requestAccountUsers = (): Promise<AccountUsersData> =>
+  fetchJSON(`/advantage/account-users${window.location.search}`, {
+    cache: "no-store",
+  }).then((response) =>
+    parseAccountsResponse(response as AccountUsersApiResponse)
   );
-
-  return response.json().then(parseAccountsResponse);
-};
 
 const accountUserRequestInit: RequestInit = {
   cache: "no-store",
@@ -55,25 +32,29 @@ const accountUserRequestInit: RequestInit = {
 const getAccountUserRequestUrl = (accountId: string, urlParams: string) =>
   `/advantage/accounts/${accountId}/user${urlParams}`;
 
-type JSONResponse = {
-  data?: Record<string, unknown>;
-  error?: string;
-  errors?: string;
-};
+export interface FetchError extends Error {
+  response?: Response;
+}
 
-const handleResponse = async (response: Response): Promise<JSONResponse> => {
-  const responseJson: JSONResponse = await response.json();
+const handleResponse = async (response: Response): Promise<unknown> => {
+  const responseJson = await response.json();
 
   if (!response.ok) {
-    throw new Error(responseJson.error || responseJson.errors);
+    const error: FetchError = new Error(
+      responseJson.error || responseJson.errors || response.statusText
+    );
+    error.response = response;
+    throw error;
   }
   return responseJson;
 };
 
-const fetchJSON = async (
-  input: RequestInfo,
-  init?: RequestInit
-): Promise<JSONResponse> => fetch(input, init).then(handleResponse);
+const fetchJSON = (input: RequestInfo, init?: RequestInit) =>
+  fetch(input, init)
+    .catch(() => {
+      throw new Error("network failure");
+    })
+    .then(handleResponse);
 
 const requestAddUser = ({
   accountId,
@@ -85,7 +66,7 @@ const requestAddUser = ({
   email: string;
   name: string;
   role: UserRole;
-}): Promise<JSONResponse> =>
+}) =>
   fetchJSON(getAccountUserRequestUrl(accountId, window.location.search), {
     ...accountUserRequestInit,
     method: "POST",
@@ -100,7 +81,7 @@ const requestUpdateUser = ({
   accountId: string;
   email: string;
   role: UserRole;
-}): Promise<JSONResponse> =>
+}) =>
   fetchJSON(getAccountUserRequestUrl(accountId, window.location.search), {
     ...accountUserRequestInit,
     method: "PUT",
@@ -113,7 +94,7 @@ const requestDeleteUser = async ({
 }: {
   accountId: string;
   email: string;
-}): Promise<JSONResponse> =>
+}) =>
   fetchJSON(getAccountUserRequestUrl(accountId, window.location.search), {
     ...accountUserRequestInit,
     method: "DELETE",

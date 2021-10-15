@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if ! ls $HOME/.linkchecker/$1; then
+    echo "No linkchecker output found"
+    exit 1
+fi
+
+if grep -q "Error: 4" $HOME/.linkchecker/$1; then
+    cat $HOME/.linkchecker/$1
+    exit 1
+else
+    echo "No 400 errors were detected"
+    exit 0
+fi

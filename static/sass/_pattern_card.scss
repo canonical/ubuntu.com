@@ -24,19 +24,6 @@
     @extend %p-card--highlighted;
     @include vf-highlight-bar(#ff8936);
   }
-
-  .p-card.is-selected {
-    background-color: $color-mid-x-light;
-    border-color: $color-mid-dark;
-  }
-
-  .p-card.has-limited-height {
-    height: 20rem;
-  }
-
-  .p-card.has-limited-height--large {
-    height: 23.5rem;
-  }
 }
 
 @mixin ubuntu-card-layout {
@@ -134,21 +121,9 @@
     }
 
     .p-card__title {
-      &--is-new {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-
-        &::after {
-          background-color: #0e8420;
-          border-radius: 2px;
-          color: white;
-          content: "New";
-          display: inline-block;
-          font-size: 1rem;
-          padding: 0 0.5rem;
-        }
-      }
+      align-items: baseline;
+      display: flex;
+      justify-content: space-between;
     }
 
     img {

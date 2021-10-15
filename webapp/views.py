@@ -1,7 +1,4 @@
 # Standard library
-import hashlib
-import hmac
-import json
 import math
 import os
 import re
@@ -10,13 +7,10 @@ import re
 import dateutil
 import feedparser
 import flask
-import gnupg
 import talisker.requests
 import yaml
 import jinja2
 from ubuntu_release_info.data import Data
-from canonicalwebteam.store_api.stores.snapstore import SnapStore
-from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
@@ -36,7 +30,6 @@ from webapp.marketo import MarketoAPI
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
-store_api = SnapStore(session=talisker.requests.get_session())
 
 marketo_session = Session()
 talisker.requests.configure(marketo_session)
@@ -249,241 +242,6 @@ def releasenotes_redirect():
             )
 
     return flask.redirect("https://wiki.ubuntu.com/Releases")
-
-
-def build():
-    """
-    Show build page
-    """
-
-    return flask.render_template(
-        "core/build/index.html",
-        board_architectures=json.dumps(Launchpad.board_architectures),
-    )
-
-
-def post_build():
-    """
-    Once they submit the build form on /core/build,
-    kick off the build with Launchpad
-    """
-
-    opt_in = flask.request.values.get("canonicalUpdatesOptIn")
-    full_name = flask.request.values.get("fullName")
-    names = full_name.split(" ")
-    email = flask.request.values.get("email")
-    board = flask.request.values.get("board")
-    system = flask.request.values.get("system")
-    snaps = flask.request.values.get("snaps", "").split(",")
-    arch = flask.request.values.get("arch")
-
-    if not user_info(flask.session):
-        flask.abort(401)
-
-    launchpad = Launchpad(
-        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
-        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
-        session=session,
-        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
-    )
-
-    context = {}
-
-    # Submit user to marketo
-    marketo_api.submit_form(
-        {
-            "formId": "3546",
-            "input": [
-                {
-                    "leadFormFields": {
-                        "canonicalUpdatesOptIn": opt_in,
-                        "firstName": " ".join(names[:-1]),
-                        "lastName": names[-1] if len(names) > 1 else "",
-                        "email": email,
-                        "formid": "3546",
-                        "imageBuilderStatus": "NULL",
-                    }
-                }
-            ],
-        }
-    )
-
-    # Ensure webhook is created
-    if flask.request.host == "ubuntu.com":
-        launchpad.create_update_system_build_webhook(
-            system=system,
-            delivery_url="https://ubuntu.com/core/build/notify",
-            secret=flask.current_app.config["SECRET_KEY"],
-        )
-
-    # Kick off image build
-    try:
-        response = launchpad.build_image(
-            board=board,
-            system=system,
-            snaps=snaps,
-            author_info={"name": full_name, "email": email, "board": board},
-            gpg_passphrase=flask.current_app.config["SECRET_KEY"],
-            arch=arch,
-        )
-        context["build_info"] = launchpad.session.get(
-            response.headers["Location"]
-        ).json()
-    except HTTPError as http_error:
-        if http_error.response.status_code == 400:
-            return (
-                flask.render_template(
-                    "core/build/error.html",
-                    build_error=http_error.response.content.decode(),
-                ),
-                400,
-            )
-        else:
-            raise http_error
-
-    return flask.render_template("core/build/index.html", **context)
-
-
-def notify_build():
-    """
-    An endpoint to trigger an update about a build event to be sent.
-    This will usually be triggered by a webhook from Launchpad
-    """
-
-    # Verify contents
-    signature = hmac.new(
-        flask.current_app.config["SECRET_KEY"].encode("utf-8"),
-        flask.request.data,
-        hashlib.sha1,
-    ).hexdigest()
-
-    if "X-Hub-Signature" not in flask.request.headers:
-        return "No X-Hub-Signature provided\n", 403
-
-    if not hmac.compare_digest(
-        signature, flask.request.headers["X-Hub-Signature"].split("=")[1]
-    ):
-        try:
-            raise HTTPError(400)
-        except HTTPError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_headers": str(flask.request.headers.keys()),
-                    "message": "x-hub-signature did not match",
-                    "expected_signature": signature,
-                    "header_contents": flask.request.headers[
-                        "X-Hub-Signature"
-                    ],
-                    "extracted_signature": flask.request.headers[
-                        "X-Hub-Signature"
-                    ].split("=")[1],
-                }
-            )
-
-        return "X-Hub-Signature does not match\n", 400
-
-    event_content = flask.request.json
-    status = event_content["status"]
-    build_url = (
-        "https://api.launchpad.net/devel" + event_content["livefs_build"]
-    )
-
-    launchpad = Launchpad(
-        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
-        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
-        session=session,
-        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
-    )
-
-    build = launchpad.request(build_url).json()
-    author_json = (
-        gnupg.GPG()
-        .decrypt(
-            build["metadata_override"]["_author_data"],
-            passphrase=flask.current_app.config["SECRET_KEY"],
-        )
-        .data
-    )
-
-    if author_json:
-        author = json.loads(author_json)
-    else:
-        return "_author_data could not be decoded\n", 400
-
-    email = author["email"]
-    names = author["name"].split(" ")
-    board = author["board"]
-    snaps = ", ".join(build["metadata_override"]["extra_snaps"])
-    codename = build["distro_series_link"].split("/")[-1]
-    version = Data().by_codename(codename).version
-    arch = build["distro_arch_series_link"].split("/")[-1]
-    build_link = build["web_link"]
-    build_id = build_link.split("/")[-1]
-
-    download_url = None
-
-    if status == "Successfully built":
-        download_url = launchpad.request(
-            f"{build_url}?ws.op=getFileUrls"
-        ).json()[0]
-
-    marketo_api.submit_form(
-        {
-            "formId": "3546",
-            "input": [
-                {
-                    "leadFormFields": {
-                        "firstName": " ".join(names[:-1]),
-                        "lastName": names[-1] if len(names) > 1 else "",
-                        "email": email,
-                        "formid": "3546",
-                        "imageBuilderVersion": version,
-                        "imageBuilderArchitecture": arch,
-                        "imageBuilderBoard": board,
-                        "imageBuilderSnaps": snaps,
-                        "imageBuilderID": build_id,
-                        "imageBuilderBuildlink": build_link,
-                        "imageBuilderStatus": status,
-                        "imageBuilderDownloadlink": download_url,
-                    }
-                }
-            ],
-        }
-    )
-
-    return "Submitted\n", 202
-
-
-def search_snaps():
-    """
-    A JSON endpoint to search the snap store API
-    """
-
-    query = flask.request.args.get("q", "")
-    architecture = flask.request.args.get("architecture", "wide")
-    board = flask.request.args.get("board")
-    system = flask.request.args.get("system")
-    size = flask.request.args.get("size", "100")
-    page = flask.request.args.get("page", "1")
-
-    if board and system:
-        architecture = Launchpad.board_architectures[board][system]["arch"]
-
-    if not query:
-        return flask.jsonify({"error": "Query parameter 'q' empty"}), 400
-
-    search_response = store_api.search(
-        query, size=size, page=page, arch=architecture
-    )
-
-    return flask.jsonify(
-        {
-            "results": search_response.get("results", {}),
-            "architecture": architecture,
-        }
-    )
 
 
 def account_query():
@@ -871,6 +629,7 @@ def marketo_submit():
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
     }
+    referrer = flask.request.referrer
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
@@ -921,4 +680,13 @@ def marketo_submit():
     if return_url:
         return flask.redirect(return_url)
 
-    return flask.jsonify({"message": "Form submitted."})
+    if referrer:
+        return flask.redirect(f"/thank-you?referrer={referrer}")
+    else:
+        return flask.redirect("/thank-you")
+
+
+def thank_you():
+    return flask.render_template(
+        "thank-you.html", referrer=flask.request.args.get("referrer")
+    )

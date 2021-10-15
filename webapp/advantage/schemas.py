@@ -9,6 +9,11 @@ from webargs.fields import (
 )
 
 
+class EntitlementSchema(Schema):
+    type = String(required=True)
+    is_enabled = Boolean(required=True)
+
+
 class ProductSchema(Schema):
     name = String()
     period = String(enum=["monthly", "yearly"])
@@ -36,6 +41,7 @@ post_advantage_subscriptions = {
     "previous_purchase_id": String(required=True),
     "products": List(Nested(ProductSchema), required=True),
     "resizing": Boolean(),
+    "marketplace": String(),
     "trialling": Boolean(),
 }
 
@@ -98,4 +104,9 @@ put_account_user_role = {
 
 delete_account_user_role = {
     "email": String(required=True),
+}
+
+
+put_contract_entitlements = {
+    "entitlements": List(Nested(EntitlementSchema), required=True),
 }

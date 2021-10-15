@@ -45,6 +45,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#server-desktop-eol")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
     createChart(
       "#server-desktop-eol",
       desktopServerReleaseNames,
@@ -53,6 +54,7 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#eol-1604")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
     createChart(
       "#eol-1604",
       desktopServerReleaseNames,

@@ -1,17 +1,20 @@
 import React from "react";
-import MainTable from "@canonical/react-components/dist/components/MainTable";
 
-import { Users } from "../../types";
-import { getUserRow } from "./components";
+import {
+  default as TableHeaderComponent,
+  TableHeaderProps,
+} from "@canonical/react-components/dist/components/TableHeader";
+import { Table, TableRow, Pagination } from "@canonical/react-components";
+
+import { UserRole, Users, User } from "../../types";
+import UserRow from "./UserRow";
 
 export type UserRowVariant = "regular" | "editing" | "disabled";
 
-type UserId = string;
-
-const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
-  if (userInEditMode === null) {
+const getVariant = (userEmail: string, userInEditMode?: User | null) => {
+  if (userInEditMode == null) {
     return "regular";
-  } else if (userId !== userInEditMode) {
+  } else if (userEmail !== userInEditMode?.email) {
     return "disabled";
   } else {
     return "editing";
@@ -20,46 +23,96 @@ const getVariant = (userId: UserId, userInEditMode: UserId | null) => {
 
 type Props = {
   users: Users;
-  userInEditModeById: UserId | null;
-  setUserInEditModeById: (userId: UserId | null) => void;
+  userInEditMode?: User | null;
+  setUserInEditMode: (User: User) => void;
   dismissEditMode: () => void;
+  handleEditSubmit: ({
+    email,
+    newUserRole,
+  }: {
+    email: string;
+    newUserRole: UserRole;
+  }) => void;
   handleDeleteConfirmationModalOpen: () => void;
 };
 
+export type UserHeaderText = "email" | "role" | "last sign in" | "actions";
+
+const UsersTableHeader = ({
+  label,
+  ...props
+}: TableHeaderProps & {
+  label: UserHeaderText;
+}) => <TableHeaderComponent {...props}>{label}</TableHeaderComponent>;
+
 const TableView = ({
   users,
-  userInEditModeById,
-  setUserInEditModeById,
+  userInEditMode,
+  setUserInEditMode,
   dismissEditMode,
+  handleEditSubmit,
   handleDeleteConfirmationModalOpen,
 }: Props) => {
+  const pageSize = 10;
+  const [pageNumber, setPageNumber] = React.useState(1);
+  const handlePaginate = (pageNumber: number) => {
+    setPageNumber(pageNumber);
+    dismissEditMode();
+  };
+
+  const usersPage = React.useMemo(() => {
+    const pageStart = pageSize * (pageNumber - 1);
+    const pageEnd = pageStart + pageSize;
+
+    return users.slice(pageStart, pageEnd);
+  }, [pageNumber, users, pageSize]);
+
+  React.useEffect(() => {
+    const totalPages = Math.ceil(users.length / pageSize);
+
+    // reset pagination to last available page if exceeded the limit
+    if (pageNumber > totalPages) {
+      setPageNumber(totalPages > 0 ? totalPages : 1);
+    }
+  }, [pageNumber, users.length]);
+
   return (
-    <MainTable
-      responsive
-      headers={[
-        {
-          content: "email",
-        },
-        {
-          content: "role",
-        },
-        {
-          content: "last sign in",
-        },
-        {
-          content: "actions",
-        },
-      ]}
-      rows={users.map((user) =>
-        getUserRow({
-          user,
-          variant: getVariant(user.id, userInEditModeById),
-          setUserInEditModeById,
-          dismissEditMode,
-          handleDeleteConfirmationModalOpen,
-        })
-      )}
-    />
+    <>
+      <Table responsive={true}>
+        <thead>
+          <TableRow>
+            <UsersTableHeader label="email" />
+            <UsersTableHeader label="role" width="20%" />
+            <UsersTableHeader label="last sign in" width="15%" />
+            <UsersTableHeader label="actions" width="20%" />
+          </TableRow>
+        </thead>
+        <tbody>
+          {usersPage.map((user) => (
+            <UserRow
+              key={user.email}
+              user={user}
+              variant={getVariant(user.email, userInEditMode)}
+              setUserInEditMode={setUserInEditMode}
+              dismissEditMode={dismissEditMode}
+              handleEditSubmit={handleEditSubmit}
+              handleDeleteConfirmationModalOpen={
+                handleDeleteConfirmationModalOpen
+              }
+            />
+          ))}
+        </tbody>
+      </Table>
+      {usersPage.length < 1 ? (
+        <p className="u-align--center">No results</p>
+      ) : null}
+      <Pagination
+        currentPage={pageNumber}
+        itemsPerPage={pageSize}
+        paginate={handlePaginate}
+        totalItems={users.length}
+      />
+    </>
   );
 };
 

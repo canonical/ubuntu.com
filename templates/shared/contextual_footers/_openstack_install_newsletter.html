@@ -1,15 +1,15 @@
 <div class="col-4 p-divider__block">
-    <form class="mktoForm mktoNoJS" action="https://pages.canonical.com/index.php/leadCapture/save" method="post">
+    <form action="https://pages.canonical.com/index.php/leadCapture/save" method="post">
     <h3 class="p-heading--four">Sign up for our monthly Cloud&nbsp;Newsletter</h3>
-        <ul class="p-list mktoFormRow u-clearfix">
-            <li class="mktoFormCol p-list__item">
-                <label class="u-off-screen mktoLabel" for="Email">Your email</label>
-                <input type="email" placeholder="Your email" class="mktoField mktoTextField" name="Email" id="Email" required />
+        <ul class="p-list u-clearfix">
+            <li class="p-list__item">
+                <label class="u-off-screen" for="Email">Your email</label>
+                <input type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" placeholder="Your email" name="email" id="Email" required />
             </li>
-            <li class="mktField mktLblRight p-list__item">
-                <span class="mktInput mktLblRight">
-                <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox" />
-                <label class="contextual-footer__text--label" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;<span class="mktFormMsg"></span>
+            <li class="p-list__item">
+                <span>
+                <input name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes" type="checkbox" />
+                <label class="contextual-footer__text--label" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;
                 </span>
             </li>
             <li class="p-list__item u-no-margin--top">
@@ -17,17 +17,17 @@
             </li>
             <li class="p-list__item">
                 <span class="u-off-screen"><input type="text" name="_marketo_comments" value=""></span>
-                <span class="mktoButtonWrap"><button type="submit" class="mktoButton p-button--neutral"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Cloud newsletter', 'eventLabel' : 'Sign-up for news updates', 'eventValue' : undefined });">Subscribe now</button></span>
-                <input value="1212" class="mktoField mktoFieldDescriptor" name="formid" type="hidden" />
+                <span><button type="submit" class="p-button--neutral"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Cloud newsletter', 'eventLabel' : 'Sign-up for news updates', 'eventValue' : undefined });">Subscribe now</button></span>
+                <input value="1212" name="formid" type="hidden" />
                 <input type="hidden" name="Consent_to_Processing__c" value="yes" />
                 <input type="hidden" name="returnURL" value="/openstack/newsletter-thank-you" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" class="mktoField" id="utm_content" value="" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" class="mktoField" id="utm_term" value="" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" class="mktoField" id="GCLID__c" value="" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" class="mktoField" id="FBLID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
             </li>
         </ul>
     </form>

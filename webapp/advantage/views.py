@@ -43,6 +43,7 @@ from webapp.advantage.schemas import (
     post_account_user_role,
     put_account_user_role,
     delete_account_user_role,
+    put_contract_entitlements,
 )
 
 
@@ -51,7 +52,7 @@ SERVICES = {
         "short": "ua",
         "name": "Canonical UA",
     },
-    "canonical-blender": {
+    "blender": {
         "short": "blender",
         "name": "Blender Support",
     },
@@ -237,6 +238,17 @@ def advantage_view(**kwargs):
                 trial_contract = contract.copy()
                 trial_contract["is_detached"] = True
                 trial_contract["is_trialled"] = True
+                active_trial = [
+                    subscription
+                    for subscription in all_subscriptions
+                    if subscription["subscription"]["startedWithTrial"]
+                    and subscription["subscription"]["inTrial"]
+                    and subscription["subscription"]["status"] == "active"
+                ]
+
+                trial_contract["is_trialled_but_cancelled"] = (
+                    False if active_trial else True
+                )
                 trial_contract["machineCount"] = trial_contract_item["value"]
                 trial_contract["rowMachineCount"] = trial_contract_item[
                     "value"
@@ -613,18 +625,22 @@ def post_advantage_subscriptions(preview, **kwargs):
     period = kwargs.get("period")
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
-    trailling = kwargs.get("trailling", False)
+    trialling = kwargs.get("trialling", False)
+    marketplace = kwargs.get("marketplace", "canonical-ua")
 
     current_subscription = {}
     if user_info(flask.session):
         subscriptions = g.api.get_account_subscriptions(
             account_id=account_id,
-            marketplace="canonical-ua",
+            marketplace=marketplace,
             filters={"status": "active"},
         )
 
         for subscription in subscriptions:
-            if subscription["subscription"]["period"] == period:
+            if (
+                subscription["subscription"]["period"] == period
+                and subscription["subscription"]["marketplace"] == marketplace
+            ):
                 current_subscription = subscription
 
     # If there is a subscription we get the current metric
@@ -658,17 +674,17 @@ def post_advantage_subscriptions(preview, **kwargs):
         "previousPurchaseID": previous_purchase_id,
     }
 
-    if trailling:
+    if trialling:
         purchase_request["inTrial"] = True
 
     try:
         if not preview:
             purchase = g.api.purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
         else:
             purchase = g.api.preview_purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
     except CannotCancelLastContractError as error:
         raise UAContractsAPIError(error)
@@ -722,6 +738,27 @@ def cancel_advantage_subscriptions(**kwargs):
         )
 
     return flask.jsonify(purchase), 200
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(put_contract_entitlements, location="json")
+def put_contract_entitlements(contract_id, **kwargs):
+    g.api.set_convert_response(True)
+
+    entitlements_request = []
+    for setting in kwargs.get("entitlements"):
+        entitlements_request.append(
+            {
+                "type": setting["type"],
+                "obligations": {
+                    "enableByDefault": setting["is_enabled"],
+                },
+            }
+        )
+
+    return g.api.put_contract_entitlements(
+        contract_id=contract_id, entitlements_request=entitlements_request
+    )
 
 
 @advantage_decorator(permission="user_or_guest", response="json")
@@ -1081,3 +1118,49 @@ def _make_renewal(contract_info):
         ) and invoice["subscription_status"] == "incomplete"
 
     return renewal
+
+
+@advantage_decorator(response="html")
+def blender_shop_view():
+    g.api.set_convert_response(True)
+
+    account = None
+    if user_info(flask.session):
+        try:
+            account = g.api.get_purchase_account()
+        except UAContractsUserHasNoAccount:
+            # There is no purchase account yet for this user.
+            # One will need to be created later; expected condition.
+            pass
+
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="blender",
+        )
+
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
+
+    listings = g.api.get_product_listings("blender")
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
+
+    return flask.render_template(
+        "advantage/blender/index.html",
+        account=account,
+        previous_purchase_ids=previous_purchase_ids,
+        product_listings=listings,
+    )
+
+
+@advantage_decorator(response="html")
+@use_kwargs({"email": String()}, location="query")
+def blender_thanks_view(**kwargs):
+    return flask.render_template(
+        "advantage/blender/thank-you.html",
+        email=kwargs.get("email"),
+    )
