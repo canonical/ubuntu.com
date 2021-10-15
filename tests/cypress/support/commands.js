@@ -4,15 +4,23 @@ Cypress.Commands.add("acceptCookiePolicy", () => {
   cy.findByRole("button", { name: "Accept all and visit site" }).click();
 });
 
-Cypress.Commands.add("login", ({ username, password }) => {
-  cy.task("login", { username, password }, { timeout: 20000 }).then(
-    async (user) => {
-      user.cookies.forEach(({ name, value }) => {
-        cy.setCookie(name, value);
-      });
+Cypress.Commands.add(
+  "login",
+  (
+    { username, password } = {
+      username: Cypress.env("UBUNTU_USERNAME"),
+      password: Cypress.env("UBUNTU_PASSWORD"),
     }
-  );
-});
+  ) =>
+    cy
+      .task("login", { username, password }, { timeout: 30000 })
+      .then((user) => {
+        user.cookies.forEach(({ name, value }) => {
+          cy.setCookie(name, value);
+        });
+        cy.reload();
+      })
+);
 
 Cypress.Commands.add("iframeLoaded", { prevSubject: "element" }, ($iframe) => {
   const contentWindow = $iframe.prop("contentWindow");
