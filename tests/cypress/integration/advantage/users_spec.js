@@ -1,12 +1,9 @@
 /// <reference types="cypress" />
-import { getTestURL, getRandomEmail } from "../utils";
-          
-context("Advantage", () => {
-  it("adds and deletes a user correctly", () => {
-    const username = Cypress.env("UBUNTU_USERNAME");
-    const password = Cypress.env("UBUNTU_PASSWORD");
+import { getTestURL, getRandomEmail } from "../../utils";
 
-    cy.login({ username, password });
+context("/advantage/users", () => {
+  it("adds and deletes a user correctly", () => {
+    cy.login();
 
     const email = getRandomEmail();
 
