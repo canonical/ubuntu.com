@@ -1383,7 +1383,9 @@
     var language = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
 
     if (language.indexOf('-') !== -1 ) {
-      language = language.split('-')[0];
+      if (language !== "zh-TW") {
+        language = language.split('-')[0];
+      }
     }
 
     return language
