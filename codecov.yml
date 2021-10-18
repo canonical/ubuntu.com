@@ -1,0 +1,23 @@
+codecov:
+  require_ci_to_pass: yes
+
+comment:
+  layout: "diff, files"
+  behavior: default
+  require_changes: false
+  require_base: no
+  require_head: yes
+
+coverage:
+  status:
+    project:
+      javascript:
+        target: auto
+        threshold: 6%
+        flags:
+          - javascript
+      python:
+        target: auto
+        threshold: 0%
+        flags:
+          - python
