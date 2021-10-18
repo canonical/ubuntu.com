@@ -1337,10 +1337,8 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": {
-                "address": {"country": "GB"},
-                "defaultPaymentMethod": {"Id": "pm_abcdef"},
                 "email": "email@url",
-                "name": "Joe Doe",
+                "accountName": "Joe Doe",
                 "recaptchaToken": "abcd1234",
             },
             "method": "post",
