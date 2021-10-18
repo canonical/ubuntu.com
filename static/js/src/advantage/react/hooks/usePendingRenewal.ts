@@ -73,7 +73,7 @@ const usePendingRenewal = () => {
     },
     {
       enabled: !!pendingRenewalID,
-      retry: (failureCount, error: Error & { dontRetry: boolean }) => {
+      retry: (_failureCount, error: Error & { dontRetry: boolean }) => {
         return !error.dontRetry;
       },
     }
