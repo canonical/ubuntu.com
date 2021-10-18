@@ -159,9 +159,21 @@ export async function postRenewalIDToProcessPayment(renewalID) {
 export async function postPurchaseData(
   accountID,
   products,
-  previousPurchaseId
+  previousPurchaseId,
+  marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+
+  const purchaseData = {
+    account_id: accountID,
+    products: products,
+    previous_purchase_id: previousPurchaseId,
+    period: products[0].period,
+  };
+
+  if (marketplace) {
+    purchaseData.marketplace = marketplace;
+  }
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
@@ -171,12 +183,7 @@ export async function postPurchaseData(
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      account_id: accountID,
-      products: products,
-      previous_purchase_id: previousPurchaseId,
-      period: products[0].period,
-    }),
+    body: JSON.stringify(purchaseData),
   });
 
   let data = await response.json();
@@ -250,9 +257,21 @@ export async function resizeContract(
 export async function postPurchasePreviewData(
   accountID,
   products,
-  previousPurchaseId
+  previousPurchaseId,
+  marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+
+  const previewData = {
+    account_id: accountID,
+    products: products,
+    previous_purchase_id: previousPurchaseId,
+    period: products[0].period,
+  };
+
+  if (marketplace) {
+    previewData.marketplace = marketplace;
+  }
 
   let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
     method: "POST",
@@ -262,12 +281,7 @@ export async function postPurchasePreviewData(
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      account_id: accountID,
-      products: products,
-      previous_purchase_id: previousPurchaseId,
-      period: products[0].period,
-    }),
+    body: JSON.stringify(previewData),
   });
 
   let data = await response.json();
