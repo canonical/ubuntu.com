@@ -45,7 +45,7 @@ const PurchaseModal = ({
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
 
-  window.accountId = accountId;
+  window.accountId = accountId ?? window.accountId;
 
   const queryClient = useQueryClient();
 
@@ -77,7 +77,6 @@ const PurchaseModal = ({
           "paymentModalUserInfo",
           getUserInfoFromVariables(data, variables)
         );
-        queryClient.invalidateQueries("preview");
 
         actions.setSubmitting(false);
       },
