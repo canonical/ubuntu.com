@@ -2,13 +2,13 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import SubscriptionSwitch from "./SubscriptionSwitch";
+import FeatureSwitch from "./FeatureSwitch";
 
 it("renders unchecked state correctly", () => {
   render(
-    <SubscriptionSwitch isChecked={false} handleOnChange={jest.fn()}>
+    <FeatureSwitch isChecked={false} handleOnChange={jest.fn()}>
       ESM Infra
-    </SubscriptionSwitch>
+    </FeatureSwitch>
   );
 
   const checkbox = screen.getByRole("checkbox", {
@@ -21,9 +21,9 @@ it("renders unchecked state correctly", () => {
 
 it("renders checked state correctly", () => {
   render(
-    <SubscriptionSwitch isChecked={true} handleOnChange={jest.fn()}>
+    <FeatureSwitch isChecked={true} handleOnChange={jest.fn()}>
       ESM Infra
-    </SubscriptionSwitch>
+    </FeatureSwitch>
   );
 
   const checkbox = screen.getByRole("checkbox", {
@@ -36,13 +36,13 @@ it("renders checked state correctly", () => {
 
 it("renders disabled variant correctly", () => {
   render(
-    <SubscriptionSwitch
+    <FeatureSwitch
       isChecked={true}
       isDisabled={true}
       handleOnChange={jest.fn()}
     >
       ESM Infra
-    </SubscriptionSwitch>
+    </FeatureSwitch>
   );
 
   const checkbox = screen.getByRole("checkbox", {
@@ -56,9 +56,9 @@ it("renders disabled variant correctly", () => {
 it("calls handleOnChange on click", () => {
   const mockFn = jest.fn();
   render(
-    <SubscriptionSwitch isChecked={false} handleOnChange={mockFn}>
+    <FeatureSwitch isChecked={false} handleOnChange={mockFn}>
       ESM Infra
-    </SubscriptionSwitch>
+    </FeatureSwitch>
   );
 
   userEvent.click(screen.getByRole("checkbox", { name: "ESM Infra" }));

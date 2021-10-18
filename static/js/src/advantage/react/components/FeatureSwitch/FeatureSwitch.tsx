@@ -1,6 +1,6 @@
 import React from "react";
 
-const SubscriptionSwitch = ({
+const FeatureSwitch = ({
   children,
   isDisabled = false,
   isChecked,
@@ -26,4 +26,4 @@ const SubscriptionSwitch = ({
   );
 };
 
-export default SubscriptionSwitch;
+export default FeatureSwitch;

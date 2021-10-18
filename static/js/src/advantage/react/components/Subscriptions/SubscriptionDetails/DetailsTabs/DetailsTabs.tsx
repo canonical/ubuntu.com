@@ -9,7 +9,7 @@ import {
 import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import SubscriptionSwitch from "advantage/react/components/SubscriptionSwitch/SubscriptionSwitch";
+import FeatureSwitch from "advantage/react/components/FeatureSwitch";
 
 const IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED = false;
 
@@ -195,13 +195,13 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
                       IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED
                         ? {
                             label: (
-                              <SubscriptionSwitch
+                              <FeatureSwitch
                                 isChecked
                                 isDisabled={true}
                                 handleOnChange={() => null}
                               >
                                 {feature}
-                              </SubscriptionSwitch>
+                              </FeatureSwitch>
                             ),
                           }
                         : {
