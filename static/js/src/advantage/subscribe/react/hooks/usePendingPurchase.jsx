@@ -16,7 +16,7 @@ const usePendingPurchase = () => {
   const stripe = useStripe();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
-    "pendingPurchase",
+    ["pendingPurchase", pendingPurchaseID],
     async () => {
       const res = await getPurchase(pendingPurchaseID);
 
