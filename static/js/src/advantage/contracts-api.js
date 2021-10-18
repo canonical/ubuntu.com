@@ -15,8 +15,6 @@ export async function getPurchase(purchaseID) {
 export async function ensurePurchaseAccount({
   email,
   accountName,
-  paymentMethodID,
-  country,
   captchaValue,
   marketplace,
 }) {
@@ -33,8 +31,6 @@ export async function ensurePurchaseAccount({
     body: JSON.stringify({
       email: email,
       account_name: accountName,
-      payment_method_id: paymentMethodID,
-      country: country,
       captcha_value: captchaValue,
       marketplace: marketplace,
     }),

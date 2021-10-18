@@ -74,8 +74,6 @@ ensure_purchase_account = {
     "email": String(),
     "account_name": String(),
     "captcha_value": String(),
-    "payment_method_id": String(),
-    "country": String(),
     "marketplace": String(),
 }
 

@@ -1311,8 +1311,6 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                 client.ensure_purchase_account(
                     email="email@url",
                     account_name="Joe Doe",
-                    payment_method_id="pm_abcdef",
-                    country="GB",
                     marketplace="canonical-ua",
                     captcha_value="abcd1234",
                 )
@@ -1332,8 +1330,6 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         response = client.ensure_purchase_account(
             email="email@url",
             account_name="Joe Doe",
-            payment_method_id="pm_abcdef",
-            country="GB",
             marketplace="canonical-ua",
             captcha_value="abcd1234",
         )

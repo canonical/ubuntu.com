@@ -280,8 +280,6 @@ class UAContractsAPI:
         marketplace: str = "",
         email: str = "",
         account_name: str = "",
-        payment_method_id: str = "",
-        country: str = "",
         captcha_value: str = "",
     ) -> dict:
         response = self._request(
@@ -289,9 +287,7 @@ class UAContractsAPI:
             path=f"v1/marketplace/{marketplace}/account",
             json={
                 "email": email,
-                "name": account_name,
-                "defaultPaymentMethod": {"Id": payment_method_id},
-                "address": {"country": country},
+                "accountName": account_name,
                 "recaptchaToken": captcha_value,
             },
             error_rules=["default", "ensure-purchase-account"],

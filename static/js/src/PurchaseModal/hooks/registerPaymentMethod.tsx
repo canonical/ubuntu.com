@@ -64,8 +64,6 @@ const registerPaymentMethod = () => {
       accountRes = await ensurePurchaseAccount({
         email: email,
         accountName: buyingFor === "myself" ? name : organisationName,
-        paymentMethodID: paymentMethod?.id,
-        country,
         captchaValue,
         marketplace,
       });

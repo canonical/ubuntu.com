@@ -879,8 +879,6 @@ def ensure_purchase_account(**kwargs):
     marketplace = kwargs.get("marketplace")
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
-    payment_method_id = kwargs.get("payment_method_id")
-    country = kwargs.get("country")
     captcha_value = kwargs.get("captcha_value")
 
     try:
@@ -888,8 +886,6 @@ def ensure_purchase_account(**kwargs):
             marketplace=marketplace,
             email=email,
             account_name=account_name,
-            payment_method_id=payment_method_id,
-            country=country,
             captcha_value=captcha_value,
         )
     except UnauthorizedError as error:
