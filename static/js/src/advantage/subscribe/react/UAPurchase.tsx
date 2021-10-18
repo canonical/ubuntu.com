@@ -33,6 +33,7 @@ const UAPurchase = () => {
       closeModal={closeModal}
       Summary={Summary}
       BuyButton={BuyButton}
+      marketplace="canonical-ua"
     />
   );
 };
