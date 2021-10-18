@@ -29,7 +29,11 @@ enum CancelError {
 
 const CancelSchema = Yup.object().shape({
   cancel: Yup.string()
-    .matches(/^cancel$/, "You must enter the correct confirmation text")
+    .test(
+      "confirmationText",
+      "You must enter the correct confirmation text",
+      (item) => item?.toLowerCase() === "cancel"
+    )
     .required("The confirmation text is required"),
 });
 
