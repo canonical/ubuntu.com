@@ -22,7 +22,7 @@ const usePendingRenewal = () => {
   if (!stripe) throw new Error("Stripe not initialized");
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
-    "pendingRenewal",
+    ["pendingRenewal", pendingRenewalID],
     async () => {
       const res = await getRenewal(pendingRenewalID);
 
