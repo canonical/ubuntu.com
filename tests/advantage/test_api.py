@@ -187,6 +187,78 @@ class TestGetAccountContracts(unittest.TestCase):
         self.assertEqual(session.request_kwargs, expected_args)
 
 
+class TestGetContract(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_contract(contract_id="cABbCcdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_contract = get_fixture("contract")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_contract,
+            )
+        )
+
+        client = make_client(session)
+
+        response = client.get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/contracts/cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP"
+            ),
+        }
+
+        self.assertEqual(response, json_contract)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_convert_response_returns_list_of_contracts(self):
+        json_contract = get_fixture("contract")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_contract,
+            )
+        )
+        client = make_client(session, convert_response=True)
+
+        response = client.get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/contracts/cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP"
+            ),
+        }
+
+        self.assertIsInstance(response, Contract)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
 class TestGetProductListings(unittest.TestCase):
     def test_errors(self):
         cases = [

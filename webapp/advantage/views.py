@@ -745,8 +745,102 @@ def cancel_advantage_subscriptions(**kwargs):
 def put_contract_entitlements(contract_id, **kwargs):
     g.api.set_convert_response(True)
 
+    settings = kwargs.get("entitlements")
+
+    contract = g.api.get_contract(contract_id)
+
+    allowed_entitlements = [
+        "cis",
+        "esm-infra",
+        "esm-apps",
+        "fips",
+        "fips-updates",
+        "livepatch",
+        "support",
+    ]
+
+    # validate request body
+    for setting in settings:
+        # prevent updating entitlements not on the allow list
+        if setting["type"] not in allowed_entitlements:
+            return (
+                flask.jsonify(
+                    {
+                        "error": (
+                            f"Updating entitlement '{setting['type']}' "
+                            f"is not allowed."
+                        )
+                    }
+                ),
+                400,
+            )
+
+        # prevent updating entitlements with the status "Not available"
+        has_not_available_entitlements = not any(
+            entitlement
+            for entitlement in contract.entitlements
+            if entitlement.type == setting["type"]
+        )
+
+        if has_not_available_entitlements:
+            return (
+                flask.jsonify(
+                    {
+                        "error": (
+                            f"Entitlement '{setting['type']}' "
+                            f"is not available."
+                        )
+                    }
+                ),
+                400,
+            )
+
+    # merge current entitlements settings with new entitlement settings
+    all_entitlements = settings
+    for entitlement in contract.entitlements:
+        current_setting = any(
+            setting
+            for setting in settings
+            if setting["type"] == entitlement.type
+        )
+
+        if not current_setting:
+            all_entitlements.append(
+                {
+                    "type": entitlement.type,
+                    "is_enabled": entitlement.enabled_by_default,
+                }
+            )
+
+    # check current status of entitlements
+    has_livepatch_on = False
+    has_fips_on = False
+    has_fips_updates_on = False
+    for entitlement in all_entitlements:
+        if entitlement["type"] == "livepatch":
+            has_livepatch_on = entitlement["is_enabled"]
+        if entitlement["type"] == "fips-updates":
+            has_fips_updates_on = entitlement["is_enabled"]
+        if entitlement["type"] == "fips":
+            has_fips_on = entitlement["is_enabled"]
+
+    # check rules on the current statuses
+    if has_fips_on and (has_livepatch_on or has_fips_updates_on):
+        return (
+            flask.jsonify(
+                {
+                    "error": (
+                        "Cannot have FIPS active at the same time as "
+                        "Livepatch or FIPS Updates"
+                    )
+                }
+            ),
+            400,
+        )
+
+    # build entitlement request for the API
     entitlements_request = []
-    for setting in kwargs.get("entitlements"):
+    for setting in settings:
         entitlements_request.append(
             {
                 "type": setting["type"],

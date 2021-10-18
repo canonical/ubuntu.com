@@ -701,7 +701,7 @@ class TestHelpers(unittest.TestCase):
         for listing in listings.values():
             self.assertEqual(listing.can_be_trialled, False)
 
-    def test_apply_entitlement_rules(self):
+    def test_apply_entitlement_rules_is_available(self):
         entitlements = [
             Entitlement(
                 type="landscape",
@@ -723,8 +723,10 @@ class TestHelpers(unittest.TestCase):
         expected_entitlements = [
             Entitlement(
                 type="support",
-                enabled_by_default=False,
                 support_level="standard",
+                enabled_by_default=True,
+                is_available=True,
+                is_editable=False,
             ),
             Entitlement(
                 type="esm-infra",
@@ -734,12 +736,61 @@ class TestHelpers(unittest.TestCase):
                 type="esm-apps",
                 enabled_by_default=False,
                 is_available=False,
+                is_editable=False,
             ),
             Entitlement(
                 type="support",
-                enabled_by_default=False,
                 support_level="advanced",
+                enabled_by_default=False,
                 is_available=False,
+                is_editable=False,
+            ),
+        ]
+
+        self.assertEqual(
+            to_dict(final_entitlements), to_dict(expected_entitlements)
+        )
+
+    def test_apply_entitlement_rules_is_enabled(self):
+        entitlements = [
+            Entitlement(
+                type="livepatch",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="fips-updates",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="fips",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=True,
+            ),
+        ]
+
+        final_entitlements = apply_entitlement_rules(entitlements)
+
+        expected_entitlements = [
+            Entitlement(
+                type="livepatch",
+                enabled_by_default=False,
+                is_editable=False,
+            ),
+            Entitlement(
+                type="fips-updates",
+                enabled_by_default=False,
+                is_editable=False,
+            ),
+            Entitlement(
+                type="fips",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=True,
             ),
         ]
 
