@@ -14,22 +14,24 @@ from webapp.advantage.ua_contracts.primitives import (
 )
 
 
-def group_items_by_listing(
+def group_shop_items(
     items: List[ContractItem],
 ) -> Dict[str, List[ContractItem]]:
     item_groups = {}
     for item in items:
         listing_id = item.product_listing_id
+        subscription_id = item.subscription_id
 
         # skip legacy contract items
-        if not listing_id:
+        if not listing_id or not subscription_id:
             continue
 
         if item.reason == "trial_started":
             continue
 
-        item_groups[listing_id] = item_groups.get(listing_id, [])
-        item_groups[listing_id].append(item)
+        key = f"{listing_id}||{subscription_id}"
+        item_groups[key] = item_groups.get(key, [])
+        item_groups[key].append(item)
 
     return item_groups
 
@@ -114,6 +116,7 @@ def get_user_subscription_statuses(
     type: str,
     end_date: str = None,
     renewal: Renewal = None,
+    subscription_id: str = None,
     subscriptions: List[Subscription] = None,
     listing: Listing = None,
 ) -> dict:
@@ -162,7 +165,9 @@ def get_user_subscription_statuses(
         statuses["is_upsizeable"] = True
 
     if type == "monthly":
-        is_cancelled = is_user_subscription_cancelled(listing, subscriptions)
+        is_cancelled = is_user_subscription_cancelled(
+            listing, subscriptions, subscription_id
+        )
         statuses["is_cancelled"] = is_cancelled
 
         if not is_cancelled:
@@ -219,10 +224,14 @@ def has_pending_purchases(subscriptions: List[Subscription]) -> bool:
 
 
 def is_user_subscription_cancelled(
-    listing: Listing, subscriptions: List[Subscription]
+    listing: Listing, subscriptions: List[Subscription], subscription_id: str
 ) -> bool:
     listing_found = False
     for subscription in subscriptions:
+        allowed_status = subscription.status in ["active", "locked"]
+        if subscription.id != subscription_id or not allowed_status:
+            continue
+
         for item in subscription.items:
             if item.product_listing_id == listing.id:
                 listing_found = True
@@ -241,25 +250,12 @@ def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
     }
 
     for subscription in subscriptions:
-        period = subscription.period
-        last_purchase_ids[period] = subscription.last_purchase_id
+        if subscription.status not in ["active", "locked"]:
+            continue
+
+        last_purchase_ids[subscription.period] = subscription.last_purchase_id
 
     return last_purchase_ids
-
-
-def get_subscription_by_period(
-    subscriptions: List[Subscription] = None, listing: Listing = None
-) -> Optional[Subscription]:
-    if not listing or not subscriptions:
-        return None
-
-    filtered_subscriptions = [
-        subscription
-        for subscription in subscriptions
-        if subscription.period == listing.period
-    ]
-
-    return filtered_subscriptions[0] if filtered_subscriptions else None
 
 
 def set_listings_trial_status(
@@ -286,10 +282,14 @@ def make_user_subscription_id(
     type: str,
     contract: Contract,
     renewal: Renewal = None,
+    subscription_id: str = None,
 ) -> str:
     id_elements = [type, account.id, contract.id]
     if renewal:
         id_elements.append(renewal.id)
+
+    if subscription_id:
+        id_elements.append(subscription_id)
 
     return "||".join(id_elements)
 

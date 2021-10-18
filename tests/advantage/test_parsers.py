@@ -362,6 +362,7 @@ class TestParsers(unittest.TestCase):
                 reason="purchase_made",
                 value=1,
                 product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                subscription_id="sAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 purchase_id="pAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 trial_id=None,
             ),

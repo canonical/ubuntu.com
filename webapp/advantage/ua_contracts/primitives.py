@@ -37,6 +37,7 @@ class ContractItem:
         reason: str,
         value: int,
         product_listing_id: str = None,
+        subscription_id: str = None,
         purchase_id: str = None,
         trial_id: str = None,
         renewal: Renewal = None,
@@ -49,6 +50,7 @@ class ContractItem:
         self.value = value
         self.product_listing_id = product_listing_id
         self.purchase_id = purchase_id
+        self.subscription_id = subscription_id
         self.trial_id = trial_id
         self.renewal = renewal
 
