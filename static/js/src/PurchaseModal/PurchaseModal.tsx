@@ -74,7 +74,7 @@ const PurchaseModal = ({
         window.accountId = data.accountId;
         setStep(2);
         queryClient.setQueryData(
-          "StripeUserInfo",
+          "paymentModalUserInfo",
           getUserInfoFromVariables(data, variables)
         );
         queryClient.invalidateQueries("preview");
