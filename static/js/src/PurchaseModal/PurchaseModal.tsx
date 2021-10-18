@@ -15,16 +15,20 @@ import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
 import { BuyButtonProps } from "./utils/utils";
 type Props = {
+  accountId?: string;
   termsLabel: React.ReactNode;
-  product: any;
-  preview: any;
+  product?: any;
+  preview?: any;
   quantity: number;
   closeModal: () => void;
   Summary: React.ComponentType;
   BuyButton: React.ComponentType<BuyButtonProps>;
+  modalTitle?: string;
+  isFreeTrialApplicable?: boolean;
 };
 
 const PurchaseModal = ({
+  accountId,
   termsLabel,
   product,
   preview,
@@ -32,12 +36,17 @@ const PurchaseModal = ({
   closeModal,
   Summary,
   BuyButton,
+  modalTitle,
+  isFreeTrialApplicable,
 }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
+
+  window.accountId = accountId ?? window.accountId;
+
   const queryClient = useQueryClient();
 
   const paymentMethodMutation = registerPaymentMethod();
@@ -65,10 +74,9 @@ const PurchaseModal = ({
         window.accountId = data.accountId;
         setStep(2);
         queryClient.setQueryData(
-          "userInfo",
+          "paymentModalUserInfo",
           getUserInfoFromVariables(data, variables)
         );
-        queryClient.invalidateQueries("preview");
 
         actions.setSubmitting(false);
       },
@@ -128,6 +136,8 @@ const PurchaseModal = ({
             product={product}
             preview={preview}
             BuyButton={BuyButton}
+            modalTitle={modalTitle}
+            isFreeTrialApplicable={isFreeTrialApplicable}
           />
         )}
       </>

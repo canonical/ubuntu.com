@@ -16,6 +16,7 @@ import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import RenewalModal from "../RenewalModal";
 
 type Props = {
   modalActive?: boolean;
@@ -27,6 +28,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
   ({ modalActive, onCloseModal, selectedId }: Props, ref) => {
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
+    const [showingRenewalModal, setShowingRenewalModal] = useState(false);
     const [notification, setNotification] = useState<NotificationProps | null>(
       null
     );
@@ -104,6 +106,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     data-test="renew-button"
                     disabled={editing}
                     onClick={() => {
+                      setShowingRenewalModal(true);
                       sendAnalyticsEvent({
                         eventCategory: "Advantage",
                         eventAction: "subscription-renewal-modal",
@@ -153,6 +156,14 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             <DetailsContent selectedId={selectedId} />
           )}
         </section>
+        {showingRenewalModal ? (
+          <RenewalModal
+            subscription={subscription}
+            closeModal={() => {
+              setShowingRenewalModal(false);
+            }}
+          />
+        ) : null}
       </div>
     );
   }
