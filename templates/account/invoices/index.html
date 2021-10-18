@@ -30,7 +30,8 @@
           <thead>
             <th>Service</th>
             <th>Date</th>
-            <th class="u-align--right" style="padding-right: 15%">Total</th>
+            <th width="10%">Status</th>
+            <th class="u-align--right" style="padding-right: 5%">Total</th>
             <th>Download PDF</th>
           </thead>
           <tbody>
@@ -38,7 +39,16 @@
               <tr>
                 <td aria-label="Service">{{ invoice.service }}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
                 <td aria-label="Date">{{ invoice.date }}</td>
-                <td class="u-align--right" aria-label="Total" style="padding-right: 15%">
+                <td aria-label="Status">
+                  {% if invoice.status == "paid" %}
+                  <div class="p-label--new">Paid</div>
+                  {% elif invoice.status == "open" %}
+                  <div class="p-label--deprecated">Failed</div>
+                  {% else %}
+                  <div class="p-label">{{ invoice.status }}</div>
+                  {% endif %}
+                </td>
+                <td class="u-align--right" aria-label="Total" style="padding-right: 5%">
                   {% if invoice.total %}
                     <span class="js-format-price">
                       {{ invoice.total }}
