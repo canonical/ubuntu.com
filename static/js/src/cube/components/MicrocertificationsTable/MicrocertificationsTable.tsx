@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, ContextualMenu, MainTable } from "@canonical/react-components";
+import { ContextualMenu, MainTable } from "@canonical/react-components";
+
+import CubePurchase from "../CubePurchase";
 
 export enum Status {
   Enrolled = "enrolled",
@@ -27,7 +29,8 @@ const TableView = () => {
   useEffect(() => {
     const getModules = async () => {
       try {
-        const response = await fetch("/cube/microcerts.json");
+        const queryString = window.location.search;
+        const response = await fetch(`/cube/microcerts.json${queryString}`);
 
         if (response.status === 200) {
           let { modules } = await response.json();
@@ -144,7 +147,7 @@ const TableView = () => {
           ]}
         />
       ) : (
-        <Button appearance={"positive"}>Purchase</Button>
+        <CubePurchase />
       )}
     </div>
   );
