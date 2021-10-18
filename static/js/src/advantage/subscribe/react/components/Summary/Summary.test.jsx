@@ -19,7 +19,7 @@ describe("Summary", () => {
     });
     const wrapper = shallow(<Summary />);
 
-    expect(wrapper.find("[data-test='name']").text()).toEqual(
+    expect(wrapper.find("[data-test='name']").render().text()).toEqual(
       "UA Infrastructure - Essential (Physical)"
     );
     expect(wrapper.find("[data-test='machines']").text()).toEqual(
