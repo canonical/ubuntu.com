@@ -48,7 +48,7 @@ SERVICES = {
         "short": "ua",
         "name": "Canonical UA",
     },
-    "canonical-blender": {
+    "blender": {
         "short": "blender",
         "name": "Blender Support",
     },
@@ -292,12 +292,15 @@ def payment_methods_view():
 
     if account:
         account_id = account["id"]
+        subscriptions = []
 
-        subscriptions = g.api.get_account_subscriptions(
-            account_id=account_id,
-            marketplace="canonical-ua",
-            filters={"status": "locked"},
-        )
+        for marketplace in SERVICES:
+            market_subscriptions = g.api.get_account_subscriptions(
+                account_id=account_id,
+                marketplace=marketplace,
+                filters={"status": "locked"},
+            )
+            subscriptions.extend(market_subscriptions)
 
         for subscription in subscriptions:
             if subscription.get("pendingPurchases"):
@@ -339,17 +342,21 @@ def post_advantage_subscriptions(preview, **kwargs):
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
     trialling = kwargs.get("trialling", False)
+    marketplace = kwargs.get("marketplace", "canonical-ua")
 
     current_subscription = {}
     if user_info(flask.session):
         subscriptions = g.api.get_account_subscriptions(
             account_id=account_id,
-            marketplace="canonical-ua",
+            marketplace=marketplace,
             filters={"status": "active"},
         )
 
         for subscription in subscriptions:
-            if subscription["subscription"]["period"] == period:
+            if (
+                subscription["subscription"]["period"] == period
+                and subscription["subscription"]["marketplace"] == marketplace
+            ):
                 current_subscription = subscription
 
     # If there is a subscription we get the current metric
@@ -389,11 +396,11 @@ def post_advantage_subscriptions(preview, **kwargs):
     try:
         if not preview:
             purchase = g.api.purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
         else:
             purchase = g.api.preview_purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
     except CannotCancelLastContractError as error:
         raise UAContractsAPIError(error)
@@ -454,8 +461,102 @@ def cancel_advantage_subscriptions(**kwargs):
 def put_contract_entitlements(contract_id, **kwargs):
     g.api.set_convert_response(True)
 
+    settings = kwargs.get("entitlements")
+
+    contract = g.api.get_contract(contract_id)
+
+    allowed_entitlements = [
+        "cis",
+        "esm-infra",
+        "esm-apps",
+        "fips",
+        "fips-updates",
+        "livepatch",
+        "support",
+    ]
+
+    # validate request body
+    for setting in settings:
+        # prevent updating entitlements not on the allow list
+        if setting["type"] not in allowed_entitlements:
+            return (
+                flask.jsonify(
+                    {
+                        "error": (
+                            f"Updating entitlement '{setting['type']}' "
+                            f"is not allowed."
+                        )
+                    }
+                ),
+                400,
+            )
+
+        # prevent updating entitlements with the status "Not available"
+        has_not_available_entitlements = not any(
+            entitlement
+            for entitlement in contract.entitlements
+            if entitlement.type == setting["type"]
+        )
+
+        if has_not_available_entitlements:
+            return (
+                flask.jsonify(
+                    {
+                        "error": (
+                            f"Entitlement '{setting['type']}' "
+                            f"is not available."
+                        )
+                    }
+                ),
+                400,
+            )
+
+    # merge current entitlements settings with new entitlement settings
+    all_entitlements = settings
+    for entitlement in contract.entitlements:
+        current_setting = any(
+            setting
+            for setting in settings
+            if setting["type"] == entitlement.type
+        )
+
+        if not current_setting:
+            all_entitlements.append(
+                {
+                    "type": entitlement.type,
+                    "is_enabled": entitlement.enabled_by_default,
+                }
+            )
+
+    # check current status of entitlements
+    has_livepatch_on = False
+    has_fips_on = False
+    has_fips_updates_on = False
+    for entitlement in all_entitlements:
+        if entitlement["type"] == "livepatch":
+            has_livepatch_on = entitlement["is_enabled"]
+        if entitlement["type"] == "fips-updates":
+            has_fips_updates_on = entitlement["is_enabled"]
+        if entitlement["type"] == "fips":
+            has_fips_on = entitlement["is_enabled"]
+
+    # check rules on the current statuses
+    if has_fips_on and (has_livepatch_on or has_fips_updates_on):
+        return (
+            flask.jsonify(
+                {
+                    "error": (
+                        "Cannot have FIPS active at the same time as "
+                        "Livepatch or FIPS Updates"
+                    )
+                }
+            ),
+            400,
+        )
+
+    # build entitlement request for the API
     entitlements_request = []
-    for setting in kwargs.get("entitlements"):
+    for setting in settings:
         entitlements_request.append(
             {
                 "type": setting["type"],
@@ -589,17 +690,17 @@ def ensure_purchase_account(**kwargs):
     contract API.
     """
 
+    marketplace = kwargs.get("marketplace")
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
-    payment_method_id = kwargs.get("payment_method_id")
-    country = kwargs.get("country")
+    captcha_value = kwargs.get("captcha_value")
 
     try:
         account = g.api.ensure_purchase_account(
+            marketplace=marketplace,
             email=email,
             account_name=account_name,
-            payment_method_id=payment_method_id,
-            country=country,
+            captcha_value=captcha_value,
         )
     except UnauthorizedError as error:
         response = {
@@ -733,6 +834,43 @@ def download_invoice(purchase_id):
     download_link = purchase["invoice"]["url"]
 
     return flask.redirect(download_link)
+
+
+@advantage_decorator(response="html")
+def blender_shop_view():
+    g.api.set_convert_response(True)
+
+    account = None
+    if user_info(flask.session):
+        try:
+            account = g.api.get_purchase_account()
+        except UAContractsUserHasNoAccount:
+            # There is no purchase account yet for this user.
+            # One will need to be created later; expected condition.
+            pass
+
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="blender",
+        )
+
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
+
+    listings = g.api.get_product_listings("blender")
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
+
+    return flask.render_template(
+        "advantage/blender/index.html",
+        account=account,
+        previous_purchase_ids=previous_purchase_ids,
+        product_listings=listings,
+    )
 
 
 @advantage_decorator(response="html")

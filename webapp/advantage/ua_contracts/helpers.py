@@ -14,22 +14,24 @@ from webapp.advantage.ua_contracts.primitives import (
 )
 
 
-def group_items_by_listing(
+def group_shop_items(
     items: List[ContractItem],
 ) -> Dict[str, List[ContractItem]]:
     item_groups = {}
     for item in items:
         listing_id = item.product_listing_id
+        subscription_id = item.subscription_id
 
         # skip legacy contract items
-        if not listing_id:
+        if not listing_id or not subscription_id:
             continue
 
         if item.reason == "trial_started":
             continue
 
-        item_groups[listing_id] = item_groups.get(listing_id, [])
-        item_groups[listing_id].append(item)
+        key = f"{listing_id}||{subscription_id}"
+        item_groups[key] = item_groups.get(key, [])
+        item_groups[key].append(item)
 
     return item_groups
 
@@ -114,6 +116,7 @@ def get_user_subscription_statuses(
     type: str,
     end_date: str = None,
     renewal: Renewal = None,
+    subscription_id: str = None,
     subscriptions: List[Subscription] = None,
     listing: Listing = None,
 ) -> dict:
@@ -162,7 +165,9 @@ def get_user_subscription_statuses(
         statuses["is_upsizeable"] = True
 
     if type == "monthly":
-        is_cancelled = is_user_subscription_cancelled(listing, subscriptions)
+        is_cancelled = is_user_subscription_cancelled(
+            listing, subscriptions, subscription_id
+        )
         statuses["is_cancelled"] = is_cancelled
 
         if not is_cancelled:
@@ -219,10 +224,14 @@ def has_pending_purchases(subscriptions: List[Subscription]) -> bool:
 
 
 def is_user_subscription_cancelled(
-    listing: Listing, subscriptions: List[Subscription]
+    listing: Listing, subscriptions: List[Subscription], subscription_id: str
 ) -> bool:
     listing_found = False
     for subscription in subscriptions:
+        allowed_status = subscription.status in ["active", "locked"]
+        if subscription.id != subscription_id or not allowed_status:
+            continue
+
         for item in subscription.items:
             if item.product_listing_id == listing.id:
                 listing_found = True
@@ -241,25 +250,12 @@ def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:
     }
 
     for subscription in subscriptions:
-        period = subscription.period
-        last_purchase_ids[period] = subscription.last_purchase_id
+        if subscription.status not in ["active", "locked"]:
+            continue
+
+        last_purchase_ids[subscription.period] = subscription.last_purchase_id
 
     return last_purchase_ids
-
-
-def get_subscription_by_period(
-    subscriptions: List[Subscription] = None, listing: Listing = None
-) -> Optional[Subscription]:
-    if not listing or not subscriptions:
-        return None
-
-    filtered_subscriptions = [
-        subscription
-        for subscription in subscriptions
-        if subscription.period == listing.period
-    ]
-
-    return filtered_subscriptions[0] if filtered_subscriptions else None
 
 
 def set_listings_trial_status(
@@ -286,10 +282,14 @@ def make_user_subscription_id(
     type: str,
     contract: Contract,
     renewal: Renewal = None,
+    subscription_id: str = None,
 ) -> str:
     id_elements = [type, account.id, contract.id]
     if renewal:
         id_elements.append(renewal.id)
+
+    if subscription_id:
+        id_elements.append(subscription_id)
 
     return "||".join(id_elements)
 
@@ -302,50 +302,48 @@ def apply_entitlement_rules(
         "esm-infra",
         "esm-apps",
         "fips",
-        "fips-updated",
+        "fips-updates",
         "livepatch",
-        "livepatch-onprem",
         "support",
     ]
 
     allowed_support_level = ["standard", "advanced"]
 
     final_entitlements = []
+    has_no_esm_apps = True
+    has_livepatch_on = False
+    has_fips_on = False
+    has_fips_updates_on = False
+    support_entitlement = None
     for entitlement in entitlements:
         if entitlement.type in allowed_entitlements:
-            if (
-                entitlement.type == "support"
-                and entitlement.support_level in allowed_support_level
-            ):
+            if entitlement.type == "esm-apps":
+                has_no_esm_apps = False
+            if entitlement.type == "livepatch":
+                has_livepatch_on = entitlement.enabled_by_default
+            if entitlement.type == "fips-updates":
+                has_fips_updates_on = entitlement.enabled_by_default
+            if entitlement.type == "fips":
+                has_fips_on = entitlement.enabled_by_default
+
+            if entitlement.type != "support":
+                final_entitlements.append(entitlement)
+                continue
+
+            if entitlement.support_level in allowed_support_level:
+                entitlement.enabled_by_default = True
+                support_entitlement = entitlement
                 final_entitlements.append(entitlement)
 
-            if not entitlement.type == "support":
-                final_entitlements.append(entitlement)
-
-    # apply esm-apps rules
-    has_esm_apps = any(
-        entitlement
-        for entitlement in entitlements
-        if entitlement.type == "esm-apps"
-    )
-
-    if not has_esm_apps:
+    if has_no_esm_apps:
         final_entitlements.append(
             Entitlement(
                 type="esm-apps",
                 enabled_by_default=False,
                 is_available=False,
+                is_editable=False,
             )
         )
-
-    # apply support rules
-    support_entitlement = [
-        entitlement
-        for entitlement in entitlements
-        if entitlement.type == "support"
-        and entitlement.is_available
-        and entitlement.support_level not in ["advanced", "n/a"]
-    ]
 
     if support_entitlement:
         final_entitlements.append(
@@ -354,18 +352,36 @@ def apply_entitlement_rules(
                 support_level="advanced",
                 enabled_by_default=False,
                 is_available=False,
+                is_editable=False,
             )
         )
 
-        if support_entitlement[0].support_level == "essential":
+        if support_entitlement.support_level == "essential":
             final_entitlements.append(
                 Entitlement(
                     type="support",
                     support_level="standard",
                     enabled_by_default=False,
                     is_available=False,
+                    is_editable=False,
                 )
             )
+
+    for entitlement in final_entitlements:
+        if entitlement.type == "support":
+            entitlement.is_editable = False
+
+        if has_fips_on:
+            if entitlement.type == "livepatch":
+                entitlement.is_editable = False
+                entitlement.enabled_by_default = False
+            if entitlement.type == "fips-updates":
+                entitlement.is_editable = False
+                entitlement.enabled_by_default = False
+        elif has_livepatch_on or has_fips_updates_on:
+            if entitlement.type == "fips":
+                entitlement.is_editable = False
+                entitlement.enabled_by_default = False
 
     return final_entitlements
 

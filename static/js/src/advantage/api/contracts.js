@@ -15,8 +15,8 @@ export async function getPurchase(purchaseID) {
 export async function ensurePurchaseAccount({
   email,
   accountName,
-  paymentMethodID,
-  country,
+  captchaValue,
+  marketplace,
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
@@ -31,8 +31,8 @@ export async function ensurePurchaseAccount({
     body: JSON.stringify({
       email: email,
       account_name: accountName,
-      payment_method_id: paymentMethodID,
-      country: country,
+      captcha_value: captchaValue,
+      marketplace: marketplace,
     }),
   });
 

@@ -10,6 +10,7 @@ import {
   getUserInfoFromVariables,
   getInitialFormValues,
   FormValues,
+  marketplace,
 } from "./utils/utils";
 import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
@@ -25,6 +26,7 @@ type Props = {
   BuyButton: React.ComponentType<BuyButtonProps>;
   modalTitle?: string;
   isFreeTrialApplicable?: boolean;
+  marketplace: marketplace;
 };
 
 const PurchaseModal = ({
@@ -38,6 +40,7 @@ const PurchaseModal = ({
   BuyButton,
   modalTitle,
   isFreeTrialApplicable,
+  marketplace,
 }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
@@ -69,51 +72,55 @@ const PurchaseModal = ({
   const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
     setError(null);
     checkoutEvent(GAFriendlyProduct, "2");
-    paymentMethodMutation.mutate(values, {
-      onSuccess: (data, variables) => {
-        window.accountId = data.accountId;
-        setStep(2);
-        queryClient.setQueryData(
-          "paymentModalUserInfo",
-          getUserInfoFromVariables(data, variables)
-        );
+    paymentMethodMutation.mutate(
+      { formData: values, marketplace: marketplace },
+      {
+        onSuccess: (data, variables) => {
+          window.accountId = data.accountId;
+          setStep(2);
+          queryClient.setQueryData(
+            "userInfo",
+            getUserInfoFromVariables(data, variables.formData)
+          );
+          queryClient.invalidateQueries("preview");
 
-        actions.setSubmitting(false);
-      },
-      onError: (error) => {
-        if (error instanceof Error)
-          if (error.message === "email_already_exists") {
-            setError(
-              <>
-                An Ubuntu One account with this email address exists. Please{" "}
-                <a href="/login">sign in</a> to your account first.
-              </>
-            );
-          } else {
-            const knownErrorMessage = getErrorMessage({
-              message: "",
-              code: error.message,
-            });
-
-            // Tries to match the error with a known error code and defaults to a generic error if it fails
-            if (knownErrorMessage) {
-              setError(knownErrorMessage);
-            } else {
-              Sentry.captureException(error);
+          actions.setSubmitting(false);
+        },
+        onError: (error) => {
+          if (error instanceof Error)
+            if (error.message === "email_already_exists") {
               setError(
                 <>
-                  Sorry, there was an unknown error with your credit card. Check
-                  the details and try again. Contact{" "}
-                  <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
-                  the problem persists.
+                  An Ubuntu One account with this email address exists. Please{" "}
+                  <a href="/login">sign in</a> to your account first.
                 </>
               );
-            }
-          }
+            } else {
+              const knownErrorMessage = getErrorMessage({
+                message: "",
+                code: error.message,
+              });
 
-        actions.setSubmitting(false);
-      },
-    });
+              // Tries to match the error with a known error code and defaults to a generic error if it fails
+              if (knownErrorMessage) {
+                setError(knownErrorMessage);
+              } else {
+                Sentry.captureException(error);
+                setError(
+                  <>
+                    Sorry, there was an unknown error with your credit card.
+                    Check the details and try again. Contact{" "}
+                    <a href="https://ubuntu.com/contact-us">Canonical sales</a>{" "}
+                    if the problem persists.
+                  </>
+                );
+              }
+            }
+
+          actions.setSubmitting(false);
+        },
+      }
+    );
   };
 
   return (

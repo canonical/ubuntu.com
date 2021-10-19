@@ -34,6 +34,7 @@ const UAPurchase = () => {
       Summary={Summary}
       BuyButton={BuyButton}
       isFreeTrialApplicable={true}
+      marketplace="canonical-ua"
     />
   );
 };

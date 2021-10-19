@@ -44,3 +44,12 @@ Cypress.Commands.add(
 Cypress.Commands.add("getWithinIframe", (targetElement) =>
   cy.get("iframe").iframeLoaded().its("document").getInDocument(targetElement)
 );
+
+Cypress.Commands.add("clickRecaptcha", () => {
+  cy.window().then((win) => {
+    win.document
+      .querySelector("iframe[src*='recaptcha']")
+      .contentDocument.getElementById("recaptcha-token")
+      .click();
+  });
+});
