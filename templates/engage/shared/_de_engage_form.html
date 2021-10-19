@@ -43,9 +43,16 @@
         <p>Mit der Absendung dieses Formulars bestätige ich, dass ich die <a href="/legal/data-privacy" target="_blank" rel="noopener noreferrer" class="mchNoDecorate">Datenschutzrichtlinie von Canonical</a> gelesen habe und ihr zustimme.</p>
         <input name="RichText" type="hidden" aria-label="RichText">
       </li>
-      <li class="p-list__item">
-        <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+      {# These are honey pot fields to catch bots #}
+      <li class="u-off-screen">
+        <label class="website" for="website">Website:</label>
+        <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
       </li>
+      <li class="u-off-screen">
+        <label class="name" for="name">Name:</label>
+        <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+      </li>
+      {# End of honey pots #}
       <li>
         <input name="Consent_to_Processing__c" value="Yes" type="hidden" aria-label="Consent_to_Processing__c">
       </li>

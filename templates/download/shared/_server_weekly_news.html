@@ -21,12 +21,17 @@
           <input required  id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
           <label for="phone">Mobile/cell phone number:</label>
           <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+          {# These are honey pot fields to catch bots #}
+          <label class="website" for="website">Website:</label>
+          <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+          <label class="name" for="name">Name:</label>
+          <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+          {# End of honey pots #}
         </div>
       </div>
       <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
       <label for="canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
       <p><small>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</small></p>
-      <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
       <button type="submit" class="p-button--positive">Download the pro tips</button>
       <input type="hidden" name="formid" value="3485">
       <input type="hidden" name="Consent_to_Processing__c" value="yes" />
@@ -61,4 +66,3 @@
     }
   });
 </script>
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>

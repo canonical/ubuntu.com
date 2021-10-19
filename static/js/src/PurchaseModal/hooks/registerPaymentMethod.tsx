@@ -91,9 +91,10 @@ const registerPaymentMethod = () => {
     });
 
     if (customerInfoRes.errors) {
+      const errors = JSON.parse(customerInfoRes.errors);
       //We ignore VAT errors but throw the others
-      if (JSON.parse(customerInfoRes.errors).code !== "tax_id_invalid") {
-        throw new Error(JSON.parse(customerInfoRes.errors).code);
+      if (errors.code !== "tax_id_invalid") {
+        throw new Error(errors.decline_code ?? errors.code);
       }
     }
 

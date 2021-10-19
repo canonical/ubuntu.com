@@ -59,9 +59,18 @@
             <input value="yes" id="3-canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
             <label for="3-canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
           </li>
-          <li class="p-list__item">
-            <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+
+          {# These are honey pot fields to catch bots #}
+          <li class="u-off-screen">
+            <label class="website" for="website">Website:</label>
+            <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
           </li>
+          <li class="u-off-screen">
+            <label class="name" for="name">Name:</label>
+            <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+          </li>
+          {# End of honey pots #}
+          
           <li class="p-list__item">
             <button type="submit" class="p-button--positive" aria-label="Submit">Get the whitepaper</button>
             <input type="hidden" name="formid" value="2542" aria-label="">
