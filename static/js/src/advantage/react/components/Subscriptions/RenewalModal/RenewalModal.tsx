@@ -77,6 +77,7 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
           Summary={RenewalSummary}
           BuyButton={BuyButton}
           modalTitle={`Renew ${subscription.product_name}`}
+          marketplace="canonical-ua"
         />
       </div>
     </div>
