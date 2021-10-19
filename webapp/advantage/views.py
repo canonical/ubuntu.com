@@ -1075,6 +1075,7 @@ def invoices_view(**kwargs):
 
             total = None
             invoice = raw_payment.get("invoice")
+            status = invoice.get("status")
             if invoice and invoice.get("total"):
                 cost = invoice.get("total") / 100
                 currency = invoice.get("currency")
@@ -1103,6 +1104,7 @@ def invoices_view(**kwargs):
                     "total": total,
                     "download_file_name": "Download",
                     "download_link": download_link,
+                    "status": status,
                 }
             )
 
