@@ -5,7 +5,7 @@ codecov:
 comment:
   layout: "diff, files"
   behavior: default
-  require_changes: false
+  require_changes: no
   require_base: no
   require_head: yes
 
@@ -14,7 +14,7 @@ coverage:
     project:
       javascript:
         target: auto
-        threshold: 6%
+        threshold: 0%
         flags:
           - javascript
       python:
