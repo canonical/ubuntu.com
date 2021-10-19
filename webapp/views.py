@@ -647,11 +647,11 @@ def marketo_submit():
     # Enrichment data for global enrichment form (id:4198)
     enrichment_fields = {"email": form_fields['email']}
     try:
-      ip_location = ip_reader.get(client_ip)
-      if ip_location and "country" in ip_location:
-          enrichment_fields["country"] = ip_location["country"]["iso_code"]
+        ip_location = ip_reader.get(client_ip)
+        if ip_location and "country" in ip_location:
+            enrichment_fields["country"] = ip_location["country"]["iso_code"]
     except Exception:
-      pass
+        pass
 
     enriched_payload = {
         "formId": "4198",
