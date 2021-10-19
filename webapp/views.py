@@ -661,8 +661,6 @@ def marketo_submit():
     try:
         # Send form data
         data = marketo_api.submit_form(payload).json()
-        # Send enrichment data
-        marketo_api.submit_form(enriched_payload).json()
 
         if "result" not in data:
             flask.current_app.extensions["sentry"].captureMessage(
@@ -694,6 +692,12 @@ def marketo_submit():
             ),
             400,
         )
+
+    # Send enrichment data
+    try:
+        marketo_api.submit_form(enriched_payload).json()
+    except Exception:
+        pass
 
     if return_url:
         return flask.redirect(return_url)
