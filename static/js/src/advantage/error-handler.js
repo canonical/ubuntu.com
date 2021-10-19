@@ -179,6 +179,10 @@ export function parseForErrorObject(data) {
 }
 
 export function getErrorMessage(error) {
+  if (!error) {
+    return undefined;
+  }
+
   const { message, code } = error;
 
   if (
