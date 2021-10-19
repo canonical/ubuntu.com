@@ -79,7 +79,7 @@ const PurchaseModal = ({
           window.accountId = data.accountId;
           setStep(2);
           queryClient.setQueryData(
-            "userInfo",
+            "paymentModalUserInfo",
             getUserInfoFromVariables(data, variables.formData)
           );
           queryClient.invalidateQueries("preview");
