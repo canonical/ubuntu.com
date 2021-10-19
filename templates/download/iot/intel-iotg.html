@@ -12,7 +12,8 @@
     <div class="col-7">
       <h1>Download Ubuntu for Intel IoT platforms</h1>
       <p class="p-heading--4">Ubuntu &mdash; now optimized for Intel's IOTG platforms</p>
-      <p>Ubuntu Core 20 and Ubuntu Desktop 20.04 based images for Intel IoT platforms will be released in October and are currently available as a private alpha.</p>
+      <p>Ubuntu Core 20 and Ubuntu Desktop 20.04 based images for Intel IoT platforms are currently available for download.</p>
+      <p>Pick your chosen OS image and follow the install instruction to load it onto your board and away you go.</p>
       <div class="p-notification--information">
         <div class="p-notification__content">
           <p class="p-notification__message">Send an email to sales-iotg {@} canonical.com with the subject line of 'Ubuntu Core 20 private alpha for Elkhart Lake and Tiger Lake' to register interest in early access.</p>
@@ -20,13 +21,14 @@
       </div>
     </div>
     <div class="col-5 u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ab843223-Intel.svg",
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/ecf0af7c-logo-Intel.svg",
         alt="",
-        width="200",
-        height="132",
+        width="417",
+        height="417",
         hi_def=True,
-        loading="auto"
+        loading="lazy"
         ) | safe
       }}
     </div>
