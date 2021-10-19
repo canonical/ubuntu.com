@@ -63,6 +63,8 @@ context("Advantage", () => {
     cy.findByLabelText("Country/Region:").select("Austria");
     cy.findByLabelText("City:").type("London");
 
+    cy.clickRecaptcha();
+    
     cy.findByRole("button", { name: "Next step" }).click();
 
     // wait for request to be sent
@@ -152,6 +154,9 @@ context("Advantage", () => {
     cy.findByLabelText("Postal code:").type("NW8 9AY");
     cy.findByLabelText("Country/Region:").select("Austria");
     cy.findByLabelText("City:").type("London");
+
+    cy.clickRecaptcha();
+
     cy.findByRole("button", { name: "Next step" }).click();
 
     // wait for request to be sent

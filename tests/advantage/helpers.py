@@ -137,6 +137,7 @@ def make_contract_item(
     value: int = None,
     product_listing_id: str = None,
     purchase_id: str = None,
+    subscription_id: str = None,
     trial_id: str = None,
     renewal: Renewal = None,
 ) -> ContractItem:
@@ -150,6 +151,7 @@ def make_contract_item(
         value=value or 5,
         product_listing_id=product_listing_id or "lAaBbCcDdEeFfGg",
         purchase_id=purchase_id or "pAaBbCcDdEeFfGg",
+        subscription_id=subscription_id or "sAaBbCcDdEeFfGg",
         trial_id=trial_id or None,
         renewal=renewal or None,
     )

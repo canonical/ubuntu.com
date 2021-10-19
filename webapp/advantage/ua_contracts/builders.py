@@ -5,14 +5,13 @@ import pytz
 from dateutil.parser import parse
 
 from webapp.advantage.ua_contracts.helpers import (
-    group_items_by_listing,
     get_items_aggregated_values,
     get_machine_type,
     get_user_subscription_statuses,
     get_price_info,
-    get_subscription_by_period,
     make_user_subscription_id,
     apply_entitlement_rules,
+    group_shop_items,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -107,10 +106,14 @@ def build_shop_item_groups(
             if contract.items is None:
                 continue
 
-            raw_shop_groups = group_items_by_listing(items=contract.items)
-            for listing_id in raw_shop_groups:
+            raw_shop_groups = group_shop_items(items=contract.items)
+            for key in raw_shop_groups:
+                key_parts = key.split("||")
+                listing_id = key_parts[0]
+                subscription_id = key_parts[1]
+
                 listing: Listing = listings[listing_id]
-                items: List[ContractItem] = raw_shop_groups[listing_id]
+                items: List[ContractItem] = raw_shop_groups[key]
 
                 shop_item_groups.append(
                     {
@@ -118,9 +121,8 @@ def build_shop_item_groups(
                         "contract": contract,
                         "items": items,
                         "listing": listing,
-                        "marketplace": (
-                            listing.marketplace if listing else None
-                        ),
+                        "subscription_id": subscription_id,
+                        "marketplace": listing.marketplace,
                         "subscriptions": user_details.get("subscriptions"),
                         "type": listing.period,
                     }
@@ -170,9 +172,9 @@ def build_final_user_subscriptions(
         contract: Contract = group.get("contract")
         subscriptions: List[Subscription] = group.get("subscriptions")
         items: List[ContractItem] = group.get("items")
-        aggregated_values = get_items_aggregated_values(items)
-        subscription = get_subscription_by_period(subscriptions, listing)
         type = group.get("type")
+        subscription_id = group.get("subscription_id")
+        aggregated_values = get_items_aggregated_values(items)
         number_of_machines = aggregated_values.get("number_of_machines")
         price_info = get_price_info(number_of_machines, items, listing)
         renewal = items[0].renewal if type == "legacy" else None
@@ -183,11 +185,14 @@ def build_final_user_subscriptions(
             type=type,
             end_date=aggregated_values.get("end_date"),
             renewal=renewal,
+            subscription_id=subscription_id,
             subscriptions=subscriptions or [],
             listing=listing or None,
         )
 
-        id = make_user_subscription_id(account, type, contract, renewal)
+        id = make_user_subscription_id(
+            account, type, contract, renewal, subscription_id
+        )
 
         user_subscription = UserSubscription(
             id=id,
@@ -203,7 +208,7 @@ def build_final_user_subscriptions(
             currency=price_info.get("currency"),
             machine_type=get_machine_type(contract.product_id),
             contract_id=contract.id,
-            subscription_id=subscription.id if subscription else None,
+            subscription_id=subscription_id,
             listing_id=listing.id if listing else None,
             period=listing.period if listing else None,
             renewal_id=renewal.id if renewal else None,

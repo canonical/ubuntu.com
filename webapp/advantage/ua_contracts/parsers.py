@@ -130,6 +130,7 @@ def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
             value=raw_item.get("value"),
             product_listing_id=raw_item.get("productListingID"),
             purchase_id=raw_item.get("purchaseID"),
+            subscription_id=raw_item.get("subscriptionID"),
             trial_id=raw_item.get("trialID"),
             renewal=parse_renewal(raw_renewal) if raw_renewal else None,
         )

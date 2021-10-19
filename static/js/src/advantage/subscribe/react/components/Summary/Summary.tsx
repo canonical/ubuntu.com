@@ -89,7 +89,10 @@ function Summary() {
           <div className="u-text-light">Plan type:</div>
         </Col>
         <Col size={8}>
-          <div data-test="name">{product?.name}</div>
+          <div
+            data-test="name"
+            dangerouslySetInnerHTML={{ __html: product?.name ?? "" }}
+          />
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">

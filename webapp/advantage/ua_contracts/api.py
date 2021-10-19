@@ -9,6 +9,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_accounts,
     parse_account,
     parse_users,
+    parse_contract,
 )
 
 
@@ -92,6 +93,21 @@ class UAContractsAPI:
             return parse_contracts(contracts)
 
         return contracts
+
+    def get_contract(self, contract_id: str):
+        response = self._request(
+            method="get",
+            path=f"v1/contracts/{contract_id}",
+            json={},
+            error_rules=["default"],
+        )
+
+        contract = response.json()
+
+        if self.convert_response:
+            return parse_contract(contract)
+
+        return contract
 
     def get_account_users(self, account_id: str):
         response = self._request(
@@ -277,19 +293,18 @@ class UAContractsAPI:
 
     def ensure_purchase_account(
         self,
+        marketplace: str = "",
         email: str = "",
         account_name: str = "",
-        payment_method_id: str = "",
-        country: str = "",
+        captcha_value: str = "",
     ) -> dict:
         response = self._request(
             method="post",
-            path="v1/purchase-account",
+            path=f"v1/marketplace/{marketplace}/account",
             json={
                 "email": email,
-                "name": account_name,
-                "defaultPaymentMethod": {"Id": payment_method_id},
-                "address": {"country": country},
+                "accountName": account_name,
+                "recaptchaToken": captcha_value,
             },
             error_rules=["default", "ensure-purchase-account"],
         )
