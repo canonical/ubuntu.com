@@ -180,7 +180,7 @@ export function parseForErrorObject(data) {
 
 export function getErrorMessage(error) {
   if (!error) {
-    return false;
+    return undefined;
   }
 
   const { message, code } = error;
