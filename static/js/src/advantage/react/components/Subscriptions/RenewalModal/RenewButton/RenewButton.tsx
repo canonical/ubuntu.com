@@ -7,6 +7,7 @@ import usePendingRenewal from "../../../../hooks/usePendingRenewal";
 import { getSessionData } from "../../../../../../utils/getSessionData";
 import { useQueryClient } from "react-query";
 import { BuyButtonProps } from "../../../../../subscribe/react/utils/utils";
+import { getErrorMessage } from "../../../../../../advantage/error-handler";
 
 type Props = {
   renewalID: string | null;
@@ -47,7 +48,7 @@ const BuyButton = ({
   const {
     data: pendingRenewal,
     setPendingRenewalID,
-    error: RenewalError,
+    error: renewalError,
   } = usePendingRenewal();
 
   const handleOnRenewalBegin = () => {
@@ -90,10 +91,10 @@ const BuyButton = ({
 
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the Renewal status
-    if (RenewalError instanceof Error) {
+    if (renewalError instanceof Error) {
       setIsLoading(false);
       if (
-        RenewalError.message.includes(
+        renewalError.message.includes(
           "We are unable to authenticate your payment method"
         )
       ) {
@@ -106,19 +107,26 @@ const BuyButton = ({
           </>
         );
       } else {
-        setError(
-          <>
-            We were unable to process the payment. Check the details and try
-            again. Contact{" "}
-            <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-            problem persists.
-          </>
-        );
+        const knownError = getErrorMessage(renewalError);
+
+        if (!knownError) {
+          Sentry.captureException(renewalError);
+          setError(
+            <>
+              We were unable to process the payment. Check the details and try
+              again. Contact{" "}
+              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+              problem persists.
+            </>
+          );
+        } else {
+          setError(knownError);
+        }
       }
       setTermsChecked(false);
       setStep(1);
     }
-  }, [RenewalError]);
+  }, [renewalError]);
 
   useEffect(() => {
     if (pendingRenewal?.status === "done") {
