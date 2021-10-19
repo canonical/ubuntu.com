@@ -632,7 +632,7 @@ def marketo_submit():
     # 2. The second that checks for empty string is actually testing if the
     # honeypots have been triggered
 
-    if honeypots["name"] is None and honeypots["website"] is not None:
+    if honeypots["name"] is not None and honeypots["website"] is not None:
         if honeypots["name"] != "" and honeypots["website"] != "":
             raise BadRequest("Unexpected honeypot fields (name, website)")
         else:
