@@ -13,6 +13,8 @@ export type StripePublishableKey = string;
 
 export type UserSubscriptionEntitlement = {
   enabled_by_default: boolean;
+  is_available: boolean;
+  is_editable: boolean;
   support_level: SupportLevel | null;
   type: EntitlementType | string;
 };

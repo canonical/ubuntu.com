@@ -1,6 +1,9 @@
 export { dedupeArray } from "./dedupeArray";
 export { formatDate } from "./formatDate";
-export { getFeaturesDisplay } from "./getFeaturesDisplay";
+export {
+  getFeaturesDisplay,
+  getAlwaysAvailableFeatures,
+} from "./getFeaturesDisplay";
 export { getMachineTypeDisplay } from "./getMachineTypeDisplay";
 export { getPeriodDisplay } from "./getPeriodDisplay";
 export { getSubscriptionCost } from "./getSubscriptionCost";

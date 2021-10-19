@@ -13,11 +13,17 @@ const labels: Record<string, string | null> = {
   [EntitlementType.LivepatchOnprem]: "Livepatch",
 };
 
+type Feature = {
+  isChecked: boolean;
+  isDisabled: boolean;
+  label: string;
+};
+
 export const getFeaturesDisplay = (
   entitlements: UserSubscriptionEntitlement[]
 ) => {
-  const included: string[] = [];
-  const excluded: string[] = [];
+  const included: Feature[] = [];
+  const excluded: Feature[] = [];
   entitlements.forEach((entitlement) => {
     let label: string | null = null;
     if (
@@ -37,11 +43,23 @@ export const getFeaturesDisplay = (
     } else if (entitlement.type in labels) {
       label = labels[entitlement.type];
     }
-    if (label && !included.includes(label) && !excluded.includes(label)) {
-      if (entitlement.enabled_by_default) {
-        included.push(label);
+    if (
+      label &&
+      !included.find((feature) => feature.label === label) &&
+      !excluded.find((feature) => feature.label === label)
+    ) {
+      if (!entitlement.is_available && !entitlement.is_editable) {
+        excluded.push({
+          isChecked: entitlement.enabled_by_default,
+          isDisabled: !entitlement.is_editable,
+          label,
+        });
       } else {
-        excluded.push(label);
+        included.push({
+          isChecked: entitlement.enabled_by_default,
+          isDisabled: !entitlement.is_editable,
+          label,
+        });
       }
     }
   });
@@ -49,4 +67,30 @@ export const getFeaturesDisplay = (
     excluded,
     included,
   };
+};
+
+const alwaysAvailableLabels: Record<string, string | null> = {
+  [EntitlementType.Cis]: "CIS",
+  [EntitlementType.FipsUpdates]: "FIPS-Updates",
+  [EntitlementType.Fips]: "FIPS",
+};
+
+export const getAlwaysAvailableFeatures = (
+  entitlements: UserSubscriptionEntitlement[]
+) => {
+  const features: Feature[] = [];
+  entitlements.forEach((entitlement) => {
+    let label: string | null = null;
+    if (entitlement.type in alwaysAvailableLabels) {
+      label = alwaysAvailableLabels[entitlement.type];
+    }
+    if (label) {
+      features.push({
+        isChecked: entitlement.enabled_by_default,
+        isDisabled: !entitlement.is_editable,
+        label,
+      });
+    }
+  });
+  return features;
 };

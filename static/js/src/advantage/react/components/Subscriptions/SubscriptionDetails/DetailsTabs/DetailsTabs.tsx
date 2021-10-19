@@ -6,12 +6,16 @@ import {
   UserSubscription,
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
-import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
+import {
+  getFeaturesDisplay,
+  getAlwaysAvailableFeatures,
+  isFreeSubscription,
+} from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import FeatureSwitch from "advantage/react/components/FeatureSwitch";
 
-const IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED = false;
+const IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED = true;
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
@@ -137,6 +141,9 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
   let content: ReactNode | null;
   const features = getFeaturesDisplay(subscription.entitlements);
+  const alwaysAvailableFeatures = getAlwaysAvailableFeatures(
+    subscription.entitlements
+  );
   const isFree = isFreeSubscription(subscription);
   // Don't display any docs links for the free subscription.
   const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
@@ -191,22 +198,22 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
               {features.included.length
                 ? generateList(
                     "Included",
-                    features.included.map((feature) =>
+                    features.included.map(({ label, isDisabled, isChecked }) =>
                       IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED
                         ? {
                             label: (
                               <FeatureSwitch
-                                isChecked
-                                isDisabled={true}
+                                isChecked={isChecked}
+                                isDisabled={isDisabled}
                                 handleOnChange={() => null}
                               >
-                                {feature}
+                                {label}
                               </FeatureSwitch>
                             ),
                           }
                         : {
                             icon: "success",
-                            label: feature,
+                            label,
                           }
                     )
                   )
@@ -216,10 +223,38 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
               {features.excluded.length
                 ? generateList(
                     "Not included",
-                    features.excluded.map((feature) => ({
+                    features.excluded.map(({ label }) => ({
                       icon: "error",
-                      label: feature,
+                      label: label,
                     }))
+                  )
+                : null}
+            </Col>
+          </Row>
+          <Row className="u-sv1" data-test="features-content">
+            <Col size={8}>
+              {features.included.length
+                ? generateList(
+                    "Compliance & Hardening",
+                    alwaysAvailableFeatures.map(
+                      ({ label, isChecked, isDisabled }) =>
+                        IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED
+                          ? {
+                              label: (
+                                <FeatureSwitch
+                                  isChecked={isChecked}
+                                  isDisabled={isDisabled}
+                                  handleOnChange={() => null}
+                                >
+                                  {label}
+                                </FeatureSwitch>
+                              ),
+                            }
+                          : {
+                              icon: "success",
+                              label,
+                            }
+                    )
                   )
                 : null}
             </Col>
