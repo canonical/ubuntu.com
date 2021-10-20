@@ -12,6 +12,43 @@ const slowDownResponse = (req) => {
   });
 };
 
+const fillInCardDetails = () => {
+  cy.get("#card-element").within(() => {
+    return cy
+      .getWithinIframe(`[placeholder="Card number"]`)
+      .type("4242424242424242");
+  });
+
+  cy.get("#card-element").within(() => {
+    return cy.getWithinIframe(`[placeholder="MM / YY"]`).type("1230");
+  });
+
+  cy.get("#card-element").within(() => {
+    return cy.getWithinIframe(`[placeholder="CVC"]`).type("123");
+  });
+
+  cy.get("#card-element").within(() => {
+    return cy.getWithinIframe(`[placeholder="ZIP"]`).type("12345");
+  });
+};
+
+const fillInUserDetails = (email) => {
+  cy.findByLabelText("Email my receipt to:").type(email);
+  cy.findByLabelText("Name:").type("Test Name");
+  cy.findByLabelText("Organisation:").type("Abbey Road Studios");
+  cy.findByLabelText("Address:").type("Abbey Road");
+  cy.findByLabelText("Postal code:").type("NW8 9AY");
+  cy.findByLabelText("Country/Region:").select("Austria");
+  cy.findByLabelText("City:").type("London");
+};
+
+const completeFirstStep = (email = Cypress.env("UBUNTU_USERNAME")) => {
+  fillInCardDetails();
+  fillInUserDetails(email);
+  cy.clickRecaptcha();
+  cy.findByRole("button", { name: "Next step" }).click();
+};
+
 context("/advantage/subscribe", () => {
   it("should display the modal when pressing 'Buy now'", () => {
     cy.visit(getTestURL("/advantage/subscribe"));
@@ -32,8 +69,9 @@ context("/advantage/subscribe", () => {
   it("should be able to start a free trial", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit("/advantage/subscribe?test_backend=true");
+    cy.visit(getTestURL("/advantage/subscribe"));
     cy.acceptCookiePolicy();
+
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
     cy.findByLabelText(/Software and security updates only/).click({
@@ -43,37 +81,7 @@ context("/advantage/subscribe", () => {
     cy.findByRole("dialog").should("be.visible");
 
     // fill in the form
-    // fill in card information
-    cy.get("#card-element").within(() => {
-      return cy
-        .getWithinIframe(`[placeholder="Card number"]`)
-        .type("4242424242424242");
-    });
-
-    cy.get("#card-element").within(() => {
-      return cy.getWithinIframe(`[placeholder="MM / YY"]`).type("1230");
-    });
-
-    cy.get("#card-element").within(() => {
-      return cy.getWithinIframe(`[placeholder="CVC"]`).type("123");
-    });
-
-    cy.get("#card-element").within(() => {
-      return cy.getWithinIframe(`[placeholder="ZIP"]`).type("12345");
-    });
-
-    // fill in the rest of the form
-    cy.findByLabelText("Email my receipt to:").type(randomEmail);
-    cy.findByLabelText("Name:").type("Test Name");
-    cy.findByLabelText("Organisation:").type("Abbey Road Studios");
-    cy.findByLabelText("Address:").type("Abbey Road");
-    cy.findByLabelText("Postal code:").type("NW8 9AY");
-    cy.findByLabelText("Country/Region:").select("Austria");
-    cy.findByLabelText("City:").type("London");
-
-    cy.clickRecaptcha();
-    
-    cy.findByRole("button", { name: "Next step" }).click();
+    completeFirstStep(randomEmail);
 
     // wait for request to be sent
     cy.intercept("POST", "/advantage/purchase-account*").as("purchaseAccount");
@@ -124,7 +132,7 @@ context("/advantage/subscribe", () => {
   it("should be able to buy a subscription", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit("/advantage/subscribe?test_backend=true");
+    cy.visit(getTestURL("/advantage/subscribe"));
     cy.acceptCookiePolicy();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
@@ -135,37 +143,7 @@ context("/advantage/subscribe", () => {
     cy.findByRole("dialog").should("be.visible");
 
     // fill in the form
-    // fill in card information
-    cy.get("#card-element").within(() => {
-      return cy
-        .getWithinIframe(`[placeholder="Card number"]`)
-        .type("4242424242424242");
-    });
-
-    cy.get("#card-element").within(() => {
-      return cy.getWithinIframe(`[placeholder="MM / YY"]`).type("1230");
-    });
-
-    cy.get("#card-element").within(() => {
-      return cy.getWithinIframe(`[placeholder="CVC"]`).type("123");
-    });
-
-    cy.get("#card-element").within(() => {
-      return cy.getWithinIframe(`[placeholder="ZIP"]`).type("12345");
-    });
-
-    // fill in the rest of the form
-    cy.findByLabelText("Email my receipt to:").type(randomEmail);
-    cy.findByLabelText("Name:").type("Test Name");
-    cy.findByLabelText("Organisation:").type("Abbey Road Studios");
-    cy.findByLabelText("Address:").type("Abbey Road");
-    cy.findByLabelText("Postal code:").type("NW8 9AY");
-    cy.findByLabelText("Country/Region:").select("Austria");
-    cy.findByLabelText("City:").type("London");
-
-    cy.clickRecaptcha();
-
-    cy.findByRole("button", { name: "Next step" }).click();
+    completeFirstStep(randomEmail);
 
     // wait for request to be sent
     cy.intercept("POST", "/advantage/purchase-account*").as("purchaseAccount");
@@ -216,5 +194,25 @@ context("/advantage/subscribe", () => {
     // The user lands on the thank you page
     cy.findByText("Thanks for your purchase");
     cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
+  });
+
+  it("redirects logged-in user to /advantage on after successful purchase", () => {
+    cy.login();
+    cy.visit(getTestURL("/advantage/subscribe"));
+    cy.acceptCookiePolicy();
+
+    cy.scrollTo("bottom");
+    cy.findByLabelText(/Software and security updates only/).click({
+      force: true,
+    });
+    cy.findByText("Buy now").click();
+    cy.findByRole("dialog").should("be.visible");
+
+    cy.findByLabelText(/I agree to the Ubuntu Advantage service terms/).click({
+      force: true,
+    });
+    cy.findByRole("button", { name: "Buy" }).click();
+
+    cy.url().should("include", getTestURL("/advantage"));
   });
 });
