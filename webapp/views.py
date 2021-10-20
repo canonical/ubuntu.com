@@ -651,6 +651,7 @@ def marketo_submit():
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
+
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
@@ -661,7 +662,22 @@ def marketo_submit():
         ],
     }
 
+    # Enrichment data for global enrichment form (id:4198)
+    enrichment_fields = {"email": form_fields["email"]}
     try:
+        ip_location = ip_reader.get(client_ip)
+        if ip_location and "country" in ip_location:
+            enrichment_fields["country"] = ip_location["country"]["iso_code"]
+    except Exception:
+        pass
+
+    enriched_payload = {
+        "formId": "4198",
+        "input": [{"leadFormFields": enrichment_fields}],
+    }
+
+    try:
+        # Send form data
         data = marketo_api.submit_form(payload).json()
 
         if "result" not in data:
@@ -694,6 +710,12 @@ def marketo_submit():
             ),
             400,
         )
+
+    # Send enrichment data
+    try:
+        marketo_api.submit_form(enriched_payload).json()
+    except Exception:
+        pass
 
     if return_url:
         return flask.redirect(return_url)
