@@ -18,6 +18,8 @@ import {
 export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
   () => ({
     enabled_by_default: true,
+    is_available: true,
+    is_editable: true,
     support_level: null,
     type: EntitlementType.EsmApps,
   })
