@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
-} from "../../advantage/contracts-api";
+} from "../../advantage/api/contracts";
 import { FormValues, marketplace } from "../utils/utils";
 
 type Props = {

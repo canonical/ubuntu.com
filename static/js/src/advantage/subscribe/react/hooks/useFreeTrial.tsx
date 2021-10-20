@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { postFreeTrial } from "../../../contracts-api";
+import { postFreeTrial } from "../../../api/contracts";
 import useProduct from "./useProduct";
 
 const useFreeTrial = () => {
