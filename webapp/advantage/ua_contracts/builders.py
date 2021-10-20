@@ -146,12 +146,17 @@ def build_legacy_item_groups(user_summary: List) -> List:
                 continue
 
             for item in contract.items:
-                if item.renewal is not None:
+                if (
+                    item.product_listing_id is None
+                    or item.subscription_id is None
+                ):
                     legacy_item_groups.append(
                         {
                             "account": user_details.get("account"),
                             "contract": contract,
                             "items": [item],
+                            "renewal": item.renewal,
+                            "item_id": item.id,
                             "listing": None,
                             "marketplace": "canonical-ua",
                             "subscriptions": user_details.get("subscriptions"),
@@ -173,11 +178,12 @@ def build_final_user_subscriptions(
         subscriptions: List[Subscription] = group.get("subscriptions")
         items: List[ContractItem] = group.get("items")
         type = group.get("type")
+        renewal = group.get("renewal")
+        item_id = group.get("item_id")
         subscription_id = group.get("subscription_id")
         aggregated_values = get_items_aggregated_values(items)
         number_of_machines = aggregated_values.get("number_of_machines")
         price_info = get_price_info(number_of_machines, items, listing)
-        renewal = items[0].renewal if type == "legacy" else None
         product_name = (
             contract.name if type != "free" else "Free Personal Token"
         )
@@ -191,7 +197,7 @@ def build_final_user_subscriptions(
         )
 
         id = make_user_subscription_id(
-            account, type, contract, renewal, subscription_id
+            account, type, contract, renewal, subscription_id, item_id
         )
 
         user_subscription = UserSubscription(

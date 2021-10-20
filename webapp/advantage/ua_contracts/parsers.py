@@ -122,6 +122,7 @@ def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
         raw_renewal = raw_item.get("renewal")
 
         item = ContractItem(
+            id=raw_item.get("id"),
             contract_id=raw_item.get("contractID"),
             created_at=raw_item.get("created"),
             start_date=raw_item.get("effectiveFrom"),
