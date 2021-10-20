@@ -21,12 +21,14 @@
           <input required  id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
           <label for="phone">Mobile/cell phone number:</label>
           <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
-          {# These are honey pot fields to catch bots #}
-          <label class="website" for="website">Website:</label>
-          <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-          <label class="name" for="name">Name:</label>
-          <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-          {# End of honey pots #}
+          <div class="u-off-screen">
+            {# These are honey pot fields to catch bots #}
+            <label class="website" for="website">Website:</label>
+            <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+            <label class="name" for="name">Name:</label>
+            <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            {# End of honey pots #}
+          </div>
         </div>
       </div>
       <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
