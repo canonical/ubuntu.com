@@ -129,6 +129,7 @@ def make_listing(
 
 
 def make_contract_item(
+    id: int = None,
     contract_id: str = None,
     created_at: str = None,
     start_date: str = None,
@@ -143,6 +144,7 @@ def make_contract_item(
 ) -> ContractItem:
 
     return ContractItem(
+        id=id or 123,
         contract_id=contract_id or "cAaBbCcDdEeFfGg",
         created_at=created_at or "2020-01-01T00:00:00Z",
         start_date=start_date or "2020-01-01T00:00:00Z",
@@ -182,6 +184,7 @@ def make_renewal(
 
 
 def make_legacy_contract_item(
+    id: int = None,
     contract_id: str = None,
     created_at: str = None,
     start_date: str = None,
@@ -203,6 +206,7 @@ def make_legacy_contract_item(
     )
 
     return ContractItem(
+        id=id or 123,
         contract_id=contract_id or "cAaBbCcDdEeFfGg",
         created_at=created_at or "2020-01-01T00:00:00Z",
         start_date=start_date or "2020-01-01T00:00:00Z",
@@ -236,6 +240,7 @@ def make_purchase_contract_item(
 
 
 def make_free_trial_contract_item(
+    id: int = None,
     contract_id: str = None,
     created_at: str = None,
     start_date: str = None,
@@ -245,6 +250,7 @@ def make_free_trial_contract_item(
     trial_id: str = None,
 ) -> ContractItem:
     return ContractItem(
+        id=id or 123,
         contract_id=contract_id or "cAaBbCcDdEeFfGg",
         created_at=created_at or "2020-01-01T00:00:00Z",
         start_date=start_date or "2020-01-01T00:00:00Z",
