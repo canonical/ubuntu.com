@@ -121,7 +121,7 @@ def certified_model_details(canonical_id):
     ]
 
     if not model_releases:
-        abort(404)
+        return certified_vendors(canonical_id)
 
     component_summaries = api.component_summaries(canonical_id=canonical_id)[
         "objects"
@@ -573,3 +573,69 @@ def certified_socs():
 def certified_devices():
     view = create_category_views("Ubuntu Core", "certified/devices.html")
     return view
+
+
+def certified_vendors(vendor):
+
+    with open("webapp/certified/vendors_data.yaml") as vendors_data:
+      vendors_data = yaml.load(vendors_data, Loader=yaml.FullLoader)
+
+    # Pagination
+    limit = request.args.get("limit", default=20, type=int)
+    offset = request.args.get("offset", default=0, type=int)
+
+    release_filters = []
+    certified_releases = api.certified_releases(limit="0")["objects"]
+
+    for release in certified_releases:
+      version = release["release"]
+      release_filters.append(version)
+
+
+    releases = (
+        ",".join(request.args.getlist("release"))
+        if request.args.getlist("release")
+        else None
+    )
+
+    all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+    category_filters = []
+    if len(request.args.getlist("category")) > 0:
+        for item in all_categories:
+            if item in request.args.getlist("category"):
+                category_filters.insert(0, item)
+            else:
+                category_filters.append(item)
+    else:
+        category_filters = all_categories
+
+    models = api.certified_models(
+      vendor=vendor,
+      category__in="Desktop, Laptop, Server SoC, Ubuntu Core, Server",
+      limit=limit,
+      offset=offset,
+      major_release__in=releases)
+
+    results=models["objects"]
+  
+    if not models or len(models) == 0:
+      abort(404)
+
+    total_results = models["meta"]["total_count"]
+
+    if vendor in vendors_data["vendors"]:
+        return render_template(
+          "certified/vendor.html",
+          http_host=request.host,
+          vendor=vendors_data["vendors"][vendor],
+          results=results,
+          releases=releases,
+          release_filters=release_filters,
+          category_filters=category_filters,
+          total_results=total_results,
+          limit=limit,
+          offset=offset,
+          total_pages=math.ceil(total_results / limit),
+        )
+    else:
+        abort(404)
