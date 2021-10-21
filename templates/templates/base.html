@@ -80,6 +80,22 @@
   {% endif %}
 
   <div class="wrapper u-no-margin--top">
+    <style>
+        #success{
+          display: none;
+        }
+
+        #success:target {
+          display: block;
+        }
+    </style>
+    <div id="success">
+        <div class="p-notification--caution u-no-margin--bottom">
+            <p class="p-notification__response">
+              <span class="p-notification__status"></span>Your submission was sent successfully! <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-icon--close"></i></a>
+            </p>
+        </div>
+    </div>
     <div id="main-content" class="inner-wrapper">
       {% block content_head %}{% endblock %}
       {% block content_container %}

@@ -1,3 +1,12 @@
+<script type="text/javascript">
+
+    window.onload = function UpdateReturnURL(){
+        const contactForm = document.getElementById("contact-form-container");
+        var returnData =  window.location.pathname+ "#success"
+        contactForm.setAttribute("data-return-url", returnData)
+    }  
+    
+</script>
 {% extends "templates/base.html" %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1HP9YdHF11yVQ9SLl0VXhLezDZREsr1GHIKNi9wT1Gv0/edit?ts=5fb6b19b#heading=h.2ulum9arlf55{% endblock meta_copydoc %}
