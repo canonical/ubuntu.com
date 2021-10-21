@@ -63,23 +63,14 @@ import { debounce } from "./utils/debounce.js";
           type: "ADD_OR_REMOVE_USERS",
           value: parseInt(e.target.value),
         });
+
+        if (STATE.users > 0) {
+          mainCart.classList.remove("p-shop-cart--hidden");
+        } else {
+          mainCart.classList.add("p-shop-cart--hidden");
+        }
       }, 50)
     );
-
-    const billingPeriod = document.querySelector("#billing-period");
-
-    billingPeriod.addEventListener("change", (e) => {
-      updateState(STATE, {
-        type: "CHANGE_BILLING_PERIOD",
-        value: e.target.value,
-      });
-    });
-
-    if (STATE.users > 0) {
-      mainCart.classList.remove("p-shop-cart--hidden");
-    } else {
-      mainCart.classList.add("p-shop-cart--hidden");
-    }
   }
 
   function calculateTotalCost() {
@@ -123,8 +114,16 @@ import { debounce } from "./utils/debounce.js";
     const period = cartContainer.querySelector("[data-prop=period]");
     period.innerText = STATE.billingPeriod === "monthly" ? "month" : "year";
 
-    setupEventHandlers();
+    const billingPeriod = document.querySelector("#billing-period");
+
+    billingPeriod.addEventListener("change", (e) => {
+      updateState(STATE, {
+        type: "CHANGE_BILLING_PERIOD",
+        value: e.target.value,
+      });
+    });
   }
 
+  setupEventHandlers();
   updateCartTemplate();
 })();
