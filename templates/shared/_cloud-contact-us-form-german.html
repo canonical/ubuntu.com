@@ -66,7 +66,16 @@
             <li class="p-list__item">
               Mit der Absendung dieses Formulars bestätige ich, dass ich <a href="/legal/data-privacy/contact">Canonicals Datenschutzerklärung</a> und <a href="/legal/data-privacy">richtlinie zur Kenntnis</a> genommen habe.
             </li>
-            <li class="p-list__item"><div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div></li>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
             <li class="p-list__item">
               <button style="margin: 1rem 0 0 0" type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Absenden</button>
             </li>
@@ -102,4 +111,3 @@
       </div>
     </div>
   </section>
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>

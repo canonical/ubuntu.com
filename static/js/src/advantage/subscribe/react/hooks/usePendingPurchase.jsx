@@ -1,7 +1,7 @@
 import { useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getPurchase, postInvoiceID } from "../../../contracts-api";
+import { getPurchase, postInvoiceID } from "../../../api/contracts";
 
 const requires3DSCheck = (pi_decline_code, pi_status, pi_secret) => {
   return (
@@ -11,12 +11,12 @@ const requires3DSCheck = (pi_decline_code, pi_status, pi_secret) => {
 };
 
 const usePendingPurchase = () => {
-  const [pendingPurchaseID, setPendingPurchaseID] = useState();
+  const [pendingPurchaseID, setPendingPurchaseID] = useState("");
 
   const stripe = useStripe();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
-    "pendingPurchase",
+    ["pendingPurchase", pendingPurchaseID],
     async () => {
       const res = await getPurchase(pendingPurchaseID);
 

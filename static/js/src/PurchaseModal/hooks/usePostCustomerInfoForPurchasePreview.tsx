@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { postCustomerInfoForPurchasePreview } from "../../advantage/contracts-api";
+import { postCustomerInfoForPurchasePreview } from "../../advantage/api/contracts";
 import { FormValues } from "../utils/utils";
 
 const usePostCustomerInfoForPurchasePreview = () => {

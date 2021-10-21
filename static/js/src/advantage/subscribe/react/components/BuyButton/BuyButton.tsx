@@ -8,6 +8,7 @@ import useFreeTrial from "../../hooks/useFreeTrial";
 import usePendingPurchase from "../../hooks/usePendingPurchase";
 import { getSessionData } from "../../../../../utils/getSessionData";
 import { BuyButtonProps } from "../../utils/utils";
+import { getErrorMessage } from "../../../../error-handler";
 
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 
@@ -63,19 +64,25 @@ const BuyButton = ({
     setIsLoading(true);
   };
 
+  const handleOnAfterPurchaseSuccess = () => {
+    const testBackend = window?.location?.search?.includes("test_backend=true")
+      ? "&test_backend=true"
+      : "";
+    if (window.isGuest) {
+      location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+        userInfo?.customerInfo?.email
+      )}${testBackend}`;
+    } else {
+      location.pathname = "/advantage";
+    }
+  };
+
   const onStartTrialClick = () => {
     handleOnPurchaseBegin();
 
     freeTrialMutation.mutate(undefined, {
       onSuccess: () => {
-        //redirect
-        if (window.isGuest) {
-          location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
-            userInfo?.customerInfo?.email ?? ""
-          )}`;
-        } else {
-          location.pathname = "/advantage";
-        }
+        handleOnAfterPurchaseSuccess();
       },
       onError: (error) => {
         setIsLoading(false);
@@ -152,14 +159,21 @@ const BuyButton = ({
           </>
         );
       } else {
-        setError(
-          <>
-            We were unable to process the payment. Check the details and try
-            again. Contact{" "}
-            <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-            problem persists.
-          </>
-        );
+        const knownError = getErrorMessage(purchaseError);
+
+        if (!knownError) {
+          Sentry.captureException(purchaseError);
+          setError(
+            <>
+              We were unable to process the payment. Check the details and try
+              again. Contact{" "}
+              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+              problem persists.
+            </>
+          );
+        } else {
+          setError(knownError);
+        }
       }
       setTermsChecked(false);
       setStep(1);
@@ -202,18 +216,7 @@ const BuyButton = ({
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
-          //redirect
-          if (window.isGuest) {
-            const queryString = window.location.search;
-            const testBackend = queryString.includes("test_backend=true")
-              ? "&test_backend=true"
-              : "";
-            location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
-              pendingPurchase?.invoice?.customerEmail
-            )}${testBackend}`;
-          } else {
-            location.pathname = "/advantage";
-          }
+          handleOnAfterPurchaseSuccess();
         }
       };
     }

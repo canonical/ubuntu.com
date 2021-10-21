@@ -230,14 +230,6 @@ ceph:
     - title: Install
       path: /ceph/install
 
-publiccloud:
-  title: Public cloud
-  path: /public-cloud
-
-  children:
-    - title: Overview
-      path: /public-cloud
-
 cloud:
   title: Cloud
   path: /cloud
@@ -249,8 +241,11 @@ cloud:
       path: /cloud/private-cloud
     - title: What is hybrid cloud
       path: /cloud/hybrid-cloud
-    - title: What is multi-cloud?
+    - title: What is multi-cloud
       path: /cloud/multi-cloud
+    - title: Public cloud
+      path: /cloud/public-cloud
+
 server:
   title: Server
   path: /server
@@ -1240,7 +1235,6 @@ support:
       children:
         - title: Account users
           path: /advantage/users
-          hidden: True
 
     - title: Community support
       path: /support/community-support
@@ -1536,6 +1530,9 @@ legal:
         - title: Thank you
           path: /legal/terms-and-policies/thank-you
           hidden: True
+    
+    - title: Solution support
+      path: /legal/solution-support
 
 observability:
   title: Observability
@@ -1599,14 +1596,6 @@ security:
     - title: Thank you
       path: /security/thank-you
       hidden: True
-
-licensing:
-  title: Licensing
-  path: /licensing
-
-  children:
-    - title: Overview
-      path: /licensing
 
 community:
   title: Community

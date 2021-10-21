@@ -175,6 +175,9 @@ def get_user_subscription_statuses(
             statuses["is_downsizeable"] = True
             statuses["is_cancellable"] = True
 
+    if type == "legacy" and renewal is None:
+        return statuses
+
     if type == "legacy":
         statuses["is_renewal_actionable"] = renewal.actionable
 
@@ -283,6 +286,7 @@ def make_user_subscription_id(
     contract: Contract,
     renewal: Renewal = None,
     subscription_id: str = None,
+    item_id: id = None,
 ) -> str:
     id_elements = [type, account.id, contract.id]
     if renewal:
@@ -290,6 +294,9 @@ def make_user_subscription_id(
 
     if subscription_id:
         id_elements.append(subscription_id)
+
+    if item_id:
+        id_elements.append(str(item_id))
 
     return "||".join(id_elements)
 
