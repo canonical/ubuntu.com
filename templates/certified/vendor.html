@@ -1,11 +1,34 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Certified {{ vendor.name }} devices{% endblock %}
+{% block meta_description %}Devices by {{ vendor.name }}that have been certified for use with Ubuntu.{% endblock %}
+{% block meta_copydoc %}{% endblock %}
+
+{% block outer_content %}
+<section class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width u-sv3">
+    <a href="/certified">&lsaquo;&nbsp;Certified hardware</a>
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      <h1>Ubuntu certified {{ vendor.name }} hardware</h1>
+      <p>{{ vendor.description }}</p>
+      <a href="{{ vendor.site_url }}" class="p-link--external">Visit {{ vendor.name }}'s website here</a>
+    </div>
+    <div class="col-2 col-start-large-10 u-hide--small u-align--center">
+      <img src="{{vendor.logo_url}}"/>
+    </div>
+  </div>
+</section>
+
 <form class="js-search-results">
   <section class="p-strip">
     <div class="u-fixed-width">
-      <h2>{{ title }}</h2>
+      <h2>All {{ vendor.name }} certified hardware</h2>
     </div>
     <div class="u-fixed-width">
       <div class="p-search-box">
-        <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="{{ placeholder or '' }}">
+        <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="Search in all {{ vendor.name }} certified devices">
         <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
       </div>
     </div>
@@ -59,30 +82,24 @@
           <div>
             <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
               <ul class="p-accordion__list">
-                <li class="p-accordion__group--certified" id="vendor-section">
+                <li class="p-accordion__group--certified">
                   <div role="heading" aria-level="2">
-                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
-                      Vendor
+                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab1" aria-controls="tab1-section" aria-expanded="true">
+                      <span>Category</span>
                       <div class="p-round-chip u-hide">
-                        <span class="p-chip__value" id="vendor-count">1</span>
+                        <span class="p-chip__value" id="category-count"></span>
                       </div>
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
-                    {% for vendor_filter in vendor_filters %}
+                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
+                    {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ vendor_filter }}">{{ vendor_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category-filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <span class="p-checkbox__label" id="{{ category_filter }}">{{ category_filter }}</span>
                     </label>
                     {% endfor %}
                   </section>
-                  {% if vendor_filters | length > 5 %}
-                  <span class="js-toggle-links">
-                    <p class="p-reveal-vendors is-dense"><a>Show all vendors ({{ vendor_filters|length - 5}})</a></p>
-                    <p class="p-reveal-vendors is-dense u-hide"><a>Show fewer</a></p>
-                  </span>
-                  {% endif %}
                 </li>
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
@@ -133,7 +150,7 @@
           <tbody>
             {% for result in results %}
             <tr>
-              <td><a href="/certified?vendor={{ result.make }}">{{ result.make }}</a></td>
+              <td>{{ result.make }}</td>
               <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
               <td>{{ result.category }}</td>
             </tr>
@@ -185,4 +202,4 @@
 </form>
 
 <script src="{{ versioned_static('js/src/certified-search-results.js') }}" defer></script>
-
+{% endblock %}
