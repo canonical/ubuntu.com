@@ -62,7 +62,7 @@ const drawChart = (data) => {
     .append("circle")
     .attr("cx", 140)
     .attr("cy", function (d, i) {
-      return -130 + i * 30;
+      return -95 + i * 30;
     })
     .attr("r", 7)
     .style("fill", function (d, i) {
@@ -76,7 +76,7 @@ const drawChart = (data) => {
     .append("text")
     .attr("x", 160)
     .attr("y", function (d, i) {
-      return -130 + i * 30;
+      return -95 + i * 30;
     })
     .style("fill", function (d) {
       return "#111";
@@ -96,7 +96,7 @@ const drawChart = (data) => {
     .append("text")
     .attr("x", 380)
     .attr("y", function (d, i) {
-      return -130 + i * 30;
+      return -95 + i * 30;
     })
     .style("fill", function (d) {
       return "#111";
