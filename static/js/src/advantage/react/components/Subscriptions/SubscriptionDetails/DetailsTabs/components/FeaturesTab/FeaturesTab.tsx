@@ -210,8 +210,12 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                 <>
                   Compliance & Hardening:{" "}
                   <span style={{ fontWeight: 300 }}>
-                    please read the documentation and only enable these features
-                    if you specifically require these certifications.
+                    please read the{" "}
+                    <a href="https://ubuntu.com/security/certifications/docs">
+                      documentation
+                    </a>{" "}
+                    and only enable these features if you specifically require
+                    these certifications.
                   </span>
                 </>,
                 features.alwaysAvailable.map(({ type, label }) => ({
@@ -232,7 +236,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                           tooltipClassName="p-subscriptions-tooltip"
                           message={
                             label === "FIPS"
-                              ? "Enabling FIPS will disable Livepatch"
+                              ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
                               : "Enabling FIPS-Updates will disable FIPS"
                           }
                         >
