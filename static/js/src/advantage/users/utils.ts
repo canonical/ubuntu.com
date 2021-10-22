@@ -12,6 +12,8 @@ export const errorMessages = {
   ["authentication required"]: "Authentication required",
   ["unauthorized"]: "Unauthorized",
   ["cannot find purchase account"]: "Cannot find purchase account",
+  ["user not allowed to purchase on account"]:
+    "User not allowed to purchase on account",
   ["unknown"]: "An unknown error has occurred.",
 } as const;
 
