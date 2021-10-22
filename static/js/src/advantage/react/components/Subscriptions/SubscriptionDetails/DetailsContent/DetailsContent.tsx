@@ -62,6 +62,17 @@ const DetailsContent = ({ selectedId }: Props) => {
     title: "Billing",
     value: isFree ? "None" : getPeriodDisplay(subscription.period),
   };
+
+  const cost = getSubscriptionCost(subscription);
+  const costCol: Feature = {
+    // When a legacy subscription is being displayed then stretch this
+    // column to take up the space where the billing column would
+    // otherwise be.
+    size: subscription.type === UserSubscriptionType.Legacy ? 5 : 3,
+    title: "Cost",
+    value: cost,
+  };
+
   const tokenBlock = token?.contract_token ? (
     <CodeSnippet
       blocks={[
@@ -91,14 +102,10 @@ const DetailsContent = ({ selectedId }: Props) => {
             ? // Don't show the billing column for legacy subscriptions.
               []
             : [billingCol]),
-          {
-            // When a legacy subscription is being displayed then stretch this
-            // column to take up the space where the billing column would
-            // otherwise be.
-            size: subscription.type === UserSubscriptionType.Legacy ? 5 : 3,
-            title: "Cost",
-            value: getSubscriptionCost(subscription),
-          },
+          ...(cost
+            ? // Don't show the cost column if it's empty.
+              [costCol]
+            : []),
           {
             title: "Machine type",
             value: getMachineTypeDisplay(subscription.machine_type),
