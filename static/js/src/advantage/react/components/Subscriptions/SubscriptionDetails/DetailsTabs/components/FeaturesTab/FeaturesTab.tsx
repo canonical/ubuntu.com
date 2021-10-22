@@ -39,18 +39,27 @@ const getNewFeaturesFormState = (
     }
   });
 
-  if (newState[EntitlementType.Fips].isChecked) {
-    newState[EntitlementType.Livepatch].isChecked = false;
-    newState[EntitlementType.Livepatch].isDisabled = true;
+  if (newState[EntitlementType.Fips]?.isChecked) {
+    newState[EntitlementType.Livepatch] = {
+      ...entitlementsState[EntitlementType.Livepatch],
+      isChecked: false,
+      isDisabled: true,
+    };
 
-    newState[EntitlementType.FipsUpdates].isChecked = false;
-    newState[EntitlementType.FipsUpdates].isDisabled = true;
+    newState[EntitlementType.FipsUpdates] = {
+      ...entitlementsState[EntitlementType.FipsUpdates],
+      isChecked: false,
+      isDisabled: true,
+    };
   } else if (
-    newState[EntitlementType.Livepatch].isChecked ||
-    newState[EntitlementType.FipsUpdates].isChecked
+    newState[EntitlementType.Livepatch]?.isChecked ||
+    newState[EntitlementType.FipsUpdates]?.isChecked
   ) {
-    newState[EntitlementType.Fips].isChecked = false;
-    newState[EntitlementType.Fips].isDisabled = true;
+    newState[EntitlementType.Fips] = {
+      ...entitlementsState[EntitlementType.Fips],
+      isChecked: false,
+      isDisabled: true,
+    };
   }
 
   return newState;
@@ -195,10 +204,20 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
       </Row>
       <hr className="p-subscriptions-separator" />
       <Row className="u-sv1" data-testid="always-available-features">
-        <Col size={8}>
+        <Col size={12}>
           {features.alwaysAvailable.length
             ? generateList(
-                "Compliance & Hardening",
+                <>
+                  Compliance & Hardening:{" "}
+                  <span style={{ fontWeight: 300 }}>
+                    please read the{" "}
+                    <a href="https://ubuntu.com/security/certifications/docs">
+                      documentation
+                    </a>{" "}
+                    and only enable these features if you specifically require
+                    these certifications.
+                  </span>
+                </>,
                 features.alwaysAvailable.map(({ type, label }) => ({
                   label: (
                     <div className="p-subscription-switch-wrapper">
@@ -217,7 +236,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                           tooltipClassName="p-subscriptions-tooltip"
                           message={
                             label === "FIPS"
-                              ? "Enabling FIPS will disable Livepatch"
+                              ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
                               : "Enabling FIPS-Updates will disable FIPS"
                           }
                         >
