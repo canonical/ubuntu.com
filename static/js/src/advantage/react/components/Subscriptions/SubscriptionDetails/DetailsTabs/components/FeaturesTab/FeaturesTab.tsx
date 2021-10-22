@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { Button, ActionButton, Col, Row } from "@canonical/react-components";
+import {
+  Button,
+  ActionButton,
+  Col,
+  Row,
+  Tooltip,
+} from "@canonical/react-components";
 
 import { EntitlementType } from "advantage/api/enum";
 import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
@@ -145,16 +151,18 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                 "Included",
                 features.included.map(({ type, label }) => ({
                   label: (
-                    <FeatureSwitch
-                      key={type}
-                      isChecked={featuresFormState[type]?.isChecked}
-                      isDisabled={featuresFormState[type]?.isDisabled}
-                      handleOnChange={(event) =>
-                        handleOnFeatureSwitch(type, event)
-                      }
-                    >
-                      {label}
-                    </FeatureSwitch>
+                    <div className="p-subscription-switch-wrapper">
+                      <FeatureSwitch
+                        key={type}
+                        isChecked={featuresFormState[type]?.isChecked}
+                        isDisabled={featuresFormState[type]?.isDisabled}
+                        handleOnChange={(event) =>
+                          handleOnFeatureSwitch(type, event)
+                        }
+                      >
+                        {label}
+                      </FeatureSwitch>
+                    </div>
                   ),
                 }))
               )
@@ -163,7 +171,20 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
         <Col size={4} data-testid="excluded-features">
           {features.excluded.length
             ? generateList(
-                "Not included",
+                <div>
+                  Not included
+                  <Tooltip
+                    tooltipClassName="p-subscriptions-tooltip"
+                    message="Not available with your subscription"
+                  >
+                    <Button
+                      type="button"
+                      className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                    >
+                      <i className="p-icon--information" />
+                    </Button>
+                  </Tooltip>
+                </div>,
                 features.excluded.map(({ label }) => ({
                   icon: "error",
                   label: label,
@@ -180,16 +201,35 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                 "Compliance & Hardening",
                 features.alwaysAvailable.map(({ type, label }) => ({
                   label: (
-                    <FeatureSwitch
-                      key={type}
-                      isChecked={featuresFormState[type]?.isChecked}
-                      isDisabled={featuresFormState[type]?.isDisabled}
-                      handleOnChange={(event) =>
-                        handleOnFeatureSwitch(type, event)
-                      }
-                    >
-                      {label}
-                    </FeatureSwitch>
+                    <div className="p-subscription-switch-wrapper">
+                      <FeatureSwitch
+                        key={type}
+                        isChecked={featuresFormState[type]?.isChecked}
+                        isDisabled={featuresFormState[type]?.isDisabled}
+                        handleOnChange={(event) =>
+                          handleOnFeatureSwitch(type, event)
+                        }
+                      >
+                        {label}
+                      </FeatureSwitch>
+                      {label === "FIPS" || label === "FIPS-Updates" ? (
+                        <Tooltip
+                          tooltipClassName="p-subscriptions-tooltip"
+                          message={
+                            label === "FIPS"
+                              ? "Enabling FIPS will disable Livepatch"
+                              : "Enabling FIPS-Updates will disable FIPS"
+                          }
+                        >
+                          <Button
+                            type="button"
+                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                          >
+                            <i className="p-icon--information" />
+                          </Button>
+                        </Tooltip>
+                      ) : null}
+                    </div>
                   ),
                 }))
               )
