@@ -89,7 +89,7 @@ const generateDocLinks = (
         case EntitlementType.EsmApps:
         case EntitlementType.EsmInfra:
           link = {
-            label: "ESM Infra & ESM Apps",
+            label: "ESM Infra",
             url:
               "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
           };
