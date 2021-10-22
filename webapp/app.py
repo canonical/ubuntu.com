@@ -103,6 +103,7 @@ from webapp.advantage.views import (
     put_contract_entitlements,
     blender_thanks_view,
     blender_shop_view,
+    support,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -288,6 +289,7 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
+app.add_url_rule("/support", view_func=support)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
     "/advantage/user-subscriptions", view_func=get_user_subscriptions

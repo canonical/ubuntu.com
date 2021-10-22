@@ -49,9 +49,9 @@ def advantage_decorator(permission=None, response="json"):
             # Set marketing flag
             for query_parameter, metadata_key in MARKETING_FLAGS.items():
                 if query_parameter in flask.request.args:
-                    kwargs[metadata_key] = flask.request.args.get(
-                        query_parameter
-                    )
+                    flask.session.pop(metadata_key, None)
+                    value = flask.request.args.get(query_parameter)
+                    flask.session[metadata_key] = value
 
             # UA under maintenance
             if strtobool(os.getenv("STORE_MAINTENANCE", "false")):

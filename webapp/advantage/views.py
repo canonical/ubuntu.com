@@ -352,21 +352,6 @@ def post_advantage_subscriptions(preview, **kwargs):
     trialling = kwargs.get("trialling", False)
     marketplace = kwargs.get("marketplace", "canonical-ua")
 
-    # marketing parameters
-    metadata_keys = [
-        "salesforce-campaign-id",
-        "google-click-id",
-        "google-gbraid-id",
-        "google-wbraid-id",
-        "facebook-click-id",
-    ]
-
-    metadata = {
-        {"key": key, "value": kwargs.get(key)}
-        for (key, value) in metadata_keys
-        if kwargs.get(key)
-    }
-
     current_subscription = {}
     if user_info(flask.session):
         subscriptions = g.api.get_account_subscriptions(
@@ -415,6 +400,24 @@ def post_advantage_subscriptions(preview, **kwargs):
 
     if trialling:
         purchase_request["inTrial"] = True
+
+    # marketing parameters
+
+    metadata_keys = [
+        "salesforce-campaign-id",
+        "google-click-id",
+        "google-gbraid-id",
+        "google-wbraid-id",
+        "facebook-click-id",
+    ]
+
+    metadata = [
+        {
+            "key": metadata_key,
+            "value": flask.session.get(metadata_key),
+        }
+        for metadata_key in metadata_keys
+    ]
 
     if metadata:
         purchase_request["metadata"] = metadata
