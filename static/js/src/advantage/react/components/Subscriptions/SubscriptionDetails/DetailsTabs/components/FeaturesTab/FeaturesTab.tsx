@@ -195,10 +195,16 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
       </Row>
       <hr className="p-subscriptions-separator" />
       <Row className="u-sv1" data-testid="always-available-features">
-        <Col size={8}>
+        <Col size={12}>
           {features.alwaysAvailable.length
             ? generateList(
-                "Compliance & Hardening",
+                <>
+                  Compliance & Hardening:{" "}
+                  <span style={{ fontWeight: 300 }}>
+                    please read the documentation and only enable these features
+                    if you specifically require these certifications.
+                  </span>
+                </>,
                 features.alwaysAvailable.map(({ type, label }) => ({
                   label: (
                     <div className="p-subscription-switch-wrapper">

@@ -34,7 +34,7 @@ it("displays feature categories with content", () => {
   renderWithQueryClient(<FeaturesTab subscription={subscription} />);
   screen.getByRole("heading", { name: "Included" });
   screen.getByRole("heading", { name: "Not included" });
-  screen.getByRole("heading", { name: "Compliance & Hardening" });
+  screen.getByRole("heading", { name: /Compliance & Hardening/ });
 
   within(screen.getByTestId("included-features")).getByLabelText("Livepatch");
   within(screen.getByTestId("excluded-features")).getByText("ESM Apps");
