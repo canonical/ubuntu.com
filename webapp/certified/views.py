@@ -579,51 +579,83 @@ def certified_vendors(vendor):
 
     with open("webapp/certified/vendors_data.yaml") as vendors_data:
         vendors_data = yaml.load(vendors_data, Loader=yaml.FullLoader)
-
-    # Pagination
-    limit = request.args.get("limit", default=20, type=int)
-    offset = request.args.get("offset", default=0, type=int)
-
-    release_filters = []
-    certified_releases = api.certified_releases(limit="0")["objects"]
-
-    for release in certified_releases:
-        version = release["release"]
-        release_filters.append(version)
-
-    releases = (
-        ",".join(request.args.getlist("release"))
-        if request.args.getlist("release")
-        else None
-    )
-
-    all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
-    category_filters = []
-    if len(request.args.getlist("category")) > 0:
-        for item in all_categories:
-            if item in request.args.getlist("category"):
-                category_filters.insert(0, item)
-            else:
-                category_filters.append(item)
-    else:
-        category_filters = all_categories
-
-    models = api.certified_models(
-        vendor=vendor,
-        category__in="Desktop, Laptop, Server SoC, Ubuntu Core, Server",
-        limit=limit,
-        offset=offset,
-        major_release__in=releases,
-    )
-
-    results = models["objects"]
-
-    if not models or len(models) == 0:
-        abort(404)
-
-    total_results = models["meta"]["total_count"]
-
     if vendor in vendors_data["vendors"]:
+
+        # Pagination
+        limit = request.args.get("limit", default=20, type=int)
+        offset = request.args.get("offset", default=0, type=int)
+
+        release_filters = []
+        certified_releases = api.certified_releases(limit="0")["objects"]
+
+        selected_categories = request.args.getlist("category")
+        if "SoC" in selected_categories:
+            selected_categories.remove("SoC")
+            selected_categories.append("Server SoC")
+
+        if "Device" in selected_categories:
+            # Ubuntu Core is replaced by Device for UX purposes
+            # Ubuntu Core is an operating system not a category
+            selected_categories.remove("Device")
+            # Put back Ubuntu Core, as required by API endpoint
+            selected_categories.append("Ubuntu Core")
+
+        categories = (
+            ",".join(selected_categories) if selected_categories else None
+        )
+
+        for release in certified_releases:
+            version = release["release"]
+            release_filters.append(version)
+        releases = (
+            ",".join(request.args.getlist("release"))
+            if request.args.getlist("release")
+            else None
+        )
+
+        all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+        category_filters = []
+
+        if len(request.args.getlist("category")) > 0:
+            for item in all_categories:
+                if item in request.args.getlist("category"):
+                    category_filters.insert(0, item)
+                else:
+                    category_filters.append(item)
+        else:
+            category_filters = all_categories
+
+        query = request.args.get("q", default=None, type=str)
+
+        # Old site replacements
+        if set(request.args) & set(["query", "vendors"]):
+            # Convert ImmutableMultiDict into normal dict
+            parameters = request.args.to_dict()
+            # Do the replacements
+            if "query" in parameters:
+                parameters["q"] = parameters["query"]
+                del parameters["query"]
+
+            if "vendors" in parameters:
+                parameters["vendor"] = parameters["vendors"]
+                del parameters["vendors"]
+
+            # Convert back into query string and redirect
+            return redirect(f"/certified?{urlencode(parameters)}", 301)
+
+        models = api.certified_models(
+            vendor=vendor,
+            category__in=categories,
+            limit=limit,
+            query=query,
+            offset=offset,
+            major_release__in=releases,
+        )
+
+        results = models["objects"]
+
+        total_results = models["meta"]["total_count"]
+
         return render_template(
             "certified/vendor.html",
             http_host=request.host,
@@ -632,10 +664,10 @@ def certified_vendors(vendor):
             releases=releases,
             release_filters=release_filters,
             category_filters=category_filters,
+            category=",".join(request.args.getlist("category")),
+            query=query,
             total_results=total_results,
             limit=limit,
             offset=offset,
             total_pages=math.ceil(total_results / limit),
         )
-    else:
-        abort(404)
