@@ -928,7 +928,7 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    disable_cache_on = ("/advantage", "/cube", "/core/build", "/account.json")
+    disable_cache_on = ("/account", "/advantage", "/cube", "/core/build", "/account.json")
 
     if flask.request.path.startswith(disable_cache_on):
         response.cache_control.no_store = True
