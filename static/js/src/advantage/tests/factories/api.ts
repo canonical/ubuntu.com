@@ -5,6 +5,7 @@ import {
   UserInfo,
   UserSubscription,
   UserSubscriptionEntitlement,
+  UserSubscriptionEntitlementUpdate,
   UserSubscriptionStatuses,
 } from "advantage/api/types";
 import {
@@ -21,6 +22,13 @@ export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptio
     is_available: true,
     is_editable: true,
     support_level: null,
+    type: EntitlementType.EsmApps,
+  })
+);
+
+export const userSubscriptionEntitlementUpdateFactory = Factory.define<UserSubscriptionEntitlementUpdate>(
+  () => ({
+    is_enabled: true,
     type: EntitlementType.EsmApps,
   })
 );

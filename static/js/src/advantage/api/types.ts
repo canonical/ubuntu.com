@@ -19,6 +19,11 @@ export type UserSubscriptionEntitlement = {
   type: EntitlementType | string;
 };
 
+export type UserSubscriptionEntitlementUpdate = {
+  type: EntitlementType | string;
+  is_enabled: boolean;
+};
+
 export type UserSubscriptionStatuses = {
   has_pending_purchases: boolean;
   is_cancellable: boolean;
