@@ -17,18 +17,19 @@ const getNewFeaturesFormState = (
   entitlementsState: Record<string, Feature>,
   newEntitlement: { type: EntitlementType; isChecked: boolean }
 ): Record<string, Feature> => {
-  const newState = {
-    ...entitlementsState,
-    [newEntitlement.type]: {
-      ...entitlementsState[newEntitlement.type],
-      isChecked: newEntitlement.isChecked,
-      isDisabled: false,
-    },
-  };
+  const newState: Record<string, Feature> = {};
 
-  Object.entries(newState).forEach(([key, value]) => {
-    if (key !== EntitlementType.Support) {
+  Object.entries(entitlementsState).forEach(([key, value]) => {
+    if (key === newEntitlement.type) {
+      newState[newEntitlement.type] = {
+        ...entitlementsState[newEntitlement.type],
+        isChecked: newEntitlement.isChecked,
+        isDisabled: false,
+      };
+    } else if (key !== EntitlementType.Support) {
       newState[key] = { ...value, isDisabled: false };
+    } else {
+      newState[key] = { ...value };
     }
   });
 
