@@ -63,7 +63,11 @@ export const filterAndFormatEntitlements = (
       alwaysAvailable.push(formatEntitlementToFeature(entitlement));
     } else if (entitlement.is_available) {
       included.push(formatEntitlementToFeature(entitlement));
-    } else if (!entitlement.is_available && !entitlement.is_editable) {
+    } else if (
+      !entitlement.is_available &&
+      !entitlement.is_editable &&
+      !included.find((e) => e.type === entitlement.type)
+    ) {
       excluded.push(formatEntitlementToFeature(entitlement));
     }
   });
