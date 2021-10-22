@@ -77,7 +77,11 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
     getFeaturesForm(featuresDisplay)
   );
 
-  const { mutateAsync, isLoading } = useUpdateContractEntitlementsMutation();
+  const {
+    mutateAsync,
+    isLoading,
+    isError,
+  } = useUpdateContractEntitlementsMutation();
 
   const [entitlementsToUpdate, setEntitlementsToUpdate] = React.useState<
     EntitlementToUpdate[]
@@ -118,9 +122,13 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
         type: entitlement.type,
         isEnabled: entitlement.isChecked,
       })),
-    }).finally(() => {
-      setEntitlementsToUpdate([]);
-    });
+    })
+      .catch(() => {
+        handleOnCancel();
+      })
+      .finally(() => {
+        setEntitlementsToUpdate([]);
+      });
   };
 
   return (
@@ -191,6 +199,16 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
         </a>
       </p>
       <div className="row"></div>
+      {isError ? (
+        <div className="p-notification--negative">
+          <div className="p-notification__content">
+            <h5 className="p-notification__title">Error</h5>
+            <p className="p-notification__message" role="alert">
+              Something went wrong. Please try again later.
+            </p>
+          </div>
+        </div>
+      ) : null}
       {entitlementsToUpdate.length > 0 ? (
         <div className="u-align--right">
           <div className="p-notification--caution">

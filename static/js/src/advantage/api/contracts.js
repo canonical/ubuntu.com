@@ -92,12 +92,6 @@ export async function getContractToken(contractId) {
   return await response.json();
 }
 
-// "entitlements": [
-//   {
-//     "type": String(required),
-//     "is_enabled": Boolean(required),
-//   }
-// ]
 export async function putContractEntitlements(contractId, entitlements) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
   const response = await fetch(
