@@ -39,18 +39,27 @@ const getNewFeaturesFormState = (
     }
   });
 
-  if (newState[EntitlementType.Fips].isChecked) {
-    newState[EntitlementType.Livepatch].isChecked = false;
-    newState[EntitlementType.Livepatch].isDisabled = true;
+  if (newState[EntitlementType.Fips]?.isChecked) {
+    newState[EntitlementType.Livepatch] = {
+      ...entitlementsState[EntitlementType.Livepatch],
+      isChecked: false,
+      isDisabled: true,
+    };
 
-    newState[EntitlementType.FipsUpdates].isChecked = false;
-    newState[EntitlementType.FipsUpdates].isDisabled = true;
+    newState[EntitlementType.FipsUpdates] = {
+      ...entitlementsState[EntitlementType.FipsUpdates],
+      isChecked: false,
+      isDisabled: true,
+    };
   } else if (
-    newState[EntitlementType.Livepatch].isChecked ||
-    newState[EntitlementType.FipsUpdates].isChecked
+    newState[EntitlementType.Livepatch]?.isChecked ||
+    newState[EntitlementType.FipsUpdates]?.isChecked
   ) {
-    newState[EntitlementType.Fips].isChecked = false;
-    newState[EntitlementType.Fips].isDisabled = true;
+    newState[EntitlementType.Fips] = {
+      ...entitlementsState[EntitlementType.Fips],
+      isChecked: false,
+      isDisabled: true,
+    };
   }
 
   return newState;
