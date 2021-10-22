@@ -11,7 +11,7 @@ import {
 } from "advantage/react/utils/filterAndFormatEntitlements";
 import FeatureSwitch from "advantage/react/components/FeatureSwitch";
 
-import { generateList } from "../DetailsTabs";
+import { generateList } from "../../DetailsTabs";
 
 const getNewFeaturesFormState = (
   entitlementsState: Record<string, Feature>,
@@ -133,8 +133,12 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
   };
 
   return (
-    <form className="p-form" onSubmit={handleSubmit}>
-      <Row className="u-sv1" data-testid="features-content">
+    <form
+      className="p-form"
+      onSubmit={handleSubmit}
+      data-testid="features-content"
+    >
+      <Row className="u-sv1" data-testid="included-features">
         <Col size={4}>
           {features.included.length
             ? generateList(
@@ -156,7 +160,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
               )
             : null}
         </Col>
-        <Col size={4}>
+        <Col size={4} data-testid="excluded-features">
           {features.excluded.length
             ? generateList(
                 "Not included",
@@ -169,7 +173,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
         </Col>
       </Row>
       <hr className="p-subscriptions-separator" />
-      <Row className="u-sv1" data-test="features-content">
+      <Row className="u-sv1" data-testid="always-available-features">
         <Col size={8}>
           {features.alwaysAvailable.length
             ? generateList(
