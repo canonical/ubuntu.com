@@ -59,7 +59,10 @@ export const filterAndFormatEntitlements = (
   const alwaysAvailable: Feature[] = [];
 
   entitlements.forEach((entitlement) => {
-    if (alwaysAvailableFeatures.includes(entitlement.type)) {
+    // always hide
+    if (entitlement.type === EntitlementType.EsmApps) {
+      return;
+    } else if (alwaysAvailableFeatures.includes(entitlement.type)) {
       alwaysAvailable.push(formatEntitlementToFeature(entitlement));
     } else if (entitlement.is_available) {
       included.push(formatEntitlementToFeature(entitlement));
