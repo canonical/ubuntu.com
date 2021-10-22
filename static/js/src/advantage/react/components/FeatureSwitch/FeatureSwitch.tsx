@@ -11,10 +11,6 @@ const FeatureSwitch = ({
   isChecked: boolean;
   handleOnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
-  const onChangeHandle = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleOnChange(event);
-  };
-
   return (
     <label className="p-subscription-switch">
       <input
@@ -22,7 +18,7 @@ const FeatureSwitch = ({
         type="checkbox"
         className="p-switch"
         checked={isChecked}
-        onChange={onChangeHandle}
+        onChange={handleOnChange}
       />
       <span className="p-switch__slider p-subscription-switch__slider"></span>
       {children}
