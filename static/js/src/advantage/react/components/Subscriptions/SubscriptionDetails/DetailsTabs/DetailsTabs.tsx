@@ -1,4 +1,4 @@
-import { Col, Icon, List, Row, Tabs } from "@canonical/react-components";
+import { Icon, List, Tabs } from "@canonical/react-components";
 import React, { HTMLProps, useState } from "react";
 import type { ReactNode } from "react";
 import {
@@ -6,12 +6,10 @@ import {
   UserSubscription,
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
-import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
+import { isFreeSubscription } from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import FeatureSwitch from "advantage/react/components/FeatureSwitch";
-
-const IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED = false;
+import FeaturesTab from "./components/FeaturesTab";
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
@@ -33,7 +31,7 @@ type ListItem = {
   label: ReactNode;
 };
 
-const generateList = (title: string, items: ListItem[]) => (
+export const generateList = (title: React.ReactNode, items: ListItem[]) => (
   <>
     <h5 className="u-no-padding--top p-subscriptions__details-small-title">
       {title}
@@ -136,7 +134,6 @@ const generateDocLinks = (
 const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
   let content: ReactNode | null;
-  const features = getFeaturesDisplay(subscription.entitlements);
   const isFree = isFreeSubscription(subscription);
   // Don't display any docs links for the free subscription.
   const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
@@ -184,51 +181,7 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       break;
     case ActiveTab.FEATURES:
     default:
-      content = (
-        <>
-          <Row className="u-sv1" data-test="features-content">
-            <Col size={4}>
-              {features.included.length
-                ? generateList(
-                    "Included",
-                    features.included.map((feature) =>
-                      IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED
-                        ? {
-                            label: (
-                              <FeatureSwitch
-                                isChecked
-                                isDisabled={true}
-                                handleOnChange={() => null}
-                              >
-                                {feature}
-                              </FeatureSwitch>
-                            ),
-                          }
-                        : {
-                            icon: "success",
-                            label: feature,
-                          }
-                    )
-                  )
-                : null}
-            </Col>
-            <Col size={4}>
-              {features.excluded.length
-                ? generateList(
-                    "Not included",
-                    features.excluded.map((feature) => ({
-                      icon: "error",
-                      label: feature,
-                    }))
-                  )
-                : null}
-            </Col>
-          </Row>
-          <a href="/legal/ubuntu-advantage-service-description">
-            Service description &rsaquo;
-          </a>
-        </>
-      );
+      content = <FeaturesTab subscription={subscription} />;
       break;
   }
   return (

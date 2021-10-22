@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount as enzymeMount } from "enzyme";
 
 import DetailsTabs from "./DetailsTabs";
 import {
@@ -10,6 +10,12 @@ import {
 } from "advantage/tests/factories/api";
 import { UserSubscription } from "advantage/api/types";
 import { EntitlementType } from "advantage/api/enum";
+import { getQueryClientWrapper } from "advantage/tests/utils";
+
+const mount = (Component: React.ReactElement) =>
+  enzymeMount(Component, {
+    wrappingComponent: getQueryClientWrapper(),
+  });
 
 describe("DetailsTabs", () => {
   let subscription: UserSubscription;
@@ -19,8 +25,10 @@ describe("DetailsTabs", () => {
   });
 
   it("defaults to the features tab", () => {
-    const wrapper = shallow(<DetailsTabs subscription={subscription} />);
-    expect(wrapper.find("[data-test='features-content']").exists()).toBe(true);
+    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
+      true
+    );
   });
 
   it("can change tabs", () => {
