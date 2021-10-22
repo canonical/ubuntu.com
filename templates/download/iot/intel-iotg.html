@@ -2,7 +2,7 @@
 
 {% block title %}Download Ubuntu for Intel IoT platforms | Download{% endblock %}
 {% block meta_description %}​​Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom&reg; X6000E Series, Intel&reg; Pentium&reg; and Celeron&reg; N and J Series and 11th Gen Intel&reg; Core&trade; processors.{% endblock meta_description %}
-{% block meta_image %}https://assets.ubuntu.com/v1/2e046626-Intel_IoT_grad+_+en+_+800x418.jpeg{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/fc79371c-__++_++_+grad+_+en+_+800x418.jpeg{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1hxKzPs6e6JQaa9tBqfZ55GAXrVnEryEWBja8HlXy-lc/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -53,14 +53,14 @@
       <p>
         <a class="p-button--positive" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/ubuntu-core-20-amd64.img.xz">Download</a>
       </p>
-      <p>Please see the <a href="https://docs.google.com/document/d/1TiEtFAbR38jkoDW8o1l86SRpoUyPzZhlirJKHHdRMVs/edit#heading=h.9uu6mjdq1bn0">release notes</a> and <a href="/download/intel-nuc">instructions</a> for more information.</p>
+      <p>Please see the release notes and <a href="/download/intel-nuc">instructions</a> for more information.</p>
     </div>
     <div class="col-6 p-divider__block">
       <h3>Ubuntu Desktop 20.04</h3>
       <p>
-        <a class="p-button--positive" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Download</a>
+        <a class="p-button--positive" href="http://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-preinstalled-desktop-amd64+intel-iot.img.xz">Download</a>
       </p>
-      <p>Please see the <a href="https://wiki.ubuntu.com/FocalFossa/ReleaseNotes">release notes</a> and <a href="/download/intel-nuc">instructions</a> for more information.</p>
+      <p>Please see the release notes and <a href="/download/intel-nuc">instructions</a> for more information.</p>
     </div>
   </div>
 </section>
@@ -90,6 +90,8 @@
     <a href="/certified/devices">Further information on Ubuntu certified devices&nbsp;&rsaquo;</a>
   </div>
 </section>
+
+{% with first_item="_download_iot_iotg_newsletter", no_shadow="true" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="4205" data-lp-id="2065" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
