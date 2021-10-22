@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { Button, ActionButton, Col, Row } from "@canonical/react-components";
+
 import { EntitlementType } from "advantage/api/enum";
-
+import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
 import { UserSubscription } from "advantage/api/types";
-import FeatureSwitch from "../../../../FeatureSwitch";
-import { generateList } from "../DetailsTabs";
-
-import { useUpdateContractEntitlementsMutation } from "../../../../../hooks";
 import {
   filterAndFormatEntitlements,
   FeaturesDisplay,
   Feature,
 } from "advantage/react/utils/filterAndFormatEntitlements";
+import FeatureSwitch from "advantage/react/components/FeatureSwitch";
+
+import { generateList } from "../DetailsTabs";
 
 const getNewFeaturesFormState = (
   entitlementsState: Record<string, Feature>,
@@ -134,29 +134,27 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
 
   return (
     <form className="p-form" onSubmit={handleSubmit}>
-      <Row className="u-sv1" data-test="features-content">
+      <Row className="u-sv1" data-testid="features-content">
         <Col size={4}>
-          {features.included.length ? (
-            <>
-              <h5 className="u-no-padding--top p-subscriptions__details-small-title">
-                Included
-              </h5>
-              {features.included.map(({ type, label }) => {
-                return (
-                  <FeatureSwitch
-                    key={type}
-                    isChecked={featuresFormState[type]?.isChecked}
-                    isDisabled={featuresFormState[type]?.isDisabled}
-                    handleOnChange={(event) =>
-                      handleOnFeatureSwitch(type, event)
-                    }
-                  >
-                    {label}
-                  </FeatureSwitch>
-                );
-              })}
-            </>
-          ) : null}
+          {features.included.length
+            ? generateList(
+                "Included",
+                features.included.map(({ type, label }) => ({
+                  label: (
+                    <FeatureSwitch
+                      key={type}
+                      isChecked={featuresFormState[type]?.isChecked}
+                      isDisabled={featuresFormState[type]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(type, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                  ),
+                }))
+              )
+            : null}
         </Col>
         <Col size={4}>
           {features.excluded.length
@@ -173,7 +171,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
       <hr className="p-subscriptions-separator" />
       <Row className="u-sv1" data-test="features-content">
         <Col size={8}>
-          {features.included.length
+          {features.alwaysAvailable.length
             ? generateList(
                 "Compliance & Hardening",
                 features.alwaysAvailable.map(({ type, label }) => ({
