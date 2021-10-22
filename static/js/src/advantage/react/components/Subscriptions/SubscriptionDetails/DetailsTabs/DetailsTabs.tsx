@@ -9,6 +9,9 @@ import {
 import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import FeatureSwitch from "advantage/react/components/FeatureSwitch";
+
+const IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED = false;
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
@@ -188,10 +191,24 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
               {features.included.length
                 ? generateList(
                     "Included",
-                    features.included.map((feature) => ({
-                      icon: "success",
-                      label: feature,
-                    }))
+                    features.included.map((feature) =>
+                      IS_SUBSCRIPTION_FEATURE_SWITCH_ENABLED
+                        ? {
+                            label: (
+                              <FeatureSwitch
+                                isChecked
+                                isDisabled={true}
+                                handleOnChange={() => null}
+                              >
+                                {feature}
+                              </FeatureSwitch>
+                            ),
+                          }
+                        : {
+                            icon: "success",
+                            label: feature,
+                          }
+                    )
                   )
                 : null}
             </Col>
