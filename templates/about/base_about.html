@@ -1,13 +1,5 @@
 {% extends "templates/base.html" %}
-<script type="text/javascript">
 
-    window.onload = function UpdateReturnURL(){
-        const contactForm = document.getElementById("contact-form-container");
-        var returnData =  window.location.pathname+ "#success"
-        contactForm.setAttribute("data-return-url", returnData)
-    }  
-    
-</script>
 
 {% block meta_copydoc %}https://drive.google.com/drive/folders/0B3hNyKyLEnE6c3hFbTVzdHB5SGs{% endblock meta_copydoc %}
 
