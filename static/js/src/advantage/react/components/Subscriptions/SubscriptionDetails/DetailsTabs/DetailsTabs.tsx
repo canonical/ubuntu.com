@@ -31,7 +31,7 @@ type ListItem = {
   label: ReactNode;
 };
 
-export const generateList = (title: string, items: ListItem[]) => (
+export const generateList = (title: React.ReactNode, items: ListItem[]) => (
   <>
     <h5 className="u-no-padding--top p-subscriptions__details-small-title">
       {title}

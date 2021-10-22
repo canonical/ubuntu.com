@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { Button, ActionButton, Col, Row } from "@canonical/react-components";
+import {
+  Button,
+  ActionButton,
+  Col,
+  Row,
+  Tooltip,
+} from "@canonical/react-components";
 
 import { EntitlementType } from "advantage/api/enum";
 import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
@@ -159,7 +165,17 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
         <Col size={4}>
           {features.excluded.length
             ? generateList(
-                "Not included",
+                <>
+                  Not included
+                  <Tooltip
+                    followMouse
+                    message="Not available with your subscription"
+                  >
+                    <Button type="button" className="u-no-margin--bottom">
+                      <i className="p-icon--information" />
+                    </Button>
+                  </Tooltip>
+                </>,
                 features.excluded.map(({ label }) => ({
                   icon: "error",
                   label: label,
@@ -176,16 +192,25 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                 "Compliance & Hardening",
                 features.alwaysAvailable.map(({ type, label }) => ({
                   label: (
-                    <FeatureSwitch
-                      key={type}
-                      isChecked={featuresFormState[type]?.isChecked}
-                      isDisabled={featuresFormState[type]?.isDisabled}
-                      handleOnChange={(event) =>
-                        handleOnFeatureSwitch(type, event)
-                      }
-                    >
-                      {label}
-                    </FeatureSwitch>
+                    <div>
+                      <FeatureSwitch
+                        key={type}
+                        isChecked={featuresFormState[type]?.isChecked}
+                        isDisabled={featuresFormState[type]?.isDisabled}
+                        handleOnChange={(event) =>
+                          handleOnFeatureSwitch(type, event)
+                        }
+                      >
+                        {label}
+                      </FeatureSwitch>
+                      {label === "FIPS" || label === "Fips-Updates" ? (
+                        <Tooltip message="Enabling FIPS will disable Livepatch">
+                          <Button type="button" className="u-no-margin--bottom">
+                            <i className="p-icon--information" />
+                          </Button>
+                        </Tooltip>
+                      ) : null}
+                    </div>
                   ),
                 }))
               )
