@@ -78,7 +78,7 @@ describe("DetailsTabs", () => {
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
     expect(docsLinks.length).toBe(1);
-    expect(docsLinks.at(0).text()).toBe("ESM Infra & ESM Apps");
+    expect(docsLinks.at(0).text()).toBe("ESM Infra");
   });
 
   it("reorders FIPS, CC-EAL, and CIS to the end", () => {
@@ -110,7 +110,7 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.at(0).text()).toBe("ESM Infra & ESM Apps");
+    expect(docsLinks.at(0).text()).toBe("ESM Infra");
     expect(docsLinks.at(1).text()).toBe("Livepatch");
     expect(docsLinks.at(2).text()).toBe("FIPS setup instructions");
     expect(docsLinks.at(3).text()).toBe("CC-EAL2 setup instructions");
