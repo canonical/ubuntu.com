@@ -913,5 +913,5 @@ def blender_thanks_view(**kwargs):
 @advantage_decorator(response="html")
 def support():
     return flask.render_template(
-      "support/index.html",
+        "support/index.html",
     )
