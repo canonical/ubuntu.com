@@ -150,7 +150,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "params": None,
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua&productTags=classic&productTags=pro"
+                "?productTags=ua,classic,pro,blender"
             ),
         }
 
@@ -176,7 +176,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "params": None,
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua&productTags=classic&productTags=pro"
+                "?productTags=ua,classic,pro,blender"
             ),
         }
 
