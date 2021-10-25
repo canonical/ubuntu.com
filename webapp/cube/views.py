@@ -14,11 +14,9 @@ from webapp.login import user_info
 
 QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
 QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
-QA_STUDY_LABS = "course-v1:ubuntu+cubereview+coursecommandsdev"
 
 BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
 CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
-STUDY_LABS = "course-v1:CUBE+study_labs+2020"
 
 badgr_session = Session()
 talisker.requests.configure(badgr_session),
@@ -53,6 +51,7 @@ def cube_microcerts():
     View for Microcerts homepage
     """
     sso_user = user_info(flask.session)
+    study_labs = "course-v1:CUBE+study_labs+2020"
     account = None
 
     if sso_user:
@@ -72,8 +71,7 @@ def cube_microcerts():
     product_listings = g.api.get_product_listings("canonical-cube")[
         "productListings"
     ]
-    study_labs = None
-    study_labs_url = None
+
     assertions = {}
     enrollments = []
     passed_courses = 0
@@ -113,7 +111,7 @@ def cube_microcerts():
         except KeyError:
             # course_id is not found in the API endpoint
             # Skip to next course
-            break
+            continue
 
         course = {
             "id": course_id,
@@ -135,13 +133,26 @@ def cube_microcerts():
                     course["id"], edx_user["username"]
                 )["proctored_exam_attempts"]
 
-        else:
-            # study lab
-            study_labs = [
-                ids["IDs"]
-                for ids in product_list["externalIDs"]
-                if ids["origin"] == "EdX"
-            ][0][0]
+        if product_list["productID"] == "cube-study-labs":
+            course_id = product_list["externalIDs"][0]["IDs"][0]
+            study_labs_listing = {
+                "product_listing_id": product_list["id"],
+                "price": product_list["price"]["value"],
+                "currency": product_list["price"]["currency"],
+                "product_id": product_list["productID"],
+                "status": product_list["status"],
+                "created_at": product_list["createdAt"],
+                "last_modified_at": product_list["lastModifiedAt"],
+                "effective_days": product_list["effectiveDays"],
+                "course_id": course_id,
+                "study_labs_url": edx_url
+                + quote_plus(f"courses/{course_id}/course/"),
+                "name": product_list["name"],
+                "has_study_labs": course_id in enrollments,
+            }
+            study_labs = (
+                edx_url + quote_plus(f"courses/{course_id}/course/"),
+            )
 
         # This codition skips study labs
         # Which don't have badgr data
@@ -162,21 +173,12 @@ def cube_microcerts():
                 course["status"] = "enrolled"
 
             course_id = course["id"]
-            courseware_name = course_id.split("+")[1]
-
             course["take_url"] = edx_url + quote_plus(
                 f"/courses/{course_id}/courseware/2020/start/?child=first"
             )
-
-            course["study_lab"] = edx_url + quote_plus(
-                f"/courses/{study_labs}"
-                f"/courseware/{courseware_name}/?child=first"
+            course["study_labs_url"] = edx_url + quote_plus(
+                f"courses/{study_labs}/course/"
             )
-
-            study_labs_url = edx_url + quote_plus(
-                f"/courses/{study_labs}/course/"
-            )
-
             courses.append(course)
 
     return flask.render_template(
@@ -191,7 +193,9 @@ def cube_microcerts():
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
             "has_study_labs": study_labs in enrollments,
-            "study_labs_url": study_labs_url,
+            "study_labs_url": edx_url
+            + quote_plus(f"courses/{study_labs}/course/"),
+            "study_labs_listing": study_labs_listing,
         },
     )
 
@@ -201,8 +205,6 @@ def get_microcerts():
     """
     View for Microcerts homepage
 
-    This view is a duplicate of cube_microcerts,
-    as that will be removed in the near future
     returns: json
     """
     sso_user = user_info(flask.session)
@@ -220,13 +222,16 @@ def get_microcerts():
         f"{edx_api.base_url}/auth/login/tpa-saml/"
         "?auth_entry=login&idp=ubuntuone&next="
     )
+    study_labs_url = edx_url + quote_plus(
+        f"courses/course-v1:CUBE+study_labs+2020/course/"
+    )
 
     edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
     product_listings = g.api.get_product_listings("canonical-cube")[
         "productListings"
     ]
-    study_labs = None
-    study_labs_url = None
+
+    study_labs_listing = None
     assertions = {}
     enrollments = []
     passed_courses = 0
@@ -266,7 +271,7 @@ def get_microcerts():
         except KeyError:
             # course_id is not found in the API endpoint
             # Skip to next course
-            break
+            continue
 
         course = {
             "id": course_id,
@@ -288,13 +293,20 @@ def get_microcerts():
                     course["id"], edx_user["username"]
                 )["proctored_exam_attempts"]
 
-        else:
-            # study lab
-            study_labs = [
-                ids["IDs"]
-                for ids in product_list["externalIDs"]
-                if ids["origin"] == "EdX"
-            ][0][0]
+        if product_list["productID"] == "cube-study-labs":
+            course_id = product_list["externalIDs"][0]["IDs"][0]
+            study_labs_url = (
+                edx_url + quote_plus(f"courses/{course_id}/course/"),
+            )
+            study_labs_listing = {
+                "product_listing_id": product_list["id"],
+                "value": product_list["price"]["value"],
+                "product_id": product_list["productID"],
+                "course_id": course_id,
+                "study_labs_url": study_labs_url,
+                "name": product_list["name"],
+                "status": course_id in enrollments,
+            }
 
         # This codition skips study labs
         # Which don't have badgr data
@@ -315,21 +327,9 @@ def get_microcerts():
                 course["status"] = "enrolled"
 
             course_id = course["id"]
-            courseware_name = course_id.split("+")[1]
-
             course["take_url"] = edx_url + quote_plus(
                 f"/courses/{course_id}/courseware/2020/start/?child=first"
             )
-
-            course["study_lab"] = edx_url + quote_plus(
-                f"/courses/{study_labs}"
-                f"/courseware/{courseware_name}/?child=first"
-            )
-
-            study_labs_url = edx_url + quote_plus(
-                f"/courses/{study_labs}/course/"
-            )
-
             courses.append(course)
 
     return flask.jsonify(
@@ -342,8 +342,8 @@ def get_microcerts():
             "modules": courses,
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
-            "has_study_labs": study_labs in enrollments,
             "study_labs_url": study_labs_url,
+            "study_labs_listing": study_labs_listing,
         }
     )
 
@@ -382,10 +382,10 @@ def cube_home():
     return flask.render_template("cube/index.html")
 
 
-@cube_decorator(response="html")
+@cube_decorator(response="json")
 def cube_study_labs_button():
     sso_user = user_info(flask.session)
-
+    study_labs = "course-v1:CUBE+study_labs+2020"
     edx_user = edx_api.get_user(sso_user["email"])
     enrollments = [
         enrollment["course_details"]["course_id"]
@@ -396,9 +396,9 @@ def cube_study_labs_button():
     text = "Purchase study labs access"
     redirect_url = "/cube/microcerts"
 
-    if STUDY_LABS in enrollments:
+    if study_labs in enrollments:
         text = "Access study labs"
-        prepare_materials_path = quote_plus(f"/courses/{STUDY_LABS}/course/")
+        prepare_materials_path = quote_plus(f"/courses/{study_labs}/course/")
         redirect_url = (
             f"{edx_api.base_url}/auth/login/tpa-saml/"
             f"?auth_entry=login&idp=ubuntuone&next={prepare_materials_path}"
