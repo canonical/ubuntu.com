@@ -35,6 +35,11 @@ class TaxIdSchema(Schema):
     value = String()
 
 
+class SubscriptionRenewalSchema(Schema):
+    subscription_id = String()
+    should_auto_renew = Boolean()
+
+
 post_advantage_subscriptions = {
     "account_id": String(required=True),
     "period": String(enum=["monthly", "yearly"], required=True),
@@ -109,4 +114,8 @@ delete_account_user_role = {
 
 put_contract_entitlements = {
     "entitlements": List(Nested(EntitlementSchema), required=True),
+}
+
+post_auto_renewal_settings = {
+    "subscriptions": List(Nested(SubscriptionRenewalSchema), required=True)
 }

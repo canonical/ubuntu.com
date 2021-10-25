@@ -5,24 +5,24 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import SubscriptionList from "./SubscriptionList";
 import {
   freeSubscriptionFactory,
-  userInfoFactory,
   userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
-import { UserInfo, UserSubscription } from "advantage/api/types";
+import { UserSubscription } from "advantage/api/types";
 import ListCard from "./ListCard";
-import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 import ListGroup from "./ListGroup";
 
 describe("SubscriptionList", () => {
   let queryClient: QueryClient;
   let freeSubscription: UserSubscription;
-  let userInfo: UserInfo;
 
   beforeEach(async () => {
     queryClient = new QueryClient();
     freeSubscription = freeSubscriptionFactory.build();
-    userInfo = userInfoFactory.build();
-    queryClient.setQueryData("userInfo", userInfo);
     queryClient.setQueryData("userSubscriptions", [freeSubscription]);
   });
 
@@ -124,17 +124,25 @@ describe("SubscriptionList", () => {
     ).toBe(true);
   });
 
-  it("shows the renewal settings if there are monthly subs", () => {
-    userInfo = userInfoFactory.build({
-      has_monthly_subscription: true,
-    });
-    queryClient.setQueryData("userInfo", userInfo);
-    const subscriptions = [
+  it("shows the renewal settings if there are active subs", () => {
+    queryClient.setQueryData("userSubscriptions", [
       userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        period: UserSubscriptionPeriod.Yearly,
+        subscription_id: "abc",
+        statuses: userSubscriptionStatusesFactory.build({
+          is_subscription_active: false,
+          is_subscription_auto_renewing: true,
+        }),
       }),
-    ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+      userSubscriptionFactory.build({
+        period: UserSubscriptionPeriod.Monthly,
+        subscription_id: "ghi",
+        statuses: userSubscriptionStatusesFactory.build({
+          is_subscription_active: true,
+          is_subscription_auto_renewing: true,
+        }),
+      }),
+    ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList
@@ -148,17 +156,25 @@ describe("SubscriptionList", () => {
     );
   });
 
-  it("does not show the renewal settings if there are no monthly subs", () => {
-    userInfo = userInfoFactory.build({
-      has_monthly_subscription: false,
-    });
-    queryClient.setQueryData("userInfo", userInfo);
-    const subscriptions = [
+  it("does not show the renewal settings if there are no active subs", () => {
+    queryClient.setQueryData("userSubscriptions", [
       userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
+        period: UserSubscriptionPeriod.Monthly,
+        subscription_id: "abc",
+        statuses: userSubscriptionStatusesFactory.build({
+          is_subscription_active: false,
+          is_subscription_auto_renewing: true,
+        }),
       }),
-    ];
-    queryClient.setQueryData("userSubscriptions", subscriptions);
+      userSubscriptionFactory.build({
+        period: UserSubscriptionPeriod.Yearly,
+        subscription_id: "ghi",
+        statuses: userSubscriptionStatusesFactory.build({
+          is_subscription_active: false,
+          is_subscription_auto_renewing: true,
+        }),
+      }),
+    ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
         <SubscriptionList

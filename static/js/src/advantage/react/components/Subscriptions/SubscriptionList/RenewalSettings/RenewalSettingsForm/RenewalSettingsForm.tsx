@@ -1,29 +1,31 @@
+import React, { ReactNode } from "react";
+
 import { ActionButton, Button } from "@canonical/react-components";
-import React from "react";
 import { useFormikContext } from "formik";
-import FormikField from "advantage/react/components/FormikField";
 
 type Props = {
   onCloseMenu: () => void;
   loading?: boolean;
   success?: boolean;
+  children?: ReactNode;
 };
 
-const RenewalSettingsFields = ({
+export const RenewalSettingsForm = ({
   loading,
   onCloseMenu,
   success,
+  children,
 }: Props): JSX.Element => {
   const { dirty, handleSubmit, isValid } = useFormikContext();
   return (
     <form onSubmit={handleSubmit}>
-      <FormikField
-        label="Auto-renewal"
-        labelClassName="u-no-margin--bottom"
-        name="shouldAutoRenew"
-        type="checkbox"
-        wrapperClassName="u-sv4"
-      />
+      {children}
+      <p>
+        <small>
+          * Taxes and/or balance credits are not included in this price and may
+          apply at renewal time.
+        </small>
+      </p>
       <div className="u-align--right">
         <Button
           appearance="neutral"
@@ -49,4 +51,4 @@ const RenewalSettingsFields = ({
   );
 };
 
-export default RenewalSettingsFields;
+export default RenewalSettingsForm;
