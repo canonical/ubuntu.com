@@ -157,7 +157,7 @@
             <tr>
               <td>
                 {% if not vendor_page %}
-                <a href="/certified?vendor={{ result.make }}">{{ result.make }}</a>
+                <a href="/certified/vendors/{{ result.make }}">{{ result.make }}</a>
                 {% else %}
                 {{ result.make }}
                 {% endif %}
