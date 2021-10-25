@@ -1,0 +1,153 @@
+<div class="p-modal" id="contact-modal">
+	<div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+		<header class="p-modal__header" style="display: block; border-bottom: 0;">
+			<button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+			<h2 class="p-modal__title u-sv1" id="modal-title">Register your interest for the OpenJDK for FIPS beta</h2>
+		</header>
+		<div class="js-pagination js-pagination--1">
+			<p id="modal-description" class="u-no-max-width u-no-margin--bottom">In 2017, Canonical launched the Ubuntu FIPS programme to enable Linux workloads for US government regulated and high security environments, and now we are extending its coverage to Java workloads. This programme will give Ubuntu users free access to OpenJDK designed to comply with the FIPS requirements for beta testing for a 3 month period &ndash; please register your interest below to learn more.</p>
+			<div class="js-formfield">
+				<h3 class="p-heading--five">Which Ubuntu LTS are you using?</h3>
+				<div class="row u-no-padding">
+					<div class="col-4 u-sv3">
+						<input type="checkbox" id="security-fips-xenial">
+						<label for="security-fips-xenial">16.04 (Xenial)</label>
+					</div>
+					<div class="col-4 u-sv3">
+						<input type="checkbox" id="security-fips-bionic">
+						<label for="security-fips-bionic">18.04 (Bionic)</label>
+					</div>
+					<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-focal">
+							<label for="security-fips-focal">20.04 (Focal)</label>
+					</div>
+				</div>
+			</div>
+			<div class="js-formfield">
+				<h3 class="p-heading--five">Do you use any of the packages below?</h3>
+				<div class="row u-no-padding">
+					<div class="col-6">
+						<input type="checkbox" id="security-fips-tomcat">
+						<label for="security-fips-tomcat">tomcat</label>
+						<div class="js-other-container">
+							<input type="checkbox" class="js-other-container__checkbox" id="security-fips-other">
+							<label for="security-fips-other">Other</label>
+							<input type="text" id="security-fips-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="js-formfield">
+				<h3 class="p-heading--five">Which java runtime do your applications depend on?</h3>
+				<div class="row u-no-padding">
+					<div class="col-4 u-sv3">
+						<input type="checkbox" id="security-fips-openjdk-8">
+						<label for="security-fips-openjdk-8">OpenJDK-8</label>
+					</div>
+					<div class="col-4 u-sv3">
+						<input type="checkbox" id="security-fips-openjdk-11">
+						<label for="security-fips-openjdk-11">OpenJDK-11</label>
+					</div>
+					<div class="col-4 u-sv3">
+						<input type="checkbox" id="security-fips-openjdk-16">
+						<label for="security-fips-openjdk-16">OpenJDK-16</label>
+					</div>
+				</div>
+			</div>
+			<div class="pagination">
+					<a class="p-button--positive pagination__link--next" href="">Next</a>
+			</div>
+		</div>
+
+		<div class="js-pagination js-pagination--2 u-hide">
+			<h3 class="p-heading--five">How should we get in touch?</h3>
+			<div class="row u-no-padding">
+				<div class="col-6">
+					<form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+						<ul class="p-list">
+							<li class="p-list__item">
+								<label for="firstName">First name:</label>
+								<input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+							</li>
+							<li class="p-list__item">
+								<label for="lastName">Last name:</label>
+								<input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+							</li>
+							<li class="p-list__item">
+								<label for="email">Work email:</label>
+								<input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+							</li>
+							<li class="p-list__item">
+								<label for="phone">Mobile/cell phone number:</label>
+								<input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+							</li>
+							<li class="p-list__item">
+								<input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+								<label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+							</li>
+							<li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+							{# These are honey pot fields to catch bots #}
+							<li class="u-off-screen">
+								<label class="website" for="website">Website:</label>
+								<input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+							</li>
+							<li class="u-off-screen">
+								<label class="name" for="name">Name:</label>
+								<input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+							</li>
+							{# End of honey pots #}
+						</ul>
+
+						<div class="u-hide">
+							<h3>Your comments</h3>
+							<ul class="p-list">
+								<li class="p-list__item">
+									<label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+									<textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+								</li>
+							</ul>
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
+						</div>
+
+						<div class="pagination">
+							<a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+							<button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="js-pagination js-pagination--3 u-hide">
+			<div class="row u-no-padding">
+				<div class="u-equal-height">
+					<div class="col-7">
+						<h3 class="p-heading--two">Thank you</h3>
+						<p class="p-heading--four">Thank you for registering your interest in the OpenJDK for FIPS beta programme. If selected as a participant, you will receive an email from Canonical with more details on getting started.</p>
+					</div>
+					<div class="col-5 u-vertically-center u-align--center u-hide--small">
+						{{
+							image(
+							url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+							alt="smile",
+							width="200",
+							height="200",
+							hi_def=True,
+							loading="auto",
+							) | safe
+						}}
+					</div>
+				</div>
+			</div>
+			<a class="js-close p-button--neutral" href="">Close</a>
+		</div>
+	</div>
+</div>
