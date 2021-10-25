@@ -26,6 +26,7 @@ describe("getFeaturesDisplay", () => {
       }),
     ];
     expect(getFeaturesDisplay(entitlements)).toStrictEqual({
+      alwaysAvailable: [],
       excluded: ["Blender", "ESM Infra"],
       included: ["Livepatch", "24/7 Support"],
     });

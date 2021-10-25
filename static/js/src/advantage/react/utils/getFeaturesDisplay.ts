@@ -1,16 +1,20 @@
 import { EntitlementType, SupportLevel } from "advantage/api/enum";
 import { UserSubscriptionEntitlement } from "advantage/api/types";
 
+const alwaysAvailableLabels: Record<string, string | null> = {
+  [EntitlementType.Cis]: "CIS",
+  [EntitlementType.FipsUpdates]: "FIPS-Updates",
+  [EntitlementType.Fips]: "FIPS",
+};
+
 const labels: Record<string, string | null> = {
   [EntitlementType.Blender]: "Blender",
   [EntitlementType.CcEal]: null,
-  [EntitlementType.Cis]: null,
   [EntitlementType.EsmApps]: null,
   [EntitlementType.EsmInfra]: "ESM Infra",
-  [EntitlementType.FipsUpdates]: null,
-  [EntitlementType.Fips]: null,
   [EntitlementType.Livepatch]: "Livepatch",
   [EntitlementType.LivepatchOnprem]: "Livepatch",
+  ...alwaysAvailableLabels,
 };
 
 export const getFeaturesDisplay = (
@@ -18,6 +22,7 @@ export const getFeaturesDisplay = (
 ) => {
   const included: string[] = [];
   const excluded: string[] = [];
+  const alwaysAvailable: string[] = [];
   entitlements.forEach((entitlement) => {
     let label: string | null = null;
     if (
@@ -37,16 +42,21 @@ export const getFeaturesDisplay = (
     } else if (entitlement.type in labels) {
       label = labels[entitlement.type];
     }
-    if (label && !included.includes(label) && !excluded.includes(label)) {
-      if (entitlement.enabled_by_default) {
-        included.push(label);
-      } else {
-        excluded.push(label);
+    if (label) {
+      if (entitlement.type in alwaysAvailableLabels) {
+        alwaysAvailable.push(label);
+      } else if (!included.includes(label) && !excluded.includes(label)) {
+        if (entitlement.enabled_by_default) {
+          included.push(label);
+        } else {
+          excluded.push(label);
+        }
       }
     }
   });
   return {
     excluded,
     included,
+    alwaysAvailable,
   };
 };

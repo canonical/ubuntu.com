@@ -16,11 +16,11 @@ export type UserSubscriptionEntitlement = {
   is_available: boolean;
   is_editable: boolean;
   support_level: SupportLevel | null;
-  type: EntitlementType | string;
+  type: EntitlementType;
 };
 
 export type UserSubscriptionEntitlementUpdate = {
-  type: EntitlementType | string;
+  type: EntitlementType;
   is_enabled: boolean;
 };
 
