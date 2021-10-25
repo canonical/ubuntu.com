@@ -46,7 +46,9 @@ it("displays an error message on failure to add a new user", async () => {
   submitNewUserForm();
 
   await waitFor(() =>
-    expect(screen.getByRole("alert")).toHaveTextContent(/error/)
+    expect(
+      within(screen.getByRole("dialog")).getByText(/error/)
+    ).toBeInTheDocument()
   );
 });
 
