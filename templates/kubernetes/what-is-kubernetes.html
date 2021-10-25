@@ -42,7 +42,40 @@
   </div>
 </section>
 
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>What is container orchestration?</h2>
+      <p>
+        Container orchestration is about managing the lifecycle of containers, particularly in large, dynamic environments. It automates the deployment, networking, scaling, and availability of containerised workloads and services. Running containers - which are lightweight and usually ephemeral by nature - in small numbers, is easy enough to be done manually. However, managing them at scale in production environments can be a significant challenge without the automation that container orchestration platforms offer. Kubernetes has become the standard for container orchestration in the enterprise world.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>What is a Kubernetes cluster?</h2>
+      <p>
+        A Kubernetes cluster is what you get when you deploy Kubernetes on physical or virtual machines. It consists of two types of machines: 
+      </p>
+      <ul>
+        <li>Workers: the resources used to run the services needed to host containerised workloads</li>
+        <li>Control plane hosts: used to manage the workers and monitor the health of the entire system</li>
+      </ul>
+      <p>
+        Every cluster has at least one worker, and the control plane services can be colocated on a single machine. In production environments, there is typically a large number of workers, depending on the number of containers to be run, and the control plane is distributed across multiple machines for high-availability and fault-tolerance purposes.
+      </p>
+    </div>
+</section>
+
 <section class="p-strip--light">
+  <div class="row">
+    <div class="col-8 u-sv3">
+      <h2 class="u-sv3">Kubernetes advantages</h2>
+    </div>
+  </div>
   <div class="row">
     <div class="col-4">
       {{
@@ -90,35 +123,6 @@
       }}
       <p>
         Kubernetes has emerged as a leading choice for organisations looking to build their multi-cloud environments. All public clouds have adopted Kubernetes and offer their own distributions, such as AWS Elastic Container Service for Kubernetes, Google Kubernetes Engine and Azure Kubernetes Service.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      <h2>
-        What are containers?
-      </h2>
-      <p>
-        Containers are a technology that allows the user to divide up a machine so that it can run more than one application (in the case of process containers) or operating system instance (in the case of system containers) on the same kernel and hardware while maintaining isolation among the workloads. Containers are a modern way to virtualise infrastructure, more lightweight approach than traditional virtual machines: all containers in single host OS share the kernel and other resources, require less memory space, ensure greater resource utilisation and shorter startup times by several orders of magnitude.
-      </p>
-      <p>
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/3d57842f-diagram-machine-virtualization-vs-containers.svg",
-          alt="",
-          width="681",
-          height="416",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style": "padding: 2rem 0;"},
-          ) | safe
-        }}
-      </p>
-      <p>
-        Inside Google alone, at least <a class="p-link--external" href="https://cloud.google.com/containers/">two billion containers are generated each week</a> to manage its vast operations.
       </p>
     </div>
   </div>
