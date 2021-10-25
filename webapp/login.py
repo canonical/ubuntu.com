@@ -42,11 +42,11 @@ def empty_session(user_session):
     user_session.pop("macaroon_root", None)
     user_session.pop("authentication_token", None)
     user_session.pop("openid", None)
-    user_session.pop("utm_campaign", None)
-    user_session.pop("gclid", None)
-    user_session.pop("gbraid", None)
-    user_session.pop("wbraid", None)
-    user_session.pop("fbclid", None)
+    user_session.pop("salesforce-campaign-id", None)
+    user_session.pop("google-click-id", None)
+    user_session.pop("google-gbraid-id", None)
+    user_session.pop("google-wbraid-id", None)
+    user_session.pop("facebook-click-id", None)
 
 
 @open_id.loginhandler

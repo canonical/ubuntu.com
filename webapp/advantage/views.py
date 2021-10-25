@@ -417,6 +417,7 @@ def post_advantage_subscriptions(preview, **kwargs):
             "value": flask.session.get(metadata_key),
         }
         for metadata_key in metadata_keys
+        if flask.session.get(metadata_key)
     ]
 
     if metadata:
