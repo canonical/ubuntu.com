@@ -80,4 +80,16 @@ describe("DetailsContent", () => {
       contractToken.contract_token
     );
   });
+
+  it("hides the cost column if there is no cost provided", () => {
+    const contract = userSubscriptionFactory.build();
+    contract.price = null;
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent selectedId={contract.id} />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='cost-col']").exists()).toBe(false);
+  });
 });
