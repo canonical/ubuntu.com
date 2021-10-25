@@ -798,6 +798,12 @@ core_als_autils_docs.init_app(app)
 # Cube docs
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
+app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
+app.add_url_rule(
+    "/cube/microcerts/purchase.json",
+    view_func=post_microcerts_purchase,
+    methods=["POST"],
+)
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(

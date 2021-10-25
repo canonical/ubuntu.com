@@ -991,3 +991,29 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.support-cart-summary {
+  text-align: center;
+
+  .support-cart-total {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: $breakpoint-small) {
+    text-align: left;
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    text-align: right;
+
+    .support-cart-total {
+      display: inline;
+      margin-bottom: 0;
+    }
+
+    button {
+      margin-left: 1rem;
+    }
+  }
+}

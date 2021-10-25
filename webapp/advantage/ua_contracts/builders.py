@@ -48,6 +48,10 @@ def build_free_item_groups(user_summary: List) -> List:
         contracts: List[Contract] = user_details.get("contracts")
 
         for contract in contracts:
+            # skip contracts without items
+            if contract.items is None:
+                continue
+
             if contract.product_id == "free":
                 free_item_groups.append(
                     {
@@ -72,6 +76,14 @@ def build_trial_item_groups(
         contracts: List[Contract] = user_details.get("contracts")
 
         for contract in contracts:
+            # skip free contracts
+            if contract.product_id == "free":
+                continue
+
+            # skip contracts without items
+            if contract.items is None:
+                continue
+
             for item in contract.items:
                 if item.reason == "trial_started":
                     listing = listings[item.product_listing_id]
@@ -177,19 +189,21 @@ def build_final_user_subscriptions(
         contract: Contract = group.get("contract")
         subscriptions: List[Subscription] = group.get("subscriptions")
         items: List[ContractItem] = group.get("items")
+        marketplace = group.get("marketplace")
         type = group.get("type")
         renewal = group.get("renewal")
         item_id = group.get("item_id")
         subscription_id = group.get("subscription_id")
         aggregated_values = get_items_aggregated_values(items)
         number_of_machines = aggregated_values.get("number_of_machines")
+        end_date = aggregated_values.get("end_date")
         price_info = get_price_info(number_of_machines, items, listing)
         product_name = (
             contract.name if type != "free" else "Free Personal Token"
         )
         statuses = get_user_subscription_statuses(
             type=type,
-            end_date=aggregated_values.get("end_date"),
+            end_date=end_date,
             renewal=renewal,
             subscription_id=subscription_id,
             subscriptions=subscriptions or [],
@@ -206,10 +220,10 @@ def build_final_user_subscriptions(
             account_id=account.id,
             entitlements=apply_entitlement_rules(contract.entitlements),
             start_date=aggregated_values.get("start_date"),
-            end_date=aggregated_values.get("end_date"),
+            end_date=end_date,
             number_of_machines=number_of_machines,
             product_name=product_name,
-            marketplace=group.get("marketplace"),
+            marketplace=marketplace,
             price=price_info.get("price"),
             currency=price_info.get("currency"),
             machine_type=get_machine_type(contract.product_id),

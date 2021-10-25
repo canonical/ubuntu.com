@@ -24,7 +24,8 @@ let entries = {
   uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
-  openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js"
+  openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
+  blenderStore: "./static/js/src/blender-store.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

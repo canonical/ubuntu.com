@@ -1231,10 +1231,9 @@ support:
     - title: Your subscriptions
       path: /advantage
       persist: True
-
-      children:
-        - title: Account users
-          path: /advantage/users
+    - title: Account users
+      path: /advantage/users
+      persist: True
 
     - title: Community support
       path: /support/community-support
@@ -1530,7 +1529,7 @@ legal:
         - title: Thank you
           path: /legal/terms-and-policies/thank-you
           hidden: True
-    
+
     - title: Solution support
       path: /legal/solution-support
 
@@ -1779,7 +1778,6 @@ telco:
           path: /telco/osm/multi-cloud
         - title: Multi-vendor
           path: /telco/osm/multi-vendor
-
 
 certification:
   title: Hardware

@@ -26,7 +26,7 @@ describe("getFeaturesDisplay", () => {
       }),
     ];
     expect(getFeaturesDisplay(entitlements)).toStrictEqual({
-      excluded: ["Blender", "ESM Apps", "ESM Infra"],
+      excluded: ["Blender", "ESM Infra"],
       included: ["Livepatch", "24/7 Support"],
     });
   });

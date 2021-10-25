@@ -3,6 +3,7 @@ import {
   lastPurchaseIdsFactory,
   userInfoFactory,
   userSubscriptionFactory,
+  userSubscriptionEntitlementUpdateFactory,
 } from "advantage/tests/factories/api";
 import fetch from "jest-fetch-mock";
 
@@ -11,6 +12,7 @@ import {
   getUserInfo,
   getLastPurchaseIds,
   getUserSubscriptions,
+  putContractEntitlements,
 } from "./contracts";
 
 describe("contracts", () => {
@@ -48,5 +50,16 @@ describe("contracts", () => {
     await getLastPurchaseIds().then((response) => {
       expect(response).toStrictEqual(lastPurchaseIds);
     });
+  });
+
+  it("updates contract entitlements", async () => {
+    const { contract_id } = userSubscriptionFactory.build();
+    const entitlement = userSubscriptionEntitlementUpdateFactory.build();
+    fetch.mockResponseOnce(JSON.stringify({}));
+    await putContractEntitlements(contract_id, [entitlement]).then(
+      (response) => {
+        expect(response).toStrictEqual({});
+      }
+    );
   });
 });

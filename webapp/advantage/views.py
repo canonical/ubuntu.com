@@ -72,17 +72,25 @@ def get_user_subscriptions(**kwargs):
     g.api.set_convert_response(True)
 
     email = kwargs.get("email")
+    advantage_marketplaces = ["canonical-ua", "blender"]
 
-    listings = g.api.get_product_listings("canonical-ua")
+    listings = {}
+    for marketplace in advantage_marketplaces:
+        marketplace_listings = g.api.get_product_listings(marketplace)
+        listings.update(marketplace_listings)
+
     accounts = g.api.get_accounts(email=email)
 
     user_summary = []
     for account in accounts:
         contracts = g.api.get_account_contracts(account_id=account.id)
-        subscriptions = g.api.get_account_subscriptions(
-            account_id=account.id,
-            marketplace="canonical-ua",
-        )
+        subscriptions = []
+        for marketplace in advantage_marketplaces:
+            market_subscriptions = g.api.get_account_subscriptions(
+                account_id=account.id,
+                marketplace=marketplace,
+            )
+            subscriptions.extend(market_subscriptions)
 
         user_summary.append(
             {

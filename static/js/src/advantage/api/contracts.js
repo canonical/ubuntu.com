@@ -92,6 +92,30 @@ export async function getContractToken(contractId) {
   return await response.json();
 }
 
+export async function putContractEntitlements(contractId, entitlements) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const response = await fetch(
+    `/advantage/contracts/${contractId}/entitlements${queryString}`,
+    {
+      cache: "no-store",
+      credentials: "include",
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        entitlements: entitlements.map((entitlement) => ({
+          type: entitlement.type,
+          is_enabled: entitlement.isEnabled,
+        })),
+      }),
+    }
+  );
+
+  return await response.json();
+}
+
 export async function getLastPurchaseIds(accountId) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
   const response = await fetch(
