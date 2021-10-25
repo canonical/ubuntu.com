@@ -3,6 +3,7 @@ import talisker.sentry
 import requests
 import math
 import yaml
+import flask
 
 from flask import request, render_template, abort, current_app, redirect
 from requests import Session
@@ -121,7 +122,7 @@ def certified_model_details(canonical_id):
     ]
 
     if not model_releases:
-        return certified_vendors(canonical_id)
+        abort(404)
 
     component_summaries = api.component_summaries(canonical_id=canonical_id)[
         "objects"
@@ -360,12 +361,6 @@ def certified_home():
         # Pagination
         total_results = models_response["meta"]["total_count"]
 
-        # Add static vendor data
-        with open("webapp/certified/vendors_data.yaml") as vendors_info:
-            vendors_strip = yaml.load(
-                vendors_info.read(), Loader=yaml.FullLoader
-            )
-
         return render_template(
             "certified/search-results.html",
             results=results,
@@ -376,7 +371,6 @@ def certified_home():
             release_filters=release_filters,
             vendor_filters=vendor_filters,
             vendors=vendors,
-            vendors_strip=vendors_strip,
             total_results=total_results,
             total_pages=math.ceil(total_results / limit),
             offset=offset,
@@ -579,95 +573,73 @@ def certified_vendors(vendor):
 
     with open("webapp/certified/vendors_data.yaml") as vendors_data:
         vendors_data = yaml.load(vendors_data, Loader=yaml.FullLoader)
-    if vendor in vendors_data["vendors"]:
+        if vendor in vendors_data["vendors"]:
 
-        # Pagination
-        limit = request.args.get("limit", default=20, type=int)
-        offset = request.args.get("offset", default=0, type=int)
+            # Pagination
+            limit = request.args.get("limit", default=20, type=int)
+            offset = request.args.get("offset", default=0, type=int)
 
-        release_filters = []
-        certified_releases = api.certified_releases(limit="0")["objects"]
+            release_filters = []
+            certified_releases = api.certified_releases(limit="0")["objects"]
 
-        selected_categories = request.args.getlist("category")
-        if "SoC" in selected_categories:
-            selected_categories.remove("SoC")
-            selected_categories.append("Server SoC")
+            for release in certified_releases:
+                version = release["release"]
+                release_filters.append(version)
+            releases = (
+                ",".join(request.args.getlist("release"))
+                if request.args.getlist("release")
+                else None
+            )
 
-        if "Device" in selected_categories:
-            # Ubuntu Core is replaced by Device for UX purposes
-            # Ubuntu Core is an operating system not a category
-            selected_categories.remove("Device")
-            # Put back Ubuntu Core, as required by API endpoint
-            selected_categories.append("Ubuntu Core")
+            category_filters = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+            selected_categories = request.args.getlist("category")
+            if "SoC" in selected_categories:
+                selected_categories.remove("SoC")
+                selected_categories.append("Server SoC")
 
-        categories = (
-            ",".join(selected_categories) if selected_categories else None
-        )
+            if "Device" in selected_categories:
+                selected_categories.remove("Device")
+                selected_categories.append("Ubuntu Core")
 
-        for release in certified_releases:
-            version = release["release"]
-            release_filters.append(version)
-        releases = (
-            ",".join(request.args.getlist("release"))
-            if request.args.getlist("release")
-            else None
-        )
+            categories = (
+                ",".join(selected_categories) if selected_categories else None
+            )
 
-        all_categories = ["Laptop", "Desktop", "Server", "Device", "SoC"]
-        category_filters = []
+            query = request.args.get("q", default=None, type=str)
 
-        if len(request.args.getlist("category")) > 0:
-            for item in all_categories:
-                if item in request.args.getlist("category"):
-                    category_filters.insert(0, item)
-                else:
-                    category_filters.append(item)
+            if set(request.args) & set(["query"]):
+                parameters = request.args.to_dict()
+                if "query" in parameters:
+                    parameters["q"] = parameters["query"]
+                    del parameters["query"]
+
+                return redirect(f"/certified?{urlencode(parameters)}", 301)
+
+            models = api.certified_models(
+                vendor=vendor,
+                category__in=categories,
+                limit=limit,
+                query=query,
+                offset=offset,
+                major_release__in=releases,
+            )
+
+            results = models["objects"]
+
+            total_results = models["meta"]["total_count"]
+            return render_template(
+                "certified/vendors/vendor.html",
+                vendor=vendors_data["vendors"][vendor],
+                results=results,
+                releases=releases,
+                release_filters=release_filters,
+                category_filters=category_filters,
+                category=",".join(request.args.getlist("category")),
+                query=query,
+                limit=limit,
+                offset=offset,
+                total_results=total_results,
+                total_pages=math.ceil(total_results / limit),
+            )
         else:
-            category_filters = all_categories
-
-        query = request.args.get("q", default=None, type=str)
-
-        # Old site replacements
-        if set(request.args) & set(["query", "vendors"]):
-            # Convert ImmutableMultiDict into normal dict
-            parameters = request.args.to_dict()
-            # Do the replacements
-            if "query" in parameters:
-                parameters["q"] = parameters["query"]
-                del parameters["query"]
-
-            if "vendors" in parameters:
-                parameters["vendor"] = parameters["vendors"]
-                del parameters["vendors"]
-
-            # Convert back into query string and redirect
-            return redirect(f"/certified?{urlencode(parameters)}", 301)
-
-        models = api.certified_models(
-            vendor=vendor,
-            category__in=categories,
-            limit=limit,
-            query=query,
-            offset=offset,
-            major_release__in=releases,
-        )
-
-        results = models["objects"]
-
-        total_results = models["meta"]["total_count"]
-
-        return render_template(
-            "certified/vendor.html",
-            http_host=request.host,
-            vendor=vendors_data["vendors"][vendor],
-            results=results,
-            releases=releases,
-            release_filters=release_filters,
-            category_filters=category_filters,
-            category=",".join(request.args.getlist("category")),
-            query=query,
-            total_results=total_results,
-            limit=limit,
-            offset=offset,
-            total_pages=math.ceil(total_results / limit),
-        )
+            return flask.redirect("/certified?q=" + vendor)
