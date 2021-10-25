@@ -1,13 +1,17 @@
+from datetime import datetime
 from typing import List, Dict, Optional
 
+import pytz
+from dateutil.parser import parse
+
 from webapp.advantage.ua_contracts.helpers import (
-    group_items_by_listing,
     get_items_aggregated_values,
     get_machine_type,
     get_user_subscription_statuses,
     get_price_info,
-    get_subscription_by_period,
     make_user_subscription_id,
+    apply_entitlement_rules,
+    group_shop_items,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -44,6 +48,10 @@ def build_free_item_groups(user_summary: List) -> List:
         contracts: List[Contract] = user_details.get("contracts")
 
         for contract in contracts:
+            # skip contracts without items
+            if contract.items is None:
+                continue
+
             if contract.product_id == "free":
                 free_item_groups.append(
                     {
@@ -68,6 +76,14 @@ def build_trial_item_groups(
         contracts: List[Contract] = user_details.get("contracts")
 
         for contract in contracts:
+            # skip free contracts
+            if contract.product_id == "free":
+                continue
+
+            # skip contracts without items
+            if contract.items is None:
+                continue
+
             for item in contract.items:
                 if item.reason == "trial_started":
                     listing = listings[item.product_listing_id]
@@ -102,10 +118,14 @@ def build_shop_item_groups(
             if contract.items is None:
                 continue
 
-            raw_shop_groups = group_items_by_listing(items=contract.items)
-            for listing_id in raw_shop_groups:
+            raw_shop_groups = group_shop_items(items=contract.items)
+            for key in raw_shop_groups:
+                key_parts = key.split("||")
+                listing_id = key_parts[0]
+                subscription_id = key_parts[1]
+
                 listing: Listing = listings[listing_id]
-                items: List[ContractItem] = raw_shop_groups[listing_id]
+                items: List[ContractItem] = raw_shop_groups[key]
 
                 shop_item_groups.append(
                     {
@@ -113,9 +133,8 @@ def build_shop_item_groups(
                         "contract": contract,
                         "items": items,
                         "listing": listing,
-                        "marketplace": (
-                            listing.marketplace if listing else None
-                        ),
+                        "subscription_id": subscription_id,
+                        "marketplace": listing.marketplace,
                         "subscriptions": user_details.get("subscriptions"),
                         "type": listing.period,
                     }
@@ -139,12 +158,17 @@ def build_legacy_item_groups(user_summary: List) -> List:
                 continue
 
             for item in contract.items:
-                if item.renewal is not None:
+                if (
+                    item.product_listing_id is None
+                    or item.subscription_id is None
+                ):
                     legacy_item_groups.append(
                         {
                             "account": user_details.get("account"),
                             "contract": contract,
                             "items": [item],
+                            "renewal": item.renewal,
+                            "item_id": item.id,
                             "listing": None,
                             "marketplace": "canonical-ua",
                             "subscriptions": user_details.get("subscriptions"),
@@ -165,47 +189,63 @@ def build_final_user_subscriptions(
         contract: Contract = group.get("contract")
         subscriptions: List[Subscription] = group.get("subscriptions")
         items: List[ContractItem] = group.get("items")
-        aggregated_values = get_items_aggregated_values(items)
-        subscription = get_subscription_by_period(subscriptions, listing)
+        marketplace = group.get("marketplace")
         type = group.get("type")
+        renewal = group.get("renewal")
+        item_id = group.get("item_id")
+        subscription_id = group.get("subscription_id")
+        aggregated_values = get_items_aggregated_values(items)
         number_of_machines = aggregated_values.get("number_of_machines")
+        end_date = aggregated_values.get("end_date")
         price_info = get_price_info(number_of_machines, items, listing)
-        renewal = items[0].renewal if type == "legacy" else None
         product_name = (
             contract.name if type != "free" else "Free Personal Token"
         )
         statuses = get_user_subscription_statuses(
             type=type,
-            end_date=aggregated_values.get("end_date"),
+            end_date=end_date,
             renewal=renewal,
+            subscription_id=subscription_id,
             subscriptions=subscriptions or [],
             listing=listing or None,
         )
 
-        id = make_user_subscription_id(account, type, contract, renewal)
+        id = make_user_subscription_id(
+            account, type, contract, renewal, subscription_id, item_id
+        )
 
         user_subscription = UserSubscription(
             id=id,
             type=type,
             account_id=account.id,
-            entitlements=contract.entitlements,
+            entitlements=apply_entitlement_rules(contract.entitlements),
             start_date=aggregated_values.get("start_date"),
-            end_date=aggregated_values.get("end_date"),
+            end_date=end_date,
             number_of_machines=number_of_machines,
             product_name=product_name,
-            marketplace=group.get("marketplace"),
+            marketplace=marketplace,
             price=price_info.get("price"),
             currency=price_info.get("currency"),
             machine_type=get_machine_type(contract.product_id),
             contract_id=contract.id,
-            subscription_id=subscription.id if subscription else None,
+            subscription_id=subscription_id,
             listing_id=listing.id if listing else None,
             period=listing.period if listing else None,
             renewal_id=renewal.id if renewal else None,
             statuses=statuses,
         )
 
-        user_subscriptions.append(user_subscription)
+        # Do not return expired user subscriptions after 30 days
+        show_user_subscription = True
+        if type != "free":
+            parsed_end_date = parse(user_subscription.end_date)
+            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+            delta_till_expiry = parsed_end_date - time_now
+            days_till_expiry = delta_till_expiry.days
+            show_user_subscription = days_till_expiry >= -30
+
+        if show_user_subscription:
+            user_subscriptions.append(user_subscription)
 
     return user_subscriptions
 

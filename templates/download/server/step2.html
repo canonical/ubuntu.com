@@ -28,8 +28,8 @@
           image(
           url="https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg",
           alt="",
-          height="1500",
-          width="1922",
+          height="200",
+          width="256",
           hi_def=True,
           loading="lazy"
           ) | safe
@@ -101,28 +101,21 @@
         <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install - latest', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
       </form>
       <p>
-        <a href="/engage/ubuntu-21.04-release-webinar?utm_source=brighttalk-portal&utm_medium=web&utm_content=ubuntu%2021.04&utm_campaign=webcasts-server-download">
-          Watch the webinar - "What's new in Ubuntu Server 21.04?"&nbsp;&rsaquo;
-        </a>
-      </p>
-
-      <p>
         <a href="{{ releases.latest.release_notes_url }}">
           Read the Ubuntu Server {{ releases.latest.short_version }} release notes&nbsp;&rsaquo;
         </a>
       </p>
     </div>
     <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
-
-      {{ image (
-        url="https://assets.ubuntu.com/v1/2e66eda7-Hirsuit_Hippo_Colour.svg",
-        alt="",
-        width="300",
-        height="128",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c9a911d5-II-grad-mascot.svg",
+          alt="",
+          width="263",
+          height="150",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
     </div>
   </div>
   {% endif %}

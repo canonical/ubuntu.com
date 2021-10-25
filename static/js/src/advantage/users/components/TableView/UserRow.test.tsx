@@ -18,7 +18,7 @@ it("regular variant renders correctly", () => {
         <UserRow
           user={testUser}
           variant="regular"
-          setUserInEditModeById={jest.fn()}
+          setUserInEditMode={jest.fn()}
           dismissEditMode={jest.fn()}
           handleEditSubmit={jest.fn()}
           handleDeleteConfirmationModalOpen={jest.fn()}
@@ -50,7 +50,7 @@ it("editing variant renders correctly", () => {
         <UserRow
           user={testUser}
           variant="editing"
-          setUserInEditModeById={jest.fn()}
+          setUserInEditMode={jest.fn()}
           dismissEditMode={jest.fn()}
           handleEditSubmit={jest.fn()}
           handleDeleteConfirmationModalOpen={jest.fn()}

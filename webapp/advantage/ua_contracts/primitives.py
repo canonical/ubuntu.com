@@ -30,6 +30,7 @@ class Renewal:
 class ContractItem:
     def __init__(
         self,
+        id: int,
         contract_id: str,
         created_at: str,
         start_date: str,
@@ -37,10 +38,12 @@ class ContractItem:
         reason: str,
         value: int,
         product_listing_id: str = None,
+        subscription_id: str = None,
         purchase_id: str = None,
         trial_id: str = None,
         renewal: Renewal = None,
     ):
+        self.id = id
         self.contract_id = contract_id
         self.created_at = created_at
         self.start_date = start_date
@@ -49,6 +52,7 @@ class ContractItem:
         self.value = value
         self.product_listing_id = product_listing_id
         self.purchase_id = purchase_id
+        self.subscription_id = subscription_id
         self.trial_id = trial_id
         self.renewal = renewal
 

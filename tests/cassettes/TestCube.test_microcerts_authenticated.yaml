@@ -9,12 +9,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/user/v1/accounts?email=cube@canonical.com
+    uri: https://qa.cube.ubuntu.com/api/user/v1/accounts?email=cube%40canonical.com
   response:
     body:
-      string: '{"detail":"Incorrect authentication credentials."}'
+      string: '{"detail":"Invalid token."}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -23,11 +23,11 @@ interactions:
       Content-Language:
       - en
       Content-Length:
-      - '50'
+      - '27'
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:07 GMT
+      - Tue, 19 Oct 2021 21:38:41 GMT
       Server:
       - nginx
       Vary:
@@ -40,7 +40,7 @@ interactions:
       code: 401
       message: Unauthorized
 - request:
-    body: null
+    body: client_id=test-client-id&client_secret=test-client-secret&grant_type=client_credentials&token_type=jwt
     headers:
       Accept:
       - '*/*'
@@ -53,12 +53,13 @@ interactions:
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: POST
     uri: https://qa.cube.ubuntu.com/oauth2/access_token
   response:
     body:
-      string: '{"access_token": "token"}'
+      string: '{"access_token": "fake-token",
+        "expires_in": 36000, "token_type": "JWT", "scope": "read write email profile"}'
     headers:
       Cache-Control:
       - no-store
@@ -69,7 +70,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:07 GMT
+      - Tue, 19 Oct 2021 21:38:42 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Pragma:
@@ -102,25 +103,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/user/v1/accounts?email=cube@canonical.com
+    uri: https://qa.cube.ubuntu.com/api/user/v1/accounts?email=cube%40canonical.com
   response:
     body:
-      string: "[{\"secondary_email\":null,\"date_joined\":\"2020-11-25T11:18:36Z\"\
-        ,\"level_of_education\":null,\"accomplishments_shared\":true,\"year_of_birth\"\
-        :null,\"extended_profile\":[],\"phone_number\":null,\"language_proficiencies\"\
-        :[],\"time_zone\":null,\"bio\":null,\"gender\":null,\"social_links\":[],\"\
-        account_privacy\":\"private\",\"mailing_address\":\"\",\"secondary_email_enabled\"\
-        :null,\"name\":\"Cube Engineer\",\"is_active\":true,\"\
-        goals\":\"\",\"requires_parental_consent\":true,\"profile_image\":{\"image_url_small\"\
-        :\"https://qa.cube.ubuntu.com/static/images/profiles/fake.png\"\
-        ,\"image_url_full\":\"https://qa.cube.ubuntu.com/static/images/profiles/fake.png\"\
-        ,\"image_url_large\":\"https://qa.cube.ubuntu.com/static/images/profiles/fake.png\"\
-        ,\"image_url_medium\":\"https://qa.cube.ubuntu.com/static/images/profiles/fake.png\"\
-        ,\"has_image\":false},\"state\":null,\"username\":\"cube\",\"country\"\
-        :null,\"course_certificates\":null,\"email\":\"cube@canonical.com\"\
-        }]"
+      string: '[{"account_privacy":"private","profile_image":{"has_image":false,"image_url_full":"https://qa.cube.ubuntu.com/static/images/profiles/default_500.4215dbe8010f.png","image_url_large":"https://qa.cube.ubuntu.com/static/images/profiles/default_120.4a5e0900098e.png","image_url_medium":"https://qa.cube.ubuntu.com/static/images/profiles/default_50.3455a6581573.png","image_url_small":"https://qa.cube.ubuntu.com/static/images/profiles/default_30.deee7287e843.png"},"username":"cube-engineer","bio":null,"course_certificates":null,"country":null,"date_joined":"2021-09-14T14:21:57Z","language_proficiencies":[],"level_of_education":null,"social_links":[],"time_zone":null,"accomplishments_shared":true,"name":"Cube Engineer","email":"cube@canonical.com","extended_profile":[],"gender":null,"state":null,"goals":"","is_active":true,"mailing_address":"","requires_parental_consent":true,"secondary_email":null,"secondary_email_enabled":null,"year_of_birth":null,"phone_number":null}]'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -131,14 +119,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:07 GMT
+      - Tue, 19 Oct 2021 21:38:42 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -151,7 +139,91 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '1010'
+      - '979'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Api-Key:
+      - test_api
+      Api-Username:
+      - test-user
+    method: GET
+    uri: https://contracts.canonical.com/v1/marketplace/canonical-cube/product-listings
+  response:
+    body:
+      string: '{"productListings":[{"bundleQuantity":1,"createdAt":"2021-07-30T14:39:31.658Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+admintasks+2020"],"origin":"EdX"},{"IDs":["CFHJV2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+admintasks+2020","CFHJV2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIws3HbAf6zvoUikJpLLbTg"],"origin":"Stripe"},"id":"lADAhOawJYK_yfbVSK3s2M5deFHOMfTJD9wtpJwTfrFw","lastModifiedAt":"2021-07-30T14:39:31.658Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"czAAvvs2SJCH1py9Y7i3wQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/7bf909cc-Admin.svg"},{"key":"name","value":"Performing
+        Administrative Tasks"},{"key":"topics","value":"[\"Find and review information
+        about activities and processes\",\"Manage user privileges\",\"Create backups\",\"View
+        and record system utilization.\",\"Configure remote logging.\"]"}],"name":"cube-admintasks-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-admintasks","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:47.317Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+microk8s+2020"],"origin":"EdX"},{"IDs":["CFHJL2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+microk8s+2020","CFHJL2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwBHbAf6zvoUiwxYrl1fd"],"origin":"Stripe"},"id":"lAPHwJqhN52NGK1t--MODF0NZ9Yv00j6ut6JqiBuwtrc","lastModifiedAt":"2021-07-30T14:43:47.317Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"SxbUniVbQn6V7QqP5j6glA"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/1812ec49-MicroK8s.svg"},{"key":"name","value":"MicroK8s"},{"key":"topics","value":"[\"MicroK8s
+        installation\",\"MicroK8s configuration\",\"Common MicroK8s use cases\"]"}],"name":"cube-microk8s-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-microk8s","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:49.156Z","effectiveDays":90,"externalIDs":[{"IDs":["course-v1:CUBE+study_labs+2020"],"origin":"EdX"},{"IDs":["CFHJX2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+study_labs+2020","CFHJX2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwCHbAf6zvoUiJRafh6mN"],"origin":"Stripe"},"id":"lAEPabBFqmTDx3DFCaERH_zO49inakd95qFpEjRH7bp0","lastModifiedAt":"2021-07-30T14:43:49.156Z","marketplace":"canonical-cube","name":"cube-study-labs-2020","period":"none","price":{"currency":"USD","value":24900},"productID":"cube-study-labs","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:51Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+commands+2020"],"origin":"EdX"},{"IDs":["CFHJS2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+commands+2020","CFHJS2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwEHbAf6zvoUim9BUWXtw"],"origin":"Stripe"},"id":"lAMl0xqPjs4oNwxWM1UTsQhVuy6U2zi8pGRNIkxn6HjQ","lastModifiedAt":"2021-07-30T14:43:51Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"Yjz2TbTASeajywVHtNtcnA"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/43f7d2a3-Commands.svg"},{"key":"name","value":"Using
+        Command Line Tools"},{"key":"topics","value":"[\"Work with file contents\",\"Process
+        data using the command line\",\"Use essential utilities\"]"}],"name":"cube-commands-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-commands","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:52.641Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+networking+2020"],"origin":"EdX"},{"IDs":["CFHJA2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+networking+2020","CFHJA2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwGHbAf6zvoUiOtfESIky"],"origin":"Stripe"},"id":"lAMZu56kNCVG64u_dNP2rbjRNiGm0ahVyCeM85JJJysc","lastModifiedAt":"2021-07-30T14:43:52.641Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"5871A52aRE6TnUlMuThXYQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/f59674b7-Networking.svg"},{"key":"name","value":"Networking
+        on Ubuntu"},{"key":"topics","value":"[\"Set up common networking components\",\"Configure
+        common networking utilities\",\"Verify connectivity and features of remote
+        services\"]"}],"name":"cube-networking-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-networking","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:54.462Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+sysarch+2020"],"origin":"EdX"},{"IDs":["CFHYA2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+sysarch+2020","CFHYA2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwIHbAf6zvoUiCv4dkDFA"],"origin":"Stripe"},"id":"lAN77lPf2rVQJMkbOBbu21fSsPxc1EQCf-mFSy0uWTDU","lastModifiedAt":"2021-07-30T14:43:54.462Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"KafTCFzVSHecbUPcjkVA-Q"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/9ef4a092-Architecture.svg"},{"key":"name","value":"Ubuntu
+        System Architecture"},{"key":"topics","value":"[\"Review and record relevant
+        system information\",\"Manage kernels and devices\",\"Make administrative
+        changes to devices and hardware\"]"}],"name":"cube-sysarch-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-sysarch","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:56.035Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+devices+2020"],"origin":"EdX"},{"IDs":["CFHJK2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+devices+2020","CFHJK2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwJHbAf6zvoUi35aRjWRt"],"origin":"Stripe"},"id":"lAIAEO3gvJF3smejqM4L-fg-vGAVccfZOyLewe7WglUw","lastModifiedAt":"2021-07-30T14:43:56.035Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"01bwmE5zSkCTMii42dWHXQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/093b57b6-Devices+%26+files.svg"},{"key":"name","value":"Linux
+        Devices and Filesystems"},{"key":"topics","value":"[\"Configure volumes and
+        subvolumes\",\"Create and configure partitions\",\"Encrypt disks\",\"Manage
+        and configure block devices, Device Mapper, and filesystems\"]"}],"name":"cube-devices-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-devices","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:57.66Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+package+2020"],"origin":"EdX"},{"IDs":["CFHJQ2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+package+2020","CFHJQ2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwLHbAf6zvoUiJRjHWU09"],"origin":"Stripe"},"id":"lAA6B9T1OQl4E2SvE1K-_1cqiXe-ycHdg7_snFClU7SY","lastModifiedAt":"2021-07-30T14:43:57.66Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"n_lXbWCdTfifAiWcj9D_ZQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/c19e9931-Packages.svg"},{"key":"name","value":"Managing
+        Packages in Ubuntu"},{"key":"topics","value":"[\"Assess package information\",\"Use
+        and configure snaps\",\"Manage Debian packages\",\"Manage executables with
+        alternatives\"]"}],"name":"cube-package-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-package","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:59.308Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+systemd+2020"],"origin":"EdX"},{"IDs":["CFHJR2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+systemd+2020","CFHJR2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwNHbAf6zvoUi57ICT4dk"],"origin":"Stripe"},"id":"lAIYQK4Uh8nXuss3RWTiAJJhv9Vzf3hH5PNqzedQjIE8","lastModifiedAt":"2021-07-30T14:43:59.308Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"GQwSj8y5R3yYpO9togXGbQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/09d0b73a-Services.svg"},{"key":"name","value":"Managing
+        System Services"},{"key":"topics","value":"[\"Create or modify system service
+        configurations\",\"Manage service startup and recovery\",\"View and interpret
+        logs using the journaling service\"]"}],"name":"cube-systemd-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-systemd","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:00.946Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+juju+2020"],"origin":"EdX"},{"IDs":["CFHJU2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+juju+2020","CFHJU2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwOHbAf6zvoUiLQKX1SWw"],"origin":"Stripe"},"id":"lAFyH4JK4BHQawNnQ5GZc8yWnmoYkEjGyLkyskZXiW3U","lastModifiedAt":"2021-07-30T14:44:00.946Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"ACvrgJz1Q5-KlSphGlvc1w"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/5be7daa5-Juju.svg"},{"key":"name","value":"Juju"},{"key":"topics","value":"[\"Juju
+        fundamentals\",\"Everyday Juju usage\",\"Juju administration\"]"}],"name":"cube-juju-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-juju","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:02.777Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+security+2020"],"origin":"EdX"},{"IDs":["CFHJF2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+security+2020","CFHJF2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwQHbAf6zvoUimeVqDJlp"],"origin":"Stripe"},"id":"lAAmjxPyALyRihTw6MIZSAyjH7vpBHuFD9LkVzgZslzs","lastModifiedAt":"2021-07-30T14:44:02.777Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"MIpdhnR1TjmeK4eYUCkN9A"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/2291952a-Security.svg"},{"key":"name","value":"Securing
+        Ubuntu"},{"key":"topics","value":"[\"Operate secure encryption utilities\",\"Set
+        up and manage firewalls\",\"Solve common security issues\",\"Perform basic
+        hardening operations\"]"}],"name":"cube-security-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-security","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:04.533Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+virtualisation+2020"],"origin":"EdX"},{"IDs":["CFHJW2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+virtualisation+2020","CFHJW2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwSHbAf6zvoUiBFvyItEa"],"origin":"Stripe"},"id":"lAPldZTmMUTyu7yCKD6uvQRBj117Ue0Fnf8DEJL-YdQo","lastModifiedAt":"2021-07-30T14:44:04.533Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"ebAvD4D1S_qQ1pkUYnyRgQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/64422ff3-Virtualisation.svg"},{"key":"name","value":"Virtualisation"},{"key":"topics","value":"[\"Create
+        and use LXC containers.\",\"Create and use KVM VMs.\"]"}],"name":"cube-virtualisation-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-virtualisation","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:06.159Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+kernel+2020"],"origin":"EdX"},{"IDs":["CFHJB2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+kernel+2020","CFHJB2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwTHbAf6zvoUi9ZCwzriq"],"origin":"Stripe"},"id":"lADdl_jslrELKV7Xzn3Nz2hecFmHgfYt8PgIXVr_Ye-o","lastModifiedAt":"2021-07-30T14:44:06.159Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"TRfJwsr6R-a-iU-Vi7wkQQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/4f70dabc-Kernel.svg"},{"key":"name","value":"Ubuntu
+        Kernels"},{"key":"topics","value":"[\"Install and boot to specific kernels\",\"Configure
+        kernel and module parameters\",\"Configure kernel and module debugging options\"]"}],"name":"cube-kernel-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-kernel","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:07.814Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+shellscript+2020"],"origin":"EdX"},{"IDs":["CFHJP2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+shellscript+2020","CFHJP2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwVHbAf6zvoUiHHeZ7CAN"],"origin":"Stripe"},"id":"lABjLmk6Ihn8TzboMFjBH6XkyGwSm0BYVGqE8OYBGZAM","lastModifiedAt":"2021-07-30T14:44:07.814Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"3MpPyZTISEqlgyG9gjN2mQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/30af430c-bash.svg"},{"key":"name","value":"Bash
+        Shell Scripting"},{"key":"topics","value":"[\"Create, check, and test files\",\"Work
+        with logs\",\"Monitor and gather information from other systems\",\"Automate
+        tasks with loops and conditionals\"]"}],"name":"cube-shellscript-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-shellscript","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:09.359Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+maas+2020"],"origin":"EdX"},{"IDs":["CFHJM2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+maas+2020","CFHJM2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwXHbAf6zvoUij2KCrR3J"],"origin":"Stripe"},"id":"lAEBjG7gIOC2dRvEExj6JrPb3ymBj_gYIXa6TyhIZKwE","lastModifiedAt":"2021-07-30T14:44:09.359Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"4qTlg8vqQ5yNiucSW7dm-w"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/8e0dd19e-MAAS.svg"},{"key":"name","value":"MAAS"},{"key":"topics","value":"[\"MAAS
+        fundamentals\",\"Everyday MAAS usage\",\"MAAS administration\"]"}],"name":"cube-maas-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-maas","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:10.967Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+storage+2020"],"origin":"EdX"},{"IDs":["CFHJC2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+storage+2020","CFHJC2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwYHbAf6zvoUi2kv0hDVf"],"origin":"Stripe"},"id":"lALRFPF44bik0zj00HG4kYt-dKu_BKB4y_FUaw_cMo_E","lastModifiedAt":"2021-07-30T14:44:10.967Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"tEAG-zVjRMKeUsR6tKefgA"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/cd7785d1-Storage.svg"},{"key":"name","value":"Configuring
+        Enterprise Storage"},{"key":"topics","value":"[\"Repair unclean filesystems\",\"Manage
+        storage lifecycles\",\"Test storage capabilities\"]"}],"name":"cube-storage-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-storage","status":"active"}],"products":[{"id":"cube-juju","name":"CUBE
+        - Juju","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-virtualisation","name":"CUBE
+        - Virtualisation","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-commands","name":"CUBE
+        - Using Command Line Tools","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-devices","name":"CUBE
+        - Linux Devices and Filesystems","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-package","name":"CUBE
+        - Managing Packages in Ubuntu","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-systemd","name":"CUBE
+        - Managing System Services","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-storage","name":"CUBE
+        - Configuring Enterprise Storage","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-admintasks","name":"CUBE
+        - Performing Administrative Tasks","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-microk8s","name":"CUBE
+        - MicroK8s","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-study-labs","name":"CUBE
+        - Study Labs","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-shellscript","name":"CUBE
+        - Bash Shell Scripting","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-security","name":"CUBE
+        - Securing Ubuntu","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-kernel","name":"CUBE
+        - Ubuntu Kernels","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-maas","name":"CUBE
+        - MAAS","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-networking","name":"CUBE
+        - Networking on Ubuntu","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-sysarch","name":"CUBE
+        - Ubuntu System Architecture","resourceEntitlements":[],"tags":["cube"]}]}'
+    headers:
+      Cache-Control:
+      - no-store, max-age=0
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Oct 2021 21:38:42 GMT
+      Server:
+      - openresty/1.15.8.2
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Trace-Id:
+      - 7b6a14d0-9c5b-455c-8756-b274a8747b05
     status:
       code: 200
       message: OK
@@ -164,17 +236,76 @@ interactions:
       - gzip, deflate
       Connection:
       - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://api.eu.badgr.io/v2/issuers/eTedPNzMTuqy1SMWJ05UbA/assertions?recipient=cube@canonical.com
+  response:
+    body:
+      string: '{"status":{"success":false,"description":"no valid auth token found"},"result":[],"fieldErrors":{},"validationErrors":[]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
       Content-Length:
-      - '98'
+      - '121'
+      Content-Security-Policy:
+      - default-src https://*.badgr.us https://*.badgr.com https://*.badgr.dev https://*.badgr.ws
+        https://*.badgr.io https://www.google-analytics.com https://ajax.googleapis.com
+        https://ajax.googleapis.com; script-src 'unsafe-inline' https://*.badgr.us
+        https://*.badgr.com https://*.badgr.dev https://*.badgr.ws https://*.badgr.io
+        https://online.swagger.io ;img-src https://*.badgr.us https://*.badgr.com
+        https://*.badgr.dev https://*.badgr.ws https://*.badgr.io https://online.swagger.io
+        data:; style-src 'unsafe-inline' https://*.badgr.us https://*.badgr.com https://*.badgr.dev
+        https://*.badgr.ws https://*.badgr.io https://fonts.googleapis.com; style-src-elem
+        'unsafe-inline' https://*.badgr.us https://*.badgr.com https://*.badgr.dev
+        https://*.badgr.ws https://*.badgr.io https://fonts.googleapis.com; font-src
+        https://*.badgr.us https://*.badgr.com https://*.badgr.dev https://*.badgr.ws
+        https://*.badgr.io https://fonts.gstatic.com; object-src 'none'
+      Content-Type:
+      - application/ld+json
+      Date:
+      - Tue, 19 Oct 2021 21:38:42 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+      Vary:
+      - Accept,Authorization,Cookie,Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Trace:
+      - 2BD64F5F963EAA0CDD800DC25E687B823F733ED3709016EA6D297AC29501
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: username=cube%40canonical.com&password=cube-password
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '94'
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: POST
-    uri: https://api.test.badgr.com/o/token
+    uri: https://api.eu.badgr.io/o/token
   response:
     body:
-      string: '{"access_token": "token"}'
+      string: '{"access_token": "test-access-token", "expires_in": 86400,
+        "token_type": "Bearer", "scope": "rw:profile rw:issuer rw:backpack", "refresh_token":
+        "refresh-token"}'
     headers:
       Cache-Control:
       - no-store
@@ -182,14 +313,27 @@ interactions:
       - keep-alive
       Content-Length:
       - '191'
+      Content-Security-Policy:
+      - default-src https://*.badgr.us https://*.badgr.com https://*.badgr.dev https://*.badgr.ws
+        https://*.badgr.io https://www.google-analytics.com https://ajax.googleapis.com
+        https://ajax.googleapis.com; script-src 'unsafe-inline' https://*.badgr.us
+        https://*.badgr.com https://*.badgr.dev https://*.badgr.ws https://*.badgr.io
+        https://online.swagger.io ;img-src https://*.badgr.us https://*.badgr.com
+        https://*.badgr.dev https://*.badgr.ws https://*.badgr.io https://online.swagger.io
+        data:; style-src 'unsafe-inline' https://*.badgr.us https://*.badgr.com https://*.badgr.dev
+        https://*.badgr.ws https://*.badgr.io https://fonts.googleapis.com; style-src-elem
+        'unsafe-inline' https://*.badgr.us https://*.badgr.com https://*.badgr.dev
+        https://*.badgr.ws https://*.badgr.io https://fonts.googleapis.com; font-src
+        https://*.badgr.us https://*.badgr.com https://*.badgr.dev https://*.badgr.ws
+        https://*.badgr.io https://fonts.gstatic.com; object-src 'none'
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:08 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       Pragma:
       - no-cache
       Server:
-      - Apache/2.4.37 (centos) OpenSSL/1.1.1c mod_wsgi/4.6.4 Python/3.6
+      - Apache
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains; preload
       Vary:
@@ -198,6 +342,8 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Trace:
+      - 2B77FD44CB318B3DA2E5D92A423A8382CE1E9C6D138199AF5E26F9420F01
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -213,25 +359,38 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://api.test.badgr.com/v2/issuers/eTedPNzMTuqy1SMWJ05UbA/assertions?recipient=cube@canonical.com
+    uri: https://api.eu.badgr.io/v2/issuers/eTedPNzMTuqy1SMWJ05UbA/assertions?recipient=cube@canonical.com
   response:
     body:
-      string: '{"status":{"success":true,"description":"ok"},"result":[{"entityType":"Assertion","entityId":"1","openBadgeId":"https://api.test.badgr.com/public/assertions/1","createdAt":"2021-01-14T19:54:03.956331Z","createdBy":"mXJunowbRSaOGoaZQznG4w","badgeclass":"Yjz2TbTASeajywVHtNtcnA","badgeclassOpenBadgeId":"https://api.test.badgr.com/public/badges/Yjz2TbTASeajywVHtNtcnA","issuer":"eTedPNzMTuqy1SMWJ05UbA","issuerOpenBadgeId":"https://api.test.badgr.com/public/issuers/eTedPNzMTuqy1SMWJ05UbA","image":"https://media.test.badgr.com/uploads/badges/assertion-1.png","recipient":{"identity":"sha256$cec79a94829fe03aa7651ced998e718ec76b5b96700dc02b4866b333a1bbbce2","hashed":true,"type":"email","plaintextIdentity":"cube@canonical.com","salt":"289adbc72609405ba8dc122e8edfe2be"},"issuedOn":"2021-01-14T05:00:00Z","narrative":null,"evidence":[],"revoked":false,"revocationReason":null,"acceptance":"Unaccepted","expires":null,"extensions":{}}]}'
+      string: '{"status":{"success":true,"description":"ok"},"result":[{"entityType":"Assertion","entityId":"gMpukJHHSrmhdLXKqzHT9w","openBadgeId":"https://api.eu.badgr.io/public/assertions/gMpukJHHSrmhdLXKqzHT9w","createdAt":"2021-09-29T13:29:06.902031Z","createdBy":"BgTIw-fdQf2oMbNyv5RBVw","badgeclass":"n_lXbWCdTfifAiWcj9D_ZQ","badgeclassOpenBadgeId":"https://api.eu.badgr.io/public/badges/n_lXbWCdTfifAiWcj9D_ZQ","issuer":"eTedPNzMTuqy1SMWJ05UbA","issuerOpenBadgeId":"https://api.eu.badgr.io/public/issuers/eTedPNzMTuqy1SMWJ05UbA","image":"https://api.eu.badgr.io/public/assertions/gMpukJHHSrmhdLXKqzHT9w/image","recipient":{"identity":"hashed-identity","hashed":true,"type":"email","plaintextIdentity":"cube@canonical.com","salt":"258f3001cccf4fb4874dfa25f2281503"},"issuedOn":"2021-09-29T04:00:00Z","narrative":null,"evidence":[],"revoked":false,"revocationReason":null,"acceptance":"Unaccepted","expires":null,"extensions":{"extensions:recipientProfile":{"@context":"https://openbadgespec.org/extensions/recipientProfile/context.json","type":["Extension","extensions:RecipientProfile"],"name":"Cube Engineer"}}}]}'
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '4847'
+      - '1168'
+      Content-Security-Policy:
+      - default-src https://*.badgr.us https://*.badgr.com https://*.badgr.dev https://*.badgr.ws
+        https://*.badgr.io https://www.google-analytics.com https://ajax.googleapis.com
+        https://ajax.googleapis.com; script-src 'unsafe-inline' https://*.badgr.us
+        https://*.badgr.com https://*.badgr.dev https://*.badgr.ws https://*.badgr.io
+        https://online.swagger.io ;img-src https://*.badgr.us https://*.badgr.com
+        https://*.badgr.dev https://*.badgr.ws https://*.badgr.io https://online.swagger.io
+        data:; style-src 'unsafe-inline' https://*.badgr.us https://*.badgr.com https://*.badgr.dev
+        https://*.badgr.ws https://*.badgr.io https://fonts.googleapis.com; style-src-elem
+        'unsafe-inline' https://*.badgr.us https://*.badgr.com https://*.badgr.dev
+        https://*.badgr.ws https://*.badgr.io https://fonts.googleapis.com; font-src
+        https://*.badgr.us https://*.badgr.com https://*.badgr.dev https://*.badgr.ws
+        https://*.badgr.io https://fonts.gstatic.com; object-src 'none'
       Content-Type:
       - application/ld+json
       Date:
-      - Sun, 31 Jan 2021 01:50:08 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       Server:
-      - Apache/2.4.37 (centos) OpenSSL/1.1.1c mod_wsgi/4.6.4 Python/3.6
+      - Apache
       Strict-Transport-Security:
       - max-age=63072000; includeSubDomains; preload
       Vary:
@@ -240,6 +399,8 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Trace:
+      - 2B3FA4460167CBB95ADA123F09E336C70CDC6356417AE39EB91C2E471B01
       X-XSS-Protection:
       - 1; mode=block
     status:
@@ -255,15 +416,25 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/enrollment/v1/enrollment?user=cube&page_size=100
+    uri: https://qa.cube.ubuntu.com/api/enrollment/v1/enrollment?user=cube-engineer&page_size=100
   response:
     body:
-      string: '[{"created":"2021-01-28T23:59:52.101659Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+virtualisation+2020"}},{"created":"2021-01-28T23:59:51.796578Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+systemd+2020"}},{"created":"2021-01-28T23:59:51.535318Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+sysarch+2020"}},{"created":"2021-01-28T23:59:51.263707Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+storage+2020"}},{"created":"2021-01-28T23:59:50.978549Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+shellscript+2020"}},{"created":"2021-01-28T23:59:50.662015Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+security+2020"}},{"created":"2021-01-28T23:59:50.161480Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+package+2020"}},{"created":"2021-01-28T23:59:49.888356Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+networking+2020"}},{"created":"2021-01-28T23:59:49.580881Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+microk8s+2020"}},{"created":"2021-01-28T23:59:49.323557Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+maas+2020"}},{"created":"2021-01-28T23:59:49.025720Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+kernel+2020"}},{"created":"2021-01-28T23:59:48.706937Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+juju+2020"}},{"created":"2021-01-28T23:59:48.367204Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+devices+2020"}},{"created":"2021-01-28T23:59:48.106402Z","mode":"honor","is_active":true,"user":"cube","course_details":{"course_id":"course-v1:CUBE+commands+2020"}}]'
+      string: '[{"created":"2021-09-28T16:36:27.556724Z","mode":"honor","is_active":true,"course_details":{"course_id":"course-v1:CUBE+microk8s+2020","course_name":"CUBE
+        Exam: MicroK8s 2020","enrollment_start":null,"enrollment_end":null,"course_start":"2021-01-01T00:00:00Z","course_end":"2022-05-31T00:00:00Z","invite_only":true,"course_modes":[{"slug":"honor","name":"Honor","min_price":0,"suggested_prices":"","currency":"usd","expiration_datetime":null,"description":"Certificate
+        of Completion","sku":"None","bulk_sku":null}]},"user":"cube-engineer"},{"created":"2021-10-05T09:27:45.150543Z","mode":"honor","is_active":true,"course_details":{"course_id":"course-v1:CUBE+juju+2020","course_name":"CUBE
+        Exam: Juju 2020","enrollment_start":null,"enrollment_end":null,"course_start":"2021-01-01T00:00:00Z","course_end":"2022-05-31T00:00:00Z","invite_only":true,"course_modes":[{"slug":"honor","name":"Honor","min_price":0,"suggested_prices":"","currency":"usd","expiration_datetime":null,"description":"Certificate
+        of Completion","sku":"None","bulk_sku":null}]},"user":"cube-engineer"},{"created":"2021-10-05T09:29:28.688607Z","mode":"honor","is_active":true,"course_details":{"course_id":"course-v1:CUBE+maas+2020","course_name":"CUBE
+        Exam: MAAS 2020","enrollment_start":null,"enrollment_end":null,"course_start":"2021-01-01T00:00:00Z","course_end":"2022-05-31T00:00:00Z","invite_only":true,"course_modes":[{"slug":"honor","name":"Honor","min_price":0,"suggested_prices":"","currency":"usd","expiration_datetime":null,"description":"Certificate
+        of Completion","sku":"None","bulk_sku":null}]},"user":"cube-engineer"},{"created":"2021-10-11T08:59:39.639561Z","mode":"honor","is_active":true,"course_details":{"course_id":"course-v1:CUBE+sysarch+2020","course_name":"CUBE
+        Exam: Ubuntu System Architecture 2020","enrollment_start":null,"enrollment_end":null,"course_start":"2021-01-01T00:00:00Z","course_end":"2022-05-31T00:00:00Z","invite_only":true,"course_modes":[{"slug":"honor","name":"Honor","min_price":0,"suggested_prices":"","currency":"usd","expiration_datetime":null,"description":"Certificate
+        of Completion","sku":"None","bulk_sku":null}]},"user":"cube-engineer"},{"created":"2021-10-11T09:21:22.689583Z","mode":"honor","is_active":true,"course_details":{"course_id":"course-v1:CUBE+admintasks+2020","course_name":"CUBE
+        Exam: Performing Administrative Tasks 2020","enrollment_start":null,"enrollment_end":null,"course_start":"2021-01-01T00:00:00Z","course_end":"2022-05-31T00:00:00Z","invite_only":true,"course_modes":[{"slug":"honor","name":"Honor","min_price":0,"suggested_prices":"","currency":"usd","expiration_datetime":null,"description":"Certificate
+        of Completion","sku":"None","bulk_sku":null}]},"user":"cube-engineer"}]'
     headers:
       Allow:
-      - GET, HEAD, OPTIONS
+      - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Language:
@@ -271,27 +442,30 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:08 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
+      - csrftoken=fake-token;
+        expires=Tue, 18 Oct 2022 21:38:43 GMT; Max-Age=31449600; Path=/; SameSite=None;
+        Secure
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      - Accept-Language, Origin, Cookie
+      - Cookie, Accept-Language, Origin
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
       - DENY
       content-length:
-      - '4514'
+      - '2712'
     status:
       code: 200
       message: OK
@@ -305,12 +479,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+admintasks+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+admintasks+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+admintasks+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+admintasks+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -321,14 +495,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:09 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -341,7 +515,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '258'
+      - '243'
     status:
       code: 200
       message: OK
@@ -355,12 +529,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+commands+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+microk8s+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+commands+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+microk8s+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -371,14 +545,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:09 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -391,57 +565,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '256'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate`
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.24.0
-    method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+devices+2020/search/cube?page_size=100
-  response:
-    body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+devices+2020/search/cube"}'
-    headers:
-      Allow:
-      - GET, HEAD, OPTIONS
-      Connection:
-      - keep-alive
-      Content-Language:
-      - en
-      Content-Type:
-      - application/json
-      Date:
-      - Sun, 31 Jan 2021 01:50:09 GMT
-      P3P:
-      - CP="Open edX does not have a P3P policy."
-      Server:
-      - nginx
-      Set-Cookie:
-      - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Accept-Language, Origin, Cookie
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-      content-length:
-      - '255'
+      - '241'
     status:
       code: 200
       message: OK
@@ -455,12 +579,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+juju+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+commands+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+juju+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+commands+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -471,14 +595,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:10 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -491,7 +615,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '252'
+      - '241'
     status:
       code: 200
       message: OK
@@ -505,12 +629,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+kernel+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+networking+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+kernel+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+networking+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -521,14 +645,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:10 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -541,7 +665,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '254'
+      - '243'
     status:
       code: 200
       message: OK
@@ -555,12 +679,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+maas+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+sysarch+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+maas+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+sysarch+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -571,14 +695,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:10 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -591,7 +715,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '252'
+      - '240'
     status:
       code: 200
       message: OK
@@ -605,12 +729,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+microk8s+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+devices+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+microk8s+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+devices+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -621,14 +745,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:11 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -641,7 +765,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '256'
+      - '240'
     status:
       code: 200
       message: OK
@@ -655,12 +779,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+networking+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+package+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+networking+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+package+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -671,14 +795,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:11 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -691,7 +815,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '258'
+      - '240'
     status:
       code: 200
       message: OK
@@ -705,12 +829,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+package+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+systemd+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[{"id":25,"created":"2021-01-31T03:32:07.880197Z","modified":"2021-01-31T03:32:07.928531Z","user":{"id":289,"username":"cube","email":"cube@canonical.com"},"started_at":"2021-01-31T03:32:07.912549Z","completed_at":"2021-01-31T03:32:07.912549Z","external_id":null,"status":"started","proctored_exam":{"id":124,"course_id":"course-v1:CUBE+security+2020","content_id":"block-v1:CUBE+security+2020+type@sequential+block@exam","external_id":null,"exam_name":"Exam","time_limit_mins":45,"is_proctored":false,"is_practice_exam":false,"is_active":true,"due_date":null,"hide_after_due":false,"backend":"null"},"allowed_time_limit_mins":45,"attempt_code":"6CD5FCAA-A9A7-434E-97EC-4974AD63CB12","is_sample_attempt":false,"taking_as_proctored":false,"last_poll_timestamp":null,"last_poll_ipaddr":null,"review_policy_id":null,"student_name":"","is_status_acknowledged":false}],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+package+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+systemd+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -721,14 +845,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:11 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -741,7 +865,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '255'
+      - '240'
     status:
       code: 200
       message: OK
@@ -755,12 +879,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+security+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+juju+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[{"id":25,"created":"2021-01-31T03:32:07.880197Z","modified":"2021-01-31T03:32:07.928531Z","user":{"id":289,"username":"cube","email":"cube@canonical.com"},"started_at":"2021-01-31T03:32:07.912549Z","completed_at":null,"external_id":null,"status":"started","proctored_exam":{"id":124,"course_id":"course-v1:CUBE+security+2020","content_id":"block-v1:CUBE+security+2020+type@sequential+block@exam","external_id":null,"exam_name":"Exam","time_limit_mins":45,"is_proctored":false,"is_practice_exam":false,"is_active":true,"due_date":null,"hide_after_due":false,"backend":"null"},"allowed_time_limit_mins":45,"attempt_code":"6CD5FCAA-A9A7-434E-97EC-4974AD63CB12","is_sample_attempt":false,"taking_as_proctored":false,"last_poll_timestamp":null,"last_poll_ipaddr":null,"review_policy_id":null,"student_name":"","is_status_acknowledged":false}],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+security+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+juju+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -771,14 +895,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:11 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -791,7 +915,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '256'
+      - '237'
     status:
       code: 200
       message: OK
@@ -805,12 +929,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+shellscript+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+security+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+shellscript+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+security+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -821,14 +945,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:12 GMT
+      - Tue, 19 Oct 2021 21:38:43 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -841,7 +965,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '259'
+      - '241'
     status:
       code: 200
       message: OK
@@ -855,12 +979,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+storage+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+virtualisation+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+storage+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+virtualisation+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -871,14 +995,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:12 GMT
+      - Tue, 19 Oct 2021 21:38:44 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -891,7 +1015,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '255'
+      - '247'
     status:
       code: 200
       message: OK
@@ -905,12 +1029,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+sysarch+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+kernel+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+sysarch+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+kernel+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -921,14 +1045,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:12 GMT
+      - Tue, 19 Oct 2021 21:38:44 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -941,7 +1065,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '255'
+      - '239'
     status:
       code: 200
       message: OK
@@ -955,12 +1079,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+systemd+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+shellscript+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+systemd+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+shellscript+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -971,14 +1095,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:12 GMT
+      - Tue, 19 Oct 2021 21:38:44 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -991,7 +1115,7 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '255'
+      - '244'
     status:
       code: 200
       message: OK
@@ -1005,12 +1129,12 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.24.0
+      - python-requests/2.25.1
     method: GET
-    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+virtualisation+2020/search/cube?page_size=100
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+maas+2020/search/cube-engineer?page_size=100
   response:
     body:
-      string: '{"pagination_info":{"has_next":false,"total_pages":1,"current_page":1,"has_previous":false},"proctored_exam_attempts":[],"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+virtualisation+2020/search/cube"}'
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+maas+2020/search/cube-engineer"}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
@@ -1021,14 +1145,14 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 31 Jan 2021 01:50:13 GMT
+      - Tue, 19 Oct 2021 21:38:44 GMT
       P3P:
       - CP="Open edX does not have a P3P policy."
       Server:
       - nginx
       Set-Cookie:
       - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
-        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Transfer-Encoding:
@@ -1041,7 +1165,57 @@ interactions:
       X-Frame-Options:
       - DENY
       content-length:
-      - '262'
+      - '237'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://qa.cube.ubuntu.com/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+storage+2020/search/cube-engineer?page_size=100
+  response:
+    body:
+      string: '{"proctored_exam_attempts":[],"pagination_info":{"has_previous":false,"has_next":false,"current_page":1,"total_pages":1},"attempt_url":"/api/edx_proctoring/v1/proctored_exam/attempt/course_id/course-v1:CUBE+storage+2020/search/cube-engineer"}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Oct 2021 21:38:44 GMT
+      P3P:
+      - CP="Open edX does not have a P3P policy."
+      Server:
+      - nginx
+      Set-Cookie:
+      - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Accept-Language, Origin, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      content-length:
+      - '240'
     status:
       code: 200
       message: OK

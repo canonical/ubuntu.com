@@ -12,8 +12,8 @@ from tests.advantage.helpers import (
     make_legacy_contract_item,
     make_renewal,
 )
+from webapp.advantage.models import Entitlement
 from webapp.advantage.ua_contracts.helpers import (
-    group_items_by_listing,
     get_items_aggregated_values,
     get_machine_type,
     is_trialling_user_subscription,
@@ -24,41 +24,60 @@ from webapp.advantage.ua_contracts.helpers import (
     get_user_subscription_statuses,
     extract_last_purchase_ids,
     get_price_info,
-    get_subscription_by_period,
     set_listings_trial_status,
+    apply_entitlement_rules,
+    to_dict,
+    group_shop_items,
 )
 
 
 class TestHelpers(unittest.TestCase):
-    def test_group_items_by_listing(self):
+    def test_group_shop_items(self):
         items = [
-            make_contract_item(product_listing_id="listing-id-1"),
-            make_contract_item(product_listing_id="listing-id-2"),
-            make_contract_item(product_listing_id="listing-id-1"),
-            make_contract_item(product_listing_id="listing-id-2"),
-            make_contract_item(product_listing_id="listing-id-2"),
-            make_contract_item(product_listing_id="listing-id-3"),
+            make_contract_item(
+                product_listing_id="listing-id-1", subscription_id="sub-id-1"
+            ),
+            make_contract_item(
+                product_listing_id="listing-id-2", subscription_id="sub-id-1"
+            ),
+            make_contract_item(
+                product_listing_id="listing-id-1", subscription_id="sub-id-1"
+            ),
+            make_contract_item(
+                product_listing_id="listing-id-2", subscription_id="sub-id-1"
+            ),
+            make_contract_item(
+                product_listing_id="listing-id-2", subscription_id="sub-id-2"
+            ),
+            make_contract_item(
+                product_listing_id="listing-id-3", subscription_id="sub-id-1"
+            ),
         ]
 
-        grouped_items = group_items_by_listing(items=items)
+        grouped_items = group_shop_items(items=items)
 
-        expected_number_of_groups = 3
+        expected_number_of_groups = 4
         expected_number_of_items_in_first_group = 2
-        expected_number_of_items_in_second_group = 3
+        expected_number_of_items_in_second_group = 2
         expected_number_of_items_in_third_group = 1
+        expected_number_of_items_in_forth_group = 1
 
         self.assertEqual(expected_number_of_groups, len(grouped_items))
         self.assertEqual(
             expected_number_of_items_in_first_group,
-            len(grouped_items["listing-id-1"]),
+            len(grouped_items["listing-id-1||sub-id-1"]),
         )
         self.assertEqual(
             expected_number_of_items_in_second_group,
-            len(grouped_items["listing-id-2"]),
+            len(grouped_items["listing-id-2||sub-id-1"]),
         )
         self.assertEqual(
             expected_number_of_items_in_third_group,
-            len(grouped_items["listing-id-3"]),
+            len(grouped_items["listing-id-2||sub-id-2"]),
+        )
+        self.assertEqual(
+            expected_number_of_items_in_forth_group,
+            len(grouped_items["listing-id-3||sub-id-1"]),
         )
 
     def test_get_items_aggregated_values(self):
@@ -231,51 +250,59 @@ class TestHelpers(unittest.TestCase):
 
     def test_is_user_subscription_not_cancelled(self):
         listing = make_listing(id="lAaBbCcDd")
+        subscription_id = "sub-id-1"
         subscriptions = [
             make_subscription(
+                id=subscription_id,
                 period="monthly",
                 items=[make_subscription_item(product_listing_id="lAaBbCcDd")],
             )
         ]
 
-        is_cancelled = is_user_subscription_cancelled(listing, subscriptions)
+        is_cancelled = is_user_subscription_cancelled(
+            listing, subscriptions, subscription_id
+        )
 
         self.assertEqual(is_cancelled, False)
 
     def test_is_user_subscription_cancelled(self):
         listing = make_listing(id="lAaBbCcDd")
+        subscription_id = "sub-id-1"
         subscriptions = [
             make_subscription(
+                id=subscription_id,
                 period="monthly",
                 items=[make_subscription_item(product_listing_id="randomID")],
             )
         ]
 
-        is_cancelled = is_user_subscription_cancelled(listing, subscriptions)
+        is_cancelled = is_user_subscription_cancelled(
+            listing, subscriptions, subscription_id
+        )
 
         self.assertEqual(is_cancelled, True)
 
     def test_get_date_statuses(self):
         freeze_datetime = "2020-09-01T00:00:00Z"
         scenarios = {
-            "date_is_31_days_before_expiry": {
-                "date": "2020-10-02T00:00:00Z",
+            "date_is_8_days_before_expiry": {
+                "date": "2020-09-09T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
                     "is_expired": False,
                 },
             },
-            "date_is_30_days_and_one_second_before_expiry_start": {
-                "date": "2020-10-01T00:00:00Z",
+            "date_is_7_days_and_one_second_before_expiry_start": {
+                "date": "2020-09-08T00:00:01Z",
                 "expectations": {
                     "is_expiring": False,
                     "is_in_grace_period": False,
                     "is_expired": False,
                 },
             },
-            "date_is_30_days_before_expiry": {
-                "date": "2020-09-30T23:59:59Z",
+            "date_is_7_days_before_expiry": {
+                "date": "2020-09-07T23:59:59Z",
                 "expectations": {
                     "is_expiring": True,
                     "is_in_grace_period": False,
@@ -383,13 +410,15 @@ class TestHelpers(unittest.TestCase):
                 "parameters": {
                     "type": "monthly",
                     "end_date": "2020-09-01T00:00:00Z",
+                    "subscription_id": "sub-id-1",
                     "subscriptions": [
                         make_subscription(
+                            id="sub-id-1",
                             items=[
                                 make_subscription_item(
                                     product_listing_id="listing-id"
                                 )
-                            ]
+                            ],
                         )
                     ],
                     "listing": make_listing(id="listing-id"),
@@ -412,13 +441,16 @@ class TestHelpers(unittest.TestCase):
                 "parameters": {
                     "type": "monthly",
                     "end_date": "2020-09-05T00:00:00Z",
+                    "subscription_id": "sub-id-1",
                     "subscriptions": [
                         make_subscription(
+                            id="sub-id-1",
                             items=[
                                 make_subscription_item(
                                     product_listing_id="random-id"
                                 )
-                            ]
+                            ],
+                            status="deactivated",
                         )
                     ],
                     "listing": make_listing(id="listing-id"),
@@ -462,7 +494,13 @@ class TestHelpers(unittest.TestCase):
                 "parameters": {
                     "type": "trial",
                     "end_date": "2020-08-18T00:00:00Z",
-                    "subscriptions": None,
+                    "subscriptions": [
+                        make_subscription(
+                            started_with_trial=True,
+                            in_trial=True,
+                            status="active",
+                        )
+                    ],
                     "listing": None,
                 },
                 "expectations": {
@@ -482,7 +520,7 @@ class TestHelpers(unittest.TestCase):
             "test_pending_purchases_user_subscription": {
                 "parameters": {
                     "type": "trial",
-                    "end_date": "2020-09-30T23:59:59Z",
+                    "end_date": "2020-09-07T23:59:59Z",
                     "subscriptions": [
                         make_subscription(
                             pending_purchases=["pAaBbCcDdEeFfgG"]
@@ -559,6 +597,7 @@ class TestHelpers(unittest.TestCase):
                         type=parameters.get("type"),
                         end_date=parameters.get("end_date"),
                         renewal=parameters.get("renewal"),
+                        subscription_id=parameters.get("subscription_id"),
                         subscriptions=parameters.get("subscriptions"),
                         listing=parameters.get("listing"),
                     )
@@ -568,6 +607,11 @@ class TestHelpers(unittest.TestCase):
     def test_extract_last_purchase_ids(self):
         subscriptions = [
             make_subscription(period="monthly", last_purchase_id="pABC1"),
+            make_subscription(
+                period="monthly",
+                last_purchase_id="pABC1",
+                status="deactivated",
+            ),
             make_subscription(period="yearly", last_purchase_id="pABC2"),
         ]
 
@@ -601,49 +645,6 @@ class TestHelpers(unittest.TestCase):
         }
 
         self.assertEqual(last_purchase_ids, expectation)
-
-    def test_get_subscription_by_period(self):
-        subscriptions = [
-            make_subscription(id="yearly_sub", period="yearly"),
-            make_subscription(id="monthly_sub", period="monthly"),
-        ]
-        listing = make_listing(period="monthly")
-
-        subscription = get_subscription_by_period(subscriptions, listing)
-
-        self.assertEqual(subscription.id, "monthly_sub")
-
-    def test_get_subscription_by_period_has_no_subscription(self):
-        subscriptions = [
-            make_subscription(id="yearly_sub", period="yearly"),
-        ]
-
-        listing = make_listing(period="monthly")
-
-        subscription = get_subscription_by_period(subscriptions, listing)
-
-        self.assertEqual(subscription, None)
-
-    def test_get_subscription_by_period_with_listing_without_period(self):
-        subscriptions = [
-            make_subscription(id="yearly_sub", period="yearly"),
-            make_subscription(id="monthly_sub", period="monthly"),
-        ]
-
-        listing = make_listing()
-        listing.period = None
-
-        subscription = get_subscription_by_period(subscriptions, listing)
-
-        self.assertEqual(subscription, None)
-
-    def test_get_subscription_by_period_with_no_listing(self):
-        subscriptions = None
-        listing = None
-
-        subscription = get_subscription_by_period(subscriptions, listing)
-
-        self.assertEqual(subscription, None)
 
     def test_set_listings_trial_status_to_true(self):
         subscriptions = [
@@ -699,3 +700,100 @@ class TestHelpers(unittest.TestCase):
 
         for listing in listings.values():
             self.assertEqual(listing.can_be_trialled, False)
+
+    def test_apply_entitlement_rules_is_available(self):
+        entitlements = [
+            Entitlement(
+                type="landscape",
+                enabled_by_default=False,
+            ),
+            Entitlement(
+                type="support",
+                enabled_by_default=False,
+                support_level="standard",
+            ),
+            Entitlement(
+                type="esm-infra",
+                enabled_by_default=True,
+            ),
+        ]
+
+        final_entitlements = apply_entitlement_rules(entitlements)
+
+        expected_entitlements = [
+            Entitlement(
+                type="support",
+                support_level="standard",
+                enabled_by_default=True,
+                is_available=True,
+                is_editable=False,
+            ),
+            Entitlement(
+                type="esm-infra",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=False,
+                is_available=False,
+                is_editable=False,
+            ),
+            Entitlement(
+                type="support",
+                support_level="advanced",
+                enabled_by_default=False,
+                is_available=False,
+                is_editable=False,
+            ),
+        ]
+
+        self.assertEqual(
+            to_dict(final_entitlements), to_dict(expected_entitlements)
+        )
+
+    def test_apply_entitlement_rules_is_enabled(self):
+        entitlements = [
+            Entitlement(
+                type="livepatch",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="fips-updates",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="fips",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=True,
+            ),
+        ]
+
+        final_entitlements = apply_entitlement_rules(entitlements)
+
+        expected_entitlements = [
+            Entitlement(
+                type="livepatch",
+                enabled_by_default=False,
+                is_editable=False,
+            ),
+            Entitlement(
+                type="fips-updates",
+                enabled_by_default=False,
+                is_editable=False,
+            ),
+            Entitlement(
+                type="fips",
+                enabled_by_default=True,
+            ),
+            Entitlement(
+                type="esm-apps",
+                enabled_by_default=True,
+            ),
+        ]
+
+        self.assertEqual(
+            to_dict(final_entitlements), to_dict(expected_entitlements)
+        )

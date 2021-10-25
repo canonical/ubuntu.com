@@ -23,7 +23,7 @@
 
             <li  class="p-list__item  ">
               <label for="Email" id="LblEmail"  >Work email:</label>
-              <input id="Email" name="email" maxlength="255" aria-labelledby="LblEmail InstructEmail" type="email" class="is-required" aria-required="true" autocomplete="email" >
+              <input id="Email" name="email" maxlength="255" aria-labelledby="LblEmail InstructEmail" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" class="is-required" aria-required="true" autocomplete="email" >
             </li>
 
             <li  class="p-list__item  ">
@@ -100,7 +100,7 @@
             </li>
             <li  class="p-list__item  " id="comments">
               <label for="Comments_from_lead__c" id="LblComments_from_lead__c"  >Why do you want CUBE certification?</label>
-              <textarea class="is-required" required="" id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" aria-labelledby="LblComments_from_lead__c InstructComments_from_lead__c" class="  mktoRequired" maxlength="2000" aria-required="true" ></textarea>
+              <textarea class="is-required" required="" id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" aria-labelledby="LblComments_from_lead__c InstructComments_from_lead__c" maxlength="2000" aria-required="true" ></textarea>
             </li>
           </ul>
         </fieldset>
@@ -109,20 +109,25 @@
           <ul class="p-list">
             <li class=" p-list__item">
               <input  value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-              <label class="mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+              <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
             </li>
             <li class="p-list__item">
               In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
             </li>
-          </ul>
-          <ul class="p-list">
-            <li class="p-list__item">
-              <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
             </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
           </ul>
           <ul class="p-list">
             <li class=" p-list__item">
-              <button type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
           <!-- hidden fields -->
@@ -140,5 +145,3 @@
       </form>
     </div>
   </section>
-
-  <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>

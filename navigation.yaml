@@ -230,14 +230,6 @@ ceph:
     - title: Install
       path: /ceph/install
 
-publiccloud:
-  title: Public cloud
-  path: /public-cloud
-
-  children:
-    - title: Overview
-      path: /public-cloud
-
 cloud:
   title: Cloud
   path: /cloud
@@ -249,8 +241,11 @@ cloud:
       path: /cloud/private-cloud
     - title: What is hybrid cloud
       path: /cloud/hybrid-cloud
-    - title: What is multi-cloud?
+    - title: What is multi-cloud
       path: /cloud/multi-cloud
+    - title: Public cloud
+      path: /cloud/public-cloud
+
 server:
   title: Server
   path: /server
@@ -1239,11 +1234,9 @@ support:
     - title: Your subscriptions
       path: /advantage
       persist: True
-
-      children:
-        - title: Account users
-          path: /advantage/users
-          hidden: True
+    - title: Account users
+      path: /advantage/users
+      persist: True
 
     - title: Community support
       path: /support/community-support
@@ -1540,6 +1533,9 @@ legal:
           path: /legal/terms-and-policies/thank-you
           hidden: True
 
+    - title: Solution support
+      path: /legal/solution-support
+
 observability:
   title: Observability
   path: /observability
@@ -1602,14 +1598,6 @@ security:
     - title: Thank you
       path: /security/thank-you
       hidden: True
-
-licensing:
-  title: Licensing
-  path: /licensing
-
-  children:
-    - title: Overview
-      path: /licensing
 
 community:
   title: Community
@@ -1785,11 +1773,14 @@ telco:
       path: /telco/magma
     - title: OSM
       path: /telco/osm
-      persist: True
 
       children:
         - title: Onboarding Network Functions
           path: /telco/osm/onboarding-network-functions
+        - title: Multi-Cloud
+          path: /telco/osm/multi-cloud
+        - title: Multi-vendor
+          path: /telco/osm/multi-vendor
 
 certification:
   title: Hardware

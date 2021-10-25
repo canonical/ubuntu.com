@@ -24,7 +24,7 @@ const getVariant = (userEmail: string, userInEditMode?: User | null) => {
 type Props = {
   users: Users;
   userInEditMode?: User | null;
-  setUserInEditModeById: (userEmail: string | null) => void;
+  setUserInEditMode: (User: User) => void;
   dismissEditMode: () => void;
   handleEditSubmit: ({
     email,
@@ -48,7 +48,7 @@ const UsersTableHeader = ({
 const TableView = ({
   users,
   userInEditMode,
-  setUserInEditModeById,
+  setUserInEditMode,
   dismissEditMode,
   handleEditSubmit,
   handleDeleteConfirmationModalOpen,
@@ -67,6 +67,15 @@ const TableView = ({
     return users.slice(pageStart, pageEnd);
   }, [pageNumber, users, pageSize]);
 
+  React.useEffect(() => {
+    const totalPages = Math.ceil(users.length / pageSize);
+
+    // reset pagination to last available page if exceeded the limit
+    if (pageNumber > totalPages) {
+      setPageNumber(totalPages > 0 ? totalPages : 1);
+    }
+  }, [pageNumber, users.length]);
+
   return (
     <>
       <Table responsive={true}>
@@ -84,7 +93,7 @@ const TableView = ({
               key={user.email}
               user={user}
               variant={getVariant(user.email, userInEditMode)}
-              setUserInEditModeById={setUserInEditModeById}
+              setUserInEditMode={setUserInEditMode}
               dismissEditMode={dismissEditMode}
               handleEditSubmit={handleEditSubmit}
               handleDeleteConfirmationModalOpen={

@@ -41,6 +41,7 @@ post_advantage_subscriptions = {
     "previous_purchase_id": String(required=True),
     "products": List(Nested(ProductSchema), required=True),
     "resizing": Boolean(),
+    "marketplace": String(),
     "trialling": Boolean(),
 }
 
@@ -73,8 +74,8 @@ post_customer_info = {
 ensure_purchase_account = {
     "email": String(),
     "account_name": String(),
-    "payment_method_id": String(),
-    "country": String(),
+    "captcha_value": String(),
+    "marketplace": String(),
 }
 
 invoice_view = {

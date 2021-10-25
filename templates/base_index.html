@@ -35,7 +35,7 @@
     <div class="p-heading-icon">
       <div class="p-heading-icon__header">
         <img src="https://assets.ubuntu.com/v1/89451f56-centos.png" alt="" class="p-heading-icon__img" >
-        <p class="p-heading--four p-heading-icon__title" style="padding-top:0.4rem"><a href="/blog/migrating-to-ubuntu-lts-six-facts-for-centos-users">CentOS users, 6 things to know when considering a migration to Ubuntu LTS&nbsp;&rsaquo;</a></p>
+        <h2 class="p-heading--four p-heading-icon__title" style="padding-top:0.4rem"><a href="/blog/migrating-to-ubuntu-lts-six-facts-for-centos-users">CentOS users, 6 things to know when considering a migration to Ubuntu LTS&nbsp;&rsaquo;</a></h2>
       </div>
     </div>
   </div>
@@ -291,7 +291,7 @@
           <a href="/security">Security</a>, <a href="/support">support</a> and fully managed <a href="/openstack/managed">infra</a> and <a href="/managed/apps">apps</a>
         </li>
         <li class="p-list__item is-ticked">
-          <a href="/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a class="p-link--external" href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
+          <a href="/cloud/public-cloud">Public cloud</a>, <a href="/download/server">data centre</a>, <a class="p-link--external" href="https://microk8s.io">edge cluster</a> and <a href="/appliance">appliances</a>
         </li>
         <li class="p-list__item is-ticked">
           <a href="/about/release-cycle">Long term maintenance commitment</a>
@@ -361,7 +361,7 @@
       </ul>
       <ul class="p-inline-list">
         <li class="p-inline-list__item">
-          <a href="/public-cloud">
+          <a href="/cloud/public-cloud">
             Learn more&nbsp;&rsaquo;
           </a>
         </li>
@@ -615,7 +615,7 @@
           <a href="/kubernetes/managed">Fully-managed Kubernetes</a> on-prem or public cloud
         </li>
         <li class="p-list__item is-ticked">
-          <a class="p-link--external" href="https://juju.is/docs/kubernetes">
+          <a class="p-link--external" href="https://juju.is/docs/olm/get-started-on-kubernetes">
             Model-driven Kubernetes Operators
           </a>
         </li>
@@ -1383,7 +1383,9 @@
     var language = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
 
     if (language.indexOf('-') !== -1 ) {
-      language = language.split('-')[0];
+      if (language !== "zh-TW") {
+        language = language.split('-')[0];
+      }
     }
 
     return language

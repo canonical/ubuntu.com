@@ -116,19 +116,25 @@
         <form action="/marketo/submit" method="post" id="mktoForm_3415" class="p-form--stacked">
           <div class="p-form__group">
             <label for="email">Email:*</label>
-            <input class="u-no-margin--bottom" id="email" placeholder="Email" name="email" maxlength="255" type="email" required="">
+            <input class="u-no-margin--bottom" id="email" placeholder="Email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="">
           </div>
           <div class="p-form__group">
             <label for="company">Company:</label>
             <input class="u-no-margin--bottom" id="company" placeholder="Company (optional)" name="company" maxlength="255" type="text">
           </div>
-
+          {# These are honey pot fields to catch bots #}
+          <div class="u-off-screen">
+            <label class="website" for="website">Website:</label>
+            <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+          </div>
+          <div class="u-off-screen">
+            <label class="name" for="name">Name:</label>
+            <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+          </div>
+          {# End of honey pots #}
           <p>
             <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
           </p>
-          <div class="u-sv3">
-            <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
-          </div>
 
           <p class="u-no-margin--bottom">
             <input type="hidden" name="Consent_to_Processing__c" value="Yes">
@@ -138,13 +144,13 @@
           <input type="hidden" name="formid" value="3690">
           <input type="hidden" name="edgeXblogsubscription" value="yes">
           <input type="hidden" name="returnURL" value="/internet-of-things/edgex#subscribed">
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" class="mktoField" id="utm_content" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" class="mktoField" id="utm_term" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" class="mktoField" id="GCLID__c" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" class="mktoField" id="FBLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
         </form>
       </div>
 
@@ -259,6 +265,5 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
 {% endblock content %}
 {% endblock outer_content %}

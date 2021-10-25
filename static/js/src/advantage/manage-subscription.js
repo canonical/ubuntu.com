@@ -550,6 +550,8 @@ endTrialButtons.forEach((endTrialButton) => {
           endTrialButton.innerHTML = "End trial";
           endTrialButton.removeAttribute("disabled");
           endTrialButton.setAttribute("class", "p-button--positive");
+        } else {
+          location.reload();
         }
       })
       .catch(() => {

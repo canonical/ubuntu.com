@@ -7,10 +7,14 @@ class Entitlement:
         type: str,
         enabled_by_default: bool,
         support_level: str = None,
+        is_available: bool = True,
+        is_editable: bool = True,
     ):
         self.type = type
         self.support_level = support_level
         self.enabled_by_default = enabled_by_default
+        self.is_available = is_available
+        self.is_editable = is_editable
 
 
 class Product:

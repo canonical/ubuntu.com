@@ -20,7 +20,8 @@ interface UserInfo {
 }
 
 interface Data {
-  paymentMethod: PaymentMethod.Card;
+  accountId?: string;
+  paymentMethod?: PaymentMethod.Card;
 }
 
 export interface FormValues {
@@ -51,10 +52,10 @@ function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
           variables.country === "US" ? variables.usState : variables.caProvince,
       },
       defaultPaymentMethod: {
-        brand: data.paymentMethod.brand,
-        last4: data.paymentMethod.last4,
-        expMonth: data.paymentMethod.exp_month,
-        expYear: data.paymentMethod.exp_year,
+        brand: data?.paymentMethod?.brand ?? "",
+        last4: data?.paymentMethod?.last4 ?? "",
+        expMonth: data?.paymentMethod?.exp_month ?? 0,
+        expYear: data?.paymentMethod?.exp_year ?? 0,
       },
       taxID: { value: variables.VATNumber },
     },
@@ -88,3 +89,11 @@ export { getUserInfoFromVariables, getInitialFormValues };
 
 export const getIsFreeTrialEnabled = () =>
   location.search.includes("test_backend=true");
+
+export type BuyButtonProps = {
+  areTermsChecked: boolean;
+  isUsingFreeTrial: boolean;
+  setTermsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+};

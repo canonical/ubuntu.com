@@ -76,6 +76,7 @@ def parse_entitlements(
     for raw_entitlement in raw_entitlements:
         affordances = raw_entitlement.get("affordances")
         obligations = raw_entitlement.get("obligations")
+        is_available = raw_entitlement.get("entitled")
 
         support_level = None
         if affordances:
@@ -85,6 +86,7 @@ def parse_entitlements(
             type=raw_entitlement.get("type"),
             support_level=support_level,
             enabled_by_default=obligations.get("enableByDefault"),
+            is_available=is_available,
         )
 
         entitlements.append(entitlement)
@@ -120,6 +122,7 @@ def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
         raw_renewal = raw_item.get("renewal")
 
         item = ContractItem(
+            id=raw_item.get("id"),
             contract_id=raw_item.get("contractID"),
             created_at=raw_item.get("created"),
             start_date=raw_item.get("effectiveFrom"),
@@ -128,6 +131,7 @@ def parse_contract_items(raw_items: List[Dict] = None) -> List[ContractItem]:
             value=raw_item.get("value"),
             product_listing_id=raw_item.get("productListingID"),
             purchase_id=raw_item.get("purchaseID"),
+            subscription_id=raw_item.get("subscriptionID"),
             trial_id=raw_item.get("trialID"),
             renewal=parse_renewal(raw_renewal) if raw_renewal else None,
         )

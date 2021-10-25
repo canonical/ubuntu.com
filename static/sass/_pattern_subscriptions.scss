@@ -1,0 +1,290 @@
+@mixin ubuntu-p-ua-subscriptions {
+  // The default card padding.
+  $card-padding: calc(#{$spv-inner--large} - 1px);
+
+  .p-subscriptions__header-title {
+    margin-bottom: $sp-xx-large;
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin-bottom: $spv-outer--medium;
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-small) {
+    .p-subscriptions__card {
+      // Don't display the card border when on small screens.
+      border: none;
+    }
+  }
+
+  // Only apply the active card styles for non-mobile screens.
+  @media only screen and (min-width: $breakpoint-small) {
+    .p-subscriptions__list-card {
+      // Include the active stripe on the left, but make it transparent. This is
+      // so the background colour can be animated when it becomes active.
+      @include vf-highlight-bar(transparent, left, true);
+      // Show the overflow so that the stripe can cover the border and doesn't
+      // cause scrollbars to appear.
+      overflow: visible;
+
+      &::before {
+        // Set up the animation on the active stripe.
+        @include vf-animation(background-color, snap, in);
+      }
+
+      // Only show the pointer on inactive cards.
+      &:not(.is-active) {
+        cursor: pointer;
+      }
+
+      &.is-active {
+        // Update the active stripe to use the brand colour.
+        @include vf-highlight-bar($color-brand, left, true);
+
+        background-color: $color-light;
+
+        &::before {
+          // Make the stripe match the border radius of the card.
+          border-radius: $border-radius 0 0 $border-radius;
+          // Move the stripe over the outer border of the card.
+          left: -1px;
+        }
+      }
+    }
+  }
+
+  // At small screens the list and details will be displayed one at a time,
+  // however for larger screens we need to display them side by side.
+  @media only screen and (min-width: $breakpoint-small) {
+    // Apply the grid to the direct parent of the list and details elements.
+    .p-subscriptions__card > .p-card__content {
+      // Use grid to set the columns as we don't want the gutter between columns
+      // so that we have room to display the scrollbar in the list.
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .p-subscriptions__list-scroll {
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding: $card-padding;
+      // Position the card absolutely so that its height matches the height of the
+      // details panel.
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .p-subscriptions__list {
+    position: relative;
+  }
+
+  .p-subscriptions__details {
+    padding: $card-padding;
+
+    @media only screen and (max-width: $breakpoint-small) {
+      // On small screens the details are hidden when not active.
+      display: none;
+
+      // Show the modal when the details are active.
+      &.is-active {
+        display: flex;
+
+        .p-modal__dialog {
+          display: grid;
+          // Make the modal content take up the full height.
+          grid-template-rows: auto 1fr;
+        }
+
+        .p-subscription__edit {
+          display: grid;
+          grid-template-areas:
+            "header"
+            "content"
+            "footer";
+          // Push the modal actions to the bottom of the modal.
+          grid-template-rows: auto auto 1fr;
+
+          .p-subscription__resize-actions {
+            // Move the actions down to the bottom of the container.
+            align-self: end;
+            border-top: 1px solid $colors--light-theme--border-default;
+            column-gap: $sp-medium;
+            display: grid;
+            // Move the actions down to the footer area.
+            grid-area: footer;
+            // Make the buttons side-by-side instead of stacked.
+            grid-template-columns: 1fr 1fr;
+            padding-top: $sp-medium;
+
+            &::after {
+              // Remove the extra space that was needed when the buttons were in
+              // the content area.
+              display: none;
+            }
+          }
+
+          .p-subscription__resize-action {
+            // Remove the button margin from the buttons that was needed when
+            // they were in the content area.
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    // Remove modal classes on large screens.
+    @media only screen and (min-width: $breakpoint-small) {
+      &,
+      &.is-active {
+        background: unset;
+        display: block;
+        height: unset;
+        padding: 0;
+        position: relative;
+        width: unset;
+
+        .p-modal__dialog:not(.ua-dialog) {
+          box-shadow: unset;
+          max-height: unset;
+          max-width: unset;
+          overflow: unset;
+          position: unset;
+        }
+
+        .p-modal__header {
+          margin-bottom: 0;
+
+          &::after {
+            // Remove the bottom border from the title.
+            display: none;
+          }
+        }
+
+        // Don't display the modal close button on large screens.
+        .p-modal__close {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .p-subscriptions__details-title {
+    margin-bottom: $sp-unit;
+  }
+
+  // Remove the extra space between the notification and the title.
+  .p-subscriptions__details-notification.is-borderless.is-inline {
+    background-position-y: 0.3rem;
+    margin-bottom: $sp-unit * 2;
+
+    .p-notification__content {
+      padding-top: 0;
+    }
+  }
+
+  // Add extra space between the details header and the actions when there is no
+  // notification.
+  .p-subscriptions__details-header + .p-subscriptions__details-action {
+    margin-top: $spv-outer--small;
+  }
+
+  .p-subscriptions__details-small-title {
+    margin-bottom: $spv-outer--small;
+  }
+
+  .p-subscriptions__list-group {
+    // Add extra space between groups. Padding is used instead of margin
+    // otherwise it'll be collapsed with the bottom margin from the previous
+    // group.
+    padding-top: $spv-outer--small;
+
+    &:first-child {
+      // No need to add space before the first group.
+      padding-top: 0;
+    }
+  }
+
+  .p-subscriptions__list-group-title {
+    // Put the title and context menu on the same line.
+    display: flex;
+    // Space the context menu to the right of the container.
+    justify-content: space-between;
+    // Provide space before the first card.
+    margin-bottom: $spv-inner--large;
+  }
+
+  .p-subscriptions__list-card-title {
+    // Put the title and period on the same line.
+    display: flex;
+    // Space the period to the right of the container.
+    justify-content: space-between;
+  }
+
+  .p-subscriptions__list-card-period {
+    // Align this text with the heading next to it. Normally we could use
+    // `u-align-text--small-to-default` but because the top padding has been
+    // removed from the heading we need to manually nudge this text.
+    padding-top: map-get($nudges, nudge--h6);
+  }
+
+  .p-subscriptions__list-card-features {
+    border-top: 1px solid $colors--light-theme--border-default;
+    margin-top: $spv-outer--small;
+    padding-top: $spv-inner--x-small + $spv-inner--small;
+  }
+
+  // Requested as a variant in Vanilla:
+  // https://github.com/canonical-web-and-design/vanilla-framework/issues/3906
+  .p-subscriptions__sticky-footer-modal .p-modal__dialog {
+    display: grid;
+    // Push the modal actions to the bottom of the modal.
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .p-subscription__resize {
+    // Manually set the size of the resize input.
+    min-width: unset;
+    width: 6rem;
+  }
+
+  .p-subscription__renewal-dropdown {
+    // The dropdown does not have any padding by default.
+    padding: $card-padding;
+  }
+
+  .p-subscription-switch {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  .p-subscription-switch-wrapper {
+    align-items: center;
+    display: flex;
+    padding-top: 0.4rem;
+  }
+
+  .p-subscription-switch__slider {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .p-subscriptions-separator {
+    margin-bottom: $spv-outer--medium;
+    margin-top: $spv-outer--medium;
+  }
+
+  .p-subscriptions-tooltip {
+    z-index: 102;
+  }
+
+  .p-subscriptions-tooltip__button {
+    border: 0;
+    margin-left: 0.2rem;
+    padding: 0 0.2rem 0 0.2rem;
+  }
+}

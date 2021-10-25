@@ -53,10 +53,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install dotrun
-        run: |
-          sudo snap install --beta docker
-          sudo snap install dotrun
-          sudo chown root:root /
+        uses: canonical/install-dotrun@main
 
       - name: Install dependencies
         run: /snap/bin/dotrun install
@@ -157,10 +154,7 @@ jobs:
           sudo pip3 install -r requirements.txt
 
       - name: Install dotrun
-        run: |
-          sudo snap install --beta docker
-          sudo snap install dotrun
-          sudo chown root:root /
+        uses: canonical/install-dotrun@main
 
       - name: Install node dependencies
         run: /snap/bin/dotrun install
@@ -172,9 +166,12 @@ jobs:
         run: /snap/bin/dotrun build
 
       - name: Run tests with coverage
-        run: |
-          /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
-          bash <(curl -s https://codecov.io/bash) -cF python
+        run: /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: python
 
   test-js:
     runs-on: ubuntu-latest
@@ -187,8 +184,12 @@ jobs:
 
       - name: Test JS
         run: |
-          yarn test-js
-          bash <(curl -s https://codecov.io/bash) -cF javascript
+          yarn test-js --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: javascript
 
   lint-js:
     runs-on: ubuntu-latest
@@ -228,4 +229,4 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-check
-          fail-on-error: true
+          fail-on-error: false

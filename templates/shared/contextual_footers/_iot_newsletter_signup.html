@@ -1,17 +1,17 @@
 <div class="col-4 p-divider__block">
   <h3 class="p-heading--four">IoT newsletter</h3>
   <!-- MARKETO FORM -->
-  <form action="/marketo/submit" method="post" id="mktoForm_1670" class="marketo-form">
+  <form action="/marketo/submit" method="post" id="mktoForm_1670">
     <p>Receive regular updates from our IoT newsletter.</p>
     <ul class="p-list">
-      <li class="mktFormReq mktField p-list__item">
-        <label for="email" class="mktoLabel contextual-footer__text--label">Your email address:</label>
-        <input required id="email" name="email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired">
+      <li class="p-list__item">
+        <label for="email" class="contextual-footer__text--label">Your email address:</label>
+        <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
       </li>
-      <li class="mktField mktLblRight p-list__item">
-        <span class="mktInput mktLblRight">
-          <input class="mktFormCheckbox" name="canonicalUpdatesOptIn" id="canonicalOptIn" value="yes" type="checkbox" />
-          <label class="contextual-footer__text--label" for="canonicalOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;<span class="mktFormMsg"></span>
+      <li class="p-list__item">
+        <span>
+          <input name="canonicalUpdatesOptIn" id="canonicalOptIn" value="yes" type="checkbox" />
+          <label class="contextual-footer__text--label" for="canonicalOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;
         </span>
       </li>
       <li class="p-list__item u-no-margin--top">
@@ -19,19 +19,19 @@
           In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
         </p>
       </li>
-      <li class="mktField p-list__item">
-        <button type="submit" class="mktoButton p-button--neutral">Submit</button>
-        <input type="hidden" name="formid" class="mktoField" value="1670">
-        <input type="hidden" name="IoT_Newsletters__c" class="mktoField  mktoFormCol" value="true">
+      <li class="p-list__item">
+        <button type="submit" class="p-button--neutral">Submit</button>
+        <input type="hidden" name="formid" value="1670">
+        <input type="hidden" name="IoT_Newsletters__c" value="true">
         <input type="hidden" name="returnURL" value="/internet-of-things/thank-you?product=newsletter" />
         <input type="hidden" name="Consent_to_Processing__c" value="yes" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" class="mktoField" id="utm_content" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" class="mktoField" id="utm_term" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" class="mktoField" id="GCLID__c" value="" />
-        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" class="mktoField" id="FBLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
       </li>
     </ul>
   </form>

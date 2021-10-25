@@ -37,7 +37,7 @@
             </div>
 
             <div class="col-9">
-              <input class="p-form-validation__input" name="email" type="email" required value="{{ user_info.email }}" />
+              <input class="p-form-validation__input" name="email" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required value="{{ user_info.email }}" />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -274,7 +274,6 @@
       <span id="js-progress-indicator" class="p-modal__progress u-hide">
         <i class="p-icon--success u-hide"></i>
         <i class="p-icon--spinner u-animation--spin"></i>&nbsp;&nbsp;
-        <span></span>
       </span>
 
       <div class="row u-no-padding">

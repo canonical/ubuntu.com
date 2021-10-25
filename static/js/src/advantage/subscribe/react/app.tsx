@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import PurchaseModal from "./PurchaseModal";
+import UAPurchase from "./UAPurchase";
 
 declare global {
   interface Window {
@@ -47,7 +47,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Elements stripe={stripePromise}>
-        <PurchaseModal />
+        <UAPurchase />
       </Elements>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

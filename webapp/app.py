@@ -44,6 +44,8 @@ from webapp.cube.views import (
     cube_home,
     cube_microcerts,
     cube_study_labs_button,
+    get_microcerts,
+    post_microcerts_purchase,
 )
 
 from webapp.views import (
@@ -101,6 +103,8 @@ from webapp.advantage.views import (
     post_account_user_role,
     put_account_user_role,
     put_contract_entitlements,
+    blender_thanks_view,
+    blender_shop_view,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -315,6 +319,7 @@ app.add_url_rule(
     view_func=delete_account_user_role,
     methods=["DELETE"],
 )
+app.add_url_rule("/advantage/subscribe/blender", view_func=blender_shop_view)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
 app.add_url_rule(
@@ -400,6 +405,8 @@ app.add_url_rule(
     view_func=put_contract_entitlements,
     methods=["PUT"],
 )
+
+app.add_url_rule("/advantage/blender/thank-you", view_func=blender_thanks_view)
 
 app.add_url_rule("/account", view_func=account_view)
 
@@ -791,6 +798,12 @@ core_als_autils_docs.init_app(app)
 # Cube docs
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
+app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
+app.add_url_rule(
+    "/cube/microcerts/purchase.json",
+    view_func=post_microcerts_purchase,
+    methods=["POST"],
+)
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 
 # Charmed OpenStack docs

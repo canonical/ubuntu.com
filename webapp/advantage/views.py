@@ -1,12 +1,8 @@
-# Standard library
-from datetime import datetime, timedelta, timezone
-
 # Packages
 from typing import Optional, List
 
 from dateutil.parser import parse
 import flask
-import pytz
 from flask import g
 from requests.exceptions import HTTPError
 from webargs.fields import String, Boolean
@@ -52,7 +48,7 @@ SERVICES = {
         "short": "ua",
         "name": "Canonical UA",
     },
-    "canonical-blender": {
+    "blender": {
         "short": "blender",
         "name": "Blender Support",
     },
@@ -64,281 +60,9 @@ SERVICES = {
 
 
 @advantage_decorator(permission="user", response="html")
-@use_kwargs({"subscription": String(), "email": String()}, location="query")
 def advantage_view(**kwargs):
-    open_subscription = kwargs.get("subscription", None)
-
-    personal_account = None
-    new_subscription_id = None
-    new_subscription_start_date = None
-    pending_purchase_id = None
-
-    enterprise_contracts = {}
-    previous_purchase_ids = {"monthly": "", "yearly": ""}
-    total_enterprise_contracts = 0
-
-    monthly_info = {
-        "total_subscriptions": 0,
-        "has_monthly": False,
-        "next_payment": {},
-    }
-
-    # Support admin "view as" functionality.
-    email = kwargs.get("email", "").strip()
-    accounts = g.api.get_accounts(email=email)
-
-    for account in accounts:
-        monthly_purchased_products = {}
-        yearly_purchased_products = {}
-        account["contracts"] = g.api.get_account_contracts(account["id"])
-
-        all_subscriptions = g.api.get_account_subscriptions(
-            account_id=account["id"],
-            marketplace="canonical-ua",
-        )
-
-        monthly_subscriptions = []
-        yearly_subscriptions = []
-        for subscription in all_subscriptions:
-            period = subscription["subscription"]["period"]
-            status = subscription["subscription"]["status"]
-
-            if status not in ["active", "locked"]:
-                continue
-
-            if subscription.get("pendingPurchases"):
-                pending_purchase_id = subscription.get("pendingPurchases")[0]
-
-            previous_purchase_ids[period] = subscription.get("lastPurchaseID")
-
-            if subscription["subscription"]["period"] == "yearly":
-                yearly_subscriptions.append(subscription)
-                continue
-
-            monthly_subscriptions.append(subscription)
-
-        for subscription in monthly_subscriptions:
-            purchased_products = subscription.get("purchasedProductListings")
-            if purchased_products is None:
-                continue
-
-            for purchased_product_listing in purchased_products:
-                product_listing = purchased_product_listing["productListing"]
-                product_id = product_listing["productID"]
-                quantity = purchased_product_listing["value"]
-                monthly_purchased_products[product_id] = {
-                    "quantity": quantity,
-                    "price": product_listing["price"],
-                    "product_listing_id": product_listing["id"],
-                }
-
-            _prepare_monthly_info(monthly_info, subscription)
-
-        for subscription in yearly_subscriptions:
-            purchased_products = subscription.get("purchasedProductListings")
-            if purchased_products is None:
-                continue
-
-            for purchased_product_listing in purchased_products:
-                product_listing = purchased_product_listing["productListing"]
-                product_id = product_listing["productID"]
-                quantity = purchased_product_listing["value"]
-                yearly_purchased_products[product_id] = {
-                    "quantity": quantity,
-                    "price": product_listing["price"],
-                    "product_listing_id": product_listing["id"],
-                }
-
-        for contract in account["contracts"]:
-            contract_info = contract["contractInfo"]
-            items = contract_info.get("items")
-            if not items:
-                # TODO(frankban): clean up existing contracts with no items in
-                # production.
-                continue
-
-            contract_id = contract_info["id"]
-            contract["token"] = g.api.get_contract_token(contract_id)
-
-            if contract_info.get("origin", "") == "free":
-                personal_account = account
-                personal_account["free_token"] = contract["token"]
-
-                continue
-
-            entitlements = {}
-            for entitlement in contract_info["resourceEntitlements"]:
-                contract["supportLevel"] = "-"
-                if entitlement["type"] == "support":
-                    affordance = entitlement["affordances"]
-                    contract["supportLevel"] = affordance["supportLevel"]
-
-                    continue
-
-                entitlement_type = entitlement["type"]
-                entitlements[entitlement_type] = True
-            contract["entitlements"] = entitlements
-
-            created_at = parse(contract_info["createdAt"])
-            format_create = created_at.strftime("%d %B %Y")
-            contract["contractInfo"]["createdAtFormatted"] = format_create
-            contract["contractInfo"]["status"] = "active"
-
-            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
-
-            if (
-                not new_subscription_start_date
-                or created_at > new_subscription_start_date
-            ):
-                new_subscription_start_date = created_at
-                new_subscription_id = contract["contractInfo"]["id"]
-
-            effective_to = parse(contract_info["effectiveTo"])
-            format_effective = effective_to.strftime("%d %B %Y")
-            contract["contractInfo"]["effectiveToFormatted"] = format_effective
-
-            if effective_to < time_now:
-                contract["contractInfo"]["status"] = "expired"
-                restart_date = time_now - timedelta(days=1)
-                contract["contractInfo"]["expired_restart_date"] = restart_date
-
-            date_difference = effective_to - time_now
-            contract["expiring"] = date_difference.days <= 30
-            contract["contractInfo"]["daysTillExpiry"] = date_difference.days
-
-            try:
-                contract["renewal"] = _make_renewal(contract["contractInfo"])
-            except KeyError:
-                flask.current_app.extensions["sentry"].captureException()
-                contract["renewal"] = None
-
-            enterprise_contract = enterprise_contracts.setdefault(
-                contract["accountInfo"]["name"], []
-            )
-
-            product_name = contract["contractInfo"]["products"][0]
-
-            contract["productID"] = product_name
-            contract["is_detached"] = False
-            contract["machineCount"] = 0
-            contract["rowMachineCount"] = 0
-
-            has_trial = False
-            trial_contract_item = None
-            for item in items:
-                reason = item.get("reason")
-                if reason == "trial_started":
-                    has_trial = True
-                    trial_contract_item = item
-
-                    break
-
-            is_trialled = has_trial and date_difference.days > 0
-            if is_trialled:
-                trial_contract = contract.copy()
-                trial_contract["is_detached"] = True
-                trial_contract["is_trialled"] = True
-                trial_contract["machineCount"] = trial_contract_item["value"]
-                trial_contract["rowMachineCount"] = trial_contract_item[
-                    "value"
-                ]
-
-                if trial_contract["contractInfo"]["id"] == open_subscription:
-                    enterprise_contract.insert(0, trial_contract)
-                elif (
-                    trial_contract["contractInfo"]["id"] == new_subscription_id
-                ):
-                    enterprise_contract.insert(0, trial_contract)
-                else:
-                    enterprise_contract.append(trial_contract)
-
-                total_enterprise_contracts += 1
-
-            if is_trialled and len(items) == 1:
-                continue
-
-            contract["is_trialled"] = False
-
-            allowances = contract_info.get("allowances")
-            if (
-                allowances
-                and len(allowances) > 0
-                and allowances[0]["metric"] == "units"
-            ):
-                contract["rowMachineCount"] = allowances[0]["value"]
-                if trial_contract_item:
-                    contract["rowMachineCount"] = (
-                        contract["rowMachineCount"]
-                        - trial_contract_item["value"]
-                    )
-
-            if product_name in yearly_purchased_products:
-                purchased_product = yearly_purchased_products[product_name]
-                contract["price_per_unit"] = purchased_product["price"]
-                contract["machineCount"] = purchased_product["quantity"]
-                contract["product_listing_id"] = purchased_product[
-                    "product_listing_id"
-                ]
-                contract["period"] = "yearly"
-
-                if contract["contractInfo"]["id"] == open_subscription:
-                    enterprise_contract.insert(0, contract)
-                elif contract["contractInfo"]["id"] == new_subscription_id:
-                    enterprise_contract.insert(0, contract)
-                else:
-                    enterprise_contract.append(contract)
-
-                if contract["contractInfo"]["status"] != "expired":
-                    total_enterprise_contracts += 1
-
-            if product_name in monthly_purchased_products:
-                contract = contract.copy()
-                purchased_product = monthly_purchased_products[product_name]
-                contract["price_per_unit"] = purchased_product["price"]
-                contract["machineCount"] = purchased_product["quantity"]
-                contract["is_cancelable"] = True
-                contract["product_listing_id"] = purchased_product[
-                    "product_listing_id"
-                ]
-                contract["period"] = "monthly"
-
-                if contract["contractInfo"]["id"] == open_subscription:
-                    enterprise_contract.insert(0, contract)
-                elif contract["contractInfo"]["id"] == new_subscription_id:
-                    enterprise_contract.insert(0, contract)
-                else:
-                    enterprise_contract.append(contract)
-
-                if contract["contractInfo"]["status"] != "expired":
-                    total_enterprise_contracts += 1
-
-            if (
-                product_name not in yearly_purchased_products
-                and product_name not in monthly_purchased_products
-            ):
-                contract["is_detached"] = True
-
-                if contract["contractInfo"]["id"] == open_subscription:
-                    enterprise_contract.insert(0, contract)
-                elif contract["contractInfo"]["id"] == new_subscription_id:
-                    enterprise_contract.insert(0, contract)
-                else:
-                    enterprise_contract.append(contract)
-
-                if contract["contractInfo"]["status"] != "expired":
-                    total_enterprise_contracts += 1
-
     return flask.render_template(
         "advantage/index.html",
-        accounts=accounts,
-        monthly_information=monthly_info,
-        total_enterprise_contracts=total_enterprise_contracts,
-        pending_purchase_id=pending_purchase_id,
-        enterprise_contracts=enterprise_contracts,
-        previous_purchase_ids=previous_purchase_ids,
-        personal_account=personal_account,
-        open_subscription=open_subscription,
-        new_subscription_id=new_subscription_id,
     )
 
 
@@ -348,17 +72,25 @@ def get_user_subscriptions(**kwargs):
     g.api.set_convert_response(True)
 
     email = kwargs.get("email")
+    advantage_marketplaces = ["canonical-ua", "blender"]
 
-    listings = g.api.get_product_listings("canonical-ua")
+    listings = {}
+    for marketplace in advantage_marketplaces:
+        marketplace_listings = g.api.get_product_listings(marketplace)
+        listings.update(marketplace_listings)
+
     accounts = g.api.get_accounts(email=email)
 
     user_summary = []
     for account in accounts:
         contracts = g.api.get_account_contracts(account_id=account.id)
-        subscriptions = g.api.get_account_subscriptions(
-            account_id=account.id,
-            marketplace="canonical-ua",
-        )
+        subscriptions = []
+        for marketplace in advantage_marketplaces:
+            market_subscriptions = g.api.get_account_subscriptions(
+                account_id=account.id,
+                marketplace=marketplace,
+            )
+            subscriptions.extend(market_subscriptions)
 
         user_summary.append(
             {
@@ -568,12 +300,15 @@ def payment_methods_view():
 
     if account:
         account_id = account["id"]
+        subscriptions = []
 
-        subscriptions = g.api.get_account_subscriptions(
-            account_id=account_id,
-            marketplace="canonical-ua",
-            filters={"status": "locked"},
-        )
+        for marketplace in SERVICES:
+            market_subscriptions = g.api.get_account_subscriptions(
+                account_id=account_id,
+                marketplace=marketplace,
+                filters={"status": "locked"},
+            )
+            subscriptions.extend(market_subscriptions)
 
         for subscription in subscriptions:
             if subscription.get("pendingPurchases"):
@@ -615,17 +350,21 @@ def post_advantage_subscriptions(preview, **kwargs):
     products = kwargs.get("products")
     resizing = kwargs.get("resizing", False)
     trialling = kwargs.get("trialling", False)
+    marketplace = kwargs.get("marketplace", "canonical-ua")
 
     current_subscription = {}
     if user_info(flask.session):
         subscriptions = g.api.get_account_subscriptions(
             account_id=account_id,
-            marketplace="canonical-ua",
+            marketplace=marketplace,
             filters={"status": "active"},
         )
 
         for subscription in subscriptions:
-            if subscription["subscription"]["period"] == period:
+            if (
+                subscription["subscription"]["period"] == period
+                and subscription["subscription"]["marketplace"] == marketplace
+            ):
                 current_subscription = subscription
 
     # If there is a subscription we get the current metric
@@ -665,11 +404,11 @@ def post_advantage_subscriptions(preview, **kwargs):
     try:
         if not preview:
             purchase = g.api.purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
         else:
             purchase = g.api.preview_purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
+                marketplace=marketplace, purchase_request=purchase_request
             )
     except CannotCancelLastContractError as error:
         raise UAContractsAPIError(error)
@@ -730,8 +469,102 @@ def cancel_advantage_subscriptions(**kwargs):
 def put_contract_entitlements(contract_id, **kwargs):
     g.api.set_convert_response(True)
 
+    settings = kwargs.get("entitlements")
+
+    contract = g.api.get_contract(contract_id)
+
+    allowed_entitlements = [
+        "cis",
+        "esm-infra",
+        "esm-apps",
+        "fips",
+        "fips-updates",
+        "livepatch",
+        "support",
+    ]
+
+    # validate request body
+    for setting in settings:
+        # prevent updating entitlements not on the allow list
+        if setting["type"] not in allowed_entitlements:
+            return (
+                flask.jsonify(
+                    {
+                        "error": (
+                            f"Updating entitlement '{setting['type']}' "
+                            f"is not allowed."
+                        )
+                    }
+                ),
+                400,
+            )
+
+        # prevent updating entitlements with the status "Not available"
+        has_not_available_entitlements = not any(
+            entitlement
+            for entitlement in contract.entitlements
+            if entitlement.type == setting["type"]
+        )
+
+        if has_not_available_entitlements:
+            return (
+                flask.jsonify(
+                    {
+                        "error": (
+                            f"Entitlement '{setting['type']}' "
+                            f"is not available."
+                        )
+                    }
+                ),
+                400,
+            )
+
+    # merge current entitlements settings with new entitlement settings
+    all_entitlements = settings
+    for entitlement in contract.entitlements:
+        current_setting = any(
+            setting
+            for setting in settings
+            if setting["type"] == entitlement.type
+        )
+
+        if not current_setting:
+            all_entitlements.append(
+                {
+                    "type": entitlement.type,
+                    "is_enabled": entitlement.enabled_by_default,
+                }
+            )
+
+    # check current status of entitlements
+    has_livepatch_on = False
+    has_fips_on = False
+    has_fips_updates_on = False
+    for entitlement in all_entitlements:
+        if entitlement["type"] == "livepatch":
+            has_livepatch_on = entitlement["is_enabled"]
+        if entitlement["type"] == "fips-updates":
+            has_fips_updates_on = entitlement["is_enabled"]
+        if entitlement["type"] == "fips":
+            has_fips_on = entitlement["is_enabled"]
+
+    # check rules on the current statuses
+    if has_fips_on and (has_livepatch_on or has_fips_updates_on):
+        return (
+            flask.jsonify(
+                {
+                    "error": (
+                        "Cannot have FIPS active at the same time as "
+                        "Livepatch or FIPS Updates"
+                    )
+                }
+            ),
+            400,
+        )
+
+    # build entitlement request for the API
     entitlements_request = []
-    for setting in kwargs.get("entitlements"):
+    for setting in settings:
         entitlements_request.append(
             {
                 "type": setting["type"],
@@ -865,17 +698,17 @@ def ensure_purchase_account(**kwargs):
     contract API.
     """
 
+    marketplace = kwargs.get("marketplace")
     email = kwargs.get("email")
     account_name = kwargs.get("account_name")
-    payment_method_id = kwargs.get("payment_method_id")
-    country = kwargs.get("country")
+    captcha_value = kwargs.get("captcha_value")
 
     try:
         account = g.api.ensure_purchase_account(
+            marketplace=marketplace,
             email=email,
             account_name=account_name,
-            payment_method_id=payment_method_id,
-            country=country,
+            captcha_value=captcha_value,
         )
     except UnauthorizedError as error:
         response = {
@@ -963,6 +796,7 @@ def invoices_view(**kwargs):
 
             total = None
             invoice = raw_payment.get("invoice")
+            status = invoice.get("status")
             if invoice and invoice.get("total"):
                 cost = invoice.get("total") / 100
                 currency = invoice.get("currency")
@@ -991,6 +825,7 @@ def invoices_view(**kwargs):
                     "total": total,
                     "download_file_name": "Download",
                     "download_link": download_link,
+                    "status": status,
                 }
             )
 
@@ -1011,95 +846,47 @@ def download_invoice(purchase_id):
     return flask.redirect(download_link)
 
 
-def _prepare_monthly_info(monthly_info, subscription):
-    purchased_products = subscription.get("purchasedProductListings")
-    subscription_info = subscription.get("subscription")
-    subscription_id = subscription_info.get("id")
-    is_renewing = subscription_info.get("autoRenew", False)
+@advantage_decorator(response="html")
+def blender_shop_view():
+    g.api.set_convert_response(True)
 
-    monthly_info["total_subscriptions"] += len(purchased_products)
-    monthly_info["has_monthly"] = True
-    monthly_info["id"] = subscription_id
-    monthly_info["is_auto_renewal_enabled"] = is_renewing
+    account = None
+    if user_info(flask.session):
+        try:
+            account = g.api.get_purchase_account()
+        except UAContractsUserHasNoAccount:
+            # There is no purchase account yet for this user.
+            # One will need to be created later; expected condition.
+            pass
 
-    if is_renewing:
-        renewal_info = g.api.get_subscription_auto_renewal(subscription_id)
-        last_renewal = parse(renewal_info["subscriptionStartOfCycle"])
-        next_renewal = parse(renewal_info["subscriptionEndOfCycle"])
-        total = renewal_info["total"] / 100
-        currency = renewal_info["currency"]
+    all_subscriptions = []
+    if account:
+        all_subscriptions = g.api.get_account_subscriptions(
+            account_id=account.id,
+            marketplace="blender",
+        )
 
-        monthly_info["last_payment_date"] = last_renewal.strftime("%d %B %Y")
-        monthly_info["next_payment"] = {
-            "date": next_renewal.strftime("%d %B %Y"),
-            "amount": f"{total} {currency}",
-        }
+    current_subscriptions = [
+        subscription
+        for subscription in all_subscriptions
+        if subscription.status in ["active", "locked"]
+    ]
 
+    listings = g.api.get_product_listings("blender")
+    previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
 
-def _make_renewal(contract_info):
-    """Return the renewal as present in the given info, or None."""
-    renewals = contract_info.get("renewals")
-    if not renewals:
-        return None
-
-    sorted_renewals = sorted(
-        (r for r in renewals if r["status"] not in ["lost", "closed"]),
-        key=lambda renewal: parse(renewal["start"]),
+    return flask.render_template(
+        "advantage/blender/index.html",
+        account=account,
+        previous_purchase_ids=previous_purchase_ids,
+        product_listings=listings,
     )
 
-    if len(sorted_renewals) == 0:
-        return None
 
-    renewal = sorted_renewals[0]
-
-    # If the renewal is processing, we need to find out
-    # whether payment failed and requires user action,
-    # which is information only available in the fuller
-    # renewal object get_renewal gives us.
-    if renewal["status"] == "processing":
-        renewal = g.api.get_renewal(renewal["id"])
-
-    renewal["renewable"] = False
-
-    if renewal["status"] == "done":
-        try:
-            renewal_modified_date = parse(renewal["lastModified"])
-            one_hour_ago = datetime.now(timezone.utc) - timedelta(hours=1)
-
-            renewal["recently_renewed"] = one_hour_ago < renewal_modified_date
-        except KeyError:
-            renewal["recently_renewed"] = False
-
-    # Only actionable renewals are renewable.
-    # If "actionable" isn't set, it's not actionable
-    # If "actionable" IS set, but not true, it's not actionable
-    if "actionable" not in renewal:
-        renewal["actionable"] = False
-        return renewal
-    elif not renewal["actionable"]:
-        return renewal
-
-    # The renewal is renewable only during its time window.
-    start = parse(renewal["start"])
-    end = parse(renewal["end"])
-    if not (start <= datetime.now(timezone.utc) <= end):
-        return renewal
-
-    # Pending renewals are renewable.
-    if renewal["status"] == "pending":
-        renewal["renewable"] = True
-        return renewal
-
-    # Renewals not pending or processing are never renewable.
-    if renewal["status"] != "processing":
-        return renewal
-
-    invoices = renewal.get("stripeInvoices")
-    if invoices:
-        invoice = invoices[-1]
-        renewal["renewable"] = (
-            invoice["pi_status"] == "requires_payment_method"
-            or invoice["pi_status"] == "requires_action"
-        ) and invoice["subscription_status"] == "incomplete"
-
-    return renewal
+@advantage_decorator(response="html")
+@use_kwargs({"email": String()}, location="query")
+def blender_thanks_view(**kwargs):
+    return flask.render_template(
+        "advantage/blender/thank-you.html",
+        email=kwargs.get("email"),
+    )

@@ -260,7 +260,7 @@ EOY
 The next steps are to confirm the version of the CCM to use:
 
 ```bash
-export CCM_VERSION=3.1.0
+export CCM_VERSION=3.2.2
 kubectl apply -f https://github.com/equinix/cloud-provider-equinix-metal/releases/download/v${CCM_VERSION}/deployment.yaml
 ```
 
@@ -410,6 +410,7 @@ Hello Kubernetes!
 [install]: /kubernetes/docs/install-manual
 [Equinix Cloud Controller Manager]: https://github.com/equinix/cloud-provider-equinix-metal/
 [Juju documentation]: https://juju.is/docs/olm/installing-juju
+[Equinix Metal]: https://metal.equinix.com/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

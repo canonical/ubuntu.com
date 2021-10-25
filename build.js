@@ -1,4 +1,5 @@
 let esbuild = require("esbuild");
+const path = require("path");
 
 let entries = {
   contributions: "./static/js/src/contributions.js",
@@ -11,7 +12,6 @@ let entries = {
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
   costCalculator: "./static/js/src/openstack/react/app.jsx",
-  "ua-payment-modal": "./static/js/src/ua-payment-modal.js",
   "ua-payment-methods": "./static/js/src/ua-payment-methods.js",
   "sticky-nav": "./static/js/src/sticky-nav.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
@@ -20,18 +20,26 @@ let entries = {
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
   openstackChart: "./static/js/src/openstack-chart.js",
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
+  uaSubscriptions: "./static/js/src/advantage/react/app.tsx",
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
+  blenderStore: "./static/js/src/blender-store.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
+
+// if CAPTCHA_TESTING_API_KEY doesn't exist then we are on demo / staging / production and use the real API key
+const captchaKey =
+  (process && process.env && process.env.CAPTCHA_TESTING_API_KEY) ||
+  "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if";
 
 for (const [key, value] of Object.entries(entries)) {
   const options = {
     entryPoints: [value],
     bundle: true,
     minify: isDev ? false : true,
+    nodePaths: [path.resolve(__dirname, "./static/js/src")],
     sourcemap: isDev ? false : true,
     outfile: "static/js/dist/" + key + ".js",
     target: ["chrome58", "firefox57", "safari11", "edge16"],
@@ -40,6 +48,7 @@ for (const [key, value] of Object.entries(entries)) {
         // Explicitly check for 'development' so that this defaults to
         // 'production' in all other cases.
         isDev ? '"development"' : '"production"',
+      "process.env.CAPTCHA_TESTING_API_KEY": `"${captchaKey}"`,
     },
   };
 
