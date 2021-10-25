@@ -19,6 +19,14 @@ RESPONSE_LIST = {
     "json": "Returns json response.",
 }
 
+MARKETING_FLAGS = {
+    "utm_campaign": "salesforce-campaign-id",
+    "gclid": "google-click-id",
+    "gbraid": "google-gbraid-id",
+    "wbraid": "google-wbraid-id",
+    "fbclid": "facebook-click-id",
+}
+
 
 def get_api_url(is_test_backend) -> str:
     if is_test_backend:
@@ -38,6 +46,13 @@ def advantage_decorator(permission=None, response="json"):
     def decorator(func):
         @wraps(func)
         def decorated_function(*args, **kwargs):
+            # Set marketing flag
+            for query_parameter, metadata_key in MARKETING_FLAGS.items():
+                if query_parameter in flask.request.args:
+                    flask.session.pop(metadata_key, None)
+                    value = flask.request.args.get(query_parameter)
+                    flask.session[metadata_key] = value
+
             # UA under maintenance
             if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
                 return flask.render_template("advantage/maintenance.html")

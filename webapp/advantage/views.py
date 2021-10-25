@@ -401,6 +401,28 @@ def post_advantage_subscriptions(preview, **kwargs):
     if trialling:
         purchase_request["inTrial"] = True
 
+    # marketing parameters
+
+    metadata_keys = [
+        "salesforce-campaign-id",
+        "google-click-id",
+        "google-gbraid-id",
+        "google-wbraid-id",
+        "facebook-click-id",
+    ]
+
+    metadata = [
+        {
+            "key": metadata_key,
+            "value": flask.session.get(metadata_key),
+        }
+        for metadata_key in metadata_keys
+        if flask.session.get(metadata_key)
+    ]
+
+    if metadata:
+        purchase_request["metadata"] = metadata
+
     try:
         if not preview:
             purchase = g.api.purchase_from_marketplace(
@@ -889,4 +911,11 @@ def blender_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/blender/thank-you.html",
         email=kwargs.get("email"),
+    )
+
+
+@advantage_decorator(response="html")
+def support():
+    return flask.render_template(
+        "support/index.html",
     )
