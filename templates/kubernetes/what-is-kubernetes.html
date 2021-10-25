@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
+<section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7">
@@ -42,7 +42,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip" id="container-orchestration">
   <div class="row">
     <div class="col-8">
       <h2>What is container orchestration?</h2>
@@ -53,7 +53,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>What is a Kubernetes cluster?</h2>
@@ -70,7 +70,8 @@
     </div>
 </section>
 
-<section class="p-strip--light">
+
+<section class="p-strip">
   <div class="row">
     <div class="col-8 u-sv3">
       <h2 class="u-sv3">Kubernetes advantages</h2>
@@ -134,7 +135,7 @@
       Kubernetes history and ecosystem
     </h2>
   </div>
-  <div class="row u-equal-height">
+  <div class="row u-vertically-center">
     <div class="col-8">
       <p>
         Kubernetes (from the Greek 'κυβερνήτης' meaning 'helmsman') was originally developed by Google, Kubernete's design has been heavily influenced by Google's 'Borg' project – a similar system used by Google to run much of its infrastructure. Kubernetes has since been donated to the Cloud Native Computing Foundation, a collaborative project between the Linux Foundation and Google, Cisco, IBM, Docker, Microsoft, AWS and VMware.
@@ -142,8 +143,11 @@
     </div>
     <div class="col-4 u-align--center">
       <div style="background-color:#fff; border: 1px solid #eee; padding: 1rem;">
-        <p class="p-heading--four u-align--left">
-          Did you know? The font used in the Kubernetes logo is the Ubuntu font!
+        <p class="p-heading--five u-align--left">
+          Did you know? The font used in the Kubernetes logo is the <a href="https://design.ubuntu.com/font/">Ubuntu font</a>!
+        </p>
+        <p class="p-heading--five u-align--left">
+          Did you know? Kubernetes is shortened as the <a href="https://en.wikipedia.org/wiki/Numeronym" class="p-link--external">numeronym</a> 'K8s', from the first (K) and last (s) characters and the 8 characters in between (ubernete)
         </p>
       </div>
     </div>
@@ -285,6 +289,34 @@
         }}
       </li>
     </ul>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-sv3">
+    <div class="col-12">
+      <h2>
+        What does Kubernetes do?
+      </h2>
+      <p class="u-sv3">
+        Kubernetes is a platform for running your applications and services. It manages the full lifecycle of container-based applications, by automating tasks, controlling resources, and abstracting infrastructure. Enterprises adopt Kubernetes to cut down operational costs, reduce time-to-market, and transform their business. Developers like container-based development, as it helps break up monolithic applications into more maintainable microservices. Kubernetes allows their work to move seamlessly from development to production, and results in faster-time-to-market for a businesses' applications. 
+      </p>
+      <p>
+        Kubernetes works by: 
+      </p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Orchestrating containerised applications across multiple hosts</li>
+        <li class="p-list__item is-ticked">Ensures that containerised apps behave in the same way in all environments, from testing to production</li>
+        <li class="p-list__item is-ticked">Controlling and automating application deployments and updates</li>
+        <li class="p-list__item is-ticked">Making more efficient use of hardware to minimise resources needed to run containerised applications</li>
+        <li class="p-list__item is-ticked">Mounting and adding storage to run stateful apps</li>
+        <li class="p-list__item is-ticked">Scaling and load balancing containerised applications and their resources on the fly and reacting to changes in the workload</li>
+        <li class="p-list__item is-ticked">Exposing containers to the internet, to other containers and to other clusters</li>
+        <li class="p-list__item is-ticked">Health-checking and self-healing applications with auto-placement, autorestart, auto-replication and autoscaling</li>
+        <li class="p-list__item is-ticked">Declaratively managing services, which guarantees that applications are always running as intended</li>
+        <li class="p-list__item is-ticked">Being open source (all Kubernetes code is on GitHub) and maintained by a large, active community</li>
+      </ul>
+    </div>
   </div>
 </section>
 
