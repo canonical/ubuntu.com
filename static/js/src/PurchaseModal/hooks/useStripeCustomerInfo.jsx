@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { getCustomerInfo } from "../../advantage/contracts-api";
+import { getCustomerInfo } from "../../advantage/api/contracts";
 
 const useStripeCustomerInfo = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
-    "userInfo",
+    "paymentModalUserInfo",
     async () => {
       if (!window.accountId) {
         throw new Error("MISSING ACCOUNT_ID");

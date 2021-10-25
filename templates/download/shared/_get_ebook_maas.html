@@ -73,10 +73,17 @@
               <label for="1-canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
             </li>
 
-            <li class="p-list__item" >
-              <div class="g-recaptcha" style="margin-bottom: 2rem;" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
             </li>
-
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+            
             <li class="p-list__item">
               <button type="submit" class="p-button--positive" aria-label="Submit">Download the eBook</button>
               <input type="hidden" name="formid" value="1862" aria-label="">

@@ -166,9 +166,12 @@ jobs:
         run: /snap/bin/dotrun build
 
       - name: Run tests with coverage
-        run: |
-          /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
-          bash <(curl -s https://codecov.io/bash) -cF python
+        run: /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: python
 
   test-js:
     runs-on: ubuntu-latest
@@ -181,8 +184,12 @@ jobs:
 
       - name: Test JS
         run: |
-          yarn test-js
-          bash <(curl -s https://codecov.io/bash) -cF javascript
+          yarn test-js --coverage
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          flags: javascript
 
   lint-js:
     runs-on: ubuntu-latest

@@ -1,0 +1,219 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://qa.cube.ubuntu.com/api/user/v1/accounts?email=cube%40canonical.com
+  response:
+    body:
+      string: '{"detail":"Invalid token."}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Oct 2021 21:04:52 GMT
+      Server:
+      - nginx
+      Vary:
+      - Accept-Language, Origin, Cookie
+      WWW-Authenticate:
+      - JWT realm="api"
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 401
+      message: Unauthorized
+- request:
+    body: client_id=client-id&grant_type=client_credentials&token_type=jwt
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '238'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.25.1
+    method: POST
+    uri: https://qa.cube.ubuntu.com/oauth2/access_token
+  response:
+    body:
+      string: '{"access_token": "test-access-token",
+        "expires_in": 36000, "token_type": "JWT", "scope": "read write email profile"}'
+    headers:
+      Cache-Control:
+      - no-store
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Oct 2021 21:04:52 GMT
+      P3P:
+      - CP="Open edX does not have a P3P policy."
+      Pragma:
+      - no-cache
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Accept-Language, Origin, Cookie
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - DENY
+      content-length:
+      - '771'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://qa.cube.ubuntu.com/api/user/v1/accounts?email=cube%40canonical.com
+  response:
+    body:
+      string: ''
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 19 Oct 2021 21:04:52 GMT
+      Server:
+      - nginx
+      Set-Cookie:
+      - openedx-language-preference=""; Domain=cube.ubuntu.com; expires=Thu, 01 Jan
+        1970 00:00:00 GMT; Max-Age=0; Path=/; SameSite=None; Secure
+      Vary:
+      - Accept-Language, Origin, Cookie
+      X-Frame-Options:
+      - DENY
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: null
+    headers:
+      Api-Key:
+      - 98e9b7044594195c0f8fe8148a0e7322032874e543a6c852a716be9f743db9d3
+      Api-Username:
+      - carkod
+    method: GET
+    uri: https://contracts.canonical.com/v1/marketplace/canonical-cube/product-listings
+  response:
+    body:
+      string: '{"productListings":[{"bundleQuantity":1,"createdAt":"2021-07-30T14:39:31.658Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+admintasks+2020"],"origin":"EdX"},{"IDs":["CFHJV2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+admintasks+2020","CFHJV2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIws3HbAf6zvoUikJpLLbTg"],"origin":"Stripe"},"id":"lADAhOawJYK_yfbVSK3s2M5deFHOMfTJD9wtpJwTfrFw","lastModifiedAt":"2021-07-30T14:39:31.658Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"czAAvvs2SJCH1py9Y7i3wQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/7bf909cc-Admin.svg"},{"key":"name","value":"Performing
+        Administrative Tasks"},{"key":"topics","value":"[\"Find and review information
+        about activities and processes\",\"Manage user privileges\",\"Create backups\",\"View
+        and record system utilization.\",\"Configure remote logging.\"]"}],"name":"cube-admintasks-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-admintasks","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:47.317Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+microk8s+2020"],"origin":"EdX"},{"IDs":["CFHJL2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+microk8s+2020","CFHJL2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwBHbAf6zvoUiwxYrl1fd"],"origin":"Stripe"},"id":"lAPHwJqhN52NGK1t--MODF0NZ9Yv00j6ut6JqiBuwtrc","lastModifiedAt":"2021-07-30T14:43:47.317Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"SxbUniVbQn6V7QqP5j6glA"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/1812ec49-MicroK8s.svg"},{"key":"name","value":"MicroK8s"},{"key":"topics","value":"[\"MicroK8s
+        installation\",\"MicroK8s configuration\",\"Common MicroK8s use cases\"]"}],"name":"cube-microk8s-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-microk8s","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:49.156Z","effectiveDays":90,"externalIDs":[{"IDs":["course-v1:CUBE+study_labs+2020"],"origin":"EdX"},{"IDs":["CFHJX2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+study_labs+2020","CFHJX2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwCHbAf6zvoUiJRafh6mN"],"origin":"Stripe"},"id":"lAEPabBFqmTDx3DFCaERH_zO49inakd95qFpEjRH7bp0","lastModifiedAt":"2021-07-30T14:43:49.156Z","marketplace":"canonical-cube","name":"cube-study-labs-2020","period":"none","price":{"currency":"USD","value":24900},"productID":"cube-study-labs","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:51Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+commands+2020"],"origin":"EdX"},{"IDs":["CFHJS2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+commands+2020","CFHJS2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwEHbAf6zvoUim9BUWXtw"],"origin":"Stripe"},"id":"lAMl0xqPjs4oNwxWM1UTsQhVuy6U2zi8pGRNIkxn6HjQ","lastModifiedAt":"2021-07-30T14:43:51Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"Yjz2TbTASeajywVHtNtcnA"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/43f7d2a3-Commands.svg"},{"key":"name","value":"Using
+        Command Line Tools"},{"key":"topics","value":"[\"Work with file contents\",\"Process
+        data using the command line\",\"Use essential utilities\"]"}],"name":"cube-commands-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-commands","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:52.641Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+networking+2020"],"origin":"EdX"},{"IDs":["CFHJA2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+networking+2020","CFHJA2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwGHbAf6zvoUiOtfESIky"],"origin":"Stripe"},"id":"lAMZu56kNCVG64u_dNP2rbjRNiGm0ahVyCeM85JJJysc","lastModifiedAt":"2021-07-30T14:43:52.641Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"5871A52aRE6TnUlMuThXYQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/f59674b7-Networking.svg"},{"key":"name","value":"Networking
+        on Ubuntu"},{"key":"topics","value":"[\"Set up common networking components\",\"Configure
+        common networking utilities\",\"Verify connectivity and features of remote
+        services\"]"}],"name":"cube-networking-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-networking","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:54.462Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+sysarch+2020"],"origin":"EdX"},{"IDs":["CFHYA2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+sysarch+2020","CFHYA2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwIHbAf6zvoUiCv4dkDFA"],"origin":"Stripe"},"id":"lAN77lPf2rVQJMkbOBbu21fSsPxc1EQCf-mFSy0uWTDU","lastModifiedAt":"2021-07-30T14:43:54.462Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"KafTCFzVSHecbUPcjkVA-Q"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/9ef4a092-Architecture.svg"},{"key":"name","value":"Ubuntu
+        System Architecture"},{"key":"topics","value":"[\"Review and record relevant
+        system information\",\"Manage kernels and devices\",\"Make administrative
+        changes to devices and hardware\"]"}],"name":"cube-sysarch-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-sysarch","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:56.035Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+devices+2020"],"origin":"EdX"},{"IDs":["CFHJK2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+devices+2020","CFHJK2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwJHbAf6zvoUi35aRjWRt"],"origin":"Stripe"},"id":"lAIAEO3gvJF3smejqM4L-fg-vGAVccfZOyLewe7WglUw","lastModifiedAt":"2021-07-30T14:43:56.035Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"01bwmE5zSkCTMii42dWHXQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/093b57b6-Devices+%26+files.svg"},{"key":"name","value":"Linux
+        Devices and Filesystems"},{"key":"topics","value":"[\"Configure volumes and
+        subvolumes\",\"Create and configure partitions\",\"Encrypt disks\",\"Manage
+        and configure block devices, Device Mapper, and filesystems\"]"}],"name":"cube-devices-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-devices","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:57.66Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+package+2020"],"origin":"EdX"},{"IDs":["CFHJQ2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+package+2020","CFHJQ2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwLHbAf6zvoUiJRjHWU09"],"origin":"Stripe"},"id":"lAA6B9T1OQl4E2SvE1K-_1cqiXe-ycHdg7_snFClU7SY","lastModifiedAt":"2021-07-30T14:43:57.66Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"n_lXbWCdTfifAiWcj9D_ZQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/c19e9931-Packages.svg"},{"key":"name","value":"Managing
+        Packages in Ubuntu"},{"key":"topics","value":"[\"Assess package information\",\"Use
+        and configure snaps\",\"Manage Debian packages\",\"Manage executables with
+        alternatives\"]"}],"name":"cube-package-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-package","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:43:59.308Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+systemd+2020"],"origin":"EdX"},{"IDs":["CFHJR2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+systemd+2020","CFHJR2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwNHbAf6zvoUi57ICT4dk"],"origin":"Stripe"},"id":"lAIYQK4Uh8nXuss3RWTiAJJhv9Vzf3hH5PNqzedQjIE8","lastModifiedAt":"2021-07-30T14:43:59.308Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"GQwSj8y5R3yYpO9togXGbQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/09d0b73a-Services.svg"},{"key":"name","value":"Managing
+        System Services"},{"key":"topics","value":"[\"Create or modify system service
+        configurations\",\"Manage service startup and recovery\",\"View and interpret
+        logs using the journaling service\"]"}],"name":"cube-systemd-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-systemd","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:00.946Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+juju+2020"],"origin":"EdX"},{"IDs":["CFHJU2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+juju+2020","CFHJU2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwOHbAf6zvoUiLQKX1SWw"],"origin":"Stripe"},"id":"lAFyH4JK4BHQawNnQ5GZc8yWnmoYkEjGyLkyskZXiW3U","lastModifiedAt":"2021-07-30T14:44:00.946Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"ACvrgJz1Q5-KlSphGlvc1w"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/5be7daa5-Juju.svg"},{"key":"name","value":"Juju"},{"key":"topics","value":"[\"Juju
+        fundamentals\",\"Everyday Juju usage\",\"Juju administration\"]"}],"name":"cube-juju-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-juju","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:02.777Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+security+2020"],"origin":"EdX"},{"IDs":["CFHJF2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+security+2020","CFHJF2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwQHbAf6zvoUimeVqDJlp"],"origin":"Stripe"},"id":"lAAmjxPyALyRihTw6MIZSAyjH7vpBHuFD9LkVzgZslzs","lastModifiedAt":"2021-07-30T14:44:02.777Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"MIpdhnR1TjmeK4eYUCkN9A"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/2291952a-Security.svg"},{"key":"name","value":"Securing
+        Ubuntu"},{"key":"topics","value":"[\"Operate secure encryption utilities\",\"Set
+        up and manage firewalls\",\"Solve common security issues\",\"Perform basic
+        hardening operations\"]"}],"name":"cube-security-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-security","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:04.533Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+virtualisation+2020"],"origin":"EdX"},{"IDs":["CFHJW2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+virtualisation+2020","CFHJW2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwSHbAf6zvoUiBFvyItEa"],"origin":"Stripe"},"id":"lAPldZTmMUTyu7yCKD6uvQRBj117Ue0Fnf8DEJL-YdQo","lastModifiedAt":"2021-07-30T14:44:04.533Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"ebAvD4D1S_qQ1pkUYnyRgQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/64422ff3-Virtualisation.svg"},{"key":"name","value":"Virtualisation"},{"key":"topics","value":"[\"Create
+        and use LXC containers.\",\"Create and use KVM VMs.\"]"}],"name":"cube-virtualisation-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-virtualisation","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:06.159Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+kernel+2020"],"origin":"EdX"},{"IDs":["CFHJB2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+kernel+2020","CFHJB2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwTHbAf6zvoUi9ZCwzriq"],"origin":"Stripe"},"id":"lADdl_jslrELKV7Xzn3Nz2hecFmHgfYt8PgIXVr_Ye-o","lastModifiedAt":"2021-07-30T14:44:06.159Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"TRfJwsr6R-a-iU-Vi7wkQQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/4f70dabc-Kernel.svg"},{"key":"name","value":"Ubuntu
+        Kernels"},{"key":"topics","value":"[\"Install and boot to specific kernels\",\"Configure
+        kernel and module parameters\",\"Configure kernel and module debugging options\"]"}],"name":"cube-kernel-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-kernel","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:07.814Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+shellscript+2020"],"origin":"EdX"},{"IDs":["CFHJP2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+shellscript+2020","CFHJP2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwVHbAf6zvoUiHHeZ7CAN"],"origin":"Stripe"},"id":"lABjLmk6Ihn8TzboMFjBH6XkyGwSm0BYVGqE8OYBGZAM","lastModifiedAt":"2021-07-30T14:44:07.814Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"3MpPyZTISEqlgyG9gjN2mQ"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/30af430c-bash.svg"},{"key":"name","value":"Bash
+        Shell Scripting"},{"key":"topics","value":"[\"Create, check, and test files\",\"Work
+        with logs\",\"Monitor and gather information from other systems\",\"Automate
+        tasks with loops and conditionals\"]"}],"name":"cube-shellscript-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-shellscript","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:09.359Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+maas+2020"],"origin":"EdX"},{"IDs":["CFHJM2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+maas+2020","CFHJM2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwXHbAf6zvoUij2KCrR3J"],"origin":"Stripe"},"id":"lAEBjG7gIOC2dRvEExj6JrPb3ymBj_gYIXa6TyhIZKwE","lastModifiedAt":"2021-07-30T14:44:09.359Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"4qTlg8vqQ5yNiucSW7dm-w"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/8e0dd19e-MAAS.svg"},{"key":"name","value":"MAAS"},{"key":"topics","value":"[\"MAAS
+        fundamentals\",\"Everyday MAAS usage\",\"MAAS administration\"]"}],"name":"cube-maas-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-maas","status":"active"},{"bundleQuantity":1,"createdAt":"2021-07-30T14:44:10.967Z","effectiveDays":30,"externalIDs":[{"IDs":["course-v1:CUBE+storage+2020"],"origin":"EdX"},{"IDs":["CFHJC2102"],"origin":"Salesforce"}],"externalMarketplaceIDs":{"IDs":["course-v1:CUBE+storage+2020","CFHJC2102"],"origin":"Salesforce"},"externalPricingID":{"IDs":["price_1JIwwYHbAf6zvoUi2kv0hDVf"],"origin":"Stripe"},"id":"lALRFPF44bik0zj00HG4kYt-dKu_BKB4y_FUaw_cMo_E","lastModifiedAt":"2021-07-30T14:44:10.967Z","marketplace":"canonical-cube","metadata":[{"key":"badge-class","value":"tEAG-zVjRMKeUsR6tKefgA"},{"key":"badge-url","value":"https://assets.ubuntu.com/v1/cd7785d1-Storage.svg"},{"key":"name","value":"Configuring
+        Enterprise Storage"},{"key":"topics","value":"[\"Repair unclean filesystems\",\"Manage
+        storage lifecycles\",\"Test storage capabilities\"]"}],"name":"cube-storage-2020","period":"none","price":{"currency":"USD","value":4900},"productID":"cube-storage","status":"active"}],"products":[{"id":"cube-admintasks","name":"CUBE
+        - Performing Administrative Tasks","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-commands","name":"CUBE
+        - Using Command Line Tools","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-maas","name":"CUBE
+        - MAAS","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-storage","name":"CUBE
+        - Configuring Enterprise Storage","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-networking","name":"CUBE
+        - Networking on Ubuntu","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-devices","name":"CUBE
+        - Linux Devices and Filesystems","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-systemd","name":"CUBE
+        - Managing System Services","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-virtualisation","name":"CUBE
+        - Virtualisation","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-package","name":"CUBE
+        - Managing Packages in Ubuntu","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-security","name":"CUBE
+        - Securing Ubuntu","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-shellscript","name":"CUBE
+        - Bash Shell Scripting","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-microk8s","name":"CUBE
+        - MicroK8s","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-study-labs","name":"CUBE
+        - Study Labs","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-sysarch","name":"CUBE
+        - Ubuntu System Architecture","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-juju","name":"CUBE
+        - Juju","resourceEntitlements":[],"tags":["cube"]},{"id":"cube-kernel","name":"CUBE
+        - Ubuntu Kernels","resourceEntitlements":[],"tags":["cube"]}]}'
+    headers:
+      Cache-Control:
+      - no-store, max-age=0
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 19 Oct 2021 21:04:52 GMT
+      Server:
+      - openresty/1.15.8.2
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Trace-Id:
+      - 8bafde9f-fa98-4a5f-970f-73676cea8e55
+    status:
+      code: 200
+      message: OK
+version: 1

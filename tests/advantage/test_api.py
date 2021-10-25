@@ -150,7 +150,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "params": None,
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua&productTags=classic&productTags=pro"
+                "?productTags=ua,classic,pro,blender"
             ),
         }
 
@@ -176,7 +176,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "params": None,
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua&productTags=classic&productTags=pro"
+                "?productTags=ua,classic,pro,blender"
             ),
         }
 
@@ -184,6 +184,78 @@ class TestGetAccountContracts(unittest.TestCase):
         for item in response:
             self.assertIsInstance(item, Contract)
 
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestGetContract(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_contract(contract_id="cABbCcdD")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_contract = get_fixture("contract")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_contract,
+            )
+        )
+
+        client = make_client(session)
+
+        response = client.get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/contracts/cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP"
+            ),
+        }
+
+        self.assertEqual(response, json_contract)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+    def test_convert_response_returns_list_of_contracts(self):
+        json_contract = get_fixture("contract")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_contract,
+            )
+        )
+        client = make_client(session, convert_response=True)
+
+        response = client.get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {},
+            "method": "get",
+            "params": None,
+            "url": (
+                "https://1.2.3.4/v1/contracts/cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP"
+            ),
+        }
+
+        self.assertIsInstance(response, Contract)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1311,8 +1383,8 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                 client.ensure_purchase_account(
                     email="email@url",
                     account_name="Joe Doe",
-                    payment_method_id="pm_abcdef",
-                    country="GB",
+                    marketplace="canonical-ua",
+                    captcha_value="abcd1234",
                 )
 
             self.assertEqual(error.exception.response.json(), response_content)
@@ -1330,21 +1402,20 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         response = client.ensure_purchase_account(
             email="email@url",
             account_name="Joe Doe",
-            payment_method_id="pm_abcdef",
-            country="GB",
+            marketplace="canonical-ua",
+            captcha_value="abcd1234",
         )
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": {
-                "address": {"country": "GB"},
-                "defaultPaymentMethod": {"Id": "pm_abcdef"},
                 "email": "email@url",
-                "name": "Joe Doe",
+                "accountName": "Joe Doe",
+                "recaptchaToken": "abcd1234",
             },
             "method": "post",
             "params": None,
-            "url": "https://1.2.3.4/v1/purchase-account",
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
         self.assertEqual(response, json_ensure_account)

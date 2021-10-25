@@ -331,6 +331,7 @@ class TestParsers(unittest.TestCase):
 
         expectation = [
             ContractItem(
+                id=5,
                 contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 created_at="2014-06-01T10:00:00Z",
                 start_date="2014-06-01T10:00:00Z",
@@ -355,6 +356,7 @@ class TestParsers(unittest.TestCase):
 
         expectation = [
             ContractItem(
+                id=3,
                 contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 created_at="2014-02-01T10:00:00Z",
                 start_date="2014-03-01T10:00:00Z",
@@ -362,6 +364,7 @@ class TestParsers(unittest.TestCase):
                 reason="purchase_made",
                 value=1,
                 product_listing_id="lAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
+                subscription_id="sAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 purchase_id="pAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 trial_id=None,
             ),
@@ -379,6 +382,7 @@ class TestParsers(unittest.TestCase):
 
         expectation = [
             ContractItem(
+                id=6,
                 contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP2",
                 created_at="2014-01-01T10:00:00Z",
                 start_date="2014-01-01T10:00:00Z",
@@ -437,6 +441,7 @@ class TestParsers(unittest.TestCase):
             ],
             items=[
                 ContractItem(
+                    id=10,
                     contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                     created_at="2017-01-02T10:00:00Z",
                     start_date="2017-01-02T10:00:00Z",
@@ -448,6 +453,7 @@ class TestParsers(unittest.TestCase):
                     trial_id="tAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                 ),
                 ContractItem(
+                    id=11,
                     contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                     created_at="2017-02-02T10:00:00Z",
                     start_date="2017-02-02T10:00:00Z",
@@ -483,6 +489,7 @@ class TestParsers(unittest.TestCase):
                 ],
                 items=[
                     ContractItem(
+                        id=10,
                         contract_id="cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                         created_at="2017-01-02T10:00:00Z",
                         start_date="2017-01-02T10:00:00Z",

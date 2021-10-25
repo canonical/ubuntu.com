@@ -22,6 +22,8 @@ type StepTwoProps = {
   preview: any;
   Summary: React.ComponentType;
   BuyButton: React.ComponentType<BuyButtonProps>;
+  modalTitle?: string;
+  isFreeTrialApplicable?: boolean;
 };
 
 function StepTwo({
@@ -34,6 +36,8 @@ function StepTwo({
   preview,
   Summary,
   BuyButton,
+  modalTitle = "Summary",
+  isFreeTrialApplicable = false,
 }: StepTwoProps) {
   const [areTermsChecked, setTermsChecked] = useState(false);
   const { isLoading: isUserInfoLoading } = useStripeCustomerInfo();
@@ -42,7 +46,7 @@ function StepTwo({
   );
 
   const trialNotAvailable = () => {
-    if (getIsFreeTrialEnabled()) {
+    if (getIsFreeTrialEnabled() && isFreeTrialApplicable) {
       return (
         <Row>
           <Col size={10} emptyLarge={2}>
@@ -61,7 +65,7 @@ function StepTwo({
 
   return (
     <>
-      <ModalHeader title="Your details" />
+      <ModalHeader title={modalTitle} />
 
       <ModalBody isLoading={isUserInfoLoading} error={error}>
         <>

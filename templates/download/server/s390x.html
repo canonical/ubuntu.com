@@ -98,9 +98,16 @@
               <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox"> <label for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
             </li>
 
-            <li class="p-list__item">
-              <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
             </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
 
             <li><p>All information provided will be handled in accordance with the Canonical <a href="/legal" target="_blank" rel="noopener noreferrer">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p></li>
             <li class="p-list__item">
@@ -123,10 +130,6 @@
   </div>
 </div>
 
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
-
 {% with first_item="_download_server_installation", second_item="_download_server_guide", third_item="_download_helping_hands" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer />
 
 {% endblock content %}

@@ -114,11 +114,16 @@
             <li class="p-list__item">
               In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
             </li>
-          </ul>
-          <ul class="p-list">
-            <li class="p-list__item">
-              <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
             </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
           </ul>
           <ul class="p-list">
             <li class=" p-list__item">
@@ -140,5 +145,3 @@
       </form>
     </div>
   </section>
-
-  <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>
