@@ -13,7 +13,10 @@ import {
   ExpiryNotificationSize,
   ORDERED_STATUS_KEYS,
 } from "../../ExpiryNotification/ExpiryNotification";
-import { UserSubscriptionType } from "advantage/api/enum";
+import {
+  UserSubscriptionType,
+  UserSubscriptionMarketplace,
+} from "advantage/api/enum";
 
 type Props = {
   isSelected?: boolean;
@@ -27,6 +30,8 @@ const ListCard = ({
   subscription,
 }: Props): JSX.Element => {
   const isFree = isFreeSubscription(subscription);
+  const isBlender =
+    subscription?.marketplace === UserSubscriptionMarketplace.Blender;
   // If the subscription statuses is true for any of the expiry status keys then
   // a notification will be displayed.
   const hasExpiryNotification = !!ORDERED_STATUS_KEYS.find(
@@ -79,7 +84,9 @@ const ListCard = ({
         </div>
         <Row>
           <Col medium={3} size={3} small={1}>
-            <p className="u-text--muted u-no-margin--bottom">Machines</p>
+            <p className="u-text--muted u-no-margin--bottom">
+              {isBlender ? "Users" : "Machines"}
+            </p>
             <span data-test="card-machines">
               {subscription.number_of_machines}
             </span>
@@ -99,12 +106,14 @@ const ListCard = ({
             </span>
           </Col>
         </Row>
-        <List
-          className="p-subscriptions__list-card-features p-text--x-small-capitalised u-text--muted u-no-margin--bottom"
-          data-test="card-entitlements"
-          inline
-          items={getFeaturesDisplay(subscription.entitlements).included}
-        />
+        {getFeaturesDisplay(subscription.entitlements).included.length > 0 ? (
+          <List
+            className="p-subscriptions__list-card-features p-text--x-small-capitalised u-text--muted u-no-margin--bottom"
+            data-test="card-entitlements"
+            inline
+            items={getFeaturesDisplay(subscription.entitlements).included}
+          />
+        ) : null}
       </div>
     </Card>
   );

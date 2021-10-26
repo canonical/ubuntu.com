@@ -20,7 +20,10 @@ import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
 import { SelectedId } from "../../Content/types";
-import { UserSubscriptionType } from "advantage/api/enum";
+import {
+  UserSubscriptionType,
+  UserSubscriptionMarketplace,
+} from "advantage/api/enum";
 
 type Props = {
   selectedId?: SelectedId;
@@ -53,6 +56,26 @@ const DetailsContent = ({ selectedId }: Props) => {
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id
   );
+  const isBlender =
+    subscription?.marketplace === UserSubscriptionMarketplace.Blender;
+
+  const SubscriptionToken = () => {
+    return (
+      <>
+        <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+          Subscription
+        </h5>
+        {isLoadingToken ? (
+          <div className="u-sv4" data-test="token-spinner">
+            <Spinner />
+          </div>
+        ) : (
+          tokenBlock
+        )}
+      </>
+    );
+  };
+
   const isFree = isFreeSubscription(subscription);
   if (isLoading || !subscription) {
     return <Spinner />;
@@ -106,26 +129,22 @@ const DetailsContent = ({ selectedId }: Props) => {
             ? // Don't show the cost column if it's empty.
               [costCol]
             : []),
+          ...(isBlender
+            ? // Don't show the column for Blender subscriptions.
+              []
+            : [
+                {
+                  title: "Machine type",
+                  value: getMachineTypeDisplay(subscription.machine_type),
+                },
+              ]),
           {
-            title: "Machine type",
-            value: getMachineTypeDisplay(subscription.machine_type),
-          },
-          {
-            title: "Machines",
+            title: isBlender ? "Users" : "Machines",
             value: subscription.number_of_machines,
           },
         ])}
       </Row>
-      <h5 className="u-no-padding--top p-subscriptions__details-small-title">
-        Subscription
-      </h5>
-      {isLoadingToken ? (
-        <div className="u-sv4" data-test="token-spinner">
-          <Spinner />
-        </div>
-      ) : (
-        tokenBlock
-      )}
+      {isBlender ? null : <SubscriptionToken />}
       <DetailsTabs subscription={subscription} token={token} />
     </div>
   );
