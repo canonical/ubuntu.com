@@ -216,7 +216,6 @@ export async function resizeContract(
   period
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
-
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",

@@ -1,3 +1,4 @@
+import { marketplace } from "./../../PurchaseModal/utils/utils";
 import {
   EntitlementType,
   SupportLevel,
@@ -73,6 +74,12 @@ export type ContractToken = {
 };
 
 export type LastPurchaseIds = {
-  monthly: string;
-  yearly: string;
+  [UserSubscriptionMarketplace.CanonicalUA]: {
+    monthly: string;
+    yearly: string;
+  };
+  [UserSubscriptionMarketplace.Blender]: {
+    monthly: string;
+    yearly: string;
+  };
 };
