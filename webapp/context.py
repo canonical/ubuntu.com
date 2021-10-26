@@ -49,6 +49,14 @@ def _remove_hidden(pages):
 
     return filtered_pages
 
+def count_matching_chars(str1, str2):
+    c, j = 0, 0
+    for i in str1:
+        if str2.find(i) == j and j == str1.find(i): 
+            c += 1
+        j += 1
+    return c
+
 
 def get_navigation(path):
     """
@@ -68,6 +76,9 @@ def get_navigation(path):
             breadcrumbs["section"] = nav_section
             breadcrumbs["children"] = nav_section.get("children", [])
 
+        highest_path_match_count = 0
+        active_child = None
+
         for child in nav_section["children"]:
             if is_topic_page and child["path"] == "/blog/topics":
                 # always show "Topics" as active on child topic pages
@@ -76,8 +87,12 @@ def get_navigation(path):
             elif (
                 child["path"] == path and path.startswith(nav_section["path"])
             ) or (child.get("persist") and path.startswith(child["path"])):
-                # If child path matches current path or has persist set to true
-                child["active"] = True
+                # If child path matches current path or has persist look for the closest match
+                patch_char_match_count = count_matching_chars(child["path"], path)
+                if (patch_char_match_count > highest_path_match_count):
+                    highest_path_match_count = patch_char_match_count
+                    active_child = child
+
                 nav_section["active"] = True
                 breadcrumbs["section"] = nav_section
 
@@ -94,7 +109,6 @@ def get_navigation(path):
                     breadcrumbs["children"] = _remove_hidden(
                         nav_section.get("children", [])
                     )
-                break
             else:
                 for grandchild in child.get("children", []):
                     if grandchild["path"] == path:
@@ -112,6 +126,12 @@ def get_navigation(path):
                                 child.get("children", [])
                             )
                         break
+
+        # set the child most closely matching the current path as active
+        if active_child:
+            for child in nav_section["children"]:
+                if child == active_child:
+                    child["active"] = True
 
     return {"nav_sections": sections, "breadcrumbs": breadcrumbs}
 
