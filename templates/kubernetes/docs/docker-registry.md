@@ -122,7 +122,8 @@ Login Succeeded
 
 Relate the deployed registry to the appropriate
 [container runtime][container-runtime] for your cluster. This configures
-the runtime with authentication, proxy, and/or TLS data from the registry.
+the runtime with authentication, proxy, and/or TLS data from the registry,
+and allows your registry to be used by the cluster to pull images for pods.
 
 ### Containerd
 
@@ -169,11 +170,11 @@ juju run-action docker-registry/0 \
 
 The above procedure should be repeated for all required images.
 
-## Using hosted images
+## Using the registry for cluster components
 
-The image registry used by **Charmed Kubernetes** is controlled by a
-`kubernetes-master` config option. Configure `kubernetes-master` to use your
-private registry as follows:
+The image registry used by **Charmed Kubernetes** for images used in managing
+or supporting components of the cluster itself is controlled by a `kubernetes-master`
+config option. Configure `kubernetes-master` to use your private registry as follows:
 
 ```bash
 juju config kubernetes-master image-registry=$REGISTRY
