@@ -44,7 +44,7 @@ action to force a recheck immediately.
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
-[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck1).
+[the launchpad milestone page for 1.22+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck1).
 
 # 1.22
 

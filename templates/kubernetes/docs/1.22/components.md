@@ -59,161 +59,181 @@ release. These charms are maintained by the Charmed Kubernetes team.
 <tr>
   <td> aws-iam </td>
   <td> A charm that enables using AWS IAM to authenticate with Kubernetes </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-aws-iam">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-aws-iam"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-aws-iam">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-aws-iam"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/aws-iam/91> 91 </td>
+  <td> <a href="https://jaas.ai/u/containers/aws-iam/91> 91 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> aws-integrator </td>
   <td> Charm to enable AWS integrations via Juju relations. </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-aws-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-aws-integrator"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-aws-integrator">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/charm-aws-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/aws-integrator/149> 149 </td>
+  <td> <a href="https://jaas.ai/u/containers/aws-integrator/149> 149 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> azure-integrator </td>
   <td> Proxy charm to enable Azure integrations via Juju relations. </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-azure-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-azure-integrator"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-azure-integrator">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/charm-azure-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/azure-integrator/134> 134 </td>
+  <td> <a href="https://jaas.ai/u/containers/azure-integrator/134> 134 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> calico </td>
   <td> A robust Software Defined Network from Project Calico </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-calico">docs</a> </td> <td> <a href="https://github.com/juju-solutions/layer-calico"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-calico">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/layer-calico"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/calico/835> 835 </td>
+  <td> <a href="https://jaas.ai/u/containers/calico/835> 835 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> canal </td>
   <td> A Software Defined Network based on Flannel and Calico </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-canal">docs</a> </td> <td> <a href="https://github.com/juju-solutions/layer-canal"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-canal">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/layer-canal"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/canal/834> 834 </td>
+  <td> <a href="https://jaas.ai/u/containers/canal/834> 834 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> containerd </td>
   <td> Containerd container runtime subordinate </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-containerd">docs</a> </td> <td> <a href=""> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-containerd">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-containerd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/containerd/175> 175 </td>
+  <td> <a href="https://jaas.ai/u/containers/containerd/175> 175 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> docker </td>
   <td> Docker container runtime subordinate </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-docker">docs</a> </td> <td> <a href=""> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-docker">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/layer-docker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/docker/128> 128 </td>
+  <td> <a href="https://jaas.ai/u/containers/docker/128> 128 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> docker-registry </td>
   <td> Registry for docker images </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-docker-registry">docs</a> </td> <td> <a href="https://github.com/CanonicalLtd/docker-registry-charm"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-docker-registry">docs</a> </td>
+  <td> <a href="https://github.com/CanonicalLtd/docker-registry-charm"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/docker-registry/215> 215 </td>
+  <td> <a href="https://jaas.ai/u/containers/docker-registry/215> 215 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> easyrsa </td>
   <td> Delivers EasyRSA to create a Certificate Authority (CA). </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-easyrsa">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/layer-easyrsa"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-easyrsa">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/layer-easyrsa"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/easyrsa/417> 417 </td>
+  <td> <a href="https://jaas.ai/u/containers/easyrsa/417> 417 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> etcd </td>
   <td> Deploy a TLS terminated ETCD Cluster </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-etcd">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/layer-etcd"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-etcd">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/layer-etcd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/etcd/630> 630 </td>
+  <td> <a href="https://jaas.ai/u/containers/etcd/630> 630 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> flannel </td>
   <td> A charm that provides a robust Software Defined Network </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-flannel">docs</a> </td> <td> <a href="https://github.com/coreos/flannel"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-flannel">docs</a> </td>
+  <td> <a href="https://github.com/coreos/flannel"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/flannel/594> 594 </td>
+  <td> <a href="https://jaas.ai/u/containers/flannel/594> 594 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> gcp-integrator </td>
   <td> Charm to enable GCP integrations via Juju relations. </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-gcp-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-gcp-integrator"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-gcp-integrator">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/charm-gcp-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/gcp-integrator/141> 141 </td>
+  <td> <a href="https://jaas.ai/u/containers/gcp-integrator/141> 141 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> kata </td>
   <td> Kata untrusted container runtime subordinate </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-kata">docs</a> </td> <td> <a href=""> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-kata">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-kata"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kata/135> 135 </td>
+  <td> <a href="https://jaas.ai/u/containers/kata/135> 135 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> keepalived </td>
   <td> Failover and monitoring daemon for LVS clusters </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-keepalived">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-keepalived"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-keepalived">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/charm-keepalived"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/keepalived/107> 107 </td>
+  <td> <a href="https://jaas.ai/u/containers/keepalived/107> 107 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> kubeapi-load-balancer </td>
   <td> Nginx Load Balancer </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-kubeapi-load-balancer">docs</a> </td> <td> <a href="https://nginx.org/en/"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-kubeapi-load-balancer">docs</a> </td>
+  <td> <a href="https://nginx.org/en/"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubeapi-load-balancer/841> 841 </td>
+  <td> <a href="https://jaas.ai/u/containers/kubeapi-load-balancer/841> 841 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> kubernetes-master </td>
   <td> The Kubernetes control plane. </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-kubernetes-master">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-master"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-kubernetes-master">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-master"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/1074> 1074 </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/1074> 1074 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> kubernetes-worker </td>
   <td> The workload bearing units of a kubernetes cluster </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-kubernetes-worker">docs</a> </td> <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-worker"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-kubernetes-worker">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-worker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/812> 812 </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/812> 812 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> openstack-integrator </td>
   <td> Proxy charm to enable OpenStack integrations via Juju relations. </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-openstack-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-openstack-integrator"> source </a> </td>
-  <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/openstack-integrator/178> 178 </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-openstack-integrator">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/charm-openstack-integrator"> source </a> </td>
+  <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </a></td>
+  <td> <a href="https://jaas.ai/u/containers/openstack-integrator/178> 178 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> tigera-secure-ee </td>
   <td> Tigera Secure Enterprise Edition </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-tigera-secure-ee">docs</a> </td> <td> <a href=""> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-tigera-secure-ee">docs</a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/layer-tigera-secure-ee"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/tigera-secure-ee/227> 227 </td>
+  <td> <a href="https://jaas.ai/u/containers/tigera-secure-ee/227> 227 </a></td>
   <td> -- </td>
 </tr>
 <tr>
   <td> vsphere-integrator </td>
   <td> Proxy charm to enable VMware vSphere integrations via Juju relations. </td>
-  <td> <a href="/kubernetes/docs/1.22/charm-vsphere-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-vsphere-integrator"> source </a> </td>
+  <td> <a href="/kubernetes/docs/1.22/charm-vsphere-integrator">docs</a> </td>
+  <td> <a href="https://github.com/juju-solutions/charm-vsphere-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/vsphere-integrator/120> 120 </td>
+  <td> <a href="https://jaas.ai/u/containers/vsphere-integrator/120> 120 </a></td>
   <td> -- </td>
 </tr>
 
