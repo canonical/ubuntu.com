@@ -61,6 +61,14 @@ export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
   );
 
 /**
+ * Find the Blender subscriptions.
+ */
+export const selectBlenderSubscriptions = (subscriptions: UserSubscription[]) =>
+  subscriptions.filter(
+    ({ marketplace }) => marketplace === UserSubscriptionMarketplace.Blender
+  );
+
+/**
  * Find the subscriptions with for period.
  */
 export const selectSubscriptionsForPeriod = (

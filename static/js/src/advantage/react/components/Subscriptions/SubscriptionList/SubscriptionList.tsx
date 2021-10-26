@@ -3,6 +3,7 @@ import { useUserInfo, useUserSubscriptions } from "advantage/react/hooks";
 import {
   selectFreeSubscription,
   selectUASubscriptions,
+  selectBlenderSubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
@@ -30,8 +31,14 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   } = useUserSubscriptions({
     select: selectUASubscriptions,
   });
+  const {
+    data: blenderSubscriptionsData = [],
+    isLoading: isLoadingBlender,
+  } = useUserSubscriptions({
+    select: selectBlenderSubscriptions,
+  });
   const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
-  if (isLoadingFree || isLoadingUA || isLoadingUserInfo) {
+  if (isLoadingFree || isLoadingUA || isLoadingBlender || isLoadingUserInfo) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
@@ -55,6 +62,29 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     />
   ));
 
+  const sortedBlenderSubscriptions = sortSubscriptionsByStartDate(
+    blenderSubscriptionsData
+  );
+
+  const blenderSubscriptions = sortedBlenderSubscriptions.map(
+    (subscription, i) => (
+      <ListCard
+        data-test="blender-subscription"
+        isSelected={selectedId === subscription.id}
+        key={i}
+        onClick={() => {
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-change",
+            eventLabel: "blender subscription clicked",
+          });
+          onSetActive(subscription.id);
+        }}
+        subscription={subscription}
+      />
+    )
+  );
+
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
@@ -65,6 +95,12 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
             showRenewalSettings={userInfo?.has_monthly_subscription}
           >
             {uaSubscriptions}
+          </ListGroup>
+        ) : null}
+
+        {sortedBlenderSubscriptions.length ? (
+          <ListGroup data-test="blender-subscriptions-group" title="Blender">
+            {blenderSubscriptions}
           </ListGroup>
         ) : null}
 
