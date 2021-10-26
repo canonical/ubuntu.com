@@ -25,9 +25,17 @@ const CubePurchase = () => {
     },
   });
 
-  // TODO: link to terms of service
   const termsLabel = (
-    <>I agree to the terms Certified Ubuntu Engineer (CUBE) service terms</>
+    <>
+      I agree to the{" "}
+      <a
+        href="/legal/terms-and-policies/cube-terms"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CUBE service terms
+      </a>
+    </>
   );
 
   // TODO: replace these
