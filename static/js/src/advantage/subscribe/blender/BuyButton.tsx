@@ -4,7 +4,6 @@ import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "../../../PurchaseModal/hooks/useStripeCustomerInfo";
 import useProduct from "../react/hooks/useProduct";
 import usePurchase from "../react/hooks/usePurchase";
-import useFreeTrial from "../react/hooks/useFreeTrial";
 import usePendingPurchase from "../react/hooks/usePendingPurchase";
 import { getSessionData } from "../../../utils/getSessionData";
 import { BuyButtonProps } from "../react/utils/utils";
@@ -13,7 +12,6 @@ import { checkoutEvent, purchaseEvent } from "../../ecom-events";
 
 const BuyButton = ({
   areTermsChecked,
-  isUsingFreeTrial,
   setTermsChecked,
   setError,
   setStep,
@@ -39,7 +37,6 @@ const BuyButton = ({
   const { data: userInfo } = useStripeCustomerInfo();
 
   const purchaseMutation = usePurchase();
-  const freeTrialMutation = useFreeTrial();
 
   const {
     data: pendingPurchase,
@@ -59,44 +56,7 @@ const BuyButton = ({
     // empty the product selector state persisted in the local storage
     // after the user chooses to make a purchase
     // to prevent page refreshes from causing accidental double purchasing
-    localStorage.removeItem("ua-subscribe-state");
     setIsLoading(true);
-  };
-
-  const onStartTrialClick = () => {
-    handleOnPurchaseBegin();
-
-    freeTrialMutation.mutate(undefined, {
-      onSuccess: () => {
-        //redirect
-        if (window.isGuest) {
-          location.href = `/advantage/subscribe/blender/thank-you?email=${encodeURIComponent(
-            userInfo?.customerInfo?.email ?? ""
-          )}`;
-        } else {
-          location.pathname = "/advantage";
-        }
-      },
-      onError: (error) => {
-        setIsLoading(false);
-        if (
-          error instanceof Error &&
-          error.message.includes("account already had or has access to product")
-        ) {
-          setError(<>You already have trialled this product</>);
-        } else {
-          Sentry.captureException(error);
-          setError(
-            <>
-              Sorry, there was an unknown error with the free trial. Check the
-              details and try again. Contact{" "}
-              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-              problem persists.
-            </>
-          );
-        }
-      },
-    });
   };
 
   const onPayClick = () => {
@@ -170,17 +130,12 @@ const BuyButton = ({
     if (pendingPurchase?.status === "done") {
       const purchaseInfo = {
         id: pendingPurchase?.id,
-        origin: "UA Shop",
+        origin: "Blender Shop",
         total: pendingPurchase?.invoice?.total / 100,
         tax: pendingPurchase?.invoice?.taxAmount / 100,
       };
 
       purchaseEvent(purchaseInfo, GAFriendlyProduct);
-
-      // The state of the product selector is stored in the local storage
-      // if a purchase is successful we empty it so the customer will see
-      // the default values pre-selected instead of what they just bought.
-      localStorage.removeItem("ua-subscribe-state");
 
       const request = new XMLHttpRequest();
       const formData = new FormData();
@@ -226,7 +181,7 @@ const BuyButton = ({
       aria-label="Buy"
       style={{ textAlign: "center" }}
       disabled={!areTermsChecked || isLoading}
-      onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
+      onClick={onPayClick}
       loading={isLoading}
     >
       Buy

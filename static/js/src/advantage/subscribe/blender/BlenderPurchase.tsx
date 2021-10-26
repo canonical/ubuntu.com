@@ -1,10 +1,12 @@
 import React from "react";
 import PurchaseModal from "../../../PurchaseModal";
+import useProduct from "../../subscribe/react/hooks/useProduct";
 import usePreview from "../../subscribe/react/hooks/usePreview";
 import Summary from "./Summary";
 import BuyButton from "./BuyButton";
 
 const BlenderPurchase = () => {
+  const { product, quantity } = useProduct();
   const { data: preview } = usePreview();
 
   const termsLabel = (
@@ -13,10 +15,12 @@ const BlenderPurchase = () => {
       <a
         href="/legal/ubuntu-advantage-service-terms"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="noopener norefferer"
       >
-        Ubuntu Advantage service terms
+        Ubuntu Advantage terms
       </a>
+      , which apply to the{" "}
+      <a href="/legal/solution-support">Solution Support</a> service.
     </>
   );
 
@@ -28,9 +32,9 @@ const BlenderPurchase = () => {
   return (
     <PurchaseModal
       termsLabel={termsLabel}
-      product={window.STATE.product}
+      product={product}
       preview={preview}
-      quantity={window.STATE.quantity}
+      quantity={quantity}
       closeModal={closeModal}
       Summary={Summary}
       BuyButton={BuyButton}
