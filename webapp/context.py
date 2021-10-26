@@ -49,10 +49,11 @@ def _remove_hidden(pages):
 
     return filtered_pages
 
+
 def count_matching_chars(str1, str2):
     c, j = 0, 0
     for i in str1:
-        if str2.find(i) == j and j == str1.find(i): 
+        if str2.find(i) == j and j == str1.find(i):
             c += 1
         j += 1
     return c
@@ -85,12 +86,14 @@ def get_navigation(path):
                 child["active"] = True
                 break
             elif (
-                child["path"] == path and path.startswith(nav_section["path"])
+                child["path"] == path
+                and path.startswith(nav_section["path"])
+                # If child path matches current path or has persist set to true
             ) or (child.get("persist") and path.startswith(child["path"])):
-                # If child path matches current path or has persist look for the closest match
-                patch_char_match_count = count_matching_chars(child["path"], path)
-                if (patch_char_match_count > highest_path_match_count):
-                    highest_path_match_count = patch_char_match_count
+                # look for the closest patch match
+                char_match_count = count_matching_chars(child["path"], path)
+                if char_match_count > highest_path_match_count:
+                    highest_path_match_count = char_match_count
                     active_child = child
 
                 nav_section["active"] = True
