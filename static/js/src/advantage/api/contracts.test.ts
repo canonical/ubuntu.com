@@ -16,8 +16,13 @@ import {
 } from "./contracts";
 
 describe("contracts", () => {
+  beforeEach(() => {
+    fetch.enableMocks();
+  });
+
   afterEach(() => {
     fetch.resetMocks();
+    fetch.disableMocks();
   });
 
   it("can get user info", async () => {

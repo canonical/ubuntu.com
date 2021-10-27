@@ -216,6 +216,8 @@
 </div>
 
 <script >
+window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+
 const myObserver = new ResizeObserver((entries) => {
   entries.forEach((entry) => {
     const width = Math.floor(entry.contentRect.width);
