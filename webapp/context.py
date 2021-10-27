@@ -50,17 +50,6 @@ def _remove_hidden(pages):
     return filtered_pages
 
 
-def count_matching_chars(str1, str2):
-    c = 0
-    for i in str1:
-        try:
-            if str2[c] == i:
-                c += 1
-        except ValueError:
-            break
-    return c
-
-
 def get_navigation(path):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
@@ -79,7 +68,7 @@ def get_navigation(path):
             breadcrumbs["section"] = nav_section
             breadcrumbs["children"] = nav_section.get("children", [])
 
-        highest_path_match_count = 0
+        longest_match_path = 0
         active_child = None
 
         for child in nav_section["children"]:
@@ -93,9 +82,8 @@ def get_navigation(path):
                 # If child path matches current path or has persist set to true
             ) or (child.get("persist") and path.startswith(child["path"])):
                 # look for the closest patch match
-                char_match_count = count_matching_chars(child["path"], path)
-                if char_match_count > highest_path_match_count:
-                    highest_path_match_count = char_match_count
+                if len(child["path"]) > longest_match_path:
+                    longest_match_path = len(child["path"])
                     active_child = child
 
                 nav_section["active"] = True
