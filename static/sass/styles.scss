@@ -988,6 +988,14 @@ body {
   }
 }
 
+#success {
+  display: none;
+}
+
+#success:target {
+  display: block;
+}
+
 html {
   scroll-behavior: smooth;
 }
