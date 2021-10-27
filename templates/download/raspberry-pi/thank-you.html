@@ -13,12 +13,13 @@
 {% block content %}
 
 {% if version %}
-<meta http-equiv="refresh" content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">
+  <meta http-equiv="refresh" content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
   <div class="row u-vertically-center">
     <div class="col-7">
+    <h1>{{ version }}</h1>
       {% if version %}
       <h1>Thank you for downloading<br />
         Ubuntu {{ version }}<br />
