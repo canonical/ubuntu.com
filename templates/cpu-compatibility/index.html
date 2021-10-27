@@ -8,13 +8,13 @@
 
 {% block content %}
 
-<section class="p-strip is-deep">
+<section class="p-strip is-deep u-no-padding--bottom">
   <div class="row">
     <div class="col-7">
-        <h1>CPU compatibility matrix for Ubuntu</h1>
-        <p>The CPU compatibility matrix for Ubuntu and related products. The matrix shows which Ubuntu LTS version introduces an initial support for a given processor or chipset. Canonical recommends running the latest LTS release to take advantage of the full capabilities of a CPU.</p>
+      <h1>CPU compatibility matrix for Ubuntu</h1>
+      <p>The CPU compatibility matrix for Ubuntu and related products. The matrix shows which Ubuntu LTS version introduces an initial support for a given processor or chipset. Canonical recommends running the latest LTS release to take advantage of the full capabilities of a CPU.</p>
     </div>
-  
+
     <div class="col-5 u-vertically-center u-align--center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg",
@@ -27,52 +27,60 @@
       }}
     </div>
   </div>
+</section>
 
-  <div class="u-fixed-width" style="margin-top: 2rem;">
-    <table aria-label="Table of CPU compatibility matrix for Ubuntu">
-      <thead>
-        <tr>
-          <th>VENDOR</th>
-          <th>CPU FAMILY</th>
-          <th>CODE NAME</th>
-          <th class="u-align--right">INITIAL SUPPORT IN UBUNTU LTS</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td rowspan="3">AMD</td>
-          <td>EPYC 7xx3</td>
-          <td>Milan (Zen 3)</td>
-          <td class="u-align--right">18.04.5</td>
-        </tr>
-        <tr style="border: none">
-          <td>EPYC 7xx2</td>
-          <td>Milan (Zen 2)</td>
-          <td class="u-align--right">16.04.5</td>
-        </tr>
-        <tr style="border: none">
-          <td>EPYC 7xx1</td>
-          <td>Milan (Zen 1)</td>
-          <td class="u-align--right">16.04.5</td>
-        </tr>
-        <tr>
-          <td rowspan="3">Intel</td>
-          <td>Xeon</td>
-          <td>Sapphire Rapids</td>
-          <td class="u-align--right">20.04.2</td>
-        </tr>
-        <tr style="border: none">
-          <td>Xeon</td>
-          <td>Ice Lake (SP)</td>
-          <td class="u-align--right">18.04</td>
-        </tr>
-        <tr style="border: none">
-          <td>Xeon</td>
-          <td>Cooper Lake</td>
-          <td class="u-align--right">18.04</td>
-        </tr>
-      </tbody>
-    </table>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <table class="p-table--mobile-card" aria-label="Table of CPU compatibility matrix for Ubuntu">
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>CPU family</th>
+            <th>Code name</th>
+            <th class="u-align--right">Initial support in Ubuntu LTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td aria-label="Vendor">AMD</td>
+            <td aria-label="CPU family">EPYC 7xx3</td>
+            <td aria-label="Code name">Milan (Zen 3)</td>
+            <td aria-label="Initial support in Ubuntu LTS" class="u-align--right">18.04.5</td>
+          </tr>
+          <tr class="p-table__group">
+            <td aria-label="Vendor" class="p-table__group--hide-cell"><span>AMD</span></td>
+            <td aria-label="CPU family">EPYC 7xx2</td>
+            <td aria-label="Code name">Milan (Zen 2)</td>
+            <td aria-label="Initial support in Ubuntu LTS" class="u-align--right">16.04.5</td>
+          </tr>
+          <tr class="p-table__group">
+            <td aria-label="Vendor" class="p-table__group--hide-cell"><span>AMD</span></td>
+            <td aria-label="CPU family">EPYC 7xx1</td>
+            <td aria-label="Code name">Milan (Zen 1)</td>
+            <td aria-label="Initial support in Ubuntu LTS" class="u-align--right">16.04.5</td>
+          </tr>
+          <tr>
+            <td aria-label="Vendor">Intel</td>
+            <td aria-label="CPU family">Xeon</td>
+            <td aria-label="Code name">Sapphire Rapids</td>
+            <td aria-label="Initial support in Ubuntu LTS" class="u-align--right">20.04.2</td>
+          </tr>
+          <tr class="p-table__group">
+            <td aria-label="Vendor" class="p-table__group--hide-cell"><span>Intel</span></td>
+            <td aria-label="CPU family">Xeon</td>
+            <td aria-label="Code name">Ice Lake (SP)</td>
+            <td aria-label="Initial support in Ubuntu LTS" class="u-align--right">18.04</td>
+          </tr>
+          <tr class="p-table__group">
+            <td aria-label="Vendor" class="p-table__group--hide-cell"><span>Intel</span></td>
+            <td aria-label="CPU family">Xeon</td>
+            <td aria-label="Code name">Cooper Lake</td>
+            <td aria-label="Initial support in Ubuntu LTS" class="u-align--right">18.04</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -87,161 +95,161 @@
     </div>
   </div>
 
-<div class="row">
-  <div class="col-10" style="overflow: auto;">
-    <div class="u-hide--small" id="openstack-eol"></div>
-    <table class="u-hide--medium u-hide--large">
-      <thead>
-        <tr>
-          <th>Release</th>
-          <th>Tech preview</th>
-          <th>Released</th>
-          <th>End of life</th>
-          <th>Extended customer support</th>
-          <th>Extended Security Maintenance (ESM)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>OpenStack Y LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2022</td>
-          <td>Apr 2027</td>
-          <td>&nbsp;</td>
-          <td>Apr 2032</td>
-        </tr>
-        <tr>
-          <td>Ubuntu 22.04 LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2022</td>
-          <td>Apr 2027</td>
-          <td>&nbsp;</td>
-          <td>Apr 2032</td>
-        </tr>
-        <tr>
-          <td>OpenStack Y</td>
-          <td>&nbsp;</td>
-          <td>Apr 2022</td>
-          <td>Apr 2025</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Xena</td>
-          <td>&nbsp;</td>
-          <td>Oct 2021</td>
-          <td>Apr 2023</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack W</td>
-          <td>&nbsp;</td>
-          <td>Apr 2021</td>
-          <td>Oct 2022</td>
-          <td>Apr 2024</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Victoria</td>
-          <td>&nbsp;</td>
-          <td>Oct 2020</td>
-          <td>Apr 2022</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Ussuri LTS</td>
-          <td>Apr 2020</td>
-          <td>May 2020</td>
-          <td>Apr 2025</td>
-          <td>&nbsp;</td>
-          <td>Apr 2030</td>
-        </tr>
-        <tr>
-          <td>Ubuntu 20.04 LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2020</td>
-          <td>Apr 2025</td>
-          <td>&nbsp;</td>
-          <td>Apr 2030</td>
-        </tr>
-        <tr>
-          <td>OpenStack Ussuri</td>
-          <td>Apr 2020</td>
-          <td>May 2020</td>
-          <td>Apr 2023</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Train</td>
-          <td>&nbsp;</td>
-          <td>Aug 2019</td>
-          <td>Feb 2021</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Stein</td>
-          <td>&nbsp;</td>
-          <td>Apr 2019</td>
-          <td>Oct 2020</td>
-          <td>Apr 2022</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Rocky</td>
-          <td>&nbsp;</td>
-          <td>Aug 2018</td>
-          <td>Feb 2020</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Queens LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2018</td>
-          <td>Apr 2023</td>
-          <td>&nbsp;</td>
-          <td>Apr 2028</td>
-        </tr>
-        <tr>
-          <td>Ubuntu 18.04 LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2018</td>
-          <td>Apr 2023</td>
-          <td>&nbsp;</td>
-          <td>Apr 2028</td>
-        </tr>
-        <tr>
-          <td>OpenStack Queens</td>
-          <td>&nbsp;</td>
-          <td>Feb 2018</td>
-          <td>Apr 2021</td>
-          <td>&nbsp;</td>
-          <td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td>OpenStack Mitaka LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2016</td>
-          <td>Apr 2021</td>
-          <td>&nbsp;</td>
-          <td>Apr 2024</td>
-        </tr>
-        <tr>
-          <td>Ubuntu 16.04 LTS</td>
-          <td>&nbsp;</td>
-          <td>Apr 2016</td>
-          <td>Apr 2021</td>
-          <td>&nbsp;</td>
-          <td>Apr 2024</td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col-10">
+      <div class="u-hide--small" id="openstack-eol"></div>
+      <table class="p-table--mobile-card u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Tech preview</th>
+            <th>Released</th>
+            <th>End of life</th>
+            <th>Extended customer support</th>
+            <th>Extended Security Maintenance (ESM)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td aria-label="Release">OpenStack Y LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2022</td>
+            <td aria-label="End of life">Apr 2027</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2032</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">Ubuntu 22.04 LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2022</td>
+            <td aria-label="End of life">Apr 2027</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2032</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Y</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2022</td>
+            <td aria-label="End of life">Apr 2025</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Xena</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Oct 2021</td>
+            <td aria-label="End of life">Apr 2023</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack W</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2021</td>
+            <td aria-label="End of life">Oct 2022</td>
+            <td aria-label="Extended customer support">Apr 2024</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Victoria</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Oct 2020</td>
+            <td aria-label="End of life">Apr 2022</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Ussuri LTS</td>
+            <td aria-label="Tech preview">Apr 2020</td>
+            <td aria-label="Released">May 2020</td>
+            <td aria-label="End of life">Apr 2025</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2030</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">Ubuntu 20.04 LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2020</td>
+            <td aria-label="End of life">Apr 2025</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2030</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Ussuri</td>
+            <td aria-label="Tech preview">Apr 2020</td>
+            <td aria-label="Released">May 2020</td>
+            <td aria-label="End of life">Apr 2023</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Train</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Aug 2019</td>
+            <td aria-label="End of life">Feb 2021</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Stein</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2019</td>
+            <td aria-label="End of life">Oct 2020</td>
+            <td aria-label="Extended customer support">Apr 2022</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Rocky</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Aug 2018</td>
+            <td aria-label="End of life">Feb 2020</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Queens LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2018</td>
+            <td aria-label="End of life">Apr 2023</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2028</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">Ubuntu 18.04 LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2018</td>
+            <td aria-label="End of life">Apr 2023</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2028</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Queens</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Feb 2018</td>
+            <td aria-label="End of life">Apr 2021</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">OpenStack Mitaka LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2016</td>
+            <td aria-label="End of life">Apr 2021</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2024</td>
+          </tr>
+          <tr>
+            <td aria-label="Release">Ubuntu 16.04 LTS</td>
+            <td aria-label="Tech preview">&nbsp;</td>
+            <td aria-label="Released">Apr 2016</td>
+            <td aria-label="End of life">Apr 2021</td>
+            <td aria-label="Extended customer support">&nbsp;</td>
+            <td aria-label="Extended Security Maintenance (ESM)">Apr 2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.5.0/d3.min.js" defer></script>
