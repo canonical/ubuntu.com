@@ -51,11 +51,13 @@ def _remove_hidden(pages):
 
 
 def count_matching_chars(str1, str2):
-    c, j = 0, 0
+    c = 0
     for i in str1:
-        if str2.find(i) == j and j == str1.find(i):
-            c += 1
-        j += 1
+        try:
+            if str2[c] == i:
+                c += 1
+        except ValueError:
+            break
     return c
 
 
