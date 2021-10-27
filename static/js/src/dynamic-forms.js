@@ -9,7 +9,9 @@
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
-        contactForm.setAttribute("data-return-url", returnData);
+        if (window.location.pathname) {
+          contactForm.setAttribute("data-return-url", returnData);
+        }
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
