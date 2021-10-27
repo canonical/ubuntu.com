@@ -16,14 +16,15 @@
           What is Kubernetes?
         </h1>
         <p>
-          Kubernetes, or k8s for short, is an open source platform, pioneered by Google, which started as a simple container orchestration tool but has grown into a cloud-native platform.  It's one of the most significant advancements in IT since the public cloud came to being in 2009 and has an unparalleled <a class="p-link--external" href="https://451research.com/451-research-says-application-containers-market-will-grow-to-reach-4-3bn-by-2022">5-year 30% growth rate</a> in both market revenue and overall adoption.
+          Kubernetes, or k8s for short, is an open source platform pioneered by Google, which started as a simple container orchestration tool but has grown into a cloud native platform.        </p>
+        <p>
+          It’s one of the most significant advancements in IT since the public cloud came to being in 2009, and has an unparalleled <a href="https://451research.com/451-research-says-application-containers-market-will-grow-to-reach-4-3bn-by-2022" class="p-link--external">5-year 30% growth rate</a> in both market revenue and overall adoption.
         </p>
         <p>
-          We asked Devs, DevOps and businesses to tell us how they are using Kubernetes, and it is a fascinating read.
+          Interested in Canonical Kubernetes?
         </p>
         <p>
           <a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us">Get in touch</a>
-          <a class="p-link--external" href="http://juju.is/cloud-native-kubernetes-usage-report-2021">Read our findings</a>
         </p>
       </div>
       <div class="col-5 u-align--center u-vertically-center">
@@ -43,12 +44,23 @@
 </section>
 
 <section class="p-strip" id="container-orchestration">
-  <div class="row">
-    <div class="col-8">
+  <div class="row u-sv3">
+    <div class="col-8 u-sv3">
       <h2>What is container orchestration?</h2>
       <p>
         Container orchestration is about managing the lifecycle of containers, particularly in large, dynamic environments. It automates the deployment, networking, scaling, and availability of containerised workloads and services. Running containers - which are lightweight and usually ephemeral by nature - in small numbers, is easy enough to be done manually. However, managing them at scale in production environments can be a significant challenge without the automation that container orchestration platforms offer. Kubernetes has become the standard for container orchestration in the enterprise world.
       </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div class="p-notification--information">
+        <div class="p-notification__content">
+          <p class="p-notification__message">
+            We asked Devs, DevOps and businesses to tell us how they are using Kubernetes, and it made for  a fascinating read. <a href="http://juju.is/cloud-native-kubernetes-usage-report-2021" class="p-link--external">Read our findings</a>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -60,9 +72,9 @@
       <p>
         A Kubernetes cluster is what you get when you deploy Kubernetes on physical or virtual machines. It consists of two types of machines: 
       </p>
-      <ul>
-        <li>Workers: the resources used to run the services needed to host containerised workloads</li>
-        <li>Control plane hosts: used to manage the workers and monitor the health of the entire system</li>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Workers: the resources used to run the services needed to host containerised workloads</li>
+        <li class="p-list__item is-ticked">Control plane hosts: used to manage the workers and monitor the health of the entire system</li>
       </ul>
       <p>
         Every cluster has at least one worker, and the control plane services can be colocated on a single machine. In production environments, there is typically a large number of workers, depending on the number of containers to be run, and the control plane is distributed across multiple machines for high-availability and fault-tolerance purposes.
@@ -318,11 +330,18 @@
       </ul>
     </div>
   </div>
+</section>
+
+<div class="row">
+  <hr class="is-fixed-width">
+</div>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
-      <h3>
+      <h2>
         What Kubernetes is not
-      </h3>
+      </h2>
       <p>
         Kubernetes enables configuration, automation and management capabilities around containers. It has a vast tooling ecosystem and can address complex use cases, and this is the reason why many mistake it for a traditional Platform-as-a-Service (PaaS).
       </p>
@@ -330,12 +349,17 @@
         Kubernetes, as opposed to PaaS, does not:
       </p>
       <ul class="p-list is-split">
-        <li class="plist__item is-ticked">Limit the types of supported applications or require a dependency handling framework</li>
-        <li class="plist__item is-ticked">Require applications to be written in a specific programming language, nor does it dictate a specific configuration language/system</li>
-        <li class="plist__item is-ticked">Provide application-level services, such as middleware, databases and storage clusters out of the box. Such components can be integrated with k8s through add-ons</li>
-        <li class="plist__item is-ticked">Provide or dictate specific logging, monitoring and alerting components</li>
-        <li class="plist__item is-ticked">Deploy source code or build applications, although it can be used to build CI/CD pipelines</li>
-        <li class="plist__item is-ticked">Manage and provision certificates for the applications running in containers</li>
+        <li class="p-list__item is-crossed">Limit the types of supported applications or require a dependency handling framework
+        </li>
+        <li class="p-list__item is-crossed">Require applications to be written in a specific programming language nor does it dictate a specific configuration language/system.
+        </li>
+        <li class="p-list__item is-crossed">Deploy source code and does not build applications, although it can be used to build CI/CD pipelines
+        </li>
+        <li class="p-list__item is-crossed">Provide application-level services, such as middleware, databases and storage clusters out-of-the box. Such components can be integrated with k8s through add-ons.
+        </li>
+        <li class="p-list__item is-crossed">Provide nor dictate specific logging, monitoring and alerting components
+        </li>
+        <li class="p-list__item is-crossed">Manage and provision certificates for the applications running in containers</li>
       </ul>
     </div>
   </div>
@@ -356,10 +380,10 @@
   <div class="row">
     <div class="col-5">
       <p>
-        Kubernetes works by joining a group of physical or virtual host machines referred to as "nodes", into a cluster to manage containers. This creates a "supercomputer" that has greater processing speed, more storage capacity and increased network capabilities than any single machine would have on its own. The nodes include all necessary services to run "pods", which in turn run single or multiple containers. A pod corresponds to a single instance of an application in Kubernetes.
+        Kubernetes works by joining a group of physical or virtual host machines, referred to as "nodes", into a cluster. This creates a "supercomputer" to run containerized applications with a greater processing speed, more storage capacity, and increased network capabilities than any single machine would have on its own. The nodes include all necessary services to run "pods", which in turn run single or multiple containers. A pod corresponds to a single instance of an application in Kubernetes.
       </p>
       <p>
-        One (or more for larger clusters, or High Availability) node of the cluster is designated as the "control plane". The control plane node then assumes responsibility for the cluster as the orchestration layer - scheduling and allocating tasks to the other "worker" nodes in a way which maximises the resources of the cluster. All operator interaction with the cluster goes through this main node, whether that is changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
+        One (or more for larger clusters, or High Availability) node of the cluster is designated as the "control plane". The control plane node then assumes responsibility for the cluster as the orchestration layer &ndash; scheduling and allocating tasks to the "worker" nodes in a way which optimises the resources of the cluster. All administrative and operational tasks on the cluster are done through the control plane, whether these are changes to the configuration, executing or terminating workloads, or controlling ingress and egress on the network.
       </p>
       <p>
         The control plane is also responsible for monitoring all aspects of the cluster, enabling it to perform additional useful functions such as automatically reallocating workloads in case of failure, scaling up tasks which need more resources and otherwise ensuring that the assigned workloads are always operating correctly.
@@ -513,70 +537,7 @@
     </div>
   </section>
 
-  <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="col-12">
-        <h2>
-          Why use Kubernetes?
-        </h2>
-        <p>
-          Kubernetes is a platform to run your applications and services. It's cloud-native, provides operational cost savings, faster time-to-market and is maintained by a large community. Developers like container-based development, as it helps break up monolithic applications into more maintainable microservices. Kubernetes allows their work to move seamlessly from development to production and results in faster-time-to-market for a businesses' applications.
-        </p>
-        <p>
-          Kubernetes works by:
-        </p>
-        <ul class="p-list is-split">
-          <li class="p-list__item is-ticked">Orchestrating containers across multiple hosts
-          </li>
-          <li class="p-list__item is-ticked">Ensures that containerised apps behave in the same way in all environments, from testing to production
-          </li>
-          <li class="p-list__item is-ticked">Controlling and automating application deployments and updates
-          </li>
-          <li class="p-list__item is-ticked">Making more efficient use of hardware to minimise resources needed to run containerised applications
-          </li>
-          <li class="p-list__item is-ticked">Mounting and adding storage to run stateful apps
-          </li>
-          <li class="p-list__item is-ticked">Scaling containerised applications and their resources on the fly
-          </li>
-          <li class="p-list__item is-ticked">Declaratively managing services, which guarantees that applications are always running as intended
-          </li>
-          <li class="p-list__item is-ticked">Health-checking and self-healing applications with auto-placement, autorestart, auto-replication and autoscaling
-          </li>
-          <li class="p-list__item is-ticked">Being open source (<a href="https://github.com/kubernetes/kubernetes">all Kubernetes code is on GitHub</a>) and maintained by a large, active community</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="row">
-      <div class="col-12">
-        <h2>
-          What Kubernetes is not
-        </h2>
-        <p>
-          Kubernetes is a platform that enables configuration, automation and management capabilities around containers. It has a vast tooling ecosystem and can address complex use cases, and this is the reason why many confuse it for a traditional Platform-as-a-Service (PaaS).
-        </p>
-        <p>
-          It is important to distinguish between the two solutions. Kubernetes, as opposed to PaaS does not:
-        </p>
-        <ul class="p-list is-split">
-          <li class="p-list__item is-crossed">Limit the types of supported applications or require a dependency handling framework
-          </li>
-          <li class="p-list__item is-crossed">Require applications to be written in a specific programming language nor does it dictate a specific configuration language/system.
-          </li>
-          <li class="p-list__item is-crossed">Deploy source code and does not build applications, although it can be used to build CI/CD pipelines
-          </li>
-          <li class="p-list__item is-crossed">Provide application-level services, such as middleware, databases and storage clusters out-of-the box. Such components can be integrated with k8s through add-ons.
-          </li>
-          <li class="p-list__item is-crossed">Provide nor dictate specific logging, monitoring and alerting components
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light is-deep">
+  <section class="p-strip is-deep">
     <div class="row">
       <div class="col-8">
         <h2>
@@ -595,8 +556,7 @@
             MicroK8s is a production-grade, CNCF-certified, lightweight Kubernetes that deploys a single-node cluster with a single command. It's a Linux snap that runs all Kubernetes services natively on Ubuntu, or any operating system that supports snaps, including 20+ Linux distributions, Windows and macOS.
           </p>
           <p>
-            MicroK8s is the simplest distribution of Kubernetes, and tears down the barrier of entry to container orchestration and cloud-native development. Because of its small footprint, it is ideal for clusters, workstations, CI/CD pipelines, IoT devices, and small edge clouds.
-          </p>
+            MicroK8s is the simplest distribution of Kubernetes, and eliminates the barrier to entry for container orchestration and cloud-native development. Because of its small footprint, it is ideal for clusters, workstations, CI/CD pipelines, IoT devices, and small edge clouds.          </p>
           <p>
             <a href="/kubernetes/install#single-node">
               Install MicroK8s&nbsp;&rsaquo;
@@ -611,11 +571,9 @@
         <hr>
         <div class="p-card__content">
           <p>
-            Deploy Canonical's Charmed Kubernetes, a highly available, pure upstream, multi-node Kubernetes cluster. It's a fully automated, model-driven approach to Kubernetes that takes care of logging, monitoring and alerting and provides application lifecycle automation capabilities.
-          </p>
+            Deploy Canonical's Charmed Kubernetes, a highly available, pure upstream, multi-node Kubernetes cluster. It's a fully automated, model-driven approach to Kubernetes that takes care of logging, monitoring and alerting , while also providing application lifecycle automation capabilities.          </p>
           <p>
-            It's tested across the widest range of infrastructure and deploys on bare-metal, private and public clouds. Along with our Kubernetes, Canonical supports a rich ecosystem of different pieces of software that can be integrated from the stack up. Canonical is one of Microsoft's primary development partners as Ubuntu is the operating system of choice on AKS.
-          </p>
+            Charmed Kubernetes has been tested across the widest range of infrastructures, and deploys on bare-metal, private and public clouds. Along with our Kubernetes, Canonical supports a rich ecosystem of different pieces of software that can be integrated from the stack up. Canonical is one of Microsoft's primary development partners as Ubuntu is the operating system of choice on AKS.          </p>
           <p>
             <a href="/kubernetes/docs/quickstart">
               Deploy Charmed Kubernetes&nbsp;&rsaquo;
@@ -630,11 +588,10 @@
         <hr>
         <div class="p-card__content">
           <p>
-            Don't want the hassle and cost of hiring your own K8s team of experts? Get peace of mind and focus on  your business, by leveraging our proven experience in Kubernetes deployments and operations.
+            Don't want the hassle and cost of hiring your own K8s team of experts? Get peace of mind and focus on your business, by leveraging our proven experience in Kubernetes deployments and operations.
           </p>
           <p>
-            Canonical offers a fully managed service which manages the complex operations that many may lack the skills to do, such as installing, patching, scaling, monitoring, and upgrading with zero downtime.
-          </p>
+            Canonical offers a fully managed service which takes on the complex operations that many may lack the skills to implement, such as installing, patching, scaling, monitoring, and upgrading with zero downtime.          </p>
           <p>
             If you have clusters built, we can manage them for you.  We can also build and manage them for you, handing the keys over when and if you're ready to take full control.
           </p>
@@ -686,17 +643,17 @@
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
-            <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
+            <h3 class="p-heading-icon__title p-heading--4">Webinar on demand</h3>
           </div>
         </div>
-        <p><a class="p-link--external p-link--inverted" href="https://www.brighttalk.com/webcast/6793/362200">Kubernetes at the edge: Why use Kubernetes as part of your edge strategy?</a></p>
+        <p><a class="p-link--external p-link--inverted" href="/engage/kubernetes-use-cases-webinar">Enterprise Kubernetes use cases: 4 real-world stories</a></p>
       </div>
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon">
-          <div class="p-heading-icon__header">
+          <div class="p-heading-icon__header"> 
             {{ 
               image (
-              url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
+              url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
               alt="",
               width="32",
               height="28",
@@ -705,10 +662,31 @@
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
-            <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
+            <h3 class="p-heading-icon__title p-heading--4">Video</h3>
           </div>
         </div>
-        <p><a href="/engage/kubernetes-deployment-enterprise-whitepaper" class="p-link--inverted">Five strategies to accelerate Kubernetes deployment in the enterprise</a></p>
+        <p><a class="p-link--external p-link--inverted" href="https://www.youtube.com/watch?v=tG5kqnnytIg">Canonical Kubernetes powered by Ubuntu: Charmed Kubernetes &#38; MicroK8s</a></p>
+      </div>
+    </div>
+    <div class="row p-divider is-dark">
+      <div class="col-4 p-divider__block">
+          <div class="p-heading-icon">
+            <div class="p-heading-icon__header">
+              {{ 
+                image (
+                url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
+                alt="",
+                width="32",
+                height="28",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+                ) | safe
+              }}
+              <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
+            </div>
+          </div>
+          <p><a href="/engage/kubernetes-deployment-enterprise-whitepaper" class="p-link--inverted">Five strategies to accelerate Kubernetes deployment in the enterprise</a></p>
       </div>
     </div>
   </section>
