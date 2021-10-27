@@ -1,48 +1,30 @@
-import os
 import flask
-import talisker.requests
-import talisker.sentry
 import json
 
 from urllib.parse import quote_plus
 from flask import g
-from requests import Session
-from webapp.advantage.decorators import cube_decorator
+from webapp.cube.decorators import cube_decorator
 from webapp.advantage.ua_contracts.api import UAContractsUserHasNoAccount
-from webapp.cube.api import BadgrAPI, EdxAPI
 from webapp.login import user_info
 
-QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
-QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
-
-BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
-CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
-
-badgr_session = Session()
-talisker.requests.configure(badgr_session),
-badgr_api = BadgrAPI(
-    os.getenv("BADGR_URL"),
-    os.getenv("BAGDR_USER"),
-    os.getenv("BADGR_PASSWORD"),
-    badgr_session,
-)
-
-# This API lives under a sub-domain of ubuntu.com but requests to it
-# still need proxying, so we configure the session manually to avoid
-# it loading the configurations from environment variables, since those
-# default to not proxy requests for ubuntu.com sub-domains and that is
-# the intended behaviour for most of our apps
-proxies = {"http": os.getenv("HTTP_PROXY"), "https": os.getenv("HTTPS_PROXY")}
-edx_session = Session()
-edx_session.proxies.update(proxies)
-talisker.requests.configure(edx_session)
-
-edx_api = EdxAPI(
-    os.getenv("CUBE_EDX_URL"),
-    os.getenv("CUBE_EDX_CLIENT_ID"),
-    os.getenv("CUBE_EDX_CLIENT_SECRET"),
-    edx_session,
-)
+STUDY_LAB_ID = "course-v1:CUBE+study_labs+2020"
+MODULES_ORDER = [
+    "course-v1:CUBE+sysarch+2020",
+    "course-v1:CUBE+package+2020",
+    "course-v1:CUBE+commands+2020",
+    "course-v1:CUBE+devices+2020",
+    "course-v1:CUBE+shellscript+2020",
+    "course-v1:CUBE+admintasks+2020",
+    "course-v1:CUBE+systemd+2020",
+    "course-v1:CUBE+networking+2020",
+    "course-v1:CUBE+security+2020",
+    "course-v1:CUBE+kernel+2020",
+    "course-v1:CUBE+storage+2020",
+    "course-v1:CUBE+virtualisation+2020",
+    "course-v1:CUBE+microk8s+2020",
+    "course-v1:CUBE+maas+2020",
+    "course-v1:CUBE+juju+2020",
+]
 
 
 @cube_decorator(response="html")
@@ -51,7 +33,6 @@ def cube_microcerts():
     View for Microcerts homepage
     """
     sso_user = user_info(flask.session)
-    study_labs = "course-v1:CUBE+study_labs+2020"
     account = None
 
     if sso_user:
@@ -62,12 +43,7 @@ def cube_microcerts():
             # One will need to be created later; expected condition.
             pass
 
-    edx_url = (
-        f"{edx_api.base_url}/auth/login/tpa-saml/"
-        "?auth_entry=login&idp=ubuntuone&next="
-    )
-
-    edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
+    edx_user = g.edx_api.get_user(sso_user["email"]) if sso_user else None
     product_listings = g.api.get_product_listings("canonical-cube")[
         "productListings"
     ]
@@ -75,127 +51,122 @@ def cube_microcerts():
     assertions = {}
     enrollments = []
     passed_courses = 0
+    study_labs_module = None
 
     if edx_user:
+        edx_email = edx_user["email"]
         assertions = {
             assertion["badgeclass"]: assertion
-            for assertion in badgr_api.get_assertions(
-                BADGR_ISSUER, edx_user["email"]
-            )["result"]
+            for assertion in g.badgr_api.get_assertions(edx_email)["result"]
         }
 
         enrollments = [
             enrollment["course_details"]["course_id"]
-            for enrollment in edx_api.get_enrollments(edx_user["username"])
+            for enrollment in g.edx_api.get_enrollments(edx_user["username"])
             if enrollment["is_active"]
         ]
 
     certified_badge = {}
-    if CERTIFIED_BADGE in assertions:
-        assertion = assertions.pop(CERTIFIED_BADGE)
+    if g.badgr_api.certified_badge in assertions:
+        assertion = assertions.pop(g.badgr_api.certified_badge)
         if not assertion["revoked"]:
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
 
     courses = []
     for product_list in product_listings:
-        attempts = []
         product_ids = [
             edx_id["IDs"]
             for edx_id in product_list["externalIDs"]
             if edx_id["origin"] == "EdX"
         ]
 
-        try:
-            course_id = product_ids[0][0]
-        except KeyError:
-            # course_id is not found in the API endpoint
-            # Skip to next course
-            continue
+        course_id = product_ids[0][0]
+        take_url = g.edx_api.full_url + quote_plus(
+            f"/courses/{course_id}/course"
+        )
 
         course = {
             "id": course_id,
             "product_listing_id": product_list["id"],
             "value": product_list["price"]["value"],
+            "status": "not-enrolled",
+            "take_url": take_url,
         }
 
-        # Get UA Contracts content
-        if "metadata" in product_list:
-            for course_meta in product_list["metadata"]:
-                if course_meta["key"] == "topics":
-                    course_meta["value"] = json.loads(course_meta["value"])
-
-                course[course_meta["key"]] = course_meta["value"]
-
-            if edx_user:
-                # Get Edx content
-                attempts = edx_api.get_course_attempts(
-                    course["id"], edx_user["username"]
-                )["proctored_exam_attempts"]
-
-        if product_list["productID"] == "cube-study-labs":
-            course_id = product_list["externalIDs"][0]["IDs"][0]
-            study_labs_listing = {
-                "product_listing_id": product_list["id"],
-                "price": product_list["price"]["value"],
-                "currency": product_list["price"]["currency"],
-                "product_id": product_list["productID"],
-                "status": product_list["status"],
-                "created_at": product_list["createdAt"],
-                "last_modified_at": product_list["lastModifiedAt"],
-                "effective_days": product_list["effectiveDays"],
-                "course_id": course_id,
-                "study_labs_url": edx_url
-                + quote_plus(f"courses/{course_id}/course/"),
-                "name": product_list["name"],
-                "has_study_labs": course_id in enrollments,
-            }
-            study_labs = (
-                edx_url + quote_plus(f"courses/{course_id}/course/"),
+        # Study labs are dealt with separately
+        if course_id == STUDY_LAB_ID:
+            study_labs_module = course
+            study_labs_module["name"] = "Study Labs"
+            study_labs_module["status"] = str(
+                "enrolled" if course_id in enrollments else "not-enrolled",
             )
+
+            continue
+
+        # set study lab url for all modules
+        slug = course_id.split("+")[1]
+        course["study_lab_url"] = g.edx_api.full_url + quote_plus(
+            f"/courses/{STUDY_LAB_ID}/courseware/{slug}/"
+        )
+
+        # Get user's module attempts
+        attempts = []
+        if edx_user:
+            # Get Edx content
+            attempts = g.edx_api.get_course_attempts(
+                course["id"], edx_user["username"]
+            )["proctored_exam_attempts"]
+
+        if "metadata" not in product_list:
+            continue
+
+        # Get UA Contracts content
+        for course_meta in product_list["metadata"]:
+            if course_meta["key"] == "topics":
+                course_meta["value"] = json.loads(course_meta["value"])
+
+            course[course_meta["key"]] = course_meta["value"]
+
+        if "badge-class" not in course:
+            continue
 
         # This codition skips study labs
         # Which don't have badgr data
-        if "badge-class" in course:
-            assertion = assertions.get(course["badge-class"])
-            course["status"] = "not-enrolled"
-            if assertion and not assertion["revoked"]:
-                course["badge_url"] = assertion["image"]
-                course["status"] = "passed"
-                passed_courses += 1
-            elif attempts:
-                course["status"] = (
-                    "in-progress"
-                    if not attempts[0]["completed_at"]
-                    else "failed"
-                )
-            elif course["id"] in enrollments:
-                course["status"] = "enrolled"
+        assertion = assertions.get(course["badge-class"])
+        course["status"] = "not-enrolled"
+        if assertion and not assertion["revoked"]:
+            course["badge_url"] = assertion["image"]
+            course["status"] = "passed"
+            passed_courses += 1
+        elif attempts:
+            course["status"] = (
+                "in-progress" if not attempts[0]["completed_at"] else "failed"
+            )
+        elif course["id"] in enrollments:
+            course["status"] = "enrolled"
 
-            course_id = course["id"]
-            course["take_url"] = edx_url + quote_plus(
-                f"/courses/{course_id}/courseware/2020/start/?child=first"
-            )
-            course["study_labs_url"] = edx_url + quote_plus(
-                f"courses/{study_labs}/course/"
-            )
-            courses.append(course)
+        courses.append(course)
+
+    has_study_labs = (
+        study_labs_module["status"] == "enrolled"
+        if study_labs_module
+        else False
+    )
 
     return flask.render_template(
         "cube/microcerts.html",
         **{
             "account_id": account["id"] if account else None,
             "edx_user": edx_user,
-            "edx_register_url": f"{edx_url}%2F",
+            "edx_register_url": f"{g.edx_api.full_url}%2F",
             "sso_user": sso_user,
             "certified_badge": certified_badge or None,
             "modules": courses,
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
-            "has_study_labs": study_labs in enrollments,
-            "study_labs_url": edx_url
-            + quote_plus(f"courses/{study_labs}/course/"),
-            "study_labs_listing": study_labs_listing,
+            "has_study_labs": has_study_labs,
+            "study_labs_module": study_labs_module,
         },
     )
 
@@ -203,147 +174,110 @@ def cube_microcerts():
 @cube_decorator(response="json")
 def get_microcerts():
     """
-    View for Microcerts homepage
+    View for Microcerts table
 
     returns: json
     """
-    sso_user = user_info(flask.session)
-    account = None
+    email = user_info(flask.session).get("email")
+    edx_user = g.edx_api.get_user(email) if email else None
+    study_labs = None
+    modules = []
 
-    if sso_user:
-        try:
-            account = g.api.get_purchase_account()
-        except UAContractsUserHasNoAccount:
-            # There is no purchase account yet for this user.
-            # One will need to be created later; expected condition.
-            pass
+    all_product_listings = g.api.get_product_listings("canonical-cube")
+    product_listings = all_product_listings.get("productListings")
 
-    edx_url = (
-        f"{edx_api.base_url}/auth/login/tpa-saml/"
-        "?auth_entry=login&idp=ubuntuone&next="
-    )
-    study_labs_url = edx_url + quote_plus(
-        f"courses/course-v1:CUBE+study_labs+2020/course/"
-    )
-
-    edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
-    product_listings = g.api.get_product_listings("canonical-cube")[
-        "productListings"
-    ]
-
-    study_labs_listing = None
     assertions = {}
     enrollments = []
-    passed_courses = 0
-
     if edx_user:
+        edx_email = edx_user["email"]
         assertions = {
             assertion["badgeclass"]: assertion
-            for assertion in badgr_api.get_assertions(
-                BADGR_ISSUER, edx_user["email"]
-            )["result"]
+            for assertion in g.badgr_api.get_assertions(edx_email)["result"]
         }
 
         enrollments = [
             enrollment["course_details"]["course_id"]
-            for enrollment in edx_api.get_enrollments(edx_user["username"])
+            for enrollment in g.edx_api.get_enrollments(edx_user["username"])
             if enrollment["is_active"]
         ]
 
-    certified_badge = {}
-    if CERTIFIED_BADGE in assertions:
-        assertion = assertions.pop(CERTIFIED_BADGE)
-        if not assertion["revoked"]:
-            certified_badge["image"] = assertion["image"]
-            certified_badge["share_url"] = assertion["openBadgeId"]
-
-    courses = []
+    # Build modules
     for product_list in product_listings:
-        attempts = []
         product_ids = [
             edx_id["IDs"]
             for edx_id in product_list["externalIDs"]
             if edx_id["origin"] == "EdX"
         ]
 
-        try:
-            course_id = product_ids[0][0]
-        except KeyError:
-            # course_id is not found in the API endpoint
-            # Skip to next course
-            continue
+        module_id = product_ids[0][0]
+        take_url = g.edx_api.full_url + quote_plus(
+            f"/courses/{module_id}/course"
+        )
 
-        course = {
-            "id": course_id,
+        module = {
+            "id": module_id,
             "product_listing_id": product_list["id"],
             "value": product_list["price"]["value"],
+            "status": "not-enrolled",
+            "take_url": take_url,
         }
 
+        # Study labs are dealt with separately
+        if module_id == STUDY_LAB_ID:
+            study_labs = module
+            study_labs["name"] = "Study Labs"
+            study_labs["status"] = str(
+                "enrolled" if module_id in enrollments else "not-enrolled",
+            )
+
+            continue
+
+        # set study lab url for all modules
+        slug = module_id.split("+")[1]
+        module["study_lab_url"] = g.edx_api.full_url + quote_plus(
+            f"/courses/{STUDY_LAB_ID}/courseware/{slug}/"
+        )
+
+        # Get user's module attempts
+        attempts = []
+        if edx_user:
+            # Get Edx content
+            attempts = g.edx_api.get_course_attempts(
+                module_id, edx_user["username"]
+            )["proctored_exam_attempts"]
+
+        if "metadata" not in product_list:
+            continue
+
         # Get UA Contracts content
-        if "metadata" in product_list:
-            for course_meta in product_list["metadata"]:
-                if course_meta["key"] == "topics":
-                    course_meta["value"] = json.loads(course_meta["value"])
+        for metadata in product_list["metadata"]:
+            if metadata["key"] == "topics":
+                metadata["value"] = json.loads(metadata["value"])
 
-                course[course_meta["key"]] = course_meta["value"]
+            module[metadata["key"]] = metadata["value"]
 
-            if edx_user:
-                # Get Edx content
-                attempts = edx_api.get_course_attempts(
-                    course["id"], edx_user["username"]
-                )["proctored_exam_attempts"]
+        if "badge-class" not in module:
+            continue
 
-        if product_list["productID"] == "cube-study-labs":
-            course_id = product_list["externalIDs"][0]["IDs"][0]
-            study_labs_url = (
-                edx_url + quote_plus(f"courses/{course_id}/course/"),
+        assertion = assertions.get(module["badge-class"])
+        if assertion and not assertion["revoked"]:
+            module["badge_url"] = assertion["image"]
+            module["status"] = "passed"
+        elif attempts:
+            module["status"] = (
+                "in-progress" if not attempts[0]["completed_at"] else "failed"
             )
-            study_labs_listing = {
-                "product_listing_id": product_list["id"],
-                "value": product_list["price"]["value"],
-                "product_id": product_list["productID"],
-                "course_id": course_id,
-                "study_labs_url": study_labs_url,
-                "name": product_list["name"],
-                "status": course_id in enrollments,
-            }
+        elif module["id"] in enrollments:
+            module["status"] = "enrolled"
 
-        # This codition skips study labs
-        # Which don't have badgr data
-        if "badge-class" in course:
-            assertion = assertions.get(course["badge-class"])
-            course["status"] = "not-enrolled"
-            if assertion and not assertion["revoked"]:
-                course["badge_url"] = assertion["image"]
-                course["status"] = "passed"
-                passed_courses += 1
-            elif attempts:
-                course["status"] = (
-                    "in-progress"
-                    if not attempts[0]["completed_at"]
-                    else "failed"
-                )
-            elif course["id"] in enrollments:
-                course["status"] = "enrolled"
-
-            course_id = course["id"]
-            course["take_url"] = edx_url + quote_plus(
-                f"/courses/{course_id}/courseware/2020/start/?child=first"
-            )
-            courses.append(course)
+        modules.append(module)
 
     return flask.jsonify(
         {
-            "account_id": account["id"] if account else None,
-            "edx_user": edx_user,
-            "edx_register_url": f"{edx_url}%2F",
-            "sso_user": sso_user,
-            "certified_badge": certified_badge or None,
-            "modules": courses,
-            "passed_courses": passed_courses,
-            "has_enrollments": len(enrollments) > 0,
-            "study_labs_url": study_labs_url,
-            "study_labs_listing": study_labs_listing,
+            "modules": sorted(
+                modules, key=lambda mod: MODULES_ORDER.index(mod["id"])
+            ),
+            "study_labs": study_labs,
         }
     )
 
@@ -380,28 +314,3 @@ def post_microcerts_purchase():
 
 def cube_home():
     return flask.render_template("cube/index.html")
-
-
-@cube_decorator(response="json")
-def cube_study_labs_button():
-    sso_user = user_info(flask.session)
-    study_labs = "course-v1:CUBE+study_labs+2020"
-    edx_user = edx_api.get_user(sso_user["email"])
-    enrollments = [
-        enrollment["course_details"]["course_id"]
-        for enrollment in edx_api.get_enrollments(edx_user["username"])
-        if enrollment["is_active"]
-    ]
-
-    text = "Purchase study labs access"
-    redirect_url = "/cube/microcerts"
-
-    if study_labs in enrollments:
-        text = "Access study labs"
-        prepare_materials_path = quote_plus(f"/courses/{study_labs}/course/")
-        redirect_url = (
-            f"{edx_api.base_url}/auth/login/tpa-saml/"
-            f"?auth_entry=login&idp=ubuntuone&next={prepare_materials_path}"
-        )
-
-    return flask.jsonify({"text": text, "redirect_url": redirect_url})

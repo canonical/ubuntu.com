@@ -4,13 +4,21 @@ from requests import Session
 
 class BadgrAPI:
     def __init__(
-        self, base_url: str, username: str, password: str, session: Session
+        self,
+        base_url: str,
+        username: str,
+        password: str,
+        session: Session,
+        issuer: str,
+        certified_badge: str,
     ):
         self.base_url = base_url
         self.username = username
         self.password = password
         self.session = session
         self.token = None
+        self.issuer = issuer
+        self.certified_badge = certified_badge
 
     def make_request(
         self,
@@ -43,8 +51,8 @@ class BadgrAPI:
         response = self.session.post(uri, data=data).json()
         self.token = response["access_token"]
 
-    def get_assertions(self, issuer: str, email: str):
-        uri = f"/v2/issuers/{issuer}/assertions?recipient={email}"
+    def get_assertions(self, email: str):
+        uri = f"/v2/issuers/{self.issuer}/assertions?recipient={email}"
         return self.make_request("GET", uri).json()
 
 
@@ -61,6 +69,10 @@ class EdxAPI:
         self.client_secret = client_secret
         self.session = session
         self.token = None
+        self.full_url = (
+            f"{base_url}/auth/login/tpa-saml/"
+            "?auth_entry=login&idp=ubuntuone&next="
+        )
 
     def make_request(
         self,
