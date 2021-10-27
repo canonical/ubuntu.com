@@ -44,6 +44,24 @@ edx_api = EdxAPI(
     edx_session,
 )
 
+MODULES_ORDER = [
+    "course-v1:CUBE+sysarch+2020",
+    "course-v1:CUBE+package+2020",
+    "course-v1:CUBE+commands+2020",
+    "course-v1:CUBE+devices+2020",
+    "course-v1:CUBE+shellscript+2020",
+    "course-v1:CUBE+admintasks+2020",
+    "course-v1:CUBE+systemd+2020",
+    "course-v1:CUBE+networking+2020",
+    "course-v1:CUBE+security+2020",
+    "course-v1:CUBE+kernel+2020",
+    "course-v1:CUBE+storage+2020",
+    "course-v1:CUBE+virtualisation+2020",
+    "course-v1:CUBE+microk8s+2020",
+    "course-v1:CUBE+maas+2020",
+    "course-v1:CUBE+juju+2020",
+]
+
 
 @cube_decorator(response="html")
 def cube_microcerts():
@@ -75,6 +93,7 @@ def cube_microcerts():
     assertions = {}
     enrollments = []
     passed_courses = 0
+    study_labs_listing = None
 
     if edx_user:
         assertions = {
@@ -117,6 +136,12 @@ def cube_microcerts():
             "id": course_id,
             "product_listing_id": product_list["id"],
             "value": product_list["price"]["value"],
+            "take_url": (
+                edx_url
+                + quote_plus(
+                    f"/courses/{course_id}/courseware/2020/start/?child=first"
+                )
+            ),
         }
 
         # Get UA Contracts content
@@ -134,24 +159,13 @@ def cube_microcerts():
                 )["proctored_exam_attempts"]
 
         if product_list["productID"] == "cube-study-labs":
-            course_id = product_list["externalIDs"][0]["IDs"][0]
-            study_labs_listing = {
-                "product_listing_id": product_list["id"],
-                "price": product_list["price"]["value"],
-                "currency": product_list["price"]["currency"],
-                "product_id": product_list["productID"],
-                "status": product_list["status"],
-                "created_at": product_list["createdAt"],
-                "last_modified_at": product_list["lastModifiedAt"],
-                "effective_days": product_list["effectiveDays"],
-                "course_id": course_id,
-                "study_labs_url": edx_url
-                + quote_plus(f"courses/{course_id}/course/"),
-                "name": product_list["name"],
-                "has_study_labs": course_id in enrollments,
-            }
-            study_labs = (
-                edx_url + quote_plus(f"courses/{course_id}/course/"),
+            study_labs_listing = course
+            study_labs_listing["name"] = "Study Labs"
+            study_labs_listing["take_url"] = str(
+                edx_url + quote_plus(f"/courses/{course_id}/course"),
+            )
+            study_labs_listing["status"] = str(
+                "enrolled" if course_id in enrollments else "not-enrolled",
             )
 
         # This codition skips study labs
@@ -172,13 +186,11 @@ def cube_microcerts():
             elif course["id"] in enrollments:
                 course["status"] = "enrolled"
 
-            course_id = course["id"]
-            course["take_url"] = edx_url + quote_plus(
-                f"/courses/{course_id}/courseware/2020/start/?child=first"
+            slug = course_id.split("+")[1]
+            course["study_lab_url"] = edx_url + quote_plus(
+                f"/courses/{study_labs}/courseware/{slug}/"
             )
-            course["study_labs_url"] = edx_url + quote_plus(
-                f"courses/{study_labs}/course/"
-            )
+
             courses.append(course)
 
     return flask.render_template(
@@ -193,8 +205,6 @@ def cube_microcerts():
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
             "has_study_labs": study_labs in enrollments,
-            "study_labs_url": edx_url
-            + quote_plus(f"courses/{study_labs}/course/"),
             "study_labs_listing": study_labs_listing,
         },
     )
@@ -208,6 +218,7 @@ def get_microcerts():
     returns: json
     """
     sso_user = user_info(flask.session)
+    study_labs = "course-v1:CUBE+study_labs+2020"
     account = None
 
     if sso_user:
@@ -221,9 +232,6 @@ def get_microcerts():
     edx_url = (
         f"{edx_api.base_url}/auth/login/tpa-saml/"
         "?auth_entry=login&idp=ubuntuone&next="
-    )
-    study_labs_url = edx_url + quote_plus(
-        f"courses/course-v1:CUBE+study_labs+2020/course/"
     )
 
     edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
@@ -277,6 +285,12 @@ def get_microcerts():
             "id": course_id,
             "product_listing_id": product_list["id"],
             "value": product_list["price"]["value"],
+            "take_url": (
+                edx_url
+                + quote_plus(
+                    f"/courses/{course_id}/courseware/2020/start/?child=first"
+                )
+            ),
         }
 
         # Get UA Contracts content
@@ -294,19 +308,14 @@ def get_microcerts():
                 )["proctored_exam_attempts"]
 
         if product_list["productID"] == "cube-study-labs":
-            course_id = product_list["externalIDs"][0]["IDs"][0]
-            study_labs_url = (
-                edx_url + quote_plus(f"courses/{course_id}/course/"),
+            study_labs_listing = course
+            study_labs_listing["name"] = "Study Labs"
+            study_labs_listing["take_url"] = str(
+                edx_url + quote_plus(f"/courses/{course_id}/course"),
             )
-            study_labs_listing = {
-                "product_listing_id": product_list["id"],
-                "value": product_list["price"]["value"],
-                "product_id": product_list["productID"],
-                "course_id": course_id,
-                "study_labs_url": study_labs_url,
-                "name": product_list["name"],
-                "status": course_id in enrollments,
-            }
+            study_labs_listing["status"] = str(
+                "enrolled" if course_id in enrollments else "not-enrolled",
+            )
 
         # This codition skips study labs
         # Which don't have badgr data
@@ -326,10 +335,11 @@ def get_microcerts():
             elif course["id"] in enrollments:
                 course["status"] = "enrolled"
 
-            course_id = course["id"]
-            course["take_url"] = edx_url + quote_plus(
-                f"/courses/{course_id}/courseware/2020/start/?child=first"
+            slug = course_id.split("+")[1]
+            course["study_lab_url"] = edx_url + quote_plus(
+                f"/courses/{study_labs}/courseware/{slug}/"
             )
+
             courses.append(course)
 
     return flask.jsonify(
@@ -339,10 +349,11 @@ def get_microcerts():
             "edx_register_url": f"{edx_url}%2F",
             "sso_user": sso_user,
             "certified_badge": certified_badge or None,
-            "modules": courses,
+            "modules": sorted(
+                courses, key=lambda c: MODULES_ORDER.index(c["id"])
+            ),
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
-            "study_labs_url": study_labs_url,
             "study_labs_listing": study_labs_listing,
         }
     )
