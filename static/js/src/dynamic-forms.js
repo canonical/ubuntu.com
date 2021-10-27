@@ -3,10 +3,15 @@
     var triggeringHash = "#get-in-touch";
     var formContainer = document.getElementById("contact-form-container");
     var contactButtons = document.querySelectorAll(".js-invoke-modal");
+    const contactForm = document.getElementById("contact-form-container");
+    const returnData = window.location.pathname + "#success";
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
+        if (window.location.pathname) {
+          contactForm.setAttribute("data-return-url", returnData);
+        }
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
