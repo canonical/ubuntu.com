@@ -13,7 +13,7 @@
       <h1>You&rsquo;re a professional.</br>Prove it with CUBE.</h1>
       <p class="p-heading--4">The Certified Ubuntu Engineer (CUBE) is a professional endorsement indicating mastery of Ubuntu. You need to pass 15 microcerts to earn your CUBE qualification.</p>
       <p>
-        <a href="/cube/microcerts" class="p-button--positive">View the microcerts</a>
+        <a href="/cube/microcerts{% if get_test_backend %}?test_backend=true{% endif %}" class="p-button--positive">View the microcerts</a>
       </p>
     </div>
     <div class="col-5 col-start-large-8 u-hide--small p-cube-animation">

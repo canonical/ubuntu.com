@@ -130,11 +130,13 @@ def cube_decorator(response="json"):
 
             if response == "html":
                 if not user_info(flask.session):
-                    return flask.redirect(
-                        "/login?test_backend=true"
-                        if is_test_backend
-                        else "/login"
-                    )
+                    if is_test_backend:
+                        return flask.redirect(
+                            "/login?test_backend=true&"
+                            "next=/cube/microcerts?test_backend=true"
+                        )
+
+                    return flask.redirect("/login?next=/cube/microcerts")
 
             elif response == "json":
                 if not user_info(flask.session):
