@@ -9,9 +9,16 @@ import CubePurchaseModal from "../CubePurchaseModal";
 type Props = {
   productName: string;
   productListingId: string;
+  buttonText?: string;
+  buttonAppearance?: string;
 };
 
-const CubePurchase = ({ productName, productListingId }: Props) => {
+const CubePurchase = ({
+  productName,
+  productListingId,
+  buttonText = "Purchase",
+  buttonAppearance = "positive",
+}: Props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const closeHandler = () => setModalOpen(false);
 
@@ -30,9 +37,9 @@ const CubePurchase = ({ productName, productListingId }: Props) => {
   });
 
   return (
-    <div>
-      <Button appearance={"positive"} onClick={() => setModalOpen(true)}>
-        Purchase
+    <>
+      <Button appearance={buttonAppearance} onClick={() => setModalOpen(true)}>
+        {buttonText}
       </Button>
       {modalOpen ? (
         <QueryClientProvider client={queryClient}>
@@ -46,7 +53,7 @@ const CubePurchase = ({ productName, productListingId }: Props) => {
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       ) : null}
-    </div>
+    </>
   );
 };
 

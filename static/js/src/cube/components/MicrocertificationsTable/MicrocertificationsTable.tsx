@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ContextualMenu, MainTable } from "@canonical/react-components";
-
 import CubePurchase from "../CubePurchase";
+import PrepareButton from "../PrepareButton";
 
 export enum Status {
   Enrolled = "enrolled",
@@ -23,6 +23,7 @@ const translateStatus = (status: Status) => {
 
 const TableView = () => {
   const [modules, setModules] = useState([]);
+  const [studyLabs, setStudyLabs] = useState<Record<string, unknown>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -33,18 +34,21 @@ const TableView = () => {
         const response = await fetch(`/cube/microcerts.json${queryString}`);
 
         if (response.status === 200) {
-          let { modules } = await response.json();
+          const responseJson = await response.json();
+          const { study_labs_listing: studyLabs } = responseJson;
+          let { modules } = responseJson;
           modules = modules.map((module: Record<string, unknown>) => ({
             name: module["name"],
             badgeURL: module["badge-url"],
             topics: module["topics"],
-            studyLabURL: module["study_lab"],
+            studyLabURL: module["study_lab_url"],
             takeURL: module["take_url"],
             status: module["status"],
             productListingId: module["product_listing_id"],
           }));
 
           setModules(modules);
+          setStudyLabs(studyLabs);
         }
       } catch {
         const errorMessage = "An error occurred while loading the microcerts";
@@ -107,12 +111,12 @@ const TableView = () => {
     <div className="u-no-padding--top u-align--right">
       {status === Status.Enrolled ? (
         <>
-          <a
-            className="p-button--neutral u-no-margin--right"
-            href={studyLabURL}
-          >
-            Prepare
-          </a>
+          <PrepareButton
+            studyLabURL={studyLabURL}
+            productName={String(studyLabs["name"])}
+            productListingId={String(studyLabs["product_listing_id"])}
+            isEnrolled={studyLabs["status"] === "enrolled"}
+          />
           <a className="p-button--positive" href={takeURL}>
             Take
           </a>
