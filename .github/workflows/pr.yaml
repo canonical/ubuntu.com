@@ -1,5 +1,5 @@
 name: PR checks
-on: pull_request
+on: [push, pull_request]
 env:
   SECRET_KEY: insecure_test_key
   DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
@@ -169,7 +169,7 @@ jobs:
         run: /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           flags: python
 
@@ -187,7 +187,7 @@ jobs:
           yarn test-js --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           flags: javascript
 
