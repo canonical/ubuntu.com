@@ -35,4 +35,17 @@
       }
     }
   }
+
+  // XXX: Ant - 27.10.21: This is a work around to group tables rows with
+  // mobile cards support. Can be removed once this is issues is fixed:
+  // https://github.com/canonical-web-and-design/vanilla-framework/issues/4100
+  .p-table__group {
+    @media (min-width: $breakpoint-medium) {
+      border-top: 0 !important;
+
+      .p-table__group--hide-cell span {
+        display: none;
+      }
+    }
+  }
 }

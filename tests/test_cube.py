@@ -3,6 +3,7 @@ from urllib.parse import quote_plus
 # Packages
 from flask import template_rendered
 from vcr_unittest import VCRTestCase
+import requests
 
 # Local
 from webapp.app import app
@@ -31,7 +32,10 @@ class TestCube(VCRTestCase):
         self.client = app.test_client()
         return super().setUp()
 
-    def test_microcerts_authenticated(self):
+    def _test_microcerts_content(self, content):
+        """
+        Check content of microcerts listing
+        """
         expected_module = {
             "course-v1:CUBE+admintasks+2020": "enrolled",
             "course-v1:CUBE+commands+2020": "not-enrolled",
@@ -50,24 +54,7 @@ class TestCube(VCRTestCase):
             "course-v1:CUBE+virtualisation+2020": "not-enrolled",
         }
 
-        with self.client.session_transaction() as session:
-            session["authentication_token"] = "test_token"
-            session["openid"] = {
-                "fullname": "Cube Engineer",
-                "email": "cube@canonical.com",
-            }
-
-        templates = []
-        with captured_templates(app, templates):
-            response = self.client.get("/cube/microcerts")
-
-        template, context = templates[0]
-        modules = context["modules"]
-
-        self.assertEqual(len(modules), 15)
-
-        # Assert all modules have defined topics
-        for module in modules:
+        for module in content["modules"]:
             self.assertGreater(len(module["topics"]), 0)
             self.assertEqual(module["status"], expected_module[module["id"]])
             self.assertTrue(
@@ -78,34 +65,29 @@ class TestCube(VCRTestCase):
                 )
             )
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.headers.get("Cache-Control"),
-            "no-store",
-        )
-
     def test_microcerts_json(self):
-        with self.client.session_transaction() as session:
-            session["authentication_token"] = "test_token"
-            session["openid"] = {
-                "fullname": "Cube Engineer",
-                "email": "cube@canonical.com",
-            }
-        response = self.client.get("/cube/microcerts.json")
-        content = response.json
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("authentication_token", content["sso_user"])
-        self.assertGreater(len(content["modules"]), 0)
+        with app.test_request_context():
+            with self.client.session_transaction() as session:
+                session["authentication_token"] = "auth-token"
+                session["openid"] = {
+                    "fullname": "Cube Engineer",
+                    "email": "cube@canonical.com",
+                }
+                headers = {
+                    "Content-type": "application/json",
+                    "Accept": "application/json",
+                }
+                cookie = {"session": "session-key"}
 
-        for module in content["modules"]:
-            self.assertGreater(len(module["topics"]), 0)
-            self.assertTrue(
-                module["take_url"].endswith(
-                    quote_plus(
-                        f"{module['id']}/courseware/2020/start/?child=first"
-                    )
+                response = requests.get(
+                    "http://localhost:8001/cube/microcerts.json"
+                    "?test_backend=true",
+                    headers=headers,
+                    cookies=cookie,
                 )
-            )
+                self.assertEqual(response.status_code, 200)
+                content = response.json()
+                self._test_microcerts_content(content)
 
     def test_study_login_required(self):
         response = self.client.get("/cube/study")

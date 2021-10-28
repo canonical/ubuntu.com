@@ -7,6 +7,7 @@
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
+
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {

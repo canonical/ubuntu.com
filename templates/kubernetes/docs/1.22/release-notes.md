@@ -13,6 +13,39 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.22+ck1 Bugfix release
+
+### October 21, 2021 - [charmed-kubernetes-807](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-807/archive/bundle.yaml)
+
+## What's new
+
+- Configurable default PodSecurityPolicy
+
+A new `pod-security-policy` config option has been added to the
+kubernetes-master charm. This option allows you to override the default
+PodSecurityPolicy that is created by the charm.
+
+- Configurable Nvidia APT sources
+
+New config options have been added to the containerd charm:
+`nvidia_apt_key_urls`, `nvidia_apt_sources`, and `nvidia_apt_packages`. These
+provide better support for Nvidia GPUs in air gapped deployments by allowing
+you to specify where the Nvidia Container Runtime and CUDA packages are pulled
+from.
+
+- Better OpenStack credential handling
+
+The openstack-integrator charm now checks for updated cloud credentials from
+Juju every time its update-status hook runs, ensuring that cloud credentials
+are properly detected a short time after they change. To expedite this process,
+you can use the new openstack-integrator charm's new `refresh-credentials`
+action to force a recheck immediately.
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.22+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck1).
+
 # 1.22
 
 ### September 1, 2021 - [charmed-kubernetes-761](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-761/archive/bundle.yaml)

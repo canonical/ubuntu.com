@@ -129,15 +129,12 @@ const AccountUsers = ({
       .catch(handleMutationError);
 
   const handleAddNewUser = (user: NewUserValues) =>
-    userAddMutation
-      .mutateAsync(user)
-      .then(() => {
-        setNotification({
-          severity: "positive",
-          message: "User added successfully",
-        });
-      })
-      .catch(handleMutationError);
+    userAddMutation.mutateAsync(user).then(() => {
+      setNotification({
+        severity: "positive",
+        message: "User added successfully",
+      });
+    });
 
   const [
     isDeleteConfirmationModalOpen,
@@ -168,22 +165,26 @@ const AccountUsers = ({
             <UserSearch handleSearch={handleSearch} />
           </div>
         </div>
-        {notification ? (
-          <div className="row">
-            <div className="col-12">
-              <div className={`p-notification--${notification.severity}`}>
-                <div className="p-notification__content" aria-atomic="true">
-                  <h5 className="p-notification__title">
-                    {notification.severity === "positive" ? "Success" : "Error"}
-                  </h5>
-                  <p className="p-notification__message" role="alert">
-                    {notification.message}
-                  </p>
+        <div role="alert" aria-live="assertive" aria-atomic="true">
+          {notification ? (
+            <div className="row">
+              <div className="col-12">
+                <div className={`p-notification--${notification.severity}`}>
+                  <div className="p-notification__content">
+                    <h5 className="p-notification__title">
+                      {notification.severity === "positive"
+                        ? "Success"
+                        : "Error"}
+                    </h5>
+                    <p className="p-notification__message">
+                      {notification.message}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
         {isDeleteConfirmationModalOpen && userInEditMode ? (
           <DeleteConfirmationModal
             accountId={accountId}
