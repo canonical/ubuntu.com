@@ -408,131 +408,38 @@
 
 <section class="p-strip--light is-deep">
   <div class="row">
-    <div class="col-12">
+    <div class="col-8">
       <h2>
-        Kubernetes glossary
+        Speaking Kubernetes
       </h2>
-      <ul class="p-matrix">
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Cluster
-            </h3>
-            <p class="p-matrix__desc">
-              A set of nodes that run containerized applications managed by Kubernetes.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Pod
-            </h3>
-            <p class="p-matrix__desc">
-              The smallest unit in the Kubernetes object model that is used to host containers.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Control plane node
-            </h3>
-            <p class="p-matrix__desc">
-              The orchestration layer that provides interfaces to define, deploy, and manage the lifecycle of containers.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Worker node
-            </h3>
-            <p class="p-matrix__desc">
-              Every worker node can host applications as containers. A Kubernetes cluster usually has multiple worker nodes (at least one).
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              API server
-            </h3>
-            <p class="p-matrix__desc">
-              The primary control plane component, that exposes the Kubernetes API, enabling communications between cluster components.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Controller-manager
-            </h3>
-            <p class="p-matrix__desc">
-              A control plane daemon that monitors the state of the cluster and makes all necessary changes for the cluster to reach its desired state.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Container runtime
-            </h3>
-            <p class="p-matrix__desc">
-              The software responsible for running containers by coordinating the use of system resources across containers.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Kubelet
-            </h3>
-            <p class="p-matrix__desc">
-              An agent that runs on each worker node in the cluster and ensures that containers are running in a pod.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Kubectl
-            </h3>
-            <p class="p-matrix__desc">
-              A command-line tool for controlling Kubernetes clusters.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              Kubeproxy
-            </h3>
-            <p class="p-matrix__desc">
-              Enables communication between worker nodes, by maintaining network rules on the nodes.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              CNI
-            </h3>
-            <p class="p-matrix__desc">
-              The Container Network Interface is a specification and a set of tools to define networking interfaces between network providers and Kubernetes.
-            </p>
-          </div>
-        </li>
-        <li class="p-matrix__item">
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">
-              CSI
-            </h3>
-            <p class="p-matrix__desc">
-              The Container Storage Interface is a specification for data storage tools and applications to integrate with Kubernetes clusters.
-            </p>
-          </div>
-        </li>
+      <aside class="p-accordion">
+        <ul class="p-accordion__list">
+          <li class="p-accordion__group">
+            <div type="button" role="heading" aria-level="3" class="p-accordion__heading">
+              <button class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="true">
+                Node
+              </button>
+            </div>
+            <section class="p-accordion__panel" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
+              <p>
+                A virtual or physical machine, depending on the cluster setup. Each node is managed by the control plane and contains the services necessary to run pods.
+              </p>
+            </section>
+          </li>
+          <li class="p-accordion__group">
+            <div>
+              <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="true">
+                Pod
+              </button>
+            </div>
+            <section class="p-accordion__panel" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
+              <p>
+                The smallest unit in the Kubernetes object model that is used to host containers.
+              </p>
+            </section>
+          </li>
+        </ul>
+      </aside>
       </div>
     </div>
   </section>
