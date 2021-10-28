@@ -4,6 +4,7 @@ import classNames from "classnames";
 import {
   formatDate,
   getFeaturesDisplay,
+  isBlenderSubscription,
   isFreeSubscription,
   makeInteractiveProps,
 } from "advantage/react/utils";
@@ -13,10 +14,7 @@ import {
   ExpiryNotificationSize,
   ORDERED_STATUS_KEYS,
 } from "../../ExpiryNotification/ExpiryNotification";
-import {
-  UserSubscriptionType,
-  UserSubscriptionMarketplace,
-} from "advantage/api/enum";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   isSelected?: boolean;
@@ -30,8 +28,7 @@ const ListCard = ({
   subscription,
 }: Props): JSX.Element => {
   const isFree = isFreeSubscription(subscription);
-  const isBlender =
-    subscription?.marketplace === UserSubscriptionMarketplace.Blender;
+  const isBlender = isBlenderSubscription(subscription);
   // If the subscription statuses is true for any of the expiry status keys then
   // a notification will be displayed.
   const hasExpiryNotification = !!ORDERED_STATUS_KEYS.find(

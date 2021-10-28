@@ -15,15 +15,13 @@ import {
   getPeriodDisplay,
   getSubscriptionCost,
   isFreeSubscription,
+  isBlenderSubscription,
 } from "advantage/react/utils";
 import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
 import { SelectedId } from "../../Content/types";
-import {
-  UserSubscriptionType,
-  UserSubscriptionMarketplace,
-} from "advantage/api/enum";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   selectedId?: SelectedId;
@@ -56,8 +54,7 @@ const DetailsContent = ({ selectedId }: Props) => {
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id
   );
-  const isBlender =
-    subscription?.marketplace === UserSubscriptionMarketplace.Blender;
+  const isBlender = isBlenderSubscription(subscription);
 
   const SubscriptionToken = () => {
     return (

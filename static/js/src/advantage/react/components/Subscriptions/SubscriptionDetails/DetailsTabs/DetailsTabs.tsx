@@ -7,11 +7,11 @@ import {
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
 import { filterAndFormatEntitlements } from "advantage/react/utils/filterAndFormatEntitlements";
-import { isFreeSubscription } from "advantage/react/utils";
 import {
-  EntitlementType,
-  UserSubscriptionMarketplace,
-} from "advantage/api/enum";
+  isBlenderSubscription,
+  isFreeSubscription,
+} from "advantage/react/utils";
+import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import FeaturesTab from "./components/FeaturesTab";
 
@@ -146,8 +146,7 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
   );
   let content: ReactNode | null;
 
-  const isBlender =
-    subscription?.marketplace === UserSubscriptionMarketplace.Blender;
+  const isBlender = isBlenderSubscription(subscription);
 
   const isFree = isFreeSubscription(subscription);
   // Don't display any docs links for the free subscription.
