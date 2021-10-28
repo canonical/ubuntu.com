@@ -68,4 +68,37 @@ context("/advantage", () => {
         });
       });
   });
+
+  it("prevents a user from creating disallowed combinations of features", () => {
+    cy.login();
+
+    cy.visit(getTestURL("/advantage"));
+    cy.acceptCookiePolicy();
+    cy.findByLabelText("FIPS").should("be.disabled");
+    cy.findByLabelText("Livepatch").should("be.checked").click({ force: true });
+    cy.findByLabelText("FIPS").should("not.be.disabled");
+
+    cy.findByLabelText("FIPS").click({ force: true });
+    cy.findByLabelText("Livepatch").should("be.disabled");
+  });
+
+  it("saves changes to feature settings successfully", () => {
+    cy.login();
+
+    cy.visit(getTestURL("/advantage"));
+    cy.acceptCookiePolicy();
+
+    cy.findByLabelText("Livepatch").should("be.checked").click({ force: true });
+
+    cy.findByRole("button", { name: "Save" }).click();
+    cy.reload();
+
+    cy.findByLabelText("Livepatch")
+      .should("not.be.checked")
+      .click({ force: true });
+
+    cy.findByRole("button", { name: "Save" }).click();
+
+    cy.findByRole("button", { name: "Save" }).should("not.exist");
+  });
 });
