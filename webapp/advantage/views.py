@@ -822,9 +822,10 @@ def invoices_view(**kwargs):
             created_at = raw_payment["createdAt"]
 
             total = None
+            status = None
             invoice = raw_payment.get("invoice")
-            status = invoice.get("status")
             if invoice and invoice.get("total"):
+                status = invoice.get("status")
                 cost = invoice.get("total") / 100
                 currency = invoice.get("currency")
                 total = f"{cost} {currency}"

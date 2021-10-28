@@ -40,12 +40,14 @@
                 <td aria-label="Service">{{ invoice.service }}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
                 <td aria-label="Date">{{ invoice.date }}</td>
                 <td aria-label="Status">
-                  {% if invoice.status == "paid" %}
-                  <div class="p-label--new">Paid</div>
-                  {% elif invoice.status == "open" %}
-                  <div class="p-label--deprecated">Failed</div>
-                  {% else %}
-                  <div class="p-label">{{ invoice.status }}</div>
+                  {% if invoice.status %}
+                    {% if invoice.status == "paid" %}
+                    <div class="p-label--new">Paid</div>
+                    {% elif invoice.status == "open" %}
+                    <div class="p-label--deprecated">Failed</div>
+                    {% else %}
+                    <div class="p-label">{{ invoice.status }}</div>
+                    {% endif %}
                   {% endif %}
                 </td>
                 <td class="u-align--right" aria-label="Total" style="padding-right: 5%">
