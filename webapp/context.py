@@ -69,7 +69,7 @@ def get_navigation(path):
             breadcrumbs["children"] = nav_section.get("children", [])
 
         longest_match_path = 0
-        active_child = None
+        child_to_set_active = None
 
         for child in nav_section["children"]:
             if is_topic_page and child["path"] == "/blog/topics":
@@ -84,7 +84,7 @@ def get_navigation(path):
                 # look for the closest patch match
                 if len(child["path"]) > longest_match_path:
                     longest_match_path = len(child["path"])
-                    active_child = child
+                    child_to_set_active = child
 
                 nav_section["active"] = True
                 breadcrumbs["section"] = nav_section
@@ -121,10 +121,8 @@ def get_navigation(path):
                         break
 
         # set the child most closely matching the current path as active
-        if active_child:
-            for child in nav_section["children"]:
-                if child == active_child:
-                    child["active"] = True
+        if child_to_set_active:
+            child_to_set_active["active"] = True
 
     return {"nav_sections": sections, "breadcrumbs": breadcrumbs}
 
