@@ -1,5 +1,5 @@
 # Packages
-from typing import Optional, List
+from typing import List, Optional
 
 from dateutil.parser import parse
 import flask
@@ -106,16 +106,21 @@ def get_user_subscriptions(**kwargs):
 
 
 @advantage_decorator(permission="user", response="json")
-@use_kwargs({"account_id": String()}, location="query")
 def get_last_purchase_ids(account_id):
     g.api.set_convert_response(True)
 
-    subscriptions = g.api.get_account_subscriptions(
-        account_id=account_id,
-        marketplace="canonical-ua",
-    )
+    last_purchase_ids = {}
+    for marketplace in SERVICES:
+        if marketplace == "canonical-cube":
+            continue
 
-    last_purchase_ids = extract_last_purchase_ids(subscriptions)
+        subscriptions = g.api.get_account_subscriptions(
+            account_id=account_id, marketplace=marketplace
+        )
+
+        last_purchase_ids[marketplace] = extract_last_purchase_ids(
+            subscriptions
+        )
 
     return flask.jsonify(last_purchase_ids)
 

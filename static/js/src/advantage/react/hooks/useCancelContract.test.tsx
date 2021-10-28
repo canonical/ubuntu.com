@@ -11,7 +11,10 @@ import {
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 
 describe("useCancelContract", () => {
   let cancelContractSpy: jest.SpyInstance;
@@ -49,7 +52,9 @@ describe("useCancelContract", () => {
     await waitForNextUpdate();
     expect(cancelContractSpy).toHaveBeenCalledWith(
       subscription.account_id,
-      lastPurchaseIds.monthly,
+      lastPurchaseIds?.[UserSubscriptionMarketplace.CanonicalUA]?.[
+        UserSubscriptionPeriod.Monthly
+      ],
       subscription.listing_id
     );
   });
