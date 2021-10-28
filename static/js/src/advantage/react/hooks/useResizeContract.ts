@@ -25,7 +25,8 @@ export const useResizeContract = (subscription?: UserSubscription) => {
         lastPurchaseId,
         subscription?.listing_id,
         quantity,
-        subscription?.period
+        subscription?.period,
+        subscription?.marketplace
       ).then((response) => {
         if (response.errors) {
           // Sometimes the request fails because the previous purchase id
