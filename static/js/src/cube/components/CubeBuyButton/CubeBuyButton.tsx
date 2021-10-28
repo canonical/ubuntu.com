@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import { BuyButtonProps } from "../../../PurchaseModal/utils/utils";
-import useStripeCustomerInfo from "../../../PurchaseModal/hooks/useStripeCustomerInfo";
 import { getErrorMessage } from "../../../advantage/error-handler";
 import usePurchase from "../../hooks/usePurchase";
 import usePendingPurchase from "../../hooks/usePendingPurchase";
@@ -26,20 +25,8 @@ const CubeBuyButton = ({
     error: purchaseError,
   } = usePendingPurchase();
 
-  const { data: userInfo } = useStripeCustomerInfo();
-
   const handleOnAfterPurchaseSuccess = () => {
-    const testBackend = window?.location?.search?.includes("test_backend=true")
-      ? "&test_backend=true"
-      : "";
-
-    if (window.isGuest) {
-      location.href = `/cube/thank-you?email=${encodeURIComponent(
-        userInfo?.customerInfo?.email
-      )}${testBackend}`;
-    } else {
-      location.pathname = "/cube/microcerts";
-    }
+    location.reload();
   };
 
   const onPayClick = () => {

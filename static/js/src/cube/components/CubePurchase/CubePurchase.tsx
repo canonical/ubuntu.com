@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "@canonical/react-components";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -21,20 +20,7 @@ const CubePurchase = ({
 }: Props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const closeHandler = () => setModalOpen(false);
-
   const stripePromise = loadStripe(window.stripePublishableKey ?? "");
-  const oneHour = 1000 * 60 * 60;
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
-        staleTime: oneHour,
-        retryOnMount: false,
-      },
-    },
-  });
 
   return (
     <>
@@ -42,7 +28,7 @@ const CubePurchase = ({
         {buttonText}
       </Button>
       {modalOpen ? (
-        <QueryClientProvider client={queryClient}>
+        <>
           <Elements stripe={stripePromise}>
             <CubePurchaseModal
               productName={productName}
@@ -51,7 +37,7 @@ const CubePurchase = ({
             />
           </Elements>
           <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        </>
       ) : null}
     </>
   );

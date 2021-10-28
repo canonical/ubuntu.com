@@ -118,6 +118,10 @@
 
     .row {
       grid-gap: 0 1rem;
+
+      /* Reset the grid. Allows the modal to display properly when nested inside
+       * an element with < 12 columns. */
+      grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
     .col-3 {

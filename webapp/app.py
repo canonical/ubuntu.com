@@ -43,7 +43,6 @@ from webapp.advantage.flaskparser import UAContractsValidationError
 from webapp.cube.views import (
     cube_home,
     cube_microcerts,
-    cube_study_labs_button,
     get_microcerts,
     post_microcerts_purchase,
 )
@@ -807,7 +806,6 @@ app.add_url_rule(
     view_func=post_microcerts_purchase,
     methods=["POST"],
 )
-app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(
     "/cube/microcerts/purchase.json",

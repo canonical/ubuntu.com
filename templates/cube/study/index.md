@@ -21,29 +21,6 @@ Our study labs provide terminal access via your browser and are formatted simila
 
 A single purchase grants 90 days of access to the full set of Study Labs for every microcertification.
 
-<a class="p-button--positive js-study-button u-hide"></a>
-<div class="p-notification--negative js-study-notification u-hide">
-  <p class="p-notification__response" role="status">
-    <span class="p-notification__status">Error:</span>We could not verify if you have access to the study labs.
-  </p>
-</div>
+<div id="prepare-button-react"></div>
 
-<script>
-  const button = document.querySelector(".js-study-button");
-  const notification = document.querySelector(".js-study-notification");
-  fetch("/cube/study/labs")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Response was not ok');
-      }
-      return response.json()
-    })
-    .then((json) => {
-      button.href = json.redirect_url;
-      button.text = json.text;
-      button.classList.toggle("u-hide")
-    })
-    .catch(() => {
-      notification.classList.toggle("u-hide")
-    });
-</script>
+<script src="/static/js/dist/cubeStudy.js" type="module"></script>
