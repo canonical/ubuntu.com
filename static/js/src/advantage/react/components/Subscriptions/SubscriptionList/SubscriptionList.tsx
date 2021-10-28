@@ -49,7 +49,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     <ListCard
       data-test="ua-subscription"
       isSelected={selectedId === subscription.id}
-      key={i}
+      key={subscription.id}
       onClick={() => {
         sendAnalyticsEvent({
           eventCategory: "Advantage",
@@ -71,7 +71,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
       <ListCard
         data-test="blender-subscription"
         isSelected={selectedId === subscription.id}
-        key={i}
+        key={subscription.id}
         onClick={() => {
           sendAnalyticsEvent({
             eventCategory: "Advantage",
