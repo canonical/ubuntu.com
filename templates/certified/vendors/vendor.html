@@ -1,7 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Certified {{ vendor.name }} devices{% endblock %}
-{% block meta_description %}Devices by {{ vendor.name }}that have been certified for use with Ubuntu.{% endblock %}
+{% block meta_description %}Devices by {{ vendor.name }} that have been certified for use with Ubuntu.{% endblock %}
 {% block meta_copydoc %}{% endblock %}
 
 {% block outer_content %}
@@ -13,7 +13,7 @@
     <div class="col-8">
       <h1>Ubuntu certified {{ vendor.name }} hardware</h1>
       <p>{{ vendor.description }}</p>
-      <a href="{{ vendor.site_url }}" class="p-link--external">Visit {{ vendor.name }}'s website here</a>
+      <a href="{{ vendor.site_url }}" class="p-link--external" target="blank">Visit {{ vendor.name }}'s website here</a>
     </div>
     <div class="col-3 u-hide--small u-align--center">
       <img src="{{vendor.logo_url}}"/>

@@ -73,8 +73,8 @@
                   <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
                     {% for category_filter in category_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" id="category-filter" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ category_filter }}">{{ category_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <span class="p-checkbox__label">{{ category_filter }}</span>
                     </label>
                     {% endfor %}
                   </section>
@@ -93,8 +93,8 @@
                   <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                     {% for vendor_filter in vendor_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ vendor_filter }}">{{ vendor_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters"name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                      <span class="p-checkbox__label">{{ vendor_filter }}</span>
                     </label>
                     {% endfor %}
                   </section>
@@ -120,8 +120,8 @@
                   <section class="p-accordion__panel {% if release_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                     {% for release_filter in release_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ release_filter }}">{{ release_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                      <span class="p-checkbox__label">{{ release_filter }}</span>
                     </label>
                     {% endfor %}
                   </section>

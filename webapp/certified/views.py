@@ -522,10 +522,6 @@ def create_category_views(category, template_path):
     # Pagination
     total_results = models_response["meta"]["total_count"]
 
-    # Add static vendor data
-    with open("webapp/certified/vendors_data.yaml") as vendors_info:
-        vendors_strip = yaml.load(vendors_info.read(), Loader=yaml.FullLoader)
-
     return render_template(
         template_path,
         results=results,
@@ -534,7 +530,6 @@ def create_category_views(category, template_path):
         release_filters=release_filters,
         vendor_filters=vendor_filters,
         vendors=vendors,
-        vendors_strip=vendors_strip,
         total_results=total_results,
         total_pages=math.ceil(total_results / limit),
         offset=offset,
@@ -573,73 +568,71 @@ def certified_vendors(vendor):
 
     with open("webapp/certified/vendors_data.yaml") as vendors_data:
         vendors_data = yaml.load(vendors_data, Loader=yaml.FullLoader)
-        if vendor in vendors_data["vendors"]:
+    if not vendor in vendors_data["vendors"]:
+        return flask.redirect("/certified?q=" + vendor)
 
-            # Pagination
-            limit = request.args.get("limit", default=20, type=int)
-            offset = request.args.get("offset", default=0, type=int)
+    # Pagination
+    limit = request.args.get("limit", default=20, type=int)
+    offset = request.args.get("offset", default=0, type=int)
 
-            release_filters = []
-            certified_releases = api.certified_releases(limit="0")["objects"]
+    release_filters = []
+    certified_releases = api.certified_releases(limit="0")["objects"]
 
-            for release in certified_releases:
-                version = release["release"]
-                release_filters.append(version)
-            releases = (
-                ",".join(request.args.getlist("release"))
-                if request.args.getlist("release")
-                else None
-            )
+    for release in certified_releases:
+        version = release["release"]
+        release_filters.append(version)
+    releases = (
+        ",".join(request.args.getlist("release"))
+        if request.args.getlist("release")
+        else None
+    )
 
-            category_filters = ["Laptop", "Desktop", "Server", "Device", "SoC"]
-            selected_categories = request.args.getlist("category")
-            if "SoC" in selected_categories:
-                selected_categories.remove("SoC")
-                selected_categories.append("Server SoC")
+    category_filters = ["Laptop", "Desktop", "Server", "Device", "SoC"]
+    selected_categories = request.args.getlist("category")
+    if "SoC" in selected_categories:
+        selected_categories.remove("SoC")
+        selected_categories.append("Server SoC")
 
-            if "Device" in selected_categories:
-                selected_categories.remove("Device")
-                selected_categories.append("Ubuntu Core")
+    if "Device" in selected_categories:
+        selected_categories.remove("Device")
+        selected_categories.append("Ubuntu Core")
 
-            categories = (
-                ",".join(selected_categories) if selected_categories else None
-            )
+    categories = ",".join(selected_categories) if selected_categories else None
 
-            query = request.args.get("q", default=None, type=str)
+    query = request.args.get("q", default=None, type=str)
 
-            if set(request.args) & set(["query"]):
-                parameters = request.args.to_dict()
-                if "query" in parameters:
-                    parameters["q"] = parameters["query"]
-                    del parameters["query"]
+    if set(request.args) & set(["query"]):
+        parameters = request.args.to_dict()
+        if "query" in parameters:
+            parameters["q"] = parameters["query"]
+            del parameters["query"]
 
-                return redirect(f"/certified?{urlencode(parameters)}", 301)
+        return redirect(f"/certified?{urlencode(parameters)}", 301)
 
-            models = api.certified_models(
-                vendor=vendor,
-                category__in=categories,
-                limit=limit,
-                query=query,
-                offset=offset,
-                major_release__in=releases,
-            )
+    models = api.certified_models(
+        vendor=vendors_data["vendors"][vendor]["make_name"],
+        category__in=categories,
+        limit=limit,
+        query=query,
+        offset=offset,
+        major_release__in=releases,
+    )
 
-            results = models["objects"]
+    results = models["objects"]
 
-            total_results = models["meta"]["total_count"]
-            return render_template(
-                "certified/vendors/vendor.html",
-                vendor=vendors_data["vendors"][vendor],
-                results=results,
-                releases=releases,
-                release_filters=release_filters,
-                category_filters=category_filters,
-                category=",".join(request.args.getlist("category")),
-                query=query,
-                limit=limit,
-                offset=offset,
-                total_results=total_results,
-                total_pages=math.ceil(total_results / limit),
-            )
-        else:
-            return flask.redirect("/certified?q=" + vendor)
+    total_results = models["meta"]["total_count"]
+
+    return render_template(
+        "certified/vendors/vendor.html",
+        vendor=vendors_data["vendors"][vendor],
+        results=results,
+        releases=releases,
+        release_filters=release_filters,
+        category_filters=category_filters,
+        category=",".join(request.args.getlist("category")),
+        query=query,
+        limit=limit,
+        offset=offset,
+        total_results=total_results,
+        total_pages=math.ceil(total_results / limit),
+    )
