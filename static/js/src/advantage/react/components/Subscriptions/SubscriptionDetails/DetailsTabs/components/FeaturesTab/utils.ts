@@ -6,8 +6,10 @@ import {
   EntitlementLabel,
 } from "advantage/react/utils/filterAndFormatEntitlements";
 
+export type EntitlementsFormState = Record<EntitlementLabel, Feature>;
+
 export const getNewFeaturesFormState = (
-  entitlementsState: Record<string, Feature>,
+  entitlementsState: EntitlementsFormState,
   newEntitlement?: Feature
 ): Record<string, Feature> => {
   const newState: Record<string, Feature> = {};
@@ -52,15 +54,15 @@ export const getNewFeaturesFormState = (
   return newState;
 };
 
-export const initialiseFeaturesForm = (features: EntitlementsStore) => {
-  const draftState = {} as Record<string, Feature>;
-  features.included.forEach((label) => {
-    draftState[label] = formatEntitlementToFeature(features.byLabel[label]);
-  });
-
-  features.alwaysAvailable.forEach((label) => {
-    draftState[label] = formatEntitlementToFeature(features.byLabel[label]);
-  });
-
-  return draftState;
-};
+export const initialiseFeaturesForm = (
+  features: EntitlementsStore
+): EntitlementsFormState =>
+  [...features.included, ...features.alwaysAvailable].reduce(
+    (acc, entitlementLabel) => ({
+      ...acc,
+      [entitlementLabel]: formatEntitlementToFeature(
+        features.byLabel[entitlementLabel]
+      ),
+    }),
+    {} as EntitlementsFormState
+  );

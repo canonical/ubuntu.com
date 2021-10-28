@@ -3,7 +3,7 @@ import { userSubscriptionEntitlementFactory } from "advantage/tests/factories/ap
 import {
   EntitlementLabel,
   getEntitlementLabel,
-  receiveEntitlements,
+  filterAndFormatEntitlements,
 } from "./filterAndFormatEntitlements";
 
 it("returns entitlements with labels as keys", () => {
@@ -33,18 +33,12 @@ it("returns entitlements with labels as keys", () => {
       is_editable: false,
       type: EntitlementType.EsmApps,
     }),
-    userSubscriptionEntitlementFactory.build({
-      enabled_by_default: false,
-      is_available: false,
-      is_editable: false,
-      support_level: SupportLevel.Advanced,
-      type: EntitlementType.Support,
-    }),
   ];
-  expect(receiveEntitlements(entitlements).byLabel).toEqual({
+
+  expect(filterAndFormatEntitlements(entitlements).byLabel).toEqual({
     "24/7 Support": {
-      enabled_by_default: false,
-      is_available: false,
+      enabled_by_default: true,
+      is_available: true,
       is_editable: false,
       support_level: "advanced",
       type: "support",
@@ -75,7 +69,7 @@ it("removes duplicate livepatch labels", () => {
       type: EntitlementType.LivepatchOnprem,
     }),
   ];
-  expect(receiveEntitlements(entitlements).included).toStrictEqual([
+  expect(filterAndFormatEntitlements(entitlements).included).toStrictEqual([
     "Livepatch",
   ]);
 });
@@ -100,11 +94,13 @@ it("ignores some labels", () => {
       type: EntitlementType.EsmInfra,
     }),
   ];
-  expect(receiveEntitlements(entitlements).included).toStrictEqual([
+  expect(filterAndFormatEntitlements(entitlements).included).toStrictEqual([
     EntitlementLabel.EsmInfra,
   ]);
-  expect(receiveEntitlements(entitlements).excluded).toHaveLength(0);
-  expect(receiveEntitlements(entitlements).alwaysAvailable).toHaveLength(0);
+  expect(filterAndFormatEntitlements(entitlements).excluded).toHaveLength(0);
+  expect(
+    filterAndFormatEntitlements(entitlements).alwaysAvailable
+  ).toHaveLength(0);
 });
 
 it("correctly groups always available features", () => {
@@ -115,9 +111,11 @@ it("correctly groups always available features", () => {
     }),
     userSubscriptionEntitlementFactory.build({ type: EntitlementType.Fips }),
   ];
-  expect(receiveEntitlements(entitlements).included).toHaveLength(0);
-  expect(receiveEntitlements(entitlements).excluded).toHaveLength(0);
-  expect(receiveEntitlements(entitlements).alwaysAvailable).toStrictEqual([
+  expect(filterAndFormatEntitlements(entitlements).included).toHaveLength(0);
+  expect(filterAndFormatEntitlements(entitlements).excluded).toHaveLength(0);
+  expect(
+    filterAndFormatEntitlements(entitlements).alwaysAvailable
+  ).toStrictEqual([
     EntitlementLabel.Cis,
     EntitlementLabel.FipsUpdates,
     EntitlementLabel.Fips,

@@ -10,22 +10,27 @@ import {
 import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
 import { UserSubscription } from "advantage/api/types";
 import {
-  receiveEntitlements,
+  filterAndFormatEntitlements,
   EntitlementsStore,
   EntitlementLabel,
 } from "advantage/react/utils/filterAndFormatEntitlements";
 import FeatureSwitch from "advantage/react/components/FeatureSwitch";
-import { getNewFeaturesFormState, initialiseFeaturesForm } from "./utils";
+import {
+  getNewFeaturesFormState,
+  initialiseFeaturesForm,
+  EntitlementsFormState,
+} from "./utils";
 
 import { generateList } from "../../DetailsTabs";
 
 const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
   const [features, setFeatures] = React.useState<EntitlementsStore>(
-    receiveEntitlements(subscription.entitlements)
+    filterAndFormatEntitlements(subscription.entitlements)
   );
-  const [featuresFormState, setFeaturesFormState] = React.useState(
-    initialiseFeaturesForm(features)
-  );
+  const [
+    featuresFormState,
+    setFeaturesFormState,
+  ] = React.useState<EntitlementsFormState>(initialiseFeaturesForm(features));
 
   const {
     mutateAsync,
@@ -59,7 +64,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
   };
 
   useEffect(() => {
-    const features = receiveEntitlements(subscription.entitlements);
+    const features = filterAndFormatEntitlements(subscription.entitlements);
     const featuresFormState = initialiseFeaturesForm(features);
 
     setFeatures(features);

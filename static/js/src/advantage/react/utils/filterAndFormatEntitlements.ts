@@ -66,28 +66,33 @@ export type FeaturesDisplay = {
   alwaysAvailable: Feature[];
 };
 
+export type EntitlementsByLabel = Record<
+  EntitlementLabel,
+  UserSubscriptionEntitlement
+>;
 export type EntitlementsStore = {
-  byLabel: Record<string, UserSubscriptionEntitlement>;
+  byLabel: EntitlementsByLabel;
   included: EntitlementLabel[];
   excluded: EntitlementLabel[];
   alwaysAvailable: EntitlementLabel[];
 };
 
-export const receiveEntitlements = (
+export const filterAndFormatEntitlements = (
   entitlements: UserSubscriptionEntitlement[]
 ): EntitlementsStore => {
-  const byLabel: Record<string, UserSubscriptionEntitlement> = {};
   const allLabels: EntitlementLabel[] = [];
   const { included, excluded, alwaysAvailable } = groupEntitlements(
     entitlements
   );
 
-  entitlements.forEach((entitlement) => {
+  const byLabel = entitlements.reduce((acc, entitlement) => {
     const label = getEntitlementLabel(entitlement);
     if (label && !allLabels.includes(label)) {
-      byLabel[label] = entitlement;
+      acc[label] = entitlement;
+      allLabels.push(label);
     }
-  });
+    return acc;
+  }, {} as EntitlementsByLabel);
 
   return {
     byLabel,
