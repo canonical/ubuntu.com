@@ -21,13 +21,28 @@ describe("DetailsTabs", () => {
   let subscription: UserSubscription;
 
   beforeEach(async () => {
-    subscription = userSubscriptionFactory.build();
+    subscription = userSubscriptionFactory.build({
+      entitlements: [
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.Livepatch,
+        }),
+      ],
+    });
   });
 
-  it("defaults to the features tab", () => {
+  it("defaults to the features tab if there are entitlements", () => {
     const wrapper = mount(<DetailsTabs subscription={subscription} />);
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
       true
+    );
+  });
+
+  it("hides the feature content tab is there are not entitlements", () => {
+    subscription = userSubscriptionFactory.build();
+    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
+      false
     );
   });
 
