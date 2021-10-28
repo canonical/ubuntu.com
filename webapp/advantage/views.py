@@ -1,5 +1,5 @@
 # Packages
-from typing import List
+from typing import List, Optional
 
 from dateutil.parser import parse
 import flask

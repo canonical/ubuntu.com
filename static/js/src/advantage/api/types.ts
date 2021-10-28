@@ -1,4 +1,3 @@
-import { marketplace } from "./../../PurchaseModal/utils/utils";
 import {
   EntitlementType,
   SupportLevel,
