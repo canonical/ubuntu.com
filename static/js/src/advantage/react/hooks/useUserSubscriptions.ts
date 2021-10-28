@@ -52,33 +52,21 @@ export const selectStatusesSummary = (
   is_upsizeable: hasStatus(subscriptions, "is_upsizeable"),
 });
 
-/**
- * Find the UA subscriptions.
- */
 export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
   subscriptions.filter(
     ({ marketplace }) => marketplace === UserSubscriptionMarketplace.CanonicalUA
   );
 
-/**
- * Find the Blender subscriptions.
- */
 export const selectBlenderSubscriptions = (subscriptions: UserSubscription[]) =>
   subscriptions.filter(
     ({ marketplace }) => marketplace === UserSubscriptionMarketplace.Blender
   );
 
-/**
- * Find the subscriptions with for period.
- */
 export const selectSubscriptionsForPeriod = (
   period: UserSubscriptionPeriod
 ) => (subscriptions: UserSubscription[]) =>
   subscriptions.filter((subscription) => subscription.period === period);
 
-/**
- * Find the auto renewable subscriptions.
- */
 export const selectAutoRenewableUASubscriptions = (
   subscriptions: UserSubscription[]
 ) =>
