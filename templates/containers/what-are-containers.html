@@ -1,10 +1,10 @@
-{% extends "kubernetes/base_kubernetes.html" %}
+{% extends "containers/base_containers.html" %}
 
 {% block title %}What are containers{% endblock %}
 
 {% block meta_description %}What are containers and how do containers enable fast-moving modern software, from the cloud to the edge? Learn how to use Ubuntu from the host kernel to container images running cloud applications to get a stable, secure, and consistent developer experience with Docker, Kubernetes, and LXD.{% endblock meta_description %}
 
-{% block meta_image %}{% endblock meta_image%}
+{% block meta_image %}https://assets.ubuntu.com/v1/fece8a11-container-in-the-cloud.svg{% endblock meta_image%}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1hStuIzY8dDdFEW4Q0TwboOx0_-SB5klk8zRuNIn3V4o/edit#{% endblock meta_copydoc %}
 
@@ -18,14 +18,13 @@
         <p>Containers are a virtualisation technology that isolates each process in a lightweight and standard environment. They allow users to package and quickly deploy entire applications parallel to each other on the same kernel and hardware, while maintaining isolation among the workloads.</p>
       </div>
       <div class="col-5 u-align--center u-vertically-center">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/767f38a4-kubernetes-stacked-color.svg",
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fece8a11-container-in-the-cloud.svg",
           alt="",
-          width="250",
-          height="195",
+          width="200",
+          height="163",
           hi_def=True,
-          loading="auto",
+          loading="auto"
           ) | safe
         }}
       </div>
