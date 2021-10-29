@@ -48,16 +48,56 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip ">
   <div class="u-fixed-width">
     <h2>Kubernetes vs Docker: CRI-O and OCI</h2>
-    <p>With more and more applications deployed on containers, simple orchestration tools provided by Docker are not enough to support complex production environments. ‘<a href="/kubernetes/what-is-kubernetes#container-orchestration">Container orchestration</a>’ becomes a problem space of its own. The rise of <a href="/kubernetes">Kubernetes</a> is the industry's answer to the container orchestration problem, providing a way to manage containers at scale efficiently.</p>
-    <div class="p-card">
-      <p class="p-card__content">Not clear on how Kubernetes vs Docker differ? <a href="/blog/kubernetes-versus-docker">Read the Kubernetes vs Docker blog&nbsp;&rsaquo;</a></p>
+    <p>With more and more applications deployed on containers, simple orchestration tools are not enough to support complex production environments. ‘<a href="/kubernetes/what-is-kubernetes#container-orchestration">Container orchestration</a>’ becomes a problem space of its own. The rise of <a href="/kubernetes">Kubernetes</a> is the industry's answer to the container orchestration problem, providing a way to manage containers at scale efficiently.</p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6">
+      <p>Not clear on how Kubernetes vs Docker differ?</p>
+      <p><a href="/blog/kubernetes-versus-docker">Read the Kubernetes vs Docker blog&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-6 u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ee9b80f7-Kubernetes+v+Docker.png",
+        alt="",
+        width="200",
+        height="72",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
     <p>CRI (Container Runtime Interface) is a Kubernetes API to interface between Kubernetes orchestration features and container runtimes, such as containerd or CRI-O. The <a href="https://opencontainers.org/" class="p-link--external">Open Container Initiative</a> (OCI) defines a set of specifications to enable all these technologies to work together. Docker, runc, containerd, CRI-O are all OCI compatible.</p>
-    <div class="p-card">
-      <p class="p-card__content">Choosing the right Kubernetes distribution is crucial for your business. <a href="/engage/enterprise-kubernetes-comparison">Read the Kubernetes distribution comparison whitepaper&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-half-and-half">
+    <div class="row u-equal-height">
+      <div class="col-7">
+        <p class="p-card__content">Choosing the right Kubernetes distribution is crucial for your business. <a href="/engage/enterprise-kubernetes-comparison">Read the Kubernetes distribution comparison whitepaper&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/4bf1d333-Compare_Kubernetes-Openshift-Rancher-WHT.svg",
+          alt="",
+          width="200",
+          height="125",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
     </div>
   </div>
 </section>
