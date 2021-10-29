@@ -41,6 +41,7 @@ const TableView = () => {
             studyLabURL: module["study_lab"],
             takeURL: module["take_url"],
             status: module["status"],
+            productListingId: module["product_listing_id"],
           }));
 
           setModules(modules);
@@ -100,7 +101,8 @@ const TableView = () => {
     badgeURL: string,
     studyLabURL: string,
     takeURL: string,
-    status: Status
+    status: Status,
+    productListingId: string
   ) => (
     <div className="u-no-padding--top u-align--right">
       {status === Status.Enrolled ? (
@@ -147,7 +149,10 @@ const TableView = () => {
           ]}
         />
       ) : (
-        <CubePurchase />
+        <CubePurchase
+          productName={moduleName}
+          productListingId={productListingId}
+        />
       )}
     </div>
   );
@@ -165,7 +170,18 @@ const TableView = () => {
         { content: "Action", className: "u-align--right" },
       ]}
       rows={modules.map(
-        ({ name, badgeURL, topics, studyLabURL, takeURL, status }, index) => {
+        (
+          {
+            name,
+            badgeURL,
+            topics,
+            studyLabURL,
+            takeURL,
+            status,
+            productListingId,
+          },
+          index
+        ) => {
           return {
             key: name,
             columns: [
@@ -197,7 +213,8 @@ const TableView = () => {
                   badgeURL,
                   studyLabURL,
                   takeURL,
-                  status
+                  status,
+                  productListingId
                 ),
               },
             ],
