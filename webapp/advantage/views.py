@@ -286,7 +286,7 @@ def advantage_shop_view():
 
 @advantage_decorator(permission="user", response="html")
 def advantage_account_users_view():
-    return flask.render_template("advantage/users/index.html")
+    return flask.render_template("advantage/maintenance.html")
 
 
 @advantage_decorator(permission="user", response="html")
