@@ -45,7 +45,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   const sortedUASubscriptions = sortSubscriptionsByStartDate(
     uaSubscriptionsData
   );
-  const uaSubscriptions = sortedUASubscriptions.map((subscription, i) => (
+  const uaSubscriptions = sortedUASubscriptions.map((subscription) => (
     <ListCard
       data-test="ua-subscription"
       isSelected={selectedId === subscription.id}
@@ -67,7 +67,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   );
 
   const blenderSubscriptions = sortedBlenderSubscriptions.map(
-    (subscription, i) => (
+    (subscription) => (
       <ListCard
         data-test="blender-subscription"
         isSelected={selectedId === subscription.id}
