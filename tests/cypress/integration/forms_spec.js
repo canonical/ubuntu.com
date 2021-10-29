@@ -4,14 +4,9 @@ import { standardFormUrls } from "../utils";
 context("Marketo forms", () => {
   beforeEach(() => {
     cy.intercept(
-      { method: "POST", url: "/marketo/submit" },
       {
-        headers: {
-          "Client Id": Cypress.env("MARKETO_CLIENT_ID"),
-          "Client Secret": Cypress.env("MARKETO_CLIENT_SECRET"),
-          "Authorized User": Cypress.env("MARKETO_AUTHORISED_USER"),
-          "Token": Cypress.env("MARKETO_TOKEN"),
-        },
+        method: "POST", 
+        url: "/marketo/submit",
       }
     ).as("captureLead");
   });
@@ -19,7 +14,7 @@ context("Marketo forms", () => {
   afterEach(() => {
     cy.wait("@captureLead").then(({ request, response }) => {
       expect(request.method).to.equal("POST");
-      expect(response.statusCode).to.equal(200);
+      expect(response.statusCode).to.equal(302);
     });
   });
 
@@ -44,7 +39,7 @@ context("Marketo forms", () => {
       cy.findByText(/Submit/).click({
         force: true,
       });
-      cy.findByText(/Thank you/).should("be.visible");
+      cy.findAllByText(/Thank you/).should("be.visible");
     });
   });
 
@@ -61,7 +56,7 @@ context("Marketo forms", () => {
         force: true
     });
     cy.findByText(/Let’s discuss/).click();
-    cy.findByText("Thank you").should("be.visible");
+    cy.findAllByText(/Thank you/).should("be.visible");
   });
 
   it("should check contact form on /cube/contact-us", () => {
@@ -82,6 +77,6 @@ context("Marketo forms", () => {
         force: true
     });
     cy.findByText(/Submit/).click();
-    cy.findByText("Thank you").should("be.visible");
+    cy.findAllByText(/Thank you/).should("be.visible");
   });
 });
