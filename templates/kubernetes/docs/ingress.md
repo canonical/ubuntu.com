@@ -50,7 +50,7 @@ manually manage [`VirtualServices`][virt-svc] for your applications, or even use
 <p markdown="1" class="p-notification__response">
 <span class="p-notification__status">Note:</span>
 The Istio bundle requires a load balancer provider. If you're not using a cloud
-integrator which provides this, [MetalLB][] can be used.
+  integrator which provides this, <a href="metallb">MetalLB</a> can be used.
 </p></div>
 
 
