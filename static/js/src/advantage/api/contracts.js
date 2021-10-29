@@ -236,7 +236,7 @@ export async function resizeContract(
         },
       ],
       resizing: true,
-      marketplace=marketplace,
+      marketplace: marketplace,
     }),
   });
 
