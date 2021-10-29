@@ -78,4 +78,8 @@ it("returns new features form state", () => {
     "isChecked",
     false
   );
+  expect(newFeaturesFormState[EntitlementLabel.Livepatch]).toHaveProperty(
+    "isDisabled",
+    false
+  );
 });

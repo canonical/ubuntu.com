@@ -38,13 +38,13 @@ const supportLabels: Record<string, EntitlementLabel | null> = {
 export type Feature = {
   isChecked: boolean;
   isDisabled: boolean;
-  label: EntitlementLabel | null;
+  label?: EntitlementLabel | null;
   type: EntitlementType;
 };
 
 export const getEntitlementLabel = (
   entitlement: UserSubscriptionEntitlement
-): EntitlementLabel | null =>
+): EntitlementLabel | undefined | null =>
   entitlement.support_level
     ? supportLabels[entitlement.support_level]
     : labels[entitlement.type as EntitlementType];
@@ -77,12 +77,51 @@ export type EntitlementsStore = {
   alwaysAvailable: EntitlementLabel[];
 };
 
+type EntitlementGroups = {
+  included: EntitlementLabel[];
+  excluded: EntitlementLabel[];
+  alwaysAvailable: EntitlementLabel[];
+};
+
+export const groupEntitlements = (
+  entitlements: UserSubscriptionEntitlement[]
+): EntitlementGroups => {
+  const included: EntitlementLabel[] = [];
+  const excluded: EntitlementLabel[] = [];
+  const alwaysAvailable: EntitlementLabel[] = [];
+
+  entitlements.forEach((entitlement) => {
+    const label = getEntitlementLabel(entitlement);
+    if (label && !included.includes(label) && !excluded.includes(label)) {
+      if (entitlement.type in alwaysAvailableLabels) {
+        alwaysAvailable.push(label);
+      } else if (entitlement.is_available) {
+        included.push(label);
+      } else if (!entitlement.is_available && !entitlement.is_editable) {
+        excluded.push(label);
+      }
+    }
+  });
+
+  return { included, excluded, alwaysAvailable };
+};
+
+const filterEntitlements = ({
+  excluded,
+  ...entitlements
+}: EntitlementGroups): EntitlementGroups => ({
+  ...entitlements,
+  excluded: excluded.filter(
+    (label) => !Object.values(supportLabels).includes(label)
+  ),
+});
+
 export const filterAndFormatEntitlements = (
   entitlements: UserSubscriptionEntitlement[]
 ): EntitlementsStore => {
   const allLabels: EntitlementLabel[] = [];
-  const { included, excluded, alwaysAvailable } = groupEntitlements(
-    entitlements
+  const { included, excluded, alwaysAvailable } = filterEntitlements(
+    groupEntitlements(entitlements)
   );
 
   const byLabel = entitlements.reduce((acc, entitlement) => {
@@ -100,31 +139,4 @@ export const filterAndFormatEntitlements = (
     excluded,
     alwaysAvailable,
   };
-};
-
-export const groupEntitlements = (
-  entitlements: UserSubscriptionEntitlement[]
-) => {
-  const included: EntitlementLabel[] = [];
-  const excluded: EntitlementLabel[] = [];
-  const alwaysAvailable: EntitlementLabel[] = [];
-
-  entitlements.forEach((entitlement) => {
-    const label = getEntitlementLabel(entitlement);
-    if (label) {
-      if (entitlement.type in alwaysAvailableLabels) {
-        alwaysAvailable.push(label);
-      } else if (entitlement.is_available && !included.includes(label)) {
-        included.push(label);
-      } else if (
-        !entitlement.is_available &&
-        !entitlement.is_editable &&
-        !excluded.includes(label)
-      ) {
-        excluded.push(label);
-      }
-    }
-  });
-
-  return { included, excluded, alwaysAvailable };
 };

@@ -11,22 +11,23 @@ export type EntitlementsFormState = Record<EntitlementLabel, Feature>;
 export const getNewFeaturesFormState = (
   entitlementsState: EntitlementsFormState,
   newEntitlement?: Feature
-): Record<string, Feature> => {
-  const newState: Record<string, Feature> = {};
-
-  Object.entries(entitlementsState).forEach(([key, value]) => {
-    if (newEntitlement && key === newEntitlement.label) {
-      newState[newEntitlement.label] = {
-        ...entitlementsState[newEntitlement.label],
-        isChecked: newEntitlement.isChecked,
-        isDisabled: false,
+): EntitlementsFormState => {
+  const newState = Object.entries(entitlementsState).reduce(
+    (acc, [key, value]) => {
+      return {
+        ...acc,
+        [key]: {
+          ...value,
+          isDisabled: value.type === EntitlementType.Support,
+          isChecked:
+            key === newEntitlement?.label
+              ? newEntitlement.isChecked
+              : value.isChecked,
+        },
       };
-    } else if (value.type !== EntitlementType.Support) {
-      newState[key] = { ...value, isDisabled: false };
-    } else {
-      newState[key] = { ...value };
-    }
-  });
+    },
+    {} as EntitlementsFormState
+  );
 
   if (newState[EntitlementLabel.Fips]?.isChecked) {
     newState[EntitlementLabel.Livepatch] = {
