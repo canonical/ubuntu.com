@@ -239,7 +239,7 @@ def is_user_subscription_cancelled(
             if item.product_listing_id == listing.id:
                 listing_found = True
 
-            break
+                break
 
     is_cancelled = True if not listing_found else False
 
