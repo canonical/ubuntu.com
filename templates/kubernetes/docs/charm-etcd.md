@@ -121,7 +121,7 @@ juju expose etcd
 export ETCDCTL_KEY=$(pwd)/client.key
 export ETCDCTL_CERT=$(pwd)/client.crt
 export ETCDCTL_CACERT=$(pwd)/ca.crt
-export ETCDCTL_ENDPOINT=https://{ip of etcd host}:2379
+export ETCDCTL_ENDPOINTS=https://{ip of etcd host}:2379
 etcdctl member list
 ```
 
