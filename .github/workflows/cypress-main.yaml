@@ -1,4 +1,4 @@
-name: Cypress checks
+name: Cypress tests / main
 env:
   SECRET_KEY: insecure_test_key
   DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
@@ -8,7 +8,10 @@ env:
   MARKETO_API_CLIENT: ${{secrets.MARKETO_API_CLIENT}}
   MARKETO_API_SECRET: ${{secrets.MARKETO_API_SECRET}}
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   run-cypress:
@@ -17,6 +20,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: pw
+
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -43,11 +47,10 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          env: UBUNTU_USERNAME=peter.makowski+cy@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq
           build: yarn run build
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"
           wait-on-timeout: 180
           browser: chrome
           config-file: tests/cypress/cypress.json
-          config: baseUrl=http://0.0.0.0:8001
+          config: baseUrl=http://0.0.0.0:8001,integrationFolder=tests/cypress/forms
