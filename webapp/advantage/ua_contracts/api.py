@@ -311,10 +311,10 @@ class UAContractsAPI:
 
         return response.json()
 
-    def get_purchase_account(self):
+    def get_purchase_account(self, marketplace: str = ""):
         response = self._request(
             method="get",
-            path="v1/purchase-account",
+            path=f"v1/marketplace/{marketplace}/account",
             error_rules=["default", "no-found"],
         )
 

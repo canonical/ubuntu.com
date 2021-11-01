@@ -74,7 +74,7 @@ def cube_microcerts():
 
     if sso_user:
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("canonical-cube")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -227,7 +227,7 @@ def get_microcerts():
 
     if sso_user:
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("canonical-cube")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.

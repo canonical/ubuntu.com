@@ -1002,7 +1002,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
             client = make_client(session, is_for_view=is_for_view)
 
             with self.assertRaises(expected_error) as error:
-                client.get_purchase_account()
+                client.get_purchase_account("canonical-ua")
 
             self.assertEqual(error.exception.response.json(), response_content)
 
@@ -1016,14 +1016,14 @@ class TestGetPurchaseAccount(unittest.TestCase):
         )
         client = make_client(session)
 
-        response = client.get_purchase_account()
+        response = client.get_purchase_account("canonical-ua")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": None,
             "method": "get",
             "params": None,
-            "url": "https://1.2.3.4/v1/purchase-account",
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
         self.assertEqual(response, json_account)
@@ -1039,14 +1039,14 @@ class TestGetPurchaseAccount(unittest.TestCase):
         )
         client = make_client(session, convert_response=True)
 
-        response = client.get_purchase_account()
+        response = client.get_purchase_account("canonical-ua")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": None,
             "method": "get",
             "params": None,
-            "url": "https://1.2.3.4/v1/purchase-account",
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
         self.assertIsInstance(response, Account)
