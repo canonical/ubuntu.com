@@ -34,7 +34,7 @@ context("/advantage", () => {
       .should("have.text", "Free Personal Token");
   });
 
-  it("sends a correct request when resizing a subscription", () => {
+  it.skip("sends a correct request when resizing a subscription", () => {
     cy.login();
     cy.visit(getTestURL("/advantage"));
     cy.acceptCookiePolicy();
