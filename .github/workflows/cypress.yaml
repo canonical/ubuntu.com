@@ -4,7 +4,9 @@ env:
   DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
   PORT: 8001
   CONTRACTS_LIVE_API_URL: contracts.canonical.com
-  CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI 
+  CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+  MARKETO_API_CLIENT: ${{secrets.MARKETO_API_CLIENT}}
+  MARKETO_API_SECRET: ${{secrets.MARKETO_API_SECRET}}
 
 on: pull_request
 
@@ -15,6 +17,7 @@ jobs:
         image: postgres
         env:
           POSTGRES_PASSWORD: pw
+
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -30,6 +33,10 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
+      - name: Test env variables
+        run: |
+          echo "$CAPTCHA_TESTING_API_KEY"
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -40,8 +47,9 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
+        env:
+          DEBUG: "@cypress/github-action"
         with:
-          env: UBUNTU_USERNAME=peter.makowski+cy@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq,MARKETO_CLIENT_ID=${{secrets.MARKETO_CLIENT_ID}},MARKETO_CLIENT_SECRET=${{secrets.MARKETO_CLIENT_SECRET}},MARKETO_AUTHORISED_USER=${{secrets.MARKETO_AUTHORISED_USER}},MARKETO_TOKEN=${{secrets.MARKETO_TOKEN}}
           build: yarn run build
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"
