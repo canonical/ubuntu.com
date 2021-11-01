@@ -11,6 +11,9 @@
     <div class="col-7">
       <h1>{{ vendor }} {{ name }}</h1>
       <p class="p-heading--4"> {{ form_factor }} system certified with Ubuntu</p>
+      {% if hardware_website %}
+      <a href="{{ hardware_website }}" class="p-link--external" target="blank">Visit the website</a>
+      {% endif %}
     </div>
     <div class="col-5 u-vertically-center u-align--center u-hide--small">
       {% if category == "Desktop" or category == "Laptop" %}
