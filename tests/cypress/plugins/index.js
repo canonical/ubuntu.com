@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 const puppeteer = require("puppeteer");
+const path = require("path");
+const gmail = require("gmail-tester");
 
 async function clearBrowserCookies(page) {
   const client = await page.target().createCDPSession();
@@ -69,6 +71,19 @@ module.exports = async (on, config) => {
           }
         })();
       }
+    },
+    "gmail:check": async (args) => {
+      const { from, to, subject } = args;
+      const email = await gmail.check_inbox(
+        path.resolve(__dirname, "credentials.json"),
+        path.resolve(__dirname, "gmail_token.json"),
+        subject,
+        from,
+        to,
+        10,
+        30
+      );
+      return email;
     },
   });
 };
