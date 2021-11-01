@@ -112,7 +112,13 @@ export const contractTokenFactory = Factory.define<ContractToken>(
 
 export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
   ({ sequence }) => ({
-    monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
-    yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
+    [UserSubscriptionMarketplace.CanonicalUA]: {
+      monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
+      yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
+    },
+    [UserSubscriptionMarketplace.Blender]: {
+      monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
+      yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
+    },
   })
 );

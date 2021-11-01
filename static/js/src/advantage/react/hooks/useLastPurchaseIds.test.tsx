@@ -3,12 +3,15 @@ import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {
-  selectPurchaseIdsByPeriod,
+  selectPurchaseIdsByMarketplaceAndPeriod,
   useLastPurchaseIds,
 } from "./useLastPurchaseIds";
 
 import { lastPurchaseIdsFactory } from "advantage/tests/factories/api";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import {
+  UserSubscriptionPeriod,
+  UserSubscriptionMarketplace,
+} from "advantage/api/enum";
 
 describe("useLastPurchaseIds", () => {
   let queryClient: QueryClient;
@@ -36,9 +39,11 @@ describe("useLastPurchaseIds", () => {
     expect(result.current.data).toStrictEqual(lastPurchaseIds);
   });
 
-  it("can return last purchase id for a given period", async () => {
+  it("can return last purchase id for a given period and marketplace", async () => {
     const lastPurchaseIds = lastPurchaseIdsFactory.build({
-      monthly: "monthly123",
+      [UserSubscriptionMarketplace.CanonicalUA]: {
+        monthly: "monthly123",
+      },
     });
     queryClient.setQueryData(
       ["lastPurchaseIds", "account123"],
@@ -47,7 +52,10 @@ describe("useLastPurchaseIds", () => {
     const { result, waitForNextUpdate } = renderHook(
       () =>
         useLastPurchaseIds("account123", {
-          select: selectPurchaseIdsByPeriod(UserSubscriptionPeriod.Monthly),
+          select: selectPurchaseIdsByMarketplaceAndPeriod(
+            UserSubscriptionMarketplace.CanonicalUA,
+            UserSubscriptionPeriod.Monthly
+          ),
         }),
       { wrapper }
     );

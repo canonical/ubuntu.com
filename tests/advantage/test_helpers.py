@@ -254,9 +254,17 @@ class TestHelpers(unittest.TestCase):
         subscriptions = [
             make_subscription(
                 id=subscription_id,
+                period="yearly",
+                items=[make_subscription_item(product_listing_id="lAaBbCcDe")],
+            ),
+            make_subscription(
+                id=subscription_id,
                 period="monthly",
-                items=[make_subscription_item(product_listing_id="lAaBbCcDd")],
-            )
+                items=[
+                    make_subscription_item(product_listing_id="lAaBbCcDe"),
+                    make_subscription_item(product_listing_id="lAaBbCcDd"),
+                ],
+            ),
         ]
 
         is_cancelled = is_user_subscription_cancelled(

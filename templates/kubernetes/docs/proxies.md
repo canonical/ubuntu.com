@@ -8,7 +8,7 @@ context:
 keywords: oflline, proxy, configuration
 tags: [configure]
 sidebar: k8smain-sidebar
-permalink: proxy-settings.html
+permalink: proxies.html
 layout: [base, ubuntu-com]
 toc: False
 ---
@@ -24,7 +24,7 @@ configurations required for individual services or charms.
 
 A Juju model can define proxies for the resources Charmed Kubernetes will need:
 
-- A snap proxy, for installing software from snap packages
+- A snap proxy, for installing software from snap packages ([see below](#snap-store-proxy))
 - An apt proxy, for software installed via apt packages.
 - A Juju proxy, which exposes proxy settings to Juju itself, and to deployed
    charms.
@@ -74,9 +74,28 @@ The relevant options for setting proxies for Charmed Kubernetes are:
 For more extensive documentation on configuring proxies with Juju, please
 refer to the [Juju proxy documentation][]
 
+## Snap Store Proxy
+
+The majority of charms, including all the core Charmed Kubernetes charms, rely on
+[snap][] packages to deliver applications. Snaps are packages for desktop, cloud and
+IoT that are easy to install, secure, cross‐platform and dependency‐free.
+
+The list of snaps required by Charmed Kubernetes is detailed in the "components"
+page for each release. For example, for 1.22, the 
+[snaps are listed here][1.22-components].
+
+If your installation needs to proxy the connection to the Snap Store for any reason,
+the recommended solution is to use the [Snap Store Proxyy][] software. This can 
+also be configured for offline use (see the 
+[Charmed Kubernetes offline documentation][offline]).
+
 <!-- LINKS -->
 
 [Juju proxy documentation]: https://juju.is/docs/t/offline-mode-strategies/1071
+[1.22-components]: 1.22/components
+[offline]: install-offline
+[snap]: https://snapcraft.io
+[Snap Store Proxy]: https://docs.ubuntu.com/snap-store-proxy/en/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

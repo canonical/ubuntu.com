@@ -73,6 +73,12 @@ export type ContractToken = {
 };
 
 export type LastPurchaseIds = {
-  monthly: string;
-  yearly: string;
+  [UserSubscriptionMarketplace.CanonicalUA]: {
+    monthly: string;
+    yearly: string;
+  };
+  [UserSubscriptionMarketplace.Blender]: {
+    monthly: string;
+    yearly: string;
+  };
 };
