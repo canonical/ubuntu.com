@@ -568,7 +568,7 @@ def certified_vendors(vendor):
 
     with open("webapp/certified/vendors_data.yaml") as vendors_data:
         vendors_data = yaml.load(vendors_data, Loader=yaml.FullLoader)
-    if not vendor in vendors_data["vendors"]:
+    if vendor not in vendors_data["vendors"]:
         return flask.redirect("/certified?q=" + vendor)
 
     # Pagination
@@ -610,7 +610,7 @@ def certified_vendors(vendor):
         return redirect(f"/certified?{urlencode(parameters)}", 301)
 
     models = api.certified_models(
-        vendor=vendors_data["vendors"][vendor]["make_name"],
+        vendor=vendor,
         category__in=categories,
         limit=limit,
         query=query,
