@@ -70,15 +70,19 @@
       </p>
     </div>
 
+{# desktop 21.04 #}
     <div class="col-6">
       <h3>
-        Ubuntu Desktop {{ releases.lts.short_version }} LTS
+        Ubuntu Desktop 21.04
       </h3>
       <p>
-        The latest development release of Ubuntu with nine months of support, until {{ releases.lts.eol }}.
+        The previous development release of Ubuntu with support until February 2022.
       </p>
       <p>
-        <a class="p-button--positive" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+        <a
+        class="p-button--positive"
+        href="/download/raspberry-pi/thank-you?version=21.04&amp;architecture=desktop-arm64+raspi"
+        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - desktop', 'eventLabel' : '21.04', 'eventValue' : undefined });">
           Download 64-bit
         </a>
       </p>
@@ -142,7 +146,7 @@
           loading="lazy"
           ) | safe
         }}
-      </div>      
+      </div>
     </div>
     <div class="col-2">
       <p class="u-no-padding--top" style="margin-bottom: .5rem;">
@@ -165,7 +169,7 @@
         <em>
           * At least 4 GB RAM required
         </em>
-      </h6>  
+      </h6>
     </div>
   </div>
 </section>
@@ -338,7 +342,7 @@
           ) | safe
         }}
       </div>
-    </div> 
+    </div>
     <div class="col-2">
       <p class="u-no-padding--top" style="margin-bottom: .5rem;">
         Raspberry Pi Zero 2
@@ -360,7 +364,7 @@
           * 32-bit only
         </em>
       </h6>
-    <div> 
+    <div>
   </div>
 </section>
 
@@ -512,7 +516,7 @@
           ) | safe
         }}
       </div>
-    </div> 
+    </div>
     <div class="col-2">
       <p class="u-no-padding--top" style="margin-bottom: .5rem;">
         Raspberry Pi Zero 2
@@ -533,8 +537,8 @@
         <em>
           * 32-bit only
         </em>
-      </h6>      
-    <div> 
+      </h6>
+    <div>
   </div>
 </section>
 
