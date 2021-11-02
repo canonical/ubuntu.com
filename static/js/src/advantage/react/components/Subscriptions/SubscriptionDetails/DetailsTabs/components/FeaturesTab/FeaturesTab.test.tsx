@@ -39,3 +39,16 @@ it("displays feature categories with content", () => {
   expect(screen.queryByText("ESM Apps")).not.toBeInTheDocument();
   within(screen.getByTestId("always-available-features")).getByLabelText("CIS");
 });
+
+it("hides feature tab when no features are available", () => {
+  const subscription = userSubscriptionFactory.build({
+    entitlements: [
+      userSubscriptionEntitlementFactory.build({
+        enabled_by_default: false,
+        type: EntitlementType.EsmApps,
+      }),
+    ],
+  });
+  renderWithQueryClient(<FeaturesTab subscription={subscription} />);
+  expect(screen.queryByText("Features")).not.toBeInTheDocument();
+});
