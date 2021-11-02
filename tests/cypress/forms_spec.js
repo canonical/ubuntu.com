@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { standardFormUrls } from "../utils";
+import { standardFormUrls } from "./utils";
 
 context("Marketo forms", () => {
   beforeEach(() => {
