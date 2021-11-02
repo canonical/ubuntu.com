@@ -130,7 +130,7 @@ def get_account_users():
     g.api.set_convert_response(True)
 
     try:
-        account = g.api.get_purchase_account()
+        account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
@@ -209,7 +209,7 @@ def get_user_info():
     g.api.set_convert_response(True)
 
     try:
-        account = g.api.get_purchase_account()
+        account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
@@ -245,7 +245,7 @@ def advantage_shop_view():
     account = None
     if user_info(flask.session):
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("canonical-ua")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -297,7 +297,7 @@ def payment_methods_view():
     pending_purchase_id = ""
 
     try:
-        account = g.api.get_purchase_account()
+        account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         # No Stripe account
 
@@ -823,7 +823,7 @@ def invoices_view(**kwargs):
 
             total = None
             invoice = raw_payment.get("invoice")
-            status = invoice.get("status")
+            status = invoice.get("status") if invoice else "Pending"
             if invoice and invoice.get("total"):
                 cost = invoice.get("total") / 100
                 currency = invoice.get("currency")
@@ -880,7 +880,7 @@ def blender_shop_view():
     account = None
     if user_info(flask.session):
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("blender")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
