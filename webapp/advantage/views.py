@@ -449,10 +449,11 @@ def cancel_advantage_subscriptions(**kwargs):
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     product_listing_id = kwargs.get("product_listing_id")
+    marketplace = kwargs.get("marketplace")
 
     monthly_subscriptions = g.api.get_account_subscriptions(
         account_id=account_id,
-        marketplace="canonical-ua",
+        marketplace=marketplace,
         filters={"status": "active", "period": "monthly"},
     )
 
@@ -476,7 +477,7 @@ def cancel_advantage_subscriptions(**kwargs):
 
     try:
         purchase = g.api.purchase_from_marketplace(
-            marketplace="canonical-ua", purchase_request=purchase_request
+            marketplace=marketplace, purchase_request=purchase_request
         )
     except CannotCancelLastContractError:
         g.api.cancel_subscription(

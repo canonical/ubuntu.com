@@ -186,7 +186,12 @@ export async function postPurchaseData(
   return data;
 }
 
-export async function cancelContract(accountId, previousPurchaseId, productId) {
+export async function cancelContract(
+  accountId,
+  previousPurchaseId,
+  productId,
+  marketplace
+) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
@@ -201,6 +206,7 @@ export async function cancelContract(accountId, previousPurchaseId, productId) {
       account_id: accountId,
       previous_purchase_id: previousPurchaseId,
       product_listing_id: productId,
+      marketplace: marketplace,
     }),
   });
 

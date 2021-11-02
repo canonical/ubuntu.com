@@ -49,6 +49,10 @@ cancel_advantage_subscriptions = {
     "account_id": String(required=True),
     "previous_purchase_id": String(required=True),
     "product_listing_id": String(required=True),
+    "marketplace": String(
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        required=True,
+    ),
 }
 
 post_anonymised_customer_info = {
@@ -80,7 +84,9 @@ ensure_purchase_account = {
 
 invoice_view = {
     "marketplace": String(
-        validate=validate.OneOf(["", "canonical-ua", "canonical-cube"])
+        validate=validate.OneOf(
+            ["", "canonical-ua", "canonical-cube", "blender"]
+        )
     ),
     "email": String(),
 }

@@ -55,7 +55,8 @@ describe("useCancelContract", () => {
       lastPurchaseIds?.[UserSubscriptionMarketplace.CanonicalUA]?.[
         UserSubscriptionPeriod.Monthly
       ],
-      subscription.listing_id
+      subscription.listing_id,
+      subscription.marketplace
     );
   });
 
