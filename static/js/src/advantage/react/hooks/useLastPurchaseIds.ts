@@ -13,7 +13,8 @@ export const selectPurchaseIdsByMarketplaceAndPeriod = (
   if (
     !marketplace ||
     !period ||
-    marketplace === UserSubscriptionMarketplace.Free
+    marketplace === UserSubscriptionMarketplace.Free ||
+    marketplace === UserSubscriptionMarketplace.CanonicalCUBE
   ) {
     return null;
   }

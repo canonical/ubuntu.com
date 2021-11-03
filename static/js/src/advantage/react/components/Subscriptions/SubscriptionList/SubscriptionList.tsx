@@ -1,8 +1,10 @@
 import { Spinner } from "@canonical/react-components";
-import { useUserInfo, useUserSubscriptions } from "advantage/react/hooks";
+import { useUserSubscriptions } from "advantage/react/hooks";
 import {
   selectFreeSubscription,
   selectUASubscriptions,
+  selectBlenderSubscriptions,
+  selectActiveUASubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
@@ -30,19 +32,36 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   } = useUserSubscriptions({
     select: selectUASubscriptions,
   });
-  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
-  if (isLoadingFree || isLoadingUA || isLoadingUserInfo) {
+  const {
+    data: blenderSubscriptionsData = [],
+    isLoading: isLoadingBlender,
+  } = useUserSubscriptions({
+    select: selectBlenderSubscriptions,
+  });
+  const {
+    data: activeUASubscriptions = [],
+    isLoading: isLoadingActiveUASubscriptions,
+  } = useUserSubscriptions({
+    select: selectActiveUASubscriptions,
+  });
+
+  if (
+    isLoadingFree ||
+    isLoadingUA ||
+    isLoadingBlender ||
+    isLoadingActiveUASubscriptions
+  ) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
   const sortedUASubscriptions = sortSubscriptionsByStartDate(
     uaSubscriptionsData
   );
-  const uaSubscriptions = sortedUASubscriptions.map((subscription, i) => (
+  const uaSubscriptions = sortedUASubscriptions.map((subscription) => (
     <ListCard
       data-test="ua-subscription"
       isSelected={selectedId === subscription.id}
-      key={i}
+      key={subscription.id}
       onClick={() => {
         sendAnalyticsEvent({
           eventCategory: "Advantage",
@@ -55,6 +74,29 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
     />
   ));
 
+  const sortedBlenderSubscriptions = sortSubscriptionsByStartDate(
+    blenderSubscriptionsData
+  );
+
+  const blenderSubscriptions = sortedBlenderSubscriptions.map(
+    (subscription) => (
+      <ListCard
+        data-test="blender-subscription"
+        isSelected={selectedId === subscription.id}
+        key={subscription.id}
+        onClick={() => {
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-change",
+            eventLabel: "blender subscription clicked",
+          });
+          onSetActive(subscription.id);
+        }}
+        subscription={subscription}
+      />
+    )
+  );
+
   return (
     <div className="p-subscriptions__list">
       <div className="p-subscriptions__list-scroll">
@@ -62,9 +104,15 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
           <ListGroup
             data-test="ua-subscriptions-group"
             title="Ubuntu Advantage"
-            showRenewalSettings={userInfo?.has_monthly_subscription}
+            showRenewalSettings={activeUASubscriptions?.length > 0}
           >
             {uaSubscriptions}
+          </ListGroup>
+        ) : null}
+
+        {sortedBlenderSubscriptions.length ? (
+          <ListGroup data-test="blender-subscriptions-group" title="Blender">
+            {blenderSubscriptions}
           </ListGroup>
         ) : null}
 

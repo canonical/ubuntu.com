@@ -83,3 +83,16 @@ it("submits correct entitlement updates", async () => {
     { is_enabled: false, type: "livepatch" },
   ]);
 });
+
+it("hides feature tab when no features are available", () => {
+  const subscription = userSubscriptionFactory.build({
+    entitlements: [
+      userSubscriptionEntitlementFactory.build({
+        enabled_by_default: false,
+        type: EntitlementType.EsmApps,
+      }),
+    ],
+  });
+  renderWithQueryClient(<FeaturesTab subscription={subscription} />);
+  expect(screen.queryByText("Features")).not.toBeInTheDocument();
+});

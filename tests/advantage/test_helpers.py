@@ -28,6 +28,8 @@ from webapp.advantage.ua_contracts.helpers import (
     apply_entitlement_rules,
     to_dict,
     group_shop_items,
+    is_billing_subscription_active,
+    is_billing_subscription_auto_renewing,
 )
 
 
@@ -254,9 +256,17 @@ class TestHelpers(unittest.TestCase):
         subscriptions = [
             make_subscription(
                 id=subscription_id,
+                period="yearly",
+                items=[make_subscription_item(product_listing_id="lAaBbCcDe")],
+            ),
+            make_subscription(
+                id=subscription_id,
                 period="monthly",
-                items=[make_subscription_item(product_listing_id="lAaBbCcDd")],
-            )
+                items=[
+                    make_subscription_item(product_listing_id="lAaBbCcDe"),
+                    make_subscription_item(product_listing_id="lAaBbCcDd"),
+                ],
+            ),
         ]
 
         is_cancelled = is_user_subscription_cancelled(
@@ -282,10 +292,96 @@ class TestHelpers(unittest.TestCase):
 
         self.assertEqual(is_cancelled, True)
 
+    def test_is_billing_subscription_active(self):
+        subscription_id_1 = "sub-id-1"
+        subscription_id_2 = "sub-id-2"
+        subscriptions = [
+            make_subscription(
+                id=subscription_id_1,
+                period="monthly",
+                status="active",
+            ),
+            make_subscription(
+                id=subscription_id_2,
+                period="yearly",
+                status="locked",
+            ),
+        ]
+
+        self.assertEqual(
+            is_billing_subscription_active(subscriptions, subscription_id_1),
+            True,
+        )
+        self.assertEqual(
+            is_billing_subscription_active(subscriptions, subscription_id_2),
+            True,
+        )
+
+    def test_is_billing_subscription_not_active(self):
+        subscription_id_1 = "sub-id-1"
+        subscriptions = [
+            make_subscription(
+                id=subscription_id_1,
+                period="monthly",
+                status="deactivated",
+            ),
+        ]
+
+        self.assertEqual(
+            is_billing_subscription_active(subscriptions, subscription_id_1),
+            False,
+        )
+
+    def test_is_billing_subscription_auto_renewing(self):
+        subscription_id_1 = "sub-id-1"
+        subscription_id_2 = "sub-id-2"
+        subscriptions = [
+            make_subscription(
+                id=subscription_id_1,
+                is_auto_renewing=True,
+            ),
+            make_subscription(
+                id=subscription_id_2,
+                is_auto_renewing=False,
+            ),
+        ]
+
+        self.assertEqual(
+            is_billing_subscription_auto_renewing(
+                subscriptions, subscription_id_1
+            ),
+            True,
+        )
+        self.assertEqual(
+            is_billing_subscription_auto_renewing(
+                subscriptions, subscription_id_2
+            ),
+            False,
+        )
+
     def test_get_date_statuses(self):
         freeze_datetime = "2020-09-01T00:00:00Z"
         scenarios = {
+            "yearly_date_is_61_days_before_expiry": {
+                "type": "yearly",
+                "date": "2020-11-01T00:00:00Z",
+                "expectations": {
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                },
+            },
+            "yearly_date_is_59_days_before_expiry": {
+                "type": "yearly",
+                "date": "2020-10-30T00:00:00Z",
+                "expectations": {
+                    "is_expiring": True,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                },
+            },
             "date_is_8_days_before_expiry": {
+                "type": "monthly",
                 "date": "2020-09-09T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
@@ -294,6 +390,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_7_days_and_one_second_before_expiry_start": {
+                "type": "monthly",
                 "date": "2020-09-08T00:00:01Z",
                 "expectations": {
                     "is_expiring": False,
@@ -302,6 +399,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_7_days_before_expiry": {
+                "type": "monthly",
                 "date": "2020-09-07T23:59:59Z",
                 "expectations": {
                     "is_expiring": True,
@@ -310,6 +408,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_before_expiry": {
+                "type": "monthly",
                 "date": "2020-09-01T00:00:01Z",
                 "expectations": {
                     "is_expiring": True,
@@ -318,6 +417,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_the_same_as_current_date": {
+                "type": "monthly",
                 "date": "2020-09-01T00:00:00Z",
                 "expectations": {
                     "is_expiring": True,
@@ -326,6 +426,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_in_grace_period": {
+                "type": "monthly",
                 "date": "2020-08-31T23:59:59Z",
                 "expectations": {
                     "is_expiring": False,
@@ -334,6 +435,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_before_grace_period_end": {
+                "type": "monthly",
                 "date": "2020-08-18T00:00:00Z",
                 "expectations": {
                     "is_expiring": False,
@@ -342,6 +444,7 @@ class TestHelpers(unittest.TestCase):
                 },
             },
             "date_is_one_second_after_grace_period_end": {
+                "type": "monthly",
                 "date": "2020-08-17T23:59:59Z",
                 "expectations": {
                     "is_expiring": False,
@@ -355,7 +458,7 @@ class TestHelpers(unittest.TestCase):
             for case, scenario in scenarios.items():
                 with self.subTest(msg=f"{case}", scenario=scenario):
                     date_statuses = get_date_statuses(
-                        end_date=scenario["date"]
+                        type=scenario["type"], end_date=scenario["date"]
                     )
 
                     self.assertEqual(date_statuses, scenario["expectations"])
@@ -383,9 +486,102 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
-            "test_yearly_user_subscription": {
+            "test_yearly_user_subscription_just_started": {
+                "parameters": {
+                    "type": "yearly",
+                    "end_date": "2021-08-31T23:59:59Z",
+                    "subscriptions": [
+                        make_subscription(
+                            id="abc", status="active", period="yearly"
+                        )
+                    ],
+                    "listing": None,
+                    "subscription_id": "abc",
+                },
+                "expectations": {
+                    "is_upsizeable": True,
+                    "is_downsizeable": False,
+                    "is_cancellable": False,
+                    "is_cancelled": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": False,
+                    "is_renewal_actionable": False,
+                    "has_pending_purchases": False,
+                    "is_subscription_active": True,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
+                },
+            },
+            "test_yearly_user_subscription_expiring": {
+                "parameters": {
+                    "type": "yearly",
+                    "end_date": "2020-09-30T23:59:59Z",
+                    "subscriptions": [
+                        make_subscription(
+                            id="abc", status="active", period="yearly"
+                        ),
+                    ],
+                    "listing": None,
+                    "subscription_id": "abc",
+                },
+                "expectations": {
+                    "is_upsizeable": True,
+                    "is_downsizeable": False,
+                    "is_cancellable": False,
+                    "is_cancelled": False,
+                    "is_expiring": True,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": False,
+                    "is_renewal_actionable": False,
+                    "has_pending_purchases": False,
+                    "is_subscription_active": True,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": True,
+                },
+            },
+            "test_yearly_user_subscription_expiring_but_auto_renewing": {
+                "parameters": {
+                    "type": "yearly",
+                    "end_date": "2020-09-30T23:59:59Z",
+                    "subscriptions": [
+                        make_subscription(
+                            id="abc",
+                            status="active",
+                            period="yearly",
+                            is_auto_renewing=True,
+                        ),
+                    ],
+                    "listing": None,
+                    "subscription_id": "abc",
+                },
+                "expectations": {
+                    "is_upsizeable": True,
+                    "is_downsizeable": False,
+                    "is_cancellable": False,
+                    "is_cancelled": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": False,
+                    "is_renewal_actionable": False,
+                    "has_pending_purchases": False,
+                    "is_subscription_active": True,
+                    "is_subscription_auto_renewing": True,
+                    "should_present_auto_renewal": True,
+                },
+            },
+            "test_yearly_user_subscription_grace_period": {
                 "parameters": {
                     "type": "yearly",
                     "end_date": "2020-08-31T23:59:59Z",
@@ -393,7 +589,7 @@ class TestHelpers(unittest.TestCase):
                     "listing": None,
                 },
                 "expectations": {
-                    "is_upsizeable": True,
+                    "is_upsizeable": False,
                     "is_downsizeable": False,
                     "is_cancellable": False,
                     "is_cancelled": False,
@@ -404,6 +600,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
             "test_monthly_user_subscription": {
@@ -419,6 +618,7 @@ class TestHelpers(unittest.TestCase):
                                     product_listing_id="listing-id"
                                 )
                             ],
+                            is_auto_renewing=True,
                         )
                     ],
                     "listing": make_listing(id="listing-id"),
@@ -428,13 +628,17 @@ class TestHelpers(unittest.TestCase):
                     "is_downsizeable": True,
                     "is_cancellable": True,
                     "is_cancelled": False,
-                    "is_expiring": True,
+                    # Not expiring, because it should auto-renew.
+                    "is_expiring": False,
                     "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
+                    "is_subscription_active": True,
+                    "is_subscription_auto_renewing": True,
+                    "should_present_auto_renewal": True,
                 },
             },
             "test_cancelled_user_subscription": {
@@ -467,6 +671,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
             "test_expired_user_subscription": {
@@ -488,6 +695,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
             "test_trial_user_subscription": {
@@ -515,6 +725,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
             "test_pending_purchases_user_subscription": {
@@ -540,6 +753,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": True,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
             "test_legacy_user_subscription": {
@@ -565,6 +781,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": True,
                     "is_renewal_actionable": True,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
             "test_non_actionable_legacy_user_subscription": {
@@ -585,6 +804,9 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": True,
                     "is_renewal_actionable": True,
                     "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
                 },
             },
         }

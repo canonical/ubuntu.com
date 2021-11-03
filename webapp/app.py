@@ -96,7 +96,6 @@ from webapp.advantage.views import (
     get_user_subscriptions,
     get_last_purchase_ids,
     get_contract_token,
-    get_user_info,
     cancel_trial,
     get_account_users,
     delete_account_user_role,
@@ -136,6 +135,7 @@ from webapp.certified.views import (
     certified_model_details,
     certified_hardware_details,
     certified_component_details,
+    certified_vendors,
     certified_desktops,
     certified_laptops,
     certified_servers,
@@ -304,7 +304,6 @@ app.add_url_rule(
     "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
 )
 app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
-app.add_url_rule("/advantage/user-info", view_func=get_user_info)
 app.add_url_rule("/advantage/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/advantage/accounts/<account_id>/user",
@@ -895,6 +894,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/component/<component_id>",
     view_func=certified_component_details,
+)
+app.add_url_rule(
+    "/certified/vendors/<vendor>",
+    view_func=certified_vendors,
 )
 app.add_url_rule(
     "/certified/desktops",

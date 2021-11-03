@@ -111,7 +111,7 @@
           </li>
           {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
           <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}{% if get_test_backend %}?test_backend=true{% endif %}">{{ child.title }}</a>
+            <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}{% if get_test_backend %}?test_backend=true{% endif %}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
           </li>
           {% endif %}
 

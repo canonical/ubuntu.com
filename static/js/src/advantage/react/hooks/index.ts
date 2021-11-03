@@ -6,6 +6,5 @@ export { useResizeContract } from "./useResizeContract";
 export { useSetAutoRenewal } from "./useSetAutoRenewal";
 export { useStripePublishableKey } from "./useStripePublishableKey";
 export { useURLs } from "./useURLs";
-export { useUserInfo } from "./useUserInfo";
 export { useUserSubscriptions } from "./useUserSubscriptions";
 export { useUpdateContractEntitlementsMutation } from "./useUpdateContractEntitlementsMutation";

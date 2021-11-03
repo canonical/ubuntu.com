@@ -74,7 +74,7 @@ def cube_microcerts():
 
     if sso_user:
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("canonical-cube")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -193,12 +193,16 @@ def cube_microcerts():
 
             courses.append(course)
 
+    edx_register_url = f"{edx_url}{flask.request.base_url}"
+    if flask.request.args.get("test_backend"):
+        edx_register_url = edx_register_url + "?test_backend=true"
+
     return flask.render_template(
         "cube/microcerts.html",
         **{
             "account_id": account["id"] if account else None,
             "edx_user": edx_user,
-            "edx_register_url": f"{edx_url}%2F",
+            "edx_register_url": edx_register_url,
             "sso_user": sso_user,
             "certified_badge": certified_badge or None,
             "modules": courses,
@@ -223,7 +227,7 @@ def get_microcerts():
 
     if sso_user:
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("canonical-cube")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.

@@ -988,6 +988,15 @@ body {
   }
 }
 
+// Styling to display a success message when forms are successfully submitted.
+#success {
+  display: none;
+}
+
+#success:target {
+  display: block;
+}
+
 html {
   scroll-behavior: smooth;
 }

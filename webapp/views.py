@@ -135,11 +135,13 @@ def sixteen_zero_four():
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
 
+    notices_since_esm = total_notices_issued - 1477
     context = {
         "total_patches_applied": 69,  # hard-coded for now
         "total_notices_issued": f"{total_notices_issued:,}",
         "total_cves_issued": f"{total_cves_issued:,}",
         "latest_notices": latest_notices,
+        "notices_since_esm": notices_since_esm,
     }
 
     return flask.render_template("16-04/index.html", **context)

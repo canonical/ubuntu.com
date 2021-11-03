@@ -5,21 +5,21 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { useSetAutoRenewal } from "./useSetAutoRenewal";
 
 import * as contracts from "advantage/api/contracts";
-import { userInfoFactory } from "advantage/tests/factories/api";
-import { UserInfo } from "advantage/api/types";
+import { userSubscriptionFactory } from "advantage/tests/factories/api";
+import { UserSubscription } from "advantage/api/types";
 
 describe("useSetAutoRenewal", () => {
   let setAutoRenewalSpy: jest.SpyInstance;
   let queryClient: QueryClient;
   let wrapper: WrapperComponent<ReactNode>;
-  let userInfo: UserInfo;
+  let userSubscriptions: UserSubscription;
 
   beforeEach(() => {
     setAutoRenewalSpy = jest.spyOn(contracts, "setAutoRenewal");
     setAutoRenewalSpy.mockImplementation(() => Promise.resolve({}));
     queryClient = new QueryClient();
-    userInfo = userInfoFactory.build();
-    queryClient.setQueryData("userInfo", userInfo);
+    userSubscriptions = userSubscriptionFactory.build();
+    queryClient.setQueryData("userSubscriptions", userSubscriptions);
     const Wrapper = ({ children }: PropsWithChildren<ReactNode>) => (
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
@@ -31,9 +31,9 @@ describe("useSetAutoRenewal", () => {
       () => useSetAutoRenewal(),
       { wrapper }
     );
-    result.current.mutate(true);
+    result.current.mutate({ sub: true });
     await waitForNextUpdate();
-    expect(setAutoRenewalSpy).toHaveBeenCalledWith(true);
+    expect(setAutoRenewalSpy).toHaveBeenCalledWith({ sub: true });
   });
 
   it("handles errors", async () => {
@@ -47,9 +47,12 @@ describe("useSetAutoRenewal", () => {
       () => useSetAutoRenewal(),
       { wrapper }
     );
-    result.current.mutate(true, {
-      onError: (error) => onError(error.message),
-    });
+    result.current.mutate(
+      { sub: true },
+      {
+        onError: (error) => onError(error.message),
+      }
+    );
     await waitForNextUpdate();
     expect(onError).toHaveBeenCalledWith("Uh oh");
   });
@@ -59,11 +62,11 @@ describe("useSetAutoRenewal", () => {
       () => useSetAutoRenewal(),
       { wrapper }
     );
-    let userInfoState = queryClient.getQueryState("userInfo");
-    expect(userInfoState?.isInvalidated).toBe(false);
-    result.current.mutate(true);
+    let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    expect(userSubscriptionsState?.isInvalidated).toBe(false);
+    result.current.mutate({ sub: true });
     await waitForNextUpdate();
-    userInfoState = queryClient.getQueryState("userInfo");
-    expect(userInfoState?.isInvalidated).toBe(true);
+    userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
+    expect(userSubscriptionsState?.isInvalidated).toBe(true);
   });
 });

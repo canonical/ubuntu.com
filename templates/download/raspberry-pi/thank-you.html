@@ -13,7 +13,9 @@
 {% block content %}
 
 {% if version %}
-<meta http-equiv="refresh" content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">
+  <meta http-equiv="refresh" content="3;url={% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">
+
+
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
@@ -21,9 +23,9 @@
     <div class="col-7">
       {% if version %}
       <h1>Thank you for downloading<br />
-        Ubuntu {{ version }}<br />
+        Ubuntu {% if version==releases.latest.core_version %}Core {% endif %}{{ version }}<br />
         for Raspberry Pi</h1>
-        <p>Your download should start automatically. If it doesn't, <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">download now</a>.</p>
+        <p>Your download should start automatically. If it doesn't, <a href="{% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.</p>
         {% with version=version, system=architecture, architecture=architecture %}
         {% include "download/shared/_verify-checksums.html" %}
         {% endwith %}

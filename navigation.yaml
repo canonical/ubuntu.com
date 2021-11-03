@@ -358,6 +358,9 @@ kubernetes:
         - title: Install
           path: /kubernetes/docs/install-manual
           hidden: True
+        - title: Install Offline
+          path: /kubernetes/docs/install-offline
+          hidden: True
         - title: AWS integration
           path: /kubernetes/docs/aws-integration
           hidden: True
@@ -461,7 +464,7 @@ kubernetes:
           path: /kubernetes/docs/docker-registry
           hidden: True
         - title: Configuring proxies
-          path: /kubernetes/docs/proxy-settings
+          path: /kubernetes/docs/proxies
           hidden: True
         - title: Using GPU workers
           path: /kubernetes/docs/gpu-workers
@@ -1234,12 +1237,10 @@ support:
     - title: Your subscriptions
       path: /advantage
       persist: True
-    - title: Account users
-      path: /advantage/users
-      persist: True
 
     - title: Community support
       path: /support/community-support
+
     - title: Contact us
       path: /support/contact-us
       hidden: True

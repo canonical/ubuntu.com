@@ -13,6 +13,16 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.22+ck2 Bugfix release
+
+### October 27, 2021 - [charmed-kubernetes-814](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-814/archive/bundle.yaml)
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.22+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck2).
+
+
 # 1.22+ck1 Bugfix release
 
 ### October 21, 2021 - [charmed-kubernetes-807](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-807/archive/bundle.yaml)

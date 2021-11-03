@@ -1,0 +1,40 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Certified {{ vendor.name }} devices{% endblock %}
+{% block meta_description %}Devices by {{ vendor.name }} that have been certified for use with Ubuntu.{% endblock %}
+{% block meta_copydoc %}{% endblock %}
+
+{% block outer_content %}
+<section class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width u-sv3">
+    <a href="/certified">&lsaquo;&nbsp;Certified hardware</a>
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      <h1>Ubuntu certified {{ vendor.name }} hardware</h1>
+      <p>{{ vendor.description }}</p>
+      <a href="{{ vendor.site_url }}" class="p-link--external" target="blank">Visit {{ vendor.name }}'s website here</a>
+    </div>
+    <div class="col-3 u-hide--small u-align--center">
+      <img src="{{vendor.logo_url}}"/>
+    </div>
+  </div>
+</section>
+
+{% with
+  title="All " + vendor.name + " certified hardware",
+  query=query,
+  placeholder="Search in all " + vendor.name + " certified devices",
+  total_results=total_results,
+  total_pages=total_pages,
+  offset=offset,
+  limit=limit,
+  category_filters=category_filters,
+  release_filters=release_filters,
+  results=results,
+  vendor_page="true"
+%}
+  {% include "certified/shared/category-search-results.html" %}
+{% endwith %}
+
+{% endblock %}

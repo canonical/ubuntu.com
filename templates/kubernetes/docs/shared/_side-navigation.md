@@ -12,6 +12,7 @@
 - [Quickstart](/kubernetes/docs/quickstart)
 - [Install](/kubernetes/docs/install-manual)
 - [Local install](/kubernetes/docs/install-local)
+- [Offline install](/kubernetes/docs/install-offline)
 
 ## Cloud Integration
 - [AWS integration](/kubernetes/docs/aws-integration)
@@ -32,6 +33,7 @@
 - [SR-IOV](/kubernetes/docs/cni-sriov)
 - [Using multiple networks](/kubernetes/docs/multiple-networks)
 - [IPv6](/kubernetes/docs/ipv6)
+- [Ingress](/kubernetes/docs/ingress)
 
 ## Container Runtimes
 - [Containerd & Docker](/kubernetes/docs/container-runtime)
@@ -51,7 +53,7 @@
 - [Security](/kubernetes/docs/security)
 - [Authentication with LDAP](/kubernetes/docs/ldap)
 - [Private Docker Registry](/kubernetes/docs/docker-registry)
-- [Configuring proxies](/kubernetes/docs/proxy-settings)
+- [Configuring proxies](/kubernetes/docs/proxies)
 - [Using GPU workers](/kubernetes/docs/gpu-workers)
 - [Audit Logging](/kubernetes/docs/audit-logging)
 - [Troubleshooting](/kubernetes/docs/troubleshooting)

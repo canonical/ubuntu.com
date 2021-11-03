@@ -71,6 +71,7 @@ def make_subscription(
     started_with_trial: bool = None,
     in_trial: bool = None,
     pending_purchases: List[str] = None,
+    is_auto_renewing: bool = None,
     items: List[SubscriptionItem] = None,
 ) -> Subscription:
     return Subscription(
@@ -81,6 +82,7 @@ def make_subscription(
         status=status or "active",
         last_purchase_id=last_purchase_id or "pAaBbCcDdEeFfGg",
         pending_purchases=pending_purchases or [],
+        is_auto_renewing=is_auto_renewing or False,
         items=items or [],
         started_with_trial=started_with_trial,
         in_trial=in_trial,
