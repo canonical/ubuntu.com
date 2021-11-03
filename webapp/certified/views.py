@@ -191,6 +191,7 @@ def certified_model_details(canonical_id):
         release_details=release_details,
         has_enabled_releases=has_enabled_releases,
         components=component_summaries,
+        hardware_website=model_release["hardware_website"],
     )
 
 

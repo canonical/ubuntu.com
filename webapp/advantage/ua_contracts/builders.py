@@ -214,11 +214,17 @@ def build_final_user_subscriptions(
             account, type, contract, renewal, subscription_id, item_id
         )
 
+        entitlements = (
+            apply_entitlement_rules(contract.entitlements)
+            if marketplace == "canonical-ua"
+            else []
+        )
+
         user_subscription = UserSubscription(
             id=id,
             type=type,
             account_id=account.id,
-            entitlements=apply_entitlement_rules(contract.entitlements),
+            entitlements=entitlements,
             start_date=aggregated_values.get("start_date"),
             end_date=end_date,
             number_of_machines=number_of_machines,

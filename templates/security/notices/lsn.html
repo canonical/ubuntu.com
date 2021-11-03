@@ -80,7 +80,7 @@
       <ul class="p-list">
         {% if notice.cves %}
           {% for cve in notice.cves %}
-            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/{{ cve.id }}">{{ cve.id }}</a></li>
+            <li class="p-list__item"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></li>
           {% endfor %}
         {% endif %}
 

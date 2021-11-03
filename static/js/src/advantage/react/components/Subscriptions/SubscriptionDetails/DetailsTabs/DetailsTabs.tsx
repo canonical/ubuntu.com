@@ -6,7 +6,11 @@ import {
   UserSubscription,
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
-import { isFreeSubscription } from "advantage/react/utils";
+import { filterAndFormatEntitlements } from "advantage/react/utils/filterAndFormatEntitlements";
+import {
+  isBlenderSubscription,
+  isFreeSubscription,
+} from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import FeaturesTab from "./components/FeaturesTab";
@@ -132,8 +136,18 @@ const generateDocLinks = (
   );
 
 const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
+  const featuresDisplay = filterAndFormatEntitlements(
+    subscription.entitlements
+  );
+  const [activeTab, setActiveTab] = useState<ActiveTab>(
+    featuresDisplay.included.length > 0
+      ? ActiveTab.FEATURES
+      : ActiveTab.DOCUMENTATION
+  );
   let content: ReactNode | null;
+
+  const isBlender = isBlenderSubscription(subscription);
+
   const isFree = isFreeSubscription(subscription);
   // Don't display any docs links for the free subscription.
   const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
@@ -145,37 +159,53 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       eventLabel: `subscription ${tab} tab clicked`,
     });
   };
+
+  const generateUADocs = () => {
+    return generateList(
+      "Documentation & tutorials",
+      docs
+        .map((doc) => ({
+          label: (
+            <a data-test="doc-link" href={doc.url}>
+              {doc.label}
+            </a>
+          ),
+        }))
+        .concat(
+          token
+            ? [
+                {
+                  label: (
+                    <>
+                      To attach a machine:{" "}
+                      <code data-test="contract-token">
+                        sudo ua attach {token?.contract_token}
+                      </code>
+                    </>
+                  ),
+                },
+              ]
+            : []
+        )
+    );
+  };
+
+  const blenderDocs = (
+    <>
+      <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+        Documentation & tutorials
+      </h5>
+      <a data-test="doc-link" href="https://blender.stackexchange.com/">
+        Blender StackExchange
+      </a>
+    </>
+  );
+
   switch (activeTab) {
     case ActiveTab.DOCUMENTATION:
       content = (
         <div data-test="docs-content">
-          {generateList(
-            "Documentation & tutorials",
-            docs
-              .map((doc) => ({
-                label: (
-                  <a data-test="doc-link" href={doc.url}>
-                    {doc.label}
-                  </a>
-                ),
-              }))
-              .concat(
-                token
-                  ? [
-                      {
-                        label: (
-                          <>
-                            To attach a machine:{" "}
-                            <code data-test="contract-token">
-                              sudo ua attach {token?.contract_token}
-                            </code>
-                          </>
-                        ),
-                      },
-                    ]
-                  : []
-              )
-          )}
+          {isBlender ? blenderDocs : generateUADocs()}
         </div>
       );
       break;
@@ -189,12 +219,17 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       <Tabs
         className="p-tabs--brand"
         links={[
-          {
-            active: activeTab === ActiveTab.FEATURES,
-            "data-test": "features-tab",
-            label: "Features",
-            onClick: () => setTab(ActiveTab.FEATURES),
-          },
+          ...(featuresDisplay.included.length > 0
+            ? // Don't show the Features tab if there are no included features.
+              [
+                {
+                  active: activeTab === ActiveTab.FEATURES,
+                  "data-test": "features-tab",
+                  label: "Features",
+                  onClick: () => setTab(ActiveTab.FEATURES),
+                },
+              ]
+            : []),
           {
             active: activeTab === ActiveTab.DOCUMENTATION,
             "data-test": "docs-tab",
