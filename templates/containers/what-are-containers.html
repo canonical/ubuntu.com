@@ -10,8 +10,7 @@
 
 {% block content %}
 
-<section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
-  <div class="p-strip--suru-topped">
+<section class="p-strip--suru-bottomed">
     <div class="row u-equal-height">
       <div class="col-7">
         <h1>What are containers?</h1>
@@ -29,7 +28,6 @@
         }}
       </div>
     </div>
-  </div>
 </section>
 
 <section class="p-strip">
@@ -63,10 +61,10 @@
     </div>
     <div class="col-6 u-align--center u-vertically-center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/ee9b80f7-Kubernetes+v+Docker.png",
+        url="https://assets.ubuntu.com/v1/cd384737-Kubernetes+v+Docker.svg",
         alt="",
-        width="200",
-        height="72",
+        width="300",
+        height="105",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -82,17 +80,18 @@
 </section>
 
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-half-and-half">
+  <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
-      <div class="col-7">
-        <p class="p-card__content">Choosing the right Kubernetes distribution is crucial for your business. <a href="/engage/enterprise-kubernetes-comparison">Read the Kubernetes distribution comparison whitepaper&nbsp;&rsaquo;</a></p>
+      <div class="col-7 u-vertically-center">
+        <p>Choosing the right Kubernetes distribution is crucial for your business.</p>
+        <p><a href="/engage/enterprise-kubernetes-comparison">Read the Kubernetes distribution comparison whitepaper&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-5 u-align--center u-vertically-center">
         {{ image (
-          url="https://assets.ubuntu.com/v1/4bf1d333-Compare_Kubernetes-Openshift-Rancher-WHT.svg",
+          url="https://assets.ubuntu.com/v1/198b738b-Compare_Kubernetes-Openshift-Rancher.svg",
           alt="",
-          width="200",
-          height="125",
+          width="240",
+          height="150",
           hi_def=True,
           loading="lazy"
           ) | safe
