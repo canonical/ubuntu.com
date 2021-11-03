@@ -20,7 +20,8 @@ export const useCancelContract = (subscription?: UserSubscription) => {
       cancelContract(
         subscription?.account_id,
         lastPurchaseId,
-        subscription?.listing_id
+        subscription?.listing_id,
+        subscription?.marketplace
       ).then((response) => {
         if (response.errors) {
           throw new Error(response.errors);
