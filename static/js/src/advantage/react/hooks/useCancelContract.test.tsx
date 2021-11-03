@@ -7,7 +7,6 @@ import { useCancelContract } from "./useCancelContract";
 import * as contracts from "advantage/api/contracts";
 import {
   lastPurchaseIdsFactory,
-  userInfoFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
@@ -32,7 +31,6 @@ describe("useCancelContract", () => {
     });
     queryClient = new QueryClient();
     queryClient.setQueryData("userSubscriptions", [subscription]);
-    queryClient.setQueryData("userInfo", userInfoFactory.build());
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
@@ -83,24 +81,20 @@ describe("useCancelContract", () => {
       { wrapper }
     );
     let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
-    let userInfoState = queryClient.getQueryState("userInfo");
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
     ]);
     expect(userSubscriptionsState?.isInvalidated).toBe(false);
-    expect(userInfoState?.isInvalidated).toBe(false);
     expect(lastPurchaseIdsState?.isInvalidated).toBe(false);
     result.current.mutate(null);
     await waitForNextUpdate();
     userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
-    userInfoState = queryClient.getQueryState("userInfo");
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
     ]);
     expect(userSubscriptionsState?.isInvalidated).toBe(true);
-    expect(userInfoState?.isInvalidated).toBe(true);
     expect(lastPurchaseIdsState?.isInvalidated).toBe(true);
   });
 });

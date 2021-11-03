@@ -20,5 +20,6 @@ module.exports = {
       },
       "@babel/plugin-syntax-jsx",
     ],
+    "@babel/plugin-proposal-class-properties",
   ],
 };

@@ -1,11 +1,11 @@
 # Packages
-from typing import List, Optional
+from typing import List
 
 from dateutil.parser import parse
 import flask
 from flask import g
 from requests.exceptions import HTTPError
-from webargs.fields import String, Boolean
+from webargs.fields import String
 
 # Local
 from webapp.advantage.ua_contracts.primitives import Subscription
@@ -14,7 +14,6 @@ from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
 from webapp.advantage.ua_contracts.builders import (
     build_user_subscriptions,
-    build_get_user_info,
 )
 from webapp.advantage.ua_contracts.helpers import (
     to_dict,
@@ -40,6 +39,7 @@ from webapp.advantage.schemas import (
     put_account_user_role,
     delete_account_user_role,
     put_contract_entitlements,
+    post_auto_renewal_settings,
 )
 
 
@@ -204,40 +204,6 @@ def get_contract_token(contract_id):
     return flask.jsonify({"contract_token": contract_token})
 
 
-@advantage_decorator(permission="user", response="json")
-def get_user_info():
-    g.api.set_convert_response(True)
-
-    try:
-        account = g.api.get_purchase_account("canonical-ua")
-    except UAContractsUserHasNoAccount as error:
-        # if no account throw 404
-        raise UAContractsAPIError(error)
-
-    subscriptions = g.api.get_account_subscriptions(
-        account_id=account.id,
-        marketplace="canonical-ua",
-        filters={"status": "active", "period": "monthly"},
-    )
-
-    monthly_subscription: Optional[Subscription] = (
-        subscriptions[0] if len(subscriptions) > 0 else None
-    )
-
-    renewal_info = None
-    if monthly_subscription and monthly_subscription.is_auto_renewing:
-        renewal_info = g.api.get_subscription_auto_renewal(
-            monthly_subscription.id
-        )
-
-    user_summary = {
-        "subscription": monthly_subscription,
-        "renewal_info": renewal_info,
-    }
-
-    return build_get_user_info(user_summary)
-
-
 @advantage_decorator(response="html")
 def advantage_shop_view():
     g.api.set_convert_response(True)
@@ -264,11 +230,7 @@ def advantage_shop_view():
         if subscription.status in ["active", "locked"]
     ]
 
-    is_trialling = any(
-        subscription
-        for subscription in current_subscriptions
-        if subscription.in_trial
-    )
+    is_trialling = any(sub for sub in current_subscriptions if sub.in_trial)
 
     listings = g.api.get_product_listings("canonical-ua")
 
@@ -642,27 +604,18 @@ def post_payment_methods(**kwargs):
 
 
 @advantage_decorator(permission="user", response="json")
-@use_kwargs({"should_auto_renew": Boolean()}, location="json")
+@use_kwargs(post_auto_renewal_settings, location="json")
 def post_auto_renewal_settings(**kwargs):
-    should_auto_renew = kwargs.get("should_auto_renew", False)
-
-    accounts = g.api.get_accounts()
-
-    for account in accounts:
-        monthly_subscriptions = g.api.get_account_subscriptions(
-            account_id=account["id"],
-            marketplace="canonical-ua",
-            filters={"status": "active", "period": "monthly"},
+    subscriptions = kwargs.get("subscriptions", {})
+    for subscription in subscriptions:
+        g.api.post_subscription_auto_renewal(
+            subscription_id=subscription.get("subscription_id"),
+            should_auto_renew=subscription.get("should_auto_renew"),
         )
-
-        for subscription in monthly_subscriptions:
-            g.api.post_subscription_auto_renewal(
-                subscription_id=subscription["subscription"]["id"],
-                should_auto_renew=should_auto_renew,
-            )
-
     return (
-        flask.jsonify({"message": "subscription renewal status was changed"}),
+        flask.jsonify(
+            {"message": "subscriptions renewal status were changed"}
+        ),
         200,
     )
 

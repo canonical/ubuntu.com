@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 
 export const useSetAutoRenewal = () => {
   const queryClient = useQueryClient();
-  const mutation = useMutation<unknown, Error, boolean>(
+  const mutation = useMutation<unknown, Error, { [key: string]: boolean }>(
     (shouldAutoRenew) =>
       setAutoRenewal(shouldAutoRenew).then((response) => {
         if (response.errors) {
@@ -13,8 +13,9 @@ export const useSetAutoRenewal = () => {
       }),
     {
       onSuccess: () => {
-        // Invalidate the user info so it fetches the updated data.
-        queryClient.invalidateQueries("userInfo");
+        // Invalidate the user subscriptions query to force a fetch of the
+        // updated data.
+        queryClient.invalidateQueries("userSubscriptions");
       },
     }
   );

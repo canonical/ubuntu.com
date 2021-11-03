@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Dict, Optional
+from typing import List, Dict
 
 import pytz
 from dateutil.parser import parse
@@ -254,27 +254,3 @@ def build_final_user_subscriptions(
             user_subscriptions.append(user_subscription)
 
     return user_subscriptions
-
-
-def build_get_user_info(user_summary: dict = None) -> dict:
-    subscription: Optional[Subscription] = user_summary["subscription"]
-
-    if subscription is None:
-        return {"has_monthly_subscription": False}
-
-    renewal_info = user_summary["renewal_info"]
-
-    if renewal_info is None:
-        return {
-            "has_monthly_subscription": True,
-            "is_auto_renewing": False,
-        }
-
-    return {
-        "has_monthly_subscription": True,
-        "is_auto_renewing": subscription.is_auto_renewing,
-        "last_payment_date": renewal_info.get("subscriptionStartOfCycle"),
-        "next_payment_date": renewal_info.get("subscriptionEndOfCycle"),
-        "total": renewal_info.get("total"),
-        "currency": renewal_info.get("currency").upper(),
-    }

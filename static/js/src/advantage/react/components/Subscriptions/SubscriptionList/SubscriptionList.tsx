@@ -1,9 +1,10 @@
 import { Spinner } from "@canonical/react-components";
-import { useUserInfo, useUserSubscriptions } from "advantage/react/hooks";
+import { useUserSubscriptions } from "advantage/react/hooks";
 import {
   selectFreeSubscription,
   selectUASubscriptions,
   selectBlenderSubscriptions,
+  selectActiveUASubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
@@ -37,8 +38,19 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   } = useUserSubscriptions({
     select: selectBlenderSubscriptions,
   });
-  const { data: userInfo, isLoading: isLoadingUserInfo } = useUserInfo();
-  if (isLoadingFree || isLoadingUA || isLoadingBlender || isLoadingUserInfo) {
+  const {
+    data: activeUASubscriptions = [],
+    isLoading: isLoadingActiveUASubscriptions,
+  } = useUserSubscriptions({
+    select: selectActiveUASubscriptions,
+  });
+
+  if (
+    isLoadingFree ||
+    isLoadingUA ||
+    isLoadingBlender ||
+    isLoadingActiveUASubscriptions
+  ) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
@@ -92,7 +104,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
           <ListGroup
             data-test="ua-subscriptions-group"
             title="Ubuntu Advantage"
-            showRenewalSettings={userInfo?.has_monthly_subscription}
+            showRenewalSettings={activeUASubscriptions?.length > 0}
           >
             {uaSubscriptions}
           </ListGroup>
