@@ -42,12 +42,10 @@
       {% include "download/iot/_setup-ubuntu-sso.html" %}
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title">
-
           Download Ubuntu Core
         </h3>
         <div class="p-stepped-list__content">
-          <p>Download <a class="p-link--external" href="https://ubuntu.com/download/raspberry-pi">Ubuntu Core 20 image for Raspberry Pi</a>.</p>
-          <p>You can verify the integrity of the files using the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</p>
+          {% include "download/shared/_core_raspberry_pi_download.html" %}
         </div>
       </li>
       {% with card="microSD card" %}{% include "download/iot/_flash-image.html" %}{% endwith %}
