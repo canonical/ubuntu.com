@@ -33,6 +33,7 @@
 - [SR-IOV](/kubernetes/docs/cni-sriov)
 - [Using multiple networks](/kubernetes/docs/multiple-networks)
 - [IPv6](/kubernetes/docs/ipv6)
+- [Ingress](/kubernetes/docs/ingress)
 
 ## Container Runtimes
 - [Containerd & Docker](/kubernetes/docs/container-runtime)
