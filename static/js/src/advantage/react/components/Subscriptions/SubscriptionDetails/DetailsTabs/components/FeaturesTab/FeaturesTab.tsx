@@ -7,91 +7,30 @@ import {
   Tooltip,
 } from "@canonical/react-components";
 
-import { EntitlementType } from "advantage/api/enum";
 import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
 import { UserSubscription } from "advantage/api/types";
 import {
   filterAndFormatEntitlements,
-  FeaturesDisplay,
-  Feature,
+  EntitlementsStore,
+  EntitlementLabel,
 } from "advantage/react/utils/filterAndFormatEntitlements";
 import FeatureSwitch from "advantage/react/components/FeatureSwitch";
+import {
+  getNewFeaturesFormState,
+  initialiseFeaturesForm,
+  EntitlementsFormState,
+} from "./utils";
 
 import { generateList } from "../../DetailsTabs";
 
-const getNewFeaturesFormState = (
-  entitlementsState: Record<string, Feature>,
-  newEntitlement: { type: EntitlementType; isChecked: boolean }
-): Record<string, Feature> => {
-  const newState: Record<string, Feature> = {};
-
-  Object.entries(entitlementsState).forEach(([key, value]) => {
-    if (key === newEntitlement.type) {
-      newState[newEntitlement.type] = {
-        ...entitlementsState[newEntitlement.type],
-        isChecked: newEntitlement.isChecked,
-        isDisabled: false,
-      };
-    } else if (key !== EntitlementType.Support) {
-      newState[key] = { ...value, isDisabled: false };
-    } else {
-      newState[key] = { ...value };
-    }
-  });
-
-  if (newState[EntitlementType.Fips]?.isChecked) {
-    newState[EntitlementType.Livepatch] = {
-      ...entitlementsState[EntitlementType.Livepatch],
-      isChecked: false,
-      isDisabled: true,
-    };
-
-    newState[EntitlementType.FipsUpdates] = {
-      ...entitlementsState[EntitlementType.FipsUpdates],
-      isChecked: false,
-      isDisabled: true,
-    };
-  } else if (
-    newState[EntitlementType.Livepatch]?.isChecked ||
-    newState[EntitlementType.FipsUpdates]?.isChecked
-  ) {
-    newState[EntitlementType.Fips] = {
-      ...entitlementsState[EntitlementType.Fips],
-      isChecked: false,
-      isDisabled: true,
-    };
-  }
-
-  return newState;
-};
-
-const getFeaturesForm = (features: FeaturesDisplay) => {
-  const draftState: Record<string, Feature> = {};
-  features.alwaysAvailable.forEach((feature) => {
-    draftState[feature.type] = { ...feature };
-  });
-  features.included.forEach((feature) => {
-    draftState[feature.type] = { ...feature };
-  });
-
-  return draftState;
-};
-
-type EntitlementToUpdate = {
-  type: EntitlementType;
-  isChecked: boolean;
-};
-
 const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
-  const featuresDisplay = filterAndFormatEntitlements(
-    subscription.entitlements
+  const [features, setFeatures] = React.useState<EntitlementsStore>(
+    filterAndFormatEntitlements(subscription.entitlements)
   );
-  const [features, setFeatures] = React.useState<FeaturesDisplay>(
-    featuresDisplay
-  );
-  const [featuresFormState, setFeaturesFormState] = React.useState(
-    getFeaturesForm(featuresDisplay)
-  );
+  const [
+    featuresFormState,
+    setFeaturesFormState,
+  ] = React.useState<EntitlementsFormState>(initialiseFeaturesForm(features));
 
   const {
     mutateAsync,
@@ -100,31 +39,33 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
   } = useUpdateContractEntitlementsMutation();
 
   const [entitlementsToUpdate, setEntitlementsToUpdate] = React.useState<
-    EntitlementToUpdate[]
+    EntitlementLabel[]
   >([]);
 
   const handleOnFeatureSwitch = (
-    type: EntitlementType,
+    label: EntitlementLabel,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const isChecked = !!event?.target?.checked;
-    const entitlement = { type, isChecked };
-
-    setEntitlementsToUpdate((entitlements) => [...entitlements, entitlement]);
+    const entitlement = { ...featuresFormState[label], isChecked };
 
     setFeaturesFormState(
       getNewFeaturesFormState(featuresFormState, entitlement)
     );
+
+    if (!entitlementsToUpdate.includes(label)) {
+      setEntitlementsToUpdate([...entitlementsToUpdate, label]);
+    }
   };
 
   const handleOnCancel = () => {
-    setFeaturesFormState(getFeaturesForm(featuresDisplay));
+    setFeaturesFormState(initialiseFeaturesForm(features));
     setEntitlementsToUpdate([]);
   };
 
   useEffect(() => {
     const features = filterAndFormatEntitlements(subscription.entitlements);
-    const featuresFormState = getFeaturesForm(features);
+    const featuresFormState = initialiseFeaturesForm(features);
 
     setFeatures(features);
     setFeaturesFormState(featuresFormState);
@@ -134,9 +75,9 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
     event.preventDefault();
     mutateAsync({
       contractId: subscription?.contract_id,
-      entitlements: entitlementsToUpdate.map((entitlement) => ({
-        type: entitlement.type,
-        isEnabled: entitlement.isChecked,
+      entitlements: entitlementsToUpdate.map((label) => ({
+        type: featuresFormState[label].type,
+        is_enabled: featuresFormState[label].isChecked,
       })),
     })
       .catch(() => {
@@ -158,15 +99,15 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
           {features.included.length
             ? generateList(
                 "Included",
-                features.included.map(({ type, label }) => ({
+                features.included.map((label) => ({
                   label: (
                     <div className="p-subscription-switch-wrapper">
                       <FeatureSwitch
-                        key={type}
-                        isChecked={featuresFormState[type]?.isChecked}
-                        isDisabled={featuresFormState[type]?.isDisabled}
+                        key={label}
+                        isChecked={featuresFormState[label]?.isChecked}
+                        isDisabled={featuresFormState[label]?.isDisabled}
                         handleOnChange={(event) =>
-                          handleOnFeatureSwitch(type, event)
+                          handleOnFeatureSwitch(label, event)
                         }
                       >
                         {label}
@@ -194,7 +135,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                     </Button>
                   </Tooltip>
                 </div>,
-                features.excluded.map(({ label }) => ({
+                features.excluded.map((label) => ({
                   icon: "error",
                   label: label,
                 }))
@@ -218,24 +159,25 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
                     these certifications.
                   </span>
                 </>,
-                features.alwaysAvailable.map(({ type, label }) => ({
+                features.alwaysAvailable.map((label) => ({
                   label: (
                     <div className="p-subscription-switch-wrapper">
                       <FeatureSwitch
-                        key={type}
-                        isChecked={featuresFormState[type]?.isChecked}
-                        isDisabled={featuresFormState[type]?.isDisabled}
+                        key={label}
+                        isChecked={featuresFormState[label]?.isChecked}
+                        isDisabled={featuresFormState[label]?.isDisabled}
                         handleOnChange={(event) =>
-                          handleOnFeatureSwitch(type, event)
+                          handleOnFeatureSwitch(label, event)
                         }
                       >
                         {label}
                       </FeatureSwitch>
-                      {label === "FIPS" || label === "FIPS-Updates" ? (
+                      {label === EntitlementLabel.Fips ||
+                      label === EntitlementLabel.FipsUpdates ? (
                         <Tooltip
                           tooltipClassName="p-subscriptions-tooltip"
                           message={
-                            label === "FIPS"
+                            label === EntitlementLabel.Fips
                               ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
                               : "Enabling FIPS-Updates will disable FIPS"
                           }

@@ -105,10 +105,7 @@ export async function putContractEntitlements(contractId, entitlements) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        entitlements: entitlements.map((entitlement) => ({
-          type: entitlement.type,
-          is_enabled: entitlement.isEnabled,
-        })),
+        entitlements,
       }),
     }
   );

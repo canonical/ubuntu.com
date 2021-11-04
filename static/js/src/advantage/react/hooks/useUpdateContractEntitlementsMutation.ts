@@ -1,6 +1,9 @@
-import { putContractEntitlements } from "../../api/contracts";
-import { UserSubscription } from "../../api/types";
 import { useMutation, useQueryClient } from "react-query";
+import { putContractEntitlements } from "advantage/api/contracts";
+import {
+  UserSubscription,
+  UserSubscriptionEntitlementUpdate,
+} from "advantage/api/types";
 
 export const useUpdateContractEntitlementsMutation = () => {
   const queryClient = useQueryClient();
@@ -10,7 +13,7 @@ export const useUpdateContractEntitlementsMutation = () => {
     Error,
     {
       contractId: UserSubscription["contract_id"];
-      entitlements: { type: string; isEnabled: boolean }[];
+      entitlements: UserSubscriptionEntitlementUpdate[];
     }
   >(
     ({ contractId, entitlements }) =>
