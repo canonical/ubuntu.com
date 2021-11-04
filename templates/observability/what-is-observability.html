@@ -82,14 +82,14 @@
         </div>
         <div class="col-7">
             <h3 class="p-heading--4">Logs</h3>
-            <p>Structured (usually as JSON objects) or unstructured (as plain text following some pattern), are time-stamped entries that document the occurrence of an event like "the following error was caught" or "that payment process has been completed."</p>
+            <p>Logs, structured (usually as JSON objects) or unstructured (as plain text following some pattern), are time-stamped entries that document the occurrence of an event like "the following error was caught" or "that payment process has been completed."</p>
         </div>
     </div>
     <br>
     <div class="row u-equal-height">
         <div class="col-7">
             <h3 class="p-heading--4">Distributed traces</h3>
-            <p>Document what work is done by various systems to process specific requests, like serving a Web page or executing a batch job. Nowadays, most distributed traces are modeled as a tree of spans. Spans are similar to structured logs, each describing some processing like "Serving request XYZ" or "Querying database 123", have a duration that reports how long it took to perform the processing, and have hierarchical relations to other spans in the form of child-parent relations. Usually, multiple systems contribute spans to one distributed trace, ranging from the API servers to databases and messaging queues and (micro)services in between.</p>
+            <p>Distributed traces document what work is done by various systems to process specific requests, like serving a Web page or executing a batch job. Nowadays, most distributed traces are modeled as a tree of spans. Spans are similar to structured logs, each describing some processing like "Serving request XYZ" or "Querying database 123", have a duration that reports how long it took to perform the processing, and have hierarchical relations to other spans in the form of child-parent relations. Usually, multiple systems contribute spans to one distributed trace, ranging from the API servers to databases and messaging queues and (micro)services in between.</p>
         </div>
         <div class="col-5 u-align--center u-hide--small u-vertically-center">
             {{ image (
