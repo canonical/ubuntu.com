@@ -1,227 +1,214 @@
 <section class="p-strip">
 	<div class="row">
 		<div class="col-8">
-			<h1>The Ubuntu Experts</h1>
-			<p class="p-heading--four">Canonical certifies, secures and enables enterprise open source on Ubuntu. Tell us about your project so we bring the right team to the conversation.</p>
+			<h1>Register your interest for the OpenJDK for FIPS beta</h1>
+			<p class="p-heading--four">In 2017, Canonical launched the Ubuntu FIPS programme to enable Linux workloads for US government regulated and high security environments, and now we are extending its coverage to Java workloads. This programme will give Ubuntu users free access to OpenJDK designed to comply with the FIPS requirements for beta testing for a 3 month period &ndash; please register your interest below to learn more.</p>
 		</div>
   </div>
 	<div class="row">
-		<form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" >
-			<fieldset class="u-no-margin--bottom col-12">
-				<h3 class="p-heading--five">How would you like to make use of Ubuntu?</h3>
-				<div class="row u-no-padding">
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="make-use-of-workstations">
-						<label for="make-use-of-workstations">Workstations</label>
-						<input type="checkbox" id="make-use-of-servers">
-						<label for="make-use-of-servers">Servers</label>
-						<input type="checkbox" id="make-use-of-public-cloud">
-						<label for="make-use-of-public-cloud">Public cloud</label>
-						<input type="checkbox" id="make-use-of-private-cloud">
-						<label for="make-use-of-private-cloud">Private cloud</label>
-						<input type="checkbox" id="make-use-appliances">
-						<label for="make-use-appliances">Appliances</label>
+		<div class="col-8">
+			<form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" >
+				<fieldset class="u-no-margin--bottom">
+					<h3 class="p-heading--five">Which Ubuntu LTS are you using?</h3>
+					<div class="row u-no-padding">
+						<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-xenial">
+							<label for="security-fips-xenial">16.04 (Xenial)</label>
+						</div>
+						<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-bionic">
+							<label for="security-fips-bionic">18.04 (Bionic)</label>
+						</div>
+						<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-focal">
+							<label for="security-fips-focal">20.04 (Focal)</label>
+						</div>
 					</div>
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="make-use-of-enterprise-infra">
-						<label for="make-use-of-enterprise-infra">Enterprise infra</label>
-						<input type="checkbox" id="make-use-of-enterprise-apps">
-						<label for="make-use-of-enterprise-apps">Enterprise apps</label>
-						<input type="checkbox" id="make-use-of-embedding">
-						<label for="make-use-of-embedding">Embedding</label>
-						<input type="checkbox" id="make-use-of-development">
-						<label for="make-use-of-development">Development</label>
-						<input type="checkbox" id="make-use-of-virtualization">
-						<label for="make-use-of-virtualization">Virtualization</label>
+				</fieldset>
+				<fieldset class="u-no-margin--bottom">
+					<h3 class="p-heading--five">Do you use any of the packages below?</h3>
+					<div class="row u-no-padding">
+						<div class="col-6">
+							<input type="checkbox" id="security-fips-tomcat">
+							<label for="security-fips-tomcat">tomcat</label>
+              <div class="js-other-container">
+                <input type="checkbox" class="js-other-container__checkbox" id="security-fips-other">
+                <label for="security-fips-other">Other</label>
+                <input type="text" id="security-fips-other-specified" class="js-other-container__input" placeholder="Please specify" style="margin-top: .25rem; visibility: hidden" aria-label="Other workloads">
+              </div>
+            </div>
 					</div>
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="make-use-of-storage">
-						<label for="make-use-of-storage">Storage</label>
-						<input type="checkbox" id="make-use-of-networking">
-						<label for="make-use-of-networking">Networking</label>
-						<input type="checkbox" id="make-use-of-kubernetes">
-						<label for="make-use-of-kubernetes">Kubernetes</label>
-						<input type="checkbox" id="make-use-of-openstack">
-						<label for="make-use-of-openstack">OpenStack</label>
-						<input type="checkbox" id="make-use-of-kubeflow">
-						<label for="make-use-of-kubeflow">Kubeflow</label>
+				</fieldset>
+				<fieldset class="u-no-margin--bottom">
+					<h3 class="p-heading--five">Which java runtime do your applications depend on?</h3>
+					<div class="row u-no-padding">
+						<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-openjdk-8">
+							<label for="security-fips-openjdk-8">OpenJDK-8</label>
+						</div>
+						<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-openjdk-11">
+							<label for="security-fips-openjdk-11">OpenJDK-11</label>
+						</div>
+						<div class="col-4 u-sv3">
+							<input type="checkbox" id="security-fips-openjdk-16">
+							<label for="security-fips-openjdk-16">OpenJDK-16</label>
+						</div>
 					</div>
-				</div>
-			</fieldset>
-			<fieldset class="u-no-margin--bottom">
-				<h3 class="p-heading--five">In any particular sectors?</h3>
-				<div class="row u-no-padding">
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="particular-sectors-airlines">
-						<label for="particular-sectors-airlines">Airlines</label>
-						<input type="checkbox" id="particular-sectors-aerospace">
-						<label for="particular-sectors-aerospace">Aerospace</label>
-						<input type="checkbox" id="particular-sectors-agriculture">
-						<label for="particular-sectors-agriculture">Agriculture</label>
-						<input type="checkbox" id="particular-sectors-automotive">
-						<label for="particular-sectors-automotive">Automotive</label>
-						<input type="checkbox" id="particular-sectors-chemical">
-						<label for="particular-sectors-chemical">Chemical</label>
-						<input type="checkbox" id="particular-sectors-computer">
-						<label for="particular-sectors-computer">Computer</label>
-						<input type="checkbox" id="particular-sectors-construction">
-						<label for="particular-sectors-construction">Construction</label>
-						<input type="checkbox" id="particular-sectors-defense">
-						<label for="particular-sectors-defense">Defense</label>
-						<input type="checkbox" id="particular-sectors-education">
-						<label for="particular-sectors-education">Education</label>
-						<input type="checkbox" id="particular-sectors-electronics">
-						<label for="particular-sectors-electronics">Electronics</label>
+				</fieldset>
+				<fieldset class="u-no-margin--bottom">
+					<h3 class="p-heading--five">How should we get in touch?</h3>
+					<div class="row u-no-padding">
+						<div class="col-6">
+							<ul class="p-list">
+								<li class="p-list__item">
+									<label for="firstName">First name:</label>
+									<input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+								</li>
+								<li class="p-list__item">
+									<label for="lastName">Last name:</label>
+									<input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+								</li>
+								<li class="p-list__item">
+									<label for="email">Work email:</label>
+									<input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+								</li>
+								<li class="p-list__item">
+									<label for="phone">Mobile/cell phone number:</label>
+									<input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+								</li>
+								<li class="p-list__item">
+									<input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+									<label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+								</li>
+								<li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+								{# These are honey pot fields to catch bots #}
+								<li class="u-off-screen">
+									<label class="website" for="website">Website:</label>
+									<input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+								</li>
+								<li class="u-off-screen">
+									<label class="name" for="name">Name:</label>
+									<input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+								</li>
+								{# End of honey pots #}
+							</ul>
+							<ul class="p-list">
+								<li class="p-list__item">
+									<button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+								</li>
+							</ul>
+              <!-- hidden fields -->
+              <div class="u-hide">
+                <h3>Your comments</h3>
+                <ul class="p-list">
+                  <li class=" p-list__item">
+                    <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                    <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+                  </li>
+                </ul>
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="{{formid}}" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{returnURL}}" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
+              </div>
+            </div>
 					</div>
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="particular-sectors-energy">
-						<label for="particular-sectors-energy">Energy</label>
-						<input type="checkbox" id="particular-sectors-entertainment">
-						<label for="particular-sectors-entertainment">Entertainment</label>
-						<input type="checkbox" id="particular-sectors-finance">
-						<label for="particular-sectors-finance">Finance</label>
-						<input type="checkbox" id="particular-sectors-food">
-						<label for="particular-sectors-food">Food</label>
-						<input type="checkbox" id="particular-sectors-government">
-						<label for="particular-sectors-government">Government</label>
-						<input type="checkbox" id="particular-sectors-healthcare">
-						<label for="particular-sectors-healthcare">Healthcare</label>
-						<input type="checkbox" id="particular-sectors-hospitality">
-						<label for="particular-sectors-hospitality">Hospitality</label>
-						<input type="checkbox" id="particular-sectors-information">
-						<label for="particular-sectors-information">Information</label>
-						<input type="checkbox" id="particular-sectors-logistics">
-						<label for="particular-sectors-logistics">Logistics</label>
-						<input type="checkbox" id="particular-sectors-manufacturing">
-						<label for="particular-sectors-manufacturing">Manufacturing</label>
-					</div>
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="particular-sectors-mining">
-						<label for="particular-sectors-mining">Mining</label>
-						<input type="checkbox" id="particular-sectors-pharmaceutical">
-						<label for="particular-sectors-pharmaceutical">Pharmaceutical</label>
-						<input type="checkbox" id="particular-sectors-software">
-						<label for="particular-sectors-software">Software</label>
-						<input type="checkbox" id="particular-sectors-telecomms">
-						<label for="particular-sectors-telecomms">Telecomms</label>
-						<input type="checkbox" id="particular-sectors-service-provider">
-						<label for="particular-sectors-service-provider">Service provider</label>
-						<input type="checkbox" id="particular-sectors-transport">
-						<label for="particular-sectors-transport">Transport</label>
-						<input type="checkbox" id="particular-sectors-water">
-						<label for="particular-sectors-water">Water</label>
-						<input type="checkbox" id="particular-sectors-other">
-						<label for="particular-sectors-other">Other</label>
-					</div>
-				</div>
-			</fieldset>
-			<fieldset class="u-no-margin--bottom">
-				<div class="js-formfield u-sv3">
-					<h3 class="p-heading--five">Do you have sector-specific requirements?</h3>
-					<textarea id="sector-specific-requirements" name="sector-specific-requirements" aria-label="Do you have sector-specific requirements?" rows="3"></textarea>
-				</div>
-			</fieldset>
-			<fieldset class="u-no-margin--bottom">
-				<h3 class="p-heading--five">What is important to you?</h3>
-				<div class="row u-no-padding">
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="important-to-you-security">
-						<label for="important-to-you-security">Security</label>
-						<input type="checkbox" id="important-to-you-regulatory-compliance">
-						<label for="important-to-you-regulatory-compliance">Regulatory compliance</label>
-						<input type="checkbox" id="important-to-you-eal">
-						<label for="important-to-you-eal">EAL</label>
-						<input type="checkbox" id="important-to-you-fips">
-						<label for="important-to-you-fips">FIPS</label>
-						<input type="checkbox" id="important-to-you-kernel-livepatch">
-						<label for="important-to-you-kernel-livepatch">Kernel livepatch</label>
-						<input type="checkbox" id="important-to-you-ai-ml">
-						<label for="important-to-you-ai-ml">AI/ML</label>
-					</div>
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="important-to-you-training">
-						<label for="important-to-you-training">Training</label>
-						<input type="checkbox" id="important-to-you-certification">
-						<label for="important-to-you-certification">Certification</label>
-						<input type="checkbox" id="important-to-you-support">
-						<label for="important-to-you-support">Support</label>
-						<input type="checkbox" id="important-to-you-performance">
-						<label for="important-to-you-performance">Performance</label>
-						<input type="checkbox" id="important-to-you-managed-services">
-						<label for="important-to-you-managed-services">Managed services</label>
-					</div>
-					<div class="col-4 u-sv3">
-						<input type="checkbox" id="important-to-you-10-year-updates">
-						<label for="important-to-you-10-year-updates">10-year updates</label>
-						<input type="checkbox" id="important-to-you-management">
-						<label for="important-to-you-management">Management</label>
-						<input type="checkbox" id="important-to-you-orchestration">
-						<label for="important-to-you-orchestration">Orchestration</label>
-						<input type="checkbox" id="important-to-you-operations">
-						<label for="important-to-you-operations">Operations</label>
-					</div>
-				</div>
-			</fieldset>
-			<fieldset class="u-no-margin--bottom">
-					<h3 class="p-heading--five">Is there anything we should know about the project to bring the right people from our side?</h3>
-					<textarea id="right-people-from-our-side" name="right-people-from-our-side" aria-label="Is there anything we should know about the project to bring the right people from our side?" rows="3"></textarea>
-			</fieldset>
-			<fieldset class="u-no-margin--bottom">
-				<h3 class="p-heading--five">How should we get in touch?</h3>
-				<div class="row u-no-padding">
-					<div class="col-6">
-						<ul class="p-list">
-							<li class="p-list__item">
-								<label for="firstName">First name:</label>
-								<input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
-							</li>
-							<li class="p-list__item">
-								<label for="lastName">Last name:</label>
-								<input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
-							</li>
-							<li class="p-list__item">
-								<label for="email">Work email:</label>
-								<input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
-							</li>
-							<li class="p-list__item">
-								<label for="phone">Mobile/cell phone number:</label>
-								<input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
-							</li>
-							<li class="p-list__item">
-								<input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-								<label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
-							</li>
-							<li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-							{# These are honey pot fields to catch bots #}
-							<li class="u-off-screen">
-								<label class="website" for="website">Website:</label>
-								<input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-							</li>
-							<li class="u-off-screen">
-								<label class="name" for="name">Name:</label>
-								<input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-							</li>
-							{# End of honey pots #}
-						</ul>
-						<ul class="p-list">
-							<li class="p-list__item">
-								<button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
-							</li>
-						</ul>
-						<!-- hidden fields -->
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="{{formid}}" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{returnURL}}" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-						<input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
-					</div>
-				</div>
-			</fieldset>
-		</form>
+				</fieldset>
+			</form>
+		</div>
 	</div>	
 </section>
+<script>
+  var otherContainers = document.querySelectorAll(".js-other-container");
+  var comment = document.querySelector("#Comments_from_lead__c");
+
+  otherContainers.forEach(function (otherContainer) {
+    var checkbox = otherContainer.querySelector(
+      ".js-other-container__checkbox"
+    );
+    var input = otherContainer.querySelector(".js-other-container__input");
+    checkbox.addEventListener("change", function (e) {
+      console.log(e)
+      if (e.target.checked) {
+        input.style.visibility = "visible"
+        input.focus();
+      } else {
+        input.style.visibility = "hidden"
+        input.value = "";
+      }
+    });
+  });
+  
+  function createMessage() {
+    var message = "";
+    var formFields = document.getElementsByTagName("fieldset");
+    
+    formFields.forEach(function (formField) {
+      var comma = "";
+      var fieldTitle = formField.querySelectorAll(".p-heading--five");
+      var inputs = formField.querySelectorAll("input, textarea");
+      if (fieldTitle) {
+        message += fieldTitle.innerText + "\r\n";
+      }
+
+      inputs.forEach(function (input) {
+        switch (input.type) {
+          case "radio":
+            if (input.checked) {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "checkbox":
+            if (input.checked) {
+              var subSectionText = "";
+              var subSection = input
+                .closest('[class*="col-"]')
+                .querySelector(".js-sub-section");
+              if (subSection) {
+                subSectionText = subSection.innerText + ": ";
+              }
+
+              var label = formField.querySelector(
+                "label[for=" + input.id + "]"
+              );
+              if (label) {
+                label = subSectionText + label.innerText;
+              } else {
+                label = input.id;
+              }
+              message += comma + label + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "text":
+            if (input.value !== "") {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "number":
+            if (input.value !== "") {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "textarea":
+            if (input.value !== "") {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+        }
+      });
+    });
+    return message;
+  }
+</script>
