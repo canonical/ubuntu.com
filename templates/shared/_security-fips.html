@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-8">
 			<form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" >
-				<fieldset class="u-no-margin--bottom">
+				<fieldset class="u-no-margin--bottom fieldset">
 					<h3 class="p-heading--five">Which Ubuntu LTS are you using?</h3>
 					<div class="row u-no-padding">
 						<div class="col-4 u-sv3">
@@ -25,7 +25,7 @@
 						</div>
 					</div>
 				</fieldset>
-				<fieldset class="u-no-margin--bottom">
+				<fieldset class="u-no-margin--bottom fieldset">
 					<h3 class="p-heading--five">Do you use any of the packages below?</h3>
 					<div class="row u-no-padding">
 						<div class="col-6">
@@ -39,8 +39,8 @@
             </div>
 					</div>
 				</fieldset>
-				<fieldset class="u-no-margin--bottom">
-					<h3 class="p-heading--five">Which java runtime do your applications depend on?</h3>
+				<fieldset class="u-no-margin--bottom fieldset">
+					<h3 class="p-heading--five">Which Java runtime do your applications depend on?</h3>
 					<div class="row u-no-padding">
 						<div class="col-4 u-sv3">
 							<input type="checkbox" id="security-fips-openjdk-8">
@@ -93,11 +93,6 @@
 								</li>
 								{# End of honey pots #}
 							</ul>
-							<ul class="p-list">
-								<li class="p-list__item">
-									<button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
-								</li>
-							</ul>
               <!-- hidden fields -->
               <div class="u-hide">
                 <h3>Your comments</h3>
@@ -118,6 +113,11 @@
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
               </div>
+              <ul class="p-list">
+								<li class="p-list__item">
+									<button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+								</li>
+							</ul>
             </div>
 					</div>
 				</fieldset>
@@ -125,90 +125,102 @@
 		</div>
 	</div>	
 </section>
-<script>
-  var otherContainers = document.querySelectorAll(".js-other-container");
-  var comment = document.querySelector("#Comments_from_lead__c");
 
-  otherContainers.forEach(function (otherContainer) {
-    var checkbox = otherContainer.querySelector(
-      ".js-other-container__checkbox"
-    );
-    var input = otherContainer.querySelector(".js-other-container__input");
-    checkbox.addEventListener("change", function (e) {
-      console.log(e)
-      if (e.target.checked) {
-        input.style.visibility = "visible"
-        input.focus();
-      } else {
-        input.style.visibility = "hidden"
-        input.value = "";
+<script>
+var otherContainers = document.querySelectorAll(".js-other-container");
+var comment = document.querySelector("#Comments_from_lead__c");
+
+otherContainers.forEach(function (otherContainer) {
+  var checkbox = otherContainer.querySelector(
+    ".js-other-container__checkbox"
+  );
+  var input = otherContainer.querySelector(".js-other-container__input");
+  checkbox.addEventListener("change", function (e) {
+    
+    if (e.target.checked) {
+      input.style.visibility = "visible"
+      input.focus();
+    } else {
+      input.style.visibility = "hidden"
+      input.value = "";
+    }
+  });
+});
+
+mktoForm_4208.addEventListener('submit', function(e) {
+  e.preventDefault();
+  comment.value = createMessage();
+  this.submit();
+});
+
+
+// Concatinate the options selected into a string
+function createMessage() {
+  var message = "";
+ 
+  var formFields = document.querySelectorAll(".fieldset");
+
+  formFields.forEach(function (formField) {
+    var comma = "";
+    var fieldTitle = formField.querySelector(".p-heading--five");
+    var inputs = formField.querySelectorAll("input, textarea");
+    
+    if (fieldTitle) {
+      message += fieldTitle.innerText + "\r\n";
+    }
+
+    inputs.forEach(function (input) {
+      switch (input.type) {
+        case "radio":
+          if (input.checked) {
+            message += comma + input.value + "\r\n\r\n";
+            comma = ", ";
+          }
+          break;
+        case "checkbox":
+          if (input.checked) {
+            var subSectionText = "";
+            var subSection = input
+              .closest('[class*="col-"]')
+              .querySelector(".js-sub-section");
+            if (subSection) {
+              subSectionText = subSection.innerText + ": ";
+            }
+
+            var label = formField.querySelector(
+              "label[for=" + input.id + "]"
+            );
+            if (label) {
+              label = subSectionText + label.innerText;
+            } else {
+              label = input.id;
+            }
+            message += comma + label + "\r\n\r\n";
+            comma = ", ";
+          }
+          break;
+        case "text":
+          if (input.value !== "") {
+            message += comma + input.value + "\r\n\r\n";
+            comma = ", ";
+          }
+          break;
+        case "number":
+          if (input.value !== "") {
+            message += comma + input.value + "\r\n\r\n";
+            comma = ", ";
+          }
+          break;
+        case "textarea":
+          if (input.value !== "") {
+            message += comma + input.value + "\r\n\r\n";
+            comma = ", ";
+          }
+          break;
       }
     });
   });
-  
-  function createMessage() {
-    var message = "";
-    var formFields = document.getElementsByTagName("fieldset");
-    
-    formFields.forEach(function (formField) {
-      var comma = "";
-      var fieldTitle = formField.querySelectorAll(".p-heading--five");
-      var inputs = formField.querySelectorAll("input, textarea");
-      if (fieldTitle) {
-        message += fieldTitle.innerText + "\r\n";
-      }
 
-      inputs.forEach(function (input) {
-        switch (input.type) {
-          case "radio":
-            if (input.checked) {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "checkbox":
-            if (input.checked) {
-              var subSectionText = "";
-              var subSection = input
-                .closest('[class*="col-"]')
-                .querySelector(".js-sub-section");
-              if (subSection) {
-                subSectionText = subSection.innerText + ": ";
-              }
-
-              var label = formField.querySelector(
-                "label[for=" + input.id + "]"
-              );
-              if (label) {
-                label = subSectionText + label.innerText;
-              } else {
-                label = input.id;
-              }
-              message += comma + label + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "text":
-            if (input.value !== "") {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "number":
-            if (input.value !== "") {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "textarea":
-            if (input.value !== "") {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-        }
-      });
-    });
-    return message;
-  }
+  return message;
+}
 </script>
