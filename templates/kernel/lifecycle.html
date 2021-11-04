@@ -11,19 +11,8 @@
   <div class="row">
     <div class="col-8">
       <h1>Ubuntu kernel lifecycle and enablement stack</h1>
-      <p>The Ubuntu LTS enablement, or Hardware Enablement (HWE), stacks provide the newer kernel and X support for existing Ubuntu LTS releases. These stacks can be installed manually, but are also installed with an Ubuntu LTS point release.</p>
-      <p>These newer enablement stacks are meant for desktop and server, and are also recommended for cloud or virtual images. However, if you want to remain on the original GA (General Availability) stacks, the options are:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">
-          Install from a previous 12.04.0/12.04.1/14.04.0/14.04.1/16.04.0/16.04.1/18.04.0/18.04.1 point release and update. Previous releases are archived at <a class="" href="http://old-releases.ubuntu.com/">old-releases.ubuntu.com</a>
-        </li>
-        <li class="p-list__item is-ticked">
-          Perform an update or upgrade to an LTS release from a previous release
-        </li>
-        <li class="p-list__item is-ticked">
-          Perform a network install using the netboot images rather than the new &lt;release&gt;-netboot images
-        </li>
-      </ul>
+      <p>The Ubuntu LTS enablement, or Hardware Enablement (HWE), stack provides the newer kernel and X support for existing Ubuntu LTS releases. That stack can be enabled manually, but may also be pre-enabled with an Ubuntu LTS release.</p>
+      <p>The HWE stack can be used by desktop and server systems, as well as cloud or virtual images.</p>
     </div>
   </div>
 </section>
@@ -37,7 +26,10 @@
         <nav class="p-tabs">
           <ul class="p-tabs__list" role="tablist">
             <li class="p-tabs__item" role="presentation">
-              <a href="#installation-18-04" class="p-tabs__link" id="installation-18-04-tab" role="tab" aria-controls="installation-18-04" aria-selected="true">18.04 LTS</a>
+              <a href="#installation-20-04" class="p-tabs__link" id="installation-20-04-tab" role="tab" aria-controls="installation-20-04" aria-selected="true">20.04 LTS</a>
+            </li>
+            <li class="p-tabs__item" role="presentation">
+              <a href="#installation-18-04" class="p-tabs__link" id="installation-18-04-tab" role="tab" aria-controls="installation-18-04">18.04 LTS</a>
             </li>
             <li class="p-tabs__item" role="presentation">
               <a href="#installation-16-04" class="p-tabs__link" id="installation-16-04-tab" role="tab" aria-controls="installation-16-04">16.04 LTS</a>
@@ -45,20 +37,8 @@
             <li class="p-tabs__item" role="presentation">
               <a href="#installation-14-04" class="p-tabs__link" id="installation-14-04-tab" role="tab" aria-controls="installation-14-04">14.04 LTS</a>
             </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#installation-12-04" class="p-tabs__link" id="installation-12-04-tab" role="tab" aria-controls="installation-12-04">12.04 LTS</a>
-            </li>
           </ul>
         </nav>
-
-        <div class="p-tabs__content" id="installation-12-04" role="tabpanel" aria-labelledby="installation-12-04-tab">
-          <p>Ubuntu 12.04 LTS &mdash; Precise Pangolin</p>
-          <p>Desktop:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-trusty xserver-xorg-lts-trusty libgl1-mesa-glx-lts-trusty</code></pre>
-          <p>Server:</p>
-          <pre><code>sudo apt-get install --install-recommends linux-generic-lts-trusty</code></pre>
-          <p>The 12.04.2 and newer point releases shipped with an updated kernel and X stack by default. The hardware enablement stack is comprised of the newer kernel and X stacks from 14.04 (Trusty).</p>
-        </div>
 
         <div class="p-tabs__content" id="installation-14-04" role="tabpanel" aria-labelledby="installation-14-04-tab">
           <p>Ubuntu 14.04 LTS &mdash; Trusty Tahr</p>
@@ -77,7 +57,7 @@
           <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
           <p>Server:</p>
           <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-16.04</code></pre>
-          <p>The 16.04.2 and newer point releases ship with an updated kernel and X stack by default for the desktop. Server installations default to the GA kernel and provide the enablement kernel as optional.The 16.04 HWE Stacks follow the Rolling Update Model.</p>
+          <p>The 16.04.2 and newer point releases ship with an updated kernel and X stack by default for the desktop. Server installations default to the GA kernel and provide the enablement kernel as optional.The 16.04 HWE stacks follow <a href="https://wiki.ubuntu.com/Kernel/RollingLTSEnablementStack">the Rolling Update Model</a>.</p>
         </div>
 
         <div class="p-tabs__content" id="installation-18-04" role="tabpanel" aria-labelledby="installation-18-04-tab">
@@ -87,7 +67,18 @@
           <p>Server:</p>
           <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-18.04</code></pre>
           <p>The 18.04.2 and newer point releases will ship with an updated kernel and X stack by default for the desktop. Server installations will default to the GA kernel and provide the enablement kernel as optional.</p>
-          <p>The 18.04 HWE Stacks will follow the Rolling Update Model.</p>
+          <p>The 18.04 HWE stacks follow <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.</p>
+        </div>
+
+        <div class="p-tabs__content" id="installation-20-04" role="tabpanel" aria-labelledby="installation-20-04-tab">
+          <p>Ubuntu 20.04 LTS &mdash; Focal Fossa</p>
+          <p>Desktop:</p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-20.04</code></pre>
+          <p>Server:</p>
+          <pre><code>sudo apt-get install --install-recommends linux-generic-hwe-20.04</code></pre>
+          <p>Desktop installations of 20.04 default to tracking the HWE stack. Server installations will default to the GA kernel and provide the enablement kernel as optional.</p>
+          <p>Note that certain desktop machines may be on a separate "OEM" track. To determine if the machine is eligible for this, run the command <code>ubuntu-drivers list-oem</code> from a terminal. If this is non-empty, the machine is running the OEM cadence instead of HWE.</p>
+          <p>The 20.04 HWE stack follows <a href="/about/release-cycle#ubuntu-kernel-release-cycle">the Rolling Update Model</a>.</p>
         </div>
       </div>
     </div>
@@ -102,56 +93,6 @@
       <p>
         <code>hwe-support-status --verbose</code>
       </p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Kernel release schedule</h2>
-      <div class="u-hide--small" id="kernel-schedule"></div>
-      <table class="u-hide--medium u-hide--large">
-        <thead>
-          <tr>
-            <td>&nbsp;</td>
-            <th scope="col">Released</th>
-            <th scope="col">End of Life</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Ubuntu 14.04 LTS (v3.13)</strong></td>
-            <td>Apr 2014</td>
-            <td>Apr 2019</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 16.04 LTS (v4.4)</strong></td>
-            <td>Apr 2016</td>
-            <td>Apr 2021</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 18.04 LTS (v4.15)</strong></td>
-            <td>Apr 2018</td>
-            <td>Apr 2023</td>
-          </tr>
-          <tr>
-            <td>Ubuntu 19.04 (v5.0)</td>
-            <td>Apr 2019</td>
-            <td>Jan 2020</td>
-          </tr>
-          <tr>
-            <td>Ubuntu 19.10 (v5.3)</td>
-            <td>Oct 2019</td>
-            <td>Jul 2020</td>
-          </tr>
-          <tr>
-            <td><strong>Ubuntu 20.04 LTS</strong></td>
-            <td>Apr 2020</td>
-            <td>Apr 2025</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </section>
