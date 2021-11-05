@@ -106,11 +106,7 @@
       <h2>Refresh your knowledge</h2>
       <p><strong>Be prepared for every microcert</strong></p>
       <p class="u-sv2">Check your baseline understanding of Ubuntu fundamentals and preview the exam experience in a practice environment.</p>
-      {% if has_study_labs %}
-      <a href="{{ study_labs_url }}" class="p-button--positive">Prepare</a>
-      {% else %}
-      <a href="/cube/contact-us" class="p-button--positive cube-access js-invoke-modal">Apply for access</a>
-      {% endif %}
+      <a href="{{ study_url }}" class="p-button--positive">Prepare</a>
     </div>
   </div>
 </section>
@@ -216,9 +212,6 @@
 </div>
 
 <script >
-window.accountId = "{% if account_id %}{{ account_id }}{% endif %}";
-window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
-
 const myObserver = new ResizeObserver((entries) => {
   entries.forEach((entry) => {
     const width = Math.floor(entry.contentRect.width);

@@ -7,6 +7,7 @@ import json
 from urllib.parse import quote_plus
 from flask import g
 from requests import Session
+from webapp.advantage.context import get_stripe_publishable_key
 from webapp.advantage.decorators import cube_decorator
 from webapp.advantage.ua_contracts.api import UAContractsUserHasNoAccount
 from webapp.cube.api import BadgrAPI, EdxAPI
@@ -194,8 +195,10 @@ def cube_microcerts():
             courses.append(course)
 
     edx_register_url = f"{edx_url}{flask.request.base_url}"
+    study_url = "/cube/study"
     if flask.request.args.get("test_backend"):
         edx_register_url = edx_register_url + "?test_backend=true"
+        study_url = study_url + "?test_backend=true"
 
     return flask.render_template(
         "cube/microcerts.html",
@@ -210,6 +213,7 @@ def cube_microcerts():
             "has_enrollments": len(enrollments) > 0,
             "has_study_labs": study_labs in enrollments,
             "study_labs_listing": study_labs_listing,
+            "study_url": study_url,
         },
     )
 
@@ -349,6 +353,7 @@ def get_microcerts():
     return flask.jsonify(
         {
             "account_id": account["id"] if account else None,
+            "stripe_publishable_key": get_stripe_publishable_key(),
             "edx_user": edx_user,
             "edx_register_url": f"{edx_url}%2F",
             "sso_user": sso_user,
@@ -395,28 +400,3 @@ def post_microcerts_purchase():
 
 def cube_home():
     return flask.render_template("cube/index.html")
-
-
-@cube_decorator(response="json")
-def cube_study_labs_button():
-    sso_user = user_info(flask.session)
-    study_labs = "course-v1:CUBE+study_labs+2020"
-    edx_user = edx_api.get_user(sso_user["email"])
-    enrollments = [
-        enrollment["course_details"]["course_id"]
-        for enrollment in edx_api.get_enrollments(edx_user["username"])
-        if enrollment["is_active"]
-    ]
-
-    text = "Purchase study labs access"
-    redirect_url = "/cube/microcerts"
-
-    if study_labs in enrollments:
-        text = "Access study labs"
-        prepare_materials_path = quote_plus(f"/courses/{study_labs}/course/")
-        redirect_url = (
-            f"{edx_api.base_url}/auth/login/tpa-saml/"
-            f"?auth_entry=login&idp=ubuntuone&next={prepare_materials_path}"
-        )
-
-    return flask.jsonify({"text": text, "redirect_url": redirect_url})

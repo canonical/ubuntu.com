@@ -24,9 +24,11 @@ const Summary = ({ productListingId }: Props) => {
           </Col>
         </Row>
       ) : isError ? (
-        <i className="u-align--center">
-          An error occurred while fetching product information.
-        </i>
+        <Row className="u-no-padding u-sv1">
+          <Col size={12} className="u-align--center">
+            <i>An error occurred while fetching product information.</i>
+          </Col>
+        </Row>
       ) : (
         <>
           <Row className="u-no-padding u-sv1">

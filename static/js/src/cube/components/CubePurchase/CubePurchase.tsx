@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "@canonical/react-components";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -9,33 +8,27 @@ import CubePurchaseModal from "../CubePurchaseModal";
 type Props = {
   productName: string;
   productListingId: string;
+  buttonText?: string;
+  buttonAppearance?: string;
 };
 
-const CubePurchase = ({ productName, productListingId }: Props) => {
+const CubePurchase = ({
+  productName,
+  productListingId,
+  buttonText = "Purchase",
+  buttonAppearance = "positive",
+}: Props) => {
   const [modalOpen, setModalOpen] = useState(false);
   const closeHandler = () => setModalOpen(false);
-
   const stripePromise = loadStripe(window.stripePublishableKey ?? "");
-  const oneHour = 1000 * 60 * 60;
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        refetchOnMount: false,
-        refetchOnReconnect: false,
-        staleTime: oneHour,
-        retryOnMount: false,
-      },
-    },
-  });
 
   return (
-    <div>
-      <Button appearance={"positive"} onClick={() => setModalOpen(true)}>
-        Purchase
+    <>
+      <Button appearance={buttonAppearance} onClick={() => setModalOpen(true)}>
+        {buttonText}
       </Button>
       {modalOpen ? (
-        <QueryClientProvider client={queryClient}>
+        <>
           <Elements stripe={stripePromise}>
             <CubePurchaseModal
               productName={productName}
@@ -44,9 +37,9 @@ const CubePurchase = ({ productName, productListingId }: Props) => {
             />
           </Elements>
           <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        </>
       ) : null}
-    </div>
+    </>
   );
 };
 

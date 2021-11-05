@@ -48,6 +48,13 @@ const cubeMicrocerts = {
       status: "in-progress",
     },
   ],
+  study_labs_listing: {
+    id: "course-v1:CUBE+study_labs+2020",
+    name: "Study Labs",
+    product_listing_id: "9999",
+    status: "enrolled",
+    take_url: "https://qa.cube.ubuntu.com/",
+  },
 };
 
 export const handlers = [

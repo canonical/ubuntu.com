@@ -133,7 +133,13 @@
           padding-bottom: 1rem;
         }
 
-        a:not(:first-of-type) {
+        a,
+        button {
+          margin-right: 0;
+        }
+
+        a + a,
+        button + a {
           margin-left: 1rem;
         }
       }
