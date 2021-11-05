@@ -98,7 +98,7 @@ export const AddNewUserForm = ({
               </p>
               <p className="p-form-help-text">
                 <strong>Technical</strong> users can access the support portal
-                and see tokens, but not manage users.
+                and see tokens, but not manage users or billing.
               </p>
               <p className="p-form-help-text">
                 <strong>Admin</strong> users can perform all actions.
