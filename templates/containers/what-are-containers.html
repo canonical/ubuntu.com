@@ -16,7 +16,7 @@
         <h1>What are containers?</h1>
         <p>Containers are a virtualisation technology that isolates each process in a lightweight and standard environment. They allow users to package and quickly deploy entire applications parallel to each other on the same kernel and hardware, while maintaining isolation among the workloads.</p>
       </div>
-      <div class="col-5 u-align--center u-vertically-center">
+      <div class="col-5 u-align--center u-vertically-center u-hide--small">
         {{ image (
           url="https://assets.ubuntu.com/v1/fece8a11-container-in-the-cloud.svg",
           alt="",
@@ -30,7 +30,7 @@
     </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Container virtualization</h2>
     <p>Containers are instantiated from container images, a layered packaging system, to distribute applications along with their configuration and runtime dependencies.</p>
@@ -39,28 +39,35 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="u-fixed-width">
     <h2>What is Docker?</h2>
-    <p><a href="https://www.docker.com/" class="p-link--external">Docker</a> is an open-source containerisation platform. It provides an easy way to build and deploy containers on the cloud or on-premises. Container technologies were not introduced by Docker, but they made the user experience of container technologies so easy for developers that Docker soon became shorthand for containers as well as the most popular container format. <a href="https://www.docker.com/" class="p-link--external">Docker Inc</a>, the company that supports the Docker project and community, also operates <a href="https://hub.docker.com/" class="p-link--external">Docker Hub</a>, a space for hosting container images.</p>
+    <p><a href="https://www.docker.com/" class="p-link--external">Docker</a>  is an open-source containerisation platform. It provides an easy way to build and deploy containers in the cloud or on-premises. Docker didn’t introduce container technologies, but they made the user experience of container technologies so easy for developers that Docker soon became shorthand for containers and the most popular container format. <a href="https://www.docker.com/" class="p-link--external">Docker Inc</a>, the company that supports the Docker project and community, also operates <a href="https://hub.docker.com/" class="p-link--external">Docker Hub</a>, a space for hosting container images.</p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Docker for beginners: docker-cli, containerd, and runc</h2>
+    <p>Docker is many things: a community, a company, and multiple software projects. The so-called “Docker developer experience” uses three projects: <a href="https://github.com/docker/cli" class="p-link--external">docker-cli</a>, <a href="https://containerd.io/" class="p-link--external">containerd</a>, and <a href="https://github.com/opencontainers/runc" class="p-link--external">runc</a>. The Docker command-line mostly interfaces with the containerd daemon to provide a great end-user experience. Containerd manages and supervises containers, images, storage, and networking. Finally, runc is the container runtime. It consists of all the code used to interact with container system features (think user namespaces, cgroups, and so on).</p>
   </div>
 </section>
 
 <section class="p-strip ">
   <div class="u-fixed-width">
     <h2>Kubernetes vs Docker: CRI-O and OCI</h2>
-    <p>With more and more applications deployed on containers, simple orchestration tools are not enough to support complex production environments. ‘<a href="/kubernetes/what-is-kubernetes#container-orchestration">Container orchestration</a>’ becomes a problem space of its own. The rise of <a href="/kubernetes">Kubernetes</a> is the industry's answer to the container orchestration problem, providing a way to manage containers at scale efficiently.</p>
+    <p>With more and more applications deployed on containers, simple orchestration tools are not enough to support complex production environments. '<a href="/kubernetes/what-is-kubernetes#container-orchestration">Container orchestration</a>'' becomes a problem space of its own. The rise of <a href="/kubernetes">Kubernetes</a> is the industry's answer to the container orchestration problem, providing a way to manage containers at scale efficiently.</p>
     <p>CRI (Container Runtime Interface) is a Kubernetes API to interface between Kubernetes orchestration features and container runtimes, such as containerd or CRI-O. The <a href="https://opencontainers.org/" class="p-link--external">Open Container Initiative</a> (OCI) defines a set of specifications to enable all these technologies to work together. Docker, runc, containerd, CRI-O are all OCI compatible.</p>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="col-6">
-      <p>Not clear on how Kubernetes vs Docker differ?</p>
-      <p><a href="/blog/kubernetes-versus-docker">Read the Kubernetes vs Docker blog&nbsp;&rsaquo;</a></p>
+    <div class="col-7">
+      <p>Not clear on how Kubernetes vs Docker differ?
+      <br><a href="/blog/kubernetes-versus-docker">Read the Kubernetes vs Docker blog&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6 u-align--center u-vertically-center">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/cd384737-Kubernetes+v+Docker.svg",
         alt="",
@@ -79,10 +86,10 @@
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7 u-vertically-center">
-        <p>Choosing the right Kubernetes distribution is crucial for your business.</p>
-        <p><a href="/engage/enterprise-kubernetes-comparison">Read the Kubernetes distribution comparison whitepaper&nbsp;&rsaquo;</a></p>
+        <p>Choosing the right Kubernetes distribution is crucial for your business.
+        <br><a href="/engage/enterprise-kubernetes-comparison">Read the Kubernetes distribution comparison whitepaper&nbsp;&rsaquo;</a></p>
       </div>
-      <div class="col-5 u-align--center u-vertically-center">
+      <div class="col-5 u-align--center u-vertically-center u-hide--small">
         {{ image (
           url="https://assets.ubuntu.com/v1/198b738b-Compare_Kubernetes-Openshift-Rancher.svg",
           alt="",
@@ -137,7 +144,7 @@
       <p>Canonical publishes a portfolio of base, runtime, and application images with an up to 10-year maintenance commitment. In collaboration with Docker, this content is publicly available on Docker Hub.</p>
       <p><a href="/security/docker-images">Secure your software supply chain with LTS Docker Images&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-vertically-center u-align--center">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
         alt="",
