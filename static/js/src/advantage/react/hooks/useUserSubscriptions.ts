@@ -72,11 +72,13 @@ export const selectBlenderSubscriptions = (subscriptions: UserSubscription[]) =>
   );
 
 /**
- * Find the active UA subscriptions.
+ * Find the active UA subscriptions that should have their renewal options
+ * presented.
  */
-export const selectActiveUASubscriptions = (
+export const selectPresentableRenewalSubscriptions = (
   subscriptions: UserSubscription[]
-) => subscriptions.filter(({ statuses }) => statuses.is_subscription_active);
+) =>
+  subscriptions.filter(({ statuses }) => statuses.should_present_auto_renewal);
 
 /**
  * Find the subscriptions with for period.
