@@ -51,10 +51,14 @@ const DetailsContent = ({ selectedId }: Props) => {
   const { data: subscription, isLoading } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
-  const { data: token, isLoading: isLoadingToken } = useContractToken(
-    subscription?.contract_id
-  );
+  const hasAccessToToken = subscription?.statuses.has_access_to_token;
   const isBlender = isBlenderSubscription(subscription);
+  const showToken = hasAccessToToken && !isBlender;
+
+  const { data: token, isLoading: isLoadingToken } = useContractToken(
+    subscription?.contract_id,
+    showToken
+  );
 
   const SubscriptionToken = () => {
     return (
@@ -141,7 +145,7 @@ const DetailsContent = ({ selectedId }: Props) => {
           },
         ])}
       </Row>
-      {isBlender ? null : <SubscriptionToken />}
+      {showToken ? <SubscriptionToken /> : null}
       <DetailsTabs subscription={subscription} token={token} />
     </div>
   );

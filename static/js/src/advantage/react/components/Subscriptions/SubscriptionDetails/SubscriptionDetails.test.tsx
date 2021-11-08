@@ -62,6 +62,42 @@ describe("SubscriptionDetails", () => {
     expect(wrapper.find("DetailsContent").exists()).toBe(false);
   });
 
+  it("can show the support button", () => {
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+        />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("Button[data-test='support-button']").exists()).toBe(
+      true
+    );
+  });
+
+  it("cannot show the support button", () => {
+    const contract = userSubscriptionFactory.build({
+      statuses: userSubscriptionStatusesFactory.build({
+        has_access_to_support: false,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+        />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("Button[data-test='support-button']").exists()).toBe(
+      false
+    );
+  });
+
   it("closes the edit form when closing the modal", () => {
     // Create a wrapping component to pass props to the inner
     // SubscriptionDetails component. This is needed so that setProps will

@@ -59,6 +59,8 @@ export const selectStatusesSummary = (
     subscriptions,
     "should_present_auto_renewal"
   ),
+  has_access_to_support: hasStatus(subscriptions, "has_access_to_support"),
+  has_access_to_token: hasStatus(subscriptions, "has_access_to_token"),
 });
 
 export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>

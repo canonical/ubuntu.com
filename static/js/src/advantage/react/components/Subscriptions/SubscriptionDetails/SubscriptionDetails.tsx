@@ -36,6 +36,8 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
       select: selectSubscriptionById(selectedId),
     });
     const isFree = isFreeSubscription(subscription);
+    const hasAccessToSupport = subscription?.statuses.has_access_to_support;
+    const hideSupportPortal = !hasAccessToSupport || isFree;
     const isResizable =
       subscription?.statuses.is_upsizeable ||
       subscription?.statuses.is_downsizeable;
@@ -87,7 +89,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               statuses={subscription.statuses}
             />
             {notification ? <Notification {...notification} /> : null}
-            {isFree ? null : (
+            {hideSupportPortal ? null : (
               <>
                 <Button
                   appearance="positive"
