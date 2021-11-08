@@ -8,6 +8,7 @@ from webapp.advantage.ua_contracts.api import (
     UAContractsUserHasNoAccount,
     CannotCancelLastContractError,
     UnauthorizedError,
+    AccessForbiddenError,
 )
 from webapp.advantage.models import Listing
 from webapp.advantage.ua_contracts.primitives import (
@@ -987,16 +988,28 @@ class TestGetPurchase(unittest.TestCase):
 class TestGetPurchaseAccount(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIError),
-            (401, True, UAContractsAPIErrorView),
-            (404, False, UAContractsUserHasNoAccount),
-            (404, True, UAContractsUserHasNoAccount),
-            (500, False, UAContractsAPIError),
-            (500, True, UAContractsAPIErrorView),
+            (
+                401,
+                False,
+                AccessForbiddenError,
+                "user not allowed to purchase on account",
+            ),
+            (
+                401,
+                False,
+                AccessForbiddenError,
+                "user not allowed to purchase on account",
+            ),
+            (401, False, UAContractsAPIError, "Error message"),
+            (401, True, UAContractsAPIErrorView, "Error message"),
+            (404, False, UAContractsUserHasNoAccount, "Error message"),
+            (404, True, UAContractsUserHasNoAccount, "Error message"),
+            (500, False, UAContractsAPIError, "Error message"),
+            (500, True, UAContractsAPIErrorView, "Error message"),
         ]
 
-        for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
+        for code, is_for_view, expected_error, message in cases:
+            response_content = {"code": "expected error", "message": message}
             response = Response(status_code=code, content=response_content)
             session = Session(response=response)
             client = make_client(session, is_for_view=is_for_view)

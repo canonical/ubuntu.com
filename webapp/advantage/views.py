@@ -25,6 +25,7 @@ from webapp.advantage.ua_contracts.api import (
     UnauthorizedError,
     UAContractsUserHasNoAccount,
     UAContractsAPIError,
+    AccessForbiddenError,
 )
 
 from webapp.advantage.schemas import (
@@ -85,12 +86,13 @@ def get_user_subscriptions(**kwargs):
     for account in accounts:
         contracts = g.api.get_account_contracts(account_id=account.id)
         subscriptions = []
-        for marketplace in advantage_marketplaces:
-            market_subscriptions = g.api.get_account_subscriptions(
-                account_id=account.id,
-                marketplace=marketplace,
-            )
-            subscriptions.extend(market_subscriptions)
+        if account.role != "technical":
+            for marketplace in advantage_marketplaces:
+                market_subscriptions = g.api.get_account_subscriptions(
+                    account_id=account.id,
+                    marketplace=marketplace,
+                )
+                subscriptions.extend(market_subscriptions)
 
         user_summary.append(
             {
@@ -248,7 +250,7 @@ def advantage_shop_view():
 
 @advantage_decorator(permission="user", response="html")
 def advantage_account_users_view():
-    return flask.render_template("advantage/maintenance.html")
+    return flask.render_template("advantage/users/index.html")
 
 
 @advantage_decorator(permission="user", response="html")
@@ -261,9 +263,9 @@ def payment_methods_view():
     try:
         account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
-        # No Stripe account
-
         pass
+    except AccessForbiddenError:
+        return flask.render_template("account/forbidden.html")
 
     if account:
         account_id = account["id"]
@@ -754,24 +756,29 @@ def account_view():
 @advantage_decorator(permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
 def invoices_view(**kwargs):
-    email = kwargs.get("email", "").strip()
     marketplace = kwargs.get("marketplace")
 
-    accounts = g.api.get_accounts(email=email)
+    try:
+        account = g.api.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        account = None
+    except AccessForbiddenError:
+        return flask.render_template("account/forbidden.html")
 
     total_payments = []
     filters = {"marketplace": marketplace} if marketplace else None
-    for account in accounts:
+
+    if account:
         raw_payments = g.api.get_account_purchases(
             account_id=account["id"],
             filters=filters,
         )
 
-        if not raw_payments:
-            continue
-
-        product_listings = raw_payments["productListings"]
-        for raw_payment in raw_payments["purchases"]:
+        product_listings = (
+            raw_payments["productListings"] if raw_payments else []
+        )
+        all_raw_payments = raw_payments["purchases"] if raw_payments else []
+        for raw_payment in all_raw_payments:
             payment_id = raw_payment["id"]
             payment_marketplace = raw_payment["marketplace"]
             created_at = raw_payment["createdAt"]
