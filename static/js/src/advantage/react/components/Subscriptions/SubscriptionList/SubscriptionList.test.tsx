@@ -124,7 +124,7 @@ describe("SubscriptionList", () => {
     ).toBe(true);
   });
 
-  it("shows the renewal settings if there are active subs", () => {
+  it("shows the renewal settings if there subscriptions for which we should present the auto-renewal option", () => {
     queryClient.setQueryData("userSubscriptions", [
       userSubscriptionFactory.build({
         period: UserSubscriptionPeriod.Yearly,
@@ -132,6 +132,7 @@ describe("SubscriptionList", () => {
         statuses: userSubscriptionStatusesFactory.build({
           is_subscription_active: false,
           is_subscription_auto_renewing: true,
+          should_present_auto_renewal: false,
         }),
       }),
       userSubscriptionFactory.build({
@@ -140,6 +141,7 @@ describe("SubscriptionList", () => {
         statuses: userSubscriptionStatusesFactory.build({
           is_subscription_active: true,
           is_subscription_auto_renewing: true,
+          should_present_auto_renewal: true,
         }),
       }),
     ]);
@@ -156,7 +158,7 @@ describe("SubscriptionList", () => {
     );
   });
 
-  it("does not show the renewal settings if there are no active subs", () => {
+  it("does not show the renewal settings if there are no subscriptions for which we should present the auto-renewal option", () => {
     queryClient.setQueryData("userSubscriptions", [
       userSubscriptionFactory.build({
         period: UserSubscriptionPeriod.Monthly,
@@ -164,14 +166,16 @@ describe("SubscriptionList", () => {
         statuses: userSubscriptionStatusesFactory.build({
           is_subscription_active: false,
           is_subscription_auto_renewing: true,
+          should_present_auto_renewal: false,
         }),
       }),
       userSubscriptionFactory.build({
         period: UserSubscriptionPeriod.Yearly,
         subscription_id: "ghi",
         statuses: userSubscriptionStatusesFactory.build({
-          is_subscription_active: false,
-          is_subscription_auto_renewing: true,
+          is_subscription_active: true,
+          is_subscription_auto_renewing: false,
+          should_present_auto_renewal: false,
         }),
       }),
     ]);

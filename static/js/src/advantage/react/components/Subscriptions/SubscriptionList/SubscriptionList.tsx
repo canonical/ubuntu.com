@@ -4,7 +4,7 @@ import {
   selectFreeSubscription,
   selectUASubscriptions,
   selectBlenderSubscriptions,
-  selectActiveUASubscriptions,
+  selectPresentableRenewalSubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
@@ -40,16 +40,16 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   });
   const {
     data: activeUASubscriptions = [],
-    isLoading: isLoadingActiveUASubscriptions,
+    isLoading: isLoadingPresentableRenewalSubscriptions,
   } = useUserSubscriptions({
-    select: selectActiveUASubscriptions,
+    select: selectPresentableRenewalSubscriptions,
   });
 
   if (
     isLoadingFree ||
     isLoadingUA ||
     isLoadingBlender ||
-    isLoadingActiveUASubscriptions
+    isLoadingPresentableRenewalSubscriptions
   ) {
     return <Spinner />;
   }
