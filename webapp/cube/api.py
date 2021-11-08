@@ -1,4 +1,4 @@
-from urllib.parse import quote
+from urllib.parse import quote, quote_plus
 from requests import Session
 
 
@@ -146,3 +146,16 @@ class EdxAPI:
 
         data = response.json()
         return data[0]
+
+    def get_course_enrollments(self, course_id: str = "", cursor: str = ""):
+        safe_course_id = quote_plus(course_id)
+        uri = (
+            "/api/enrollment/v1/enrollments?"
+            + (f"course_id={safe_course_id}&" if safe_course_id else "")
+            + (f"cursor={cursor}&" if cursor else "")
+            + "page_size=100"
+        )
+        return self.make_request(
+            "GET",
+            uri,
+        ).json()

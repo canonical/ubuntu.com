@@ -46,6 +46,9 @@ from webapp.cube.views import (
     cube_study_labs_button,
     get_microcerts,
     post_microcerts_purchase,
+    cube_dashboard,
+    get_courses,
+    get_daily_enrollments,
 )
 
 from webapp.views import (
@@ -806,6 +809,9 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
+app.add_url_rule("/cube/dashboard", view_func=cube_dashboard)
+app.add_url_rule("/cube/courses.json", view_func=get_courses)
+app.add_url_rule("/cube/enrollments.json", view_func=get_daily_enrollments)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(

@@ -1,7 +1,9 @@
 import flask
 import json
 
-from urllib.parse import quote_plus
+from collections import defaultdict
+from datetime import datetime
+from urllib.parse import parse_qs, quote_plus, urlparse
 from webapp.advantage.context import get_stripe_publishable_key
 from webapp.advantage.decorators import cube_decorator
 from webapp.advantage.ua_contracts.api import UAContractsUserHasNoAccount
@@ -389,3 +391,70 @@ def cube_study_labs_button(
         )
 
     return flask.jsonify({"text": text, "redirect_url": redirect_url})
+
+
+@cube_decorator(response="html")
+def cube_dashboard(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    return flask.render_template("cube/dashboard.html")
+
+
+@cube_decorator(response="json")
+def get_courses(badgr_issuer, badge_certification, ua_api, badgr_api, edx_api):
+    product_listings = ua_api.get_product_listings("canonical-cube")[
+        "productListings"
+    ]
+
+    courses = []
+    for product_list in product_listings:
+        product_ids = [
+            edx_id["IDs"]
+            for edx_id in product_list["externalIDs"]
+            if edx_id["origin"] == "EdX"
+        ]
+
+        try:
+            course_id = product_ids[0][0]
+        except KeyError:
+            # course_id is not found in the API endpoint
+            # Skip to next course
+            continue
+
+        course = {"id": course_id}
+        courses.append(course)
+
+    return flask.jsonify(courses)
+
+
+@cube_decorator(response="json")
+def get_daily_enrollments(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    course_id = flask.request.args.get("course_id", "")
+
+    daily_enrollments = defaultdict(lambda: defaultdict(int))
+
+    cursor = ""
+    is_next = True
+    while is_next:
+        enrollments = edx_api.get_course_enrollments(course_id)
+        parsed_next = urlparse(enrollments["next"])
+        cursor = parse_qs(parsed_next.query).get("cursor")
+        is_next = True if cursor else False
+        print("!!! is_next", is_next)
+
+        for enrollment in enrollments["results"]:
+            created = datetime.strptime(
+                enrollment["created"], "%Y-%m-%dT%X.%fZ"
+            ).strftime("%Y-%m-%d")
+            course_id = enrollment["course_id"]
+            daily_enrollments[created][course_id] += 1
+
+    # Restructure to a list of objects
+    dates = sorted(daily_enrollments.keys())
+    daily_enrollments = [
+        dict(date=date, **daily_enrollments[date]) for date in dates
+    ]
+
+    return flask.jsonify(daily_enrollments)
