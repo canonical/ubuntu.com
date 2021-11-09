@@ -7,7 +7,10 @@ from flask import g
 import talisker.requests
 
 from webapp.advantage.ua_contracts.api import UAContractsAPI
+from webapp.cube.api import BadgrAPI, EdxAPI
 from webapp.login import user_info
+from requests import Session
+
 
 PERMISSION_LIST = {
     "user": "Endpoint needs logged in user.",
@@ -113,7 +116,28 @@ def advantage_decorator(permission=None, response="json"):
 
 
 def cube_decorator(response="json"):
+    QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
+    QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
+    BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
+    CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
+
     session = talisker.requests.get_session()
+
+    badgr_session = Session()
+    talisker.requests.configure(badgr_session)
+
+    # This API lives under a sub-domain of ubuntu.com but requests to
+    # it still need proxying, so we configure the session manually to
+    # avoid it loading the configurations from environment variables,
+    # since those default to not proxy requests for ubuntu.com sub-domains
+    # and that is the intended behaviour for most of our apps
+    proxies = {
+        "http": os.getenv("HTTP_PROXY"),
+        "https": os.getenv("HTTPS_PROXY"),
+    }
+    edx_session = Session()
+    edx_session.proxies.update(proxies)
+    talisker.requests.configure(edx_session)
 
     if response not in RESPONSE_LIST:
         response = "json"
@@ -145,18 +169,57 @@ def cube_decorator(response="json"):
 
                     return flask.jsonify(message), 401
 
+            badgr_issuer = (
+                BADGR_ISSUER if not test_backend else QA_BADGR_ISSUER
+            )
+            certified_badge = (
+                CERTIFIED_BADGE if not test_backend else QA_CERTIFIED_BADGE,
+            )
+
             # init API instance
-            g.api = UAContractsAPI(
+            ua_api = UAContractsAPI(
                 session=session,
                 authentication_token=(user_token),
                 token_type=("Macaroon" if user_token else "Bearer"),
                 api_url=get_api_url(is_test_backend),
             )
 
-            if response == "html":
-                g.api.set_is_for_view(True)
+            badgr_api = BadgrAPI(
+                "https://api.eu.badgr.io"
+                if not test_backend
+                else "https://api.test.badgr.com",
+                os.getenv("BAGDR_USER"),
+                os.getenv("BADGR_PASSWORD")
+                if not test_backend
+                else os.getenv("BADGR_QA_PASSWORD"),
+                badgr_session,
+            )
 
-            return func(*args, **kwargs)
+            edx_api = EdxAPI(
+                "https://cube.ubuntu.com"
+                if not test_backend
+                else "https://qa.cube.ubuntu.com",
+                os.getenv("CUBE_EDX_CLIENT_ID")
+                if not test_backend
+                else os.getenv("CUBE_EDX_QA_CLIENT_ID"),
+                os.getenv("CUBE_EDX_CLIENT_SECRET")
+                if not test_backend
+                else os.getenv("CUBE_EDX_CLIENT_QA_SECRET"),
+                edx_session,
+            )
+
+            if response == "html":
+                ua_api.set_is_for_view(True)
+
+            return func(
+                badgr_issuer,
+                certified_badge,
+                ua_api,
+                badgr_api,
+                edx_api,
+                *args,
+                **kwargs
+            )
 
         return decorated_function
 

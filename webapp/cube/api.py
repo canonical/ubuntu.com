@@ -41,6 +41,8 @@ class BadgrAPI:
         data = {"username": self.username, "password": self.password}
 
         response = self.session.post(uri, data=data).json()
+        print("Over here")
+        print(response)
         self.token = response["access_token"]
 
     def get_assertions(self, issuer: str, email: str):
@@ -97,6 +99,8 @@ class EdxAPI:
             method="POST", path="/oauth2/access_token", data=data, retry=False
         ).json()
 
+        print("Over here")
+        print(response)
         self.token = response["access_token"]
 
     def get_course_attempts(self, course_id: str, username: str):
