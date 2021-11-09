@@ -24,6 +24,7 @@ RESPONSE_LIST = {
 
 MARKETING_FLAGS = {
     "utm_campaign": "salesforce-campaign-id",
+    "utm_source": "ad_source",
     "gclid": "google-click-id",
     "gbraid": "google-gbraid-id",
     "wbraid": "google-wbraid-id",

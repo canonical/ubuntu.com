@@ -371,11 +371,12 @@ def post_advantage_subscriptions(preview, **kwargs):
     # marketing parameters
 
     metadata_keys = [
-        "salesforce-campaign-id",
+        "ad_source",
         "google-click-id",
         "google-gbraid-id",
         "google-wbraid-id",
         "facebook-click-id",
+        "salesforce-campaign-id",
     ]
 
     metadata = [
