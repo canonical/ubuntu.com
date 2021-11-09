@@ -97,6 +97,7 @@ class EdxAPI:
             method="POST", path="/oauth2/access_token", data=data, retry=False
         ).json()
 
+        print(response)
         self.token = response["access_token"]
 
     def get_course_attempts(self, course_id: str, username: str):

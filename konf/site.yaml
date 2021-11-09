@@ -182,6 +182,11 @@ production:
           secretKeyRef:
             key: password
             name: badgr
+        
+        - name: BADGR_QA_PASSWORD
+          secretKeyRef:
+            key: qa-password
+            name: qa-badgr
 
         - name: CUBE_EDX_URL
           value: https://cube.ubuntu.com
@@ -194,6 +199,16 @@ production:
         - name: CUBE_EDX_CLIENT_SECRET
           secretKeyRef:
             key: client-secret
+            name: cube-edx
+        
+        - name: CUBE_EDX_QA_CLIENT_ID
+          secretKeyRef:
+            key: qa-client-id
+            name: cube-edx
+
+        - name: CUBE_EDX_CLIENT_QA_SECRET
+          secretKeyRef:
+            key: qa-client-secret
             name: cube-edx
 
     - paths: [/tutorials]
@@ -351,6 +366,11 @@ staging:
           secretKeyRef:
             key: password
             name: badgr
+        
+        - name: BADGR_QA_PASSWORD
+          secretKeyRef:
+            key: qa-password
+            name: qa-badgr
 
         - name: CUBE_EDX_URL
           value: https://cube.ubuntu.com
@@ -363,6 +383,16 @@ staging:
         - name: CUBE_EDX_CLIENT_SECRET
           secretKeyRef:
             key: client-secret
+            name: cube-edx
+        
+        - name: CUBE_EDX_QA_CLIENT_ID
+          secretKeyRef:
+            key: qa-client-id
+            name: cube-edx
+
+        - name: CUBE_EDX_CLIENT_QA_SECRET
+          secretKeyRef:
+            key: qa-client-secret
             name: cube-edx
 
     - paths: [/tutorials]
