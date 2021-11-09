@@ -1090,7 +1090,7 @@ export var openStackReleases = [
   {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2025-04-01T00:00:00"),
-    taskName: "OpenStack Y",
+    taskName: "OpenStack Yoga",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
@@ -1200,12 +1200,6 @@ export var openStackReleases = [
     endDate: new Date("2028-04-01T00:00:00"),
     taskName: "Ubuntu 18.04 LTS",
     status: "ESM",
-  },
-  {
-    startDate: new Date("2018-02-01T00:00:00"),
-    endDate: new Date("2021-04-01T00:00:00"),
-    taskName: "OpenStack Queens",
-    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2016-04-01T00:00:00"),
@@ -1482,7 +1476,7 @@ export var kernelReleaseNamesLTS = [
 export var openStackReleaseNames = [
   "OpenStack Y LTS",
   "Ubuntu 22.04 LTS",
-  "OpenStack Y",
+  "OpenStack Yoga",
   "OpenStack Xena",
   "OpenStack Wallaby",
   "OpenStack Victoria",
@@ -1494,7 +1488,6 @@ export var openStackReleaseNames = [
   "OpenStack Rocky",
   "OpenStack Queens LTS",
   "Ubuntu 18.04 LTS",
-  "OpenStack Queens",
   "OpenStack Mitaka LTS",
   "Ubuntu 16.04 LTS",
 ];
