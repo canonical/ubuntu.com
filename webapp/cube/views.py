@@ -1,12 +1,48 @@
+import os
 import flask
+import talisker.requests
+import talisker.sentry
 import json
 
 from urllib.parse import quote_plus
-from webapp.advantage.context import get_stripe_publishable_key
+from flask import g
+from requests import Session
 from webapp.advantage.decorators import cube_decorator
 from webapp.advantage.ua_contracts.api import UAContractsUserHasNoAccount
+from webapp.cube.api import BadgrAPI, EdxAPI
 from webapp.login import user_info
 
+QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
+QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
+
+BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
+CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
+
+badgr_session = Session()
+talisker.requests.configure(badgr_session),
+badgr_api = BadgrAPI(
+    os.getenv("BADGR_URL"),
+    os.getenv("BAGDR_USER"),
+    os.getenv("BADGR_PASSWORD"),
+    badgr_session,
+)
+
+# This API lives under a sub-domain of ubuntu.com but requests to it
+# still need proxying, so we configure the session manually to avoid
+# it loading the configurations from environment variables, since those
+# default to not proxy requests for ubuntu.com sub-domains and that is
+# the intended behaviour for most of our apps
+proxies = {"http": os.getenv("HTTP_PROXY"), "https": os.getenv("HTTPS_PROXY")}
+edx_session = Session()
+edx_session.proxies.update(proxies)
+talisker.requests.configure(edx_session)
+
+edx_api = EdxAPI(
+    os.getenv("CUBE_EDX_URL"),
+    os.getenv("CUBE_EDX_CLIENT_ID"),
+    os.getenv("CUBE_EDX_CLIENT_SECRET"),
+    edx_session,
+)
 
 MODULES_ORDER = [
     "course-v1:CUBE+sysarch+2020",
@@ -28,9 +64,7 @@ MODULES_ORDER = [
 
 
 @cube_decorator(response="html")
-def cube_microcerts(
-    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
-):
+def cube_microcerts():
     """
     View for Microcerts homepage
     """
@@ -40,7 +74,7 @@ def cube_microcerts(
 
     if sso_user:
         try:
-            account = ua_api.get_purchase_account("canonical-cube")
+            account = g.api.get_purchase_account("canonical-cube")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -52,7 +86,7 @@ def cube_microcerts(
     )
 
     edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
-    product_listings = ua_api.get_product_listings("canonical-cube")[
+    product_listings = g.api.get_product_listings("canonical-cube")[
         "productListings"
     ]
 
@@ -65,7 +99,7 @@ def cube_microcerts(
         assertions = {
             assertion["badgeclass"]: assertion
             for assertion in badgr_api.get_assertions(
-                badgr_issuer, quote_plus(edx_user["email"])
+                BADGR_ISSUER, edx_user["email"]
             )["result"]
         }
 
@@ -76,8 +110,8 @@ def cube_microcerts(
         ]
 
     certified_badge = {}
-    if badge_certification in assertions:
-        assertion = assertions.pop(badge_certification)
+    if CERTIFIED_BADGE in assertions:
+        assertion = assertions.pop(CERTIFIED_BADGE)
         if not assertion["revoked"]:
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
@@ -140,7 +174,7 @@ def cube_microcerts(
             assertion = assertions.get(course["badge-class"])
             course["status"] = "not-enrolled"
             if assertion and not assertion["revoked"]:
-                course["badge-url"] = assertion["image"]
+                course["badge_url"] = assertion["image"]
                 course["status"] = "passed"
                 passed_courses += 1
             elif attempts:
@@ -160,7 +194,7 @@ def cube_microcerts(
             courses.append(course)
 
     edx_register_url = f"{edx_url}{flask.request.base_url}"
-    if flask.request.args.get("test_backend") == "true":
+    if flask.request.args.get("test_backend"):
         edx_register_url = edx_register_url + "?test_backend=true"
 
     return flask.render_template(
@@ -171,9 +205,7 @@ def cube_microcerts(
             "edx_register_url": edx_register_url,
             "sso_user": sso_user,
             "certified_badge": certified_badge or None,
-            "modules": sorted(
-                courses, key=lambda c: MODULES_ORDER.index(c["id"])
-            ),
+            "modules": courses,
             "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
             "has_study_labs": study_labs in enrollments,
@@ -183,7 +215,7 @@ def cube_microcerts(
 
 
 @cube_decorator(response="json")
-def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
+def get_microcerts():
     """
     View for Microcerts homepage
 
@@ -195,7 +227,7 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
 
     if sso_user:
         try:
-            account = ua_api.get_purchase_account("canonical-cube")
+            account = g.api.get_purchase_account("canonical-cube")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -207,7 +239,7 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
     )
 
     edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
-    product_listings = ua_api.get_product_listings("canonical-cube")[
+    product_listings = g.api.get_product_listings("canonical-cube")[
         "productListings"
     ]
 
@@ -220,7 +252,7 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
         assertions = {
             assertion["badgeclass"]: assertion
             for assertion in badgr_api.get_assertions(
-                badgr_issuer, quote_plus(edx_user["email"])
+                BADGR_ISSUER, edx_user["email"]
             )["result"]
         }
 
@@ -231,8 +263,8 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
         ]
 
     certified_badge = {}
-    if badge_certified in assertions:
-        assertion = assertions.pop(badge_certified)
+    if CERTIFIED_BADGE in assertions:
+        assertion = assertions.pop(CERTIFIED_BADGE)
         if not assertion["revoked"]:
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
@@ -295,7 +327,7 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
             assertion = assertions.get(course["badge-class"])
             course["status"] = "not-enrolled"
             if assertion and not assertion["revoked"]:
-                course["badge-url"] = assertion["image"]
+                course["badge_url"] = assertion["image"]
                 course["status"] = "passed"
                 passed_courses += 1
             elif attempts:
@@ -317,11 +349,14 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
     return flask.jsonify(
         {
             "account_id": account["id"] if account else None,
-            "stripe_publishable_key": get_stripe_publishable_key(),
+            "edx_user": edx_user,
+            "edx_register_url": f"{edx_url}%2F",
+            "sso_user": sso_user,
             "certified_badge": certified_badge or None,
             "modules": sorted(
                 courses, key=lambda c: MODULES_ORDER.index(c["id"])
             ),
+            "passed_courses": passed_courses,
             "has_enrollments": len(enrollments) > 0,
             "study_labs_listing": study_labs_listing,
         }
@@ -329,9 +364,7 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
 
 
 @cube_decorator(response="json")
-def post_microcerts_purchase(
-    badgr_issuer, badge_certified, ua_api, badgr_api, edx_api
-):
+def post_microcerts_purchase():
     """
     Purchase preview and complete purchase
     for CUBE microcertifications
@@ -349,11 +382,11 @@ def post_microcerts_purchase(
     }
 
     if preview == "true":
-        purchase = ua_api.preview_purchase_from_marketplace(
+        purchase = g.api.preview_purchase_from_marketplace(
             marketplace="canonical-cube", purchase_request=purchase_request
         )
     else:
-        purchase = ua_api.purchase_from_marketplace(
+        purchase = g.api.purchase_from_marketplace(
             marketplace="canonical-cube", purchase_request=purchase_request
         )
 
@@ -365,9 +398,7 @@ def cube_home():
 
 
 @cube_decorator(response="json")
-def cube_study_labs_button(
-    badgr_issuer, badge_certified, ua_api, badgr_api, edx_api
-):
+def cube_study_labs_button():
     sso_user = user_info(flask.session)
     study_labs = "course-v1:CUBE+study_labs+2020"
     edx_user = edx_api.get_user(sso_user["email"])
