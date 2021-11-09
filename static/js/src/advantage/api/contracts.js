@@ -92,6 +92,27 @@ export async function getContractToken(contractId) {
   return await response.json();
 }
 
+export async function putContractEntitlements(contractId, entitlements) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const response = await fetch(
+    `/advantage/contracts/${contractId}/entitlements${queryString}`,
+    {
+      cache: "no-store",
+      credentials: "include",
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        entitlements,
+      }),
+    }
+  );
+
+  return await response.json();
+}
+
 export async function getLastPurchaseIds(accountId) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
   const response = await fetch(
@@ -162,7 +183,12 @@ export async function postPurchaseData(
   return data;
 }
 
-export async function cancelContract(accountId, previousPurchaseId, productId) {
+export async function cancelContract(
+  accountId,
+  previousPurchaseId,
+  productId,
+  marketplace
+) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
@@ -177,6 +203,7 @@ export async function cancelContract(accountId, previousPurchaseId, productId) {
       account_id: accountId,
       previous_purchase_id: previousPurchaseId,
       product_listing_id: productId,
+      marketplace: marketplace,
     }),
   });
 
@@ -189,10 +216,10 @@ export async function resizeContract(
   previousPurchaseId,
   productId,
   quantity,
-  period
+  period,
+  marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
-
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
@@ -212,6 +239,7 @@ export async function resizeContract(
         },
       ],
       resizing: true,
+      marketplace: marketplace,
     }),
   });
 
@@ -328,6 +356,10 @@ export async function setPaymentMethod(accountID, paymentMethodId) {
 export async function setAutoRenewal(value) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
+  let subscriptions = [];
+  Object.entries(value).forEach(([subscription_id, should_auto_renew]) =>
+    subscriptions.push({ subscription_id, should_auto_renew })
+  );
   let response = await fetch(`/advantage/set-auto-renewal${queryString}`, {
     method: "POST",
     cache: "no-store",
@@ -336,9 +368,7 @@ export async function setAutoRenewal(value) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({
-      should_auto_renew: value,
-    }),
+    body: JSON.stringify({ subscriptions }),
   });
 
   let data = await response.json();

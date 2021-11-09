@@ -50,21 +50,20 @@
     </div>
   </div>
   <div class="row" style="margin-top: 1rem">
-    <div class="col-4">
-      <span style="font-size: 3rem; line-height: 4rem">{{ total_patches_applied }}</span>
+    <div class="col-4 u-sv3">
+      <span style="font-size: 3rem; line-height: 4rem">{{ notices_since_esm }}</span>
       <hr>
-      <span class="p-muted-heading">16.04 LTS ESM <br>PATCHES APPLIED</span>
+      <span class="p-muted-heading">USNS ISSUED<sup><a href="#os-footnote">*</a></sup></span>
     </div>
     <div class="col-4">
-      <span style="font-size: 3rem; line-height: 4rem">{{ total_notices_issued }}</span>
+      <!-- Hardcoded for now until this issue is fixed https://github.com/canonical-web-and-design/ubuntu-com-security-api/issues/56 -->
+      <span style="font-size: 3rem; line-height: 4rem">343</span>
       <hr>
-      <span class="p-muted-heading">USNS ISSUED</span>
+      <span class="p-muted-heading">CVES ADDRESSED<sup><a href="#os-footnote">*</a></sup></span>
     </div>
-    <div class="col-4">
-      <span style="font-size: 3rem; line-height: 4rem">{{ total_cves_issued }}</span>
-      <hr>
-      <span class="p-muted-heading">CVES ADDRESSED</span>
-    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p id="os-footnote"><small>* Since the start of ESM phase</small></p>
   </div>
   <div class="row" id="notice-feed" style="margin-top: 3rem">
     {% for notice in latest_notices %}
@@ -89,9 +88,9 @@
       <h2>Ubuntu 16.04 LTS Extended Security Maintenance (ESM)</h2>
       <h3>What is Ubuntu ESM?</h3>
       <p><a href="/security/esm">Extended Security Maintenance</a> (ESM) provides extended Linux kernel and open source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open source applications, like PostgreSQL and NGINX.</p>
-      <p>ESM is available for free on up to three machines and for broader enterprise use through an Ubuntu Advantage subscription. The subscription includes additional services such FIPS-compliant modules and the Canonical Livepatch Service to apply critical kernel patches without unplanned downtime.</p>
+      <p>ESM is available for free on up to three machines and for broader enterprise use through an Ubuntu Advantage subscription. The subscription includes additional services such FIPS-compliant modules and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.</p>
       <p>
-        <a href="/security/livepatch">Learn more about Canonical Livepatch&nbsp;&rsaquo;</a>
+        <a href="/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-6 u-hide--small u-align--center u-vertically-center">

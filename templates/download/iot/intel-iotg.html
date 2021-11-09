@@ -2,7 +2,7 @@
 
 {% block title %}Download Ubuntu for Intel IoT platforms | Download{% endblock %}
 {% block meta_description %}​​Canonical and Intel have partnered to provide Ubuntu Desktop and Ubuntu Core on Intel's IoT platforms: Atom&reg; X6000E Series, Intel&reg; Pentium&reg; and Celeron&reg; N and J Series and 11th Gen Intel&reg; Core&trade; processors.{% endblock meta_description %}
-{% block meta_image %}https://assets.ubuntu.com/v1/2e046626-Intel_IoT_grad+_+en+_+800x418.jpeg{% endblock %}
+{% block meta_image %}https://assets.ubuntu.com/v1/fc79371c-__++_++_+grad+_+en+_+800x418.jpeg{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1hxKzPs6e6JQaa9tBqfZ55GAXrVnEryEWBja8HlXy-lc/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -12,28 +12,29 @@
     <div class="col-7">
       <h1>Download Ubuntu for Intel IoT platforms</h1>
       <p class="p-heading--4">Ubuntu &mdash; now optimized for Intel's IOTG platforms</p>
-      <p>Ubuntu Core 20 and Ubuntu Desktop 20.04 based images for Intel IoT platforms will be released in October and are currently available as a private alpha.</p>
-      <div class="p-notification--information">
-        <div class="p-notification__content">
-          <p class="p-notification__message">Send an email to sales-iotg {@} canonical.com with the subject line of 'Ubuntu Core 20 private alpha for Elkhart Lake and Tiger Lake' to register interest in early access.</p>
-        </div>
-      </div>
+      <p>Ubuntu Core 20 and Ubuntu Desktop 20.04 based images for Intel IoT platforms are currently available for download.</p>
+      <p>Pick your chosen OS image and follow the install instruction to load it onto your board and away you go.</p>
+      <p>If you have any questions about the supported Intel IOTG platforms or would like information about our certification program, please contact us.</p>
+      <p>
+        <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+      </p>
     </div>
     <div class="col-5 u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ab843223-Intel.svg",
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/efca8490-intel-logo-0.png",
         alt="",
-        width="200",
-        height="132",
+        width="300",
+        height="300",
         hi_def=True,
-        loading="auto"
+        loading="lazy"
         ) | safe
       }}
     </div>
   </div>
 </section>
 <section class="p-strip--light">
-  <div class="u-fixed-width">
+  <div class="u-fixed-width u-sv3">
     <h2>Ubuntu on Intel IoT platforms</h2>
     <p>Intel's portfolio of edge-ready compute and connectivity technologies make it easy to deploy edge applications quickly. Enhanced for IoT, they enable processing at the edge to get critical insights and business value from your data with compute resources where you need them most.</p>
     <p><strong>Supported processors:</strong></p>
@@ -45,6 +46,22 @@
         Intel 11th Gen Intel&reg; Core&trade; processors
       </li>
     </ul>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h3>Ubuntu Core 20</h3>
+      <p>
+        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-core-20-amd64+intel-iot.img.xz">Download</a>
+      </p>
+      <p>Please see the <a href="https://assets.ubuntu.com/v1/377806cd-October_25-Release+Notes.pdf">release notes</a> and <a href="https://assets.ubuntu.com/v1/87e46aa7-Installation+Instructions+Core+Image+Intel+IoTG+Platforms.pdf">instructions</a> for more information.</p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h3>Ubuntu Desktop 20.04</h3>
+      <p>
+        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/focal/release/inteliotg/ubuntu-20.04-preinstalled-desktop-amd64+intel-iot.img.xz">Download</a>
+      </p>
+      <p>Please see the <a href="https://assets.ubuntu.com/v1/377806cd-October_25-Release+Notes.pdf">release notes</a> and <a href="https://assets.ubuntu.com/v1/590a61f7-Installation+Instructions+Desktop+Image+Intel+IoTG+Platforms.pdf">instructions</a> for more information.</p>
+    </div>
   </div>
 </section>
 <section class="p-strip">
@@ -73,4 +90,11 @@
     <a href="/certified/devices">Further information on Ubuntu certified devices&nbsp;&rsaquo;</a>
   </div>
 </section>
+
+{% with first_item="_download_iot_iotg_newsletter", no_shadow="true" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="4205" data-lp-id="2065" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
 {% endblock content %}

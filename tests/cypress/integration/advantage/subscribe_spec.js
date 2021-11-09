@@ -196,7 +196,10 @@ context("/advantage/subscribe", () => {
     cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
   });
 
-  it("redirects logged-in user to /advantage on after successful purchase", () => {
+  it.skip("redirects logged-in user to /advantage on after successful purchase", () => {
+    cy.intercept("POST", "/advantage/subscribe*").as("purchase");
+    cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
+
     cy.login();
     cy.visit(getTestURL("/advantage/subscribe"));
     cy.acceptCookiePolicy();
@@ -212,6 +215,9 @@ context("/advantage/subscribe", () => {
       force: true,
     });
     cy.findByRole("button", { name: "Buy" }).click();
+
+    cy.wait("@purchase");
+    cy.wait("@pendingPurchase");
 
     cy.url().should("include", getTestURL("/advantage"));
   });

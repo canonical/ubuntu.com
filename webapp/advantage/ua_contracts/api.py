@@ -311,10 +311,10 @@ class UAContractsAPI:
 
         return response.json()
 
-    def get_purchase_account(self):
+    def get_purchase_account(self, marketplace: str = ""):
         response = self._request(
             method="get",
-            path="v1/purchase-account",
+            path=f"v1/marketplace/{marketplace}/account",
             error_rules=["default", "no-found"],
         )
 
@@ -355,15 +355,6 @@ class UAContractsAPI:
         )
 
         return {}
-
-    def get_subscription_auto_renewal(self, subscription_id: str):
-        response = self._request(
-            method="get",
-            path=f"v1/subscription/{subscription_id}/auto-renewal",
-            error_rules=["default"],
-        )
-
-        return response.json()
 
     def post_subscription_auto_renewal(
         self, subscription_id: str, should_auto_renew: bool

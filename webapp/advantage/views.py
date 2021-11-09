@@ -1,11 +1,11 @@
 # Packages
-from typing import Optional, List
+from typing import List
 
 from dateutil.parser import parse
 import flask
 from flask import g
 from requests.exceptions import HTTPError
-from webargs.fields import String, Boolean
+from webargs.fields import String
 
 # Local
 from webapp.advantage.ua_contracts.primitives import Subscription
@@ -14,7 +14,6 @@ from webapp.login import user_info
 from webapp.advantage.flaskparser import use_kwargs
 from webapp.advantage.ua_contracts.builders import (
     build_user_subscriptions,
-    build_get_user_info,
 )
 from webapp.advantage.ua_contracts.helpers import (
     to_dict,
@@ -40,6 +39,7 @@ from webapp.advantage.schemas import (
     put_account_user_role,
     delete_account_user_role,
     put_contract_entitlements,
+    post_auto_renewal_settings,
 )
 
 
@@ -106,16 +106,21 @@ def get_user_subscriptions(**kwargs):
 
 
 @advantage_decorator(permission="user", response="json")
-@use_kwargs({"account_id": String()}, location="query")
 def get_last_purchase_ids(account_id):
     g.api.set_convert_response(True)
 
-    subscriptions = g.api.get_account_subscriptions(
-        account_id=account_id,
-        marketplace="canonical-ua",
-    )
+    last_purchase_ids = {}
+    for marketplace in SERVICES:
+        if marketplace == "canonical-cube":
+            continue
 
-    last_purchase_ids = extract_last_purchase_ids(subscriptions)
+        subscriptions = g.api.get_account_subscriptions(
+            account_id=account_id, marketplace=marketplace
+        )
+
+        last_purchase_ids[marketplace] = extract_last_purchase_ids(
+            subscriptions
+        )
 
     return flask.jsonify(last_purchase_ids)
 
@@ -125,7 +130,7 @@ def get_account_users():
     g.api.set_convert_response(True)
 
     try:
-        account = g.api.get_purchase_account()
+        account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
@@ -199,40 +204,6 @@ def get_contract_token(contract_id):
     return flask.jsonify({"contract_token": contract_token})
 
 
-@advantage_decorator(permission="user", response="json")
-def get_user_info():
-    g.api.set_convert_response(True)
-
-    try:
-        account = g.api.get_purchase_account()
-    except UAContractsUserHasNoAccount as error:
-        # if no account throw 404
-        raise UAContractsAPIError(error)
-
-    subscriptions = g.api.get_account_subscriptions(
-        account_id=account.id,
-        marketplace="canonical-ua",
-        filters={"status": "active", "period": "monthly"},
-    )
-
-    monthly_subscription: Optional[Subscription] = (
-        subscriptions[0] if len(subscriptions) > 0 else None
-    )
-
-    renewal_info = None
-    if monthly_subscription and monthly_subscription.is_auto_renewing:
-        renewal_info = g.api.get_subscription_auto_renewal(
-            monthly_subscription.id
-        )
-
-    user_summary = {
-        "subscription": monthly_subscription,
-        "renewal_info": renewal_info,
-    }
-
-    return build_get_user_info(user_summary)
-
-
 @advantage_decorator(response="html")
 def advantage_shop_view():
     g.api.set_convert_response(True)
@@ -240,7 +211,7 @@ def advantage_shop_view():
     account = None
     if user_info(flask.session):
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("canonical-ua")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -259,11 +230,7 @@ def advantage_shop_view():
         if subscription.status in ["active", "locked"]
     ]
 
-    is_trialling = any(
-        subscription
-        for subscription in current_subscriptions
-        if subscription.in_trial
-    )
+    is_trialling = any(sub for sub in current_subscriptions if sub.in_trial)
 
     listings = g.api.get_product_listings("canonical-ua")
 
@@ -281,7 +248,7 @@ def advantage_shop_view():
 
 @advantage_decorator(permission="user", response="html")
 def advantage_account_users_view():
-    return flask.render_template("advantage/users/index.html")
+    return flask.render_template("advantage/maintenance.html")
 
 
 @advantage_decorator(permission="user", response="html")
@@ -292,7 +259,7 @@ def payment_methods_view():
     pending_purchase_id = ""
 
     try:
-        account = g.api.get_purchase_account()
+        account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         # No Stripe account
 
@@ -401,6 +368,28 @@ def post_advantage_subscriptions(preview, **kwargs):
     if trialling:
         purchase_request["inTrial"] = True
 
+    # marketing parameters
+
+    metadata_keys = [
+        "salesforce-campaign-id",
+        "google-click-id",
+        "google-gbraid-id",
+        "google-wbraid-id",
+        "facebook-click-id",
+    ]
+
+    metadata = [
+        {
+            "key": metadata_key,
+            "value": flask.session.get(metadata_key),
+        }
+        for metadata_key in metadata_keys
+        if flask.session.get(metadata_key)
+    ]
+
+    if metadata:
+        purchase_request["metadata"] = metadata
+
     try:
         if not preview:
             purchase = g.api.purchase_from_marketplace(
@@ -422,10 +411,11 @@ def cancel_advantage_subscriptions(**kwargs):
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     product_listing_id = kwargs.get("product_listing_id")
+    marketplace = kwargs.get("marketplace")
 
     monthly_subscriptions = g.api.get_account_subscriptions(
         account_id=account_id,
-        marketplace="canonical-ua",
+        marketplace=marketplace,
         filters={"status": "active", "period": "monthly"},
     )
 
@@ -449,7 +439,7 @@ def cancel_advantage_subscriptions(**kwargs):
 
     try:
         purchase = g.api.purchase_from_marketplace(
-            marketplace="canonical-ua", purchase_request=purchase_request
+            marketplace=marketplace, purchase_request=purchase_request
         )
     except CannotCancelLastContractError:
         g.api.cancel_subscription(
@@ -615,27 +605,18 @@ def post_payment_methods(**kwargs):
 
 
 @advantage_decorator(permission="user", response="json")
-@use_kwargs({"should_auto_renew": Boolean()}, location="json")
+@use_kwargs(post_auto_renewal_settings, location="json")
 def post_auto_renewal_settings(**kwargs):
-    should_auto_renew = kwargs.get("should_auto_renew", False)
-
-    accounts = g.api.get_accounts()
-
-    for account in accounts:
-        monthly_subscriptions = g.api.get_account_subscriptions(
-            account_id=account["id"],
-            marketplace="canonical-ua",
-            filters={"status": "active", "period": "monthly"},
+    subscriptions = kwargs.get("subscriptions", {})
+    for subscription in subscriptions:
+        g.api.post_subscription_auto_renewal(
+            subscription_id=subscription.get("subscription_id"),
+            should_auto_renew=subscription.get("should_auto_renew"),
         )
-
-        for subscription in monthly_subscriptions:
-            g.api.post_subscription_auto_renewal(
-                subscription_id=subscription["subscription"]["id"],
-                should_auto_renew=should_auto_renew,
-            )
-
     return (
-        flask.jsonify({"message": "subscription renewal status was changed"}),
+        flask.jsonify(
+            {"message": "subscriptions renewal status were changed"}
+        ),
         200,
     )
 
@@ -796,7 +777,7 @@ def invoices_view(**kwargs):
 
             total = None
             invoice = raw_payment.get("invoice")
-            status = invoice.get("status")
+            status = invoice.get("status") if invoice else "Pending"
             if invoice and invoice.get("total"):
                 cost = invoice.get("total") / 100
                 currency = invoice.get("currency")
@@ -853,7 +834,7 @@ def blender_shop_view():
     account = None
     if user_info(flask.session):
         try:
-            account = g.api.get_purchase_account()
+            account = g.api.get_purchase_account("blender")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -889,4 +870,11 @@ def blender_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/blender/thank-you.html",
         email=kwargs.get("email"),
+    )
+
+
+@advantage_decorator(response="html")
+def support():
+    return flask.render_template(
+        "support/index.html",
     )

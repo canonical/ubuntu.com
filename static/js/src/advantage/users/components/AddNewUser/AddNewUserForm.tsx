@@ -52,16 +52,18 @@ export const AddNewUserForm = ({
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ isSubmitting, touched, errors }) => (
         <>
-          {formSubmissionError ? (
-            <div className="p-notification--negative">
-              <div className="p-notification__content" aria-atomic="true">
-                <h5 className="p-notification__title">Error</h5>
-                <p className="p-notification__message" role="alert">
-                  {formSubmissionError}
-                </p>
+          <div role="alert" aria-live="assertive" aria-atomic="true">
+            {formSubmissionError ? (
+              <div className="p-notification--negative">
+                <div className="p-notification__content">
+                  <h5 className="p-notification__title">Error</h5>
+                  <p className="p-notification__message">
+                    {formSubmissionError}
+                  </p>
+                </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
           <Form>
             <Field
               as={Input}
@@ -96,7 +98,7 @@ export const AddNewUserForm = ({
               </p>
               <p className="p-form-help-text">
                 <strong>Technical</strong> users can access the support portal
-                and see tokens, but not manage users.
+                and see tokens, but not manage users or billing.
               </p>
               <p className="p-form-help-text">
                 <strong>Admin</strong> users can perform all actions.

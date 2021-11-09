@@ -6,13 +6,14 @@
       <p>Design and deployment of an Object only Ceph cluster based on Canonical’s reference architecture.</p>
       <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Object storage interface (S3 compatible)</li>
+        <li class="p-list__item is-ticked">RADOS Gateway (RGW) Object storage interface (S3 compatible)</li>
         <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
         <li class="p-list__item is-ticked">Hardware and Network Reference Architecture</li>
         <li class="p-list__item is-ticked">Containerised control plane</li>
         <li class="p-list__item is-ticked">Observability stack</li>
         <li class="p-list__item is-ticked">High availability</li>
       </ul>
+      <p>Cluster capacity up to 650TB RAW<sup><a href="#os-footnote-2">**</a></sup></p>
     </div>
     <div class="col-6 p-card">
       <h2 class="p-heading--four">Ceph Cluster Build Plus</h2>
@@ -20,9 +21,10 @@
       <hr class="u-sv1">
       <p>Design and deployment of a multi-protocol Ceph cluster, based on a custom architecture tuned to your needs.</p>
       <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
-      <p>Everything in Private Cloud Build, plus:</p>
+      <p>Everything in Ceph Cluster Build, plus:</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Block, object and file storage interfaces</li>
+        <li class="p-list__item is-ticked">RBD Block interface</li>
+        <li class="p-list__item is-ticked">CephFS file storage interfance</li>
         <li class="p-list__item is-ticked">Custom scale-out architecture</li>
         <li class="p-list__item is-ticked">Capacity planning</li>
         <li class="p-list__item is-ticked">Storage-oriented networking</li>
@@ -31,8 +33,10 @@
         <li class="p-list__item is-ticked">Data encryption at rest, with integrated Key Management</li>
         <li class="p-list__item is-ticked">Security hardening and compliance</li>
       </ul>
+      <p>Cluster capacity up to 3.6PB RAW<sup><a href="#os-footnote-2">**</a></sup></p>
     </div>
   </div>
   <div class="u-fixed-width">
     <p id="os-footnote">* Additional features, functionality and integrations are available via add-ons</p>
+    <p id="os-footnote-2">** Higher capacity clusters available via add&ndash;ons</p>
   </div>

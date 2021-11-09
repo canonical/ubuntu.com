@@ -48,8 +48,7 @@ export const ORDERED_STATUS_KEYS = [
 const MESSAGES: Messages = {
   [StatusKey.IsExpiring]: {
     [ExpiryNotificationSize.Large]: {
-      message:
-        'Select a subscription, then "Renew subscription..." to renew it.',
+      message: "Verify your renewal settings below.",
       title: "Your subscription is about to expire.",
     },
     [ExpiryNotificationSize.Small]: {

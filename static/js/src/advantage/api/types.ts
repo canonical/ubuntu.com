@@ -13,8 +13,15 @@ export type StripePublishableKey = string;
 
 export type UserSubscriptionEntitlement = {
   enabled_by_default: boolean;
+  is_available: boolean;
+  is_editable: boolean;
   support_level: SupportLevel | null;
-  type: EntitlementType | string;
+  type: EntitlementType;
+};
+
+export type UserSubscriptionEntitlementUpdate = {
+  type: EntitlementType;
+  is_enabled: boolean;
 };
 
 export type UserSubscriptionStatuses = {
@@ -29,6 +36,9 @@ export type UserSubscriptionStatuses = {
   is_renewal_actionable: boolean;
   is_trialled: boolean;
   is_upsizeable: boolean;
+  is_subscription_active: boolean;
+  is_subscription_auto_renewing: boolean;
+  should_present_auto_renewal: boolean;
 };
 
 export type UserSubscription = {
@@ -52,20 +62,17 @@ export type UserSubscription = {
   type: UserSubscriptionType;
 };
 
-export type UserInfo = {
-  currency?: string;
-  has_monthly_subscription: boolean;
-  is_auto_renewing: boolean;
-  last_payment_date?: Date;
-  next_payment_date?: Date;
-  total?: number;
-};
-
 export type ContractToken = {
   contract_token: string;
 };
 
 export type LastPurchaseIds = {
-  monthly: string;
-  yearly: string;
+  [UserSubscriptionMarketplace.CanonicalUA]: {
+    monthly: string;
+    yearly: string;
+  };
+  [UserSubscriptionMarketplace.Blender]: {
+    monthly: string;
+    yearly: string;
+  };
 };

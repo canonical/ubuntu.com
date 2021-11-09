@@ -1,0 +1,44 @@
+<div class="col-6 p-divider__block">
+  <!-- MARKETO FORM -->
+  <form action="/marketo/submit" method="post" id="mktoForm_4214"> 
+    <h3>Sign up to receive information about product updates</h3>
+    <ul class="p-list u-clearfix">
+      <li class="p-list__item">
+        <label for="Email" id="email">Your email:</label>
+        <input id="email" name="email" maxlength="255" aria-labelledby="LblEmail InstructEmail" type="email"  aria-required="true" >
+      </li>
+      <li class="p-list__item">
+        <input value="yes" id="canonicalUpdatesOptIn_newsletter" name="canonicalUpdatesOptIn" type="checkbox" />
+        <label for="canonicalUpdatesOptIn_newsletter">I agree to receive information about Canonical's products and services.</label>
+      </li>
+      <li class="p-list__item">
+        <p>
+          In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+        </p>
+      </li>
+    </ul>
+
+      {# These are honey pot fields to catch bots #}
+      <div class="u-off-screen">
+        <label class="website" for="website">Website:</label>
+        <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+        <label class="name" for="name">Name:</label>
+        <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+      </div>
+      {# End of honey pots #}
+
+      <!-- hidden fields -->
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4214" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="https://ubuntu.com/thank-you" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
+      <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Subscribe now</button>
+  </form>
+<!-- /MARKETO FORM -->
+</div>

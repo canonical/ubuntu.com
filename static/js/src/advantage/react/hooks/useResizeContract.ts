@@ -2,7 +2,7 @@ import { resizeContract } from "advantage/api/contracts";
 import { UserSubscription } from "advantage/api/types";
 import { useMutation, useQueryClient } from "react-query";
 import { useLastPurchaseIds } from ".";
-import { selectPurchaseIdsByPeriod } from "./useLastPurchaseIds";
+import { selectPurchaseIdsByMarketplaceAndPeriod } from "./useLastPurchaseIds";
 
 export type ResizeContractResponse = { id: string };
 
@@ -11,9 +11,13 @@ export const useResizeContract = (subscription?: UserSubscription) => {
   const { data: lastPurchaseId } = useLastPurchaseIds(
     subscription?.account_id,
     {
-      select: selectPurchaseIdsByPeriod(subscription?.period),
+      select: selectPurchaseIdsByMarketplaceAndPeriod(
+        subscription?.marketplace,
+        subscription?.period
+      ),
     }
   );
+
   const mutation = useMutation<ResizeContractResponse, Error, number>(
     (quantity: number) =>
       resizeContract(
@@ -21,7 +25,8 @@ export const useResizeContract = (subscription?: UserSubscription) => {
         lastPurchaseId,
         subscription?.listing_id,
         quantity,
-        subscription?.period
+        subscription?.period,
+        subscription?.marketplace
       ).then((response) => {
         if (response.errors) {
           // Sometimes the request fails because the previous purchase id

@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount as enzymeMount } from "enzyme";
 
 import DetailsTabs from "./DetailsTabs";
 import {
@@ -10,17 +10,40 @@ import {
 } from "advantage/tests/factories/api";
 import { UserSubscription } from "advantage/api/types";
 import { EntitlementType } from "advantage/api/enum";
+import { getQueryClientWrapper } from "advantage/tests/utils";
+
+const mount = (Component: React.ReactElement) =>
+  enzymeMount(Component, {
+    wrappingComponent: getQueryClientWrapper(),
+  });
 
 describe("DetailsTabs", () => {
   let subscription: UserSubscription;
 
   beforeEach(async () => {
-    subscription = userSubscriptionFactory.build();
+    subscription = userSubscriptionFactory.build({
+      entitlements: [
+        userSubscriptionEntitlementFactory.build({
+          enabled_by_default: true,
+          type: EntitlementType.Livepatch,
+        }),
+      ],
+    });
   });
 
-  it("defaults to the features tab", () => {
-    const wrapper = shallow(<DetailsTabs subscription={subscription} />);
-    expect(wrapper.find("[data-test='features-content']").exists()).toBe(true);
+  it("defaults to the features tab if there are entitlements", () => {
+    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
+      true
+    );
+  });
+
+  it("hides the feature content tab is there are not entitlements", () => {
+    subscription = userSubscriptionFactory.build();
+    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
+      false
+    );
   });
 
   it("can change tabs", () => {
@@ -70,7 +93,7 @@ describe("DetailsTabs", () => {
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
     expect(docsLinks.length).toBe(1);
-    expect(docsLinks.at(0).text()).toBe("ESM Infra & ESM Apps");
+    expect(docsLinks.at(0).text()).toBe("ESM Infra");
   });
 
   it("reorders FIPS, CC-EAL, and CIS to the end", () => {
@@ -102,7 +125,7 @@ describe("DetailsTabs", () => {
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.at(0).text()).toBe("ESM Infra & ESM Apps");
+    expect(docsLinks.at(0).text()).toBe("ESM Infra");
     expect(docsLinks.at(1).text()).toBe("Livepatch");
     expect(docsLinks.at(2).text()).toBe("FIPS setup instructions");
     expect(docsLinks.at(3).text()).toBe("CC-EAL2 setup instructions");

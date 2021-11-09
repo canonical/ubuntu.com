@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-bundle_revision: '761'
+bundle_revision: '814'
 bundle_release: '1.22'
 ---
 
@@ -62,7 +62,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-aws-iam">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/charm-aws-iam"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/aws-iam/82"> 82 </a></td>
+  <td> <a href="https://jaas.ai/u/containers/aws-iam/94"> 94 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -71,7 +71,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-aws-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-aws-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/aws-integrator/139"> 139 </a></td>
+  <td> <a href="https://jaas.ai/u/containers/aws-integrator/153"> 153 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -80,7 +80,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-azure-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-azure-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/azure-integrator/124"> 124 </a> </td>
+  <td> <a href="https://jaas.ai/u/containers/azure-integrator/137"> 137 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -89,7 +89,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-calico">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/layer-calico"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/calico/826"> 826 </a> </td>
+  <td> <a href="https://jaas.ai/u/containers/calico/838"> 838 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -98,25 +98,25 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-canal">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/layer-canal"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/canal/825"> 825</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/canal/837"> 837 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
   <td> containerd </td>
   <td> Containerd container runtime subordinate </td>
   <td> <a href="/kubernetes/docs/1.22/charm-containerd">docs</a> </td>
-  <td> <a href=""> source </a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-containerd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/containerd/160"> 160</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/containerd/178"> 178 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
   <td> docker </td>
   <td> Docker container runtime subordinate </td>
   <td> <a href="/kubernetes/docs/1.22/charm-docker">docs</a> </td>
-  <td> <a href=""> source </a> </td>
+  <td> <a href="https://github.com/juju-solutions/layer-docker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/docker/113"> 113</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/docker/131"> 131 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -125,7 +125,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-docker-registry">docs</a> </td>
   <td> <a href="https://github.com/CanonicalLtd/docker-registry-charm"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/docker-registry/201"> 201</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/docker-registry/218"> 218 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -134,7 +134,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-easyrsa">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/layer-easyrsa"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/easyrsa/408"> 408</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/easyrsa/420"> 420 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -143,7 +143,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-etcd">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/layer-etcd"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/etcd/620"> 620</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/etcd/634"> 634 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -152,7 +152,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-flannel">docs</a> </td>
   <td> <a href="https://github.com/coreos/flannel"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/flannel/584"> 584</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/flannel/597"> 597 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -161,16 +161,16 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-gcp-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-gcp-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/gcp-integrator/131"> 131</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/gcp-integrator/145"> 145 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
   <td> kata </td>
   <td> Kata untrusted container runtime subordinate </td>
   <td> <a href="/kubernetes/docs/1.22/charm-kata">docs</a> </td>
-  <td> <a href=""> source </a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/charm-kata"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kata/121"> 121</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kata/138"> 138 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -179,7 +179,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-keepalived">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-keepalived"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/keepalived/98"> 98</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/keepalived/110"> 110 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -188,7 +188,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-kubeapi-load-balancer">docs</a> </td>
   <td> <a href="https://nginx.org/en/"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubeapi-load-balancer/827"> 827</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubeapi-load-balancer/844"> 844 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -197,7 +197,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-kubernetes-master">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-master"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/1051"> 1051</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-master/1078"> 1078 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -206,7 +206,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-kubernetes-worker">docs</a> </td>
   <td> <a href="https://github.com/charmed-kubernetes/charm-kubernetes-worker"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/801"> 801</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/kubernetes-worker/816"> 816 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -215,16 +215,16 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-openstack-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-openstack-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/openstack-integrator/166"> 166</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/openstack-integrator/182"> 182 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
   <td> tigera-secure-ee </td>
   <td> Tigera Secure Enterprise Edition </td>
   <td> <a href="/kubernetes/docs/1.22/charm-tigera-secure-ee">docs</a> </td>
-  <td> <a href=""> source </a> </td>
+  <td> <a href="https://github.com/charmed-kubernetes/layer-tigera-secure-ee"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/tigera-secure-ee/218"> 218</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/tigera-secure-ee/230"> 230 </a> </td>
   <td> -- </td>
 </tr>
 <tr>
@@ -233,16 +233,16 @@ release. These charms are maintained by the Charmed Kubernetes team.
   <td> <a href="/kubernetes/docs/1.22/charm-vsphere-integrator">docs</a> </td>
   <td> <a href="https://github.com/juju-solutions/charm-vsphere-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
-  <td> <a href="https://jaas.ai/u/containers/vsphere-integrator/111"> 111</a> </td>
+  <td> <a href="https://jaas.ai/u/containers/vsphere-integrator/123"> 123 </a> </td>
   <td> -- </td>
 </tr>
-</tbody>
-</table>
+
+ </tbody>
+ </table>
 
 ## Compatible Charms
 
 These charms are frequently used with Charmed Kubernetes.
-
 
 <table class ="u-table-layout--auto">
   <thead>
@@ -338,8 +338,9 @@ These charms are frequently used with Charmed Kubernetes.
   <td> <a href="https://jaas.ai/vault">docs</a> </td>
   <td>  </td>
 </tr>
-</tbody>
-</table>
+
+ </tbody>
+ </table>
 
 
 ## Images
@@ -349,42 +350,42 @@ These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
  
--  cdk/addon-resizer-{{ arch }}:1.8.9
--  cephcsi/cephcsi:v3.3.1 
--  coredns/coredns:1.8.3 
--  coreos/kube-state-metrics:v1.9.8 
--  k8s-dns-dnsmasq-nanny:1.17.3 
--  k8s-dns-kube-dns:1.17.3 
--  k8s-dns-sidecar:1.17.3 
--  k8scloudprovider/cinder-csi-plugin:v1.20.0 
--  k8scloudprovider/k8s-keystone-auth:v1.20.0 
--  k8scloudprovider/openstack-cloud-controller-manager:v1.20.0 
--  kubernetesui/dashboard:v2.2.0 
--  kubernetesui/metrics-scraper:v1.0.6 
--  metrics-server/metrics-server:v0.5.0 
--  nvidia/k8s-device-plugin:v0.9.0 
--  sig-storage/csi-attacher:v2.2.1 
--  sig-storage/csi-attacher:v3.0.2 
--  sig-storage/csi-node-driver-registrar:v1.3.0 
--  sig-storage/csi-node-driver-registrar:v2.0.1 
--  sig-storage/csi-provisioner:v1.6.1 
--  sig-storage/csi-provisioner:v2.0.4 
--  sig-storage/csi-resizer:v0.5.1 
--  sig-storage/csi-resizer:v1.0.1 
--  sig-storage/csi-snapshotter:v2.1.3 
--  sig-storage/csi-snapshotter:v4.0.0 
--  sig-storage/livenessprobe:v2.1.0 
-
-This is a list of the images which have been added or updated since the previous release:
-
--  cephcsi/cephcsi:v3.3.1 
--  k8s-dns-dnsmasq-nanny:1.17.3 
--  k8s-dns-kube-dns:1.17.3 
--  k8s-dns-sidecar:1.17.3 
--  metrics-server:v0.5.0 
--  sig-storage/csi-snapshotter:v4.0.0 
-
-
+-  cdkbot/microbot-amd64:latest
+-  cdkbot/microbot-arm64:latest
+-  cdkbot/microbot-s390x:latest
+-  cephcsi/cephcsi:v3.3.1
+-  coredns/coredns:1.8.3
+-  coreos/kube-state-metrics:v1.9.8
+-  defaultbackend-amd64:1.5
+-  defaultbackend-arm64:1.5
+-  defaultbackend-ppc64le:1.5
+-  defaultbackend-s390x:1.4
+-  dns/k8s-dns-dnsmasq-nanny:1.17.3
+-  dns/k8s-dns-kube-dns:1.17.3
+-  dns/k8s-dns-sidecar:1.17.3
+-  external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
+-  k8s-artifacts-prod/ingress-nginx/controller:v1.0.0-beta.3
+-  k8scloudprovider/cinder-csi-plugin:v1.22.0
+-  k8scloudprovider/k8s-keystone-auth:v1.22.0
+-  k8scloudprovider/openstack-cloud-controller-manager:v1.22.0
+-  kubernetes-ingress-controller/nginx-ingress-controller-ppc64le:0.20.0
+-  kubernetesui/dashboard:v2.2.0
+-  kubernetesui/metrics-scraper:v1.0.6
+-  metrics-server/metrics-server:v0.5.0
+-  nvidia/k8s-device-plugin:v0.9.0
+-  pause:3.4.1
+-  rancher/rancher:latest
+-  sig-storage/csi-attacher:v3.0.2
+-  sig-storage/csi-attacher:v3.1.0
+-  sig-storage/csi-node-driver-registrar:v2.0.1
+-  sig-storage/csi-node-driver-registrar:v2.1.0
+-  sig-storage/csi-provisioner:v2.0.4
+-  sig-storage/csi-provisioner:v2.2.0
+-  sig-storage/csi-resizer:v1.0.1
+-  sig-storage/csi-resizer:v1.1.0
+-  sig-storage/csi-snapshotter:v4.0.0
+-  sig-storage/livenessprobe:v2.2.0
+-  sonatype/nexus3:latest
 
 <!-- CONTAINER IMAGES END -->
 
@@ -397,7 +398,6 @@ The following snaps are used by this release of Charmed Kubernetes:
 |aws-cli| classic | Resource to side-load aws-cli snap in network-restricted deployments. | [store page](https://snapcraft.io/aws-cli) |
 |core| strict | core snap | [store page](https://snapcraft.io/core) |
 |etcd| classic | Snap package of etcd | [store page](https://snapcraft.io/etcd) |
-|gcloud| ? | Resource to side-load gcloud snap in network-restricted deployments. | ? |
 |cdk-addons| strict | CDK addons snap | [store page](https://snapcraft.io/cdk-addons) |
 |kube-apiserver| strict | kube-apiserver snap | [store page](https://snapcraft.io/kube-apiserver) |
 |kube-controller-manager| strict | kube-controller-manager snap | [store page](https://snapcraft.io/kube-controller-manager) |

@@ -1,29 +1,21 @@
 import {
   contractTokenFactory,
   lastPurchaseIdsFactory,
-  userInfoFactory,
   userSubscriptionFactory,
+  userSubscriptionEntitlementUpdateFactory,
 } from "advantage/tests/factories/api";
 import fetch from "jest-fetch-mock";
 
 import {
   getContractToken,
-  getUserInfo,
   getLastPurchaseIds,
   getUserSubscriptions,
+  putContractEntitlements,
 } from "./contracts";
 
 describe("contracts", () => {
   afterEach(() => {
     fetch.resetMocks();
-  });
-
-  it("can get user info", async () => {
-    const userInfoData = userInfoFactory.build();
-    fetch.mockResponseOnce(JSON.stringify(userInfoData));
-    await getUserInfo().then((response) => {
-      expect(response).toStrictEqual(JSON.parse(JSON.stringify(userInfoData)));
-    });
   });
 
   it("can get user subscriptions", async () => {
@@ -48,5 +40,16 @@ describe("contracts", () => {
     await getLastPurchaseIds().then((response) => {
       expect(response).toStrictEqual(lastPurchaseIds);
     });
+  });
+
+  it("updates contract entitlements", async () => {
+    const { contract_id } = userSubscriptionFactory.build();
+    const entitlement = userSubscriptionEntitlementUpdateFactory.build();
+    fetch.mockResponseOnce(JSON.stringify({}));
+    await putContractEntitlements(contract_id, [entitlement]).then(
+      (response) => {
+        expect(response).toStrictEqual({});
+      }
+    );
   });
 });

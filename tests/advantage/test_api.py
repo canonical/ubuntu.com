@@ -150,7 +150,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "params": None,
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua&productTags=classic&productTags=pro"
+                "?productTags=ua,classic,pro,blender"
             ),
         }
 
@@ -176,7 +176,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "params": None,
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua&productTags=classic&productTags=pro"
+                "?productTags=ua,classic,pro,blender"
             ),
         }
 
@@ -1002,7 +1002,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
             client = make_client(session, is_for_view=is_for_view)
 
             with self.assertRaises(expected_error) as error:
-                client.get_purchase_account()
+                client.get_purchase_account("canonical-ua")
 
             self.assertEqual(error.exception.response.json(), response_content)
 
@@ -1016,14 +1016,14 @@ class TestGetPurchaseAccount(unittest.TestCase):
         )
         client = make_client(session)
 
-        response = client.get_purchase_account()
+        response = client.get_purchase_account("canonical-ua")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": None,
             "method": "get",
             "params": None,
-            "url": "https://1.2.3.4/v1/purchase-account",
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
         self.assertEqual(response, json_account)
@@ -1039,14 +1039,14 @@ class TestGetPurchaseAccount(unittest.TestCase):
         )
         client = make_client(session, convert_response=True)
 
-        response = client.get_purchase_account()
+        response = client.get_purchase_account("canonical-ua")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": None,
             "method": "get",
             "params": None,
-            "url": "https://1.2.3.4/v1/purchase-account",
+            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
         self.assertIsInstance(response, Account)
@@ -1262,55 +1262,6 @@ class TestCancelSubscription(unittest.TestCase):
         }
 
         self.assertEqual(response, {})
-        self.assertEqual(session.request_kwargs, expected_args)
-
-
-class TestGetSubscriptionAutoRenewal(unittest.TestCase):
-    def test_errors(self):
-        cases = [
-            (500, False, UAContractsAPIError),
-            (500, True, UAContractsAPIErrorView),
-        ]
-
-        for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
-            client = make_client(session, is_for_view=is_for_view)
-
-            with self.assertRaises(expected_error) as error:
-                client.get_subscription_auto_renewal(
-                    subscription_id="sAaBbCcDdEeFfGg"
-                )
-
-            self.assertEqual(error.exception.response.json(), response_content)
-
-    def test_success(self):
-        json_subscription = get_fixture("subscription-auto-renewal")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content=json_subscription,
-            )
-        )
-        client = make_client(session)
-
-        response = client.get_subscription_auto_renewal(
-            subscription_id="sAaBbCcDdEeFfGg"
-        )
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "get",
-            "params": None,
-            "url": (
-                "https://1.2.3.4/v1"
-                "/subscription/sAaBbCcDdEeFfGg/auto-renewal"
-            ),
-        }
-
-        self.assertEqual(response, json_subscription)
         self.assertEqual(session.request_kwargs, expected_args)
 
 

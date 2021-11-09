@@ -111,18 +111,21 @@ function updateResultsPerPage() {
 }
 
 function toggleVendorsList() {
-  const vendorSection = document.querySelector("#vendor-section");
-  const vendorPanel = vendorSection.querySelector(".p-accordion__panel");
-  const toggleVendorButtons = document.querySelectorAll(".p-reveal-vendors");
-  toggleVendorButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      window.scrollTo(0, 360);
-      vendorPanel.classList.toggle("is-collapsed");
-      toggleVendorButtons.forEach((button) => {
-        button.classList.toggle("u-hide");
+  const vendorSectionExists = !!document.querySelector("#vendor-section");
+  if (vendorSectionExists) {
+    const vendorSection = document.querySelector("#vendor-section");
+    const vendorPanel = vendorSection.querySelector(".p-accordion__panel");
+    const toggleVendorButtons = document.querySelectorAll(".p-reveal-vendors");
+    toggleVendorButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        window.scrollTo(0, 360);
+        vendorPanel.classList.toggle("is-collapsed");
+        toggleVendorButtons.forEach((button) => {
+          button.classList.toggle("u-hide");
+        });
       });
     });
-  });
+  }
 }
 
 function toggleVersionsList() {

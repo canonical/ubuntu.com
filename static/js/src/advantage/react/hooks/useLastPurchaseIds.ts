@@ -1,14 +1,25 @@
 import { getLastPurchaseIds } from "advantage/api/contracts";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
 import { useQuery, UseQueryOptions } from "react-query";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 /**
  * Get a the last purchase id by account id and period.
  */
-export const selectPurchaseIdsByPeriod = (
-  period?: UserSubscription["period"] | null
-) => (lastPurchaseIds: LastPurchaseIds) =>
-  period && period in lastPurchaseIds ? lastPurchaseIds[period] : null;
+export const selectPurchaseIdsByMarketplaceAndPeriod = (
+  marketplace?: UserSubscription["marketplace"],
+  period?: UserSubscription["period"]
+) => (lastPurchaseIds: LastPurchaseIds) => {
+  if (
+    !marketplace ||
+    !period ||
+    marketplace === UserSubscriptionMarketplace.Free ||
+    marketplace === UserSubscriptionMarketplace.CanonicalCUBE
+  ) {
+    return null;
+  }
+  return lastPurchaseIds?.[marketplace]?.[period] ?? null;
+};
 
 export const useLastPurchaseIds = <D = LastPurchaseIds>(
   accountId?: UserSubscription["account_id"] | null,

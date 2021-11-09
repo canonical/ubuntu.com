@@ -1,4 +1,4 @@
-import { Col, Icon, List, Row, Tabs } from "@canonical/react-components";
+import { Icon, List, Tabs } from "@canonical/react-components";
 import React, { HTMLProps, useState } from "react";
 import type { ReactNode } from "react";
 import {
@@ -6,9 +6,14 @@ import {
   UserSubscription,
   UserSubscriptionEntitlement,
 } from "advantage/api/types";
-import { getFeaturesDisplay, isFreeSubscription } from "advantage/react/utils";
+import { filterAndFormatEntitlements } from "advantage/react/utils/filterAndFormatEntitlements";
+import {
+  isBlenderSubscription,
+  isFreeSubscription,
+} from "advantage/react/utils";
 import { EntitlementType } from "advantage/api/enum";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import FeaturesTab from "./components/FeaturesTab";
 
 enum ActiveTab {
   DOCUMENTATION = "documentation",
@@ -30,7 +35,7 @@ type ListItem = {
   label: ReactNode;
 };
 
-const generateList = (title: string, items: ListItem[]) => (
+export const generateList = (title: React.ReactNode, items: ListItem[]) => (
   <>
     <h5 className="u-no-padding--top p-subscriptions__details-small-title">
       {title}
@@ -88,7 +93,7 @@ const generateDocLinks = (
         case EntitlementType.EsmApps:
         case EntitlementType.EsmInfra:
           link = {
-            label: "ESM Infra & ESM Apps",
+            label: "ESM Infra",
             url:
               "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
           };
@@ -131,9 +136,18 @@ const generateDocLinks = (
   );
 
 const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>(ActiveTab.FEATURES);
+  const featuresDisplay = filterAndFormatEntitlements(
+    subscription.entitlements
+  );
+  const [activeTab, setActiveTab] = useState<ActiveTab>(
+    featuresDisplay.included.length > 0
+      ? ActiveTab.FEATURES
+      : ActiveTab.DOCUMENTATION
+  );
   let content: ReactNode | null;
-  const features = getFeaturesDisplay(subscription.entitlements);
+
+  const isBlender = isBlenderSubscription(subscription);
+
   const isFree = isFreeSubscription(subscription);
   // Don't display any docs links for the free subscription.
   const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
@@ -145,73 +159,59 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       eventLabel: `subscription ${tab} tab clicked`,
     });
   };
+
+  const generateUADocs = () => {
+    return generateList(
+      "Documentation & tutorials",
+      docs
+        .map((doc) => ({
+          label: (
+            <a data-test="doc-link" href={doc.url}>
+              {doc.label}
+            </a>
+          ),
+        }))
+        .concat(
+          token
+            ? [
+                {
+                  label: (
+                    <>
+                      To attach a machine:{" "}
+                      <code data-test="contract-token">
+                        sudo ua attach {token?.contract_token}
+                      </code>
+                    </>
+                  ),
+                },
+              ]
+            : []
+        )
+    );
+  };
+
+  const blenderDocs = (
+    <>
+      <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+        Documentation & tutorials
+      </h5>
+      <a data-test="doc-link" href="https://blender.stackexchange.com/">
+        Blender StackExchange
+      </a>
+    </>
+  );
+
   switch (activeTab) {
     case ActiveTab.DOCUMENTATION:
       content = (
         <div data-test="docs-content">
-          {generateList(
-            "Documentation & tutorials",
-            docs
-              .map((doc) => ({
-                label: (
-                  <a data-test="doc-link" href={doc.url}>
-                    {doc.label}
-                  </a>
-                ),
-              }))
-              .concat(
-                token
-                  ? [
-                      {
-                        label: (
-                          <>
-                            To attach a machine:{" "}
-                            <code data-test="contract-token">
-                              sudo ua attach {token?.contract_token}
-                            </code>
-                          </>
-                        ),
-                      },
-                    ]
-                  : []
-              )
-          )}
+          {isBlender ? blenderDocs : generateUADocs()}
         </div>
       );
       break;
     case ActiveTab.FEATURES:
     default:
-      content = (
-        <>
-          <Row className="u-sv1" data-test="features-content">
-            <Col size={4}>
-              {features.included.length
-                ? generateList(
-                    "Included",
-                    features.included.map((feature) => ({
-                      icon: "success",
-                      label: feature,
-                    }))
-                  )
-                : null}
-            </Col>
-            <Col size={4}>
-              {features.excluded.length
-                ? generateList(
-                    "Not included",
-                    features.excluded.map((feature) => ({
-                      icon: "error",
-                      label: feature,
-                    }))
-                  )
-                : null}
-            </Col>
-          </Row>
-          <a href="/legal/ubuntu-advantage-service-description">
-            Service description &rsaquo;
-          </a>
-        </>
-      );
+      content = <FeaturesTab subscription={subscription} />;
       break;
   }
   return (
@@ -219,12 +219,17 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       <Tabs
         className="p-tabs--brand"
         links={[
-          {
-            active: activeTab === ActiveTab.FEATURES,
-            "data-test": "features-tab",
-            label: "Features",
-            onClick: () => setTab(ActiveTab.FEATURES),
-          },
+          ...(featuresDisplay.included.length > 0
+            ? // Don't show the Features tab if there are no included features.
+              [
+                {
+                  active: activeTab === ActiveTab.FEATURES,
+                  "data-test": "features-tab",
+                  label: "Features",
+                  onClick: () => setTab(ActiveTab.FEATURES),
+                },
+              ]
+            : []),
           {
             active: activeTab === ActiveTab.DOCUMENTATION,
             "data-test": "docs-tab",

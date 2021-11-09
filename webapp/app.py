@@ -44,6 +44,8 @@ from webapp.cube.views import (
     cube_home,
     cube_microcerts,
     cube_study_labs_button,
+    get_microcerts,
+    post_microcerts_purchase,
 )
 
 from webapp.views import (
@@ -94,7 +96,6 @@ from webapp.advantage.views import (
     get_user_subscriptions,
     get_last_purchase_ids,
     get_contract_token,
-    get_user_info,
     cancel_trial,
     get_account_users,
     delete_account_user_role,
@@ -103,6 +104,7 @@ from webapp.advantage.views import (
     put_contract_entitlements,
     blender_thanks_view,
     blender_shop_view,
+    support,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -133,6 +135,7 @@ from webapp.certified.views import (
     certified_model_details,
     certified_hardware_details,
     certified_component_details,
+    certified_vendors,
     certified_desktops,
     certified_laptops,
     certified_servers,
@@ -288,6 +291,7 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
+app.add_url_rule("/support", view_func=support)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
     "/advantage/user-subscriptions", view_func=get_user_subscriptions
@@ -300,7 +304,6 @@ app.add_url_rule(
     "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
 )
 app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
-app.add_url_rule("/advantage/user-info", view_func=get_user_info)
 app.add_url_rule("/advantage/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/advantage/accounts/<account_id>/user",
@@ -796,6 +799,12 @@ core_als_autils_docs.init_app(app)
 # Cube docs
 app.add_url_rule("/cube", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
+app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
+app.add_url_rule(
+    "/cube/microcerts/purchase.json",
+    view_func=post_microcerts_purchase,
+    methods=["POST"],
+)
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 
 # Charmed OpenStack docs
@@ -887,6 +896,10 @@ app.add_url_rule(
     view_func=certified_component_details,
 )
 app.add_url_rule(
+    "/certified/vendors/<vendor>",
+    view_func=certified_vendors,
+)
+app.add_url_rule(
     "/certified/desktops",
     view_func=certified_desktops,
 )
@@ -928,7 +941,13 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    disable_cache_on = ("/advantage", "/cube", "/core/build", "/account.json")
+    disable_cache_on = (
+        "/account",
+        "/advantage",
+        "/cube",
+        "/core/build",
+        "/account.json",
+    )
 
     if flask.request.path.startswith(disable_cache_on):
         response.cache_control.no_store = True

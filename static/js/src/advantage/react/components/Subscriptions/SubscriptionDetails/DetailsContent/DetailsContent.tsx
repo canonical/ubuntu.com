@@ -15,6 +15,7 @@ import {
   getPeriodDisplay,
   getSubscriptionCost,
   isFreeSubscription,
+  isBlenderSubscription,
 } from "advantage/react/utils";
 import React, { ReactNode } from "react";
 
@@ -53,6 +54,25 @@ const DetailsContent = ({ selectedId }: Props) => {
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id
   );
+  const isBlender = isBlenderSubscription(subscription);
+
+  const SubscriptionToken = () => {
+    return (
+      <>
+        <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+          Subscription
+        </h5>
+        {isLoadingToken ? (
+          <div className="u-sv4" data-test="token-spinner">
+            <Spinner />
+          </div>
+        ) : (
+          tokenBlock
+        )}
+      </>
+    );
+  };
+
   const isFree = isFreeSubscription(subscription);
   if (isLoading || !subscription) {
     return <Spinner />;
@@ -62,6 +82,17 @@ const DetailsContent = ({ selectedId }: Props) => {
     title: "Billing",
     value: isFree ? "None" : getPeriodDisplay(subscription.period),
   };
+
+  const cost = getSubscriptionCost(subscription);
+  const costCol: Feature = {
+    // When a legacy subscription is being displayed then stretch this
+    // column to take up the space where the billing column would
+    // otherwise be.
+    size: subscription.type === UserSubscriptionType.Legacy ? 5 : 3,
+    title: "Cost",
+    value: cost,
+  };
+
   const tokenBlock = token?.contract_token ? (
     <CodeSnippet
       blocks={[
@@ -91,34 +122,26 @@ const DetailsContent = ({ selectedId }: Props) => {
             ? // Don't show the billing column for legacy subscriptions.
               []
             : [billingCol]),
+          ...(cost
+            ? // Don't show the cost column if it's empty.
+              [costCol]
+            : []),
+          ...(isBlender
+            ? // Don't show the column for Blender subscriptions.
+              []
+            : [
+                {
+                  title: "Machine type",
+                  value: getMachineTypeDisplay(subscription.machine_type),
+                },
+              ]),
           {
-            // When a legacy subscription is being displayed then stretch this
-            // column to take up the space where the billing column would
-            // otherwise be.
-            size: subscription.type === UserSubscriptionType.Legacy ? 5 : 3,
-            title: "Cost",
-            value: getSubscriptionCost(subscription),
-          },
-          {
-            title: "Machine type",
-            value: getMachineTypeDisplay(subscription.machine_type),
-          },
-          {
-            title: "Machines",
+            title: isBlender ? "Users" : "Machines",
             value: subscription.number_of_machines,
           },
         ])}
       </Row>
-      <h5 className="u-no-padding--top p-subscriptions__details-small-title">
-        Subscription
-      </h5>
-      {isLoadingToken ? (
-        <div className="u-sv4" data-test="token-spinner">
-          <Spinner />
-        </div>
-      ) : (
-        tokenBlock
-      )}
+      {isBlender ? null : <SubscriptionToken />}
       <DetailsTabs subscription={subscription} token={token} />
     </div>
   );

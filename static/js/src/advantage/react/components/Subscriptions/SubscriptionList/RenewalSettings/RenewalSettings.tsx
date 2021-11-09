@@ -6,72 +6,236 @@ import {
 } from "@canonical/react-components";
 import React, { ReactNode, RefObject, useCallback, useState } from "react";
 import { Formik } from "formik";
-import * as Yup from "yup";
+import FormikField from "advantage/react/components/FormikField";
+import { formatDate } from "advantage/react/utils";
 
-import RenewalSettingsFields from "./RenewalSettingsFields";
+import { useSetAutoRenewal, useUserSubscriptions } from "advantage/react/hooks";
+import { selectAutoRenewableUASubscriptions } from "advantage/react/hooks/useUserSubscriptions";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
-  useSetAutoRenewal,
-  useUserInfo,
-  useUserSubscriptions,
-} from "advantage/react/hooks";
-import { selectAutoRenewableUASubscriptions } from "advantage/react/hooks/useUserSubscriptions";
-import { UserInfo } from "advantage/api/types";
-import { formatDate } from "advantage/react/utils";
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
+import RenewalSettingsForm from "./RenewalSettingsForm";
+import { AutoRenewal } from "./types";
+import { UserSubscription } from "advantage/api/types";
+
+export const subscriptionBasedMarketplaces: UserSubscriptionMarketplace[] = [
+  UserSubscriptionMarketplace.CanonicalUA,
+];
 
 type Props = {
   positionNodeRef: RefObject<HTMLDivElement>;
 };
 
-const RenewalSchema = Yup.object().shape({
-  shouldAutoRenew: Yup.boolean().required("Auto renewal is required"),
-});
-
-const generatePrice = (userInfo: UserInfo): string => {
+const generatePrice = (billingSubscription: BillingSubscription): string => {
   const formatter = new Intl.NumberFormat("en-US", {
-    currency: userInfo.currency,
+    currency: billingSubscription.currency,
     maximumFractionDigits: 2,
     minimumFractionDigits: 2,
     style: "currency",
   });
   // The total is in cents so it needs to be divided by 100.
-  return formatter.format((userInfo.total || 0) / 100);
+  return formatter.format((billingSubscription.total || 0) / 100);
 };
 
-const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
+const AutoRenewalLabel = ({ period, cost, when, products }: AutoRenewal) => {
+  let doWhat = null;
+  let next = null;
+  let forHowLong = null;
+  if (period === "yearly") {
+    doWhat = <>Renew</>;
+    forHowLong = <strong>for the next year</strong>;
+    next = (
+      <>
+        The renewal will happen on <strong>{when}</strong>
+      </>
+    );
+  } else if (period === "monthly") {
+    doWhat = <>Automatically renew</>;
+    forHowLong = <strong>every month</strong>;
+    next = (
+      <>
+        The next renewal will be on <strong>{when}</strong>
+      </>
+    );
+  }
+
+  let toWhat = null;
+  if (products.length === 1) {
+    toWhat = (
+      <>
+        my <strong>{period}</strong> subscription
+      </>
+    );
+  } else {
+    toWhat = (
+      <>
+        my{" "}
+        <strong>
+          {products.length} {period}
+        </strong>{" "}
+        subscriptions
+      </>
+    );
+  }
+
+  return (
+    <>
+      <p className="u-no-padding">
+        {doWhat} {toWhat} {forHowLong} for <strong>{cost}</strong>*.
+      </p>
+      <p className="u-no-padding">{next}:</p>
+      <small>
+        <ul>
+          {products.map((product) => (
+            <li key={product}>{product}</li>
+          ))}
+        </ul>
+      </small>
+    </>
+  );
+};
+
+class BillingSubscription {
+  id = "";
+  when: Date = new Date();
+  total = 0;
+  currency = "";
+  n_user_subs = 0;
+  products: string[] = [];
+  status = false;
+
+  exists(): boolean {
+    return this.id !== null && this.id !== "";
+  }
+}
+
+class SubscriptionBasedMarketplace {
+  yearly: BillingSubscription = new BillingSubscription();
+  monthly: BillingSubscription = new BillingSubscription();
+
+  period(p: string): BillingSubscription | null {
+    if (p === UserSubscriptionPeriod.Yearly) {
+      return this.yearly;
+    } else if (p === UserSubscriptionPeriod.Monthly) {
+      return this.monthly;
+    }
+    return null;
+  }
+}
+
+export function consolidateUserSubscriptions(
+  userSubscriptions: UserSubscription[]
+): { [key: string]: SubscriptionBasedMarketplace } {
+  const billingSubscriptions: {
+    [key: string]: SubscriptionBasedMarketplace;
+  } = {};
+  userSubscriptions?.forEach((userSubscription) => {
+    if (
+      !userSubscription.period ||
+      !userSubscription.marketplace ||
+      !userSubscription.end_date ||
+      !userSubscription.statuses.should_present_auto_renewal ||
+      !subscriptionBasedMarketplaces.includes(userSubscription.marketplace)
+    ) {
+      return;
+    }
+
+    let marketplace = billingSubscriptions[userSubscription.marketplace];
+    if (!marketplace) {
+      marketplace = new SubscriptionBasedMarketplace();
+      billingSubscriptions[userSubscription.marketplace] = marketplace;
+    }
+    const billingSubscription = marketplace.period(userSubscription.period);
+    if (billingSubscription === null) {
+      return;
+    }
+
+    billingSubscription.when = userSubscription.end_date;
+    billingSubscription.total +=
+      userSubscription.number_of_machines * (userSubscription.price || 0);
+    billingSubscription.currency = userSubscription.currency;
+    billingSubscription.products.push(
+      `${userSubscription.number_of_machines}x ${userSubscription.product_name}`
+    );
+    billingSubscription.n_user_subs += 1;
+    billingSubscription.status =
+      userSubscription.statuses.is_subscription_auto_renewing;
+    billingSubscription.id = userSubscription.subscription_id || "";
+  });
+  return billingSubscriptions;
+}
+
+function generateAutoRenewalToggles(billingSubscriptions: {
+  [key: string]: SubscriptionBasedMarketplace;
+}): {
+  toggles: ReactNode[];
+  initialValues: { [key: string]: boolean };
+} {
+  const toggles: ReactNode[] = [];
+  const initialValues: { [key: string]: boolean } = {};
+
+  // For each marketplace we know supports auto-renewable subscriptions,
+  // create a toggle for the auto-renewal setting.
+  subscriptionBasedMarketplaces.forEach((mp) => {
+    [UserSubscriptionPeriod.Yearly, UserSubscriptionPeriod.Monthly].forEach(
+      (period) => {
+        const marketplace: SubscriptionBasedMarketplace =
+          billingSubscriptions[mp];
+        if (!marketplace) {
+          return;
+        }
+        const billingSubscription = marketplace[period];
+        if (!billingSubscription.exists()) {
+          return;
+        }
+        toggles.push(
+          <FormikField
+            label={
+              <AutoRenewalLabel
+                {...{
+                  period,
+                  cost: generatePrice(billingSubscription),
+                  when: formatDate(billingSubscription.when, "d MMMM yyyy"),
+                  products: billingSubscription.products,
+                }}
+              />
+            }
+            labelClassName="u-no-margin--bottom"
+            name={billingSubscription.id}
+            type="checkbox"
+          />
+        );
+        initialValues[billingSubscription.id] = billingSubscription.status;
+      }
+    );
+  });
+
+  return { toggles, initialValues };
+}
+
+export const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const setAutoRenew = useSetAutoRenewal();
   const {
-    data: userInfo,
-    isError: isUserInfoError,
-    isLoading: isLoadingUserInfo,
-  } = useUserInfo();
-  const {
-    data: monthlySubscriptions,
+    data: renewableSubscriptions,
     isError: isSubscriptionsError,
     isLoading: isLoadingSubscriptions,
   } = useUserSubscriptions({
     select: selectAutoRenewableUASubscriptions,
   });
+
   const onCloseMenu = useCallback(() => {
     setMenuOpen(false);
     // Reset the form so that errors are cleared.
     setAutoRenew.reset();
   }, [setAutoRenew]);
   let content: ReactNode = null;
-  if (isLoadingUserInfo || isLoadingSubscriptions) {
+
+  if (isLoadingSubscriptions) {
     content = <Spinner text="Loading..." />;
-  } else if (isUserInfoError || !userInfo) {
-    content = (
-      <Notification
-        data-test="user-info-loading-error"
-        severity={NotificationSeverity.NEGATIVE}
-      >
-        There was a problem fetching your auto renewal settings. Please refresh
-        the page or try again later.
-      </Notification>
-    );
-  } else if (isSubscriptionsError || !monthlySubscriptions) {
+  } else if (isSubscriptionsError || !renewableSubscriptions) {
     content = (
       <Notification
         data-test="subscriptions-loading-error"
@@ -82,65 +246,43 @@ const RenewalSettings = ({ positionNodeRef }: Props): JSX.Element => {
       </Notification>
     );
   } else {
+    const billingSubscriptions: {
+      [key: string]: SubscriptionBasedMarketplace;
+    } = consolidateUserSubscriptions(renewableSubscriptions);
+    const { toggles, initialValues } = generateAutoRenewalToggles(
+      billingSubscriptions
+    );
     content = (
-      <>
-        <p className="u-no-padding--top u-no-margin--bottom u-sv1">
-          <strong data-test="subscription-count">
-            {monthlySubscriptions.length} monthly subscription
-            {monthlySubscriptions.length === 1 ? " is" : "s are"} affected by
-            auto-renew settings.
-          </strong>
-        </p>
-        <hr />
-        {userInfo.next_payment_date ? (
-          <p className="u-no-margin--bottom u-sv1" data-test="next-payment">
-            Your next recurring payment of{" "}
-            <strong data-test="monthly-price">{generatePrice(userInfo)}</strong>{" "}
-            will be taken on{" "}
-            <strong data-test="next-payment-date">
-              {formatDate(userInfo.next_payment_date, "d MMMM yyyy")}
-            </strong>
-            .
-          </p>
-        ) : null}
-        <Formik
-          initialValues={{
-            shouldAutoRenew: userInfo.is_auto_renewing,
-          }}
-          onSubmit={({ shouldAutoRenew }) => {
-            setAutoRenew.mutate(shouldAutoRenew, {
-              onSuccess: () => {
-                onCloseMenu();
-                sendAnalyticsEvent({
-                  eventCategory: "Advantage",
-                  eventAction: "subscription-auto-renewal-form",
-                  eventLabel: `auto renewal ${
-                    shouldAutoRenew ? "enabled" : "disabled"
-                  }`,
-                });
-              },
-            });
-          }}
-          validationSchema={RenewalSchema}
-        >
-          <>
-            {setAutoRenew.isError ? (
-              <Notification
-                data-test="update-error"
-                severity="negative"
-                title="Could not update auto renewal settings:"
-              >
-                {setAutoRenew.error?.message}
-              </Notification>
-            ) : null}
-            <RenewalSettingsFields
-              loading={setAutoRenew.isLoading}
-              success={setAutoRenew.isSuccess}
-              onCloseMenu={onCloseMenu}
-            />
-          </>
-        </Formik>
-      </>
+      <Formik
+        initialValues={initialValues}
+        data-test="renewal-toggles"
+        onSubmit={(state) => {
+          setAutoRenew.mutate(state, {
+            onSuccess: () => {
+              onCloseMenu();
+            },
+          });
+        }}
+      >
+        <>
+          {setAutoRenew.isError ? (
+            <Notification
+              data-test="update-error"
+              severity="negative"
+              title="Could not update auto renewal settings:"
+            >
+              {setAutoRenew.error?.message}
+            </Notification>
+          ) : null}
+          <RenewalSettingsForm
+            loading={setAutoRenew.isLoading}
+            success={setAutoRenew.isSuccess}
+            onCloseMenu={onCloseMenu}
+          >
+            {toggles}
+          </RenewalSettingsForm>
+        </>
+      </Formik>
     );
   }
 

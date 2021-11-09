@@ -120,24 +120,74 @@ def get_user_subscription_statuses(
     subscriptions: List[Subscription] = None,
     listing: Listing = None,
 ) -> dict:
+    # The explanations below use two concepts:
+    # - user subscription: these maps 1:1 with ua-contracts' contract items,
+    #   and these are the cards we present in /advantage.
+    # - billing subscription: a bundle of products as billed periodically in
+    #   Stripe. These may lead to the creation of one or more user
+    #   subscriptions over time.
     statuses = {
+        # is_upsizeable describes whether this user subscription is part of a
+        # billing subscription that allows upselling (that's yearly or
+        # monthly).
         "is_upsizeable": False,
+        # is_upsizeable describes whether this user subscription is part of a
+        # billing subscription that allows downselling (that's only monthly).
         "is_downsizeable": False,
+        # is_cancellable describes whether this user subscription is part of a
+        # billing subscription that can be cancelled at the moment or that can
+        # have its items downsold to zero.
         "is_cancellable": False,
+        # is_cancelled describes whether this user subscription was part of a
+        # billing subscription that was cancelled in the past, or if it was
+        # removed from its billing subscription.
         "is_cancelled": False,
+        # is_expiring describes whether this user subscription is considered to
+        # be expiring because it's close to its end date and it is part of a
+        # billing subscription that is not set to auto-renew.
         "is_expiring": False,
+        # is_in_grace_period describes whether this user subscription is in
+        # its grace period, meaning it's past its end, but it still gives
+        # access to the pproduct.
         "is_in_grace_period": False,
+        # is_expired describes whether this user subscription is completely
+        # expired, past its end date and its grace period.
         "is_expired": False,
+        # is_trialled describes whether this user subscription was part of a
+        # trial that already ended.
         "is_trialled": False,
+        # is_renewable describes whether this user subscription can be renewed
+        # via an old-style renewal. Please note that this has nothing to do
+        # with renewals via billing subscriptions.
         "is_renewable": False,
+        # is_renewal_actionable describes whether a user subscription that
+        # is_renewable belongs to a renewal that can be acted on by the user
+        # via /advantage. If this is False, it means the customer should
+        # contact support to renew (because it's a special old-style renewal).
         "is_renewal_actionable": False,
+        # has_pending_purchases describes whether this user subscription
+        # belongs to a billing subscription that has pending purchases, and
+        # thus it cannot be modified because of that.
         "has_pending_purchases": False,
+        # is_subscription_active describes whether this user subscription
+        # belongs to a billing subscription that is currently locked (with a
+        # pending purchase) or active.
+        "is_subscription_active": False,
+        # is_subscription_auto_renewing describes whether this user
+        # subscription belongs to a billing subscription that is configured to
+        # auto-renew. Please note that this has nothing to do with
+        # is_renewable above, which applies to old-style, manual renewals.
+        "is_subscription_auto_renewing": False,
+        # should_present_auto_renewal describes whether this user subscription
+        # belongs to a billing subscription that should have its auto-renewal
+        # option displayed to the user at the current time.
+        "should_present_auto_renewal": False,
     }
 
     if type == "free":
         return statuses
 
-    date_statuses = get_date_statuses(end_date)
+    date_statuses = get_date_statuses(type, end_date)
     statuses["is_expiring"] = date_statuses["is_expiring"]
     statuses["is_in_grace_period"] = date_statuses["is_in_grace_period"]
     statuses["is_expired"] = date_statuses["is_expired"]
@@ -161,14 +211,41 @@ def get_user_subscription_statuses(
 
         statuses["is_trialled"] = True if active_trial else False
 
+    if type in ["yearly", "monthly"]:
+        statuses["is_subscription_active"] = is_billing_subscription_active(
+            subscriptions, subscription_id
+        )
+        statuses[
+            "is_subscription_auto_renewing"
+        ] = is_billing_subscription_auto_renewing(
+            subscriptions, subscription_id
+        )
+
     if type == "yearly":
-        statuses["is_upsizeable"] = True
+        statuses["is_upsizeable"] = statuses["is_subscription_active"]
+        statuses["should_present_auto_renewal"] = (
+            statuses["is_subscription_active"] and statuses["is_expiring"]
+        )
+
+        if (
+            not statuses["is_subscription_active"]
+            or statuses["is_subscription_auto_renewing"]
+        ):
+            statuses["is_expiring"] = False
 
     if type == "monthly":
         is_cancelled = is_user_subscription_cancelled(
             listing, subscriptions, subscription_id
         )
         statuses["is_cancelled"] = is_cancelled
+        statuses["should_present_auto_renewal"] = statuses[
+            "is_subscription_active"
+        ]
+
+        # If the subscription is set to auto-renew, we shouldn't alarm the
+        # user.
+        if statuses["is_subscription_auto_renewing"]:
+            statuses["is_expiring"] = False
 
         if not is_cancelled:
             statuses["is_upsizeable"] = True
@@ -191,13 +268,13 @@ def get_user_subscription_statuses(
     return statuses
 
 
-def get_date_statuses(end_date: str) -> dict:
+def get_date_statuses(type: str, end_date: str) -> dict:
     parsed_end_date = parse(end_date)
     time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
     delta_till_expiry = parsed_end_date - time_now
     days_till_expiry = delta_till_expiry.days
 
-    is_expiring_start = 7
+    is_expiring_start = 60 if type == "yearly" else 7
     is_expiring_end = 0
     grace_period_end = -14
 
@@ -239,11 +316,38 @@ def is_user_subscription_cancelled(
             if item.product_listing_id == listing.id:
                 listing_found = True
 
-            break
+                break
 
     is_cancelled = True if not listing_found else False
 
     return is_cancelled
+
+
+def is_billing_subscription_active(
+    subscriptions: List[Subscription], subscription_id: str
+) -> bool:
+    for subscription in subscriptions:
+        if subscription.id == subscription_id and subscription.status in [
+            "active",
+            "locked",
+        ]:
+            return True
+
+    return False
+
+
+def is_billing_subscription_auto_renewing(
+    subscriptions: List[Subscription], subscription_id: str
+) -> bool:
+    for subscription in subscriptions:
+        if (
+            subscription.id == subscription_id
+            and subscription.status in ["active", "locked"]
+            and subscription.is_auto_renewing
+        ):
+            return True
+
+    return False
 
 
 def extract_last_purchase_ids(subscriptions: List[Subscription]) -> Dict:

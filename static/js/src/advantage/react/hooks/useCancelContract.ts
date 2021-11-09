@@ -2,14 +2,17 @@ import { cancelContract } from "advantage/api/contracts";
 import { UserSubscription } from "advantage/api/types";
 import { useMutation, useQueryClient } from "react-query";
 import { useLastPurchaseIds } from ".";
-import { selectPurchaseIdsByPeriod } from "./useLastPurchaseIds";
+import { selectPurchaseIdsByMarketplaceAndPeriod } from "./useLastPurchaseIds";
 
 export const useCancelContract = (subscription?: UserSubscription) => {
   const queryClient = useQueryClient();
   const { data: lastPurchaseId } = useLastPurchaseIds(
     subscription?.account_id,
     {
-      select: selectPurchaseIdsByPeriod(subscription?.period),
+      select: selectPurchaseIdsByMarketplaceAndPeriod(
+        subscription?.marketplace,
+        subscription?.period
+      ),
     }
   );
   const mutation = useMutation<unknown, Error, undefined | null>(
@@ -17,7 +20,8 @@ export const useCancelContract = (subscription?: UserSubscription) => {
       cancelContract(
         subscription?.account_id,
         lastPurchaseId,
-        subscription?.listing_id
+        subscription?.listing_id,
+        subscription?.marketplace
       ).then((response) => {
         if (response.errors) {
           throw new Error(response.errors);

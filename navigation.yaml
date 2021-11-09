@@ -294,6 +294,8 @@ containers:
   children:
     - title: Overview
       path: /containers
+    - title: What are containers
+      path: /containers/what-are-containers
     - title: Contact us
       path: /containers/contact-us
       hidden: True
@@ -360,6 +362,9 @@ kubernetes:
         - title: Install
           path: /kubernetes/docs/install-manual
           hidden: True
+        - title: Install Offline
+          path: /kubernetes/docs/install-offline
+          hidden: True
         - title: AWS integration
           path: /kubernetes/docs/aws-integration
           hidden: True
@@ -404,6 +409,9 @@ kubernetes:
           hidden: True
         - title: IPv6
           path: /kubernetes/docs/ipv6
+          hidden: True
+        - title: Ingress
+          path: /kubernetes/docs/ingress
           hidden: True
         - title: Containerd and Docker
           path: /kubernetes/docs/container-runtime
@@ -460,7 +468,7 @@ kubernetes:
           path: /kubernetes/docs/docker-registry
           hidden: True
         - title: Configuring proxies
-          path: /kubernetes/docs/proxy-settings
+          path: /kubernetes/docs/proxies
           hidden: True
         - title: Using GPU workers
           path: /kubernetes/docs/gpu-workers
@@ -1204,8 +1212,10 @@ iot:
       path: /internet-of-things/appstore
     - title: Embedded Linux
       path: /embedded
+      persist: True
     - title: Automotive
       path: /automotive
+      persist: True
     - title: EdgeX
       path: /internet-of-things/edgex
     - title: Networking
@@ -1234,12 +1244,9 @@ support:
       path: /advantage
       persist: True
 
-      children:
-        - title: Account users
-          path: /advantage/users
-
     - title: Community support
       path: /support/community-support
+
     - title: Contact us
       path: /support/contact-us
       hidden: True
@@ -1532,7 +1539,7 @@ legal:
         - title: Thank you
           path: /legal/terms-and-policies/thank-you
           hidden: True
-    
+
     - title: Solution support
       path: /legal/solution-support
 
@@ -1781,7 +1788,6 @@ telco:
           path: /telco/osm/multi-cloud
         - title: Multi-vendor
           path: /telco/osm/multi-vendor
-
 
 certification:
   title: Hardware

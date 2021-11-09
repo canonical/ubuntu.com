@@ -19,6 +19,14 @@ RESPONSE_LIST = {
     "json": "Returns json response.",
 }
 
+MARKETING_FLAGS = {
+    "utm_campaign": "salesforce-campaign-id",
+    "gclid": "google-click-id",
+    "gbraid": "google-gbraid-id",
+    "wbraid": "google-wbraid-id",
+    "fbclid": "facebook-click-id",
+}
+
 
 def get_api_url(is_test_backend) -> str:
     if is_test_backend:
@@ -38,6 +46,13 @@ def advantage_decorator(permission=None, response="json"):
     def decorator(func):
         @wraps(func)
         def decorated_function(*args, **kwargs):
+            # Set marketing flag
+            for query_parameter, metadata_key in MARKETING_FLAGS.items():
+                if query_parameter in flask.request.args:
+                    flask.session.pop(metadata_key, None)
+                    value = flask.request.args.get(query_parameter)
+                    flask.session[metadata_key] = value
+
             # UA under maintenance
             if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
                 return flask.render_template("advantage/maintenance.html")
@@ -82,6 +97,57 @@ def advantage_decorator(permission=None, response="json"):
             g.api = UAContractsAPI(
                 session=session,
                 authentication_token=(user_token or guest_token),
+                token_type=("Macaroon" if user_token else "Bearer"),
+                api_url=get_api_url(is_test_backend),
+            )
+
+            if response == "html":
+                g.api.set_is_for_view(True)
+
+            return func(*args, **kwargs)
+
+        return decorated_function
+
+    return decorator
+
+
+def cube_decorator(response="json"):
+    session = talisker.requests.get_session()
+
+    if response not in RESPONSE_LIST:
+        response = "json"
+
+    def decorator(func):
+        @wraps(func)
+        def decorated_function(*args, **kwargs):
+            # UA under maintenance
+            if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
+                return flask.render_template("advantage/maintenance.html")
+
+            test_backend = flask.request.args.get("test_backend", "false")
+            is_test_backend = strtobool(test_backend)
+            user_token = flask.session.get("authentication_token")
+
+            if response == "html":
+                if not user_info(flask.session):
+                    if is_test_backend:
+                        return flask.redirect(
+                            "/login?test_backend=true&"
+                            "next=/cube/microcerts?test_backend=true"
+                        )
+
+                    return flask.redirect("/login?next=/cube/microcerts")
+
+            elif response == "json":
+                if not user_info(flask.session):
+                    message = {"error": "authentication required"}
+
+                    return flask.jsonify(message), 401
+
+            # init API instance
+            g.api = UAContractsAPI(
+                session=session,
+                authentication_token=(user_token),
                 token_type=("Macaroon" if user_token else "Bearer"),
                 api_url=get_api_url(is_test_backend),
             )

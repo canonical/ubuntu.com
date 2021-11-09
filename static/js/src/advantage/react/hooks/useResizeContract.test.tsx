@@ -10,7 +10,10 @@ import {
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 
 describe("useResizeContract", () => {
   let resizeContractSpy: jest.SpyInstance;
@@ -47,10 +50,13 @@ describe("useResizeContract", () => {
     await waitForNextUpdate();
     expect(resizeContractSpy).toHaveBeenCalledWith(
       subscription.account_id,
-      lastPurchaseIds.yearly,
+      lastPurchaseIds?.[UserSubscriptionMarketplace.CanonicalUA]?.[
+        UserSubscriptionPeriod.Yearly
+      ],
       subscription.listing_id,
       2,
-      UserSubscriptionPeriod.Yearly
+      UserSubscriptionPeriod.Yearly,
+      UserSubscriptionMarketplace.CanonicalUA
     );
   });
 

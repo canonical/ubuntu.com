@@ -59,6 +59,27 @@
           <div>
             <aside class="p-accordion js-filter-count" data-multiple-expanded="true">
               <ul class="p-accordion__list">
+                {% if vendor_page %}
+                <li class="p-accordion__group--certified">
+                  <div role="heading" aria-level="2">
+                    <button type="button" class="p-accordion__tab u-no-padding--right" id="tab1" aria-controls="tab1-section" aria-expanded="true">
+                      <span>Category</span>
+                      <div class="p-round-chip u-hide">
+                        <span class="p-chip__value" id="category-count"></span>
+                      </div>
+                    </button>
+                  </div>
+                  <hr class="u-no-margin--bottom">
+                  <section class="p-accordion__panel is-dense" id="tab1-section" aria-hidden="false" aria-labelledby="tab1">
+                    {% for category_filter in category_filters %}
+                    <label class="p-checkbox">
+                      <input type="checkbox" aria-labelledby="{{ category_filter }}" class="p-checkbox__input js-enable-apply-filters" name="category" value="{{ category_filter }}" {% if category and category_filter in category %}checked{% endif %}>
+                      <span class="p-checkbox__label">{{ category_filter }}</span>
+                    </label>
+                    {% endfor %}
+                  </section>
+                </li>
+                {% else %}
                 <li class="p-accordion__group--certified" id="vendor-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab2" aria-controls="tab2-section" aria-expanded="true">
@@ -72,8 +93,8 @@
                   <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                     {% for vendor_filter in vendor_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" id="vendor-filter" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ vendor_filter }}">{{ vendor_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters"name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                      <span class="p-checkbox__label">{{ vendor_filter }}</span>
                     </label>
                     {% endfor %}
                   </section>
@@ -84,6 +105,7 @@
                   </span>
                   {% endif %}
                 </li>
+                {% endif %}
                 <li class="p-accordion__group--certified" id="version-section">
                   <div role="heading" aria-level="2">
                     <button type="button" class="p-accordion__tab u-no-padding--right" id="tab3" aria-controls="tab3-section" aria-expanded="true">
@@ -95,11 +117,11 @@
                     </button>
                   </div>
                   <hr class="u-no-margin--bottom">
-                  <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
+                  <section class="p-accordion__panel {% if release_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab3-section" aria-hidden="false" aria-labelledby="tab3">
                     {% for release_filter in release_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" id="release-filter" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
-                      <span class="p-checkbox__label" id="{{ release_filter }}">{{ release_filter }}</span>
+                      <input type="checkbox" aria-labelledby="{{ release_filter }}" class="p-checkbox__input js-enable-apply-filters" name="release" value="{{ release_filter }}" {% if releases and release_filter in releases%}checked{% endif %}>
+                      <span class="p-checkbox__label">{{ release_filter }}</span>
                     </label>
                     {% endfor %}
                   </section>
@@ -133,7 +155,13 @@
           <tbody>
             {% for result in results %}
             <tr>
-              <td><a href="/certified?vendor={{ result.make }}">{{ result.make }}</a></td>
+              <td>
+                {% if not vendor_page %}
+                <a href="/certified/vendors/{{ result.make }}">{{ result.make }}</a>
+                {% else %}
+                {{ result.make }}
+                {% endif %}
+              </td>
               <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
               <td>{{ result.category }}</td>
             </tr>
@@ -169,13 +197,13 @@
         <p>You can do this by:</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">
-            <p>Adding alternative words or phrases</p>
+           Adding alternative words or phrases
           </li>
           <li class="p-list__item is-ticked">
-            <p>Using individual words instead of phrases</p>
+           Using individual words instead of phrases
           </li>
           <li class="p-list__item is-ticked">
-            <p>Trying a different spelling</p>
+           Trying a different spelling
           </li>
         </ul>
       </div>

@@ -254,4 +254,37 @@
     // The dropdown does not have any padding by default.
     padding: $card-padding;
   }
+
+  .p-subscription-switch {
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+    padding-top: 0;
+  }
+
+  .p-subscription-switch-wrapper {
+    align-items: center;
+    display: flex;
+    padding-top: 0.4rem;
+  }
+
+  .p-subscription-switch__slider {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  .p-subscriptions-separator {
+    margin-bottom: $spv-outer--medium;
+    margin-top: $spv-outer--medium;
+  }
+
+  .p-subscriptions-tooltip {
+    z-index: 102;
+  }
+
+  .p-subscriptions-tooltip__button {
+    border: 0;
+    margin-left: 0.2rem;
+    padding: 0 0.2rem 0 0.2rem;
+  }
 }

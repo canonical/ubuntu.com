@@ -5,7 +5,7 @@ const labels: Record<string, string | null> = {
   [EntitlementType.Blender]: "Blender",
   [EntitlementType.CcEal]: null,
   [EntitlementType.Cis]: null,
-  [EntitlementType.EsmApps]: "ESM Apps",
+  [EntitlementType.EsmApps]: null,
   [EntitlementType.EsmInfra]: "ESM Infra",
   [EntitlementType.FipsUpdates]: null,
   [EntitlementType.Fips]: null,

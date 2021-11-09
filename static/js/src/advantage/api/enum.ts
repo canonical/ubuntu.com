@@ -21,6 +21,8 @@ export enum EntitlementType {
 export enum UserSubscriptionMarketplace {
   Free = "free",
   CanonicalUA = "canonical-ua",
+  Blender = "blender",
+  CanonicalCUBE = "canonical-cube",
 }
 
 export enum UserSubscriptionType {

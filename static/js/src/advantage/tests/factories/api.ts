@@ -2,9 +2,9 @@ import { Factory } from "fishery";
 import {
   ContractToken,
   LastPurchaseIds,
-  UserInfo,
   UserSubscription,
   UserSubscriptionEntitlement,
+  UserSubscriptionEntitlementUpdate,
   UserSubscriptionStatuses,
 } from "advantage/api/types";
 import {
@@ -18,7 +18,16 @@ import {
 export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
   () => ({
     enabled_by_default: true,
+    is_available: true,
+    is_editable: true,
     support_level: null,
+    type: EntitlementType.EsmApps,
+  })
+);
+
+export const userSubscriptionEntitlementUpdateFactory = Factory.define<UserSubscriptionEntitlementUpdate>(
+  () => ({
+    is_enabled: true,
     type: EntitlementType.EsmApps,
   })
 );
@@ -36,6 +45,9 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
     is_renewal_actionable: false,
     is_trialled: false,
     is_upsizeable: false,
+    is_subscription_active: false,
+    is_subscription_auto_renewing: false,
+    should_present_auto_renewal: false,
   })
 );
 
@@ -85,15 +97,6 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
   })
 );
 
-export const userInfoFactory = Factory.define<UserInfo>(() => ({
-  currency: "USD",
-  has_monthly_subscription: false,
-  is_auto_renewing: false,
-  last_payment_date: new Date("2021-02-09T07:14:56Z"),
-  next_payment_date: new Date("2022-02-09T07:14:56Z"),
-  total: 2000,
-}));
-
 export const contractTokenFactory = Factory.define<ContractToken>(
   ({ sequence }) => ({
     contract_token: `zPyaGE9Z4DF9sf54ZfJt59AMwynub${sequence}`,
@@ -102,7 +105,13 @@ export const contractTokenFactory = Factory.define<ContractToken>(
 
 export const lastPurchaseIdsFactory = Factory.define<LastPurchaseIds>(
   ({ sequence }) => ({
-    monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
-    yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
+    [UserSubscriptionMarketplace.CanonicalUA]: {
+      monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
+      yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
+    },
+    [UserSubscriptionMarketplace.Blender]: {
+      monthly: `Jt59AzPyaGE9Z4DF9sf54ZfMwynub${sequence}`,
+      yearly: `54ZfJ9AMwyzPyaGE9Z4DF9sf5tnub${sequence}`,
+    },
   })
 );

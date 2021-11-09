@@ -1,50 +1,26 @@
 {% extends "templates/base.html" %}
-{% block title %}{{ title }}{% endblock title %}
-{% block meta_description %}{{ description }}{% endblock meta_description %}
+{% block title %}Ubuntu Advantageサービス範囲{% endblock title %}
+{% block meta_description %}Service description of Ubuntu Advantage - Japanese{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1sEcjyv8Vk4D77EeuyrwtIfllZs5S7uG-YbrEbUTfaqE/edit#{% endblock meta_copydoc %}
 
 {% block outer_content %}
 
-    {% block content %}
-    <div class="p-strip is-deep">
-      <div class="row" id="service-description">
-        <div class="col-8 l-legal-pages">
-         {{ content | safe }}
-        </div>
-        <div class="col-4">
-          <nav class="u-hide--small p-card">
-            <h3>追加情報</h3>
-            <ol class="p-nested-counter-list">
-              <li class="p-nested-counter-list__item"><a href="#uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)
-                <ol class="p-nested-counter-list">
-                  <li class="p-nested-counter-list__item"><a href="#uasd-subscription">サブスクリプション</a></li>
-                  <li class="p-nested-counter-list__item"><a href="#uasd-support-levels">サポートレベル</a></li>
-                  <li class="p-nested-counter-list__item"><a href="#uasd-managed-services">マネージドサービス</a></li>
-                  <li class="p-nested-counter-list__item"><a href="#uasd-virtual-machines">仮想マシンとクラウド<br/>インスタンス</a></li>
-                  <li class="p-nested-counter-list__item"><a href="#uasd-desktop-support">デスクトップサポート</a></li>
-                  <li class="p-nested-counter-list__item"><a href="#uasd-add-ons">アドオン</a></li>
-                  <li class="p-nested-counter-list__item"><a href="#uasd-maas-support">MAASサポート</a></li>
-                </ol>
-              </li>
-              <li class="p-nested-counter-list__item"><a href="#uasd-software">ソフトウェア</a></li>
-              <li class="p-nested-counter-list__item"><a href="#uasd-professional-support">プロフェッショナルサポートサービス</a></li>
-              <li class="p-nested-counter-list__item"><a href="#uasd-ua-support-services">Ubuntuアドバンテージのサポート<br/>サービスプロセス</a></li>
-              <li class="p-nested-counter-list__item"><a href="#uasd-definitions">用語の定義</a></li>
-            </ol>
-          </nav>
-          <nav class="p-card">
-            <h3>English version</h3>
-            <ul class="p-list">
-              <li class="p-list__item"><a href="/legal/ubuntu-advantage-service-description">UA service description&nbsp;&rsaquo;</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+<div class="p-strip is-deep">
+  <div class="row" id="service-description">
+    <div class="col-8 l-legal-pages">
+      {% block content %}
+        {{ content | safe }}
+      {% endblock %}
     </div>
+    <div class="col-4 sticky-toc">
+      <aside class="p-table-of-contents">
+        {% include 'legal/ubuntu-advantage-service-description/ja/_toc_ja.html' %}
+      </aside>
+    </div>
+  </div>
+</div>
 
-    {% endblock %}
-
-    {% with first_item="_cloud_bootstack", second_item="_generic_download", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_cloud_bootstack", second_item="_generic_download", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 {% endblock %}
