@@ -250,6 +250,20 @@ def advantage_shop_view():
 
 @advantage_decorator(permission="user", response="html")
 def advantage_account_users_view():
+    g.api.set_convert_response(True)
+
+    account = None
+
+    try:
+        account = g.api.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        pass
+    except AccessForbiddenError:
+        return flask.render_template("account/forbidden.html")
+
+    if account is None or account.role != "admin":
+        return flask.render_template("account/forbidden.html")
+
     return flask.render_template("advantage/users/index.html")
 
 

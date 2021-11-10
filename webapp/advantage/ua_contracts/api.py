@@ -389,10 +389,8 @@ class UAContractsAPI:
         status_code = error.response.status_code
         message = error.response.json().get("message")
 
-        # the status code is at the moment 401 will be changed later to 403
-        if "user-role" in error_rules:
-            if "user not allowed to purchase on account" in message:
-                raise AccessForbiddenError(error)
+        if "user-role" in error_rules and status_code == 403:
+            raise AccessForbiddenError(error)
 
         if "cancel-subscription" in error_rules and status_code == 400:
             if "cannot remove all subscription items" in message:
