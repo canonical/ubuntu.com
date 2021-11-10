@@ -37,6 +37,4 @@ describe("useContractToken", () => {
     await waitForNextUpdate();
     expect(result.current.data).toStrictEqual(contractToken);
   });
-
-  // write test for not returning token
 });

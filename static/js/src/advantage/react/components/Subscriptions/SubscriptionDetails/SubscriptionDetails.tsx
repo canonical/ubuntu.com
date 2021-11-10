@@ -36,8 +36,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
       select: selectSubscriptionById(selectedId),
     });
     const isFree = isFreeSubscription(subscription);
-    const hasAccessToSupport = subscription?.statuses.has_access_to_support;
-    const hideSupportPortal = !hasAccessToSupport || isFree;
     const isResizable =
       subscription?.statuses.is_upsizeable ||
       subscription?.statuses.is_downsizeable;
@@ -89,18 +87,20 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               statuses={subscription.statuses}
             />
             {notification ? <Notification {...notification} /> : null}
-            {hideSupportPortal ? null : (
+            {isFree ? null : (
               <>
-                <Button
-                  appearance="positive"
-                  className="p-subscriptions__details-action"
-                  data-test="support-button"
-                  disabled={editing}
-                  element="a"
-                  href="https://support.canonical.com/"
-                >
-                  Support portal
-                </Button>
+                {subscription.statuses.has_access_to_support ? (
+                  <Button
+                    appearance="positive"
+                    className="p-subscriptions__details-action"
+                    data-test="support-button"
+                    disabled={editing}
+                    element="a"
+                    href="https://support.canonical.com/"
+                  >
+                    Support portal
+                  </Button>
+                ) : null}
                 {subscription.statuses.is_renewable ? (
                   <Button
                     appearance="neutral"
