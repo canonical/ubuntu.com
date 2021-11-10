@@ -4,13 +4,13 @@ import { useQuery } from "react-query";
 
 export const useContractToken = (
   contractId?: UserSubscription["contract_id"] | null,
-  showToken?: boolean | false
+  isTokenVisible?: boolean | false
 ) => {
   const query = useQuery<ContractToken>(
     ["contractToken", contractId],
     async () => await getContractToken(contractId),
     {
-      enabled: !!contractId && showToken,
+      enabled: !!contractId && isTokenVisible,
     }
   );
   return query;

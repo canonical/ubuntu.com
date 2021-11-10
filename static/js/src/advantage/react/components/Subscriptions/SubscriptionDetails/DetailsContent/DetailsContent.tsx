@@ -53,11 +53,11 @@ const DetailsContent = ({ selectedId }: Props) => {
   });
   const hasAccessToToken = subscription?.statuses.has_access_to_token;
   const isBlender = isBlenderSubscription(subscription);
-  const showToken = hasAccessToToken && !isBlender;
+  const isTokenVisible = hasAccessToToken && !isBlender;
 
   const { data: token, isLoading: isLoadingToken } = useContractToken(
     subscription?.contract_id,
-    showToken
+    isTokenVisible
   );
 
   const SubscriptionToken = () => {
@@ -145,7 +145,7 @@ const DetailsContent = ({ selectedId }: Props) => {
           },
         ])}
       </Row>
-      {showToken ? <SubscriptionToken /> : null}
+      {isTokenVisible ? <SubscriptionToken /> : null}
       <DetailsTabs subscription={subscription} token={token} />
     </div>
   );
