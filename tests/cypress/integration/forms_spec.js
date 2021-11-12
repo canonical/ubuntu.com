@@ -95,8 +95,13 @@ context("Marketo forms", () => {
     interactiveForms.forEach((form) => {
       cy.visit(form.url);
       cy.findByTestId("interactive-form").click();
-      cy.findAllByText(/Next/).click({ multiple: true });
+      cy.wait(3000);
+      cy.scrollTo('bottom');
+      cy.findByRole(/Next/).click({ multiple: true });
+    //   cy.findByRole("link", { name: /Next/ }).click({ multiple: true });
+    //   cy.findAllByText(/Next/).click({ multiple: true });
       form.inputs.forEach((input) => {
+        cy.scrollTo('top');
         cy.findByLabelText(input[0]).type(input[1]);
       });
       cy.findByLabelText(/I agree to receive information/).click({

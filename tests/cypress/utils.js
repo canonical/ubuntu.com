@@ -61,36 +61,36 @@ export const interactiveForms = [
   //   ],
   //   submitBtn: /Let's discuss/,
   // },
-  {
-    url: "/ai/services",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-  },
-  {
-    url: "/appliance/hardware",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-    ],
-    submitBtn: /Let's discuss/,
-  },
-  {
-    url: "/automotive",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company/, "test"],
-      [/Email address/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-  },
+  // {
+  //   url: "/ai/services",
+  //   inputs: [
+  //     [/First name/, "test"],
+  //     [/Last name/, "test"],
+  //     [/Work email/, "test@gmail.com"],
+  //     [/Mobile\/cell phone number:/, "07777777777"],
+  //   ],
+  //   submitBtn: /Let's discuss/,
+  // },
+  // {
+  //   url: "/appliance/hardware",
+  //   inputs: [
+  //     [/First name/, "test"],
+  //     [/Last name/, "test"],
+  //     [/Work email/, "test@gmail.com"],
+  //   ],
+  //   submitBtn: /Let's discuss/,
+  // },
+//   {
+//     url: "/automotive",
+//     inputs: [
+//       [/First name/, "test"],
+//       [/Last name/, "test"],
+//       [/Company/, "test"],
+//       [/Email address/, "test@gmail.com"],
+//       [/Mobile\/cell phone number:/, "07777777777"],
+//     ],
+//     submitBtn: /Let's discuss/,
+//   },
   {
     url: "/aws",
     inputs: [
