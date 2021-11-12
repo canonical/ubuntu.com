@@ -3,19 +3,19 @@ import { standardFormUrls } from "../utils";
 import { interactiveForms } from "../utils";
 
 context("Marketo forms", () => {
-  // beforeEach(() => {
-  //   cy.intercept({
-  //     method: "POST",
-  //     url: "/marketo/submit",
-  //   }).as("captureLead");
-  // });
+  beforeEach(() => {
+    cy.intercept({
+      method: "POST",
+      url: "/marketo/submit",
+    }).as("captureLead");
+  });
 
-  // afterEach(() => {
-  //   cy.wait("@captureLead").then(({ request, response }) => {
-  //     expect(request.method).to.equal("POST");
-  //     expect(response.statusCode).to.equal(302);
-  //   });
-  // });
+  afterEach(() => {
+    cy.wait("@captureLead").then(({ request, response }) => {
+      expect(request.method).to.equal("POST");
+      expect(response.statusCode).to.equal(302);
+    });
+  });
 
   it.skip("should check each contact form on /contact-us pages with standard form", () => {
     cy.visit("/");
@@ -95,13 +95,12 @@ context("Marketo forms", () => {
     interactiveForms.forEach((form) => {
       cy.visit(form.url);
       cy.findByTestId("interactive-form").click();
-      cy.wait(3000);
-      cy.scrollTo('bottom');
-      cy.findByRole(/Next/).click({ multiple: true });
-    //   cy.findByRole("link", { name: /Next/ }).click({ multiple: true });
-    //   cy.findAllByText(/Next/).click({ multiple: true });
+
+      for(let i = 0; i < form.noOfPages - 1; i++){
+          cy.findByRole('link', {name: /Next/}).click();
+      };
+
       form.inputs.forEach((input) => {
-        cy.scrollTo('top');
         cy.findByLabelText(input[0]).type(input[1]);
       });
       cy.findByLabelText(/I agree to receive information/).click({
