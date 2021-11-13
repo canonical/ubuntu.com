@@ -6,14 +6,14 @@
 
 {% block outer_content %}
 
-<div class="p-strip is-deep">
+<div class="p-strip is-deep" style="overflow-x: visible;">
   <div class="row" id="service-description">
     <div class="col-8 l-legal-pages">
       {% block content %}
         {{ content | safe }}
       {% endblock %}
     </div>
-    <div class="col-4 sticky-toc">
+    <div class="col-4 p-sticky-toc">
       <aside class="p-table-of-contents">
         {% include 'legal/ubuntu-advantage-service-description/ja/_toc_ja.html' %}
       </aside>

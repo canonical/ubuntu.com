@@ -33,4 +33,33 @@
       }
     }
   }
+
+  .p-table-of-contents {
+    .p-accordion {
+      &__group {
+        display: flex;
+        align-items: center;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        &::after {
+          height: 0;
+        }
+      }
+
+      &__tab {
+        margin-right: 4px;
+        height: 1rem;
+        padding: 0;
+        width: 1rem;
+        background-position: 0;
+      }
+
+      &__panel {
+        padding-left: 1rem;
+        margin-left: 1rem;
+        flex-basis: 100%;
+      }
+    }
+  }
 }
