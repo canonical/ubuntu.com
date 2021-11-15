@@ -988,28 +988,18 @@ class TestGetPurchase(unittest.TestCase):
 class TestGetPurchaseAccount(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (
-                401,
-                False,
-                AccessForbiddenError,
-                "user not allowed to purchase on account",
-            ),
-            (
-                401,
-                False,
-                AccessForbiddenError,
-                "user not allowed to purchase on account",
-            ),
-            (401, False, UAContractsAPIError, "Error message"),
-            (401, True, UAContractsAPIErrorView, "Error message"),
-            (404, False, UAContractsUserHasNoAccount, "Error message"),
-            (404, True, UAContractsUserHasNoAccount, "Error message"),
-            (500, False, UAContractsAPIError, "Error message"),
-            (500, True, UAContractsAPIErrorView, "Error message"),
+            (403, False, AccessForbiddenError),
+            (403, False, AccessForbiddenError),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (404, False, UAContractsUserHasNoAccount),
+            (404, True, UAContractsUserHasNoAccount),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
         ]
 
-        for code, is_for_view, expected_error, message in cases:
-            response_content = {"code": "expected error", "message": message}
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
             response = Response(status_code=code, content=response_content)
             session = Session(response=response)
             client = make_client(session, is_for_view=is_for_view)
