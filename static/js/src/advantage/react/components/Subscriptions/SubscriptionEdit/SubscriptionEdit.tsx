@@ -15,6 +15,7 @@ import { SelectedId } from "../Content/types";
 import { useResizeContract, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import { isBlenderSubscription } from "advantage/react/utils";
 import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
 import { useQueryClient } from "react-query";
@@ -27,9 +28,11 @@ type Props = {
   setShowingCancel: (showingCancel: boolean) => void;
 };
 
-const sizeMessage = "You must have at least one machine.";
-
-export const generateSchema = (subscription: UserSubscription) => {
+export const generateSchema = (
+  subscription: UserSubscription,
+  unitName: string
+) => {
+  const sizeMessage = `You must have at least one ${unitName}`;
   let min = 1;
   let minMessage = sizeMessage;
   let max = Infinity;
@@ -101,6 +104,10 @@ const SubscriptionEdit = ({
     select: selectSubscriptionById(selectedId),
   });
   const resizeContract = useResizeContract(subscription);
+  const isBlender = isBlenderSubscription(subscription);
+
+  const unitName = isBlender ? "user" : "machine";
+
   const {
     setPendingPurchaseID,
     error: pendingPurchaseError,
@@ -146,7 +153,7 @@ const SubscriptionEdit = ({
   if (isSubscriptionLoading || !subscription) {
     return <Spinner />;
   }
-  const ResizeSchema = generateSchema(subscription);
+  const ResizeSchema = generateSchema(subscription, unitName);
   return (
     <>
       <Formik
@@ -181,14 +188,14 @@ const SubscriptionEdit = ({
                   error={errors.size || generateError(error)}
                   help={
                     <>
-                      You can resize your subscriptions to as many machines as
-                      needed.
+                      You can resize your subscriptions to as many {unitName}s
+                      as needed.
                       <br />
                       Your next billing period will reflect the changes
                       accordingly.
                     </>
                   }
-                  label="Number of machines"
+                  label={`Number of ${unitName}s`}
                   min={
                     subscription.statuses.is_downsizeable
                       ? 1
