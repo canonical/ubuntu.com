@@ -13,7 +13,9 @@ from webapp.macaroons import (
 
 
 open_id = flask_openid.OpenID(
-    stateless=True, safe_roots=[], extension_responses=[MacaroonResponse]
+    store_factory=lambda: None,
+    safe_roots=[],
+    extension_responses=[MacaroonResponse],
 )
 session = talisker.requests.get_session()
 
