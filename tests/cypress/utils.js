@@ -32,6 +32,63 @@ export const standardFormUrls = [
   "/telco/osm/contact-us",
 ];
 
+export const formsWithEmailTestId = [
+  {
+    url: "/ai/services",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 3,
+  },
+  {
+    url: "/internet-of-things/digital-signage",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Company:/, "test"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 2,
+  },
+  {
+    url: "/internet-of-things/appstore",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Company:/, "test"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 2,
+  },
+  {
+    url: "/internet-of-things/gateways",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Company:/, "test"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 2,
+  },
+  {
+    url: "/internet-of-things/networking",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Company:/, "test"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 2,
+  },
+];
+
 export const interactiveForms = [
   {
     url: "/",
@@ -52,29 +109,9 @@ export const interactiveForms = [
       [/Work email/, "test@gmail.com"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
-//   {
-//     url: "/advantage",
-//     inputs: [
-//       [/First name/, "test"],
-//       [/Last name/, "test"],
-//       [/Work email/, "test@gmail.com"],
-//     ],
-//     submitBtn: /Let's discuss/,
-//     noOfPages: 2
-//   },
-  {
-    url: "/ai/services",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 3
-  },
+
   {
     url: "/appliance/hardware",
     inputs: [
@@ -95,7 +132,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/aws",
@@ -106,7 +143,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/azure",
@@ -117,7 +154,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/ceph",
@@ -128,7 +165,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/containers",
@@ -139,7 +176,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/core",
@@ -147,11 +184,11 @@ export const interactiveForms = [
       [/First name/, "test"],
       [/Last name/, "test"],
       [/Company:/, "test"],
-      [/Work email/, "test@gmail.com"],
+      [/Email/, "test@gmail.com"],
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 2,
   },
   {
     url: "/core/smartstart",
@@ -163,7 +200,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 2,
   },
   {
     url: "/dell",
@@ -174,7 +211,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/desktop/organisations",
@@ -185,19 +222,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
-  },
-  {
-    url: "/internet-of-things/digital-signage",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 3,
   },
   {
     url: "/download/iot",
@@ -208,7 +233,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/financial-services",
@@ -218,7 +243,7 @@ export const interactiveForms = [
       [/Work email/, "test@gmail.com"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/gcp",
@@ -226,10 +251,10 @@ export const interactiveForms = [
       [/First name/, "test"],
       [/Last name/, "test"],
       [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
+      [/Phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/gov",
@@ -240,7 +265,7 @@ export const interactiveForms = [
       [/Work phone:/, "07777777777"],
     ],
     submitBtn: /Let's talk/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/ibm",
@@ -251,44 +276,9 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
-  {
-    url: "/internet-of-things/appstore",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2
-  },
-  {
-    url: "/internet-of-things/gateways",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2
-  },
-  {
-    url: "/internet-of-things/networking",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2
-  },
+
   {
     url: "/kubernetes",
     inputs: [
@@ -298,7 +288,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 1
+    noOfPages: 1,
   },
   {
     url: "/kubernetes/managed",
@@ -309,7 +299,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 1
+    noOfPages: 1,
   },
   {
     url: "/managed",
@@ -320,7 +310,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 2,
   },
   {
     url: "/managed/apps",
@@ -331,7 +321,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/observability",
@@ -342,7 +332,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/openstack",
@@ -353,7 +343,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/openstack/managed",
@@ -364,31 +354,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 1
-  },
-  {
-    url: "/openstack/pricing-calculator",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company name/, "test"],
-      [/Job title/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 1
-  },
-  {
-    url: "/pricing/consulting",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/pricing/devices",
@@ -400,7 +366,18 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 2,
+  },
+  {
+    url: "/pricing/consulting",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Work email/, "test@gmail.com"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 3,
   },
   {
     url: "/pricing/infra",
@@ -411,20 +388,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
-  },
-  {
-    url: "/robotics",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company/, "test"],
-      [/Job title/, "test"],
-      [/Email address:/, "test@gmail.com"],
-      [/Phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 3,
   },
   {
     url: "/security",
@@ -435,7 +399,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/security/docker-images",
@@ -446,7 +410,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/security/esm",
@@ -457,7 +421,7 @@ export const interactiveForms = [
       [/Mobile number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 2
+    noOfPages: 2,
   },
   {
     url: "/server",
@@ -468,7 +432,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/telco",
@@ -479,7 +443,7 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 2,
   },
   {
     url: "/telco/osm",
@@ -490,18 +454,18 @@ export const interactiveForms = [
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
   {
     url: "/wsl",
     inputs: [
       [/First name/, "test"],
       [/Last name/, "test"],
-      [/Company name/, "test"],
+      [/Company/, "test"],
       [/Work email/, "test@gmail.com"],
       [/Mobile\/cell phone number:/, "07777777777"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3
+    noOfPages: 3,
   },
 ];
