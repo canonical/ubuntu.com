@@ -5,6 +5,7 @@ export enum EntitlementLabel {
   Cis = "CIS",
   Blender = "Blender",
   EsmInfra = "ESM Infra",
+  EsmApps = "ESM Apps",
   FipsUpdates = "FIPS-Updates",
   Fips = "FIPS",
   Livepatch = "Livepatch",
@@ -21,7 +22,7 @@ const alwaysAvailableLabels: Record<string, EntitlementLabel> = {
 const labels: Record<string, EntitlementLabel | null> = {
   [EntitlementType.Blender]: EntitlementLabel.Blender,
   [EntitlementType.CcEal]: null,
-  [EntitlementType.EsmApps]: null,
+  [EntitlementType.EsmApps]: EntitlementLabel.EsmApps,
   [EntitlementType.EsmInfra]: EntitlementLabel.EsmInfra,
   [EntitlementType.Livepatch]: EntitlementLabel.Livepatch,
   [EntitlementType.LivepatchOnprem]: EntitlementLabel.Livepatch,
@@ -98,7 +99,10 @@ export const groupEntitlements = (
       } else if (entitlement.is_available) {
         included.push(label);
       } else if (!entitlement.is_available && !entitlement.is_editable) {
-        excluded.push(label);
+        // we hide ESM Apps from the excluded list until the proper release
+        if (entitlement.type !== EntitlementType.EsmApps) {
+          excluded.push(label);
+        }
       }
     }
   });

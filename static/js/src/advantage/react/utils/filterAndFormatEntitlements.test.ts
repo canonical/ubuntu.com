@@ -43,6 +43,13 @@ it("returns entitlements with labels as keys", () => {
       support_level: "advanced",
       type: "support",
     },
+    "ESM Apps": {
+      enabled_by_default: false,
+      is_available: false,
+      is_editable: false,
+      support_level: null,
+      type: "esm-apps",
+    },
     "ESM Infra": {
       enabled_by_default: false,
       is_available: true,
@@ -95,6 +102,7 @@ it("ignores some labels", () => {
     }),
   ];
   expect(filterAndFormatEntitlements(entitlements).included).toStrictEqual([
+    EntitlementLabel.EsmApps,
     EntitlementLabel.EsmInfra,
   ]);
   expect(filterAndFormatEntitlements(entitlements).excluded).toHaveLength(0);
