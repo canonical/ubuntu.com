@@ -87,6 +87,16 @@ export const formsWithEmailTestId = [
     submitBtn: /Let's discuss/,
     noOfPages: 2,
   },
+  {
+    url: "/openstack/managed",
+    inputs: [
+      [/First name/, "test"],
+      [/Last name/, "test"],
+      [/Mobile\/cell phone number:/, "07777777777"],
+    ],
+    submitBtn: /Let's discuss/,
+    noOfPages: 3,
+  },
 ];
 
 export const interactiveForms = [
@@ -336,17 +346,6 @@ export const interactiveForms = [
   },
   {
     url: "/openstack",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 3,
-  },
-  {
-    url: "/openstack/managed",
     inputs: [
       [/First name/, "test"],
       [/Last name/, "test"],
