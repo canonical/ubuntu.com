@@ -1,6 +1,8 @@
 function toggleTutorialNavigation() {
   const toggleButton = document.querySelector(".l-tutorial__nav-toggle");
-  const menu = document.getElementById(toggleButton.getAttribute("aria-controls"));
+  const menu = document.getElementById(
+    toggleButton.getAttribute("aria-controls")
+  );
   const expanded = toggleButton.getAttribute("aria-expanded") === "true";
 
   if (menu) {

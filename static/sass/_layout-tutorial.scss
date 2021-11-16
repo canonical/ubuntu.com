@@ -23,12 +23,12 @@
 
   .l-tutorial__nav-toggle {
     background-size: $sp-medium;
-    float: right;
-    padding: $sp-large;
-    margin: 0;
     border: 0;
+    float: right;
+    margin: 0;
+    padding: $sp-large;
 
-    &[aria-expanded=true] {
+    &[aria-expanded="true"] {
       background-color: $color-x-light;
     }
   }
