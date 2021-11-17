@@ -1,5 +1,32 @@
 @mixin ubuntu-p-table-of-contents {
   .p-table-of-contents {
+    .p-accordion {
+      &__group {
+        align-items: center;
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        &::after {
+          height: 0;
+        }
+      }
+
+      &__tab {
+        background-position: 0;
+        height: 1rem;
+        margin-right: 4px;
+        padding: 0;
+        width: 1rem;
+      }
+
+      &__panel {
+        flex-basis: 100%;
+        margin-left: 1rem;
+        padding-left: 1rem;
+      }
+    }
+
     @media only screen and (max-width: $breakpoint-navigation-threshold) {
       padding-left: 0;
     }
@@ -30,35 +57,6 @@
         &:last-child {
           padding-bottom: 1.5rem;
         }
-      }
-    }
-  }
-
-  .p-table-of-contents {
-    .p-accordion {
-      &__group {
-        display: flex;
-        align-items: center;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        flex-wrap: wrap;
-        &::after {
-          height: 0;
-        }
-      }
-
-      &__tab {
-        margin-right: 4px;
-        height: 1rem;
-        padding: 0;
-        width: 1rem;
-        background-position: 0;
-      }
-
-      &__panel {
-        padding-left: 1rem;
-        margin-left: 1rem;
-        flex-basis: 100%;
       }
     }
   }
