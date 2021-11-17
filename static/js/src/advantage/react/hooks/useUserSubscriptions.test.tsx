@@ -95,6 +95,9 @@ describe("useUserSubscriptions", () => {
       is_renewal_actionable: false,
       is_trialled: false,
       is_upsizeable: true,
+      is_subscription_active: false,
+      is_subscription_auto_renewing: false,
+      should_present_auto_renewal: false,
     });
   });
 
@@ -139,38 +142,18 @@ describe("useUserSubscriptions", () => {
 
   it("can return auto renewable UA subscriptions", async () => {
     const subscriptions = [
-      // Should not be included because it is in the wrong marketplace:
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.Free,
-      }),
-      // Should be included:
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
         period: UserSubscriptionPeriod.Monthly,
         statuses: userSubscriptionStatusesFactory.build({
-          is_cancelled: false,
-          is_expired: false,
+          should_present_auto_renewal: true,
         }),
       }),
-      // Should not be included because it is not monthly:
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        period: UserSubscriptionPeriod.Yearly,
-      }),
-      // Should not be included because it has been cancelled:
       userSubscriptionFactory.build({
         marketplace: UserSubscriptionMarketplace.CanonicalUA,
         period: UserSubscriptionPeriod.Monthly,
         statuses: userSubscriptionStatusesFactory.build({
-          is_cancelled: true,
-        }),
-      }),
-      // Should not be included because it has expired:
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        period: UserSubscriptionPeriod.Monthly,
-        statuses: userSubscriptionStatusesFactory.build({
-          is_expired: true,
+          should_present_auto_renewal: false,
         }),
       }),
     ];
@@ -181,6 +164,6 @@ describe("useUserSubscriptions", () => {
       { wrapper }
     );
     await waitForNextUpdate();
-    expect(result.current.data).toStrictEqual([subscriptions[1]]);
+    expect(result.current.data).toStrictEqual([subscriptions[0]]);
   });
 });

@@ -4,8 +4,8 @@ describe("toggleTutorialNavigation", () => {
   it("toggles menu classes`", () => {
     // Set up DOM elements
     document.body.innerHTML = `
-      <div class="l-tutorial__nav-toggle p-icon--menu">Toggle</div>
-      <div class="l-tutorial__nav u-hide--small">Nav</div>
+      <div class="l-tutorial__nav-toggle p-icon--menu" aria-controls="menu-tutorial">Toggle</div>
+      <div id="menu-tutorial" class="l-tutorial__nav u-hide--small">Nav</div>
     `;
 
     toggleTutorialNavigation();

@@ -23,9 +23,14 @@
 
   .l-tutorial__nav-toggle {
     background-size: $sp-medium;
-    cursor: pointer;
+    border: 0;
     float: right;
+    margin: 0;
     padding: $sp-large;
+
+    &[aria-expanded="true"] {
+      background-color: $color-x-light;
+    }
   }
 
   .l-tutorial__nav {

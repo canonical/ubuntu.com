@@ -173,6 +173,8 @@ openstack:
       path: /openstack/install
     - title: Docs
       path: /openstack/docs
+    - title: Tutorials
+      path: /openstack/tutorials
       persist: True
     - title: Thank you
       path: /openstack/newsletter-thank-you
@@ -292,6 +294,8 @@ containers:
   children:
     - title: Overview
       path: /containers
+    - title: What are containers
+      path: /containers/what-are-containers
     - title: Contact us
       path: /containers/contact-us
       hidden: True
@@ -1208,8 +1212,10 @@ iot:
       path: /internet-of-things/appstore
     - title: Embedded Linux
       path: /embedded
+      persist: True
     - title: Automotive
       path: /automotive
+      persist: True
     - title: EdgeX
       path: /internet-of-things/edgex
     - title: Networking
@@ -1583,6 +1589,8 @@ security:
           path: /security/disa-stig
         - title: CIS
           path: /security/cis
+        - title: Docs
+          path: /security/certifications/docs
 
     - title: CVEs
       path: /security/cve

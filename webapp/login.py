@@ -13,7 +13,9 @@ from webapp.macaroons import (
 
 
 open_id = flask_openid.OpenID(
-    stateless=True, safe_roots=[], extension_responses=[MacaroonResponse]
+    store_factory=lambda: None,
+    safe_roots=[],
+    extension_responses=[MacaroonResponse],
 )
 session = talisker.requests.get_session()
 
@@ -43,6 +45,7 @@ def empty_session(user_session):
     user_session.pop("authentication_token", None)
     user_session.pop("openid", None)
     user_session.pop("salesforce-campaign-id", None)
+    user_session.pop("ad_source", None)
     user_session.pop("google-click-id", None)
     user_session.pop("google-gbraid-id", None)
     user_session.pop("google-wbraid-id", None)

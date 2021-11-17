@@ -50,15 +50,35 @@ export const selectStatusesSummary = (
   is_renewable: hasStatus(subscriptions, "is_renewable"),
   is_trialled: hasStatus(subscriptions, "is_trialled"),
   is_upsizeable: hasStatus(subscriptions, "is_upsizeable"),
+  is_subscription_active: hasStatus(subscriptions, "is_subscription_active"),
+  is_subscription_auto_renewing: hasStatus(
+    subscriptions,
+    "is_subscription_auto_renewing"
+  ),
+  should_present_auto_renewal: hasStatus(
+    subscriptions,
+    "should_present_auto_renewal"
+  ),
 });
 
-/**
- * Find the UA subscriptions.
- */
 export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
   subscriptions.filter(
     ({ marketplace }) => marketplace === UserSubscriptionMarketplace.CanonicalUA
   );
+
+export const selectBlenderSubscriptions = (subscriptions: UserSubscription[]) =>
+  subscriptions.filter(
+    ({ marketplace }) => marketplace === UserSubscriptionMarketplace.Blender
+  );
+
+/**
+ * Find the active UA subscriptions that should have their renewal options
+ * presented.
+ */
+export const selectPresentableRenewalSubscriptions = (
+  subscriptions: UserSubscription[]
+) =>
+  subscriptions.filter(({ statuses }) => statuses.should_present_auto_renewal);
 
 /**
  * Find the subscriptions with for period.
@@ -68,17 +88,11 @@ export const selectSubscriptionsForPeriod = (
 ) => (subscriptions: UserSubscription[]) =>
   subscriptions.filter((subscription) => subscription.period === period);
 
-/**
- * Find the auto renewable subscriptions.
- */
 export const selectAutoRenewableUASubscriptions = (
   subscriptions: UserSubscription[]
 ) =>
   selectUASubscriptions(subscriptions).filter(
-    ({ period, statuses }) =>
-      period === UserSubscriptionPeriod.Monthly &&
-      !statuses.is_cancelled &&
-      !statuses.is_expired
+    ({ statuses }) => statuses.should_present_auto_renewal
   );
 
 export const useUserSubscriptions = <D = UserSubscription[]>(

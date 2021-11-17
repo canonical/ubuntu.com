@@ -16,11 +16,11 @@ export type UserSubscriptionEntitlement = {
   is_available: boolean;
   is_editable: boolean;
   support_level: SupportLevel | null;
-  type: EntitlementType | string;
+  type: EntitlementType;
 };
 
 export type UserSubscriptionEntitlementUpdate = {
-  type: EntitlementType | string;
+  type: EntitlementType;
   is_enabled: boolean;
 };
 
@@ -36,6 +36,9 @@ export type UserSubscriptionStatuses = {
   is_renewal_actionable: boolean;
   is_trialled: boolean;
   is_upsizeable: boolean;
+  is_subscription_active: boolean;
+  is_subscription_auto_renewing: boolean;
+  should_present_auto_renewal: boolean;
 };
 
 export type UserSubscription = {
@@ -57,15 +60,6 @@ export type UserSubscription = {
   statuses: UserSubscriptionStatuses;
   subscription_id: string | null;
   type: UserSubscriptionType;
-};
-
-export type UserInfo = {
-  currency?: string;
-  has_monthly_subscription: boolean;
-  is_auto_renewing: boolean;
-  last_payment_date?: Date;
-  next_payment_date?: Date;
-  total?: number;
 };
 
 export type ContractToken = {

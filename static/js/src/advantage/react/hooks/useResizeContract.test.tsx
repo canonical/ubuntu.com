@@ -55,7 +55,8 @@ describe("useResizeContract", () => {
       ],
       subscription.listing_id,
       2,
-      UserSubscriptionPeriod.Yearly
+      UserSubscriptionPeriod.Yearly,
+      UserSubscriptionMarketplace.CanonicalUA
     );
   });
 

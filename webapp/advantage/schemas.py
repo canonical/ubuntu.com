@@ -35,6 +35,11 @@ class TaxIdSchema(Schema):
     value = String()
 
 
+class SubscriptionRenewalSchema(Schema):
+    subscription_id = String()
+    should_auto_renew = Boolean()
+
+
 post_advantage_subscriptions = {
     "account_id": String(required=True),
     "period": String(enum=["monthly", "yearly"], required=True),
@@ -49,6 +54,10 @@ cancel_advantage_subscriptions = {
     "account_id": String(required=True),
     "previous_purchase_id": String(required=True),
     "product_listing_id": String(required=True),
+    "marketplace": String(
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        required=True,
+    ),
 }
 
 post_anonymised_customer_info = {
@@ -80,7 +89,9 @@ ensure_purchase_account = {
 
 invoice_view = {
     "marketplace": String(
-        validate=validate.OneOf(["", "canonical-ua", "canonical-cube"])
+        validate=validate.OneOf(
+            ["", "canonical-ua", "canonical-cube", "blender"]
+        )
     ),
     "email": String(),
 }
@@ -109,4 +120,8 @@ delete_account_user_role = {
 
 put_contract_entitlements = {
     "entitlements": List(Nested(EntitlementSchema), required=True),
+}
+
+post_auto_renewal_settings = {
+    "subscriptions": List(Nested(SubscriptionRenewalSchema), required=True)
 }

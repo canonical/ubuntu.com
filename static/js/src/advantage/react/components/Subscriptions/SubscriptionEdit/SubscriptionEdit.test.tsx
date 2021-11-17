@@ -6,14 +6,9 @@ import userEvent from "@testing-library/user-event";
 
 import SubscriptionEdit, { generateSchema } from "./SubscriptionEdit";
 import { QueryClient, QueryClientProvider } from "react-query";
-import {
-  LastPurchaseIds,
-  UserInfo,
-  UserSubscription,
-} from "advantage/api/types";
+import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
 import {
   lastPurchaseIdsFactory,
-  userInfoFactory,
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
@@ -27,7 +22,6 @@ describe("SubscriptionEdit", () => {
   let getPurchaseSpy: jest.SpyInstance;
   let usePendingPurchaseSpy: jest.SpyInstance;
   let lastPurchaseIds: LastPurchaseIds;
-  let userInfo: UserInfo;
 
   beforeEach(async () => {
     resizeContractSpy = jest.spyOn(contracts, "resizeContract");
@@ -49,9 +43,7 @@ describe("SubscriptionEdit", () => {
       }),
     });
     lastPurchaseIds = lastPurchaseIdsFactory.build();
-    userInfo = userInfoFactory.build();
     queryClient.setQueryData("userSubscriptions", [subscription]);
-    queryClient.setQueryData("userInfo", userInfo);
     queryClient.setQueryData(
       ["lastPurchaseIds", subscription.account_id],
       lastPurchaseIds
@@ -215,13 +207,11 @@ describe("SubscriptionEdit", () => {
       </QueryClientProvider>
     );
     let userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
-    let userInfoState = queryClient.getQueryState("userInfo");
     let lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
     ]);
     expect(userSubscriptionsState?.isInvalidated).toBe(false);
-    expect(userInfoState?.isInvalidated).toBe(false);
     expect(lastPurchaseIdsState?.isInvalidated).toBe(false);
     await act(async () => {
       wrapper
@@ -231,13 +221,11 @@ describe("SubscriptionEdit", () => {
     });
     wrapper.update();
     userSubscriptionsState = queryClient.getQueryState("userSubscriptions");
-    userInfoState = queryClient.getQueryState("userInfo");
     lastPurchaseIdsState = queryClient.getQueryState([
       "lastPurchaseIds",
       subscription.account_id,
     ]);
     expect(userSubscriptionsState?.isInvalidated).toBe(true);
-    expect(userInfoState?.isInvalidated).toBe(true);
     expect(lastPurchaseIdsState?.isInvalidated).toBe(true);
   });
 
@@ -330,7 +318,9 @@ describe("SubscriptionEdit", () => {
           is_downsizeable: true,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 4 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 4,
+      });
       expect(isValid).toBe(true);
     });
 
@@ -341,7 +331,9 @@ describe("SubscriptionEdit", () => {
           is_downsizeable: true,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 0 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 0,
+      });
       expect(isValid).toBe(false);
     });
 
@@ -352,7 +344,9 @@ describe("SubscriptionEdit", () => {
           is_downsizeable: false,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 4 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 4,
+      });
       expect(isValid).toBe(false);
     });
 
@@ -363,7 +357,9 @@ describe("SubscriptionEdit", () => {
           is_upsizeable: true,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 6 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 6,
+      });
       expect(isValid).toBe(true);
     });
 
@@ -374,7 +370,9 @@ describe("SubscriptionEdit", () => {
           is_upsizeable: false,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 6 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 6,
+      });
       expect(isValid).toBe(false);
     });
   });

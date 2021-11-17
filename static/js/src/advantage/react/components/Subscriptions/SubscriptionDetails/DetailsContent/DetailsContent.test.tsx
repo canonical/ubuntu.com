@@ -8,7 +8,10 @@ import {
   freeSubscriptionFactory,
   userSubscriptionFactory,
 } from "advantage/tests/factories/api";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import {
+  UserSubscriptionPeriod,
+  UserSubscriptionMarketplace,
+} from "advantage/api/enum";
 import { CodeSnippet } from "@canonical/react-components";
 
 describe("DetailsContent", () => {
@@ -91,5 +94,19 @@ describe("DetailsContent", () => {
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='cost-col']").exists()).toBe(false);
+  });
+
+  it("displays correctly for blender subscription", () => {
+    const contract = userSubscriptionFactory.build({
+      marketplace: UserSubscriptionMarketplace.Blender,
+    });
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent selectedId={contract.id} />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='machine-type-col']").exists()).toBe(false);
+    expect(wrapper.find("CodeSnippet").exists()).toBe(false);
   });
 });

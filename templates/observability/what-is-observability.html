@@ -43,45 +43,100 @@
 </section>
 
 <section class="p-strip">
-    <div class="row">
+    <div class="row u-equal-height">
         <div class="col-8">
             <h2>Monitoring and telemetry types</h2>
             <p>In today's open source monitoring practices, there are several types of telemetry being collected:</p>
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-8">
+    <div class="row u-equal-height">
+        <div class="col-7">
             <h3 class="p-heading--4">Metrics</h3>
             <p>Metrics are sets of related measurements of attributes of systems. In the scope of monitoring, usually metrics are collected as timeseries data with a numerical value (that is, numbers associated with timestamps), like how many requests have been served with a certain status code over the last minute. Besides numerical timeseries, boolean timeseries are also nowadays commonplace, like "is the service X up or not", as well as others with string-like values to represent, for example, "the value of configuration X at time Y."</p>
         </div>
+        <div class="col-5 u-align--center u-hide--small u-vertically-center">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/df2f25e5-metrics.svg",
+                alt="Metrics",
+                width="240",
+                height="200",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
+        </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-8">
+    <div class="row u-equal-height">
+        <div class="col-5 u-align--center u-hide--small u-vertically-center">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/699736cf-logs.svg",
+                alt="Logs",
+                width="240",
+                height="200",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
+        </div>
+        <div class="col-7">
             <h3 class="p-heading--4">Logs</h3>
-            <p>Structured (usually as JSON objects) or unstructured (as plain text following some pattern), are time-stamped entries that document the occurrence of an event like "the following error was caught" or "that payment process has been completed."</p>
+            <p>Logs, structured (usually as JSON objects) or unstructured (as plain text following some pattern), are time-stamped entries that document the occurrence of an event like "the following error was caught" or "that payment process has been completed."</p>
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-8">
+    <div class="row u-equal-height">
+        <div class="col-7">
             <h3 class="p-heading--4">Distributed traces</h3>
-            <p>Document what work is done by various systems to process specific requests, like serving a Web page or executing a batch job. Nowadays, most distributed traces are modeled as a tree of spans. Spans are similar to structured logs, each describing some processing like "Serving request XYZ" or "Querying database 123", have a duration that reports how long it took to perform the processing, and have hierarchical relations to other spans in the form of child-parent relations. Usually, multiple systems contribute spans to one distributed trace, ranging from the API servers to databases and messaging queues and (micro)services in between.</p>
+            <p>Distributed traces document what work is done by various systems to process specific requests, like serving a Web page or executing a batch job. Nowadays, most distributed traces are modeled as a tree of spans. Spans are similar to structured logs, each describing some processing like "Serving request XYZ" or "Querying database 123", have a duration that reports how long it took to perform the processing, and have hierarchical relations to other spans in the form of child-parent relations. Usually, multiple systems contribute spans to one distributed trace, ranging from the API servers to databases and messaging queues and (micro)services in between.</p>
+        </div>
+        <div class="col-5 u-align--center u-hide--small u-vertically-center">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/53a1b740-distributed-tracing.svg",
+                alt="Distributed tracing",
+                width="240",
+                height="200",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-8">
+    <div class="row u-equal-height">
+        <div class="col-5 u-align--center u-hide--small u-vertically-center">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/f8ac79f6-real-user-monitoring.svg",
+                alt="Real user monitoring",
+                width="180",
+                height="150",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
+        </div>
+        <div class="col-7">
             <h3 class="p-heading--4">Real user monitoring</h3>
-            <p>Is about collecting data about user sessions occurring via interfaces like Web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
+            <p>Real user monitoring is about collecting data about user sessions occurring via interfaces like Web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
         </div>
     </div>
     <br>
-    <div class="row">
-        <div class="col-8">
-            <h3 class="p-heading--4">Synthetic monitoring checks</h3>
-            <p>Are about continuously, regularly testing systems, mostly production ones, to ensure that particular APIs or entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs.</p>
+    <div class="row u-equal-height">
+        <div class="col-7">
+            <h3 class="p-heading--4">Synthetic monitoring</h3>
+            <p>Synthetic monitoring checks are about continuously, regularly testing systems, mostly production ones, to ensure that particular APIs or entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs.</p>
+        </div>
+        <div class="col-5 u-align--center u-hide--small u-vertically-center">
+            {{ image (
+                url="https://assets.ubuntu.com/v1/5d436760-synthetic-monitoring.svg",
+                alt="Synthetic monitoring",
+                width="180",
+                height="150",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
         </div>
     </div>
 </section>
@@ -93,12 +148,12 @@
             <h3 class="p-heading--4">Making the most out of your metrics, logs, distributed traces and more</h3>
             <p>The various telemetry types provide you with more insight when they are correlated with one another.</p>
             <p>
-                {{ 
-                    image (
-                    url="https://assets.ubuntu.com/v1/1101e891-telemetry_types.svg",
+
+                {{ image (
+                    url="https://assets.ubuntu.com/v1/51d46f04-telemetry-map.svg",
                     alt="telemetry types",
-                    width="580",
-                    height="473",
+                    width="830",
+                    height="750",
                     hi_def=True,
                     loading="lazy",
                     attrs={"style": "padding: 2rem 0;", "class":"u-hide--small"},
@@ -117,7 +172,7 @@
             <h2>Telemetry context</h2>
             <p>An often underrated aspect of telemetry is its context; that is, which system is the telemetry coming from, where is that system running and, by extension, what is the relation (or lack thereof) between this piece of telemetry and others. You could think of this as correlating telemetry with the topology of the monitored systems.</p>
             <p>Telemetry context is increasingly encoded via tagging: adding consistent, curated tags to timeseries metrics, logs, distributed traces and so on, so that one can filter all the available telemetry for that generated by a specific set of machines, processes or other system components in a specific time interval.</p>
-            <p>Another important function of telemetry context is to avoid confusion or outright mistakes when processing similar telemetry from unrelated deployments. For example, most alerting rules one may want to define for production databases should focus on specific clusters in specific regions, rather than "alert me when the p95 of CPU usage across all my MySQL instances is above a threshold".</p>
+            <p>Another important function of telemetry context is to avoid confusion or outright mistakes when processing similar telemetry from unrelated deployments. For example, most alerting rules one may want to define for production databases should focus on specific clusters in specific regions, rather than "alert me when the 95th percentile of CPU usage across all my MySQL instances is above a threshold".</p>
         </div>
     </div>
 </section>
@@ -155,7 +210,7 @@
         </div>
         <div class="col-7">
             <h2>Ready to make your applications observable?</h2>
-            <p>Canonical can support your open source observability stack with security fixes and LTS support, as well as run your best-of-breed, open source monitoring tools reliability and at scale.</p>
+            <p>Canonical can support your open source observability stack with security fixes and LTS support, as well as run your best-of-breed, open source monitoring tools reliably and at scale.</p>
             <a class="p-button--positive" href="/observability">More about open source observability</a>
         </div>
     </div>
