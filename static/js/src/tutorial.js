@@ -1,6 +1,15 @@
 function toggleTutorialNavigation() {
   const toggleButton = document.querySelector(".l-tutorial__nav-toggle");
-  const menu = document.querySelector(".l-tutorial__nav");
+  const menu = document.getElementById(
+    toggleButton.getAttribute("aria-controls")
+  );
+  const expanded = toggleButton.getAttribute("aria-expanded") === "true";
+
+  if (menu) {
+    toggleButton.setAttribute("aria-expanded", !expanded);
+    menu.setAttribute("aria-hidden", expanded);
+  }
+
   toggleButton.classList.toggle("p-icon--menu");
   toggleButton.classList.toggle("p-icon--close");
   menu.classList.toggle("u-hide--small");
