@@ -5,22 +5,21 @@ import {
   formsWithEmailTestId,
 } from "../utils";
 
-context("Marketo forms", () => {
-  beforeEach(() => {
-    cy.intercept({
-      method: "POST",
-      url: "/marketo/submit",
-    }).as("captureLead");
-  });
+beforeEach(() => {
+  cy.intercept({
+    method: "POST",
+    url: "/marketo/submit",
+  }).as("captureLead");
+});
 
-  afterEach(() => {
-    cy.wait("@captureLead").then(({ request, response }) => {
-      expect(request.method).to.equal("POST");
-      expect(response.statusCode).to.equal(302);
-    });
+afterEach(() => {
+  cy.wait("@captureLead").then(({ request, response }) => {
+    expect(request.method).to.equal("POST");
+    expect(response.statusCode).to.equal(302);
   });
+});
 
-  // test static forms on /contact-us page
+context("Static marketo forms", () => {
   it("should check each contact form on /contact-us pages with standard form", () => {
     cy.visit("/");
     cy.acceptCookiePolicy();
@@ -41,10 +40,8 @@ context("Marketo forms", () => {
       cy.findByLabelText(/I agree to receive information/).click({
         force: true,
       });
-      cy.findByText(/Submit/).click({
-        force: true,
-      });
-      cy.findAllByText(/Thank you/).should("be.visible");
+      cy.findByText(/Submit/).click({ force: true });
+      cy.findByRole("heading", { name: /Thank you/ });
     });
   });
 
@@ -59,11 +56,9 @@ context("Marketo forms", () => {
     cy.findByLabelText(/Company name:/).type("Test");
     cy.findByLabelText(/Email address:/).type("test@test.com");
     cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
-    cy.findByLabelText(/I agree to receive information/).click({
-      force: true,
-    });
+    cy.findByLabelText(/I agree to receive information/).click({ force: true });
     cy.findByText(/Let’s discuss/).click();
-    cy.findAllByText(/Thank you/).should("be.visible");
+    cy.findByRole("heading", { name: /Thank you/ });
   });
 
   it("should check contact form on /cube/contact-us", () => {
@@ -90,10 +85,11 @@ context("Marketo forms", () => {
       force: true,
     });
     cy.findByText(/Submit/).click();
-    cy.findAllByText(/Thank you/).should("be.visible");
+    cy.findByRole("heading", { name: /Thank you/ });
   });
+});
 
-  // test interactive forms 
+context("Interactive marketo forms", () => {
   it(
     "should check each interactive contact modal",
     { scrollBehavior: "center" },
@@ -103,8 +99,7 @@ context("Marketo forms", () => {
 
       interactiveForms.forEach((form) => {
         cy.visit(form.url);
-        cy.findByTestId("interactive-form").click();
-
+        cy.findByTestId("interactive-form-link").click();
         cy.findByRole("dialog").within(() => {
           for (let i = 0; i < form.noOfPages - 1; i++) {
             cy.findByRole("link", { name: /Next/ }).click();
@@ -114,10 +109,7 @@ context("Marketo forms", () => {
           });
           cy.findByText(form.submitBtn).click();
         });
-
-        cy.findByText(/Your submission was sent successfully!/).should(
-          "be.visible"
-        );
+        cy.url().should("include", "#success");
       });
     }
   );
@@ -129,7 +121,6 @@ context("Marketo forms", () => {
       cy.visit("/cube");
       cy.acceptCookiePolicy();
       cy.findByText(/Apply for access/).click();
-
       cy.findByLabelText(/First name/).type("Test");
       cy.findByLabelText(/Last name:/).type("Test");
       cy.findByLabelText(/Work email:/).type("test@test.com");
@@ -151,9 +142,7 @@ context("Marketo forms", () => {
         force: true,
       });
       cy.findByText(/Join the beta/).click();
-      cy.findByText(/Your submission was sent successfully!/).should(
-        "be.visible"
-      );
+      cy.url().should("include", "#success");
     }
   );
 
@@ -171,7 +160,7 @@ context("Marketo forms", () => {
       force: true,
     });
     cy.findByText(/Let's discuss/).click();
-    cy.findAllByText(/Thank you/).should("be.visible");
+    cy.findByRole("heading", { name: /Thank you/ });
   });
 
   // wrote separate test for some pages as there are same email inputs in the modal and in the page.
@@ -184,7 +173,7 @@ context("Marketo forms", () => {
 
       formsWithEmailTestId.forEach((form) => {
         cy.visit(form.url);
-        cy.findByTestId("interactive-form").click();
+        cy.findByTestId("interactive-form-link").click();
 
         cy.findByRole("dialog").within(() => {
           for (let i = 0; i < form.noOfPages - 1; i++) {
@@ -193,15 +182,11 @@ context("Marketo forms", () => {
           form.inputs.forEach((input) => {
             cy.findByLabelText(input[0]).type(input[1]);
           });
-
           cy.findByTestId("form-email").type("test@gmail.com");
-
           cy.findByText(form.submitBtn).click();
         });
 
-        cy.findByText(/Your submission was sent successfully!/).should(
-          "be.visible"
-        );
+        cy.url().should("include", "#success");
       });
     }
   );
@@ -213,42 +198,34 @@ context("Marketo forms", () => {
     () => {
       cy.visit("/robotics");
       cy.acceptCookiePolicy();
-      cy.findByTestId("interactive-form").click();
+      cy.findByTestId("interactive-form-link").click();
       cy.findByRole("link", { name: /Next/ }).click();
-
       cy.findByLabelText(/First name/).type("Test");
       cy.findByLabelText(/Last name:/).type("Test");
       cy.findByLabelText(/Company:/).type("Test");
       cy.findByTestId("form-jobTitle").type("Test");
       cy.findByTestId("form-email").type("test@test.com");
       cy.findByLabelText(/Phone number:/).type("07777777777");
-
       cy.findByText(/Let's discuss/).click();
-      cy.findByText(/Your submission was sent successfully!/).should(
-        "be.visible"
-      );
+      cy.url().should("include", "#success");
+    }
+  );
+  // wrote separate test for /openstack/pricing-calculator page as there are same submit text in the form and in the page
+  it(
+    "should check interactive contact modal on /openstack/pricing-calculator",
+    { scrollBehavior: "center" },
+    () => {
+      cy.visit("/openstack/pricing-calculator");
+      cy.acceptCookiePolicy();
+      cy.findByTestId("interactive-form-link").click();
+      cy.findByLabelText(/First name/).type("Test");
+      cy.findByLabelText(/Last name:/).type("Test");
+      cy.findByLabelText(/Company name:/).type("Test");
+      cy.findByLabelText(/Job title:/).type("Test");
+      cy.findByLabelText(/Work email:/).type("test@gmail.com");
+      cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+      cy.findByTestId("form-submit").click();
+      cy.url().should("include", "#success");
     }
   );
 });
-
-// wrote separate test for /openstack/pricing-calculator page as there are same submit text in the form and in the page
-it(
-  "should check interactive contact modal on /openstack/pricing-calculator",
-  { scrollBehavior: "center" },
-  () => {
-    cy.visit("/openstack/pricing-calculator");
-    cy.acceptCookiePolicy();
-    cy.findByTestId("interactive-form").click();
-
-    cy.findByLabelText(/First name/).type("Test");
-    cy.findByLabelText(/Last name:/).type("Test");
-    cy.findByLabelText(/Company name:/).type("Test");
-    cy.findByLabelText(/Job title:/).type("Test");
-    cy.findByLabelText(/Work email:/).type("test@gmail.com");
-    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
-    cy.findByTestId("form-submit").click();
-    cy.findByText(/Your submission was sent successfully!/).should(
-      "be.visible"
-    );
-  }
-);
