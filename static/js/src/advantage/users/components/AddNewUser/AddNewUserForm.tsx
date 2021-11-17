@@ -93,15 +93,14 @@ export const AddNewUserForm = ({
             />
             <section id="add-new-user-roles-roles-description">
               <p className="p-form-help-text">
-                <strong>Billing</strong> users cannot manage users, see tokens
-                or support portal.
-              </p>
-              <p className="p-form-help-text">
-                <strong>Technical</strong> users can see tokens, but not manage
-                users or billing.
-              </p>
-              <p className="p-form-help-text">
                 <strong>Admin</strong> users can perform all actions.
+              </p>
+              <p className="p-form-help-text">
+                <strong>Billing</strong> users only receive access to payments
+                and invoices.
+              </p>
+              <p className="p-form-help-text">
+                <strong>Technical</strong> users only receive access to tokens.
               </p>
             </section>
             <div className="p-modal__footer">
