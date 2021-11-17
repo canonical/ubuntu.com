@@ -2,6 +2,7 @@
 import math
 import os
 import re
+import html
 
 # Packages
 import dateutil
@@ -645,6 +646,9 @@ def marketo_submit():
     form_fields.pop("thankyoumessage", None)
     form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
+
+    encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
+    form_fields["Comments_from_lead__c"] = encoded_comment
 
     visitor_data = {
         "userAgentString": flask.request.headers.get("User-Agent"),
