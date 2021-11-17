@@ -1,0 +1,104 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" >
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem" > Close </button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">You innovate, we run the monitoring tools!</h2>
+    </header>
+    <div class="js-pagination js-pagination--1">
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Which monitoring tools do you want to use?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-6 u-sv3">
+            <input type="checkbox"/>
+            <label for="promethus">Prometheus</label>
+            <input type="checkbox"/>
+            <label for="cortex">Cortex</label> 
+            <input type="checkbox"/>
+            <label for="grafana">Grafana</label>
+            <input type="checkbox"/>
+            <label for="grafana-loki">Grafana Loki</label>
+            <input type="checkbox"/>
+            <label for="not-sure">Not sure</label>
+          </div>
+          <div class="col-6 u-sv3">
+            <input type="checkbox"/>
+            <label for="elasticsearch">ElasticSearch</label>
+            <input type="checkbox"/>
+            <label for="graylog">Graylog</label>
+            <input type="checkbox"/>
+            <label for="influxDB">InfluxDB</label>
+            <input type="checkbox"/>
+            <label for="other">Other</label>
+          </div>
+        </div>
+      </div>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Where is your cloud?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-6 u-sv3">
+            <input type="checkbox"/>
+            <label for="private-cloud-data-center">Private Cloud/Data Centre</label>
+            <input type="checkbox"/>
+            <label for="public-cloud">Public Cloud</label>
+            <input type="checkbox"/>
+            <label for="hybrid-cloud">Hybrid Cloud</label>
+          </div>
+        </div>
+      </div>
+      <div class="row u-no-padding js-formfield">
+        <h3 class="p-heading--five">Tell us more</h3>
+        <textarea
+          id="apps-using-other-info"
+          aria-label="Tell us more"
+          rows="3"
+          placeholder="Any other open source observability tool you'd like to use? Which technologies do you use to build the applications you want to monitor? Do you run your apps in containers, on VMs or on bare metal?"
+        ></textarea>
+      </div>
+      <div class="row u-no-padding">
+        <div class="pagination">
+          <a class="p-button--positive pagination__link--next" href="">Next</a>
+        </div>
+      </div>
+    </div>
+    <div class="js-pagination js-pagination--2 u-hide">
+      <div class="js-formfield">
+        <h3 class="p-heading--five">How should we get in touch?</h3>
+        <div class="row u-no-padding">
+          <div class="col-6">
+            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form" >
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label for="name">Name:</label>
+                  <input required id="name" name="name" maxlength="255" type="text" required="required"/>
+                </li>
+                <li class="p-list__item">
+                  <label for="email">Work email:</label>
+                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                </li>
+                <li class="p-list__item">
+                  In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact" >Canonical's Privacy Notice</a > and <a href="/legal/data-privacy">Privacy Policy</a>.
+                </li>
+                {# These are honey pot fields to catch bots #}
+                <li class="u-off-screen">
+                  <label class="website" for="website">Website:</label>
+                  <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+                </li>
+                <li class="u-off-screen">
+                  <label class="name" for="name">Name:</label>
+                  <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+                </li>
+                {# End of honey pots #}
+              </ul>
+              <div class="pagination">
+                <a class="pagination__link--previous p-button--neutral" href="" >Previous</a >
+                <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit" > Send </button>
+              </div>
+              <!-- marketo info -->
+              <!-- end marketo -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
