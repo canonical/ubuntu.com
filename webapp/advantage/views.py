@@ -861,6 +861,8 @@ def blender_shop_view():
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
             pass
+        except AccessForbiddenError:
+            return flask.render_template("account/forbidden.html")
 
     all_subscriptions = []
     if account:
