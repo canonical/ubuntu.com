@@ -8,6 +8,7 @@ from webapp.advantage.ua_contracts.api import (
     UAContractsUserHasNoAccount,
     CannotCancelLastContractError,
     UnauthorizedError,
+    AccessForbiddenError,
 )
 from webapp.advantage.models import Listing
 from webapp.advantage.ua_contracts.primitives import (
@@ -987,6 +988,8 @@ class TestGetPurchase(unittest.TestCase):
 class TestGetPurchaseAccount(unittest.TestCase):
     def test_errors(self):
         cases = [
+            (403, False, AccessForbiddenError),
+            (403, False, AccessForbiddenError),
             (401, False, UAContractsAPIError),
             (401, True, UAContractsAPIErrorView),
             (404, False, UAContractsUserHasNoAccount),

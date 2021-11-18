@@ -113,6 +113,7 @@ def is_trialling_user_subscription(items: List[ContractItem]) -> bool:
 
 
 def get_user_subscription_statuses(
+    account: Account,
     type: str,
     end_date: str = None,
     renewal: Renewal = None,
@@ -148,7 +149,7 @@ def get_user_subscription_statuses(
         "is_expiring": False,
         # is_in_grace_period describes whether this user subscription is in
         # its grace period, meaning it's past its end, but it still gives
-        # access to the pproduct.
+        # access to the product.
         "is_in_grace_period": False,
         # is_expired describes whether this user subscription is completely
         # expired, past its end date and its grace period.
@@ -182,7 +183,18 @@ def get_user_subscription_statuses(
         # belongs to a billing subscription that should have its auto-renewal
         # option displayed to the user at the current time.
         "should_present_auto_renewal": False,
+        # has_access_to_support describes whether this user subscription
+        # displays the Support portal button. At the moment `billing` users
+        # do not have access
+        "has_access_to_support": False,
+        # has_access_to_token describes whether this user subscription displays
+        # the token or not. At the moment `billing` users do not have access
+        "has_access_to_token": False,
     }
+
+    if account.role != "billing":
+        statuses["has_access_to_support"] = True
+        statuses["has_access_to_token"] = True
 
     if type == "free":
         return statuses

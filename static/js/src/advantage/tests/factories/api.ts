@@ -48,6 +48,8 @@ export const userSubscriptionStatusesFactory = Factory.define<UserSubscriptionSt
     is_subscription_active: false,
     is_subscription_auto_renewing: false,
     should_present_auto_renewal: false,
+    has_access_to_support: true,
+    has_access_to_token: true,
   })
 );
 

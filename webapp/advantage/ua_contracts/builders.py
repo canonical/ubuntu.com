@@ -202,6 +202,7 @@ def build_final_user_subscriptions(
             contract.name if type != "free" else "Free Personal Token"
         )
         statuses = get_user_subscription_statuses(
+            account=account,
             type=type,
             end_date=end_date,
             renewal=renewal,

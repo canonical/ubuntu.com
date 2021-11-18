@@ -7,6 +7,7 @@ import {
   contractTokenFactory,
   freeSubscriptionFactory,
   userSubscriptionFactory,
+  userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
 import {
   UserSubscriptionPeriod,
@@ -62,6 +63,24 @@ describe("DetailsContent", () => {
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
       true
+    );
+  });
+
+  it("displays no contract token for billing users", () => {
+    const contract = userSubscriptionFactory.build({
+      statuses: userSubscriptionStatusesFactory.build({
+        has_access_to_token: false,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <DetailsContent selectedId={contract.id} />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
+      false
     );
   });
 

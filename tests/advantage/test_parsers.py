@@ -40,6 +40,7 @@ class TestParsers(unittest.TestCase):
         expectation = Account(
             id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
             name="Account Name",
+            role="admin",
         )
 
         self.assertIsInstance(parsed_account, Account)
@@ -53,10 +54,12 @@ class TestParsers(unittest.TestCase):
             Account(
                 id="a123AbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                 name="Free",
+                role="admin",
             ),
             Account(
                 id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                 name="Account Name",
+                role="admin",
             ),
         ]
 
