@@ -62,9 +62,7 @@ SERVICES = {
 
 @advantage_decorator(permission="user", response="html")
 def advantage_view(**kwargs):
-    return flask.render_template(
-        "advantage/index.html",
-    )
+    return flask.render_template("advantage/index.html")
 
 
 @advantage_decorator(permission="user", response="json")
@@ -218,6 +216,8 @@ def advantage_shop_view():
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
             pass
+        except AccessForbiddenError:
+            return flask.render_template("account/forbidden.html")
 
     all_subscriptions = []
     if account:
