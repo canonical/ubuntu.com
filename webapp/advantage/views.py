@@ -264,7 +264,7 @@ def advantage_account_users_view():
     if account is None or account.role != "admin":
         return flask.render_template("account/forbidden.html")
 
-    return flask.render_template("advantage/maintenance.html")
+    return flask.render_template("advantage/users/index.html")
 
 
 @advantage_decorator(permission="user", response="html")
