@@ -264,7 +264,7 @@ def advantage_account_users_view():
     if account is None or account.role != "admin":
         return flask.render_template("account/forbidden.html")
 
-    return flask.render_template("advantage/maintenance.html")
+    return flask.render_template("advantage/users/index.html")
 
 
 @advantage_decorator(permission="user", response="html")
@@ -861,6 +861,8 @@ def blender_shop_view():
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
             pass
+        except AccessForbiddenError:
+            return flask.render_template("account/forbidden.html")
 
     all_subscriptions = []
     if account:
