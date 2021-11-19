@@ -27,10 +27,13 @@
             <label for="tools-graylog">Graylog</label>
             <input type="checkbox" id="tools-influxdb" />
             <label for="tools-influxdb">InfluxDB</label>
-            <input type="checkbox" id="tools-other" />
-            <label for="tools-other"> Other</label>
             <input type="checkbox" id="tools-not-sure" />
             <label for="tools-not-sure"> Not sure</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="priority-workloads-other">
+              <label for="priority-workloads-other">Other</label>
+              <input type="text" id="priority-workloads-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
+            </div>
           </div>
         </div>
       </div>
