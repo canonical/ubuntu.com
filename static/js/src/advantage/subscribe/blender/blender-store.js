@@ -65,10 +65,14 @@ function handleQuantityChange() {
   quantity.addEventListener(
     "input",
     debounce((e) => {
+      const newValue = parseInt(e.target.value);
       updateState({
         type: "ADD_OR_REMOVE_USERS",
-        value: parseInt(e.target.value),
+        value: newValue > 0 ? newValue : 1,
       });
+      if (newValue < 1 || e.target.value.includes("e")) {
+        e.target.value = 1;
+      }
     }, 50)
   );
 }
