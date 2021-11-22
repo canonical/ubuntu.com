@@ -16,6 +16,18 @@ const billingPeriod = document.querySelector("[data-prop=billing]");
 const totalCost = document.querySelector("[data-prop=total-cost]");
 const costSummaryPeriod = document.querySelector("[data-prop=period]");
 const buyNowButton = document.querySelector("#buy-now-button");
+const productsArray = Object.entries(window.productList);
+let hasMonthly = false;
+
+productsArray.forEach((product) => {
+  if (product[1].period === "monthly") {
+    hasMonthly = true;
+  }
+});
+
+if (hasMonthly) {
+  billingPeriod.classList.remove("u-hide");
+}
 
 function handlePackageChange() {
   const packageOptions = Array.prototype.slice.call(
