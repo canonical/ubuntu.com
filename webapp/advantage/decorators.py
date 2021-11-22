@@ -170,10 +170,10 @@ def cube_decorator(response="json"):
                     return flask.jsonify(message), 401
 
             badgr_issuer = (
-                BADGR_ISSUER if not test_backend else QA_BADGR_ISSUER
+                BADGR_ISSUER if not is_test_backend else QA_BADGR_ISSUER
             )
             certified_badge = (
-                CERTIFIED_BADGE if not test_backend else QA_CERTIFIED_BADGE,
+                CERTIFIED_BADGE if not is_test_backend else QA_CERTIFIED_BADGE,
             )
 
             # init API instance
@@ -186,24 +186,24 @@ def cube_decorator(response="json"):
 
             badgr_api = BadgrAPI(
                 "https://api.eu.badgr.io"
-                if not test_backend
+                if not is_test_backend
                 else "https://api.test.badgr.com",
                 os.getenv("BAGDR_USER"),
                 os.getenv("BADGR_PASSWORD")
-                if not test_backend
+                if not is_test_backend
                 else os.getenv("BADGR_QA_PASSWORD"),
                 badgr_session,
             )
 
             edx_api = EdxAPI(
                 "https://cube.ubuntu.com"
-                if not test_backend
+                if not is_test_backend
                 else "https://qa.cube.ubuntu.com",
                 os.getenv("CUBE_EDX_CLIENT_ID")
-                if not test_backend
+                if not is_test_backend
                 else os.getenv("CUBE_EDX_QA_CLIENT_ID"),
                 os.getenv("CUBE_EDX_CLIENT_SECRET")
-                if not test_backend
+                if not is_test_backend
                 else os.getenv("CUBE_EDX_CLIENT_QA_SECRET"),
                 edx_session,
             )
