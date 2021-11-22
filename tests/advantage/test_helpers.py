@@ -112,7 +112,9 @@ class TestHelpers(unittest.TestCase):
             ),
         ]
 
-        user_subscription_values = get_items_aggregated_values(items=items)
+        user_subscription_values = get_items_aggregated_values(
+            items=items, type="monthly"
+        )
 
         expected_start_date = "2020-01-01T00:00:00Z"
         expected_end_date = "2020-04-02T00:00:00Z"
@@ -140,7 +142,9 @@ class TestHelpers(unittest.TestCase):
             ),
         ]
 
-        user_subscription_values = get_items_aggregated_values(items=items)
+        user_subscription_values = get_items_aggregated_values(
+            items=items, type="free"
+        )
 
         expected_end_date = None
 
