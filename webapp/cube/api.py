@@ -101,14 +101,28 @@ class EdxAPI:
 
     def get_course_attempts(self, course_id: str, username: str):
         uri = (
-            "/api/edx_proctoring/v1/proctored_exam/attempt/course_id/"
+            "/api/edx_proctoring/v1/proctored_exam/attempt/grouped/course_id/"
             f"{course_id}/search/{username}"
             "?page_size=100"
         )
-        return self.make_request(
+        result = self.make_request(
             "GET",
             uri,
-        ).json()
+        )
+
+        # TODO: Remove after upgrading to Lilac
+        if result.status_code == 404:
+            uri = (
+                "/api/edx_proctoring/v1/proctored_exam/attempt/course_id/"
+                f"{course_id}/search/{username}"
+                "?page_size=100"
+            )
+            result = self.make_request(
+                "GET",
+                uri,
+            )
+
+        return result.json()
 
     def get_enrollments(self, username: str):
         uri = (
