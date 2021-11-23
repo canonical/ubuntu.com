@@ -38,6 +38,10 @@ if (navigations && navigations.length > 0) {
           });
           this.setAttribute("aria-current", "page");
           this.blur();
+          const isExpanded = navigation.classList.contains("is-expanded");
+          if (isExpanded) {
+            toggleDrawer(navigation, !isExpanded);
+          }
         });
 
         if (link.getAttribute("href") === currentPath) {
