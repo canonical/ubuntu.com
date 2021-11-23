@@ -33,13 +33,18 @@
 <section class="p-strip--light">
     <div class="row">
         <div class="col-8">
-            <h2>Observability versus monitoring</h2>
+            <h2>Observability vs. monitoring</h2>
             <h3 class="p-heading--4">Rather, observability through monitoring</h3>
             <p>The term "monitoring" is sometimes used to denote the collection and processing of metrics, and especially timeseries. Instead, we define monitoring more generally as the act and practice of collecting and processing useful telemetry to gain insight in the behavior of a system.</p>
             <p>In the current practice of software, and especially in distributed systems and cloud-native software, monitoring is the commonplace means of achieving observability. Tools like Prometheus, OpenTelemetry, Jaeger, Elasticsearch or Graylog document the relevant workings of software systems by collecting and processing various telemetry types, such as metrics, distributed traces and logs.</p>
             <p>Your software system is observable when the telemetry you collect and the way you process it enables you to know and investigate in a timely fashion how your software system is performing, what issues are occurring and what their impact is.</p>
         </div>
-    </div>
+        <div class="col-4 u-vertically-center">
+            <div style="background-color:#fff; border: 1px solid #eee; padding: 1rem;">
+                <p>Read our <a href="/blog/observability-vs-monitoring-debate-an-irreverent-view">"Observability vs. monitoring debate: An irreverent view"</a> blog post for an in-depth look at the debate around "observability vs. monitoring".</p>
+            </div>
+        </div>
+  </div>
 </section>
 
 <section class="p-strip">
@@ -148,7 +153,6 @@
             <h3 class="p-heading--4">Making the most out of your metrics, logs, distributed traces and more</h3>
             <p>The various telemetry types provide you with more insight when they are correlated with one another.</p>
             <p>
-
                 {{ image (
                     url="https://assets.ubuntu.com/v1/51d46f04-telemetry-map.svg",
                     alt="telemetry types",
