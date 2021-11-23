@@ -355,12 +355,15 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
-  <div class="row">
-    <div class="u-fixed-width">
-      <h2 class="u-sv3">Latest Ubuntu Observability news from <a href="/blog/tag/observability">our blog</a>&nbsp;&rsaquo;</h2>
-    </div>
-  </div>
+<div class="u-fixed-width">
+  <hr />
+</div>
+
+{% with section_classes='p-strip', heading_topic='Observability', tag_name='observability', tag_id='4125', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
+<section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-5 u-hide--small u-align--center">
       {{ image (
@@ -384,10 +387,6 @@
     </div>
   </div>
 </section>
-
-{% with section_classes='p-strip', heading_topic='Observability', tag_name='observability', tag_id='4125', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/observability-contact-us" data-form-id="4072" data-lp-id="" data-return-url="https://www.ubuntu.com/observability/thank-you.html" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
