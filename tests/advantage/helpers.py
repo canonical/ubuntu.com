@@ -12,6 +12,7 @@ from webapp.advantage.ua_contracts.primitives import (
     ContractItem,
     Contract,
     Renewal,
+    Account,
 )
 
 
@@ -220,6 +221,7 @@ def make_legacy_contract_item(
 
 
 def make_purchase_contract_item(
+    id: int = None,
     contract_id: str = None,
     created_at: str = None,
     start_date: str = None,
@@ -229,6 +231,7 @@ def make_purchase_contract_item(
     purchase_id: str = None,
 ) -> ContractItem:
     return ContractItem(
+        id=id or 123,
         contract_id=contract_id or "cAaBbCcDdEeFfGg",
         created_at=created_at or "2020-01-01T00:00:00Z",
         start_date=start_date or "2020-01-01T00:00:00Z",
@@ -343,4 +346,16 @@ def make_shop_contract(
         product_id=product_id or "product-name",
         entitlements=entitlements or default_entitlements,
         items=items or default_items,
+    )
+
+
+def make_account(
+    id: str = None,
+    name: str = None,
+    role: str = None,
+):
+    return Account(
+        id=id or "aAbBcCdDeE",
+        name=name or "Account name",
+        role=role or "admin",
     )

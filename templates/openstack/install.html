@@ -154,7 +154,7 @@
       <p>
         These instructions use <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a>. OpenStack Charms are the foundation of Canonical’s <a href="https://ubuntu.com/openstack">Charmed OpenStack</a> distribution which is an enterprise private cloud, designed to run mission-critical workloads.
       </p>
-      <p class="u-sv3">Find the documentation for "Installation" of<a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/" class="p-link--external">OpenStack Charms Deployment Guide here</a>.</p>
+      <p class="u-sv3">Find the documentation for "Installation" of <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/" class="p-link--external">OpenStack Charms Deployment Guide here</a>.</p>
       <div class="p-notification">
         <p class="p-notification__response">
           <span class="p-notification__status">NOTE:</span> In order to qualify for the <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-link--external">Private Cloud Build (PCB)</a> service, <a href="https://assets.ubuntu.com/v1/1a8fb1b3-UA-I_datasheet_2019-Oct.pdf" class="p-link--external">Ubuntu Advantage for Infrastructure (UA-I)</a> support subscription and <a href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf" class="p-link--external">Managed OpenStack</a>, at least 12 nodes are required for Charmed OpenStack. Please contact your Canonical sales representative for detailed information on minimum hardware requirements
@@ -165,22 +165,30 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <div class="col-4 u-align--center u-hide--small u-vertically-center">
-
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-5 u-align--center u-hide--small u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg",
+        alt="",
+        width="228",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
-    <div class="col-6 col-start-large-6 u-vertically-center">
+    <div class="col-7 u-vertically-center">
       <h2>OpenStack tutorials</h2>
       <p>Learn OpenStack through a series of tutorials.</p>
-      <p><a class="p-button--positive js-invoke-modal" href="/openstack/tutorials">Explore tutorials</a></p>
+      <p><a class="p-button--positive" href="/openstack/tutorials">Explore tutorials</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <div class="col-4 u-align--center u-hide--small u-vertically-center">
+<section class="p-strip">
+  <div class="row">
+    <div class="col-5 u-align--center u-hide--small u-vertically-center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
@@ -192,7 +200,7 @@
         ) | safe
       }}
     </div>
-    <div class="col-6 col-start-large-6 u-vertically-center">
+    <div class="col-7 u-vertically-center">
       <h2>Got stuck with OpenStack installation?</h2>
       <p>Let our cloud experts help you take the next step.</p>
       <p><a class="p-button--positive js-invoke-modal" href="/openstack/contact-us?product=openstack">Talk to a Canonical expert</a></p>

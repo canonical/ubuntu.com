@@ -39,6 +39,8 @@ export type UserSubscriptionStatuses = {
   is_subscription_active: boolean;
   is_subscription_auto_renewing: boolean;
   should_present_auto_renewal: boolean;
+  has_access_to_support: boolean;
+  has_access_to_token: boolean;
 };
 
 export type UserSubscription = {

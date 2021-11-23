@@ -64,7 +64,7 @@ const CostCalculatorForm = () => {
               showInput
               value={formState.instances.value}
               error={formState.instances.error}
-              ariaLabel="Number of instances"
+              aria-label="Number of instances"
               required
             />
             <h3 className="p-heading--4" style={{ marginTop: "2rem" }}>
@@ -82,7 +82,7 @@ const CostCalculatorForm = () => {
                 <Input
                   id="vcpus"
                   className="tco-input"
-                  ariaLabel="vCPUs"
+                  aria-label="vCPUs"
                   mdxType="Input"
                   onChange={onChangeHandler}
                   type="number"
@@ -99,7 +99,7 @@ const CostCalculatorForm = () => {
                 <Input
                   id="ephemeral-storage"
                   className="tco-input"
-                  ariaLabel="ephemeral storage"
+                  aria-label="ephemeral storage"
                   mdxType="Input"
                   onChange={onChangeHandler}
                   type="number"
@@ -118,7 +118,7 @@ const CostCalculatorForm = () => {
                 <Input
                   id="ram"
                   className="tco-input"
-                  ariaLabel="RAM [GB]"
+                  aria-label="RAM [GB]"
                   mdxType="Input"
                   onChange={onChangeHandler}
                   type="number"
@@ -135,7 +135,7 @@ const CostCalculatorForm = () => {
                 <Input
                   id="persistent-storage"
                   className="tco-input"
-                  ariaLabel="Persistent storage [GB]"
+                  aria-label="Persistent storage [GB]"
                   mdxType="Input"
                   onChange={onChangeHandler}
                   type="number"

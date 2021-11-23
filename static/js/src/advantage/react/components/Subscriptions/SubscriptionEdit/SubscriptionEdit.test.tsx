@@ -318,7 +318,9 @@ describe("SubscriptionEdit", () => {
           is_downsizeable: true,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 4 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 4,
+      });
       expect(isValid).toBe(true);
     });
 
@@ -329,7 +331,9 @@ describe("SubscriptionEdit", () => {
           is_downsizeable: true,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 0 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 0,
+      });
       expect(isValid).toBe(false);
     });
 
@@ -340,7 +344,9 @@ describe("SubscriptionEdit", () => {
           is_downsizeable: false,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 4 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 4,
+      });
       expect(isValid).toBe(false);
     });
 
@@ -351,7 +357,9 @@ describe("SubscriptionEdit", () => {
           is_upsizeable: true,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 6 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 6,
+      });
       expect(isValid).toBe(true);
     });
 
@@ -362,7 +370,9 @@ describe("SubscriptionEdit", () => {
           is_upsizeable: false,
         }),
       });
-      const isValid = await generateSchema(subscription).isValid({ size: 6 });
+      const isValid = await generateSchema(subscription, "machine").isValid({
+        size: 6,
+      });
       expect(isValid).toBe(false);
     });
   });

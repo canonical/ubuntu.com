@@ -19,6 +19,7 @@
     <div class="col-3" style="padding: 0.75rem 0">
       <select name="marketplace" id="marketplace-dropdown">
         <option value="">All invoices</option>
+        <option value="blender" {% if marketplace == 'blender' %}selected{% endif %}>Blender Support</option>
         <option value="canonical-ua" {% if marketplace == 'canonical-ua' %}selected{% endif %}>Canonical UA</option>
       </select>
     </div>

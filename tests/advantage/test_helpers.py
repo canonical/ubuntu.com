@@ -11,6 +11,7 @@ from tests.advantage.helpers import (
     make_subscription_item,
     make_legacy_contract_item,
     make_renewal,
+    make_account,
 )
 from webapp.advantage.models import Entitlement
 from webapp.advantage.ua_contracts.helpers import (
@@ -469,6 +470,7 @@ class TestHelpers(unittest.TestCase):
         scenarios = {
             "test_free_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "free",
                     "end_date": "2020-08-31T23:59:59Z",
                     "subscriptions": None,
@@ -489,10 +491,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_yearly_user_subscription_just_started": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "yearly",
                     "end_date": "2021-08-31T23:59:59Z",
                     "subscriptions": [
@@ -518,10 +523,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": True,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_yearly_user_subscription_expiring": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "yearly",
                     "end_date": "2020-09-30T23:59:59Z",
                     "subscriptions": [
@@ -547,10 +555,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": True,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": True,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_yearly_user_subscription_expiring_but_auto_renewing": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "yearly",
                     "end_date": "2020-09-30T23:59:59Z",
                     "subscriptions": [
@@ -579,10 +590,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": True,
                     "is_subscription_auto_renewing": True,
                     "should_present_auto_renewal": True,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_yearly_user_subscription_grace_period": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "yearly",
                     "end_date": "2020-08-31T23:59:59Z",
                     "subscriptions": None,
@@ -603,10 +617,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_monthly_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "monthly",
                     "end_date": "2020-09-01T00:00:00Z",
                     "subscription_id": "sub-id-1",
@@ -639,10 +656,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": True,
                     "is_subscription_auto_renewing": True,
                     "should_present_auto_renewal": True,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_cancelled_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "monthly",
                     "end_date": "2020-09-05T00:00:00Z",
                     "subscription_id": "sub-id-1",
@@ -674,10 +694,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_expired_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "monthly",
                     "end_date": "2020-08-01T00:00:00Z",
                     "subscriptions": None,
@@ -698,10 +721,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_trial_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "trial",
                     "end_date": "2020-08-18T00:00:00Z",
                     "subscriptions": [
@@ -728,10 +754,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_pending_purchases_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "trial",
                     "end_date": "2020-09-07T23:59:59Z",
                     "subscriptions": [
@@ -756,10 +785,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_legacy_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "legacy",
                     "end_date": "2020-10-01T10:00:00Z",
                     "renewal": make_renewal(
@@ -784,10 +816,13 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
                 },
             },
             "test_non_actionable_legacy_user_subscription": {
                 "parameters": {
+                    "account": make_account(),
                     "type": "legacy",
                     "end_date": "2020-10-01T10:00:00Z",
                     "renewal": make_renewal(actionable=False),
@@ -807,6 +842,45 @@ class TestHelpers(unittest.TestCase):
                     "is_subscription_active": False,
                     "is_subscription_auto_renewing": False,
                     "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
+                },
+            },
+            "test_billing_user_subscription": {
+                "parameters": {
+                    "account": make_account(role="billing"),
+                    "type": "monthly",
+                    "end_date": "2021-01-01T00:00:00Z",
+                    "subscription_id": "sub-id-1",
+                    "subscriptions": [
+                        make_subscription(
+                            id="sub-id-1",
+                            items=[
+                                make_subscription_item(
+                                    product_listing_id="listing-id"
+                                )
+                            ],
+                        )
+                    ],
+                    "listing": make_listing(id="listing-id"),
+                },
+                "expectations": {
+                    "is_upsizeable": True,
+                    "is_downsizeable": True,
+                    "is_cancellable": True,
+                    "is_cancelled": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": False,
+                    "is_renewal_actionable": False,
+                    "has_pending_purchases": False,
+                    "is_subscription_active": True,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": True,
+                    "has_access_to_support": False,
+                    "has_access_to_token": False,
                 },
             },
         }
@@ -816,6 +890,7 @@ class TestHelpers(unittest.TestCase):
                 with self.subTest(msg=f"{case}", scenario=scenario):
                     parameters = scenario["parameters"]
                     statuses = get_user_subscription_statuses(
+                        account=parameters.get("account"),
                         type=parameters.get("type"),
                         end_date=parameters.get("end_date"),
                         renewal=parameters.get("renewal"),

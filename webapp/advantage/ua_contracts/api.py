@@ -315,7 +315,7 @@ class UAContractsAPI:
         response = self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/account",
-            error_rules=["default", "no-found"],
+            error_rules=["default", "no-found", "user-role"],
         )
 
         if self.convert_response:
@@ -389,6 +389,9 @@ class UAContractsAPI:
         status_code = error.response.status_code
         message = error.response.json().get("message")
 
+        if "user-role" in error_rules and status_code == 403:
+            raise AccessForbiddenError(error)
+
         if "cancel-subscription" in error_rules and status_code == 400:
             if "cannot remove all subscription items" in message:
                 raise CannotCancelLastContractError(error)
@@ -403,6 +406,11 @@ class UAContractsAPI:
             if self.is_for_view:
                 raise UAContractsAPIErrorView(error)
             raise UAContractsAPIError(error)
+
+
+class AccessForbiddenError(HTTPError):
+    def __init__(self, error: HTTPError):
+        super().__init__(request=error.request, response=error.response)
 
 
 class UnauthorizedError(HTTPError):

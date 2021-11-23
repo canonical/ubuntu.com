@@ -61,6 +61,7 @@ def parse_account(raw_account: Dict) -> Account:
     return Account(
         id=raw_account.get("id"),
         name=raw_account.get("name"),
+        role=raw_account.get("userRoleOnAccount"),
     )
 
 

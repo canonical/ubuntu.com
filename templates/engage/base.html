@@ -7,16 +7,20 @@
 {% block meta_description %}{{document['metadata']['subtitle']}}{% endblock %}
 {% block meta_image %}{{document['metadata']['meta_image']}}{% endblock %}
 
-{% block head_extra%}
+{% block head_extra %}
   {% if 'active' in document['metadata'] and document['metadata']['active'] == "false" %}
     <meta name="robots" content="nofollow" />
+  {% endif %}
+
+  {# This is a hack to indicate to crawls to not index this page #}
+  {% if document['metadata']['path'] == "/engage/ShellOnboarding" %}
+    <meta name="robots" content="noindex, nofollow" />
   {% endif %}
 {% endblock %}
 
 {% block meta_copydoc %}{{document["metadata"]["meta_copydoc"]}}{% endblock meta_copydoc %}
 
 {% block content %}
-
 <section class="p-strip p-engage-banner--{{document['metadata']['banner_class']}}">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">
@@ -48,9 +52,9 @@
   </div>
   <div class="row">
     <div class="col-7 u-vertically-center">
-      <h1>{{document["title"]}}</h1>
+      <h1>{{ document["title"] }}</h1>
       <p class="u-no-padding--top p-heading--four">
-        {{document['metadata']['subtitle']}}
+        {{ document['metadata']['subtitle'] }}
       </p>
       {% if ("primary_cta" in document["metadata"]) and (document["metadata"]["primary_cta"] != "") %}
       <p class="{% if 'secondary_cta' not in document['metadata'] %}u-hide--large{% endif %}">
