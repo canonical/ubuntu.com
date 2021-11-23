@@ -196,7 +196,7 @@ def get_user_subscription_statuses(
     if type == "free":
         return statuses
 
-    date_statuses = get_date_statuses(type, end_date)
+    date_statuses = get_date_statuses(type, end_date, renewal)
     statuses["is_expiring"] = date_statuses["is_expiring"]
     statuses["is_in_grace_period"] = date_statuses["is_in_grace_period"]
     statuses["is_expired"] = date_statuses["is_expired"]
@@ -283,9 +283,15 @@ def get_date_statuses(type: str, end_date: str) -> dict:
     delta_till_expiry = parsed_end_date - time_now
     days_till_expiry = delta_till_expiry.days
 
-    is_expiring_start = 60 if type == "yearly" else 7
-    is_expiring_end = 0
-    grace_period_end = -14
+    if type != "legacy":
+        is_expiring_start = 60 if type == "yearly" else 7
+        is_expiring_end = 0
+        grace_period_end = -14
+    else:
+        # legacy purchases can be renewed 90 before and after expiry
+        is_expiring_start = 90
+        is_expiring_end = 0
+        grace_period_end = -90
 
     is_expiring = is_expiring_start > days_till_expiry >= is_expiring_end
     is_in_grace_period = is_expiring_end > days_till_expiry >= grace_period_end
