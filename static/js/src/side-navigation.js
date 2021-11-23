@@ -1,6 +1,18 @@
+/**
+ * Select all Side Navigation components: ".p-side-navigation"
+ *  - Collapse/Expand side navigation using button ".js-drawer-toggle"
+ *  - Handle active state of links ".p-side-navigation__link"
+ */
+
 const currentPath = window.location.pathname;
 const navigations = document.querySelectorAll(".p-side-navigation");
 
+/**
+ Toggles the expanded/collapsed classed on side navigation element.
+
+ @param {HTMLElement} sideNavigation The side navigation element.
+ @param {Boolean} show Whether to show or hide the drawer.
+ */
 function toggleDrawer(sideNavigation, show) {
   if (sideNavigation) {
     if (show) {
