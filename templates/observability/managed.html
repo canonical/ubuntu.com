@@ -1,0 +1,580 @@
+{% extends "observability/base_observability.html" %}
+
+{% block title %}Managed Open Source Observability{% endblock %}
+
+{% block meta_description %}Managed open-source observability: how to achieve end-to-end cloud observability while maintaining your business focus and without spending your budget keeping the lights on.{% endblock %}
+
+{% block meta_image %}https://assets.ubuntu.com/v1/0d564c55-managed-observability.svg{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1N11otwvy2TWoK4j9e8iYJLNLYQyWbIPL82GVkm8WHhE/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h1>Managed Open Source Observability</h1>
+      <h2 class="p-heading--four">You focus on your business, we run the monitoring tools for you</h2>
+      <p>Uptime for monitoring tools is quintessential for your business. Without reliable monitoring tools, you cannot know what else is not working right.</p>
+      <p>81% of CIOs are planning to increase their observability budgets, you could be using yours more efficiently.</p>
+      <p>Focus on driving your unique business, and we will run the best-in-class open source monitoring tools you need for the observability of your applications.</p>
+      <p>
+        <a href="/observability/contact-us" class="p-button--positive js-invoke-modal">Talk with an expert</a>
+        <a href="/engage/managed-services-overcoming-cio-challenges-2021">Read the CIO guide to managed services&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/0d564c55-managed-observability.svg",
+        alt="Managed observability",
+        width="270",
+        height="309",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align--center u-sv3">WE MANAGE CLOUDS FOR WORLD LEADERS</p>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/25de1877-Tele2_logo.svg",
+            alt="",
+            width="106",
+            height="42",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/3d15019a-Telefonica.png",
+            alt="",
+            width="202",
+            height="55",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/ba1af5b7-Rabobank.png",
+            alt="",
+            width="216",
+            height="126",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/231a1b4b-Lexis+Nexis.png",
+            alt="",
+            width="158",
+            height="87",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/b8e1b994-Onetrail.png",
+            alt="",
+            width="175",
+            height="68",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/3595713f-barnes-and-noble-logo.png",
+            alt="",
+            width="110",
+            height="64",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/2616b34f-ACI-Universal-Payments.svg",
+            alt="",
+            width="106",
+            height="49",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/cf962284-docapost.png",
+            alt="",
+            width="160",
+            height="120",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Cloud-native applications need cloud-native observability</h2>
+      <p>One practitioner out of five thinks that observability is a key challenge for cloud native environments. One in two practitioners says that lack of manpower is the worst inhibitor to their cloud journey. With todays many components of the cloud native ecosystem, engineers spend a lot of time and effort setting up and maintaining their monitoring tools. Let's change that!</p>
+      <p>
+        <a href="/observability/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center">
+      <div class="p-card">
+        <div class="p-heading-icon--small">
+          <div class="p-heading-icon__header">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+              alt="",
+              width="171",
+              height="150",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+            <p>Industry report</p>
+          </div>
+        </div>
+        <p class="p-card__content">
+          <a href="https://juju.is/cloud-native-kubernetes-usage-report-2021" class="p-link--external">The Kubernetes and cloud native operations report 2021</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Never miss another outage</h2>
+      <p>Your monitoring systems must be up and running to tell you what else is not. The availability of your business applications is effectively capped by the availability of the systems monitoring them. Get the best OSS monitoring tools run with spectacular uptime for you, by Canonical.</p>
+      <p>
+        <a href="/observability/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg",
+        alt="",
+        width="174",
+        height="180",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="u-fixed-width">
+      <ul class="p-matrix">
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">99.9% uptime</h3>
+            <div class="p-matrix__desc">
+              <p>Guaranteed 99.9% production-grade SLAs and best practice solution design. Have your monitoring tools managed by technology-specific experts.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">24/7 monitoring</h3>
+            <div class="p-matrix__desc">
+              <p>Active management and break/fix response by Canonical engineers.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">High availability</h3>
+            <div class="p-matrix__desc">
+              <p>Fault-tolerant and ready for real-world challenges. Your monitoring tools will be there for you when you need them.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Security first</h3>
+            <div class="p-matrix__desc">
+              <p>Industry-wide security best practices and compliance certifications to keep your cloud secure at all times.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Flexible pricing</h3>
+            <div class="p-matrix__desc">
+              <p>Transparent and predictable pricing to suit your needs and help you grow your cloud with predictable costs.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">No lock-in</h3>
+            <div class="p-matrix__desc">
+              <p>Build a flexible and agnostic cloud with no lock-in and leverage a simplified open-source approach. We give you the keys when you are ready to drive.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h3>Reliable monitoring tools you can count on</h3>
+      <p>All Canonical managed services come with Extended Security Maintenance: future-proofed open-source observability run at scale, reliably.</p>
+      <p>
+        <a href="/observability/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <ul class="p-matrix">
+      <li class="p-matrix__item u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/d12bc087-apps_promethus.png",
+          alt="promethus",
+          width="144",
+          height="90",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <div class="p-matrix__content u-align--center">
+          <div class="p-matrix__desc">
+            <p class="p-muted-heading">HA-READY PROMETHEUS AND ALERTMANAGER INSTANCES</p>
+          </div>
+        </div>
+      </li>
+      <li class="p-matrix__item u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/ae376ade-apps_grafana.png",
+          alt="Grafana",
+          width="144",
+          height="64",
+          hi_def=True,
+          loading="lazy",
+          attrs={"style": "height: 80px; width: auto; margin-bottom: 1rem;"},
+          ) | safe
+        }}
+        <div class="p-matrix__content u-align--center">
+          <div class="p-matrix__desc">
+            <p class="p-muted-heading">TRANSPARENCY WITH DYNAMIC DASHBOARDS</p>
+          </div>
+        </div>
+      </li>
+      <li class="p-matrix__item u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/bd33839a-graylog.svg",
+          alt="Graylog",
+          width="144",
+          height="42",
+          hi_def=True,
+          loading="lazy",
+          attrs={"style": "height: 40px; width: auto; margin-bottom: 2rem; margin-top:.8rem;"},
+          ) | safe
+        }}
+        <div class="p-matrix__content u-align--center">
+          <div class="p-matrix__desc">
+            <p class="p-muted-heading">LARGE SCALE LOG ANALYTICS</p>
+          </div>
+        </div>
+      </li>
+      <li class="p-matrix__item u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/5ee6eb7b-influxdb.svg",
+          alt="influx db",
+          width="144",
+          height="33",
+          hi_def=True,
+          loading="lazy",
+          attrs={"style": "height: 40px; width: auto; margin-bottom: 2rem; margin-top:.8rem;"},
+          ) | safe
+        }}
+        <div class="p-matrix__content u-align--center">
+          <div class="p-matrix__desc">
+            <p class="p-muted-heading">ACTIVE MANAGEMENT OF TIME-SERIES DB, STORAGE</p>
+          </div>
+        </div>
+      </li>
+      <li class="p-matrix__item u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/40a3cc97-apps_elastic.png",
+          alt="elastic search",
+          width="144",
+          height="75",
+          hi_def=True,
+          loading="lazy",
+          attrs={"style": "height: 80px; width: auto; margin-bottom: 1rem;"},
+          ) | safe
+        }}
+        <div class="p-matrix__content u-align--center">
+          <div class="p-matrix__desc">
+            <p class="p-muted-heading">ASSURED FAST QUERIES FOR BIG DATA</p>
+          </div>
+        </div>
+      </li>
+      <li class="p-matrix__item u-hide--small">&nbsp;</li>
+    </ul>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h3 class="p-heading--2">Multi-cloud ready</h3>
+      <p>We manage your monitoring tools anywhere for you. Whether you are running your workloads across multiple clouds or might need to leverage a multi-cloud environment in the future, we can easily scale our managed service to adapt to your IT strategy.</p>
+    </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/901d5a91-Google+Cloud.png",
+              alt="",
+              width="292",
+              height="290",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/43d45da9-Anbox-logo-aws.png",
+              alt="",
+              width="310",
+              height="310",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/fc61db3b-Anbox-logo-azure.png",
+              alt="",
+              width="310",
+              height="310",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/5daf7029-Openstack_logo.png",
+              alt="",
+              width="292",
+              height="292",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/5dfc272a-vmware_logo.png",
+              alt="",
+              width="292",
+              height="292",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/f1d885ce-Oracle-cloud.png",
+              alt="",
+              width="522",
+              height="161",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/53d93b1d-Anbox-logo-maas.png",
+              alt="",
+              width="310",
+              height="310",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
+              alt="",
+              width="62",
+              height="60",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h3>Powerful monitoring, simple and predictable price, cost-efficient</h3>
+    <p>We manage the best open source monitoring tools at both the host and the guest levels. <strong>Charges are for the hosts running the monitoring tools themselves.</strong> We do not charge for the systems you monitor with the tools we manage for you!</p>
+  </div>    
+  <div class="u-fixed-width">
+    <table>
+      <thead>
+        <tr>
+          <th width="500" class="u-align-center">All prices are annual</th>
+          <th width="100" class="u-align-center">Per monitoring backend VM</th>
+          <th width="100" class="u-align-center">Per monitoring backend host</th>
+          <th width="100" class="u-align-center">Per monitoring backend VM/host</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Managed monitoring tools on public clouds, VMware, OpenStack or Kubernetes</td>
+          <td class="u-align--center">$3,099</td>
+          <td class="u-align--center">$6,861</td>
+          <td class="u-align--center">$0</td>
+        </tr>
+        <tr>
+          <td>Managed monitoring tools on bare metal</td>
+          <td class="u-align--center">N/A</td>
+          <td class="u-align--center">$9,470</td>
+          <td class="u-align--center">$0</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>All prices are dependent on current cloud architecture and requirements.</p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-hide--small u-vertically-center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+        alt="",
+        height="180",
+        width="180",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-8 u-vertically-center">
+      <h2>
+        Can't find what you're looking for?
+      </h2>
+      <p>
+        Our Managed Apps portfolio is constantly evolving and expanding. Speak to us today about your specific needs.
+      </p>
+      <p>
+        <a href="/managed/contact-us">
+          Contact us about your unique requirements&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-observability" data-form-id="4072" data-lp-id="" data-return-url="https://www.ubuntu.com/observability/thank-you.html" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}

@@ -2,23 +2,51 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description" >
     <header class="p-modal__header" style="display: block; border-bottom: 0">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem" > Close </button>
-      <h2 class="p-modal__title u-sv1" id="modal-title"> You innovate, we operate! </h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title"> You innovate, we run the monitoring tools! </h2>
     </header>
     <div class="js-pagination js-pagination--1">
       <div class="js-formfield">
-        <h3 class="p-heading--five">What services can we help with?</h3>
+        <h3 class="p-heading--five">Which monitoring tools do you want to use?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-6">
+            <input type="checkbox" id="tools-prometheus" />
+            <label for="tools-prometheus">Prometheus</label>
+            <input type="checkbox" id="tools-cortex" />
+            <label for="tools-cortex">Cortex</label>
+            <input type="checkbox" id="tools-grafana" />
+            <label for="tools-grafana"> Grafana</label>
+            <input type="checkbox" id="tools-grafana-loki" />
+            <label for="tools-grafana-loki"> Grafana Loki</label>
+            <input type="checkbox" id="tools-jaeger" />
+            <label for="tools-jaeger"> Jaeger</label>
+          </div>
+          <div class="col-6">
+            <input type="checkbox" id="tools-elasticsearch" />
+            <label for="tools-elasticsearch"> Elasticsearch</label>
+            <input type="checkbox" id="tools-graylog" />
+            <label for="tools-graylog">Graylog</label>
+            <input type="checkbox" id="tools-influxdb" />
+            <label for="tools-influxdb">InfluxDB</label>
+            <input type="checkbox" id="tools-not-sure" />
+            <label for="tools-not-sure"> Not sure</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="priority-workloads-other">
+              <label for="priority-workloads-other">Other</label>
+              <input type="text" id="priority-workloads-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">Where is your cloud?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-12 u-sv3">
-            <input type="checkbox" id="service-openstack" />
-            <label for="service-openstack">Openstack</label>
-            <input type="checkbox" id="service-kubernetes" />
-            <label for="service-kubernetes">Kubernetes</label>
-            <input type="checkbox" id="service-ceph" />
-            <label for="service-ceph">Ceph</label>
-            <input type="checkbox" id="service-database-apps" />
-            <label for="service-database-apps">Database and Applications</label>
-            <input type="checkbox" id="service-observability" />
-            <label for="service-observability">Observability</label>
+            <input type="checkbox" id="cloud-private" />
+            <label for="cloud-private">Private Cloud/Data Centre</label>
+            <input type="checkbox" id="cloud-public" />
+            <label for="cloud-public">Public cloud</label>
+            <input type="checkbox" id="cloud-hybrid" />
+            <label for="cloud-hybrid">Hybrid cloud</label>
           </div>
         </div>
       </div>
@@ -28,7 +56,7 @@
           id="apps-using-other-info"
           aria-label="Tell us more"
           rows="3"
-          placeholder="What are you currently working on? What does your current infrastructure and services look like? Anything extra you’d like to communicate about your needs or interests?"
+          placeholder="Any other open source observability tool you’d like to use? Which technologies do you use to build the applications you want to monitor? Do you run your apps in containers, on VMs or on bare metal?"
         ></textarea>
       </div>
       <div class="row u-no-padding">
@@ -45,20 +73,12 @@
             <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form" >
               <ul class="p-list">
                 <li class="p-list__item">
-                  <label for="firstName">First name:</label>
-                  <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
-                </li>
-                <li class="p-list__item">
-                  <label for="lastName">Last name:</label>
-                  <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                  <label for="fullName">Name:</label>
+                  <input required id="fullName" name="fullName" maxlength="255" type="text" required="required" />
                 </li>
                 <li class="p-list__item">
                   <label for="email">Work email:</label>
                   <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
-                </li>
-                <li class="p-list__item">
-                  <label for="phone">Mobile/cell phone number:</label >
-                  <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
                 </li>
                 <li class="p-list__item">
                   <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
@@ -88,7 +108,7 @@
                   </li>
                 </ul>
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
-                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="{{formid}} " />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
                 <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
@@ -101,7 +121,7 @@
               </div>
               <div class="pagination">
                 <a class="pagination__link--previous p-button--neutral" href="" >Previous</a >
-                <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit" > Let's discuss </button>
+                <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit" > Send </button>
               </div>
             </form>
           </div>
