@@ -1,4 +1,4 @@
-<form action="/marketo/submit" method="post" id="mktoForm_{{ id }}" onSubmit="fbq('trackCustom', 'Download');">
+<form action="/marketo/submit" method="post" id="mktoForm_{{ id }}" onSubmit='if (typeof fbq === "function"){fbq("trackCustom", "Download"); }'>
   <fieldset>
     <h3>Prenons contact</h3>
     <ul class="p-list u-no-margin--bottom">
