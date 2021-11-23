@@ -1,32 +1,5 @@
 @mixin ubuntu-p-table-of-contents {
   .p-table-of-contents {
-    .p-accordion {
-      &__group {
-        align-items: center;
-        display: flex;
-        flex-direction: row-reverse;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        &::after {
-          height: 0;
-        }
-      }
-
-      &__tab {
-        background-position: 0;
-        height: 1rem;
-        margin-right: 4px;
-        padding: 0;
-        width: 1rem;
-      }
-
-      &__panel {
-        flex-basis: 100%;
-        margin-left: 1rem;
-        padding-left: 1rem;
-      }
-    }
-
     @media only screen and (max-width: $breakpoint-navigation-threshold) {
       padding-left: 0;
     }
