@@ -36,9 +36,7 @@ def group_shop_items(
     return item_groups
 
 
-def get_items_aggregated_values(
-    items: List[ContractItem],
-) -> Dict:
+def get_items_aggregated_values(items: List[ContractItem], type: str) -> Dict:
     start_date = None
     end_date = None
     number_of_machines = 0
@@ -57,9 +55,8 @@ def get_items_aggregated_values(
         if end_date and end_date < item.end_date:
             end_date = item.end_date
 
-    parsed_end_date = parse(end_date)
     # free user subscription end date is None
-    if parsed_end_date.year == 9999:
+    if type == "free":
         end_date = None
 
     return {

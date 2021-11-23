@@ -69,7 +69,7 @@ context("/advantage", () => {
       });
   });
 
-  it("prevents a user from creating disallowed combinations of features", () => {
+  it.skip("prevents a user from creating disallowed combinations of features", () => {
     cy.login();
 
     cy.visit(getTestURL("/advantage"));
@@ -82,7 +82,7 @@ context("/advantage", () => {
     cy.findByLabelText("Livepatch").should("be.disabled");
   });
 
-  it("saves changes to feature settings successfully", () => {
+  it.skip("saves changes to feature settings successfully", () => {
     cy.login();
 
     cy.visit(getTestURL("/advantage"));
