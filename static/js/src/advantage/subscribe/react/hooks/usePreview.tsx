@@ -21,7 +21,8 @@ const usePreview = () => {
             quantity: quantity,
           },
         ],
-        window.previousPurchaseIds?.[product.period]
+        window.previousPurchaseIds?.[product.period],
+        window.STATE?.product?.marketplace
       );
 
       if (res.errors) {

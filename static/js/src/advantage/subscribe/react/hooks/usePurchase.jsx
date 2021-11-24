@@ -10,6 +10,8 @@ const usePurchase = () => {
       throw new Error("Product missing");
     }
 
+    let marketplace = window?.STATE?.product?.marketplace;
+
     const res = await postPurchaseData(
       window.accountId,
       [
@@ -21,7 +23,8 @@ const usePurchase = () => {
           quantity: quantity,
         },
       ],
-      window.previousPurchaseIds?.[product.period]
+      window.previousPurchaseIds?.[product.period],
+      marketplace
     );
 
     if (res.errors) {

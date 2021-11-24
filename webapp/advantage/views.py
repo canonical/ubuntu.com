@@ -881,10 +881,10 @@ def blender_shop_view():
     previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
 
     return flask.render_template(
-        "advantage/blender/index.html",
+        "advantage/subscribe/blender/index.html",
         account=account,
         previous_purchase_ids=previous_purchase_ids,
-        product_listings=listings,
+        product_listings=to_dict(listings),
     )
 
 

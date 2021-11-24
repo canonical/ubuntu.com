@@ -24,7 +24,9 @@ let entries = {
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
-  blenderStore: "./static/js/src/blender-store.js",
+  blenderStore: "./static/js/src/advantage/subscribe/blender/blender-store.js",
+  blenderStoreModal:
+    "./static/js/src/advantage/subscribe/blender/blender-store-modal.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
