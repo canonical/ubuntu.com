@@ -10,3 +10,4 @@ export { isBlenderSubscription } from "./isBlenderSubscription";
 export { makeInteractiveProps } from "./makeInteractiveProps";
 export { removeFalsy } from "./removeFalsy";
 export { sortSubscriptionsByStartDate } from "./sortSubscriptionsByStartDate";
+export { currencyFormatter } from "./currencyFormatter";
