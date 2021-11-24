@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Row } from "@canonical/react-components";
 import { useQuery } from "react-query";
 import EnrollmentsChart from "../EnrollmentsChart";
+import ExamAttemptsChart from "../ExamAttemptsChart";
 
 const Dashboard = () => {
   const { data } = useQuery("courses", async () => {
@@ -24,6 +25,7 @@ const Dashboard = () => {
           <>
             <h1>CUBE Dashboard</h1>
             <EnrollmentsChart courses={courses} />
+            <ExamAttemptsChart courses={courses} />
           </>
         </Col>
       </Row>

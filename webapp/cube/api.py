@@ -73,15 +73,22 @@ class EdxAPI:
         uri = f"{self.base_url}{path}"
         headers["Authorization"] = f"JWT {self.token}"
 
+        print("!!! uri: ", uri)
+
         response = self.session.request(
             method, uri, data=data, headers=headers
         )
 
-        if retry and response.status_code == 401:
+        if retry and (
+            response.status_code == 401 or response.status_code == 403
+        ):
             self._authenticate()
             response = self.make_request(
                 method, path, data=data, headers=headers, retry=False
             )
+
+        print("!!! response: ", response)
+        print("!!! response: ", response.text)
 
         return response
 
@@ -154,6 +161,17 @@ class EdxAPI:
             + (f"course_id={safe_course_id}&" if safe_course_id else "")
             + (f"cursor={cursor}&" if cursor else "")
             + "page_size=100"
+        )
+        return self.make_request(
+            "GET",
+            uri,
+        ).json()
+
+    def get_course_exam_attempts(self, course_id: str = "", page: int = 1):
+        safe_course_id = quote_plus(course_id)
+        uri = (
+            "/api/edx_proctoring/v1/proctored_exam/attempt/grouped/course_id/"
+            f"{safe_course_id}?page={page}"
         )
         return self.make_request(
             "GET",

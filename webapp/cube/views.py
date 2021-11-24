@@ -84,6 +84,8 @@ def cube_microcerts(
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
 
+    print("!!! product_listings: ", product_listings)
+
     courses = []
     for product_list in product_listings:
         attempts = []
@@ -164,6 +166,8 @@ def cube_microcerts(
     edx_register_url = f"{edx_url}{flask.request.base_url}"
     if flask.request.args.get("test_backend") == "true":
         edx_register_url = edx_register_url + "?test_backend=true"
+
+    print("!!! courses: ", courses)
 
     return flask.render_template(
         "cube/microcerts.html",
@@ -436,13 +440,13 @@ def get_daily_enrollments(
     daily_enrollments = defaultdict(lambda: defaultdict(int))
 
     cursor = ""
-    is_next = True
-    while is_next:
-        enrollments = edx_api.get_course_enrollments(course_id)
+    has_next = True
+    while has_next:
+        enrollments = edx_api.get_course_enrollments(course_id, cursor)
         parsed_next = urlparse(enrollments["next"])
         cursor = parse_qs(parsed_next.query).get("cursor")
-        is_next = True if cursor else False
-        print("!!! is_next", is_next)
+        has_next = True if cursor else False
+        print("!!! enrollments has_next", has_next)
 
         for enrollment in enrollments["results"]:
             created = datetime.strptime(
@@ -458,3 +462,43 @@ def get_daily_enrollments(
     ]
 
     return flask.jsonify(daily_enrollments)
+
+
+@cube_decorator(response="json")
+def get_exam_attempts(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    course_ids = flask.request.args.get("course_id", "").split(',')
+
+    exam_attempts = []
+    for course_id in course_ids:
+        page = 1
+        has_next = True
+        while has_next:
+            attempts_info = edx_api.get_course_exam_attempts(course_id, page)
+            has_next = attempts_info["pagination_info"]["has_next"]
+            print("!!! attempts has_next", has_next)
+
+            attempts = []
+            for attempt_info in attempts_info["proctored_exam_attempts"]:
+                for attempt in attempt_info["all_attempts"]:
+                    attempts.append(
+                        {
+                            "id": attempt['id'],
+                            "started_at": attempt["started_at"],
+                            "completed_at": attempt["completed_at"],
+                            "status": attempt["status"],
+                            "course_id": attempt["proctored_exam"]["course_id"],
+                            "exam_name": attempt["proctored_exam"]["exam_name"],
+                            "time_limit_mins": attempt["proctored_exam"][
+                                "time_limit_mins"
+                            ],
+                        }
+                    )
+
+            print("!!! attempts: ", attempts)
+
+            exam_attempts.extend(attempts)
+            page += 1
+
+    return flask.jsonify(exam_attempts)

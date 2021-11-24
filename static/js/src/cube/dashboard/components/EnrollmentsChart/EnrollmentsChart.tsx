@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   Col,
@@ -129,10 +129,15 @@ const EnrollmentsChart = ({ courses }: Props) => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedGrouping, setSelectedGrouping] = useState("daily");
 
+  const params = new URLSearchParams(window.location.search);
+  const testBackend = params.get("test_backend") === "true";
+
   const { isLoading, isError, data: enrollments } = useQuery(
     "enrollments",
     async () => {
-      const response = await fetch("/cube/enrollments.json");
+      const response = await fetch(
+        "/cube/enrollments.json" + (testBackend ? "?test_backend=true" : "")
+      );
       const responseData = await response.json();
 
       if (responseData.errors) {
