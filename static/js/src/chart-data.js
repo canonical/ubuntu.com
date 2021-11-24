@@ -1066,13 +1066,13 @@ export var openStackReleases = [
   {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
-    taskName: "OpenStack Y LTS",
+    taskName: "OpenStack Yoga LTS",
     status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
   },
   {
     startDate: new Date("2027-04-01T00:00:00"),
     endDate: new Date("2032-04-01T00:00:00"),
-    taskName: "OpenStack Y LTS",
+    taskName: "OpenStack Yoga LTS",
     status: "ESM",
   },
   {
@@ -1474,7 +1474,7 @@ export var kernelReleaseNamesLTS = [
 ];
 
 export var openStackReleaseNames = [
-  "OpenStack Y LTS",
+  "OpenStack Yoga LTS",
   "Ubuntu 22.04 LTS",
   "OpenStack Yoga",
   "OpenStack Xena",
