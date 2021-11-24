@@ -109,12 +109,12 @@
     <h2>Containers vs virtual machines</h2>
     <p>Containers are a modern way to virtualise infrastructure, more lightweight than traditional virtual machines: all containers on a single host OS share the kernel and other resources, require less memory space, ensure greater resource utilisation and shorter startup times by orders of magnitude.</p>
     <p><a href="/containers/contact-us">Get a consultation on your container strategy&nbsp;&rsaquo;</a></p>
-    <div>
+    <div class="u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/3d57842f-diagram-machine-virtualization-vs-containers.svg",
+        url="https://assets.ubuntu.com/v1/c989c0ab-diagram-machine-virtualization-vs-containers2.svg",
         alt="",
-        width="681",
-        height="416",
+        width="834",
+        height="500",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -127,6 +127,17 @@
   <div class="u-fixed-width">
     <h2>Docker vs LXD: comparing container technologies</h2>
     <p>Process containers (for example, Docker) and machine containers (traditional <a href="https://linuxcontainers.org/" class="p-link--external">linux containers</a>) are two types of container technologies that can address different use cases. Process containers typically contain a single application, while machine containers can contain one or more applications as well as their own operating system. Both container technologies share a kernel with the host operating system. </p>
+    <div class="u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4d5fcd9f-What+are+containers.svg",
+        alt="",
+        width="872",
+        height="500",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
+    </div>  
     <p>Docker is the most popular process container environment and allows for very small, immutable containers, containing only the application binaries and a minimal subset of libraries necessary for an application to run as a single process, requiring limited system resources.</p>
     <p>LXD functions similarly to a traditional hypervisor and machine containers resemble virtual machines. Machine containers, also referred to as ‘system containers’ are larger compared to process containers, as well as stateful and mutable. They have an allocated filesystem, often containing a cut-down version of an operating system, which might include a shell and a limited number of daemons.</p>
     <p>Docker is mostly used by developers making Platform-as-a-Service application instances more portable. LXD usage, on the other hand, is often driven by DevOps making Infrastructure-as-a-Service OS instances much faster.</p>
