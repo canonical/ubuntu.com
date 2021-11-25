@@ -246,11 +246,7 @@
   </div>
 </section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator"/>
-</div>
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Finserv open source infrastructure powers hybrid cloud strategy</h2>
   </div>
@@ -260,7 +256,7 @@
       <p>Watch the webinar for an overview of Charmed OpenStack - an enterprise grade OpenStack distribution from Canonical that leverages MAAS, Juju, and the OpenStack charmed operators to simplify the deployment and management of an OpenStack cloud.</p>
     </div>
     <div class="col-6 u-embedded-media">
-      <iframe title="Openstack cloud" class="u-embedded-media__element" src="https://drive.google.com/file/d/127851Z2xd9TzQaJQ25-3f4wkLCW-Sb8N/view" allowfullscreen=""></iframe>
+      <iframe title="Charmed Openstack" class="u-embedded-media__element" src="https://player.vimeo.com/video/649943487?title=0&amp;byline=0&amp;portrait=0&amp;speed=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allowfullscreen=""></iframe>
     </div>
   </div>
 </section>
@@ -366,13 +362,11 @@
       </div>
     </div>
   </div>
-</section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator"/>
-</div>
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
 
-<section class="p-strip">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h2>Redefine customer experience</h2>
@@ -393,13 +387,11 @@
         }}
     </div>
   </div>
-</section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator"/>
-</div>
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
 
-<section class="p-strip">
   <div class="row u-equal-height">
     <h2>Regain focus on business priorities</h2>
     <p class="p-heading--4">Managed apps, simplified</p>
@@ -543,13 +535,11 @@
       </div>
     </div>
   </div>
-</section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator"/>
-</div>
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
 
-<section class="p-strip">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h2>Enhance business resilience</h2>
@@ -570,13 +560,11 @@
       }}
     </div>
   </div>
-</section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator"/>
-</div>
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
 
-<section class="p-strip">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h2>Intelligent finance</h2>
@@ -586,38 +574,40 @@
     </div>
     <div class="col-4 u-align--center u-hide--small">
       <div class="p-logo-section u-no-margin">
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
-            alt="Nvidia",
-            width="90",
-            height="66",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c346c103-openai.png",
-            alt="OpenAI",
-            width="90",
-            height="62",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+              alt="Nvidia",
+              width="90",
+              height="66",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c346c103-openai.png",
+              alt="OpenAI",
+              width="90",
+              height="62",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<div class="u-fixed-width">
-  <hr class="p-separator"/>
-</div>
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
 
-<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-8">
       <h2>Increase developer productivity</h2>
