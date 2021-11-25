@@ -20,7 +20,7 @@
     <div class="col-6 u-align--center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg",
-        alt="Xilinx Logo",
+        alt="",
         width="326",
         height="90",
         hi_def=True,
@@ -31,20 +31,20 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="p-tabs">
-    <div class="p-tabs__list" role="tablist" aria-label="Install xilinx">
-      <div class="p-tabs__item">
-        <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="zynq-ultrascale-tab" id="zynq-ultrascale">Xilinx Zynq UltraScale</button>
+<section class="p-strip is-shallow">
+  <div class="u-fixed-width">
+    <div class="p-tabs">
+      <div class="p-tabs__list" role="tablist" aria-label="Install xilinx">
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="zynq-ultrascale-tab" id="zynq-ultrascale">Xilinx Zynq UltraScale</button>
+        </div>
+        <div class="p-tabs__item">
+          <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="kira-kv260-vision-ai-tab" id="kira-kv260-vision-ai" tabindex="-1">Xilinx Kria KV260 Vision AI Starter Kit</button>
+        </div>
       </div>
-      <div class="p-tabs__item">
-        <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="kira-kv260-vision-ai-tab" id="kira-kv260-vision-ai" tabindex="-1">Xilinx Kria KV260 Vision AI Starter Kit</button>
-      </div>
-    </div>
 
-    <div tabindex="0" role="tabpanel" id="zynq-ultrascale-tab" aria-labelledby="zynq-ultrascale">
-      <section class="p-strip--light">
-        <div class="row u-vertically-center">
+      <div tabindex="0" role="tabpanel" id="zynq-ultrascale-tab" aria-labelledby="zynq-ultrascale">
+        <div class="row u-vertically-center u-no-padding">
           <div class="col-6">
             <h2>Download Ubuntu Desktop</h2>
             <h3 class="p-heading--4">Ubuntu Desktop {{ releases.lts.full_version }} LTS</h3>
@@ -71,11 +71,9 @@
             }}
           </div>
         </div>
-      </section>
 
-      <section class="p-strip">
-        <div class="u-fixed-width u-vertically-center">
-          <h3 class="p-heading--4">First time installing Ubuntu on Xilinx?</h3>
+        <div class="u-fixed-width">
+          <h4>First time installing Ubuntu on Xilinx?</h4>
           <p>Please see the <a class="p-link--external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide</a> for more information.</p>
           <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
           <p>Ubuntu Developers targeting Xilinx Zynq UltraScale+ MPSoC devices may also want to download the following files:</p>
@@ -110,14 +108,12 @@
         </div>
         <div class="u-fixed-width">
           <p>If you have any questions about the platform or would like information about our certification program, please contact us.</p>
-          <p><a href="/download/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
+          <p><a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
         </div>
-      </section>
-    </div>
+      </div>
 
-    <div tabindex="0" role="tabpanel" id="kira-kv260-vision-ai-tab" aria-labelledby="kira-kv260-vision-ai" hidden="true">
-      <section class="p-strip--light">
-        <div class="row u-vertically-center">
+      <div tabindex="0" role="tabpanel" id="kira-kv260-vision-ai-tab" aria-labelledby="kira-kv260-vision-ai" hidden="true">
+        <div class="row u-vertically-center u-no-padding">
           <div class="col-6">
             <h2>Download Ubuntu Desktop</h2>
             <h3 class="p-heading--4">Ubuntu Desktop {{ releases.lts.full_version }} LTS</h3>
@@ -142,11 +138,9 @@
             }}
           </div>
         </div>
-      </section>
 
-      <section class="p-strip">
-        <div class="u-fixed-width u-vertically-center">
-          <h3 class="p-heading--4">First time installing Ubuntu on Xilinx?</h3>
+        <div class="u-fixed-width">
+          <h4>First time installing Ubuntu on Xilinx?</h4>
           <p>Please see the <a class="p-link--external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide</a> for more information.</p>
           <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
           <p>Ubuntu Developers targeting Kria KV260 platform may also want to download the following files:</p>
@@ -181,9 +175,9 @@
         </div>
         <div class="u-fixed-width">
           <p>If you have any questions about the platform or would like information about our certification program, please contact us.</p>
-          <p><a href="/download/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
+          <p><a href="/download/contact-us" class="js-invoke-modal p-button--positive">Get in touch</a></p>
         </div>
-      </section>    
+      </div>
     </div>
   </div>
 </section>
