@@ -40,16 +40,16 @@ const groupByDay = (enrollments) => {
     const currentDate = new Date(current["date"]);
     const oneDay = 86400000; // milliseconds in a day
     const difference = (currentDate - lastDate) / oneDay;
-    let emptyDates = [];
+    const emptyDates = [];
 
     // Fill in missing dates with empty data
-    // for (let i = 1; i < difference; i++) {
-    //   const emptyDate = addDay(lastDate, i);
-    //   const emptyDateString = `${emptyDate.getFullYear()}-${
-    //     emptyDate.getMonth() + 1
-    //   }-${emptyDate.getDate()}`;
-    //   emptyDates.push({ date: emptyDateString });
-    // }
+    for (let i = 1; i < difference; i++) {
+      const emptyDate = addDay(lastDate, i);
+      const emptyDateString = `${emptyDate.getFullYear()}-${
+        emptyDate.getMonth() + 1
+      }-${emptyDate.getDate()}`;
+      emptyDates.push({ date: emptyDateString });
+    }
 
     return [...combined, ...emptyDates, current];
   }, []);
