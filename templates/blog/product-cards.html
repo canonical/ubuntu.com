@@ -1,6 +1,22 @@
 <div id="product-card">
+    {# Multi-cloud tag cards #}
+  {% if article.tags and 2976 in article.tags %}
+    {% include "blog/product-cards/_multi_cloud.html" %}
+
+    {# Hybrid-cloud tag cards #}
+  {% elif article.tags and 3150 in article.tags %}
+    {% include "blog/product-cards/_hybrid_cloud.html" %}
+
+   {# Private-cloud tag cards #}
+  {% elif article.tags and 1342 in article.tags %}
+    {% include "blog/product-cards/_private_cloud.html" %}
+        
+   {# Public cloud tag cards #}
+  {% elif article.tags and 1350 in article.tags %}
+    {% include "blog/product-cards/_public_cloud.html" %}
+
    {# Docker tag cards #}
-  {% if article.tags and 1567 in article.tags %}
+  {% elif article.tags and 1567 in article.tags %}
     {% include "blog/product-cards/_docker-security.html" %}
 
    {# Telco tag cards #}
