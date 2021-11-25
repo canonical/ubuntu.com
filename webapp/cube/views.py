@@ -435,25 +435,25 @@ def get_courses(badgr_issuer, badge_certification, ua_api, badgr_api, edx_api):
 def get_daily_enrollments(
     badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
 ):
-    course_id = flask.request.args.get("course_id", "")
+    course_ids = flask.request.args.get("course_id", "").split(',')
 
     daily_enrollments = defaultdict(lambda: defaultdict(int))
+    for course_id in course_ids:
+        cursor = ""
+        has_next = True
+        while has_next:
+            enrollments = edx_api.get_course_enrollments(course_id, cursor)
+            parsed_next = urlparse(enrollments["next"])
+            cursor = parse_qs(parsed_next.query).get("cursor", [""])[0]
+            has_next = True if cursor else False
+            print("!!! enrollments has_next", has_next)
 
-    cursor = ""
-    has_next = True
-    while has_next:
-        enrollments = edx_api.get_course_enrollments(course_id, cursor)
-        parsed_next = urlparse(enrollments["next"])
-        cursor = parse_qs(parsed_next.query).get("cursor")
-        has_next = True if cursor else False
-        print("!!! enrollments has_next", has_next)
-
-        for enrollment in enrollments["results"]:
-            created = datetime.strptime(
-                enrollment["created"], "%Y-%m-%dT%X.%fZ"
-            ).strftime("%Y-%m-%d")
-            course_id = enrollment["course_id"]
-            daily_enrollments[created][course_id] += 1
+            for enrollment in enrollments["results"]:
+                created = datetime.strptime(
+                    enrollment["created"], "%Y-%m-%dT%X.%fZ"
+                ).strftime("%Y-%m-%d")
+                _course_id = enrollment["course_id"]
+                daily_enrollments[created][_course_id] += 1
 
     # Restructure to a list of objects
     dates = sorted(daily_enrollments.keys())
@@ -465,10 +465,41 @@ def get_daily_enrollments(
 
 
 @cube_decorator(response="json")
+def get_enrollments(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    course_ids = flask.request.args.get("course_id", "").split(",")
+
+    enrollments = []
+    for course_id in course_ids:
+        cursor = ""
+        has_next = True
+        while has_next:
+            enrollments_info = edx_api.get_course_enrollments(
+                course_id, cursor
+            )
+            parsed_next = urlparse(enrollments_info["next"])
+            cursor = parse_qs(parsed_next.query).get("cursor", [""])[0]
+            has_next = True if cursor else False
+            print("!!! enrollments has_next", has_next)
+
+            for enrollment in enrollments_info["results"]:
+                enrollments.append(
+                    {
+                        "created": enrollment["created"],
+                        "course_id": enrollment["course_id"],
+                        "is_active": enrollment["is_active"],
+                    }
+                )
+
+    return flask.jsonify(enrollments)
+
+
+@cube_decorator(response="json")
 def get_exam_attempts(
     badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
 ):
-    course_ids = flask.request.args.get("course_id", "").split(',')
+    course_ids = flask.request.args.get("course_id", "").split(",")
 
     exam_attempts = []
     for course_id in course_ids:
@@ -484,12 +515,16 @@ def get_exam_attempts(
                 for attempt in attempt_info["all_attempts"]:
                     attempts.append(
                         {
-                            "id": attempt['id'],
+                            "id": attempt["id"],
                             "started_at": attempt["started_at"],
                             "completed_at": attempt["completed_at"],
                             "status": attempt["status"],
-                            "course_id": attempt["proctored_exam"]["course_id"],
-                            "exam_name": attempt["proctored_exam"]["exam_name"],
+                            "course_id": attempt["proctored_exam"][
+                                "course_id"
+                            ],
+                            "exam_name": attempt["proctored_exam"][
+                                "exam_name"
+                            ],
                             "time_limit_mins": attempt["proctored_exam"][
                                 "time_limit_mins"
                             ],

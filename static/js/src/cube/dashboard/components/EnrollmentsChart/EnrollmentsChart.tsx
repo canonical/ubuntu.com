@@ -131,12 +131,18 @@ const EnrollmentsChart = ({ courses }: Props) => {
 
   const params = new URLSearchParams(window.location.search);
   const testBackend = params.get("test_backend") === "true";
+  const encodedCoursesParam = courses
+    .map((course) => encodeURIComponent(course))
+    .join(",");
 
   const { isLoading, isError, data: enrollments } = useQuery(
-    "enrollments",
+    "dailyEnrollments",
     async () => {
       const response = await fetch(
-        "/cube/enrollments.json" + (testBackend ? "?test_backend=true" : "")
+        encodeURI(
+          `/cube/daily-enrollments.json?course_id=${encodedCoursesParam}` +
+            (testBackend ? "&test_backend=true" : "")
+        )
       );
       const responseData = await response.json();
 
@@ -145,7 +151,8 @@ const EnrollmentsChart = ({ courses }: Props) => {
       }
 
       return responseData;
-    }
+    },
+    { enabled: courses && courses.length > 0 }
   );
 
   console.log("!!! enrollments: ", enrollments);
