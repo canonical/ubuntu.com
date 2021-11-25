@@ -194,7 +194,7 @@ def build_final_user_subscriptions(
         renewal = group.get("renewal")
         item_id = group.get("item_id")
         subscription_id = group.get("subscription_id")
-        aggregated_values = get_items_aggregated_values(items)
+        aggregated_values = get_items_aggregated_values(items, type)
         number_of_machines = aggregated_values.get("number_of_machines")
         end_date = aggregated_values.get("end_date")
         price_info = get_price_info(number_of_machines, items, listing)
@@ -202,6 +202,7 @@ def build_final_user_subscriptions(
             contract.name if type != "free" else "Free Personal Token"
         )
         statuses = get_user_subscription_statuses(
+            account=account,
             type=type,
             end_date=end_date,
             renewal=renewal,

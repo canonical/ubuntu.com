@@ -37,157 +37,178 @@ const elements = stripe.elements({
 
 const card = elements.create("card", { style });
 
-card.mount("#card-element");
+const cardElement = document.getElementById("card-element");
 
-card.on("change", (event) => {
-  if (event.error) {
-    updateButton.disabled = true;
-    cardErrorElement.innerHTML = event.error.message;
-    cardErrorElement.classList.remove("u-hide");
-  } else if (event.complete) {
-    updateButton.disabled = false;
-    updateButton.focus();
-    cardErrorElement.classList.add("u-hide");
-    paymentErrorElement.classList.add("u-hide");
-    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
-      "";
-  } else {
-    cardErrorElement.classList.add("u-hide");
-  }
-});
+if (cardElement) {
+  card.mount("#card-element");
 
-const editButton = document.getElementById("edit-payment-details");
-const cancelButton = document.getElementById("cancel-payment-details");
-const updateButton = document.getElementById("update-payment-details");
-const previewSection = document.getElementById(
-  "default-payment-method-section"
-);
-const editSection = document.getElementById("edit-payment-method-section");
-const cardErrorElement = document.getElementById("card-errors");
-const paymentErrorElement = document.getElementById("payment-errors");
-const paymentWarningElement = document.getElementById("payment-warnings");
-const paymentSuccessElement = document.getElementById("payment-success");
-const tryAgainButton = document.getElementById("try-again-button");
-const tryAgainSpinner = document.getElementById("try-again-spinner");
-
-if (window.pendingPurchaseId) {
-  paymentWarningElement.classList.remove("u-hide");
-
-  tryAgainButton.addEventListener("click", function () {
-    paymentErrorElement.classList.add("u-hide");
-    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
-      "";
-
-    tryAgainSpinner.classList.remove("u-hide");
-    this.disabled = true;
-
-    retryPayment(tryAgainSpinner);
+  card.on("change", (event) => {
+    if (event.error) {
+      updateButton.disabled = true;
+      cardErrorElement.innerHTML = event.error.message;
+      cardErrorElement.classList.remove("u-hide");
+    } else if (event.complete) {
+      updateButton.disabled = false;
+      updateButton.focus();
+      cardErrorElement.classList.add("u-hide");
+      paymentErrorElement.classList.add("u-hide");
+      paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+        "";
+    } else {
+      cardErrorElement.classList.add("u-hide");
+    }
   });
-}
 
-editButton.addEventListener("click", () => {
-  previewSection.classList.add("u-hide");
-  editSection.classList.remove("u-hide");
-  paymentErrorElement.classList.add("u-hide");
-  paymentErrorElement.querySelector(".p-notification__message").innerHTML = "";
-});
+  const editButton = document.getElementById("edit-payment-details");
+  const cancelButton = document.getElementById("cancel-payment-details");
+  const updateButton = document.getElementById("update-payment-details");
+  const previewSection = document.getElementById(
+    "default-payment-method-section"
+  );
+  const editSection = document.getElementById("edit-payment-method-section");
+  const cardErrorElement = document.getElementById("card-errors");
+  const paymentErrorElement = document.getElementById("payment-errors");
+  const paymentWarningElement = document.getElementById("payment-warnings");
+  const paymentSuccessElement = document.getElementById("payment-success");
+  const tryAgainButton = document.getElementById("try-again-button");
+  const tryAgainSpinner = document.getElementById("try-again-spinner");
 
-updateButton.addEventListener("click", function () {
-  this.classList.add("is-processing");
-  this.innerHTML = '<i class="p-icon--spinner u-animation--spin is-light"></i>';
-  this.disabled = true;
-  if (cancelButton) cancelButton.disabled = true;
+  if (window.pendingPurchaseId) {
+    paymentWarningElement.classList.remove("u-hide");
 
-  stripe
-    .createPaymentMethod({
-      type: "card",
-      card: card,
-    })
-    .then((result) => {
-      if (!result.paymentMethod) {
+    tryAgainButton.addEventListener("click", function () {
+      paymentErrorElement.classList.add("u-hide");
+      paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+        "";
+
+      tryAgainSpinner.classList.remove("u-hide");
+      this.disabled = true;
+
+      retryPayment(tryAgainSpinner);
+    });
+  }
+
+  editButton.addEventListener("click", () => {
+    previewSection.classList.add("u-hide");
+    editSection.classList.remove("u-hide");
+    paymentErrorElement.classList.add("u-hide");
+    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+      "";
+  });
+
+  updateButton.addEventListener("click", function () {
+    this.classList.add("is-processing");
+    this.innerHTML =
+      '<i class="p-icon--spinner u-animation--spin is-light"></i>';
+    this.disabled = true;
+    if (cancelButton) cancelButton.disabled = true;
+
+    stripe
+      .createPaymentMethod({
+        type: "card",
+        card: card,
+      })
+      .then((result) => {
+        if (!result.paymentMethod) {
+          handleError();
+          return;
+        }
+
+        handlePaymentMethod(result);
+      })
+      .catch(() => {
         handleError();
+      });
+  });
+
+  if (cancelButton)
+    cancelButton.addEventListener("click", () => {
+      previewSection.classList.remove("u-hide");
+      editSection.classList.add("u-hide");
+      paymentErrorElement.classList.add("u-hide");
+      paymentErrorElement.querySelector(".p-notification__message").innerHTML =
+        "";
+    });
+
+  const handleSuccess = (message) => {
+    paymentErrorElement.classList.add("u-hide");
+    paymentWarningElement.classList.add("u-hide");
+    paymentSuccessElement.classList.remove("u-hide");
+    paymentSuccessElement.querySelector(
+      ".p-notification__message"
+    ).innerHTML = `${message}. Reloading page...`;
+  };
+
+  const handleError = () => {
+    updateButton.classList.remove("is-processing");
+    updateButton.innerHTML = "Update";
+    updateButton.disabled = false;
+    if (cancelButton) cancelButton.disabled = false;
+  };
+
+  const handlePaymentMethodErrors = (message) => {
+    paymentErrorElement.querySelector(
+      ".p-notification__message"
+    ).innerHTML = `<strong>${message}</strong> Check the details and try again. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
+    paymentErrorElement.classList.remove("u-hide");
+  };
+
+  const handlePaymentMethod = (result) => {
+    setPaymentMethod(window.accountId, result.paymentMethod.id).then((data) => {
+      if (data.errors) {
+        handlePaymentMethodErrors("There was an error with your card.");
+        handleError();
+
         return;
       }
 
-      handlePaymentMethod(result);
-    })
-    .catch(() => {
-      handleError();
+      if (!window.pendingPurchaseId) {
+        handleSuccess("Card updated");
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
+
+        return;
+      }
+
+      retryPayment(updateButton);
     });
-});
+  };
 
-if (cancelButton)
-  cancelButton.addEventListener("click", () => {
-    previewSection.classList.remove("u-hide");
-    editSection.classList.add("u-hide");
-    paymentErrorElement.classList.add("u-hide");
-    paymentErrorElement.querySelector(".p-notification__message").innerHTML =
-      "";
-  });
-
-const handleSuccess = (message) => {
-  paymentErrorElement.classList.add("u-hide");
-  paymentWarningElement.classList.add("u-hide");
-  paymentSuccessElement.classList.remove("u-hide");
-  paymentSuccessElement.querySelector(
-    ".p-notification__message"
-  ).innerHTML = `${message}. Reloading page...`;
-};
-
-const handleError = () => {
-  updateButton.classList.remove("is-processing");
-  updateButton.innerHTML = "Update";
-  updateButton.disabled = false;
-  if (cancelButton) cancelButton.disabled = false;
-};
-
-const handlePaymentMethodErrors = (message) => {
-  paymentErrorElement.querySelector(
-    ".p-notification__message"
-  ).innerHTML = `<strong>${message}</strong> Check the details and try again. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
-  paymentErrorElement.classList.remove("u-hide");
-};
-
-const handlePaymentMethod = (result) => {
-  setPaymentMethod(window.accountId, result.paymentMethod.id).then((data) => {
-    if (data.errors) {
-      handlePaymentMethodErrors("There was an error with your card.");
-      handleError();
-
-      return;
+  const requiresAuthentication = (invoice) => {
+    if (invoice.pi_decline_code === "authentication_required") {
+      return true;
     }
 
-    if (!window.pendingPurchaseId) {
-      handleSuccess("Card updated");
-      setTimeout(function () {
-        location.reload();
-      }, 2000);
-
-      return;
+    if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
+      return true;
     }
 
-    retryPayment(updateButton);
-  });
-};
+    return false;
+  };
 
-const requiresAuthentication = (invoice) => {
-  if (invoice.pi_decline_code === "authentication_required") {
-    return true;
-  }
+  const postInvoice = (invoice, element) => {
+    postInvoiceID("purchase", window.pendingPurchaseId, invoice.id).then(
+      (data) => {
+        resetElement(element);
 
-  if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
-    return true;
-  }
+        if (data.errors) {
+          handlePaymentMethodErrors("There was an error with the payment.");
+        } else {
+          handleSuccess("Payment successful");
+          setTimeout(function () {
+            location.reload();
+          }, 2000);
+        }
+      }
+    );
+  };
 
-  return false;
-};
-
-const postInvoice = (invoice, element) => {
-  postInvoiceID("purchase", window.pendingPurchaseId, invoice.id).then(
-    (data) => {
+  const authenticate_3ds = (invoice, element) => {
+    stripe.confirmCardPayment(invoice.pi_secret).then(function (data) {
       resetElement(element);
 
-      if (data.errors) {
+      if (data.error) {
         handlePaymentMethodErrors("There was an error with the payment.");
       } else {
         handleSuccess("Payment successful");
@@ -195,57 +216,42 @@ const postInvoice = (invoice, element) => {
           location.reload();
         }, 2000);
       }
-    }
-  );
-};
+    });
+  };
 
-const authenticate_3ds = (invoice, element) => {
-  stripe.confirmCardPayment(invoice.pi_secret).then(function (data) {
-    resetElement(element);
+  const retryPayment = (element) => {
+    getPurchase(window.pendingPurchaseId).then((purchase) => {
+      let invoice;
 
-    if (data.error) {
+      if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
+        invoice = purchase.stripeInvoices[0];
+      }
+
+      if (!invoice) {
+        handlePaymentMethodErrors("There was an error with the payment.");
+        return;
+      }
+
+      if (invoice.pi_status === "requires_payment_method") {
+        postInvoice(invoice, element);
+        return;
+      }
+
+      if (requiresAuthentication(invoice)) {
+        authenticate_3ds(invoice, element);
+        return;
+      }
+
       handlePaymentMethodErrors("There was an error with the payment.");
-    } else {
-      handleSuccess("Payment successful");
-      setTimeout(function () {
-        location.reload();
-      }, 2000);
-    }
-  });
-};
+    });
+  };
 
-const retryPayment = (element) => {
-  getPurchase(window.pendingPurchaseId).then((purchase) => {
-    let invoice;
-
-    if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
-      invoice = purchase.stripeInvoices[0];
-    }
-
-    if (!invoice) {
-      handlePaymentMethodErrors("There was an error with the payment.");
+  const resetElement = (element) => {
+    if (element.tagName === "BUTTON") {
+      handleError();
       return;
     }
 
-    if (invoice.pi_status === "requires_payment_method") {
-      postInvoice(invoice, element);
-      return;
-    }
-
-    if (requiresAuthentication(invoice)) {
-      authenticate_3ds(invoice, element);
-      return;
-    }
-
-    handlePaymentMethodErrors("There was an error with the payment.");
-  });
-};
-
-const resetElement = (element) => {
-  if (element.tagName === "BUTTON") {
-    handleError();
-    return;
-  }
-
-  element.classList.add("u-hide");
-};
+    element.classList.add("u-hide");
+  };
+}

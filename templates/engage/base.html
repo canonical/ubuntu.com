@@ -118,7 +118,7 @@
 
 </section>
 
-{% if document["metadata"]["webinar_code"] != "" %}
+{% if document["metadata"]["webinar_code"] is defined %}
 {% if "channel_id" in document["metadata"] %}
   {% set channel_id = document["metadata"]["channel_id"] %}
 {% else %}

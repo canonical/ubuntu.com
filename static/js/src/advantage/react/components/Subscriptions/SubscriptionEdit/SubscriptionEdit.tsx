@@ -15,11 +15,15 @@ import { SelectedId } from "../Content/types";
 import { useResizeContract, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import { isBlenderSubscription } from "advantage/react/utils";
+import {
+  isBlenderSubscription,
+  currencyFormatter,
+} from "advantage/react/utils";
 import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
 import { useQueryClient } from "react-query";
 import { UserSubscription } from "advantage/api/types";
+import { UserSubscriptionPeriod } from "advantage/api/enum";
 
 type Props = {
   onClose: () => void;
@@ -72,6 +76,51 @@ const generateError = (error: Error | null) => {
     );
   }
   return null;
+};
+
+type ResizeSummaryProps = {
+  oldNumberOfMachines: number;
+  newNumberOfMachines: number;
+  isBlender: boolean;
+  unitName: string;
+  price: UserSubscription["price"];
+  period: UserSubscription["period"];
+};
+
+const ResizeSummary = ({
+  oldNumberOfMachines,
+  newNumberOfMachines,
+  isBlender,
+  unitName,
+  price,
+  period,
+}: ResizeSummaryProps) => {
+  const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
+  if (absoluteDelta === 0) {
+    return null;
+  }
+
+  const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
+  const isMonthly = period === UserSubscriptionPeriod.Monthly;
+  const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
+  return (
+    <div>
+      <p>
+        Your changes will {isDecreasing ? "remove" : "add"}{" "}
+        {isBlender ? "Blender" : "UA"} for {absoluteDelta} {unitName}
+        {absoluteDelta > 1 ? "s" : ""}.
+      </p>
+      <p>
+        Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
+        <b>
+          {isDecreasing ? "reduced" : "increased"} by{" "}
+          {currencyFormatter.format(absoluteDelta * unitPrice)}, to{" "}
+          {currencyFormatter.format(newNumberOfMachines * unitPrice)} per{" "}
+          {isMonthly ? "month" : "year"}.
+        </b>
+      </p>
+    </div>
+  );
 };
 
 const SubscriptionEdit = ({
@@ -175,7 +224,7 @@ const SubscriptionEdit = ({
         validateOnMount
         validationSchema={ResizeSchema}
       >
-        {({ dirty, handleSubmit, isValid, errors }) => {
+        {({ dirty, handleSubmit, isValid, errors, values }) => {
           return (
             <form className="p-subscription__edit" onSubmit={handleSubmit}>
               <div className="u-sv2">
@@ -209,6 +258,14 @@ const SubscriptionEdit = ({
                   name="size"
                   type="number"
                   wrapperClassName="u-sv3"
+                />
+                <ResizeSummary
+                  oldNumberOfMachines={subscription.number_of_machines}
+                  newNumberOfMachines={values.size}
+                  isBlender={isBlender}
+                  unitName={unitName}
+                  price={subscription.price}
+                  period={subscription.period}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">

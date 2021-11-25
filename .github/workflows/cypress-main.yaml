@@ -53,4 +53,12 @@ jobs:
           wait-on-timeout: 180
           browser: chrome
           config-file: tests/cypress/cypress.json
-          config: baseUrl=http://0.0.0.0:8001,formFolder=tests/cypress/forms
+          config: baseUrl=http://0.0.0.0:8001,integrationFolder=tests/cypress/forms
+
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design
+      
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=marketing-pub

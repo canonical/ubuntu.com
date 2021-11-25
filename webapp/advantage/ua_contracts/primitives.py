@@ -120,9 +120,11 @@ class Account:
         self,
         id: str,
         name: str,
+        role: str,
     ):
         self.id = id
         self.name = name
+        self.role = role
 
 
 class User:

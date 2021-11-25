@@ -139,6 +139,8 @@ managedapps:
       path: /openstack/managed
     - title: Kubernetes
       path: /kubernetes/managed
+    - title: Ceph
+      path: /ceph/managed
     - title: Contact us
       path: /managed/contact-us
       hidden: True
@@ -149,6 +151,8 @@ managedapps:
           path: /managed/apps/kafka
         - title: Cassandra
           path: /managed/apps/cassandra
+    - title: Observability
+      path: /observability/managed
 
 openstack:
   title: OpenStack
@@ -1243,6 +1247,9 @@ support:
     - title: Your subscriptions
       path: /advantage
       persist: True
+    - title: Account users
+      path: /advantage/users
+      persist: True
 
     - title: Community support
       path: /support/community-support
@@ -1558,6 +1565,8 @@ observability:
     - title: Thank you
       path: /observability/thank-you
       hidden: True
+    - title: Managed
+      path: /observability/managed
 
 security:
   title: Security

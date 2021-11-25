@@ -93,7 +93,6 @@ invoice_view = {
             ["", "canonical-ua", "canonical-cube", "blender"]
         )
     ),
-    "email": String(),
 }
 
 post_account_user_role = {

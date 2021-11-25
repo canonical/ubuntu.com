@@ -62,72 +62,73 @@
 
   <div class="row">
     <div class="col-10" style="overflow: auto;">
+      <h4 class="u-no-margin--bottom">Ubuntu Release</h4>
       <div class="u-hide--small" id="server-desktop-eol"></div>
       <table class="u-hide--medium u-hide--large">
         <thead>
           <tr>
             <td>&nbsp;</td>
             <th scope="col">Released</th>
+            <th scope="col">End of Standard Support</th>
             <th scope="col">End of Life</th>
-            <th scope="col">Extended security maintenance</th>
           </tr>
           <tbody>
             <tr>
-              <td><strong>Ubuntu 10.04 LTS</strong></td>
+              <td><strong>10.04 LTS (Lucid Lynx)</strong></td>
               <td>Apr 2010</td>
               <td>Apr 2015</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 12.04 LTS</strong></td>
+              <td><strong>12.04 LTS (Precise Pangolin)</strong></td>
               <td>Apr 2012</td>
               <td>Apr 2017</td>
               <td>Apr 2019</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 14.04 LTS</strong></td>
+              <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
               <td>Apr 2014</td>
               <td>Apr 2019</td>
               <td>Apr 2024</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 16.04 LTS</strong></td>
+              <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
               <td>Apr 2016</td>
               <td>Apr 2021</td>
               <td>Apr 2026</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 18.04 LTS</strong></td>
+              <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
               <td>Apr 2018</td>
               <td>Apr 2023</td>
               <td>Apr 2028</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 20.04 LTS</strong></td>
+              <td><strong>20.04 LTS (Focal Fossa)</strong></td>
               <td>Apr 2020</td>
               <td>Apr 2025</td>
               <td>Apr 2030</td>
             </tr>
             <tr>
-              <td>Ubuntu 20.10</td>
+              <td>20.10 (Groovy Gorilla)</td>
               <td>Oct 2020</td>
               <td>Jul 2021</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>Ubuntu 21.10</td>
+              <td>21.10 (Hirsute Hippo)</td>
               <td>Oct 2021</td>
               <td>Jul 2022</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>Ubuntu 21.04</td>
+              <td>21.04 (Impish Indri)</td>
               <td>Apr 2021</td>
               <td>Jan 2022</td>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td><strong>Ubuntu 22.04 LTS</strong></td>
+              <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
               <td>Apr 2022</td>
               <td>Apr 2027</td>
               <td>Apr 2032</td>
@@ -195,39 +196,23 @@
       </div>
     </div>
 
-    <div class="u-fixed-width">
+    <div class="u-fixed-width u-sv3">
       <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year maintenance period, during which maintenance updates are publicly available without an Ubuntu Advantage Subscription, and five years of <a href="/security/esm">Extended Security Maintenance (ESM)</a>. The full lifecycle is available with an <a href="/advantage">Ubuntu Advantage subscription</a> or a <a href="/advantage">free personal subscription</a>.</p>
       <p>Customers of Canonical often ask for an extended security maintenance commitment beyond the Ubuntu Base Packages such as the 'universe' software packages. You can <a href="/support/contact-us">contact us for more information</a>.</p>
     </div>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <table style="margin-top: 1rem; width: auto;">
-          <thead>
-            <tr>
-              <th>LTS security maintenance</th>
-              <th scope="col">Initial period (five years)</th>
-              <th scope="col">Extended period (five years)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>main</strong></td>
-              <td>public</td>
-              <td><a href="/advantage">Ubuntu Advantage</a></td>
-            </tr>
-            <tr>
-              <td><strong>universe</strong></td>
-              <td><a href="/contact-us/form/">Contact us</a></td>
-              <td><a href="/contact-us/form/">Contact us</a></td>
-            </tr>
-            <tr>
-              <td><strong>kernel livepatching</strong></td>
-              <td><a href="/advantage">Ubuntu Advantage</a></td>
-              <td><a href="/advantage">Ubuntu Advantage</a></td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="row u-sv3">
+      <div class="u-fixed-width u-hide--small">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/55599a4c-Ubuntu+LTS+Base+OS_3.svg",
+          alt="",
+          width="656",
+          height="331",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
     </div>
 
@@ -405,13 +390,16 @@
           OpenStack release cycle
         </h2>
         <p>
-          <a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu, however, since Canonical recommends using Ubuntu LTS in production environments, new versions of OpenStack are also available on Ubuntu LTS version through the <a class="p-link--external" href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a>.
+          <a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.
         </p>
         <p>
-          OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) are supported by Canonical for 5 years. In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months.
+          However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provdide access to non-default versions of OpenStack on Ubuntu LTS.
         </p>
         <p>
-          Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack TLS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms</a> project.
+          As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard support and Extended Security Maintenance (ESM). In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only.
+        </p>
+        <p>
+          Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack LTS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms </a>project. 
         </p>
         <p>
            The OpenStack support lifecycle on Ubuntu can be represented this way:
@@ -435,7 +423,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>OpenStack Y LTS</td>
+              <td>OpenStack Yoga LTS</td>
               <td>&nbsp;</td>
               <td>Apr 2022</td>
               <td>Apr 2027</td>
