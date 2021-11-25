@@ -4,6 +4,8 @@
 
 {% block meta_description %}Use Ubuntu on Xilinx for the familiar developer experience and an accelerated path to production.{% endblock meta_description %}
 
+{% block meta_image %}https://assets.ubuntu.com/v1/2b571c08-xilinx_metaimage.jpeg{% endblock meta_image %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1DZxf-ZbJtyS69XQBslJry3Ien1FSHYLB2Qt78iRkhOs/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -14,13 +16,11 @@
       <h1>Install Ubuntu on Xilinx</h1>
       <p>Run Ubuntu on your Xilinx Zynq UltraScale+ MPSoC-based evaluation boards and Kria production SOMs. </p>
       <p>Pick the OS  image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
-      <p>If you have any questions about the supported platforms or would like information about our certification program, please contact us.</p>
-      <a href="/download/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
     </div>
     <div class="col-6 u-align--center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg",
-        alt="",
+        alt="Xilinx Logo",
         width="326",
         height="90",
         hi_def=True,
@@ -32,77 +32,298 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h2>Download Ubuntu Desktop</h2>
-      <h3 class="p-heading--4">Ubuntu Desktop {{ releases.lts.full_version }} LTS</h3>
-      <p class="u-sv1">The version of Ubuntu with up to 10 years of long term support, until April 2030.</p>
-      <p>
-        <a class="p-button--positive" href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85.img.xz">Download 64-bit</a>
-      </p>
-      <p>Works on:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Xilinx ZCU102</li>
-        <li class="p-list__item is-ticked">Xilinx ZCU104</li>
-        <li class="p-list__item is-ticked">Xilinx ZCU106</li>
-        <li class="p-list__item is-ticked">Xilinx Kria KV260 Vision AI Starter Kit&nbsp;&nbsp;<div class="p-label">Coming soon</div></li>
-      </ul>
+  <div class="p-tabs">
+    <div class="p-tabs__list" role="tablist" aria-label="Install xilinx">
+      <div class="p-tabs__item">
+        <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="zynq-ultrascale-tab" id="zynq-ultrascale">Xilinx Zynq UltraScale</button>
+      </div>
+      <div class="p-tabs__item">
+        <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="kira-kv260-vision-ai-tab" id="kira-kv260-vision-ai" tabindex="-1">Xilinx Kria KV260 Vision AI Starter Kit</button>
+      </div>
     </div>
-    <div class="col-6 u-align--center u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/24e23fbe-zcu106-evaluation-board.png",
-        alt="",
-        width="400",
-        height="273",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
 
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h3 class="p-heading--4">First time installing Ubuntu on Xilinx?</h3>
-      <p>Please see the <a class="p-link--external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide</a> for more information.</p>
-      <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
-      <p>Ubuntu Developers targeting Xilinx Zynq UltraScale+ MPSoC devices may also want to download the following files:</p>
+    <div tabindex="0" role="tabpanel" id="zynq-ultrascale-tab" aria-labelledby="zynq-ultrascale">
+      <section class="p-strip--light">
+        <div class="row u-vertically-center">
+          <div class="col-6">
+            <h2>Download Ubuntu Desktop</h2>
+            <h3 class="p-heading--4">Ubuntu Desktop {{ releases.lts.full_version }} LTS</h3>
+            <p class="u-sv1">The version of Ubuntu with up to 10 years of long term support, until April 2030.</p>
+            <p>
+              <a class="p-button--positive" href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85.img.xz">Download 64-bit</a>
+            </p>
+            <p>Works on:</p>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Xilinx ZCU102</li>
+              <li class="p-list__item is-ticked">Xilinx ZCU104</li>
+              <li class="p-list__item is-ticked">Xilinx ZCU106</li>
+            </ul>
+          </div>
+          <div class="col-6 u-align--center u-hide--small">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/24e23fbe-zcu106-evaluation-board.png",
+              alt="Xilinx ZCU circuit board",
+              width="400",
+              height="273",
+              hi_def=True,
+              loading="auto"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </section>
+
+      <section class="p-strip">
+        <div class="u-fixed-width u-vertically-center">
+          <h3 class="p-heading--4">First time installing Ubuntu on Xilinx?</h3>
+          <p>Please see the <a class="p-link--external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide</a> for more information.</p>
+          <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
+          <p>Ubuntu Developers targeting Xilinx Zynq UltraScale+ MPSoC devices may also want to download the following files:</p>
+        </div>
+        <div class="u-fixed-width">
+          <table aria-label="Xilinx Ubuntu Software Development Kit table">
+            <thead>
+              <tr>
+                <th>Image name</th>
+                <th colspan="2">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85-sysroot.tar.xz">iot-zcu10x-classic-desktop-2004-x07-20210728-85-sysroot.tar.xz</a></th>
+                <td colspan="2">Sysroot for cross-compilation</td>
+              </tr>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/rootfs.ext4.xz">roofts.ext4.xz</a></th>
+                <td colspan="2">EXT4 formatted partition containing entire raw rootfs</td>
+              </tr>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/rootfs.tar.gz">rootfs.tar.gz</a></th>
+                <td colspan="2">Raw Root filesystem</td>
+              </tr>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/system-boot.tar.gz">system-boot.tar.gz</a></th>
+                <td colspan="2">FAT Partition Contents</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="u-fixed-width">
+          <p>If you have any questions about the platform or would like information about our certification program, please contact us.</p>
+          <p><a href="/download/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
+        </div>
+      </section>
     </div>
-  </div>
-  <div class="u-fixed-width">
-    <table aria-label="Xilinx Ubuntu Software Development Kit table">
-      <thead>
-        <tr>
-          <th>Image name</th>
-          <th colspan="2">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th><a href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85-sysroot.tar.xz">iot-zcu10x-classic-desktop-2004-x07-20210728-85-sysroot.tar.xz</a></th>
-          <td colspan="2">Sysroot for cross-compilation</td>
-        </tr>
-        <tr>
-          <th><a href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85-roofts.ext4.xz">roofts.ext4.xz</a></th>
-          <td colspan="2">EXT4 formatted partition containing entire raw rootfs</td>
-        </tr>
-        <tr>
-          <th><a href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85-rootfs.tar.gz">rootfs.tar.gz</a></th>
-          <td colspan="2">Raw Root filesystem</td>
-        </tr>
-        <tr>
-          <th><a href="https://people.canonical.com/~platform/images/xilinx/iot-zcu10x-classic-desktop-2004-x07-20210728-85-system-boot.tar.gz">system-boot.tar.gz</a></th>
-          <td colspan="2">FAT Partition Contents</td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div tabindex="0" role="tabpanel" id="kira-kv260-vision-ai-tab" aria-labelledby="kira-kv260-vision-ai" hidden="true">
+      <section class="p-strip--light">
+        <div class="row u-vertically-center">
+          <div class="col-6">
+            <h2>Download Ubuntu Desktop</h2>
+            <h3 class="p-heading--4">Ubuntu Desktop {{ releases.lts.full_version }} LTS</h3>
+            <p class="u-sv1">The version of Ubuntu with up to 10 years of long term support, until April 2030.</p>
+            <p>
+              <a class="p-button--positive" href="https://people.canonical.com/~platform/images/xilinx/kria/iot-kria-classic-desktop-2004-x03-20211110-98.img.xz">Download 64-bit</a>
+            </p>
+            <p>Works on:</p>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Xilinx Kria KV260 Vision AI Starter Kit </li>
+            </ul>
+          </div>
+          <div class="col-6 u-align--center u-hide--small">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/4ede62b5-Xilinx-board.png",
+              alt="Xilinx Kria KV260 Vision AI circuit board",
+              width="380",
+              height="335",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </section>
+
+      <section class="p-strip">
+        <div class="u-fixed-width u-vertically-center">
+          <h3 class="p-heading--4">First time installing Ubuntu on Xilinx?</h3>
+          <p>Please see the <a class="p-link--external" href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide</a> for more information.</p>
+          <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
+          <p>Ubuntu Developers targeting Kria KV260 platform may also want to download the following files:</p>
+        </div>
+        <div class="u-fixed-width">
+          <table aria-label="Xilinx Ubuntu Software Development Kit table">
+            <thead>
+              <tr>
+                <th>Image name</th>
+                <th colspan="2">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/kria/iot-kria-classic-desktop-2004-x03-20211110-98-sysroot.tar.xz">iot-kria-classic-desktop-2004-x03-20211110-98-sysroot.tar.xz</a></th>
+                <td colspan="2">Sysroot for cross-compilation</td>
+              </tr>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/kria/rootfs.ext4.xz">roofts.ext4.xz</a></th>
+                <td colspan="2">EXT4 formatted partition containing entire raw rootfs</td>
+              </tr>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/kria/rootfs.tar.gz">rootfs.tar.gz</a></th>
+                <td colspan="2">Raw Root filesystem</td>
+              </tr>
+              <tr>
+                <th><a href="https://people.canonical.com/~platform/images/xilinx/kria/system-boot.tar.gz">system-boot.tar.gz</a></th>
+                <td colspan="2">FAT Partition Contents</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="u-fixed-width">
+          <p>If you have any questions about the platform or would like information about our certification program, please contact us.</p>
+          <p><a href="/download/contact-us" class="js-invoke-modal">Get in touch&nbsp;&rsaquo;</a></p>
+        </div>
+      </section>    
+    </div>
   </div>
 </section>
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="4126" data-lp-id="" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
+
+<script type="text/javascript">
+  (function () {
+
+    var keys = {
+      left: 'ArrowLeft',
+      right: 'ArrowRight',
+    };
+
+    var direction = {
+      ArrowLeft: -1,
+      ArrowRight: 1,
+    };
+
+    // IE11 doesn't support event.code, but event.keyCode is
+    // deprecated in most modern browsers, so we should support
+    // both for the time being.
+    var IEKeys = {
+      left: 37,
+      right: 39,
+    };
+
+    var IEDirection = {
+      37: direction['ArrowLeft'],
+      39: direction['ArrowRight'],
+    };
+
+    /**
+      Determine which tab to show when an arrow key is pressed
+      @param {KeyboardEvent} event
+      @param {Array} tabs an array of tabs within a container
+    */
+    function switchTabOnArrowPress(event, tabs) {
+      var compatibleKeys = IEKeys;
+      var compatibleDirection = IEDirection;
+      var pressed = event.keyCode;
+
+      if (event.code) {
+        compatibleKeys = keys;
+        compatibleDirection = direction;
+        pressed = event.code;
+      }
+
+      if (compatibleDirection[pressed]) {
+        var target = event.target;
+        if (target.index !== undefined) {
+          if (tabs[target.index + compatibleDirection[pressed]]) {
+            tabs[target.index + compatibleDirection[pressed]].focus();
+          } else if (pressed === compatibleKeys.left) {
+            tabs[tabs.length - 1].focus();
+          } else if (pressed === compatibleKeys.right) {
+            tabs[0].focus();
+          }
+        }
+      }
+    }
+
+    /**
+      Attaches a number of events that each trigger
+      the reveal of the chosen tab content
+      @param {Array} tabs an array of tabs within a container
+    */
+    function attachEvents(tabs) {
+      tabs.forEach(function (tab, index) {
+
+        tab.addEventListener('keyup', function (e) {
+          var compatibleKeys = IEKeys;
+          var key = e.keyCode;
+
+          if (e.code) {
+            compatibleKeys = keys;
+            key = e.code;
+          }
+
+          if (key === compatibleKeys.left || key === compatibleKeys.right) {
+            switchTabOnArrowPress(e, tabs);
+          }
+        });
+
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+          setActiveTab(tab, tabs);
+        });
+
+        tab.addEventListener('focus', function () {
+          setActiveTab(tab, tabs);
+        });
+
+        tab.index = index;
+      });
+    }
+
+    /**
+      Cycles through an array of tab elements and ensures 
+      only the target tab and its content are selected
+      @param {HTMLElement} tab the tab whose content will be shown
+      @param {Array} tabs an array of tabs within a container
+    */
+    function setActiveTab(tab, tabs) {
+      tabs.forEach(function (tabElement) {
+        var tabContent = document.querySelectorAll("#" + tabElement.getAttribute('aria-controls'));
+        tabContent.forEach(function (content) {
+          if (tabElement === tab) {
+            tabElement.setAttribute('aria-selected', true);
+            content.removeAttribute('hidden');
+          } else {
+            tabElement.setAttribute('aria-selected', false);
+            content.setAttribute('hidden', true);
+          }
+        })
+      });
+    }
+
+    /**
+      Attaches events to tab links within a given parent element,
+      and sets the active tab if the current hash matches the id
+      of an element controlled by a tab link
+      @param {String} selector class name of the element 
+      containing the tabs we want to attach events to
+    */
+    function initTabs(selector) {
+      var tabContainers = [].slice.call(document.querySelectorAll(selector));
+
+      tabContainers.forEach(function (tabContainer) {
+        var tabs = [].slice.call(tabContainer.querySelectorAll('[aria-controls]'));
+        attachEvents(tabs);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      initTabs('[role="tablist"]');
+    });
+  })();
+</script>
 
 {% endblock content %}
