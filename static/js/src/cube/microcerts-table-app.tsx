@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import MicrocertificationsTable from "./components/MicrocertificationsTable";
 import useMicrocertsData from "./hooks/useMicrocertsData";
@@ -17,7 +16,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const MicrocertsApApp = () => {
+const App = () => {
   const { modules, studyLabs, isLoading, isError } = useMicrocertsData();
   const defaultErrorMessage = "An error occurred while loading the microcerts";
 
@@ -36,15 +35,12 @@ const MicrocertsApApp = () => {
   );
 };
 
-const App = () => {
+const MicrocertsTableApp = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <MicrocertsApApp />
+      <App />
     </QueryClientProvider>
   );
 };
 
-ReactDOM.render(
-  <App />,
-  document.getElementById("micro-certification-table-app")
-);
+export default MicrocertsTableApp;

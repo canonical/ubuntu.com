@@ -7,111 +7,7 @@
 
 {% block content %}
 
-<section class="p-strip--square-suru has-cube is-dark is-slanted--bottom-left js-cube-hero">
-  <div class="row u-equal-height u-vertically-center">
-    <div class="col-6 js-hero-content">
-      {% if certified_badge %}
-        <h1>CUBE 2020 complete</h1>
-        <p class="p-heading--4">You have completed all {{ modules|length }} microcerts, proving your Ubuntu expertise. You are now a Certified Ubuntu Engineer.</p>
-      {% elif has_enrollments %}
-        <h1>Your road to CUBE</h1>
-        {% if passed_courses > 0 %}
-        <p class="p-heading--4">You have completed {{ passed_courses }} microcerts.</br>Complete {{ (modules|length - passed_courses) }} more microcerts to attain CUBE.</p>
-        {% else %}
-        <p class="p-heading--4">Complete {{ modules|length }} microcerts to attain CUBE.</p>
-        {% endif %}
-      {% else %}
-        <h1>The road to CUBE</h1>
-        <p class="p-heading--4">The path to certification is clear and convenient. Complete {{ modules|length }} microcerts to attain CUBE.</p>
-        <a href="/cube/contact-us" class="p-button--positive js-invoke-modal">Apply for access</a></br>
-      {% endif %}
-    </div>
-    <div class="col-6 p-cube-progression u-hide--medium u-hide--small">
-      <div class="p-cube-progression is-architecture {% if modules[0].status != 'passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-bash {% if modules[4].status != 'passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-devices {% if modules[3].status != 'passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-packages {% if modules[1].status != 'passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-services {% if modules[6].status != 'passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-admin {% if modules[5].status != 'passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-commands {% if modules[2].status != 'passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-security {% if modules[8].status != 'passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-networking {% if modules[7].status != 'passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-kernel {% if modules[9].status != 'passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-microk8s {% if modules[12].status != 'passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-virtualisation {% if modules[11].status != 'passed' %}is-faded--left{% endif %}"></div>
-      <div class="p-cube-progression is-storage {% if modules[10].status != 'passed' %}is-faded{% endif %}"></div>
-      <div class="p-cube-progression is-juju {% if modules[14].status != 'passed' %}is-faded--right{% endif %}"></div>
-      <div class="p-cube-progression is-maas {% if modules[13].status != 'passed' %}is-faded--left{% endif %}"></div>
-    </div>
-  </div>
-</section>
-
-{% if certified_badge %}
-
-<section class="p-strip--light is-slanted--top-right">
-  <div class="row">
-    <div class="col-3 col-start-large-2 u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/17541ecf-CUBE+certified+-+132x190_3.svg",
-        alt="CUBE certified",
-        width="175",
-        height="252",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-7">
-      <h2>Badge of honor</h2>
-      <p style="margin-bottom:0.5rem;">Share your certification with your network</p>
-      <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left u-no-padding--top">
-        <li class="p-inline-list__item">
-          <a title="Share on Twitter" href="https://twitter.com/share?text=I am officially a Certified Ubuntu Engineer. My CUBE 2020 from @Canonical means that I’m a proven @Ubuntu professional. Learn more about CUBE 2020 at https://www.ubuntu.com/cube&amp;url={{ certified_badge.image }}&amp;hashtags=CUBE2020">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/6d51a38d-Twitter.png",
-            alt="",
-            width="61",
-            height="20",
-            hi_def=True,
-            loading="auto"
-            ) | safe
-          }}
-          </a>
-        </li>
-        <li class="p-inline-list__item">
-          <a title="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?url={{ certified_badge.image }}&title=CUBE 2020">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/72040dde-LindedIn.png",
-            alt="",
-            width="60",
-            height="20",
-            hi_def=True,
-            loading="auto"
-            ) | safe
-          }}
-        </a>
-        </li>
-      </ul>
-      <p>You can <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=CUBE 2020&organizationName=Canonical&certUrl={{ certified_badge.image }}">add this badge</a> to the Certification section of your LinkedIn profile.</p>
-      <p class="u-no-padding--top"><small>{{ certified_badge.image }}</small></p>
-    </div>
-  </div>
-</section>
-
-{% elif has_enrollments %}
-
-<section class="p-strip--light is-slanted--top-right is-shallow">
-  <div class="row">
-    <div class="col-5" style="margin-top: 3rem;">
-      <h2>Refresh your knowledge</h2>
-      <p><strong>Be prepared for every microcert</strong></p>
-      <p class="u-sv2">Check your baseline understanding of Ubuntu fundamentals and preview the exam experience in a practice environment.</p>
-      <a href="{{ study_url }}" class="p-button--positive">Prepare</a>
-    </div>
-  </div>
-</section>
-
-{% endif %}
+<div id="cube-header-app"></div>
 
 {% if certified_badge %}
 
@@ -169,7 +65,7 @@
 
 {% else %}
 
-<div id="micro-certification-table-app"></div>
+<div id="microcerts-table-app"></div>
 {% endif %}
 
 {% if has_enrollments %}
@@ -211,44 +107,6 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/cube-beta" data-form-id="3801" data-lp-id="7140" data-return-url="https://ubuntu.com/cube/thank-you" data-lp-url="https://pages.ubuntu.com/Contact_Us_Ubuntu_CUBEbetatest_Cube-contact-us-landing-page.html">
 </div>
 
-<script >
-const myObserver = new ResizeObserver((entries) => {
-  entries.forEach((entry) => {
-    const width = Math.floor(entry.contentRect.width);
-    if (width < 1035) {
-      entry.target.classList.remove("is-shallow");
-      document.querySelector(".js-hero-content").style.marginTop = "2rem";
-    } else {
-      entry.target.classList.add("is-shallow");
-      document.querySelector(".js-hero-content").style.marginTop = "-2rem";
-    }
-  });
-});
-
-const strip = document.querySelector(".js-cube-hero");
-myObserver.observe(strip);
-
-
-function copyBadgeUrl(badgeUrl) {
-  const el = document.createElement('textarea');
-  el.value = badgeUrl;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-}
-
-const copyToClipboardLinks = document.querySelectorAll(".copy-to-clipboard");
-const linksArr = Array.from(copyToClipboardLinks);
-linksArr.forEach(link => {
-  const badgeUrl = link.dataset.badge;
-  link.addEventListener("click", () => copyBadgeUrl(badgeUrl));
-});
-</script>
-
-<script src="/static/js/dist/cubeMicrocertifications.js" type="module"></script>
+<script src="/static/js/dist/cubeMicrocerts.js" type="module"></script>
 
 {% endblock content %}

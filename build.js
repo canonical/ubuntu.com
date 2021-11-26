@@ -18,7 +18,7 @@ let entries = {
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
-  cubeMicrocertifications: "./static/js/src/cube/app.tsx",
+  cubeMicrocerts: "./static/js/src/cube/index.tsx",
   cubeStudy: "./static/js/src/cube/prepare-button-app.tsx",
   openstackChart: "./static/js/src/openstack-chart.js",
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
