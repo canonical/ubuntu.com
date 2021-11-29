@@ -54,12 +54,27 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     &__banner {
-      background-color: $color-brand;
-      padding-left: 1rem;
-
-      @media (max-width: $breakpoint-navigation-threshold - 1) {
-        padding-left: 1.5rem;
+      @media (min-width: $breakpoint-navigation-threshold) {
+        padding-left: 0;
       }
+    }
+
+    &__tag {
+      background-color: $color-brand;
+      bottom: 1rem;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 1.5rem;
+    }
+
+    &__tag-icon {
+      bottom: 0.2rem;
+      left: 0;
+      margin: auto;
+      max-width: calc(100% - 0.4rem);
+      position: absolute;
+      right: 0;
     }
 
     &::after {
@@ -231,8 +246,16 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     &__logo {
-      background: $color-brand;
-      height: 3.5rem;
+      position: relative;
+      padding-left: 2rem;
+
+      .p-navigation__item,
+      .p-navigation__item:hover,
+      .p-navigation__item:active,
+      .p-navigation__item:visited {
+        color: #fff;
+        text-decoration: none;
+      }
     }
 
     &__search {

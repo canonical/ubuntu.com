@@ -1,0 +1,235 @@
+{% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
+
+<header id="navigation" class="p-navigation">
+  {% block header_banner %}
+  <div class="p-navigation__row">
+    <div class="p-navigation__banner">
+      <div class="p-navigation__logo">
+        <span class="p-navigation__tag">
+          <svg class="p-navigation__tag-icon" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 19"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.638 3.367a2.54 2.54 0 1 1-5.08 0 2.54 2.54 0 0 1 5.08 0ZM6.079 8.92A2.54 2.54 0 1 1 1 8.92a2.54 2.54 0 0 1 5.08 0Zm3.954 6.484a5.15 5.15 0 0 1-.744-.112 6.028 6.028 0 0 1-4.177-3.265 3.432 3.432 0 0 1-2.298.297l-.186-.055a8.456 8.456 0 0 0 6.158 5.349 8.13 8.13 0 0 0 2.159.176 3.47 3.47 0 0 1-.912-2.39Zm6.028.055a2.54 2.54 0 1 1-5.08 0 2.54 2.54 0 0 1 5.08 0Zm1.367-10.995a3.526 3.526 0 0 1-1.59 1.944c.721 1.286.95 2.79.642 4.233a6.297 6.297 0 0 1-.847 2.037 3.526 3.526 0 0 1 1.34 2.195 8.465 8.465 0 0 0 .456-10.41ZM11.521.985a3.469 3.469 0 0 0-.93 2.289A6.056 6.056 0 0 0 5.502 6a3.349 3.349 0 0 0-1.237-.53 3.488 3.488 0 0 0-1.2 0A8.456 8.456 0 0 1 11.521.984Z" fill="#fff"/><path d="m9.289 15.293.037-.166h-.002l-.035.166Zm.744.112.17.002.002-.16-.16-.012-.012.17Zm-3.211-1.26.105-.135-.105.134Zm-1.71-2.117.153-.075-.076-.156-.155.08.078.15Zm-2.298.297-.049.164.013.002.036-.166Zm-.186-.055.049-.163-.326-.098.117.32.16-.06Zm2.392 3.466.111-.129-.111.129Zm3.766 1.883.037-.166-.037.166Zm2.159.176.008.17.36-.018-.243-.267-.125.115ZM15.838 6.41l-.085-.148-.146.084.083.147.148-.083Zm1.59-1.944.139-.099-.194-.272-.106.317.162.054Zm-.948 6.177.166.036-.166-.036Zm-.847 2.037-.143-.092-.085.132.125.095.103-.135Zm1.34 2.195-.168.03.063.355.234-.274-.13-.11Zm2.019-5.126.17.007-.17-.007Zm-8.327-7.125-.166-.036.166.036Zm.856-1.638.125.116.23-.246-.335-.038-.02.168Zm-.93 2.289v.17h.166l.004-.166-.17-.004Zm-2.89.717.08.15-.08-.15ZM5.502 6l-.097.14.144.099.095-.146L5.502 6Zm-1.237-.53.034-.167-.005-.001-.029.167Zm-1.2 0-.15-.08-.16.306.34-.06-.03-.167Zm11.033.607a2.71 2.71 0 0 0 2.71-2.71h-.34a2.37 2.37 0 0 1-2.37 2.37v.34Zm-2.71-2.71a2.71 2.71 0 0 0 2.71 2.71v-.34a2.37 2.37 0 0 1-2.37-2.37h-.34Zm2.71-2.71a2.71 2.71 0 0 0-2.71 2.71h.34a2.37 2.37 0 0 1 2.37-2.37v-.34Zm2.71 2.71a2.71 2.71 0 0 0-2.71-2.71v.34a2.37 2.37 0 0 1 2.37 2.37h.34ZM3.54 11.63a2.71 2.71 0 0 0 2.71-2.71h-.34a2.37 2.37 0 0 1-2.37 2.37v.34ZM.83 8.92a2.71 2.71 0 0 0 2.71 2.71v-.34a2.37 2.37 0 0 1-2.37-2.37H.83Zm2.71-2.709a2.71 2.71 0 0 0-2.71 2.71h.34a2.37 2.37 0 0 1 2.37-2.37v-.34Zm2.71 2.71a2.71 2.71 0 0 0-2.71-2.71v.34a2.37 2.37 0 0 1 2.37 2.37h.34Zm3.001 6.538c.253.057.51.096.77.115l.025-.339a4.965 4.965 0 0 1-.72-.108l-.075.332Zm-2.534-1.18a6.198 6.198 0 0 0 2.537 1.18l.07-.332a5.858 5.858 0 0 1-2.397-1.117l-.21.268ZM4.96 12.101a6.198 6.198 0 0 0 1.758 2.176l.21-.268a5.859 5.859 0 0 1-1.662-2.056l-.306.148Zm-2.181.39a3.603 3.603 0 0 0 2.411-.313l-.155-.303a3.262 3.262 0 0 1-2.184.283l-.072.332Zm-.199-.06.186.056.098-.325-.186-.056-.098.325Zm2.552 3.175a8.286 8.286 0 0 1-2.343-3.396l-.32.117a8.626 8.626 0 0 0 2.44 3.536l.223-.257Zm3.691 1.845a8.285 8.285 0 0 1-3.691-1.845l-.223.257a8.625 8.625 0 0 0 3.843 1.92l.071-.332Zm2.114.174a7.962 7.962 0 0 1-2.113-.173l-.073.332a8.304 8.304 0 0 0 2.203.18l-.017-.34Zm-1.073-2.224a3.64 3.64 0 0 0 .956 2.508l.25-.23a3.3 3.3 0 0 1-.866-2.273l-.34-.005Zm3.658 2.768a2.71 2.71 0 0 0 2.71-2.71h-.34a2.37 2.37 0 0 1-2.37 2.37v.34Zm-2.71-2.71a2.71 2.71 0 0 0 2.71 2.71v-.34a2.37 2.37 0 0 1-2.37-2.37h-.34Zm2.71-2.71a2.71 2.71 0 0 0-2.71 2.71h.34a2.37 2.37 0 0 1 2.37-2.37v-.34Zm2.71 2.71a2.71 2.71 0 0 0-2.71-2.71v.34a2.37 2.37 0 0 1 2.37 2.37h.34Zm-.309-8.904a3.696 3.696 0 0 0 1.668-2.038l-.323-.107c-.26.782-.8 1.44-1.514 1.85l.17.295Zm.724 4.121a6.235 6.235 0 0 0-.66-4.351l-.296.166a5.896 5.896 0 0 1 .623 4.114l.333.071Zm-.87 2.094c.41-.641.705-1.35.87-2.093l-.332-.073a6.13 6.13 0 0 1-.824 1.982l.286.184Zm1.364 2.074a3.696 3.696 0 0 0-1.404-2.302l-.206.271a3.356 3.356 0 0 1 1.275 2.09l.335-.06Zm1.682-5.104a8.296 8.296 0 0 1-1.979 5.023l.259.22a8.635 8.635 0 0 0 2.06-5.229l-.34-.014ZM17.29 4.563a8.296 8.296 0 0 1 1.532 5.178l.34.014a8.635 8.635 0 0 0-1.595-5.389l-.277.197Zm-6.458-1.905a3.3 3.3 0 0 1 .814-1.557L11.397.87a3.64 3.64 0 0 0-.898 1.718l.333.071Zm-.071.62c.005-.209.028-.416.07-.62l-.332-.07a3.718 3.718 0 0 0-.078.682l.34.008Zm-2.98.863a5.886 5.886 0 0 1 2.81-.697v-.34a6.226 6.226 0 0 0-2.97.738l.16.3ZM5.644 6.093a5.886 5.886 0 0 1 2.137-1.952l-.16-.3a6.226 6.226 0 0 0-2.26 2.065l.283.187Zm-1.413-.457a3.18 3.18 0 0 1 1.174.503L5.6 5.86a3.519 3.519 0 0 0-1.3-.557l-.068.333Zm-1.137 0a3.319 3.319 0 0 1 1.142 0l.058-.334a3.658 3.658 0 0 0-1.258 0l.058.335Zm3.424-3.87A8.626 8.626 0 0 0 2.915 5.39l.3.157a8.286 8.286 0 0 1 3.462-3.482l-.159-.3Zm5.023-.95a8.626 8.626 0 0 0-5.023.95l.16.3a8.286 8.286 0 0 1 4.824-.912l.039-.337Z" fill="#E85525"/></svg>
+        </span>
+        <a class="p-navigation__item" href="/" style="align-items: center; font-size: 1.3125rem;">Canonical Ubuntu</a>
+
+        {% if get_test_backend %}
+          <div class="u-hide u-show--small" style="padding: 15px 0 15px 10px">
+            <div class="p-label--new">Testing</div>
+          </div>
+        {% endif %}
+        {% if breadcrumbs %}
+        <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
+          <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}{% if get_test_backend %}?test_backend=true{% endif %}">
+            {{ breadcrumbs.section.title }}
+          </a>
+        </h5>
+        {% endif %}
+
+        {% if section_title and section_path %}
+        <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
+          <a class="p-navigation--secondary__banner" href="{{ section_path }}">
+            {{ section_title }}
+          </a>
+        </h5>
+        {% endif %}
+      </div>
+      <div class="u-hide u-show--small js-account--small"></div>
+    </div>
+    <nav class="p-navigation__nav">
+      {% if get_test_backend %}
+        <div class="u-hide--small" style="margin-right: -75px; padding: 15px 0 15px 10px">
+          <div class="p-label--new">Testing</div>
+        </div>
+      {% endif %}
+      <ul class="p-navigation__items" role="menu">
+        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
+          <a class="p-navigation__link-anchor" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
+        </li>
+        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="developer" onmouseover="fetchDropdown('/templates/navigation-developer-h', 'developer-content'); this.onmouseover = null;">
+          <a class="p-navigation__link-anchor" href="#developer-content" onfocus="fetchDropdown('/templates/navigation-developer-h', 'developer-content');">Developer</a>
+        </li>
+        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
+          <a class="p-navigation__link-anchor" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
+        </li>
+        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
+          <a class="p-navigation__link-anchor" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
+        </li>
+      </ul>
+      <noscript>
+        <ul class="p-navigation__items" role="menu">
+          {% include "templates/header_noscript.html" %}
+        </ul>
+      </noscript>
+      <ul class="p-navigation__items u-hide--small">
+        <li class="p-navigation__item" id="link-4">
+          <a href="/search" class="js-search-button p-navigation__link-anchor" style="padding-right: 1rem;">
+            <span class="u-hide u-show--large">Search</span> <i class="p-icon--search is-light"></i>
+          </a>
+        </li>
+        <li class="p-navigation__user js-account"></li>
+      </ul>
+      <div class="p-navigation__search u-show--small u-hide" style="z-index: 39;">
+        <form action="/search" class="p-search-box" id="ubuntu-global-search-form">
+          <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
+          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+          <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
+        </form>
+      </div>
+    </nav>
+  </div>
+  {% endblock header_banner %}
+</header>
+<div class="dropdown-window-overlay fade-animation"></div>
+<div class="dropdown-window slide-animation">
+  <div class="u-hide" id="enterprise-content"></div>
+  <div class="u-hide" id="developer-content">  </div>
+  <div class="u-hide" id="community-content"></div>
+  <div class="u-hide" id="download-content"></div>
+</div>
+{% if not(hide_subnav == True) %}
+  {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
+  <nav class="p-navigation--secondary">
+    <div class="row">
+      <div class="col-12 u-equal-height">
+        <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}{% if get_test_backend %}?test_backend=true{% endif %}">
+          <h5 class="p-navigation--secondary__logo">
+            {{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}
+          </h5>
+        </a>
+        {% if breadcrumbs.children %}
+        <ul class="breadcrumbs--secondary">
+          {% for child in breadcrumbs.children %}
+            {% if child.path == '/blog/topics' %}
+            <li class="breadcrumbs__item p-contextual-menu u-hide--small">
+              <a aria-controls="#topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+
+              <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
+                <span class="p-contextual-menu__group">
+                  {% for item in child.children %}
+                  <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
+                  {% endfor %}
+                </span>
+              </span>
+            </li>
+            {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}{% if get_test_backend %}?test_backend=true{% endif %}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
+            </li>
+            {% endif %}
+
+            {% if breadcrumbs.grandchildren %}
+            <li class="breadcrumbs__item"><span class="breadcrumbs__chevron u-hide--small">&rsaquo;</span><span class="u-show--small">&nbsp;</span></li>
+              {% for grandchild in breadcrumbs.grandchildren %}
+              <li class="breadcrumbs__item">
+                <a class="breadcrumbs__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
+                  {{ grandchild.title }}
+                </a>
+              </li>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+
+          {% for child in breadcrumbs.children %}
+            {% if child.path == "/blog/topics" %}
+              {% for item in child.children %}
+              <li class="breadcrumbs__item u-hide--medium u-hide--large">
+                <a class="breadcrumbs__link {% if request.path == item.path %}p-link--active{% else %}p-link--soft {% endif %}" href="{{ item.path }}">{{ item.title }}</a>
+              </li>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+  {% endif %}
+{% endif %}
+
+<!-- <script>
+  var nav = document.querySelector('.js-show-nav');
+  var hash = window.location.hash;
+  nav.classList.remove('u-hide');
+
+  // If the page loads with a preselected hash load and open the menu
+  if (hash) {
+    try {
+      var selected = nav.querySelector(hash);
+    } catch(error) {
+      console.warn("Hash " + hash + " not found in topnav");
+    }
+    if (selected) {
+      selected.onmouseover();
+    }
+  }
+
+  function fetchDropdown(url, id) {
+    var div = document.getElementById(id);
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+    req.send();
+    req.addEventListener('load', function() {
+      div.innerHTML = this.responseText;
+    });
+  }
+
+  function initSearch() {
+    var searchButton = document.querySelector('.js-search-button');
+    var searchReset = document.querySelector('.p-search-box__reset');
+    if (searchButton) {
+      searchButton.addEventListener('click', openSearch);
+    }
+
+    if (searchReset) {
+      searchReset.addEventListener('click', closeSearch);
+    }
+  }
+  initSearch();
+
+  function openSearch(e) {
+    e.preventDefault();
+    var navigation = document.querySelector('.p-navigation__nav');
+    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var banner = document.querySelector(".p-navigation__banner");
+    var dropdownWindow = document.querySelector(".dropdown-window");
+    var navigationItems = document.querySelector('.p-navigation__items');
+    var searchButton = document.querySelector('.js-search-button');
+    var search = document.querySelector('.p-navigation__search');
+    var searchInput = document.querySelector('.p-search-box__input');
+    var searchActive = !search.classList.contains('u-hide');
+    search.classList.remove('u-hide');
+    searchButton.classList.add('u-hide');
+    banner.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
+    navigationItems.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
+    dropdownWindow.style="z-index: 37;"
+    dropdownWindowOverlay.classList.remove("fade-animation");
+    navigation.classList.add('has-active-search');
+    searchInput.focus();
+    dropdownWindowOverlay.addEventListener('click', closeSearch);
+    document.addEventListener('keyup', keyPressHandler);
+  }
+
+  function closeSearch() {
+    var navigation = document.querySelector('.p-navigation__nav');
+    var banner = document.querySelector(".p-navigation__banner")
+    var dropdownWindow = document.querySelector(".dropdown-window");
+    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var navigationItems = document.querySelector('.p-navigation__items');
+    var searchButton = document.querySelector('.js-search-button');
+    var search = document.querySelector('.p-navigation__search');
+    search.classList.add('u-hide');
+    banner.style= "opacity: 1;"
+    dropdownWindow.style="z-index: 39;"
+    navigationItems.style= "opacity: 1;"
+    dropdownWindowOverlay.classList.add("fade-animation");
+    navigation.classList.remove('has-active-search');
+    searchButton.classList.remove('u-hide');
+    document.removeEventListener('keyup', keyPressHandler);
+    dropdownWindowOverlay.removeEventListener('click', closeSearch);
+  }
+
+  function keyPressHandler (e) {
+    console.log(e);
+    if (e.key === "Escape") {
+      closeSearch();
+    }
+  }
+</script> -->
