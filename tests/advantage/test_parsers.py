@@ -1,3 +1,4 @@
+import json
 import unittest
 from typing import List, Dict
 
@@ -306,6 +307,29 @@ class TestParsers(unittest.TestCase):
         parsed_entitlements = parse_entitlements([])
         self.assertIsInstance(parsed_entitlements, List)
         self.assertEqual([], to_dict(parsed_entitlements))
+
+    def test_parses_entitlement_without_obligations(self):
+        raw_entitlements = (
+            '[{"type": "support", "entitled": true, '
+            '"affordances": {"supportLevel": "essential"}}]'
+        )
+
+        parsed_entitlements = parse_entitlements(
+            raw_entitlements=json.loads(raw_entitlements)
+        )
+
+        expected_entitlements = [
+            Entitlement(
+                type="support",
+                support_level="essential",
+                enabled_by_default=False,
+                is_available=True,
+            ),
+        ]
+
+        self.assertEqual(
+            to_dict(parsed_entitlements), to_dict(expected_entitlements)
+        )
 
     def test_parse_renewal(self):
         raw_renewal = get_fixture("renewal")
