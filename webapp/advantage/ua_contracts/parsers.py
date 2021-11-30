@@ -83,10 +83,14 @@ def parse_entitlements(
         if affordances:
             support_level = affordances.get("supportLevel")
 
+        enabled_by_default = (
+            obligations.get("enableByDefault") if obligations else False
+        )
+
         entitlement = Entitlement(
             type=raw_entitlement.get("type"),
             support_level=support_level,
-            enabled_by_default=obligations.get("enableByDefault"),
+            enabled_by_default=enabled_by_default,
             is_available=is_available,
         )
 
