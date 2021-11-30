@@ -90,6 +90,14 @@
 {% else %}
 
 <section class="p-strip has-shadow">
+  <!-- Tutorials errors -->
+  {% if errors|length > 0 %}
+  <div class="row u-equal-height">
+    {% for error in errors %}
+      <p>{{ error }}</p>
+    {% endfor %}
+  </div>
+  {% endif %}
   <div class="row u-equal-height">
     {% if query %}
     <h4 class="col-12">

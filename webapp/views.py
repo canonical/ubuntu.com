@@ -356,6 +356,7 @@ def build_tutorials_index(session, tutorials_docs):
             posts_per_page=posts_per_page,
             total_results=total_results,
             total_pages=total_pages,
+            errors=tutorials_docs.parser.errors,
         )
 
     return tutorials_index

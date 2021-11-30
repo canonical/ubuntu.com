@@ -641,7 +641,7 @@ tutorials_path = "/tutorials"
 tutorials_docs = Tutorials(
     parser=TutorialParser(
         api=discourse_api,
-        index_topic_id=13611,
+        index_topic_id=25546,
         url_prefix=tutorials_path,
     ),
     document_template="/tutorials/tutorial.html",
