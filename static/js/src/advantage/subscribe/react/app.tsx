@@ -12,6 +12,7 @@ declare global {
   interface Window {
     stripePublishableKey?: string;
     isGuest?: boolean;
+    isLoggedIn?: boolean;
     accountId?: string;
     previousPurchaseIds?: string[];
     handleTogglePurchaseModal?: () => void;
