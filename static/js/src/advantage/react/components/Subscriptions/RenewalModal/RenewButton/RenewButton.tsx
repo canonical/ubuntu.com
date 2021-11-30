@@ -18,7 +18,9 @@ const BuyButton = ({
   renewalID,
   closeModal,
   areTermsChecked,
+  isMarketingOptInChecked,
   setTermsChecked,
+  setIsMarketingOptInChecked,
   setError,
   setStep,
 }: Props) => {
@@ -124,6 +126,7 @@ const BuyButton = ({
         }
       }
       setTermsChecked(false);
+      setIsMarketingOptInChecked(false);
       setStep(1);
     }
   }, [renewalError]);
@@ -141,6 +144,11 @@ const BuyButton = ({
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
       formData.append("utm_source", sessionData?.utm_source || "");
       formData.append("utm_medium", sessionData?.utm_medium || "");
+      formData.append("store_name__c", "ua");
+      formData.append(
+        "canonicalUpdatesOptIn",
+        isMarketingOptInChecked ? "yes" : "no"
+      );
 
       request.open(
         "POST",
