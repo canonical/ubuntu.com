@@ -1,5 +1,5 @@
 var navDropdowns = [].slice.call(
-  document.querySelectorAll(".p-navigation__dropdown-link")
+  document.querySelectorAll(".p-navigation__item--dropdown-toggle")
 );
 var dropdownWindow = document.querySelector(".dropdown-window");
 var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
@@ -202,8 +202,8 @@ if (accountContainer && accountContainerSmall) {
         : "";
 
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor">Sign in</a>`;
-        accountContainer.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>`;
+        accountContainerSmall.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor"><i class="p-icon--user is-light">Sign in</i></a>`;
+        accountContainer.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
       } else {
         accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout${queryString}" class="p-link--inverted">logout</a>)</span>`;
         accountContainer.innerHTML = `<div class="p-navigation__dropdown-link p-subnav">

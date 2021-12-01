@@ -24,9 +24,12 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   }
 
   .p-navigation {
-    background-color: $nav-bg-color;
     flex-direction: column;
     z-index: 40;
+
+    &.is-dark {
+      background-color: #242424;
+    }
 
     &__items {
       @media (max-width: $breakpoint-x-small - 1) {
@@ -185,53 +188,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
-    &__dropdown-link {
+    &__item--dropdown-toggle {
       position: relative;
 
-      &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
-
-        background-position: top 52% right 50%;
-        background-repeat: no-repeat;
-        background-size: 0.75rem;
-        content: "";
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: transform 0.1s;
-        width: 2rem;
-        @media (max-width: $breakpoint-navigation-threshold) {
-          display: none;
-        }
-      }
-
+      &.is-active,
       &.is-selected {
         &::after {
-          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
-
           transform: rotate(-180deg);
-        }
-
-        .p-navigation__link-anchor {
-          background-color: $color-x-light;
-          color: $color-dark;
-
-          &::after {
-            background-color: transparent;
-          }
-
-          &:focus,
-          &:visited {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-
-          &:hover {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
         }
       }
     }
@@ -246,8 +209,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     &__logo {
-      position: relative;
       padding-left: 2rem;
+      position: relative;
+
+      .p-navigation__item {
+        align-items: center;
+        font-size: 1.3125rem;
+      }
 
       .p-navigation__item,
       .p-navigation__item:hover,
@@ -446,7 +414,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   .dropdown-window {
     @include vf-animation(all, brisk, in);
 
-    background-color: $color-x-light;
+    background-color: #3a3a3a;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
     position: absolute;
@@ -461,20 +429,50 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       padding-right: $grid-margin-width;
     }
 
-    &__content {
-      @extend %p-strip--very-shallow;
+    &__content-container {
+      @extend %fixed-width-container;
 
-      background-color: $color-x-light;
-      color: $color-dark;
-
-      &:last-child {
-        padding-bottom: $spv-outer--shallow-scaleable / 1.5;
+      @media (max-width: $breakpoint-small - 1) {
+        padding: 0;
       }
+    }
+
+    &__content {
+      color: $color-light;
 
       @media (max-width: $breakpoint-x-small - 1) {
         .p-inline-list--middot.is-x-dense {
           margin-bottom: 0.3rem;
         }
+      }
+    }
+
+    &__main-panel {
+      border-right: 1px solid $color-mid-dark;
+      padding-top: 1rem;
+
+      .p-list__item {
+        border-bottom: 1px solid $color-mid-dark;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    &__side-panel {
+      padding-top: 1rem;
+    }
+
+    &__footer {
+      align-items: center;
+      border-top: 1px solid $color-mid-dark;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+
+      a {
+        margin: 0;
       }
     }
 
@@ -497,6 +495,36 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff -
         $nudge--small;
+    }
+
+    .p-muted-heading {
+      color: inherit;
+    }
+
+    .p-side-navigation {
+      height: 100%;
+      padding: 1rem 0;
+      position: relative;
+
+      &::after {
+        background: #262626;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: -50vw;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+      }
+
+      &__drawer {
+        height: 100%;
+      }
+
+      &__item.is-bordered {
+        border-top: 1px solid $color-mid-dark;
+      }
     }
   }
 

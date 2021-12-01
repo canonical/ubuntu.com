@@ -1,0 +1,172 @@
+<nav class="dropdown-window__content-container">
+  <div class="dropdown-window__content">
+    <div class="row">
+      <div class="col-2">
+        <div class="p-side-navigation is-dark">
+          <div class="p-side-navigation__drawer" aria-label="Topics">
+            <div class="p-side-navigation__list u-no-margin--bottom" role="tablist" aria-label="Placeholder label">
+              <div class="p-side-navigation__item">
+                <a href="#" class="p-side-navigation__link is-active" id="tab-1" aria-controls="tab-content-1" role="tab" aria-selected="true" tabindex="0">Desktop</a>
+              </div>
+
+              <div class="p-side-navigation__item">
+                <a href="#" class="p-side-navigation__link" id="tab-2" aria-controls="tab-content-2" role="tab" aria-selected="false"  tabindex="-1">Server</a>
+              </div>
+
+              <div class="p-side-navigation__item">
+                <a href="#" class="p-side-navigation__link" id="tab-3" aria-controls="tab-content-3" role="tab" aria-selected="false"  tabindex="-1">Raspberry Pi</a>
+              </div>
+
+              <div class="p-side-navigation__item">
+                <a href="#" class="p-side-navigation__link" id="tab-4" aria-controls="tab-content-4" role="tab" aria-selected="false"  tabindex="-1">Ubuntu Core for IoT</a>
+              </div>
+
+              <div class="p-side-navigation__item">
+                <a href="#" class="p-side-navigation__link" id="tab-5" aria-controls="tab-content-5" role="tab" aria-selected="false"  tabindex="-1">Develop on Ubuntu</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {% include "templates/nav-prototype/get-ubuntu/_01_desktop.html" %}
+      {% include "templates/nav-prototype/get-ubuntu/_02_server.html" %}
+      {% include "templates/nav-prototype/get-ubuntu/_03_raspberry-pi.html" %}
+      {% include "templates/nav-prototype/get-ubuntu/_04_ubuntu-core-for-iot.html" %}
+      {% include "templates/nav-prototype/get-ubuntu/_05_develop-on-ubuntu.html" %}
+    </div>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var keys = {
+      left: 'ArrowLeft',
+      right: 'ArrowRight',
+    };
+
+    var direction = {
+      ArrowLeft: -1,
+      ArrowRight: 1,
+    };
+
+    // IE11 doesn't support event.code, but event.keyCode is
+    // deprecated in most modern browsers, so we should support
+    // both for the time being.
+    var IEKeys = {
+      left: 37,
+      right: 39,
+    };
+
+    var IEDirection = {
+      37: direction['ArrowLeft'],
+      39: direction['ArrowRight'],
+    };
+
+    /**
+      Attaches a number of events that each trigger
+      the reveal of the chosen tab content
+      @param {Array} tabs an array of tabs within a container
+    */
+    function attachEvents(tabs) {
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener('keyup', function (e) {
+          var compatibleKeys = IEKeys;
+          var key = e.keyCode;
+
+          if (e.code) {
+            compatibleKeys = keys;
+            key = e.code;
+          }
+
+          if (key === compatibleKeys.left || key === compatibleKeys.right) {
+            switchTabOnArrowPress(e, tabs);
+          }
+        });
+
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+          setActiveTab(tab, tabs);
+        });
+
+        tab.addEventListener('focus', function () {
+          setActiveTab(tab, tabs);
+        });
+
+        tab.index = index;
+      });
+    }
+
+    /**
+      Determine which tab to show when an arrow key is pressed
+      @param {KeyboardEvent} event
+      @param {Array} tabs an array of tabs within a container
+    */
+    function switchTabOnArrowPress(event, tabs) {
+      var compatibleKeys = IEKeys;
+      var compatibleDirection = IEDirection;
+      var pressed = event.keyCode;
+
+      if (event.code) {
+        compatibleKeys = keys;
+        compatibleDirection = direction;
+        pressed = event.code;
+      }
+
+      if (compatibleDirection[pressed]) {
+        var target = event.target;
+        if (target.index !== undefined) {
+          if (tabs[target.index + compatibleDirection[pressed]]) {
+            tabs[target.index + compatibleDirection[pressed]].focus();
+          } else if (pressed === compatibleKeys.left) {
+            tabs[tabs.length - 1].focus();
+          } else if (pressed === compatibleKeys.right) {
+            tabs[0].focus();
+          }
+        }
+      }
+    }
+
+    /**
+      Cycles through an array of tab elements and ensures 
+      only the target tab and its content are selected
+      @param {HTMLElement} tab the tab whose content will be shown
+      @param {Array} tabs an array of tabs within a container
+    */
+    function setActiveTab(tab, tabs) {
+      tabs.forEach(function (tabElement) {
+        var tabContent = document.getElementById(tabElement.getAttribute('aria-controls'));
+
+        if (tabElement === tab) {
+          tabElement.setAttribute('aria-selected', true);
+          tabElement.classList.add('is-active');
+          tabContent.removeAttribute('hidden');
+        } else {
+          tabElement.setAttribute('aria-selected', false);
+          tabElement.classList.remove('is-active');
+          tabContent.setAttribute('hidden', true);
+        }
+      });
+    }
+
+    /**
+      Attaches events to tab links within a given parent element,
+      and sets the active tab if the current hash matches the id
+      of an element controlled by a tab link
+      @param {String} selector class name of the element 
+      containing the tabs we want to attach events to
+    */
+    function initTabs(selector) {
+      var tabContainers = [].slice.call(document.querySelectorAll(selector));
+
+      tabContainers.forEach(function (tabContainer) {
+        var tabs = [].slice.call(tabContainer.querySelectorAll('[aria-controls]'));
+        attachEvents(tabs);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      initTabs('[role="tablist"]');
+    });
+  })();
+</script>
