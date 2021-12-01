@@ -1,0 +1,228 @@
+<div class="p-modal" id="contact-modal">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title  u-sv1" id="modal-title">Secure and stable OCI images</h2>
+    </header>
+    <p>Canonical supports container images for Ubuntu and many open source applications. We empower developers with a consistent developer experience from hosts to containers. We cover enterprises with up to 10-year security patches. This short survey will help us bring the right team to start a meaningful conversation.</p>
+    <div class="js-pagination js-pagination--1">
+      <div class="js-formfield">
+        <h3 class="p-heading--five">What do you value the most in container images?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="value-minimal-size">
+            <label for="value-minimal-size">Minimal size</label>
+            <input type="checkbox" id="value-technical-support">
+            <label for="value-technical-support">Technical support</label>
+            <input type="checkbox" id="value-direct-pull-access">
+            <label for="value-direct-pull-access">Direct pull access</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="value-long-term-versions">
+            <label for="value-long-term-versions">Long-term versions</label>
+            <input type="checkbox" id="value-developer-experience">
+            <label for="value-developer-experience">Developer experience</label>
+            <input type="checkbox" id="value-free-of-vulnerability">
+            <label for="value-free-of-vulnerability">Free of vulnerability</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="value-trusted-provenance">
+            <label for="value-trusted-provenance">Trusted provenance</label>
+            <input type="checkbox" id="value-compliance">
+            <label for="value-compliance">Compliance (FIPS, CIS hardening…) </label>
+          </div>
+        </div>
+      </div>
+      <div class="js-formfield">
+        <h3 class="p-heading--five">What applications would you like as prebuilt images?</h3>
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="applications-NGINX">
+            <label for="applications-NGINX">NGINX</label>
+            <input type="checkbox" id="applications-Apache">
+            <label for="applications-Apache">Apache</label>
+            <input type="checkbox" id="applications-Redis">
+            <label for="applications-Redis">Redis</label>
+            <input type="checkbox" id="applications-MySQL">
+            <label for="applications-MySQL">MySQL</label>
+            <input type="checkbox" id="applications-PostgreSQL">
+            <label for="applications-PostgreSQL">PostgreSQL</label>
+            <input type="checkbox" id="applications-ohter-databases">
+            <label for="applications-ohter-databases">Other databases</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="applications-NodeJS">
+            <label for="applications-NodeJS">NodeJS</label>
+            <input type="checkbox" id="applications-Python">
+            <label for="applications-Python">Python</label>
+            <input type="checkbox" id="applications-dot-net">
+            <label for="applications-dot-net">.NET</label>
+            <input type="checkbox" id="applications-Java">
+            <label for="applications-Java">Java (OpenJDK)</label>
+            <input type="checkbox" id="applications-distroless-images">
+            <label for="applications-distroless-images">Distroless images</label>
+            <input type="checkbox" id="applications-other-runtimes">
+            <label for="applications-other-runtimes">Other runtimes</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="applications-Cassandra">
+            <label for="applications-Cassandra">Cassandra</label>
+            <input type="checkbox" id="applications-Grafana">
+            <label for="applications-Grafana">Grafana</label>
+            <input type="checkbox" id="applications-Prometheus">            
+            <label for="applications-Prometheus">Prometheus</label>
+            <input type="checkbox" id="applications-Memcached">            
+            <label for="applications-Memcached">Memcached</label>      
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="applications-other">
+              <label for="applications-other">Others</label>
+              <input type="text" id="applications-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--2 u-hide">
+      <div class="js-formfield">
+        <h3 class="p-heading--five">What best describes your use case?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="use-case-Public-Cloud">
+            <label for="use-case-Public-Cloud">Public Cloud</label>
+            <input type="checkbox" id="use-case-Kubernetes">
+            <label for="use-case-Kubernetes">Kubernetes</label>
+            <input type="checkbox" id="use-case-CI-CD">
+            <label for="use-case-CI-CD">CI/CD</label>
+            <input type="checkbox" id="use-case-Multi-stage-builds">
+            <label for="use-case-Multi-stage-builds">Multi stage builds</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="use-case-Private-Cloud">
+            <label for="use-case-Private-Cloud">Private Cloud</label>
+            <input type="checkbox" id="use-case-Docker-Swarm">
+            <label for="use-case-Docker-Swarm">Docker Swarm</label>
+            <input type="checkbox" id="use-case-Custom-Business-Apps">
+            <label for="use-case-Custom-Business-Apps">Custom Business Apps</label>
+            <input type="checkbox" id="use-case-Edge-computing">
+            <label for="use-case-Edge-computing">Edge computing</label>
+          </div>
+          <div class="col-4 u-sv3">
+            <input type="checkbox" id="use-case-CaaS-PaaS">
+            <label for="use-case-CaaS-PaaS">CaaS/PaaS</label>
+            <input type="checkbox" id="use-case-Other-Kubernetes">
+            <label for="use-case-Other-Kubernetes">Other Kubernetes</label>
+            <input type="checkbox" id="use-case-Restricted-Network">
+            <label for="use-case-Restricted-Network">Restricted Network (Firewall)</label>
+            <input type="checkbox" id="use-case-AI-ML">
+            <label for="use-case-AI-ML">AI/ML</label>
+          </div>
+        </div>
+      </div>
+      <div class="row u-no-padding js-formfield">
+        <h3 class="p-heading--five">Anything more that would help us bring the right team?</h3>
+        <textarea id="summarize-your-applications-ummarize in a few words your applications-u're looking for?" rows="3" placeholder=""></textarea>
+      </div>
+      <div class="row u-no-padding">
+        <div class="pagination">
+          <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+          <a class="pagination__link--next p-button--positive" href="">Next</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--3 u-hide">
+      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <div class="row u-no-padding">
+        <div class="col-6">
+          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+            <ul class="p-list">
+              <li class="p-list__item">
+                <label for="firstName">First name:</label>
+                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="lastName">Last name:</label>
+                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="email">Work email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="phone">Mobile/cell phone number:</label>
+                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+              </li>
+              <li class="p-list__item">
+                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+              </li>
+              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+              {# These are honey pot fields to catch bots #}
+              <li class="u-off-screen">
+                <label class="website" for="website">Website:</label>
+                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+              </li>
+              <li class="u-off-screen">
+                <label class="name" for="name">Name:</label>
+                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+              </li>
+              {# End of honey pots #}
+            </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class=" p-list__item">
+                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+                </li>
+              </ul>
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="FBCLID__c" id="FBLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+            </div>
+
+            <div class="pagination">
+              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="js-pagination js-pagination--4 u-hide">
+      <div class="row u-no-padding u-equal-height">
+        <div class="col-7">
+          <h3 class="p-heading--two">Thank you for enquiring about BootStack</h3>
+          <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+        </div>
+        <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+            alt="smile",
+            width="200",
+            height="200",
+            hi_def=True,
+            loading="auto",
+            ) | safe
+          }}
+        </div>
+      </div>
+      <a class="js-close p-button--neutral" href="">Close</a>
+    </div>
+  </div>
+</div>
