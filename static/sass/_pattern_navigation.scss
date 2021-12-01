@@ -246,8 +246,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     &__logo {
-      position: relative;
       padding-left: 2rem;
+      position: relative;
+
+      .p-navigation__item {
+        align-items: center;
+        font-size: 1.3125rem;
+      }
 
       .p-navigation__item,
       .p-navigation__item:hover,
@@ -446,8 +451,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   .dropdown-window {
     @include vf-animation(all, brisk, in);
 
-    background-color: $color-x-light;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
+    background-color: transparent;
     flex-direction: column;
     position: absolute;
     width: 100%;
@@ -461,10 +465,19 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       padding-right: $grid-margin-width;
     }
 
+    &__content-container {
+      @extend %fixed-width-container;
+
+      @media (max-width: $breakpoint-small - 1) {
+        padding: 0;
+      }
+    }
+
     &__content {
       @extend %p-strip--very-shallow;
 
       background-color: $color-x-light;
+      box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
       color: $color-dark;
 
       &:last-child {
