@@ -22,11 +22,15 @@ const UAPurchase = () => {
     </>
   );
 
+  const marketingLabel =
+    "I agree to receive information about Canonical's products and services";
+
   const closeModal = window.handleTogglePurchaseModal ?? (() => {});
 
   return (
     <PurchaseModal
       termsLabel={termsLabel}
+      marketingLabel={marketingLabel}
       product={product}
       preview={preview}
       quantity={quantity}

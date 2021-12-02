@@ -26,6 +26,9 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
     </>
   );
 
+  const marketingLabel =
+    "I agree to receive information about Canonical's products and services";
+
   const RenewalSummary = () => {
     return (
       <Summary
@@ -40,7 +43,9 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
 
   const BuyButton = ({
     areTermsChecked,
+    isMarketingOptInChecked,
     setTermsChecked,
+    setIsMarketingOptInChecked,
     setError,
     setStep,
     isUsingFreeTrial,
@@ -50,7 +55,9 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
         renewalID={subscription.renewal_id}
         closeModal={closeModal}
         areTermsChecked={areTermsChecked}
+        isMarketingOptInChecked={isMarketingOptInChecked}
         setTermsChecked={setTermsChecked}
+        setIsMarketingOptInChecked={setIsMarketingOptInChecked}
         setError={setError}
         setStep={setStep}
         isUsingFreeTrial={isUsingFreeTrial}
@@ -72,6 +79,7 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
         <PurchaseModal
           accountId={subscription.account_id}
           termsLabel={termsLabel}
+          marketingLabel={marketingLabel}
           quantity={subscription.number_of_machines}
           closeModal={closeModal}
           Summary={RenewalSummary}
