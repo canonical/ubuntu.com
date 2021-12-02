@@ -315,7 +315,7 @@ def payment_methods_view():
     )
 
 
-@advantage_decorator(response="html")
+@advantage_decorator(permission="guest", response="html")
 @use_kwargs({"email": String()}, location="query")
 def advantage_thanks_view(**kwargs):
     return flask.render_template(

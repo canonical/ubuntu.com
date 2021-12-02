@@ -14,6 +14,7 @@ from requests import Session
 
 PERMISSION_LIST = {
     "user": "Endpoint needs logged in user.",
+    "guest": "Endpoint won't allow logged in user.",
     "user_or_guest": "Endpoint needs user or guest token.",
 }
 
@@ -90,6 +91,14 @@ def advantage_decorator(permission=None, response="json"):
                     message = {"error": "authentication required"}
 
                     return flask.jsonify(message), 401
+
+            if permission == "guest" and response == "html":
+                if user_info(flask.session):
+                    return flask.redirect(
+                        "/advantage?test_backend=true"
+                        if is_test_backend
+                        else "/advantage"
+                    )
 
             if permission == "user_or_guest" and response == "json":
                 if not user_info(flask.session) and not guest_token:
