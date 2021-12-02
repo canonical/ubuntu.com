@@ -61,8 +61,21 @@ SERVICES = {
 
 
 @advantage_decorator(permission="user", response="html")
-def advantage_view(**kwargs):
-    return flask.render_template("advantage/index.html")
+def advantage_view():
+    g.api.set_convert_response(True)
+
+    is_technical = False
+    try:
+        g.api.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        pass
+    except AccessForbiddenError:
+        # only "technical" user are denied access to purchase account
+        is_technical = True
+
+    return flask.render_template(
+        "advantage/index.html", is_technical=is_technical
+    )
 
 
 @advantage_decorator(permission="user", response="json")
