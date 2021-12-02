@@ -176,3 +176,15 @@ class EdxAPI:
             "GET",
             uri,
         ).json()
+
+    def get_course_grades(self, course_id: str= "", cursor: str=""):
+        uri = (
+            "/api/grades/v1/courses?"
+            + (f"course_id={course_id}&" if course_id else "")
+            + (f"cursor={cursor}&" if cursor else "")
+            + "page_size=100"
+        )
+        return self.make_request(
+            "GET",
+            uri,
+        ).json()

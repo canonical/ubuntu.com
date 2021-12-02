@@ -537,3 +537,33 @@ def get_exam_attempts(
             page += 1
 
     return flask.jsonify(exam_attempts)
+
+
+def get_grades(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    course_ids = flask.request.args.get("course_id", "").split(",")
+
+    grades = []
+    for course_id in course_ids:
+        cursor = ""
+        has_next = True
+        while has_next:
+            grades = edx_api.get_course_grades(
+                course_id, cursor
+            )
+            parsed_next = urlparse(grades["next"])
+            cursor = parse_qs(parsed_next.query).get("cursor", [""])[0]
+            has_next = True if cursor else False
+            print("!!! grades has_next", has_next)
+
+            for enrollment in grades["results"]:
+                grades.append(
+                    {
+                        "created": enrollment["created"],
+                        "course_id": enrollment["course_id"],
+                        "is_active": enrollment["is_active"],
+                    }
+                )
+
+    return flask.jsonify(grades)
