@@ -25,6 +25,7 @@
   }
 
   .cve-table thead th {
+    word-wrap: break-word;
     @media only screen and (max-width: $breakpoint-small) {
       &:nth-child(1) {
         background-color: #fff;
@@ -72,8 +73,6 @@
   }
 
   .cve-table .icon-container__text {
-    // overflow: hidden;
-    // text-overflow: ellipsis;
     width: 100%;
     word-wrap: break-word;
   }
