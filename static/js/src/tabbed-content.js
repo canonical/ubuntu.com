@@ -1,10 +1,10 @@
 (function () {
-  var keys = {
+  const keys = {
     left: "ArrowLeft",
     right: "ArrowRight",
   };
 
-  var direction = {
+  const direction = {
     ArrowLeft: -1,
     ArrowRight: 1,
   };
@@ -12,12 +12,12 @@
   // IE11 doesn't support event.code, but event.keyCode is
   // deprecated in most modern browsers, so we should support
   // both for the time being.
-  var IEKeys = {
+  const IEKeys = {
     left: 37,
     right: 39,
   };
 
-  var IEDirection = {
+  const IEDirection = {
     37: direction["ArrowLeft"],
     39: direction["ArrowRight"],
   };
@@ -27,10 +27,10 @@
       @param {KeyboardEvent} event
       @param {Array} tabs an array of tabs within a container
     */
-  function switchTabOnArrowPress(event, tabs) {
-    var compatibleKeys = IEKeys;
-    var compatibleDirection = IEDirection;
-    var pressed = event.keyCode;
+  const switchTabOnArrowPress = (event, tabs) => {
+    let compatibleKeys = IEKeys;
+    let compatibleDirection = IEDirection;
+    let pressed = event.keyCode;
 
     if (event.code) {
       compatibleKeys = keys;
@@ -39,7 +39,7 @@
     }
 
     if (compatibleDirection[pressed]) {
-      var target = event.target;
+      const target = event.target;
       if (target.index !== undefined) {
         if (tabs[target.index + compatibleDirection[pressed]]) {
           tabs[target.index + compatibleDirection[pressed]].focus();
@@ -50,18 +50,18 @@
         }
       }
     }
-  }
+  };
 
   /**
       Attaches a number of events that each trigger
       the reveal of the chosen tab content
       @param {Array} tabs an array of tabs within a container
     */
-  function attachEvents(tabs) {
+  const attachEvents = (tabs) => {
     tabs.forEach(function (tab, index) {
       tab.addEventListener("keyup", function (e) {
-        var compatibleKeys = IEKeys;
-        var key = e.keyCode;
+        let compatibleKeys = IEKeys;
+        let key = e.keyCode;
 
         if (e.code) {
           compatibleKeys = keys;
@@ -73,18 +73,18 @@
         }
       });
 
-      tab.addEventListener("click", function (e) {
+      tab.addEventListener("click", (e) => {
         e.preventDefault();
         setActiveTab(tab, tabs);
       });
 
-      tab.addEventListener("focus", function () {
+      tab.addEventListener("focus", () => {
         setActiveTab(tab, tabs);
       });
 
       tab.index = index;
     });
-  }
+  };
 
   /**
       Cycles through an array of tab elements and ensures 
@@ -92,12 +92,12 @@
       @param {HTMLElement} tab the tab whose content will be shown
       @param {Array} tabs an array of tabs within a container
     */
-  function setActiveTab(tab, tabs) {
-    tabs.forEach(function (tabElement) {
+  const setActiveTab = (tab, tabs) => {
+    tabs.forEach((tabElement) => {
       var tabContent = document.querySelectorAll(
         "#" + tabElement.getAttribute("aria-controls")
       );
-      tabContent.forEach(function (content) {
+      tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
           content.removeAttribute("hidden");
@@ -107,7 +107,7 @@
         }
       });
     });
-  }
+  };
 
   /**
       Attaches events to tab links within a given parent element,
@@ -116,18 +116,18 @@
       @param {String} selector class name of the element 
       containing the tabs we want to attach events to
     */
-  function initTabs(selector) {
+  const initTabs = (selector) => {
     var tabContainers = [].slice.call(document.querySelectorAll(selector));
 
-    tabContainers.forEach(function (tabContainer) {
+    tabContainers.forEach((tabContainer) => {
       var tabs = [].slice.call(
         tabContainer.querySelectorAll("[aria-controls]")
       );
       attachEvents(tabs);
     });
-  }
+  };
 
-  document.addEventListener("DOMContentLoaded", function () {
-    initTabs('[role="tablist"]');
+  document.addEventListener("DOMContentLoaded", () => {
+    initTabs(".js-tabbed-content");
   });
 })();
