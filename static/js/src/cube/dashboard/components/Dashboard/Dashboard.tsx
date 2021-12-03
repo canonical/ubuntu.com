@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import EnrollmentsChart from "../EnrollmentsChart";
 import EnrollmentsTable from "../EnrollmentsTable";
 import ExamAttemptsTable from "../ExamAttemptsTable";
+import GradesTable from "../GradesTable";
 
 const Dashboard = () => {
   const { data } = useQuery("courses", async () => {
@@ -19,6 +20,8 @@ const Dashboard = () => {
 
   const courses = data ? data.map((course) => course["id"]) : [];
 
+  console.log("!!! courses: ", courses);
+
   return (
     <section className="p-strip">
       <Row>
@@ -28,6 +31,7 @@ const Dashboard = () => {
             <EnrollmentsChart courses={courses} />
             <EnrollmentsTable courses={courses} />
             <ExamAttemptsTable courses={courses} />
+            <GradesTable courses={courses} />
           </>
         </Col>
       </Row>
