@@ -46,6 +46,7 @@
   .cve-table td {
     border-top: 1px solid $color-mid-light;
     position: relative;
+    word-wrap: break-word;
   }
 
   .cve-table-cell-id {
@@ -74,7 +75,6 @@
 
   .cve-table .icon-container__text {
     width: 100%;
-    word-wrap: break-word;
   }
   .cve-table-cell-priority .icon-container__text {
     @media only screen and (min-width: $breakpoint-medium) {
