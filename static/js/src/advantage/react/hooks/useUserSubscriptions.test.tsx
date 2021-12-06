@@ -3,7 +3,7 @@ import { renderHook, WrapperComponent } from "@testing-library/react-hooks";
 import type { ReactNode } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {
-  selectAutoRenewableUASubscriptions,
+  selectAutoRenewableSubscriptionsByMarketplace,
   selectFreeSubscription,
   selectStatusesSummary,
   selectSubscriptionById,
@@ -162,7 +162,11 @@ describe("useUserSubscriptions", () => {
     queryClient.setQueryData("userSubscriptions", subscriptions);
     const { result, waitForNextUpdate } = renderHook(
       () =>
-        useUserSubscriptions({ select: selectAutoRenewableUASubscriptions }),
+        useUserSubscriptions({
+          select: selectAutoRenewableSubscriptionsByMarketplace(
+            UserSubscriptionMarketplace.CanonicalUA
+          ),
+        }),
       { wrapper }
     );
     await waitForNextUpdate();
