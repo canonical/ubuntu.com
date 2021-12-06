@@ -557,7 +557,7 @@ engage_pages = EngagePages(
     blueprint_name="engage-pages",
 )
 
-app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+app.add_url_rule(engage_path, view_func=build_engage_index)
 
 
 def get_takeovers():
@@ -599,6 +599,17 @@ app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
 engage_pages.init_app(app)
+
+app.add_url_rule(
+    "/engage/<page>/thank-you",
+    defaults={"language": None},
+    view_func=engage_thank_you,
+)
+app.add_url_rule(
+    "/engage/<language>/<page>/thank-you",
+    endpoint="alternative_thank-you",
+    view_func=engage_thank_you,
+)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
@@ -673,17 +684,6 @@ app.add_url_rule(
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
     ),
-)
-
-app.add_url_rule(
-    "/engage/<page>/thank-you",
-    defaults={"language": None},
-    view_func=engage_thank_you(engage_pages),
-)
-app.add_url_rule(
-    "/engage/<language>/<page>/thank-you",
-    endpoint="alternative_thank-you",
-    view_func=engage_thank_you(engage_pages),
 )
 
 # Core docs
