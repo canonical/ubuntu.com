@@ -28,6 +28,7 @@ let entries = {
   blenderStore: "./static/js/src/advantage/subscribe/blender/blender-store.js",
   blenderStoreModal:
     "./static/js/src/advantage/subscribe/blender/blender-store-modal.js",
+  tabbedContent: "./static/js/src/tabbed-content.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
