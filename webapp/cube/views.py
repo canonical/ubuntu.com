@@ -162,7 +162,6 @@ def cube_microcerts(
     edx_register_url = f"{edx_url}{flask.request.base_url}"
     if flask.request.args.get("test_backend") == "true":
         edx_register_url = edx_register_url + "?test_backend=true"
-        study_url = study_url + "?test_backend=true"
 
     return flask.render_template(
         "cube/microcerts.html",
@@ -179,7 +178,6 @@ def cube_microcerts(
             "has_enrollments": len(enrollments) > 0,
             "has_study_labs": study_labs in enrollments,
             "study_labs_listing": study_labs_listing,
-            "study_url": study_url,
         },
     )
 

@@ -7,6 +7,7 @@ export enum Status {
 }
 
 export type Module = {
+  id: string;
   name: string;
   badgeURL: string;
   topics: string[];

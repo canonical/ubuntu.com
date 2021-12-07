@@ -5,6 +5,11 @@ import { Module } from "../types";
 const useMicrocertsData = () => {
   const [modules, setModules] = useState<Module[]>([]);
   const [studyLabs, setStudyLabs] = useState<Record<string, unknown>>({});
+  const [certifiedBadge, setCertfiedBadge] = useState<null | Record<
+    string,
+    string
+  >>(null);
+  const [hasEnrollments, setHasEnrollments] = useState(false);
 
   const { isLoading, isError, isSuccess, error } = useQuery(
     "microcerts",
@@ -21,10 +26,13 @@ const useMicrocertsData = () => {
         account_id: accountId,
         stripe_publishable_key: stripePublishableKey,
         study_labs_listing: studyLabs,
+        certified_badge: certtifiedBadge,
+        has_enrollments: hasEnrollments,
       } = data;
 
       const modules: Module[] = data["modules"].map(
         (module: Record<string, unknown>) => ({
+          id: module["id"],
           name: module["name"],
           badgeURL: module["badge-url"],
           topics: module["topics"],
@@ -39,10 +47,21 @@ const useMicrocertsData = () => {
       window.stripePublishableKey = stripePublishableKey;
       setModules(modules);
       setStudyLabs(studyLabs);
+      setCertfiedBadge(certtifiedBadge);
+      setHasEnrollments(hasEnrollments);
     }
   );
 
-  return { isLoading, isSuccess, isError, modules, studyLabs, error };
+  return {
+    isLoading,
+    isSuccess,
+    isError,
+    modules,
+    studyLabs,
+    certifiedBadge,
+    hasEnrollments,
+    error,
+  };
 };
 
 export default useMicrocertsData;
