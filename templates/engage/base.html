@@ -21,6 +21,8 @@
 {% block meta_copydoc %}{{document["metadata"]["meta_copydoc"]}}{% endblock meta_copydoc %}
 
 {% block content %}
+
+<span id="publish_date" class="u-hide">{{document["metadata"]["publish_date"]}}</span>
 <section class="p-strip p-engage-banner--{{document['metadata']['banner_class']}}">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">

@@ -2,7 +2,7 @@
 import { getTestURL, getRandomEmail } from "../../utils";
 
 context("/advantage/users", () => {
-  it.skip("adds and deletes a user correctly", () => {
+  it("adds and deletes a user correctly", () => {
     cy.login();
 
     const email = getRandomEmail();

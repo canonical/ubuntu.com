@@ -14,6 +14,7 @@ import { BuyButtonProps } from "../../utils/utils";
 
 type StepTwoProps = {
   termsLabel: React.ReactNode;
+  marketingLabel: React.ReactNode;
   setStep: React.Dispatch<React.SetStateAction<number>>;
   error: React.ReactNode | null;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -28,6 +29,7 @@ type StepTwoProps = {
 
 function StepTwo({
   termsLabel,
+  marketingLabel,
   setStep,
   error,
   setError,
@@ -40,6 +42,7 @@ function StepTwo({
   isFreeTrialApplicable = false,
 }: StepTwoProps) {
   const [areTermsChecked, setTermsChecked] = useState(false);
+  const [isMarketingOptInChecked, setIsMarketingOptInChecked] = useState(false);
   const { isLoading: isUserInfoLoading } = useStripeCustomerInfo();
   const [isUsingFreeTrial, setIsUsingFreeTrial] = useState(
     product?.canBeTrialled
@@ -81,6 +84,10 @@ function StepTwo({
           )}
           <PaymentMethodSummary setStep={setStep} />
           <TermsCheckbox label={termsLabel} setTermsChecked={setTermsChecked} />
+          <TermsCheckbox
+            label={marketingLabel}
+            setTermsChecked={setIsMarketingOptInChecked}
+          />
         </>
       </ModalBody>
 
@@ -88,6 +95,8 @@ function StepTwo({
         <BuyButton
           areTermsChecked={areTermsChecked}
           isUsingFreeTrial={isUsingFreeTrial}
+          isMarketingOptInChecked={isMarketingOptInChecked}
+          setIsMarketingOptInChecked={setIsMarketingOptInChecked}
           setTermsChecked={setTermsChecked}
           setError={setError}
           setStep={setStep}

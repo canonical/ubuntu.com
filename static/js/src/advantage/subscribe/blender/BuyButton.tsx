@@ -12,7 +12,9 @@ import { checkoutEvent, purchaseEvent } from "../../ecom-events";
 
 const BuyButton = ({
   areTermsChecked,
+  isMarketingOptInChecked,
   setTermsChecked,
+  setIsMarketingOptInChecked,
   setError,
   setStep,
 }: BuyButtonProps) => {
@@ -122,6 +124,7 @@ const BuyButton = ({
         );
       }
       setTermsChecked(false);
+      setIsMarketingOptInChecked(false);
       setStep(1);
     }
   }, [purchaseError]);
@@ -148,6 +151,11 @@ const BuyButton = ({
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
       formData.append("utm_source", sessionData?.utm_source || "");
       formData.append("utm_medium", sessionData?.utm_medium || "");
+      formData.append("store_name__c", "blender");
+      formData.append(
+        "canonicalUpdatesOptIn",
+        isMarketingOptInChecked ? "yes" : "no"
+      );
 
       request.open(
         "POST",

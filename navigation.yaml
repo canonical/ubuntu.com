@@ -1224,6 +1224,8 @@ iot:
       path: /internet-of-things/edgex
     - title: Networking
       path: /internet-of-things/networking
+    - title: Smart city
+      path: /internet-of-things/smart-city
 
     - title: Thank you
       path: /internet-of-things/newsletter-thank-you
@@ -1495,6 +1497,9 @@ legal:
       children:
         - title: Service description
           path: /legal/ubuntu-advantage-service-description
+        - title: ROS ESM Service Description 
+          path: /legal/ubuntu-advantage-service-description/ros-esm-service-description
+          hidden: True
         - title: サービス範囲
           path: /legal/ubuntu-advantage-service-description/ja
           hidden: True
@@ -1818,3 +1823,12 @@ certification:
       path: /certified/devices
     - title: SoCs
       path: /certified/socs
+
+edge-computing:
+  title: Micro cloud
+  path: /edge-computing
+  persist: True
+
+  children:
+    - title: Overview
+      path: /edge-computing

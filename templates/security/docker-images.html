@@ -83,8 +83,8 @@
     <p class="p-heading--4"><strong>Where are the images?</strong></p>
     <p>On Amazon ECR Public and Docker Hub, images are provided in three groups:</p>
     <ul>
-      <li><a class="p-link--external" href="https://hub.docker.com/u/ubuntu/">Ubuntu on Docker Hub</a> and <a class="p-link--external" href="https://gallery.ecr.aws/?searchTerm=LTS">ECR Public</a> have development releases with security updates</li>
-      <li>LTS ("Canonical") on <a class="p-link--external" href="https://gallery.ecr.aws/?searchTerm=LTS">ECR Public</a> has Free LTS images with up to five years fixes</li>
+      <li><a class="p-link--external" href="https://hub.docker.com/u/ubuntu/">Ubuntu on Docker Hub</a> and <a class="p-link--external" href="https://gallery.ecr.aws/ubuntu">ECR Public</a> have development releases with security updates</li>
+      <li>LTS ("Canonical") on <a class="p-link--external" href="https://gallery.ecr.aws/lts">ECR Public</a> has Free LTS images with up to five years fixes</li>
       <li>Customer-only content with up to ten years of fixes. <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact us</a>.</li>
     </ul>
     <p>All of our Docker Hub repositories are exempted from per-user rate limits.</p>
@@ -124,7 +124,7 @@
 {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/docker-images" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
 <script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

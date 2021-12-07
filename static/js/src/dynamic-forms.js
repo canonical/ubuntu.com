@@ -164,7 +164,7 @@
 
     function setFBclid() {
       if (localStorage.getItem("fbclid")) {
-        var fbclidField = document.getElementById("FBCLID__c");
+        var fbclidField = document.getElementById("Facebook_Click_ID__c");
         var fbclid = JSON.parse(localStorage.getItem("fbclid"));
         var fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
         if (fbclid && fbclidIsValid && fbclidField) {

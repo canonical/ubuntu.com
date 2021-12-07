@@ -33,7 +33,7 @@ context:
   compliance:
     1: "EU GDPR"
     2: "California law"
-  base: "core18"
+  base: "core20"
   published_date: "2020-06-16"
   maintenance_date: "2030-06-16"
   snaps:
@@ -43,7 +43,7 @@ context:
       link: "https://snapcraft.io/adguard-home"
       publisher: "AdGuard, (ameshkov)"
       channel: "latest/stable"
-      version: "0.102.0"
+      version: "0.106.3"
       published_date: "15 May 2020"
 ---
 

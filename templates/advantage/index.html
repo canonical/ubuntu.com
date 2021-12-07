@@ -34,13 +34,15 @@
       <div class="col-5 u-vertically-center">
         <h1 class="p-subscriptions__header-title">Your subscriptions</h1>
       </div>
-      <div class="col-7 u-vertically-center u-align--right">
-        <div>
-          <a class="p-button--positive" href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}">Buy new subscription</a>
-          <a class="p-button--neutral" href="/account/invoices{% if get_test_backend %}?test_backend=true{% endif %}">Invoices</a>
-          <a class="p-button--neutral" href="/account/payment-methods{% if get_test_backend %}?test_backend=true{% endif %}">Payment methods</a>
+      {% if not is_technical %}
+        <div class="col-7 u-vertically-center u-align--right">
+          <div>
+            <a class="p-button--positive" href="/advantage/subscribe{% if get_test_backend %}?test_backend=true{% endif %}">Buy new subscription</a>
+            <a class="p-button--neutral" href="/account/invoices{% if get_test_backend %}?test_backend=true{% endif %}">Invoices</a>
+            <a class="p-button--neutral" href="/account/payment-methods{% if get_test_backend %}?test_backend=true{% endif %}">Payment methods</a>
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </section>
 

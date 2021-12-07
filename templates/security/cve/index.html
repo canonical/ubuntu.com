@@ -60,8 +60,8 @@
         </select>
       </div>
     </div>
-    {% if statuses | length > 0 %}
-      {% for status in statuses %}
+    {% if versions | length > 0 %}
+      {% for version in versions %}
         {% with versions=versions, statuses=statuses, releases=releases, index=loop.index - 1 %}
         {% include "security/cve/_version-and-status-row.html" %}
         {% endwith %}

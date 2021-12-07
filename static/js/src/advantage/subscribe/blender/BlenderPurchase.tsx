@@ -24,6 +24,9 @@ const BlenderPurchase = () => {
     </>
   );
 
+  const marketingLabel =
+    "I agree to receive information about Canonical's products and services";
+
   const closeModal = () => {
     const purchaseModal = document.querySelector("#purchase-modal");
     purchaseModal?.classList.add("u-hide");
@@ -32,6 +35,7 @@ const BlenderPurchase = () => {
   return (
     <PurchaseModal
       termsLabel={termsLabel}
+      marketingLabel={marketingLabel}
       product={product}
       preview={preview}
       quantity={quantity}

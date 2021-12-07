@@ -1,0 +1,429 @@
+{% extends "edge-computing/base_edge-computing.html" %}
+
+{% block title %}Micro cloud | Edge computing solution{% endblock %}
+
+{% block meta_description %}Micro clouds are an edge computing solution for on-demand scalable clusters at the edge. From MAAS, LXD, MicroK8s and Kubernetes at the edge, micro clouds offer automated and repeatable deployments from popular open source components. Edge micro clouds are the working default with hardware vendors and the seamless integration with public cloud providers.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1DdOhFZyvaew0NWW2Uo-EtaB81wzCy-ApdRmanTinyVM/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-equal-height">
+    <div class="col-7 u-vertically-center">
+      <h1>Micro clouds</h1>
+      <p class="p-heading--4">Edge computing solution</p>
+      <p>Serving compute near the consumers, reusing cloud APIs.</p>
+      <p>
+        <a href="/engage/CTO-guide-to-micro-clouds-2021" class="p-button--positive u-no-margin--bottom">Download the whitepaper</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f24913d5-Edge+Cloud.svg",
+        alt="Micro clouds for edge computing",
+        width="365",
+        height="250",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru">
+  <div class="u-fixed-width">
+    <p class="p-heading--2">Compose unique edge solutions using the best open source components, anywhere at scale.</p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2>Industries live at the edge</h2>
+    <p class="p-heading--4">What are edge computing use cases?</p>
+    <p>Real-life applications are localised — in a factory, a shop, a theater, a stadium, on the subway, even in motion. Edge computing has the potential to transform almost any industry, serving workloads where and when needed. Micro clouds offer a modular and scalable solution to match the constraints of the edge in almost any scenario — from cloud edge to IoT gateways. <a href="/blog/tag/edge">Read more about edge computing on the Ubuntu blog&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/cfac0ec4-Edge-clouds.svg",
+        alt="",
+        width="380",
+        height="160",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Localised cloud APIs with micro clouds</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Reusing proven clouds primitive</li>
+        <li class="p-list__item is-ticked">Modular micro clouds, API integration with existing solutions</li>
+        <li class="p-list__item is-ticked">Fully automated, centrally managed, with low to no onsite operations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="u-hide--large u-hide--medium">
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <div class="u-sv3 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/8b16a766-Edge-industrial.svg",
+          alt="",
+          width="258",
+          height="140",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h2>Industry 4.0: inside the factory</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Scalable and low-latency HA cluster for critical industrial applications</li>
+        <li class="p-list__item is-ticked">Local data processing for more governance and less network costs</li>
+        <li class="p-list__item is-ticked">Compute power at the factory core for Al and digital twins applications</li>
+      </ul>
+      <p><a href="/internet-of-things/gateways">Connect IIoT devices to micro clouds&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6">
+      <div class="u-sv3 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/dfb83f4e-Edge-telecoms.svg",
+          alt="",
+          width="211",
+          height="140",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h2>Telco edge: 5G & edge computing</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Lightweight to run on small servers constrained by real estate</li>
+        <li class="p-list__item is-ticked">API-driven for providing on-demand compute and services</li>
+        <li class="p-list__item is-ticked">Distributed workloads, serving compute near the consumer</li>
+      </ul>
+      <p><a href="/telco">Read more on Telco@Edge&nbsp;&rsaquo;</a></p>
+    </div>    
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <div class="u-sv3 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/b6a48d38-Edge-business.svg",
+          alt="",
+          width="232",
+          height="110",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h2>The future of remote-work with edge computing</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Low-touch, self-healing, few to no human interactions</li>
+        <li class="p-list__item is-ticked">Central remote management for corporate policies</li>
+        <li class="p-list__item is-ticked">On-demand K8s clusters, virtual machines, and containers</li>
+      </ul>
+      <p><a href="/desktop/organisations">Read about Ubuntu in organisations&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6">
+      <div class="u-sv3 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/5e4aba82-Edge-IoT.svg",
+          alt="",
+          width="314",
+          height="110",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h2>Micro cloud for end-consumer applications in retail</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Reliable, resilient to cloud outages to prevent downtimes</li>
+        <li class="p-list__item is-ticked">Predictions and insights with data analytics and inferences at the edge</li>
+        <li class="p-list__item is-ticked">Running on low cost small devices</li>
+      </ul>
+      <p><a href="/financial-services">Explore our FinTech solutions&nbsp;&rsaquo;</a></p>
+    </div>    
+  </div>
+</section>
+
+<hr class="u-hide--large u-hide--medium">
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Smart cities, utilities, and power grids</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Real time data analysis for automated resource allocation</li>
+        <li class="p-list__item is-ticked">Fully automated and resilient for remote site locations</li>
+        <li class="p-list__item is-ticked">Decentralised data driven predictive maintenance</li>
+      </ul>
+      <p><a href="/internet-of-things/smart-city">Read more on Smart Cities&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c58e458b-Edge-Sustainable.svg",
+        alt="",
+        width="267",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>  
+</section>
+
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <p>The Canonical team can deploy the first site with you to enable your edge strategy and upskill your teams. We provide long-term security maintenance and technical support for all the open source components you need to build your micro cloud.</p>
+    <p>
+      <a class="p-button--positive js-invoke-modal" href="/contact-us">Let's discuss your edge application</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Integrate with the best hardware vendors</h2>
+    <p>Ubuntu works with a number of hardware vendors specialised in edge computing server equipment. <a href="/contact-us" class="js-invoke-modal">Contact us</a> to discuss working with your preferred vendors.</p>
+    <div class="p-logo-section">
+      <p class="p-logo-section__title"></p>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/45bab794-arm.png",
+            alt="",
+            width="375",
+            height="240",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+            alt="nvidia",
+            width="1701",
+            height="325",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/94ea495b-2018-logo-Intel.svg",
+            alt="",
+            width="146",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/81564112-Hewlett_Packard_Enterprise_logo.svg",
+            alt="hewlett packard enterprise",
+            width="1464",
+            height="612",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/0970d532-2018-logo-dell.svg",
+            alt="",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c7772315-hp.png",
+            alt="",
+            width="290",
+            height="290",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/97596b4c-logo-lenovo.png",
+            alt="lenovo",
+            width="400",
+            height="66",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/80ab9b3c-2018-logo-cisco.svg",
+            alt="",
+            width="146",
+            height="146",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2>Micro clouds under the microscope</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3>What are micro clouds?</h3>
+      <p>Edge computing isn't a solution: it's a term for describing geographically-distributed computing. Micro clouds are a solution for edge computing.</p>
+      <p>A micro cloud is a new class of infrastructure for on-demand computing at the edge. Micro clouds are small footprint clusters of compute nodes with local storage and secure networking, optimised for repeatable, reliable remote deployments.</p>
+      <p>Standard and open APIs provide the same functionality you would expect from larger clouds, and an abstraction layer separates the hardware from the software.</p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3de3935b-edge.png",
+        alt="Edge computing micro cloud architecture",
+        width="230",
+        height="265",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5506324e-Edge-computing.svg",
+        alt="",
+        width="400",
+        height="258",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Advantages of micro clouds for edge computing</h2>
+      <p>Micro cloud enables you to compose customised edge computing solutions from the best open source components, anywhere and at scale.</p>
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">Flexibility and scalability</p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">Full-stack automation</p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">Open and standard APIs</p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">Abstraction layer</p>
+        </li>
+      </ol>
+      <p>The edge of the network is the center of everyday businesses and applications.</p>
+      <p>Micro clouds empower ecosystems rather than single-vendor solutions, bringing apps closer to the consumers.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>What is the size of a micro cloud?</h2>
+      <p>Micro clouds go from tiny <a href="/kubernetes">Kubernetes</a> clusters in an outdoor box to small private edge clouds localised nearest to the consumers of an application. They can extend in site size, scale number of sites, and run with no on-site maintenance.</p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/23cbb344-Design.png",
+        alt="Micro clouds are meant to be customised to specific use cases",
+        width="244",
+        height="140",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru-accent is-dark">
+  <div class="u-fixed-width">
+    <div class="p-heading-icon--small">
+      <div class="p-heading-icon__header">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
+          alt="",
+          width="171",
+          height="150",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <p class="p-heading--4">Whitepaper</p>
+      </div>
+      <h2 class="p-heading--4">CTOs' Guide to Micro Clouds</h2>
+      <p>This whitepaper demonstrates to Technical Leads the concept of micro clouds, a new class of compute for the edge and decentralised environments. Access the report today to get a condensed work of understanding edge computing constraints, values, graphics, and use cases.</p>
+      <p><a href="/engage/CTO-guide-to-micro-clouds-2021" class="p-button">Download the whitepaper</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-sv3">
+  <div class="u-fixed-width">
+    <p class="p-heading--3">Trade the exponential scalability of public and private clouds for security, privacy, governance, and low-latency of decentralised edge computing environments.</p>
+    <p>
+      <a href="/contact-us" class="p-button--positive js-invoke-modal">Connect with Canonical experts today</a>
+    </p>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general" data-form-id="4271" data-lp-id="2154" data-return-url="https://ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}

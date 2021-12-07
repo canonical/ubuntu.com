@@ -18,12 +18,27 @@
 
   .cve-table {
     @extend %small-text;
+    @media only screen and (max-width: $breakpoint-small) {
+      display: block;
+      overflow-x: auto;
+    }
   }
 
+  .cve-table thead th {
+    word-wrap: break-word;
+    @media only screen and (max-width: $breakpoint-small) {
+      &:nth-child(1) {
+        background-color: #fff;
+        box-shadow: inset -1px 0 #d9d9d9;
+        left: 0;
+        position: sticky;
+        z-index: 1;
+      }
+    }
+  }
   .cve-table thead tr {
     border-bottom: 0;
   }
-
   .cve-table tbody tr {
     border-top: 0;
   }
@@ -31,6 +46,22 @@
   .cve-table td {
     border-top: 1px solid $color-mid-light;
     position: relative;
+    word-wrap: break-word;
+  }
+
+  .cve-table-cell-id {
+    @media only screen and (max-width: $breakpoint-small) {
+      &:nth-child(1) {
+        background-color: #fff;
+        border-top: none;
+        -moz-box-shadow: inset -1px 1px #d9d9d9;
+        -webkit-box-shadow: inset -1px 1px #d9d9d9;
+        box-shadow: inset -1px 1px #d9d9d9;
+        left: 0;
+        position: sticky;
+        z-index: 1;
+      }
+    }
   }
 
   .cve-table .cve-table-cell {
@@ -46,13 +77,12 @@
   }
 
   .cve-table .icon-container__text {
-    overflow: hidden;
-    text-overflow: ellipsis;
     width: 100%;
   }
-
   .cve-table-cell-priority .icon-container__text {
-    width: calc(100% - 1.5rem);
+    @media only screen and (min-width: $breakpoint-medium) {
+      width: calc(100% - 1.5rem);
+    }
   }
 
   .cve-table .p-icon--information {

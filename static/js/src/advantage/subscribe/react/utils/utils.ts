@@ -93,7 +93,9 @@ export const getIsFreeTrialEnabled = () =>
 export type BuyButtonProps = {
   areTermsChecked: boolean;
   isUsingFreeTrial: boolean;
+  isMarketingOptInChecked: boolean;
   setTermsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsMarketingOptInChecked: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };

@@ -15,7 +15,9 @@ import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
 const BuyButton = ({
   areTermsChecked,
   isUsingFreeTrial,
+  isMarketingOptInChecked,
   setTermsChecked,
+  setIsMarketingOptInChecked,
   setError,
   setStep,
 }: BuyButtonProps) => {
@@ -68,7 +70,7 @@ const BuyButton = ({
     const testBackend = window?.location?.search?.includes("test_backend=true")
       ? "&test_backend=true"
       : "";
-    if (window.isGuest) {
+    if (window.isGuest && !window.isLoggedIn) {
       location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
         userInfo?.customerInfo?.email
       )}${testBackend}`;
@@ -176,6 +178,7 @@ const BuyButton = ({
         }
       }
       setTermsChecked(false);
+      setIsMarketingOptInChecked(false);
       setStep(1);
     }
   }, [purchaseError]);
@@ -207,6 +210,11 @@ const BuyButton = ({
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
       formData.append("utm_source", sessionData?.utm_source || "");
       formData.append("utm_medium", sessionData?.utm_medium || "");
+      formData.append("store_name__c", "ua");
+      formData.append(
+        "canonicalUpdatesOptIn",
+        isMarketingOptInChecked ? "yes" : "no"
+      );
 
       request.open(
         "POST",

@@ -3,7 +3,7 @@
 
 {% block title %}CIS{% endblock %}
 {% block meta_description %}Technical details on the Ubuntu CIS profile for Ubuntu Advantage subscribers.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1bSv8lV9BJoBYh5yog2eYKtvNMitKZetSSBQ3k2Cu5Cw/edit#heading=h.335zx3wyom0b{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1bSv8lV9BJoBYh5yog2eYKtvNMitKZetSSBQ3k2Cu5Cw/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -11,10 +11,12 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>CIS Benchmark on Ubuntu</h1>
-      <h4>Comply with the most widely accepted Linux baseline</h4>
-      <p>The CIS benchmark has hundreds of configuration recommendations, so hardening and auditing a Linux system manually can be very tedious. To drastically improve this process for enterprises, Canonical provides certified tooling on Ubuntu for audit and automated compliance with the CIS benchmarks. Available with <a href="/advantage">Ubuntu Advantage</a> and <a href="/cloud/public-cloud">Ubuntu Pro</a>.</p>
-      <a href="/security/certifications#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
-      <a href="/advantage" class="p-button--neutral">Get Ubuntu Advantage</a>
+      <h2 class="p-heading--4">Comply with the most widely accepted Linux baseline</h2>
+      <p>The CIS benchmark has hundreds of configuration recommendations, so hardening and auditing a Linux system or a kubernetes cluster manually can be very tedious. To drastically improve this process for enterprises, Canonical provides certified tooling on Ubuntu for audit and automated compliance with the CIS benchmarks. Available with <a href="/advantage">Ubuntu Advantage</a> and <a href="/cloud/public-cloud">Ubuntu Pro</a>.</p>
+      <p>
+        <a href="/security/certifications#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
+        <a href="/advantage" class="p-button--neutral">Get Ubuntu Advantage</a>
+      </p>
     </div>
     <div class="col-4 u-vertically-center u-align--center u-hide--small">
       {{ image (
@@ -23,7 +25,7 @@
         width="300",
         height="300",
         hi_def=True,
-        loading="lazy"
+        loading="auto"
         ) | safe
       }}
     </div>
@@ -52,7 +54,7 @@
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-6 u-vertically-center">
+    <div class="col-6 u-vertically-center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
         alt="",
@@ -66,7 +68,7 @@
     <div class="col-6">
       <h3>Configure and apply CIS hardening rules in minutes</h3>
       <p>The compliance tooling has two objectives: it lets our customers harden their Ubuntu systems effortlessly and then quickly audit those systems against the published CIS Ubuntu benchmarks. The SCAP content for audit tooling that scans the system for compliance is CIS certified.</p>
-      <a href="https://www.youtube.com/watch?v=wyEX0eyoK88" class="p-button--neutral p-link--external">Watch the video</a>
+      <a href="https://www.youtube.com/watch?v=IOLQQZVYbbg" class="p-button--neutral p-link--external">Watch the video</a>
     </div>
   </div>
 </section>
@@ -104,12 +106,50 @@
       <a href="/advantage" class="p-button--positive">Access the Ubuntu CIS benchmark tooling</a>
       <a href="/security/certifications/docs/cis" class="p-button--neutral">Learn more about our tools</a>
     </p>
-    <h3>What is CIS?</h3>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
+      <h2>How does Charmed Kubernetes comply with CIS benchmarks?</h2>
+      <p>Charmed Kubernetes brings not only extensibility and fully automated operations but is designed to comply with the Kubernetes CIS benchmark by default. It further includes tooling to track cluster compliance.</p>
+      <p>
+        <a href="/kubernetes/docs/cis-compliance" class="p-button--positive">Read more about Kubernetes and CIS</a>
+      </p>
+    </div>
+    <div class="col-5 u-vertically-center u-align--center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/990738e2-kubernetes-cloud.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>What is CIS?</h2>
     <p>The Center for Internet Security (CIS) is a non-profit organisation with a mission to “make the connected world a safer place by developing, validating, and promoting timely best practice solutions against pervasive cyber threats”. CIS uses a consensus process to release benchmarks to safeguard organisations against cyber attacks. The consensus review process consists of subject matter experts who provide perspective on different backgrounds like audit and compliance, security research, consulting and software development. The benchmarks are considered a necessary complement in the implementation of a cybersecurity framework, and are the most widely accepted Industry benchmarks to harden a system today. Canonical actively participates in the drafting benchmarks of Ubuntu LTS releases.
     </p>
-    <h3>What are the CIS Controls?</h3>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>What are the CIS Controls?</h2>
     <p><a class="p-link--external" href="https://www.cisecurity.org/controls/">CIS controls</a>, is a framework of security best practices, that harness the collective experience of the CIS subject matter experts from actual attacks and effective defenses. CIS controls are referenced by International and National frameworks such ETSI’s critical security controls, NIST Cybersecurity framework, and others.</p>
-    <h3>How do benchmarks relate with CIS Controls?</h3>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>How do benchmarks relate with CIS Controls?</h2>
     <p>The benchmarks map to <a class="p-link--external" href="https://www.cisecurity.org/controls/">CIS controls</a> and are designed to  additionally reduce the system’s attack surface to mitigate the most common attacks. For that reason, they are considered a necessary complement in the implementation of a cybersecurity framework, and are the most widely accepted Industry benchmark to harden a system today.</p>
     <a href="/security/certifications#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
   </div>

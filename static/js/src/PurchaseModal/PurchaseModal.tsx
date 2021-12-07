@@ -18,6 +18,7 @@ import { BuyButtonProps } from "./utils/utils";
 type Props = {
   accountId?: string;
   termsLabel: React.ReactNode;
+  marketingLabel: React.ReactNode;
   product?: any;
   preview?: any;
   quantity: number;
@@ -32,6 +33,7 @@ type Props = {
 const PurchaseModal = ({
   accountId,
   termsLabel,
+  marketingLabel,
   product,
   preview,
   quantity,
@@ -135,6 +137,7 @@ const PurchaseModal = ({
         ) : (
           <StepTwo
             termsLabel={termsLabel}
+            marketingLabel={marketingLabel}
             setStep={setStep}
             error={error}
             setError={setError}
