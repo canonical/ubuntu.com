@@ -1262,18 +1262,30 @@ export var kubernetesReleases = [
     startDate: new Date("2020-08-16T00:00:00"),
     endDate: new Date("2021-08-16T00:00:00"),
     taskName: "Kubernetes 1.19",
-    status: "CHARMED_KUBERNETES_SUPPORT",
+    status: "CHARMED_KUBERNETES_EXPIRED_SUPPORT",
   },
   {
     startDate: new Date("2020-12-08T00:00:00"),
     endDate: new Date("2021-12-08T00:00:00"),
     taskName: "Kubernetes 1.20",
-    status: "CHARMED_KUBERNETES_SUPPORT",
+    status: "CHARMED_KUBERNETES_EXPIRED_SUPPORT",
   },
   {
     startDate: new Date("2021-04-08T00:00:00"),
     endDate: new Date("2022-04-08T00:00:00"),
     taskName: "Kubernetes 1.21",
+    status: "CHARMED_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2021-08-01T00:00:00"),
+    endDate: new Date("2022-08-01T00:00:00"),
+    taskName: "Kubernetes 1.22",
+    status: "CHARMED_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2021-12-07T00:00:00"),
+    endDate: new Date("2022-12-07T00:00:00"),
+    taskName: "Kubernetes 1.23",
     status: "CHARMED_KUBERNETES_SUPPORT",
   },
 ];
@@ -1493,6 +1505,8 @@ export var openStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  "Kubernetes 1.23",
+  "Kubernetes 1.22",
   "Kubernetes 1.21",
   "Kubernetes 1.20",
   "Kubernetes 1.19",
