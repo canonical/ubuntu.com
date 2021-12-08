@@ -4,61 +4,61 @@
       <div class="col-2">
         <div class="p-side-navigation">
           <div class="p-side-navigation__drawer" aria-label="Topics">
-            <ul class="p-side-navigation__list">
+            <ul class="p-side-navigation__list" role="tablist" aria-label="Placeholder label">
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 1</a>
+                <a href="#" class="p-side-navigation__link is-active" id="tab-1" aria-controls="tab-content-1" role="tab" aria-selected="true">Menu 1</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 2</a>
+                <a href="#" class="p-side-navigation__link" id="tab-2" aria-controls="tab-content-2" role="tab" aria-selected="false"  tabindex="-1">Menu 2</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 3</a>
+                <a href="#" class="p-side-navigation__link" id="tab-3" aria-controls="tab-content-3" role="tab" aria-selected="false"  tabindex="-1">Menu 3</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 4</a>
+                <a href="#" class="p-side-navigation__link" id="tab-4" aria-controls="tab-content-4" role="tab" aria-selected="false"  tabindex="-1">Menu 4</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 5</a>
+                <a href="#" class="p-side-navigation__link" id="tab-5" aria-controls="tab-content-5" role="tab" aria-selected="false"  tabindex="-1">Menu 5</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 6</a>
+                <a href="#" class="p-side-navigation__link" id="tab-6" aria-controls="tab-content-6" role="tab" aria-selected="false"  tabindex="-1">Menu 6</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 7</a>
+                <a href="#" class="p-side-navigation__link" id="tab-7" aria-controls="tab-content-7" role="tab" aria-selected="false"  tabindex="-1">Menu 7</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 8</a>
+                <a href="#" class="p-side-navigation__link" id="tab-8" aria-controls="tab-content-8" role="tab" aria-selected="false"  tabindex="-1">Menu 8</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 9</a>
+                <a href="#" class="p-side-navigation__link" id="tab-9" aria-controls="tab-content-9" role="tab" aria-selected="false"  tabindex="-1">Menu 9</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 10</a>
+                <a href="#" class="p-side-navigation__link" id="tab-10" aria-controls="tab-content-10" role="tab" aria-selected="false"  tabindex="-1" href="#">Menu 10</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 11</a>
+                <a href="#" class="p-side-navigation__link" id="tab-11" aria-controls="tab-content-11" role="tab" aria-selected="false"  tabindex="-1" href="#">Menu 11</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 12</a>
+                <a href="#" class="p-side-navigation__link" id="tab-12" aria-controls="tab-content-12" role="tab" aria-selected="false"  tabindex="-1" href="#">Menu 12</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 13</a>
+                <a href="#" class="p-side-navigation__link" id="tab-13" aria-controls="tab-content-13" role="tab" aria-selected="false"  tabindex="-1" href="#">Menu 13</a>
               </li>
 
               <li class="p-side-navigation__item">
-                <a class="p-side-navigation__link" href="#">Menu 14</a>
+                <a href="#" class="p-side-navigation__link" id="tab-14" aria-controls="tab-content-14" role="tab" aria-selected="false"  tabindex="-1" href="#">Menu 14</a>
               </li>
             </ul>
           </div>
@@ -66,67 +66,130 @@
       </div>
 
       <div class="col-8">
-        <h3>Title</h3>
+        {% with
+          id="tab-content-1",
+          labelledby="tab-1",
+          title="Section 1",
+          description="Amet duis non pariatur mollit labore dolore sit cillum incididunt occaecat ut sunt ad excepteur. Do elit minim eu tempor deserunt amet occaecat incididunt labore fugiat nulla. Exercitation in consectetur ad mollit nostrud aute sint id consectetur do sit duis est id." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
 
-        <p>Quasi sapiente porro at accusamus. Voluptas consequatur inventore et nesciunt voluptatem at. Modi quidem non fugiat voluptas. Sunt exercitationem repellendus inventore sapiente</p>
+        {% with
+          id="tab-content-2",
+          labelledby="tab-2",
+          hidden="hidden",
+          title="Section 2",
+          description="Enim fugiat pariatur duis nostrud consequat non do laboris quis proident qui. Consectetur aliquip aliqua magna pariatur irure esse Lorem consequat amet deserunt id est duis. Et commodo magna ullamco nostrud elit consectetur." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
 
-        <a href="#" class="p-button--positive">CTA</a>
-        
-        <div class="row u-no-padding">
-          <div class="col-4">
-            <div class="p-media-object">
-              <img src="https://assets.ubuntu.com/v1/ffa86aa2-cof-orange-cropped.svg" class="p-media-object__image" alt="">
-              <div class="p-media-object__details">
-                <h3 class="p-media-object__title">
-                  <a href="#">Item 1</a>
-                </h3>
-                <p class="p-media-object__content">Rerum qui quasi blanditiis exercitationem sed facere</p>
-              </div>
-            </div>
+        {% with
+          id="tab-content-3",
+          labelledby="tab-3",
+          hidden="hidden",
+          title="Section 3",
+          description="Ea pariatur consectetur culpa ex culpa ea. Aliqua adipisicing aute esse nisi fugiat eu excepteur ea aute eiusmod mollit ipsum consequat. Ullamco culpa exercitation ad sunt magna irure ea mollit ipsum." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
 
-            <div class="p-media-object">
-              <img src="https://assets.ubuntu.com/v1/ffa86aa2-cof-orange-cropped.svg" class="p-media-object__image" alt="">
-              <div class="p-media-object__details">
-                <h3 class="p-media-object__title">
-                  <a href="#">Item 1</a>
-                </h3>
-                <p class="p-media-object__content">Rerum qui quasi blanditiis exercitationem sed facere</p>
-              </div>
-            </div>
+        {% with
+          id="tab-content-4",
+          labelledby="tab-4",
+          hidden="hidden",
+          title="Section 4",
+          description="Laborum cillum ullamco esse eu commodo aute magna aliqua consectetur. Ex tempor minim incididunt occaecat. Ipsum amet culpa velit aliquip." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
 
-            <div class="p-media-object">
-              <img src="https://assets.ubuntu.com/v1/ffa86aa2-cof-orange-cropped.svg" class="p-media-object__image" alt="">
-              <div class="p-media-object__details">
-                <h3 class="p-media-object__title">
-                  <a href="#">Item 1</a>
-                </h3>
-                <p class="p-media-object__content">Rerum qui quasi blanditiis exercitationem sed facere</p>
-              </div>
-            </div>
-          </div>
+        {% with
+          id="tab-content-5",
+          labelledby="tab-5",
+          hidden="hidden",
+          title="Section 5",
+          description="Esse cillum quis proident id laboris non adipisicing dolore in deserunt tempor deserunt. Magna duis proident reprehenderit dolor adipisicing ipsum. Esse duis qui incididunt dolor fugiat dolore proident ullamco aute adipisicing nostrud in enim ullamco." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
 
-          <div class="col-4">
-            <div class="p-media-object">
-              <img src="https://assets.ubuntu.com/v1/ffa86aa2-cof-orange-cropped.svg" class="p-media-object__image" alt="">
-              <div class="p-media-object__details">
-                <h3 class="p-media-object__title">
-                  <a href="#">Item 1</a>
-                </h3>
-                <p class="p-media-object__content">Rerum qui quasi blanditiis exercitationem sed facere</p>
-              </div>
-            </div>
+        {% with
+          id="tab-content-6",
+          labelledby="tab-6",
+          hidden="hidden",
+          title="Section 6",
+          description="Est excepteur excepteur sunt occaecat. Qui pariatur sint proident cupidatat incididunt aute laboris tempor exercitation. Reprehenderit fugiat qui et est ea laboris pariatur mollit cupidatat non qui aute." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
 
-            <div class="p-media-object">
-              <img src="https://assets.ubuntu.com/v1/ffa86aa2-cof-orange-cropped.svg" class="p-media-object__image" alt="">
-              <div class="p-media-object__details">
-                <h3 class="p-media-object__title">
-                  <a href="#">Item 1</a>
-                </h3>
-                <p class="p-media-object__content">Rerum qui quasi blanditiis exercitationem sed facere</p>
-              </div>
-            </div>
-          </div>        
-        </div>
+        {% with
+          id="tab-content-7",
+          labelledby="tab-7",
+          hidden="hidden",
+          title="Section 7",
+          description="Pariatur ipsum fugiat voluptate ut id qui proident consectetur cupidatat pariatur adipisicing deserunt id aliquip. Sunt exercitation cillum non consequat ullamco incididunt fugiat sunt occaecat pariatur. Ullamco amet id nisi aliquip ullamco ipsum anim." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-8",
+          labelledby="tab-8",
+          hidden="hidden",
+          title="Section 8",
+          description="Deserunt consectetur ipsum elit incididunt ut incididunt culpa ullamco enim laboris nisi fugiat. Est amet velit eu fugiat minim tempor veniam culpa. Nostrud Lorem laborum duis aute." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-9",
+          labelledby="tab-9",
+          hidden="hidden",
+          title="Section 9",
+          description="Nostrud laborum pariatur ad incididunt aute qui laborum exercitation sint reprehenderit exercitation irure deserunt quis. Incididunt sunt id Lorem sunt magna in id exercitation deserunt. Commodo ullamco adipisicing veniam Lorem deserunt esse voluptate." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-10",
+          labelledby="tab-10",
+          hidden="hidden",
+          title="Section 10",
+          description="Consectetur ut incididunt et irure enim dolor cillum. Occaecat elit ipsum incididunt dolore cillum commodo in nisi. Magna aute nulla dolor veniam aliquip ut." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-11",
+          labelledby="tab-11",
+          hidden="hidden",
+          title="Section 11",
+          description="Velit laboris mollit adipisicing consequat et ullamco irure excepteur culpa dolore eu adipisicing eiusmod. Quis elit est ad cupidatat sunt anim adipisicing. Aliquip dolore nulla minim consectetur voluptate deserunt laboris dolore." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-12",
+          labelledby="tab-12",
+          hidden="hidden",
+          title="Section 12",
+          description="In qui tempor ex excepteur. Sunt proident pariatur amet non dolor aliqua enim sunt reprehenderit sint quis eu. Laborum deserunt proident esse nulla consequat." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-13",
+          labelledby="tab-13",
+          hidden="hidden",
+          title="Section 13",
+          description="Magna labore dolor ipsum cillum. Voluptate non aliqua ad quis dolor non eu fugiat. Laborum tempor pariatur duis in sint ad anim incididunt laborum voluptate." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
+
+        {% with
+          id="tab-content-14",
+          labelledby="tab-14",
+          hidden="hidden",
+          title="Section 14",
+          description="Adipisicing magna eu laborum qui quis ipsum. Dolore voluptate est ad id sit magna fugiat ullamco officia consequat irure. Exercitation aliqua officia fugiat proident exercitation qui ullamco." %}
+          {% include "templates/navigation-prototype-left-dropdown_tab-content.html" %}
+        {% endwith %}
       </div>
 
       <div class="col-2">
@@ -151,3 +214,136 @@
     </div>
   </div>
 </nav>
+
+<script>
+  (function () {
+    var keys = {
+      left: 'ArrowLeft',
+      right: 'ArrowRight',
+    };
+
+    var direction = {
+      ArrowLeft: -1,
+      ArrowRight: 1,
+    };
+
+    // IE11 doesn't support event.code, but event.keyCode is
+    // deprecated in most modern browsers, so we should support
+    // both for the time being.
+    var IEKeys = {
+      left: 37,
+      right: 39,
+    };
+
+    var IEDirection = {
+      37: direction['ArrowLeft'],
+      39: direction['ArrowRight'],
+    };
+
+    /**
+      Attaches a number of events that each trigger
+      the reveal of the chosen tab content
+      @param {Array} tabs an array of tabs within a container
+    */
+    function attachEvents(tabs) {
+      tabs.forEach(function (tab, index) {
+        tab.addEventListener('keyup', function (e) {
+          var compatibleKeys = IEKeys;
+          var key = e.keyCode;
+
+          if (e.code) {
+            compatibleKeys = keys;
+            key = e.code;
+          }
+
+          if (key === compatibleKeys.left || key === compatibleKeys.right) {
+            switchTabOnArrowPress(e, tabs);
+          }
+        });
+
+        tab.addEventListener('click', function (e) {
+          e.preventDefault();
+          setActiveTab(tab, tabs);
+        });
+
+        tab.addEventListener('focus', function () {
+          setActiveTab(tab, tabs);
+        });
+
+        tab.index = index;
+      });
+    }
+
+    /**
+      Determine which tab to show when an arrow key is pressed
+      @param {KeyboardEvent} event
+      @param {Array} tabs an array of tabs within a container
+    */
+    function switchTabOnArrowPress(event, tabs) {
+      var compatibleKeys = IEKeys;
+      var compatibleDirection = IEDirection;
+      var pressed = event.keyCode;
+
+      if (event.code) {
+        compatibleKeys = keys;
+        compatibleDirection = direction;
+        pressed = event.code;
+      }
+
+      if (compatibleDirection[pressed]) {
+        var target = event.target;
+        if (target.index !== undefined) {
+          if (tabs[target.index + compatibleDirection[pressed]]) {
+            tabs[target.index + compatibleDirection[pressed]].focus();
+          } else if (pressed === compatibleKeys.left) {
+            tabs[tabs.length - 1].focus();
+          } else if (pressed === compatibleKeys.right) {
+            tabs[0].focus();
+          }
+        }
+      }
+    }
+
+    /**
+      Cycles through an array of tab elements and ensures 
+      only the target tab and its content are selected
+      @param {HTMLElement} tab the tab whose content will be shown
+      @param {Array} tabs an array of tabs within a container
+    */
+    function setActiveTab(tab, tabs) {
+      tabs.forEach(function (tabElement) {
+        var tabContent = document.getElementById(tabElement.getAttribute('aria-controls'));
+
+        if (tabElement === tab) {
+          tabElement.setAttribute('aria-selected', true);
+          tabElement.classList.add('is-active');
+          tabContent.removeAttribute('hidden');
+        } else {
+          tabElement.setAttribute('aria-selected', false);
+          tabElement.classList.remove('is-active');
+          tabContent.setAttribute('hidden', true);
+        }
+      });
+    }
+
+    /**
+      Attaches events to tab links within a given parent element,
+      and sets the active tab if the current hash matches the id
+      of an element controlled by a tab link
+      @param {String} selector class name of the element 
+      containing the tabs we want to attach events to
+    */
+    function initTabs(selector) {
+      var tabContainers = [].slice.call(document.querySelectorAll(selector));
+
+      tabContainers.forEach(function (tabContainer) {
+        var tabs = [].slice.call(tabContainer.querySelectorAll('[aria-controls]'));
+        attachEvents(tabs);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      initTabs('[role="tablist"]');
+    });
+  })();
+</script>
