@@ -188,3 +188,13 @@ class EdxAPI:
             "GET",
             uri,
         ).json()
+
+    def get_user_certifications(self, username: str):
+        uri = (
+            f"/api/certificates/v0/certificates/{username}?"
+            + "page_size=100"
+        )
+        return self.make_request(
+            "GET",
+            uri,
+        ).json()

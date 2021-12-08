@@ -1,41 +1,39 @@
 import React from "react";
 import { Card, MainTable } from "@canonical/react-components";
 import DownloadCSVButton from "../DownloadCSVButton";
-import useExamAttempts from "../../hooks/useExamAttempts";
+import useCertifications from "../../hooks/useCertifications";
 
-type Props = {
-  courses: string[];
-};
-
-const ExamAttemptsTable = ({ courses }: Props) => {
-  const { examAttempts, isLoading } = useExamAttempts({ courses });
-  const rows = examAttempts ? examAttempts : [];
+const CertificationsTable = () => {
+  const { certifications, isLoading } = useCertifications({
+    usernames: ["mrgnr", "krenshaw", "LexJoy", "crenguta", "albertkoltester2"],
+  });
+  const rows = certifications ? certifications : [];
 
   return (
-    <Card title="Exam attempts">
+    <Card title="Certifications">
       <DownloadCSVButton data={rows} />
       <MainTable
         headers={[
           { content: "Course ID", sortKey: "course_id" },
-          { content: "Start", sortKey: "started_at" },
-          { content: "End", sortKey: "completed_at" },
-          { content: "Status", sortKey: "status" },
+          { content: "Created", sortKey: "created" },
+          { content: "Passing", sortKey: "is_passing" },
+          { content: "Grade", sortKey: "grade" },
           { content: "Username", sortKey: "username" },
         ]}
         rows={rows.map(
-          ({ course_id, started_at, completed_at, status, username }) => ({
+          ({ course_id, created, is_passing, grade, username }) => ({
             columns: [
               { content: course_id },
-              { content: started_at },
-              { content: completed_at },
-              { content: status },
+              { content: created },
+              { content: String(is_passing) },
+              { content: grade },
               { content: username },
             ],
             sortData: {
               course_id: course_id,
-              started_at: new Date(started_at),
-              completed_at: new Date(completed_at),
-              status: status,
+              created: new Date(created),
+              is_passing: Boolean(is_passing),
+              grade: grade,
               username: username,
             },
           })
@@ -54,4 +52,4 @@ const ExamAttemptsTable = ({ courses }: Props) => {
   );
 };
 
-export default ExamAttemptsTable;
+export default CertificationsTable;

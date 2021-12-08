@@ -435,7 +435,7 @@ def get_courses(badgr_issuer, badge_certification, ua_api, badgr_api, edx_api):
 def get_daily_enrollments(
     badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
 ):
-    course_ids = flask.request.args.get("course_id", "").split(',')
+    course_ids = flask.request.args.get("course_id", "").split(",")
 
     daily_enrollments = defaultdict(lambda: defaultdict(int))
     for course_id in course_ids:
@@ -512,6 +512,7 @@ def get_exam_attempts(
 
             attempts = []
             for attempt_info in attempts_info["proctored_exam_attempts"]:
+                username = attempt_info['user']['username']
                 for attempt in attempt_info["all_attempts"]:
                     attempts.append(
                         {
@@ -528,6 +529,7 @@ def get_exam_attempts(
                             "time_limit_mins": attempt["proctored_exam"][
                                 "time_limit_mins"
                             ],
+                            'username': username
                         }
                     )
 
@@ -550,9 +552,7 @@ def get_course_grades(
         cursor = ""
         has_next = True
         while has_next:
-            grades_info = edx_api.get_course_grades(
-                course_id, cursor
-            )
+            grades_info = edx_api.get_course_grades(course_id, cursor)
             parsed_next = urlparse(grades_info["next"])
             cursor = parse_qs(parsed_next.query).get("cursor", [""])[0]
             has_next = True if cursor else False
@@ -571,3 +571,27 @@ def get_course_grades(
                 )
 
     return flask.jsonify(grades)
+
+
+@cube_decorator(response="json")
+def get_user_certifications(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    usernames = flask.request.args.get("username", "").split(",")
+
+    certs = []
+    for username in usernames:
+        certs_info = edx_api.get_user_certifications(username)
+        for cert in certs_info:
+            certs.append(
+                {
+                    "username": cert["username"],
+                    "course_id": cert["course_id"],
+                    "created": cert["created_date"],
+                    "is_passing": cert["is_passing"],
+                    "grade": cert["grade"],
+                    "download_url": cert["download_url"],
+                }
+            )
+
+    return flask.jsonify(certs)

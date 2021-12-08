@@ -85,8 +85,6 @@ const groupByMonth = (enrollments) => {
 
     const previousDate = new Date(combined.at(-1)["date"]);
     const currentDate = new Date(current["date"]);
-    console.log("!!! previousDate: ", previousDate);
-    console.log("!!! currentDate: ", currentDate);
 
     if (
       previousDate.getFullYear() === currentDate.getFullYear() &&
@@ -94,8 +92,6 @@ const groupByMonth = (enrollments) => {
     ) {
       const previous = combined.pop();
       const merged = addCounts(previous, current);
-      console.log("!!! previous: ", previous);
-      console.log("!!! merged: ", merged);
       return [...combined, merged];
     }
 

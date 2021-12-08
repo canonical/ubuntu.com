@@ -52,6 +52,7 @@ from webapp.cube.views import (
     get_enrollments,
     get_exam_attempts,
     get_course_grades,
+    get_user_certifications,
 )
 
 from webapp.views import (
@@ -818,6 +819,7 @@ app.add_url_rule("/cube/daily-enrollments.json", view_func=get_daily_enrollments
 app.add_url_rule("/cube/enrollments.json", view_func=get_enrollments)
 app.add_url_rule("/cube/exam-attempts.json", view_func=get_exam_attempts)
 app.add_url_rule("/cube/grades.json", view_func=get_course_grades)
+app.add_url_rule("/cube/certifications.json", view_func=get_user_certifications)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(

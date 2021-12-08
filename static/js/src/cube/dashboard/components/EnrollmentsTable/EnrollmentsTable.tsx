@@ -2,38 +2,14 @@ import React from "react";
 import { Card, MainTable } from "@canonical/react-components";
 import { useQuery } from "react-query";
 import DownloadCSVButton from "../DownloadCSVButton";
+import useEnrollments from "../../hooks/useEnrollments";
 
 type Props = {
   courses: string[];
 };
 
 const EnrollmentsTable = ({ courses }: Props) => {
-  const params = new URLSearchParams(window.location.search);
-  const testBackend = params.get("test_backend") === "true";
-  const encodedCoursesParam = courses
-    .map((course) => encodeURIComponent(course))
-    .join(",");
-
-  const { data: enrollments, isLoading } = useQuery(
-    "enrollments",
-    async () => {
-      const response = await fetch(
-        encodeURI(
-          `/cube/enrollments.json?course_id=${encodedCoursesParam}` +
-            (testBackend ? "&test_backend=true" : "")
-        )
-      );
-      const responseData = await response.json();
-
-      if (responseData.errors) {
-        throw new Error(responseData.errors);
-      }
-
-      return responseData;
-    },
-    { enabled: courses && courses.length > 0 }
-  );
-
+  const { enrollments, isLoading } = useEnrollments({ courses });
   const rows = enrollments ? enrollments : [];
 
   return (

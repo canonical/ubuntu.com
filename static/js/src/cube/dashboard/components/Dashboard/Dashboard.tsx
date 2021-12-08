@@ -1,26 +1,14 @@
 import React from "react";
 import { Col, Row } from "@canonical/react-components";
-import { useQuery } from "react-query";
+import CertificationsTable from "../CertificationsTable";
 import EnrollmentsChart from "../EnrollmentsChart";
 import EnrollmentsTable from "../EnrollmentsTable";
 import ExamAttemptsTable from "../ExamAttemptsTable";
 import GradesTable from "../GradesTable";
+import useCourses from "../../hooks/useCourses";
 
 const Dashboard = () => {
-  const { data } = useQuery("courses", async () => {
-    const response = await fetch("/cube/courses.json");
-    const responseData = await response.json();
-
-    if (responseData.errors) {
-      throw new Error(responseData.errors);
-    }
-
-    return responseData;
-  });
-
-  const courses = data ? data.map((course) => course["id"]) : [];
-
-  console.log("!!! courses: ", courses);
+  const { courses } = useCourses();
 
   return (
     <section className="p-strip">
@@ -32,6 +20,7 @@ const Dashboard = () => {
             <EnrollmentsTable courses={courses} />
             <ExamAttemptsTable courses={courses} />
             <GradesTable courses={courses} />
+            <CertificationsTable />
           </>
         </Col>
       </Row>

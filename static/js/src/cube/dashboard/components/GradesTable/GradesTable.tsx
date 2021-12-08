@@ -37,7 +37,9 @@ const GradesTable = ({ courses }: Props) => {
     { enabled: courses && courses.length > 0 }
   );
 
-  console.log("!!! grades: ", grades);
+  if (grades) {
+    console.log("!!! grades: ", grades);
+  }
 
   const rows = grades ? grades : [];
 
@@ -51,17 +53,15 @@ const GradesTable = ({ courses }: Props) => {
           { content: "Percent", sortKey: "percent" },
           { content: "Letter grade", sortKey: "letter_grade" },
           { content: "Username", sortKey: "username" },
-          { content: "Email", sortKey: "email" },
         ]}
         rows={rows.map(
-          ({ course_id, passed, percent, letter_grade, username, email }) => ({
+          ({ course_id, passed, percent, letter_grade, username }) => ({
             columns: [
               { content: course_id },
               { content: passed ? "Yes" : "No" },
               { content: percent },
               { content: letter_grade },
               { content: username },
-              { content: email },
             ],
             sortData: {
               course_id: course_id,
@@ -69,7 +69,6 @@ const GradesTable = ({ courses }: Props) => {
               percent: percent,
               letter_grade: letter_grade,
               username: username,
-              email: email,
             },
           })
         )}
