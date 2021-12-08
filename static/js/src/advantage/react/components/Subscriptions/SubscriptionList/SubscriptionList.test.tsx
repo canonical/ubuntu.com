@@ -14,7 +14,6 @@ import {
   UserSubscriptionMarketplace,
   UserSubscriptionPeriod,
 } from "advantage/api/enum";
-import ListGroup from "./ListGroup";
 
 describe("SubscriptionList", () => {
   let queryClient: QueryClient;
@@ -153,9 +152,7 @@ describe("SubscriptionList", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find(ListGroup).first().prop("showRenewalSettings")).toBe(
-      true
-    );
+    expect(wrapper.find("RenewalSettings").exists()).toBe(true);
   });
 
   it("does not show the renewal settings if there are no subscriptions for which we should present the auto-renewal option", () => {
@@ -187,8 +184,6 @@ describe("SubscriptionList", () => {
         />
       </QueryClientProvider>
     );
-    expect(wrapper.find(ListGroup).first().prop("showRenewalSettings")).toBe(
-      false
-    );
+    expect(wrapper.find("RenewalSettings").exists()).toBe(false);
   });
 });

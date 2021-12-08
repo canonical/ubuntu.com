@@ -2,10 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import fetch from "jest-fetch-mock";
 
-import {
-  RenewalSettings,
-  consolidateUserSubscriptions,
-} from "./RenewalSettings";
+import { RenewalSettings } from "./RenewalSettings";
 import { UserSubscription } from "advantage/api/types";
 import { QueryClient, QueryClientProvider } from "react-query";
 import {
@@ -65,7 +62,10 @@ describe("RenewalSettings", () => {
     ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Open the menu so that the content gets rendered inside the portal.
@@ -107,7 +107,10 @@ describe("RenewalSettings", () => {
     ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Open the menu so that the content gets rendered inside the portal.
@@ -177,23 +180,27 @@ describe("RenewalSettings", () => {
     ]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Open the menu so that the content gets rendered inside the portal.
     wrapper.find("Button.p-contextual-menu__toggle").simulate("click");
     const settings = wrapper.find("[data-test='renewal-toggles']").text();
+
     expect(
       settings.includes(
         `Renew my 2 yearly subscriptions for the next year for ` +
-          `$2,100.00*.The renewal will happen on 9 July 2022:3x UA Applications` +
+          `$1,900.00*.The renewal will happen on 9 July 2022:3x UA Applications` +
           ` - Standard (Physical)1x UA Applications - Standard (Physical)`
       )
     ).toBe(true);
     expect(
       settings.includes(
         `Automatically renew my 2 monthly subscriptions every month` +
-          ` for $300.00*.The next renewal will be on 9 July 2022:2x UA ` +
+          ` for $27.50*.The next renewal will be on 9 July 2022:2x UA ` +
           `Applications - Standard (Physical)100x UA Applications - Standard ` +
           `(Physical)`
       )
@@ -206,7 +213,10 @@ describe("RenewalSettings", () => {
     queryClient.removeQueries("userSubscriptions");
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Use act to force waiting  for the component to finish rendering.
@@ -234,7 +244,10 @@ describe("RenewalSettings", () => {
 
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Open the menu so that the content gets rendered inside the portal.
@@ -266,7 +279,10 @@ describe("RenewalSettings", () => {
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Open the menu so that the content gets rendered inside the portal.
@@ -300,7 +316,10 @@ describe("RenewalSettings", () => {
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <RenewalSettings positionNodeRef={{ current: null }} />
+        <RenewalSettings
+          positionNodeRef={{ current: null }}
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        />
       </QueryClientProvider>
     );
     // Open the menu so that the content gets rendered inside the portal.
@@ -323,121 +342,5 @@ describe("RenewalSettings", () => {
     expect(
       wrapper.find("Notification[data-test='update-error']").exists()
     ).toBe(false);
-  });
-});
-
-describe("consolidateUserSubscriptions", () => {
-  it("ignores user subscriptions that are not associated with subscription-based marketplces", () => {
-    const billingSubscriptions = consolidateUserSubscriptions([
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.Free,
-      }),
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalCUBE,
-      }),
-    ]);
-    expect(billingSubscriptions[UserSubscriptionMarketplace.CanonicalUA]).toBe(
-      undefined
-    );
-    expect(
-      billingSubscriptions[UserSubscriptionMarketplace.CanonicalCUBE]
-    ).toBe(undefined);
-    expect(billingSubscriptions[UserSubscriptionMarketplace.Free]).toBe(
-      undefined
-    );
-  });
-  it("ignores user subscriptions that have no end dates", () => {
-    const billingSubscriptions = consolidateUserSubscriptions([
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        end_date: null,
-        statuses: { should_present_auto_renewal: true },
-      }),
-    ]);
-    expect(billingSubscriptions[UserSubscriptionMarketplace.CanonicalUA]).toBe(
-      undefined
-    );
-  });
-  it("ignores user subscriptions that should not be presented to auto-renew", () => {
-    const billingSubscriptions = consolidateUserSubscriptions([
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        end_date: new Date(),
-        statuses: { should_present_auto_renewal: false },
-      }),
-    ]);
-    expect(billingSubscriptions[UserSubscriptionMarketplace.CanonicalUA]).toBe(
-      undefined
-    );
-  });
-  it("consolidates into a billing subscription valid user subscriptions", () => {
-    const now = new Date();
-    const billingSubscriptions = consolidateUserSubscriptions([
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        end_date: now,
-        statuses: {
-          should_present_auto_renewal: true,
-          is_subscription_auto_renewing: false,
-        },
-        period: UserSubscriptionPeriod.Yearly,
-        number_of_machines: 5,
-        price: 2500,
-        product_name: "Product A",
-        subscription_id: "abc",
-      }),
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        end_date: now,
-        statuses: {
-          should_present_auto_renewal: true,
-          is_subscription_auto_renewing: false,
-        },
-        period: UserSubscriptionPeriod.Yearly,
-        number_of_machines: 100,
-        price: 10000,
-        product_name: "Product B",
-        subscription_id: "abc",
-      }),
-      userSubscriptionFactory.build({
-        marketplace: UserSubscriptionMarketplace.CanonicalUA,
-        end_date: now,
-        statuses: {
-          should_present_auto_renewal: true,
-          is_subscription_auto_renewing: true,
-        },
-        period: UserSubscriptionPeriod.Monthly,
-        number_of_machines: 1,
-        price: 5500,
-        product_name: "Product C",
-        subscription_id: "def",
-      }),
-    ]);
-    const yearly = Object.assign(
-      {},
-      billingSubscriptions[UserSubscriptionMarketplace.CanonicalUA].yearly
-    );
-    const monthly = Object.assign(
-      {},
-      billingSubscriptions[UserSubscriptionMarketplace.CanonicalUA].monthly
-    );
-    expect(yearly).toEqual({
-      currency: "USD",
-      id: "abc",
-      n_user_subs: 2,
-      products: ["5x Product A", "100x Product B"],
-      status: false,
-      total: 1012500,
-      when: now,
-    });
-    expect(monthly).toEqual({
-      currency: "USD",
-      id: "def",
-      n_user_subs: 1,
-      products: ["1x Product C"],
-      status: true,
-      total: 5500,
-      when: now,
-    });
   });
 });
