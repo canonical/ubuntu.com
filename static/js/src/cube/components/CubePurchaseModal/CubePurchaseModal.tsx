@@ -34,6 +34,9 @@ const CubePurchaseModal = ({
     </>
   );
 
+  const marketingLabel =
+    "I agree to receive information about Canonical's products and services";
+
   const summary = () => <Summary productListingId={productListingId} />;
 
   const buyButton = ({ ...props }: BuyButtonProps) => (
@@ -52,6 +55,7 @@ const CubePurchaseModal = ({
         modalTitle="Complete purchase"
         marketplace="canonical-cube"
         termsLabel={termsLabel}
+        marketingLabel={marketingLabel}
         isFreeTrialApplicable={false}
         product={productName}
         quantity={quantity}

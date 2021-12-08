@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
+import useStripeCustomerInfo from "../../../PurchaseModal/hooks/useStripeCustomerInfo";
+import { getSessionData } from "../../../utils/getSessionData";
 import { BuyButtonProps } from "../../../PurchaseModal/utils/utils";
 import { getErrorMessage } from "../../../advantage/error-handler";
 import usePurchase from "../../hooks/usePurchase";
@@ -10,12 +12,32 @@ export type Props = BuyButtonProps & { productListingId: string };
 
 const CubeBuyButton = ({
   areTermsChecked,
+  isMarketingOptInChecked,
   setTermsChecked,
+  setIsMarketingOptInChecked,
   setError,
   setStep,
   productListingId,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const [sessionData, setSessionData] = useState({
+    gclid: "",
+    utm_campaign: "",
+    utm_source: "",
+    utm_medium: "",
+  });
+
+  useEffect(() => {
+    setSessionData({
+      gclid: getSessionData("gclid"),
+      utm_campaign: getSessionData("utm_campaign"),
+      utm_source: getSessionData("utm_source"),
+      utm_medium: getSessionData("utm_medium"),
+    });
+  }, []);
+
+  const { data: userInfo } = useStripeCustomerInfo();
 
   const purchaseMutation = usePurchase(productListingId);
 
@@ -99,13 +121,41 @@ const CubeBuyButton = ({
         }
       }
       setTermsChecked(false);
+      setIsMarketingOptInChecked(false);
       setStep(1);
     }
   }, [purchaseError]);
 
   useEffect(() => {
     if (pendingPurchase?.status === "done") {
-      handleOnAfterPurchaseSuccess();
+      const request = new XMLHttpRequest();
+      const formData = new FormData();
+      formData.append("munchkinId", "066-EOV-335");
+      formData.append("formid", "3756");
+      formData.append("formVid", "3756");
+      formData.append("Email", userInfo?.customerInfo?.email);
+      formData.append("Consent_to_Processing__c", "yes");
+      formData.append("GCLID__c", sessionData?.gclid || "");
+      formData.append("utm_campaign", sessionData?.utm_campaign || "");
+      formData.append("utm_source", sessionData?.utm_source || "");
+      formData.append("utm_medium", sessionData?.utm_medium || "");
+      formData.append("store_name__c", "cube");
+      formData.append(
+        "canonicalUpdatesOptIn",
+        isMarketingOptInChecked ? "yes" : "no"
+      );
+
+      request.open(
+        "POST",
+        "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+      );
+      request.send(formData);
+
+      request.onreadystatechange = () => {
+        if (request.readyState === 4) {
+          handleOnAfterPurchaseSuccess();
+        }
+      };
     }
   }, [pendingPurchase]);
 
