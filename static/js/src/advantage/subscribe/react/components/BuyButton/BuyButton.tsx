@@ -132,7 +132,7 @@ const BuyButton = ({
           Sentry.captureException(error);
           setError(
             <>
-              Sorry, there was an unknown error with with the payment. Check the
+              Sorry, there was an unknown error with the payment. Check the
               details and try again. Contact{" "}
               <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
               problem persists.
