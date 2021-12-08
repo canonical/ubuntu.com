@@ -1056,6 +1056,53 @@ class TestGetPurchaseAccount(unittest.TestCase):
         self.assertEqual(session.request_kwargs, expected_args)
 
 
+class TestGetAccountOffers(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (403, False, AccessForbiddenError),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (404, False, UAContractsUserHasNoAccount),
+            (404, True, UAContractsUserHasNoAccount),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            response_content = {"code": "expected error"}
+            response = Response(status_code=code, content=response_content)
+            session = Session(response=response)
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error) as error:
+                client.get_account_offers("account_id")
+
+            self.assertEqual(error.exception.response.json(), response_content)
+
+    def test_success(self):
+        json_offers = get_fixture("offers")
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=json_offers,
+            )
+        )
+        client = make_client(session)
+
+        response = client.get_account_offers("account_id")
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": None,
+            "method": "get",
+            "params": None,
+            "url": "https://1.2.3.4/v1/accounts/account_id/offers",
+        }
+
+        self.assertEqual(response, json_offers)
+        self.assertEqual(session.request_kwargs, expected_args)
+
+
 class TestPurchaseFromMarketplace(unittest.TestCase):
     def test_errors(self):
         default_response_content = {"code": "expected error"}
