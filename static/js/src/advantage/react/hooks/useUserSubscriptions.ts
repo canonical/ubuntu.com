@@ -73,14 +73,13 @@ export const selectBlenderSubscriptions = (subscriptions: UserSubscription[]) =>
     ({ marketplace }) => marketplace === UserSubscriptionMarketplace.Blender
   );
 
-/**
- * Find the active UA subscriptions that should have their renewal options
- * presented.
- */
-export const selectPresentableRenewalSubscriptions = (
-  subscriptions: UserSubscription[]
-) =>
-  subscriptions.filter(({ statuses }) => statuses.should_present_auto_renewal);
+export const selectAutoRenewableSubscriptionsByMarketplace = (
+  targetMarketplace: UserSubscription["marketplace"]
+) => (subscriptions: UserSubscription[]) =>
+  subscriptions.filter(
+    ({ statuses, marketplace }) =>
+      statuses.should_present_auto_renewal && marketplace === targetMarketplace
+  );
 
 /**
  * Find the subscriptions with for period.
@@ -89,13 +88,6 @@ export const selectSubscriptionsForPeriod = (
   period: UserSubscriptionPeriod
 ) => (subscriptions: UserSubscription[]) =>
   subscriptions.filter((subscription) => subscription.period === period);
-
-export const selectAutoRenewableUASubscriptions = (
-  subscriptions: UserSubscription[]
-) =>
-  selectUASubscriptions(subscriptions).filter(
-    ({ statuses }) => statuses.should_present_auto_renewal
-  );
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
   options?: UseQueryOptions<UserSubscription[], unknown, D>

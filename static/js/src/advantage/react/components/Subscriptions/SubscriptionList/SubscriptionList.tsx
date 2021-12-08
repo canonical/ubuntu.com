@@ -1,10 +1,10 @@
 import { Spinner } from "@canonical/react-components";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import {
   selectFreeSubscription,
   selectUASubscriptions,
   selectBlenderSubscriptions,
-  selectPresentableRenewalSubscriptions,
 } from "advantage/react/hooks/useUserSubscriptions";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
@@ -38,19 +38,8 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   } = useUserSubscriptions({
     select: selectBlenderSubscriptions,
   });
-  const {
-    data: activeUASubscriptions = [],
-    isLoading: isLoadingPresentableRenewalSubscriptions,
-  } = useUserSubscriptions({
-    select: selectPresentableRenewalSubscriptions,
-  });
 
-  if (
-    isLoadingFree ||
-    isLoadingUA ||
-    isLoadingBlender ||
-    isLoadingPresentableRenewalSubscriptions
-  ) {
+  if (isLoadingFree || isLoadingUA || isLoadingBlender) {
     return <Spinner />;
   }
   // Sort the subscriptions so that the most recently started subscription is first.
@@ -104,20 +93,27 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
           <ListGroup
             data-test="ua-subscriptions-group"
             title="Ubuntu Advantage"
-            showRenewalSettings={activeUASubscriptions?.length > 0}
+            marketplace={UserSubscriptionMarketplace.CanonicalUA}
           >
             {uaSubscriptions}
           </ListGroup>
         ) : null}
 
         {sortedBlenderSubscriptions.length ? (
-          <ListGroup data-test="blender-subscriptions-group" title="Blender">
+          <ListGroup
+            data-test="blender-subscriptions-group"
+            title="Blender"
+            marketplace={UserSubscriptionMarketplace.Blender}
+          >
             {blenderSubscriptions}
           </ListGroup>
         ) : null}
 
         {freeSubscription ? (
-          <ListGroup title="Free personal token" showRenewalSettings={false}>
+          <ListGroup
+            title="Free personal token"
+            marketplace={UserSubscriptionMarketplace.Free}
+          >
             <ListCard
               data-test="free-subscription"
               isSelected={selectedId === freeSubscription.id}

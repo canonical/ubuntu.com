@@ -2,46 +2,61 @@
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
     <header class="p-modal__header" style="display: block; border-bottom: 0;">
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">Let's get your project to market faster!</h2>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Pave the way to an open source future</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <p id="modal-description" class="u-no-max-width">Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster.</p>
-      <p class="u-no-max-width u-no-margin--bottom">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
-
+      <p id="modal-description" class="u-no-max-width">Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster. We help leading global system integrators to accelerate their next generation smart city solutions.</p>
+      <p class="u-no-max-width u-sv3">Tell us about your smart city project so we can bring the right Canonical team members to the conversation.</p>
       <div class="js-formfield">
-        <h3 class="p-heading--five">Do you have a commercial project?</h3>
+        <h3 class="p-heading--five">Which topics are you interested in?</h3>
         <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input type="radio" id="commerical-project-yes" name="commercial-project" value="Yes">
-            <label for="commerical-project-yes">Yes</label>
+          <div class="col-4">
+            <input type="checkbox" id="topic-energy" name="smart-city-topic" value="Energy">
+            <label for="topic-energy">Energy</label>
+            <input type="checkbox" id="topic-government-services" name="smart-city-topic" value="Government services">
+            <label for="topic-government-services">Government services</label>
+            <input type="checkbox" id="topic-infrastructure" name="smart-city-topic" value="Infrasructure">
+            <label for="topic-infrastructure">Infrastructure</label>
+            <input type="checkbox" id="topic-smart-homes" name="smart-city-topic" value="Smart Homes">
+            <label for="topic-smart-homes">Smart Homes</label>
+            <div class="js-other-container">
+              <input type="checkbox" class="js-other-container__checkbox" id="priority-workloads-other">
+              <label for="priority-workloads-other">Other</label>
+              <input type="text" id="priority-workloads-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
+            </div>
           </div>
-          <div class="col-4 u-sv3">
-            <input type="radio" id="commercial-project-no" name="commercial-project" value="No">
-            <label for="commercial-project-no">No</label>
+          <div class="col-4">
+            <input type="checkbox" id="topic-environment" name="smart-city-topic" value="Environment">
+            <label for="topic-environment">Environment</label>
+            <input type="checkbox" id="topic-healthcare" name="smart-city-topic" value="Energy">
+            <label for="topic-healthcare">Healthcare</label>
+            <input type="checkbox" id="topic-retail-commerce" name="smart-city-topic" value="Retail and commerce">
+            <label for="topic-retail-commerce">Retail and Commerce</label>
+            <input type="checkbox" id="topic-telecommunications" name="smart-city-topic" value="Telecommunications">
+            <label for="topic-telecommunications">Telecommunications</label>
+          </div>
+          <div class="col-4">
+            <input type="checkbox" id="topic-finance" name="smart-city-topic" value="Finance">
+            <label for="topic-finance">Finance</label>
+            <input type="checkbox" id="topic-information-technology" name="smart-city-topic" value="Information Technology">
+            <label for="topic-information-technology">Information Technology</label>
+            <input type="checkbox" id="topic-robotics-drones" name="smart-city-topic" value="Robotics and drones">
+            <label for="topic-robotics-drones">Robotics and drones</label>
+            <input type="checkbox" id="topic-transport-mobility" name="smart-city-topic" value="Robotics and drones">
+            <label for="topic-transport-mobility">Trasport and mobility</label>
           </div>
         </div>
       </div>
       <div class="js-formfield">
         <div class="u-sv3">
-          <h3 class="p-heading--five">When do you need to ship?</h3>
           <div class="row u-no-padding">
-            <div class="col-4 u-sv3">
-              <input type="radio" id="shipping-time-next-3-months" name="shipping-time" value="Next 3 months">
-              <label for="shipping-time-next-3-months">Next 3 months</label>
-              <input type="radio" id="shipping-time-next-3-6-months" name="shipping-time" value="Next 3 - 6 months">
-              <label for="shipping-time-next-3-6-months">Next 3 - 6 months</label>
-            </div>
-            <div class="col-4 u-sv3">
-              <input type="radio" id="shipping-time-next-6-12-months" name="shipping-time" value="Next 6 - 12 months">
-              <label for="shipping-time-next-6-12-months">Next 6 - 12 months</label>
-              <input type="radio" id="shipping-time-no-timeline" name="shipping-time" value="No timeline - just researching">
-              <label for="shipping-time-no-timeline">No timeline - just researching</label>
-            </div>
-          </div>
-          <div class="row u-no-padding">
-            <div class="col-6 u-sv3">
-              <label for="about-project">Tell us more about your project</label>
-              <textarea name="about-project" id="about-project"></textarea>
+            <div class="col-8 u-sv3">
+              <h3 class="p-heading--five">Tell us more about your smart city use case</h3>
+              <textarea
+                id="smart-city-use-case"
+                aria-label="Tell us more"
+                rows="3"
+              ></textarea>
             </div>
           </div>
         </div>
@@ -58,12 +73,8 @@
           <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
             <ul class="p-list">
               <li class="p-list__item">
-                <label for="firstName">First name:</label>
-                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="lastName">Last name:</label>
-                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                <label for="fullName">Name:</label>
+                <input required id="fullName" name="fullName" maxlength="255" type="text" required="required" />
               </li>
               <li class="p-list__item">
                 <label for="company">Company:</label>
@@ -74,7 +85,7 @@
                 <input data-testid="form-email" required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
               <li class="p-list__item">
-                <label for="phone">Mobile/cell phone number:</label>
+                <label for="phone">Phone number:</label>
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
@@ -82,7 +93,7 @@
                 <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              
+            
               {# These are honey pot fields to catch bots #}
               <li class="u-off-screen">
                 <label class="website" for="website">Website:</label>

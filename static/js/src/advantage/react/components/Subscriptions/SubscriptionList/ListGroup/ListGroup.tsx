@@ -1,19 +1,22 @@
 import React, { useRef, useState } from "react";
 import type { ReactNode } from "react";
+import { selectAutoRenewableSubscriptionsByMarketplace } from "advantage/react/hooks/useUserSubscriptions";
+import { useUserSubscriptions } from "advantage/react/hooks";
 
 import RenewalSettings from "../RenewalSettings";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 type Props = {
   children: ReactNode;
-  showRenewalSettings?: boolean;
   title: string;
+  marketplace: UserSubscriptionMarketplace;
 };
 
-const ListGroup = ({
-  children,
-  showRenewalSettings = false,
-  title,
-}: Props): JSX.Element => {
+const ListGroup = ({ children, title, marketplace }: Props): JSX.Element => {
+  const { data: renewableSubscriptions } = useUserSubscriptions({
+    select: selectAutoRenewableSubscriptionsByMarketplace(marketplace),
+  });
+
   const positionNode = useRef<HTMLDivElement | null>(null);
   const [, setRefReady] = useState(false);
   return (
@@ -30,8 +33,11 @@ const ListGroup = ({
         <span className="p-text--x-small-capitalised u-align-text--small-to-default u-no-margin--bottom">
           {title}
         </span>
-        {showRenewalSettings ? (
-          <RenewalSettings positionNodeRef={positionNode} />
+        {renewableSubscriptions?.length ?? 0 > 0 ? (
+          <RenewalSettings
+            positionNodeRef={positionNode}
+            marketplace={marketplace}
+          />
         ) : null}
       </div>
       {children}
