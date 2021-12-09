@@ -19,7 +19,7 @@
  </div>
  <div class="row u-equal-height u-vertically-center">
    <div class="col-8">
-     <h1>FIPS 140 for Ubuntu</h1>
+     <h1>FIPS for Ubuntu</h1>
      <h2 class="p-heading--4">FIPS 140 validated cryptography for Linux workloads on Ubuntu</h2>
      <p>Developing and running Linux workloads for U.S. government regulated and high security environments requires a long and expensive validation process. Reduce your accreditation timeline and pass on your validation costs with the FIPS 140 certified cryptographic packages of <a href="/cloud/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a>.</p>
      <p>
@@ -75,7 +75,7 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2>What is FIPS 140?</h2>
+    <h2>What is FIPS?</h2>
     <p>FIPS 140 is a U.S. and Canada Government data protection standard. It defines security requirements related to the design and implementation of a cryptographic module. The reason for a data protection standard dedicated to cryptography is because cryptography today is omnipresent, and is very hard to get right in a constantly expanding threat model such as today’s Internet. The standard ensures that cryptographic algorithms known to be secure are used for data protection, and they are thoroughly tested and attested by a 3rd party. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST's   <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a> in the US and <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program">CCCS's Cryptographic Module Validation Program (CMVP)</a> in Canada.</p>
     <p>FIPS 140-2 is required under multiple compliance regimes, such as Federal Risk and Authorization Management Program (FedRAMP), Federal Information Security Management Act of 2002 (FISMA) and the Health Information Technology for Economic and Clinical Health Act (HITECH).</p>
 
@@ -172,8 +172,8 @@
           <td>
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3633">#3633</a>
           </td>
-          <td>
-            <p>Merged with OpenSSL</p>
+          <td rowspan="3">
+            <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3966">#3966</a>
           </td>
         </tr>
         <tr>
@@ -183,9 +183,6 @@
           </td>
           <td>
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3632">#3632</a>
-          </td>
-          <td>
-            <p>Merged with OpenSSL</p>
           </td>
         </tr>
         <tr>
@@ -197,9 +194,6 @@
           <td>
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3622">#3622</a>,
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3980">#3980</a>
-          </td>
-          <td>
-            <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3966">#3966</a>
           </td>
         </tr>
         <tr>
@@ -228,14 +222,14 @@
     </table>
     <p id="ibm">*The IBM Z packages are <a href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/modules-in-process/Modules-In-Process-List" class="p-link--external">under validation</a>.</p>
     <a class="p-button--neutral" href="/security/certifications/docs/fips">Read more about FIPS</a>
-    <a class="p-button--positive" href="/advantage">Access the FIPS140 validated modules</a>
+    <a class="p-button--positive" href="/advantage">Access the FIPS validated modules</a>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h2>Canonical patches vulnerabilities</h2>
-    <p>Each FIPS 140 certificate is valid for 5 years, however vulnerabilities happen, and it is our intention to publish fixed packages quickly, irrespective of their certification status. We therefore provide two alternative options. An option to remain with the certified cryptographic packages (called the 'fips' option), and an option to use the certified packages but include security fixes (called the 'fips-updates' option) when available. Check <a class="p-link--external" href="https://security-certs.docs.ubuntu.com/en/fips">our security pages on how to enable these options</a>.</p>
+    <h2>FIPS packages and security updates</h2>
+    <p>Each FIPS 140-2 certificate is valid for 5 years, however vulnerabilities happen, and it is our intention to publish fixed packages quickly, irrespective of their certification status. We therefore provide two alternative options. An option to remain with the certified cryptographic packages (called the 'fips' option), and an option to use the certified packages but include security fixes (called the 'fips-updates' option) when available. Check <a href="/security/certifications/docs/fips-enablement">our documentation pages on how to enable these options</a>.</p>
     <p>We recommend enabling the 'fips-updates' option that includes the security fixes. The packages from 'fips-updates' option are updated to include high and critical security fixes during the whole product lifecycle including the <a href="/security/esm">Extended Security Maintenance (ESM)</a> phase.</p>
   </div>
 </section>
