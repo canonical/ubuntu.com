@@ -33,15 +33,15 @@
         <label for="tutorials-topic">Topic:</label>
         <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
           <option value="">Any</option>
-          <option value="cloud">Cloud</option>
-          <option value="community">Community</option>
-          <option value="containers">Containers</option>
-          <option value="desktop">Desktop</option>
-          <option value="development">Development</option>
-          <option value="iot">IoT</option>
-          <option value="packaging">Packaging</option>
-          <option value="server">Server</option>
-          <option value="ua">Ubuntu Advantage</option>
+          {% for item in topics_list %}
+            {% if item == "ua" %}
+              <option value="{{ item }}">Ubuntu Advantage</option>
+            {% elif item == "iot" %}
+              <option value="{{ item }}">IoT</option>
+            {% else %}
+              <option value="{{ item }}">{{item | capitalize}}</option>
+            {% endif %}
+          {% endfor %}
         </select>
       </div>
     </div>
