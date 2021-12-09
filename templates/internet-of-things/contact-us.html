@@ -18,7 +18,7 @@
   {% elif product == 'gateways' %}
 
 {% with h1="Contact us about gateways",
-  intro_text="If you would like to know more about Ubuntu for edge gateways please fill in your details below and a member of our team will get in touch.",
+  intro_text="If you would like to know more about Ubuntu for edge gateways, please fill in your details below and a member of our team will get in touch.",
   formid="1663",
   lpId="3143",
   returnURL="/internet-of-things/thank-you?product=gateways" %}
@@ -28,7 +28,7 @@
   {% elif product == 'robotics' %}
 
 {% with h1="Contact us about robotics",
-  intro_text="If you would like to know more about Ubuntu for Robotics please fill in your details below and a member of our team will get in touch.",
+  intro_text="If you would like to know more about Ubuntu for Robotics, please fill in your details below and a member of our team will get in touch.",
   formid="1650",
   lpId="2838",
   returnURL="/internet-of-things/thank-you?product=robotics" %}
@@ -62,6 +62,16 @@
   formid="3484",
   lpId="",
   returnURL="/internet-of-things/thank-you?product=networking" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+    {% elif product == 'iot-management' %}
+
+{% with h1="Contact us about IoT device management",
+  intro_text="If you would like to learn more about our enterprise device management features, please fill in the form below and a member of our team will be in touch.",
+  formid="2639",
+  lpId="5811",
+  returnURL="/internet-of-things/thank-you?product=iot-management" %}
   {% include "shared/_client-contact-us-form.html" %}
 {% endwith %}
 
