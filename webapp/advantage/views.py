@@ -474,7 +474,7 @@ def cancel_advantage_subscriptions(**kwargs):
 
 @advantage_decorator(permission="user", response="json")
 @use_kwargs(post_offer_schema, location="json")
-def post_offer(preview, **kwargs):
+def post_offer(**kwargs):
     account_id = kwargs.get("account_id")
     offer_id = kwargs.get("offer_id")
     marketplace = kwargs.get("marketplace", "canonical-ua")
