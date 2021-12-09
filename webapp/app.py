@@ -407,7 +407,10 @@ app.add_url_rule(
     methods=["PUT"],
 )
 
-app.add_url_rule("/advantage/subscribe/blender/thank-you", view_func=blender_thanks_view)
+app.add_url_rule(
+    "/advantage/subscribe/blender/thank-you",
+    view_func=blender_thanks_view,
+)
 
 app.add_url_rule("/account", view_func=account_view)
 
