@@ -48,7 +48,9 @@ describe("DetailsContent", () => {
         <DetailsContent selectedId={contract.id} />
       </QueryClientProvider>
     );
-    expect(wrapper.find("[data-test='expires-col']").text()).toBe("09.07.2022");
+    expect(wrapper.find("[data-test='expires-col']").text()).toBe(
+      "09.Jul.2022"
+    );
     expect(wrapper.find("[data-test='billing-col']").text()).toBe("Yearly");
     expect(wrapper.find("[data-test='cost-col']").text()).toBe("$1,500 USD/yr");
   });
