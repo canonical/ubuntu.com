@@ -146,4 +146,13 @@
 </section>
 {% endif %}
 
+{% if "vimeo_id" in document["metadata"] %}
+<!-- Vimeo webinars -->
+<section class="p-strip is-shallow" id="vimeo-section">
+  <div class="row" id="webinar">
+    <iframe src="https://player.vimeo.com/video/{{ document['metadata']['vimeo_id'] }}" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</section>
+{% endif %}
+
 {% endblock content %}
