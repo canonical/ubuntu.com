@@ -23,6 +23,8 @@ from canonicalwebteam.discourse import (
     DiscourseAPI,
     Docs,
     DocParser,
+    EngageParser,
+    EngagePages,
 )
 
 # Local
@@ -361,86 +363,99 @@ def build_tutorials_index(session, tutorials_docs):
     return tutorials_index
 
 
-def build_engage_index(engage_docs):
-    def engage_index():
-        page = flask.request.args.get("page", default=1, type=int)
-        preview = flask.request.args.get("preview")
-        language = flask.request.args.get("language", default=None, type=str)
-        resource = flask.request.args.get("resource", default=None, type=str)
-        tag = flask.request.args.get("tag", default=None, type=str)
-        posts_per_page = 15
-        engage_docs.parser.parse()
-        metadata = engage_docs.parser.metadata
+engage_path = "/engage"
+engage_pages = EngagePages(
+    parser=EngageParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
+        ),
+        index_topic_id=18033,
+        url_prefix=engage_path,
+    ),
+    document_template="/engage/base.html",
+    url_prefix=engage_path,
+    blueprint_name="engage-pages",
+)
 
-        resource_types = []
-        tags_list = set()
+
+def build_engage_index():
+    page = flask.request.args.get("page", default=1, type=int)
+    preview = flask.request.args.get("preview")
+    language = flask.request.args.get("language", default=None, type=str)
+    resource = flask.request.args.get("resource", default=None, type=str)
+    tag = flask.request.args.get("tag", default=None, type=str)
+    posts_per_page = 15
+    engage_pages.parser.parse()
+    metadata = engage_pages.parser.metadata
+
+    resource_types = []
+    tags_list = set()
+    for item in metadata:
+        if "type" in item and item["type"] not in resource_types:
+            resource_types.append(item["type"])
+        if "tags" in item and item["tags"] != "":
+            # Join 2 lists of tags without duplicates
+            tags_list = tags_list | set(
+                item["tags"].replace(" ", "").split(",")
+            )
+
+    tags_list = sorted(list(tags_list))
+
+    if preview is None:
+        metadata = [
+            item
+            for item in metadata
+            if "active" in item and item["active"] == "true"
+        ]
+
+    if language:
+        new_metadata = []
         for item in metadata:
-            if "type" in item and item["type"] not in resource_types:
-                resource_types.append(item["type"])
-            if "tags" in item and item["tags"] != "":
-                # Join 2 lists of tags without duplicates
-                tags_list = tags_list | set(
-                    item["tags"].replace(" ", "").split(",")
-                )
+            if "language" in item:
+                if item["language"] == language:
+                    new_metadata.append(item)
+                elif language == "en" and item["language"] == "":
+                    new_metadata.append(item)
+            else:
+                break
+        metadata = new_metadata
 
-        tags_list = sorted(list(tags_list))
+    if resource:
+        metadata = [
+            item
+            for item in metadata
+            if "type" in item and item["type"] == resource
+        ]
 
-        if preview is None:
-            metadata = [
-                item
-                for item in metadata
-                if "active" in item and item["active"] == "true"
-            ]
+    if tag:
+        metadata = [
+            element
+            for element in metadata
+            if "tags" in element
+            and tag in element["tags"].replace(" ", "").split(",")
+        ]
 
-        if language:
-            new_metadata = []
-            for item in metadata:
-                if "language" in item:
-                    if item["language"] == language:
-                        new_metadata.append(item)
-                    elif language == "en" and item["language"] == "":
-                        new_metadata.append(item)
-                else:
-                    break
-            metadata = new_metadata
+    total_pages = math.ceil(len(metadata) / posts_per_page)
 
-        if resource:
-            metadata = [
-                item
-                for item in metadata
-                if "type" in item and item["type"] == resource
-            ]
-
-        if tag:
-            metadata = [
-                element
-                for element in metadata
-                if "tags" in element
-                and tag in element["tags"].replace(" ", "").split(",")
-            ]
-
-        total_pages = math.ceil(len(metadata) / posts_per_page)
-
-        return flask.render_template(
-            "engage/index.html",
-            forum_url=engage_docs.parser.api.base_url,
-            metadata=metadata,
-            page=page,
-            preview=preview,
-            language=language,
-            resource=resource,
-            resource_types=sorted(resource_types),
-            tags=tags_list,
-            posts_per_page=posts_per_page,
-            total_pages=total_pages,
-        )
-
-    return engage_index
+    return flask.render_template(
+        "engage/index.html",
+        forum_url=engage_pages.parser.api.base_url,
+        metadata=metadata,
+        page=page,
+        preview=preview,
+        language=language,
+        resource=resource,
+        resource_types=sorted(resource_types),
+        tags=tags_list,
+        posts_per_page=posts_per_page,
+        total_pages=total_pages,
+    )
 
 
-def engage_thank_you(engage_pages):
+def engage_thank_you(language, page):
     """
-    Renders an engage pages thank-you page
+    Renders an engage page thank-you page
     i.e. whitepapers, pdfs
 
     If there is no current topic it can't render the page
@@ -451,44 +466,41 @@ def engage_thank_you(engage_pages):
     @returns: a function that renders a template
     """
 
-    def render_template(language, page):
-        engage_pages.parser.parse()
-        page_url = f"/engage/{page}"
-        if language:
-            page_url = f"/engage/{language}/{page}"
-        index_topic_data = next(
-            (x for x in engage_pages.parser.metadata if x["path"] == page_url),
-            None,
+    engage_pages.parser.parse()
+    page_url = f"/engage/{page}"
+    if language:
+        page_url = f"/engage/{language}/{page}"
+    index_topic_data = next(
+        (x for x in engage_pages.parser.metadata if x["path"] == page_url),
+        None,
+    )
+
+    if index_topic_data:
+        topic_id = engage_pages.parser.url_map[page_url]
+        engage_page_data = engage_pages.parser.get_topic(topic_id)
+        request_url = flask.request.referrer
+        resource_name = index_topic_data["type"]
+        resource_url = engage_page_data["metadata"]["resource_url"]
+        language = index_topic_data["language"]
+        # Filter related engage pages by language
+        related = [
+            item
+            for item in engage_page_data["related"]
+            if item["language"] == language
+        ]
+        template_language = "engage/thank-you.html"
+        if language and language != "en":
+            template_language = f"engage/shared/_{language}_thank-you.html"
+
+        return flask.render_template(
+            template_language,
+            request_url=request_url,
+            resource_name=resource_name,
+            resource_url=resource_url,
+            related=related,
         )
-
-        if index_topic_data:
-            topic_id = engage_pages.parser.url_map[page_url]
-            engage_page_data = engage_pages.parser.get_topic(topic_id)
-            request_url = flask.request.referrer
-            resource_name = index_topic_data["type"]
-            resource_url = engage_page_data["metadata"]["resource_url"]
-            language = index_topic_data["language"]
-            # Filter related engage pages by language
-            related = [
-                item
-                for item in engage_page_data["related"]
-                if item["language"] == language
-            ]
-            template_language = "engage/thank-you.html"
-            if language and language != "en":
-                template_language = f"engage/shared/_{language}_thank-you.html"
-
-            return flask.render_template(
-                template_language,
-                request_url=request_url,
-                resource_name=resource_name,
-                resource_url=resource_url,
-                related=related,
-            )
-        else:
-            return flask.abort(404)
-
-    return render_template
+    else:
+        return flask.abort(404)
 
 
 def openstack_install():

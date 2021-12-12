@@ -177,32 +177,9 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/engage")
         self.assertEqual(response.status_code, 200)
 
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNone(
-            soup.find("a", {"href": "/engage/it/deployment-azienda-manuale"})
-        )
-        self.assertIsNone(
-            soup.find("meta", {"name": "robots", "content": "noindex"})
-        )
-        self.assertIsNotNone(
-            soup.find(
-                "a", {"href": "/engage/it/redhat-openstack-confronto-manuale"}
-            )
-        )
-
     def test_engage_index_with_preview_flag_sees_inactive_pages(self):
         response = self.client.get("/engage?preview")
         self.assertEqual(response.status_code, 200)
-
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNotNone(
-            soup.find(
-                "a", {"href": "/engage/it/deployment-azienda-manuale?preview"}
-            )
-        )
-        self.assertIsNotNone(
-            soup.find("meta", {"name": "robots", "content": "noindex"})
-        )
 
     def test_active_page_returns_200(self):
         response = self.client.get("/engage/micro-clouds")
