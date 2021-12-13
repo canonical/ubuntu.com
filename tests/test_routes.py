@@ -195,21 +195,6 @@ class TestRoutes(VCRTestCase):
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertIsNone(soup.find("meta", {"name": "robots"}))
 
-    def test_inactive_page_returns_302(self):
-        response = self.client.get("/engage/it/deployment-azienda-manuale")
-        self.assertEqual(response.status_code, 302)
-
-    def test_inactive_page_returns_page_with_preview_flag(self):
-        response = self.client.get(
-            "/engage/it/deployment-azienda-manuale?preview"
-        )
-        self.assertEqual(response.status_code, 200)
-
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNotNone(
-            soup.find("meta", {"name": "robots", "content": "nofollow"})
-        )
-
     def test_security_certs_docs(self):
         """
         When given the Security certs docs URL,
