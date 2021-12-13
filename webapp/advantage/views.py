@@ -479,7 +479,7 @@ def post_offer(**kwargs):
     offer_id = kwargs.get("offer_id")
     marketplace = kwargs.get("marketplace", "canonical-ua")
 
-    g.api.purchase_from_marketplace(
+    return g.api.purchase_from_marketplace(
         marketplace=marketplace,
         purchase_request={
             "accountID": account_id,
