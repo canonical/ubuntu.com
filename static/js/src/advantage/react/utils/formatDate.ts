@@ -1,6 +1,6 @@
 import { format, parseJSON } from "date-fns";
 
-const DATE_FORMAT = "dd.MMM.yyyy";
+const DATE_FORMAT = "dd MMM yyyy";
 
 export const formatDate = (date: string | Date, dateFormat = DATE_FORMAT) => {
   try {

@@ -41,7 +41,7 @@ describe("ListCard", () => {
     expect(wrapper.find("[data-test='card-type']").text()).toBe("free");
     expect(wrapper.find("[data-test='card-machines']").text()).toBe("2");
     expect(wrapper.find("[data-test='card-start-date']").text()).toBe(
-      "09.Jul.2021"
+      "09 Jul 2021"
     );
     expect(wrapper.find("[data-test='card-end-date']").text()).toBe("Never");
     expect(wrapper.find("List[data-test='card-entitlements']").text()).toBe(
