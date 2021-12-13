@@ -265,7 +265,7 @@ def get_user_subscription_statuses(
         return statuses
 
     if type == "legacy":
-        statuses["is_renewal_actionable"] = renewal.actionable
+        statuses["is_renewal_actionable"] = renewal.actionable or False
 
         if renewal.actionable and renewal.status == "pending":
             start = parse(renewal.start_date)
