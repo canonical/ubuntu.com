@@ -901,11 +901,11 @@ def blender_shop_view():
     )
 
 
-@advantage_decorator(response="html")
+@advantage_decorator(permission="guest", response="html")
 @use_kwargs({"email": String()}, location="query")
 def blender_thanks_view(**kwargs):
     return flask.render_template(
-        "advantage/blender/thank-you.html",
+        "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),
     )
 
