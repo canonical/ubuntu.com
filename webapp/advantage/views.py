@@ -41,6 +41,7 @@ from webapp.advantage.schemas import (
     delete_account_user_role,
     put_contract_entitlements,
     post_auto_renewal_settings,
+    post_offer_schema,
 )
 
 
@@ -482,6 +483,22 @@ def cancel_advantage_subscriptions(**kwargs):
         )
 
     return flask.jsonify(purchase), 200
+
+
+@advantage_decorator(permission="user", response="json")
+@use_kwargs(post_offer_schema, location="json")
+def post_offer(**kwargs):
+    account_id = kwargs.get("account_id")
+    offer_id = kwargs.get("offer_id")
+    marketplace = kwargs.get("marketplace", "canonical-ua")
+
+    return g.api.purchase_from_marketplace(
+        marketplace=marketplace,
+        purchase_request={
+            "accountID": account_id,
+            "offerID": offer_id,
+        },
+    )
 
 
 @advantage_decorator(permission="user", response="json")

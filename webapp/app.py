@@ -105,6 +105,7 @@ from webapp.advantage.views import (
     blender_thanks_view,
     blender_shop_view,
     support,
+    post_offer,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -353,6 +354,7 @@ app.add_url_rule(
     methods=["POST"],
     defaults={"preview": True},
 )
+app.add_url_rule("/advantage/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
