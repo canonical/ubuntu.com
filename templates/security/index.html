@@ -29,12 +29,12 @@
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
       <h2 class="p-heading--three">Secure out of the box</h2>
       <p>All Canonical products are built with unrivalled security in mind &mdash; and tested to ensure they deliver it. Your Ubuntu software is secure from the moment you install it, and will remain so as Canonical ensures security updates are always available on Ubuntu first.</p>
-      <p><a href="https://wiki.ubuntu.com/Security/Features" class="p-link--external">Learn more about Ubuntu’s security features&nbsp;&rsaquo;</a></p>
+      <p><a href="https://wiki.ubuntu.com/Security/Features" class="p-link--external">Learn more about Ubuntu’s security features</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <h2 class="p-heading--three">Hardening at scale</h2>
@@ -49,7 +49,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip--light is">
   <div class="row u-equal-height">
     <div class="col-6">
       <h2>
@@ -73,7 +73,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="u-fixed-width">
     <h2>Find out more</h2>
   </div>
@@ -81,20 +81,19 @@
     <div class="col-4 p-card u-align--center">
       <p>
         <a href="/security/notices">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/fd84bbdc-Document-open.svg",
-              alt="",
-              height="47",
-              width="56",
-              hi_def=True,
-              loading="lazy"
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+            alt="",
+            width="56",
+            height="49",
+            hi_def=True,
+            loading="lazy"
             ) | safe
           }}
         </a>
       </p>
 
-      <h3 class="p-heading--four u-no-margin--bottom"><a href="/security/notices"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security notices', 'eventLabel' : 'Security notices - find out more' : undefined });">Security notices</a></h3>
+      <h3 class="p-heading--four u-no-margin--bottom"><a href="/security/notices"  onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security notices', 'eventLabel' : 'Security notices - find out more' : undefined });">Datasheet</a></h3>
     </div>
     <div class="col-4 p-card u-align--center">
       <p>
@@ -112,7 +111,7 @@
         </a>
       </p>
 
-      <h3 class="p-heading--four u-no-margin--bottom"><a href="/blog/tag/security" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security news', 'eventLabel' : 'Security news - find out more' : undefined });">Security news</a></h3>
+      <h3 class="p-heading--four u-no-margin--bottom"><a href="/blog/tag/security" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security news', 'eventLabel' : 'Security news - find out more' : undefined });">Security notices</a></h3>
     </div>
     <div class="col-4 p-card u-align--center">
       <p>
@@ -129,12 +128,12 @@
           }}
         </a>
       </p>
-      <h3 class="p-heading--four u-no-margin--bottom"><a href="https://wiki.ubuntu.com/Security/Features" class="p-link--external" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security hardening features', 'eventLabel' : 'Security hardening features - find out more' : undefined });">Security hardening features</a></h3>
+      <h3 class="p-heading--four u-no-margin--bottom"><a href="https://wiki.ubuntu.com/Security/Features" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Security hardening features', 'eventLabel' : 'Security hardening features - find out more' : undefined });">Security hardening features</a></h3>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip--light is-deep">
   <div class="u-fixed-width">
     <div class='p-heading-icon'>
       <div class='p-heading-icon__header u-no-margin--bottom'>
@@ -204,7 +203,7 @@
 
 {% include "shared/_case-study-itstrategen.html" %}
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2 class="p-muted-heading u-align--center">Ubuntu is trusted by</h2>
     <ul class="p-inline-images">
@@ -329,7 +328,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-deep u-image-position is-bordered">
+<section class="p-strip is-deep u-image-position">
   <div class="row">
     <div class="col-7">
       <h2>Find out why the UK Government puts Ubuntu in first place for security</h2>
@@ -352,7 +351,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Learn more about Ubuntu security</h2>
   </div>
@@ -375,7 +374,7 @@
           <h4 class='p-heading-icon__title'>White paper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class='p-link--external' href='https://assets.ubuntu.com/v1/66fcd858-canonical-ubuntu-core-security-2018-11-13.pdf' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External link', 'eventAction' : 'Security - left', 'eventLabel' : 'White paper - Read Ubuntu Core Security Whitepaper', 'eventValue' : '1' });'>Ubuntu Core Security Whitepaper</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/a-small-to-medium-size-business-guide-to-cybersecurity' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External link', 'eventAction' : 'Security - left', 'eventLabel' : 'White paper - Read Ubuntu Core Security Whitepaper', 'eventValue' : '1' });'>A small to medium-size business guide to cybersecurity</a></h3>
       <!-- rtp section end -->
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_security_center">
@@ -396,7 +395,7 @@
           <h4 class='p-heading-icon__title'>White paper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class='p-link--external' href='https://pages.ubuntu.com/IoT-Security-whitepaper.html' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External link', 'eventAction' : 'Security - center', 'eventLabel' : 'White paper - Read IoT Security Whitepaper', 'eventValue' : '1' });'>IoT Security Whitepaper</a></h3>
+      <h3 class='p-heading--four'><a href='https://pages.ubuntu.com/IoT-Security-whitepaper.html' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External link', 'eventAction' : 'Security - center', 'eventLabel' : 'White paper - Read IoT Security Whitepaper', 'eventValue' : '1' });'>IoT Security Whitepaper</a></h3>
       <!-- rtp section end -->
     </div>
     <div class="col-4 p-divider__block" id="ubuntu-com_security_right">
@@ -417,13 +416,13 @@
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/a-small-to-medium-size-business-guide-to-cybersecurity' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'gateways - right', 'eventLabel' : 'A small to medium-size business guide to cybersecurity', 'eventValue' : '1' });'>A small to medium-size business guide to cybersecurity</a></h3>
+      <h3 class='p-heading--four'><a href='https://assets.ubuntu.com/v1/66fcd858-canonical-ubuntu-core-security-2018-11-13.pdf' onclick='dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'gateways - right', 'eventLabel' : 'A small to medium-size business guide to cybersecurity', 'eventValue' : '1' });'>Ubuntu Core Security Whitepaper</a></h3>
       <!-- rtp section end -->
     </div>
   </div>
 </section>
 
-<section class="p-strip--light is-deep is-bordered">
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-8">
       <h2>Helping you manage security</h2>
@@ -436,7 +435,7 @@
       <p>The Ubuntu Livepatch service eliminates the need for unplanned maintenance windows for high and critical severity kernel vulnerabilities by patching the Linux kernel while the system runs. Reduce fire drills while keeping uninterrupted service with Ubuntu Livepatch service for up to ten years.</p>
       <p>
         <a href="/security/livepatch">
-          Learn more about Canonical's Livepatch Service&nbsp;&rsaquo;
+          Learn more about the Livepatch Service&nbsp;&rsaquo;
         </a>
       </p>
     </div>
@@ -472,7 +471,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep" id="ua-support">
+<section class="p-strip--light is-deep" id="ua-support">
   <div class="row">
     <div class="col-7">
       <h2>Ubuntu Advantage</h2>
@@ -488,36 +487,6 @@
       </ul>
       <p><a href="/advantage" class="p-button--positive">Purchase Ubuntu Advantage</a></p>
       <p><a href="/support/contact-us" class="js-invoke-modal">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 col-start-large-8 u-vertically-center">
-      <div class="p-card">
-        <div class="p-heading-icon--muted">
-          <div class="p-heading-icon__header">
-            {{
-            image(
-            url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
-            ) | safe
-            }}
-            <h4>Datasheet</h4>
-          </div>
-        </div>
-        <h3>Learn more about Ubuntu’s security</h3>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Detailed overview</li>
-          <li class="p-list__item is-ticked">Key benefits</li>
-        </ul>
-        <p>
-          <a class="p-button" href="https://assets.ubuntu.com/v1/8232357b-Cybersecurity.with.Ubuntu_07.12.21.1.pdf"
-            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'resource', 'eventAction' : 'Livepatch datasheet', 'eventLabel' : 'from ubuntu.com/security/livepatch', 'eventValue' : undefined });"><span
-              class="p-link--external">Download the datasheet</span></a>
-        </p>
-      </div>
     </div>
   </div>
 </section>
