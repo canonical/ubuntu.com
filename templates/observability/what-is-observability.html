@@ -112,6 +112,28 @@
     <div class="row u-equal-height">
         <div class="col-5 u-align--center u-hide--small u-vertically-center">
             {{ image (
+                url="https://assets.ubuntu.com/v1/32c10814-production-profiling.svg",
+                alt="Production profiling",
+                width="240",
+                height="200",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+            }}
+        </div>
+        <div class="col-7">
+            <h3 class="p-heading--4">Production profiling</h3>
+            <p>Production profiling identifies hot spots of resource consumption by continuously samples, with limited performance overhead, which parts of your application consume CPU cycles and memory and, depending on the runtime, the amount of wait time, or asynchronous wait. Production profiling is usually very useful in getting you started in troubleshooting latency and memory usage spikes in the absence of more detailed telemetry. The "production" reference is due to the tradeoffs in the design of the profiler to optimize for minimal overhead, as opposed to profilers used in development that tend to optimize for precision.</p>
+        </div>
+    </div>
+    <br>
+    <div class="row u-equal-height">
+        <div class="col-7">
+            <h3 class="p-heading--4">Real user monitoring</h3>
+            <p>Real user monitoring is about collecting data about user sessions occurring via interfaces like Web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
+        </div>
+        <div class="col-5 u-align--center u-hide--small u-vertically-center">
+            {{ image (
                 url="https://assets.ubuntu.com/v1/f8ac79f6-real-user-monitoring.svg",
                 alt="Real user monitoring",
                 width="180",
@@ -121,17 +143,9 @@
                 ) | safe
             }}
         </div>
-        <div class="col-7">
-            <h3 class="p-heading--4">Real user monitoring</h3>
-            <p>Real user monitoring is about collecting data about user sessions occurring via interfaces like Web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
-        </div>
     </div>
     <br>
     <div class="row u-equal-height">
-        <div class="col-7">
-            <h3 class="p-heading--4">Synthetic monitoring</h3>
-            <p>Synthetic monitoring checks are about continuously, regularly testing systems, mostly production ones, to ensure that particular APIs or entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs.</p>
-        </div>
         <div class="col-5 u-align--center u-hide--small u-vertically-center">
             {{ image (
                 url="https://assets.ubuntu.com/v1/5d436760-synthetic-monitoring.svg",
@@ -142,6 +156,10 @@
                 loading="lazy"
                 ) | safe
             }}
+        </div>
+        <div class="col-7">
+            <h3 class="p-heading--4">Synthetic monitoring</h3>
+            <p>Synthetic monitoring checks are about continuously, regularly testing systems, mostly production ones, to ensure that particular APIs or entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs.</p>
         </div>
     </div>
 </section>
@@ -154,10 +172,10 @@
             <p>The various telemetry types provide you with more insight when they are correlated with one another.</p>
             <p>
                 {{ image (
-                    url="https://assets.ubuntu.com/v1/51d46f04-telemetry-map.svg",
+                    url="https://assets.ubuntu.com/v1/cf7d3849-telemetry-map-v2.svg",
                     alt="telemetry types",
-                    width="830",
-                    height="750",
+                    width="950",
+                    height="740",
                     hi_def=True,
                     loading="lazy",
                     attrs={"style": "padding: 2rem 0;", "class":"u-hide--small"},
