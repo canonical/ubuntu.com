@@ -136,7 +136,14 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                   >
                     Edit subscription&hellip;
                   </Button>
-                ) : null}
+                ) : (
+                  <h5 className="u-no-padding--top p-subscriptions__details-small-title">
+                    <span style={{ fontWeight: 300 }} className="u-text--muted">
+                      {" "}
+                      This subscription cannot be edited online.
+                    </span>
+                  </h5>
+                )}
               </>
             )}
           </div>
