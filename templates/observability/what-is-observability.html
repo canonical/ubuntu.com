@@ -123,14 +123,14 @@
         </div>
         <div class="col-7">
             <h3 class="p-heading--4">Production profiling</h3>
-            <p>Production profiling identifies hot spots of resource consumption by continuously samples, with limited performance overhead, which parts of your application consume CPU cycles and memory and, depending on the runtime, the amount of wait time, or asynchronous wait. Production profiling is usually very useful in getting you started in troubleshooting latency and memory usage spikes in the absence of more detailed telemetry. The "production" reference is due to the tradeoffs in the design of the profiler to optimize for minimal overhead, as opposed to profilers used in development that tend to optimize for precision.</p>
+            <p>Production profiling identifies hot spots of resource consumption by continuously sampling, with limited performance overhead, which parts of your application consume CPU cycles, memory and, depending on the runtime, the amount of wait time, or asynchronous wait. Production profiling is usually very useful in getting you started when troubleshooting latency and memory usage spikes in the absence of more detailed telemetry. The "production" reference is due to the tradeoffs in the design of the profiler to optimise for minimal overhead, as opposed to profilers used in development that tend to optimise for precision.</p>
         </div>
     </div>
     <br>
     <div class="row u-equal-height">
         <div class="col-7">
             <h3 class="p-heading--4">Real user monitoring</h3>
-            <p>Real user monitoring is about collecting data about user sessions occurring via interfaces like Web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
+            <p>Real user monitoring is about collecting telemetry about user sessions occurring via interfaces like web pages, mobile applications and sometimes IoT devices; real user monitoring is closely related with distributed tracing, in which a user session is correlated with one or more distributed traces, each describing, for example, how one asset or XHR request is served to the user interface.</p>
         </div>
         <div class="col-5 u-align--center u-hide--small u-vertically-center">
             {{ image (
@@ -159,7 +159,7 @@
         </div>
         <div class="col-7">
             <h3 class="p-heading--4">Synthetic monitoring</h3>
-            <p>Synthetic monitoring checks are about continuously, regularly testing systems, mostly production ones, to ensure that particular APIs or entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs.</p>
+            <p>Synthetic monitoring checks are continuously test systems, mostly production ones, to ensure that particular APIs or even entire user flows in UIs, like a checkout process, work as intended; in other words, synthetic monitoring checks are smoke tests for APIs and UIs.</p>
         </div>
     </div>
 </section>
