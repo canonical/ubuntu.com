@@ -15,6 +15,7 @@ import {
 import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
 import { BuyButtonProps } from "./utils/utils";
+
 type Props = {
   accountId?: string;
   termsLabel: React.ReactNode;
@@ -97,6 +98,11 @@ const PurchaseModal = ({
                   <a href="/login">sign in</a> to your account first.
                 </>
               );
+            } else if (error.message === "tax_id_invalid") {
+              actions.setErrors({
+                VATNumber:
+                  "That VAT number is invalid. Check the number and try again.",
+              });
             } else {
               const knownErrorMessage = getErrorMessage({
                 message: "",
