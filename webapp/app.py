@@ -93,6 +93,7 @@ from webapp.advantage.views import (
     account_view,
     invoices_view,
     download_invoice,
+    get_account_offers,
     get_user_subscriptions,
     get_last_purchase_ids,
     get_contract_token,
@@ -412,6 +413,12 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/subscribe/blender/thank-you",
     view_func=blender_thanks_view,
+)
+
+app.add_url_rule(
+    "/advantage/offers.json",
+    view_func=get_account_offers,
+    methods=["GET"],
 )
 
 app.add_url_rule("/account", view_func=account_view)

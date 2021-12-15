@@ -787,6 +787,22 @@ def accept_renewal(renewal_id):
     return g.api.accept_renewal(renewal_id)
 
 
+@advantage_decorator(permission="user", response="json")
+def get_account_offers():
+    try:
+        account = g.api.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({"error": "User has no purchase account"}), 400
+    except AccessForbiddenError:
+        return (
+            flask.jsonify({"error": "User has no permission to purchase"}),
+            403,
+        )
+
+    offers = g.api.get_account_offers(account["id"])
+    return flask.jsonify(offers)
+
+
 @advantage_decorator(permission="user", response="html")
 def account_view():
     email = flask.session["openid"]["email"]
