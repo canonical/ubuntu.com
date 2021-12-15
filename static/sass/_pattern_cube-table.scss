@@ -146,6 +146,12 @@
     }
   }
 
+  &.is-passed {
+    tr {
+      grid-template-columns: 2rem 3rem 1fr 1fr;
+    }
+  }
+
   @media only screen and (max-width: $breakpoint-medium) {
     tr {
       td {

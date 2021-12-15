@@ -26,7 +26,7 @@ const useMicrocertsData = () => {
         account_id: accountId,
         stripe_publishable_key: stripePublishableKey,
         study_labs_listing: studyLabs,
-        certified_badge: certtifiedBadge,
+        certified_badge: certifiedBadge,
         has_enrollments: hasEnrollments,
       } = data;
 
@@ -47,7 +47,7 @@ const useMicrocertsData = () => {
       window.stripePublishableKey = stripePublishableKey;
       setModules(modules);
       setStudyLabs(studyLabs);
-      setCertfiedBadge(certtifiedBadge);
+      setCertfiedBadge(certifiedBadge);
       setHasEnrollments(hasEnrollments);
     }
   );

@@ -17,7 +17,13 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  const { modules, studyLabs, isLoading, isError } = useMicrocertsData();
+  const {
+    modules,
+    studyLabs,
+    certifiedBadge,
+    isLoading,
+    isError,
+  } = useMicrocertsData();
   const defaultErrorMessage = "An error occurred while loading the microcerts";
 
   return (
@@ -27,6 +33,7 @@ const App = () => {
         <MicrocertificationsTable
           modules={modules}
           studyLabs={studyLabs}
+          certifiedBadge={certifiedBadge}
           isLoading={isLoading}
           error={isError ? defaultErrorMessage : ""}
         />
