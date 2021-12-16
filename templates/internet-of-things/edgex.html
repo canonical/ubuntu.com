@@ -11,21 +11,20 @@
 
 <section class="p-strip--suru-bottomed is-dark">
   <div class="row u-vertically-center">
-    <div class="col-5">
-      <h1 class="u-sv3">EdgeX &ndash; Unifying the IoT edge</h1>
+    <div class="col-7">
+      <h1>Unifying the IoT Edge</h1>
+      <p>Accelerate the development of secure and reliable edge applications with EdgeX running on Ubuntu.</p>
       <p>
-        <a href="https://snapcraft.io/edgexfoundry" class="p-link--external p-button--positive">Download</a>
-        <a href="#subscribe" class="p-button--neutral">Sign up for latest news</a>
+        <a href="/engage/webinarcoreedgex" class="p-button--positive">Watch the webinar</a>
       </p>
     </div>
-
-    <div class="col-7 col-start-large-8 u-hide--small">
+    <div class="col-5 u-align--center u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/b6856fe7-edgex.png",
         alt="",
-        height="1303",
-        width="1440",
+        height="325",
+        width="360",
         hi_def=True,
         loading="auto"
         ) | safe
@@ -33,38 +32,32 @@
     </div>
   </div>
 </section>
-
-<section class="p-strip is-deep">
+<section class="p-strip--light is-deep">
   <div class="row">
     <div class="col-8">
       <h2>What is EdgeX?</h2>
-      <p>EdgeX is a set of microservices that enable developers to build apps that run at the edge.</p>
-      <p>It provides the components to develop data collection, analytics, and command-control apps. It's designed to run on thousands of devices and sensors.</p>
+      <p>EdgeX Foundry is a highly flexible, scalable and vendor-neutral open-source framework hosted by the Linux Foundation that facilitates the development of data collection, analytics and cloud connector services.</p>
+      <p>With a plug-and-play distributed microservices software architecture, the applications act as a cloud-to-edge middleware.</p>
       <p><a href="/blog/whats-the-deal-with-edge-computing">Learn more &mdash; "What's the deal with edge computing"&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
-        alt="",
-        width="391",
-        height="253",
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f24913d5-Edge+Cloud.svg",
+        alt="Micro clouds for edge computing",
+        width="365",
+        height="250",
         hi_def=True,
-        loading="lazy",
+        loading="auto"
         ) | safe
       }}
     </div>
   </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
+</section>
+<section class="p-strip is-deep">
   <div class="row">
-    <div class="col-4 u-align--center u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d127abd7-safety+reliability.svg",
         alt="",
         width="200",
         height="200",
@@ -74,97 +67,106 @@
       }}
     </div>
     <div class="col-8">
-      <h2>Why do developers love EdgeX?</h2>
-      <p>EdgeX provides C and Go SDKs that allows developers to build cloud-to-edge applications, whether that is to a public, hybrid, multi or on-prem cloud.</p>
-      <p>It also includes an ecosystem of device services that provide connectivity using protocols such as  Bacnet, BLE, Modbus, and MQTT.</p>
+      <h2>Deploy secure, reliable and high-performance edge applications at scale</h2>
+      <p>Whether you are building an industrial gateway, an edge AI/ML application, a monitoring system, or any other product that requires data acquisition, analytics and cloud connectivity, EdgeX Foundry is the perfect solution to develop your application.</p>
+      <p>Running EdgeX on Ubuntu as snaps provides the required security and reliability to deploy and maintain applications at scale.</p>
+      <p><a href="https://snapcraft.io/docs" class="p-link--external">Learn more about snaps</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="u-sv2">Leverage the power of an edge computing integrated OS and framework</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Developers love EdgeX</h3>
+      <div class="p-card__content">
+        <p>EdgeX is open source and supported by a growing community of developers and vendors creating an ecosystem of interoperable components, which makes it the de-facto framework for building edge computing applications.</p>
+        <p>A wide range of networking APIs and SDKs simplify the integration with EdgeX. With the help of configurable connectors, it is even possible to integrate with zero code.</p>
+        <p><a href="https://www.edgexfoundry.org/why_edgex/why-edgex/" class="p-link--external">Why EdgeX?</a></p>
+      </div>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-card__title">Tunnel drones, going where man cannot</h3>
+      <div class="p-card__content">
+        <p>Ubuntu is the world’s number one desktop and cloud Linux operating system, and among the top 3 global PC Operating Systems. Developers can run the exact same underlying operating system on their desktops as they do on their servers, in the cloud, and on IoT devices with the same software packages available on all versions of Ubuntu.</p>
+        <p>To deploy IoT and edge applications at scale, just develop them on Ubuntu Desktop and deploy them on Ubuntu Core, the OS tailored for the IoT.</p>
+        <p>Learn more about <a href="/core">Ubuntu Core&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-7">
+      <h2>Integrated framework</h2>
+      <p>EdgeX Foundry integrates seamlessly with Ubuntu, with a growing list of services being published and maintained as snaps by Canonical. Developers can rely on a reliable, secure, and continuously updated system, benefiting from the transactional bullet-proof OTA updates provided by the <a href="https://snapcraft.io/store" class="p-link--external">Snap Store</a>.</p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+          url="https://assets.ubuntu.com/v1/16936989-edgex-cropped.svg",
+          alt="",
+          width="400",
+          height="74",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+    </div>
+  </div>
+</section>
+<section class="p-strip--light is-deep">
+  <div class="row u-vertically-center">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ceb481d1-10+years.svg",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2>Supported for your device lifetime</h2>
+      <p>When used in conjunction with Ubuntu Core, EdgeX comes with up to 10 years of maintenance, receiving security updates that fix critical bugs and CVEs.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-deep">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Cut costs and trim time to market</h2>
+      <p>Time and resources are the most valuable assets of your organization.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">With EdgeX, you can just focus on developing your application.</p>
+        <li class="p-list__item is-ticked">Let Canonical take care of the underlying operating system.</p>
+        <li class="p-list__item is-ticked">Get Canonical’s premium services to accelerate the time to market either with custom or pre-certified hardware.</p>
+      </ul>
+      <p><a href="/certified">Learn more about certified devices&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6d8a72cb-Agile+development.svg",
+        alt="",
+        width="233",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
 
 <section class="p-strip--light is-deep">
-  <div class="row">
-    <div class="col-6">
-      <h2 class="u-sv1">Get started with EdgeX?</h2>
-      <div class="p-code-copyable">
-        <input class="p-code-copyable__input" value="sudo snap install edgexfoundry" readonly="readonly">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
-      </div>
-      <p><a href="https://snapcraft.io/edgexfoundry" class="p-link--external">Find out more</a></p>
-    </div>
-
-    <div class="col-start-large-8 col-5">
-      <div class="p-card--highlighted">
-        <div class="p-message" id="subscribed">
-          <div class="p-notification--positive u-no-margin--bottom">
-            <p class="p-notification__response"><span class="p-notification__status">Success:</span> Thank you for
-              subscribing.<br>You will begin receiving emails as new content is posted. You may unsubscribe any time by
-              clicking the link in the email.</p>
-          </div>
-          <hr />
-        </div>
-
-        <style>
-          .p-message {
-            display: none;
-          }
-
-          :target {
-            display: block;
-          }
-        </style>
-        <p class="p-heading--four" id="subscribe">Subscribe to our monthly newsletter</p>
-        <form action="/marketo/submit" method="post" id="mktoForm_3415" class="p-form--stacked">
-          <div class="p-form__group">
-            <label for="email">Email:*</label>
-            <input class="u-no-margin--bottom" id="email" placeholder="Email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="">
-          </div>
-          <div class="p-form__group">
-            <label for="company">Company:</label>
-            <input class="u-no-margin--bottom" id="company" placeholder="Company (optional)" name="company" maxlength="255" type="text">
-          </div>
-          {# These are honey pot fields to catch bots #}
-          <div class="u-off-screen">
-            <label class="website" for="website">Website:</label>
-            <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-          </div>
-          <div class="u-off-screen">
-            <label class="name" for="name">Name:</label>
-            <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-          </div>
-          {# End of honey pots #}
-          <p>
-            <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
-          </p>
-
-          <p class="u-no-margin--bottom">
-            <input type="hidden" name="Consent_to_Processing__c" value="Yes">
-            <button class="p-button" type="submit">Subscribe now</button>
-          </p>
-
-          <input type="hidden" name="formid" value="3690">
-          <input type="hidden" name="edgeXblogsubscription" value="yes">
-          <input type="hidden" name="returnURL" value="/internet-of-things/edgex#subscribed">
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
-        </form>
-      </div>
-
-
-    </div>
-</section>
-
-<section class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <h2 class="u-sv3">Security, intelligence and blistering speed</h2>
-    </div>
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Security, intelligence and blistering speed</h2>
   </div>
-
   <div class="row">
     <div class="col-6">
       {{
@@ -186,7 +188,6 @@
       </ul>
     </div>
     <div class="col-6">
-
       {{
         image(
         url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
@@ -206,7 +207,6 @@
       </ul>
     </div>
   </div>
-
   <div class="row">
     <div class="col-6">
       {{
@@ -239,7 +239,7 @@
         attrs={"style": "max-height: 120px; width: auto;", "class": "u-sv3"},
         ) | safe
       }}
-      <h3 class="p-heading--four">You can't go wrong. Literally</h3>
+      <h3 class="p-heading--four">You can't go wrong &mdash; literally</h3>
       <ul class="p-list u-sv3">
         <li class="p-list__item is-ticked">Silicon and software. OS and cloud. Language and protocol.</p>
         <li class="p-list__item is-ticked">EdgeX remains agnostic to them all, so you can accelerate to market.</p>
@@ -247,18 +247,91 @@
     </div>
   </div>
 </section>
-
-<section class="p-strip--suru-half-and-half">
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-6">
-      <h2>Cut costs. Improve security.<br />Trim time to market.</h2>
-      <p>Working on a project with EdgeX? Need help?</p>
-      <p>Get in touch with one of our engineers.</p>
-      <p class="u-no-margin--bottom"><a href="/internet-of-things/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+      <h2 class="u-sv2">How to get started with EdgeX</h2>
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Set up your device
+          </h3>
+          <p>You need either <a href="/core">Ubuntu Core</a> or a version of Linux supporting snaps.</p>
+        </li>
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Set up your device
+          </h3>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block--icon"><code>snap install edgexfoundry</code></pre>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">
+            Set up your device
+          </h3>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block--icon"><code>snap install &lt;service&gt;</code></pre>
+          </div>
+        </li>
+      </ol>
+      <p><a href="/tutorials/get-started-with-edgex-as-snaps">Get started with EdgeX as snaps&nbsp;&rsaquo;</a></p>
+      <p><a href="https://snapcraft.io/search?q=edgex" class="p-link--external">Get the list of the EdgeX snaps</a></p>
+    </div>
+    <div class="col-5 col-start-large-8 u-vertically-center">
+      <div class="p-card">
+        <div class="p-heading-icon--muted">
+          <div class="p-heading-icon__header">
+            {{
+            image(
+            url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
+            ) | safe
+            }}
+            <h4>Datasheet</h4>
+          </div>
+        </div>
+        <h3>Want to learn more about EdgeX?</h3>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Detailed product overview</li>
+          <li class="p-list__item is-ticked">Tutorials</li>
+          <li class="p-list__item is-ticked">Answers to frequently asked questions</li>
+        </ul>
+        <p>
+          <a class="p-button" href="https://assets.ubuntu.com/v1/e580b7f0-Canonical.EdgeX.datasheet.5.pdf">Download the datasheet</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>
-
+<section class="p-strip--light is-deep">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--left u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          width="280",
+          height="280",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
+    <div class="col-8 u-vertically-center">
+      <div>
+        <h2>Need help?</h2>
+        <p>Do you need help to get your device to market faster?</p>
+        <p>Do you want the peace of mind of having your devices up-to-date and secure for their lifetime?</p>
+        <p><a href="/internet-of-things/contact-us?product=iot-overview" class="p-button--positive js-invoke-modal">Let us help you</a></p>
+      </div>
+    </div>
+  </div>
+</section>
 {% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
