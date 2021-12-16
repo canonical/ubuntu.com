@@ -244,12 +244,13 @@ def build_final_user_subscriptions(
 
         # Do not return expired user subscriptions after 30 days
         show_user_subscription = True
+        days_to_show = -120 if type == "legacy" else -30
         if type != "free":
             parsed_end_date = parse(user_subscription.end_date)
             time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
             delta_till_expiry = parsed_end_date - time_now
             days_till_expiry = delta_till_expiry.days
-            show_user_subscription = days_till_expiry >= -30
+            show_user_subscription = days_till_expiry >= days_to_show
 
         if show_user_subscription:
             user_subscriptions.append(user_subscription)
