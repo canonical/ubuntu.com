@@ -8,9 +8,9 @@ import { Module, Status } from "../../types";
 type Props = {
   modules: Module[];
   studyLabs: Record<string, unknown>;
-  certifiedBadge: Record<string, unknown>;
+  certifiedBadge: null | Record<string, string>;
   isLoading: boolean;
-  error: string;
+  isError: boolean;
 };
 
 const translateStatus = (status: Status) => {
@@ -36,7 +36,7 @@ const MicrocertificationsTable = ({
   studyLabs,
   certifiedBadge,
   isLoading,
-  error,
+  isError,
 }: Props) => {
   const renderModuleName = (name: string, topics: Array<string>) => (
     <div>
@@ -131,6 +131,10 @@ const MicrocertificationsTable = ({
     </div>
   );
 
+  const sectionHeader = certifiedBadge
+    ? "Microcertification history"
+    : "Microcertifications";
+
   const headers = certifiedBadge
     ? [
         { content: "#" },
@@ -220,27 +224,35 @@ const MicrocertificationsTable = ({
   );
 
   return (
-    <MainTable
-      responsive
-      className={classNames("p-table--cube--grid", {
-        "is-passed": certifiedBadge,
-      })}
-      headers={headers}
-      rows={rows}
-      emptyStateMsg={
-        <section aria-live="polite" aria-busy={isLoading ? "true" : "false"}>
-          <p>
-            {isLoading ? (
-              <i className="p-icon--spinner u-animation--spin"></i>
-            ) : error ? (
-              <i>{error}</i>
-            ) : (
-              <i>No microcerts were found</i>
-            )}
-          </p>
-        </section>
-      }
-    />
+    <section className="p-strip">
+      <div className="u-fixed-width">
+        <h2>{sectionHeader}</h2>
+        <MainTable
+          responsive
+          className={classNames("p-table--cube--grid", {
+            "is-passed": certifiedBadge,
+          })}
+          headers={headers}
+          rows={rows}
+          emptyStateMsg={
+            <section
+              aria-live="polite"
+              aria-busy={isLoading ? "true" : "false"}
+            >
+              <p>
+                {isLoading ? (
+                  <i className="p-icon--spinner u-animation--spin"></i>
+                ) : isError ? (
+                  <i>{"An error occurred while loading the microcerts"}</i>
+                ) : (
+                  <i>No microcerts were found</i>
+                )}
+              </p>
+            </section>
+          }
+        />
+      </div>
+    </section>
   );
 };
 

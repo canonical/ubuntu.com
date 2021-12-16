@@ -314,10 +314,16 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
 
             courses.append(course)
 
+    edx_register_url = f"{edx_url}{flask.request.base_url}"
+    if flask.request.args.get("test_backend") == "true":
+        edx_register_url = edx_register_url + "?test_backend=true"
+
     return flask.jsonify(
         {
             "account_id": account["id"] if account else None,
             "stripe_publishable_key": get_stripe_publishable_key(),
+            "edx_user": edx_user,
+            "edx_register_url": edx_register_url,
             "certified_badge": certified_badge or None,
             "modules": sorted(
                 courses, key=lambda c: MODULES_ORDER.index(c["id"])

@@ -15,15 +15,21 @@ const validStatuses = [
 ];
 
 const App = () => {
-  const { modules, studyLabs, isLoading, isError } = useMicrocertsData();
-  const defaultErrorMessage = "An error occurred while loading the microcerts";
+  const {
+    modules,
+    studyLabs,
+    certifiedBadge,
+    isLoading,
+    isError,
+  } = useMicrocertsData();
 
   return (
     <MicrocertificationsTable
       modules={modules}
       studyLabs={studyLabs}
+      certifiedBadge={certifiedBadge}
       isLoading={isLoading}
-      error={isError ? defaultErrorMessage : ""}
+      isError={isError}
     />
   );
 };
