@@ -50,7 +50,7 @@ manually manage [`VirtualServices`][virt-svc] for your applications, or even use
 <p markdown="1" class="p-notification__response">
 <span class="p-notification__status">Note:</span>
 The Istio bundle requires a load balancer provider. If you're not using a cloud
-  integrator which provides this, <a href="metallb">MetalLB</a> can be used.
+integrator which provides this, [MetalLB][] can be used.
 </p></div>
 
 
@@ -79,9 +79,9 @@ controllers may rely on annotations, such as Istio's
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ingress.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ingress.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>
 
