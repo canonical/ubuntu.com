@@ -50,7 +50,7 @@ your auth token).
 
 To deploy **Charmed Kubernetes** on Equinix Metal, it is also recommended to deploy
 some storage and to use Calico for networking. You can deploy and configure
-Charmed kubernetes any way you like, but this example bundle will help you get started.
+Charmed kubernetes any way you like, but this example overlay will help you get started.
 
 You can [download the example bundle here][asset-equinix-bundle]
 
@@ -416,8 +416,8 @@ Hello Kubernetes!
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/equinix.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/equinix.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>
