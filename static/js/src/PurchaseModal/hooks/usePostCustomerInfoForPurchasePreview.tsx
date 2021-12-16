@@ -29,7 +29,7 @@ const usePostCustomerInfoForPurchasePreview = () => {
         name,
         addressObject,
         {
-          type: "eu_vat",
+          type: country === "ZA" ? "za_vat" : "eu_vat",
           value: VATNumber,
         }
       );
