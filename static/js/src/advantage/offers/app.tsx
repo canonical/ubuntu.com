@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import Offers from "./Offers";
 
@@ -34,6 +35,7 @@ function App() {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Offers />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
   );
