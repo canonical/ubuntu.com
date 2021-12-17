@@ -117,7 +117,7 @@
               <h4>Hardware</h4>
               <table aria-label="Hardware" class="u-no-margin--bottom">
                 <tbody>
-                {% for hardware_subtitle, values in release_details["components"].items() %}
+                {% for hardware_subtitle, values in release["components"].items() %}
                   <tr>
                     <th colspan="2" class="u-text--muted">{{ hardware_subtitle }}</th>
                     <td colspan="8">{% for value in values %} 
