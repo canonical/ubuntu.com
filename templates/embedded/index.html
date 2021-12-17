@@ -2,7 +2,9 @@
 
 {% block title %}Ubuntu is the new standard for embedded Linux{% endblock %}
 
-{% block meta_description %}Embedded Linux developers prefer Ubuntu for productivity and security. Custom app stores available. Ubuntu board support packages reduce the time to market for IoT and appliances. Compliance and security by Canonical.{% endblock meta_description %}
+{% block meta_description %}Embedded Linux development is easy and secure on Ubuntu. Choose an enterprise app store or use the global Snap Store for reliable IoT package management. Start your embedded Linux project today. Get Ubuntu on your board with hardware certification and enablement.{% endblock meta_description %}
+
+{% block meta_image %}https://assets.ubuntu.com/v1/c75046c4-Smart+City.svg{% endblock meta_image %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/15Tz87YRg4SnX4DWGOSl2TDTHLSStJoma879xHnF0nuo/edit{% endblock meta_copydoc %}
 
@@ -117,6 +119,10 @@
   </div>
 </section>
 
+{% with section_classes='p-strip--light', heading_topic='Embedded', tag_name='iot', tag_id='3633', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
 <section class="p-strip">
   <div class="u-fixed-width">
     <h3>Explore what snaps bring to Embedded Linux</h3>
@@ -142,7 +148,7 @@
           <h4 class='p-heading-icon__title'>Whitepaper</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a href='/engage/snap-deltas' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Case study - IMS Evolve ', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper </span>Optimising IoT bandwidth with delta updates&nbsp;&rsaquo;</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/embedded-linux-make-or-buy' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - left', 'eventLabel' : 'Case study - IMS Evolve ', 'eventValue' : '1' });"><span class="u-off-screen">Read the whitepaper </span>Embedded Linux: make or buy?&nbsp;&rsaquo;</a></h3>
       <!-- rtp section left end -->
     </div>
     <div class="col-4 p-divider__block">
@@ -163,7 +169,7 @@
           <h4 class='p-heading-icon__title'>Webinar</h4>
         </div>
       </div>
-      <h3 class='p-heading--four'><a class='p-link--external' href='https://www.brighttalk.com/webcast/6793/346324/intro-to-brand-stores' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways', 'eventValue' : '1' });"><span class="u-off-screen">Watch the webinar </span>An Introduction to IoT App Stores</a></h3>
+      <h3 class='p-heading--four'><a href='/engage/yocto-buildroot-to-ubuntu-core' onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'product page', 'eventAction' : 'core - center', 'eventLabel' : 'Whitepaper - Ubuntu Core and Kura - a framework for IoT gateways', 'eventValue' : '1' });"><span class="u-off-screen">Watch the webinar </span>From Yocto & Buildroot to Ubuntu Core 20&nbsp;&rsaquo;</a></h3>
       <!-- rtp section center end -->
     </div>
     <div class="col-4 p-divider__block">
@@ -408,7 +414,7 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>Apps</h2>
-      <p class="p-heading--four">Develop, deploy, iterate and improve. With Ubuntu and snapcraft, your embedded app teams run at cloud speeds.</p>
+      <p class="p-heading--four">Develop, deploy, iterate and improve. With Ubuntu and snaps, your teams run at cloud speeds.</p>
     </div>
     <div class="col-6 u-align--center u-hide--small u-vertically-center">
       {{
@@ -428,17 +434,21 @@
 <section class="p-strip" id="appstores">
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
-      <h3>Global Snap Store</h3>
-      <p>The global Snap Store delivers apps to millions of Linux machines every day. It's the perfect way to get exposure for your app. It integrates directly with GitHub and Travis, and best of all it's free to use.</p>
+      <h3>Enterprise App Store</h3>
+      <p>The IoT App Store is designed for distributed devices. Control updates and versioning. Choose which apps you want your devices to see. Create exclusive, private snaps for your ecosystem. Manage app stores as a service for ODMs, resellers and integrators.</p>
       <p>
-        <a class="p-button" href="https://snapcraft.io/store"><span class="p-link--external">Browse the Snap Store</span></a>
+        <a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the datasheet&nbsp;&rsaquo;</a>
+      </p>
+      <p>
+        <a class="p-button--positive" href="/internet-of-things/appstore">Learn more about IoT App Stores</a>
       </p>
     </div>
     <div class="col-6 p-divider__block">
-      <h3>Custom 'Brand' Store</h3>
-      <p>Choose which snaps will be available to your devices. Control versions and updates. Create exclusive snaps for your ecosystem. Set prices and SLAs appropriate to your market. For ODMs, resellers and integrators, manage app stores as a service.</p>
+      <h3>Snap Store</h3>
+      <p>The global Snap Store delivers apps to millions of Linux machines every day. With automatic OTA updates and advanced software versioning, snaps are a perfect solution for IoT. Deploy your app to the Store to get global exposure. It integrates directly with GitHub and Travis, and best of all it’s free to use. 
+      </p>
       <p>
-        <a class="p-button--positive js-invoke-modal" href="/core/contact-us">Let's discuss your Brand Store</a>
+        <a class="p-button--positive" href="https://snapcraft.io">Explore the Snap Store</a>
       </p>
     </div>
   </div>
@@ -450,9 +460,9 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <h3>DevOps for devices</h3>
-      <p>Build, test and publish applications automatically. Bring CI/CD to your IoT and appliances. Give your developers a pipeline to deliver updates to customers straight from their standard process, and empower customers to test beta and pre-release versions.</p>
+      <p>Build, test and publish applications automatically. Bring CI/CD to your IoT appliances. Give your developers a pipeline to deliver updates to customers straight from their standard process. Empower customers to test beta and pre-release versions.</p>
       <p>Whether you're using Git with Travis or Jenkins, automated snap creation is just a few steps away. For open source projects, we will even build your snap for ARM, x86, POWER and Z. Canary updates and automatic rollbacks let you go fast with confidence.</p>
-      <p><a href="https://snapcraft.io/build" class="p-link--external p-button--positive">Build a snap</a></p>
+      <p><a href="https://snapcraft.io/build" class="p-button--positive">Build a snap</a></p>
     </div>
     <div class="col-6 u-align--center u-hide--small u-vertically-center">
       {{
@@ -492,14 +502,14 @@
         ) | safe
       }}
       <hr class="u-sv1">
-      <h3 class="p-card__title">Snaps</h3>
-      <p class="p-card__content">App containers with transactional updates for system software.</p>
+      <h3>Snaps</h3>
+      <p>App packages for desktop, cloud and IoT that are easy to install, secure, cross‐platform and dependency‐free. Snaps are discoverable and installable from the Snap Store, the app store for Linux with an audience of millions.</p>
       <p><a class="p-link--external" href="https://snapcraft.io/first-snap">Build a snap</a></p>
     </div>
     <div class="col-6 p-card">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/66b7000f-logo-docker.png",
+          url="https://assets.ubuntu.com/v1/8e1312ed-logo-docker.svg",
           alt="",
           height="64",
           width="93",
@@ -512,14 +522,12 @@
       <h4>Docker</h4>
       <p>Bring your cloud containers and CI/CD tooling to the edge.</p>
       <p>Using apt and debs:</p>
-      <div class="p-code-copyable">
-        <input class="p-code-copyable__input" value="apt install docker.io" readonly="readonly" aria-label="">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>apt install docker.io</code></pre>
       </div>
       <p>Using snaps:</p>
-      <div class="p-code-copyable">
-        <input class="p-code-copyable__input" value="snap install docker" readonly="readonly" aria-label="">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>snap install docker</code></pre>
       </div>
     </div>
   </div>
@@ -539,8 +547,8 @@
       }}
       <hr class="u-sv1">
       <h4>Kubernetes</h4>
-      <p>Enable microk8s for secure container orchestration.</p>
-      <p><a class="p-link--external" href="https://microk8s.io/">Explore microk8s</a></p>
+      <p>MicroK8s is the simplest production-grade upstream K8s. Lightweight and focused. Single command install on Linux, Windows and macOS. Made for devops, great for edge, appliances and IoT with full high availability Kubernetes and autonomous clusters.</p>
+      <p><a class="p-link--external" href="https://microk8s.io/">Explore MicroK8s</a></p>
     </div>
     <div class="col-6 p-card">
       {{
@@ -556,7 +564,7 @@
       }}
       <hr class="u-sv1">
       <h4>LXD</h4>
-      <p>Machine containers create full independent OS workspaces.</p>
+      <p>LXD is a next generation container and virtual machine manager, providing flexibility and scalability for various use cases. Includes support for different storage backends, network types and the ability to install on a range of hardware.</p>
       <p><a class="p-link--external" href="https://linuxcontainers.org/lxd/introduction/">Learn more about LXD</a></p>
     </div>
   </div>
@@ -568,6 +576,7 @@
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h3>Ultra-reliable updates</h3>
+      <a href="/core/features/ota-updates" class="p-button--positive">Learn more</a>
     </div>
     <div class="col-6 u-hide--small u-align--center">
       {{
