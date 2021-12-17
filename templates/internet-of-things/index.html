@@ -11,9 +11,9 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h1>Ubuntu for the Internet&nbsp;of&nbsp;Things</h1>
-      <p>From smart homes to smart drones, robots, and industrial systems, Ubuntu is the <a class="p-link--inverted" href="/embedded">new standard for embedded Linux</a>. Get the world's best security, a custom app store, a huge developer community and reliable updates.
+      <p>From smart homes to smart drones, robots, and industrial systems, Ubuntu is the <a class="p-link--inverted" href="/embedded">new standard for embedded Linux</a>. Get the world's best security, an operating system designed for IoT, a private app store, a huge developer community and reliable OTA updates.
       </p>
-      <p><a href="/core/smartstart" class="p-button--neutral">Launch a smart product with SMART START</a></p>
+      <p><a href="/core/smartstart" class="p-button--positive">Launch a smart product with SMART START</a></p>
     </div>
     <div class="col-5 col-start-large-8 u-align--center u-hide--small">
       {{
@@ -141,6 +141,29 @@
         </div>
       </div>
     </div>
+    <div class="col-6 p-tile">
+      <div class="row p-tile__row">
+        <div class="col-3 col-medium-3">
+          <div class="u-align--center">
+            {{ 
+              image (
+                url="https://assets.ubuntu.com/v1/c75046c4-Smart+City.svg",
+                alt="",
+                width="243",
+                height="180",
+                hi_def=True,
+                loading="lazy"
+              ) | safe
+            }}  
+          </div>
+        </div>
+        <div class="col-3 col-medium-3">
+          <h3>Smart city</h3>
+          <p>Harness the power of Ubuntu Core to keep distributed devices connected and secure.</p>
+          <p><a href="/internet-of-things/smart-city">Learn more&nbsp;&rsaquo;</a></p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -148,21 +171,23 @@
   <div class="row">
     <div class="col-8">
       <h2>IoT App Store</h2>
-      <p>A private, custom, dedicated app store. Enterprise-ready for efficient software distribution. Utilise our huge range of existing apps or build your own. Included in the SMART START package.</p>
+      <p>A custom, private app store. Enterprise-ready for efficient software distribution and IoT package management, with on-premise options to support your use case. Utilise our huge range of existing apps or build your own. Included in the SMART START package.</p>
     </div>
+    <p><a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the datasheet&nbsp;&rsaquo;</a></p>
+    <p><a href="/internet-of-things/appstore" class="p-button--positive">Learn more</a></p>
   </div>
   <div class="u-fixed-width u-hide--small">
-    {{
-      image(
-        url="https://assets.ubuntu.com/v1/43b992df-private-app-store.png",
+    {{ 
+      image (
+        url="https://assets.ubuntu.com/v1/fbde412c-private-app-store.png",
         alt="Snap store screenshot",
-        width="1040",
-        height="510",
+        width="1122",
+        height="677",
         hi_def=True,
+        loading="lazy",
         attrs={"class":"p-image--shadowed"},
       ) | safe
     }}
-    <p><a href="/internet-of-things/appstore">Learn more&nbsp;&rsaquo;</a></p>
   </div>
 </section>
 
@@ -220,6 +245,7 @@
     <div class="col-6">
       <h2>Update Control</h2>
       <p>Regular updates for Ubuntu and your apps protect devices from ongoing attacks. Robust and reliable update mechanisms mean we safely address security issues automatically by default. If you want to review changes, Update Control ensures that changes are only applied after they are certified by the device manufacturer.</p>
+      <p><a href="/core/features/ota-updates">Learn more abouut IoT OTA updates&nbsp;&rsaquo;</a></p>
     </div>
 
     <div class="col-6 u-align--center u-vertically-center u-hide--small">
