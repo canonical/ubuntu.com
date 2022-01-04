@@ -10,7 +10,7 @@ const OffersList = () => {
   return (
     <>
       {offersList.map((offer) => {
-        <p>{offer.name}</p>;
+        <p>{offer}</p>;
       })}
     </>
   );
