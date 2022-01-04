@@ -166,7 +166,7 @@ const BuyButton = ({
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           //redirect
-          if (window.isGuest) {
+          if (window.isGuest && !window.isLoggedIn) {
             const queryString = window.location.search;
             const testBackend = queryString.includes("test_backend=true")
               ? "&test_backend=true"

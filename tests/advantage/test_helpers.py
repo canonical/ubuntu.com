@@ -457,6 +457,42 @@ class TestHelpers(unittest.TestCase):
                     "is_expired": True,
                 },
             },
+            "legacy_date_is_91_days_before_expiry": {
+                "type": "legacy",
+                "date": "2020-12-01T00:00:00Z",
+                "expectations": {
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                },
+            },
+            "legacy_date_is_90_days_before_expiry": {
+                "type": "legacy",
+                "date": "2020-11-29T00:00:00Z",
+                "expectations": {
+                    "is_expiring": True,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                },
+            },
+            "legacy_date_is_90_days_after_expiry": {
+                "type": "legacy",
+                "date": "2020-06-04T00:00:00Z",
+                "expectations": {
+                    "is_expiring": False,
+                    "is_in_grace_period": True,
+                    "is_expired": False,
+                },
+            },
+            "legacy_date_is_91_days_after_expiry": {
+                "type": "legacy",
+                "date": "2020-06-02T00:00:00Z",
+                "expectations": {
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": True,
+                },
+            },
         }
 
         with freeze_time(freeze_datetime):
@@ -810,7 +846,7 @@ class TestHelpers(unittest.TestCase):
                     "is_downsizeable": False,
                     "is_cancellable": False,
                     "is_cancelled": False,
-                    "is_expiring": False,
+                    "is_expiring": True,
                     "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,
@@ -836,7 +872,7 @@ class TestHelpers(unittest.TestCase):
                     "is_downsizeable": False,
                     "is_cancellable": False,
                     "is_cancelled": False,
-                    "is_expiring": False,
+                    "is_expiring": True,
                     "is_in_grace_period": False,
                     "is_expired": False,
                     "is_trialled": False,

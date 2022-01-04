@@ -205,11 +205,11 @@ juju deploy charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.20
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.21
 release, you could run:
 
 ```bash
-juju deploy cs:~containers/charmed-kubernetes-596
+juju deploy cs:~containers/charmed-kubernetes-733
 ```
 
 <div class="p-notification--positive">
@@ -232,6 +232,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
+| 1.23.x    | [charmed-kubernetes-862](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-862/archive/bundle.yaml) |
 | 1.22.x    | [charmed-kubernetes-814](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-814/archive/bundle.yaml) |
 | 1.21.x    | [charmed-kubernetes-733](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-733/archive/bundle.yaml) |
 | 1.20.x    | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml) |
@@ -465,8 +466,8 @@ Now you have a cluster up and running, check out the
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/install-manual.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/install-manual.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>

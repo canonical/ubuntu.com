@@ -23,8 +23,8 @@ results.
 
 ## Compliance Requirements
 
-**Charmed Kubernetes** 1.19 is compliant by default. Key configuration changes
-from previous releases include the following:
+**Charmed Kubernetes** is compliant by default. Key configuration changes
+from releases prior to 1.19 include the following:
 
 ### [kubernetes-master][k8s-master]
 
@@ -231,8 +231,8 @@ status: completed
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cis-compliance.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cis-compliance.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>

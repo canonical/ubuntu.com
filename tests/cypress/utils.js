@@ -288,29 +288,6 @@ export const interactiveForms = [
     submitBtn: /Let's discuss/,
     noOfPages: 3,
   },
-
-  {
-    url: "/kubernetes",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 1,
-  },
-  {
-    url: "/kubernetes/managed",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 1,
-  },
   {
     url: "/managed",
     inputs: [

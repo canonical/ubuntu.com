@@ -41,6 +41,7 @@ from webapp.advantage.schemas import (
     delete_account_user_role,
     put_contract_entitlements,
     post_auto_renewal_settings,
+    post_offer_schema,
 )
 
 
@@ -485,6 +486,22 @@ def cancel_advantage_subscriptions(**kwargs):
 
 
 @advantage_decorator(permission="user", response="json")
+@use_kwargs(post_offer_schema, location="json")
+def post_offer(**kwargs):
+    account_id = kwargs.get("account_id")
+    offer_id = kwargs.get("offer_id")
+    marketplace = kwargs.get("marketplace", "canonical-ua")
+
+    return g.api.purchase_from_marketplace(
+        marketplace=marketplace,
+        purchase_request={
+            "accountID": account_id,
+            "offerID": offer_id,
+        },
+    )
+
+
+@advantage_decorator(permission="user", response="json")
 @use_kwargs(put_contract_entitlements, location="json")
 def put_contract_entitlements(contract_id, **kwargs):
     g.api.set_convert_response(True)
@@ -770,6 +787,22 @@ def accept_renewal(renewal_id):
     return g.api.accept_renewal(renewal_id)
 
 
+@advantage_decorator(permission="user", response="json")
+def get_account_offers():
+    try:
+        account = g.api.get_purchase_account("canonical-ua")
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({"error": "User has no purchase account"}), 400
+    except AccessForbiddenError:
+        return (
+            flask.jsonify({"error": "User has no permission to purchase"}),
+            403,
+        )
+
+    offers = g.api.get_account_offers(account["id"])
+    return flask.jsonify(offers)
+
+
 @advantage_decorator(permission="user", response="html")
 def account_view():
     email = flask.session["openid"]["email"]
@@ -901,11 +934,11 @@ def blender_shop_view():
     )
 
 
-@advantage_decorator(response="html")
+@advantage_decorator(permission="guest", response="html")
 @use_kwargs({"email": String()}, location="query")
 def blender_thanks_view(**kwargs):
     return flask.render_template(
-        "advantage/blender/thank-you.html",
+        "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),
     )
 

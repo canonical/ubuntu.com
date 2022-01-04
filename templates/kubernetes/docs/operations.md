@@ -49,6 +49,7 @@ Kubernetes documentation</a> for more information on managing multiple clusters.
   </p>
 </div>
 
+
 You can verify that kubectl is configured correctly and can see the cluster by running:
 
 ```bash
@@ -72,6 +73,7 @@ List all services in the cluster:
 ```bash
 kubectl get services
 ```
+
 
 ## Accessing the Kubernetes dashboard
 
@@ -103,7 +105,7 @@ The kubernetes-worker charm supports deploying an NGINX ingress controller.
 Ingress allows access from the Internet to containers running web
 services inside the cluster.
 
-First allow the Internet access to the kubernetes-worker charm with the
+First allow the Internet access to the kubernetes-worker charm with with the
 following Juju command:
 
 ```
@@ -150,13 +152,13 @@ both deploy an example and clean itself up.
 This action performs the following steps:
 
 - It creates a deployment titled 'microbots' comprised of a number of replicas defined
-  during the run of the action.
+during the run of the action.
 
-- It also creates a service named 'microbots' which binds an 'endpoint', using all of
-  the 'microbots' pods.
+- It also creates a service named 'microbots' which binds an 'endpoint', using all  of
+the 'microbots' pods.
 
 - Finally, it will create an ingress resource, which points at a
-  [nip.io](http://nip.io) domain to simulate a proper DNS service.
+[nip.io](http://nip.io) domain to simulate a proper DNS service.
 
 To deploy 3 replicas of the microbot web application inside the Kubernetes
 cluster run the following command:
@@ -196,12 +198,13 @@ kubectl get pods
     microbot-5b9864df4d-x7ppr   1/1     Running   0          2m31s
 ```
 
+
+
 ### List the services and endpoints
 
 ```bash
 kubectl get services,endpoints
 ```
-
 ```
 NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.152.183.1    <none>        443/TCP   112m
@@ -218,7 +221,6 @@ endpoints/microbot     10.1.77.12:80,10.1.77.13:80,10.1.77.14:80   3m50s
 ```bash
 kubectl get ingress
 ```
-
 ```
 NAME               HOSTS                           ADDRESS   PORTS   AGE
 microbot-ingress   microbot.52.87.186.136.nip.io             80      5m36s
@@ -263,6 +265,8 @@ websocket support) view the
 [nginx-ingress-controller](https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx)
 project on github.
 
+
+
 <a id='next'> </a>
 
 ## Next steps
@@ -284,8 +288,8 @@ things you may wish to try:
 - [Bundle source][bundle-source]
 - [Bug tracker](https://bugs.launchpad.net/charmed-kubernetes)
 
-<!--LINKS-->
 
+<!--LINKS-->
 [next]: #next
 [addons]: /kubernetes/docs/cdk-addons
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
@@ -293,15 +297,15 @@ things you may wish to try:
 [scaling]: /kubernetes/docs/scaling
 [logging]: /kubernetes/docs/logging
 [decommission]: /kubernetes/docs/decommissioning
-[get-in-touch]: /kubernetes/docs/get-in-touch
+[get-in-touch]:  /kubernetes/docs/get-in-touch
 [bundle-source]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/operations.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/operations.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>

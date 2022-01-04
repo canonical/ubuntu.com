@@ -92,6 +92,7 @@ from webapp.advantage.views import (
     account_view,
     invoices_view,
     download_invoice,
+    get_account_offers,
     get_user_subscriptions,
     get_last_purchase_ids,
     get_contract_token,
@@ -104,6 +105,7 @@ from webapp.advantage.views import (
     blender_thanks_view,
     blender_shop_view,
     support,
+    post_offer,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -352,6 +354,7 @@ app.add_url_rule(
     methods=["POST"],
     defaults={"preview": True},
 )
+app.add_url_rule("/advantage/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
     "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
 )
@@ -406,7 +409,16 @@ app.add_url_rule(
     methods=["PUT"],
 )
 
-app.add_url_rule("/advantage/blender/thank-you", view_func=blender_thanks_view)
+app.add_url_rule(
+    "/advantage/subscribe/blender/thank-you",
+    view_func=blender_thanks_view,
+)
+
+app.add_url_rule(
+    "/advantage/offers.json",
+    view_func=get_account_offers,
+    methods=["GET"],
+)
 
 app.add_url_rule("/account", view_func=account_view)
 
@@ -541,6 +553,23 @@ app.add_url_rule("/logout", view_func=logout)
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
 
+takeovers_path = "/takeovers"
+discourse_takeovers = EngagePages(
+    parser=EngageParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
+        ),
+        index_topic_id=17229,
+        url_prefix=takeovers_path,
+    ),
+    # Takeovers doesn't need a base template
+    # But it is a required arg
+    document_template="/base.html",
+    url_prefix=takeovers_path,
+    blueprint_name="takeovers",
+)
+
 engage_path = "/engage"
 engage_pages = EngagePages(
     parser=EngageParser(
@@ -548,7 +577,7 @@ engage_pages = EngagePages(
             base_url="https://discourse.ubuntu.com/",
             session=session,
         ),
-        index_topic_id=17229,
+        index_topic_id=18033,
         url_prefix=engage_path,
     ),
     document_template="/engage/base.html",
@@ -557,20 +586,30 @@ engage_pages = EngagePages(
 )
 
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+app.add_url_rule(
+    "/engage/<page>/thank-you",
+    defaults={"language": None},
+    view_func=engage_thank_you(engage_pages),
+)
+app.add_url_rule(
+    "/engage/<language>/<page>/thank-you",
+    endpoint="alternative_thank-you",
+    view_func=engage_thank_you(engage_pages),
+)
 
 
 def get_takeovers():
     takeovers = {}
 
-    engage_pages.parser.parse()
+    discourse_takeovers.parser.parse()
     takeovers["sorted"] = sorted(
-        engage_pages.parser.takeovers,
+        discourse_takeovers.parser.takeovers,
         key=lambda takeover: takeover["publish_date"],
         reverse=True,
     )
     takeovers["active"] = [
         takeover
-        for takeover in engage_pages.parser.takeovers
+        for takeover in discourse_takeovers.parser.takeovers
         if takeover["active"] == "true"
     ]
 
@@ -672,17 +711,6 @@ app.add_url_rule(
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
     ),
-)
-
-app.add_url_rule(
-    "/engage/<page>/thank-you",
-    defaults={"language": None},
-    view_func=engage_thank_you(engage_pages),
-)
-app.add_url_rule(
-    "/engage/<language>/<page>/thank-you",
-    endpoint="alternative_thank-you",
-    view_func=engage_thank_you(engage_pages),
 )
 
 # Core docs

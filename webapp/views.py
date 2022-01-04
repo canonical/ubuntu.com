@@ -310,6 +310,7 @@ def build_tutorials_index(session, tutorials_docs):
 
         tutorials_docs.parser.parse()
         tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
+
         if not topic:
             tutorials = tutorials_docs.parser.tutorials
         else:
@@ -318,6 +319,14 @@ def build_tutorials_index(session, tutorials_docs):
                 for doc in tutorials_docs.parser.tutorials
                 if topic in doc["categories"]
             ]
+
+        # Create list of topics
+        topics_list = set()
+        for item in tutorials_docs.parser.tutorials:
+            if "categories" in item and item["categories"] not in topics_list:
+                topics_list = topics_list | set(
+                    item["categories"].replace(" ", "").lower().split(",")
+                )
 
         if query:
             temp_metadata = []
@@ -351,6 +360,7 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials=tutorials,
             page=page,
             topic=topic,
+            topics_list=sorted(list(topics_list)),
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,

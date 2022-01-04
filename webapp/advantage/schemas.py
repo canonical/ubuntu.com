@@ -60,6 +60,14 @@ cancel_advantage_subscriptions = {
     ),
 }
 
+post_offer_schema = {
+    "account_id": String(),
+    "offer_id": String(),
+    "marketplace": String(
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"])
+    ),
+}
+
 post_anonymised_customer_info = {
     "account_id": String(required=True),
     "name": String(required=True),

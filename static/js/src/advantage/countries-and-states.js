@@ -28,6 +28,7 @@ export const vatCountries = [
   "ES",
   "SE",
   "GB",
+  "ZA",
 ];
 
 export const countries = [

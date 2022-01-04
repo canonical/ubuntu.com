@@ -210,6 +210,43 @@ context("Interactive marketo forms", () => {
       cy.url().should("include", "#success");
     }
   );
+
+  // wrote separate test for /kubernetes and /kubernetes/managed page as cypress couldn't find the job title input field by label text
+  it(
+    "should check interactive contact modal on /kubernetes",
+    { scrollBehavior: "center" },
+    () => {
+      cy.visit("/kubernetes");
+      cy.acceptCookiePolicy();
+      cy.findByTestId("interactive-form-link").click();
+      cy.findByLabelText(/First name/).type("Test");
+      cy.findByLabelText(/Last name:/).type("Test");
+      cy.findByLabelText(/Company name:/).type("Test");
+      cy.findByTestId("form-jobTitle").type("Test");
+      cy.findByLabelText(/Work email:/).type("test@test.com");
+      cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+      cy.findByText(/Let's discuss/).click();
+      cy.url().should("include", "#success");
+    }
+  );
+  it(
+    "should check interactive contact modal on /kubernetes/managed",
+    { scrollBehavior: "center" },
+    () => {
+      cy.visit("/kubernetes/managed");
+      cy.acceptCookiePolicy();
+      cy.findByTestId("interactive-form-link").click();
+      cy.findByLabelText(/First name/).type("Test");
+      cy.findByLabelText(/Last name:/).type("Test");
+      cy.findByLabelText(/Company name:/).type("Test");
+      cy.findByTestId("form-jobTitle").type("Test");
+      cy.findByLabelText(/Work email:/).type("test@test.com");
+      cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+      cy.findByText(/Let's discuss/).click();
+      cy.url().should("include", "#success");
+    }
+  );
+
   // wrote separate test for /openstack/pricing-calculator page as there are same submit text in the form and in the page
   it(
     "should check interactive contact modal on /openstack/pricing-calculator",
@@ -233,9 +270,7 @@ context("Interactive marketo forms", () => {
 context("engage forms", () => {
     it("should check forms on engage pages", () => {
       cy.visit("/engage/dockerandros");
-      
       cy.acceptCookiePolicy();
-    
       cy.findByLabelText(/First name:/).type("Test");
       cy.findByLabelText(/Last name:/).type("Test");
       cy.findByLabelText(/Work email:/).type("test@test.com");

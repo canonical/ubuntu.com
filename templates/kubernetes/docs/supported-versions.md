@@ -16,9 +16,9 @@ toc: False
 Charmed Kubernetes officially supports the most recent three (3) minor releases
 of Kubernetes.
 
-Current Release: **1.22**
+Current Release: **1.23**
 
-Supported releases: **1.22.x,1.21.x, 1.20.x**
+Supported releases: **1.23.x,1.22.x, 1.21.x**
 
 ## Charmed Kubernetes bundle versions
 
@@ -30,11 +30,11 @@ juju deploy cs:charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.19
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.21
 release, you could run:
 
 ```bash
-juju deploy cs:~containers/charmed-kubernetes-545
+juju deploy cs:~containers/charmed-kubernetes-733
 ```
 
 <div class="p-notification--positive">
@@ -57,6 +57,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
+| 1.23.x    | [charmed-kubernetes-862](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-862/archive/bundle.yaml) |
 | 1.22.x    | [charmed-kubernetes-814](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-814/archive/bundle.yaml) |
 | 1.21.x    | [charmed-kubernetes-733](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-733/archive/bundle.yaml) |
 | 1.20.x    | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml) |
@@ -98,6 +99,7 @@ the latest three stable versions are officially supported:
 name:      kube-apiserver
 summary:   Kubernetes master component that exposes the Kubernetes API.
 publisher: Canonical✓
+store-url: https://snapcraft.io/kube-apiserver
 contact:   https://www.ubuntu.com/kubernetes
 license:   Apache-2.0
 description: |
@@ -105,31 +107,47 @@ description: |
   for the api objects which include pods, services, replicationcontrollers, and others. The API
   Server services REST operations and provides the frontend to the cluster’s shared state through
   which all other components interact.
-
+  
   For more information, consult the [reference
   documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/).
 snap-id: KMZLusdClmUyLXAjjcI4sVnpjk1kM653
 channels:
-  latest/stable:    1.20.0         2020-12-16 (1871) 22MB -
-  latest/candidate: 1.20.0         2020-12-16 (1871) 22MB -
-  latest/beta:      1.20.0         2020-12-16 (1871) 22MB -
-  latest/edge:      1.20.0         2020-12-16 (1871) 22MB -
-  1.20/stable:      1.20.0         2020-12-16 (1871) 22MB -
-  1.20/candidate:   1.20.0         2020-12-16 (1871) 22MB -
-  1.20/beta:        1.20.0         2020-12-16 (1871) 22MB -
-  1.20/edge:        1.20.0         2020-12-09 (1871) 22MB -
-  1.19/stable:      1.19.4         2020-11-15 (1822) 21MB -
-  1.19/candidate:   1.19.4         2020-11-15 (1822) 21MB -
-  1.19/beta:        1.19.4         2020-11-15 (1822) 21MB -
-  1.19/edge:        1.19.4         2020-11-15 (1822) 21MB -
-  1.18/stable:      1.18.12        2020-11-15 (1816) 23MB -
-  1.18/candidate:   1.18.12        2020-11-15 (1816) 23MB -
-  1.18/beta:        1.18.12        2020-11-15 (1816) 23MB -
-  1.18/edge:        1.18.12        2020-11-15 (1816) 23MB -
-  1.17/stable:      1.17.14        2020-11-15 (1833) 23MB -
-  1.17/candidate:   1.17.14        2020-11-15 (1833) 23MB -
-  1.17/beta:        1.17.14        2020-11-15 (1833) 23MB -
-  1.17/edge:        1.17.14        2020-11-15 (1833) 23MB -
+  latest/stable:    1.23.0         2021-12-15 (2493) 23MB -
+  latest/candidate: 1.23.0         2021-12-15 (2493) 23MB -
+  latest/beta:      1.23.0         2021-12-15 (2493) 23MB -
+  latest/edge:      1.23.0         2021-12-15 (2493) 23MB -
+  1.24/stable:      –                                     
+  1.24/candidate:   –                                     
+  1.24/beta:        –                                     
+  1.24/edge:        1.24.0-alpha.1 2021-12-11 (2513) 23MB -
+  1.23/stable:      1.23.0         2021-12-08 (2493) 23MB -
+  1.23/candidate:   1.23.0         2021-12-08 (2493) 23MB -
+  1.23/beta:        1.23.0         2021-12-08 (2493) 23MB -
+  1.23/edge:        1.23.0         2021-12-08 (2493) 23MB -
+  1.22/stable:      1.22.4         2021-11-18 (2456) 22MB -
+  1.22/candidate:   1.22.4         2021-11-18 (2456) 22MB -
+  1.22/beta:        1.22.4         2021-11-18 (2456) 22MB -
+  1.22/edge:        1.22.4         2021-11-18 (2456) 22MB -
+  1.21/stable:      1.21.7         2021-11-18 (2433) 22MB -
+  1.21/candidate:   1.21.7         2021-11-18 (2433) 22MB -
+  1.21/beta:        1.21.7         2021-11-18 (2433) 22MB -
+  1.21/edge:        1.21.7         2021-11-18 (2433) 22MB -
+  1.20/stable:      1.20.14        2021-12-16 (2519) 22MB -
+  1.20/candidate:   1.20.14        2021-12-16 (2519) 22MB -
+  1.20/beta:        1.20.14        2021-12-16 (2519) 22MB -
+  1.20/edge:        1.20.14        2021-12-16 (2519) 22MB -
+  1.19/stable:      1.19.16        2021-10-29 (2419) 22MB -
+  1.19/candidate:   1.19.16        2021-10-29 (2419) 22MB -
+  1.19/beta:        1.19.16        2021-10-29 (2419) 22MB -
+  1.19/edge:        1.19.16        2021-10-29 (2419) 22MB -
+  1.18/stable:      1.18.20        2021-08-09 (2219) 23MB -
+  1.18/candidate:   1.18.20        2021-08-09 (2219) 23MB -
+  1.18/beta:        1.18.20        2021-08-09 (2219) 23MB -
+  1.18/edge:        1.18.20        2021-08-09 (2219) 23MB -
+  1.17/stable:      1.17.17        2021-01-15 (1962) 23MB -
+  1.17/candidate:   1.17.17        2021-01-15 (1962) 23MB -
+  1.17/beta:        1.17.17        2021-01-15 (1962) 23MB -
+  1.17/edge:        1.17.17        2021-01-15 (1962) 23MB -
   1.16/stable:      1.16.15        2020-10-20 (1789) 22MB -
   1.16/candidate:   1.16.15        2020-10-20 (1789) 22MB -
   1.16/beta:        1.16.15        2020-10-20 (1789) 22MB -
@@ -178,10 +196,10 @@ channels:
   1.5/candidate:    1.5.5          2017-05-17    (3) 17MB -
   1.5/beta:         1.5.5          2017-05-17    (3) 17MB -
   1.5/edge:         1.5.5          2017-05-17    (3) 17MB -
-  ```
 
-In the above output, the stable release is identified as 1.17, and so 1.16 and
-1.15 are also currently supported.
+
+In the above output, the stable release is identified as 1.23, and so 1.22 and
+1.21 are also currently supported.
 
 ## Professional support
 
@@ -193,9 +211,9 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/supported-versions.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/supported-versions.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>
 

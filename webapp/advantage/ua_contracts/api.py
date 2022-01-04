@@ -109,6 +109,15 @@ class UAContractsAPI:
 
         return contract
 
+    def get_account_offers(self, account_id: str):
+        response = self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/offers",
+            error_rules=["default", "no-found", "user-role"],
+        )
+
+        return response.json()
+
     def get_account_users(self, account_id: str):
         response = self._request(
             method="get",

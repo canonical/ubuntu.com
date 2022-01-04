@@ -1,13 +1,13 @@
 from typing import List, Dict
 
 from webapp.advantage.ua_contracts.primitives import (
-    Entitlement,
+    Account,
     Contract,
     ContractItem,
+    Entitlement,
+    Renewal,
     Subscription,
     SubscriptionItem,
-    Account,
-    Renewal,
     User,
 )
 from webapp.advantage.models import Listing, Product

@@ -85,7 +85,7 @@ const registerPaymentMethod = () => {
       address: addressObject,
       name: name,
       taxID: {
-        type: "eu_vat",
+        type: country === "ZA" ? "za_vat" : "eu_vat",
         value: VATNumber,
       },
     });
