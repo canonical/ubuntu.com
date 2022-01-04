@@ -145,12 +145,11 @@ def certified_model_details(canonical_id):
             "level": model_release["level"],
             "notes": model_release["notes"],
             "version": ubuntu_version,
+            "components": {},
         }
 
         if release_info["level"] == "Enabled":
             has_enabled_releases = True
-
-        release_details["releases"].append(release_info)
 
         for device_category, devices in model_release.items():
             if (
@@ -160,11 +159,11 @@ def certified_model_details(canonical_id):
             ):
                 device_category = device_category.capitalize()
 
-                release_details["components"][device_category] = []
+                release_info["components"][device_category] = []
 
-                if device_category in release_details["components"]:
+                if device_category in release_info["components"]:
                     for device in devices:
-                        release_details["components"][device_category].append(
+                        release_info["components"][device_category].append(
                             {
                                 "name": (
                                     f"{device['make']} {device['name']}"
@@ -174,6 +173,7 @@ def certified_model_details(canonical_id):
                                 "identifier": device["identifier"],
                             }
                         )
+        release_details["releases"].append(release_info)
 
     # default to category, which contains the least specific form_factor
     form_factor = model_release and model_release.get(
