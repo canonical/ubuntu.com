@@ -241,7 +241,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers.json, /security/livepatch/docs]
+    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -455,7 +455,7 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers.json, /security/livepatch/docs]
+    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
