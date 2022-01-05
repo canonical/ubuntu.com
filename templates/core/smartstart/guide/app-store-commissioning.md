@@ -68,7 +68,8 @@ Store Administrators can create derivative IoT app stores hierarchically tied to
 
 ### Helpful resources
 
-- [IoT app stores](/internet-of-things/appstore)
+- [Read more about IoT app stores](/internet-of-things/appstore)
+- [IoT app store datasheet](https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf)
 
 <footer class="p-article-pagination">
   <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/snap-publishing">
