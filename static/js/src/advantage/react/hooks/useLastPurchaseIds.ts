@@ -21,9 +21,12 @@ export const selectPurchaseIdsByMarketplaceAndPeriod = (
   return lastPurchaseIds?.[marketplace]?.[period] ?? null;
 };
 
-export const useLastPurchaseIds = <D = LastPurchaseIds>(
-  accountId?: UserSubscription["account_id"] | null,
-  options: UseQueryOptions<LastPurchaseIds, unknown, D> = {}
+export const useLastPurchaseIds = <
+  ID extends UserSubscription["account_id"] | null | undefined,
+  D = LastPurchaseIds
+>(
+  accountId: ID,
+  options: UseQueryOptions<LastPurchaseIds, unknown, D, [string, ID]> = {}
 ) => {
   // Don't fetch the data until the account id is provided.
   options.enabled = !!accountId;
