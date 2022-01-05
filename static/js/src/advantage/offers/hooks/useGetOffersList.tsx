@@ -12,9 +12,10 @@ const useGetOffersList = () => {
       );
       const res = await response.json();
 
-      if (res.errors) {
-        throw new Error(res.errors);
+      if (res.error) {
+        throw new Error(res.error);
       }
+
       return res;
     }
   );
