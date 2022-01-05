@@ -274,6 +274,66 @@ production:
     - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
       service_name: ubuntu-com-security-api
 
+    - paths: [/security]
+      name: ubuntu-com-security
+      app_name: ubuntu.com-security
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 3
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - paths: [/advantage]
+      name: ubuntu-com-advantage
+      app_name: ubuntu.com-advantage
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 3
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
   nginxConfigurationSnippet: |
     if ($host = 'apps.ubuntu.com' ) {
       rewrite ^ https://snapcraft.io/ permanent;
@@ -487,6 +547,66 @@ staging:
 
     - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
       service_name: ubuntu-com-security-api
+
+    - paths: [/security]
+      name: ubuntu-com-security
+      app_name: ubuntu.com-security
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 2
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - paths: [/advantage]
+      name: ubuntu-com-advantage
+      app_name: ubuntu.com-advantage
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 2
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
   nginxConfigurationSnippet: |
     if ($host = 'staging.cloud.ubuntu.com' ) {
