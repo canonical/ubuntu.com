@@ -24,7 +24,7 @@
 {% endmacro %}
 
 {% block outer_content %}
-  {% with 
+  {% with
     search_action=search_action,
     siteSearch=siteSearch,
     placeholder=placeholder
@@ -35,6 +35,16 @@
 <div class="p-strip is-shallow">
   <div class="row">
     <aside class="col-3">
+      {% if versions | length > 1 %}
+      <label for="version-select" class="u-hide">Version</label>
+      <select name="version-select" id="version-select" onChange="window.location.href=this.value">
+      {% for version in versions %}
+        {% set active = docs_version == version['path'] %}
+        <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>Version {{ version['version'] }}</option>
+      {% endfor %}
+      <select>
+      {% endif %}
+
       <div class="p-side-navigation--raw-html" id="drawer">
         <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
           Toggle side navigation
