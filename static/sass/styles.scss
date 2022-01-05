@@ -1031,8 +1031,8 @@ html {
 
 .advantage-offer-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
   grid-template-areas: "contract-item allowance price";
+  grid-template-columns: 2fr 1fr 1fr;
 
   // fix for the negative margin
   > p:not([class*="p-heading--"]):not([class*="p-muted-heading"]) + p {
