@@ -1,63 +1,27 @@
 {% extends "templates/base.html" %}
 
 {% block title %}Certified hardware{% endblock %}
-{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_description %}Ubuntu Certified Hardware has passed our extensive testing and review process, ensuring that Ubuntu runs optimally out of the box, ready for your organisation. Canonical provides continuous support throughout the lifecycle of the Ubuntu release to ensure quality, functionality, and maintenance for up to 10 years{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Cq9RLNjSbX83WB5fFKYCFRvo_1JEfMydMecqrVeKBP8/edit{% endblock %}
 
 {% block outer_content %}
 
 <section class="p-strip--suru-bottomed">
   <div class="row u-vertically-center">
-    <div class="col-7">
+    <div class="col-8">
       <h1>Ubuntu certified hardware</h1>
-      <p class="p-heading--4">Find machines you can trust with Ubuntu</p>
+      <p class="p-heading--4">Machines you can trust with Ubuntu</p>
       <p>Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out of the box, ready for your organisation. We work closely with OEMs to jointly make Ubuntu available on a wide range of desktops, laptops, servers, IoT, and SoC hardware.</p>
-    </div>
-    <div class="col-5 u-hide--small u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/a491f87c-Ubuntu+Certified+Hardware.svg",
-        alt="",
-        width="364",
-        height="297",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
+      <p><a href="/certified/why-certified">Why Certified?</a></p>
     </div>
   </div>  
 </section>
-
-<section class="p-strip--light is-shallow">
-  <form>
-    <div class="row">
-      <div class="col-12" style="margin-top: 1rem;">
-        <div class="p-form__group">
-          <div class="p-search-box">
-            <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search hardware" required>
-            <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-            <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </form>
-</section>
-
 <section class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
-        alt="",
-        width="71",
-        height="48",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-      <h2 class="p-card__title p-heading--3">Ubuntu certified desktops</h2>
-      <p class="p-card__content u-sv2">Many of the world's biggest PC manufacturers certify their desktops for Ubuntu, ensuring it always runs as smoothly as its millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That’s why you’ll find Ubuntu preloaded on desktops across government, education and enterprise, and in homes around the world.</p>
-      <hr />
-      <p class="u-text--muted u-no-margin--bottom">Vendor</p>
+   <div class="col-8">
+      <h2>Ubuntu certified desktops</h2>
+      <p>Many of the world's biggest PC manufacturers certify their desktops for Ubuntu, ensuring it always runs as smoothly as its millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That’s why you’ll find Ubuntu preloaded on desktops across government, education and enterprise, and in homes around the world.</p>
+      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
         {% for desktop_vendor in desktop_vendors %}
         <li class="p-inline-list__item">
@@ -65,7 +29,7 @@
         </li>
         {% endfor %}
       </ul>
-      <p class="u-text--muted u-no-margin--bottom">Certified for Ubuntu</p>
+      <p class="u-text--muted u-no-margin--bottom">Certified for Ubuntu:</p>
       <ul class="p-inline-list--midline">
         {% for desktop_release in desktop_releases %}
         <li class="p-inline-list__item">
@@ -74,21 +38,38 @@
         {% endfor %}
       </ul>
       <p><a href="/certified/desktops" class="p-button--positive">See all</a></p>
-    </div>
-    <div class="col-6 p-card">
+   </div>
+   <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+      alt="",
+      width="223",
+      height="150",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+    }}
+   </div>
+  </div>
+
+  <div class="u-fixed-width u-sv3"><hr></div>
+  
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
         alt="",
-        width="83",
-        height="48",
+        width="249",
+        height="144",
         hi_def=True,
         loading="auto"
         ) | safe
       }}
-      <h2 class="p-card__title p-heading--3">Ubuntu certified laptops</h2>
-      <p class="p-card__content u-sv2">Just like desktops, manufacturers choose to certify their laptops for Ubuntu, ensuring it works just like you would expect.</p>
-      <hr />
-      <p class="u-text--muted u-no-margin--bottom">Vendor</p>
+    </div>
+    <div class="col-8">
+      <h2>Ubuntu Certified laptops</h2>
+      <p>Just like desktops, manufacturers choose to certify their laptops for Ubuntu, ensuring they work beautifully and reliably, just as you would expect.</p>
+      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
         {% for laptop_vendor in laptop_vendors %}
         <li class="p-inline-list__item">
@@ -107,21 +88,14 @@
       <p><a href="/certified/laptops" class="p-button--positive">See all</a></p>
     </div>
   </div>
+
+  <div class="u-fixed-width u-sv3"><hr></div>
+
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
-        alt="",
-        width="40",
-        height="48",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      <h2 class="p-card__title p-heading--3">Ubuntu certified servers</h2>
-      <p class="p-card__content u-sv2">Using Ubuntu Server speeds up the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
-      <p>Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
-      <hr />
+    <div class="col-8">
+      <h2>Ubuntu certified servers</h2>
+      <p>Ubuntu Server and Canonical’s tools give you the ability to deploy your workloads as easily and repeatably on bare metal as if they were in the cloud.</p>
+      <p>Deploying on Ubuntu Certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
       <p class="u-text--muted u-no-margin--bottom">Certified for Ubuntu</p>
       <ul class="p-inline-list--midline">
         {% for server_release, total in server_releases.items() %}
@@ -132,21 +106,38 @@
       </ul>
       <p><a href="/certified/servers" class="p-button--positive">See all</a></p>
     </div>
-    <div class="col-6 p-card">
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="",
+        width="120",
+        height="144",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+  
+  <div class="u-fixed-width u-sv3"><hr></div>
+
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
         alt="",
-        width="46",
-        height="50",
+        width="138",
+        height="150",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
-      <h2 class="p-card__title p-heading--3">Ubuntu certified IoT devices</h2>
-      <p class="p-card__content u-sv2">A number of IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure and optimised Ubuntu, either pre-loaded or as build your own option.</p>
+    </div>
+    <div class="col-8">
+      <h2>Ubuntu Certified IoT devices</h2>
+      <p>A number of IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure, and optimised Ubuntu, either pre-loaded or as a build-your-own option.</p>
       <p>Canonical's certification program offers you the peace of mind that all your Internet of Things devices will remain secure and regularly updated.</p>
-      <hr />
-      <p class="u-text--muted u-no-margin--bottom">Vendor</p>
+      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list--midline">
         {% for iot_vendor in iot_vendors %}
         <li class="p-inline-list__item">
@@ -157,22 +148,15 @@
       <p><a href="/certified/devices" class="p-button--positive">See all</a></p>
     </div>
   </div>
-  <div class="row">
-    <div class="col-6 p-card">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
-        alt="",
-        width="42",
-        height="50",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      <h2 class="p-card__title p-heading--3">Ubuntu certified SoCs</h2>
-      <p class="p-card__content u-sv2">Low-power small-footprint System on a Chip (SoC) hardware are re-defining the future of sustainable data centers. Ubuntu Core delivers bullet-proof security, reliable updates and access to a rich ecosystem on 32 and 64-bit ARM and X86 platforms, perfect to power the Internet of Things.</p>
+
+  <div class="u-fixed-width u-sv3"><hr></div>
+
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Ubuntu certified SoCs</h2>
+      <p>Low-power small-footprint System on a Chip (SoC) hardware are re-defining the future of sustainable data centers. Ubuntu Core delivers bullet-proof security, reliable updates and access to a rich ecosystem on 32 and 64-bit ARM and X86 platforms, perfect to power the Internet of Things.</p>
       <p>Canonical's certification program offers server manufacturers a selection of SoCs officially supported and maintained in Ubuntu to choose from for their products from servers to IoT.</p>
-      <hr />
-      <p class="u-text--muted u-no-margin--bottom">Vendor</p>
+      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list--midline">
         {% for soc_vendor in soc_vendors %}
         <li class="p-inline-list__item">
@@ -182,15 +166,25 @@
       </ul>
       <p><a href="/certified/socs" class="p-button--positive">See all</a></p>
     </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+        alt="",
+        width="126",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
-
 <section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-7">
-      <h2>Tech support for certified systems</h2>
-      <p class="u-sv2">Ubuntu Advantage is the professional support package from Canonical, with <a href="/uasd">more support for certified hardware</a>.</p>
-      <a href="/advantage" class="p-button--positive"> Get Ubuntu Advantage</a>
+      <h2>Become Ubuntu Certified!</h2>
+      <p>Becoming Ubuntu Certified is your top choice for differentiation, reliability, and product visibility. When your hardware is certified, they can carry the Ubuntu Certified Hardware logo on websites and product packaging. The “Ubuntu Certified Hardware” sticker increases customer confidence that your products integrate seamlessly with Ubuntu, which in turn increases traffic to your products.</a>.</p>
+      <a href="https://canonical.com/partners/become-a-partner" class="p-link--external">Learn more</a>
     </div>
     <div class="col-5 u-align--center u-hide--small">
       {{ image (
@@ -200,27 +194,6 @@
         height="130",
         hi_def=True,
         loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h2>Become Ubuntu certified!</h2>
-      <p>Work with us to test that your hardware works fine with Ubuntu and join the OEM market leaders in the list of Ubuntu certified hardware.</p>
-      <a href="https://canonical.com/partners/become-a-partner">Learn more&nbsp;&rsaquo;</a>
-    </div>
-    <div class="col-5 u-align--center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/2381c3cf-logos.svg",
-        alt="",
-        width="279",
-        height="148",
-        hi_def=True,
-        loading="auto|lazy"
         ) | safe
       }}
     </div>
