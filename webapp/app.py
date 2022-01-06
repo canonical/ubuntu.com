@@ -48,6 +48,8 @@ from webapp.cube.views import (
     post_microcerts_purchase,
 )
 
+from webapp.demo.views import demo
+
 from webapp.views import (
     BlogCustomGroup,
     BlogCustomTopic,
@@ -834,6 +836,9 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
+
+# Demo
+app.add_url_rule("/demo", view_func=demo)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(

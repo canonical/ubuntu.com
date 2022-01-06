@@ -2,6 +2,7 @@ let esbuild = require("esbuild");
 const path = require("path");
 
 let entries = {
+  demo: "./static/js/src/demo/index.tsx",
   contributions: "./static/js/src/contributions.js",
   "desktop-statistics": "./static/js/src/desktop-statistics.js",
   tutorials: "./static/js/src/tutorials.js",
