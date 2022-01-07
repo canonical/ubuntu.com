@@ -130,10 +130,8 @@ const CubeBuyButton = ({
     if (pendingPurchase?.status === "done") {
       const request = new XMLHttpRequest();
       const formData = new FormData();
-      formData.append("munchkinId", "066-EOV-335");
       formData.append("formid", "3756");
-      formData.append("formVid", "3756");
-      formData.append("Email", userInfo?.customerInfo?.email);
+      formData.append("email", userInfo?.customerInfo?.email);
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
@@ -145,10 +143,7 @@ const CubeBuyButton = ({
         isMarketingOptInChecked ? "yes" : "no"
       );
 
-      request.open(
-        "POST",
-        "https://app-sjg.marketo.com/index.php/leadCapture/save2"
-      );
+      request.open("POST", "/marketo/submit");
       request.send(formData);
 
       request.onreadystatechange = () => {
