@@ -172,7 +172,11 @@ def get_microcerts(badgr_issuer, badge_certified, ua_api, badgr_api, edx_api):
 
             courses.append(course)
 
-    edx_register_url = f"{edx_url}{flask.request.base_url}"
+    redirect_url = flask.request.base_url
+    if redirect_url.endswith(".json"):
+        redirect_url = redirect_url[:-5]
+
+    edx_register_url = f"{edx_url}{redirect_url}"
     if flask.request.args.get("test_backend") == "true":
         edx_register_url = edx_register_url + "?test_backend=true"
 

@@ -832,12 +832,6 @@ app.add_url_rule(
     view_func=post_microcerts_purchase,
     methods=["POST"],
 )
-app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
-app.add_url_rule(
-    "/cube/microcerts/purchase.json",
-    view_func=post_microcerts_purchase,
-    methods=["POST"],
-)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
