@@ -226,7 +226,7 @@ dashboards are also included to highlight these metrics with Prometheus/Grafana.
 - Storage Classes created by default
 
 Storage classes will now be created if the `kubernetes-master` charm is related to an
-integrator charm. These classes are for AWS, GCE, Openstack, and Azure and are named cdk-ebs,
+integrator charm. These classes are for AWS, GCE, OpenStack, and Azure and are named cdk-ebs,
 cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
 
 - Support for etcd 3.3 and 3.4
@@ -696,7 +696,7 @@ reside in the same namespace as the nginx deployment.
  - Added support for load-balancer failover 
  - Added always restart for etcd 
  - Added Xenial support to Azure integrator 
- - Added Bionic support to Openstack integrator 
+ - Added Bionic support to OpenStack integrator 
  - Added support for ELB service-linked role 
  - Added ability to configure Docker install source 
  - Fixed EasyRSA does not run as an LXD container on 18.04 
