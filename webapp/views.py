@@ -503,8 +503,8 @@ def engage_thank_you(engage_pages):
 
 def openstack_install():
     """
-    Openstack install docs
-    Instructions for openstack installation pulled from Discourse
+    OpenStack install docs
+    Instructions for OpenStack installation pulled from Discourse
     """
     discourse_api = DiscourseAPI(
         base_url="https://discourse.ubuntu.com/", session=session

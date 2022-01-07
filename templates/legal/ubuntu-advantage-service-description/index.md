@@ -388,6 +388,6 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 **Valid Customisations:** configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during a Private Cloud Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Requests for changes should be validated by Canonical to ensure continued support
 
-**Virtual Machine (VM):** a virtualized compute instance instantiated on a recognised hypervisor technology (KVM, VMWare ESXi, Openstack or public cloud)
+**Virtual Machine (VM):** a virtualized compute instance instantiated on a recognised hypervisor technology (KVM, VMWare ESXi, OpenStack or public cloud)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
