@@ -789,6 +789,8 @@ def accept_renewal(renewal_id):
 
 @advantage_decorator(permission="user", response="json")
 def get_account_offers():
+    g.api.set_convert_response(True)
+
     try:
         account = g.api.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
@@ -799,8 +801,9 @@ def get_account_offers():
             403,
         )
 
-    offers = g.api.get_account_offers(account["id"])
-    return flask.jsonify(offers)
+    offers = g.api.get_account_offers(account.id)
+
+    return flask.jsonify(to_dict(offers))
 
 
 @advantage_decorator(permission="user", response="html")

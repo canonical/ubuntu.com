@@ -4,10 +4,19 @@ from typing import List, Dict
 
 from tests.advantage.helpers import get_fixture
 from webapp.advantage.ua_contracts.helpers import to_dict
-from webapp.advantage.models import Listing, Entitlement, Product
+from webapp.advantage.models import (
+    Listing,
+    Entitlement,
+    Product,
+    OfferItem,
+    Offer,
+)
 from webapp.advantage.ua_contracts.parsers import (
     parse_account,
     parse_accounts,
+    parse_offer_items,
+    parse_offer,
+    parse_offers,
     parse_subscription_items,
     parse_subscription,
     parse_subscriptions,
@@ -581,3 +590,78 @@ class TestParsers(unittest.TestCase):
         ]
 
         self.assertEqual(to_dict(parsed_users), to_dict(expectation))
+
+    def test_parse_offer_items(self):
+        raw_offer = get_fixture("offer")
+
+        parsed_offer_items = parse_offer_items(
+            raw_offer["items"], raw_offer["productListings"]
+        )
+
+        expectation = [
+            OfferItem(
+                name="uai-advanced-desktop-oneoff",
+                price=30000,
+                allowance=2,
+            ),
+            OfferItem(
+                name="uai-advanced-physical-oneoff",
+                price=150000,
+                allowance=5,
+            ),
+        ]
+
+        self.assertIsInstance(parsed_offer_items, List)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_offer_items))
+
+    def test_parse_offer(self):
+        raw_offer = get_fixture("offer")
+
+        parsed_offer = parse_offer(raw_offer)
+
+        expectation = Offer(
+            id="oOaAbBcCdDeEfFgG",
+            total=180000,
+            items=[
+                OfferItem(
+                    name="uai-advanced-desktop-oneoff",
+                    price=30000,
+                    allowance=2,
+                ),
+                OfferItem(
+                    name="uai-advanced-physical-oneoff",
+                    price=150000,
+                    allowance=5,
+                ),
+            ],
+        )
+
+        self.assertIsInstance(parsed_offer, Offer)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_offer))
+
+    def test_parse_offers(self):
+        raw_offers = get_fixture("offers")
+
+        parsed_offers = parse_offers(raw_offers)
+
+        expectation = [
+            Offer(
+                id="oOaAbBcCdDeEfFgG",
+                total=180000,
+                items=[
+                    OfferItem(
+                        name="uai-advanced-desktop-oneoff",
+                        price=30000,
+                        allowance=2,
+                    ),
+                    OfferItem(
+                        name="uai-advanced-physical-oneoff",
+                        price=150000,
+                        allowance=5,
+                    ),
+                ],
+            )
+        ]
+
+        self.assertIsInstance(parsed_offers, List)
+        self.assertEqual(to_dict(expectation), to_dict(parsed_offers))

@@ -1,15 +1,97 @@
-[{
-    "id": "1",
-    "items": [
+[
     {
-        "productListingID": "listing_id_1",
-        "value": 2
-    },
-    {
-        "productListingID": "listing_id_2",
-        "value": 5
-    }
-    ],
-    "lastModified": "0001-01-01T00:00:00Z",
-    "marketplace": "canonical-ua"
-}]
+        "accountID": "aAbBcCdDeEfFgG",
+        "actionable": true,
+        "createdAt": "2022-01-04T10:00:00Z",
+        "externalIDs": null,
+        "id": "oOaAbBcCdDeEfFgG",
+        "items": [
+            {
+                "productListingID": "lAaBbCcDdEeFfGg",
+                "value": 2
+            },
+            {
+                "productListingID": "lAaBbCcDdEeFfGg-2",
+                "value": 5
+            }
+        ],
+        "lastModified": "2022-01-06T00:00:00Z",
+        "marketplace": "canonical-ua",
+        "productListings": [
+            {
+                "allowanceMetric": "units",
+                "bundleQuantity": 1,
+                "createdAt": "2021-11-10T10:00:00Z",
+                "effectiveDays": 365,
+                "externalIDs": [
+                    {
+                        "IDs": [
+                            "abcdef"
+                        ],
+                        "origin": "Salesforce"
+                    }
+                ],
+                "externalMarketplaceIDs": {
+                    "IDs": [
+                        "efghij"
+                    ],
+                    "origin": "Salesforce"
+                },
+                "externalPricingID": {
+                    "IDs": [
+                        "price_abc"
+                    ],
+                    "origin": "Stripe"
+                },
+                "id": "lAaBbCcDdEeFfGg",
+                "lastModifiedAt": "2021-11-10T10:00:00Z",
+                "marketplace": "canonical-ua",
+                "name": "uai-advanced-desktop-oneoff",
+                "period": "none",
+                "price": {
+                    "currency": "USD",
+                    "value": 30000
+                },
+                "productID": "uai-advanced-desktop",
+                "status": "active"
+            },
+            {
+                "allowanceMetric": "units",
+                "bundleQuantity": 1,
+                "createdAt": "2021-11-10T10:00:00Z",
+                "effectiveDays": 365,
+                "externalIDs": [
+                    {
+                        "IDs": [
+                            "abcdef"
+                        ],
+                        "origin": "Salesforce"
+                    }
+                ],
+                "externalMarketplaceIDs": {
+                    "IDs": [
+                        "defghi"
+                    ],
+                    "origin": "Salesforce"
+                },
+                "externalPricingID": {
+                    "IDs": [
+                        "price_abdced"
+                    ],
+                    "origin": "Stripe"
+                },
+                "id": "lAaBbCcDdEeFfGg-2",
+                "lastModifiedAt": "2021-11-10T10:00:00Z",
+                "marketplace": "canonical-ua",
+                "name": "uai-advanced-physical-oneoff",
+                "period": "none",
+                "price": {
+                    "currency": "USD",
+                    "value": 150000
+                },
+                "productID": "uai-advanced-physical",
+                "status": "active"
+            }
+        ]
+    }    
+]

@@ -10,6 +10,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_account,
     parse_users,
     parse_contract,
+    parse_offers,
 )
 
 
@@ -116,7 +117,12 @@ class UAContractsAPI:
             error_rules=["default", "no-found", "user-role"],
         )
 
-        return response.json()
+        offers = response.json()
+
+        if self.convert_response:
+            return parse_offers(offers)
+
+        return offers
 
     def get_account_users(self, account_id: str):
         response = self._request(
