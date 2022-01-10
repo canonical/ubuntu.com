@@ -96,7 +96,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     data-test="support-button"
                     disabled={editing}
                     element="a"
-                    href="https://support.canonical.com/"
+                    href="https://portal.support.canonical.com/"
                   >
                     Support portal
                   </Button>
