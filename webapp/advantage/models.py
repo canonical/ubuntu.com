@@ -95,3 +95,29 @@ class UserSubscription:
         self.contract_id = contract_id
         self.listing_id = listing_id
         self.renewal_id = renewal_id
+
+
+class OfferItem:
+    def __init__(self, id: str, name: str, price: int, allowance: int):
+        self.id = id
+        self.name = name
+        self.price = price
+        self.allowance = allowance
+
+
+class Offer:
+    def __init__(
+        self,
+        id: str,
+        marketplace: str,
+        created_at: str,
+        actionable: bool,
+        total: int,
+        items: List[OfferItem],
+    ):
+        self.id = id
+        self.total = total
+        self.items = items
+        self.marketplace = marketplace
+        self.created_at = created_at
+        self.actionable = actionable
