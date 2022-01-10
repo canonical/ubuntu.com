@@ -108,9 +108,9 @@
               alt="{{resource.featuredmedia.alt_text}}"
             />
           </a>
-          <h3 class="p-heading--four"><a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{resource.title.rendered | safe}}</a></h3>
+          <h3 class="p-heading--4"><a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{resource.title.rendered | safe}}</a></h3>
         {% else %}
-          <h3 class="p-heading--four"><a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{resource.title.rendered | safe}}</a></h3>
+          <h3 class="p-heading--4"><a href="{{resource.link.replace('admin.insights.ubuntu.com', 'blog.ubuntu.com')}}">{{resource.title.rendered | safe}}</a></h3>
           {{resource.excerpt.rendered | truncate(162) | safe}}
         {% endif %}
         <hr class="u-sv1" style="margin-top: auto;">

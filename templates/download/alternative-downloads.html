@@ -40,7 +40,7 @@
   <div class="row">
     {% if releases.latest.short_version > releases.lts.short_version %}
     <div class="col-4">
-      <h3 class="p-heading--four"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
+      <h3 class="p-heading--4"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
       <ul class="p-list--divided">
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Desktop (64-bit)</a></li>
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.latest.full_version }}</a></li>
@@ -48,14 +48,14 @@
     </div>
     {% endif %}
     <div class="col-4">
-      <h3 class="p-heading--four"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
+      <h3 class="p-heading--4"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Desktop (64-bit)</a></li>
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.lts.full_version }} LTS</a></li>
       </ul>
     </div>
     <div class="col-4">
-      <h3 class="p-heading--four"><span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
+      <h3 class="p-heading--4"><span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
         <li class="p-list__item"><a class="download-lts" href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Desktop (64-bit)</a></li>
         <li class="p-list__item"><a class="download-lts" href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.previous_lts.full_version }} LTS</a></li>
