@@ -105,7 +105,18 @@ class OfferItem:
 
 
 class Offer:
-    def __init__(self, id: str, total: int, items: List[OfferItem]):
+    def __init__(
+        self,
+        id: str,
+        marketplace: str,
+        created_at: str,
+        actionable: bool,
+        total: int,
+        items: List[OfferItem],
+    ):
         self.id = id
         self.total = total
         self.items = items
+        self.marketplace = marketplace
+        self.created_at = created_at
+        self.actionable = actionable

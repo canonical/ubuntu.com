@@ -622,6 +622,9 @@ class TestParsers(unittest.TestCase):
         expectation = Offer(
             id="oOaAbBcCdDeEfFgG",
             total=180000,
+            actionable=True,
+            created_at="2022-01-04T10:00:00Z",
+            marketplace="canonical-ua",
             items=[
                 OfferItem(
                     name="uai-advanced-desktop-oneoff",
@@ -648,6 +651,9 @@ class TestParsers(unittest.TestCase):
             Offer(
                 id="oOaAbBcCdDeEfFgG",
                 total=180000,
+                actionable=True,
+                created_at="2022-01-04T10:00:00Z",
+                marketplace="canonical-ua",
                 items=[
                     OfferItem(
                         name="uai-advanced-desktop-oneoff",
