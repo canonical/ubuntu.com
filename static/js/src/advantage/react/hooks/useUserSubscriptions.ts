@@ -90,7 +90,7 @@ export const selectSubscriptionsForPeriod = (
   subscriptions.filter((subscription) => subscription.period === period);
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
-  options?: UseQueryOptions<UserSubscription[], unknown, D, "userSubscriptions">
+  options?: UseQueryOptions<UserSubscription[], unknown, D>
 ) => {
   const query = useQuery(
     "userSubscriptions",
