@@ -36,17 +36,17 @@
     <div class="col-12">
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="step1">
-        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
           Option 1 - Instant Ubuntu VMs
         </button>
       </form>
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="step2">
-        <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
           Option 2 - Manual server installation
         </button>
       </form>
-      <button disabled class="p-button--neutral u-no-margin--top is-inline">
+      <button disabled class="p-button u-no-margin--top is-inline">
         Option 3 - Automated server provisioning
       </button>
     </div>
