@@ -98,7 +98,8 @@ class UserSubscription:
 
 
 class OfferItem:
-    def __init__(self, name: str, price: int, allowance: int):
+    def __init__(self, id: str, name: str, price: int, allowance: int):
+        self.id = id
         self.name = name
         self.price = price
         self.allowance = allowance

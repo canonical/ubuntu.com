@@ -600,11 +600,13 @@ class TestParsers(unittest.TestCase):
 
         expectation = [
             OfferItem(
+                id="lAaBbCcDdEeFfGg",
                 name="uai-advanced-desktop-oneoff",
                 price=30000,
                 allowance=2,
             ),
             OfferItem(
+                id="lAaBbCcDdEeFfGg-2",
                 name="uai-advanced-physical-oneoff",
                 price=150000,
                 allowance=5,
@@ -627,11 +629,13 @@ class TestParsers(unittest.TestCase):
             marketplace="canonical-ua",
             items=[
                 OfferItem(
+                    id="lAaBbCcDdEeFfGg",
                     name="uai-advanced-desktop-oneoff",
                     price=30000,
                     allowance=2,
                 ),
                 OfferItem(
+                    id="lAaBbCcDdEeFfGg-2",
                     name="uai-advanced-physical-oneoff",
                     price=150000,
                     allowance=5,
@@ -656,11 +660,13 @@ class TestParsers(unittest.TestCase):
                 marketplace="canonical-ua",
                 items=[
                     OfferItem(
+                        id="lAaBbCcDdEeFfGg",
                         name="uai-advanced-desktop-oneoff",
                         price=30000,
                         allowance=2,
                     ),
                     OfferItem(
+                        id="lAaBbCcDdEeFfGg-2",
                         name="uai-advanced-physical-oneoff",
                         price=150000,
                         allowance=5,
