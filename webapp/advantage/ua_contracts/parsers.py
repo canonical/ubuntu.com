@@ -265,6 +265,7 @@ def parse_offer(raw_offer: Offer) -> Offer:
 
     return Offer(
         id=raw_offer["id"],
+        account_id=raw_offer["accountID"],
         marketplace=raw_offer["marketplace"],
         created_at=raw_offer["createdAt"],
         actionable=raw_offer["actionable"],

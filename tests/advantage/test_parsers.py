@@ -623,6 +623,7 @@ class TestParsers(unittest.TestCase):
 
         expectation = Offer(
             id="oOaAbBcCdDeEfFgG",
+            account_id="aAbBcCdDeEfFgG",
             total=180000,
             actionable=True,
             created_at="2022-01-04T10:00:00Z",
@@ -654,6 +655,7 @@ class TestParsers(unittest.TestCase):
         expectation = [
             Offer(
                 id="oOaAbBcCdDeEfFgG",
+                account_id="aAbBcCdDeEfFgG",
                 total=180000,
                 actionable=True,
                 created_at="2022-01-04T10:00:00Z",
