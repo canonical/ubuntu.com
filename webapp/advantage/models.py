@@ -109,6 +109,7 @@ class Offer:
     def __init__(
         self,
         id: str,
+        account_id: str,
         marketplace: str,
         created_at: str,
         actionable: bool,
