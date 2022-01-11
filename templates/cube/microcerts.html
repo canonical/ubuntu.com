@@ -257,7 +257,7 @@
           <td aria-label="Action" class="p-table__cell--share-actions u-hide--small">
           <div class="p-share-button u-align--right">
             <span class="p-contextual-menu p-contextual-menu--right u-hide--small">
-              <button class="p-button--neutral p-contextual-menu__toggle has-icon u-no-margin--bottom" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down p-contextual-menu__indicator"></i><span>Share</span></button>
+              <button class="p-button p-contextual-menu__toggle has-icon u-no-margin--bottom" aria-controls="#share-menu" aria-expanded="false" aria-haspopup="true" data-trigger="click"><i class="p-icon--chevron-down p-contextual-menu__indicator"></i><span>Share</span></button>
               <span class="p-contextual-menu__dropdown" id="share-menu" aria-hidden="true">
                 <span class="p-contextual-menu__group">
                   <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ module['badge-url'] }}" class="p-contextual-menu__link">Share via LinkedIn</a>
@@ -272,7 +272,7 @@
           <td>
             <div class="p-table--cube__contents u-align--right">
               {% if has_study_labs %}
-              <a class="p-button--neutral u-no-margin--right" href="{{ module.study_lab }}">Prepare</a>
+              <a class="p-button u-no-margin--right" href="{{ module.study_lab }}">Prepare</a>
               {% endif %}
               <a style = "margin-left: 1rem;" class="p-button--positive" href="{{ module.take_url }}">Take</a>
             </div>
@@ -280,7 +280,7 @@
           {% elif module.status == "failed" %}
           <td>
             <div class="p-table--cube__contents u-align--right">
-              <a class="p-button--neutral u-no-margin--right" href="https://support.canonical.com">Request retry</a>
+              <a class="p-button u-no-margin--right" href="https://support.canonical.com">Request retry</a>
             </div>
           </td>          
           {% elif module.status == "not-enrolled" %}

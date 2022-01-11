@@ -44,7 +44,7 @@
         </p>
         {% if releases.latest.short_version > releases.lts.short_version %}
         <p>
-          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.latest.full_version }}
           </a>
         </p>
