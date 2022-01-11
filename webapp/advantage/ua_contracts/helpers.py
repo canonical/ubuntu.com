@@ -66,6 +66,35 @@ def get_items_aggregated_values(items: List[ContractItem], type: str) -> Dict:
     }
 
 
+def get_current_number_of_machines(
+    subscriptions: List[Subscription] = None,
+    subscription_id: str = None,
+    listing: Listing = None,
+) -> int:
+    if not subscriptions or not subscription_id or not listing:
+        return 0
+
+    subscription = [
+        subscription
+        for subscription in subscriptions
+        if subscription.id == subscription_id
+    ]
+
+    if not subscription:
+        return 0
+
+    current_item = [
+        item
+        for item in subscription[0].items
+        if item.product_listing_id == listing.id
+    ]
+
+    if not current_item:
+        return 0
+
+    return current_item[0].value
+
+
 def get_price_info(
     number_of_machines: int = None,
     items: List[ContractItem] = None,

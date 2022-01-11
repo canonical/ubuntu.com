@@ -12,6 +12,7 @@ from webapp.advantage.ua_contracts.helpers import (
     make_user_subscription_id,
     apply_entitlement_rules,
     group_shop_items,
+    get_current_number_of_machines,
 )
 from webapp.advantage.ua_contracts.primitives import (
     Contract,
@@ -197,6 +198,9 @@ def build_final_user_subscriptions(
         aggregated_values = get_items_aggregated_values(items, type)
         number_of_machines = aggregated_values.get("number_of_machines")
         end_date = aggregated_values.get("end_date")
+        current_number_of_machines = get_current_number_of_machines(
+            subscriptions, subscription_id, listing
+        )
         price_info = get_price_info(number_of_machines, items, listing)
         product_name = (
             contract.name if type != "free" else "Free Personal Token"
@@ -229,6 +233,7 @@ def build_final_user_subscriptions(
             start_date=aggregated_values.get("start_date"),
             end_date=end_date,
             number_of_machines=number_of_machines,
+            current_number_of_machines=current_number_of_machines,
             product_name=product_name,
             marketplace=marketplace,
             price=price_info.get("price"),
