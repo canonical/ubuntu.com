@@ -559,8 +559,9 @@ def certified_socs():
     view = create_category_views("Server SoC", "certified/socs.html")
     return view
 
+
 def certified_why():
-    view = create_category_views("Why Certified", "certified/why-certified.html")
+    view = create_category_views("Why", "certified/why-certified.html")
     return view
 
 
