@@ -8,13 +8,39 @@
 
 <section class="p-strip--suru-bottomed">
   <div class="row u-vertically-center">
-    <div class="col-8">
+    <div class="col-7">
       <h1>Ubuntu certified hardware</h1>
       <p class="p-heading--4">Machines you can trust with Ubuntu</p>
       <p>Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out of the box, ready for your organisation. We work closely with OEMs to jointly make Ubuntu available on a wide range of desktops, laptops, servers, IoT, and SoC hardware.</p>
       <p><a href="/certified/why-certified">Why Certified?</a></p>
     </div>
+    <div class="col-5 u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a491f87c-Ubuntu+Certified+Hardware.svg",
+        alt="",
+        width="364",
+        height="297",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      </div>
   </div>  
+</section>
+<section class="p-strip--light is-shallow">
+  <form>
+    <div class="row">
+      <div class="col-12" style="margin-top: 1rem;">
+        <div class="p-form__group">
+          <div class="p-search-box">
+            <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search" required>
+            <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+            <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </section>
 <section class="p-strip">
   <div class="row u-equal-height">
