@@ -3,6 +3,8 @@ import { useQuery } from "react-query";
 import { Module } from "../types";
 
 const useMicrocertsData = () => {
+  const [edxUser, setEdxUser] = useState("");
+  const [edxRegisterUrl, setEdxRegisterUrl] = useState("");
   const [modules, setModules] = useState<Module[]>([]);
   const [studyLabs, setStudyLabs] = useState<Record<string, unknown>>({});
   const [certifiedBadge, setCertfiedBadge] = useState<null | Record<
@@ -25,8 +27,10 @@ const useMicrocertsData = () => {
       const {
         account_id: accountId,
         stripe_publishable_key: stripePublishableKey,
+        edx_user: edxUser,
+        edx_register_url: edxRegisterUrl,
         study_labs_listing: studyLabs,
-        certified_badge: certtifiedBadge,
+        certified_badge: certifiedBadge,
         has_enrollments: hasEnrollments,
       } = data;
 
@@ -45,9 +49,11 @@ const useMicrocertsData = () => {
 
       window.accountId = accountId;
       window.stripePublishableKey = stripePublishableKey;
+      setEdxUser(edxUser);
+      setEdxRegisterUrl(edxRegisterUrl);
       setModules(modules);
       setStudyLabs(studyLabs);
-      setCertfiedBadge(certtifiedBadge);
+      setCertfiedBadge(certifiedBadge);
       setHasEnrollments(hasEnrollments);
     }
   );
@@ -56,6 +62,8 @@ const useMicrocertsData = () => {
     isLoading,
     isSuccess,
     isError,
+    edxUser,
+    edxRegisterUrl,
     modules,
     studyLabs,
     certifiedBadge,

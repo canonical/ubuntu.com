@@ -6,16 +6,16 @@ import Prepare from "./Prepare";
 
 type Props = {
   modules: Module[];
-  isLoading: boolean;
   certifiedBadge: null | Record<string, string>;
   hasEnrollments: boolean;
+  isLoading: boolean;
 };
 
 const CubeHeader = ({
   modules,
-  isLoading,
   certifiedBadge,
   hasEnrollments,
+  isLoading,
 }: Props) => {
   return (
     <>

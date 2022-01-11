@@ -1,5 +1,6 @@
 import React from "react";
 import { ContextualMenu, MainTable } from "@canonical/react-components";
+import classNames from "classnames";
 import CubePurchase from "../CubePurchase";
 import PrepareButton from "../PrepareButton";
 import { Module, Status } from "../../types";
@@ -7,8 +8,9 @@ import { Module, Status } from "../../types";
 type Props = {
   modules: Module[];
   studyLabs: Record<string, unknown>;
+  certifiedBadge: null | Record<string, string>;
   isLoading: boolean;
-  error: string;
+  isError: boolean;
 };
 
 const translateStatus = (status: Status) => {
@@ -32,8 +34,9 @@ const copyBadgeUrl = async (badgeUrl: string) => {
 const MicrocertificationsTable = ({
   modules,
   studyLabs,
+  certifiedBadge,
   isLoading,
-  error,
+  isError,
 }: Props) => {
   const renderModuleName = (name: string, topics: Array<string>) => (
     <div>
@@ -128,84 +131,128 @@ const MicrocertificationsTable = ({
     </div>
   );
 
-  return (
-    <MainTable
-      responsive
-      className="p-table--cube--grid"
-      headers={[
+  const sectionHeader = certifiedBadge
+    ? "Microcertification history"
+    : "Microcertifications";
+
+  const headers = certifiedBadge
+    ? [
+        { content: "#" },
+        { content: "" },
+        { content: "Module" },
+        {
+          content: "Status",
+          className: "p-table__cell--icon-placeholder u-align--right",
+        },
+      ]
+    : [
         { content: "#" },
         { content: "" },
         { content: "Module" },
         { content: "Topics" },
         { content: "Status", className: "p-table__cell--icon-placeholder" },
         { content: "Action", className: "u-align--right" },
-      ]}
-      rows={modules.map(
-        (
+      ];
+
+  const rows = modules.map(
+    (
+      {
+        name,
+        badgeURL,
+        topics,
+        studyLabURL,
+        takeURL,
+        status,
+        productListingId,
+      },
+      index
+    ) => {
+      return {
+        key: name,
+        columns: [
           {
-            name,
-            badgeURL,
-            topics,
-            studyLabURL,
-            takeURL,
-            status,
-            productListingId,
+            content: <span className="u-text--muted">{index + 1}</span>,
+            className: "u-no-padding--right",
+            "aria-label": "Module number",
           },
-          index
-        ) => {
-          return {
-            key: name,
-            columns: [
-              {
-                content: <span className="u-text--muted">{index + 1}</span>,
-                className: "u-no-padding--right",
-                "aria-label": "Module number",
-              },
-              {
-                content: <img src={badgeURL} alt="" />,
-                className: "p-table--cube--grid__module-logo",
-              },
-              {
-                content: renderModuleName(name, topics),
-                "aria-label": "Module",
-              },
-              {
-                content: renderTopics(topics),
-                "aria-label": "Topics",
-              },
-              {
-                content: renderStatus(status),
-                className: "p-table__cell--icon-placeholder",
-                "aria-label": "Status",
-              },
-              {
-                content: renderActions(
-                  name,
-                  badgeURL,
-                  studyLabURL,
-                  takeURL,
-                  status,
-                  productListingId
-                ),
-              },
-            ],
-          };
-        }
-      )}
-      emptyStateMsg={
-        <section aria-live="polite" aria-busy={isLoading ? "true" : "false"}>
-          <p>
-            {isLoading ? (
-              <i className="p-icon--spinner u-animation--spin"></i>
-            ) : error ? (
-              <i>{error}</i>
-            ) : (
-              <i>No microcerts were found</i>
-            )}
-          </p>
-        </section>
-      }
-    />
+          {
+            content: <img src={badgeURL} alt="" />,
+            className: "p-table--cube--grid__module-logo",
+          },
+          {
+            content: renderModuleName(name, topics),
+            "aria-label": "Module",
+          },
+          ...(certifiedBadge
+            ? [
+                {
+                  content: (
+                    <p className="u-no-padding--top u-align--right">
+                      <i className="p-icon--success" />
+                      {"Passed"}
+                    </p>
+                  ),
+                  className: "p-table__cell--icon-placeholder",
+                  "aria-label": "Status",
+                },
+              ]
+            : [
+                {
+                  content: renderTopics(topics),
+                  "aria-label": "Topics",
+                },
+                {
+                  content: renderStatus(status),
+                  className: "p-table__cell--icon-placeholder",
+                  "aria-label": "Status",
+                },
+
+                {
+                  content: renderActions(
+                    name,
+                    badgeURL,
+                    studyLabURL,
+                    takeURL,
+                    status,
+                    productListingId
+                  ),
+                },
+              ]),
+        ],
+      };
+    }
+  );
+
+  return (
+    <section className="p-strip">
+      <div className="u-fixed-width">
+        <h2>{sectionHeader}</h2>
+        <MainTable
+          responsive
+          className={classNames("p-table--cube--grid", {
+            "is-passed": certifiedBadge,
+          })}
+          headers={headers}
+          rows={rows}
+          emptyStateMsg={
+            <section
+              aria-live="polite"
+              aria-busy={isLoading ? "true" : "false"}
+            >
+              <p>
+                {isLoading ? (
+                  <i className="p-icon--spinner u-animation--spin"></i>
+                ) : isError ? (
+                  <i>{"An error occurred while loading the microcerts"}</i>
+                ) : (
+                  <i>No microcerts were found</i>
+                )}
+              </p>
+            </section>
+          }
+        />
+      </div>
+    </section>
   );
 };
 

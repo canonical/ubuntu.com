@@ -1,11 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import MicrocertsTableApp from "./microcerts-table-app";
-import HeaderApp from "./header-app";
+import App from "./microcerts-app";
 
-ReactDOM.render(<HeaderApp />, document.getElementById("cube-header-app"));
-
-ReactDOM.render(
-  <MicrocertsTableApp />,
-  document.getElementById("microcerts-table-app")
-);
+ReactDOM.render(<App />, document.getElementById("microcerts-app"));
