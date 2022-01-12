@@ -143,6 +143,7 @@ from webapp.certified.views import (
     certified_servers,
     certified_devices,
     certified_socs,
+    certified_why,
 )
 
 
@@ -946,6 +947,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/socs",
     view_func=certified_socs,
+)
+app.add_url_rule(
+    "/certified/why-certified",
+    view_func=certified_why,
 )
 
 # Override openstack/install

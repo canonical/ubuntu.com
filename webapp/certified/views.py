@@ -560,6 +560,11 @@ def certified_socs():
     return view
 
 
+def certified_why():
+    view = create_category_views("Why", "certified/why-certified.html")
+    return view
+
+
 def certified_devices():
     view = create_category_views("Ubuntu Core", "certified/devices.html")
     return view
