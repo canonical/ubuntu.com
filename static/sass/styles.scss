@@ -1030,10 +1030,10 @@ html {
 // Advantage offers
 
 .advantage-offer-row {
+  align-items: baseline;
   display: grid;
   grid-template-areas: "contract-item allowance price";
   grid-template-columns: 2fr 1fr 1fr;
-  align-items: baseline;
 
   // fix for the negative margin
   > p:not([class*="p-heading--"]):not([class*="p-muted-heading"]) + p {
