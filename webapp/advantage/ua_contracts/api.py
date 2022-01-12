@@ -402,7 +402,6 @@ class UAContractsAPI:
             return
 
         status_code = error.response.status_code
-        message = error.response.json().get("message")
 
         if "user-role" in error_rules and status_code == 403:
             raise AccessForbiddenError(error)
