@@ -47,7 +47,7 @@
   <div class="l-tutorial__content">
     {% for section in document.sections %}
     <section class="l-tutorial-section" id="{{ loop.index }}-{{ section['slug']}}">
-      <h2 class="p-heading--three">{{ loop.index }}. {{ section["title"]}}</h2>
+      <h2 class="p-heading--3">{{ loop.index }}. {{ section["title"]}}</h2>
 
       <article class="l-tutorial-section__content">
         {{ section.content | safe }}

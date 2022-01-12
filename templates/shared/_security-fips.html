@@ -2,14 +2,14 @@
 	<div class="row">
 		<div class="col-8">
 			<h1>Register your interest for the OpenJDK for FIPS beta</h1>
-			<p class="p-heading--four">In 2017, Canonical launched the Ubuntu FIPS programme to enable Linux workloads for US government regulated and high security environments, and now we are extending its coverage to Java workloads. This programme will give Ubuntu users free access to OpenJDK designed to comply with the FIPS requirements for beta testing for a 3 month period &ndash; please register your interest below to learn more.</p>
+			<p class="p-heading--4">In 2017, Canonical launched the Ubuntu FIPS programme to enable Linux workloads for US government regulated and high security environments, and now we are extending its coverage to Java workloads. This programme will give Ubuntu users free access to OpenJDK designed to comply with the FIPS requirements for beta testing for a 3 month period &ndash; please register your interest below to learn more.</p>
 		</div>
   </div>
 	<div class="row">
 		<div class="col-8">
 			<form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" >
 				<fieldset class="u-no-margin--bottom fieldset">
-					<h3 class="p-heading--five">Which Ubuntu LTS are you using?</h3>
+					<h3 class="p-heading--5">Which Ubuntu LTS are you using?</h3>
 					<div class="row u-no-padding">
 						<div class="col-4 u-sv3">
 							<input type="checkbox" id="security-fips-xenial">
@@ -26,7 +26,7 @@
 					</div>
 				</fieldset>
 				<fieldset class="u-no-margin--bottom fieldset">
-					<h3 class="p-heading--five">Do you use any of the packages below?</h3>
+					<h3 class="p-heading--5">Do you use any of the packages below?</h3>
 					<div class="row u-no-padding">
 						<div class="col-6">
 							<input type="checkbox" id="security-fips-tomcat">
@@ -40,7 +40,7 @@
 					</div>
 				</fieldset>
 				<fieldset class="u-no-margin--bottom fieldset">
-					<h3 class="p-heading--five">Which Java runtime do your applications depend on?</h3>
+					<h3 class="p-heading--5">Which Java runtime do your applications depend on?</h3>
 					<div class="row u-no-padding">
 						<div class="col-4 u-sv3">
 							<input type="checkbox" id="security-fips-openjdk-8">
@@ -57,7 +57,7 @@
 					</div>
 				</fieldset>
 				<fieldset class="u-no-margin--bottom">
-					<h3 class="p-heading--five">How should we get in touch?</h3>
+					<h3 class="p-heading--5">How should we get in touch?</h3>
 					<div class="row u-no-padding">
 						<div class="col-6">
 							<ul class="p-list">
@@ -162,7 +162,7 @@ function createMessage() {
 
   formFields.forEach(function (formField) {
     var comma = "";
-    var fieldTitle = formField.querySelector(".p-heading--five");
+    var fieldTitle = formField.querySelector(".p-heading--5");
     var inputs = formField.querySelectorAll("input, textarea");
     
     if (fieldTitle) {

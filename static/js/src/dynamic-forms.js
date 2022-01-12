@@ -314,7 +314,7 @@
         var formFields = contactModal.querySelectorAll(".js-formfield");
         formFields.forEach(function (formField) {
           var comma = "";
-          var fieldTitle = formField.querySelector(".p-heading--five");
+          var fieldTitle = formField.querySelector(".p-heading--5");
           var inputs = formField.querySelectorAll("input, textarea");
           if (fieldTitle) {
             message += fieldTitle.innerText + "\r\n";

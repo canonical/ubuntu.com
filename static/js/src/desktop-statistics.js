@@ -438,7 +438,7 @@ function createPieChart(selector, dataset, options) {
     .text(centreText ? centreText : "")
     .attr("text-anchor", "middle")
     .attr("dy", centreText ? -5 : 0)
-    .attr("class", "p-heading--two");
+    .attr("class", "p-heading--2");
   arcs
     .append("text")
     .text(labelKey ? labelKey : "")

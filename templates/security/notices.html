@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-12">
       {% if search %}
-      <h1 class="p-heading--two">Ubuntu Security Notices - Search Results</h1>
+      <h1 class="p-heading--2">Ubuntu Security Notices - Search Results</h1>
       {% else %}
       <h1>Ubuntu Security Notices</h1>
       {% endif %}
@@ -61,7 +61,7 @@
   {% if search and notices %}
     <div class="row">
       <div class="col-8">
-        <h2 class="p-heading--four">
+        <h2 class="p-heading--4">
           {{ pagination.page_first_result}} - {{ pagination.page_last_result }} of {{ pagination.total_results }} results
         </h2>
       </div>
@@ -89,7 +89,7 @@
         {% include "security/_notice-brief.html" %}
         {% endfor %}
       {% else %}
-        <h2 class="p-heading--four">No notices found</h2>
+        <h2 class="p-heading--4">No notices found</h2>
       {% endif %}
     </div>
     {% if not search %}
