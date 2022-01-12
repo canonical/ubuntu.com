@@ -12,6 +12,18 @@ describe("OffersList", () => {
     queryClient = new QueryClient();
   });
 
+  it("can display no offers", () => {
+    queryClient.setQueryData("Offers", []);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <OffersList />
+      </QueryClientProvider>
+    );
+    expect(
+      screen.getByText("You have no offers available.")
+    ).toBeInTheDocument();
+  });
+
   it("can display an offer", () => {
     queryClient.setQueryData("Offers", [OfferFactory.build({ id: "1" })]);
     render(

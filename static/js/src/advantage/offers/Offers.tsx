@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col } from "@canonical/react-components";
-import OffersList from "./components/OffersList/OffersList";
+import OffersList from "./components/OffersList";
 
 const Offers = () => {
   return (
