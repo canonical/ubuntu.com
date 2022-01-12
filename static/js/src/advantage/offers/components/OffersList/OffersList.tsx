@@ -15,10 +15,12 @@ const OffersList = () => {
   if (isLoading) {
     return (
       <div className="p-card__content">
-        <span className="p-text--default">
-          <i className="p-icon--spinner u-animation--spin"></i>
-        </span>
-        <p>Loading offers...</p>
+        <p>
+          <span className="p-text--default">
+            <i className="p-icon--spinner u-animation--spin"></i>
+          </span>
+          &nbsp;&nbsp; Loading offers...
+        </p>
       </div>
     );
   }
