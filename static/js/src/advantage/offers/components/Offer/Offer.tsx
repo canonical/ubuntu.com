@@ -1,5 +1,5 @@
 import React from "react";
-import { ActionButton, Card } from "@canonical/react-components";
+import { ActionButton, Card, Row, Col } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import { Offer as OfferType, Item } from "../../types";
 
@@ -10,47 +10,59 @@ type Props = {
 const Offer = ({ offer }: Props) => {
   return (
     <Card data-testid="offer-card">
-      <div className="advantage-offer-row">
-        <p className="p-text--x-small-capitalised contract-item">
-          Contract item
-        </p>
-        <p className="p-text--x-small-capitalised allowance">Allowance</p>
-        <p className="p-text--x-small-capitalised price">Price</p>
-      </div>
+      <Row>
+        <Col size={6}>
+          <p className="p-text--x-small-capitalised">Contract item</p>
+        </Col>
+        <Col size={3}>
+          <p className="p-text--x-small-capitalised">Allowance</p>
+        </Col>
+        <Col size={3}>
+          <p className="p-text--x-small-capitalised">Price</p>
+        </Col>
+      </Row>
       <hr />
       {offer.items.map((item: Item) => {
         return (
-          <div key={item.id} className="advantage-offer-row">
-            <p className="contract-item">
-              <strong>{item.name}</strong>
-            </p>
-            <p className="allowance">{item.allowance ?? 0}</p>
-            <p className="price">
-              {currencyFormatter.format(item.price / 100)}
-            </p>
-          </div>
+          <Row key={item.id}>
+            <Col size={6}>
+              <p>
+                <strong>{item.name}</strong>
+              </p>
+            </Col>
+            <Col size={3}>
+              <p>{item.allowance ?? 0}</p>
+            </Col>
+            <Col size={3}>
+              <p>{currencyFormatter.format(item.price / 100)}</p>
+            </Col>
+          </Row>
         );
       })}
-      <div className="advantage-offer-row">
-        <p className="p-text--x-small-capitalised allowance">
-          Total before taxes
-        </p>
-        <p className="price">{currencyFormatter.format(offer.total / 100)}</p>
-      </div>
-      <div
-        style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
-      >
-        <ActionButton
-          appearance="positive"
-          className="u-no-margin--bottom"
-          onClick={() => {
-            alert("nope.");
-          }}
-          disabled={!offer.actionable}
-        >
-          Purchase
-        </ActionButton>
-      </div>
+      <Row>
+        <Col size={3} emptyLarge={7}>
+          <p className="p-text--x-small-capitalised col-3 col-start-large-7">
+            Total before taxes
+          </p>
+        </Col>
+        <Col size={3}>
+          <p className="col-3">{currencyFormatter.format(offer.total / 100)}</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col size={12} className="u-align--right">
+          <ActionButton
+            appearance="positive"
+            className="u-no-margin--bottom"
+            onClick={() => {
+              alert("nope.");
+            }}
+            disabled={!offer.actionable}
+          >
+            Purchase
+          </ActionButton>
+        </Col>
+      </Row>
     </Card>
   );
 };

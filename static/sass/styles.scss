@@ -1026,27 +1026,3 @@ html {
     }
   }
 }
-
-// Advantage offers
-
-.advantage-offer-row {
-  align-items: baseline;
-  display: grid;
-  grid-template-areas: "contract-item allowance price";
-  grid-template-columns: 2fr 1fr 1fr;
-
-  // fix for the negative margin
-  > p:not([class*="p-heading--"]):not([class*="p-muted-heading"]) + p {
-    margin-top: 0;
-  }
-
-  > .contract-item {
-    grid-area: contract-item;
-  }
-  > .allowance {
-    grid-area: allowance;
-  }
-  > .price {
-    grid-area: price;
-  }
-}
