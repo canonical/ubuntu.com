@@ -1,8 +1,8 @@
 import React from "react";
 import * as Sentry from "@sentry/react";
-import useGetOffersList from "../hooks/useGetOffersList";
-import Offer from "./Offer";
-import { Offer as OfferType } from "../types";
+import useGetOffersList from "../../hooks/useGetOffersList";
+import Offer from "../Offer";
+import { Offer as OfferType } from "../../types";
 
 const OffersList = () => {
   const { isLoading, isError, data: offersList, error } = useGetOffersList();

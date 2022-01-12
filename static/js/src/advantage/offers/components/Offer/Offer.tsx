@@ -1,15 +1,15 @@
 import React from "react";
 import { ActionButton, Card } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
-import { Offer, Item } from "../types";
+import { Offer as OfferType, Item } from "../../types";
 
 type Props = {
-  offer: Offer;
+  offer: OfferType;
 };
 
 const Offer = ({ offer }: Props) => {
   return (
-    <Card>
+    <Card data-testid="offer-card">
       <div className="advantage-offer-row">
         <p className="p-text--x-small-capitalised contract-item">
           Contract item
