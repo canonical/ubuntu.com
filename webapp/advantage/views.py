@@ -21,7 +21,6 @@ from webapp.advantage.ua_contracts.helpers import (
     set_listings_trial_status,
 )
 from webapp.advantage.ua_contracts.api import (
-    CannotCancelLastContractError,
     UnauthorizedError,
     UAContractsUserHasNoAccount,
     UAContractsAPIError,
@@ -421,17 +420,14 @@ def post_advantage_subscriptions(preview, **kwargs):
     if metadata:
         purchase_request["metadata"] = metadata
 
-    try:
-        if not preview:
-            purchase = g.api.purchase_from_marketplace(
-                marketplace=marketplace, purchase_request=purchase_request
-            )
-        else:
-            purchase = g.api.preview_purchase_from_marketplace(
-                marketplace=marketplace, purchase_request=purchase_request
-            )
-    except CannotCancelLastContractError as error:
-        raise UAContractsAPIError(error)
+    if not preview:
+        purchase = g.api.purchase_from_marketplace(
+            marketplace=marketplace, purchase_request=purchase_request
+        )
+    else:
+        purchase = g.api.preview_purchase_from_marketplace(
+            marketplace=marketplace, purchase_request=purchase_request
+        )
 
     return flask.jsonify(purchase), 200
 
@@ -453,8 +449,6 @@ def cancel_advantage_subscriptions(**kwargs):
     if not monthly_subscriptions:
         return flask.jsonify({"errors": "no monthly subscriptions found"}), 400
 
-    monthly_subscription = monthly_subscriptions[0]
-
     purchase_request = {
         "accountID": account_id,
         "purchaseItems": [
@@ -468,19 +462,9 @@ def cancel_advantage_subscriptions(**kwargs):
         "previousPurchaseID": previous_purchase_id,
     }
 
-    try:
-        purchase = g.api.purchase_from_marketplace(
-            marketplace=marketplace, purchase_request=purchase_request
-        )
-    except CannotCancelLastContractError:
-        g.api.cancel_subscription(
-            subscription_id=monthly_subscription["subscription"]["id"]
-        )
-
-        return (
-            flask.jsonify({"message": "Subscription Cancelled"}),
-            200,
-        )
+    purchase = g.api.purchase_from_marketplace(
+        marketplace=marketplace, purchase_request=purchase_request
+    )
 
     return flask.jsonify(purchase), 200
 

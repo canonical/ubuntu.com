@@ -345,7 +345,7 @@ class UAContractsAPI:
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase",
             json=purchase_request,
-            error_rules=["default", "cancel-subscription"],
+            error_rules=["default"],
         )
 
         return response.json()
@@ -357,7 +357,7 @@ class UAContractsAPI:
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase/preview",
             json=purchase_request,
-            error_rules=["default", "cancel-subscription"],
+            error_rules=["default"],
         )
 
         return response.json()
@@ -407,10 +407,6 @@ class UAContractsAPI:
         if "user-role" in error_rules and status_code == 403:
             raise AccessForbiddenError(error)
 
-        if "cancel-subscription" in error_rules and status_code == 400:
-            if "cannot remove all subscription items" in message:
-                raise CannotCancelLastContractError(error)
-
         if "ensure-purchase-account" in error_rules and status_code == 401:
             raise UnauthorizedError(error)
 
@@ -429,11 +425,6 @@ class AccessForbiddenError(HTTPError):
 
 
 class UnauthorizedError(HTTPError):
-    def __init__(self, error: HTTPError):
-        super().__init__(request=error.request, response=error.response)
-
-
-class CannotCancelLastContractError(HTTPError):
     def __init__(self, error: HTTPError):
         super().__init__(request=error.request, response=error.response)
 
