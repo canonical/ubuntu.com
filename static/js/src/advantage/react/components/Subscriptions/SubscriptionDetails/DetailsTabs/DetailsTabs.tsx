@@ -95,7 +95,7 @@ const generateDocLinks = (
           link = {
             label: "ESM Infra",
             url:
-              "https://support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
+              "https://portal.support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
           };
           break;
         case EntitlementType.Livepatch:
@@ -106,7 +106,10 @@ const generateDocLinks = (
           };
           break;
         case EntitlementType.Support:
-          link = { label: "Support", url: "https://support.canonical.com/" };
+          link = {
+            label: "Support",
+            url: "https://portal.support.canonical.com/",
+          };
           break;
         case EntitlementType.Cis:
           link = {
