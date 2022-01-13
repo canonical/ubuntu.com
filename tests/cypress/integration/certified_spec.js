@@ -38,7 +38,7 @@ context("Certified search results", () => {
     cy.findByRole("checkbox", { name: /20.04 LTS/i }).click({ force: true });
     cy.findByRole("button", { name: /Apply/i }).click();
     cy.findByRole("button", { name: /Clear/i }).click();
-    cy.findByPlaceholderText("Search hardware")
+    cy.findByPlaceholderText("Search")
       .invoke("val")
       .should("include", "hp");
   });
@@ -46,7 +46,7 @@ context("Certified search results", () => {
   it("should take you to seach results page when search bar is used", () => {
     cy.visit("/certified");
 
-    cy.findByPlaceholderText("Search hardware").type("dell{enter}");
+    cy.findByPlaceholderText("Search").type("dell{enter}");
     cy.findByText(/results/).should("be.visible");
     cy.findAllByText(/Dell/).should("be.visible");
   });
