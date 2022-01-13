@@ -801,7 +801,11 @@ def get_account_offers():
             403,
         )
 
-    offers = g.api.get_account_offers(account.id)
+    offers = [
+        offer
+        for offer in g.api.get_account_offers(account.id)
+        if offer.actionable
+    ]
 
     return flask.jsonify(to_dict(offers))
 
