@@ -8,15 +8,6 @@
 {% block content %}
 
 <section class="p-strip--suru-topped is-bordered">
- <div class="row">
-    <div class="col-12">
-	  <div class="p-notification">
-	    <p class="p-notification__response" role="status">
-	    Are you using Ubuntu with Java in production and need to comply with FIPS?  <a href="/security/fips/beta/contact-us">Join our free beta programme for a FIPS-validated OpenJDK&nbsp;&rsaquo; </a>
-	    </p>
-	  </div>
-	</div>
- </div>
  <div class="row u-equal-height u-vertically-center">
    <div class="col-8">
      <h1>FIPS for Ubuntu</h1>
@@ -78,9 +69,29 @@
     <h2>What is FIPS?</h2>
     <p>FIPS 140 is a U.S. and Canada Government data protection standard. It defines security requirements related to the design and implementation of a cryptographic module. The reason for a data protection standard dedicated to cryptography is because cryptography today is omnipresent, and is very hard to get right in a constantly expanding threat model such as today’s Internet. The standard ensures that cryptographic algorithms known to be secure are used for data protection, and they are thoroughly tested and attested by a 3rd party. The testing and validation must be performed by a laboratory, which is accredited under the Cryptographic and Security Testing (CST) Laboratory Accreditation Program (LAP) and is part of NIST's   <a class="p-link--external" href="https://www.nist.gov/nvlap/">National Voluntary Laboratory Accreditation Program (NVLAP)</a> in the US and <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program">CCCS's Cryptographic Module Validation Program (CMVP)</a> in Canada.</p>
     <p>FIPS 140-2 is required under multiple compliance regimes, such as Federal Risk and Authorization Management Program (FedRAMP), Federal Information Security Management Act of 2002 (FISMA) and the Health Information Technology for Economic and Clinical Health Act (HITECH).</p>
+  </div>
+</section>
 
-    <hr class="p-separator">
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>How does Ubuntu enable your compliance with FIPS, and DISA-STIG?</h2>
+      <p>Learn about the US government security standards and the common challenges faced by organizations in their implementation. See how the Ubuntu Security Guide can transform systems compliance in a few minutes. Get to know how Ubuntu is a secure platform for government agencies and complying organizations to build, operate and innovate with open source applications and technologies.</p>
+      <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
+    </div>
+    <div class="col-6 u-hide--small u-align--center">
+      <div class="jsBrightTALKEmbedWrapper u-vertically-center" style="width:100%; height:100%; position:relative;background: #ffffff;">
+        <script class="jsBrightTALKEmbedConfig" type="application/json">
+          { "channelId" : 6793, "language": "en-US", "commId" : 524647, "displayMode" : "standalone", "height" : "250" }
+        </script>
+        <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="p-strip--light">
+  <div class="u-fixed-width">
     <h2 id="public-cloud">Access FIPS images on the public cloud</h2>
     <p class="u-sv3">FIPS can be enabled on Ubuntu Pro cloud images, while Ubuntu Pro FIPS cloud images simplify the experience as they come preconfigured with FIPS 140 certified packages optimized for the cloud. You can quickly navigate on the marketplace FIPS-enabled images below.</p>
   </div>
@@ -120,24 +131,6 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-6">
-      <h2>FIPS certification and CIS compliance with Ubuntu</h2>
-      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our upcoming webinar to ensure you and your team are, and remain, compliant.</p>
-      <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
-    </div>
-    <div class="col-6 u-hide--small u-align--center">
-      <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;">
-        <script class="jsBrightTALKEmbedConfig" type="application/json">
-          { "channelId" : 6793, "language": "en-US", "commId" : 432536, "displayMode" : "standalone", "height" : "250" }
-        </script>
-        <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2 id="modules">Certified packages under FIPS 140</h2>
     <p class="u-sv3">The following list contains the FIPS 140 validated components that are available with <a href="/advantage">Ubuntu Advantage</a> and <a href="/cloud/public-cloud">Ubuntu Pro</a>. The validated modules are API and ABI compatible with the default Ubuntu packages. The validation testing for Ubuntu was performed by atsec Information Security, a NIST accredited laboratory.</p>
@@ -161,7 +154,7 @@
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3647">#3647</a>, <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3664">#3664</a> (AWS),<br><a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3683">#3683</a> (Azure), <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3954">#3954</a> (GCP)
           </td>
           <td>
-            <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3928">#3928</a>
+            <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3928">#3928</a>, <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4132">#4132</a> (AWS), <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4126">#4126</a> (Azure), <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4127">#4127</a> (GCP)  
           </td>
         </tr>
         <tr>
@@ -172,7 +165,7 @@
           <td>
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3633">#3633</a>
           </td>
-          <td rowspan="3">
+          <td style="vertical-align: middle;" rowspan="3">
             <a class="p-link--external" href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3966">#3966</a>
           </td>
         </tr>
@@ -226,7 +219,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>FIPS packages and security updates</h2>
     <p>Each FIPS 140-2 certificate is valid for 5 years, however vulnerabilities happen, and it is our intention to publish fixed packages quickly, irrespective of their certification status. We therefore provide two alternative options. An option to remain with the certified cryptographic packages (called the 'fips' option), and an option to use the certified packages but include security fixes (called the 'fips-updates' option) when available. Check <a href="/security/certifications/docs/fips-enablement">our documentation pages on how to enable these options</a>.</p>
@@ -235,7 +228,7 @@
 </section>
 
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="u-fixed-width">
     <h2>Free for personal use</h2>
     <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include FIPS, free of charge for individuals on up to 3 machines. For our community of Ubuntu members we will gladly increase that to 50 machines.</p>
@@ -243,7 +236,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>FIPS 140-3 and Ubuntu</h2>
     <p class="u-sv3">In September 2021 NIST is phasing out FIPS 140-2. Certifications under FIPS 140-2 remain valid no longer than September 2026, and new products are expected to be certified <a class="p-link--external" href="https://csrc.nist.gov/Projects/cryptographic-module-validation-program/fips-140-3-standards">under FIPS 140-3</a>. FIPS 140-3 is a combined effort of NIST and ISO with the Security and Testing requirements for cryptographic modules being published as ISO/IEC 19790 and ISO/IEC 24759. Canonical is preparing Ubuntu for the new certification, and intends to provide FIPS 140-3 certified cryptographic packages on a future LTS release of Ubuntu.</p>
