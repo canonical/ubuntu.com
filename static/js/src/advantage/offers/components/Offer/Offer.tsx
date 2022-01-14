@@ -1,13 +1,48 @@
 import React from "react";
-import { ActionButton, Card, Row, Col } from "@canonical/react-components";
+import {
+  ActionButton,
+  Card,
+  Row,
+  Col,
+  Modal,
+} from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
+import PurchaseModal from "../../../../PurchaseModal";
 import { Offer as OfferType, Item } from "../../types";
 
 type Props = {
   offer: OfferType;
 };
 
+const termsLabel = (
+  <>
+    I agree to the{" "}
+    <a
+      href="/legal/ubuntu-advantage-service-terms"
+      target="_blank"
+      rel="noopener norefferer"
+    >
+      Ubuntu Advantage terms
+    </a>
+    , which apply to the <a href="/legal/solution-support">Solution Support</a>{" "}
+    service.
+  </>
+);
+
+const marketingLabel =
+  "I agree to receive information about Canonical's products and services";
+
 const Offer = ({ offer }: Props) => {
+  const { items, marketplace, total } = offer;
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <Card data-testid="offer-card">
       <Row>
@@ -22,7 +57,7 @@ const Offer = ({ offer }: Props) => {
         </Col>
       </Row>
       <hr />
-      {offer.items.map((item: Item) => {
+      {items.map((item: Item) => {
         return (
           <Row key={item.id}>
             <Col size={6}>
@@ -46,7 +81,7 @@ const Offer = ({ offer }: Props) => {
           </p>
         </Col>
         <Col size={3}>
-          <p className="col-3">{currencyFormatter.format(offer.total / 100)}</p>
+          <p className="col-3">{currencyFormatter.format(total / 100)}</p>
         </Col>
       </Row>
       <Row>
@@ -54,15 +89,24 @@ const Offer = ({ offer }: Props) => {
           <ActionButton
             appearance="positive"
             className="u-no-margin--bottom"
-            onClick={() => {
-              alert("nope.");
-            }}
-            disabled={!offer.actionable}
+            onClick={openModal}
           >
             Purchase
           </ActionButton>
         </Col>
       </Row>
+      {isModalOpen ? (
+        <Modal>
+          <PurchaseModal
+            accountId="aa"
+            termsLabel={termsLabel}
+            marketingLabel={marketingLabel}
+            closeModal={closeModal}
+            BuyButton={<> </>}
+            marketplace={marketplace}
+          />
+        </Modal>
+      ) : null}
     </Card>
   );
 };
