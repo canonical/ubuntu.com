@@ -42,25 +42,15 @@ properly deploy.
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-
 | <a id="table-calico-node-image"> </a> calico-node-image | string | [See notes](#calico-node-image-default) | The image id to use for cnx node. |
-
 | <a id="table-calicoctl-image"> </a> calicoctl-image | string | [See notes](#calicoctl-image-default) | The image id to use for calicoctl. |
-
 | <a id="table-enable-elasticsearch-operator"> </a> enable-elasticsearch-operator | boolean | True | [See notes](#enable-elasticsearch-operator-description) |
-
 | <a id="table-ignore-loose-rpf"> </a> ignore-loose-rpf | boolean | False | Enable or disable IgnoreLooseRPF for Calico Felix.  This is only used when rp_filter is set to a value of 2. |
-
 | <a id="table-ipip"> </a> ipip | string | Never | IPIP mode. Must be one of "Always", "CrossSubnet", or "Never". |
-
 | <a id="table-license-key"> </a> license-key | string |  | Tigera EE license key, base64-encoded. Example:  juju config tigera-secure-ee license-key=$(base64 -w0 license.yaml) |
-
 | <a id="table-nat-outgoing"> </a> nat-outgoing | boolean | True | NAT outgoing traffic |
-
 | <a id="table-registry"> </a> registry | string |  | Registry to use for images. If unspecified, defaults will be used: docker.io, quay.io, docker.elastic.co |
-
 | <a id="table-registry-credentials"> </a> registry-credentials | string |  | Private docker registry credentials, in the form of a base64-encoded docker config.json file. Example:  juju config tigera-secure-ee registry-credentials=$(base64 -w0 config.json) |
-
 
 ---
 
