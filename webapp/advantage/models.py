@@ -119,6 +119,7 @@ class Offer:
         items: List[OfferItem],
     ):
         self.id = id
+        self.account_id = account_id
         self.total = total
         self.items = items
         self.marketplace = marketplace
