@@ -13,7 +13,7 @@ const useGetOffersList = () => {
       const res = await response.json();
 
       if (res.error) {
-        if (res.error.message === "User has no purchase account") {
+        if (res.error === "User has no purchase account") {
           return [];
         }
         throw new Error(res.error);
