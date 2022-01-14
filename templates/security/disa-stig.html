@@ -30,7 +30,11 @@
  </div>
 </section>
 
-<section class="p-strip--light">
+<div class="u-fixed-width">
+  <hr />
+</div>
+
+<section class="p-strip">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7">
       <h2>How does Ubuntu enable your compliance with FIPS, and DISA-STIG?</h2>
@@ -38,28 +42,24 @@
       <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
     </div>
     <div class="col-5 u-hide--small u-align--center">
-      <a href="https://www.brighttalk.com/webcast/6793/524647">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/307cdf5a-preview_1639635038.png",
-          alt="preview",
-          width="640",
-          height="360",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </a>  
-     </div>
+      <div class="jsBrightTALKEmbedWrapper u-vertically-center" style="width:100%; height:100%; position:relative;background: #ffffff;">
+        <script class="jsBrightTALKEmbedConfig" type="application/json">
+          { "channelId" : 6793, "language": "en-US", "commId" : 524647, "displayMode" : "standalone", "height" : "280" }
+        </script>
+        <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>What is DISA-STIG?</h2>
     <p>The Defense Information System Agency (DISA) is a US Department of Defense combat support agency. It provides and operates information infrastructure to support military operations and national-level leadership. The Security Technical Implementation Guide (STIG) is a configuration standard consisting of guidelines for hardening systems to improve a system’s security posture. It can be seen as a checklist for securing protocols, services, or servers to improve the overall security by reducing the attack surface.</p>
   </div>
 </section>
-<section class="p-strip--light">
+
+<section class="p-strip">
   <div class="u-fixed-width">
     <h2>DISA-STIG for Ubuntu</h2>
     <p class="u-sv3">Together with Canonical, DISA has developed STIGs for Ubuntu. The U.S. DoD provides the <a class="p-link--external" href="https://public.cyber.mil/stigs/downloads/?_dl_facet_stigs=operating-systems%2Cunix-linux">STIG checklist</a>, which can be viewed using <a class="p-link--external" href="https://public.cyber.mil/stigs/stig-viewing-tools/">STIG viewer</a>, and <a class="p-link--external" href="https://public.cyber.mil/stigs/scap/">SCAP content for auditing</a>. The versions of Ubuntu that have STIGs available by DISA are marked on the table below.</p>
@@ -107,7 +107,8 @@
   <a class="p-button--positive" href="/security/certifications/docs/disa-stig">Read more about Ubuntu tooling and automation</a>
   </div>
 </section>
-<section class="p-strip">
+
+<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <h2 class="u-sv3">How to audit and comply with DISA-STIG?</h2>
