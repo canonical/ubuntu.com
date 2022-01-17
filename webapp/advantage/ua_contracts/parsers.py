@@ -248,12 +248,15 @@ def parse_offer_items(
             if product_listing.get("id") == item_listing
         ]
 
+        allowance = raw_offer_item.get("value")
+        price = product_listing[0].get("price").get("value") * allowance
+
         offer_items.append(
             OfferItem(
                 id=product_listing[0].get("id"),
                 name=product_listing[0].get("name"),
-                price=product_listing[0].get("price").get("value"),
-                allowance=raw_offer_item.get("value"),
+                price=price,
+                allowance=allowance,
             )
         )
 
