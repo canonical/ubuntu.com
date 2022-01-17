@@ -177,25 +177,15 @@ relations:
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-
 | <a id="table-credentials"> </a> credentials | string |  | [See notes](#credentials-description) |
-
 | <a id="table-extra_packages"> </a> extra_packages | string |  | Space separated list of extra deb packages to install. |
-
 | <a id="table-install_keys"> </a> install_keys | string | [See notes](#install_keys-default) | [See notes](#install_keys-description) |
-
 | <a id="table-install_sources"> </a> install_sources | string | [See notes](#install_sources-default) | [See notes](#install_sources-description) |
-
 | <a id="table-package_status"> </a> package_status | string | install | The status of service-affecting packages will be set to this value in the dpkg database. Valid values are "install" and "hold". |
-
 | <a id="table-subnetName"> </a> subnetName | string | juju-internal-subnet | Vnet's subnet to be used by azure cloud-integration. This config must be set at deployment and cannot be changed later. |
-
 | <a id="table-vnetName"> </a> vnetName | string | [See notes](#vnetName-default) | VnetName to be passed via cloud-integration. This config must be set at deployment and cannot be changed later. |
-
 | <a id="table-vnetResourceGroup"> </a> vnetResourceGroup | string |  | Vnet's resource group to be passed via cloud-integration. This config must be set at deployment and cannot be changed later. |
-
 | <a id="table-vnetSecurityGroup"> </a> vnetSecurityGroup | string | juju-internal-nsg | Default network sec group (NSG) to be used by azure cloud integration. This config must be set at deployment and cannot be changed later. |
-
 | <a id="table-vnetSecurityGroupResourceGroup"> </a> vnetSecurityGroupResourceGroup | string |  | Default network sec group (NSG) to be used by azure cloud integration. This config must be set at deployment and cannot be changed later. |
 
 

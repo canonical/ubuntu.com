@@ -52,45 +52,25 @@ juju add-relation calico kubernetes-worker
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-
 | <a id="table-bgp-service-cluster-ips"> </a> bgp-service-cluster-ips | string |  | [See notes](#bgp-service-cluster-ips-description) |
-
 | <a id="table-bgp-service-external-ips"> </a> bgp-service-external-ips | string |  | [See notes](#bgp-service-external-ips-description) |
-
 | <a id="table-calico-node-image"> </a> calico-node-image | string | [See notes](#calico-node-image-default) | The image id to use for calico/node. |
-
 | <a id="table-calico-policy-image"> </a> calico-policy-image | string | [See notes](#calico-policy-image-default) | The image id to use for calico/kube-controllers. |
-
 | <a id="table-cidr"> </a> cidr | string | 192.168.0.0/16 | Network CIDR assigned to Calico. This is applied to the default Calico pool, and is also communicated to the Kubernetes charms for use in kube-proxy configuration. |
-
 | <a id="table-disable-vxlan-tx-checksumming"> </a> disable-vxlan-tx-checksumming | boolean | True | [See notes](#disable-vxlan-tx-checksumming-description) |
-
 | <a id="table-global-as-number"> </a> global-as-number | int | 64512 | Global AS number. |
-
 | <a id="table-global-bgp-peers"> </a> global-bgp-peers | string | [] | List of global BGP peers. Each BGP peer is specified with an address and an as-number.  Example value: "[{address: 10.0.0.1, as-number: 65000}, {address: 10.0.0.2, as-number: 65001}]" |
-
 | <a id="table-ignore-loose-rpf"> </a> ignore-loose-rpf | boolean | False | Enable or disable IgnoreLooseRPF for Calico Felix.  This is only used when rp_filter is set to a value of 2. |
-
 | <a id="table-ipip"> </a> ipip | string | Never | IPIP encapsulation mode. Must be one of "Always", "CrossSubnet", or "Never". This is incompatible with VXLAN encapsulation. If VXLAN encapsulation is enabled, then this must be set to "Never". |
-
 | <a id="table-manage-pools"> </a> manage-pools | boolean | True | If true, a default pool is created using the cidr and ipip charm configuration values.  Warning: When manage-pools is enabled, the charm will delete any pools that are unrecognized. |
-
 | <a id="table-nat-outgoing"> </a> nat-outgoing | boolean | True | NAT outgoing traffic |
-
 | <a id="table-node-to-node-mesh"> </a> node-to-node-mesh | boolean | True | When enabled, each Calico node will peer with every other Calico node in the cluster. |
-
 | <a id="table-route-reflector-cluster-ids"> </a> route-reflector-cluster-ids | string | {} | Mapping of unit IDs to route reflector cluster IDs. Assigning a route reflector cluster ID allows the node to function as a route reflector.  Example value: "{0: 224.0.0.1, 2: 224.0.0.1}" |
-
 | <a id="table-subnet-as-numbers"> </a> subnet-as-numbers | string | {} | [See notes](#subnet-as-numbers-description) |
-
 | <a id="table-subnet-bgp-peers"> </a> subnet-bgp-peers | string | {} | [See notes](#subnet-bgp-peers-description) |
-
 | <a id="table-unit-as-numbers"> </a> unit-as-numbers | string | {} | [See notes](#unit-as-numbers-description) |
-
 | <a id="table-unit-bgp-peers"> </a> unit-bgp-peers | string | {} | [See notes](#unit-bgp-peers-description) |
-
 | <a id="table-veth-mtu"> </a> veth-mtu | int | None | [See notes](#veth-mtu-description) |
-
 | <a id="table-vxlan"> </a> vxlan | string | Never | VXLAN encapsulation mode. Must be one of "Always", "CrossSubnet", or "Never". This is incompatible with IPIP encapsulation. If IPIP encapsulation is enabled, then this must be set to "Never". |
 
 

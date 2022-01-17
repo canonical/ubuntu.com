@@ -93,43 +93,24 @@ for other settings relating to Kubernetes services.
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-
 | <a id="table-channel"> </a> channel | string | 1.22/stable | Snap channel to install Kubernetes worker services from |
-
 | <a id="table-default-backend-image"> </a> default-backend-image | string | auto | Docker image to use for the default backend. Auto will select an image based on architecture. |
-
 | <a id="table-ingress"> </a> ingress | boolean | True | [See notes](#ingress-description) |
-
 | <a id="table-ingress-default-ssl-certificate"> </a> ingress-default-ssl-certificate | string |  | [See notes](#ingress-default-ssl-certificate-description) |
-
 | <a id="table-ingress-default-ssl-key"> </a> ingress-default-ssl-key | string |  | [See notes](#ingress-default-ssl-key-description) |
-
 | <a id="table-ingress-ssl-chain-completion"> </a> ingress-ssl-chain-completion | boolean | False | [See notes](#ingress-ssl-chain-completion-description) |
-
 | <a id="table-ingress-ssl-passthrough"> </a> ingress-ssl-passthrough | boolean | False | Enable ssl passthrough on ingress server. This allows passing the ssl connection through to the workloads and not terminating it at the ingress controller. |
-
 | <a id="table-ingress-use-forwarded-headers"> </a> ingress-use-forwarded-headers | boolean | False | [See notes](#ingress-use-forwarded-headers-description) |
-
 | <a id="table-kubelet-extra-args"> </a> kubelet-extra-args | string |  | [See notes](#kubelet-extra-args-description) |
-
 | <a id="table-kubelet-extra-config"> </a> kubelet-extra-config | string | {} | [See notes](#kubelet-extra-config-description) |
-
 | <a id="table-labels"> </a> labels | string |  | Labels can be used to organize and to select subsets of nodes in the cluster. Declare node labels in key=value format, separated by spaces. |
-
 | <a id="table-nagios_context"> </a> nagios_context | string | juju | [See notes](#nagios_context-description) |
-
 | <a id="table-nagios_servicegroups"> </a> nagios_servicegroups | string |  | A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup |
-
 | <a id="table-nginx-image"> </a> nginx-image | string | auto | [See notes](#nginx-image-description) |
-
 | <a id="table-proxy-extra-args"> </a> proxy-extra-args | string |  | [See notes](#proxy-extra-args-description) |
-
 | <a id="table-require-manual-upgrade"> </a> require-manual-upgrade | boolean | True | When true, worker services will not be upgraded until the user triggers it manually by running the upgrade action. |
-
 | <a id="table-snapd_refresh"> </a> snapd_refresh | string | max | [See notes](#snapd_refresh-description) |
-
 | <a id="table-sysctl"> </a> sysctl | string | [See notes](#sysctl-default) | [See notes](#sysctl-description) |
-
 
 ---
 

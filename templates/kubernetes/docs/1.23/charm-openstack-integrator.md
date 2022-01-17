@@ -134,45 +134,25 @@ watch kubectl get svc hello -o wide
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-
 | <a id="table-auth-url"> </a> auth-url | string |  | The URL of the keystone API used to authenticate. On OpenStack control panels, this can be found at Access and Security > API Access > Credentials. |
-
 | <a id="table-bs-version"> </a> bs-version | string | None | [See notes](#bs-version-description) |
-
 | <a id="table-credentials"> </a> credentials | string |  | [See notes](#credentials-description) |
-
 | <a id="table-endpoint-tls-ca"> </a> endpoint-tls-ca | string |  | [See notes](#endpoint-tls-ca-description) |
-
 | <a id="table-floating-network-id"> </a> floating-network-id | string |  | [See notes](#floating-network-id-description) |
-
 | <a id="table-ignore-volume-az"> </a> ignore-volume-az | boolean | None | [See notes](#ignore-volume-az-description) |
-
 | <a id="table-lb-floating-network"> </a> lb-floating-network | string |  | If set, this charm will assign a floating IP in this network (name or ID) for load balancers created for other charms related on the loadbalancer endpoint. |
-
 | <a id="table-lb-method"> </a> lb-method | string | ROUND_ROBIN | [See notes](#lb-method-description) |
-
 | <a id="table-lb-port"> </a> lb-port | int | 443 | Port to use for load balancers created by this charm for other charms related on the loadbalancer endpoint. |
-
 | <a id="table-lb-subnet"> </a> lb-subnet | string |  | [See notes](#lb-subnet-description) |
-
 | <a id="table-manage-security-groups"> </a> manage-security-groups | boolean | False | [See notes](#manage-security-groups-description) |
-
 | <a id="table-password"> </a> password | string |  | Password of a valid user set in keystone. |
-
 | <a id="table-project-domain-name"> </a> project-domain-name | string |  | Name of the project domain where you want to create your resources. |
-
 | <a id="table-project-name"> </a> project-name | string |  | Name of project where you want to create your resources. |
-
 | <a id="table-region"> </a> region | string |  | Name of the region where you want to create your resources. |
-
 | <a id="table-snapd_refresh"> </a> snapd_refresh | string |  | [See notes](#snapd_refresh-description) |
-
 | <a id="table-subnet-id"> </a> subnet-id | string |  | [See notes](#subnet-id-description) |
-
 | <a id="table-trust-device-path"> </a> trust-device-path | boolean | None | [See notes](#trust-device-path-description) |
-
 | <a id="table-user-domain-name"> </a> user-domain-name | string |  | Name of the user domain where you want to create your resources. |
-
 | <a id="table-username"> </a> username | string |  | Username of a valid user set in keystone. |
 
 
