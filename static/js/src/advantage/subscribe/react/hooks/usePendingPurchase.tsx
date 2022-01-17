@@ -3,7 +3,11 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { getPurchase, postInvoiceID } from "../../../api/contracts";
 
-const requires3DSCheck = (pi_decline_code, pi_status, pi_secret) => {
+const requires3DSCheck = (
+  pi_decline_code: string,
+  pi_status: string,
+  pi_secret: string
+) => {
   return (
     pi_decline_code === "authentication_required" ||
     (pi_status === "requires_action" && pi_secret)
@@ -14,6 +18,8 @@ const usePendingPurchase = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState("");
 
   const stripe = useStripe();
+
+  if (!stripe) throw new Error("Stripe not initialized");
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["pendingPurchase", pendingPurchaseID],
@@ -34,7 +40,10 @@ const usePendingPurchase = () => {
       if (requires3DSCheck(pi_decline_code, pi_status, pi_secret)) {
         const threeDSResponse = await stripe.confirmCardPayment(pi_secret);
         if (threeDSResponse.error) {
-          const error = Error(threeDSResponse.error.message);
+          const error = {
+            ...Error(threeDSResponse.error.message),
+            dontRetry: false,
+          };
           error.dontRetry = true;
           throw error;
         }
@@ -48,7 +57,10 @@ const usePendingPurchase = () => {
           stripeInvoiceId
         );
 
-        const error = Error(JSON.parse(invoiceRes.errors).decline_code);
+        const error = {
+          ...Error(JSON.parse(invoiceRes.errors).decline_code),
+          dontRetry: false,
+        };
         error.dontRetry = true;
         throw error;
       }
@@ -61,7 +73,7 @@ const usePendingPurchase = () => {
     },
     {
       enabled: !!pendingPurchaseID,
-      retry: (failureCount, error) => {
+      retry: (_failureCount, error: Error & { dontRetry: boolean }) => {
         return !error.dontRetry;
       },
     }

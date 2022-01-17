@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
-import { UserSubscriptionMarketplace } from "./../../api/enum";
+import { marketplace } from "../../../PurchaseModal/utils/utils";
 
 type usePurchaseOfferProps = {
-  marketplace: UserSubscriptionMarketplace;
+  marketplace: marketplace;
   offerId: string;
   accountId: string;
 };

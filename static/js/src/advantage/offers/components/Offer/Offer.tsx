@@ -8,7 +8,10 @@ import {
 } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import PurchaseModal from "../../../../PurchaseModal";
+import { BuyButtonProps } from "../../../subscribe/react/utils/utils";
 import { Offer as OfferType, Item } from "../../types";
+import BuyButton from "../BuyButton";
+import Summary from "../Summary";
 
 type Props = {
   offer: OfferType;
@@ -33,7 +36,7 @@ const marketingLabel =
   "I agree to receive information about Canonical's products and services";
 
 const Offer = ({ offer }: Props) => {
-  const { items, marketplace, total } = offer;
+  const { items, marketplace, total, account_id } = offer;
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const openModal = () => {
@@ -41,6 +44,33 @@ const Offer = ({ offer }: Props) => {
   };
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const OfferSummary = () => {
+    return <Summary offer={offer} />;
+  };
+
+  const BuyOfferButton = ({
+    areTermsChecked,
+    isMarketingOptInChecked,
+    setTermsChecked,
+    setIsMarketingOptInChecked,
+    setError,
+    setStep,
+    isUsingFreeTrial,
+  }: BuyButtonProps) => {
+    return (
+      <BuyButton
+        offer={offer}
+        areTermsChecked={areTermsChecked}
+        isMarketingOptInChecked={isMarketingOptInChecked}
+        setTermsChecked={setTermsChecked}
+        setIsMarketingOptInChecked={setIsMarketingOptInChecked}
+        setError={setError}
+        setStep={setStep}
+        isUsingFreeTrial={isUsingFreeTrial}
+      />
+    );
   };
 
   return (
@@ -98,11 +128,12 @@ const Offer = ({ offer }: Props) => {
       {isModalOpen ? (
         <Modal>
           <PurchaseModal
-            accountId="aa"
+            accountId={account_id}
             termsLabel={termsLabel}
             marketingLabel={marketingLabel}
+            Summary={OfferSummary}
             closeModal={closeModal}
-            BuyButton={<> </>}
+            BuyButton={BuyOfferButton}
             marketplace={marketplace}
           />
         </Modal>
