@@ -602,13 +602,13 @@ class TestParsers(unittest.TestCase):
             OfferItem(
                 id="lAaBbCcDdEeFfGg",
                 name="uai-advanced-desktop-oneoff",
-                price=30000,
+                price=60000,
                 allowance=2,
             ),
             OfferItem(
                 id="lAaBbCcDdEeFfGg-2",
                 name="uai-advanced-physical-oneoff",
-                price=150000,
+                price=750000,
                 allowance=5,
             ),
         ]
@@ -624,7 +624,7 @@ class TestParsers(unittest.TestCase):
         expectation = Offer(
             id="oOaAbBcCdDeEfFgG",
             account_id="aAbBcCdDeEfFgG",
-            total=180000,
+            total=810000,
             actionable=True,
             created_at="2022-01-04T10:00:00Z",
             marketplace="canonical-ua",
@@ -632,13 +632,13 @@ class TestParsers(unittest.TestCase):
                 OfferItem(
                     id="lAaBbCcDdEeFfGg",
                     name="uai-advanced-desktop-oneoff",
-                    price=30000,
+                    price=60000,
                     allowance=2,
                 ),
                 OfferItem(
                     id="lAaBbCcDdEeFfGg-2",
                     name="uai-advanced-physical-oneoff",
-                    price=150000,
+                    price=750000,
                     allowance=5,
                 ),
             ],
@@ -656,7 +656,7 @@ class TestParsers(unittest.TestCase):
             Offer(
                 id="oOaAbBcCdDeEfFgG",
                 account_id="aAbBcCdDeEfFgG",
-                total=180000,
+                total=810000,
                 actionable=True,
                 created_at="2022-01-04T10:00:00Z",
                 marketplace="canonical-ua",
@@ -664,13 +664,13 @@ class TestParsers(unittest.TestCase):
                     OfferItem(
                         id="lAaBbCcDdEeFfGg",
                         name="uai-advanced-desktop-oneoff",
-                        price=30000,
+                        price=60000,
                         allowance=2,
                     ),
                     OfferItem(
                         id="lAaBbCcDdEeFfGg-2",
                         name="uai-advanced-physical-oneoff",
-                        price=150000,
+                        price=750000,
                         allowance=5,
                     ),
                 ],
