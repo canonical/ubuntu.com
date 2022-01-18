@@ -209,3 +209,66 @@ class CertificationAPI:
         return self._get(
             "vendorsummaries/server", params={"limit": limit, "offset": offset}
         ).json()
+
+class PartnersAPI:
+    base_url = "https://partners.ubuntu.com/partners.json"
+
+    partner_page_map = {
+        "desktop": "programme__name=Desktop",
+        "iot-device": "programme__name=Internet%20of%20Things"
+    }
+
+    def __init__(self, session):
+        self.session = session
+
+    def _get(self, params=None):
+
+        # Get the JSON data
+        response = self.session.get(
+            f"{self.base_url}",
+            params=params,
+        )
+
+        # Raise any HTTP errors
+        response.raise_for_status()
+
+        return response.json()
+        
+
+    def get_partner_groups(self):
+        return {
+            "Cloud": self._get("technology__name=Cloud/server&featured=true"),
+            "Desktop": self._get("programme__name=Desktop&featured=true"),
+            "Internet of Things": self._get(
+                "programme__name=Internet%20of%20Things&featured=true"
+            ),
+            "Server": self._get("technology__name=Cloud/server&featured=true"),
+            "Serverless": self._get("programme__name=Desktop&featured=true"),
+        }
+
+    def get_partner_list(self):
+        return self._get()
+    
+    def get_partner_by_name(self, name):
+        # Inconsistent vendor names vs partner name
+        # key = vendor name on certified, value = partner name
+        map_vendors = {
+            "Ericsson, Inc.": "Ericsson",
+            "HP": "Hewlett Packard",
+            "Intel Corp": "Intel",
+            "Huawei Technologies Co., Ltd." : "Huawei",
+            "Mellanox Technologies": "Mellanox",
+            "NEC Corporation": "NEC",
+            "nVidia": "NVIDIA",
+            "Supermicro": "Super Micro Computer",
+            "ASUS Computers, Inc.": "ASUS",
+            "AAEON Technology Inc.": "AAEON"
+        }
+        if name in map_vendors:
+            name = map_vendors[name]
+
+        params = {
+            "name": name
+        }
+
+        return self._get(params)
