@@ -11,6 +11,7 @@ export const ItemFactory = Factory.define<Item>(() => ({
 
 export const OfferFactory = Factory.define<Offer>(() => ({
   actionable: true,
+  account_id: "lAOqpXALfo-fyPavKxNwlu6pAxNqcPNzxgz2Ya1p3K_4",
   created_at: "2021-12-16T14:46:49Z",
   id: "oABmA3a_j82O4u-scDMNTncKQNbYD4brCAJbNAYiY7u0",
   items: [ItemFactory.build()],

@@ -57,12 +57,16 @@ const usePendingPurchase = () => {
           stripeInvoiceId
         );
 
-        const error = {
-          ...Error(JSON.parse(invoiceRes.errors).decline_code),
-          dontRetry: false,
-        };
-        error.dontRetry = true;
-        throw error;
+        if (
+          JSON.parse(invoiceRes.errors).message !== "Invoice is already paid"
+        ) {
+          const error = {
+            ...Error(JSON.parse(invoiceRes.errors).decline_code),
+            dontRetry: false,
+          };
+          error.dontRetry = true;
+          throw error;
+        }
       }
 
       if (res.status === "done") {
