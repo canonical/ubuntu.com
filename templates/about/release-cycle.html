@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<section class="p-strip is-deep is-bordered">
+<section class="p-strip is-deep">
   <div class="row">
     <div class="col-7">
       <h1>The Ubuntu lifecycle and release cadence</h1>
@@ -27,43 +27,46 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Version numbers are YY.MM</h2>
-      <p>Releases of Ubuntu get a development codename ('{{ releases.latest.slug }}') and are versioned by the year and month of delivery - for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.</p>
-    </div>
-
-    <div class="col-4">
-      <aside class="p-table-of-contents">
-        <div class="p-table-of-contents__section">
-          <h4 class="p-table-of-contents__header">CONTENTS</h4>
-          <nav class="p-table-of-contents__nav">
-            <ul class="p-list">
-              <li><a href="#ubuntu-kernel-release-cycle">Ubuntu kernel release cycle (UA-I)</a></li>
-              <li><a href="#ubuntu-openstack-release-cycle">Ubuntu OpenStack release cycle</a></li>
-              <li><a href="#canonical-kubernetes-release-cycle">Canonical Kubernetes release cycle</a></li>
-            </ul>
-          </nav>
-        </div>
-      </aside>
+<section class="p-strip u-no-padding">
+  <div class="u-fixed-width">
+    <div class="js-tab-container">
+      <nav class="p-tabs">
+        <ul class="p-tabs__list js-tabbed-content u-no-margin--bottom" role="tablist">
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntu" class="p-tabs__link" id="ubuntu-tab" role="tab" aria-controls="ubuntu" aria-selected="true">Ubuntu</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#ubuntu-kernel-release-cycle" class="p-tabs__link" id="ubuntu-kernel-release-cycle-tab" role="tab" aria-controls="ubuntu-kernel-release-cycle">Ubuntu kernel</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#openstack-release-cycle" class="p-tabs__link" id="openstack-release-cycle-tab" role="tab" aria-controls="openstack-release-cycle">OpenStack</a>
+          </li>
+          <li class="p-tabs__item" role="presentation">
+            <a href="#kubernetes-release-cycle" class="p-tabs__link" id="kubernetes-release-cycle-tab" role="tab" aria-controls="kubernetes-release-cycle">Kubernetes</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-8">
+<section class="p-strip is-shallow">
+  <div class="u-fixed-width">
+    <div class="p-tabs__content" id="ubuntu" role="tabpanel" aria-labelledby="ubuntu-tab">
       <h2>Long term support and interim releases</h2>
-      <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
-      <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-10" style="overflow: auto;">
-      <h4 class="u-no-margin--bottom">Ubuntu Release</h4>
+      <h3>Version numbers are YY.MM</h3>
+
+      <p>Releases of Ubuntu get a development codename ('{{ releases.latest.slug }}') and are versioned by the year and month of delivery - for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.</p>
+
+      <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
+
+      <p>Every six months between LTS versions, Canonical publishes an interim release of Ubuntu, with {{ releases.latest.short_version }} being the latest example. These are production-quality releases and are supported for 9 months, with sufficient time provided for users to update, but these releases do not receive the long-term commitment of LTS releases.</p>
+
+      <h4 class="u-no-margin--bottom">Ubuntu releases</h4>
+      
       <div class="u-hide--small" id="server-desktop-eol"></div>
+      
       <table class="u-hide--medium u-hide--large">
         <thead>
           <tr>
@@ -72,136 +75,103 @@
             <th scope="col">End of Standard Support</th>
             <th scope="col">End of Life</th>
           </tr>
-          <tbody>
-            <tr>
-              <td><strong>10.04 LTS (Lucid Lynx)</strong></td>
-              <td>Apr 2010</td>
-              <td>Apr 2015</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>12.04 LTS (Precise Pangolin)</strong></td>
-              <td>Apr 2012</td>
-              <td>Apr 2017</td>
-              <td>Apr 2019</td>
-            </tr>
-            <tr>
-              <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
-              <td>Apr 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2026</td>
-            </tr>
-            <tr>
-              <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>20.04 LTS (Focal Fossa)</strong></td>
-              <td>Apr 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td>20.10 (Groovy Gorilla)</td>
-              <td>Oct 2020</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>21.10 (Hirsute Hippo)</td>
-              <td>Oct 2021</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>21.04 (Impish Indri)</td>
-              <td>Apr 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>Apr 2032</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>10.04 LTS (Lucid Lynx)</strong></td>
+            <td>Apr 2010</td>
+            <td>Apr 2015</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>12.04 LTS (Precise Pangolin)</strong></td>
+            <td>Apr 2012</td>
+            <td>Apr 2017</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
+            <td>Apr 2014</td>
+            <td>Apr 2019</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+            <td>Apr 2026</td>
+          </tr>
+          <tr>
+            <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td><strong>20.04 LTS (Focal Fossa)</strong></td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td>20.10 (Groovy Gorilla)</td>
+            <td>Oct 2020</td>
+            <td>Jul 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>21.10 (Hirsute Hippo)</td>
+            <td>Oct 2021</td>
+            <td>Jul 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>21.04 (Impish Indri)</td>
+            <td>Apr 2021</td>
+            <td>Jan 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>Apr 2032</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="u-fixed-width">
       <p>Interim releases will introduce new capabilities from Canonical and upstream open source projects, they serve as a proving ground for these new capabilities. Many developers run interim releases because they provide newer compilers or access to newer kernels and newer libraries, and they are often used inside rapid devops processes like CI/CD pipelines where the lifespan of an artefact is likely to be less than the support period of the interim release. Interim releases receive full security maintenance for 'main' during their lifespan.</p>
-    </div>
-  </section>
-
-  <section class="p-strip--light is-bordered ">
-    <div class="u-fixed-width">
-      <h2>Release components - debs, snaps, images, containers</h2>
-      <p>A release of Ubuntu is made through several different channels. What you consume will depend on where you are and what your interests happen to be.</p>
-      <p>The heart of Ubuntu is a collection of 'deb' packages which are tested and integrated so that they work well as a set. Debs are optimised for highly structured dependency management, enabling you to combine debs very richly while ensuring that the necessary software dependencies for each deb (themselves delivered as debs) are installed on your machine.</p>
-      <p>Ubuntu also supports 'snap' packages which are more suited for third-party applications and tools which evolve at their own speed, independently of Ubuntu. If you want to install a high-profile app like Skype or a toolchain like the latest version of Golang, you probably want the snap because it will give you fresher versions and more control of the specific major versions you want to track.</p>
-      <p>Snaps each pick a 'base', for example, Ubuntu18 (corresponding to the set of minimal debs in Ubuntu 18.04 LTS). Nevertheless, the choice of base does not impact on your ability to use a snap on any of the supported Linux distributions or versions &mdash; it's a choice of the publisher and should be invisible to you as a user or developer.</p>
-      <p>A snap can be strictly confined, which means that it operates in a secure box with only predefined points of access to the rest of the system. For third-party applications, this means that you will have a very high level of confidence that the app can only see appropriate data that you have provided to it. Snaps can also be 'classic' which means that they behave more like debs, and can see everything on your system. You should make sure you have a high level of confidence in the publisher of any classic snap you install since a compromise or bad faith behaviour in that code is not confined to the app itself.</p>
-      <p>It is also common to consume Ubuntu as an image on a public cloud, or as a container. Ubuntu is published by Canonical on all major public clouds, and the latest image for each LTS version will always include security updates rolled up to at most two weeks ago. You may benefit from installing newer updates than that, but the base image you boot on the cloud should always be the current one from Canonical to ensure that it is broadly up to date and the number of updates needed for full security is minimal.</p>
-      <p>Canonical also publishes a set of images and containers that you can download for use with VMware or other local hypervisors and private cloud technologies. These include standard Ubuntu images on the Docker Hub and standard images for use with LXD and MAAS. These images are also kept up to date, with the publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.</p>
-    </div>
-  </section>
-
-  <section class="p-strip is-bordered ">
-    <div class="u-fixed-width">
-      <h2>Editions, Classic and Core</h2>
-      <p>Each release of Ubuntu is available in minimal configurations which have the fewest possible packages installed: available in the installer for Server, Desktop and as separate cloud images. There are also multiple flavours of desktop Ubuntu corresponding to a number of desktop GUI preferences. All of these images are considered 'Classic' Ubuntu because they use debs as their base and may add snaps for specific packages or applications.</p>
-      <p>The Ubuntu Core image is an all-snap edition of Ubuntu. It is unusual in that the base operating system itself is delivered as a snap; that makes it suitable for embedded appliances where all the possible apps that might need to be installed are available as strictly confined snaps. Ubuntu Core is an appliance or embedded oriented edition of Ubuntu, not particularly comfortable for humans but highly reliable and secure for large-scale appliance deployments such as IoT and CPE in the telco world.</p>
-    </div>
-  </section>
-
-  <section class="p-strip--light is-bordered ">
-    <div class="u-fixed-width">
+      
       <h2>Maintenance and security updates</h2>
+
       <p>The debs in Ubuntu are categorised by whether they are considered part of the base system ('main' and 'restricted' are in the base and 'universe' and 'multiverse' are not) and whether they are open source ('main' and 'universe' are, 'restricted' and 'multiverse' are not).</p>
-    </div>
+      
+      <table style="margin-top: 1rem;">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th scope="col">Ubuntu Base Packages</th>
+            <th scope="col">Community Packages</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Open Source</strong></td>
+            <td>main</td>
+            <td>universe</td>
+          </tr>
+          <tr>
+            <td><strong>Not Open Source</strong></td>
+            <td>restricted</td>
+            <td>multiverse</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <table style="margin-top: 1rem;">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th scope="col">Ubuntu Base Packages</th>
-              <th scope="col">Community Packages</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Open Source</strong></td>
-              <td>main</td>
-              <td>universe</td>
-            </tr>
-            <tr>
-              <td><strong>Not Open Source</strong></td>
-              <td>restricted</td>
-              <td>multiverse</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="u-fixed-width u-sv3">
       <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year maintenance period, during which maintenance updates are publicly available without an Ubuntu Advantage Subscription, and five years of <a href="/security/esm">Extended Security Maintenance (ESM)</a>. The full lifecycle is available with an <a href="/advantage">Ubuntu Advantage subscription</a> or a <a href="/advantage">free personal subscription</a>.</p>
+      
       <p>Customers of Canonical often ask for an extended security maintenance commitment beyond the Ubuntu Base Packages such as the 'universe' software packages. You can <a href="/support/contact-us">contact us for more information</a>.</p>
-    </div>
 
-    <div class="row u-sv3">
       <div class="u-fixed-width u-hide--small">
         {{ 
           image (
@@ -214,438 +184,433 @@
           ) | safe
         }}
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-8">
-        <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public maintenance window comes to a close. Canonical recommends that users and organisations upgrade to the latest LTS release or <a href="/advantage">subscribe to Ubuntu Advantage</a> for continued security coverage with <a href="/security/esm">ESM</a> and <a href="/security/livepatch">kernel livepatching</a>.</p>
-        <p>To check the subscription status of your system, use this command:</p>
-        <div class="p-code-copyable" style="margin-top: .5rem;">
-          <input class="p-code-copyable__input" value="ua status" readonly="readonly">
-          <button class="p-code-copyable__action">Copy to clipboard</button>
-        </div>
-        <p>The <a class="p-link--external" href="https://wiki.ubuntu.com/Releases">Ubuntu Releases wiki</a> has current information on previous and upcoming versions.</p>
+      <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public maintenance window comes to a close. Canonical recommends that users and organisations upgrade to the latest LTS release or <a href="/advantage">subscribe to Ubuntu Advantage</a> for continued security coverage with <a href="/security/esm">ESM</a> and <a href="/security/livepatch">kernel livepatching</a>.</p>
+      
+      <p>To check the subscription status of your system, use this command:</p>
+      
+      <div class="p-code-copyable" style="margin-top: .5rem;">
+        <input class="p-code-copyable__input" value="ua status" readonly="readonly">
+        <button class="p-code-copyable__action">Copy to clipboard</button>
       </div>
-    </div>
-  </section>
+      
+      <p>The <a class="p-link--external" href="https://wiki.ubuntu.com/Releases">Ubuntu Releases wiki</a> has current information on previous and upcoming versions.</p>
 
-  <section class="p-strip is-bordered ">
-    <div class="u-fixed-width">
-      <h2 id="ubuntu-kernel-release-cycle">Ubuntu kernel release cycle</h2>
+      <h2>Release components - debs, snaps, images, containers</h2>
+
+      <p>A release of Ubuntu is made through several different channels. What you consume will depend on where you are and what your interests happen to be.</p>
+
+      <p>The heart of Ubuntu is a collection of 'deb' packages which are tested and integrated so that they work well as a set. Debs are optimised for highly structured dependency management, enabling you to combine debs very richly while ensuring that the necessary software dependencies for each deb (themselves delivered as debs) are installed on your machine.</p>
+
+      <p>Ubuntu also supports 'snap' packages which are more suited for third-party applications and tools which evolve at their own speed, independently of Ubuntu. If you want to install a high-profile app like Skype or a toolchain like the latest version of Golang, you probably want the snap because it will give you fresher versions and more control of the specific major versions you want to track.</p>
+      
+      <p>Snaps each pick a 'base', for example, Ubuntu18 (corresponding to the set of minimal debs in Ubuntu 18.04 LTS). Nevertheless, the choice of base does not impact on your ability to use a snap on any of the supported Linux distributions or versions &mdash; it's a choice of the publisher and should be invisible to you as a user or developer.</p>
+
+      <p>A snap can be strictly confined, which means that it operates in a secure box with only predefined points of access to the rest of the system. For third-party applications, this means that you will have a very high level of confidence that the app can only see appropriate data that you have provided to it. Snaps can also be 'classic' which means that they behave more like debs, and can see everything on your system. You should make sure you have a high level of confidence in the publisher of any classic snap you install since a compromise or bad faith behaviour in that code is not confined to the app itself.</p>
+
+      <p>It is also common to consume Ubuntu as an image on a public cloud, or as a container. Ubuntu is published by Canonical on all major public clouds, and the latest image for each LTS version will always include security updates rolled up to at most two weeks ago. You may benefit from installing newer updates than that, but the base image you boot on the cloud should always be the current one from Canonical to ensure that it is broadly up to date and the number of updates needed for full security is minimal.</p>
+
+      <p>Canonical also publishes a set of images and containers that you can download for use with VMware or other local hypervisors and private cloud technologies. These include standard Ubuntu images on the Docker Hub and standard images for use with LXD and MAAS. These images are also kept up to date, with the publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.</p>
+
+      <h2>Editions, Classic and Core</h2>
+
+      <p>Each release of Ubuntu is available in minimal configurations which have the fewest possible packages installed: available in the installer for Server, Desktop and as separate cloud images. There are also multiple flavours of desktop Ubuntu corresponding to a number of desktop GUI preferences. All of these images are considered 'Classic' Ubuntu because they use debs as their base and may add snaps for specific packages or applications.</p>
+
+      <p>The Ubuntu Core image is an all-snap edition of Ubuntu. It is unusual in that the base operating system itself is delivered as a snap; that makes it suitable for embedded appliances where all the possible apps that might need to be installed are available as strictly confined snaps. Ubuntu Core is an appliance or embedded oriented edition of Ubuntu, not particularly comfortable for humans but highly reliable and secure for large-scale appliance deployments such as IoT and CPE in the telco world.</p>
+    </div>
+
+    <div class="p-tabs__content" id="ubuntu-kernel-release-cycle" role="tabpanel" aria-labelledby="ubuntu-kernel-release-cycle-tab" hidden="hidden">
+      <h2>Ubuntu kernel release cycle</h2>
+
       <p>Canonical maintains multiple kernel packages for each LTS version of Ubuntu, which serve different purposes. Several of the kernel packages address the need for kernels with specific performance priorities, for example, the low-latency kernel package. Others are focused on optimisation for a particular hypervisor, for example, the kernel packages which are named after public clouds. You are recommended to use the <a class="p-link--external" href="https://wiki.ubuntu.com/Kernel">detailed Ubuntu kernel guide</a> to select the best Ubuntu kernel for your application.</p>
+
       <p>In general, all of the LTS kernel packages will use the same base version of the Linux kernel, for example, Ubuntu 20.04 LTS kernels typically used the 5.4 upstream Linux kernel as a base. Some cloud-specific kernels may use a newer version in order to benefit from improved mechanisms in performance or security that are material to that cloud. These kernels are all supported for the full life of their underlying LTS release.</p>
+
       <p>In addition, the kernel versions from the subsequent four releases are made available on the latest LTS release of Ubuntu. So Ubuntu 18.04 LTS received the kernels from Ubuntu 18.10, 19.04, 19.10 and 20.04 LTS. These kernels use newer upstream versions and as a result, offer an easy path to newer features and newer classes of hardware for many users of Ubuntu. Note however that these kernels 'roll' which means that they jump every six months until the next LTS. Large scale deployments that adopt the 'hardware enablement' or HWE kernels should manage those transitions explicitly. These newer HWE kernels are accompanied by a collection of userspace tools closely tied to the kernel and hardware, specifically X display enablement on newer graphics cards.</p>
+
       <p>The Ubuntu kernel support lifecycle is as follows:</p>
-    </div>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <div class="u-hide--small" id="kernel-eol"></div>
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <th>Kernel version</th>
-              <th>Ubuntu version</th>
-              <th>Released</th>
-              <th>End of life</th>
-              <th>Extended security maintenance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="2"><strong>22.04 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.5 LTS</strong></td>
-              <td>Aug 2022</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 22.04.0 LTS</strong></td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>Mar 2032</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>5.13 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.4 LTS</strong></td>
-              <td>Feb 2022</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 21.10</strong></td>
-              <td>Oct 2021</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>5.11 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.3 LTS</strong></td>
-              <td>Aug 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 21.04</strong></td>
-              <td>Apr 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>5.8 kernel</strong></td>
-              <td><strong>Ubuntu 20.04.2 LTS</strong></td>
-              <td>Feb 2021</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 20.10</strong></td>
-              <td>Oct 2020</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 18.04.5 LTS</strong></td>
-              <td>Aug 2020</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 20.04.1 LTS</strong></td>
-              <td>Aug 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 20.04.0 LTS</strong></td>
-              <td>Apr 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td rowspan="3"><strong>4.15 kernel</strong></td>
-              <td><strong>Ubuntu 16.04.5 LTS</strong></td>
-              <td>Aug 2018</td>
-              <td>Apr 2021</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 18.04.1 LTS</strong></td>
-              <td>Jul 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 18.04.0 LTS</strong></td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td rowspan="3"><strong>4.4 kernel</strong></td>
-              <td><strong>Ubuntu 14.04.5 LTS</strong></td>
-              <td>Aug 2016</td>
-              <td>Apr 2019</td>
-              <td>Apr 2022</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 16.04.1 LTS</strong></td>
-              <td>Jul 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 16.04.0 LTS</strong></td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td rowspan="2"><strong>3.13 kernel</strong></td>
-              <td><strong>Ubuntu 14.04.1 LTS</strong></td>
-              <td>Jul 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2022</td>
-            </tr>
-            <tr>
-              <td><strong>Ubuntu 14.04.0 LTS</strong></td>
-              <td>Apr 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2022</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <div class="u-hide--small" id="kernel-eol"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <th>Kernel version</th>
+            <th>Ubuntu version</th>
+            <th>Released</th>
+            <th>End of life</th>
+            <th>Extended security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2"><strong>22.04 kernel</strong></td>
+            <td><strong>Ubuntu 20.04.5 LTS</strong></td>
+            <td>Aug 2022</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.0 LTS</strong></td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>Mar 2032</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>5.13 kernel</strong></td>
+            <td><strong>Ubuntu 20.04.4 LTS</strong></td>
+            <td>Feb 2022</td>
+            <td>Jul 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 21.10</strong></td>
+            <td>Oct 2021</td>
+            <td>Jul 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>5.11 kernel</strong></td>
+            <td><strong>Ubuntu 20.04.3 LTS</strong></td>
+            <td>Aug 2021</td>
+            <td>Jan 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 21.04</strong></td>
+            <td>Apr 2021</td>
+            <td>Jan 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>5.8 kernel</strong></td>
+            <td><strong>Ubuntu 20.04.2 LTS</strong></td>
+            <td>Feb 2021</td>
+            <td>Jul 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.10</strong></td>
+            <td>Oct 2020</td>
+            <td>Jul 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.5 LTS</strong></td>
+            <td>Aug 2020</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.1 LTS</strong></td>
+            <td>Aug 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.0 LTS</strong></td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>4.15 kernel</strong></td>
+            <td><strong>Ubuntu 16.04.5 LTS</strong></td>
+            <td>Aug 2018</td>
+            <td>Apr 2021</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.1 LTS</strong></td>
+            <td>Jul 2018</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.0 LTS</strong></td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td rowspan="3"><strong>4.4 kernel</strong></td>
+            <td><strong>Ubuntu 14.04.5 LTS</strong></td>
+            <td>Aug 2016</td>
+            <td>Apr 2019</td>
+            <td>Apr 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.1 LTS</strong></td>
+            <td>Jul 2016</td>
+            <td>Apr 2021</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.0 LTS</strong></td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>3.13 kernel</strong></td>
+            <td><strong>Ubuntu 14.04.1 LTS</strong></td>
+            <td>Jul 2014</td>
+            <td>Apr 2019</td>
+            <td>Apr 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.0 LTS</strong></td>
+            <td>Apr 2014</td>
+            <td>Apr 2019</td>
+            <td>Apr 2022</td>
+          </tr>
+        </tbody>
+      </table>
 
-    <div class="u-fixed-width">
       <p>For more information on previous and upcoming kernel releases please see the <a href="https://wiki.ubuntu.com/Kernel/LTSEnablementStack" class="p-link--external">Ubuntu LTS Enablement Stack wiki page</a>.</p>
     </div>
-  </section>
 
-  <section class="p-strip--light  is-bordered">
-    <div class="row">
-      <div class="col-8">
-        <h2 id="ubuntu-openstack-release-cycle">
-          OpenStack release cycle
-        </h2>
-        <p>
-          <a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.
-        </p>
-        <p>
-          However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provdide access to non-default versions of OpenStack on Ubuntu LTS.
-        </p>
-        <p>
-          As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard support and Extended Security Maintenance (ESM). In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only.
-        </p>
-        <p>
-          Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack LTS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms </a>project. 
-        </p>
-        <p>
-           The OpenStack support lifecycle on Ubuntu can be represented this way:
-        </p>
-      </div>
-    </div>
+    <div class="p-tabs__content" id="openstack-release-cycle" role="tabpanel" aria-labelledby="openstack-release-cycle-tab" hidden="hidden">
+      <h2>OpenStack release cycle</h2>
+      
+      <p><a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.</p>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <div class="u-hide--small" id="openstack-eol"></div>
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <th>Release</th>
-              <th>Tech preview</th>
-              <th>Released</th>
-              <th>End of life</th>
-              <th>Extended customer support</th>
-              <th>Extended Security Maintenance (ESM)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>OpenStack Yoga LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>&nbsp;</td>
-              <td>Apr 2032</td>
-            </tr>
-            <tr>
-              <td>Ubuntu 22.04 LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>&nbsp;</td>
-              <td>Apr 2032</td>
-            </tr>
-            <tr>
-              <td>OpenStack Yoga</td>
-              <td>&nbsp;</td>
-              <td>Apr 2022</td>
-              <td>Apr 2025</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Xena</td>
-              <td>&nbsp;</td>
-              <td>Oct 2021</td>
-              <td>Apr 2023</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack W</td>
-              <td>&nbsp;</td>
-              <td>Apr 2021</td>
-              <td>Oct 2022</td>
-              <td>Apr 2024</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Victoria</td>
-              <td>&nbsp;</td>
-              <td>Oct 2020</td>
-              <td>Apr 2022</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Ussuri LTS</td>
-              <td>Apr 2020</td>
-              <td>May 2020</td>
-              <td>Apr 2025</td>
-              <td>&nbsp;</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td>Ubuntu 20.04 LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2020</td>
-              <td>Apr 2025</td>
-              <td>&nbsp;</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td>OpenStack Ussuri</td>
-              <td>Apr 2020</td>
-              <td>May 2020</td>
-              <td>Apr 2023</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Train</td>
-              <td>&nbsp;</td>
-              <td>Aug 2019</td>
-              <td>Feb 2021</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Stein</td>
-              <td>&nbsp;</td>
-              <td>Apr 2019</td>
-              <td>Oct 2020</td>
-              <td>Apr 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Rocky</td>
-              <td>&nbsp;</td>
-              <td>Aug 2018</td>
-              <td>Feb 2020</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>OpenStack Queens LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>&nbsp;</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td>Ubuntu 18.04 LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>&nbsp;</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td>OpenStack Mitaka LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>&nbsp;</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td>Ubuntu 16.04 LTS</td>
-              <td>&nbsp;</td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>&nbsp;</td>
-              <td>Apr 2024</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <p>However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provdide access to non-default versions of OpenStack on Ubuntu LTS.</p>
 
-    <div class="u-fixed-width">
+      <p>As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard support and Extended Security Maintenance (ESM). In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only.</p>
+      
+      <p>Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack LTS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms</a> project.</p>
+      
+      <p>The OpenStack support lifecycle on Ubuntu can be represented this way:</p>
+
+      <div class="u-hide--small" id="openstack-eol"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Tech preview</th>
+            <th>Released</th>
+            <th>End of life</th>
+            <th>Extended customer support</th>
+            <th>Extended Security Maintenance (ESM)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OpenStack Yoga LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>&nbsp;</td>
+            <td>Apr 2032</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 22.04 LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>&nbsp;</td>
+            <td>Apr 2032</td>
+          </tr>
+          <tr>
+            <td>OpenStack Yoga</td>
+            <td>&nbsp;</td>
+            <td>Apr 2022</td>
+            <td>Apr 2025</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Xena</td>
+            <td>&nbsp;</td>
+            <td>Oct 2021</td>
+            <td>Apr 2023</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack W</td>
+            <td>&nbsp;</td>
+            <td>Apr 2021</td>
+            <td>Oct 2022</td>
+            <td>Apr 2024</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Victoria</td>
+            <td>&nbsp;</td>
+            <td>Oct 2020</td>
+            <td>Apr 2022</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Ussuri LTS</td>
+            <td>Apr 2020</td>
+            <td>May 2020</td>
+            <td>Apr 2025</td>
+            <td>&nbsp;</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 20.04 LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+            <td>&nbsp;</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td>OpenStack Ussuri</td>
+            <td>Apr 2020</td>
+            <td>May 2020</td>
+            <td>Apr 2023</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Train</td>
+            <td>&nbsp;</td>
+            <td>Aug 2019</td>
+            <td>Feb 2021</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Stein</td>
+            <td>&nbsp;</td>
+            <td>Apr 2019</td>
+            <td>Oct 2020</td>
+            <td>Apr 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Rocky</td>
+            <td>&nbsp;</td>
+            <td>Aug 2018</td>
+            <td>Feb 2020</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>OpenStack Queens LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+            <td>&nbsp;</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 18.04 LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+            <td>&nbsp;</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td>OpenStack Mitaka LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+            <td>&nbsp;</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 16.04 LTS</td>
+            <td>&nbsp;</td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+            <td>&nbsp;</td>
+            <td>Apr 2024</td>
+          </tr>
+        </tbody>
+      </table>
+
       <p>For more information on supported versions, see <a href="/openstack/docs/supported-versions">Charmed OpenStack documentation</a>.</p>
     </div>
-  </section>
 
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
-        <h2 id="canonical-kubernetes-release-cycle">Canonical Kubernetes release cycle</h2>
-        <p>The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported, giving an effective support period of twelve months, subject to changes in the upstream release cycle. Canonical also provides security maintenance for N-4 Kubernetes releases in the stable release channel.</p>
-        <p>The Charmed Kubernetes support lifecycle can be represented this way:</p>
-      </div>
-    </div>
+    <div class="p-tabs__content" id="kubernetes-release-cycle" role="tabpanel" aria-labelledby="kubernetes-release-cycle-tab" hidden="hidden">
+      <h2>Canonical Kubernetes release cycle</h2>
 
-    <div class="row">
-      <div class="col-10" style="overflow: auto;">
-        <div class="u-hide--small" id="kubernetes-eol"></div>
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <th>Release</th>
-              <th>Released</th>
-              <th>End of life</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1.23.x</strong></td>
-              <td align='right'>Dec 2021</td>
-              <td align='right'>Dec 2022</td>
-            </tr>
-            <tr>
-              <td><strong>1.22.x</strong></td>
-              <td align='right'>Aug 2021</td>
-              <td align='right'>Aug 2022</td>
-            </tr>
-            <tr>
-              <td><strong>1.21.x</strong></td>
-              <td align='right'>Apr 2021</td>
-              <td align='right'>Apr 2022</td>
-            </tr>
-            <tr>
-              <td><strong>1.20.x</strong></td>
-              <td align='right'>Dec 2020</td>
-              <td align='right'>Dec 2021</td>
-            </tr>
-            <tr>
-              <td><strong>1.19.x</strong></td>
-              <td align='right'>Aug 2020</td>
-              <td align='right'>Aug 2021</td>
-            </tr>
-            <tr>
-              <td><strong>1.18.x</strong></td>
-              <td align='right'>Mar 2020</td>
-              <td align='right'>Apr 2021</td>
-            </tr>
-            <tr>
-              <td><strong>1.17.x</strong></td>
-              <td align='right'>Jan 2020</td>
-              <td align='right'>Dec 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.16.x</strong></td>
-              <td align='right'>Oct 2019</td>
-              <td align='right'>Jul 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.15.x</strong></td>
-              <td>Sep 2019</td>
-              <td>Jun 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.14.x</strong></td>
-              <td>Jun 2019</td>
-              <td>Mar 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.13.x</strong></td>
-              <td>Mar 2019</td>
-              <td>Dec 2019</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row">
+      <p>The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported, giving an effective support period of twelve months, subject to changes in the upstream release cycle. Canonical also provides security maintenance for N-4 Kubernetes releases in the stable release channel.</p>
+      
+      <p>The Charmed Kubernetes support lifecycle can be represented this way:</p>
+
+      <div class="u-hide--small" id="kubernetes-eol"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Released</th>
+            <th>End of life</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1.23.x</strong></td>
+            <td align='right'>Dec 2021</td>
+            <td align='right'>Dec 2022</td>
+          </tr>
+          <tr>
+            <td><strong>1.22.x</strong></td>
+            <td align='right'>Aug 2021</td>
+            <td align='right'>Aug 2022</td>
+          </tr>
+          <tr>
+            <td><strong>1.21.x</strong></td>
+            <td align='right'>Apr 2021</td>
+            <td align='right'>Apr 2022</td>
+          </tr>
+          <tr>
+            <td><strong>1.20.x</strong></td>
+            <td align='right'>Dec 2020</td>
+            <td align='right'>Dec 2021</td>
+          </tr>
+          <tr>
+            <td><strong>1.19.x</strong></td>
+            <td align='right'>Aug 2020</td>
+            <td align='right'>Aug 2021</td>
+          </tr>
+          <tr>
+            <td><strong>1.18.x</strong></td>
+            <td align='right'>Mar 2020</td>
+            <td align='right'>Apr 2021</td>
+          </tr>
+          <tr>
+            <td><strong>1.17.x</strong></td>
+            <td align='right'>Jan 2020</td>
+            <td align='right'>Dec 2020</td>
+          </tr>
+          <tr>
+            <td><strong>1.16.x</strong></td>
+            <td align='right'>Oct 2019</td>
+            <td align='right'>Jul 2020</td>
+          </tr>
+          <tr>
+            <td><strong>1.15.x</strong></td>
+            <td>Sep 2019</td>
+            <td>Jun 2020</td>
+          </tr>
+          <tr>
+            <td><strong>1.14.x</strong></td>
+            <td>Jun 2019</td>
+            <td>Mar 2020</td>
+          </tr>
+          <tr>
+            <td><strong>1.13.x</strong></td>
+            <td>Mar 2019</td>
+            <td>Dec 2019</td>
+          </tr>
+        </tbody>
+      </table>
+
       <p>For more information on previous and current releases, please see the <a href="/kubernetes/docs/release-notes">Charmed Kubernetes</a> release notes or the <a href="https://microk8s.io/docs/release-notes" class="p-link--external">MicroK8s release notes.</a></p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
-  <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
-  {% endblock content %}
+{% endblock content %}
