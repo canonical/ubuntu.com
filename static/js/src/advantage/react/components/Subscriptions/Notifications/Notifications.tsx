@@ -31,9 +31,19 @@ const Notifications = () => {
         </Notification>
       ) : null}
       {offers?.length > 0 ? (
-        <Notification data-test="offers" inline severity="information">
-          You have one or more Ubuntu Advantage offers to view.{" "}
-          <a href={urls.advantage.offers}>View your offers.</a>
+        <Notification
+          data-test="offers"
+          severity="information"
+          actions={[
+            {
+              label: "View your offers.",
+              onClick: () => {
+                location.href = urls.advantage.offers;
+              },
+            },
+          ]}
+        >
+          You have one or more Ubuntu Advantage offers to view.
         </Notification>
       ) : null}
       {statusesSummary ? (
