@@ -274,9 +274,15 @@ export function createChart(
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
   if (containerWidth <= 0) {
-    containerWidth =
-      document.querySelector(chartSelector).closest('[class*="col-"]')
-        .clientWidth - margin.left;
+    var closestCol = document
+      .querySelector(chartSelector)
+      .closest('[class*="col-"]');
+
+    if (closestCol.clientWidth <= 0) {
+      return;
+    }
+
+    containerWidth = closestCol.clientWidth - margin.left;
   }
   var width = containerWidth - margin.right - margin.left;
 
