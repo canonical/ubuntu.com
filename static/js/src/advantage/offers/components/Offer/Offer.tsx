@@ -76,13 +76,13 @@ const Offer = ({ offer }: Props) => {
   return (
     <Card data-testid="offer-card">
       <Row>
-        <Col size={6}>
+        <Col size={6} small={2} medium={2}>
           <p className="p-text--x-small-capitalised">Contract item</p>
         </Col>
-        <Col size={3}>
+        <Col size={3} small={1} medium={2}>
           <p className="p-text--x-small-capitalised">Allowance</p>
         </Col>
-        <Col size={3}>
+        <Col size={3} small={1} medium={2}>
           <p className="p-text--x-small-capitalised">Price</p>
         </Col>
       </Row>
@@ -90,27 +90,34 @@ const Offer = ({ offer }: Props) => {
       {items.map((item: Item) => {
         return (
           <Row key={item.id}>
-            <Col size={6}>
+            <Col size={6} small={2} medium={2}>
               <p>
                 <strong>{item.name}</strong>
               </p>
             </Col>
-            <Col size={3}>
+            <Col size={3} small={1} medium={2}>
               <p>{item.allowance ?? 0}</p>
             </Col>
-            <Col size={3}>
+            <Col size={3} small={1} medium={2}>
               <p>{currencyFormatter.format(item.price / 100)}</p>
             </Col>
           </Row>
         );
       })}
       <Row>
-        <Col size={3} emptyLarge={7}>
+        <Col
+          size={3}
+          emptyLarge={7}
+          small={2}
+          emptySmall={2}
+          medium={2}
+          emptyMedium={3}
+        >
           <p className="p-text--x-small-capitalised col-3 col-start-large-7">
             Total before taxes
           </p>
         </Col>
-        <Col size={3}>
+        <Col size={3} small={1} medium={2}>
           <p className="col-3">{currencyFormatter.format(total / 100)}</p>
         </Col>
       </Row>
