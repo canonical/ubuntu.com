@@ -47,8 +47,16 @@ describe("Notifications", () => {
     );
     expect(wrapper.find("[data-test='pendingPurchase']").exists()).toBe(false);
   });
+});
 
-  it("displays an offer notification", () => {
+describe("Offers Notifications", () => {
+  let queryClient: QueryClient;
+
+  beforeEach(() => {
+    queryClient = new QueryClient();
+  });
+
+  it("displays an offer notification if there are offers available", () => {
     queryClient.setQueryData("Offers", [OfferFactory.build()]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
@@ -56,5 +64,15 @@ describe("Notifications", () => {
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='offers']").exists()).toBe(true);
+  });
+
+  it("does not display an offer notification if there are no offers available", () => {
+    queryClient.setQueryData("Offers", []);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='offers']").exists()).toBe(false);
   });
 });
