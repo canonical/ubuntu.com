@@ -36,7 +36,7 @@ const Notifications = () => {
           severity="information"
           actions={[
             {
-              label: "View your offers.",
+              label: "View your offers",
               onClick: () => {
                 location.href = urls.advantage.offers;
               },
