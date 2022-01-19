@@ -7,6 +7,7 @@ import {
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
+import { OfferFactory } from "advantage/offers/tests/factories/offers";
 
 describe("Notifications", () => {
   let queryClient: QueryClient;
@@ -45,5 +46,15 @@ describe("Notifications", () => {
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='pendingPurchase']").exists()).toBe(false);
+  });
+
+  it("displays an offer notification", () => {
+    queryClient.setQueryData("Offers", [OfferFactory.build()]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='offers']").exists()).toBe(true);
   });
 });
