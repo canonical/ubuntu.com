@@ -3,17 +3,6 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { getPurchase, postInvoiceID } from "../../../api/contracts";
 
-const requires3DSCheck = (
-  pi_decline_code: string,
-  pi_status: string,
-  pi_secret: string
-) => {
-  return (
-    pi_decline_code === "authentication_required" ||
-    (pi_status === "requires_action" && pi_secret)
-  );
-};
-
 const usePendingPurchase = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState("");
 
@@ -26,47 +15,40 @@ const usePendingPurchase = () => {
     async () => {
       const res = await getPurchase(pendingPurchaseID);
 
-      if (!res.stripeInvoices) {
+      if (!res.invoice) {
         throw new Error("Missing invoice");
       }
 
       const {
-        pi_decline_code,
-        pi_status,
-        pi_secret,
-        id: stripeInvoiceId,
-      } = res.stripeInvoices[0];
+        paymentStatus: { status, piClientSecret },
+        id: { IDs },
+      } = res.invoice;
 
-      if (requires3DSCheck(pi_decline_code, pi_status, pi_secret)) {
-        const threeDSResponse = await stripe.confirmCardPayment(pi_secret);
+      if (status === "need_3ds_authorization") {
+        const threeDSResponse = await stripe.confirmCardPayment(piClientSecret);
         if (threeDSResponse.error) {
           const error = {
-            ...Error(threeDSResponse.error.message),
-            dontRetry: false,
+            message: threeDSResponse.error.message,
+            code: threeDSResponse.error.code,
+            dontRetry: true,
           };
-          error.dontRetry = true;
           throw error;
         }
       }
 
       //Card declined
-      if (pi_status === "requires_payment_method") {
+      if (status === "need_another_payment_method") {
         const invoiceRes = await postInvoiceID(
           "purchase",
           pendingPurchaseID,
-          stripeInvoiceId
+          IDs[0]
         );
-
-        if (
-          JSON.parse(invoiceRes.errors).message !== "Invoice is already paid"
-        ) {
-          const error = {
-            ...Error(JSON.parse(invoiceRes.errors).decline_code),
-            dontRetry: false,
-          };
-          error.dontRetry = true;
-          throw error;
-        }
+        const error = {
+          message: JSON.parse(invoiceRes.errors).decline_code,
+          code: JSON.parse(invoiceRes.errors).decline_code,
+          dontRetry: true,
+        };
+        throw error;
       }
 
       if (res.status === "done") {
@@ -77,7 +59,10 @@ const usePendingPurchase = () => {
     },
     {
       enabled: !!pendingPurchaseID,
-      retry: (_failureCount, error: Error & { dontRetry: boolean }) => {
+      retry: (
+        _failureCount,
+        error: { message: string; code: string; dontRetry: boolean }
+      ) => {
         return !error.dontRetry;
       },
     }
