@@ -795,6 +795,11 @@ def get_account_offers():
 
 
 @advantage_decorator(permission="user", response="html")
+def get_advantage_offers():
+    return flask.render_template("advantage/offers/index.html")
+
+
+@advantage_decorator(permission="user", response="html")
 def account_view():
     email = flask.session["openid"]["email"]
 

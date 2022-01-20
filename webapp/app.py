@@ -107,6 +107,7 @@ from webapp.advantage.views import (
     blender_shop_view,
     support,
     post_offer,
+    get_advantage_offers,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -414,6 +415,12 @@ app.add_url_rule(
 app.add_url_rule(
     "/advantage/subscribe/blender/thank-you",
     view_func=blender_thanks_view,
+)
+
+app.add_url_rule(
+    "/advantage/offers",
+    view_func=get_advantage_offers,
+    methods=["GET"],
 )
 
 app.add_url_rule(
