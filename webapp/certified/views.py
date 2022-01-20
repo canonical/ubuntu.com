@@ -574,33 +574,11 @@ def certified_devices():
 
 def certified_vendors(vendor):
 
-    # list_all_vendors = partners_api.get_vendor_data(vendor)
-    # file = open("list-programmes.txt", "a")
-    # non_repeat_list = []
-    # for item in list_all_vendors:
-    #     if item["name"] not in non_repeat_list:
-    #         text = (
-    #             f'Program group: {item["programme"][0]["name"] if len(item["programme"]) > 0 else ""}\n'
-    #             f'{item["name"]}\n'
-    #             f'logo: {item["logo"]}\n'
-    #             f'short_description: {item["short_description"]}\n'
-    #             f'long_description: {item["long_description"]}\n'
-    #             f'partner_website: {item["partner_website"]}\n'
-    #             f'fallback_website: {item["fallback_website"]}\n\n'
-    #         )
-    #         file.write(text)
-    #         non_repeat_list.append(item["name"])
-    # file.close()
-
-    # with open("webapp/certified/vendors_data.yaml") as vendors_data:
-    #     vendors_data = yaml.load(vendors_data, Loader=yaml.FullLoader)
-    # if vendor not in vendors_data["vendors"]:
-    #     return flask.redirect("/certified?q=" + vendor)
-
     partners_data = partners_api.get_partner_by_name(vendor)
     try:
         vendor_data = partners_data[0]
     except Exception:
+        # Most likely all exceptions are related to not having data
         return flask.redirect("/certified?q=" + vendor)
 
     # Pagination
