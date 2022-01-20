@@ -4,8 +4,12 @@ import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 import Offers from "./Offers";
+
+const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -33,10 +37,12 @@ Sentry.init({
 function App() {
   return (
     <Sentry.ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <Offers />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <Elements stripe={stripePromise}>
+        <QueryClientProvider client={queryClient}>
+          <Offers />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </Elements>
     </Sentry.ErrorBoundary>
   );
 }

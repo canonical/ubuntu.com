@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react"; // (or /dom, /vue, ...)
+import { render, screen } from "@testing-library/react";
 
 import Offer from "./Offer";
 import { ItemFactory, OfferFactory } from "../../tests/factories/offers";
@@ -19,13 +19,5 @@ describe("Offer", () => {
     expect(screen.getByText("Toast")).toBeInTheDocument();
     expect(screen.getByText("$1,234.56")).toBeInTheDocument();
     expect(screen.getByRole("button")).not.toBeDisabled();
-  });
-
-  it("disables the button if the offer is not actionable", () => {
-    const offer = OfferFactory.build({
-      actionable: false,
-    });
-    render(<Offer offer={offer} />);
-    expect(screen.getByRole("button")).toBeDisabled();
   });
 });

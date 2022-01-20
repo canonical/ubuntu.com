@@ -22,7 +22,7 @@ type Props = {
   marketingLabel: React.ReactNode;
   product?: any;
   preview?: any;
-  quantity: number;
+  quantity?: number;
   closeModal: () => void;
   Summary: React.ComponentType;
   BuyButton: React.ComponentType<BuyButtonProps>;
@@ -69,7 +69,7 @@ const PurchaseModal = ({
     id: product?.id,
     name: product?.name,
     price: product?.price?.value / 100,
-    quantity: quantity,
+    quantity: quantity ?? 1,
   };
 
   const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {

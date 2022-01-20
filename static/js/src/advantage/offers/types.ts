@@ -8,6 +8,7 @@ export type Item = {
 };
 
 export type Offer = {
+  account_id: string;
   actionable: boolean;
   created_at: string;
   id: string;

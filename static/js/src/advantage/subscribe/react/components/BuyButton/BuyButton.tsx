@@ -145,7 +145,7 @@ const BuyButton = ({
 
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
-    if (purchaseError instanceof Error) {
+    if (purchaseError) {
       setIsLoading(false);
       if (
         purchaseError.message.includes(
