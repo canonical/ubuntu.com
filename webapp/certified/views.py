@@ -2,7 +2,6 @@ import talisker.requests
 import talisker.sentry
 import requests
 import math
-import yaml
 import flask
 
 from flask import request, render_template, abort, current_app, redirect

@@ -42,3 +42,7 @@ class TestCertification(VCRTestCase):
     def test_component_details(self):
         response = self.client.get("/certified/component/682")
         self.assertEqual(response.status_code, 200)
+
+    def test_vendor_pages(self):
+        response = self.client.get("/certified/vendors/Dell")
+        self.assertEqual(response.status_code, 200)

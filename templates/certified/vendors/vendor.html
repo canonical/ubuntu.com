@@ -1,19 +1,18 @@
 {% extends "templates/base.html" %}
 
-{% block title %}Certified {{ vendor }} devices{% endblock %}
-{% block meta_description %}Devices by {{ vendor }} that have been certified for use with Ubuntu.{% endblock %}
-{% block meta_copydoc %}{% endblock %}
+{% block title %}Certified {{ vendor }} hardware{% endblock %}
+{% block meta_description %}Hardware by {{ vendor }} that have been certified for use with Ubuntu.{% endblock %}
 
 {% block outer_content %}
 <section class="p-strip--suru-topped is-bordered">
-  <div class="u-fixed-width u-sv3">
+  <div class="u-fixed-width">
     <a href="/certified">&lsaquo;&nbsp;Certified hardware</a>
   </div>
   <div class="row u-vertically-center">
     <div class="col-8">
       <h1>Ubuntu certified {{ vendor }} hardware</h1>
       <p>{{ vendor_data.short_description }}</p>
-      <a href="{{ vendor_data.partner_website }}" class="p-link--external" target="blank">Visit {{ vendor }}'s website here</a>
+      <a href="{{ vendor_data.partner_website }}" target="blank">Visit {{ vendor }}'s website here</a>
     </div>
     <div class="col-3 u-hide--small u-align--center">
       <img src="{{vendor_data.logo}}"/>
