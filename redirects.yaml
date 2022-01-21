@@ -907,3 +907,8 @@ blog/topic: /blog
 
 # Marketing redirects to become pages in time
 nvidia: /engage/ubuntu-at-nvidia-gtc-2021
+
+# Move /securtiy/cve to /security/cves
+security/cve: /security/cves
+security/cve/(?P<cve_id>.*)/?: /security/cves/{cve_id}
+

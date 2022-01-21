@@ -510,11 +510,11 @@ app.add_url_rule(
 app.add_url_rule("/security/notices/sitemap.xml", view_func=notices_sitemap)
 
 app.add_url_rule(
-    "/security/cve/sitemap-<regex('[0-9]*'):offset>.xml",
+    "/security/cves/sitemap-<regex('[0-9]*'):offset>.xml",
     view_func=single_cves_sitemap,
 )
 
-app.add_url_rule("/security/cve/sitemap.xml", view_func=cves_sitemap)
+app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 
 app.add_url_rule(
     "/security/releases", view_func=create_release, methods=["POST"]
@@ -526,8 +526,8 @@ app.add_url_rule(
 )
 
 # cve section
-app.add_url_rule("/security/cve", view_func=cve_index)
-app.add_url_rule("/security/cve", view_func=bulk_upsert_cve, methods=["PUT"])
+app.add_url_rule("/security/cves", view_func=cve_index)
+app.add_url_rule("/security/cves", view_func=bulk_upsert_cve, methods=["PUT"])
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
