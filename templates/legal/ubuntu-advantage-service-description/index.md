@@ -346,7 +346,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 **Covered Hypervisor:** any of: KVM | Qemu | Bochs, VMWare ESXi, LXD | LXC, Xen, Hyper-V, VirtualBox, z/VM, Docker. All Nodes in the cluster have to be subscribed to the service in order to benefit from the unlimited VM support
 
-**CVEs (High and Critical):** High and Critical Common Vulnerabilities and Exposures as assessed by the Ubuntu Security Team. More details can be found at https://ubuntu.com/security/cve
+**CVEs (High and Critical):** High and Critical Common Vulnerabilities and Exposures as assessed by the Ubuntu Security Team. More details can be found at https://ubuntu.com/security/cves
 
 **DSE:** a Canonical dedicated support engineer assigned to work full-time for a single customer acting as an extension of the customer’s support organization with a primary focus on integrating and supporting Canonicals offerings within the customer’s environment
 

@@ -256,50 +256,6 @@ def _update_notice_object(notice, data):
     return notice
 
 
-def read_notice(notice_id):
-    """
-    GET method to get notice by id
-    """
-
-    notice = db_session.query(Notice).get(notice_id)
-
-    if not notice:
-        return (
-            flask.jsonify({"message": f"Notice {notice_id} does not exist"}),
-            404,
-        )
-
-    return flask.jsonify({"data": notice.as_dict()}), 200
-
-
-def read_notices():
-    """
-    GET method to get notices
-    """
-
-    limit = flask.request.args.get("limit", default=20, type=int)
-    offset = flask.request.args.get("offset", default=0, type=int)
-
-    notices = (
-        db_session.query(Notice)
-        .order_by(Notice.published)
-        .offset(offset)
-        .limit(limit)
-        .all()
-    )
-
-    return (
-        flask.jsonify(
-            {
-                "data": [notice.as_dict() for notice in notices],
-                "limit": limit,
-                "offset": offset,
-            }
-        ),
-        200,
-    )
-
-
 def single_notices_sitemap(offset):
     notices = (
         db_session.query(Notice)
