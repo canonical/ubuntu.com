@@ -241,7 +241,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs]
+    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -274,7 +274,7 @@ production:
     - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
       service_name: ubuntu-com-security-api
 
-    - paths: [/security]
+    - paths: [/security/notices, /security/cves]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
