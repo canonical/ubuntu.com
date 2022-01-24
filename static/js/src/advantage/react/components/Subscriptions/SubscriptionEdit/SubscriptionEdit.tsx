@@ -237,11 +237,10 @@ const SubscriptionEdit = ({
                   error={errors.size || generateError(error)}
                   help={
                     <>
-                      You can resize your subscriptions to as many {unitName}s
-                      as needed.
+                      Added {unitName}s will be available immediately.
                       <br />
-                      Your next billing period will reflect the changes
-                      accordingly.
+                      Removed {unitName}s will be removed at the next billing
+                      cycle.
                     </>
                   }
                   label={`Number of ${unitName}s`}
