@@ -6,8 +6,8 @@
 
 {% block content %}
 <section class="p-strip--suru-topped">
-  <div class="row u-equal-height">
-    <div class="col-6">
+  <div class="row">
+    <div class="col-6 ">
       <h1>OpenStack cheat sheet</h1>
       <p>The most comprehensive OpenStack cheat sheet for beginners and more advanced users.</p>
       <p>What's included:</p>
@@ -18,6 +18,8 @@
           <li class="p-list__item is-ticked"> Nova </li>
           <li class="p-list__item is-ticked"> Cinder </li>
         </ul>
+      <p>Get the following OpenStack cheat sheet for free. No registration needed!</p>
+      <p><a href="https://assets.ubuntu.com/v1/8d3130a1-OpenStack.cheat.sheet.1.pdf" class="p-button--positive">Get the OpenStack cheat sheet</a></p>
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{ image (
@@ -26,12 +28,10 @@
         width="1504",
         height="1085",
         hi_def=True,
-        loading="auto"
+        loading="auto",
         ) | safe
       }}
     </div>
-    <h2 class="p-heading--3">Get the following OpenStack cheat sheet for free. No registration needed!</h2>
-    <a href="https://assets.ubuntu.com/v1/8d3130a1-OpenStack.cheat.sheet.1.pdf" class="p-button--positive">Get the OpenStack cheat sheet</a>
   </div>    
 </section>
 
