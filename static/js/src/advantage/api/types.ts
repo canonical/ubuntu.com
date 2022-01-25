@@ -53,6 +53,7 @@ export type UserSubscription = {
   listing_id: string | null;
   machine_type: UserSubscriptionMachineType;
   marketplace: UserSubscriptionMarketplace;
+  current_number_of_machines: number;
   number_of_machines: number;
   period: UserSubscriptionPeriod | null;
   price: number | null;

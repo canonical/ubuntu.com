@@ -11,7 +11,12 @@ import DetailsContent from "./DetailsContent";
 import SubscriptionEdit from "../SubscriptionEdit";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
-import { isFreeSubscription } from "advantage/react/utils";
+import {
+  isFreeSubscription,
+  getNextCycleStart,
+  isBlenderSubscription,
+  formatDate,
+} from "advantage/react/utils";
 import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import { SelectedId } from "../Content/types";
@@ -36,6 +41,10 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
       select: selectSubscriptionById(selectedId),
     });
     const isFree = isFreeSubscription(subscription);
+    const isBlender = isBlenderSubscription(subscription);
+    const nextCycleStart = getNextCycleStart(subscription);
+    const unitName = isBlender ? "user" : "machine";
+
     const isResizable =
       subscription?.statuses.is_upsizeable ||
       subscription?.statuses.is_downsizeable;
@@ -47,6 +56,27 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         setEditing(false);
       }
     }, [modalActive]);
+
+    useEffect(() => {
+      if (!notification) {
+        if (
+          subscription?.current_number_of_machines &&
+          (subscription?.current_number_of_machines ?? 0) <
+            (subscription?.number_of_machines ?? 0)
+        ) {
+          setNotification({
+            severity: "caution",
+            children: (
+              <>
+                The {unitName} entitlement below will update to{" "}
+                <b>{subscription?.current_number_of_machines}</b> at the next
+                billing cycle on <b>{formatDate(nextCycleStart ?? "")}</b>.
+              </>
+            ),
+          });
+        }
+      }
+    }, [subscription?.current_number_of_machines]);
 
     if (isLoading || !subscription) {
       return <Spinner />;
