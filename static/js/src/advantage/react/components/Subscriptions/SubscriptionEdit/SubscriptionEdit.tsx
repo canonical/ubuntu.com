@@ -18,6 +18,8 @@ import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
   isBlenderSubscription,
   currencyFormatter,
+  formatDate,
+  getNextCycleStart,
 } from "advantage/react/utils";
 import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
@@ -85,15 +87,16 @@ type ResizeSummaryProps = {
   unitName: string;
   price: UserSubscription["price"];
   period: UserSubscription["period"];
+  nextCycle: Date | null;
 };
 
 const ResizeSummary = ({
   oldNumberOfMachines,
   newNumberOfMachines,
-  isBlender,
   unitName,
   price,
   period,
+  nextCycle,
 }: ResizeSummaryProps) => {
   const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
   if (absoluteDelta === 0) {
@@ -106,11 +109,18 @@ const ResizeSummary = ({
   return (
     <div>
       <p>
-        Your changes will {isDecreasing ? "remove" : "add"}{" "}
-        {isBlender ? "Blender" : "UA"} for {absoluteDelta} {unitName}
+        You have {isDecreasing ? "removed" : "added"} {absoluteDelta} {unitName}
         {absoluteDelta > 1 ? "s" : ""}.
       </p>
       <p>
+        {!isDecreasing ? (
+          <>
+            You will be charged{" "}
+            <b>{currencyFormatter.format(absoluteDelta * unitPrice)}</b> when
+            you click Resize.
+            <br />
+          </>
+        ) : null}
         Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
         <b>
           {isDecreasing ? "reduced" : "increased"} by{" "}
@@ -118,6 +128,13 @@ const ResizeSummary = ({
           {currencyFormatter.format(newNumberOfMachines * unitPrice)} per{" "}
           {isMonthly ? "month" : "year"}.
         </b>
+        {isDecreasing && nextCycle ? (
+          <>
+            <br />
+            This will be reflected in the next billing cycle on{" "}
+            <b>{formatDate(nextCycle)}</b>
+          </>
+        ) : null}
       </p>
     </div>
   );
@@ -154,6 +171,7 @@ const SubscriptionEdit = ({
   });
   const resizeContract = useResizeContract(subscription);
   const isBlender = isBlenderSubscription(subscription);
+  const nextCycleStart = getNextCycleStart(subscription);
 
   const unitName = isBlender ? "user" : "machine";
 
@@ -265,6 +283,7 @@ const SubscriptionEdit = ({
                   unitName={unitName}
                   price={subscription.price}
                   period={subscription.period}
+                  nextCycle={nextCycleStart}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">
