@@ -19,6 +19,7 @@ let entries = {
   cve: "./static/js/src/cve/cve.js",
   productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
+  advantageOffers: "./static/js/src/advantage/offers/app.jsx",
   cubeMicrocerts: "./static/js/src/cube/index.tsx",
   cubeStudy: "./static/js/src/cube/prepare-button-app.tsx",
   openstackChart: "./static/js/src/openstack-chart.js",
@@ -48,7 +49,7 @@ for (const [key, value] of Object.entries(entries)) {
     nodePaths: [path.resolve(__dirname, "./static/js/src")],
     sourcemap: isDev ? false : true,
     outfile: "static/js/dist/" + key + ".js",
-    target: ["chrome58", "firefox57", "safari11", "edge16"],
+    target: ["chrome90", "firefox88", "safari14", "edge90"],
     define: {
       "process.env.NODE_ENV":
         // Explicitly check for 'development' so that this defaults to

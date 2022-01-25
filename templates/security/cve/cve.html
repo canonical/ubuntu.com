@@ -22,7 +22,7 @@
           <a class="breadcrumbs__link p-link--soft" href="/security/notices">Notices</a>
         </li>
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link p-link--active" href="/security/cve">CVEs</a>
+          <a class="breadcrumbs__link p-link--active" href="/security/cves">CVEs</a>
         </li>
       </ul>
     </div>
@@ -106,7 +106,7 @@
 
         {% if cve.status == 'rejected' %}
         <div class="cve-status-box--highlight">
-          <div class="p-heading--four u-no-margin--bottom">
+          <div class="p-heading--4 u-no-margin--bottom">
             Rejected
           </div>
         </div>
@@ -114,7 +114,7 @@
 
         {% if cve.status == 'not-in-ubuntu' %}
         <div class="cve-status-box--highlight">
-          <div class="p-heading--four u-no-margin--bottom">
+          <div class="p-heading--4 u-no-margin--bottom">
             Not in Ubuntu
           </div>
         </div>
@@ -142,7 +142,7 @@
                   {% if release.codename in statuses %}
                     {% if loop.index == 1 %}
                       <td rowspan="{{ releases | length }}">
-                        <a href="/security/cve?q=&package={{ package_name }}">{{ package_name }}</a><br>
+                        <a href="/security/cves?q=&package={{ package_name }}">{{ package_name }}</a><br>
                         <small>
                         <a href="https://launchpad.net/distros/ubuntu/+source/{{ package_name }}">Launchpad</a>,
                         <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package_name }}">Ubuntu</a>,

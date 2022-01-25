@@ -259,7 +259,7 @@ const createModal = (id, VPSize) => {
   container.classList.add("p-modal");
 
   const goBackButton = document.createElement("button");
-  goBackButton.classList.add("p-button--neutral");
+  goBackButton.classList.add("p-button");
   goBackButton.textContent = "Go back";
 
   goBackButton.onclick = () => {

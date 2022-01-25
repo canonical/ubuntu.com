@@ -3,10 +3,10 @@ wrapper_template: "legal/modern-slavery-statement/_base_markdown.html"
 context:
   title: "Modern Slavery Statement"
   description: "Ubuntu and Canonical Legal - Modern Slavery Statement"
-  copydoc: https://assets.ubuntu.com/v1/3f0a32b5-Modern+Slavery+Statement+2021.pdf
+  copydoc: https://assets.ubuntu.com/v1/403799c7-Modern+Slavery+Statement+-+2022.pdf
 ---
 
-# Modern Slavery Statement - 2021
+# Modern Slavery Statement - 2022
 
 ## What is modern slavery?
 
@@ -16,11 +16,11 @@ This statement sets out the steps Canonical has taken during its financial year 
 
 ## Who we are-our structure and supply chains
 
-650+ personnel and 7 offices.
+770 personnel and 7 offices.
 
 Canonical is the company behind the Ubuntu open source operating system. Canonical’s mission is to make open source software available to people everywhere. Canonical delivers services which include, software development and support.
 
-As an organisation Canonical’s internal activities include engineering, support, project management and commercial operation services -legal, finance, HR and sales and business operations.
+As an organisation Canonical’s internal activities include engineering, support, project management and commercial operation services - legal, finance, HR and sales and business operations.
 
 Canonical procures services from a number of external third parties to support its activities and services.
 
@@ -44,7 +44,7 @@ Canonical recognises that modern slavery is a complex supply chain issue and con
 
 Canonical’s financial year end is 31st December.
 
-This statement covers the financial year ending 31st December 2020.
+This statement covers the financial year ending 31st December 2021.
 
 ## Approval
 
@@ -52,7 +52,7 @@ This statement is signed by the director of Canonical Group Limited and Canonica
 
 **Neil French**<br />
 **Canonical**<br />
-**March 2021**
+**January 2022**
 
 <div class="p-top">
   <a href="#" class="p-top__link">Back to top</a>

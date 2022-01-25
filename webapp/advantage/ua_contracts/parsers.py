@@ -10,7 +10,7 @@ from webapp.advantage.ua_contracts.primitives import (
     SubscriptionItem,
     User,
 )
-from webapp.advantage.models import Listing, Product
+from webapp.advantage.models import Listing, Product, OfferItem, Offer
 
 
 def parse_product(raw_product: Dict) -> Product:
@@ -233,3 +233,49 @@ def parse_user(raw_user: Dict) -> User:
 
 def parse_users(raw_users: List) -> List[User]:
     return [parse_user(raw_user) for raw_user in raw_users]
+
+
+def parse_offer_items(
+    raw_offer_items: List, raw_product_listings: List
+) -> List[OfferItem]:
+    offer_items = []
+
+    for raw_offer_item in raw_offer_items:
+        item_listing = raw_offer_item["productListingID"]
+        product_listing = [
+            product_listing
+            for product_listing in raw_product_listings
+            if product_listing.get("id") == item_listing
+        ]
+
+        allowance = raw_offer_item.get("value")
+        price = product_listing[0].get("price").get("value") * allowance
+
+        offer_items.append(
+            OfferItem(
+                id=product_listing[0].get("id"),
+                name=product_listing[0].get("name"),
+                price=price,
+                allowance=allowance,
+            )
+        )
+
+    return offer_items
+
+
+def parse_offer(raw_offer: Offer) -> Offer:
+    items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
+
+    return Offer(
+        id=raw_offer["id"],
+        account_id=raw_offer["accountID"],
+        marketplace=raw_offer["marketplace"],
+        created_at=raw_offer["createdAt"],
+        actionable=raw_offer["actionable"],
+        total=sum(item.price for item in items),
+        items=items,
+    )
+
+
+def parse_offers(raw_offers: List) -> List[Offer]:
+    return [parse_offer(raw_offer) for raw_offer in raw_offers]

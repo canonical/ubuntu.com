@@ -10,6 +10,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_account,
     parse_users,
     parse_contract,
+    parse_offers,
 )
 
 
@@ -116,7 +117,12 @@ class UAContractsAPI:
             error_rules=["default", "no-found", "user-role"],
         )
 
-        return response.json()
+        offers = response.json()
+
+        if self.convert_response:
+            return parse_offers(offers)
+
+        return offers
 
     def get_account_users(self, account_id: str):
         response = self._request(
@@ -339,7 +345,7 @@ class UAContractsAPI:
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase",
             json=purchase_request,
-            error_rules=["default", "cancel-subscription"],
+            error_rules=["default"],
         )
 
         return response.json()
@@ -351,7 +357,7 @@ class UAContractsAPI:
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase/preview",
             json=purchase_request,
-            error_rules=["default", "cancel-subscription"],
+            error_rules=["default"],
         )
 
         return response.json()
@@ -396,14 +402,9 @@ class UAContractsAPI:
             return
 
         status_code = error.response.status_code
-        message = error.response.json().get("message")
 
         if "user-role" in error_rules and status_code == 403:
             raise AccessForbiddenError(error)
-
-        if "cancel-subscription" in error_rules and status_code == 400:
-            if "cannot remove all subscription items" in message:
-                raise CannotCancelLastContractError(error)
 
         if "ensure-purchase-account" in error_rules and status_code == 401:
             raise UnauthorizedError(error)
@@ -423,11 +424,6 @@ class AccessForbiddenError(HTTPError):
 
 
 class UnauthorizedError(HTTPError):
-    def __init__(self, error: HTTPError):
-        super().__init__(request=error.request, response=error.response)
-
-
-class CannotCancelLastContractError(HTTPError):
     def __init__(self, error: HTTPError):
         super().__init__(request=error.request, response=error.response)
 

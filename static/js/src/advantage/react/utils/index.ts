@@ -11,3 +11,4 @@ export { makeInteractiveProps } from "./makeInteractiveProps";
 export { removeFalsy } from "./removeFalsy";
 export { sortSubscriptionsByStartDate } from "./sortSubscriptionsByStartDate";
 export { currencyFormatter } from "./currencyFormatter";
+export { getNextCycleStart } from "./getNextCycleStart";

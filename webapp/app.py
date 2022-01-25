@@ -106,6 +106,7 @@ from webapp.advantage.views import (
     blender_shop_view,
     support,
     post_offer,
+    get_advantage_offers,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -116,8 +117,6 @@ from webapp.security.views import (
     create_release,
     delete_release,
     notice,
-    read_notice,
-    read_notices,
     notices,
     notices_feed,
     update_notice,
@@ -142,6 +141,7 @@ from webapp.certified.views import (
     certified_servers,
     certified_devices,
     certified_socs,
+    certified_why,
 )
 
 
@@ -415,6 +415,12 @@ app.add_url_rule(
 )
 
 app.add_url_rule(
+    "/advantage/offers",
+    view_func=get_advantage_offers,
+    methods=["GET"],
+)
+
+app.add_url_rule(
     "/advantage/offers.json",
     view_func=get_account_offers,
     methods=["GET"],
@@ -485,14 +491,6 @@ app.add_url_rule(
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
-app.add_url_rule(
-    "/security/api/notices/<notice_id>",
-    view_func=read_notice,
-)
-app.add_url_rule(
-    "/security/api/notices",
-    view_func=read_notices,
-)
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule(
     "/security/notices", view_func=create_notice, methods=["POST"]
@@ -518,11 +516,11 @@ app.add_url_rule(
 app.add_url_rule("/security/notices/sitemap.xml", view_func=notices_sitemap)
 
 app.add_url_rule(
-    "/security/cve/sitemap-<regex('[0-9]*'):offset>.xml",
+    "/security/cves/sitemap-<regex('[0-9]*'):offset>.xml",
     view_func=single_cves_sitemap,
 )
 
-app.add_url_rule("/security/cve/sitemap.xml", view_func=cves_sitemap)
+app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 
 app.add_url_rule(
     "/security/releases", view_func=create_release, methods=["POST"]
@@ -534,8 +532,8 @@ app.add_url_rule(
 )
 
 # cve section
-app.add_url_rule("/security/cve", view_func=cve_index)
-app.add_url_rule("/security/cve", view_func=bulk_upsert_cve, methods=["PUT"])
+app.add_url_rule("/security/cves", view_func=cve_index)
+app.add_url_rule("/security/cves", view_func=bulk_upsert_cve, methods=["PUT"])
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
@@ -944,6 +942,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/certified/socs",
     view_func=certified_socs,
+)
+app.add_url_rule(
+    "/certified/why-certified",
+    view_func=certified_why,
 )
 
 # Override openstack/install

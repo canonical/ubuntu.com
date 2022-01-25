@@ -4,7 +4,7 @@ import {
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -18,6 +18,8 @@ import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
   isBlenderSubscription,
   currencyFormatter,
+  formatDate,
+  getNextCycleStart,
 } from "advantage/react/utils";
 import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
@@ -42,11 +44,11 @@ export const generateSchema = (
   let max = Infinity;
   let maxMessage = "";
   if (!subscription.statuses.is_downsizeable) {
-    min = subscription.number_of_machines;
+    min = subscription.current_number_of_machines;
     minMessage = "You can not downsize this subscription";
   }
   if (!subscription.statuses.is_upsizeable) {
-    max = subscription.number_of_machines;
+    max = subscription.current_number_of_machines;
     maxMessage = "You can not upsize this subscription";
   }
   return Yup.object().shape({
@@ -85,15 +87,16 @@ type ResizeSummaryProps = {
   unitName: string;
   price: UserSubscription["price"];
   period: UserSubscription["period"];
+  nextCycle: Date | null;
 };
 
 const ResizeSummary = ({
   oldNumberOfMachines,
   newNumberOfMachines,
-  isBlender,
   unitName,
   price,
   period,
+  nextCycle,
 }: ResizeSummaryProps) => {
   const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
   if (absoluteDelta === 0) {
@@ -106,11 +109,18 @@ const ResizeSummary = ({
   return (
     <div>
       <p>
-        Your changes will {isDecreasing ? "remove" : "add"}{" "}
-        {isBlender ? "Blender" : "UA"} for {absoluteDelta} {unitName}
+        You have {isDecreasing ? "removed" : "added"} {absoluteDelta} {unitName}
         {absoluteDelta > 1 ? "s" : ""}.
       </p>
       <p>
+        {!isDecreasing ? (
+          <>
+            You will be charged{" "}
+            <b>{currencyFormatter.format(absoluteDelta * unitPrice)}</b> when
+            you click Resize.
+            <br />
+          </>
+        ) : null}
         Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
         <b>
           {isDecreasing ? "reduced" : "increased"} by{" "}
@@ -118,6 +128,13 @@ const ResizeSummary = ({
           {currencyFormatter.format(newNumberOfMachines * unitPrice)} per{" "}
           {isMonthly ? "month" : "year"}.
         </b>
+        {isDecreasing && nextCycle ? (
+          <>
+            <br />
+            This will be reflected in the next billing cycle on{" "}
+            <b>{formatDate(nextCycle)}</b>
+          </>
+        ) : null}
       </p>
     </div>
   );
@@ -154,6 +171,7 @@ const SubscriptionEdit = ({
   });
   const resizeContract = useResizeContract(subscription);
   const isBlender = isBlenderSubscription(subscription);
+  const nextCycleStart = getNextCycleStart(subscription);
 
   const unitName = isBlender ? "user" : "machine";
 
@@ -170,6 +188,10 @@ const SubscriptionEdit = ({
     // This type has to be case because it comes from a non-typescript file.
     (pendingPurchaseError as Error | null);
 
+  const [resizeNumber, setResizeNumber] = useState(
+    subscription?.current_number_of_machines ?? 0
+  );
+
   useEffect(() => {
     if (isResized) {
       // Invalidate the data as it all may have changed.
@@ -183,13 +205,27 @@ const SubscriptionEdit = ({
         subscription?.account_id,
       ]);
       onClose();
-      setNotification({
-        severity: "positive",
-        children: "This subscription was resized.",
-        onDismiss: () => setNotification(null),
-      });
+      const newNumberOfMachines =
+        resizeNumber + (subscription?.current_number_of_machines ?? 0);
+      if (newNumberOfMachines > (subscription?.number_of_machines ?? 0)) {
+        setNotification({
+          severity: "positive",
+          children: (
+            <>
+              This subscription was increased by{" "}
+              <b>
+                {newNumberOfMachines - (subscription?.number_of_machines ?? 0)}
+              </b>{" "}
+              to <b>{newNumberOfMachines}</b> {unitName}s
+            </>
+          ),
+          onDismiss: () => setNotification(null),
+        });
+      } else {
+        setNotification(null);
+      }
     }
-  }, [isResized]);
+  }, [isResized, resizeNumber, subscription?.current_number_of_machines]);
 
   useEffect(() => {
     if (pendingPurchaseError) {
@@ -207,7 +243,7 @@ const SubscriptionEdit = ({
     <>
       <Formik
         initialValues={{
-          size: subscription.number_of_machines,
+          size: subscription.current_number_of_machines,
         }}
         onSubmit={({ size }) => {
           resizeContract.mutate(size, {
@@ -217,6 +253,7 @@ const SubscriptionEdit = ({
                 eventAction: "subscription-resize-form",
                 eventLabel: "subscription resized",
               });
+              setResizeNumber(size - subscription.current_number_of_machines);
               setPendingPurchaseID(response.id);
             },
           });
@@ -237,35 +274,35 @@ const SubscriptionEdit = ({
                   error={errors.size || generateError(error)}
                   help={
                     <>
-                      You can resize your subscriptions to as many {unitName}s
-                      as needed.
+                      Added {unitName}s will be available immediately.
                       <br />
-                      Your next billing period will reflect the changes
-                      accordingly.
+                      Removed {unitName}s will be removed at the next billing
+                      cycle.
                     </>
                   }
                   label={`Number of ${unitName}s`}
                   min={
                     subscription.statuses.is_downsizeable
                       ? 1
-                      : subscription.number_of_machines
+                      : subscription.current_number_of_machines
                   }
                   max={
                     subscription.statuses.is_upsizeable
                       ? undefined
-                      : subscription.number_of_machines
+                      : subscription.current_number_of_machines
                   }
                   name="size"
                   type="number"
                   wrapperClassName="u-sv3"
                 />
                 <ResizeSummary
-                  oldNumberOfMachines={subscription.number_of_machines}
+                  oldNumberOfMachines={subscription.current_number_of_machines}
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}
                   price={subscription.price}
                   period={subscription.period}
+                  nextCycle={nextCycleStart}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">

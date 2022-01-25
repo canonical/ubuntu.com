@@ -14,6 +14,7 @@ declare global {
     isGuest?: boolean;
     isLoggedIn?: boolean;
     accountId?: string;
+    tempAccountId?: string;
     previousPurchaseIds?: string[];
     handleTogglePurchaseModal?: () => void;
   }

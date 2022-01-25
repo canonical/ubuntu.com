@@ -28,7 +28,7 @@
         </p>
         {% if releases.latest.short_version > releases.lts.short_version %}
         <p>
-          <a class="p-button--neutral is-wide" href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          <a class="p-button is-wide" href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-ppc64el.iso" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'POWER server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.latest.full_version }}
           </a>
         </p>

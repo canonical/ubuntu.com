@@ -3,27 +3,27 @@
     <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
         <ul class="p-list">
         <li class="p-list__item">
-            <label for="firstName">First name:</label>
+            <label for="firstName">Имя:</label>
             <input required id="firstName" name="firstName" maxlength="255" type="text">
         </li>
         <li>
-            <label for="lastName">Last name:</label>
+            <label for="lastName">Фамилия:</label>
             <input required id="lastName" name="lastName" maxlength="255" type="text">
         </li>
         <li>
-            <label for="email">Work email:</label>
+            <label for="email">Рабочая электронная почта:</label>
             <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
         </li>
         <li>
-            <label for="company">Company name:</label>
+            <label for="company">Компания:</label>
             <input required id="company" name="company" maxlength="255" type="text">
         </li>
         <li>
-            <label for="jobTitle">Job title:</label>
+            <label for="jobTitle">Должность:</label>
             <input required id="jobTitle" name="title" maxlength="255" type="text">
         </li>
         <li>
-            <label for="phone">Mobile/cell phone number:</label>
+            <label for="phone">Номер телефона:</label>
             <input required id="phone" name="phone" maxlength="255" type="tel">
         </li>
         <li>
@@ -39,10 +39,10 @@
         <li>
             <input name="canonicalUpdatesOptIn" aria-label="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" value="yes"
             type="checkbox">
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label for="canonicalUpdatesOptIn">Я согласен получать информацию о продуктах и услугах Canonical.</label>
         </li>
         <li>
-            <p>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
+            <p>Отправляя эту форму, я подтверждаю, что прочитал и принимаю <a href="/legal/data-privacy/contact">Уведомление о конфиденциальности</a> and <a href="/legal/data-privacy">Политику конфиденциальности</a>.
             <input name="RichText" aria-label="RichText" type="hidden">
             </p>
         </li>
@@ -60,7 +60,7 @@
             <input name="Consent_to_Processing__c" aria-label="Consent" value="Yes" type="hidden">
         </li>
         <li>
-            <button type="submit" class="u-no-margin--bottom" >{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>
+            <button type="submit" class="u-no-margin--bottom" >{% if cta %}{{ cta }}{% else %}Загрузить документ{% endif %}</button>
             <input name="formid" aria-label="formid" value="{{ id }}" type="hidden">
             <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />

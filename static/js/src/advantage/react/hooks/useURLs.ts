@@ -6,6 +6,9 @@ export const APP_URLS = {
   account: {
     paymentMethods: "/account/payment-methods",
   },
+  advantage: {
+    offers: "/advantage/offers",
+  },
 };
 
 /**

@@ -15,6 +15,7 @@ from tests.advantage.helpers import (
 )
 from webapp.advantage.models import Entitlement
 from webapp.advantage.ua_contracts.helpers import (
+    get_current_number_of_machines,
     get_items_aggregated_values,
     get_machine_type,
     is_trialling_user_subscription,
@@ -152,6 +153,65 @@ class TestHelpers(unittest.TestCase):
             user_subscription_values["end_date"],
             expected_end_date,
         )
+
+    def test_get_current_number_of_machines(self):
+        scenarios = {
+            "no-subscription-no-subscription-id-no-listing": {
+                "subscriptions": [],
+                "subscription_id": "",
+                "listing": None,
+                "expectation": 0,
+            },
+            "subscription-id-not-in-subscriptions": {
+                "subscriptions": [make_subscription(id="not-my-subscription")],
+                "subscription_id": "my-subscription",
+                "listing": make_listing(),
+                "expectation": 0,
+            },
+            "listing-id-not-in-subscription-items": {
+                "subscriptions": [
+                    make_subscription(
+                        id="my-subscription",
+                        items=[
+                            make_subscription_item(
+                                product_listing_id="not-my-listing"
+                            )
+                        ],
+                    ),
+                ],
+                "subscription_id": "my-subscription",
+                "listing": make_listing(id="my-listing"),
+                "expectation": 0,
+            },
+            "get-right-current-machine-number": {
+                "subscriptions": [
+                    make_subscription(
+                        id="my-subscription",
+                        items=[
+                            make_subscription_item(
+                                product_listing_id="my-listing",
+                                value=5,
+                            )
+                        ],
+                    ),
+                ],
+                "subscription_id": "my-subscription",
+                "listing": make_listing(id="my-listing"),
+                "expectation": 5,
+            },
+        }
+
+        for case, scenario in scenarios.items():
+            with self.subTest(msg=f"{case}", scenario=scenario):
+                current_number_of_machines = get_current_number_of_machines(
+                    subscriptions=scenario["subscriptions"],
+                    subscription_id=scenario["subscription_id"],
+                    listing=scenario["listing"],
+                )
+
+                self.assertEqual(
+                    current_number_of_machines, scenario["expectation"]
+                )
 
     def test_get_price_info_for_shop(self):
         listing = make_listing(price=100, currency="USD")

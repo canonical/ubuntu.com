@@ -1,0 +1,23 @@
+{% extends "advantage/base_advantage.html" %} 
+
+{% block title %}Your offers{% endblock %}
+
+{% block content %}
+
+<div id="advantage-offers-app">
+    <div class="p-strip">
+        <div class="row">
+            <div class="col-12">
+                <h1>Your Ubuntu Advantage offers</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/dist/advantageOffers.js" type="module"></script>
+
+<script>
+    window.stripePublishableKey = '{{ get_stripe_publishable_key }}';
+</script>
+
+{% endblock %}

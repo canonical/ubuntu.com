@@ -179,6 +179,8 @@ openstack:
       path: /openstack/docs
     - title: Tutorials
       path: /openstack/tutorials
+    - title: Support
+      path: /openstack/support
       persist: True
     - title: Thank you
       path: /openstack/newsletter-thank-you
@@ -1326,6 +1328,10 @@ support:
     - title: Community support
       path: /support/community-support
 
+    - title: Your offers
+      path: /advantage/offers
+      hidden: True
+
     - title: Contact us
       path: /support/contact-us
       hidden: True
@@ -1567,7 +1573,7 @@ legal:
       children:
         - title: Service description
           path: /legal/ubuntu-advantage-service-description
-        - title: ROS ESM Service Description 
+        - title: ROS ESM Service Description
           path: /legal/ubuntu-advantage-service-description/ros-esm-service-description
           hidden: True
         - title: サービス範囲
@@ -1677,7 +1683,7 @@ security:
           path: /security/certifications/docs
 
     - title: CVEs
-      path: /security/cve
+      path: /security/cves
     - title: Notices
       path: /security/notices
       persist: True
@@ -1883,6 +1889,8 @@ certification:
   children:
     - title: Overview
       path: /certified
+    - title: Why Certified?
+      path: /certified/why-certified
     - title: Laptops
       path: /certified/laptops
     - title: Desktops

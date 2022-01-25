@@ -15,13 +15,14 @@ import {
 import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
 import { BuyButtonProps } from "./utils/utils";
+
 type Props = {
   accountId?: string;
   termsLabel: React.ReactNode;
   marketingLabel: React.ReactNode;
   product?: any;
   preview?: any;
-  quantity: number;
+  quantity?: number;
   closeModal: () => void;
   Summary: React.ComponentType;
   BuyButton: React.ComponentType<BuyButtonProps>;
@@ -68,7 +69,7 @@ const PurchaseModal = ({
     id: product?.id,
     name: product?.name,
     price: product?.price?.value / 100,
-    quantity: quantity,
+    quantity: quantity ?? 1,
   };
 
   const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -97,6 +98,11 @@ const PurchaseModal = ({
                   <a href="/login">sign in</a> to your account first.
                 </>
               );
+            } else if (error.message === "tax_id_invalid") {
+              actions.setErrors({
+                VATNumber:
+                  "That VAT number is invalid. Check the number and try again.",
+              });
             } else {
               const knownErrorMessage = getErrorMessage({
                 message: "",

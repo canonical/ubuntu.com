@@ -1,6 +1,6 @@
 {% extends "engage/base_engage.html" %}
 
-{% block title %}Download {{ resource_name }} {% endblock %}
+{% block title %}Загрузить {{ resource_name }} {% endblock %}
 
 {% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
 
@@ -28,7 +28,7 @@
   <div class="row">
     <div class="col-8">
       <h1>
-        Thank you
+        Спасибо
       </h1>
     </div>
   </div>
@@ -39,10 +39,10 @@
     <div class="col-8">
       {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
       <p>
-        The {{ resource_name }} is now ready to download.
+        {{ resource_name }} готов к загрузке.
       </p>
       <p>
-        <a class="p-button--positive" href="{{ resource_url }}">Download</a>
+        <a class="p-button--positive" href="{{ resource_url }}">Загрузить</a>
       </p>
       {% else %}
         <p>
@@ -57,7 +57,7 @@
 <section class="p-strip--light">
   <div class="row">
     <div class="col-8">
-      <h2 class="p-heading--three">You may also be interested in &hellip;</h2>
+      <h2 class="p-heading--3">You may also be interested in &hellip;</h2>
     </div>
   </div>
   <div class="row p-divider">

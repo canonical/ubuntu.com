@@ -47,7 +47,7 @@
   <div class="l-tutorial__content">
     {% for section in document.sections %}
     <section class="l-tutorial-section" id="{{ loop.index }}-{{ section['slug']}}">
-      <h2 class="p-heading--three">{{ loop.index }}. {{ section["title"]}}</h2>
+      <h2 class="p-heading--3">{{ loop.index }}. {{ section["title"]}}</h2>
 
       <article class="l-tutorial-section__content">
         {{ section.content | safe }}
@@ -164,21 +164,21 @@
           </div>
           <div class="l-tutorial__pagination">
             {% if loop.first %}
-              <button class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" disabled style="margin-right: 1rem;">
+              <button class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom" disabled style="margin-right: 1rem;">
                 <i class="p-icon--contextual-menu">Previous step</i>
               </button>
             {% else %}
-              <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}" class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" style="margin-right: 1rem;">
+              <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}" class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom" style="margin-right: 1rem;">
                 <i class="p-icon--contextual-menu">Previous step</i>
               </a>
             {% endif %}
 
             {% if loop.last %}
-              <button class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom" disabled>
+              <button class="l-tutorial__pagination-item--next p-button has-icon u-no-margin--bottom" disabled>
                 <i class="p-icon--contextual-menu">Next step</i>
               </button>
             {% else %}
-              <a href="#{{ loop.index + 1 }}-{{ loop.nextitem['slug'] }}" class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom">
+              <a href="#{{ loop.index + 1 }}-{{ loop.nextitem['slug'] }}" class="l-tutorial__pagination-item--next p-button has-icon u-no-margin--bottom">
                 <i class="p-icon--contextual-menu">Next step</i>
               </a>
             {% endif %}

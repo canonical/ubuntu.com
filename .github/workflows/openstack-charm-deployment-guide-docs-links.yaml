@@ -1,6 +1,8 @@
 name: docs links on docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/
 
 on:
+  schedule:
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 jobs:

@@ -58,7 +58,11 @@ const registerPaymentMethod = () => {
     if (error) {
       throw new Error(error.code);
     }
-    let accountRes = { accountID: window.accountId, code: null, message: "" };
+    let accountRes = {
+      accountID: window.accountId || window.tempAccountId,
+      code: null,
+      message: "",
+    };
 
     if (!accountRes.accountID) {
       accountRes = await ensurePurchaseAccount({
@@ -91,11 +95,9 @@ const registerPaymentMethod = () => {
     });
 
     if (customerInfoRes.errors) {
+      window.tempAccountId = accountRes.accountID;
       const errors = JSON.parse(customerInfoRes.errors);
-      //We ignore VAT errors but throw the others
-      if (errors.code !== "tax_id_invalid") {
-        throw new Error(errors.decline_code ?? errors.code);
-      }
+      throw new Error(errors.decline_code ?? errors.code);
     }
 
     return {

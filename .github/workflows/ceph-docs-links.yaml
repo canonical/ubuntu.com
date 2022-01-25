@@ -1,6 +1,8 @@
 name: docs links on ubuntu.com/ceph/docs
 
 on:
+  schedule:
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 jobs:

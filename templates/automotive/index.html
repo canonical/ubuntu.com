@@ -27,12 +27,12 @@
     <div class="col-8 u-align--center u-vertically-center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/86148922-Automotive-in-car-cockpit-cropped.svg",
-          alt="",
-          width="605",
-          height="380",
-          hi_def=True,
-          loading="auto",
+        url="https://assets.ubuntu.com/v1/86148922-Automotive-in-car-cockpit-cropped.svg",
+        alt="",
+        width="605",
+        height="380",
+        hi_def=True,
+        loading="auto",
         ) | safe
       }}
     </div>
@@ -42,133 +42,124 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2 class="p-muted-heading u-align--center u-sv3">Accelerating on Ubuntu</h2>
-    <ul class="p-inline-images u-no-margin--bottom">
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/4f0688c6-Toyota_Logo_silver.png",
-              alt="Toyota",
-              height="88",
-              width="105",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/1e265e27-bmw-new-2020.svg",
-              alt="BMW",
-              height="88",
-              width="88",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/578dbfb5-Volkswagen_logo_2019.svg.png",
-              alt="Volkswagen",
-              height="88",
-              width="88",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/9a0de5dd-Ford-Logo.svg",
-              alt="Ford",
-              height="55",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/9320c145-Scania_Logo-Symbol.svg",
-              alt="Scania",
-              height="88",
-              width="92",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/e99b843a-Bosch_Logo-flat.svg",
-              alt="Bosch",
-              height="31",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/d1da96af-Continental-Logo.svg",
-              alt="Continental",
-              height="54",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/547ef405-uber.svg",
-              alt="Uber",
-              height="50",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "style": "max-width: 7rem;"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/4a1c3691-lyft.svg",
-              alt="Eurotech logo",
-              height="88",
-              width="124",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "style": "max-width: 6rem;"},
-            ) | safe
-          }}
-      </li>
-    </ul>
+    <div class="p-logo-section__items u-no-margin--bottom">
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/85be122c-toyota-logo.png",
+          alt="Toyota",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/59af2c8f-bmw-logo.png",
+          alt="BMW",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e10b8957-vw-logo.png",
+          alt="Volkswagen",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3263fb35-ford-logo.png",
+          alt="Ford",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/52e19575-scania-logo.png",
+          alt="Scania",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/466c2690-bosch-logo.png",
+          alt="Bosch",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/7e3ec23a-continetal-logo.png",
+          alt="Continental",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6889bfcb-uber-logo.png",
+          alt="Uber",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/dea8779e-eurotech-group-logo.png",
+          alt="Eurotech",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2 class="p-heading--five">Software-defined industry</h2>
-      <p class="p-heading--two">Not just the car. The whole business of automotive.</p>
+      <h2 class="p-heading--5">Software-defined industry</h2>
+      <p class="p-heading--2">Not just the car. The whole business of automotive.</p>
       <p>Software shapes success in automotive today.</p>
       <p>It's how you sim and virtually test.</p>
       <p>It's how you automate factories.</p>
@@ -179,11 +170,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/cef9fb09-automotive-business-software.svg",
-          alt="",
-          height="320",
-          width="420",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/cef9fb09-automotive-business-software.svg",
+        alt="",
+        height="320",
+        width="420",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -195,17 +186,17 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/af98e3d6-automotive_car-network.svg",
-          alt="",
-          height="210",
-          width="360",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/af98e3d6-automotive_car-network.svg",
+        alt="",
+        height="210",
+        width="360",
+        hi_def=True,
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2 class="p-heading--five">ADAS development</h2>
-      <p class="p-heading--two">Win the race for autonomy</p>
+      <h2 class="p-heading--5">ADAS development</h2>
+      <p class="p-heading--2">Win the race for autonomy</p>
       <p>Every leading team in the self-driving race runs Ubuntu.</p>
       <p>Google. Uber. Bosch. VW. Argo.</p>
       <p>Crunch data. Develop algorithms. In-car, on-premises and on-cloud. Ubuntu delivers the highest multi-cloud performance for AI/ML.</p>
@@ -217,8 +208,8 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2 class="p-heading--five">Industry 4.0</h2>
-      <p class="p-heading--two">Faster factories, smarter robots</p>
+      <h2 class="p-heading--5">Industry 4.0</h2>
+      <p class="p-heading--2">Faster factories, smarter robots</p>
       <p>Digital transformation and continuous improvement with app-centric factory automation.</p>
       <p>Monitor inventories. Spot defects. Manage warehouses. Optimise supply lines.</p>
       <p>Run simulations for robot training and deploy new insights automatically in a snap. No downtime.</p>
@@ -226,11 +217,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
+        alt="",
+        height="200",
+        width="350",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -242,17 +233,17 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/0631c9dc-FinancialServicesPage-GetStarted-AI_2020.svg",
-          alt="",
-          height="230",
-          width="252",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/0631c9dc-FinancialServicesPage-GetStarted-AI_2020.svg",
+        alt="",
+        height="230",
+        width="252",
+        hi_def=True,
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2 class="p-heading--five">Deep learning</h2>
-      <p class="p-heading--two">Accelerate data science &ndash; car, cluster and cloud</p>
+      <h2 class="p-heading--5">Deep learning</h2>
+      <p class="p-heading--2">Accelerate data science &ndash; car, cluster and cloud</p>
       <p>From self-driving to diagnostics and route planning, Ubuntu is at the heart of the biggest automotive analytics operations.</p>
       <p>More frameworks, languages, libraries and solutions, from the widest range of companies and clouds.</p>
       <p>On <a href="https://maas.io/" class="p-link--external">bare metal</a> or <a href="/cloud">public cloud</a>. From Spark and Hadoop to <a href="/kubeflow">Kubeflow</a>. Better ML. Faster results.</p>
@@ -263,23 +254,23 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2 class="p-heading--five">Scania presents</h2>
-      <p class="p-heading--two">Fast track CAD/CAM/CAE with dynamic HPC</p>
+      <h2 class="p-heading--5">Scania presents</h2>
+      <p class="p-heading--2">Fast track CAD/CAM/CAE with dynamic HPC</p>
       <p>Scania deploys agile HPC clusters for rapid digital design, validation, crash testing, and aerodynamics.</p>
       <p>Supercomputers on-demand for CAD, CAM and CAE. Tame SLURM and get more from your cluster.</p>
       <p><a href="https://www.brighttalk.com/webcast/6793/416900/mastering-multicloud-with-slurm-and-juju" class="p-link--external">Watch the video</a></p>
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       <a href="https://www.brighttalk.com/webcast/6793/416900/mastering-multicloud-with-slurm-and-juju">
-      {{
-        image(
+        {{
+          image(
           url="https://assets.ubuntu.com/v1/d1b5ac75-Automotive-Masters-vid-screen.png",
           alt="",
           height="229",
           width="400",
           hi_def=True,
-        ) | safe
-      }}
+          ) | safe
+        }}
       </a>
     </div>
   </div>
@@ -290,17 +281,17 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/2bd31151-Automotive-in-car-cockpit-sized.svg",
-          alt="",
-          height="250",
-          width="429",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/2bd31151-Automotive-in-car-cockpit-sized.svg",
+        alt="",
+        height="250",
+        width="429",
+        hi_def=True,
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2 class="p-heading--five">In-cabin digital</h2>
-      <p class="p-heading--two">Next level infotainment</p>
+      <h2 class="p-heading--5">In-cabin digital</h2>
+      <p class="p-heading--2">Next level infotainment</p>
       <p>Consumer expectations are relentless.</p>
       <p>New insights. New apps. New content. New experiences. Personalised. Contextual.</p>
       <p>The ever-fresh experience needs secure, reliable, over-the-air updates and <a href="https://snapcraft.io/store" class="p-link--external">app stores</a>.</p>
@@ -312,8 +303,8 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2 class="p-heading--five">Over-the-air updates</h2>
-      <p class="p-heading--two">OTA? Compressed. Transactional. Signed. Simple.</p>
+      <h2 class="p-heading--5">Over-the-air updates</h2>
+      <p class="p-heading--2">OTA? Compressed. Transactional. Signed. Simple.</p>
       <p>Update any system, any device, any day. Future-proof your fleet.</p>
       <p>Full OS containerisation means transactional, atomic updates. Data snapshot backup and restore. Signed software integrity. <a href="/engage/snap-deltas">Compressed delta updates</a>.</p>
       <p><a href="/engage/snapd-whitepaper">Complete control</a>. No delayed patches, no partial updates, no unauthorised ECU software.</p>
@@ -321,11 +312,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/8998cab5-control-thin.svg",
-          alt="",
-          height="326",
-          width="326",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/8998cab5-control-thin.svg",
+        alt="",
+        height="326",
+        width="326",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -337,17 +328,17 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/0be66895-Automotive-car-sensor.svg",
-          alt="",
-          height="260",
-          width="455",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/0be66895-Automotive-car-sensor.svg",
+        alt="",
+        height="260",
+        width="455",
+        hi_def=True,
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2 class="p-heading--five">V2X communication</h2>
-      <p class="p-heading--two">Cruise control for private cloud</p>
+      <h2 class="p-heading--5">V2X communication</h2>
+      <p class="p-heading--2">Cruise control for private cloud</p>
       <p>Orchestrate <a href="/telco">V2X and NFV on carrier-grade</a> clouds.</p>
       <p>Own the edge with <a href="https://maas.io" class="p-link--external">Metal as a Service</a>.</p>
       <p>Connect and containerise with <a href="/kubernetes">Kubernetes</a> from vehicle to edge.</p>
@@ -359,8 +350,8 @@
 <section class="p-strip--square-suru u-image-position" style="overflow: visible;">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2 class="p-heading--five">Mixed-criticality ECUs</h2>
-      <p class="p-heading--two">RTOS safety, Ubuntu agility</p>
+      <h2 class="p-heading--5">Mixed-criticality ECUs</h2>
+      <p class="p-heading--2">RTOS safety, Ubuntu agility</p>
       <p>Isolate safety-critical software, and run consumer-friendly workloads on Ubuntu.</p>
       <p>Ubuntu delivers <a href="/engage/451-automotive" class="p-link--inverted">software-defined differentiation</a>. Run AUTOSAR Adaptive. Gather telemetry. Manage batteries. Connect customers.</p>
       <p>Now available as <a href="https://projectacrn.github.io/latest/getting-started/rt_industry_ubuntu.html" class="p-link--inverted p-link--external">open source ACRN</a>.</p>
@@ -368,9 +359,9 @@
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {% include "automotive/_chassis_animation.html" %}
-      </div>
     </div>
   </div>
+</div>
 </section>
 
 <section class="p-strip">
@@ -379,20 +370,20 @@
       <div class="p-logo-header u-hide--small">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
-            alt="ARM",
-            height="17",
-            width="56",
-            hi_def=True,
+          url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
+          alt="ARM",
+          height="17",
+          width="56",
+          hi_def=True,
           ) | safe
         }}    
         {{
           image(
-            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-            alt="Nvidia",
-            height="26",
-            width="136",
-            hi_def=True,
+          url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+          alt="Nvidia",
+          height="26",
+          width="136",
+          hi_def=True,
           ) | safe
         }}        
         {{ image (
@@ -412,24 +403,24 @@
           ) | safe
         }}
       </div>
-      <h2 class="p-heading--five">ARM and X86</h2>
-      <p class="p-heading--two">The right silicon for every subsystem</p>
+      <h2 class="p-heading--5">ARM and X86</h2>
+      <p class="p-heading--2">The right silicon for every subsystem</p>
       <p>We optimise Ubuntu for major silicon architectures, so you can choose the best ECU platform anywhere.</p>
       <p>Develop on Ubuntu today and pick your platform later.</p>
     </div>
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/b2b4d912-community-support-thin.svg",
-          alt="",
-          height="120",
-          width="96",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/b2b4d912-community-support-thin.svg",
+        alt="",
+        height="120",
+        width="96",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
-      <h2 class="p-heading--five">Open source 2.0</h2>
-      <p class="p-heading--two">Better tools. Bigger ecosystem. Broader talent pool.</p>
+      <h2 class="p-heading--5">Open source 2.0</h2>
+      <p class="p-heading--2">Better tools. Bigger ecosystem. Broader talent pool.</p>
       <p>Leaders choose Ubuntu because <a href="https://medium.com/@olley_io/what-software-do-autonomous-vehicle-engineers-use-part-1-2-275631071199" class="p-link--external">autonomous vehicle engineers are more productive with it</a>. From cloud to edge.</p>
       <p>Develop on Ubuntu today and pick your platform later.</p>
     </div>
@@ -438,16 +429,16 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/c53664cd-Security_updates.svg",
-          alt="",
-          height="120",
-          width="201",
-          hi_def=True,
-          attrs={"class": "u-hide--small"}
+        url="https://assets.ubuntu.com/v1/c53664cd-Security_updates.svg",
+        alt="",
+        height="120",
+        width="201",
+        hi_def=True,
+        attrs={"class": "u-hide--small"}
         ) | safe
       }}
-      <h2 class="p-heading--five">Safety first</h2>
-      <p class="p-heading--two">Top rated security. Best-in-class isolation.</p>
+      <h2 class="p-heading--5">Safety first</h2>
+      <p class="p-heading--2">Top rated security. Best-in-class isolation.</p>
       <p>We power innovation. And production.</p>
       <p><a href="/esm">Ten year CVE security maintenance</a>, the most comprehensive <a href="/embedded"></a>container confinement and kernel livepatch</a> for rapid rollouts in critical situations.</p>
       <p>Because safety depends on the ability to evolve, resist and respond to new threats.</p>
@@ -455,16 +446,16 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-          alt="",
-          height="120",
-          width="120",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+        alt="",
+        height="120",
+        width="120",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
-      <h2 class="p-heading--five">Long term support</h2>
-      <p class="p-heading--two">Extended security, extended opportunity</p>
+      <h2 class="p-heading--5">Long term support</h2>
+      <p class="p-heading--2">Extended security, extended opportunity</p>
       <p>You innovate. We maintain.</p>
       <p>Extend ECU life and lifetime value with platform upgrades for new services and solutions.</p>
       <p>Count on Canonical security coverage. Regular updates. Automated testing. Continuous deployment. Progressive releases.</p>
@@ -475,16 +466,16 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
-          alt="",
-          height="120",
-          width="198",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+        alt="",
+        height="120",
+        width="198",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
-      <h2 class="p-heading--five">Open source licensing</h2>
-      <p class="p-heading--two">Straightforward compliance</p>
+      <h2 class="p-heading--5">Open source licensing</h2>
+      <p class="p-heading--2">Straightforward compliance</p>
       <p>Confidently integrate open source components into your proprietary solutions.</p>
       <p>Source identification for all software components, all the time.</p>
       <p>Simplify compliance. Streamline certification. Protect innovation.</p>
@@ -492,16 +483,16 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-          alt="",
-          height="120",
-          width="210",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="",
+        height="120",
+        width="210",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
-      <h2 class="p-heading--five">Connected car security</h2>
-      <p class="p-heading--two">Hardened apps. Hardened OS.</p>
+      <h2 class="p-heading--5">Connected car security</h2>
+      <p class="p-heading--2">Hardened apps. Hardened OS.</p>
       <p>Your customers want apps. Your business needs security. Get both on Ubuntu.</p>
       <p>Secure boot, <a href="/engage/iot-disk-encryption">full disk encryption</a> and <a href="https://snapcraft.io/docs/assertions" class="p-link--external">signed software packages</a> guarantee system integrity.</p>
       <p><a href="https://snapcraft.io/docs/snap-confinement" class="p-link--external">Snap confinement</a> limits blast radius, keeps your apps apart, and controls access to hardware.</p>
@@ -515,15 +506,15 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png",
-          alt="",
-          height="100",
-          width="223",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png",
+        alt="",
+        height="100",
+        width="223",
+        hi_def=True,
         ) | safe
       }}
-      <h2 class="p-heading--five">Software strategy acceleration</h2>
-      <p class="p-heading--two">Trusted by executives. Loved by gearheads.</p>
+      <h2 class="p-heading--5">Software strategy acceleration</h2>
+      <p class="p-heading--2">Trusted by executives. Loved by gearheads.</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">The <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" class="p-link--external">best developers choose Ubuntu</a>.</li>
         <li class="p-list__item is-ticked">The biggest pool of talent. The broadest range of tools.  The community that counts.</li>
@@ -533,31 +524,32 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/7de55930-canonical-logo1.png",
-          alt="",
-          height="100",
-          width="223",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/7de55930-canonical-logo1.png",
+        alt="",
+        height="100",
+        width="223",
+        hi_def=True,
         ) | safe
       }}
-      <h2 class="p-heading--five">Domain experts</h2>
-      <p class="p-heading--two">Innovate in automotive with Canonical</p>
+      <h2 class="p-heading--5">Domain experts</h2>
+      <p class="p-heading--2">Innovate in automotive with Canonical</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">The experts in open source operations, from cloud to desktop to device. The publishers of Ubuntu.</li>
         <li class="p-list__item is-ticked">Get to market faster.</li>
         <li class="p-list__item is-ticked">Drive down infra costs.</li>
         <li class="p-list__item is-ticked">Accelerate innovation.</li>
-      <p>
-        <a class="js-invoke-modal" href="/internet-of-things/contact-us?product=automotive">
-          Get in touch&nbsp;&rsaquo;
-        </a>
-      </p>
+        <p>
+          <a class="js-invoke-modal" href="/internet-of-things/contact-us?product=automotive">
+            Get in touch&nbsp;&rsaquo;
+          </a>
+        </p>
+      </div>
     </div>
+  </section>
+  
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
-</section>
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-{% endblock content %}
+  
+  {% endblock content %}
+  

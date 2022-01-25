@@ -64,6 +64,7 @@ class UserSubscription:
         type: str,
         start_date: str,
         number_of_machines: int,
+        current_number_of_machines: int,
         machine_type: str,
         marketplace: str,
         price: int,
@@ -84,6 +85,7 @@ class UserSubscription:
         self.start_date = start_date
         self.end_date = end_date
         self.number_of_machines = number_of_machines
+        self.current_number_of_machines = current_number_of_machines
         self.machine_type = machine_type
         self.marketplace = marketplace
         self.price = price
@@ -95,3 +97,31 @@ class UserSubscription:
         self.contract_id = contract_id
         self.listing_id = listing_id
         self.renewal_id = renewal_id
+
+
+class OfferItem:
+    def __init__(self, id: str, name: str, price: int, allowance: int):
+        self.id = id
+        self.name = name
+        self.price = price
+        self.allowance = allowance
+
+
+class Offer:
+    def __init__(
+        self,
+        id: str,
+        account_id: str,
+        marketplace: str,
+        created_at: str,
+        actionable: bool,
+        total: int,
+        items: List[OfferItem],
+    ):
+        self.id = id
+        self.account_id = account_id
+        self.total = total
+        self.items = items
+        self.marketplace = marketplace
+        self.created_at = created_at
+        self.actionable = actionable

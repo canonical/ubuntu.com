@@ -6,7 +6,6 @@ from webapp.advantage.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
-    CannotCancelLastContractError,
     UnauthorizedError,
     AccessForbiddenError,
 )
@@ -1106,16 +1105,8 @@ class TestGetAccountOffers(unittest.TestCase):
 class TestPurchaseFromMarketplace(unittest.TestCase):
     def test_errors(self):
         default_response_content = {"code": "expected error"}
-        cancel_subscription = {
-            "code": "bad request",
-            "message": (
-                "cannot remove all subscription items; "
-                "please cancel subscription instead"
-            ),
-        }
+
         cases = [
-            (400, False, CannotCancelLastContractError, cancel_subscription),
-            (400, True, CannotCancelLastContractError, cancel_subscription),
             (401, False, UAContractsAPIError, default_response_content),
             (401, True, UAContractsAPIErrorView, default_response_content),
             (500, False, UAContractsAPIError, default_response_content),
@@ -1189,16 +1180,8 @@ class TestPurchaseFromMarketplace(unittest.TestCase):
 class TestPreviewPurchaseFromMarketplace(unittest.TestCase):
     def test_errors(self):
         default_response_content = {"code": "expected error"}
-        cancel_subscription = {
-            "code": "bad request",
-            "message": (
-                "cannot remove all subscription items; "
-                "please cancel subscription instead"
-            ),
-        }
+
         cases = [
-            (400, False, CannotCancelLastContractError, cancel_subscription),
-            (400, True, CannotCancelLastContractError, cancel_subscription),
             (401, False, UAContractsAPIError, default_response_content),
             (401, True, UAContractsAPIErrorView, default_response_content),
             (500, False, UAContractsAPIError, default_response_content),

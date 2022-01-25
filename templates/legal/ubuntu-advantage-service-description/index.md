@@ -346,7 +346,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 **Covered Hypervisor:** any of: KVM | Qemu | Bochs, VMWare ESXi, LXD | LXC, Xen, Hyper-V, VirtualBox, z/VM, Docker. All Nodes in the cluster have to be subscribed to the service in order to benefit from the unlimited VM support
 
-**CVEs (High and Critical):** High and Critical Common Vulnerabilities and Exposures as assessed by the Ubuntu Security Team. More details can be found at https://ubuntu.com/security/cve
+**CVEs (High and Critical):** High and Critical Common Vulnerabilities and Exposures as assessed by the Ubuntu Security Team. More details can be found at https://ubuntu.com/security/cves
 
 **DSE:** a Canonical dedicated support engineer assigned to work full-time for a single customer acting as an extension of the customer’s support organization with a primary focus on integrating and supporting Canonicals offerings within the customer’s environment
 
@@ -388,6 +388,6 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
 
 **Valid Customisations:** configurations made through Horizon or the OpenStack API of the OpenStack Packages. For the avoidance of doubt, valid customizations do not include architectural changes that are not expressly executed or authorized by Canonical. Configuration options set during a Private Cloud Build should be considered critical to the health of the Cloud. Any changes to these may render the cloud unsupported. Requests for changes should be validated by Canonical to ensure continued support
 
-**Virtual Machine (VM):** a virtualized compute instance instantiated on a recognised hypervisor technology (KVM, VMWare ESXi, Openstack or public cloud)
+**Virtual Machine (VM):** a virtualized compute instance instantiated on a recognised hypervisor technology (KVM, VMWare ESXi, OpenStack or public cloud)
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>

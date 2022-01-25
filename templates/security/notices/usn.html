@@ -26,7 +26,7 @@
       <h2>Packages</h2>
       <ul class="p-list">
         {% for package_name, package_title in notice.package_descriptions.items() %}
-          <li class="p-list__item"><a href="/security/cve?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}</li>
+          <li class="p-list__item"><a href="/security/cves?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}</li>
         {% endfor %}
       </ul>
     </div>
