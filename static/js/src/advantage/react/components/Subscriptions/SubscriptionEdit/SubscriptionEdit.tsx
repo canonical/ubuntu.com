@@ -88,6 +88,7 @@ type ResizeSummaryProps = {
   price: UserSubscription["price"];
   period: UserSubscription["period"];
   nextCycle: Date | null;
+  currentCycleNumberOfMachines: number;
 };
 
 const ResizeSummary = ({
@@ -97,6 +98,7 @@ const ResizeSummary = ({
   price,
   period,
   nextCycle,
+  currentCycleNumberOfMachines,
 }: ResizeSummaryProps) => {
   const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
   if (absoluteDelta === 0) {
@@ -106,6 +108,8 @@ const ResizeSummary = ({
   const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
   const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
+  const machinesToPayNow = newNumberOfMachines - currentCycleNumberOfMachines;
+
   return (
     <div>
       <p>
@@ -113,10 +117,10 @@ const ResizeSummary = ({
         {absoluteDelta > 1 ? "s" : ""}.
       </p>
       <p>
-        {!isDecreasing ? (
+        {!isDecreasing && machinesToPayNow > 0 ? (
           <>
             You will be charged{" "}
-            <b>{currencyFormatter.format(absoluteDelta * unitPrice)}</b> when
+            <b>{currencyFormatter.format(machinesToPayNow * unitPrice)}</b> when
             you click Resize.
             <br />
           </>
@@ -304,6 +308,7 @@ const SubscriptionEdit = ({
                   price={subscription.price}
                   period={subscription.period}
                   nextCycle={nextCycleStart}
+                  currentCycleNumberOfMachines={subscription.number_of_machines}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">
