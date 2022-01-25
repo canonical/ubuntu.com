@@ -2,7 +2,7 @@ from typing import Optional
 
 from requests.exceptions import HTTPError
 
-from webapp.advantage.ua_contracts.parsers import (
+from webapp.shop.api.ua_contracts.parsers import (
     parse_contracts,
     parse_subscriptions,
     parse_product_listings,

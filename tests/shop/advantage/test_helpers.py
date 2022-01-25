@@ -2,7 +2,7 @@ import unittest
 
 from freezegun import freeze_time
 
-from tests.advantage.helpers import (
+from tests.shop.advantage.helpers import (
     make_subscription,
     make_listing,
     make_contract_item,
@@ -13,8 +13,8 @@ from tests.advantage.helpers import (
     make_renewal,
     make_account,
 )
-from webapp.advantage.models import Entitlement
-from webapp.advantage.ua_contracts.helpers import (
+from webapp.shop.api.ua_contracts.models import Entitlement
+from webapp.shop.api.ua_contracts.helpers import (
     get_current_number_of_machines,
     get_items_aggregated_values,
     get_machine_type,

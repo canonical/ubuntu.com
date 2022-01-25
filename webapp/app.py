@@ -22,8 +22,8 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
-from webapp.advantage.context import get_stripe_publishable_key
-from webapp.advantage.ua_contracts.api import (
+from webapp.shop.context import get_stripe_publishable_key
+from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
 )
@@ -39,8 +39,8 @@ from webapp.context import (
     releases,
 )
 
-from webapp.advantage.flaskparser import UAContractsValidationError
-from webapp.cube.views import (
+from webapp.shop.flaskparser import UAContractsValidationError
+from webapp.shop.cube.views import (
     cube_home,
     cube_microcerts,
     cube_study_labs_button,
@@ -72,7 +72,7 @@ from webapp.views import (
     mirrors_query,
 )
 
-from webapp.advantage.views import (
+from webapp.shop.advantage.views import (
     accept_renewal,
     advantage_view,
     advantage_account_users_view,

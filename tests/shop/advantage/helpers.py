@@ -4,9 +4,9 @@ from typing import List
 
 from requests.exceptions import HTTPError
 
-from webapp.advantage.models import Listing, Entitlement, Product
-from webapp.advantage.ua_contracts.api import UAContractsAPI
-from webapp.advantage.ua_contracts.primitives import (
+from webapp.shop.api.ua_contracts.models import Listing, Entitlement, Product
+from webapp.shop.api.ua_contracts.api import UAContractsAPI
+from webapp.shop.api.ua_contracts.primitives import (
     Subscription,
     SubscriptionItem,
     ContractItem,

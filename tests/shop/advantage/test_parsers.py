@@ -2,16 +2,16 @@ import json
 import unittest
 from typing import List, Dict
 
-from tests.advantage.helpers import get_fixture
-from webapp.advantage.ua_contracts.helpers import to_dict
-from webapp.advantage.models import (
+from tests.shop.advantage.helpers import get_fixture
+from webapp.shop.api.ua_contracts.helpers import to_dict
+from webapp.shop.api.ua_contracts.models import (
     Listing,
     Entitlement,
     Product,
     OfferItem,
     Offer,
 )
-from webapp.advantage.ua_contracts.parsers import (
+from webapp.shop.api.ua_contracts.parsers import (
     parse_account,
     parse_accounts,
     parse_offer_items,
@@ -31,7 +31,7 @@ from webapp.advantage.ua_contracts.parsers import (
     parse_user,
     parse_users,
 )
-from webapp.advantage.ua_contracts.primitives import (
+from webapp.shop.api.ua_contracts.primitives import (
     Account,
     Subscription,
     SubscriptionItem,

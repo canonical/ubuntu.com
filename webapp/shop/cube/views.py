@@ -2,9 +2,9 @@ import flask
 import json
 
 from urllib.parse import quote_plus
-from webapp.advantage.context import get_stripe_publishable_key
-from webapp.advantage.decorators import cube_decorator
-from webapp.advantage.ua_contracts.api import UAContractsUserHasNoAccount
+from webapp.shop.context import get_stripe_publishable_key
+from webapp.shop.decorators import cube_decorator
+from webapp.shop.api.ua_contracts.api import UAContractsUserHasNoAccount
 from webapp.login import user_info
 
 

@@ -8,26 +8,26 @@ from requests.exceptions import HTTPError
 from webargs.fields import String
 
 # Local
-from webapp.advantage.ua_contracts.primitives import Subscription
-from webapp.advantage.decorators import advantage_decorator
+from webapp.shop.api.ua_contracts.primitives import Subscription
+from webapp.shop.decorators import advantage_decorator
 from webapp.login import user_info
-from webapp.advantage.flaskparser import use_kwargs
-from webapp.advantage.ua_contracts.builders import (
+from webapp.shop.flaskparser import use_kwargs
+from webapp.shop.api.ua_contracts.builders import (
     build_user_subscriptions,
 )
-from webapp.advantage.ua_contracts.helpers import (
+from webapp.shop.api.ua_contracts.helpers import (
     to_dict,
     extract_last_purchase_ids,
     set_listings_trial_status,
 )
-from webapp.advantage.ua_contracts.api import (
+from webapp.shop.api.ua_contracts.api import (
     UnauthorizedError,
     UAContractsUserHasNoAccount,
     UAContractsAPIError,
     AccessForbiddenError,
 )
 
-from webapp.advantage.schemas import (
+from webapp.shop.schemas import (
     post_advantage_subscriptions,
     post_anonymised_customer_info,
     cancel_advantage_subscriptions,
