@@ -205,26 +205,27 @@ const SubscriptionEdit = ({
         subscription?.account_id,
       ]);
       onClose();
-      if (
-        (subscription?.current_number_of_machines ?? 0) >
-        (subscription?.number_of_machines ?? 0)
-      ) {
+      const newNumberOfMachines =
+        resizeNumber + (subscription?.current_number_of_machines ?? 0);
+      if (newNumberOfMachines > (subscription?.number_of_machines ?? 0)) {
         setNotification({
           severity: "positive",
           children: (
             <>
-              This subscription was increased by <b>{resizeNumber}</b> to{" "}
+              This subscription was increased by{" "}
               <b>
-                {(subscription?.current_number_of_machines ?? 0) + resizeNumber}
+                {newNumberOfMachines - (subscription?.number_of_machines ?? 0)}
               </b>{" "}
-              {unitName}s
+              to <b>{newNumberOfMachines}</b> {unitName}s
             </>
           ),
           onDismiss: () => setNotification(null),
         });
+      } else {
+        setNotification(null);
       }
     }
-  }, [isResized, resizeNumber]);
+  }, [isResized, resizeNumber, subscription?.current_number_of_machines]);
 
   useEffect(() => {
     if (pendingPurchaseError) {

@@ -58,21 +58,23 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     }, [modalActive]);
 
     useEffect(() => {
-      if (
-        subscription?.current_number_of_machines &&
-        (subscription?.current_number_of_machines ?? 0) <
-          (subscription?.number_of_machines ?? 0)
-      ) {
-        setNotification({
-          severity: "caution",
-          children: (
-            <>
-              The {unitName} entitlement below will update to{" "}
-              <b>{subscription?.current_number_of_machines}</b> at the next
-              billing cycle on <b>{formatDate(nextCycleStart ?? "")}</b>.
-            </>
-          ),
-        });
+      if (!notification) {
+        if (
+          subscription?.current_number_of_machines &&
+          (subscription?.current_number_of_machines ?? 0) <
+            (subscription?.number_of_machines ?? 0)
+        ) {
+          setNotification({
+            severity: "caution",
+            children: (
+              <>
+                The {unitName} entitlement below will update to{" "}
+                <b>{subscription?.current_number_of_machines}</b> at the next
+                billing cycle on <b>{formatDate(nextCycleStart ?? "")}</b>.
+              </>
+            ),
+          });
+        }
       }
     }, [subscription?.current_number_of_machines]);
 
