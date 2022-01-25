@@ -15,6 +15,10 @@ const usePendingPurchase = () => {
     async () => {
       const res = await getPurchase(pendingPurchaseID);
 
+      if (res.noPaymentRequired && res.status === "done") {
+        return res;
+      }
+
       if (!res.invoice) {
         throw new Error("Missing invoice");
       }

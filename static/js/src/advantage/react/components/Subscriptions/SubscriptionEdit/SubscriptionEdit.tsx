@@ -4,7 +4,7 @@ import {
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -44,11 +44,11 @@ export const generateSchema = (
   let max = Infinity;
   let maxMessage = "";
   if (!subscription.statuses.is_downsizeable) {
-    min = subscription.number_of_machines;
+    min = subscription.current_number_of_machines;
     minMessage = "You can not downsize this subscription";
   }
   if (!subscription.statuses.is_upsizeable) {
-    max = subscription.number_of_machines;
+    max = subscription.current_number_of_machines;
     maxMessage = "You can not upsize this subscription";
   }
   return Yup.object().shape({
@@ -188,6 +188,10 @@ const SubscriptionEdit = ({
     // This type has to be case because it comes from a non-typescript file.
     (pendingPurchaseError as Error | null);
 
+  const [resizeNumber, setResizeNumber] = useState(
+    subscription?.current_number_of_machines ?? 0
+  );
+
   useEffect(() => {
     if (isResized) {
       // Invalidate the data as it all may have changed.
@@ -201,13 +205,26 @@ const SubscriptionEdit = ({
         subscription?.account_id,
       ]);
       onClose();
-      setNotification({
-        severity: "positive",
-        children: "This subscription was resized.",
-        onDismiss: () => setNotification(null),
-      });
+      if (
+        (subscription?.current_number_of_machines ?? 0) >
+        (subscription?.number_of_machines ?? 0)
+      ) {
+        setNotification({
+          severity: "positive",
+          children: (
+            <>
+              This subscription was increased by <b>{resizeNumber}</b> to{" "}
+              <b>
+                {(subscription?.current_number_of_machines ?? 0) + resizeNumber}
+              </b>{" "}
+              {unitName}s
+            </>
+          ),
+          onDismiss: () => setNotification(null),
+        });
+      }
     }
-  }, [isResized]);
+  }, [isResized, resizeNumber]);
 
   useEffect(() => {
     if (pendingPurchaseError) {
@@ -225,7 +242,7 @@ const SubscriptionEdit = ({
     <>
       <Formik
         initialValues={{
-          size: subscription.number_of_machines,
+          size: subscription.current_number_of_machines,
         }}
         onSubmit={({ size }) => {
           resizeContract.mutate(size, {
@@ -235,6 +252,7 @@ const SubscriptionEdit = ({
                 eventAction: "subscription-resize-form",
                 eventLabel: "subscription resized",
               });
+              setResizeNumber(size - subscription.current_number_of_machines);
               setPendingPurchaseID(response.id);
             },
           });
@@ -266,19 +284,19 @@ const SubscriptionEdit = ({
                   min={
                     subscription.statuses.is_downsizeable
                       ? 1
-                      : subscription.number_of_machines
+                      : subscription.current_number_of_machines
                   }
                   max={
                     subscription.statuses.is_upsizeable
                       ? undefined
-                      : subscription.number_of_machines
+                      : subscription.current_number_of_machines
                   }
                   name="size"
                   type="number"
                   wrapperClassName="u-sv3"
                 />
                 <ResizeSummary
-                  oldNumberOfMachines={subscription.number_of_machines}
+                  oldNumberOfMachines={subscription.current_number_of_machines}
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}
