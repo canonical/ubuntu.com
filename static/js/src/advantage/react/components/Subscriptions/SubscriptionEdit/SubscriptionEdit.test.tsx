@@ -313,7 +313,7 @@ describe("SubscriptionEdit", () => {
   describe("generateSchema", () => {
     it("allows a downsizable sub to enter a lower number", async () => {
       subscription = userSubscriptionFactory.build({
-        number_of_machines: 5,
+        current_number_of_machines: 5,
         statuses: userSubscriptionStatusesFactory.build({
           is_downsizeable: true,
         }),
@@ -326,7 +326,7 @@ describe("SubscriptionEdit", () => {
 
     it("does not allow downsizable sub to enter less than 1", async () => {
       subscription = userSubscriptionFactory.build({
-        number_of_machines: 5,
+        current_number_of_machines: 5,
         statuses: userSubscriptionStatusesFactory.build({
           is_downsizeable: true,
         }),
@@ -339,7 +339,7 @@ describe("SubscriptionEdit", () => {
 
     it("does not allow a non downsizable sub to enter a lower number", async () => {
       subscription = userSubscriptionFactory.build({
-        number_of_machines: 5,
+        current_number_of_machines: 5,
         statuses: userSubscriptionStatusesFactory.build({
           is_downsizeable: false,
         }),
@@ -352,7 +352,7 @@ describe("SubscriptionEdit", () => {
 
     it("allows an upsizable sub to enter a higher number", async () => {
       subscription = userSubscriptionFactory.build({
-        number_of_machines: 5,
+        current_number_of_machines: 5,
         statuses: userSubscriptionStatusesFactory.build({
           is_upsizeable: true,
         }),
@@ -365,7 +365,7 @@ describe("SubscriptionEdit", () => {
 
     it("does not allow a non upsizable sub to enter a higher number", async () => {
       subscription = userSubscriptionFactory.build({
-        number_of_machines: 5,
+        current_number_of_machines: 5,
         statuses: userSubscriptionStatusesFactory.build({
           is_upsizeable: false,
         }),

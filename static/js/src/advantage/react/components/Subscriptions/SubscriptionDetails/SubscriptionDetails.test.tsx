@@ -216,4 +216,28 @@ describe("SubscriptionDetails", () => {
     expect(notification.exists()).toBe(true);
     expect(notification.prop("title")).toBe("Test notification");
   });
+
+  it("shows a notification when the current number of machine is lower than the number of machines", () => {
+    const contract = userSubscriptionFactory.build({
+      current_number_of_machines: 15,
+      number_of_machines: 20,
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+        />
+      </QueryClientProvider>
+    );
+
+    const notification = wrapper.find(Notification);
+    expect(notification.exists()).toBe(true);
+    expect(notification.prop("severity")).toBe("caution");
+    expect(wrapper.find(".p-notification__message").text()).toBe(
+      "The machine entitlement below will update to 15 at the next billing cycle on 10 Jul 2022."
+    );
+  });
 });
