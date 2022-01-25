@@ -27,12 +27,12 @@
     <div class="col-8 u-align--center u-vertically-center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/86148922-Automotive-in-car-cockpit-cropped.svg",
-          alt="",
-          width="605",
-          height="380",
-          hi_def=True,
-          loading="auto",
+        url="https://assets.ubuntu.com/v1/86148922-Automotive-in-car-cockpit-cropped.svg",
+        alt="",
+        width="605",
+        height="380",
+        hi_def=True,
+        loading="auto",
         ) | safe
       }}
     </div>
@@ -42,125 +42,116 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2 class="p-muted-heading u-align--center u-sv3">Accelerating on Ubuntu</h2>
-    <ul class="p-inline-images u-no-margin--bottom">
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/4f0688c6-Toyota_Logo_silver.png",
-              alt="Toyota",
-              height="88",
-              width="105",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/1e265e27-bmw-new-2020.svg",
-              alt="BMW",
-              height="88",
-              width="88",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/578dbfb5-Volkswagen_logo_2019.svg.png",
-              alt="Volkswagen",
-              height="88",
-              width="88",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/9a0de5dd-Ford-Logo.svg",
-              alt="Ford",
-              height="55",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/9320c145-Scania_Logo-Symbol.svg",
-              alt="Scania",
-              height="88",
-              width="92",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/e99b843a-Bosch_Logo-flat.svg",
-              alt="Bosch",
-              height="31",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/d1da96af-Continental-Logo.svg",
-              alt="Continental",
-              height="54",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/547ef405-uber.svg",
-              alt="Uber",
-              height="50",
-              width="144",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "style": "max-width: 7rem;"},
-            ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/4a1c3691-lyft.svg",
-              alt="Eurotech logo",
-              height="88",
-              width="124",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo", "style": "max-width: 6rem;"},
-            ) | safe
-          }}
-      </li>
-    </ul>
+    <div class="p-logo-section__items u-no-margin--bottom">
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/85be122c-toyota-logo.png",
+          alt="Toyota",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/59af2c8f-bmw-logo.png",
+          alt="BMW",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e10b8957-vw-logo.png",
+          alt="Volkswagen",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3263fb35-ford-logo.png",
+          alt="Ford",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/52e19575-scania-logo.png",
+          alt="Scania",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/466c2690-bosch-logo.png",
+          alt="Bosch",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/7e3ec23a-continetal-logo.png",
+          alt="Continental",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/6889bfcb-uber-logo.png",
+          alt="Uber",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/dea8779e-eurotech-group-logo.png",
+          alt="Eurotech",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -179,11 +170,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/cef9fb09-automotive-business-software.svg",
-          alt="",
-          height="320",
-          width="420",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/cef9fb09-automotive-business-software.svg",
+        alt="",
+        height="320",
+        width="420",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -195,11 +186,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/af98e3d6-automotive_car-network.svg",
-          alt="",
-          height="210",
-          width="360",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/af98e3d6-automotive_car-network.svg",
+        alt="",
+        height="210",
+        width="360",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -226,11 +217,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
-          alt="",
-          height="200",
-          width="350",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
+        alt="",
+        height="200",
+        width="350",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -242,11 +233,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/0631c9dc-FinancialServicesPage-GetStarted-AI_2020.svg",
-          alt="",
-          height="230",
-          width="252",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/0631c9dc-FinancialServicesPage-GetStarted-AI_2020.svg",
+        alt="",
+        height="230",
+        width="252",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -271,15 +262,15 @@
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       <a href="https://www.brighttalk.com/webcast/6793/416900/mastering-multicloud-with-slurm-and-juju">
-      {{
-        image(
+        {{
+          image(
           url="https://assets.ubuntu.com/v1/d1b5ac75-Automotive-Masters-vid-screen.png",
           alt="",
           height="229",
           width="400",
           hi_def=True,
-        ) | safe
-      }}
+          ) | safe
+        }}
       </a>
     </div>
   </div>
@@ -290,11 +281,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/2bd31151-Automotive-in-car-cockpit-sized.svg",
-          alt="",
-          height="250",
-          width="429",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/2bd31151-Automotive-in-car-cockpit-sized.svg",
+        alt="",
+        height="250",
+        width="429",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -321,11 +312,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/8998cab5-control-thin.svg",
-          alt="",
-          height="326",
-          width="326",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/8998cab5-control-thin.svg",
+        alt="",
+        height="326",
+        width="326",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -337,11 +328,11 @@
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/0be66895-Automotive-car-sensor.svg",
-          alt="",
-          height="260",
-          width="455",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/0be66895-Automotive-car-sensor.svg",
+        alt="",
+        height="260",
+        width="455",
+        hi_def=True,
         ) | safe
       }}
     </div>
@@ -368,9 +359,9 @@
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--small">
       {% include "automotive/_chassis_animation.html" %}
-      </div>
     </div>
   </div>
+</div>
 </section>
 
 <section class="p-strip">
@@ -379,20 +370,20 @@
       <div class="p-logo-header u-hide--small">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
-            alt="ARM",
-            height="17",
-            width="56",
-            hi_def=True,
+          url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
+          alt="ARM",
+          height="17",
+          width="56",
+          hi_def=True,
           ) | safe
         }}    
         {{
           image(
-            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-            alt="Nvidia",
-            height="26",
-            width="136",
-            hi_def=True,
+          url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+          alt="Nvidia",
+          height="26",
+          width="136",
+          hi_def=True,
           ) | safe
         }}        
         {{ image (
@@ -420,12 +411,12 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/b2b4d912-community-support-thin.svg",
-          alt="",
-          height="120",
-          width="96",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/b2b4d912-community-support-thin.svg",
+        alt="",
+        height="120",
+        width="96",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--5">Open source 2.0</h2>
@@ -438,12 +429,12 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/c53664cd-Security_updates.svg",
-          alt="",
-          height="120",
-          width="201",
-          hi_def=True,
-          attrs={"class": "u-hide--small"}
+        url="https://assets.ubuntu.com/v1/c53664cd-Security_updates.svg",
+        alt="",
+        height="120",
+        width="201",
+        hi_def=True,
+        attrs={"class": "u-hide--small"}
         ) | safe
       }}
       <h2 class="p-heading--5">Safety first</h2>
@@ -455,12 +446,12 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-          alt="",
-          height="120",
-          width="120",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
+        alt="",
+        height="120",
+        width="120",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--5">Long term support</h2>
@@ -475,12 +466,12 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
-          alt="",
-          height="120",
-          width="198",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+        alt="",
+        height="120",
+        width="198",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--5">Open source licensing</h2>
@@ -492,12 +483,12 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-          alt="",
-          height="120",
-          width="210",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="",
+        height="120",
+        width="210",
+        hi_def=True,
+        attrs={"class": "u-hide--small"},
         ) | safe
       }}
       <h2 class="p-heading--5">Connected car security</h2>
@@ -515,11 +506,11 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png",
-          alt="",
-          height="100",
-          width="223",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png",
+        alt="",
+        height="100",
+        width="223",
+        hi_def=True,
         ) | safe
       }}
       <h2 class="p-heading--5">Software strategy acceleration</h2>
@@ -533,11 +524,11 @@
     <div class="col-6">
       {{
         image(
-          url="https://assets.ubuntu.com/v1/7de55930-canonical-logo1.png",
-          alt="",
-          height="100",
-          width="223",
-          hi_def=True,
+        url="https://assets.ubuntu.com/v1/7de55930-canonical-logo1.png",
+        alt="",
+        height="100",
+        width="223",
+        hi_def=True,
         ) | safe
       }}
       <h2 class="p-heading--5">Domain experts</h2>
@@ -547,17 +538,18 @@
         <li class="p-list__item is-ticked">Get to market faster.</li>
         <li class="p-list__item is-ticked">Drive down infra costs.</li>
         <li class="p-list__item is-ticked">Accelerate innovation.</li>
-      <p>
-        <a class="js-invoke-modal" href="/internet-of-things/contact-us?product=automotive">
-          Get in touch&nbsp;&rsaquo;
-        </a>
-      </p>
+        <p>
+          <a class="js-invoke-modal" href="/internet-of-things/contact-us?product=automotive">
+            Get in touch&nbsp;&rsaquo;
+          </a>
+        </p>
+      </div>
     </div>
+  </section>
+  
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
-</section>
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedded" data-form-id="1266" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=iot" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-{% endblock content %}
+  
+  {% endblock content %}
+  
