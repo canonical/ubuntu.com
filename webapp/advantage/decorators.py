@@ -81,9 +81,7 @@ def advantage_decorator(permission=None, response="json"):
                                 "next=/advantage/offers?test_backend=true"
                             )
 
-                        return flask.redirect(
-                            "/login?next=/advantage/offers"
-                        )
+                        return flask.redirect("/login?next=/advantage/offers")
 
                     if flask.request.path != "/advantage":
                         return flask.redirect(
