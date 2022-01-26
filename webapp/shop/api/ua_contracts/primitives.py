@@ -65,6 +65,7 @@ class Contract:
         name: str,
         product_id: str,
         entitlements: List[Entitlement],
+        number_of_active_machines: int,
         items: List[ContractItem] = None,
     ):
         self.id = id
@@ -72,6 +73,7 @@ class Contract:
         self.name = name
         self.product_id = product_id
         self.entitlements = entitlements
+        self.number_of_active_machines = number_of_active_machines
         self.items = items
 
 

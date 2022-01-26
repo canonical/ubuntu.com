@@ -297,6 +297,7 @@ def make_free_trial_contract(
     name: str = None,
     product_id: str = None,
     entitlements: List[Entitlement] = None,
+    number_of_active_machines: int = 0,
     items: List[ContractItem] = None,
 ) -> Contract:
     default_entitlements = [make_entitlement(), make_support_entitlement()]
@@ -308,6 +309,7 @@ def make_free_trial_contract(
         name=name or "Free trial",
         product_id=product_id or "product-name",
         entitlements=entitlements or default_entitlements,
+        number_of_active_machines=number_of_active_machines,
         items=items or default_items,
     )
 
@@ -318,6 +320,7 @@ def make_shop_contract(
     name: str = None,
     product_id: str = None,
     entitlements: List[Entitlement] = None,
+    number_of_active_machines: int = 0,
     items: List[ContractItem] = None,
 ) -> Contract:
     default_entitlements = [make_entitlement(), make_support_entitlement()]
@@ -345,6 +348,7 @@ def make_shop_contract(
         name=name or "Free trial",
         product_id=product_id or "product-name",
         entitlements=entitlements or default_entitlements,
+        number_of_active_machines=number_of_active_machines,
         items=items or default_items,
     )
 

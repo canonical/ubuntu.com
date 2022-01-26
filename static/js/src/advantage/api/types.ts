@@ -55,6 +55,7 @@ export type UserSubscription = {
   marketplace: UserSubscriptionMarketplace;
   current_number_of_machines: number;
   number_of_machines: number;
+  number_of_active_machines: number;
   period: UserSubscriptionPeriod | null;
   price: number | null;
   product_name: string | null;

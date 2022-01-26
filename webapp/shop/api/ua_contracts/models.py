@@ -64,6 +64,7 @@ class UserSubscription:
         type: str,
         start_date: str,
         number_of_machines: int,
+        number_of_active_machines: int,
         current_number_of_machines: int,
         machine_type: str,
         marketplace: str,
@@ -85,6 +86,7 @@ class UserSubscription:
         self.start_date = start_date
         self.end_date = end_date
         self.number_of_machines = number_of_machines
+        self.number_of_active_machines = number_of_active_machines
         self.current_number_of_machines = current_number_of_machines
         self.machine_type = machine_type
         self.marketplace = marketplace

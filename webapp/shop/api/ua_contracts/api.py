@@ -78,12 +78,16 @@ class UAContractsAPI:
 
         return accounts
 
-    def get_account_contracts(self, account_id: str):
+    def get_account_contracts(
+        self, account_id: str, include_active_machines: bool = False
+    ):
+        include_active_machines = str(include_active_machines).lower()
         response = self._request(
             method="get",
             path=(
                 f"v1/accounts/{account_id}/contracts"
                 f"?productTags=ua,classic,pro,blender"
+                f"&include-active-machines={include_active_machines}"
             ),
             error_rules=["default"],
         )

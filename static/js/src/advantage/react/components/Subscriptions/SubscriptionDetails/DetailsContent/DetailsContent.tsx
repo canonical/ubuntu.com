@@ -108,6 +108,7 @@ const DetailsContent = ({ selectedId }: Props) => {
       className="u-sv4 u-no-margin--bottom"
     />
   ) : null;
+
   return (
     <div>
       <Row className="u-sv4">
@@ -143,6 +144,15 @@ const DetailsContent = ({ selectedId }: Props) => {
             title: isBlender ? "Users" : "Machines",
             value: subscription.number_of_machines,
           },
+          ...(isBlender
+            ? // Don't show the column for Blender subscriptions.
+              []
+            : [
+                {
+                  title: "Active machines",
+                  value: subscription.number_of_active_machines
+                },
+              ])
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}

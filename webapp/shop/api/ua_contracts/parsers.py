@@ -159,12 +159,18 @@ def parse_contract(raw_contract: Dict) -> Contract:
     raw_items = contract_info.get("items")
     items = parse_contract_items(raw_items)
 
+    number_of_active_machines = 0
+    if "activeMachines" in contract_info:
+        active_machines = contract_info["activeMachines"]
+        number_of_active_machines = active_machines["activeMachines"]
+
     return Contract(
         id=contract_info.get("id"),
         account_id=account_info.get("id"),
         name=contract_info.get("name"),
         product_id=contract_info.get("products")[0],
         entitlements=entitlements,
+        number_of_active_machines=number_of_active_machines,
         items=items,
     )
 
