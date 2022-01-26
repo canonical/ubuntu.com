@@ -208,11 +208,11 @@ def build_final_user_subscriptions(
         statuses = get_user_subscription_statuses(
             account=account,
             type=type,
+            current_number_of_machines=current_number_of_machines,
             end_date=end_date,
             renewal=renewal,
             subscription_id=subscription_id,
             subscriptions=subscriptions or [],
-            listing=listing or None,
         )
 
         id = make_user_subscription_id(
