@@ -3,7 +3,6 @@ from distutils.util import strtobool
 from functools import wraps
 
 import flask
-from flask import g
 import talisker.requests
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
@@ -117,7 +116,7 @@ def advantage_decorator(permission=None, response="json"):
                     return flask.jsonify(message), 401
 
             # init API instance
-            g.api = UAContractsAPI(
+            ua_contracts_api = UAContractsAPI(
                 session=session,
                 authentication_token=(user_token or guest_token),
                 token_type=("Macaroon" if user_token else "Bearer"),
@@ -125,9 +124,9 @@ def advantage_decorator(permission=None, response="json"):
             )
 
             if response == "html":
-                g.api.set_is_for_view(True)
+                ua_contracts_api.set_is_for_view(True)
 
-            return func(*args, **kwargs)
+            return func(ua_contracts_api, *args, **kwargs)
 
         return decorated_function
 
