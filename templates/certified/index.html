@@ -122,6 +122,17 @@
       <h2>Ubuntu certified servers</h2>
       <p>Ubuntu Server and Canonical’s tools give you the ability to deploy your workloads as easily and repeatably on bare metal as if they were in the cloud.</p>
       <p>Deploying on Ubuntu Certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
+      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
+      <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
+        {% for server_vendor in server_vendors %}
+          {% if server_vendor.vendor in ['Dell', 'Lenovo', 'HPE'] %}
+            <li class="p-inline-list__item">
+              <a href="/certified/servers?vendor={{ server_vendor.vendor }}">{{ server_vendor.vendor }}&nbsp;({{ server_vendor.total }})</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
       <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
       <ul class="p-inline-list--midline">
         {% for server_release, total in server_releases.items() %}

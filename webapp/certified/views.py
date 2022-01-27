@@ -387,6 +387,7 @@ def certified_home():
             desktop_releases=desktop_releases,
             desktop_vendors=desktop_vendors,
             server_releases=server_releases,
+            server_vendors=server_vendors,
             iot_releases=iot_releases,
             iot_vendors=iot_vendors,
             soc_releases=soc_releases,
