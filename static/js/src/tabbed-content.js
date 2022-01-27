@@ -57,7 +57,7 @@
       the reveal of the chosen tab content
       @param {Array} tabs an array of tabs within a container
     */
-  const attachEvents = (tabs) => {
+  const attachEvents = (tabs, persistURLHash) => {
     tabs.forEach(function (tab, index) {
       tab.addEventListener("keyup", function (e) {
         let compatibleKeys = IEKeys;
@@ -75,6 +75,18 @@
 
       tab.addEventListener("click", (e) => {
         e.preventDefault();
+
+        if (persistURLHash) {
+          // if we're adding the ID of the tab to the URL
+          // this prevents the page attempting to jump to
+          // the section with that ID
+          history.pushState({}, "", tab.href);
+
+          // Update the URL again with the same hash, then go back
+          history.pushState({}, "", tab.href);
+          history.back();
+        }
+
         setActiveTab(tab, tabs);
       });
 
@@ -120,10 +132,27 @@
     var tabContainers = [].slice.call(document.querySelectorAll(selector));
 
     tabContainers.forEach((tabContainer) => {
+      // if the tab container has this data attribute, the id of the tab
+      // is added to the URL, and a particular tab can be directly linked
+      var persistURLHash = tabContainer.getAttribute("data-maintain-hash");
+      var currentHash = window.location.hash;
+
       var tabs = [].slice.call(
         tabContainer.querySelectorAll("[aria-controls]")
       );
-      attachEvents(tabs);
+      attachEvents(tabs, persistURLHash);
+
+      if (persistURLHash && currentHash) {
+        var activeTab = document.querySelector(
+          ".p-tabs__link[href='" + currentHash + "']"
+        );
+
+        if (activeTab) {
+          setActiveTab(activeTab, tabs);
+        }
+      } else {
+        setActiveTab(tabs[0], tabs);
+      }
     });
   };
 
