@@ -1,0 +1,38 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}The most comprehensive OpenStack cheat sheet{% endblock %}
+{% block meta_description %}Instances (Nova), networks (Neutron), images (Glance), volumes (Cinder), identities (Keystone) and much more. Get started with OpenStack quickly.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1q37DrtjZhcgRK4NuL3CUsCv1aU6AQDX5uqtQ4ndVT-A/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-6">
+      <h1>OpenStack cheat sheet</h1>
+      <p class="p-heading--4">The most comprehensive OpenStack cheat sheet for beginners and more advanced users.</p>
+      <p>What's included:</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked"> Keystone </li>
+          <li class="p-list__item is-ticked"> Glance </li>
+          <li class="p-list__item is-ticked"> Neutron </li>
+          <li class="p-list__item is-ticked"> Nova </li>
+          <li class="p-list__item is-ticked"> Cinder </li>
+        </ul>
+      <p>Get the following OpenStack cheat sheet for free. No registration needed!</p>
+      <p><a href="https://assets.ubuntu.com/v1/8d3130a1-OpenStack.cheat.sheet.1.pdf" class="p-button--positive">Get the OpenStack cheat sheet</a></p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7bf0af87-Openstack-cheatsheet-grfx.png",
+        alt="",
+        width="1504",
+        height="1085",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>    
+</section>
+
+{% endblock content %}
