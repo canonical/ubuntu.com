@@ -209,3 +209,43 @@ class CertificationAPI:
         return self._get(
             "vendorsummaries/server", params={"limit": limit, "offset": offset}
         ).json()
+
+
+class PartnersAPI:
+    def __init__(self, session):
+        self.session = session
+        self.base_url = "https://partners.ubuntu.com/partners.json"
+
+    def _get(self, params=None):
+
+        # Get the JSON data
+        response = self.session.get(
+            f"{self.base_url}",
+            params=params,
+        )
+
+        # Raise any HTTP errors
+        response.raise_for_status()
+
+        return response.json()
+
+    def get_partner_by_name(self, name):
+        # Map inconsistent vendor names vs partner name
+        map_vendors = {
+            "Ericsson, Inc.": "Ericsson",
+            "HP": "Hewlett Packard",
+            "Intel Corp": "Intel",
+            "Huawei Technologies Co., Ltd.": "Huawei",
+            "Mellanox Technologies": "Mellanox",
+            "NEC Corporation": "NEC",
+            "nVidia": "NVIDIA",
+            "Supermicro": "Super Micro Computer",
+            "ASUS Computers, Inc.": "ASUS",
+            "AAEON Technology Inc.": "AAEON",
+        }
+        if name in map_vendors:
+            name = map_vendors[name]
+
+        params = {"name": name}
+
+        return self._get(params)

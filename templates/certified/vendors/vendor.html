@@ -1,30 +1,29 @@
 {% extends "templates/base.html" %}
 
-{% block title %}Certified {{ vendor.name }} devices{% endblock %}
-{% block meta_description %}Devices by {{ vendor.name }} that have been certified for use with Ubuntu.{% endblock %}
-{% block meta_copydoc %}{% endblock %}
+{% block title %}Certified {{ vendor }} hardware{% endblock %}
+{% block meta_description %}Hardware by {{ vendor }} that have been certified for use with Ubuntu.{% endblock %}
 
 {% block outer_content %}
 <section class="p-strip--suru-topped is-bordered">
-  <div class="u-fixed-width u-sv3">
+  <div class="u-fixed-width">
     <a href="/certified">&lsaquo;&nbsp;Certified hardware</a>
   </div>
   <div class="row u-vertically-center">
     <div class="col-8">
-      <h1>Ubuntu certified {{ vendor.name }} hardware</h1>
-      <p>{{ vendor.description }}</p>
-      <a href="{{ vendor.site_url }}" class="p-link--external" target="blank">Visit {{ vendor.name }}'s website here</a>
+      <h1>Ubuntu certified {{ vendor }} hardware</h1>
+      <p>{{ vendor_data.short_description }}</p>
+      <a {% if vendor == 'Dell' %}href="https://www.dell.com/" {% else %}href="{{ vendor_data.partner_website }}" {% endif %} target="blank">Visit {{ vendor }}'s website here</a>
     </div>
     <div class="col-3 u-hide--small u-align--center">
-      <img src="{{vendor.logo_url}}"/>
+      <img src="{{vendor_data.logo}}"/>
     </div>
   </div>
 </section>
 
 {% with
-  title="All " + vendor.name + " certified hardware",
+  title="All " + vendor + " certified hardware",
   query=query,
-  placeholder="Search in all " + vendor.name + " certified devices",
+  placeholder="Search in all " + vendor + " certified devices",
   total_results=total_results,
   total_pages=total_pages,
   offset=offset,
