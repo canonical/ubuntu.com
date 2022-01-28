@@ -146,23 +146,6 @@ context("Interactive marketo forms", () => {
     }
   );
 
-  it("should check interactive contact modal on /advantage", () => {
-    cy.visit("/advantage");
-    cy.acceptCookiePolicy();
-    cy.findByRole("link", {
-      name: /Join our free beta programme for Ubuntu Pro on prem/,
-    }).click();
-    cy.findByRole("link", { name: /Next/ }).click();
-    cy.findByLabelText(/First name:/).type("Test");
-    cy.findByLabelText(/Last name:/).type("Test");
-    cy.findByLabelText(/Work email:/).type("test@test.com");
-    cy.findByLabelText(/I agree to receive information/).click({
-      force: true,
-    });
-    cy.findByText(/Let's discuss/).click();
-    cy.findByRole("heading", { name: /Thank you/ });
-  });
-
   // wrote separate test for some pages as there are same email inputs in the modal and in the page.
   it(
     "should check interactive contact modal With Email TestId",
@@ -268,21 +251,21 @@ context("Interactive marketo forms", () => {
 });
 
 context("engage forms", () => {
-    it("should check forms on engage pages", () => {
-      cy.visit("/engage/dockerandros");
-      cy.acceptCookiePolicy();
-      cy.findByLabelText(/First name:/).type("Test");
-      cy.findByLabelText(/Last name:/).type("Test");
-      cy.findByLabelText(/Work email:/).type("test@test.com");
-      cy.findByLabelText(/Company name:/).type("Test");
-      cy.findByLabelText(/Job title:/).type("test", {
-          force: true,
-          });
-      cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
-      cy.findByLabelText(/I agree to receive information/).click({
-          force: true,
-      });
-      cy.findByText(/Download the whitepaper/).click();
-      cy.findByRole("heading", { name: /Thank you/ });
+  it("should check forms on engage pages", () => {
+    cy.visit("/engage/dockerandros");
+    cy.acceptCookiePolicy();
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Work email:/).type("test@test.com");
+    cy.findByLabelText(/Company name:/).type("Test");
+    cy.findByLabelText(/Job title:/).type("test", {
+      force: true,
     });
+    cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+    cy.findByLabelText(/I agree to receive information/).click({
+      force: true,
+    });
+    cy.findByText(/Download the whitepaper/).click();
+    cy.findByRole("heading", { name: /Thank you/ });
   });
+});
