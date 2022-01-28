@@ -12,7 +12,7 @@
     <div class="col-8">
       <h1>Ubuntu certified {{ vendor }} hardware</h1>
       <p>{{ vendor_data.short_description }}</p>
-      <a href="{{ vendor_data.partner_website }}" target="blank">Visit {{ vendor }}'s website here</a>
+      <a {% if vendor == 'Dell' %}href="https://www.dell.com/" {% else %}href="{{ vendor_data.partner_website }}" {% endif %} target="blank">Visit {{ vendor }}'s website here</a>
     </div>
     <div class="col-3 u-hide--small u-align--center">
       <img src="{{vendor_data.logo}}"/>
