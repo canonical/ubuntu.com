@@ -72,30 +72,34 @@ from webapp.views import (
     mirrors_query,
 )
 
+from webapp.shop.views import (
+    account_view,
+    invoices_view,
+    download_invoice,
+    payment_methods_view,
+    post_payment_methods,
+    ensure_purchase_account,
+    get_customer_info,
+    post_customer_info,
+    post_anonymised_customer_info,
+    get_purchase,
+    post_stripe_invoice_id,
+    get_last_purchase_ids,
+    support,
+)
+
 from webapp.shop.advantage.views import (
     accept_renewal,
     advantage_view,
     advantage_account_users_view,
     advantage_shop_view,
-    payment_methods_view,
     advantage_thanks_view,
-    ensure_purchase_account,
-    get_customer_info,
-    get_purchase,
     get_renewal,
     post_advantage_subscriptions,
-    post_anonymised_customer_info,
-    post_payment_methods,
     post_auto_renewal_settings,
-    post_customer_info,
-    post_stripe_invoice_id,
     cancel_advantage_subscriptions,
-    account_view,
-    invoices_view,
-    download_invoice,
     get_account_offers,
     get_user_subscriptions,
-    get_last_purchase_ids,
     get_contract_token,
     cancel_trial,
     get_account_users,
@@ -105,7 +109,6 @@ from webapp.shop.advantage.views import (
     put_contract_entitlements,
     blender_thanks_view,
     blender_shop_view,
-    support,
     post_offer,
     get_advantage_offers,
 )
@@ -293,14 +296,9 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
-app.add_url_rule("/support", view_func=support)
 app.add_url_rule("/advantage", view_func=advantage_view)
 app.add_url_rule(
     "/advantage/user-subscriptions", view_func=get_user_subscriptions
-)
-app.add_url_rule(
-    "/advantage/last-purchase-ids/<account_id>",
-    view_func=get_last_purchase_ids,
 )
 app.add_url_rule(
     "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
@@ -324,17 +322,6 @@ app.add_url_rule(
 )
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
 app.add_url_rule("/advantage/subscribe/blender", view_func=blender_shop_view)
-app.add_url_rule("/account/payment-methods", view_func=payment_methods_view)
-app.add_url_rule(
-    "/account/payment-methods",
-    view_func=post_payment_methods,
-    methods=["POST"],
-)
-app.add_url_rule("/account/invoices", view_func=invoices_view)
-app.add_url_rule(
-    "/account/invoices/download/<purchase_id>",
-    view_func=download_invoice,
-)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
 )
@@ -357,31 +344,8 @@ app.add_url_rule(
 )
 app.add_url_rule("/advantage/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
-    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
-)
-app.add_url_rule(
-    "/advantage/customer-info-anon",
-    view_func=post_anonymised_customer_info,
-    methods=["POST"],
-)
-app.add_url_rule(
     "/advantage/set-auto-renewal",
     view_func=post_auto_renewal_settings,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/advantage/<tx_type>/<tx_id>/invoices/<invoice_id>",
-    view_func=post_stripe_invoice_id,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/advantage/purchases/<purchase_id>",
-    view_func=get_purchase,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/advantage/purchase-account",
-    view_func=ensure_purchase_account,
     methods=["POST"],
 )
 app.add_url_rule(
@@ -391,11 +355,6 @@ app.add_url_rule(
     "/advantage/trial/<account_id>",
     view_func=cancel_trial,
     methods=["DELETE"],
-)
-app.add_url_rule(
-    "/advantage/customer-info/<account_id>",
-    view_func=get_customer_info,
-    methods=["GET"],
 )
 
 app.add_url_rule(
@@ -427,7 +386,64 @@ app.add_url_rule(
     methods=["GET"],
 )
 
-app.add_url_rule("/account", view_func=account_view)
+# shop
+app.add_url_rule(
+    "/account",
+    view_func=account_view,
+)
+app.add_url_rule(
+    "/account/invoices",
+    view_func=invoices_view,
+)
+app.add_url_rule(
+    "/account/invoices/download/<purchase_id>",
+    view_func=download_invoice,
+)
+app.add_url_rule(
+    "/account/payment-methods",
+    view_func=payment_methods_view,
+)
+app.add_url_rule(
+    "/account/payment-methods",
+    view_func=post_payment_methods,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/purchase-account",
+    view_func=ensure_purchase_account,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/customer-info/<account_id>",
+    view_func=get_customer_info,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/account/customer-info",
+    view_func=post_customer_info,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/customer-info-anon",
+    view_func=post_anonymised_customer_info,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/purchases/<purchase_id>",
+    view_func=get_purchase,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/account/<tx_type>/<tx_id>/invoices/<invoice_id>",
+    view_func=post_stripe_invoice_id,
+    methods=["POST"],
+)
+app.add_url_rule("/support", view_func=support)
+app.add_url_rule(
+    "/account/last-purchase-ids/<account_id>",
+    view_func=get_last_purchase_ids,
+)
+# end of shop
 
 app.add_url_rule(
     (

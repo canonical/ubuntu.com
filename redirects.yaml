@@ -911,3 +911,12 @@ nvidia: /engage/ubuntu-at-nvidia-gtc-2021
 # Move /securtiy/cve to /security/cves
 security/cve: /security/cves
 security/cve/sitemap(?P<suffix>.*).xml: /security/cves/sitemap{suffix}.xml
+
+# Shop redirects
+/advantage/purchase-account: "/account/purchase-account"
+/advantage/customer-info/(?P<account_id>.*): "/account/customer-info/{account_id}"
+/advantage/customer-info: "/account/customer-info"
+/advantage/customer-info-anon: "/account/customer-info-anon"
+/advantage/purchases/(?P<purchase_id>.*): /account/purchases/{purchase_id}
+/advantage/(?P<tx_type>.*)/(?P<tx_id>.*)/invoices/(?P<invoice_id>.*): "/account/{tx_type}/{tx_id}/invoices/{invoice_id}"
+/advantage/last-purchase-ids/(?P<account_id>.*): "/account/last-purchase-ids/{account_id}"
