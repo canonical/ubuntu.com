@@ -6,8 +6,9 @@ import flask
 from flask import g
 import talisker.requests
 
-from webapp.advantage.ua_contracts.api import UAContractsAPI
-from webapp.cube.api import BadgrAPI, EdxAPI
+from webapp.shop.api.ua_contracts.api import UAContractsAPI
+from webapp.shop.api.badgr.api import BadgrAPI
+from webapp.shop.api.edx.api import EdxAPI
 from webapp.login import user_info
 from requests import Session
 

@@ -1,16 +1,21 @@
 import unittest
 from typing import List, Dict
 
-from tests.advantage.helpers import Session, Response, make_client, get_fixture
-from webapp.advantage.ua_contracts.api import (
+from tests.shop.advantage.helpers import (
+    Session,
+    Response,
+    make_client,
+    get_fixture,
+)
+from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
     UnauthorizedError,
     AccessForbiddenError,
 )
-from webapp.advantage.models import Listing
-from webapp.advantage.ua_contracts.primitives import (
+from webapp.shop.api.ua_contracts.models import Listing
+from webapp.shop.api.ua_contracts.primitives import (
     Account,
     Contract,
     Subscription,

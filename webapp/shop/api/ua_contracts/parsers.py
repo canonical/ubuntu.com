@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-from webapp.advantage.ua_contracts.primitives import (
+from webapp.shop.api.ua_contracts.primitives import (
     Account,
     Contract,
     ContractItem,
@@ -10,7 +10,12 @@ from webapp.advantage.ua_contracts.primitives import (
     SubscriptionItem,
     User,
 )
-from webapp.advantage.models import Listing, Product, OfferItem, Offer
+from webapp.shop.api.ua_contracts.models import (
+    Listing,
+    Product,
+    OfferItem,
+    Offer,
+)
 
 
 def parse_product(raw_product: Dict) -> Product:

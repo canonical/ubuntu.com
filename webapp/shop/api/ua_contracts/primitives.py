@@ -1,6 +1,6 @@
 from typing import List
 
-from webapp.advantage.models import Entitlement
+from webapp.shop.api.ua_contracts.models import Entitlement
 
 
 class Renewal:

@@ -4,7 +4,7 @@ from typing import List, Dict
 import pytz
 from dateutil.parser import parse
 
-from webapp.advantage.ua_contracts.helpers import (
+from webapp.shop.api.ua_contracts.helpers import (
     get_items_aggregated_values,
     get_machine_type,
     get_user_subscription_statuses,
@@ -14,13 +14,13 @@ from webapp.advantage.ua_contracts.helpers import (
     group_shop_items,
     get_current_number_of_machines,
 )
-from webapp.advantage.ua_contracts.primitives import (
+from webapp.shop.api.ua_contracts.primitives import (
     Contract,
     Account,
     Subscription,
     ContractItem,
 )
-from webapp.advantage.models import Listing, UserSubscription
+from webapp.shop.api.ua_contracts.models import Listing, UserSubscription
 
 
 def build_user_subscriptions(

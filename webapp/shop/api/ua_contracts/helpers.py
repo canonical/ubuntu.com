@@ -4,8 +4,8 @@ from typing import List, Optional, Dict
 import pytz
 from dateutil.parser import parse
 
-from webapp.advantage.models import Listing, Entitlement
-from webapp.advantage.ua_contracts.primitives import (
+from webapp.shop.api.ua_contracts.models import Listing, Entitlement
+from webapp.shop.api.ua_contracts.primitives import (
     Subscription,
     ContractItem,
     Renewal,
