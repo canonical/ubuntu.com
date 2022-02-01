@@ -1,12 +1,9 @@
 export async function getPurchase(purchaseID) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(
-    `/account/purchases/${purchaseID}${queryString}`,
-    {
-      cache: "no-store",
-    }
-  );
+  let response = await fetch(`/account/purchases/${purchaseID}${queryString}`, {
+    cache: "no-store",
+  });
 
   let data = await response.json();
   return data;
