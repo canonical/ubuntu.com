@@ -380,4 +380,4 @@ $ lxc list
 
 
 For more detailed information, refer to the
-[LXD documentation](https://lxd.readthedocs.io).
+[LXD documentation](https://linuxcontainers.org/lxd/docs/master/).
