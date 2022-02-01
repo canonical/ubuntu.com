@@ -67,15 +67,21 @@
       </li>
     {% endif %}
 
-    {% if current_page < total_pages - 2 and current_page <= 2 %}
+    {% if current_page < total_pages - 2 and current_page == 1 %}
       <li class="p-pagination__item">
         <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
       </li>
     {% endif %}
 
-    {% if current_page < total_pages - 6 and current_page <= 3 %}
+    {% if current_page < total_pages - 3 and current_page == 1 %}
       <li class="p-pagination__item">
         <a href="?{{ modify_query({'offset': (current_page + 3) * limit}) }}" class="p-pagination__link">{{ current_page + 4 }}</a>
+      </li>
+    {% endif %}
+
+    {% if current_page < total_pages - 3 and current_page == 2 %}
+      <li class="p-pagination__item">
+        <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
       </li>
     {% endif %}
 
