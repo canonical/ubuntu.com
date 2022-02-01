@@ -947,9 +947,7 @@ class TestHelpers(unittest.TestCase):
                     "subscriptions": [
                         make_subscription(
                             id="sub-id-1",
-                            items=[
-                                make_subscription_item()
-                            ],
+                            items=[make_subscription_item()],
                         )
                     ],
                     "machines": 1,
