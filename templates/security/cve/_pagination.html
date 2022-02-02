@@ -79,7 +79,7 @@
       </li>
     {% endif %}
 
-    {% if current_page < total_pages - 3 and current_page == 2 %}
+    {% if current_page <= total_pages - 3 and current_page == 2 %}
       <li class="p-pagination__item">
         <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
       </li>
