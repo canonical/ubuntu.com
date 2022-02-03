@@ -4,7 +4,7 @@ import flask
 from requests.exceptions import HTTPError
 
 # Local
-from webapp.shop.decorators import advantage_decorator
+from webapp.shop.decorators import shop_decorator
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.api.ua_contracts.api import (
     UnauthorizedError,
@@ -36,7 +36,7 @@ SERVICES = {
 }
 
 
-@advantage_decorator(permission="user", response="html")
+@shop_decorator(area="account", permission="user", response="html")
 def account_view(*args):
     email = flask.session["openid"]["email"]
 
@@ -46,7 +46,7 @@ def account_view(*args):
     )
 
 
-@advantage_decorator(permission="user", response="html")
+@shop_decorator(area="account", permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
 def invoices_view(ua_contracts_api, **kwargs):
     marketplace = kwargs.get("marketplace")
@@ -120,7 +120,7 @@ def invoices_view(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="html")
+@shop_decorator(area="account", permission="user", response="html")
 def download_invoice(ua_contracts_api, **kwargs):
     purchase_id = kwargs.get("purchase_id")
     purchase = ua_contracts_api.get_purchase(purchase_id)
@@ -129,8 +129,8 @@ def download_invoice(ua_contracts_api, **kwargs):
     return flask.redirect(download_link)
 
 
-@advantage_decorator(permission="user", response="html")
-def payment_methods_view(ua_contracts_api):
+@shop_decorator(area="account", permission="user", response="html")
+def payment_methods_view(ua_contracts_api, **kwargs):
     account = None
     default_payment_method = None
     account_id = ""
@@ -177,7 +177,7 @@ def payment_methods_view(ua_contracts_api):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 @use_kwargs(post_payment_methods, location="json")
 def post_payment_methods(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -197,7 +197,7 @@ def post_payment_methods(ua_contracts_api, **kwargs):
     return response
 
 
-@advantage_decorator()
+@shop_decorator(area="account", )
 @use_kwargs(ensure_purchase_account, location="json")
 def ensure_purchase_account(ua_contracts_api, **kwargs):
     """
@@ -237,7 +237,7 @@ def ensure_purchase_account(ua_contracts_api, **kwargs):
     return flask.jsonify(account), 200
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 def get_customer_info(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
     response = {"success": False, "data": {}}
@@ -256,7 +256,7 @@ def get_customer_info(ua_contracts_api, **kwargs):
     return response
 
 
-@advantage_decorator(permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user_or_guest", response="json")
 @use_kwargs(post_customer_info, location="json")
 def post_customer_info(ua_contracts_api, **kwargs):
     payment_method_id = kwargs.get("payment_method_id")
@@ -276,7 +276,7 @@ def post_customer_info(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user_or_guest", response="json")
 @use_kwargs(post_anonymised_customer_info, location="json")
 def post_anonymised_customer_info(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -295,7 +295,7 @@ def post_anonymised_customer_info(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user_or_guest", response="json")
 def post_stripe_invoice_id(ua_contracts_api, **kwargs):
     tx_type = kwargs.get("tx_type")
     tx_id = kwargs.get("tx_id")
@@ -304,14 +304,14 @@ def post_stripe_invoice_id(ua_contracts_api, **kwargs):
     return ua_contracts_api.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
 
 
-@advantage_decorator(permission="user_or_guest", response="json")
+@shop_decorator(area="account", permission="user_or_guest", response="json")
 def get_purchase(ua_contracts_api, **kwargs):
     purchase_id = kwargs.get("purchase_id")
 
     return ua_contracts_api.get_purchase(purchase_id)
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="account", permission="user", response="json")
 def get_last_purchase_ids(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
     ua_contracts_api.set_convert_response(True)
@@ -332,7 +332,7 @@ def get_last_purchase_ids(ua_contracts_api, **kwargs):
     return flask.jsonify(last_purchase_ids)
 
 
-@advantage_decorator(response="html")
+@shop_decorator(area="account", response="html")
 def support(*args):
     return flask.render_template(
         "support/index.html",
