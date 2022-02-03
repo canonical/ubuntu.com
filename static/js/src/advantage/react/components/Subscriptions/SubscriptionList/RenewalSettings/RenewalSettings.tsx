@@ -117,7 +117,7 @@ function generateAutoRenewalToggles(
       filteredBillingSubscriptions.forEach((subscription) => {
         total += (subscription.price ?? 0) / 100;
         products.push(
-          `${subscription.number_of_machines}x ${subscription.product_name}`
+          `${subscription.current_number_of_machines}x ${subscription.product_name}`
         );
         if (!date) {
           date = subscription.end_date;
