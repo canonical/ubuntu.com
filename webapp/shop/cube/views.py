@@ -34,6 +34,10 @@ def cube_microcerts(
     """
     View for Microcerts homepage
     """
+
+    # Temporarily redirect to /cube while the beta is closed
+    return flask.redirect("/cube", code=302)
+
     sso_user = user_info(flask.session)
     study_labs = "course-v1:CUBE+study_labs+2020"
     account = None
@@ -389,3 +393,11 @@ def cube_study_labs_button(
         )
 
     return flask.jsonify({"text": text, "redirect_url": redirect_url})
+
+
+@cube_decorator(response="html")
+def cube_study(
+    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
+):
+    # Temporarily redirect to /cube while the beta is closed
+    return flask.redirect("/cube", code=302)
