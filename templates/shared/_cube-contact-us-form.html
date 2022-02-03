@@ -54,6 +54,11 @@
               </select>
             </li>
 
+            <li class="p-list__item">
+              <label for="Title" id="LblTitle" >Title</label>
+              <input id="Title" name="title" maxlength="255" aria-labelledby="LblTitle" type="text" class="is-required" required="" aria-required="true" >
+            </li>
+
             <li  class="p-list__item ">
               <label for="cube_ubuntu_experience" id="Lblcube_ubuntu_experience"  >What is your experience with Ubuntu?</label>
               <select id="cube_ubuntu_experience" name="cube_ubuntu_experience" aria-labelledby="Lblcube_ubuntu_experience" class="is-required" required="" >
@@ -67,7 +72,7 @@
         </fieldset>
 
         <fieldset class="u-no-margin--bottom">
-          <h3>About your interest in CUBE</h3>
+          <h3>About your interest in certification</h3>
           <ul class="p-list">
             <li class="p-list__item">
               <label class="p-checkbox" >
@@ -78,28 +83,58 @@
               </label>
             </li>
             <li class="p-list__item ">
-              <label for="cube_microcert_interest" id="Lblcube_microcert_interest"  >Which microcert are you most interested in taking?</label>
-              <select id="cube_microcert_interest" name="cube_microcert_interest" aria-labelledby="Lblcube_microcert_interest Instructcube_microcert_interest" class="is-required" required="" >
-                <option value="" disabled="disabled" selected="">Select...</option>
-                <option value="Ubuntu System Architecture">Ubuntu System Architecture</option>
-                <option value="Managing Packages in Ubuntu">Managing Packages in Ubuntu</option>
-                <option value="Using command line tools">Using command line tools</option>
-                <option value="Linux devices and filesystems">Linux devices and filesystems</option>
-                <option value="Bash shell scripting">Bash shell scripting</option>
-                <option value="Performing administrative tasks">Performing administrative tasks</option>
-                <option value="Managing System Services">Managing System Services</option>
-                <option value="Networking on Ubuntu">Networking on Ubuntu</option>
-                <option value="Securing Ubuntu">Securing Ubuntu</option>
-                <option value="Ubuntu Kernels">Ubuntu Kernels</option>
-                <option value="Configuring enterprise storage">Configuring enterprise storage</option>
-                <option value="Virtualisation">Virtualisation </option>
-                <option value="MicroK8s">MicroK8s</option>
-                <option value="MAAS">MAAS</option>
-                <option value="Juju">Juju</option>
-              </select>
+              <label for="cube_microcert_interest" id="Lblcube_microcert_interest" >What microcerts are you most interested in taking?</label>
+              <fieldset id="cube_microcert_interest" name="cube_microcert_interest" aria-labelledby="Lblcube_microcert_interest Instructcube_microcert_interest" >
+
+                <input value="yes" id="UbuntuSystemArchitecture" name="UbuntuSystemArchitecture" type="checkbox" />
+                <label for="UbuntuSystemArchitecture">Ubuntu System Architecture</label>
+
+                <input value="yes" id="ManagingPackagesInUbuntu" name="ManagingPackagesInUbuntu" type="checkbox" />
+                <label for="ManagingPackagesInUbuntu">Managing Packages in Ubuntu</label>
+
+                <input value="yes" id="UsingCommandLineTools" name="UsingCommandLineTools" type="checkbox" />
+                <label for="UsingCommandLineTools">Using command line tools</label>
+
+                <input value="yes" id="LinuxDevicesAndFilesystems" name="LinuxDevicesAndFilesystems" type="checkbox" />
+                <label for="LinuxDevicesAndFilesystems">Linux devices and filesystems</label>
+
+                <input value="yes" id="BashShellScriptings" name="BashShellScriptings" type="checkbox" />
+                <label for="BashShellScriptings">Bash shell scripting</label>
+
+                <input value="yes" id="PerformingAdministrativeTasks" name="PerformingAdministrativeTasks" type="checkbox" />
+                <label for="PerformingAdministrativeTasks">Performing administrative tasks</label>
+
+                <input value="yes" id="ManagingSystemServices" name="ManagingSystemServices" type="checkbox" />
+                <label for="ManagingSystemServices">Managing System Services</label>
+
+                <input value="yes" id="NetworkingOnUbuntu" name="NetworkingOnUbuntu" type="checkbox" />
+                <label for="NetworkingOnUbuntu">Networking on Ubuntu</label>
+
+                <input value="yes" id="SecuringUbuntu" name="SecuringUbuntu" type="checkbox" />
+                <label for="SecuringUbuntu">Securing Ubuntu</label>
+
+                <input value="yes" id="UbuntuKernels" name="UbuntuKernels" type="checkbox" />
+                <label for="UbuntuKernels">Ubuntu Kernels</label>
+
+                <input value="yes" id="ConfiguringEnterpriseStorage" name="ConfiguringEnterpriseStorage" type="checkbox" />
+                <label for="ConfiguringEnterpriseStorage">Configuring enterprise storage</label>
+
+                <input value="yes" id="Virtualisation" name="Virtualisation" type="checkbox" />
+                <label for="Virtualisation">Virtualisation</label>
+
+                <input value="yes" id="MicroK8s" name="MicroK8s" type="checkbox" />
+                <label for="MicroK8s">MicroK8s</label>
+
+                <input value="yes" id="MaaS" name="MaaS" type="checkbox" />
+                <label for="MaaS">MaaS</label>
+
+                <input value="yes" id="Juju" name="Juju" type="checkbox" />
+                <label for="Juju">Juju</label>
+
+              </fieldset>
             </li>
             <li  class="p-list__item  " id="comments">
-              <label for="Comments_from_lead__c" id="LblComments_from_lead__c"  >Why do you want CUBE certification?</label>
+              <label for="Comments_from_lead__c" id="LblComments_from_lead__c"  >Why do you want certification?</label>
               <textarea class="is-required" required="" id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" aria-labelledby="LblComments_from_lead__c InstructComments_from_lead__c" maxlength="2000" aria-required="true" ></textarea>
             </li>
           </ul>
@@ -107,6 +142,14 @@
 
         <fieldset class="u-no-margin--bottom">
           <ul class="p-list">
+            <li class="p-list__item">
+              <input value="yes" id="canonicalBetaOptIn" name="canonicalBetaOptIn" type="checkbox" />
+              <label for="canonicalBetaOptIn">I would like to beta test future certifications.</label>
+            </li>
+            <li class="p-list__item">
+              <input value="yes" id="canonicalResearchOptIn" name="canonicalResearchOptIn" type="checkbox" />
+              <label for="canonicalResearchOptIn">I agree to receive information about Canonical’s products and services.</label>
+            </li>
             <li class=" p-list__item">
               <input  value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
               <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
