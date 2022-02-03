@@ -13,6 +13,7 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { debounce } from "lodash";
 
 import usePostCustomerInfoForPurchasePreview from "../hooks/usePostCustomerInfoForPurchasePreview";
+import useStripeCustomerInfo from "../hooks/useStripeCustomerInfo";
 import FormRow from "./FormRow";
 import {
   caProvinces,
@@ -38,6 +39,9 @@ function PaymentMethodForm({ setCardValid }: Props) {
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
   const mutation = usePostCustomerInfoForPurchasePreview();
+  const { data: userInfo } = useStripeCustomerInfo();
+
+  const isEmailPrepopulated = !!userInfo?.customerInfo?.email;
 
   const {
     errors,
@@ -203,6 +207,7 @@ function PaymentMethodForm({ setCardValid }: Props) {
         type="email"
         id="email"
         name="email"
+        disabled={isEmailPrepopulated}
         validate={validateEmail}
         error={touched?.email && errors?.email}
       />

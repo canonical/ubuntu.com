@@ -5,18 +5,39 @@ const useStripeCustomerInfo = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     "paymentModalUserInfo",
     async () => {
-      if (!window.accountId) {
-        throw new Error("MISSING ACCOUNT_ID");
+      if (window.accountId) {
+        const res = await getCustomerInfo(window.accountId);
+        if (!res.data.code) {
+          return res.data;
+        }
       }
-      const res = await getCustomerInfo(window.accountId);
 
-      if (res.data.code) {
-        throw new Error(res.data.message);
+      //fallback to SSO data if there is no stripe info
+      if (!window.accountJSONRes) {
+        const accountResponse = await fetch(
+          `/account.json${window.location.search}`,
+          {
+            cache: "no-store",
+          }
+        );
+        const accountRes = await accountResponse.json();
+
+        if (!accountRes.account) {
+          throw new Error("Account not found");
+        } else {
+          window.accountJSONRes = accountRes.account;
+        }
       }
-      return res.data;
+
+      return {
+        customerInfo: {
+          email: window.accountJSONRes.email,
+          name: window.accountJSONRes.fullname,
+        },
+      };
     },
     {
-      enabled: !!window.accountId,
+      retry: false,
     }
   );
 
