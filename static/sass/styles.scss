@@ -811,19 +811,12 @@ td.p-accordion {
 
 // Prevent the page from jumping as the global nav loads
 body {
-  border-top: 32px solid #262626;
 
   @media only screen and (min-width: $breakpoint-x-large) {
     border-top-width: 36px;
   }
 }
 
-.global-nav {
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 
 .article-title {
   -webkit-box-orient: vertical;
