@@ -574,7 +574,7 @@ class TestHelpers(unittest.TestCase):
                     "type": "free",
                     "end_date": "2020-08-31T23:59:59Z",
                     "subscriptions": None,
-                    "listing": None,
+                    "machines": 1,
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -605,7 +605,7 @@ class TestHelpers(unittest.TestCase):
                             id="abc", status="active", period="yearly"
                         )
                     ],
-                    "listing": None,
+                    "machines": 1,
                     "subscription_id": "abc",
                 },
                 "expectations": {
@@ -637,7 +637,7 @@ class TestHelpers(unittest.TestCase):
                             id="abc", status="active", period="yearly"
                         ),
                     ],
-                    "listing": None,
+                    "machines": 1,
                     "subscription_id": "abc",
                 },
                 "expectations": {
@@ -672,7 +672,7 @@ class TestHelpers(unittest.TestCase):
                             is_auto_renewing=True,
                         ),
                     ],
-                    "listing": None,
+                    "machines": 1,
                     "subscription_id": "abc",
                 },
                 "expectations": {
@@ -700,7 +700,7 @@ class TestHelpers(unittest.TestCase):
                     "type": "yearly",
                     "end_date": "2020-08-31T23:59:59Z",
                     "subscriptions": None,
-                    "listing": None,
+                    "machines": 1,
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -730,15 +730,11 @@ class TestHelpers(unittest.TestCase):
                     "subscriptions": [
                         make_subscription(
                             id="sub-id-1",
-                            items=[
-                                make_subscription_item(
-                                    product_listing_id="listing-id"
-                                )
-                            ],
+                            items=[make_subscription_item()],
                             is_auto_renewing=True,
                         )
                     ],
-                    "listing": make_listing(id="listing-id"),
+                    "machines": 1,
                 },
                 "expectations": {
                     "is_upsizeable": True,
@@ -769,15 +765,11 @@ class TestHelpers(unittest.TestCase):
                     "subscriptions": [
                         make_subscription(
                             id="sub-id-1",
-                            items=[
-                                make_subscription_item(
-                                    product_listing_id="random-id"
-                                )
-                            ],
+                            items=[make_subscription_item()],
                             status="deactivated",
                         )
                     ],
-                    "listing": make_listing(id="listing-id"),
+                    "machines": 0,
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -804,7 +796,7 @@ class TestHelpers(unittest.TestCase):
                     "type": "monthly",
                     "end_date": "2020-08-01T00:00:00Z",
                     "subscriptions": None,
-                    "listing": None,
+                    "machines": 1,
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -837,7 +829,7 @@ class TestHelpers(unittest.TestCase):
                             status="active",
                         )
                     ],
-                    "listing": None,
+                    "machine": 1,
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -868,7 +860,7 @@ class TestHelpers(unittest.TestCase):
                             pending_purchases=["pAaBbCcDdEeFfgG"]
                         )
                     ],
-                    "listing": None,
+                    "machines": 1,
                 },
                 "expectations": {
                     "is_upsizeable": False,
@@ -955,14 +947,10 @@ class TestHelpers(unittest.TestCase):
                     "subscriptions": [
                         make_subscription(
                             id="sub-id-1",
-                            items=[
-                                make_subscription_item(
-                                    product_listing_id="listing-id"
-                                )
-                            ],
+                            items=[make_subscription_item()],
                         )
                     ],
-                    "listing": make_listing(id="listing-id"),
+                    "machines": 1,
                 },
                 "expectations": {
                     "is_upsizeable": True,
@@ -992,11 +980,11 @@ class TestHelpers(unittest.TestCase):
                     statuses = get_user_subscription_statuses(
                         account=parameters.get("account"),
                         type=parameters.get("type"),
+                        current_number_of_machines=parameters.get("machines"),
                         end_date=parameters.get("end_date"),
                         renewal=parameters.get("renewal"),
                         subscription_id=parameters.get("subscription_id"),
                         subscriptions=parameters.get("subscriptions"),
-                        listing=parameters.get("listing"),
                     )
 
                     self.assertEqual(statuses, scenario["expectations"])

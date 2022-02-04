@@ -141,11 +141,11 @@ def is_trialling_user_subscription(items: List[ContractItem]) -> bool:
 def get_user_subscription_statuses(
     account: Account,
     type: str,
+    current_number_of_machines: int,
     end_date: str = None,
     renewal: Renewal = None,
     subscription_id: str = None,
     subscriptions: List[Subscription] = None,
-    listing: Listing = None,
 ) -> dict:
     # The explanations below use two concepts:
     # - user subscription: these maps 1:1 with ua-contracts' contract items,
@@ -272,13 +272,11 @@ def get_user_subscription_statuses(
             statuses["is_expiring"] = False
 
     if type == "monthly":
-        is_cancelled = is_user_subscription_cancelled(
-            listing, subscriptions, subscription_id
-        )
+        is_cancelled = True if not current_number_of_machines else False
         statuses["is_cancelled"] = is_cancelled
-        statuses["should_present_auto_renewal"] = statuses[
-            "is_subscription_active"
-        ]
+        statuses["should_present_auto_renewal"] = (
+            statuses["is_subscription_active"] and not is_cancelled
+        )
 
         # If the subscription is set to auto-renew, we shouldn't alarm the
         # user.
