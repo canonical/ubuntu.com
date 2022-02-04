@@ -142,6 +142,7 @@ describe("RenewalSettings", () => {
         subscription_id: subscriptionID,
         price: 2500,
         number_of_machines: 2,
+        current_number_of_machines: 2,
         statuses: userSubscriptionStatusesFactory.build({
           should_present_auto_renewal: true,
           is_subscription_auto_renewing: true,
@@ -152,6 +153,7 @@ describe("RenewalSettings", () => {
         subscription_id: "ghi",
         price: 250,
         number_of_machines: 100,
+        current_number_of_machines: 100,
         statuses: userSubscriptionStatusesFactory.build({
           should_present_auto_renewal: true,
           is_subscription_auto_renewing: true,
@@ -162,6 +164,7 @@ describe("RenewalSettings", () => {
         subscription_id: "def",
         price: 10000,
         number_of_machines: 3,
+        current_number_of_machines: 3,
         statuses: userSubscriptionStatusesFactory.build({
           should_present_auto_renewal: true,
           is_subscription_auto_renewing: true,
@@ -172,6 +175,7 @@ describe("RenewalSettings", () => {
         subscription_id: "jkl",
         price: 180000,
         number_of_machines: 1,
+        current_number_of_machines: 1,
         statuses: userSubscriptionStatusesFactory.build({
           should_present_auto_renewal: true,
           is_subscription_auto_renewing: true,
