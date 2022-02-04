@@ -8,7 +8,7 @@ context:
 
 # Service terms
 
-These service terms (the **"Agreement"**) take effect as of the effective date of an Order incorporating its terms or otherwise accepts its terms as part of a Registration Process (the **"Effective Date"**) between, Canonical Group Limited, a company registered in England (company number 6870835) whose registered office is at 5th Floor, Blue Fin Building, 110 Southwark Street, London SE1 0SU, United Kingdom (**"Canonical"**), and the customer identified in the Order (**"Customer"**).
+These service terms (the **"Agreement"**) take effect as of the effective date of an Order incorporating its terms or otherwise accepts its terms as part of a Registration Process (the **"Effective Date"**) between, Canonical Group Limited, a company registered in England (company number 6870835) whose registered office is at 5 New Street Square, London EC4A 3TW, United Kingdom (**"Canonical"**), and the customer identified in the Order (**"Customer"**).
 
 1. <h2>Interpretation</h2>
 
