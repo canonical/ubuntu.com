@@ -181,9 +181,9 @@ def get_api_url(is_test_backend) -> str:
 
 def get_badgr_url(is_test_backend) -> str:
     return (
-        "https://api.test.badgr.io"
+        "https://api.test.badgr.com"
         if is_test_backend
-        else "https://api.eu.badgr.com"
+        else "https://api.eu.badgr.io"
     )
 
 
