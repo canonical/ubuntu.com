@@ -32,11 +32,6 @@
                   <input id="Company" name="company" maxlength="255" aria-labelledby="LblCompany InstructCompany" type="text" class="is-required" required="" aria-required="true" >
                 </li>
 
-                <li class="p-list__item">
-                  <label for="Title" id="LblTitle" >Title:</label>
-                  <input id="Title" name="title" maxlength="255" aria-labelledby="LblTitle" type="text" class="is-required" required="" aria-required="true" >
-                </li>
-
                 <li class="p-list__item ">
                   <label for="EmploymentLevel" id="LblEmploymentLevel" >Employment level:</label>
                   <select id="EmploymentLevel" name="EmploymentLevel" aria-labelledby="LblEmploymentLevel" class="is-required" required="" >
@@ -48,6 +43,11 @@
                     <option value="senior-management">Senior Management </option>
                     <option value="c-suite">C-suite </option>
                   </select>
+                </li>
+
+                <li class="p-list__item">
+                  <label for="Title" id="LblTitle" >Title:</label>
+                  <input id="Title" name="title" maxlength="255" aria-labelledby="LblTitle" type="text" class="is-required" required="" aria-required="true" >
                 </li>
 
                 <li class="p-list__item ">
@@ -76,51 +76,55 @@
                 <li class="p-list__item ">
                   <label for="cube_microcert_interest" id="Lblcube_microcert_interest" >What microcerts are you most interested in taking?</label>
                   <fieldset id="cube_microcert_interest" name="cube_microcert_interest" aria-labelledby="Lblcube_microcert_interest Instructcube_microcert_interest" >
+                    <div class="row">
+                      <div class="col-6">
+                        <input value="yes" id="UbuntuSystemArchitecture" name="UbuntuSystemArchitecture" type="checkbox" />
+                        <label for="UbuntuSystemArchitecture">Ubuntu System Architecture</label>
 
-                    <input value="yes" id="UbuntuSystemArchitecture" name="UbuntuSystemArchitecture" type="checkbox" />
-                    <label for="UbuntuSystemArchitecture">Ubuntu System Architecture</label>
+                        <input value="yes" id="ManagingPackagesInUbuntu" name="ManagingPackagesInUbuntu" type="checkbox" />
+                        <label for="ManagingPackagesInUbuntu">Managing Packages in Ubuntu</label>
 
-                    <input value="yes" id="ManagingPackagesInUbuntu" name="ManagingPackagesInUbuntu" type="checkbox" />
-                    <label for="ManagingPackagesInUbuntu">Managing Packages in Ubuntu</label>
+                        <input value="yes" id="UsingCommandLineTools" name="UsingCommandLineTools" type="checkbox" />
+                        <label for="UsingCommandLineTools">Using command line tools</label>
 
-                    <input value="yes" id="UsingCommandLineTools" name="UsingCommandLineTools" type="checkbox" />
-                    <label for="UsingCommandLineTools">Using command line tools</label>
+                        <input value="yes" id="LinuxDevicesAndFilesystems" name="LinuxDevicesAndFilesystems" type="checkbox" />
+                        <label for="LinuxDevicesAndFilesystems">Linux devices and filesystems</label>
 
-                    <input value="yes" id="LinuxDevicesAndFilesystems" name="LinuxDevicesAndFilesystems" type="checkbox" />
-                    <label for="LinuxDevicesAndFilesystems">Linux devices and filesystems</label>
+                        <input value="yes" id="BashShellScriptings" name="BashShellScriptings" type="checkbox" />
+                        <label for="BashShellScriptings">Bash shell scripting</label>
 
-                    <input value="yes" id="BashShellScriptings" name="BashShellScriptings" type="checkbox" />
-                    <label for="BashShellScriptings">Bash shell scripting</label>
+                        <input value="yes" id="PerformingAdministrativeTasks" name="PerformingAdministrativeTasks" type="checkbox" />
+                        <label for="PerformingAdministrativeTasks">Performing administrative tasks</label>
 
-                    <input value="yes" id="PerformingAdministrativeTasks" name="PerformingAdministrativeTasks" type="checkbox" />
-                    <label for="PerformingAdministrativeTasks">Performing administrative tasks</label>
+                        <input value="yes" id="ManagingSystemServices" name="ManagingSystemServices" type="checkbox" />
+                        <label for="ManagingSystemServices">Managing System Services</label>
 
-                    <input value="yes" id="ManagingSystemServices" name="ManagingSystemServices" type="checkbox" />
-                    <label for="ManagingSystemServices">Managing System Services</label>
+                        <input value="yes" id="NetworkingOnUbuntu" name="NetworkingOnUbuntu" type="checkbox" />
+                        <label for="NetworkingOnUbuntu">Networking on Ubuntu</label>
+                      </div>
+                      <div class="col-6">
+                        <input value="yes" id="SecuringUbuntu" name="SecuringUbuntu" type="checkbox" />
+                        <label for="SecuringUbuntu">Securing Ubuntu</label>
 
-                    <input value="yes" id="NetworkingOnUbuntu" name="NetworkingOnUbuntu" type="checkbox" />
-                    <label for="NetworkingOnUbuntu">Networking on Ubuntu</label>
+                        <input value="yes" id="UbuntuKernels" name="UbuntuKernels" type="checkbox" />
+                        <label for="UbuntuKernels">Ubuntu Kernels</label>
 
-                    <input value="yes" id="SecuringUbuntu" name="SecuringUbuntu" type="checkbox" />
-                    <label for="SecuringUbuntu">Securing Ubuntu</label>
+                        <input value="yes" id="ConfiguringEnterpriseStorage" name="ConfiguringEnterpriseStorage" type="checkbox" />
+                        <label for="ConfiguringEnterpriseStorage">Configuring enterprise storage</label>
 
-                    <input value="yes" id="UbuntuKernels" name="UbuntuKernels" type="checkbox" />
-                    <label for="UbuntuKernels">Ubuntu Kernels</label>
+                        <input value="yes" id="Virtualisation" name="Virtualisation" type="checkbox" />
+                        <label for="Virtualisation">Virtualisation</label>
 
-                    <input value="yes" id="ConfiguringEnterpriseStorage" name="ConfiguringEnterpriseStorage" type="checkbox" />
-                    <label for="ConfiguringEnterpriseStorage">Configuring enterprise storage</label>
+                        <input value="yes" id="MicroK8s" name="MicroK8s" type="checkbox" />
+                        <label for="MicroK8s">MicroK8s</label>
 
-                    <input value="yes" id="Virtualisation" name="Virtualisation" type="checkbox" />
-                    <label for="Virtualisation">Virtualisation</label>
+                        <input value="yes" id="MaaS" name="MaaS" type="checkbox" />
+                        <label for="MaaS">MaaS</label>
 
-                    <input value="yes" id="MicroK8s" name="MicroK8s" type="checkbox" />
-                    <label for="MicroK8s">MicroK8s</label>
-
-                    <input value="yes" id="MaaS" name="MaaS" type="checkbox" />
-                    <label for="MaaS">MaaS</label>
-
-                    <input value="yes" id="Juju" name="Juju" type="checkbox" />
-                    <label for="Juju">Juju</label>
+                        <input value="yes" id="Juju" name="Juju" type="checkbox" />
+                        <label for="Juju">Juju</label>
+                      </div>
+                    </div>
 
                   </fieldset>
                 </li>
