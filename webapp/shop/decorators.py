@@ -47,7 +47,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     permission = permission if permission in PERMISSION_LIST else None
     response = response if response in RESPONSE_LIST else "json"
     area = area if area in AREA_LIST else "account"
-    redirect_path = redirect or get_redirect_default(area)
 
     session = talisker.requests.get_session()
     badgr_session = init_badgr_session(area)
@@ -98,16 +97,18 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                             is_test_backend=is_test_backend,
                         )
 
+                    redirect_path = redirect or flask.request.path
+
                     return flask.redirect(
-                        get_redirect_url(flask.request.path, is_test_backend)
+                        get_redirect_url(redirect_path, is_test_backend)
                     )
 
             if permission == "guest" and response == "html":
                 if user_token:
                     return flask.redirect(
-                        f"{redirect_path}?test_backend=true"
+                        f"{get_redirect_default(area)}?test_backend=true"
                         if is_test_backend
-                        else redirect_path
+                        else get_redirect_default(area)
                     )
 
             return func(

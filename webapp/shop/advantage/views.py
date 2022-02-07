@@ -604,7 +604,6 @@ def get_account_offers(ua_contracts_api, **kwargs):
     area="advantage",
     permission="user",
     response="html",
-    redirect="/advantage/offers",
 )
 def get_advantage_offers(**kwargs):
     return flask.render_template("advantage/offers/index.html")
