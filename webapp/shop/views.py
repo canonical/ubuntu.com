@@ -37,7 +37,7 @@ SERVICES = {
 
 
 @shop_decorator(area="account", permission="user", response="html")
-def account_view(*args):
+def account_view(**kwargs):
     email = flask.session["openid"]["email"]
 
     return flask.render_template(
@@ -333,7 +333,7 @@ def get_last_purchase_ids(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="account", response="html")
-def support(*args):
+def support(**kwargs):
     return flask.render_template(
         "support/index.html",
     )

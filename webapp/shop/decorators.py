@@ -99,7 +99,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                         )
 
                     return flask.redirect(
-                        get_redirect_url(redirect_path, is_test_backend)
+                        get_redirect_url(flask.request.path, is_test_backend)
                     )
 
             if permission == "guest" and response == "html":
@@ -112,8 +112,8 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             return func(
                 is_test_backend=is_test_backend,
-                badgr_issuer=get_badgr_issuer(area, is_test_backend),
-                certified_badge=get_certified_badge(area, is_test_backend),
+                badgr_issuer=get_badgr_issuer(is_test_backend),
+                badge_certification=get_certified_badge(is_test_backend),
                 ua_contracts_api=get_ua_contracts_api_instance(
                     user_token, guest_token, response, is_test_backend, session
                 ),
@@ -189,33 +189,33 @@ def get_badgr_url(is_test_backend) -> str:
 
 def get_badgr_password(is_test_backend) -> str:
     return (
-        os.getenv("BADGR_PASSWORD")
-        if not is_test_backend
-        else os.getenv("BADGR_QA_PASSWORD")
+        os.getenv("BADGR_QA_PASSWORD")
+        if is_test_backend
+        else os.getenv("BADGR_PASSWORD")
     )
 
 
 def get_edx_url(is_test_backend) -> str:
     return (
-        "https://cube.ubuntu.com"
-        if not is_test_backend
-        else "https://qa.cube.ubuntu.com"
+        "https://qa.cube.ubuntu.com"
+        if is_test_backend
+        else "https://cube.ubuntu.com"
     )
 
 
 def get_edx_client_id(is_test_backend) -> str:
     return (
-        os.getenv("CUBE_EDX_CLIENT_ID")
-        if not is_test_backend
-        else os.getenv("CUBE_EDX_QA_CLIENT_ID")
+        os.getenv("CUBE_EDX_QA_CLIENT_ID")
+        if is_test_backend
+        else os.getenv("CUBE_EDX_CLIENT_ID")
     )
 
 
 def get_edx_secret(is_test_backend) -> str:
     return (
-        os.getenv("CUBE_EDX_CLIENT_SECRET")
-        if not is_test_backend
-        else os.getenv("CUBE_EDX_CLIENT_QA_SECRET")
+        os.getenv("CUBE_EDX_CLIENT_QA_SECRET")
+        if is_test_backend
+        else os.getenv("CUBE_EDX_CLIENT_SECRET")
     )
 
 
@@ -243,12 +243,12 @@ def get_edx_api_instance(area, is_test_backend, edx_session) -> EdxAPI:
     )
 
 
-def get_badgr_issuer(area, is_test_backend) -> str:
+def get_badgr_issuer(is_test_backend) -> str:
     return QA_BADGR_ISSUER if is_test_backend else BADGR_ISSUER
 
 
-def get_certified_badge(area, is_test_backend) -> str:
-    return QA_CERTIFIED_BADGE if is_test_backend else QA_CERTIFIED_BADGE
+def get_certified_badge(is_test_backend) -> str:
+    return QA_CERTIFIED_BADGE if is_test_backend else CERTIFIED_BADGE
 
 
 def get_ua_contracts_api_instance(

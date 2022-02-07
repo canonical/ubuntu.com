@@ -29,7 +29,12 @@ MODULES_ORDER = [
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cube_microcerts(
-    badgr_issuer, badge_certification, ua_contracts_api, badgr_api, edx_api
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    badge_certification,
+    **kwargs,
 ):
     """
     View for Microcerts homepage
@@ -52,6 +57,7 @@ def cube_microcerts(
     )
 
     edx_user = edx_api.get_user(sso_user["email"]) if sso_user else None
+
     product_listings = ua_contracts_api.get_product_listings("canonical-cube")[
         "productListings"
     ]
@@ -68,7 +74,6 @@ def cube_microcerts(
                 badgr_issuer, quote_plus(edx_user["email"])
             )["result"]
         }
-
         enrollments = [
             enrollment["course_details"]["course_id"]
             for enrollment in edx_api.get_enrollments(edx_user["username"])
@@ -184,7 +189,11 @@ def cube_microcerts(
 
 @shop_decorator(area="cube", permission="user", response="json")
 def get_microcerts(
-    badgr_issuer, badge_certified, ua_contracts_api, badgr_api, edx_api
+    badgr_issuer,
+    ua_contracts_api,
+    badgr_api,
+    edx_api,
+    **kwargs,
 ):
     """
     View for Microcerts homepage
