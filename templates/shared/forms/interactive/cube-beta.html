@@ -33,8 +33,21 @@
                 </li>
 
                 <li class="p-list__item">
-                  <label for="Title" id="LblTitle" >Title</label>
+                  <label for="Title" id="LblTitle" >Title:</label>
                   <input id="Title" name="title" maxlength="255" aria-labelledby="LblTitle" type="text" class="is-required" required="" aria-required="true" >
+                </li>
+
+                <li class="p-list__item ">
+                  <label for="EmploymentLevel" id="LblEmploymentLevel" >Employment level:</label>
+                  <select id="EmploymentLevel" name="EmploymentLevel" aria-labelledby="LblEmploymentLevel" class="is-required" required="" >
+                    <option value="" disabled="disabled" selected="">Select...</option>
+                    <option value="entry">Entry-level </option>
+                    <option value="mid">Mid-level </option>
+                    <option value="senior">Senior </option>
+                    <option value="management">Management </option>
+                    <option value="senior-management">Senior Management </option>
+                    <option value="c-suite">C-suite </option>
+                  </select>
                 </li>
 
                 <li class="p-list__item ">
