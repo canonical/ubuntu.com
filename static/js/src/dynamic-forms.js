@@ -459,6 +459,28 @@
       fireLoadedEvent();
 
       comment.value = createMessage();
+
+      // Prefill user names and email address if they are logged in
+      if (window.accountJSONRes) {
+        const names = window.accountJSONRes.fullname.split(" ");
+        const firstName = names[0];
+        const lastName = names[names.length - 1];
+
+        const emailFields = document.querySelectorAll("input#email");
+        emailFields.forEach((field) => {
+          field.value = window.accountJSONRes.email;
+        });
+
+        const firstNameFields = document.querySelectorAll("input#firstName");
+        firstNameFields.forEach((field) => {
+          field.value = firstName;
+        });
+
+        const lastNameFields = document.querySelectorAll("input#lastName");
+        lastNameFields.forEach((field) => {
+          field.value = lastName;
+        });
+      }
     }
 
     // Opens the form when the initial hash matches the trigger
