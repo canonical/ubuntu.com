@@ -26,4 +26,4 @@ assignees: ''
 
 ## Browser details
 
-[Specify the browser(s) this issue effects.]
+[Please tell us what browser(s) you used when you encountered this bug and any other information that might be relevant, like if you block javascript, run an ad blocker, etc...]
