@@ -393,11 +393,3 @@ def cube_study_labs_button(
         )
 
     return flask.jsonify({"text": text, "redirect_url": redirect_url})
-
-
-@cube_decorator(response="html")
-def cube_study(
-    badgr_issuer, badge_certification, ua_api, badgr_api, edx_api
-):
-    # Temporarily redirect to /cube while the beta is closed
-    return flask.redirect("/cube", code=302)
