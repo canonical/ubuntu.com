@@ -33,14 +33,14 @@
 
             <li class="p-list__item ">
               <label for="EmploymentLevel" id="LblEmploymentLevel" >Employment level:</label>
-              <select id="EmploymentLevel" name="role" aria-labelledby="LblEmploymentLevel" class="is-required" required="" >
+              <select id="EmploymentLevel" name="Job_Role__c" aria-labelledby="LblEmploymentLevel" class="is-required" required="" >
                 <option value="" disabled="disabled" selected="">Select...</option>
-                <option value="entry">Entry-level </option>
-                <option value="mid">Mid-level </option>
-                <option value="senior">Senior </option>
-                <option value="management">Management </option>
-                <option value="senior-management">Senior Management </option>
-                <option value="c-suite">C-suite </option>
+                <option value="Entry-level">Entry-level</option>
+                <option value="Mid-level">Mid-level</option>
+                <option value="Senior">Senior</option>
+                <option value="Management">Management</option>
+                <option value="Senior Management">Senior Management</option>
+                <option value="C-suite">C-suite</option>
               </select>
             </li>
 
@@ -74,53 +74,53 @@
             </li>
             <li class="p-list__item ">
               <label for="cube_microcert_interest" id="Lblcube_microcert_interest" >What microcerts are you most interested in taking?</label>
-              <fieldset id="cube_microcert_interest" name="cube_microcert_interest" aria-labelledby="Lblcube_microcert_interest Instructcube_microcert_interest" >
+              <fieldset id="cube_microcert_interest" name="cube_microcert_interests" aria-labelledby="Lblcube_microcert_interest Instructcube_microcert_interest" >
                 <div class="row">
                   <div class="col-4">
-                    <input value="yes" id="UbuntuSystemArchitecture" name="UbuntuSystemArchitecture" type="checkbox" />
+                    <input value="Ubuntu System Architecture" id="UbuntuSystemArchitecture" name="cube_microcert_interest" type="checkbox" />
                     <label for="UbuntuSystemArchitecture">Ubuntu System Architecture</label>
 
-                    <input value="yes" id="ManagingPackagesInUbuntu" name="ManagingPackagesInUbuntu" type="checkbox" />
+                    <input value="Managing Packages in Ubuntu" id="ManagingPackagesInUbuntu" name="cube_microcert_interest" type="checkbox" />
                     <label for="ManagingPackagesInUbuntu">Managing Packages in Ubuntu</label>
 
-                    <input value="yes" id="UsingCommandLineTools" name="UsingCommandLineTools" type="checkbox" />
-                    <label for="UsingCommandLineTools">Using command line tools</label>
+                    <input value="Using Command Line Tools" id="UsingCommandLineTools" name="cube_microcert_interest" type="checkbox" />
+                    <label for="UsingCommandLineTools">Using Command Line Tools</label>
 
-                    <input value="yes" id="LinuxDevicesAndFilesystems" name="LinuxDevicesAndFilesystems" type="checkbox" />
-                    <label for="LinuxDevicesAndFilesystems">Linux devices and filesystems</label>
+                    <input value="Linux Devices And Filesystems" id="LinuxDevicesAndFilesystems" name="cube_microcert_interest" type="checkbox" />
+                    <label for="LinuxDevicesAndFilesystems">Linux Devices and Filesystems</label>
 
-                    <input value="yes" id="BashShellScriptings" name="BashShellScriptings" type="checkbox" />
-                    <label for="BashShellScriptings">Bash shell scripting</label>
+                    <input value="Bash Shell Scripting" id="BashShellScripting" name="cube_microcert_interest" type="checkbox" />
+                    <label for="BashShellScripting">Bash Shell Scripting</label>
 
-                    <input value="yes" id="PerformingAdministrativeTasks" name="PerformingAdministrativeTasks" type="checkbox" />
-                    <label for="PerformingAdministrativeTasks">Performing administrative tasks</label>
+                    <input value="Performing Administrative Tasks" id="PerformingAdministrativeTasks" name="cube_microcert_interest" type="checkbox" />
+                    <label for="PerformingAdministrativeTasks">Performing Administrative Tasks</label>
 
-                    <input value="yes" id="ManagingSystemServices" name="ManagingSystemServices" type="checkbox" />
+                    <input value="Managing System Services" id="ManagingSystemServices" name="cube_microcert_interest" type="checkbox" />
                     <label for="ManagingSystemServices">Managing System Services</label>
 
-                    <input value="yes" id="NetworkingOnUbuntu" name="NetworkingOnUbuntu" type="checkbox" />
+                    <input value="Networking On Ubuntu" id="NetworkingOnUbuntu" name="cube_microcert_interest" type="checkbox" />
                     <label for="NetworkingOnUbuntu">Networking on Ubuntu</label>
                   </div>
                   <div class="col-4">
-                    <input value="yes" id="SecuringUbuntu" name="SecuringUbuntu" type="checkbox" />
+                    <input value="Securing Ubuntu" id="SecuringUbuntu" name="cube_microcert_interest" type="checkbox" />
                     <label for="SecuringUbuntu">Securing Ubuntu</label>
 
-                    <input value="yes" id="UbuntuKernels" name="UbuntuKernels" type="checkbox" />
+                    <input value="Ubuntu Kernels" id="UbuntuKernels" name="cube_microcert_interest" type="checkbox" />
                     <label for="UbuntuKernels">Ubuntu Kernels</label>
 
-                    <input value="yes" id="ConfiguringEnterpriseStorage" name="ConfiguringEnterpriseStorage" type="checkbox" />
+                    <input value="Configuring Enterprise Storage" id="ConfiguringEnterpriseStorage" name="cube_microcert_interest" type="checkbox" />
                     <label for="ConfiguringEnterpriseStorage">Configuring enterprise storage</label>
 
-                    <input value="yes" id="Virtualisation" name="Virtualisation" type="checkbox" />
+                    <input value="Virtualisation" id="Virtualisation" name="cube_microcert_interest" type="checkbox" />
                     <label for="Virtualisation">Virtualisation</label>
 
-                    <input value="yes" id="MicroK8s" name="MicroK8s" type="checkbox" />
+                    <input value="MicroK8s" id="MicroK8s" name="cube_microcert_interest" type="checkbox" />
                     <label for="MicroK8s">MicroK8s</label>
 
-                    <input value="yes" id="MaaS" name="MaaS" type="checkbox" />
+                    <input value="MaaS" id="MaaS" name="cube_microcert_interest" type="checkbox" />
                     <label for="MaaS">MaaS</label>
 
-                    <input value="yes" id="Juju" name="Juju" type="checkbox" />
+                    <input value="Juju" id="Juju" name="cube_microcert_interest" type="checkbox" />
                     <label for="Juju">Juju</label>
                   </div>
                 </div>
