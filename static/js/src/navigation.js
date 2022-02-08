@@ -87,6 +87,7 @@ addGANavEvents("#enterprise-content", "www.ubuntu.com-nav-1-enterprise");
 addGANavEvents("#developer-content", "www.ubuntu.com-nav-1-developer");
 addGANavEvents("#community-content", "www.ubuntu.com-nav-1-community");
 addGANavEvents("#download-content", "www.ubuntu.com-nav-1-download");
+addGANavEvents("#canonical-content", "www.ubuntu.com-nav-1-canonical");
 addGANavEvents(".p-navigation--secondary", "www.ubuntu.com-nav-2");
 addGANavEvents(".p-contextual-footer", "www.ubuntu.com-footer-contextual");
 addGANavEvents(".p-footer__nav", "www.ubuntu.com-nav-footer-0");
