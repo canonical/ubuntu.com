@@ -215,8 +215,8 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
           <tr>
             <td>Uptime</td>
             <td class="u-align--center">99.9%</td>
-            <td class="u-align--center">99.9%</td>
-            <td class="u-align--center">99.9%</td>
+            <td class="u-align--center">99.5%</td>
+            <td class="u-align--center">99%</td>
           </tr>
         </tbody>
       </table>
