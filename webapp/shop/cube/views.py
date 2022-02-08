@@ -34,10 +34,6 @@ def cube_microcerts(
     """
     View for Microcerts homepage
     """
-
-    # Temporarily redirect to /cube while the beta is closed
-    return flask.redirect("/cube", code=302)
-
     sso_user = user_info(flask.session)
     study_labs = "course-v1:CUBE+study_labs+2020"
     account = None
