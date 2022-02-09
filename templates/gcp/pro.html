@@ -1,32 +1,52 @@
 {% extends "gcp/base_gcp.html" %}
 
 {% block title %}Ubuntu Pro for Google Cloud{% endblock %}
-{% block meta_description %}Ubuntu Pro for GCP, the Ubuntu image optimized for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on Google Cloud.{% endblock %}
+{% block meta_description %}Ubuntu Pro for GCP, the Ubuntu image optimised for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on Google Cloud.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1zR1m6CH1POU5tnzNzgNYanG2_EGQtKVNR3_dPew1pf4/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-topped">
-    <div class="row u-equal-height">
-      <div class="col-7 col-medium-4">
-        <h1>Ubuntu Pro for Google Cloud</h1>
-        <p class="p-heading--3">For production. For professionals.</p>
-        <p>Ubuntu Pro for GCP is a premium image delivering the most comprehensive security and GCP compliance features. Ubuntu Pro is suitable for small and large-scale Linux enterprise operations offering pay-as-you-go billing on your existing GCP invoice.</p>
-        <p><a href="/gcp/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
-      </div>
-      <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
-            alt="",
-            width="250",
-            height="200",
-            hi_def=True,
-            loading="auto",
-          ) | safe
-        }}
-      </div>
+<section class="p-strip--suru-topped u-no-padding--bottom">
+  <div class="row u-equal-height">
+    <div class="col-7 col-medium-4">
+      <h1>Ubuntu Pro for Google Cloud</h1>
+      <p class="p-heading--3">For production. For professionals.</p>
+      <p>Ubuntu Pro for GCP is a premium image delivering the most comprehensive security and GCP compliance features. Ubuntu Pro is suitable for small and large-scale Linux enterprise operations offering pay-as-you-go billing on your existing GCP invoice.</p>
     </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
+          alt="",
+          width="250",
+          height="200",
+          hi_def=True,
+          loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow u-sv3">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 20.04 LTS</h3>
+      <p>The latest LTS release includes the 5.4 kernel out of the box. Ubuntu Pro 20.04 LTS provides extended maintenance through 2030.</p>
+      <p><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-focal" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 18.04 LTS</h3>
+      <p>Ubuntu 18.04 LTS release includes 5.4 kernel and provides extended maintenance through 2028.</p>
+      <p><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-bionic" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 16.04 LTS</h3>
+      <p>Ubuntu 16.04 LTS shipped in 2016 with the 4.4 kernel, and is covered with Ubuntu Pro through 2026.</p>
+      <p><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-xenial" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <a href="/gcp/contact-us" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
   </div>
 </section>
 
@@ -114,31 +134,6 @@
 </section>
 
 <section class="p-strip">
-    <div class="row">
-      <div class="col-12">
-        <h2>Launch Ubuntu Pro for GCP</h2>
-      </div>
-    </div>
-    <div class="row p-divider">
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--4">Ubuntu Pro 20.04 LTS</h3>
-        <p>The latest LTS release includes the 5.4 kernel out of the box. Ubuntu Pro 20.04 LTS provides extended maintenance through 2030.</p>
-        <p><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-focal" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--4">Ubuntu Pro 18.04 LTS</h3>
-        <p>Ubuntu 18.04 LTS release includes 5.4 kernel and provides extended maintenance through 2028.</p>
-        <p><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-bionic" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-      </div>
-      <div class="col-4 p-divider__block">
-        <h3 class="p-heading--4">Ubuntu Pro 16.04 LTS</h3>
-        <p>Ubuntu 16.04 LTS shipped in 2016 with the 4.4 kernel, and is covered with Ubuntu Pro through 2026.</p>
-        <p><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-xenial" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-      </div>
-    </div>
-  </section>
-
-<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
@@ -148,7 +143,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <h2>Choose the right Ubuntu for you</h2>
@@ -201,24 +196,24 @@
 </section>
 
 <section class="p-strip">
-    <div class="row">
-      <div class="col-12">
-        <h2>Get Ubuntu Pro on GCP now:</h2>
-      </div>
+  <div class="row">
+    <div class="col-12">
+      <h2>Get Ubuntu Pro on GCP now:</h2>
     </div>
-    <div class="row p-divider">
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4">
-          <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-focal" class="p-link--external">20.04 LTS</a>
-        </h3>
-      </div>
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4"><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-bionic" class="p-link--external">18.04 LTS</a></h3>
-      </div>
-      <div class="col-3 p-divider__block">
-        <h3 class="p-heading--4"><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-xenial" class="p-link--external">16.04 LTS</a></h3>
-      </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4">
+        <a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-focal" class="p-link--external">20.04 LTS</a>
+      </h3>
     </div>
-  </section>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-bionic" class="p-link--external">18.04 LTS</a></h3>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="https://console.cloud.google.com/marketplace/product/ubuntu-os-pro-cloud/ubuntu-pro-xenial" class="p-link--external">16.04 LTS</a></h3>
+    </div>
+  </div>
+</section>
 
 {% endblock content %}

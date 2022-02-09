@@ -1,33 +1,53 @@
 {% extends "aws/base_aws.html" %}
 
 {% block title %}Ubuntu Pro for AWS{% endblock %}
-{% block meta_description %}Ubuntu Pro for AWS, the Ubuntu image optimized for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on the AWS marketplace.{% endblock %}
+{% block meta_description %}Ubuntu Pro for AWS, the Ubuntu image optimised for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on the AWS marketplace.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1pLRWJZSpE04nYt-yHBtCjxGI7VZsigcP2UJIBmR8i-0{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-topped">
-    <div class="row u-equal-height">
-      <div class="col-7 col-medium-4">
-        <h1>Ubuntu Pro for AWS</h1>
-        <p class="p-heading--3">For production. For professionals.</p>
-        <p>Ubuntu Pro for AWS is a premium image delivering the most comprehensive open source security and AWS compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing AWS invoice.</p>
-        <p><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro 18.04 LTS on AWS</span></a></p>
-        <p><a href="/aws/contact-us" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-            alt="",
-            width="200",
-            height="119",
-            hi_def=True,
-            loading="auto",
-          ) | safe
-        }}
-      </div>
+<section class="p-strip--suru-topped u-no-padding--bottom">
+  <div class="row u-equal-height">
+    <div class="col-7 col-medium-4">
+      <h1>Ubuntu Pro for AWS</h1>
+      <p class="p-heading--3">For production. For professionals.</p>
+      <p>Ubuntu Pro for AWS is a premium image delivering the most comprehensive open source security and AWS compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing AWS invoice.</p>
     </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+          alt="",
+          width="200",
+          height="119",
+          hi_def=True,
+          loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow u-sv3">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 20.04 LTS</h3>
+      <p>The latest LTS release includes the 5.4 kernel out of the box. Ubuntu Pro 20.04 LTS provides extended maintenance through 2030.</p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/B087L1R4G4" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 18.04 LTS</h3>
+      <p>Ubuntu 18.04 LTS release includes 5.4 kernel and provides extended maintenance through 2028.
+    </p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 16.04 LTS</h3>
+      <p>Ubuntu 16.04 LTS shipped in 2016 with the 4.4 kernel, and is covered with Ubuntu Pro through 2026.</p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/B0821WW873" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <a href="/aws/contact-us" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
   </div>
 </section>
 
@@ -110,32 +130,6 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <h2>Launch Ubuntu Pro for AWS</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Pro 20.04 LTS</h3>
-      <p>The latest LTS release includes the 5.4 kernel out of the box. Ubuntu Pro 20.04 LTS provides extended maintenance through 2030.</p>
-      <p><a href="https://aws.amazon.com/marketplace/pp/B087L1R4G4" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Pro 18.04 LTS</h3>
-      <p>Ubuntu 18.04 LTS release includes 5.4 kernel and provides extended maintenance through 2028.
-    </p>
-      <p><a href="https://aws.amazon.com/marketplace/pp/B0821T9RL2" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Pro 16.04 LTS</h3>
-      <p>Ubuntu 16.04 LTS shipped in 2016 with the 4.4 kernel, and is covered with Ubuntu Pro through 2026.</p>
-      <p><a href="https://aws.amazon.com/marketplace/pp/B0821WW873" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
       <h2>AWS compliance made easy</h2>
@@ -158,8 +152,7 @@
   </div>
 </section>
 
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
@@ -169,7 +162,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
       <blockquote class="p-pull-quote--large">
@@ -180,7 +173,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Choose the right Ubuntu for you</h2>
@@ -232,7 +225,7 @@
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Pricing for US East (N. Virginia) Region</h2>
@@ -284,7 +277,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-12">
       <h2>Get Ubuntu Pro on AWS now:</h2>

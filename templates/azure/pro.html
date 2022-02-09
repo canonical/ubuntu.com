@@ -1,33 +1,52 @@
 {% extends "azure/base_azure.html" %}
 
 {% block title %}Ubuntu Pro for Azure{% endblock %}
-{% block meta_description %}Ubuntu Pro for Azure, the Ubuntu image optimized for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on the Azure marketplace.{% endblock %}
+{% block meta_description %}Ubuntu Pro for Azure, the Ubuntu image optimised for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on the Azure marketplace.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1WaQ5n3GxwZzbX0T6rLiRNejFvxIPIHd5V5XgdAwKmSw/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-topped">
-    <div class="row u-equal-height">
-      <div class="col-7 col-medium-4">
-        <h1>Ubuntu Pro for Azure</h1>
-        <p class="p-heading--3">For production. For professionals.</p>
-        <p>Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and Azure compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing Azure invoice.</p>
-        <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro 18.04 LTS on Azure</span></a></p>
-        <p><a href="/azure/get-in-touch" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 u-align--center u-vertically-center u-hide--small">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
-          alt="",
-          width="350",
-          height="100",
-          hi_def=True,
-          loading="auto",
-          ) | safe
-        }}
-      </div>
+<section class="p-strip--suru-topped u-no-padding--bottom">
+  <div class="row u-equal-height">
+    <div class="col-7 col-medium-4">
+      <h1>Ubuntu Pro for Azure</h1>
+      <p class="p-heading--3">For production. For professionals.</p>
+      <p>Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and Azure compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing Azure invoice.</p>
     </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+        alt="",
+        width="350",
+        height="100",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow u-sv3">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 20.04 LTS</h3>
+      <p>The latest LTS release includes the 5.4 kernel out of the box. Ubuntu Pro 20.04 LTS provides extended maintenance through 2030.</p>
+      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-focal?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 18.04 LTS</h3>
+      <p>Ubuntu 18.04 LTS release includes the 5.4 kernel and provides extended maintenance through 2028.</p>
+      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro 16.04 LTS</h3>
+      <p>Ubuntu 16.04 LTS shipped in 2016 with the 4.04 kernel, and is covered with Ubuntu Pro through 2026.</p>
+      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <a href="/azure/get-in-touch" class="js-invoke-modal">Contact us to discuss Ubuntu Pro with support&nbsp;&rsaquo;</a>
   </div>
 </section>
 
@@ -109,37 +128,12 @@
           </div>
         </li>
       </ul>
-      <a href="https://ubuntu.com/azure/contact-us" class="p-button--positive">Let's talk Pro</a>
+      <a href="/azure/contact-us" class="p-button--positive js-invoke-modal">Let's talk Pro</a>
     </div>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-12">
-      <h2>Launch Ubuntu Pro for Azure</h2>
-    </div>
-  </div>
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Pro 20.04 LTS</h3>
-      <p>The latest LTS release includes the 5.4 kernel out of the box. Ubuntu Pro 20.04 LTS provides extended maintenance through 2030.</p>
-      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-focal?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Pro 18.04 LTS</h3>
-      <p>Ubuntu 18.04 LTS release includes the 5.4 kernel and provides extended maintenance through 2028.</p>
-      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-bionic?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu Pro 16.04 LTS</h3>
-      <p>Ubuntu 16.04 LTS shipped in 2016 with the 4.04 kernel, and is covered with Ubuntu Pro through 2026.</p>
-      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial?tab=Overview" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Broadest open source security coverage keeps CISOs sleeping at night</h2>
@@ -149,7 +143,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>Scale, open source security and, Azure compliance across your Ubuntu instances</h2>
@@ -193,7 +187,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Choose the right Ubuntu for you</h2>
@@ -245,7 +239,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
       <h2>Pricing</h2>
@@ -264,7 +258,7 @@
         <tbody>
           <tr>
             <td>DS11V2</td>
-            <td>Memory optimized</td>
+            <td>Memory optimised</td>
             <td class="u-align--right">2</td>
             <td class="u-align--right">14GB</td>
             <td class="u-align--right">$0.185</td>
@@ -291,7 +285,7 @@
           </tr>
           <tr>
             <td>E2SV3</td>
-            <td>Memory optimized</td>
+            <td>Memory optimised</td>
             <td class="u-align--right">2</td>
             <td class="u-align--right">16GB</td>
             <td class="u-align--right">$0.146</td>
@@ -323,7 +317,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-12">
       <h2>Get Ubuntu Pro on Azure now:</h2>
@@ -354,7 +348,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>Getting the best of Ubuntu Pro for Azure</h2>
