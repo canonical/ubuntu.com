@@ -631,7 +631,9 @@ def sitemap_index():
 
 def marketo_submit():
     form_fields = {}
-    for key, value in flask.request.form.items():
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
         if value:
             form_fields[key] = value
     # Check honeypot values are not set
