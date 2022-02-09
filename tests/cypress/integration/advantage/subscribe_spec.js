@@ -84,8 +84,8 @@ context("/advantage/subscribe", () => {
     completeFirstStep(randomEmail);
 
     // wait for request to be sent
-    cy.intercept("POST", "/advantage/purchase-account*").as("purchaseAccount");
-    cy.intercept("POST", "/advantage/customer-info*").as("customerInfo");
+    cy.intercept("POST", "/account/purchase-account*").as("purchaseAccount");
+    cy.intercept("POST", "/account/customer-info*").as("customerInfo");
     cy.intercept("POST", "/advantage/subscribe/preview*").as("preview");
 
     // assert that a matching request has been made
@@ -146,8 +146,8 @@ context("/advantage/subscribe", () => {
     completeFirstStep(randomEmail);
 
     // wait for request to be sent
-    cy.intercept("POST", "/advantage/purchase-account*").as("purchaseAccount");
-    cy.intercept("POST", "/advantage/customer-info*").as("customerInfo");
+    cy.intercept("POST", "/account/purchase-account*").as("purchaseAccount");
+    cy.intercept("POST", "/account/customer-info*").as("customerInfo");
     cy.intercept("POST", "/advantage/subscribe/preview*").as("preview");
 
     // assert that a matching request has been made
@@ -169,7 +169,7 @@ context("/advantage/subscribe", () => {
     cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as(
       "purchase"
     );
-    cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
+    cy.intercept("GET", "/account/purchases/*").as("pendingPurchase");
 
     cy.findByRole("button", { name: "Buy" })
       .should(() => {

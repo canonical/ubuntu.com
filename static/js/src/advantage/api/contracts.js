@@ -1,12 +1,9 @@
 export async function getPurchase(purchaseID) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(
-    `/advantage/purchases/${purchaseID}${queryString}`,
-    {
-      cache: "no-store",
-    }
-  );
+  let response = await fetch(`/account/purchases/${purchaseID}${queryString}`, {
+    cache: "no-store",
+  });
 
   let data = await response.json();
   return data;
@@ -20,7 +17,7 @@ export async function ensurePurchaseAccount({
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(`/advantage/purchase-account${queryString}`, {
+  let response = await fetch(`/account/purchase-account${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -55,7 +52,7 @@ export async function getCustomerInfo(accountId) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
   let response = await fetch(
-    `/advantage/customer-info/${accountId}${queryString}`,
+    `/account/customer-info/${accountId}${queryString}`,
     {
       cache: "no-store",
     }
@@ -116,7 +113,7 @@ export async function putContractEntitlements(contractId, entitlements) {
 export async function getLastPurchaseIds(accountId) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
   const response = await fetch(
-    `/advantage/last-purchase-ids/${accountId}${queryString}`,
+    `/account/last-purchase-ids/${accountId}${queryString}`,
     {
       cache: "no-store",
     }
@@ -128,7 +125,7 @@ export async function postInvoiceID(transactionType, transactionID, invoiceID) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
   let response = await fetch(
-    `/advantage/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
+    `/account/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
     {
       cache: "no-store",
       credentials: "include",
@@ -297,7 +294,7 @@ export async function postCustomerInfoToStripeAccount({
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(`/advantage/customer-info${queryString}`, {
+  let response = await fetch(`/account/customer-info${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -326,7 +323,7 @@ export async function postCustomerInfoForPurchasePreview(
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
 
-  let response = await fetch(`/advantage/customer-info-anon${queryString}`, {
+  let response = await fetch(`/account/customer-info-anon${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
