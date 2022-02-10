@@ -262,7 +262,6 @@ is covered in the [proxy documentation][].
 [juju-bundle]: https://juju.is/docs/sdk/bundles
 [juju-constraints]: https://juju.is/docs/olm/constraints
 [juju-docs]: https://juju.is/docs/olm/installing-juju
-[juju-gui]: https://juju.is/docs/olm/accessing-the-dashboard
 [offline-mode]: https://juju.is/docs/olm/configure-juju-for-offline-usage
 [on-prem-livepatch]: https://ubuntu.com/security/livepatch/docs/on_prem
 [overlays]: /kubernetes/docs/install-manual#overlay
