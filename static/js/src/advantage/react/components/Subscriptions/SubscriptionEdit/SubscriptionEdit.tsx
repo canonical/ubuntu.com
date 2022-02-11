@@ -95,6 +95,7 @@ type ResizeSummaryProps = {
   period: UserSubscription["period"];
   nextCycle: Date | null;
   preview?: PreviewResizeContractResponse;
+  isPreviewLoading: boolean;
 };
 
 const ResizeSummary = ({
@@ -105,6 +106,7 @@ const ResizeSummary = ({
   period,
   nextCycle,
   preview,
+  isPreviewLoading,
 }: ResizeSummaryProps) => {
   const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
   if (absoluteDelta === 0) {
@@ -130,13 +132,20 @@ const ResizeSummary = ({
             <br />
           </>
         ) : null}
-        Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
-        <b>
-          {isDecreasing ? "reduced" : "increased"} by{" "}
-          {currencyFormatter.format(absoluteDelta * unitPrice)}, to{" "}
-          {currencyFormatter.format(newNumberOfMachines * unitPrice)} per{" "}
-          {isMonthly ? "month" : "year"}.
-        </b>
+        {!isPreviewLoading ? (
+          <>
+            Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
+            <b>
+              {isDecreasing ? "reduced" : "increased"} by{" "}
+              {currencyFormatter.format(
+                preview ? preview.amountDue / 100 : absoluteDelta * unitPrice
+              )}
+              .
+            </b>
+          </>
+        ) : (
+          <Spinner />
+        )}
         {isDecreasing && nextCycle ? (
           <>
             <br />
@@ -224,6 +233,7 @@ const SubscriptionEdit = ({
         subscription?.account_id,
       ]);
       onClose();
+      queryClient.removeQueries("preview");
       const newNumberOfMachines =
         resizeNumber + (subscription?.current_number_of_machines ?? 0);
       if (newNumberOfMachines > (subscription?.number_of_machines ?? 0)) {
@@ -331,6 +341,7 @@ const SubscriptionEdit = ({
                   period={subscription.period}
                   nextCycle={nextCycleStart}
                   preview={preview}
+                  isPreviewLoading={isPreviewLoading}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">
