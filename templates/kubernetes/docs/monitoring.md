@@ -34,6 +34,8 @@ See the [quickstart guide][quickstart] for more details on installing **Charmed 
 You can install **Charmed Kubernetes** with monitoring using the Juju bundle
 along with the following overlay file ([download it here][monitoring-pgt-overlay]):
 
+NOTE: Make sure the series is the same as the rest of your kubernetes bundle. Eg: all of series focal.
+
 ```yaml
 applications:
   prometheus:
