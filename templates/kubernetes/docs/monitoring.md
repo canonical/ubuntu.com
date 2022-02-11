@@ -34,6 +34,8 @@ See the [quickstart guide][quickstart] for more details on installing **Charmed 
 You can install **Charmed Kubernetes** with monitoring using the Juju bundle
 along with the following overlay file ([download it here][monitoring-pgt-overlay]):
 
+NOTE: Make sure the series is the same as the rest of your kubernetes bundle. Eg: all of series focal.
+
 ```yaml
 applications:
   prometheus:
@@ -207,7 +209,7 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/monitoring.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/monitoring.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>

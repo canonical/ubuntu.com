@@ -74,7 +74,7 @@ dashboards are also included to highlight these metrics with Prometheus/Grafana.
 ### Storage Classes created by default
 
 Storage classes will now be created if the `kubernetes-master` charm is related to an
-integrator charm. These classes are for AWS, GCE, OpenStack, and Azure and are named cdk-ebs,
+integrator charm. These classes are for AWS, GCE, Openstack, and Azure and are named cdk-ebs,
 cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
 
 ### Support for etcd 3.3 and 3.4
@@ -131,8 +131,8 @@ Please see [this page][historic] for release notes of earlier versions.
 <div class="p-notification--information">
   <p class="p-notification__response">
     We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/release-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>
