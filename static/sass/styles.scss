@@ -10,23 +10,10 @@
 // import cookie policy
 @import "@canonical/cookie-policy/build/css/cookie-policy";
 
-// Font display Vanilla override
-@font-face {
-  font-display: optional;
-  font-family: "UbtuOverride";
-  font-style: normal;
-  font-weight: 300;
-  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
-      format("woff2"),
-    url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
-}
-
 // import vanilla-framework
 @import "vanilla-framework/scss/build";
 @import "vanilla-placeholders";
 
-// Vanilla framework overrides
-$font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif' !default;
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
