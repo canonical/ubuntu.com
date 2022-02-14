@@ -193,6 +193,7 @@ def get_microcerts(
     ua_contracts_api,
     badgr_api,
     edx_api,
+    badge_certification,
     **kwargs,
 ):
     """
@@ -242,8 +243,8 @@ def get_microcerts(
         ]
 
     certified_badge = {}
-    if badge_certified in assertions:
-        assertion = assertions.pop(badge_certified)
+    if badge_certification in assertions:
+        assertion = assertions.pop(badge_certification)
         if not assertion["revoked"]:
             certified_badge["image"] = assertion["image"]
             certified_badge["share_url"] = assertion["openBadgeId"]
