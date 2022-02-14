@@ -197,7 +197,9 @@ def post_payment_methods(ua_contracts_api, **kwargs):
     return response
 
 
-@shop_decorator(area="account", )
+@shop_decorator(
+    area="account",
+)
 @use_kwargs(ensure_purchase_account, location="json")
 def ensure_purchase_account(ua_contracts_api, **kwargs):
     """
