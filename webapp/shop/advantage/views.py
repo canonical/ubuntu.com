@@ -6,7 +6,7 @@ from webargs.fields import String
 
 # Local
 from webapp.shop.api.ua_contracts.primitives import Subscription
-from webapp.shop.decorators import advantage_decorator
+from webapp.shop.decorators import shop_decorator
 from webapp.login import user_info
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.api.ua_contracts.builders import (
@@ -35,8 +35,8 @@ from webapp.shop.schemas import (
 )
 
 
-@advantage_decorator(permission="user", response="html")
-def advantage_view(ua_contracts_api):
+@shop_decorator(area="advantage", permission="user", response="html")
+def advantage_view(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
 
     is_technical = False
@@ -53,7 +53,7 @@ def advantage_view(ua_contracts_api):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
 def get_user_subscriptions(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
@@ -99,8 +99,8 @@ def get_user_subscriptions(ua_contracts_api, **kwargs):
     return flask.jsonify(to_dict(user_subscriptions))
 
 
-@advantage_decorator(permission="user", response="json")
-def get_account_users(ua_contracts_api):
+@shop_decorator(area="advantage", permission="user", response="json")
+def get_account_users(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
 
     try:
@@ -120,7 +120,7 @@ def get_account_users(ua_contracts_api):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(post_account_user_role, location="json")
 def post_account_user_role(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -145,7 +145,7 @@ def post_account_user_role(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(put_account_user_role, location="json")
 def put_account_user_role(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -159,7 +159,7 @@ def put_account_user_role(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(delete_account_user_role, location="json")
 def delete_account_user_role(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -173,7 +173,7 @@ def delete_account_user_role(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 def get_contract_token(ua_contracts_api, **kwargs):
     contract_id = kwargs.get("contract_id")
     ua_contracts_api.set_convert_response(True)
@@ -183,8 +183,8 @@ def get_contract_token(ua_contracts_api, **kwargs):
     return flask.jsonify({"contract_token": contract_token})
 
 
-@advantage_decorator(response="html")
-def advantage_shop_view(ua_contracts_api):
+@shop_decorator(area="advantage", response="html")
+def advantage_shop_view(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
 
     account = None
@@ -227,8 +227,8 @@ def advantage_shop_view(ua_contracts_api):
     )
 
 
-@advantage_decorator(permission="user", response="html")
-def advantage_account_users_view(ua_contracts_api):
+@shop_decorator(area="advantage", permission="user", response="html")
+def advantage_account_users_view(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
 
     account = None
@@ -246,16 +246,16 @@ def advantage_account_users_view(ua_contracts_api):
     return flask.render_template("advantage/users/index.html")
 
 
-@advantage_decorator(permission="guest", response="html")
+@shop_decorator(area="advantage", permission="guest", response="html")
 @use_kwargs({"email": String()}, location="query")
-def advantage_thanks_view(*args, **kwargs):
+def advantage_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/subscribe/thank-you.html",
         email=kwargs.get("email"),
     )
 
 
-@advantage_decorator(permission="user_or_guest", response="json")
+@shop_decorator(area="advantage", permission="user_or_guest", response="json")
 @use_kwargs(post_advantage_subscriptions, location="json")
 def post_advantage_subscriptions(ua_contracts_api, **kwargs):
     preview = kwargs.get("preview")
@@ -351,7 +351,7 @@ def post_advantage_subscriptions(ua_contracts_api, **kwargs):
     return flask.jsonify(purchase), 200
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(cancel_advantage_subscriptions, location="json")
 def cancel_advantage_subscriptions(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -388,7 +388,7 @@ def cancel_advantage_subscriptions(ua_contracts_api, **kwargs):
     return flask.jsonify(purchase), 200
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(post_offer_schema, location="json")
 def post_offer(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
@@ -404,7 +404,7 @@ def post_offer(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(put_contract_entitlements, location="json")
 def put_contract_entitlements(ua_contracts_api, **kwargs):
     contract_id = kwargs.get("contract_id")
@@ -520,7 +520,7 @@ def put_contract_entitlements(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(post_auto_renewal_settings, location="json")
 def post_auto_renewal_settings(ua_contracts_api, **kwargs):
     subscriptions = kwargs.get("subscriptions", {})
@@ -537,7 +537,7 @@ def post_auto_renewal_settings(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 def cancel_trial(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
     ua_contracts_api.set_convert_response(True)
@@ -563,22 +563,22 @@ def cancel_trial(ua_contracts_api, **kwargs):
     )
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 def get_renewal(ua_contracts_api, **kwargs):
     renewal_id = kwargs.get("renewal_id")
 
     return ua_contracts_api.get_renewal(renewal_id)
 
 
-@advantage_decorator(permission="user", response="json")
+@shop_decorator(area="advantage", permission="user", response="json")
 def accept_renewal(ua_contracts_api, **kwargs):
     renewal_id = kwargs.get("renewal_id")
 
     return ua_contracts_api.accept_renewal(renewal_id)
 
 
-@advantage_decorator(permission="user", response="json")
-def get_account_offers(ua_contracts_api):
+@shop_decorator(area="advantage", permission="user", response="json")
+def get_account_offers(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
 
     try:
@@ -600,13 +600,17 @@ def get_account_offers(ua_contracts_api):
     return flask.jsonify(to_dict(offers))
 
 
-@advantage_decorator(permission="user", response="html")
-def get_advantage_offers(*args):
+@shop_decorator(
+    area="advantage",
+    permission="user",
+    response="html",
+)
+def get_advantage_offers(**kwargs):
     return flask.render_template("advantage/offers/index.html")
 
 
-@advantage_decorator(response="html")
-def blender_shop_view(ua_contracts_api):
+@shop_decorator(area="advantage", response="html")
+def blender_shop_view(ua_contracts_api, **kwargs):
     ua_contracts_api.set_convert_response(True)
 
     account = None
@@ -644,9 +648,9 @@ def blender_shop_view(ua_contracts_api):
     )
 
 
-@advantage_decorator(permission="guest", response="html")
+@shop_decorator(area="advantage", permission="guest", response="html")
 @use_kwargs({"email": String()}, location="query")
-def blender_thanks_view(*args, **kwargs):
+def blender_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),

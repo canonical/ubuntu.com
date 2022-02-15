@@ -8,9 +8,19 @@ import talisker.requests
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.badgr.api import BadgrAPI
 from webapp.shop.api.edx.api import EdxAPI
-from webapp.login import user_info
 from requests import Session
 
+
+QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
+QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
+BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
+CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
+
+AREA_LIST = {
+    "account": "Account pages",
+    "advantage": "UA pages",
+    "cube": "Cube",
+}
 
 PERMISSION_LIST = {
     "user": "Endpoint needs logged in user.",
@@ -33,20 +43,14 @@ MARKETING_FLAGS = {
 }
 
 
-def get_api_url(is_test_backend) -> str:
-    if is_test_backend:
-        return flask.current_app.config["CONTRACTS_TEST_API_URL"]
+def shop_decorator(area=None, permission=None, response="json", redirect=None):
+    permission = permission if permission in PERMISSION_LIST else None
+    response = response if response in RESPONSE_LIST else "json"
+    area = area if area in AREA_LIST else "account"
 
-    return flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-
-def advantage_decorator(permission=None, response="json"):
     session = talisker.requests.get_session()
-
-    if permission not in PERMISSION_LIST:
-        permission = None
-    if response not in RESPONSE_LIST:
-        response = "json"
+    badgr_session = init_badgr_session(area)
+    edx_session = init_edx_session(area)
 
     def decorator(func):
         @wraps(func)
@@ -58,91 +62,90 @@ def advantage_decorator(permission=None, response="json"):
                     value = flask.request.args.get(query_parameter)
                     flask.session[metadata_key] = value
 
-            # UA under maintenance
+            # shop under maintenance
             if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
                 return flask.render_template("advantage/maintenance.html")
 
             # if logged in, get rid of guest token
-            if user_info(flask.session):
-                if flask.session.get("guest_authentication_token"):
-                    flask.session.pop("guest_authentication_token")
-
-            test_backend = flask.request.args.get("test_backend", "false")
-            is_test_backend = strtobool(test_backend)
             user_token = flask.session.get("authentication_token")
             guest_token = flask.session.get("guest_authentication_token")
 
-            if permission == "user" and response == "html":
-                if not user_info(flask.session):
-                    if flask.request.path == "/advantage/offers":
-                        if is_test_backend:
-                            return flask.redirect(
-                                "/login?test_backend=true&"
-                                "next=/advantage/offers?test_backend=true"
-                            )
+            if user_token and guest_token:
+                flask.session.pop("guest_authentication_token")
+                guest_token = None
 
-                        return flask.redirect("/login?next=/advantage/offers")
-
-                    if flask.request.path != "/advantage":
-                        return flask.redirect(
-                            "/advantage?test_backend=true"
-                            if is_test_backend
-                            else "/advantage"
-                        )
-
-                    return flask.render_template(
-                        "advantage/index-no-login.html",
-                        is_test_backend=is_test_backend,
-                    )
+            test_backend = flask.request.args.get("test_backend", "false")
+            is_test_backend = strtobool(test_backend)
 
             if permission == "user" and response == "json":
-                if not user_info(flask.session):
+                if not user_token:
                     message = {"error": "authentication required"}
 
                     return flask.jsonify(message), 401
-
-            if permission == "guest" and response == "html":
-                if user_info(flask.session):
-                    return flask.redirect(
-                        "/advantage?test_backend=true"
-                        if is_test_backend
-                        else "/advantage"
-                    )
 
             if permission == "user_or_guest" and response == "json":
-                if not user_info(flask.session) and not guest_token:
+                if not user_token and not guest_token:
                     message = {"error": "authentication required"}
 
                     return flask.jsonify(message), 401
 
-            # init API instance
-            ua_contracts_api = UAContractsAPI(
-                session=session,
-                authentication_token=(user_token or guest_token),
-                token_type=("Macaroon" if user_token else "Bearer"),
-                api_url=get_api_url(is_test_backend),
+            if permission == "user" and response == "html":
+                if not user_token:
+                    if flask.request.path == "/advantage":
+                        return flask.render_template(
+                            "advantage/index-no-login.html",
+                            is_test_backend=is_test_backend,
+                        )
+
+                    redirect_path = redirect or flask.request.path
+
+                    return flask.redirect(
+                        get_redirect_url(redirect_path, is_test_backend)
+                    )
+
+            if permission == "guest" and response == "html":
+                if user_token:
+                    return flask.redirect(
+                        f"{get_redirect_default(area)}?test_backend=true"
+                        if is_test_backend
+                        else get_redirect_default(area)
+                    )
+
+            return func(
+                is_test_backend=is_test_backend,
+                badgr_issuer=get_badgr_issuer(is_test_backend),
+                badge_certification=get_certified_badge(is_test_backend),
+                ua_contracts_api=get_ua_contracts_api_instance(
+                    user_token, guest_token, response, is_test_backend, session
+                ),
+                badgr_api=get_badgr_api_instance(
+                    area, is_test_backend, badgr_session
+                ),
+                edx_api=get_edx_api_instance(
+                    area, is_test_backend, edx_session
+                ),
+                *args,
+                **kwargs,
             )
-
-            if response == "html":
-                ua_contracts_api.set_is_for_view(True)
-
-            return func(ua_contracts_api, *args, **kwargs)
 
         return decorated_function
 
     return decorator
 
 
-def cube_decorator(response="json"):
-    QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
-    QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
-    BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
-    CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
-
-    session = talisker.requests.get_session()
+def init_badgr_session(area) -> Session:
+    if area != "cube":
+        return None
 
     badgr_session = Session()
     talisker.requests.configure(badgr_session)
+
+    return badgr_session
+
+
+def init_edx_session(area) -> Session:
+    if area != "cube":
+        return None
 
     # This API lives under a sub-domain of ubuntu.com but requests to
     # it still need proxying, so we configure the session manually to
@@ -157,88 +160,119 @@ def cube_decorator(response="json"):
     edx_session.proxies.update(proxies)
     talisker.requests.configure(edx_session)
 
-    if response not in RESPONSE_LIST:
-        response = "json"
+    return edx_session
 
-    def decorator(func):
-        @wraps(func)
-        def decorated_function(*args, **kwargs):
-            # UA under maintenance
-            if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
-                return flask.render_template("advantage/maintenance.html")
 
-            test_backend = flask.request.args.get("test_backend", "false")
-            is_test_backend = strtobool(test_backend)
-            user_token = flask.session.get("authentication_token")
+def get_redirect_default(area) -> str:
+    redirect_path = "/account"
+    if area == "advantage":
+        redirect_path = "/advantage"
+    elif area == "cube":
+        redirect_path = "/cube/microcerts"
 
-            if response == "html":
-                if not user_info(flask.session):
-                    if is_test_backend:
-                        return flask.redirect(
-                            "/login?test_backend=true&"
-                            "next=/cube/microcerts?test_backend=true"
-                        )
+    return redirect_path
 
-                    return flask.redirect("/login?next=/cube/microcerts")
 
-            elif response == "json":
-                if not user_info(flask.session):
-                    message = {"error": "authentication required"}
+def get_api_url(is_test_backend) -> str:
+    if is_test_backend:
+        return flask.current_app.config["CONTRACTS_TEST_API_URL"]
 
-                    return flask.jsonify(message), 401
+    return flask.current_app.config["CONTRACTS_LIVE_API_URL"]
 
-            badgr_issuer = (
-                BADGR_ISSUER if not is_test_backend else QA_BADGR_ISSUER
-            )
-            certified_badge = (
-                CERTIFIED_BADGE if not is_test_backend else QA_CERTIFIED_BADGE,
-            )
 
-            # init API instance
-            ua_api = UAContractsAPI(
-                session=session,
-                authentication_token=(user_token),
-                token_type=("Macaroon" if user_token else "Bearer"),
-                api_url=get_api_url(is_test_backend),
-            )
+def get_badgr_url(is_test_backend) -> str:
+    return (
+        "https://api.test.badgr.com"
+        if is_test_backend
+        else "https://api.eu.badgr.io"
+    )
 
-            badgr_api = BadgrAPI(
-                "https://api.eu.badgr.io"
-                if not is_test_backend
-                else "https://api.test.badgr.com",
-                os.getenv("BAGDR_USER"),
-                os.getenv("BADGR_PASSWORD")
-                if not is_test_backend
-                else os.getenv("BADGR_QA_PASSWORD"),
-                badgr_session,
-            )
 
-            edx_api = EdxAPI(
-                "https://cube.ubuntu.com"
-                if not is_test_backend
-                else "https://qa.cube.ubuntu.com",
-                os.getenv("CUBE_EDX_CLIENT_ID")
-                if not is_test_backend
-                else os.getenv("CUBE_EDX_QA_CLIENT_ID"),
-                os.getenv("CUBE_EDX_CLIENT_SECRET")
-                if not is_test_backend
-                else os.getenv("CUBE_EDX_CLIENT_QA_SECRET"),
-                edx_session,
-            )
+def get_badgr_password(is_test_backend) -> str:
+    return (
+        os.getenv("BADGR_QA_PASSWORD")
+        if is_test_backend
+        else os.getenv("BADGR_PASSWORD")
+    )
 
-            if response == "html":
-                ua_api.set_is_for_view(True)
 
-            return func(
-                badgr_issuer,
-                certified_badge,
-                ua_api,
-                badgr_api,
-                edx_api,
-                *args,
-                **kwargs
-            )
+def get_edx_url(is_test_backend) -> str:
+    return (
+        "https://qa.cube.ubuntu.com"
+        if is_test_backend
+        else "https://cube.ubuntu.com"
+    )
 
-        return decorated_function
 
-    return decorator
+def get_edx_client_id(is_test_backend) -> str:
+    return (
+        os.getenv("CUBE_EDX_QA_CLIENT_ID")
+        if is_test_backend
+        else os.getenv("CUBE_EDX_CLIENT_ID")
+    )
+
+
+def get_edx_secret(is_test_backend) -> str:
+    return (
+        os.getenv("CUBE_EDX_CLIENT_QA_SECRET")
+        if is_test_backend
+        else os.getenv("CUBE_EDX_CLIENT_SECRET")
+    )
+
+
+def get_badgr_api_instance(area, is_test_backend, badgr_session) -> BadgrAPI:
+    if area != "cube":
+        return None
+
+    return BadgrAPI(
+        get_badgr_url(is_test_backend),
+        os.getenv("BAGDR_USER"),
+        get_badgr_password(is_test_backend),
+        badgr_session,
+    )
+
+
+def get_edx_api_instance(area, is_test_backend, edx_session) -> EdxAPI:
+    if area != "cube":
+        return None
+
+    return EdxAPI(
+        get_edx_url(is_test_backend),
+        get_edx_client_id(is_test_backend),
+        get_edx_secret(is_test_backend),
+        edx_session,
+    )
+
+
+def get_badgr_issuer(is_test_backend) -> str:
+    return QA_BADGR_ISSUER if is_test_backend else BADGR_ISSUER
+
+
+def get_certified_badge(is_test_backend) -> str:
+    return QA_CERTIFIED_BADGE if is_test_backend else CERTIFIED_BADGE
+
+
+def get_ua_contracts_api_instance(
+    user_token, guest_token, response, is_test_backend, session
+) -> UAContractsAPI:
+    ua_contracts_api = UAContractsAPI(
+        session=session,
+        authentication_token=(user_token or guest_token),
+        token_type=("Macaroon" if user_token else "Bearer"),
+        api_url=get_api_url(is_test_backend),
+    )
+
+    if response == "html":
+        ua_contracts_api.set_is_for_view(True)
+
+    return ua_contracts_api
+
+
+def get_redirect_url(redirect_path, is_test_backend) -> str:
+    if is_test_backend:
+        return (
+            "/login?test_backend=true&"
+            f"next={redirect_path}?test_backend=true"
+        )
+
+    return f"/login?next={redirect_path}"
