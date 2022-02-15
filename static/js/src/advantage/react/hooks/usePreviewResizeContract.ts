@@ -27,7 +27,7 @@ export const usePreviewResizeContract = (subscription?: UserSubscription) => {
     data,
     error,
   } = useQuery<PreviewResizeContractResponse>(
-    ["preview", quantity],
+    ["preview", quantity, subscription?.id],
     async () => {
       const res = await previewResizeContract(
         subscription?.account_id,
