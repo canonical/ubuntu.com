@@ -6,6 +6,7 @@ from math import ceil
 
 # Packages
 import flask
+import talisker.requests
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
@@ -21,10 +22,12 @@ from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema, ReleaseSchema
 from webapp.security.auth import authorization_required
+from webapp.security.api import SecurityAPI
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
+session = talisker.requests.get_session()
 
 
 def notice(notice_id):
@@ -711,23 +714,17 @@ def cve(cve_id):
     Retrieve and display an individual CVE details page
     """
 
-    cve = db_session.query(CVE).get(cve_id.upper())
+    security_api = SecurityAPI(
+        session=session,
+        base_url=f"http://192.168.178.51:8030/security/",
+    )
+
+    cve = security_api.get_cve(cve_id)
 
     if not cve:
         flask.abort(404)
 
-    releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(
-            or_(
-                Release.codename == "upstream",
-                Release.support_expires > datetime.now(),
-                Release.esm_expires > datetime.now(),
-            )
-        )
-        .all()
-    )
+    releases = security_api.get_releases()
 
     return flask.render_template(
         "security/cve/cve.html", cve=cve, releases=releases
