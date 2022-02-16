@@ -6,13 +6,18 @@ class SecurityAPI:
   ):
     self.session = session
     self.base_url = base_url
-
+  
+  """
+  Defines get request set up, returns data if succesful, 
+  raises HTTP errors if not
+  """
   def _get(
     self, 
     path: str,
     params = {}
   ):
     uri=f"{self.base_url}{path}"
+
 
     response = self.session.get (
       uri, params=params
@@ -22,6 +27,10 @@ class SecurityAPI:
 
     return response
 
+  """
+  Makes request for specific cve_id, 
+  returns json object if found  
+  """
   def get_cve(
     self,
     id: str,
@@ -30,6 +39,10 @@ class SecurityAPI:
       f"cves/{id.upper()}.json"
     ).json()
 
+  """
+  Makes request for all releases with ongoing support, 
+  returns json object if found
+  """
   def get_releases(
     self,
   ):
