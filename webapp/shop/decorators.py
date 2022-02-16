@@ -6,6 +6,7 @@ import flask
 import talisker.requests
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
+from webapp.shop.api.ua_contracts.advantage import AdvatnageAPI
 from webapp.shop.api.badgr.api import BadgrAPI
 from webapp.shop.api.edx.api import EdxAPI
 from requests import Session
@@ -111,13 +112,17 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                         else get_redirect_default(area)
                     )
 
+            ua_contracts_api = get_ua_contracts_api_instance(
+                user_token, guest_token, response, is_test_backend, session
+            )
+            advantage_api = AdvatnageAPI(ua_contracts_api)
+
             return func(
                 is_test_backend=is_test_backend,
                 badgr_issuer=get_badgr_issuer(is_test_backend),
                 badge_certification=get_certified_badge(is_test_backend),
-                ua_contracts_api=get_ua_contracts_api_instance(
-                    user_token, guest_token, response, is_test_backend, session
-                ),
+                ua_contracts_api=ua_contracts_api,
+                advantage_api=advantage_api,
                 badgr_api=get_badgr_api_instance(
                     area, is_test_backend, badgr_session
                 ),
