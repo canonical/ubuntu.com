@@ -140,16 +140,16 @@
               {% for status in package.statuses %}
                 <tr>
                   {% if status.release_codename %}
-                      <td rowspan="{{ releases | length }}">
-                        {% if loop.index == 1 %}
-                          <a href="/security/cves?q=&package={{ package["name"] }}">{{ package["name"] }}</a><br>
-                          <small>
-                          <a href="https://launchpad.net/distros/ubuntu/+source/{{ package["name"] }}">Launchpad</a>,
-                          <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package["name"] }}">Ubuntu</a>,
-                          <a href="https://tracker.debian.org/{{ package["name"] }}">Debian</a>
-                          </small>
-                        {% endif %}
+                    {% if loop.index == 1 %}
+                      <td rowspan="{{ package.statuses | length }}">
+                        <a href="/security/cves?q=&package={{ package["name"] }}">{{ package["name"] }}</a><br>
+                        <small>
+                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package["name"] }}">Launchpad</a>,
+                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package["name"] }}">Ubuntu</a>,
+                        <a href="https://tracker.debian.org/{{ package["name"] }}">Debian</a>
+                        </small>
                       </td>
+                    {% endif %}
                     <td>
                       {{ status.release_codename }}
                     </td>
