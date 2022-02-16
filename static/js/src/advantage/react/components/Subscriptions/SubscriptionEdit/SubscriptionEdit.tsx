@@ -4,15 +4,20 @@ import {
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useMemo } from "react";
 import usePortal from "react-useportal";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { debounce } from "lodash";
 
 import SubscriptionCancel from "../SubscriptionCancel";
 import FormikField from "../../FormikField";
 import { SelectedId } from "../Content/types";
-import { useResizeContract, useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useResizeContract,
+  useUserSubscriptions,
+  usePreviewResizeContract,
+} from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
@@ -23,6 +28,7 @@ import {
 } from "advantage/react/utils";
 import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
+import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
 import { useQueryClient } from "react-query";
 import { UserSubscription } from "advantage/api/types";
 import { UserSubscriptionPeriod } from "advantage/api/enum";
@@ -88,7 +94,8 @@ type ResizeSummaryProps = {
   price: UserSubscription["price"];
   period: UserSubscription["period"];
   nextCycle: Date | null;
-  currentCycleNumberOfMachines: number;
+  preview?: PreviewResizeContractResponse;
+  isPreviewLoading: boolean;
 };
 
 const ResizeSummary = ({
@@ -98,7 +105,8 @@ const ResizeSummary = ({
   price,
   period,
   nextCycle,
-  currentCycleNumberOfMachines,
+  preview,
+  isPreviewLoading,
 }: ResizeSummaryProps) => {
   const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
   if (absoluteDelta === 0) {
@@ -108,7 +116,6 @@ const ResizeSummary = ({
   const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
   const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
-  const machinesToPayNow = newNumberOfMachines - currentCycleNumberOfMachines;
 
   return (
     <div>
@@ -117,21 +124,28 @@ const ResizeSummary = ({
         {absoluteDelta > 1 ? "s" : ""}.
       </p>
       <p>
-        {!isDecreasing && machinesToPayNow > 0 ? (
+        {preview ? (
           <>
             You will be charged{" "}
-            <b>{currencyFormatter.format(machinesToPayNow * unitPrice)}</b> when
-            you click Resize.
+            <b>{currencyFormatter.format(preview.amountDue / 100)}</b> when you
+            click Resize.
             <br />
           </>
         ) : null}
-        Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
-        <b>
-          {isDecreasing ? "reduced" : "increased"} by{" "}
-          {currencyFormatter.format(absoluteDelta * unitPrice)}, to{" "}
-          {currencyFormatter.format(newNumberOfMachines * unitPrice)} per{" "}
-          {isMonthly ? "month" : "year"}.
-        </b>
+        {!isPreviewLoading ? (
+          <>
+            Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
+            <b>
+              {isDecreasing ? "reduced" : "increased"} by{" "}
+              {currencyFormatter.format(
+                preview ? preview.amountDue / 100 : absoluteDelta * unitPrice
+              )}
+              .
+            </b>
+          </>
+        ) : (
+          <Spinner />
+        )}
         {isDecreasing && nextCycle ? (
           <>
             <br />
@@ -174,8 +188,18 @@ const SubscriptionEdit = ({
     select: selectSubscriptionById(selectedId),
   });
   const resizeContract = useResizeContract(subscription);
+  const {
+    setQuantity: setPreviewQuantity,
+    isLoading: isPreviewLoading,
+    data: preview,
+  } = usePreviewResizeContract(subscription);
   const isBlender = isBlenderSubscription(subscription);
   const nextCycleStart = getNextCycleStart(subscription);
+
+  const setPreviewQuantityDebounced = useMemo(
+    () => debounce(setPreviewQuantity, 250),
+    []
+  );
 
   const unitName = isBlender ? "user" : "machine";
 
@@ -209,6 +233,7 @@ const SubscriptionEdit = ({
         subscription?.account_id,
       ]);
       onClose();
+      queryClient.removeQueries("preview");
       const newNumberOfMachines =
         resizeNumber + (subscription?.current_number_of_machines ?? 0);
       if (newNumberOfMachines > (subscription?.number_of_machines ?? 0)) {
@@ -242,6 +267,10 @@ const SubscriptionEdit = ({
   if (isSubscriptionLoading || !subscription) {
     return <Spinner />;
   }
+  const handleChange = (e: React.ChangeEvent<HTMLFormElement>) => {
+    setPreviewQuantityDebounced(e.target.value);
+  };
+
   const ResizeSchema = generateSchema(subscription, unitName);
   return (
     <>
@@ -267,7 +296,11 @@ const SubscriptionEdit = ({
       >
         {({ dirty, handleSubmit, isValid, errors, values }) => {
           return (
-            <form className="p-subscription__edit" onSubmit={handleSubmit}>
+            <form
+              className="p-subscription__edit"
+              onSubmit={handleSubmit}
+              onChange={handleChange}
+            >
               <div className="u-sv2">
                 <div className="u-sv3 u-hide--small">
                   <hr />
@@ -307,7 +340,8 @@ const SubscriptionEdit = ({
                   price={subscription.price}
                   period={subscription.period}
                   nextCycle={nextCycleStart}
-                  currentCycleNumberOfMachines={subscription.number_of_machines}
+                  preview={preview}
+                  isPreviewLoading={isPreviewLoading}
                 />
               </div>
               <div className="p-subscription__resize-actions u-align--right u-sv3">
@@ -325,7 +359,7 @@ const SubscriptionEdit = ({
                   appearance="positive"
                   className="p-subscription__resize-action"
                   disabled={!dirty || !isValid || isResizing}
-                  loading={isResizing}
+                  loading={isResizing || isPreviewLoading}
                   success={isResized}
                   type="submit"
                 >

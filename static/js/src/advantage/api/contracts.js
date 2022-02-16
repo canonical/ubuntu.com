@@ -250,6 +250,41 @@ export async function resizeContract(
   let data = await response.json();
   return data;
 }
+export async function previewResizeContract(
+  accountId,
+  previousPurchaseId,
+  productId,
+  quantity,
+  period,
+  marketplace
+) {
+  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id: accountId,
+      previous_purchase_id: previousPurchaseId,
+      period: period,
+      products: [
+        {
+          product_listing_id: productId,
+          quantity: quantity,
+        },
+      ],
+      resizing: true,
+      marketplace: marketplace,
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
 
 export async function postPurchasePreviewData(
   accountID,
