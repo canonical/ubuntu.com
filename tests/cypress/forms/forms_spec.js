@@ -68,19 +68,12 @@ context("Static marketo forms", () => {
     cy.findByLabelText(/Last name:/).type("Test");
     cy.findByLabelText(/Work email:/).type("test@test.com");
     cy.findByLabelText(/Current employer:/).type("Test");
-    cy.findByLabelText(/Job role:/).select("Education");
+    cy.findByLabelText(/Employment level:/).select("Senior");
+    cy.findByLabelText(/Title:/).type("Test");
     cy.findByLabelText(/What is your experience with Ubuntu?/).select(
       "None or very minimal experience"
     );
-    cy.findByLabelText(/Does your workplace require Ubuntu?/).click({
-      force: true,
-    });
-    cy.findByLabelText(
-      /Which microcert are you most interested in taking?/
-    ).select("Ubuntu System Architecture");
-    cy.findByLabelText(/Why do you want CUBE certification?/).type(
-      "test test test test "
-    );
+    cy.findByTestId("form-comment").type("test test test test");
     cy.findByLabelText(/I agree to receive information/).click({
       force: true,
     });
