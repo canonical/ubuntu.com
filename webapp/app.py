@@ -197,8 +197,13 @@ def bad_request_error(error):
 
 
 @app.errorhandler(SecurityAPIError)
-def security_api_error(error):
-    return flask.render_template("security-error.html"), 500
+def security_api_error(security_error):
+    return (
+        flask.render_template(
+            "security-error.html", error=security_error.error
+        ),
+        500,
+    )
 
 
 @app.errorhandler(UAContractsValidationError)

@@ -3,7 +3,8 @@ from requests.exceptions import HTTPError
 
 
 class SecurityAPIError(Exception):
-    pass
+    def __init__(self, error):
+        self.error = error
 
 
 class SecurityAPI:
@@ -29,7 +30,7 @@ class SecurityAPI:
         try:
             response.raise_for_status()
         except HTTPError as error:
-            raise SecurityAPIError()
+            raise SecurityAPIError(error=error)
 
         return response
 
