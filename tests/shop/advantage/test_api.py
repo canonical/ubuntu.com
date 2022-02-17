@@ -156,6 +156,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
                 "?productTags=ua,classic,pro,blender"
+                "&include-active-machines=false"
             ),
         }
 
@@ -182,6 +183,7 @@ class TestGetAccountContracts(unittest.TestCase):
             "url": (
                 "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
                 "?productTags=ua,classic,pro,blender"
+                "&include-active-machines=false"
             ),
         }
 

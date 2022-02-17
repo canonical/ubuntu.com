@@ -475,6 +475,7 @@ class TestParsers(unittest.TestCase):
                     enabled_by_default=False,
                 ),
             ],
+            number_of_active_machines=0,
             items=[
                 ContractItem(
                     id=10,
@@ -523,6 +524,7 @@ class TestParsers(unittest.TestCase):
                         enabled_by_default=True,
                     ),
                 ],
+                number_of_active_machines=0,
                 items=[
                     ContractItem(
                         id=10,

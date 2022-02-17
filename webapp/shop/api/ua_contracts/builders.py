@@ -233,6 +233,7 @@ def build_final_user_subscriptions(
             start_date=aggregated_values.get("start_date"),
             end_date=end_date,
             number_of_machines=number_of_machines,
+            number_of_active_machines=contract.number_of_active_machines,
             current_number_of_machines=current_number_of_machines,
             product_name=product_name,
             marketplace=marketplace,

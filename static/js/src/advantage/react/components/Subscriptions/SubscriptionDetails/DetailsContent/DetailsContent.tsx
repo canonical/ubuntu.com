@@ -1,10 +1,12 @@
 import {
+  Button,
   CodeSnippet,
   CodeSnippetBlockAppearance,
   Col,
   ColProps,
   Row,
   Spinner,
+  Tooltip,
 } from "@canonical/react-components";
 import classNames from "classnames";
 import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
@@ -108,6 +110,7 @@ const DetailsContent = ({ selectedId }: Props) => {
       className="u-sv4 u-no-margin--bottom"
     />
   ) : null;
+
   return (
     <div>
       <Row className="u-sv4">
@@ -143,6 +146,31 @@ const DetailsContent = ({ selectedId }: Props) => {
             title: isBlender ? "Users" : "Machines",
             value: subscription.number_of_machines,
           },
+          ...(isBlender
+            ? // Don't show the column for Blender subscriptions.
+              []
+            : [
+                {
+                  title: "Active machines",
+                  value: (
+                    <React.Fragment>
+                      {subscription.number_of_active_machines}
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message="The number of machines that contacted Ubuntu Advantage in the last 24 hour period (Beta)"
+                        position="right"
+                      >
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                        >
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    </React.Fragment>
+                  ),
+                },
+              ]),
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}
