@@ -1,4 +1,9 @@
 from requests import Session
+from requests.exceptions import HTTPError
+
+
+class SecurityAPIError(Exception):
+    pass
 
 
 class SecurityAPI:
@@ -17,9 +22,14 @@ class SecurityAPI:
         """
         uri = f"{self.base_url}{path}"
 
-        response = self.session.get(uri, params=params)
+        response = self.session.get(
+            "https://httpbin.org/status/504", params=params
+        )
 
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except HTTPError as error:
+            raise SecurityAPIError()
 
         return response
 
