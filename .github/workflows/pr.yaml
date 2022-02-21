@@ -2,7 +2,7 @@ name: PR checks
 on: [push, pull_request]
 env:
   SECRET_KEY: insecure_test_key
-  DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
+  DATABASE_URL: postgresql://postgres@localhost:5432/postgres
 
 jobs:
   run-image:
@@ -12,7 +12,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: pw
+          POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 5432:5432
         options: >-
@@ -29,7 +29,7 @@ jobs:
 
       - name: Run image
         run: |
-          docker run --detach --env SECRET_KEY=insecure_secret_key --network host --env DATABASE_URL=postgres://postgres:pw@localhost:5432/postgres ubuntu-com
+          docker run --env SECRET_KEY=insecure_secret_key --network host --env DATABASE_URL=postgresql://postgres@localhost:5432/postgres ubuntu-com &
           sleep 1
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost
 
@@ -40,7 +40,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: pw
+          POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 5432:5432
         options: >-
@@ -136,7 +136,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: pw
+          POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 5432:5432
         options: >-

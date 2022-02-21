@@ -1,7 +1,7 @@
 name: Accessibility checks
 env:
   SECRET_KEY: insecure_test_key
-  DATABASE_URL: postgres://postgres:pw@localhost:5432/postgres
+  DATABASE_URL: postgresql://postgres@localhost:5432/postgres
   PORT: 8001
   CONTRACTS_LIVE_API_URL: contracts.canonical.com
 
@@ -13,7 +13,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_PASSWORD: pw
+          POSTGRES_HOST_AUTH_METHOD: trust
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
