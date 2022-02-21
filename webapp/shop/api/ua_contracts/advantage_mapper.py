@@ -6,7 +6,7 @@ from webapp.shop.api.ua_contracts.models import UserSubscription
 from webapp.shop.api.ua_contracts.builders import build_user_subscriptions
 
 
-class AdvatnageAPI:
+class AdvantageMapper:
     def __init__(self, ua_contrats_api: UAContractsAPI):
         self.ua_contracts_api = ua_contrats_api
 

@@ -52,9 +52,9 @@ def advantage_view(ua_contracts_api, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
-def get_user_subscriptions(advantage_api, **kwargs):
+def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
-    user_subscriptions = advantage_api.get_user_subscriptions(email)
+    user_subscriptions = advantage_mapper.get_user_subscriptions(email)
 
     return flask.jsonify(user_subscriptions)
 
