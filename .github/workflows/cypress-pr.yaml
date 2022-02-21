@@ -1,7 +1,7 @@
 name: Cypress checks / PR
 env:
   SECRET_KEY: insecure_test_key
-  DATABASE_URL: postgres://postgres@localhost:5432/postgres
+  DATABASE_URL: postgresql://postgres@localhost:5432/postgres
   PORT: 8001
   CONTRACTS_LIVE_API_URL: contracts.canonical.com
   CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
