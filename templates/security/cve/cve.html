@@ -40,7 +40,7 @@
         <h1>{{ cve.id }}</h1>
 
         {% if cve.published %}
-        <p>Published: <strong>{{ cve.published }}</strong></p>
+        <p>Published: <strong>{{ date }}</strong></p>
         {% endif %}
 
         {% if cve.status == 'not-in-ubuntu' %}

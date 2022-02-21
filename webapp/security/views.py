@@ -6,6 +6,7 @@ from math import ceil
 
 # Packages
 import flask
+import dateutil
 import talisker.requests
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
@@ -723,11 +724,13 @@ def cve(cve_id):
 
     if not cve:
         flask.abort(404)
+    
+    date = dateutil.parser.parse(cve["published"]).strftime("%-d %B %Y")
 
     releases = security_api.get_releases()
 
     return flask.render_template(
-        "security/cve/cve.html", cve=cve, releases=releases
+        "security/cve/cve.html", cve=cve, releases=releases, date=date
     )
 
 
