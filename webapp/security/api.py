@@ -1,4 +1,10 @@
 from requests import Session
+from requests.exceptions import HTTPError
+
+
+class SecurityAPIError(HTTPError):
+    def __init__(self, error: HTTPError):
+        super().__init__(request=error.request, response=error.response)
 
 
 class SecurityAPI:
@@ -18,8 +24,11 @@ class SecurityAPI:
         uri = f"{self.base_url}{path}"
 
         response = self.session.get(uri, params=params)
-
-        response.raise_for_status()
+        
+        try:
+            response.raise_for_status()
+        except HTTPError as error:
+            raise SecurityAPIError(error)
 
         return response
 

@@ -27,6 +27,7 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
 )
+from webapp.security.api import SecurityAPIError
 from webapp.context import (
     current_year,
     descending_years,
@@ -193,6 +194,11 @@ discourse_api = DiscourseAPI(
 @app.errorhandler(400)
 def bad_request_error(error):
     return flask.render_template("400.html"), 400
+
+
+@app.errorhandler(SecurityAPIError)
+def security_api_error(error):
+    return flask.render_template("security-error.html"), 500
 
 
 @app.errorhandler(UAContractsValidationError)
