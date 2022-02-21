@@ -724,7 +724,7 @@ def cve(cve_id):
 
     if not cve:
         flask.abort(404)
-    
+
     date = dateutil.parser.parse(cve["published"]).strftime("%-d %B %Y")
 
     releases = security_api.get_releases()

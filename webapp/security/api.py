@@ -24,7 +24,7 @@ class SecurityAPI:
         uri = f"{self.base_url}{path}"
 
         response = self.session.get(uri, params=params)
-        
+
         try:
             response.raise_for_status()
         except HTTPError as error:
