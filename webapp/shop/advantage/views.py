@@ -9,9 +9,6 @@ from webapp.shop.api.ua_contracts.primitives import Subscription
 from webapp.shop.decorators import shop_decorator
 from webapp.login import user_info
 from webapp.shop.flaskparser import use_kwargs
-from webapp.shop.api.ua_contracts.builders import (
-    build_user_subscriptions,
-)
 from webapp.shop.api.ua_contracts.helpers import (
     to_dict,
     extract_last_purchase_ids,
@@ -55,46 +52,9 @@ def advantage_view(ua_contracts_api, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
-def get_user_subscriptions(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
-    advantage_marketplaces = ["canonical-ua", "blender"]
-
-    listings = {}
-    for marketplace in advantage_marketplaces:
-        marketplace_listings = ua_contracts_api.get_product_listings(
-            marketplace
-        )
-        listings.update(marketplace_listings)
-
-    accounts = ua_contracts_api.get_accounts(email=email)
-
-    user_summary = []
-    for account in accounts:
-        contracts = ua_contracts_api.get_account_contracts(
-            account_id=account.id
-        )
-        subscriptions = []
-        if account.role != "technical":
-            for marketplace in advantage_marketplaces:
-                market_subscriptions = (
-                    ua_contracts_api.get_account_subscriptions(
-                        account_id=account.id,
-                        marketplace=marketplace,
-                    )
-                )
-                subscriptions.extend(market_subscriptions)
-
-        user_summary.append(
-            {
-                "account": account,
-                "contracts": contracts,
-                "subscriptions": subscriptions,
-            }
-        )
-
-    user_subscriptions = build_user_subscriptions(user_summary, listings)
+    user_subscriptions = advantage_mapper.get_user_subscriptions(email)
 
     return flask.jsonify(to_dict(user_subscriptions))
 
