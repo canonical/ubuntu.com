@@ -33,12 +33,10 @@ from webapp.shop.schemas import (
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def advantage_view(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def advantage_view(advantage_mapper, **kwargs):
     is_technical = False
     try:
-        ua_contracts_api.get_purchase_account("canonical-ua")
+        advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
@@ -60,16 +58,14 @@ def get_user_subscriptions(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
-def get_account_users(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def get_account_users(advantage_mapper, **kwargs):
     try:
-        account = ua_contracts_api.get_purchase_account("canonical-ua")
+        account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount as error:
         # if no account throw 404
         raise UAContractsAPIError(error)
 
-    account_users = ua_contracts_api.get_account_users(account_id=account.id)
+    account_users = advantage_mapper.get_account_users(account_id=account.id)
 
     return flask.jsonify(
         {
@@ -82,11 +78,10 @@ def get_account_users(ua_contracts_api, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(post_account_user_role, location="json")
-def post_account_user_role(ua_contracts_api, **kwargs):
+def post_account_user_role(ua_contracts_api, advantage_mapper, **kwargs):
     account_id = kwargs.get("account_id")
-    ua_contracts_api.set_convert_response(True)
 
-    account_users = ua_contracts_api.get_account_users(account_id=account_id)
+    account_users = advantage_mapper.get_account_users(account_id=account_id)
 
     user_exists = any(
         user for user in account_users if user.email == kwargs.get("email")
@@ -134,23 +129,20 @@ def delete_account_user_role(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
-def get_contract_token(ua_contracts_api, **kwargs):
+def get_contract_token(advantage_mapper, **kwargs):
     contract_id = kwargs.get("contract_id")
-    ua_contracts_api.set_convert_response(True)
 
-    contract_token = ua_contracts_api.get_contract_token(contract_id)
+    contract_token = advantage_mapper.get_contract_token(contract_id)
 
     return flask.jsonify({"contract_token": contract_token})
 
 
 @shop_decorator(area="advantage", response="html")
-def advantage_shop_view(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def advantage_shop_view(advantage_mapper, **kwargs):
     account = None
     if user_info(flask.session):
         try:
-            account = ua_contracts_api.get_purchase_account("canonical-ua")
+            account = advantage_mapper.get_purchase_account("canonical-ua")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -160,7 +152,7 @@ def advantage_shop_view(ua_contracts_api, **kwargs):
 
     all_subscriptions = []
     if account:
-        all_subscriptions = ua_contracts_api.get_account_subscriptions(
+        all_subscriptions = advantage_mapper.get_account_subscriptions(
             account_id=account.id,
             marketplace="canonical-ua",
         )
@@ -173,7 +165,7 @@ def advantage_shop_view(ua_contracts_api, **kwargs):
 
     is_trialling = any(sub for sub in current_subscriptions if sub.in_trial)
 
-    listings = ua_contracts_api.get_product_listings("canonical-ua")
+    listings = advantage_mapper.get_product_listings("canonical-ua")
 
     previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
     user_listings = set_listings_trial_status(listings, all_subscriptions)
@@ -188,13 +180,11 @@ def advantage_shop_view(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def advantage_account_users_view(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def advantage_account_users_view(advantage_mapper, **kwargs):
     account = None
 
     try:
-        account = ua_contracts_api.get_purchase_account("canonical-ua")
+        account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
@@ -217,7 +207,7 @@ def advantage_thanks_view(**kwargs):
 
 @shop_decorator(area="advantage", permission="user_or_guest", response="json")
 @use_kwargs(post_advantage_subscriptions, location="json")
-def post_advantage_subscriptions(ua_contracts_api, **kwargs):
+def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
     preview = kwargs.get("preview")
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
@@ -229,7 +219,7 @@ def post_advantage_subscriptions(ua_contracts_api, **kwargs):
 
     current_subscription = {}
     if user_info(flask.session):
-        subscriptions = ua_contracts_api.get_account_subscriptions(
+        subscriptions = advantage_mapper.get_account_subscriptions(
             account_id=account_id,
             marketplace=marketplace,
             filters={"status": "active"},
@@ -237,8 +227,8 @@ def post_advantage_subscriptions(ua_contracts_api, **kwargs):
 
         for subscription in subscriptions:
             if (
-                subscription["subscription"]["period"] == period
-                and subscription["subscription"]["marketplace"] == marketplace
+                subscription.period == period
+                and subscription.marketplace == marketplace
             ):
                 current_subscription = subscription
 
@@ -248,9 +238,9 @@ def post_advantage_subscriptions(ua_contracts_api, **kwargs):
     # If we resize we want to override the existing value
     subscribed_quantities = {}
     if not resizing and current_subscription:
-        for item in current_subscription["purchasedProductListings"]:
-            product_listing_id = item["productListing"]["id"]
-            subscribed_quantities[product_listing_id] = item["value"]
+        for item in current_subscription.items:
+            product_listing_id = item.product_listing_id
+            subscribed_quantities[product_listing_id] = item.value
 
     purchase_items = []
     for product in products:
@@ -313,13 +303,15 @@ def post_advantage_subscriptions(ua_contracts_api, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(cancel_advantage_subscriptions, location="json")
-def cancel_advantage_subscriptions(ua_contracts_api, **kwargs):
+def cancel_advantage_subscriptions(
+    advantage_mapper, ua_contracts_api, **kwargs
+):
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     product_listing_id = kwargs.get("product_listing_id")
     marketplace = kwargs.get("marketplace")
 
-    monthly_subscriptions = ua_contracts_api.get_account_subscriptions(
+    monthly_subscriptions = advantage_mapper.get_account_subscriptions(
         account_id=account_id,
         marketplace=marketplace,
         filters={"status": "active", "period": "monthly"},
@@ -366,13 +358,12 @@ def post_offer(ua_contracts_api, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(put_contract_entitlements, location="json")
-def put_contract_entitlements(ua_contracts_api, **kwargs):
+def put_contract_entitlements(advantage_mapper, ua_contracts_api, **kwargs):
     contract_id = kwargs.get("contract_id")
-    ua_contracts_api.set_convert_response(True)
 
     settings = kwargs.get("entitlements")
 
-    contract = ua_contracts_api.get_contract(contract_id)
+    contract = advantage_mapper.get_contract(contract_id)
 
     allowed_entitlements = [
         "cis",
@@ -498,13 +489,12 @@ def post_auto_renewal_settings(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
-def cancel_trial(ua_contracts_api, **kwargs):
+def cancel_trial(advantage_mapper, ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
-    ua_contracts_api.set_convert_response(True)
 
     subscriptions: List[
         Subscription
-    ] = ua_contracts_api.get_account_subscriptions(
+    ] = advantage_mapper.get_account_subscriptions(
         account_id=account_id, marketplace="canonical-ua"
     )
 
@@ -538,11 +528,9 @@ def accept_renewal(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
-def get_account_offers(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def get_account_offers(advantage_mapper, ua_contracts_api, **kwargs):
     try:
-        account = ua_contracts_api.get_purchase_account("canonical-ua")
+        account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         return flask.jsonify({"error": "User has no purchase account"}), 400
     except AccessForbiddenError:
@@ -553,7 +541,7 @@ def get_account_offers(ua_contracts_api, **kwargs):
 
     offers = [
         offer
-        for offer in ua_contracts_api.get_account_offers(account.id)
+        for offer in advantage_mapper.get_account_offers(account.id)
         if offer.actionable
     ]
 
@@ -570,13 +558,11 @@ def get_advantage_offers(**kwargs):
 
 
 @shop_decorator(area="advantage", response="html")
-def blender_shop_view(ua_contracts_api, **kwargs):
-    ua_contracts_api.set_convert_response(True)
-
+def blender_shop_view(advantage_mapper, **kwargs):
     account = None
     if user_info(flask.session):
         try:
-            account = ua_contracts_api.get_purchase_account("blender")
+            account = advantage_mapper.get_purchase_account("blender")
         except UAContractsUserHasNoAccount:
             # There is no purchase account yet for this user.
             # One will need to be created later; expected condition.
@@ -586,7 +572,7 @@ def blender_shop_view(ua_contracts_api, **kwargs):
 
     all_subscriptions = []
     if account:
-        all_subscriptions = ua_contracts_api.get_account_subscriptions(
+        all_subscriptions = advantage_mapper.get_account_subscriptions(
             account_id=account.id,
             marketplace="blender",
         )
@@ -597,7 +583,7 @@ def blender_shop_view(ua_contracts_api, **kwargs):
         if subscription.status in ["active", "locked"]
     ]
 
-    listings = ua_contracts_api.get_product_listings("blender")
+    listings = advantage_mapper.get_product_listings("blender")
     previous_purchase_ids = extract_last_purchase_ids(current_subscriptions)
 
     return flask.render_template(

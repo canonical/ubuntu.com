@@ -2,17 +2,6 @@ from typing import Optional
 
 from requests.exceptions import HTTPError
 
-from webapp.shop.api.ua_contracts.parsers import (
-    parse_contracts,
-    parse_subscriptions,
-    parse_product_listings,
-    parse_accounts,
-    parse_account,
-    parse_users,
-    parse_contract,
-    parse_offers,
-)
-
 
 class UAContractsAPI:
     def __init__(
@@ -22,7 +11,6 @@ class UAContractsAPI:
         token_type="Macaroon",
         api_url="https://contracts.canonical.com",
         is_for_view=False,
-        convert_response=False,
     ):
         """
         Expects a Talisker session in most circumstances,
@@ -34,13 +22,9 @@ class UAContractsAPI:
         self.token_type = token_type
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
-        self.convert_response = convert_response
 
     def set_is_for_view(self, is_for_view):
         self.is_for_view = is_for_view
-
-    def set_convert_response(self, convert_response):
-        self.convert_response = convert_response
 
     def _request(self, method, path, json=None, params=None, error_rules=None):
         authorization = f"{self.token_type} {self.authentication_token}"
@@ -63,26 +47,20 @@ class UAContractsAPI:
 
         return response
 
-    def get_accounts(self, email: str = None):
-        response = self._request(
+    def get_accounts(self, email: str = None) -> dict:
+        return self._request(
             method="get",
             path="v1/accounts",
             params={"email": email} if email else None,
             error_rules=["default"],
-        )
-
-        accounts = response.json().get("accounts", [])
-
-        if self.convert_response:
-            return parse_accounts(accounts)
-
-        return accounts
+        ).json()
 
     def get_account_contracts(
         self, account_id: str, include_active_machines: bool = False
     ):
         include_active_machines = str(include_active_machines).lower()
-        response = self._request(
+
+        return self._request(
             method="get",
             path=(
                 f"v1/accounts/{account_id}/contracts"
@@ -90,64 +68,36 @@ class UAContractsAPI:
                 f"&include-active-machines={include_active_machines}"
             ),
             error_rules=["default"],
-        )
+        ).json()
 
-        contracts = response.json().get("contracts", [])
-
-        if self.convert_response:
-            return parse_contracts(contracts)
-
-        return contracts
-
-    def get_contract(self, contract_id: str):
-        response = self._request(
+    def get_contract(self, contract_id: str) -> dict:
+        return self._request(
             method="get",
             path=f"v1/contracts/{contract_id}",
             json={},
             error_rules=["default"],
-        )
+        ).json()
 
-        contract = response.json()
-
-        if self.convert_response:
-            return parse_contract(contract)
-
-        return contract
-
-    def get_account_offers(self, account_id: str):
-        response = self._request(
+    def get_account_offers(self, account_id: str) -> dict:
+        return self._request(
             method="get",
             path=f"v1/accounts/{account_id}/offers",
             error_rules=["default", "no-found", "user-role"],
-        )
+        ).json()
 
-        offers = response.json()
-
-        if self.convert_response:
-            return parse_offers(offers)
-
-        return offers
-
-    def get_account_users(self, account_id: str):
-        response = self._request(
+    def get_account_users(self, account_id: str) -> dict:
+        return self._request(
             method="get",
             path=f"v1/accounts/{account_id}/users",
             json={},
             error_rules=["default"],
-        )
-
-        users = [user.get("userInfo") for user in response.json().get("users")]
-
-        if self.convert_response:
-            return parse_users(users)
-
-        return users
+        ).json()
 
     def put_account_user_role(
         self,
         account_id: str,
         user_role_request: dict,
-    ):
+    ) -> dict:
         self._request(
             method="put",
             path=f"v1/accounts/{account_id}/user-role",
@@ -158,28 +108,24 @@ class UAContractsAPI:
         return {}
 
     def get_contract_token(self, contract_id: str) -> Optional[str]:
-        response = self._request(
+        return self._request(
             method="post",
             path=f"v1/contracts/{contract_id}/token",
             json={},
             error_rules=["default"],
-        )
-
-        return response.json().get("contractToken")
+        ).json()
 
     def get_customer_info(self, account_id):
-        response = self._request(
+        return self._request(
             method="get",
             path=f"v1/accounts/{account_id}/customer-info/stripe",
             error_rules=["default", "no-found"],
-        )
-
-        return response.json()
+        ).json()
 
     def put_customer_info(
         self, account_id, payment_method_id, address, name, tax_id
-    ):
-        response = self._request(
+    ) -> dict:
+        return self._request(
             method="put",
             path=f"v1/accounts/{account_id}/customer-info/stripe",
             json={
@@ -190,33 +136,29 @@ class UAContractsAPI:
                 "taxID": tax_id,
             },
             error_rules=["default"],
-        )
+        ).json()
 
-        return response.json()
-
-    def put_anonymous_customer_info(self, account_id, name, address, tax_id):
-        response = self._request(
+    def put_anonymous_customer_info(
+        self, account_id, name, address, tax_id
+    ) -> dict:
+        return self._request(
             method="put",
             path=f"v1/accounts/{account_id}/customer-info/stripe",
             json={"address": address, "name": name, "taxID": tax_id},
             error_rules=["default"],
-        )
+        ).json()
 
-        return response.json()
-
-    def put_payment_method(self, account_id, payment_method_id):
-        response = self._request(
+    def put_payment_method(self, account_id, payment_method_id) -> dict:
+        return self._request(
             method="put",
             path=f"v1/accounts/{account_id}/customer-info/stripe",
             json={
                 "defaultPaymentMethod": {"Id": payment_method_id},
             },
             error_rules=["default"],
-        )
+        ).json()
 
-        return response.json()
-
-    def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id):
+    def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id) -> dict:
         self._request(
             method="post",
             path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
@@ -225,16 +167,14 @@ class UAContractsAPI:
 
         return {}
 
-    def get_renewal(self, renewal_id):
-        response = self._request(
+    def get_renewal(self, renewal_id) -> dict:
+        return self._request(
             method="get",
             path=f"v1/renewals/{renewal_id}",
             error_rules=["default"],
-        )
+        ).json()
 
-        return response.json()
-
-    def accept_renewal(self, renewal_id):
+    def accept_renewal(self, renewal_id) -> dict:
         self._request(
             method="post",
             path=f"v1/renewals/{renewal_id}/acceptance",
@@ -243,72 +183,41 @@ class UAContractsAPI:
 
         return {}
 
-    def get_product_listings(self, marketplace: str):
-        response = self._request(
+    def get_product_listings(self, marketplace: str) -> dict:
+        return self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/product-listings",
             error_rules=["default"],
-        )
-
-        if self.convert_response:
-            return parse_product_listings(
-                response.json().get("productListings", []),
-                response.json().get("products", []),
-            )
-
-        return response.json()
+        ).json()
 
     def get_account_subscriptions(
-        self, account_id: str, marketplace: str, filters=None
-    ):
-        url_filters = ""
-        if filters:
-            filters = "&".join(
-                "{}={}".format(key, value) for key, value in filters.items()
-            )
-            url_filters = f"?{filters}"
-
-        response = self._request(
+        self, account_id: str, marketplace: str, filters: str = ""
+    ) -> dict:
+        return self._request(
             method="get",
             path=(
                 f"v1/accounts/{account_id}"
                 f"/marketplace/{marketplace}"
-                f"/subscriptions{url_filters}"
+                f"/subscriptions{filters}"
             ),
             error_rules=["default"],
-        )
+        ).json()
 
-        subscriptions = response.json().get("subscriptions", [])
-
-        if self.convert_response:
-            return parse_subscriptions(raw_subscriptions=subscriptions)
-
-        return subscriptions
-
-    def get_account_purchases(self, account_id: str, filters=None) -> dict:
-        url_filters = ""
-        if filters:
-            filters = "&".join(
-                "{}={}".format(key, value) for key, value in filters.items()
-            )
-            url_filters = f"?{filters}"
-
-        response = self._request(
+    def get_account_purchases(
+        self, account_id: str, filters: str = ""
+    ) -> dict:
+        return self._request(
             method="get",
-            path=f"v1/accounts/{account_id}/purchases{url_filters}",
+            path=f"v1/accounts/{account_id}/purchases{filters}",
             error_rules=["default"],
-        )
+        ).json()
 
-        return response.json().get("purchases", [])
-
-    def get_purchase(self, purchase_id: str):
-        response = self._request(
+    def get_purchase(self, purchase_id: str) -> dict:
+        return self._request(
             method="get",
             path=f"v1/purchase/{purchase_id}",
             error_rules=["default"],
-        )
-
-        return response.json()
+        ).json()
 
     def ensure_purchase_account(
         self,
@@ -317,7 +226,7 @@ class UAContractsAPI:
         account_name: str = "",
         captcha_value: str = "",
     ) -> dict:
-        response = self._request(
+        return self._request(
             method="post",
             path=f"v1/marketplace/{marketplace}/account",
             json={
@@ -326,58 +235,45 @@ class UAContractsAPI:
                 "recaptchaToken": captcha_value,
             },
             error_rules=["default", "ensure-purchase-account"],
-        )
+        ).json()
 
-        return response.json()
-
-    def get_purchase_account(self, marketplace: str = ""):
-        response = self._request(
+    def get_purchase_account(self, marketplace: str = "") -> dict:
+        return self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/account",
             error_rules=["default", "no-found", "user-role"],
-        )
-
-        if self.convert_response:
-            return parse_account(response.json())
-
-        return response.json()
+        ).json()
 
     def purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict
-    ):
-        response = self._request(
+    ) -> dict:
+        return self._request(
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase",
             json=purchase_request,
             error_rules=["default"],
-        )
-
-        return response.json()
+        ).json()
 
     def preview_purchase_from_marketplace(
         self, marketplace: str, purchase_request: dict
-    ):
-        response = self._request(
+    ) -> dict:
+        return self._request(
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase/preview",
             json=purchase_request,
             error_rules=["default"],
-        )
+        ).json()
 
-        return response.json()
-
-    def cancel_subscription(self, subscription_id: str):
-        self._request(
+    def cancel_subscription(self, subscription_id: str) -> dict:
+        return self._request(
             method="delete",
             path=f"v1/subscriptions/{subscription_id}",
             error_rules=["default"],
-        )
-
-        return {}
+        ).json()
 
     def post_subscription_auto_renewal(
         self, subscription_id: str, should_auto_renew: bool
-    ):
+    ) -> dict:
         self._request(
             method="post",
             path=f"v1/subscription/{subscription_id}/auto-renewal",
@@ -391,7 +287,7 @@ class UAContractsAPI:
         self,
         contract_id: str,
         entitlements_request: dict,
-    ):
+    ) -> dict:
         self._request(
             method="put",
             path=f"v1/contracts/{contract_id}/defaultEnablement",
