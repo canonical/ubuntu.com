@@ -1,11 +1,11 @@
 function setupUtmInheritance(selector) {
   const urlParams = new URLSearchParams(document.location.search);
   const azureUtmParams = [
+    "OCID",
     "utm_campaign",
     "utm_content",
     "utm_medium",
     "utm_source",
-    "OCID",
   ];
 
   const links = document.querySelectorAll(selector);
