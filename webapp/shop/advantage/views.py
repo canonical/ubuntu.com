@@ -56,7 +56,7 @@ def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
     user_subscriptions = advantage_mapper.get_user_subscriptions(email)
 
-    return flask.jsonify(user_subscriptions)
+    return flask.jsonify(to_dict(user_subscriptions))
 
 
 @shop_decorator(area="advantage", permission="user", response="json")

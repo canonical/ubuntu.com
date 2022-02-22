@@ -1,7 +1,6 @@
 from typing import List
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
-from webapp.shop.api.ua_contracts.helpers import to_dict
 from webapp.shop.api.ua_contracts.models import UserSubscription
 from webapp.shop.api.ua_contracts.builders import build_user_subscriptions
 
@@ -48,6 +47,4 @@ class AdvantageMapper:
                 }
             )
 
-        user_subscriptions = build_user_subscriptions(user_summary, listings)
-
-        return to_dict(user_subscriptions)
+        return build_user_subscriptions(user_summary, listings)
