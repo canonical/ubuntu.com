@@ -2,6 +2,7 @@ from typing import List, Dict, Optional
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.models import (
+    Purchase,
     UserSubscription,
     Offer,
     Listing,
@@ -16,6 +17,7 @@ from webapp.shop.api.ua_contracts.builders import build_user_subscriptions
 from webapp.shop.api.ua_contracts.parsers import (
     parse_contracts,
     parse_subscriptions,
+    parse_product_listing,
     parse_product_listings,
     parse_accounts,
     parse_account,
@@ -23,6 +25,7 @@ from webapp.shop.api.ua_contracts.parsers import (
     parse_contract,
     parse_offers,
 )
+from webapp.shop.api.ua_contracts.schema import PurchaseSchema
 
 
 class AdvantageMapper:
@@ -97,7 +100,9 @@ class AdvantageMapper:
 
         return parse_subscriptions(raw_subscriptions=subscriptions)
 
-    def get_account_purchases(self, account_id: str, filters=None) -> dict:
+    def get_account_purchases(
+        self, account_id: str, filters=None
+    ) -> List[Purchase]:
         url_filters = ""
         if filters:
             filters = "&".join(
@@ -109,7 +114,45 @@ class AdvantageMapper:
             account_id, url_filters
         )
 
-        return response.get("purchases", [])
+        response = response.get("purchases", [])
+        if not response:
+            return []
+
+        listings = {
+            listing["id"]: parse_product_listing(listing)
+            for listing in response.get("productListings", [])
+        }
+
+        purchases = PurchaseSchema(many=True).load(
+            response.get("purchases", [])
+        )
+
+        for purchase in purchases:
+            for item in purchase.items:
+                item.listing = listings.get(item.listing_id)
+
+        purchases.sort(key=lambda purchase: purchase.created_at, reverse=True)
+
+        return purchases
+
+    def get_purchase(self, purchase_id) -> Purchase:
+        response = self.ua_contracts_api.get_purchase(purchase_id)
+
+        return PurchaseSchema().load(response)
+
+    def purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict, preview=True
+    ) -> Purchase:
+        if preview:
+            response = self.ua_contracts_api.preview_purchase_from_marketplace(
+                marketplace, purchase_request
+            )
+        else:
+            response = self.ua_contracts_api.purchase_from_marketplace(
+                marketplace, purchase_request
+            )
+
+        return PurchaseSchema().load(response)
 
     def get_user_subscriptions(self, email: str) -> List[UserSubscription]:
         listings = {}

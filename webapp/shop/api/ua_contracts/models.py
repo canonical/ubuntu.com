@@ -1,5 +1,7 @@
 from typing import List
 
+from dateutil.parser import parse
+
 
 class Entitlement:
     def __init__(
@@ -127,3 +129,80 @@ class Offer:
         self.marketplace = marketplace
         self.created_at = created_at
         self.actionable = actionable
+
+
+class Invoice:
+    def __init__(
+        self,
+        reason: str,
+        currency: str,
+        status: str,
+        total: int,
+        id: str,
+        items: dict = None,
+        tax_amount: int = None,
+        payment_status: dict = None,
+        url: str = None,
+    ):
+        self.id = id
+        self.currency = currency
+        self.tax_amount = tax_amount
+        self.total = total
+        self.status = status
+        self.reason = reason
+        self.url = url
+        self.payment_status = payment_status
+        self.items = items
+
+
+class PurchaseItem:
+    def __init__(
+        self,
+        value: int,
+        listing_id: str,
+        listing: Listing = None,
+    ):
+        self.value = value
+        self.listing = listing
+        self.listing_id = listing_id
+
+
+class Purchase:
+    def __init__(
+        self,
+        account_id: str,
+        created_at: str,
+        id: str,
+        marketplace: str,
+        status: str,
+        subscription_id: str,
+        items: List[PurchaseItem],
+        invoice: Invoice = None,
+    ):
+        self.account_id = account_id
+        self.created_at = created_at
+        self.id = id
+        self.invoice = invoice
+        self.items = items
+        self.marketplace = marketplace
+        self.status = status
+        self.subscription_id = subscription_id
+
+    def get_period(self):
+        listing = self.items[0].listing
+        period = listing.period if listing else None
+
+        return "Monthly" if period == "monthly" else "Annual"
+
+    def get_formatted_date(self):
+        return parse(self.created_at).strftime("%d %B, %Y")
+
+    def get_total(self):
+        if self.invoice is None:
+            return None
+
+        if self.invoice.total:
+            cost = self.invoice.total / 100
+            currency = self.invoice.currency
+
+            return f"{cost} {currency}"

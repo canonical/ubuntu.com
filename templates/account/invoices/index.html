@@ -38,29 +38,40 @@
           <tbody>
             {% for invoice in invoices %}
               <tr>
-                <td data-heading="Service">{{ invoice.service }}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
-                <td data-heading="Date">{{ invoice.date }}</td>
-                <td data-heading="Status">
-                  {% if invoice.status == "paid" %}
-                  <div class="p-label--new">Paid</div>
-                  {% elif invoice.status == "open" %}
-                  <div class="p-label--deprecated">Failed</div>
+                <td aria-label="Service">
+                  {% if invoice.marketplace == "canonical-ua"%}
+                    Canonical UA
+                  {% elif invoice.marketplace == "blender" %}
+                    Blender Support
+                  {% elif invoice.marketplace == "canonical-cube" %}
+                    Canonical CUBE 
+                  {% endif %}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
+                <td aria-label="Date">{{ invoice.get_formatted_date() }}</td>
+                <td aria-label="Status">
+                  {% if invoice.invoice %}
+                    {% if invoice.invoice.status == "paid" %}
+                      <div class="p-label--new">Paid</div>
+                    {% elif invoice.invoice.status == "open" %}
+                      <div class="p-label--deprecated">Failed</div>
+                    {% else %}
+                      <div class="p-label">Pending</div>
+                    {% endif %}
                   {% else %}
-                  <div class="p-label">{{ invoice.status }}</div>
+                    <div class="p-label">Pending</div>
                   {% endif %}
                 </td>
-                <td class="u-align--right" data-heading="Total" style="padding-right: 5%">
-                  {% if invoice.total %}
+                <td class="u-align--right" aria-label="Total" style="padding-right: 5%">
+                  {% if invoice.invoice %}
                     <span class="js-format-price">
-                      {{ invoice.total }}
+                      {{ invoice.get_total() }}
                     </span>
                   {% else %}
                     -
                   {% endif %}
                 </td>
-                <td data-heading="Download PDF">
-                  {% if invoice.download_link %}
-                    <a href="{{ invoice.download_link }}{% if get_test_backend %}?test_backend=true{% endif %}" target="_blank">{{ invoice.download_file_name }}</a>
+                <td aria-label="Download PDF">
+                  {% if invoice.invoice %}
+                    <a href="invoices/download/{{ invoice.id }}{% if get_test_backend %}?test_backend=true{% endif %}" target="_blank">Download</a>
                   {% else %}
                     No invoice available
                   {% endif %}
