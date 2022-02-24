@@ -1,0 +1,205 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.27.0
+    method: GET
+    uri: https://partners.ubuntu.com/partners.json?name=Hewlett+Packard
+  response:
+    body:
+      string: '[{"name": "Hewlett Packard", "slug": "hewlett-packard", "published":
+        true, "logo": "https://assets.ubuntu.com/v1/96b06031-HP.jpg", "partner_website":
+        "http://www8.hp.com", "fallback_website": "http://www8.hp.com", "short_description":
+        "Our vision is to create technology that makes life better for everyone, everywhere
+        \u2014 every person, every organization, and every community around the globe.
+        This motivates us \u2014 inspires us \u2014 to do what we do. We won\u2019t
+        stop pushing ahead, because you won\u2019t stop pushing ahead. This is a new
+        HP. Keep reinventing.", "long_description": "", "featured": true, "always_featured":
+        true, "notes": "", "tags_label": "", "technology": [{"id": 3, "name": "Personal
+        computing/devices"}], "programme": [{"id": 10, "name": "Desktop"}], "service_offered":
+        [{"id": 11, "name": "Hardware manufacturer"}], "partner_type": [], "quote_set":
+        [], "link_set": [], "insightstag_set": [], "tag_set": [], "text_set": []}]'
+    headers:
+      accept-ranges:
+      - bytes
+      content-length:
+      - '957'
+      content-type:
+      - application.json
+      date:
+      - Thu, 24 Feb 2022 16:31:59 GMT
+      server:
+      - nginx/1.14.0 (Ubuntu)
+      strict-transport-security:
+      - max-age=15724800
+      x-cache-status:
+      - STALE from content-cache-gs2/0
+      x-frame-options:
+      - SAMEORIGIN
+      x-request-id:
+      - 8001af4af2d1e73d822142cb53bf663a
+      x-vcs-revision:
+      - 1594891311-b2b8e76
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.27.0
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedreleases/?format=json&limit=0
+  response:
+    body:
+      string: '{"meta": {"limit": 1000, "next": null, "offset": 0, "previous": null,
+        "total_count": 7}, "objects": [{"desktops": 123, "laptops": 243, "release":
+        "20.04 LTS", "resource_uri": "/api/v1/certifiedreleases/20.04%20LTS/", "servers":
+        312, "smart_core": 27, "soc": 4, "total": 712}, {"desktops": 0, "laptops":
+        0, "release": "Core 20", "resource_uri": "/api/v1/certifiedreleases/Core%2020/",
+        "servers": 0, "smart_core": 11, "soc": 0, "total": 11}, {"desktops": 0, "laptops":
+        0, "release": "Core 18", "resource_uri": "/api/v1/certifiedreleases/Core%2018/",
+        "servers": 0, "smart_core": 14, "soc": 0, "total": 14}, {"desktops": 116,
+        "laptops": 258, "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedreleases/18.04%20LTS/",
+        "servers": 386, "smart_core": 8, "soc": 9, "total": 779}, {"desktops": 2,
+        "laptops": 0, "release": "16.04 LTS", "resource_uri": "/api/v1/certifiedreleases/16.04%20LTS/",
+        "servers": 429, "smart_core": 2, "soc": 6, "total": 439}, {"desktops": 0,
+        "laptops": 0, "release": "Core 16", "resource_uri": "/api/v1/certifiedreleases/Core%2016/",
+        "servers": 0, "smart_core": 10, "soc": 0, "total": 10}, {"desktops": 0, "laptops":
+        0, "release": "14.04 LTS", "resource_uri": "/api/v1/certifiedreleases/14.04%20LTS/",
+        "servers": 326, "smart_core": 0, "soc": 3, "total": 329}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '1282'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 24 Feb 2022 16:31:59 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.27.0
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmodels/?format=json&limit=20&offset=0&vendor=HP
+  response:
+    body:
+      string: '{"meta": {"limit": 20, "next": "/api/v1/certifiedmodels/?limit=20&format=json&vendor=HP&offset=20",
+        "offset": 0, "previous": null, "total_count": 121}, "objects": [{"canonical_id":
+        "201810-26595", "category": "Laptop", "completed": "2019-01-09T22:13:41.124824",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "240
+        G7 Notebook PC", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201810-26595/"},
+        {"canonical_id": "201810-26602", "category": "Laptop", "completed": "2019-01-09T22:15:10.895493",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "245
+        G7 Notebook PC", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201810-26602/"},
+        {"canonical_id": "202001-27654", "category": "Desktop", "completed": "2020-03-11T23:25:59.314760",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "280
+        G5 Microtower PC", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202001-27654/"},
+        {"canonical_id": "201912-27554", "category": "Desktop", "completed": "2020-03-11T23:30:15.002267",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "285
+        G3 Microtower PC", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201912-27554/"},
+        {"canonical_id": "202005-27941", "category": "Desktop", "completed": "2021-01-30T00:25:35.515499",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "400
+        G6 Desktop Mini PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202005-27941/"},
+        {"canonical_id": "201812-26719", "category": "Laptop", "completed": "2019-03-14T23:11:24.356926",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "640
+        G4 Notebook PC", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201812-26719/"},
+        {"canonical_id": "201904-26981", "category": "Desktop", "completed": "2019-07-27T01:18:45.657762",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "All-in-One
+        22-c040la/22-c041la", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201904-26981/"},
+        {"canonical_id": "201904-26983", "category": "Desktop", "completed": "2019-07-27T01:19:43.005881",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "All-in-One
+        22-c042la/c043la", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201904-26983/"},
+        {"canonical_id": "202105-29123", "category": "Laptop", "completed": "2021-07-27T12:20:14.983595",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "Elite
+        Dragonfly G2 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202105-29123/"},
+        {"canonical_id": "202106-29206", "category": "Laptop", "completed": "2021-08-24T10:21:34.406569",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        830 G8 Notebook PC (16 GB)", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202106-29206/"},
+        {"canonical_id": "202106-29207", "category": "Laptop", "completed": "2021-08-24T10:16:55.466524",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        830 G8 Notebook PC (64 GB)", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202106-29207/"},
+        {"canonical_id": "202105-29120", "category": "Laptop", "completed": "2021-07-19T09:43:54.019242",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        840 Aero G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202105-29120/"},
+        {"canonical_id": "202103-28758", "category": "Laptop", "completed": "2021-07-29T10:14:58.562944",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        840 G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202103-28758/"},
+        {"canonical_id": "202103-28759", "category": "Laptop", "completed": "2021-07-30T14:54:36.781085",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        840 G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202103-28759/"},
+        {"canonical_id": "202012-28477", "category": "Laptop", "completed": "2021-03-19T20:57:36.902953",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        850 G7 Notebook PC", "release": "20.04.1 LTS", "resource_uri": "/api/v1/certifiedmodels/202012-28477/"},
+        {"canonical_id": "202103-28760", "category": "Laptop", "completed": "2021-07-26T17:51:05.463553",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        850 G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202103-28760/"},
+        {"canonical_id": "202103-28761", "category": "Laptop", "completed": "2021-07-27T10:30:00.432506",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        850 G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202103-28761/"},
+        {"canonical_id": "202105-29122", "category": "Laptop", "completed": "2021-07-09T13:42:06.944462",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        x360 1040 G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202105-29122/"},
+        {"canonical_id": "202105-29121", "category": "Laptop", "completed": "2021-07-28T16:28:46.506101",
+        "level": "Enabled", "major_release": "20.04 LTS", "make": "HP", "model": "EliteBook
+        x360 830 G8 Notebook PC", "release": "20.04 LTS", "resource_uri": "/api/v1/certifiedmodels/202105-29121/"},
+        {"canonical_id": "201811-26679", "category": "Desktop", "completed": "2019-01-10T02:10:36.576520",
+        "level": "Enabled", "major_release": "18.04 LTS", "make": "HP", "model": "EliteDesk
+        705 G4 DM", "release": "18.04 LTS", "resource_uri": "/api/v1/certifiedmodels/201811-26679/"}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '5846'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 24 Feb 2022 16:31:59 GMT
+      Keep-Alive:
+      - timeout=5, max=99
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+version: 1
