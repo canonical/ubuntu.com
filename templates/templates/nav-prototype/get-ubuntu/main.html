@@ -6,23 +6,23 @@
           <div class="p-side-navigation__drawer" aria-label="Topics">
             <div class="p-side-navigation__list u-no-margin--bottom" role="tablist" aria-label="Placeholder label">
               <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-active" id="tab-1" aria-controls="tab-content-1" role="tab" aria-selected="true" tabindex="0">Desktop</a>
+                <a href="#" class="p-side-navigation__link is-active" id="get-ubuntu-1" aria-controls="get-ubuntu-content-1" role="tab" aria-selected="true" tabindex="0">Desktop</a>
               </div>
 
               <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link" id="tab-2" aria-controls="tab-content-2" role="tab" aria-selected="false"  tabindex="-1">Server</a>
+                <a href="#" class="p-side-navigation__link" id="get-ubuntu-2" aria-controls="get-ubuntu-content-2" role="tab" aria-selected="false"  tabindex="-1">Server</a>
               </div>
 
               <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link" id="tab-3" aria-controls="tab-content-3" role="tab" aria-selected="false"  tabindex="-1">Raspberry Pi</a>
+                <a href="#" class="p-side-navigation__link" id="get-ubuntu-3" aria-controls="get-ubuntu-content-3" role="tab" aria-selected="false"  tabindex="-1">Raspberry Pi</a>
               </div>
 
               <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link" id="tab-4" aria-controls="tab-content-4" role="tab" aria-selected="false"  tabindex="-1">Ubuntu Core for IoT</a>
+                <a href="#" class="p-side-navigation__link" id="get-ubuntu-4" aria-controls="get-ubuntu-content-4" role="tab" aria-selected="false"  tabindex="-1">Ubuntu Core for IoT</a>
               </div>
 
               <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link" id="tab-5" aria-controls="tab-content-5" role="tab" aria-selected="false"  tabindex="-1">Develop on Ubuntu</a>
+                <a href="#" class="p-side-navigation__link" id="get-ubuntu-5" aria-controls="get-ubuntu-content-5" role="tab" aria-selected="false"  tabindex="-1">Develop on Ubuntu</a>
               </div>
             </div>
           </div>
@@ -140,11 +140,11 @@
         if (tabElement === tab) {
           tabElement.setAttribute('aria-selected', true);
           tabElement.classList.add('is-active');
-          tabContent.removeAttribute('hidden');
+          tabContent.classList.remove('u-hide');
         } else {
           tabElement.setAttribute('aria-selected', false);
           tabElement.classList.remove('is-active');
-          tabContent.setAttribute('hidden', true);
+          tabContent.classList.add('u-hide');
         }
       });
     }

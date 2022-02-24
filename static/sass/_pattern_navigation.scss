@@ -502,6 +502,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     }
 
     .p-side-navigation {
+      color: $color-x-light;
       height: 100%;
       padding: 1rem 0;
       position: relative;
@@ -524,6 +525,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       &__item.is-bordered {
         border-top: 1px solid $color-mid-dark;
+      }
+
+      .p-side-navigation__link:visited {
+        color: $color-x-light;
       }
     }
   }
