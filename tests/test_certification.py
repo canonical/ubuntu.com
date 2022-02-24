@@ -44,5 +44,5 @@ class TestCertification(VCRTestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_vendor_pages(self):
-        response = self.client.get("/certified/vendors/Dell")
+        response = self.client.get("/certified/vendors/HP")
         self.assertEqual(response.status_code, 200)
