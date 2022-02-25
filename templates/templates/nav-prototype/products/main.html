@@ -46,33 +46,12 @@
               </div>
 
               <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-11" aria-controls="products-content-11" role="tab" aria-selected="false"  tabindex="-1">Managed Applications</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-12" aria-controls="products-content-12" role="tab" aria-selected="false"  tabindex="-1">Developer tools</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-13" aria-controls="products-content-13" role="tab" aria-selected="false"  tabindex="-1">Internet of Things (IoT)</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-14" aria-controls="products-content-14" role="tab" aria-selected="false"  tabindex="-1">Robotics</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-15" aria-controls="products-content-15" role="tab" aria-selected="false"  tabindex="-1">Snapcraft</a>
-              </div>
-
-              <div class="p-side-navigation__item is-bordered">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-15"><b>View all</b></a>
+                <a href="#" class="p-side-navigation__link is-inverted" id="products-11" aria-controls="products-content-11" role="tab" aria-selected="false"  tabindex="-1">Internet of Things (IoT)</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-
 
       {% include "templates/nav-prototype/products/_01_featured.html" %}
       {% include "templates/nav-prototype/products/_02_ubuntu-os.html" %}
@@ -192,11 +171,11 @@
         if (tabElement === tab) {
           tabElement.setAttribute('aria-selected', true);
           tabElement.classList.add('is-active');
-          tabContent.removeAttribute('hidden');
+          tabContent.classList.remove('u-hide');
         } else {
           tabElement.setAttribute('aria-selected', false);
           tabElement.classList.remove('is-active');
-          tabContent.setAttribute('hidden', true);
+          tabContent.classList.add('u-hide');
         }
       });
     }
