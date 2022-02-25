@@ -477,6 +477,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       a {
         margin: 0;
+
+        &:last-child {
+          margin-left: auto;
+        }
       }
     }
 
