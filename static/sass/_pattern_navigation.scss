@@ -447,6 +447,19 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
     }
 
+    .dropdown-window__content--flat {
+      padding: 1rem 0;
+
+      .col-3 {
+        border-right: 1px solid $color-mid-dark;
+        padding-right: 1rem;
+
+        &:last-child {
+          border-right: 0;
+        }
+      }
+    }
+
     &__main-panel {
       border-right: 1px solid $color-mid-dark;
       padding-top: 1rem;

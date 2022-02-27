@@ -1,207 +1,117 @@
 <nav class="dropdown-window__content-container">
-  <div class="dropdown-window__content">
+  <div class="dropdown-window__content dropdown-window__content--flat">
     <div class="row">
-      <div class="col-2">
-        <div class="p-side-navigation is-dark">
-          <div class="p-side-navigation__drawer" aria-label="Topics">
-            <div class="p-side-navigation__list u-no-margin--bottom" role="tablist" aria-label="Placeholder label">
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted is-active" id="products-1" aria-controls="products-content-1" role="tab" aria-selected="true" tabindex="0">Featured</a>
-              </div>
+      <div class="col-3">
+        <h4 class="p-muted-heading">Ubuntu OS</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/desktop">Ubuntu Desktop</a><br />
+            <small>Secure Enterprise Linux</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/server">Ubuntu Server</a><br />
+            <small>Ubuntu optimsed for servers</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/core">Ubuntu Core</a><br />
+            <small>Tiny Embedded Ubuntu</small>
+          </li>
+        </ul>
 
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-2" aria-controls="products-content-2" role="tab" aria-selected="false"  tabindex="-1">Ubuntu OS</a>
-              </div>
+        <hr class="is-dark">
 
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-3" aria-controls="products-content-3" role="tab" aria-selected="false"  tabindex="-1">Datacentre</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-4" aria-controls="products-content-4" role="tab" aria-selected="false"  tabindex="-1">Private cloud</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-5" aria-controls="products-content-5" role="tab" aria-selected="false"  tabindex="-1">Virtualisation</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-6" aria-controls="products-content-6" role="tab" aria-selected="false"  tabindex="-1">Support</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-7" aria-controls="products-content-7" role="tab" aria-selected="false"  tabindex="-1">Kubernetes</a>
-              </div>
-              
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-8" aria-controls="products-content-8" role="tab" aria-selected="false"  tabindex="-1">Charmhub and Juju</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-9" aria-controls="products-content-9" role="tab" aria-selected="false"  tabindex="-1">Snapcraft</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-10" aria-controls="products-content-10" role="tab" aria-selected="false"  tabindex="-1">Certified Hardware</a>
-              </div>
-
-              <div class="p-side-navigation__item">
-                <a href="#" class="p-side-navigation__link is-inverted" id="products-11" aria-controls="products-content-11" role="tab" aria-selected="false"  tabindex="-1">Internet of Things (IoT)</a>
-              </div>
-
-              <div class="p-side-navigation__item is-bordered">
-                <a href="/templates/nav-prototype/all" class="p-side-navigation__link is-inverted">View all</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h4 class="p-muted-heading">Datacentre</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://maas.io/">MAAS</a><br />
+            <small>Bare metal provisioning</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://linuxcontainers.org/">LXD</a><br />
+            <small>Linux containers</small>
+          </li>
+        </ul>
       </div>
+      
+      <div class="col-3">
+        <h4 class="p-muted-heading">Private cloud</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/openstack">OpenStack</a><br />
+            <small>Private cloud provisioning</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://microstack.run/">MicroStack</a><br />
+            <small>Single-node private cloud </small>
+          </li>
+        </ul>
+        
+        <hr class="is-dark">
 
-      {% include "templates/nav-prototype/products/_01_featured.html" %}
-      {% include "templates/nav-prototype/products/_02_ubuntu-os.html" %}
-      {% include "templates/nav-prototype/products/_03_datacentre.html" %}
-      {% include "templates/nav-prototype/products/_04_private-cloud.html" %}
-      {% include "templates/nav-prototype/products/_05_virtualisation.html" %}
-      {% include "templates/nav-prototype/products/_06_support.html" %}
-      {% include "templates/nav-prototype/products/_07_kubernetes.html" %}
-      {% include "templates/nav-prototype/products/_08_charmhub-and-juju.html" %}
-      {% include "templates/nav-prototype/products/_09_snapcraft.html" %}
-      {% include "templates/nav-prototype/products/_10_certified-hardware.html" %}
-      {% include "templates/nav-prototype/products/_11_internet-of-things.html" %}
+        <h4 class="p-muted-heading">Virtualisation</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://multipass.run/">Multipass</a><br />
+            <small>Virtual machines</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/wsl">WSL</a><br />
+            <small>Windows subsytem for Linux</small>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="col-3">
+        <h4 class="p-muted-heading">Support</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/support">Ubuntu Advantage</a><br />
+            <small>Enterprise support for Ubuntu</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/security/livepatch">Livepatch</a><br />
+            <small>Secure Ubuntu without reboots</small>
+          </li>
+        </ul>
+        
+        <hr class="is-dark">
 
+        <h4 class="p-muted-heading">Kubernetes</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/kubernetes">Kubernetes</a><br />
+            <small>Containerised workloads</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://microk8s.io/">MicroK8s</a><br />
+            <small>Easy light-weight Kubernetes</small>
+          </li>
+        </ul>
+      </div>
+        
+      <div class="col-3">
+        <h4 class="p-muted-heading">Charmhub and Juju</h4>
+
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://charmhub.io/">Charmhub</a><br />
+            <small>Store for Juju operators</small>
+          </li>
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://juju.is/">Juju</a><br />
+            <small>Model-driven operations for apps</small>
+          </li>
+        </ul>
+        
+        <hr class="is-dark">
+
+        <h4 class="p-muted-heading">Certified Hardware</h4>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <a class="p-link--inverted" href="https://ubuntu.com/certified">Certfiied Hardware</a><br />
+            <small>Machines you can trust</small>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
-
-<script>
-  (function () {
-    var keys = {
-      left: 'ArrowLeft',
-      right: 'ArrowRight',
-    };
-
-    var direction = {
-      ArrowLeft: -1,
-      ArrowRight: 1,
-    };
-
-    // IE11 doesn't support event.code, but event.keyCode is
-    // deprecated in most modern browsers, so we should support
-    // both for the time being.
-    var IEKeys = {
-      left: 37,
-      right: 39,
-    };
-
-    var IEDirection = {
-      37: direction['ArrowLeft'],
-      39: direction['ArrowRight'],
-    };
-
-    /**
-      Attaches a number of events that each trigger
-      the reveal of the chosen tab content
-      @param {Array} tabs an array of tabs within a container
-    */
-    function attachEvents(tabs) {
-      tabs.forEach(function (tab, index) {
-        tab.addEventListener('keyup', function (e) {
-          var compatibleKeys = IEKeys;
-          var key = e.keyCode;
-
-          if (e.code) {
-            compatibleKeys = keys;
-            key = e.code;
-          }
-
-          if (key === compatibleKeys.left || key === compatibleKeys.right) {
-            switchTabOnArrowPress(e, tabs);
-          }
-        });
-
-        tab.addEventListener('click', function (e) {
-          e.preventDefault();
-          setActiveTab(tab, tabs);
-        });
-
-        tab.addEventListener('focus', function () {
-          setActiveTab(tab, tabs);
-        });
-
-        tab.index = index;
-      });
-    }
-
-    /**
-      Determine which tab to show when an arrow key is pressed
-      @param {KeyboardEvent} event
-      @param {Array} tabs an array of tabs within a container
-    */
-    function switchTabOnArrowPress(event, tabs) {
-      var compatibleKeys = IEKeys;
-      var compatibleDirection = IEDirection;
-      var pressed = event.keyCode;
-
-      if (event.code) {
-        compatibleKeys = keys;
-        compatibleDirection = direction;
-        pressed = event.code;
-      }
-
-      if (compatibleDirection[pressed]) {
-        var target = event.target;
-        if (target.index !== undefined) {
-          if (tabs[target.index + compatibleDirection[pressed]]) {
-            tabs[target.index + compatibleDirection[pressed]].focus();
-          } else if (pressed === compatibleKeys.left) {
-            tabs[tabs.length - 1].focus();
-          } else if (pressed === compatibleKeys.right) {
-            tabs[0].focus();
-          }
-        }
-      }
-    }
-
-    /**
-      Cycles through an array of tab elements and ensures 
-      only the target tab and its content are selected
-      @param {HTMLElement} tab the tab whose content will be shown
-      @param {Array} tabs an array of tabs within a container
-    */
-    function setActiveTab(tab, tabs) {
-      tabs.forEach(function (tabElement) {
-        var tabContent = document.getElementById(tabElement.getAttribute('aria-controls'));
-
-        if (tabElement === tab) {
-          tabElement.setAttribute('aria-selected', true);
-          tabElement.classList.add('is-active');
-          tabContent.classList.remove('u-hide');
-        } else {
-          tabElement.setAttribute('aria-selected', false);
-          tabElement.classList.remove('is-active');
-          tabContent.classList.add('u-hide');
-        }
-      });
-    }
-
-    /**
-      Attaches events to tab links within a given parent element,
-      and sets the active tab if the current hash matches the id
-      of an element controlled by a tab link
-      @param {String} selector class name of the element 
-      containing the tabs we want to attach events to
-    */
-    function initTabs(selector) {
-      var tabContainers = [].slice.call(document.querySelectorAll(selector));
-
-      tabContainers.forEach(function (tabContainer) {
-        var tabs = [].slice.call(tabContainer.querySelectorAll('[aria-controls]'));
-        attachEvents(tabs);
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', function () {
-      initTabs('[role="tablist"]');
-    });
-  })();
-</script>
+  </nav>
