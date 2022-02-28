@@ -56,7 +56,18 @@ relations:
   - [kubernetes-worker:juju-info, telegraf:juju-info]
   - [kubernetes-master:prometheus, prometheus:manual-jobs]
   - [kubernetes-master:grafana, grafana:dashboards]
+  - [prometheus:certificates, easyrsa:client]
+  - [etcd:grafana, grafana:dashboards]
+  - [etcd:prometheus, prometheus:manual-jobs]
 ```
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+If you are using Vault instead of EasyRSA you will need to change the
+<code>easyrsa:client</code> relation to:<br />
+<code>[prometheus:certificates, vault:certificates]</code></p>
+</div>
 
 To use this overlay with the **Charmed Kubernetes** bundle, specify it
 during deploy like this:
