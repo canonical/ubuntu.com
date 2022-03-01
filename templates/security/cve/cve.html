@@ -315,9 +315,9 @@
           <h2>Bugs</h2>
           <ul>
             {% for bug in cve.bugs %}
-              
-                <li><a href="{{ cve.bug }}">{{ bug }}</a></li>
-
+              {% if 'http' in bug %}
+                <li><a href="{{ bug }}">{{ bug }}</a></li>
+              {% endif %}
             {% endfor %}
           </ul>
         {% endif %}
