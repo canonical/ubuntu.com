@@ -57,16 +57,16 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
-| 1.23.x    | [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.23/bundle.yaml) |
-| 1.22.x    | [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.22/bundle.yaml) |
-| 1.21.x    | [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.21/bundle.yaml) |
-| 1.20.x    | [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.20/bundle.yaml) |
-| 1.19.x    | [charmed-kubernetes-545](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.19/bundle.yaml) |
-| 1.18.x    | [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.18/bundle.yaml) |
-| 1.17.x    | [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.17/bundle.yaml) |
-| 1.16.x    | [charmed-kubernetes-316](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.16/bundle.yaml) |
-| 1.15.x    | [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.15/bundle.yaml) |
-| 1.14.x    | [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.14/bundle.yaml) |
+| 1.23.x    | [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml) |
+| 1.22.x    | [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.22/bundle.yaml) |
+| 1.21.x    | [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.21/bundle.yaml) |
+| 1.20.x    | [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml) |
+| 1.19.x    | [charmed-kubernetes-545](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.19/bundle.yaml) |
+| 1.18.x    | [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.18/bundle.yaml) |
+| 1.17.x    | [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.17/bundle.yaml) |
+| 1.16.x    | [charmed-kubernetes-316](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.16/bundle.yaml) |
+| 1.15.x    | [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.15/bundle.yaml) |
+| 1.14.x    | [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.14/bundle.yaml) |
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">

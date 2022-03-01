@@ -73,7 +73,7 @@ each category!
    network encapsulation. <a href="/kubernetes/docs/cni-calico"> Read more...</a></span>
   </div>
   <div class="col-3 ">
-    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/calico-overlay.yaml" class="p-button--positive">Download calico-overlay.yaml</a></span>
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/calico-overlay.yaml" class="p-button--positive">Download calico-overlay.yaml</a></span>
   </div>
 </div>
 <br>
@@ -85,7 +85,7 @@ each category!
   <span>Shorthand for "Calico and Flannel", this combination brings in Calico's support for the NetworkPolicy feature of Kubernetes, while utilizing Flannel's UDP-based network traffic.<a href="/kubernetes/docs/cni-canal"> Read more...</a></span>
  </div>
  <div class="col-3">
-   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/canal-overlay.yaml" class="p-button--positive">Download canal-overlay.yaml</a></span>
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/canal-overlay.yaml" class="p-button--positive">Download canal-overlay.yaml</a></span>
  </div>
 </div>
 <br>
@@ -99,7 +99,7 @@ each category!
   it with the relevant licence. <a href="/kubernetes/docs/tigera-secure-ee"> Read more...</a></span>
  </div>
  <div class="col-3">
-   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/tigera-overlay.yaml" class="p-button--positive">Download tigera-overlay.yaml</a></span>
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/tigera-overlay.yaml" class="p-button--positive">Download tigera-overlay.yaml</a></span>
  </div>
 </div>
 </div>
@@ -125,7 +125,7 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
    <span>Enables support for EBS storage and ELB load balancers. <a href="/kubernetes/docs/aws-integration"> Read more...</a></span>
   </div>
   <div class="col-3 ">
-    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml" class="p-button--positive">Download aws-overlay.yaml</a></span>
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml" class="p-button--positive">Download aws-overlay.yaml</a></span>
   </div>
 </div>
 <br>
@@ -137,7 +137,7 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
   <span>Enables support for Azure's native Disk Storage and load balancers.</span>
  </div>
  <div class="col-3 u-vertically-center">
-   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml" class="p-button--positive">Download azure-overlay.yaml</a></span>
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml" class="p-button--positive">Download azure-overlay.yaml</a></span>
  </div>
 </div>
 <br>
@@ -149,7 +149,7 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
   <span>Integrates with GCP for storage and loadbalancing. <a href="/kubernetes/docs/gcp-integration"> Read more...</a></span>
  </div>
  <div class="col-3">
-   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/gcp-overlay.yaml" class="p-button--positive">Download gcp-overlay.yaml</a></span>
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/gcp-overlay.yaml" class="p-button--positive">Download gcp-overlay.yaml</a></span>
  </div>
 </div>
 <br>
@@ -161,7 +161,7 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
    <span>Provides support for OpenStack native features such as Cinder volumes and LBaaS. <a href="/kubernetes/docs/openstack-integration"> Read more...</a></span>
   </div>
   <div class="col-3">
-    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml" class="p-button--positive u-no-margin--right">Download openstack-overlay.yaml</a></span>
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-overlay.yaml" class="p-button--positive u-no-margin--right">Download openstack-overlay.yaml</a></span>
   </div>
 </div>
 <br>
@@ -173,7 +173,7 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
    <span>Provides support for native storage in vSphere. </span>
   </div>
   <div class="col-3">
-    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vsphere-overlay.yaml" class="p-button--positive u-no-margin--right u-no-margin--left">Download vsphere-overlay.yaml</a></span>
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vsphere-overlay.yaml" class="p-button--positive u-no-margin--right u-no-margin--left">Download vsphere-overlay.yaml</a></span>
   </div>
 </div>
 </div>
@@ -232,16 +232,16 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle                                                                                              |
 | --- |------------------------------------------------------------------------------------------------------------------------------|
-| 1.23.x    | [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.23/bundle.yaml) |
-| 1.22.x    | [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.22/bundle.yaml) |
-| 1.21.x    | [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.21/bundle.yaml) |
-| 1.20.x    | [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.20/bundle.yaml) |
-| 1.19.x    | [charmed-kubernetes-545](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.19/bundle.yaml) |
-| 1.18.x    | [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.18/bundle.yaml) |
-| 1.17.x    | [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.17/bundle.yaml) |
-| 1.16.x    | [charmed-kubernetes-316](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.16/bundle.yaml) |
-| 1.15.x    | [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.15/bundle.yaml) |
-| 1.14.x    | [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/releases/1.14/bundle.yaml) |
+| 1.23.x    | [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml) |
+| 1.22.x    | [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.22/bundle.yaml) |
+| 1.21.x    | [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.21/bundle.yaml) |
+| 1.20.x    | [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml) |
+| 1.19.x    | [charmed-kubernetes-545](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.19/bundle.yaml) |
+| 1.18.x    | [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.18/bundle.yaml) |
+| 1.17.x    | [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.17/bundle.yaml) |
+| 1.16.x    | [charmed-kubernetes-316](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.16/bundle.yaml) |
+| 1.15.x    | [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.15/bundle.yaml) |
+| 1.14.x    | [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.14/bundle.yaml) |
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
@@ -444,7 +444,7 @@ Now you have a cluster up and running, check out the
 [juju-bundle]: https://juju.is/docs/sdk/bundles
 [juju-gui]: https://juju.is/docs/olm/accessing-juju%E2%80%99s-web-interface
 [juju-constraints]: https://juju.is/docs/olm/constraints
-[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml
+[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
 [latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes/archive/bundle.yaml?channel=stable
 [charm-kworker]: https://charmhub.io/containers-kubernetes-worker
 [snaps]: https://docs.snapcraft.io/snap-documentation

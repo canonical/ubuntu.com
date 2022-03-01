@@ -294,7 +294,7 @@ view.
 [quickstart]: /kubernetes/docs/quickstart
 [juju-logging]: https://juju.is/docs/olm/juju-logs
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
-[logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/logging-egf-overlay.yaml
+[logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/logging-egf-overlay.yaml
 [graylog-vhost]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/graylog-vhost.tmpl
 [graylog-dashboards]: http://docs.graylog.org/en/3.0/pages/dashboards.html
 

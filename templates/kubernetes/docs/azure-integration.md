@@ -198,7 +198,7 @@ external clients.
 
 <!-- LINKS -->
 
-[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml
+[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
 
 [storage]: /kubernetes/docs/storage
 [azure-integrator]: /kubernetes/docs/charm-azure-integrator

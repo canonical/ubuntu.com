@@ -211,7 +211,7 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
 
 <!-- LINKS -->
 
-[monitoring-pgt-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/monitoring-pgt-overlay.yaml
+[monitoring-pgt-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/monitoring-pgt-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [nagios]: https://www.nagios.org/
 [external-nagios]: https://charmhub.io/nrpe/

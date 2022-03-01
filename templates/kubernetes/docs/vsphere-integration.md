@@ -193,7 +193,7 @@ please see the [vSphere integrator charm page][vsphere-integrator].
 
 <!-- LINKS -->
 
-[asset-vsphere-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vsphere-overlay.yaml
+[asset-vsphere-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vsphere-overlay.yaml
 
 [storage]: /kubernetes/docs/storage
 [vsphere-integrator]: /kubernetes/docs/charm-vsphere-integrator

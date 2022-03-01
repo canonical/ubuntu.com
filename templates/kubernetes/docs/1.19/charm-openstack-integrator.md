@@ -333,6 +333,6 @@ recommended approach.  If not set, will use the upstream default.
 
 <!-- ACTIONS ENDS -->
 
-[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml
+[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

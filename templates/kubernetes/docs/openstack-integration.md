@@ -280,8 +280,8 @@ juju debug-log --replay --include openstack-integrator/0
 <!-- LINKS -->
 
 [octavia]: https://docs.openstack.org/octavia/latest/reference/introduction.html
-[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml
-[asset-openstack-lb-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-lb-overlay.yaml
+[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-overlay.yaml
+[asset-openstack-lb-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-lb-overlay.yaml
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
 [openstack-integrator-readme]: https://charmhub.io/containers-openstack-integrator/
