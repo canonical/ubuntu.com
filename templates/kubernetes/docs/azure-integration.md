@@ -14,9 +14,8 @@ toc: False
 ---
 
 **Charmed Kubernetes** will run seamlessly on Microsoft Azure <sup>&reg;</sup>.
-With the  addition of the `azure-integrator`, your cluster will also be able
-to directly  use Azure native features.
-
+With the addition of the `azure-integrator`, your cluster will also be able
+to directly use Azure native features.
 
 ## Azure integrator
 
@@ -42,9 +41,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['azure-integrator', 'kubernetes-master:azure']
-  - ['azure-integrator', 'kubernetes-worker:azure']
-  ```
+  - ["azure-integrator", "kubernetes-master:azure"]
+  - ["azure-integrator", "kubernetes-worker:azure"]
+```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
 during deploy like this:
@@ -65,12 +64,10 @@ juju scp kubernetes-master/0:config ~/.kube/config
     current quotas allocated to a new Azure account. If you see error messages
     saying allocating machines would exceed your quota, you will need to log a
 
-    <a href="https://docs.microsoft.com/en-us/azure/azure-portal/supportability/regional-quota-requests" class="p-notification__action">support request with Azure</a> to increase the quota accordingly.
+    <a href="https://docs.microsoft.com/en-us/azure/azure-portal/supportability/regional-quota-requests">support request with Azure</a> to increase the quota accordingly.
 
   </p>
 </div>
-
-
 
 <div class="p-notification--caution">
   <p class="p-notification__response">
@@ -92,7 +89,6 @@ backed by
 Azure's Disk Storage.
 
 ### 1. Create a storage class using the `kubernetes.io/azure-disk` provisioner:
-
 
 ```bash
 kubectl create -f - <<EOY
@@ -199,10 +195,8 @@ external clients.
 <!-- LINKS -->
 
 [asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml
-
 [storage]: /kubernetes/docs/storage
 [azure-integrator]: /kubernetes/docs/charm-azure-integrator
-
 [install]: /kubernetes/docs/install-manual
 
 <!-- FEEDBACK -->
