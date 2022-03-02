@@ -165,21 +165,21 @@
           <div class="l-tutorial__pagination">
             {% if loop.first %}
               <button class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom" disabled style="margin-right: 1rem;">
-                <i class="p-icon--contextual-menu">Previous step</i>
+                <i class="p-icon--chevron-down">Previous step</i>
               </button>
             {% else %}
               <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}" class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom" style="margin-right: 1rem;">
-                <i class="p-icon--contextual-menu">Previous step</i>
+                <i class="p-icon--chevron-down">Previous step</i>
               </a>
             {% endif %}
 
             {% if loop.last %}
               <button class="l-tutorial__pagination-item--next p-button has-icon u-no-margin--bottom" disabled>
-                <i class="p-icon--contextual-menu">Next step</i>
+                <i class="p-icon--chevron-down">Next step</i>
               </button>
             {% else %}
               <a href="#{{ loop.index + 1 }}-{{ loop.nextitem['slug'] }}" class="l-tutorial__pagination-item--next p-button has-icon u-no-margin--bottom">
-                <i class="p-icon--contextual-menu">Next step</i>
+                <i class="p-icon--chevron-down">Next step</i>
               </a>
             {% endif %}
           </div>
