@@ -18,13 +18,15 @@
         <p>You can now launch a virtual machine with KVM, using the following command:</p>
         <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-16-amd64.img,format=raw</code></pre>
         <div class="p-notification" id="notification">
-          <div class="p-notification__response">
-            <span class="p-notification__status">Note:</span>
-            <p>This command sets up port redirections:</p>
-            <ul>
-              <li><code>localhost:8022</code> is redirecting to port 22 of the virtual machine for accessing it through SSH</li>
-              <li><code>localhost:8090</code> is redirecting to its port 3000</li>
-            </ul>
+          <div class="p-notification__content">
+            <span class="p-notification__title">Note:</span>
+            <span class="p-notification__message">
+              <p>This command sets up port redirections:</p>
+              <ul>
+                <li><code>localhost:8022</code> is redirecting to port 22 of the virtual machine for accessing it through SSH</li>
+                <li><code>localhost:8090</code> is redirecting to its port 3000</li>
+              </ul>
+            </span>
           </div>
         </div>
       </li>
