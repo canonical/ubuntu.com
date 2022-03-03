@@ -628,6 +628,10 @@ def certified_vendors(vendor):
     )
 
     results = models["objects"]
+    for index, model in enumerate(results):
+        # Replace "Ubuntu Core" with "Device"
+        if model["category"] == "Ubuntu Core":
+            results[index]["category"] = "Device"
 
     total_results = models["meta"]["total_count"]
 
