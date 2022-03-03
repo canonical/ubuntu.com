@@ -14,16 +14,14 @@ toc: False
 ---
 
 **Charmed Kubernetes** will install and run on vSphere virtual servers.
-With the  addition of the `vsphere-integrator`, your cluster will also be able
+With the addition of the `vsphere-integrator`, your cluster will also be able
 to directly use native vSphere features such as storage.
 
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    Note: These instructions for deploying Charmed Kubernetes with the vSphere integrator
-    assume that Juju has been configured appropriately for your vSphere server. For
-    reference, the configuration options may be found in the
-    <a href="https://juju.is/docs/olm/vmware-vsphere" >Juju documentation</a>.
-  </p>
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">These instructions for deploying Charmed Kubernetes with the vSphere integrator assume that Juju has been configured appropriately for your vSphere server. For reference, the configuration options may be found in the <a href="https://juju.is/docs/olm/vmware-vsphere" >Juju documentation</a>.</p>
+  </div>
 </div>
 
 ## vSphere integrator
@@ -50,9 +48,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['vsphere-integrator', 'kubernetes-master']
-  - ['vsphere-integrator', 'kubernetes-worker']
-  ```
+  - ["vsphere-integrator", "kubernetes-master"]
+  - ["vsphere-integrator", "kubernetes-worker"]
+```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
 during deploy like this:
@@ -67,17 +65,16 @@ juju deploy charmed-kubernetes --overlay vsphere-overlay.yaml --trust
 juju scp kubernetes-master/0:config ~/.kube/config
 ```
 
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Resource usage:</span>
-    By relating to this charm, other charms can directly allocate resources, such
-    as managed disks and load balancers, which could lead to cloud charges and
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Resource usage:</span>
+    <p class="p-notification__message">By relating to this charm, other charms can directly allocate resources, such as managed disks and load balancers, which could lead to cloud charges and
     count against quotas. Because these resources are not managed by Juju, they
     will not be automatically deleted when the models or applications are
     destroyed, nor will they show up in Juju's status or GUI. It is therefore up
     to the operator to manually delete these resources when they are no longer
-    needed.
-  </p>
+    needed.</p>
+  </div>
 </div>
 
 ## Configuration
@@ -86,22 +83,22 @@ The vSphere integrator supports multiple configuration options which can be
 used to describe the vSphere environment.
 
 The only required option is `datastore`, as it is not included in the Juju
-credential that this charm relies on. By default, this is set to *datastore1*.
+credential that this charm relies on. By default, this is set to _datastore1_.
 This can be changed with:
 
 ```bash
 juju config vsphere-integrator datastore='mydatastore'
 ```
 
-You may also configure a *folder* and *resource pool path* for this charm.
+You may also configure a _folder_ and _resource pool path_ for this charm.
 Details about these options can be found in the [vmware documentation][]:
 
 ```bash
 juju config vsphere-integrator folder='juju-kubernetes' respool_path='foo'
 ```
 
-The credentials used to interact with vSphere are obtained from Juju 
-(via '--trust' during deployment). These may be overriden by specifying 
+The credentials used to interact with vSphere are obtained from Juju
+(via '--trust' during deployment). These may be overriden by specifying
 credentials directly in the charm configuration:
 
 ```bash
@@ -113,9 +110,10 @@ juju config vsphere-integrator \
 ```
 
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    Note: If any configuration option is set, they must all be set.
-  </p>
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If any configuration option is set, they must all be set.</p>
+  </div>
 </div>
 
 When all of the credential config options are empty, this charm will fall
@@ -126,7 +124,6 @@ back to the credential data it received via `juju trust`.
 The vSphere integrator can make use of vSphere-backed storage for Kubernetes.
 The steps below create a busybox pod with a persistent volume claim backed by
 vSphere's PersistentDisk as an example.
-
 
 ### 1. Create a storage class using the `kubernetes.io/vsphere-volume` provisioner:
 
@@ -194,7 +191,6 @@ please see the [vSphere integrator charm page][vsphere-integrator].
 <!-- LINKS -->
 
 [asset-vsphere-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vsphere-overlay.yaml
-
 [storage]: /kubernetes/docs/storage
 [vsphere-integrator]: /kubernetes/docs/charm-vsphere-integrator
 [vsphere-juju]: https://juju.is/docs/olm/vmware-vsphere
@@ -203,10 +199,10 @@ please see the [vSphere integrator charm page][vsphere-integrator].
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/vsphere-integration.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

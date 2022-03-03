@@ -18,15 +18,15 @@ a quick and easy general install of **Charmed Kubernetes**.
 However, in some cases it may be useful to
 customise the install:
 
-  - Adding additional components
-  - Configuring storage or networking
-  - Copying an existing configuration
-  - Testing a pre-release version
-  - ...and many more
+- Adding additional components
+- Configuring storage or networking
+- Copying an existing configuration
+- Testing a pre-release version
+- ...and many more
 
 ## What you will need
 
-The rest of this page assumes you already have Juju installed and  have added
+The rest of this page assumes you already have Juju installed and have added
 credentials for a cloud and bootstrapped a controller.
 
 If you still need to do this, please take a look at the [quickstart
@@ -37,9 +37,7 @@ To install **Charmed Kubernetes** entirely on your local machine (using
 containers to create a cluster), please see the separate
 [Localhost instructions][localhost].
 
-
 ## Quick custom installs
-
 
 The details of how to edit and customise the **Charmed Kubernetes** bundle are
 outlined [below](#). However, using overlays (also explained in more
@@ -56,11 +54,9 @@ Sample overlay files are available to download directly from
 the links shown here. Be advised that you should use only **one** overlay from
 each category!
 
-
 #### Networking
 
 ---
-
 
 <div class="CNI">
  <div class="row">
@@ -105,11 +101,11 @@ each category!
 </div>
 <br>
 
-<div class="p-notification--positive">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can read more about CNI support <a href="/kubernetes/docs/cni-overview"> here </a>.
-  </p>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can read more about CNI support <a href="/kubernetes/docs/cni-overview"> here </a>.</p>
+  </div>
 </div>
 
 #### Cloud integration
@@ -178,12 +174,7 @@ By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can rea
 </div>
 </div>
 
-
-
-
-
-
-You can use multiple overlays (of different types) if required.  Note that all
+You can use multiple overlays (of different types) if required. Note that all
 the 'integrator' charms require the use of the `--trust` option. For example,
 to deploy with Calico networking and AWS integration:
 
@@ -212,16 +203,14 @@ release, you could run:
 juju deploy cs:~containers/charmed-kubernetes-733
 ```
 
-<div class="p-notification--positive">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Older Versions:</span>
-Previous versions of <strong>Charmed Kubernetes</strong> used the name
-<code>canonical-kubernetes</code>. These versions are still available under that name
-and links in the charm store. Versions from 1.14 onwards use
-<code>charmed-kubernetes</code>.
-  </p>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Older Versions:</span>
+    <p class="p-notification__message">Previous versions of <strong>Charmed Kubernetes</strong> used the name <code>canonical-kubernetes</code>. These versions are still available under that name
+    and links in the charm store. Versions from 1.14 onwards use
+    <code>charmed-kubernetes</code>.</p>
+  </div>
 </div>
-
 
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
@@ -230,34 +219,33 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 <a  id="table"></a>
 
-| Kubernetes version | Charmed Kubernetes bundle |
-| --- | --- |
-| 1.23.x    | [charmed-kubernetes-862](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-862/archive/bundle.yaml) |
-| 1.22.x    | [charmed-kubernetes-814](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-814/archive/bundle.yaml) |
-| 1.21.x    | [charmed-kubernetes-733](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-733/archive/bundle.yaml) |
-| 1.20.x    | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml) |
-| 1.19.x    | [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml) |
-| 1.18.x    | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml) |
-| 1.17.x    | [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml) |
-| 1.16.x    | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml) |
-| 1.15.x    | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml) |
-| 1.14.x    | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml) |
-| 1.13.x    | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
-| 1.12.x         | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
-| 1.11.x         | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
-| 1.10.x         | [canonical-kubernetes-211](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-211/archive/bundle.yaml?channel=stable)  |
-| 1.9.x        | [canonical-kubernetes-179](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-179/archive/bundle.yaml?channel=stable) |
-| 1.8.x | [canonical-kubernetes-132](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-132/archive/bundle.yaml?channel=stable) |
-| 1.7.x | [canonical-kubernetes-101](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-101/archive/bundle.yaml?channel=stable) |
-| 1.6.x | [canonical-kubernetes-38](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-38/archive/bundle.yaml?channel=stable) |
+| Kubernetes version | Charmed Kubernetes bundle                                                                                                                           |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.23.x             | [charmed-kubernetes-862](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-862/archive/bundle.yaml)                                       |
+| 1.22.x             | [charmed-kubernetes-814](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-814/archive/bundle.yaml)                                       |
+| 1.21.x             | [charmed-kubernetes-733](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-733/archive/bundle.yaml)                                       |
+| 1.20.x             | [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml)                                       |
+| 1.19.x             | [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml)                                       |
+| 1.18.x             | [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml)                                       |
+| 1.17.x             | [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)                                       |
+| 1.16.x             | [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-316/archive/bundle.yaml)                                       |
+| 1.15.x             | [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml)                                       |
+| 1.14.x             | [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml)                                       |
+| 1.13.x             | [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-435/archive/bundle.yaml?channel=stable) |
+| 1.12.x             | [canonical-kubernetes-357](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-357/archive/bundle.yaml?channel=stable) |
+| 1.11.x             | [canonical-kubernetes-254](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-254/archive/bundle.yaml?channel=stable) |
+| 1.10.x             | [canonical-kubernetes-211](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-211/archive/bundle.yaml?channel=stable) |
+| 1.9.x              | [canonical-kubernetes-179](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-179/archive/bundle.yaml?channel=stable) |
+| 1.8.x              | [canonical-kubernetes-132](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-132/archive/bundle.yaml?channel=stable) |
+| 1.7.x              | [canonical-kubernetes-101](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-101/archive/bundle.yaml?channel=stable) |
+| 1.6.x              | [canonical-kubernetes-38](https://api.jujucharms.com/charmstore/v5/~containers/bundle/canonical-kubernetes-38/archive/bundle.yaml?channel=stable)   |
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Only the latest three versions of Charmed Kubernetes are supported at any time.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Only the latest three versions of Charmed Kubernetes are supported at any time.</p>
+  </div>
 </div>
-
 
 ## Customising the bundle install
 
@@ -265,8 +253,8 @@ A number of the scenarios outlined at the start of this document involved
 customising the **Charmed Kubernetes** install. There are two main ways to
 do this:
 
- 1.  Using [overlays](#overlay) in conjunction with the published Charmed Kubernetes bundle.
- 2.  [Editing the bundle file itself](#edit).
+1.  Using [overlays](#overlay) in conjunction with the published Charmed Kubernetes bundle.
+2.  [Editing the bundle file itself](#edit).
 
 Using an overlay means you can easily apply your customisation to different
 versions of the bundle, with the possible downside that changes in the
@@ -280,6 +268,7 @@ file for each version of **Charmed Kubernetes**.
 Both methods are described below.
 
 <a id="overlay"></a>
+
 ### Using overlays
 
 A _bundle overlay_ is a fragment of valid YAML which is dynamically merged on
@@ -295,9 +284,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['aws-integrator', 'kubernetes-master']
-  - ['aws-integrator', 'kubernetes-worker']
-  ```
+  - ["aws-integrator", "kubernetes-master"]
+  - ["aws-integrator", "kubernetes-worker"]
+```
 
 You can also [download the fragment here][asset-aws-overlay].
 
@@ -347,8 +336,8 @@ charm. For example, if you look at the fragment for the `kubernetes-worker` in t
 ```yaml
 kubernetes-worker:
   annotations:
-    gui-x: '100'
-    gui-y: '850'
+    gui-x: "100"
+    gui-y: "850"
   charm: cs:~containers/kubernetes-worker
   constraints: cores=4 mem=4G root-disk=16G
   expose: true
@@ -375,6 +364,7 @@ values:
 juju config containerd https_proxy=https://proxy.example.com
 juju config kubernetes-worker snap_proxy:=https://snap-proxy.example.com
 ```
+
 ... we can instead use the following YAML fragment as an overlay:
 
 ```yaml
@@ -437,7 +427,6 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 Now you have a cluster up and running, check out the
 [Operations guide][operations] for how to use it!
 
-
 <!-- IMAGES -->
 
 [image-gui]: https://assets.ubuntu.com/v1/19f13565-bundle-export.png
@@ -464,10 +453,10 @@ Now you have a cluster up and running, check out the
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/install-manual.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

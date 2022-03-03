@@ -13,10 +13,12 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-<div class="p-notification--caution"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-Calico is the only CNI which supports IPv6 at this time.
-</p></div>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Calico is the only CNI which supports IPv6 at this time.</p>
+  </div>
+</div>
 
 As of Kubernetes 1.19, support for IPv6 is in beta and [dual-stack][](running clusters
 with both IPv4 and IPv6) is in alpha.
@@ -24,6 +26,7 @@ Charmed Kubernetes supports both these features, though it is important to be
 familiar with the [known issues](#known-issues) described below.
 
 <a id='enabling'> </a>
+
 ## Enabling IPv6 and dual-stack in Charmed Kubernetes
 
 These features can be used simply by changing the configuration for Calico and the
@@ -41,8 +44,8 @@ service when creating it.
 The following example shows how to deploy Charmed Kubernetes with IPv6 and dual-stack
 enabled.
 
-
 <a id='example'> </a>
+
 ### Example deployment
 
 You can use the following overlay file ([download it here][asset-ipv4-ipv6-overlay])
@@ -86,10 +89,10 @@ spec:
         run: nginxdualstack
     spec:
       containers:
-      - name: nginxdualstack
-        image: rocks.canonical.com/cdk/diverdane/nginxdualstack:1.0.0
-        ports:
-        - containerPort: 80
+        - name: nginxdualstack
+          image: rocks.canonical.com/cdk/diverdane/nginxdualstack:1.0.0
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -101,13 +104,14 @@ spec:
   type: NodePort
   ipFamilies: [IPv6]
   ports:
-  - port: 80
-    protocol: TCP
+    - port: 80
+      protocol: TCP
   selector:
     run: nginxdualstack
 ```
 
 <a id='known-issues'> </a>
+
 ## Known Issues
 
 Because of the pre-release feature status for IPv6 and dual-stack in Kubernetes
@@ -119,27 +123,27 @@ These will also vary depending on the underlying cloud provider.
 
 The following arise because Juju does not fully support IPv6:
 
-* The charms require IPv4 on the underlying hosts, even when running a cluster
+- The charms require IPv4 on the underlying hosts, even when running a cluster
   in IPv6-only mode.
 
-* By default, connections to the API server will use the IPv4 address even when
+- By default, connections to the API server will use the IPv4 address even when
   running a cluster in IPv6-preferred or IPv6-only mode. This can be modified
   in the client config by hand or overridden via the `loadbalancer-ips` config
   on the [kubernetes-master] and / or kubeapi-load-balancer charms.
 
-* IPv6 NodePort listeners won't function on the master, though they will work
+- IPv6 NodePort listeners won't function on the master, though they will work
   on the worker units.
 
-* Juju's `open-port` cannot be used to allow NodePort connections for IPv6.
+- Juju's `open-port` cannot be used to allow NodePort connections for IPv6.
 
 ### AWS
 
 The following arise when using AWS as the underlying cloud provider:
 
-* Kubernetes creates classic load balancers for LoadBalancer-type services,
+- Kubernetes creates classic load balancers for LoadBalancer-type services,
   which do not support IPv6.
 
-* Juju does not honor the "automatically assign IPv6 address" setting and
+- Juju does not honor the "automatically assign IPv6 address" setting and
   creates instances without IPv6 addresses. You can attach IPv6 addresses
   after deploying with something like:
 
@@ -168,7 +172,6 @@ No additional issues with IPv6 on OpenStack are known at this time.
 ### MAAS
 
 No additional issues with IPv6 on MAAS are known at this time.
-
 
 <!-- LINKS -->
 

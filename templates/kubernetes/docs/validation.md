@@ -19,11 +19,11 @@ For **Charmed Kubernetes**, these tests are encapsulated in an additional
 **Juju** charm which can be added to your cluster. Actual testing is then run
 through the charm's actions.
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-Your cluster will need to have at least two running worker units for the `e2e` test to run properly.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">Your cluster will need to have at least two running worker units for the `e2e` test to run properly.</div>
+  </div>
 </div>
 
 ## Deploying the kubernetes-e2e charm
@@ -104,11 +104,11 @@ status, which can be either `running`, `completed` or `failed`.
 
 ```yaml
 actions:
-- action: test
-  completed at: n/a
-  id: 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
-  status: running
-  unit: e2e/0
+  - action: test
+    completed at: n/a
+    id: 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
+    status: running
+    unit: e2e/0
 ```
 
 Once completed, you can see more detail on the timing by running:
@@ -156,11 +156,11 @@ fn=<your log file name>
 echo -ne $(cat $fn | sed  's/$/\\n/' | sed 's/\x1B\[[0-9]*\w//g')
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-If you are running regular tests in this way, it is advisable to remove the generated logs from the test unit. The uncompressed logs in particular can be very large and quickly fill up storage.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">If you are running regular tests in this way, it is advisable to remove the generated logs from the test unit. The uncompressed logs in particular can be very large and quickly fill up storage.</p>
+  </div>
 </div>
 
 ## Upgrading the e2e tests
@@ -177,10 +177,10 @@ juju upgrade-charm kubernetes-e2e
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/validation.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

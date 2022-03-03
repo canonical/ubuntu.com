@@ -33,9 +33,12 @@ Kubernetes cluster running on the cloud of your choice in minutes!
   - [Oracle Cloud][cloud-oracle]
   - [Rackspace][cloud-rackspace]
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span> If you don't meet these requirements, there are additional ways of installing <emphasis>Charmed Kubernetes<sup>&reg;</sup></emphasis>, including additional OS support and an entirely local deploy. Please see the more general <a href="/kubernetes/docs/install-manual">Installing Charmed Kubernetes</a> page for details. </p></div>
-
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you don't meet these requirements, there are additional ways of installing <emphasis>Charmed Kubernetes<sup>&reg;</sup></emphasis>, including additional OS support and an entirely local deploy. Please see the more general <a href="/kubernetes/docs/install-manual">Installing Charmed Kubernetes</a> page for details. </p>
+  </div>
+</div>
 
 <section class="p-strip--light is-bordered">
   <div class="u-fixed-width">
@@ -74,6 +77,7 @@ Google. You can see which ones are ready to use by running this command:
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">3</span>Add Credentials</h3>
         <div class="p-stepped-list__content">
+
 <p>Most clouds require credentials so that the cloud knows which operations are authorised, so you will need to supply these for Juju. If you choose to use AWS, for example, you would run:</p>
           <div class="p-code-copyable">
             <input class="p-code-copyable__input" value="juju add-credential aws" readonly="readonly">
@@ -145,11 +149,15 @@ Google. You can see which ones are ready to use by running this command:
       </ol>
 
     </div>
+
   </section>
 
-
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span> This guide gets you up and running with Charmed Kubernetes quickly. If you want to explore how to customise your install, please see the <a href="/kubernetes/docs/install-manual">Installing Charmed Kubernetes</a> page for a more detailed guide. </p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This guide gets you up and running with Charmed Kubernetes quickly. If you want to explore how to customise your install, please see the <a href="/kubernetes/docs/install-manual">Installing Charmed Kubernetes</a> page for a more detailed guide. </p>
+  </div>
+</div>
 
 <!-- LINKS -->
 
@@ -165,13 +173,12 @@ Google. You can see which ones are ready to use by running this command:
 [cloud-azure]: https://azure.microsoft.com/
 [cloud-joyent]: https://www.joyent.com/
 
-
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/quickstart.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

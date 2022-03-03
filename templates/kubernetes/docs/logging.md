@@ -13,15 +13,15 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-This documentation assumes you are using version 2.4.0 or later of
-<strong>Juju</strong>. If you are using an earlier version you should check
-the <a href="https://juju.is/docs/olm/juju-logs">
-relevant <emphasis>Juju</emphasis> documentation</a> as some of the associated
-commands have changed.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This documentation assumes you are using version 2.4.0 or later of
+    <strong>Juju</strong>. If you are using an earlier version you should check
+    the <a href="https://juju.is/docs/olm/juju-logs">
+    relevant <emphasis>Juju</emphasis> documentation</a> as some of the associated
+    commands have changed.</p>
+  </div>
 </div>
 
 Broadly, there are two types of logs you may be interested in. On cluster or
@@ -131,11 +131,11 @@ logs are likely to be useful for diagnosing issues with software.
 
 The logging levels, from most verbose to least verbose, are as follows:
 
--   TRACE
--   DEBUG
--   INFO
--   WARNING
--   ERROR
+- TRACE
+- DEBUG
+- INFO
+- WARNING
+- ERROR
 
 The logging level can be set like this:
 
@@ -145,13 +145,12 @@ The logging level can be set like this:
 
 ...which in this case sets the logging level for all units to TRACE
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution!</span>
-    It isn't a good idea to leave the logging level at 'TRACE' for any longer than
-    you actually need to. Verbose logging not only consumes network bandwidth but
-    also fills up the database on the controller.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution!</span>
+    <p class="p-notification__message">It isn't a good idea to leave the logging level at 'TRACE' for any longer than you actually need to. Verbose logging not only consumes network bandwidth but
+    also fills up the database on the controller.</p>
+  </div>
 </div>
 
 ## Additional information
@@ -160,9 +159,9 @@ As previously mentioned, you can see more detailed information on accessing the
 logs from your cluster in the [**Juju** documentation][juju-logging], including
 the following:
 
--   Altering the agent logging setup
--   Setting up remote logging
--   More advanced filtering and additional examples
+- Altering the agent logging setup
+- Setting up remote logging
+- More advanced filtering and additional examples
 
 <a id="graylog"> </a>
 
@@ -266,12 +265,11 @@ juju run-action --wait graylog/0 show-admin-password
 Browse to `http://<your-apache2-ip>` and login with `admin` as the username
 and `<your-graylog-password>` as the password.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    If the interface is not immediately available, please wait as the reverse
-    proxy configuration may take up to 5 minutes to complete.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If the interface is not immediately available, please wait as the reverse proxy configuration may take up to 5 minutes to complete.</p>
+  </div>
 </div>
 
 Once logged in, head to the `Sources` tab to get an overview of the logs
@@ -300,10 +298,10 @@ view.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/logging.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

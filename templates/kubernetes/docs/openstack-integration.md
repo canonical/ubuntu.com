@@ -17,7 +17,6 @@ toc: False
 on OpenStack. With the addition of the `openstack-integrator`, your cluster
 will also be able to directly use OpenStack native features.
 
-
 ## OpenStack integrator
 
 The `openstack-integrator` charm simplifies working with **Charmed Kubernetes** on OpenStack. Using the
@@ -47,8 +46,8 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['openstack-integrator', 'kubernetes-master:openstack']
-  - ['openstack-integrator', 'kubernetes-worker:openstack']
+  - ["openstack-integrator", "kubernetes-master:openstack"]
+  - ["openstack-integrator", "kubernetes-worker:openstack"]
 ```
 
 To use the overlay with the **Charmed Kubernetes** bundle, specify it during deploy like this:
@@ -66,14 +65,14 @@ juju scp kubernetes-master/0:config ~/.kube/config
 For more configuration options and details of the permissions which the integrator uses,
 please see the [charm docs][openstack-integrator-readme].
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Resources allocated by Kubernetes or the integrator are usually cleaned up automatically when no
-longer needed. However, it is recommended to periodically, and particularly after tearing down a
-cluster, use the OpenStack administration tools to make sure all unused resources have been
-successfully released.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Resources allocated by Kubernetes or the integrator are usually cleaned up automatically when no
+    longer needed. However, it is recommended to periodically, and particularly after tearing down a
+    cluster, use the OpenStack administration tools to make sure all unused resources have been
+    successfully released.</p>
+  </div>
 </div>
 
 ### Using Octavia Load Balancers
@@ -86,27 +85,27 @@ API server itself.
 In either case, the load balancers can optionally have floating IPs (FIPs) attached to them to
 allow for external access.
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-For security reasons, the security groups automatically managed by Juju will not by default allow
-traffic into the nodes from external networks which can otherwise reach the FIPs. The easiest way to
-allow this is to add a rule to the model security group (named `juju-<model UUID>`) to allow ingress traffic
-from the FIP network, according to your security and network traffic policy and needs.
-Alternatively, you could create a separate security group to manage the rule(s) across multiple models or
-controllers.<br/>
-<br/>
-Configuring or creating a security group will also be necessary if you wish to have the Amphora instances in a
-different subnet from the node instances, since you will need to allow at least traffic on the
-NodePort range (30000-32767) from the Amphorae into the nodes.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">For security reasons, the security groups automatically managed by Juju will not by default allow
+    traffic into the nodes from external networks which can otherwise reach the FIPs. The easiest way to
+    allow this is to add a rule to the model security group (named `juju-<model UUID>`) to allow ingress traffic
+    from the FIP network, according to your security and network traffic policy and needs.
+    Alternatively, you could create a separate security group to manage the rule(s) across multiple models or
+    controllers.<br/>
+    <br/>
+    Configuring or creating a security group will also be necessary if you wish to have the Amphora instances in a
+    different subnet from the node instances, since you will need to allow at least traffic on the
+    NodePort range (30000-32767) from the Amphorae into the nodes.</p>
+  </div>
 </div>
 
 #### LoadBalancer-type Pod Services
 
 To use Octavia for `LoadBalancer` type services in the cluster, you will also need to set the
 `subnet-id` config to the appropriate tenant subnet where your nodes reside, and if desired, the
-`floating-network-id` config to whatever network you want FIPs created in.  See the 
+`floating-network-id` config to whatever network you want FIPs created in. See the
 [Charm config docs][charm-config] for more details.
 
 As an example of this usage, this will create a simple application, scale it to five pods,
@@ -150,10 +149,10 @@ example deployment. You can test the ingress address:
 ```bash
 curl  http://202.49.242.3:8080
 ```
+
 ```
 Hello Kubernetes!
 ```
-
 
 #### API Server Load Balancer
 
@@ -173,24 +172,27 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['kubernetes-master:kube-api-endpoint', 'kubernetes-worker:kube-api-endpoint']
-  - ['openstack-integrator', 'kubernetes-master:loadbalancer']
-  - ['openstack-integrator', 'kubernetes-master:openstack']
-  - ['openstack-integrator', 'kubernetes-worker:openstack']
+  - [
+      "kubernetes-master:kube-api-endpoint",
+      "kubernetes-worker:kube-api-endpoint",
+    ]
+  - ["openstack-integrator", "kubernetes-master:loadbalancer"]
+  - ["openstack-integrator", "kubernetes-master:openstack"]
+  - ["openstack-integrator", "kubernetes-worker:openstack"]
 ```
 
 You will also need to set the `lb-subnet` config to the appropriate tenant subnet where your nodes
 reside, and if desired, the `lb-floating-network` config to whatever network you want the FIP created
-in.  See the [Charm config docs][charm-config] for more details.
+in. See the [Charm config docs][charm-config] for more details.
 
 ### Using Cinder Volumes
 
-Many  pods you may wish to deploy will require storage. Although you can use any type
+Many pods you may wish to deploy will require storage. Although you can use any type
 of storage supported by Kubernetes (see the [storage documentation][storage]), you
 also have the option to use Cinder storage volumes, if supported by your OpenStack.
 
 A `cdk-cinder` storage class will be automatically created when the integrator is
-used.  This storage class can then be used when creating a Persistent Volume Claim:
+used. This storage class can then be used when creating a Persistent Volume Claim:
 
 ```bash
 kubectl create -f - <<EOY
@@ -276,7 +278,6 @@ the log history for that specific unit:
 juju debug-log --replay --include openstack-integrator/0
 ```
 
-
 <!-- LINKS -->
 
 [octavia]: https://docs.openstack.org/octavia/latest/reference/introduction.html
@@ -291,10 +292,10 @@ juju debug-log --replay --include openstack-integrator/0
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/openstack-integration.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
