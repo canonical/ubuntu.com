@@ -74,7 +74,10 @@
   {% if posts == false %}
   <div class="u-fixed-width">
     <div class="p-notification--negative">
-      <p class="p-notification__response"><span class="p-notification__status">Error:</span>The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+      <div class="p-notification__content">
+        <span class="p-notification__title">Error:</span>
+        <p class="p-notification__message">The live news feed failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as&nbsp;possible.</p>
+      </div>
     </div>
   </div>
   {% endif %}
@@ -127,10 +130,11 @@
 
   {% if posts_length == 0 %}
     <div class="u-fixed-width">
-      <div class="p-notification--information">
-        <p class="p-notification__response">
-          <span class="p-notification__status">Information:</span> There were no results found for this category
-        </p>
+      <div class="p-notification--information is-inline">
+        <div class="p-notification__content">
+          <span class="p-notification__title">Information:</span>
+          <p class="p-notification__message">There were no results found for this category</p>
+        </div>
       </div>
     </div>
   {% endif %}
