@@ -207,19 +207,19 @@ if (accountContainer && accountContainerSmall) {
       } else {
         window.accountJSONRes = data.account;
         accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout${queryString}" class="p-link--inverted">logout</a>)</span>`;
-        accountContainer.innerHTML = `<div class="p-navigation__dropdown-link p-subnav">
-            <a href="" class="p-navigation__link-anchor p-subnav__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
-            <ul class="p-subnav__items--right" id="user-menu" aria-hidden="true">
-              <li><a href="/advantage${queryString}" class="p-subnav__item">UA subscriptions</a></li>
+        accountContainer.innerHTML = `<div class="p-navigation__dropdown-link">
+            <a href="#" class="p-navigation__link-anchor p-navigation__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
+            <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
+              <li><a href="/advantage${queryString}" class="p-navigation__dropdown-item">UA subscriptions</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
-                <a href="/account/invoices${queryString}" class="p-subnav__item">Invoices & Payments</a>
+                <a href="/account/invoices${queryString}" class="p-navigation__dropdown-item">Invoices & Payments</a>
               </li>
               <li>
-                <a href="https://login.ubuntu.com/" class="p-subnav__item p-link--external">Account settings</a>
+                <a href="https://login.ubuntu.com/" class="p-navigation__dropdown-item p-link--external">Account settings</a>
               </li>
               <li>
-                <a href="/logout${queryString}" class="p-subnav__item">Logout</a>
+                <a href="/logout${queryString}" class="p-navigation__dropdown-item">Logout</a>
               </li>
             </ul>
           </div>`;
@@ -299,6 +299,8 @@ if (accountContainer && accountContainerSmall) {
         }
       }
 
-      setupAllContextualMenus(".p-navigation__link-anchor.p-subnav__toggle");
+      setupAllContextualMenus(
+        ".p-navigation__link-anchor.p-navigation__toggle"
+      );
     });
 }

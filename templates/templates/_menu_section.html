@@ -1,6 +1,6 @@
-<li class="p-navigation__link">
+<li class="p-navigation__item">
   <a
-  class="{% if section.active %}is-active{% endif %}"
+  class="p-navigation__link {% if section.active %}is-active{% endif %}"
   href="{{ section.path }}"
   >{{ section.title }}</a>
   <ul class="hover-menu">
