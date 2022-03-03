@@ -38,9 +38,9 @@
           <tbody>
             {% for invoice in invoices %}
               <tr>
-                <td aria-label="Service">{{ invoice.service }}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
-                <td aria-label="Date">{{ invoice.date }}</td>
-                <td aria-label="Status">
+                <td data-heading="Service">{{ invoice.service }}{% if invoice.period %} ({{ invoice.period }}){% endif %}</td>
+                <td data-heading="Date">{{ invoice.date }}</td>
+                <td data-heading="Status">
                   {% if invoice.status == "paid" %}
                   <div class="p-label--new">Paid</div>
                   {% elif invoice.status == "open" %}
@@ -49,7 +49,7 @@
                   <div class="p-label">{{ invoice.status }}</div>
                   {% endif %}
                 </td>
-                <td class="u-align--right" aria-label="Total" style="padding-right: 5%">
+                <td class="u-align--right" data-heading="Total" style="padding-right: 5%">
                   {% if invoice.total %}
                     <span class="js-format-price">
                       {{ invoice.total }}
@@ -58,7 +58,7 @@
                     -
                   {% endif %}
                 </td>
-                <td aria-label="Download PDF">
+                <td data-heading="Download PDF">
                   {% if invoice.download_link %}
                     <a href="{{ invoice.download_link }}{% if get_test_backend %}?test_backend=true{% endif %}" target="_blank">{{ invoice.download_file_name }}</a>
                   {% else %}
