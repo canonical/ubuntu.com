@@ -59,27 +59,22 @@ juju scp kubernetes-master/0:config ~/.kube/config
 ```
 
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    A standard install of Charmed Kubernetes will use more resources than the
-    current quotas allocated to a new Azure account. If you see error messages
-    saying allocating machines would exceed your quota, you will need to log a
-
-    <a href="https://docs.microsoft.com/en-us/azure/azure-portal/supportability/regional-quota-requests">support request with Azure</a> to increase the quota accordingly.
-
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">A standard install of Charmed Kubernetes will use more resources than the current quotas allocated to a new Azure account. If you see error messages saying allocating machines would exceed your quota, you will need to log a <a href="https://docs.microsoft.com/en-us/azure/azure-portal/supportability/regional-quota-requests">support request with Azure</a> to increase the quota accordingly.</p>
+  </div>
 </div>
 
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Resource usage:</span>
-    By relating to this charm, other charms can directly allocate resources, such
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Resource usage:</span>
+    <p class="p-notification__message">By relating to this charm, other charms can directly allocate resources, such
     as managed disks and load balancers, which could lead to cloud charges and
     count against quotas. Because these resources are not managed by Juju, they
     will not be automatically deleted when the models or applications are
     destroyed, nor will they show up in Juju's status or GUI. It is therefore up
     to the operator to manually delete these resources when they are no longer
-    needed, using the Azure management website or API.
-  </p>
+    needed, using the Azure management website or API.</p>
+  </div>
 </div>
 
 ## Storage
@@ -201,10 +196,10 @@ external clients.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/azure-integration.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

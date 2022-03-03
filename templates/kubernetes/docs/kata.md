@@ -50,13 +50,12 @@ applications:
   kata:
     charm: cs:~containers/kata
 relations:
-- - kata:untrusted
-  - containerd:untrusted
-- - kata
-  - kubernetes-master
-- - kata
-  - kubernetes-worker
-
+  - - kata:untrusted
+    - containerd:untrusted
+  - - kata
+    - kubernetes-master
+  - - kata
+    - kubernetes-worker
 ```
 
 Save this YAML and then deploy:
@@ -91,12 +90,12 @@ applications:
   kata:
     charm: cs:~containers/kata
 relations:
-- - kata:untrusted
-  - containerd:untrusted
-- - kata
-  - kubernetes-master
-- - kata
-  - kubernetes-worker
+  - - kata:untrusted
+    - containerd:untrusted
+  - - kata
+    - kubernetes-master
+  - - kata
+    - kubernetes-worker
 ```
 
 Once written, deploy it with:
@@ -114,7 +113,7 @@ workers later with the `juju add-unit kubernetes-worker` command.
 ### Untrusted annotation
 
 The simplest way to run your pods with Kata is to annotate them with
-`io.kubernetes.cri.untrusted-workload: "true"`.  For example:
+`io.kubernetes.cri.untrusted-workload: "true"`. For example:
 
 ```yaml
 apiVersion: v1
@@ -125,8 +124,8 @@ metadata:
     io.kubernetes.cri.untrusted-workload: "true"
 spec:
   containers:
-  - name: nginx
-    image: nginx
+    - name: nginx
+      image: nginx
 ```
 
 ### RuntimeClass
@@ -153,8 +152,8 @@ metadata:
 spec:
   runtimeClassName: kata
   containers:
-  - name: nginx
-    image: nginx
+    - name: nginx
+      image: nginx
 ```
 
 <!-- LINKS -->
@@ -165,11 +164,10 @@ spec:
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/kata.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
-

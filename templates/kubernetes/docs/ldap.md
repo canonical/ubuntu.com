@@ -15,22 +15,21 @@ toc: False
 
 There is a distinction between authentication and authorisation:
 
-  * Authentication verifies who a user is.
-  * Authorisation deals with what a user is allowed to do.
+- Authentication verifies who a user is.
+- Authorisation deals with what a user is allowed to do.
 
 **Charmed Kubernetes** can be configured to use Keystone and LDAP for authentication only
 or both authentication and authorisation.
 
-
 ## Requirements
 
-* This document assumes you have already [installed][install] **Charmed Kubernetes**.
-* For LDAP authentication, this documentation assumes you already have a suitable LDAP
-   server running.
-* You will need to install the Keystone client. This can be done by running:
-   ```bash
-   sudo snap install client-keystone-auth --edge
-   ```
+- This document assumes you have already [installed][install] **Charmed Kubernetes**.
+- For LDAP authentication, this documentation assumes you already have a suitable LDAP
+  server running.
+- You will need to install the Keystone client. This can be done by running:
+  ```bash
+  sudo snap install client-keystone-auth --edge
+  ```
 
 ## Install Keystone
 
@@ -103,7 +102,7 @@ juju add-relation kubernetes-master:keystone-credentials openstack-integrator:cr
 ## Fetch the Keystone script
 
 When related to Keystone directly (or to the `openstack-integrator:keystone-credentials` interface),
-the Kubernetes master application will generate a utility script. 
+the Kubernetes master application will generate a utility script.
 This should be copied to the local client with:
 
 ```bash
@@ -146,6 +145,7 @@ juju run --unit keystone/0 leader-get admin_passwd
 ```
 
 ### Create the domain for Kubernetes
+
 You should now create a new domain for Kubernetes.
 
 ![dashboard image](https://assets.ubuntu.com/v1/00468cda-ldap1.png)
@@ -206,15 +206,20 @@ variables in order to retrieve a token from Keystone.
 ```bash
 source ~/bin/kube-keystone.sh
 ```
+
 ```
 Function get_keystone_token created. Type get_keystone_token in order to
 generate a login token for the Kubernetes dashboard.
 ```
+
 Enter the command...
+
 ```bash
 get_keystone_token
 ```
+
 ...and a token will be generated:
+
 ```
 ccf9b218845f4d67835f8c6a7c2d1cd4
 ```
@@ -227,7 +232,7 @@ This token can then be used to log in to the Kubernetes dashboard.
 
 Keystone has the ability to use LDAP for authentication.
 The Keystone charm is related to the Keystone-LDAP subordinate charm in order to
-support LDAP.  
+support LDAP.
 
 ```bash
 juju deploy keystone-ldap
@@ -272,32 +277,32 @@ of the charm and switch to **RBAC** authorization mode as follows:
 juju config kubernetes-master authorization-mode="Node,RBAC"
 ```
 
-**Charmed Kubernetes** can  also use Keystone for authorisation as follows:
+**Charmed Kubernetes** can also use Keystone for authorisation as follows:
 
 ```bash
 juju config kubernetes-master enable-keystone-authorization=true
 ```
 
- When authorisation is enabled, the [default policy defined in the configuration][policy] will be used.
- Optionally, A custom policy can be applied by running:
+When authorisation is enabled, the [default policy defined in the configuration][policy] will be used.
+Optionally, A custom policy can be applied by running:
 
 ```bash
 juju config kubernetes-master keystone-policy="$(cat policy.yaml)"
 ```
-
 
 ## Custom Certificate Authority
 
 When using a custom certificate authority attached to Keystone, some additional configuration is
 required.
 
- * Add CA to client machines that will run `kubectl`.
+- Add CA to client machines that will run `kubectl`.
 
 ```
 sudo cp custom_ca.crt /usr/local/share/ca-certificates
 sudo update-ca-certificates
 ```
- * Add CA to the kubernetes-master configuration
+
+- Add CA to the kubernetes-master configuration
 
 ```bash
 juju config kubernetes-master keystone-ssl-ca="$(base64 custom_ca.crt)"
@@ -310,8 +315,8 @@ different values or editing config files. If you are having problems, please
 [read the troubleshooting guide][trouble] for specific tips and information on
 configuring Keystone/LDAP.
 
-
 <!--LINKS-->
+
 [install]: /kubernetes/docs/quickstart
 [policy]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/policy.yaml
 [keystone-bundle]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/keystone.yaml
@@ -319,13 +324,12 @@ configuring Keystone/LDAP.
 [trouble]: /kubernetes/docs/troubleshooting/#troubleshooting-keystoneldap-issues
 [openstack-integrator]: /kubernetes/docs/openstack-integration
 
-
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ldap.md" >edit this page</a> 
-    or 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ldap.md" >edit this page</a>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

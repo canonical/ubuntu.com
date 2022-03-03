@@ -38,27 +38,27 @@ juju config <charm> snapd_refresh=<value>
 ```
 
 The value returned or set above should be an explicit timer, an empty string,
-or the special keyword *max*.
+or the special keyword _max_.
 
 - Explicit timer
 
-    An explicit timer may be a simple `mon` (scan every Monday) or a more
-    complex `mon3,23:00` (scan on the third Monday of the month at 23:00). See
-    possible values for explicit timers in the the *refresh.timer* section of
-    the [system options][system-snap-opts] documentation.
+  An explicit timer may be a simple `mon` (scan every Monday) or a more
+  complex `mon3,23:00` (scan on the third Monday of the month at 23:00). See
+  possible values for explicit timers in the the _refresh.timer_ section of
+  the [system options][system-snap-opts] documentation.
 
 - Empty string
 
-    An empty string instructs `snapd` to refresh snap packages according to the
-    default system policy. This is currently 4 times per day.
+  An empty string instructs `snapd` to refresh snap packages according to the
+  default system policy. This is currently 4 times per day.
 
-- *max*
+- _max_
 
-    When set to `max`, refresh scans will be delayed for the maximum amount of
-    time allowed by `snapd`. This is currently once per month based on the
-    date this option was set.
+  When set to `max`, refresh scans will be delayed for the maximum amount of
+  time allowed by `snapd`. This is currently once per month based on the
+  date this option was set.
 
-### Determine the actual *max* value
+### Determine the actual _max_ value
 
 Use `snap get` on a deployed system to determine the value that `snapd` uses
 when a charm is configured with `snapd_refresh=max`. An example with `etcd`
@@ -105,10 +105,10 @@ juju run --unit kubernetes-master/0 'snap refresh cdk-addons'
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/snap-refresh.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

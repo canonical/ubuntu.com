@@ -22,7 +22,6 @@ toc: False
 Bug fixes included in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2).
 
-
 # 1.18+ck1 Bugfix release
 
 ### June 11, 2020 - [charmed-kubernetes-464](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-464/archive/bundle.yaml)
@@ -71,7 +70,6 @@ where containers would fail to start in a LXD environment.
 Bug fixes included in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck1).
 
-
 # 1.18
 
 ### April 13th, 2020 - [charmed-kubernetes-430](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-430/archive/bundle.yaml)
@@ -105,13 +103,13 @@ running this action on Charmed Kubernetes components.
 
 - Containerd version hold
 
-The version of [containerd](https://containerd.io/) will now be held.  This means that the version of [containerd](https://containerd.io/) will not be upgraded along with the charm.  To update [containerd](https://containerd.io/) to the latest stable, currently 1.3.3, you can call the `upgrade-containerd` action.  For example:
+The version of [containerd](https://containerd.io/) will now be held. This means that the version of [containerd](https://containerd.io/) will not be upgraded along with the charm. To update [containerd](https://containerd.io/) to the latest stable, currently 1.3.3, you can call the `upgrade-containerd` action. For example:
 
 ```bash
 juju run-action --wait containerd/0 upgrade-containerd
 ```
 
-After completion, the results of the upgrade will be returned.  Run this for each instance of the `containerd` charm.  The upgrades can be staggered to avoid downtime.
+After completion, the results of the upgrade will be returned. Run this for each instance of the `containerd` charm. The upgrades can be staggered to avoid downtime.
 
 ## Component Upgrades
 
@@ -165,6 +163,7 @@ PVCs using those storage classes will hang until the storage class is updated.
 Please see [this page][historic] for release notes of earlier versions.
 
 <!--LINKS-->
+
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
 [bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
@@ -181,10 +180,10 @@ Please see [this page][historic] for release notes of earlier versions.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/release-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

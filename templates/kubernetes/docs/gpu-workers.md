@@ -117,28 +117,27 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - image: nvidia/cuda
-        name: nvidia-smi
-        args:
-          - nvidia-smi
-        resources:
-          limits:
-            nvidia.com/gpu: 1
-          requests:
-            nvidia.com/gpu: 1
-        volumeMounts:
-        - mountPath: /usr/bin/
-          name: binaries
-        - mountPath: /usr/lib/x86_64-linux-gnu
-          name: libraries
+        - image: nvidia/cuda
+          name: nvidia-smi
+          args:
+            - nvidia-smi
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+            requests:
+              nvidia.com/gpu: 1
+          volumeMounts:
+            - mountPath: /usr/bin/
+              name: binaries
+            - mountPath: /usr/lib/x86_64-linux-gnu
+              name: libraries
       volumes:
-      - name: binaries
-        hostPath:
-          path: /usr/bin/
-      - name: libraries
-        hostPath:
-          path: /usr/lib/x86_64-linux-gnu
-
+        - name: binaries
+          hostPath:
+            path: /usr/bin/
+        - name: libraries
+          hostPath:
+            path: /usr/lib/x86_64-linux-gnu
 ```
 
 Download the file and run it with:
@@ -152,13 +151,12 @@ find the hardware report.
 
 ![dashboard image][img-log]
 
-
 <!-- IMAGES -->
 
 [img-log]: https://assets.ubuntu.com/v1/2ba88cee-nvidia.png
 
-
 <!-- LINKS -->
+
 [asset-nvidia]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/nvidia-test.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [aws-instance]: https://aws.amazon.com/ec2/instance-types/
@@ -166,10 +164,10 @@ find the hardware report.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/gpu-workers.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

@@ -13,12 +13,10 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-
 [Flannel][] is a simple, lightweight layer 3 fabric for Kubernetes. Flannel manages an
 IPv4 network between multiple nodes in a cluster. It does not control how containers
 are networked to the host, only how the traffic is transported between hosts. For
 more complicated scenarios, see also [Calico][] and [Canal][]
-
 
 ## Deploying **Charmed Kubernetes** with flannel
 
@@ -28,13 +26,12 @@ flannel will be used for CNI.
 
 ## Flannel options
 
-
-| Name                  |  Type     |  Default value | Description  |
-|-----------------------|-----------|----------------|--------------|
-| cidr                       | string     | 10.1.0.0/16      | Network CIDR to assign to Flannel  |
-| iface                      | string     | see description>  |  The interface to bind flannel overlay networking. The default value is the interface bound to the CNI endpoint. |
-|  nagios_context |  string |  juju  |  A string that will be prepended to instance name to set the host name in nagios. If you're running multiple environments with the same services in them this allows you to differentiate between them. Used by the nrpe subordinate charm. |
-| nagios_servicegroups | string  | (empty)  | A comma-separated list of nagios servicegroups. If left empty, the `nagios_context` will be used as the servicegroup  |
+| Name                 | Type   | Default value    | Description                                                                                                                                                                                                                                |
+| -------------------- | ------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| cidr                 | string | 10.1.0.0/16      | Network CIDR to assign to Flannel                                                                                                                                                                                                          |
+| iface                | string | see description> | The interface to bind flannel overlay networking. The default value is the interface bound to the CNI endpoint.                                                                                                                            |
+| nagios_context       | string | juju             | A string that will be prepended to instance name to set the host name in nagios. If you're running multiple environments with the same services in them this allows you to differentiate between them. Used by the nrpe subordinate charm. |
+| nagios_servicegroups | string | (empty)          | A comma-separated list of nagios servicegroups. If left empty, the `nagios_context` will be used as the servicegroup                                                                                                                       |
 
 ### Checking the current configuration
 
@@ -63,23 +60,21 @@ juju debug-log --replay --include=flannel
 
 For additional troubleshooting pointers, please see the [dedicated troubleshooting page][troubleshooting].
 
-
-
 <!-- LINKS -->
 
-[Flannel]: https://github.com/coreos/flannel
+[flannel]: https://github.com/coreos/flannel
 [troubleshooting]: /kubernetes/docs/troubleshooting
-[quickstart]:  /kubernetes/docs/quickstart
-[install-manual]:  /kubernetes/docs/install-manual
-[Calico]: /kubernetes/docs/cni-calico
-[Canal]: /kubernetes/docs/cni-canal
+[quickstart]: /kubernetes/docs/quickstart
+[install-manual]: /kubernetes/docs/install-manual
+[calico]: /kubernetes/docs/cni-calico
+[canal]: /kubernetes/docs/cni-canal
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-flannel.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
