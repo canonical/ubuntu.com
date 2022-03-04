@@ -2,16 +2,7 @@
 
 {% block title %}Azure Private Offer{% endblock %}
 {% block meta_description %}Ubuntu on Azure Private Offer - Get exclusive services and support for your large scale Linux operation{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1ZgV1ZiyHJe3UNQkj0I-OCpZ4MIAWLHheig2Q2rclcuk/edit{% endblock meta_copydoc %}
-
-{% block head_extra %}
-  <style>
-    h2,
-    .p-heading--2 {
-      font-weight: 300;
-    }
-  </style>
-{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1P4sqhsi6jqWwbqjrBDuAOABGIcbJDM6Efy59ztaroVk/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru-blog-header">
@@ -27,7 +18,7 @@
     </div>
     <div class="col-5 u-hide--small u-vertically-center u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/ee1049ee-Ubuntu+Pro+-+Private+offer+shield2.svg",
+        url="https://assets.ubuntu.com/v1/71fe6a11-private-offer-shield.svg",
         alt="",
         width="206",
         height="232",
@@ -55,7 +46,7 @@
       <p>Private offer also supports an ability to work from a set of images that have been hardened and optimised for security and operations for the whole organisation. This simplifies IT governance and allows all your internal users to seamlessly follow your strategy.</p>
     </div>
     <div class="col-5" id="private-offer-form">
-      {% with id="4394", returnURL="/azure/thank-you", cta="Get the exclusive private offer" %}
+      {% with id="4394", returnURL="/azure/thank-you", cta="Get the exclusive private offer", cta_class="p-button--positive" %}
         {% include "engage/shared/_en_engage_form.html" %}
       {% endwith %}
     </div>
