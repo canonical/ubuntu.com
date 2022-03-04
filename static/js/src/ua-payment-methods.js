@@ -149,7 +149,7 @@ if (cardElement) {
   const handlePaymentMethodErrors = (message) => {
     paymentErrorElement.querySelector(
       ".p-notification__message"
-    ).innerHTML = `<strong>${message}</strong> Check the details and try again. Contact <a class='p-notification__action' href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
+    ).innerHTML = `<strong>${message}</strong> Check the details and try again. Contact <a href='https://ubuntu.com/contact-us'>Canonical sales</a> if the problem persists.`;
     paymentErrorElement.classList.remove("u-hide");
   };
 

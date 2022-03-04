@@ -123,8 +123,8 @@ endpoint for scraping, and then setting up Grafana to use this data.
 
 Starting with Charmed Kubernetes 1.17,
 [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics)
-are added, automatically, when `enable-metrics` is set to  `true ` on the
-`kubernetes-master` charm.  This is enabled by default.  Enable
+are added, automatically, when `enable-metrics` is set to `true ` on the
+`kubernetes-master` charm. This is enabled by default. Enable
 with the following command.
 
 ```bash
@@ -137,7 +137,7 @@ To view metrics scraped from
 [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics),
 refer to
 [Monitoring with Prometheus, Grafana, and Telegraf](#monitoring-with-prometheus-grafana-and-telegraf)
-and enable Grafana.  You can then open the **Charmed Kubernetes Dashboard**.
+and enable Grafana. You can then open the **Charmed Kubernetes Dashboard**.
 
 ## Monitoring with Nagios
 
@@ -207,10 +207,10 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/monitoring.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

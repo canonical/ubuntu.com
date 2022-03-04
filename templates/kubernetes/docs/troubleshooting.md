@@ -117,7 +117,7 @@ Running the `juju-crashdump` script will generate a tarball of debug information
 
 ### Charms deployed to LXD containers fail after upgrade/reboot
 
-For deployments using Juju's `localhost` cloud, which deploys charms to LXD/LXC containers, or other 
+For deployments using Juju's `localhost` cloud, which deploys charms to LXD/LXC containers, or other
 cases where applications are deployed to LXD, there is a known issue
 ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
 with the profiles applied by Juju. The LXD profile used by Juju is named after the charm, including
@@ -130,6 +130,7 @@ To check what the profiles should contain, the YAML output from `juju status` or
 ```bash
 juju machines --format=yaml
 ```
+
 ... will detail the profiles in the output, e.g.:
 
 ```
@@ -166,6 +167,7 @@ To check this matches with the actually applied profile, you can run `lxc` (this
 ```bash
 lxc profile show juju-default-kubernetes-worker-718
 ```
+
 This should give the appropriate corresponding output:
 
 ```yaml
@@ -186,7 +188,7 @@ devices:
     type: unix-char
 name: juju-default-kubernetes-worker-718
 used_by:
-- /1.0/instances/juju-4ac678-1
+  - /1.0/instances/juju-4ac678-1
 ```
 
 If this differs from what is expected, the profile can be manually edited. E.g., for the above profile:
@@ -194,7 +196,6 @@ If this differs from what is expected, the profile can be manually edited. E.g.,
 ```bash
 lxc profile edit juju-default-kubernetes-worker-718
 ```
-
 
 ### Load Balancer interfering with Helm
 
@@ -322,6 +323,7 @@ Kubernetes for the policy. Check to make sure they are running:
 ```bash
 kubectl -n kube-system get po
 ```
+
 ```bash
 NAME                                              READY   STATUS    RESTARTS   AGE
 k8s-keystone-auth-5c6b7f9b7c-mvvkx                1/1     Running   0          21m
@@ -333,6 +335,7 @@ Check the logs of the pods for errors:
 ```bash
 kubectl -n kube-system logs k8s-keystone-auth-5c6b7f9b7c-mvvkx
 ```
+
 ```bash
 W1121 05:02:02.878988       1 config.go:73] Argument --sync-config-file or --sync-configmap-name missing. Data synchronization between Keystone and Kubernetes is disabled.
 I1121 05:02:02.879139       1 keystone.go:527] Creating kubernetes API client.
@@ -352,6 +355,7 @@ isn't valid, but make sure it matches what you expect.
 ```bash
 kubectl -n kube-system get configmap k8s-auth-policy -o=yaml
 ```
+
 ```yaml
 apiVersion: v1
 data:
@@ -394,6 +398,7 @@ Verify the service exists and has endpoints
 ```bash
 kubectl get svc -n kube-system
 ```
+
 ```bash
 NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
 heapster                    ClusterIP   10.152.183.49    <none>        80/TCP              136m
@@ -487,10 +492,10 @@ juju run --unit kubernetes-master/0 -- journalctl -u snap.kube-apiserver.daemon.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/troubleshooting.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

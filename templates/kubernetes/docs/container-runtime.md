@@ -21,27 +21,25 @@ runtimes on a case-by case basis.
 However, it is also possible to use Docker for running containers as in previous versions
 of **Charmed Kubernetes**.
 
-
 ## Configuring containerd
 
 Settings which require additional explanation are described below.
 
-| name | type   | Default      | Description                               |
-|------|--------|--------------|-------------------------------------------|
-| <a id="table-custom_registries"> </a> custom_registries | string | [] | [See notes](#custom_registries-description)  |
-| <a id="table-disable-juju-proxy"> </a> disable-juju-proxy | boolean | False | Ignore juju-http(s) proxy settings on this charm. If set to true, all juju https proxy settings will be ignored  |
-| <a id="table-enable-cgroups"> </a> enable-cgroups | boolean | False | Enable GRUB cgroup overrides cgroup_enable=memory swapaccount=1. WARNING changing this option will reboot the host - use with caution on production services.  |
-| <a id="table-gpu_driver"> </a> gpu_driver | string | auto | Override GPU driver installation.  Options are "auto", "nvidia", "none".  |
-| <a id="table-http_proxy"> </a> http_proxy | string |  | URL to use for HTTP_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
-| <a id="table-https_proxy"> </a> https_proxy | string |  | URL to use for HTTPS_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
-| <a id="table-no_proxy"> </a> no_proxy | string |  | [See notes](#no_proxy-description)  |
-| <a id="table-runtime"> </a> runtime | string | auto | Set a custom containerd runtime.  Set "auto" to select based on hardware.  |
-| <a id="table-shim"> </a> shim | string | containerd-shim | Set a custom containerd shim.  |
+| name                                                      | type    | Default         | Description                                                                                                                                                             |
+| --------------------------------------------------------- | ------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <a id="table-custom_registries"> </a> custom_registries   | string  | []              | [See notes](#custom_registries-description)                                                                                                                             |
+| <a id="table-disable-juju-proxy"> </a> disable-juju-proxy | boolean | False           | Ignore juju-http(s) proxy settings on this charm. If set to true, all juju https proxy settings will be ignored                                                         |
+| <a id="table-enable-cgroups"> </a> enable-cgroups         | boolean | False           | Enable GRUB cgroup overrides cgroup_enable=memory swapaccount=1. WARNING changing this option will reboot the host - use with caution on production services.           |
+| <a id="table-gpu_driver"> </a> gpu_driver                 | string  | auto            | Override GPU driver installation. Options are "auto", "nvidia", "none".                                                                                                 |
+| <a id="table-http_proxy"> </a> http_proxy                 | string  |                 | URL to use for HTTP_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
+| <a id="table-https_proxy"> </a> https_proxy               | string  |                 | URL to use for HTTPS_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images. |
+| <a id="table-no_proxy"> </a> no_proxy                     | string  |                 | [See notes](#no_proxy-description)                                                                                                                                      |
+| <a id="table-runtime"> </a> runtime                       | string  | auto            | Set a custom containerd runtime. Set "auto" to select based on hardware.                                                                                                |
+| <a id="table-shim"> </a> shim                             | string  | containerd-shim | Set a custom containerd shim.                                                                                                                                           |
 
 ---
 
 ### custom_registries
-
 
 <a id="custom_registries-description"> </a>
 **Description:**
@@ -50,13 +48,11 @@ Registry credentials. Setting this config allows Kubelet to pull images from
 registries where auth is required.
 
 The value for this config must be a JSON array of credential objects, like this:
-  `[{"url": "https://my.registry:port", "username": "user", "password": "pass"}]`
+`[{"url": "https://my.registry:port", "username": "user", "password": "pass"}]`
 
 [Back to table](#table-custom_registries)
 
-
 ### no_proxy
-
 
 <a id="no_proxy-description"> </a>
 **Description:**
@@ -67,8 +63,6 @@ the proxy defined in http_proxy or https_proxy. Must be less than
 2023 characters long.
 
 [Back to table](#table-no_proxy)
-
-
 
 ### Checking the current configuration
 
@@ -88,7 +82,7 @@ juju config containerd gpu_driver=none
 
 ## Migrating to containerd
 
-If you have upgraded to  **Charmed Kubernetes** version 1.15, you can transition to using containerd by following the steps outlined in
+If you have upgraded to **Charmed Kubernetes** version 1.15, you can transition to using containerd by following the steps outlined in
 [this section of the upgrade notes][docker2containerd].
 
 ## Using Docker
@@ -103,17 +97,16 @@ juju deploy cs:~containers/docker
 juju relate docker kubernetes-worker-docker
 ```
 
-
 <!-- LINKS -->
 
 [docker2containerd]: /kubernetes/docs/upgrade-notes#1.15
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/container-runtime.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
