@@ -198,11 +198,16 @@ def bad_request_error(error):
 
 @app.errorhandler(SecurityAPIError)
 def security_api_error(error):
-    message = error.response.json()
+
+    message = error.response.json().get("message")
+
     if error.response.status_code == 404:
-        return flask.render_template("security-error-404.html", message=message), 404
+        return flask.render_template("404.html", message=message), 404
     else:
-        return flask.render_template("security-error-500.html", message=message), 500
+        return (
+            flask.render_template("security-error-500.html", message=message),
+            500,
+        )
 
 
 @app.errorhandler(UAContractsValidationError)

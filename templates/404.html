@@ -20,7 +20,11 @@
     <div class="col-6 u-vertically-center">
       <div>
         <h1>404: Page not found</h1>
-        <p class="p-heading--4">Sorry, we couldn't find that page.</p>
+        {% if message %}
+          <p class="p-heading--4">{{ message }}</p>
+        {% else %}
+          <p class="p-heading--4">Sorry, we couldn't find that page.</p>
+        {% endif %}
       </div>
     </div>
   </div>
