@@ -18,12 +18,15 @@ run your workloads. Various components of **Charmed Kubernetes** can be
 horizontally scaled to meet demand or to increase reliability, as detailed
 below.
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-The information here is for scaling the installed Kubernetes<sup>&reg;</sup> itself. For
-information about pod autoscaling,  please see the
-<a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">
-Kubernetes  autoscaling</a> documentation for details. </p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">The information here is for scaling the installed Kubernetes<sup>&reg;</sup> itself. For
+    information about pod autoscaling,  please see the
+    <a href="https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/">
+    Kubernetes  autoscaling</a> documentation for details. </p>
+  </div>
+</div>
 
 ## kubernetes-master
 
@@ -96,12 +99,12 @@ Note that in this case, any constraints you supply will
 **_replace all the exisiting constraints_**, so in this example, we also include the
 existing `root-disk` requirement.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Constraints are designed to supply the <i>minimum</i> of what is requested. This can
-result in the actual instances far exceeding these values, depending on the backing cloud.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Constraints are designed to supply the <i>minimum</i> of what is requested. This can
+    result in the actual instances far exceeding these values, depending on the backing cloud.</p>
+  </div>
 </div>
 
 ### Scaling down kubernetes-worker
@@ -176,10 +179,10 @@ For a more detailed guide, please refer to the [Juju high availability documenta
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/scaling.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

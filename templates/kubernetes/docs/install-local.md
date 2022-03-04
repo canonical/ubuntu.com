@@ -20,11 +20,12 @@ However, be aware that the full deployment of **Charmed Kubernetes** has system
 requirements which may exceed a standard laptop or desktop machine. It is only
 recommended for a machine with 32GB RAM and 250GB of SSD storage.
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-If you don't meet these requirements or want a lightweight way to develop on
-pure Kubernetes, we recommend  <a href="https://microk8s.io/">microk8s</a>
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you don't meet these requirements or want a lightweight way to develop on pure Kubernetes, we recommend  <a href="https://microk8s.io/">microk8s</a></p>
+  </div>
+</div>
 
 In order to run locally, you will need a local cloud. This can be achieved by
 using lightweight containers managed by [LXD][lxd-home]. **LXD** version 3.0
@@ -135,23 +136,23 @@ All that remains is to deploy **Charmed Kubernetes**. A simple install can be ac
 juju deploy charmed-kubernetes
 ```
 
-
 This will install the latest stable version of **Charmed Kubernetes** with
 the default components and configuration. If you wish to customise this install
 (which may be helpful if you are close to the system requirements), please see
 the [main install page][install].
 
-<div class="p-notification--warning"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Bug Warning:</span>
-There is currently a bug, <a href="https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1903566"> LP#1903566</a>,
-which prevents <code>Kubelet</code> from running properly on LXD. 
-Until this is fixed, a workaround is to configure kubelet to override kernel defaults:
-<br>
-<code>
-juju config kubernetes-worker kubelet-extra-config='{protectKernelDefaults: false}'
-</code><br>
-
-</p></div>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Bug Warning:</span>
+    <p class="p-notification__message">There is currently a bug, <a href="https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1903566"> LP#1903566</a>,
+    which prevents <code>Kubelet</code> from running properly on LXD. 
+    Until this is fixed, a workaround is to configure kubelet to override kernel defaults:
+    <br>
+    <code>
+    juju config kubernetes-worker kubelet-extra-config='{protectKernelDefaults: false}'
+    </code></p>
+  </div>
+</div>
 
 ## Next Steps
 
@@ -219,17 +220,17 @@ juju add-unit kubernetes-worker
 
 [lxd-home]: https://linuxcontainers.org/
 [lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/master/lxd-profile.yaml
-[Juju]: https://jaas.ai
+[juju]: https://jaas.ai
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/docs/install-manual
 [operations]: /kubernetes/docs/operations
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/install-local.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

@@ -30,7 +30,6 @@ traffic appropriately. The ingress endpoint itself still needs to be exposed via
 of the above methods but can provide feature-rich management of traffic routing into
 the cluster.
 
-
 ## NGINX Ingress
 
 By default, **Charmed Kubernetes** sets up the [NGINX Ingress Controller][ingress-nginx],
@@ -46,13 +45,12 @@ charms which support the `ingress` relation to automatically manage [`VirtualSer
 manually manage [`VirtualServices`][virt-svc] for your applications, or even use
 [`Ingress` resources][istio-ingress].
 
-<div class="p-notification--positive">
-<p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-The Istio bundle requires a load balancer provider. If you're not using a cloud
-integrator which provides this, [MetalLB][] can be used.
-</p></div>
-
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">The Istio bundle requires a load balancer provider. If you're not using a cloud integrator which provides this, [MetalLB][] can be used.</p>
+  </div>
+</div>
 
 ## Multiple Ingress Controllers
 
@@ -65,10 +63,10 @@ controllers may rely on annotations, such as Istio's
 <!-- LINKS -->
 
 [ingress-nginx]: https://kubernetes.github.io/ingress-nginx/
-[MetalLB]: metallb
+[metallb]: metallb
 [worker charm]: charm-kubernetes-worker
 [ingress-resources]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[Istio bundle]: https://jaas.ai/istio
+[istio bundle]: https://jaas.ai/istio
 [istio-traffic]: https://istio.io/latest/docs/concepts/traffic-management/
 [virt-svc]: https://istio.io/latest/docs/concepts/traffic-management/#virtual-services
 [istio-ingress]: https://istio.io/latest/docs/tasks/traffic-management/ingress/kubernetes-ingress/
@@ -77,11 +75,10 @@ controllers may rely on annotations, such as Istio's
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ingress.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
-

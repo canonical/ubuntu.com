@@ -12,6 +12,7 @@ permalink: metallb.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+
 # About
 
 [MetalLB][metallb] is a Kubernetes-aware solution that will monitor for services with
@@ -31,16 +32,15 @@ traffic, but they will each receive 50% of the traffic even if one of the nodes 
 three pods and the other only has one pod running on it. It is recommended to use node
 anti-affinity to prevent Kubernetes pods from stacking on a single node.
 
-<div class="p-notification--positive">
-<p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-For more information on configuring MetalLB with Calico in BGP mode,
-please see this
-<a href="https://metallb.universe.tf/configuration/calico/">
-explanation of the required configuration</a> from the
-<a href="https://metallb.universe.tf/"> MetalLB website</a>
-
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">For more information on configuring MetalLB with Calico in BGP mode, please see this
+    <a href="https://metallb.universe.tf/configuration/calico/">
+    explanation of the required configuration</a> from the
+    <a href="https://metallb.universe.tf/"> MetalLB website</a></p>
+  </div>
+</div>
 
 # Deployment
 
@@ -105,7 +105,7 @@ juju config metallb-controller iprange="192.168.1.240/28, 10.0.0.0/28"
 
 If RBAC is enabled in the Kubernetes cluster, an extra deployment step is
 required: before deploying MetalLB, you must apply the [RBAC permissions
-manifest][rbac-manifest].  This manifest gives permissions to the operator pods
+manifest][rbac-manifest]. This manifest gives permissions to the operator pods
 to use the Kubernetes API to create the necessary resources to make MetalLB
 work. You can apply the manifest using `kubectl`:
 
@@ -115,7 +115,7 @@ kubectl apply -f rbac-permissions-operators.yaml
 ```
 
 Be aware that the manifest has to refer to the namespace in which MetalLB is
-deployed.  This namespace will be the same as the Juju model you deployed it
+deployed. This namespace will be the same as the Juju model you deployed it
 into, above. If you used a model name other than `metallb-system`, you will
 need to edit the manifest before applying it.
 
@@ -173,7 +173,6 @@ To remove the test webapp and service, simply delete the manifest with kubectl:
 kubectl delete -f example-microbot-lb.yaml
 ```
 
-
 <!-- LINKS -->
 
 [metallb]: https://metallb.universe.tf
@@ -187,10 +186,10 @@ kubectl delete -f example-microbot-lb.yaml
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/metallb.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

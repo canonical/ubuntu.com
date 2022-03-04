@@ -48,10 +48,12 @@ So, for example, to deploy three `ceph-osd` storage nodes, using the default sto
  juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1
 ```
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://juju.is/docs/olm/defining-and-using-persistent-storage">Juju documentation</a>.
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://juju.is/docs/olm/defining-and-using-persistent-storage">Juju documentation</a>.</p>
+  </div>
+</div>
 
 Note that actually deploying these charms with storage may take some time, but you can continue to run other Juju commands in the meantime.
 
@@ -72,11 +74,12 @@ juju add-relation ceph-fs ceph-mon
 **Charmed Kubernetes** will then deploy the CephFS provisioner pod
 and create a `cephfs` storage class in the cluster.
 
-<div class="p-notification--caution"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-CephFS support in Kubernetes requires at least Ubuntu 18.04LTS and OpenStack
-Train. OpenStack Ussuri or newer is recommended.
-</p></div>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">CephFS support in Kubernetes requires at least Ubuntu 18.04LTS and OpenStack Train. OpenStack Ussuri or newer is recommended.</p>
+  </div>
+</div>
 
 When deploying **Charmed Kubernetes** on Ubuntu 18.04(Bionic), you will need
 to explicitly set the `install_sources` config option on the `kubernetes-master`
@@ -85,7 +88,7 @@ using).
 
 When using OpenStack Train, ReadWriteMany (RWX) CephFS volumes on containers
 running as a non-root user will be mounted as owned by root instead of the
-container's user, potentially leading to permissions issues.  You can work
+container's user, potentially leading to permissions issues. You can work
 around this by adding an initContainer to your pod to adjust the mounted
 volume's ownership or permissions. For example:
 
@@ -94,11 +97,11 @@ initContainers:
   - name: fix-cephfs-rwx-volume-perm
     securityContext:
       runAsUser: 0
-    image: ubuntu  # or whatever image your pod is using
+    image: ubuntu # or whatever image your pod is using
     volumeMounts:
-      - name: shared-data  # adjust volume name and mountPath
-        mountPath: /data   # to match your pod spec
-    command: ['chmod', '0777', '/data']
+      - name: shared-data # adjust volume name and mountPath
+        mountPath: /data # to match your pod spec
+    command: ["chmod", "0777", "/data"]
 ```
 
 ### Relate to Charmed Kubernetes
@@ -113,13 +116,13 @@ juju add-relation ceph-mon:client kubernetes-master
 ### Create storage pools
 
 By default, the `kubernetes-master` charm will create the required pools defined
-in the storage class.  To view the default options, run:
+in the storage class. To view the default options, run:
 
 ```bash
 juju list-actions ceph-mon --schema --format json | jq '.["create-pool"]'
 ```
 
-If you're happy with this, you can skip the section.  Otherwise, if you want to
+If you're happy with this, you can skip the section. Otherwise, if you want to
 change these, you can delete the pools:
 
 ```bash
@@ -130,7 +133,7 @@ juju run-action ceph-mon/0 delete-pool pool-name=ext4-pool --wait
 ```
 
 Then recreate them, using the options listed from the `list-actions` command ran
-earlier.  For example:
+earlier. For example:
 
 ```bash
 juju run-action ceph-mon/0 create-pool name=xfs-pool replicas=6 --wait
@@ -283,10 +286,10 @@ There is no requirement that these additional units should have the same amount 
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/storage.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

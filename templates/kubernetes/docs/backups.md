@@ -22,7 +22,7 @@ please refer to their own documentation for details.
 
 ## Creating an **etcd** snapshot
 
- <div class="p-notification--warning is-inline">
+ <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning:</span>
     <p class="p-notification__message">Snapshots can only be restored on the **same version of etcd**.</p>
@@ -75,7 +75,7 @@ sha256sum etcd-snapshot-2018-09-26-18.04.02.tar.gz
 
 ## Restoring a snapshot
 
-<div class="p-notification--warning is-inline">
+<div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning:</span>
     <p class="p-notification__message">Restoring a snapshot should not be performed when there is more than one unit of **etcd** running.
@@ -150,8 +150,9 @@ unit-new-etcd-0:
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/backups.md" >edit this page</a>
-    or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/backups.md" >edit this page</a>
+      or
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
+    </p>
   </div>
 </div>

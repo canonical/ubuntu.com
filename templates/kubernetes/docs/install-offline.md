@@ -18,27 +18,25 @@ on a system which does not have unfettered access to the internet. To make
 this possible, it is necessary to prepare the required resources, and configure
 Charmed Kubernetes to make use of them.
 
-As user needs may vary, this documentation does not present a prescriptive 
-recipe, but outlines the types of resources which are required and some 
-recommendations on how to provide them. If you are already installing 
+As user needs may vary, this documentation does not present a prescriptive
+recipe, but outlines the types of resources which are required and some
+recommendations on how to provide them. If you are already installing
 services in a restricted environment you may already have some 'air-gap'
 resources available, and may only need to configure Charmed Kubernetes to
 make use of them.
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Shrinkwrap</span>
-A simple tool for collecting the bundle and charm files, as well as automating some of 
-the work required to install offline is available. 
-The <a href="https://github.com/charmed-kubernetes/cdk-shrinkwrap"> shrinkwrap repository</a>
-contains the latest version and docs.
-</p></div>
-
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Shrinkwrap</span>
+    <p class="p-notification__message">A simple tool for collecting the bundle and charm files, as well as automating some of the work required to install offline is available. The <a href="https://github.com/charmed-kubernetes/cdk-shrinkwrap"> shrinkwrap repository</a> contains the latest version and docs.</p>
+  </div>
+</div>
 
 ## APT package repository
 
 Access to a repository is required for installing software which is not yet available
 as snap packages, as well as receiving updates for the underlying operating system.
-In normal use this requires network access to  `http://archive.ubuntu.com/` or one
+In normal use this requires network access to `http://archive.ubuntu.com/` or one
 of its localised mirrors.
 
 In order to access the APT package repository, it is common to set up a local
@@ -50,7 +48,7 @@ use tools such as **rsync**, **apt-mirror** or **aptly** to create the mirror.
 
 ### Series and architectures
 
-Note that the mirror should contain packages for the required series (e.g. focal 
+Note that the mirror should contain packages for the required series (e.g. focal
 (Ubuntu 20.04), bionic) and architectures (e.g. `amd64`, `i386`) expected to be used
 in the deployment. The core Charmed Kubernetes components all use the `focal` series,
 but some additional charms may be based on other series.
@@ -63,14 +61,16 @@ but some additional charms may be based on other series.
 
 ## Snap packages
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Snap resources</span>
-Many current charms include snaps as bundled resources. The inclusion of
-snaps as charm resources is deprecated, and these will be removed in future
-versions of these charms. Deployments will need to be able to access the
-official Snap Store or use the Snap Store Proxy to gain access to the required
-snaps.
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Snap resources</span>
+    <p class="p-notification__message">Many current charms include snaps as bundled resources. The inclusion of
+    snaps as charm resources is deprecated, and these will be removed in future
+    versions of these charms. Deployments will need to be able to access the
+    official Snap Store or use the Snap Store Proxy to gain access to the required
+    snaps.</p>
+  </div>
+</div>
 
 The majority of charms, including all the core Charmed Kubernetes charms, rely on
 [snap][] packages to deliver applications. Snaps are packages for desktop, cloud and
@@ -90,11 +90,10 @@ disconnects it from the upstream store and allows snaps to be "sideloaded" into
 the local store. Information on how to do this is in the
 [Snap Store Proxy documentation][sideload].
 
-
 Note: Running the Snap Store Proxy also requires access to a PostgreSQL database,
 and an Ubuntu SSO account.
 
-## Juju 
+## Juju
 
 Since `Charmed Kubernetes` requires Juju, the Juju environment will also
 need to be deployed in an offline-mode. Details of how to install and run Juju
@@ -125,11 +124,11 @@ deploying the rest of Charmed Kubernetes.
 
 A list of the required images for each supported release is made available as part of
 the Charmed Kubernetes bundle repository on github. You can inspect or download the
-lists from the [container images][] directory. 
+lists from the [container images][] directory.
 
 Using this list, it is possible to fetch the desired images locally on a system which
 has access to public repositories. The shrinkwrap tool also gathers all the necessary
-images for a specific release into one "containers" folder of the resulting tar.gz 
+images for a specific release into one "containers" folder of the resulting tar.gz
 ready for installation.
 
 When using the Juju docker-registry charm, the image archives can be copied to the running unit
@@ -164,19 +163,19 @@ by Juju in conjunction with the underlying cloud, and has no need of any user
 interaction. If you are using a private cloud which has not yet been configured for use
 with Juju or Ubuntu images, the following documentation may be useful.
 
--  OpenStack image metadata [from Juju docs][simplestreams]
--  Image metadata for MAAS [from the MAAS docs][maas-images]
+- OpenStack image metadata [from Juju docs][simplestreams]
+- Image metadata for MAAS [from the MAAS docs][maas-images]
 
 ### LXD
 
 [LXD][] is a special case, as not only can Charmed Kubernetes be deployed entirely
 on LXD containers (See the [localhost documentation][local-install]), but LXD is also used in other
 clouds to co-locate applications on a single machine. In both cases, the OS images need
-to be fetched from somewhere. 
+to be fetched from somewhere.
 
-This can be configured in various ways using LXD, either 
+This can be configured in various ways using LXD, either
 by pre-caching image files or pointing to an accessible repository. This is covered
-in detail in the [LXD image documentation][LXD-image].
+in detail in the [LXD image documentation][lxd-image].
 
 ## Python packages and PyPI
 
@@ -194,14 +193,13 @@ the existing kernel. In normal use this requires network access to pull the kern
 patches and apply to the running kernel. However, with [On Prem Livepatch][on-prem-livepatch],
 patches can be published to a locally available livepatch hosting server.
 
-
-## Charmed Kubernetes 
+## Charmed Kubernetes
 
 ### Bundle and charms
 
 The specific bundle and charms which are required by those bundles must first be retrieved,
 then locally installed with Juju. The [bundles][], [overlays][], and charms to install
-can be retrieved using the [Shrinkwrap][cdk-shrinkwrap] tool.   
+can be retrieved using the [Shrinkwrap][cdk-shrinkwrap] tool.
 
 from an internet connected machine:
 
@@ -212,11 +210,12 @@ from an internet connected machine:
 git clone https://github.com/charmed-kubernetes/cdk-shrinkwrap.git /tmp/.shrinkwrap
 cd /tmp/.shrinkwrap
 BUNDLE=cs:charmed-kubernetes-733       # Choose a deployment bundle (example is 1.21.x)
-./shrinkwrap-lxc.sh $BUNDLE 
+./shrinkwrap-lxc.sh $BUNDLE
 ls /tmp/.shrinkwrap/build/
 ```
 
-In air-gapped environment with access to the Juju controller, 
+In air-gapped environment with access to the Juju controller,
+
 1. Extract the tar.gz file
 1. Print Available instructions from the deploy.sh
    1. Push the snaps to the snap-store-proxy
@@ -225,6 +224,7 @@ In air-gapped environment with access to the Juju controller,
    1. This will require configuration changes on the `containerd` application and `kubernetes-master` application in the `./bundle.yaml`
    1. Ensure `applcations.containerd.options` includes `custom_registries` settings
 1. Finally, deploy the Juju charms and resources from the provided local bundle.
+
 ```bash
 tar -xvf cs:charmed-kubernetes-733-stable-*.tar.gz --force-local
 cd cs:charmed-kubernetes-733-stable-*/
@@ -234,21 +234,17 @@ cd cs:charmed-kubernetes-733-stable-*/
 juju deploy ...
 ```
 
-
 ### Configuring Charmed Kubernetes to work with proxies
 
 Whether you decide to proxy any or all of the above services, the only extra configuration required
 is for Juju to route the traffic to the relevant proxies. Proxy configuration for Charmed Kubernetes
 is covered in the [proxy documentation][].
 
-
-
 <!-- IMAGES -->
 
-
-
 <!-- LINKS -->
-[LXD-image]: https://linuxcontainers.org/lxd/docs/master/image-handling
+
+[lxd-image]: https://linuxcontainers.org/lxd/docs/master/image-handling
 [maas-images]: https://maas.io/docs/snap/3.1/ui/using-image-streams
 [simplestreams]: https://juju.is/docs/olm/cloud-image-metadata
 [bundles]: /kubernetes/docs/supported-versions
@@ -268,22 +264,22 @@ is covered in the [proxy documentation][].
 [quickstart]: /kubernetes/docs/quickstart
 [snap]: https://snapcraft.io
 [snaps]: https://docs.snapcraft.io/snap-documentation
-[Snap Store Proxy]: https://docs.ubuntu.com/snap-store-proxy
+[snap store proxy]: https://docs.ubuntu.com/snap-store-proxy
 [rsync]: https://help.ubuntu.com/community/Rsyncmirror
 [apt-mirror]: https://www.howtoforge.com/local_debian_ubuntu_mirror
 [aptly]: https://www.aptly.info/doc/overview/
 [sideload]: https://docs.ubuntu.com/snap-store-proxy/en/airgap#usage
 [proxy documentation]: /kubernetes/docs/proxies
 [registry]: /kubernetes/docs/docker-registry
-[LXD]: https://linuxcontainers.org/lxd/introduction/
+[lxd]: https://linuxcontainers.org/lxd/introduction/
 [local-install]: /kubernetes/docs/install-local
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/install-offline.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

@@ -51,7 +51,6 @@ with the upgrade.
 
 Please follow the [upgrade instructions for 1.19](/kubernetes/docs/1.19/upgrading).
 
-
 <a  id="1.18"> </a>
 
 ## Upgrading to 1.18
@@ -90,11 +89,13 @@ parameter was `--admission-control`; the new parameter is `--enable-admission-pl
 
 For example, prior to 1.16, The 'PodSecurityPolicy' admission plugin could be
 applied like this:
+
 ```bash
 juju config kubernetes-master api-extra-args="admission-control=PodSecurityPolicy"
 ```
 
 As of 1.16, this changes to:
+
 ```bash
 juju config kubernetes-master api-extra-args="enable-admission-plugins=PodSecurityPolicy"
 ```
@@ -108,7 +109,7 @@ accordingly after upgrading to 1.16.
 
 This upgrade switches the container runtime to make use of containerd, rather
 than Docker. You have the option of keeping Docker as the container runtime,
-but even in that case you ***must*** perform the upgrade steps. To facilitate
+but even in that case you **_must_** perform the upgrade steps. To facilitate
 different container runtimes, the architecture of **Charmed Kubernetes** has
 changed slightly, and the container runtime is now part of a separate,
 subordinate charm rather than being included in the `kubernetes-master` and
@@ -137,6 +138,7 @@ temporary extra worker units. While not strictly necessary, skipping this step w
 in some cluster down time. Adding temporary additional workers provides a place for keeping pods running while new workers are brought online. The temporary workers can then be removed as the pods are migrated to the new workers. The rest of these instructions assume that you have deployed temporary workers.
 
 #### Deploy temporary workers
+
 ```bash
 CURRENT_WORKER_REV=$(juju status | grep '^kubernetes-worker\s' | awk '{print $7}')
 CURRENT_WORKER_COUNT=$(juju status | grep '^kubernetes-worker/' | wc -l | sed -e 's/^[ \t]*//')
@@ -145,11 +147,14 @@ juju deploy cs:~containers/kubernetes-worker-$CURRENT_WORKER_REV  kubernetes-wor
 ```
 
 #### Add necessary relations
+
 ```bash
 juju status --relations | grep worker: | awk '{print $1,$2}' | sed 's/worker:/worker-temp:/g' | xargs -n2 juju relate
 ```
+
 Wait for the temporary workers to become active before continuing.
 Upgrade the master and worker charms:
+
 ```bash
 juju upgrade-charm kubernetes-master
 juju upgrade-charm kubernetes-worker
@@ -180,6 +185,7 @@ juju run-action [unit] pause --wait
 ```
 
 For example:
+
 ```bash
 juju run-action kubernetes-worker/0 pause --wait
 juju run-action kubernetes-worker/1 pause --wait
@@ -187,6 +193,7 @@ juju run-action kubernetes-worker/2 pause --wait
 ```
 
 One-liner:
+
 ```bash
 juju status | grep ^kubernetes-worker/ | awk '{print $1}' | tr -d '*' | xargs -n1 -I '{}' juju run-action {} pause --wait
 ```
@@ -210,6 +217,7 @@ juju add-relation containerd kubernetes-worker
 ```
 
 #### Resume workers
+
 Now we can allow pods to be rescheduled to our original workers.
 
 ```bash
@@ -217,6 +225,7 @@ juju run-action [unit] resume --wait
 ```
 
 E.g.
+
 ```bash
 juju run-action kubernetes-worker/0 resume --wait
 juju run-action kubernetes-worker/1 resume --wait
@@ -224,6 +233,7 @@ juju run-action kubernetes-worker/2 resume --wait
 ```
 
 One-liner:
+
 ```bash
 juju status | grep ^kubernetes-worker/ | awk '{print $1}' | tr -d '*' | xargs -n1 -I '{}' juju run-action {} resume --wait
 ```
@@ -239,9 +249,7 @@ juju status | grep ^kubernetes-worker-temp/ | awk '{print $1}' | tr -d '*' | xar
 juju remove-application kubernetes-worker-temp
 ```
 
-
 #### Mixing Containerd and Docker
-
 
 Once you have a Containerd backed Charmed Kubernetes running, you can add Docker backed
 workers like so:
@@ -272,7 +280,6 @@ Existing deployments which are upgraded to **Charmed Kubernetes 1.14** will cont
 **KubeDNS** until the operator chooses to upgrade to **CoreDNS**. To upgrade,
 set the new dns-provider config:
 
-
 ```bash
 juju config kubernetes-master dns-provider=core-dns
 ```
@@ -293,12 +300,11 @@ For more information on the new `dns-provider config`, see the
 
 This upgrade includes a transistion between major versions of **etcd**, from 2.3 to 3.x. Between these releases, **etcd** changed the way it accesses storage, so it is necessary to reconfigure this. There is more detailed information on the change and the upgrade proceedure in the [upstream **etcd** documentation][etcd-upgrade].
 
-
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    This upgrade <strong>must</strong> be completed before attempting to upgrade the running cluster.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">This upgrade <strong>must</strong> be completed before attempting to upgrade the running cluster.</p>
+  </div>
 </div>
 
 To make this upgrade more convenient for users of **Charmed Kubernetes**, a script has been prepared to manage the transition. The script can be [examined here][script].
@@ -310,19 +316,23 @@ To use the script to update **etcd**, follow these steps:
 ```bash
 curl -O https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 ```
+
 ### 2. Make the script executable:
 
 ```bash
 chmod +x migrate
 ```
+
 ### 3. Execute the script:
 
 ```bash
 ./migrate
 ```
+
 ### 4. etcd OutputSed
 
 The script should update **etcd** and you will see output similar to the following:
+
 ```no-highlight
 · Waiting for etcd units to be active and idle...
 · Acquiring configured version of etcd...
@@ -342,7 +352,6 @@ The script should update **etcd** and you will see output similar to the followi
 · Done.
 ```
 
-
 You can now proceed with the rest of the upgrade.
 
 <!--LINKS-->
@@ -354,10 +363,10 @@ You can now proceed with the rest of the upgrade.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrade-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
