@@ -217,7 +217,7 @@ If you wanted to try a release candidate for 1.12, the channel would be `1.12/ca
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <div class="p-notification__message">Once the configuration has been changed, the charms will be put into a `blocked` state.
+    <div class="p-notification__message">Once the configuration has been changed, the charms will be put into a `blocked` state.</div>
     You must continue the upgrade process, even if you revert the configuration to the
     currently active version of Kubernetes.</p>
   </div>

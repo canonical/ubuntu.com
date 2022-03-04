@@ -17,7 +17,7 @@ toc: False
 With the addition of the `vsphere-integrator`, your cluster will also be able
 to directly use native vSphere features such as storage.
 
-<div class="p-notification--information">
+<div class="p-notification--information is-inline">
   <div class="p-notification__content">
     <span class="p-notification__title">Note:</span>
     <p class="p-notification__message">These instructions for deploying Charmed Kubernetes with the vSphere integrator assume that Juju has been configured appropriately for your vSphere server. For reference, the configuration options may be found in the <a href="https://juju.is/docs/olm/vmware-vsphere" >Juju documentation</a>.</p>
@@ -109,7 +109,7 @@ juju config vsphere-integrator \
   datacenter='dc0'
 ```
 
-<div class="p-notification--information">
+<div class="p-notification--information is-inline">
   <div class="p-notification__content">
     <span class="p-notification__title">Note:</span>
     <p class="p-notification__message">If any configuration option is set, they must all be set.</p>

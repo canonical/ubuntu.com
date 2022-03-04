@@ -286,7 +286,7 @@ If you wanted to try a release candidate for 1.20, the channel would be `1.20/ca
     <p class="p-notification__message">Once the configuration has been changed, the charms will be put into a `blocked` state.
     You must continue the upgrade process, even if you revert the configuration to the
     currently active version of Kubernetes.</p>
-  </p>
+  </div>
 </div>
 
 Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:

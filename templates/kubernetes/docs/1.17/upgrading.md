@@ -183,11 +183,7 @@ juju upgrade-charm flannel
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-navigation__message">Some services may be briefly interrupted during the upgrade process. Upgrading
-    your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
-    <strong>easyrsa</strong> will not cause any downtime. The behaviour of other
-    components you have added to your cluster may vary - check individual documentation
-    for these charms for more information on upgrades.</p>
+    <p class="p-notification__message">Some services may be briefly interrupted during the upgrade process. Upgradingyour CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading <strong>easyrsa</strong> will not cause any downtime. The behaviour of other components you have added to your cluster may vary - check individual documentation for these charms for more information on upgrades.</p>
   </div>
 </div>
 

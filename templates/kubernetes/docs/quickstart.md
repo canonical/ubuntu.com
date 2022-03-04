@@ -40,7 +40,7 @@ Kubernetes cluster running on the cloud of your choice in minutes!
   </div>
 </div>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <ol class="p-stepped-list--detailed">
       <li class="p-stepped-list__item">
