@@ -2,24 +2,15 @@
 
 {% block title %}Why do Cloud innovators migrate to Pro?{% endblock %}
 {% block meta_description %}{% endblock %}
-{% block meta_copydoc %}{% endblock meta_copydoc %}
-
-{% block head_extra %}
-  <style>
-    h2,
-    .p-heading--2 {
-      font-weight: 300;
-    }
-  </style>
-{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1JL_TeFBg1tSqiYIiXU0IwJTKWRDKJEXWtEgLRWFnToI/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--suru-bottomed">
+<section class="p-strip--suru-bottomed is-shallow">
   <div class="row">
     <div class="col-7 u-vertically-center">
       <div>
-        <h1>Why do Cloud innovators migrate to Ubuntu Pro? {{ utm_campaign }}</h1>
+        <h1>Why do cloud innovators migrate to Ubuntu Pro?</h1>
 
         <p class="u-no-padding--top p-heading--4">Get our e-book to find out</p>
 
@@ -32,10 +23,11 @@
       {{ image (
         url="https://assets.ubuntu.com/v1/0959ce33-NEW_Ubuntu_ebook_1.png",
         alt="",
-        width="283",
-        height="401",
+        width="227",
+        height="320",
         hi_def=True,
-        loading="auto"
+        loading="auto",
+        attrs={ "class": "p-image--bordered"}
         ) | safe
       }}
     </div>
@@ -82,7 +74,7 @@
     
     <div class="col-5 u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/ee1049ee-Ubuntu+Pro+-+Private+offer+shield2.svg",
+        url="https://assets.ubuntu.com/v1/71fe6a11-private-offer-shield.svg",
         alt="",
         width="206",
         height="234",
