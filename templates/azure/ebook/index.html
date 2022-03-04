@@ -15,7 +15,7 @@
         <p class="u-no-padding--top p-heading--4">Get our e-book to find out</p>
 
         <p>
-          <a href="#ubuntu-pro-ebook" class="p-button--positive">Download</a>
+          <a href="#ubuntu-pro-ebook" class="p-button--positive">Download<span class="u-off-screen"> the Why do Cloud innovators migrate to Pro? e-book</span></a>
         </p>
       </div>
     </div>
@@ -49,8 +49,8 @@
     </div>
 
     <div class="col-5" id="ubuntu-pro-ebook">
-      {% with id="4393", returnURL="/azure/thank-you", cta="Get the e-book" %}
-      {% include "engage/shared/_en_engage_form.html" %}
+      {% with id="4393", returnURL="/azure/ebook/thank-you", cta="Get the e-book", cta_class="p-button--positive" %}
+        {% include "engage/shared/_en_engage_form.html" %}
       {% endwith %}
     </div>
   </div>
