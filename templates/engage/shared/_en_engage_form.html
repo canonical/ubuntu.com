@@ -60,7 +60,7 @@
         <input name="Consent_to_Processing__c" aria-label="Consent" value="Yes" type="hidden">
       </li>
       <li>
-        <button type="submit" class="u-no-margin--bottom" >{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>
+        <button type="submit" class="u-no-margin--bottom {% if cta_class %}{{ cta_class }}{% endif %}" >{% if cta %}{{ cta }}{% else %}Download the whitepaper{% endif %}</button>
         <input name="formid" aria-label="formid" value="{{ id }}" type="hidden">
         <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
