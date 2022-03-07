@@ -70,7 +70,7 @@
           {% for release in release_details["releases"] %}
           <li class="{% if release_details['releases']|length > 1 %}p-accordion__group{% endif %}">
             {% if release_details['releases']|length > 1%}
-            <h3 role="heading" aria-level="3" class="p-accordion__heading u-no-margin--bottom">
+            <h3 class="p-accordion__heading u-no-margin--bottom">
               <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;"id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false">{{ release.name }}</button>
             </h3>
             {% else %}
