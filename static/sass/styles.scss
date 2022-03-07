@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+// allow use of math.div
+@use "sass:math";
+
 //settings
 @import "global-settings";
 @import "settings_colors";
@@ -277,8 +280,7 @@ p.u-align--center {
 
 // Override for wordpress use of <figure>
 .blog-article figure {
-  @extend %max-width--p;
-
+  max-width: $text-max-width;
   text-align: center;
 }
 
@@ -728,7 +730,7 @@ td.p-accordion {
 
 // Local override for custom table
 .p-accordion.is-compact .p-accordion__panel {
-  padding-left: $sph-inner--small;
+  padding-left: $sph--small;
 }
 
 .is-bordered--top {

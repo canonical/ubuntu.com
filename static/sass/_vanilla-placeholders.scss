@@ -5,7 +5,7 @@ $p-small-lh-diff: map-get($line-heights, default-text) -
   map-get($line-heights, small);
 
 %small-text-base {
-  font-size: 1rem / pow($ms-ratio, 1);
+  font-size: math.div(1rem, pow($ms-ratio, 1));
   line-height: map-get($line-heights, small);
   padding-top: $nudge--small;
 }
@@ -22,7 +22,7 @@ $p-small-lh-diff: map-get($line-heights, default-text) -
 
 %smallest-text {
   //Smallest text, used for smaller mutrd headinggs that sit next to .p-p--small
-  font-size: 1rem / pow($ms-ratio, 2);
+  font-size: math.div(1rem, pow($ms-ratio, 2));
   line-height: 1rem;
   margin-bottom: 0.25rem;
   padding-top: 0.5rem;
@@ -62,14 +62,14 @@ h4,
 }
 
 %p-strip--very-shallow {
-  padding-top: $spv-outer--medium;
+  padding-top: $spv--large;
 
   &:not(:last-child) {
-    padding-bottom: $spv-outer--medium;
+    padding-bottom: $spv--large;
   }
 
   &:last-child {
-    padding-bottom: $spv-outer--scaleable;
+    padding-bottom: $spv--x-large;
   }
 }
 
