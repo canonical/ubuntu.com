@@ -15,6 +15,18 @@ const Notifications = () => {
   });
   const { data: offers } = useGetOffersList();
 
+  const [
+    isShowingOnBoardingNotification,
+    setIsShowingOnBoardingNotification,
+  ] = React.useState(
+    localStorage.getItem("dismissedOnBoardingNotification") !== "true"
+  );
+
+  const dismissOnBoardingNotification = () => {
+    localStorage.setItem("dismissedOnBoardingNotification", "true");
+    setIsShowingOnBoardingNotification(false);
+  };
+
   return (
     <>
       {statusesSummary?.has_pending_purchases ? (
@@ -28,6 +40,29 @@ const Notifications = () => {
           <a href={urls.account.paymentMethods}>update your payment methods</a>{" "}
           to ensure there is no interruption to your Ubuntu Advantage
           subscriptions
+        </Notification>
+      ) : null}
+      {isShowingOnBoardingNotification ? (
+        <Notification
+          data-test="offers"
+          severity="information"
+          actions={[
+            {
+              label: "Dismiss this message",
+              onClick: dismissOnBoardingNotification,
+            },
+            {
+              label: "Manage account users",
+              onClick: () => {
+                location.href = urls.advantage.users;
+              },
+            },
+          ]}
+          onDismiss={dismissOnBoardingNotification}
+        >
+          Tip: You can add additional Technical & Billing contacts in
+          &quot;Account users&quot; to ensure service continuity and allow the
+          right people access to your Subscriptions
         </Notification>
       ) : null}
       {offers?.length > 0 ? (
