@@ -73,14 +73,13 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "utility_vertically-center";
 
 @include blog-p-card;
-@include blog-u-crop;
 @include blog-p-featured;
 @include blog-p-icons;
 @include blog-p-list;
 @include blog-p-post;
 @include blog-p-strips-suru;
-@include blog-u-crop;
 @include blog-p-topic;
+@include blog-u-crop;
 @include ubuntu-p-accordion;
 @include ubuntu-p-active-reveal;
 @include ubuntu-p-buttons;
@@ -161,27 +160,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
   padding-bottom: $sp-xx-large;
 }
 
-// overflow tables
-.table__wrapper {
-  margin: $sp-xx-large 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: 100;
-}
-
 /// XXX fix nested bullets to use default styles
 .p-list .p-list {
   list-style-type: circle;
 
   .p-list {
     list-style-type: disc;
-  }
-}
-
-/// XXX Override for p-strip--image to hide the background at small viewports
-.u-no-background--small {
-  @media (max-width: $breakpoint-medium) {
-    background-image: none !important;
   }
 }
 
@@ -207,17 +191,6 @@ select {
   margin-bottom: 1.25rem;
 }
 
-.p-strip--security {
-  @extend %vf-strip;
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    background-image: url("#{$assets-path}8717cb84-padlock-chain-icon-angular.png");
-    background-position: left 70% top;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
-}
-
 // XXX Steve: 21.06.18
 // https://github.com/vanilla-framework/vanilla-framework/issues/1794
 .u-no-max-width {
@@ -240,11 +213,6 @@ fieldset:last-child {
   border-bottom-left-radius: $sp-xx-small !important;
   border-bottom-right-radius: $sp-xx-small !important;
   border-bottom-width: 1px !important;
-}
-
-// error to mirror vanilla for g-recaptcha
-.recaptcha-is-error {
-  border: 1px solid $color-negative;
 }
 
 // XXX Steve: Overriding default Vanilla style :(
@@ -330,45 +298,6 @@ summary {
   }
 }
 
-.p-table-expanding__panel {
-  @extend %vf-card;
-  @extend %vf-is-bordered;
-  @extend %vf-has-round-corners;
-
-  background-color: $color-light;
-  border-left: none;
-  border-right: none;
-  border-top-color: $color-mid-x-light;
-  margin-bottom: 0;
-  padding: 3rem 0 !important;
-
-  .change-subscription {
-    display: flex;
-
-    > button {
-      margin-left: 1.2rem;
-    }
-
-    > * {
-      margin-bottom: 0;
-    }
-  }
-
-  .buttons-wrapper button {
-    margin-bottom: 0;
-  }
-
-  .panel-input-wrapper {
-    display: flex;
-
-    > input {
-      margin-right: 1rem;
-      min-width: 0;
-      width: 4rem;
-    }
-  }
-}
-
 .advantage-table-section {
   &:not(:last-child) {
     margin-bottom: 2rem;
@@ -426,20 +355,6 @@ summary {
   }
 }
 
-// Advantage section
-.p-table--advantage-contract {
-  margin: 0 auto;
-  width: auto;
-
-  td {
-    display: table-cell;
-  }
-
-  tr {
-    display: table-row;
-  }
-}
-
 .advantage-table {
   overflow: visible;
 
@@ -469,178 +384,9 @@ summary {
   }
 }
 
-.u-rotate {
-  transform: rotate(180deg);
-}
-
-.p-table--advantage-contact {
-  th,
-  td {
-    flex: 1 !important;
-  }
-}
-
-.p-table--advantage {
-  margin-bottom: 2rem;
-  overflow: visible;
-
-  th,
-  td {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .p-table__row {
-    position: relative;
-
-    > th:nth-child(1),
-    > td:nth-child(1) {
-      flex: 4;
-    }
-
-    > .spacer {
-      flex: 0.5;
-
-      @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        display: none;
-      }
-    }
-
-    > .plan,
-    > .machines,
-    > .esm,
-    > .livepatch,
-    > .certifications {
-      flex: 1;
-      > button {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-
-    > .livepatch {
-      flex: 0.8;
-    }
-
-    > .certifications {
-      flex: 1.2;
-    }
-
-    .p-icon--chevron-down {
-      margin-left: 0.5rem;
-    }
-
-    &:not(:last-of-type) {
-      .p-table-expanding__panel {
-        border-bottom: 0;
-      }
-    }
-  }
-
-  code {
-    background-color: transparent;
-    box-shadow: none;
-    margin: 0;
-  }
-
-  .p-table-title {
-    @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      &::after {
-        align-self: center;
-        border-right: 1px solid $color-mid-light;
-        content: "";
-        display: block;
-        height: calc(100% - (2 * 0.5rem));
-      }
-    }
-  }
-
-  .p-table--open {
-    background-color: $color-light;
-    box-shadow: -1px 0 0 0 $color-mid-x-light, 1px 0 0 0 $color-mid-x-light,
-      0 1px 0 0 $color-light;
-    z-index: 5;
-
-    &:first-child {
-      box-shadow: 1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
-    }
-
-    &.certifications {
-      box-shadow: -1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
-    }
-
-    &::after {
-      display: none;
-    }
-  }
-
-  .u-toggle {
-    background: transparent;
-    border: 0;
-    margin-bottom: 0;
-
-    &--full-width {
-      height: 100%;
-      overflow: hidden;
-      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
-      padding-right: 2rem;
-      position: relative;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 100%;
-
-      .p-icon--chevron-down {
-        position: absolute;
-        right: 0.5rem;
-        top: 1rem;
-      }
-    }
-
-    &[aria-expanded="true"] .u-toggle__supplemental {
-      display: none;
-    }
-  }
-}
-
 .subscribe-section {
   @media (min-width: $breakpoint-medium) {
     margin-left: 4rem !important;
-  }
-}
-
-.p-contextual-menu--advantage {
-  .p-table--advantage {
-    margin: 0 auto;
-  }
-
-  .p-contextual-menu__toggle {
-    margin-bottom: -1px;
-
-    &[aria-expanded="true"] {
-      border-bottom-color: $color-x-light;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      border-left-color: $color-mid-light;
-      border-right-color: $color-mid-light;
-      border-top-color: $color-mid-light;
-      position: relative;
-      z-index: 11;
-
-      .p-icon--chevron-down {
-        transform: rotate(180deg);
-      }
-    }
-  }
-
-  .p-contextual-menu__dropdown {
-    box-shadow: none;
-  }
-}
-
-.u-padding-top--small {
-  @media only screen and (max-width: $breakpoint-small) {
-    margin-left: 0 !important;
-    margin-top: 1rem !important;
   }
 }
 
@@ -898,11 +644,6 @@ body {
   &.is-loading {
     animation-delay: 500s !important;
   }
-}
-
-.u-disabled {
-  cursor: not-allowed;
-  opacity: 0.33;
 }
 
 .p-strip-account-page {
