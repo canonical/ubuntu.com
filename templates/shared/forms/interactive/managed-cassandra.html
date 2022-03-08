@@ -10,18 +10,33 @@
         <h3 class="p-heading--5">Where do you want to run Cassandra?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-our-own-data-centre-on-prem">
-            <label for="where-do-you-want-to-run-cassandra-our-own-data-centre-on-prem">Our own data centre (on-prem)</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-public-cloud---aws-gcp-or-azure">
-            <label for="where-do-you-want-to-run-cassandra-public-cloud---aws-gcp-or-azure">Public Cloud - AWS, GCP or Azure</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-public-cloud---kubernetes">
-            <label for="where-do-you-want-to-run-cassandra-public-cloud---kubernetes">Kubernetes</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-our-own-data-centre-on-prem" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-our-own-data-centre-on-prem">Our own data centre (on-prem)</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-public-cloud---aws-gcp-or-azure" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-public-cloud---aws-gcp-or-azure">Public Cloud - AWS, GCP or Azure</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-public-cloud---kubernetes" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-public-cloud---kubernetes">Kubernetes</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-hybrid-cloud-public-cloud-and-on-prem">
-            <label for="where-do-you-want-to-run-cassandra-hybrid-cloud-public-cloud-and-on-prem">Hybrid-cloud (public cloud and on-prem)</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-multi-cloud-several-public-clouds">
-            <label for="where-do-you-want-to-run-cassandra-multi-cloud-several-public-clouds">Multi-cloud (several public clouds)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-hybrid-cloud-public-cloud-and-on-prem" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-hybrid-cloud-public-cloud-and-on-prem">Hybrid-cloud (public cloud and on-prem)</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-multi-cloud-several-public-clouds" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-multi-cloud-several-public-clouds">Multi-cloud (several public clouds)</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -29,30 +44,54 @@
         <h3 class="p-heading--5">What is the primary use-case for Cassandra?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-are-you-running-cassandra-transaction-logging">
-            <label for="where-are-you-running-cassandra-transaction-logging">Transaction logging</label>
-            <input type="checkbox" id="where-are-you-running-cassandra-website-activity-tracking">
-            <label for="where-are-you-running-cassandra-website-activity-tracking">Website Activity Tracking</label>
-            <input type="checkbox" id="where-are-you-running-cassandra-real-time-data-processing-and-analytics">
-            <label for="where-are-you-running-cassandra-real-time-data-processing-and-analytics">Real-time data processing & analytics</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-transaction-logging" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-transaction-logging">Transaction logging</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-website-activity-tracking" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-website-activity-tracking">Website Activity Tracking</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-real-time-data-processing-and-analytics" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-real-time-data-processing-and-analytics">Real-time data processing & analytics</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-are-you-running-cassandra-storing-time-series-data">
-            <label for="where-are-you-running-cassandra-storing-time-series-data">Storing time series data</label>
-            <input type="checkbox" id="where-are-you-running-cassandra-fraud-detection-and-prevention">
-            <label for="where-are-you-running-cassandra-fraud-detection-and-prevention">Fraud detection & prevention</label>
-            <input type="checkbox" id="where-are-you-running-cassandra-iot-status-and-event-history">
-            <label for="where-are-you-running-cassandra-iot-status-and-event-history">IoT status and event history</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-storing-time-series-data" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-storing-time-series-data">Storing time series data</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-fraud-detection-and-prevention" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-fraud-detection-and-prevention">Fraud detection & prevention</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-iot-status-and-event-history" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-iot-status-and-event-history">IoT status and event history</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-are-you-running-cassandra-storing-health-tracker-data">
-            <label for="where-are-you-running-cassandra-storing-health-tracker-data">Storing health tracker data</label>
-            <input type="checkbox" id="where-are-you-running-cassandra-product-catalog-and-retail-apps">
-            <label for="where-are-you-running-cassandra-product-catalog-and-retail-apps">Product catalog and retail apps</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-storing-health-tracker-data" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-storing-health-tracker-data">Storing health tracker data</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-are-you-running-cassandra-product-catalog-and-retail-apps" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-are-you-running-cassandra-product-catalog-and-retail-apps">Product catalog and retail apps</span>
+            </label>
+            
             <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="where-are-you-running-cassandra--other">
-            <label for="where-are-you-running-cassandra--other">Other</label>
-            <input type="text" id="where-are-you-running-cassandra--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="What?">
+              <input type="checkbox" class="js-other-container__checkbox" id="where-are-you-running-cassandra--other">
+              <label for="where-are-you-running-cassandra--other">Other</label>
+              <input type="text" id="where-are-you-running-cassandra--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="What?">
             </div>
           </div>
         </div>
@@ -62,52 +101,112 @@
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <h4 class="p-heading--5">Cassandra pain points</h4>
-            <input type="checkbox" id="what-capabilities-matter-cassandra-on-kubernetes">
-            <label for="what-capabilities-matter-cassandra-on-kubernetes">Cassandra on Kubernetes</label>
-            <input type="checkbox" id="what-capabilities-matter-general-operations">
-            <label for="what-capabilities-matter-general-operations">General Operations</label>
-            <input type="checkbox" id="what-capabilities-matter-scaling">
-            <label for="what-capabilities-matter-scaling">Scaling</label>
-            <input type="checkbox" id="what-capabilities-matter-integrations">
-            <label for="what-capabilities-matter-integrations">Integrations</label>
-            <input type="checkbox" id="what-capabilities-matter-updates">
-            <label for="what-capabilities-matter-updates">Updates</label>
-            <input type="checkbox" id="what-capabilities-matter-security">
-            <label for="what-capabilities-matter-security">Security</label>
-            <input type="checkbox" id="what-capabilities-matter-migration">
-            <label for="what-capabilities-matter-migration">Migration</label>
-            <input type="checkbox" id="what-capabilities-matter-initial-deployment">
-            <label for="what-capabilities-matter-initial-deployment">Initial deployment</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-cassandra-on-kubernetes" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-cassandra-on-kubernetes">Cassandra on Kubernetes</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-general-operations" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-general-operations">General Operations</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-scaling" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-scaling">Scaling</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-integrations" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-integrations">Integrations</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-updates" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-updates">Updates</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-security" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-security">Security</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-migration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-migration">Migration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-initial-deployment" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-initial-deployment">Initial deployment</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
             <h4 class="p-heading--5">Cassandra add-ons</h4>
-            <input type="checkbox" id="what-capabilities-matter-apache-zeppelin">
-            <label for="what-capabilities-matter-apache-zeppelin">Apache Zeppelin</label>
-            <input type="checkbox" id="what-capabilities-matter-apache-spark">
-            <label for="what-capabilities-matter-apache-spark">Apache Spark</label>
-            <input type="checkbox" id="what-capabilities-matter-lucene">
-            <label for="what-capabilities-matter-lucene">Lucene</label>
-            <input type="checkbox" id="what-capabilities-matter-continuous-backup">
-            <label for="what-capabilities-matter-continuous-backup">Continuous Backup</label>
-            <input type="checkbox" id="what-capabilities-matter-pci-compliance">
-            <label for="what-capabilities-matter-pci-compliance">PCI compliance</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-apache-zeppelin" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-apache-zeppelin">Apache Zeppelin</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-apache-spark" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-apache-spark">Apache Spark</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-lucene" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-lucene">Lucene</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-continuous-backup" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-continuous-backup">Continuous Backup</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-pci-compliance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-pci-compliance">PCI compliance</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
             <h4 class="p-heading--5">App requirements</h4>
-            <input type="checkbox" id="what-capabilities-matter-high-availability">
-            <label for="what-capabilities-matter-high-availability">High availability</label>
-            <input type="checkbox" id="what-capabilities-matter-24/7-operations">
-            <label for="what-capabilities-matter-24/7-operations">24/7 operations</label>
-            <input type="checkbox" id="what-capabilities-matter-update-scheduling">
-            <label for="what-capabilities-matter-update-scheduling">Update scheduling</label>
-            <input type="checkbox" id="what-capabilities-matter-version-control">
-            <label for="what-capabilities-matter-version-control">Version control</label>
-            <input type="checkbox" id="what-capabilities-matter-security-patching">
-            <label for="what-capabilities-matter-security-patching">Security patching</label>
-            <input type="checkbox" id="what-capabilities-matter-monitoring">
-            <label for="what-capabilities-matter-monitoring">Monitoring</label>
-            <input type="checkbox" id="what-capabilities-matter-multi-dc-setup">
-            <label for="what-capabilities-matter-multi-dc-setup">Multi-DC setup</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-high-availability" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-high-availability">High availability</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-24/7-operations" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-24/7-operations">24/7 operations</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-update-scheduling" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-update-scheduling">Update scheduling</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-version-control" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-version-control">Version control</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-security-patching" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-security-patching">Security patching</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-monitoring" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-monitoring">Monitoring</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-capabilities-matter-multi-dc-setup" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-capabilities-matter-multi-dc-setup">Multi-DC setup</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -120,12 +219,21 @@
         <h3 class="p-heading--5">Are you already running Cassandra?</h3>
         <div class="row u-no-padding">
           <div class="col-6 u-sv3">
-            <input type="checkbox" id="are-you-already-running-cassandra-in-a-production-environment">
-            <label for="are-you-already-running-cassandra-in-a-production-environment">In a production environment</label>
-            <input type="checkbox" id="are-you-already-running-cassandra-in-a-test-or-dev-environment">
-            <label for="are-you-already-running-cassandra-in-a-test-or-dev-environment">In a test or dev environment</label>
-            <input type="checkbox" id="are-you-already-running-cassandra-planned-deployment">
-            <label for="are-you-already-running-cassandra-planned-deployment">Planned deployment</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="are-you-already-running-cassandra-in-a-production-environment" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="are-you-already-running-cassandra-in-a-production-environment">In a production environment</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="are-you-already-running-cassandra-in-a-test-or-dev-environment" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="are-you-already-running-cassandra-in-a-test-or-dev-environment">In a test or dev environment</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="are-you-already-running-cassandra-planned-deployment" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="are-you-already-running-cassandra-planned-deployment">Planned deployment</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -133,34 +241,64 @@
         <h3 class="p-heading--5">What other apps are you using</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="what-other-apps-are-you-using-influxdb">
-            <label for="what-other-apps-are-you-using-influxdb">InfluxDB</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-mongodb">
-            <label for="what-other-apps-are-you-using-mongodb">MongoDB</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-mysql">
-            <label for="what-other-apps-are-you-using-mysql">MySQL</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-kafka">
-            <label for="what-other-apps-are-you-using-kafka">Kafka</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-influxdb" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-influxdb">InfluxDB</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-mongodb" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-mongodb">MongoDB</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-mysql" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-mysql">MySQL</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-kafka" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-kafka">Kafka</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="what-other-apps-are-you-using-postgresql">
-            <label for="what-other-apps-are-you-using-postgresql">PostgreSQL</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-elasticsearch">
-            <label for="what-other-apps-are-you-using-elasticsearch">ElasticSearch</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-prometheus">
-            <label for="what-other-apps-are-you-using-prometheus">Prometheus</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-graylog">
-            <label for="what-other-apps-are-you-using-graylog">Graylog</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-postgresql" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-postgresql">PostgreSQL</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-elasticsearch" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-elasticsearch">ElasticSearch</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-prometheus" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-prometheus">Prometheus</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-graylog" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-graylog">Graylog</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="what-other-apps-are-you-using-grafana">
-            <label for="what-other-apps-are-you-using-grafana">Grafana</label>
-            <input type="checkbox" id="what-other-apps-are-you-using-open-source-mano">
-            <label for="what-other-apps-are-you-using-open-source-mano">Open Source Mano</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-grafana" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-grafana">Grafana</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="what-other-apps-are-you-using-open-source-mano" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="what-other-apps-are-you-using-open-source-mano">Open Source Mano</span>
+            </label>
+            
             <div class="js-other-container">
-            <input type="checkbox" class="js-other-container__checkbox" id="what-other-apps-are-you-using-other">
-            <label for="what-other-apps-are-you-using-other">Other</label>
-            <input type="text" id="what-other-apps-are-you-using-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="What?">
+              <input type="checkbox" class="js-other-container__checkbox" id="what-other-apps-are-you-using-other">
+              <label for="what-other-apps-are-you-using-other">Other</label>
+              <input type="text" id="what-other-apps-are-you-using-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="What?">
             </div>
           </div>
         </div>
@@ -169,34 +307,70 @@
         <h3 class="p-heading--5">What advice from our app engineers would be most helpful?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-architecture-design">
-            <label for="where-do-you-want-to-run-cassandra-architecture-design">Architecture design</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-performance-tuning">
-            <label for="where-do-you-want-to-run-cassandra-performance-tuning">Performance tuning</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-workload-migration">
-            <label for="where-do-you-want-to-run-cassandra-workload-migration">Workload migration</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-app-integration">
-            <label for="where-do-you-want-to-run-cassandra-app-integration">App integration</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-architecture-design" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-architecture-design">Architecture design</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-performance-tuning" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-performance-tuning">Performance tuning</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-workload-migration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-workload-migration">Workload migration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-app-integration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-app-integration">App integration</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-version-upgrades">
-            <label for="where-do-you-want-to-run-cassandra-version-upgrades">Version upgrades</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-upstream-enhancement">
-            <label for="where-do-you-want-to-run-cassandra-upstream-enhancement">Upstream enhancement</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-training">
-            <label for="where-do-you-want-to-run-cassandra-training">Training</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-skills-certification">
-            <label for="where-do-you-want-to-run-cassandra-skills-certification">Skills certification</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-version-upgrades" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-version-upgrades">Version upgrades</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-upstream-enhancement" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-upstream-enhancement">Upstream enhancement</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-training" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-training">Training</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-skills-certification" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-skills-certification">Skills certification</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-hardware-selection">
-            <label for="where-do-you-want-to-run-cassandra-hardware-selection">Hardware selection</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-data-migration">
-            <label for="where-do-you-want-to-run-cassandra-data-migration">Data migration</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-backup-and-recovery">
-            <label for="where-do-you-want-to-run-cassandra-backup-and-recovery">Backup and recovery</label>
-            <input type="checkbox" id="where-do-you-want-to-run-cassandra-monitoring">
-            <label for="where-do-you-want-to-run-cassandra-monitoring">Monitoring</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-hardware-selection" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-hardware-selection">Hardware selection</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-data-migration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-data-migration">Data migration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-backup-and-recovery" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-backup-and-recovery">Backup and recovery</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-do-you-want-to-run-cassandra-monitoring" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-do-you-want-to-run-cassandra-monitoring">Monitoring</span>
+            </label>
+            
           </div>
         </div>
       </div>
