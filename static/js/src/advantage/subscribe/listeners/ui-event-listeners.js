@@ -1,3 +1,4 @@
+import { logCloseModalEvent, logOpenModalEvent } from "advantage/ecom-events";
 import {
   toggleOtherVersionsModal,
   togglePurchaseModal,
@@ -19,6 +20,7 @@ export default function initUIControls(store) {
   // Add close modal function to window object so the React modal can use it
   window.handleTogglePurchaseModal = () => {
     store.dispatch(togglePurchaseModal());
+    logCloseModalEvent();
   };
 
   const buyButton = document.querySelector("#buy-now-button");
@@ -26,5 +28,6 @@ export default function initUIControls(store) {
   buyButton.addEventListener("click", (e) => {
     e.preventDefault();
     store.dispatch(togglePurchaseModal());
+    logOpenModalEvent();
   });
 }
