@@ -16,15 +16,15 @@ const Notifications = () => {
   const { data: offers } = useGetOffersList();
 
   const [
-    isShowingOnBoardingNotification,
-    setIsShowingOnBoardingNotification,
+    isShowingOnboardingNotification,
+    setIsShowingOnboardingNotification,
   ] = React.useState(
-    localStorage.getItem("dismissedOnBoardingNotification") !== "true"
+    localStorage.getItem("dismissedOnboardingNotification") !== "true"
   );
 
-  const dismissOnBoardingNotification = () => {
-    localStorage.setItem("dismissedOnBoardingNotification", "true");
-    setIsShowingOnBoardingNotification(false);
+  const dismissOnboardingNotification = () => {
+    localStorage.setItem("dismissedOnboardingNotification", "true");
+    setIsShowingOnboardingNotification(false);
   };
 
   return (
@@ -42,14 +42,14 @@ const Notifications = () => {
           subscriptions
         </Notification>
       ) : null}
-      {isShowingOnBoardingNotification ? (
+      {isShowingOnboardingNotification ? (
         <Notification
-          data-test="offers"
+          data-test="onboarding"
           severity="information"
           actions={[
             {
               label: "Dismiss this message",
-              onClick: dismissOnBoardingNotification,
+              onClick: dismissOnboardingNotification,
             },
             {
               label: "Manage account users",
@@ -58,7 +58,7 @@ const Notifications = () => {
               },
             },
           ]}
-          onDismiss={dismissOnBoardingNotification}
+          onDismiss={dismissOnboardingNotification}
         >
           Tip: You can add additional Technical & Billing contacts in
           &quot;Account users&quot; to ensure service continuity and allow the
