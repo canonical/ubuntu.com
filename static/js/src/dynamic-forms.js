@@ -339,12 +339,12 @@
                   }
 
                   var label = formField.querySelector(
-                    "label[for=" + input.id + "]"
+                    "span#" + input.getAttribute("aria-labelledby")
                   );
                   if (label) {
                     label = subSectionText + label.innerText;
                   } else {
-                    label = input.id;
+                    label = input.getAttribute("aria-labelledby");
                   }
                   message += comma + label + "\r\n\r\n";
                   comma = ", ";
