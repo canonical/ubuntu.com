@@ -1374,7 +1374,7 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
-  "22.04 kernel",
+  "5.15 kernel",
   "",
   "5.13 kernel",
   "",
