@@ -100,7 +100,7 @@
         width="63",
         height="50",
         hi_def=True,
-        loading="auto|lazy",
+        loading="lazy",
         attrs={"class": "u-hide--small"},
         ) | safe
       }}
@@ -171,139 +171,139 @@
 
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
-    <h2 class="p-muted-heading u-align--center">
-      KEY CONTRIBUTORS TO KUBERNETES
-    </h2>
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
-          alt="Canonical",
-          height="20",
-          width="149",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/80fe0ebe-Huawei-logo.svg",
-          alt="Huawei",
-          height="33",
-          width="144",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/5bd692e3-partner-logo-fujitsu.svg",
-          alt="Fujutsu",
-          height="57",
-          width="122",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/e4c220b3-logo-microsoft.svg",
-          alt="Microsoft",
-          height="73",
-          width="145",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/bac02008-Amazon.com-Logo.svg",
-            alt="Amazon",
-            height="29",
+    <div class="p-logo-section">
+      <h2 class="p-logo-section__title u-align--center">Key contributors to Kubernetes</h2>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
+            alt="Canonical",
+            height="20",
+            width="149",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/80fe0ebe-Huawei-logo.svg",
+            alt="Huawei",
+            height="33",
             width="144",
             hi_def=True,
-            attrs={"class": "p-inline-images__logos"},
             loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/3abbe38f-zte_logo_en.png?w=65",
-          alt="ZTE",
-          height="30",
-          width="65",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/82c62241-red-hat-2019-primary.svg",
-          alt="RedHat",
-          height="40",
-          width="169",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo", "style": "width:169px;"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/9c276e79-mirantis-logo-horizontal.svg",
-          alt="Mirantis",
-          height="30",
-          width="270",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo", "style": "width:270px;"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/bc96d94b-CoreOS-logo.png",
-          alt="Core OS",
-          height="57",
-          width="150",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/8f442c65-rancher-logo-horiz-color.svg",
-          alt="Rancher",
-          height="23",
-          width="144",
-          hi_def=True,
-          attrs={"class": "p-inline-images__logo"},
-          loading="lazy",
-          ) | safe
-        }}
-      </li>
-    </ul>
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/5bd692e3-partner-logo-fujitsu.svg",
+            alt="Fujutsu",
+            height="57",
+            width="122",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/e4c220b3-logo-microsoft.svg",
+            alt="Microsoft",
+            height="73",
+            width="145",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/bac02008-Amazon.com-Logo.svg",
+              alt="Amazon",
+              height="29",
+              width="144",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
+              loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/3abbe38f-zte_logo_en.png?w=65",
+            alt="ZTE",
+            height="30",
+            width="65",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/82c62241-red-hat-2019-primary.svg",
+            alt="RedHat",
+            height="40",
+            width="169",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo", "style": "width:169px;"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/9c276e79-mirantis-logo-horizontal.svg",
+            alt="Mirantis",
+            height="30",
+            width="270",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo", "style": "width:270px;"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/bc96d94b-CoreOS-logo.png",
+            alt="Core OS",
+            height="57",
+            width="150",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/8f442c65-rancher-logo-horiz-color.svg",
+            alt="Rancher",
+            height="23",
+            width="144",
+            hi_def=True,
+            attrs={"class": "p-logo-section__logo"},
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -813,7 +813,6 @@
           height="171",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-inline-images__logos"},
           ) | safe
         }}
       </div>
