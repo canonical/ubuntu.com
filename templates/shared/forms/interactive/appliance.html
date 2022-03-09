@@ -12,12 +12,16 @@
         <h3 class="p-heading--5">Is your application packaged as a snap?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="application-snap-yes" name="application-snap" value="Yes">
-            <label for="application-snap-yes">Yes</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="application-snap-yes" name="application-snap" value="Yes">
+  <span class="p-radio__label" id="application-snap-yes">Yes</span>
+</label>
           </div>
           <div class="col-5 u-sv3">
-            <input type="radio" id="application-snap-no" name="application-snap" value="No">
-            <label for="application-snap-no">No, I'm looking for help with this</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="application-snap-no" name="application-snap" value="No">
+  <span class="p-radio__label" id="application-snap-no">No, I'm looking for help with this</span>
+</label>
           </div>
         </div>
       </div>
@@ -37,24 +41,36 @@
       <div class="js-formfield">
         <h3 class="p-heading--5">Have you tested your application as a full image using the <a href="/core/build">image-builder tool</a>?</h3>
         <div class="u-sv3">
-          <input type="radio" id="tested-image-builder-yes" name="tested-image-builder" value="Yes, it works">
-          <label for="tested-image-builder-yes" class="u-no-margin--bottom">Yes, it works</label>
-          <input type="radio" id="tested-image-builder-yes-but" name="tested-image-builder" value="Yes, but it doesn't work, I'm looking for help with this">
-          <label for="tested-image-builder-yes-but" class="u-no-margin--bottom">Yes, but it doesn't work, I'm looking for help with this</label>
-          <input type="radio" id="tested-image-builder-no" name="tested-image-builder" value="No">
-          <label for="tested-image-builder-no">No</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="tested-image-builder-yes" class="u-no-margin--bottom" name="tested-image-builder" value="Yes, it works">
+  <span class="p-radio__label" id="tested-image-builder-yes" class="u-no-margin--bottom">Yes, it works</span>
+</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="tested-image-builder-yes-but" class="u-no-margin--bottom" name="tested-image-builder" value="Yes, but it doesn't work, I'm looking for help with this">
+  <span class="p-radio__label" id="tested-image-builder-yes-but" class="u-no-margin--bottom">Yes, but it doesn't work, I'm looking for help with this</span>
+</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="tested-image-builder-no" name="tested-image-builder" value="No">
+  <span class="p-radio__label" id="tested-image-builder-no">No</span>
+</label>
         </div>
       </div>
       
       <div class="js-formfield">
         <h3 class="p-heading--5">Have you tested your applications on <a href="/certified/iot">certified hardware</a>? (e.g Raspberry Pi, Intel NUC, etc.)</h3>
         <div class="u-sv3">
-          <input type="radio" id="tested-certified-hardware-yes" name="tested-certified-hardware" value="Yes, it works">
-          <label for="tested-certified-hardware-yes" class="u-no-margin--bottom">Yes, it works</label>
-          <input type="radio" id="tested-certified-hardware-yes-but" name="tested-certified-hardware" value="Yes, but it doesn't work, I'm looking for help with this">
-          <label for="tested-certified-hardware-yes-but" class="u-no-margin--bottom">Yes, but it doesn't work, I'm looking for help with this</label>
-          <input type="radio" id="tested-certified-hardware-no" name="tested-certified-hardware" value="No, I'm looking for help testing on hardware I don't have">
-          <label for="tested-certified-hardware-no">No, I'm looking for help testing on hardware I don't have</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="tested-certified-hardware-yes" class="u-no-margin--bottom" name="tested-certified-hardware" value="Yes, it works">
+  <span class="p-radio__label" id="tested-certified-hardware-yes" class="u-no-margin--bottom">Yes, it works</span>
+</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="tested-certified-hardware-yes-but" class="u-no-margin--bottom" name="tested-certified-hardware" value="Yes, but it doesn't work, I'm looking for help with this">
+  <span class="p-radio__label" id="tested-certified-hardware-yes-but" class="u-no-margin--bottom">Yes, but it doesn't work, I'm looking for help with this</span>
+</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="tested-certified-hardware-no" name="tested-certified-hardware" value="No, I'm looking for help testing on hardware I don't have">
+  <span class="p-radio__label" id="tested-certified-hardware-no">No, I'm looking for help testing on hardware I don't have</span>
+</label>
         </div>
       </div>
       <div class="js-formfield">
@@ -122,10 +138,14 @@
       <div class="js-formfield">
         <h3 class="p-heading--5">Are you open to collaborating with Canonical in creating marketing content for your appliance?</h3>
         <div class="u-sv3">
-          <input type="radio" id="collaborating-yes" name="collaborating" value="Yes">
-          <label for="collaborating-yes" class="u-no-margin--bottom">Yes</label>
-          <input type="radio" id="collaborating-no" name="collaborating" value="No">
-          <label for="collaborating-no">No</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="collaborating-yes" class="u-no-margin--bottom" name="collaborating" value="Yes">
+  <span class="p-radio__label" id="collaborating-yes" class="u-no-margin--bottom">Yes</span>
+</label>
+          <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="collaborating-no" name="collaborating" value="No">
+  <span class="p-radio__label" id="collaborating-no">No</span>
+</label>
         </div>
       </div>
       <div class="pagination">

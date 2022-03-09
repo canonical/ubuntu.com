@@ -197,12 +197,18 @@
         <h3 class="p-heading--5">Are you currently paying for redundant data storage?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="storage-Yes" name="redundant-storage" value="Yes">
-            <label for="storage-Yes">Yes</label>
-            <input type="radio" id="storage-No" name="redundant-storage" value="No">
-            <label for="storage-No">No</label>
-            <input type="radio" id="storage-Dont-know" name="redundant-storage" value="I don't know">
-            <label for="storage-Dont-know">I don't know</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="storage-Yes" name="redundant-storage" value="Yes">
+              <span class="p-radio__label" id="storage-Yes">Yes</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="storage-No" name="redundant-storage" value="No">
+              <span class="p-radio__label" id="storage-No">No</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="storage-Dont-know" name="redundant-storage" value="I don't know">
+              <span class="p-radio__label" id="storage-Dont-know">I don't know</span>
+            </label>
           </div>
         </div>
       </div>

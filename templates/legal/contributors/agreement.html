@@ -27,7 +27,7 @@
   // initialize our variables
   var captchaReady = 0;
   var wFORMSReady = 0;
-
+  
   // when wForms is loaded call this
   var wformsReadyCallback = function () {
     // using this var to denote if wForms is loaded
@@ -47,10 +47,10 @@
     // wFORMSReady = 1 and captchaReady = 1
     onloadCallback();
   };
-
+  
   // add event listener to fire when wForms is fully loaded
   document.addEventListener("wFORMSLoaded", wformsReadyCallback);
-
+  
   var enableSubmitButton = function() {
     var submitButton = document.getElementById('submit_button');
     var explanation = document.getElementById('disabled-explanation');
@@ -71,7 +71,7 @@
       }
     }
   };
-
+  
   // call this on both captcha async complete and wforms fully
   // initialized since we can't be sure which will complete first
   // and we need both done for this to function just check that they are
@@ -94,13 +94,13 @@
         standardCaptcha = standardCaptcha.parentNode.parentNode.parentNode;
         standardCaptcha.parentNode.removeChild(standardCaptcha);
       }
-
+      
       if (!wFORMS.instances['paging']) {
         document.getElementById("g-recaptcha-render-div").parentNode.parentNode.parentNode.style.display = "block";
         //document.getElementById("g-recaptcha-render-div").parentNode.parentNode.parentNode.removeAttribute("hidden");
       }
       document.getElementById("g-recaptcha-render-div").getAttributeNode('id').value = 'tfa_captcha_text';
-
+      
       var captchaError = '';
       if (captchaError == '1') {
         var errMsgText = 'The CAPTCHA was not completed successfully.';
@@ -110,7 +110,7 @@
         errMsgDiv.innerText = errMsgText;
         var loc = document.querySelector('.g-captcha-error');
         loc.insertBefore(errMsgDiv, loc.childNodes[0]);
-
+        
         /* See wFORMS.behaviors.paging.applyTo for origin of this code */
         if (wFORMS.instances['paging']) {
           var b = wFORMS.instances['paging'][0];
@@ -222,7 +222,26 @@ defer></script>
               <h2>
                 <label id="tfa_Agreementtype1-L" class="label preField reqMark">Agreement type</label>
               </h2>
-              <div class="inputWrapper"><span id="tfa_Agreementtype1" class="choices  required" aria-required="true"><span class="oneChoice"><input type="radio" value="tfa_Iamsigningasanin1" class="" id="tfa_Iamsigningasanin1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalIndivid" aria-labelledby="tfa_Iamsigningasanin1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningasanin1-L"><label class="label postField" id="tfa_Iamsigningasanin1-L" for="tfa_Iamsigningasanin1"><span class="input-radio-faux"></span>I am signing as an individual contributor.</label></span><span class="oneChoice"><input type="radio" value="tfa_Iamsigningonbeha1" class="" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalEntityC" aria-labelledby="tfa_Iamsigningonbeha1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningonbeha1-L"><label class="label postField" id="tfa_Iamsigningonbeha1-L" for="tfa_Iamsigningonbeha1"><span class="input-radio-faux"></span>I am signing on behalf of an organization, foundation, company or other entity, which may have multiple contributors.</label></span></span></div>
+              <div class="inputWrapper">
+                <span id="tfa_Agreementtype1" class="choices  required" aria-required="true">
+                  <span class="oneChoice">
+                    <label class="p-radio">
+                      <input type="radio" value="tfa_Iamsigningasanin1" class="p-radio__input" id="tfa_Iamsigningasanin1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalIndivid" aria-labelledby="tfa_Iamsigningasanin1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningasanin1-L">
+                      <span class="p-radio__label postField" id="tfa_Iamsigningasanin1-L">
+                        I am signing as an individual contributor.
+                      </span>
+                    </label>
+                  </span>
+                  
+                  <span class="oneChoice">
+                    <label class="p-radio">
+                      <input type="radio" value="tfa_Iamsigningonbeha1" class="p-radio__input" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalEntityC" aria-labelledby="tfa_Iamsigningonbeha1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningonbeha1-L">
+                      <span class="p-radio__label postField" id="tfa_Iamsigningonbeha1-L">I am signing on behalf of an organization, foundation, company or other entity, which may have multiple contributors.
+                      </span>
+                    </label>
+                  </span>
+                </span>
+              </div>
             </div>
             <fieldset id="tfa_CanonicalIndivid" class="section" data-condition="`#tfa_Iamsigningasanin1`">
               <legend id="tfa_CanonicalIndivid-L" class="p-heading--3">Canonical Individual Contributor License Agreement</legend>
@@ -665,7 +684,7 @@ defer></script>
           <p class="supportInfo" >
           </p>
         </div>
-
+        
         <script>
           // Used in legal/contributors/submit.html
           var lp_lookup_callback = {
@@ -686,14 +705,14 @@ defer></script>
               }
             }
           };
-
+          
           var launchpad_id_lookup = function() {
             var tfaLPid = document.getElementById('tfa_LPid');
             tfaLPid.addEventListener('blur', function(e) {
               httpGetAsync("/lookup_launchpad_id/" + tfaLPid.value, lp_lookup_callback);
             });
           }();
-
+          
           function httpGetAsync(theUrl, callback) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function() {
@@ -704,5 +723,6 @@ defer></script>
             xmlHttp.send(null);
           }
         </script>
-
+        
         {% endblock content %}
+        
