@@ -1,5 +1,5 @@
 import { Notification } from "@canonical/react-components";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useURLs } from "../../../hooks";
 import { useUserSubscriptions } from "advantage/react/hooks";
@@ -7,6 +7,7 @@ import { selectStatusesSummary } from "advantage/react/hooks/useUserSubscription
 import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import useGetOffersList from "advantage/offers/hooks/useGetOffersList";
+import useRequestAccountUsers from "advantage/users/hooks/useRequestAccountUsers";
 
 const Notifications = () => {
   const urls = useURLs();
@@ -14,6 +15,11 @@ const Notifications = () => {
     select: selectStatusesSummary,
   });
   const { data: offers } = useGetOffersList();
+
+  const {
+    data: accountUsers,
+    isSuccess: isAccountUsersSuccess,
+  } = useRequestAccountUsers();
 
   const [
     isShowingOnboardingNotification,
@@ -26,6 +32,11 @@ const Notifications = () => {
     localStorage.setItem("dismissedOnboardingNotification", "true");
     setIsShowingOnboardingNotification(false);
   };
+  useEffect(() => {
+    if ((accountUsers?.users.length ?? 1) > 1) {
+      dismissOnboardingNotification();
+    }
+  }, [accountUsers]);
 
   return (
     <>
@@ -42,7 +53,7 @@ const Notifications = () => {
           subscriptions
         </Notification>
       ) : null}
-      {isShowingOnboardingNotification ? (
+      {isAccountUsersSuccess && isShowingOnboardingNotification ? (
         <Notification
           data-test="onboarding"
           severity="information"
