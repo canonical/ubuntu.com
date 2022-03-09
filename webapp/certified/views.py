@@ -88,6 +88,7 @@ def certified_hardware_details(canonical_id, release):
             ),
             "bus": device["bus"],
             "identifier": device["identifier"],
+            "subsystem": device["subsystem"],
         }
 
         category = device["category"]
@@ -171,6 +172,7 @@ def certified_model_details(canonical_id):
                                 ),
                                 "bus": device["bus"],
                                 "identifier": device["identifier"],
+                                "subsystem": device["subsystem"],
                             }
                         )
         release_details["releases"].append(release_info)

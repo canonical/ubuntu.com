@@ -75,7 +75,7 @@
                 <ul class="p-list u-no-margin--bottom">
                 {% for device in devices %}
                 <li class="p-list__item u-no-padding--top">
-                  {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}){% endif %}
+                  {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem != '' %} {{ device.subsystem }}{% endif %}){% endif %}
                 </li>
                 {% endfor %}
                 </ul>
