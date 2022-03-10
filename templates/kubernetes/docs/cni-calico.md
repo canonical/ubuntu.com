@@ -122,15 +122,16 @@ The default configuration of Calico uses BGP mode, with all Calico nodes
 connected in a full node-to-node mesh, and with no external peerings. This
 comes with some limitations which will be explained in the following sections.
 
-<div class="p-notification--positive">
-<p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-If you intend to use MetalLB with Calico in BGP mode,
-please also refer to this
-<a href="https://metallb.universe.tf/configuration/calico/">
-explanation of the required MetalLB configuration</a> from the
-<a href="https://metallb.universe.tf/"> MetalLB website</a>
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you intend to use MetalLB with Calico in BGP mode,
+    please also refer to this
+    <a href="https://metallb.universe.tf/configuration/calico/">
+    explanation of the required MetalLB configuration</a> from the
+    <a href="https://metallb.universe.tf/"> MetalLB website</a></p>
+  </div>
+</div>
 
 ### BGP with multiple subnets
 
@@ -144,6 +145,7 @@ For example, if you have units across two subnets (10.0.0.0/24 and
 configure Calico to peer with that router and to use the same AS number.
 
 Configure the AS number:
+
 ```bash
 juju config calico global-as-number=64512
 ```
@@ -185,6 +187,7 @@ juju config calico route-reflector-cluster-ids="
 ```
 
 Then configure every node to peer with the route reflectors:
+
 ```bash
 juju config calico global-bgp-peers="
 - address: 10.0.0.2
@@ -195,6 +198,7 @@ juju config calico global-bgp-peers="
 ```
 
 And disable the node-to-node-mesh:
+
 ```bash
 juju config calico node-to-node-mesh=false
 ```
@@ -206,6 +210,7 @@ One commonly used model for Calico deployments on bare metal is the
 walk through an example.
 
 Given:
+
 - Two racks:
   - Rack 0
     - Subnets 10.0.0.0/24, 10.0.1.0/24
@@ -385,26 +390,26 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 <!-- LINKS -->
 
 [calico-learn]: https://www.projectcalico.org/learn/
-[NetworkPolicy]: https://kubernetes.io/docs/concepts/services-networking/network-policies/
-[Creating an AWS VPC]: https://docs.jujucharms.com/2.5/en/charms-fan-aws-vpc
-[Disabling Source/Destination Checks]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck
+[networkpolicy]: https://kubernetes.io/docs/concepts/services-networking/network-policies/
+[creating an aws vpc]: https://docs.jujucharms.com/2.5/en/charms-fan-aws-vpc
+[disabling source/destination checks]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck
 [private docker registry]: /kubernetes/docs/docker-registry
 [bgp]: https://docs.projectcalico.org/v3.7/networking/service-advertisement#about-advertising-kubernetes-services-over-bgp
-[Calico]: https://www.projectcalico.org/
+[calico]: https://www.projectcalico.org/
 [troubleshooting]: /kubernetes/docs/troubleshooting
-[quickstart]:  /kubernetes/docs/quickstart
-[install-manual]:  /kubernetes/docs/install-manual
+[quickstart]: /kubernetes/docs/quickstart
+[install-manual]: /kubernetes/docs/install-manual
 [bgp-multiple-subnets-bird-example]: https://gist.github.com/Cynerva/46712dd1e9b75d42cb38fb966abfa932
 [route reflection]: https://tools.ietf.org/html/rfc4456
-[AS Per Rack model]: https://docs.projectcalico.org/reference/architecture/design/l3-interconnect-fabric
-[Calico charm]: /kubernetes/docs/charm-calico
+[as per rack model]: https://docs.projectcalico.org/reference/architecture/design/l3-interconnect-fabric
+[calico charm]: /kubernetes/docs/charm-calico
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-calico.md" >edit this page</a> 
-    or 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-calico.md" >edit this page</a>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

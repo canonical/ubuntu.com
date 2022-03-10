@@ -91,6 +91,7 @@ network interfaces to your pods. In this example, we'll create an Ubuntu pod
 with 2 extra Flannel interfaces, in addition to the default one.
 
 Create a NetworkAttachmentDefinition for Flannel:
+
 ```
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
@@ -118,6 +119,7 @@ spec:
 ```
 
 Create a Pod with the `k8s.v1.cni.cncf.io/networks` annotation:
+
 ```
 apiVersion: v1
 kind: Pod
@@ -206,10 +208,10 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-multus.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

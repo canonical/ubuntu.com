@@ -1374,7 +1374,7 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
-  "22.04 kernel",
+  "5.15 kernel",
   "",
   "5.13 kernel",
   "",
@@ -1396,11 +1396,11 @@ export var kernelVersionNames = [
 ];
 
 export var kernelReleaseNames2004 = [
-  "Ubuntu 20.04.0 LTS",
-  "Ubuntu 20.04.1 LTS",
-  "Ubuntu 20.04.2 LTS",
-  "Ubuntu 20.04.3 LTS",
-  "Ubuntu 20.04.4 LTS",
+  "Ubuntu 20.04.0 LTS (v5.4)",
+  "Ubuntu 20.04.1 LTS (v5.4)",
+  "Ubuntu 20.04.2 LTS (v5.8)",
+  "Ubuntu 20.04.3 LTS (v5.11)",
+  "Ubuntu 20.04.4 LTS (v5.13)",
   "Ubuntu 20.04.5 LTS",
 ];
 
@@ -1449,12 +1449,12 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 18.04.2 LTS (v4.18)",
   "Ubuntu 18.04.3 LTS (v5.0)",
   "Ubuntu 18.04.4 LTS (v5.3)",
-  "Ubuntu 20.04.0 LTS",
-  "Ubuntu 20.04.1 LTS",
+  "Ubuntu 20.04.0 LTS (v5.4)",
+  "Ubuntu 20.04.1 LTS (v5.4)",
   "Ubuntu 18.04.5 LTS (v5.4)",
-  "Ubuntu 20.04.2 LTS",
-  "Ubuntu 20.04.3 LTS",
-  "Ubuntu 20.04.4 LTS",
+  "Ubuntu 20.04.2 LTS (v5.8)",
+  "Ubuntu 20.04.3 LTS (v5.11)",
+  "Ubuntu 20.04.4 LTS (v5.13)",
   "Ubuntu 20.04.5 LTS",
 ];
 
@@ -1476,12 +1476,12 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 18.04.2 LTS (v4.18)",
   "Ubuntu 18.04.3 LTS (v5.0)",
   "Ubuntu 18.04.4 LTS (v5.3)",
-  "Ubuntu 20.04.0 LTS",
-  "Ubuntu 20.04.1 LTS",
+  "Ubuntu 20.04.0 LTS (v5.4)",
+  "Ubuntu 20.04.1 LTS (v5.4)",
   "Ubuntu 18.04.5 LTS (v5.4)",
-  "Ubuntu 20.04.2 LTS",
-  "Ubuntu 20.04.3 LTS",
-  "Ubuntu 20.04.4 LTS",
+  "Ubuntu 20.04.2 LTS (v5.8)",
+  "Ubuntu 20.04.3 LTS (v5.11)",
+  "Ubuntu 20.04.4 LTS (v5.13)",
   "Ubuntu 20.04.5 LTS",
 ];
 

@@ -26,7 +26,8 @@ class AdvantageMapper:
         user_summary = []
         for account in accounts:
             contracts = self.ua_contracts_api.get_account_contracts(
-                account_id=account.id
+                account_id=account.id,
+                include_active_machines=True,
             )
             subscriptions = []
             if account.role != "technical":

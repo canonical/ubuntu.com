@@ -61,8 +61,8 @@
       </thead>
       <tbody>
         <tr>
-          <td aria-label="Product"><a class="p-link--external" href="https://microk8s.io">MicroK8s</a></td>
-          <td aria-label="Infrastructure">
+          <td data-heading="Product"><a class="p-link--external" href="https://microk8s.io">MicroK8s</a></td>
+          <td data-heading="Infrastructure">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Laptops (Linux, Windows, macOS)</li>
               <li class="p-list__item">Workstations</li>
@@ -70,14 +70,14 @@
               <li class="p-list__item">IoT devices</li>
             </ul>
           </td>
-          <td aria-label="Use cases">
+          <td data-heading="Use cases">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Opinionated Kubernetes</li>
               <li class="p-list__item">Small to medium clusters</li>
               <li class="p-list__item">CI/CD pipelines</li>
             </ul>
           </td>
-          <td class="u-align--center" aria-label="Enterprise Support">
+          <td class="u-align--center" data-heading="Enterprise Support">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
               alt="",
@@ -87,7 +87,7 @@
               ) | safe
             }}
           </td>
-          <td class="u-align--center" aria-label="Managed Kubernetes">
+          <td class="u-align--center" data-heading="Managed Kubernetes">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
               alt="",
@@ -99,8 +99,8 @@
           </td>
         </tr>
         <tr>
-          <td aria-label="Product"><a href="/kubernetes">Charmed Kubernetes</a></td>
-          <td aria-label="Infrastructure">
+          <td data-heading="Product"><a href="/kubernetes">Charmed Kubernetes</a></td>
+          <td data-heading="Infrastructure">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Bare metal</li>
               <li class="p-list__item">Private clouds</li>
@@ -108,13 +108,13 @@
               <li class="p-list__item">Hybrid clouds</li>
             </ul>
           </td>
-          <td aria-label="Use Cases">
+          <td data-heading="Use Cases">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Configurable Kubernetes</li>
               <li class="p-list__item">Medium to large clusters</li>
             </ul>
           </td>
-          <td class="u-align--center" aria-label="Enterprise Support">
+          <td class="u-align--center" data-heading="Enterprise Support">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
               alt="",
@@ -124,7 +124,7 @@
               ) | safe
             }}
           </td>
-          <td class="u-align--center" aria-label="Managed Kubernetes">
+          <td class="u-align--center" data-heading="Managed Kubernetes">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
               alt="",
@@ -136,20 +136,20 @@
           </td>
         </tr>
         <tr>
-          <td aria-label="Product">
+          <td data-heading="Product">
             Cloud Hosted <strong>(i)</strong>
           </td>
-          <td aria-label="Infrastructure">
+          <td data-heading="Infrastructure">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Public clouds</li>
             </ul>
           </td>
-          <td aria-label="Use cases">
+          <td data-heading="Use cases">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Traffic peaks</li>
             </ul>
           </td>
-          <td class="u-align--center" aria-label="Enterprise Support">
+          <td class="u-align--center" data-heading="Enterprise Support">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
               alt="",
@@ -159,23 +159,23 @@
               ) | safe
             }}
           </td>
-          <td aria-label="Managed Kubernetes">Provided by the clouds</td>
+          <td data-heading="Managed Kubernetes">Provided by the clouds</td>
         </tr>
         <tr>
-          <td aria-label="Product">Kubeadm</td>
-          <td aria-label="Infrastructure">
+          <td data-heading="Product">Kubeadm</td>
+          <td data-heading="Infrastructure">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">Bare metal</li>
               <li class="p-list__item">Private clouds</li>
               <li class="p-list__item">Edge/Micro clouds</li>
             </ul>
           </td>
-          <td aria-label="Enterprise Support">
+          <td data-heading="Enterprise Support">
             <ul class="p-list u-no-padding">
               <li class="p-list__item">DIY Kubernetes</li>
             </ul>
           </td>
-          <td class="u-align--center" aria-label="Use cases">
+          <td class="u-align--center" data-heading="Use cases">
             {{ image (
               url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
               alt="",
@@ -185,7 +185,7 @@
               ) | safe
             }}
           </td>
-          <td class="u-align--center" aria-label="Managed Kubernetes">-</td>
+          <td class="u-align--center" data-heading="Managed Kubernetes">-</td>
         </tr>
       </tbody>
     </table>

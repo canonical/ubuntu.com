@@ -46,11 +46,7 @@ const generateError = (error: CancelError | null) => {
           action.{" "}
         </>
       ) : null}
-      Contact{" "}
-      <a className="p-notification__action" href="/contact-us">
-        Canonical sales
-      </a>{" "}
-      if the problem persists.
+      Contact <a href="/contact-us">Canonical sales</a> if the problem persists.
     </>
   );
 };

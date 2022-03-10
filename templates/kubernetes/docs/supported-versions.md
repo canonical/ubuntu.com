@@ -37,16 +37,15 @@ release, you could run:
 juju deploy cs:~containers/charmed-kubernetes-733
 ```
 
-<div class="p-notification--positive">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Older Versions:</span>
-Previous versions of <strong>Charmed Kubernetes</strong> used the name
-<code>canonical-kubernetes</code>. These versions are still available under that name
-and links in the charm store. Versions from 1.14 onwards will use
-<code>charmed-kubernetes</code>.
-  </p>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Older Versions:</span>
+    <p class="p-notification__message">Previous versions of <strong>Charmed Kubernetes</strong> used the name
+    <code>canonical-kubernetes</code>. These versions are still available under that name
+    and links in the charm store. Versions from 1.14 onwards will use
+    <code>charmed-kubernetes</code>.</p>
+  </div>
 </div>
-
 
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
@@ -54,6 +53,7 @@ that a higher revision number is 'better'. The revision numbers for the release
 versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 <a  id="table"></a>
+
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
@@ -74,7 +74,6 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 Only the latest three versions of Charmed Kubernetes are supported at any time.
   </p>
 </div>
-
 
 ## Finding version info
 
@@ -99,7 +98,7 @@ description: |
   for the api objects which include pods, services, replicationcontrollers, and others. The API
   Server services REST operations and provides the frontend to the cluster’s shared state through
   which all other components interact.
-  
+
   For more information, consult the [reference
   documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/).
 snap-id: KMZLusdClmUyLXAjjcI4sVnpjk1kM653
@@ -108,9 +107,9 @@ channels:
   latest/candidate: 1.23.0         2021-12-15 (2493) 23MB -
   latest/beta:      1.23.0         2021-12-15 (2493) 23MB -
   latest/edge:      1.23.0         2021-12-15 (2493) 23MB -
-  1.24/stable:      –                                     
-  1.24/candidate:   –                                     
-  1.24/beta:        –                                     
+  1.24/stable:      –
+  1.24/candidate:   –
+  1.24/beta:        –
   1.24/edge:        1.24.0-alpha.1 2021-12-11 (2513) 23MB -
   1.23/stable:      1.23.0         2021-12-08 (2493) 23MB -
   1.23/candidate:   1.23.0         2021-12-08 (2493) 23MB -
@@ -201,7 +200,7 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
+  <p class="p-notification__content">
     We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/supported-versions.md" >edit this page</a>
     or
@@ -213,3 +212,4 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
 
 [support]: /support
 [managed]: /kubernetes/managed
+```

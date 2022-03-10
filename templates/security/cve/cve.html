@@ -40,7 +40,7 @@
         <h1>{{ cve.id }}</h1>
 
         {% if cve.published %}
-        <p>Published: <strong>{{ date }}</strong></p>
+        <p>Published: <strong>{{ cve.published }}</strong></p>
         {% endif %}
 
         {% if cve.status == 'not-in-ubuntu' %}
@@ -315,9 +315,9 @@
           <h2>Bugs</h2>
           <ul>
             {% for bug in cve.bugs %}
-              
-                <li><a href="{{ cve.bug }}">{{ bug }}</a></li>
-
+              {% if 'http' in bug %}
+                <li><a href="{{ bug }}">{{ bug }}</a></li>
+              {% endif %}
             {% endfor %}
           </ul>
         {% endif %}

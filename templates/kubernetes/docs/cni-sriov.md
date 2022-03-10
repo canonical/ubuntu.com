@@ -180,21 +180,21 @@ metadata:
     k8s.v1.cni.cncf.io/networks: sriov
 spec:
   containers:
-  - name: ubuntu
-    image: ubuntu:20.04
-    command: ['sleep', '3600']
-    resources:
-      requests:
-        intel.com/intel_sriov_netdevice: '1'
-      limits:
-        intel.com/intel_sriov_netdevice: '1'
+    - name: ubuntu
+      image: ubuntu:20.04
+      command: ["sleep", "3600"]
+      resources:
+        requests:
+          intel.com/intel_sriov_netdevice: "1"
+        limits:
+          intel.com/intel_sriov_netdevice: "1"
 ```
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-The pod must be created in the same namespace as the
-NetworkAttachmentDefinition.
-  </p>
+
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">The pod must be created in the same namespace as the NetworkAttachmentDefinition.</p>
+  </div>
 </div>
 
 If all goes well, the pod should come up in a Running state with the SR-IOV VF
@@ -228,10 +228,10 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-sriov.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

@@ -22,10 +22,12 @@ please refer to their own documentation for details.
 
 ## Creating an **etcd** snapshot
 
- <div class="p-notification--warning"><p markdown="1" class="p-notification__response">
- <span class="p-notification__status">Warning:</span>
- Snapshots can only be restored on the **same version of etcd**.
-  </p></div>
+ <div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Warning:</span>
+    <p class="p-notification__message">Snapshots can only be restored on the **same version of etcd**.</p>
+  </div>
+</div>
 
 **etcd** is a distributed key/value store. To create a snapshot, all that is required is to run the `snapshot` action on one of the units running **etcd**:
 
@@ -37,24 +39,25 @@ By specifying `--wait`, the console will wait to return the result of running th
 
 ```yaml
 unit-etcd-0:
- id: 3d6a505e-07d7-4697-8471-60156f87b1b4
- results:
-   copy:
-     cmd: juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
-       .
-   snapshot:
-     path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
-     sha256: e85ae4d49b6a889de2063031379ab320cc8f09b6e328cdff2fb9179fc641eee9
-     size: 68K
-     version: |-
-       etcdctl version: 3.2.10
-       API version: 2
- status: completed
- timing:
-   completed: 2018-09-26 18:04:04 +0000 UTC
-   enqueued: 2018-09-26 18:04:04 +0000 UTC
-   started: 2018-09-26 18:04:03 +0000 UTC
- unit: etcd/0
+  id: 3d6a505e-07d7-4697-8471-60156f87b1b4
+  results:
+    copy:
+      cmd:
+        juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
+        .
+    snapshot:
+      path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
+      sha256: e85ae4d49b6a889de2063031379ab320cc8f09b6e328cdff2fb9179fc641eee9
+      size: 68K
+      version: |-
+        etcdctl version: 3.2.10
+        API version: 2
+  status: completed
+  timing:
+    completed: 2018-09-26 18:04:04 +0000 UTC
+    enqueued: 2018-09-26 18:04:04 +0000 UTC
+    started: 2018-09-26 18:04:03 +0000 UTC
+  unit: etcd/0
 ```
 
 This path/filename relates to the unit where the action was run. As we will likely want to use the snapshot on a different unit, we should fetch the snapshot to the local machine. The command to perform this is also helpfully supplied in the `copy` section of the output (see above):
@@ -72,10 +75,13 @@ sha256sum etcd-snapshot-2018-09-26-18.04.02.tar.gz
 
 ## Restoring a snapshot
 
-<div class="p-notification--warning"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Warning:</span>
-Restoring a snapshot should not be performed when there is more than one unit of **etcd** running.
- </p></div>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Warning:</span>
+    <p class="p-notification__message">Restoring a snapshot should not be performed when there is more than one unit of **etcd** running.
+  </p>
+ </div>
+</div>
 
 As restoring only works when there is a single unit of **etcd**, it is usual to deploy a new instance of the application first.
 
@@ -142,10 +148,11 @@ unit-new-etcd-0:
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/backups.md" >edit this page</a>
-    or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/backups.md" >edit this page</a>
+      or
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
+    </p>
+  </div>
 </div>

@@ -29,7 +29,7 @@ configure the encryption key used by **Kubernetes**.
 
 To enable encryption-at-rest for **Charmed Kubernetes**, simply deploy the [Vault charm][] (as
 well as a database backend for it), and relate it to `kubernetes-master` via
-the `vault-kv` relation endpoint.  The easiest way to do this is to deploy **Charmed Kubernetes**
+the `vault-kv` relation endpoint. The easiest way to do this is to deploy **Charmed Kubernetes**
 with the following overlay:
 
 ```yaml
@@ -41,8 +41,8 @@ applications:
     charm: cs:percona-cluster
     num_units: 1
 relations:
-  - ['vault', 'percona-cluster']
-  - ['vault:secrets', 'kubernetes-master:vault-kv']
+  - ["vault", "percona-cluster"]
+  - ["vault:secrets", "kubernetes-master:vault-kv"]
 ```
 
 To deploy **Charmed Kubernetes** with this overlay - [download it][cdk-vault-overlay]), save it as, e.g.,
@@ -62,25 +62,25 @@ Charmed Kubernetes will then automatically enable encryption for the secrets dat
 
 This does not work on **LXD** at this time, due to security limitations
 preventing charms from acquiring and managing the block devices and file
-systems needed to implement this.  In the future, support for KMS, or
-encryption-as-a-service, will remove this restriction.  In the meantime,
+systems needed to implement this. In the future, support for KMS, or
+encryption-as-a-service, will remove this restriction. In the meantime,
 **LXD** deployments can make use of encryption at the level of the **LXD**
 storage pool, or even full-disk-encryption on the host machine.
 
 [cdk-vault-overlay]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/cdk-vault-overlay.yaml
 [secrets]: https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/
 [encryption at rest]: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
-[HashiCorp's Vault]: https://www.vaultproject.io/
-[VaultLocker]: https://github.com/openstack-charmers/vaultlocker
-[Vault charm]: https://charmhub.io/vault
+[hashicorp's vault]: https://www.vaultproject.io/
+[vaultlocker]: https://github.com/openstack-charmers/vaultlocker
+[vault charm]: https://charmhub.io/vault
 [unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/victoria/app-vault.html#initialize-and-unseal-vault
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/encryption-at-rest.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

@@ -105,14 +105,15 @@ A list of bug fixes and other minor feature updates in this release can be found
 ## Notes / Known Issues
 
 - The `registry` action for the `kubernetes-worker` charm has been deprecated and will be removed
-in a future release. To enable a custom container registry, please see the
-[registry](/kubernetes/docs/docker-registry) documentation.
+  in a future release. To enable a custom container registry, please see the
+  [registry](/kubernetes/docs/docker-registry) documentation.
 
 ## Previous releases
 
 Please see [this page][historic] for release notes of earlier versions.
 
 <!--LINKS-->
+
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
 [bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
@@ -129,10 +130,10 @@ Please see [this page][historic] for release notes of earlier versions.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/release-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

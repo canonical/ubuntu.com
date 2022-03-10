@@ -25,18 +25,17 @@ Support for Tigera Secure EE in **Charmed Kubernetes** is provided in the form o
 
 Before you start, you will need:
 
-*  Tigera Secure EE licence key
-*  Tigera private Docker registry credentials (provided as a Docker config.json)
+- Tigera Secure EE licence key
+- Tigera private Docker registry credentials (provided as a Docker config.json)
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    Tigera Secure EE's network traffic, much like Calico's, is filtered on
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Tigera Secure EE's network traffic, much like Calico's, is filtered on
     many clouds. It will work on MAAS, and can work on AWS if you manually
-    configure instances to disable source/destination checking.
-  </p>
+    configure instances to disable source/destination checking.</p>
+  </div>
 </div>
-
 
 To start, deploy **Charmed Kubernetes** with Tigera Secure EE:
 
@@ -57,11 +56,12 @@ Wait for the deployment to settle before continuing on.
 
 ## Using the built-in elasticsearch-operator
 
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-     The built-in elasticsearch-operator is only recommended for testing or demonstrative
-     purposes. For production deployments, please skip down to the next section.  </p>
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">The built-in elasticsearch-operator is only recommended for testing or demonstrative
+    purposes. For production deployments, please skip down to the next section.</p>
+  </div>
 </div>
 
 For testing and quick start purposes, the `tigera-secure-ee` charm deploys
@@ -84,7 +84,6 @@ metadata:
 provisioner: kubernetes.io/host-path
 
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -100,7 +99,6 @@ spec:
   storageClassName: elasticsearch-storage
 
 ---
-
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -124,6 +122,7 @@ kubectl apply -f elasticsearch-storage.yaml
 
 Once you have a StorageClass available, delete the existing PVC and pods so
 Kubernetes will recreate them using the new StorageClass:
+
 ```bash
 kubectl delete pvc -n calico-monitoring es-data-es-data-tigera-elasticsearch-default-0
 kubectl delete pvc -n calico-monitoring es-data-es-master-tigera-elasticsearch-default-0
@@ -168,11 +167,12 @@ command to open port 30601 on the workers:
 juju run --application kubernetes-worker open-port 30601
 ```
 
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    Do not open this port if your kubernetes-worker units are exposed on a
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">Do not open this port if your kubernetes-worker units are exposed on a
     network you do not trust. Kibana does not require credentials to use</p>
+  </div>
 </div>
 
 Then connect to `http://<kubernetes-worker-ip>:30601` in your web browser.
@@ -230,10 +230,10 @@ juju config tigera-secure-ee registry=$REGISTRY
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/tigera-secure-ee.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

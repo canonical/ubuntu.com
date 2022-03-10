@@ -17,39 +17,38 @@ toc: False
 
 **Charmed Kubernetes** implements access
 control based on the Kubernetes model. A complete overview of the Kubernetes
-authorisation  system is given in the [Kubernetes Documentation][upstream-auth].
+authorisation system is given in the [Kubernetes Documentation][upstream-auth].
 This page provides summary information on the available modes and how to configure
 **Charmed Kubernetes** to use them.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-The default authorisation mode in <strong>Charmed Kubernetes</strong> 1.19 has changed from
-"AlwaysAllow" to "Node,RBAC".
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">The default authorisation mode in <strong>Charmed Kubernetes</strong> 1.19 has changed from "AlwaysAllow" to "Node,RBAC".</p>
+  </div>
 </div>
 
 The following modes are supported:
 
- - **Node** (default): Grants permissions to kubelets based on the pods they are scheduled to run.
-    When using this mode, **Charmed Kubernetes** will enable `NodeRestriction` and will issue (and
-    decommission) tokens for kubernetes-workers as you scale your infrastructure.
-    More detailed information can be found in the [Kubernetes documentation][node].
- - **RBAC** (default):  Using role-based access control, access is granted to users based on the
-   roles assigned to them. This mode expects respective roles and bindings to be available
-   for any running services. **Charmed Kubernetes** already has roles and bindings ready for use
-   ([see below][roles]).
- - **AlwaysAllow**: All calls to the API server are allowed.
- - **AlwaysDeny**: This mode denies all API requests - it is only really useful for testing.
- - **ABAC**: Using attribute-based access control, access rights are granted to users
-    through the use of policies which combine attributes together. The policies can use any
-    type of attributes (user attributes, resource attributes, object attributes, environment
-    attributes, etc). For more information on ABAC mode, see the
-    [Kubernetes ABAC documentation][abac].
- - **Webhook**:  With this mode set, Kubernetes will query an outside REST service
-   when determining user privileges. This mode requires additional configuration to
-   specify the service being queried. A full explanation of this can be found in the
-   [Kubernetes Webhook mode documentation][webhook].
+- **Node** (default): Grants permissions to kubelets based on the pods they are scheduled to run.
+  When using this mode, **Charmed Kubernetes** will enable `NodeRestriction` and will issue (and
+  decommission) tokens for kubernetes-workers as you scale your infrastructure.
+  More detailed information can be found in the [Kubernetes documentation][node].
+- **RBAC** (default): Using role-based access control, access is granted to users based on the
+  roles assigned to them. This mode expects respective roles and bindings to be available
+  for any running services. **Charmed Kubernetes** already has roles and bindings ready for use
+  ([see below][roles]).
+- **AlwaysAllow**: All calls to the API server are allowed.
+- **AlwaysDeny**: This mode denies all API requests - it is only really useful for testing.
+- **ABAC**: Using attribute-based access control, access rights are granted to users
+  through the use of policies which combine attributes together. The policies can use any
+  type of attributes (user attributes, resource attributes, object attributes, environment
+  attributes, etc). For more information on ABAC mode, see the
+  [Kubernetes ABAC documentation][abac].
+- **Webhook**: With this mode set, Kubernetes will query an outside REST service
+  when determining user privileges. This mode requires additional configuration to
+  specify the service being queried. A full explanation of this can be found in the
+  [Kubernetes Webhook mode documentation][webhook].
 
 ### Determining the current configuration
 
@@ -60,6 +59,7 @@ juju config kubernetes-master authorization-mode
 ```
 
 The default value is:
+
 ```bash
 Node,RBAC
 ```
@@ -91,10 +91,12 @@ It is possible to set more than one mode using a comma-separated list:
 juju config kubernetes-master authorization-mode="Node,RBAC"
 ```
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-Using "Node,RBAC" for authorisation is the recommended configuration.
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Using "Node,RBAC" for authorisation is the recommended configuration.</p>
+  </div>
+</div>
 
 The order matters. Kubernetes will process each API request with each module in
 sequence. If the current authorising module either allows or denies the
@@ -102,7 +104,6 @@ request, that decision is made and no further modules are consulted. If the
 current module has no opinion on the request, then the decision is passed to
 the next module in the list. If no decision has been returned by the last
 module in the list, then the request is denied.
-
 
 <a id='rbac'> </a>
 
@@ -125,17 +126,15 @@ kubectl get clusterrolebindings --all-namespaces
 For more detail on roles and bindings, please see the
 [Kubernetes RBAC documentation][rbac].
 
-
 <a id='authn'> </a>
 
 ## Authentication
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-The default authentication mechanism in <strong>Charmed Kubernetes</strong> 1.19 has changed
-from file-based authentication to a webhook token service.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">The default authentication mechanism in <strong>Charmed Kubernetes</strong> 1.19 has changed from file-based authentication to a webhook token service.</p>
+  </div>
 </div>
 
 **Charmed Kubernetes** manages a webhook authentication service that compares API
@@ -148,13 +147,11 @@ on port `5000` of each master unit. Source code for the [application][auth-webho
 as well as the associated [systemd service][auth-webhook-svc] can be found in the
 `kubernetes-master` source repository.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Only one webhook authenticator can be configured on the Kubernetes apiserver. To use
-a custom webhook, see the <strong>Managing users with an external service</strong>
-section below.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Only one webhook authenticator can be configured on the Kubernetes apiserver. To use a custom webhook, see the <strong>Managing users with an external service</strong> section below.</p>
+  </div>
 </div>
 
 Read about the Kubernetes approach to authentication in this page of the
@@ -176,6 +173,7 @@ juju run-action --wait kubernetes-master/0 user-create name='alice'
 ```
 
 Example output:
+
 ```bash
 unit-kubernetes-master-0:
   UnitId: kubernetes-master/0
@@ -197,6 +195,7 @@ juju run-action --wait kubernetes-master/0 user-create name='bob' groups='system
 ```
 
 Example output:
+
 ```bash
 unit-kubernetes-master-0:
   UnitId: kubernetes-master/0
@@ -219,6 +218,7 @@ juju run-action --wait kubernetes-master/0 user-list
 ```
 
 Example output:
+
 ```bash
 unit-kubernetes-master-0:
   UnitId: kubernetes-master/0
@@ -239,6 +239,7 @@ juju run-action --wait kubernetes-master/0 user-delete name=bob
 ```
 
 Example output:
+
 ```bash
 unit-kubernetes-master-0:
   UnitId: kubernetes-master/0
@@ -258,11 +259,11 @@ by Kubernetes secrets to authenticate a request. When present, the following ext
 services may also be used to process requests:
 
 - **AWS IAM**: IAM credentials can be used for authentication and authorisation
-on your Charmed Kubernetes cluster, even if the cluster is not hosted on AWS.
-For further details, see the documentation on
-[AWS IAM with Charmed Kubernetes][aws-iam].
+  on your Charmed Kubernetes cluster, even if the cluster is not hosted on AWS.
+  For further details, see the documentation on
+  [AWS IAM with Charmed Kubernetes][aws-iam].
 - **LDAP**: See the documentation on using
-[LDAP and Keystone with Charmed Kubernetes][docs-ldap].
+  [LDAP and Keystone with Charmed Kubernetes][docs-ldap].
 
 Additionally, a custom endpoint can be configured to authenticate requests. This
 must be an https url accessible by the `kubernetes-master` units. When a
@@ -275,7 +276,6 @@ juju config kubernetes-master authn-webhook-endpoint='https://your.server:8443/a
 
 More information about webhook authentication service requirements can be found
 in the [upstream documentation][upstream-webhook].
-
 
  <!-- LINKS -->
 
@@ -294,10 +294,12 @@ in the [upstream documentation][upstream-webhook].
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/auth.md" >edit this page</a>
-    or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">
+      We appreciate your feedback on the documentation. You can
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/auth.md" >edit this page</a>
+      or
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
+    </p>
+  </div>
 </div>

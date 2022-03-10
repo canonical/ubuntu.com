@@ -58,11 +58,29 @@
       </div>
     </div>
     <div class="row p-divider">
+      {% if version == releases.latest.core_version %}
       <div class="col-4 blog-p-card--post">
         <header class="blog-p-card__header--tutorial">
-          <h5 class="p-muted-heading u-no-margin--bottom">
+          <p class="p-muted-heading u-no-margin--bottom">
+            core, UC20
+          </p>
+        </header>
+        <div class="blog-p-card__content">
+          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
+            <a class="p-link--soft" href="/core/docs/uc20/install-raspberry-pi">Installing Ubuntu Core 20 on a Raspberry Pi</a>
+          </h3>
+          <p class="u-sv3">A complete guide to installing Ubuntu Core on a Raspberry Pi 4 (4GB or 8GB).</p>
+        </div>
+        <footer class="blog-p-card__footer">
+          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--2">2 out of 5</span>
+        </footer>
+      </div>
+      {% else %}
+      <div class="col-4 blog-p-card--post">
+        <header class="blog-p-card__header--tutorial">
+          <p class="p-muted-heading u-no-margin--bottom">
             iot, desktop
-          </h5>
+          </p>
         </header>
         <div class="blog-p-card__content">
           <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
@@ -74,6 +92,7 @@
           Difficulty: <span class="l-tutorials-meter l-tutorials-meter--1">1 out of 5</span>
         </footer>
       </div>
+      {% endif %}
       <div class="col-4 blog-p-card--post p-divider__block">
         <header class="blog-p-card__header--tutorial">
           <h5 class="p-muted-heading u-no-margin--bottom">

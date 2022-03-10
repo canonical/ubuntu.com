@@ -40,14 +40,13 @@ installed from snap packages. The installation and management of these snaps is
 undertaken by the charms; there is no need for a user to interact with the
 snaps directly. The details here are provided for information only.
 
-
-| Snap | Type | Store page |
-|------|------|------------|
-| kube-apiserver | strict | <https://snapcraft.io/kube-apiserver> |
-| kube-controller-manager | strict  | <https://snapcraft.io/kube-controller-manager>  |
-| kube-proxy | classic | <https://snapcraft.io/kube-proxy> |
-| kube-scheduler  |  strict  | <https://snapcraft.io/kube-scheduler>  |
-| kubelet  | classic  | <https://snapcraft.io/kubelet>  |
+| Snap                    | Type    | Store page                                     |
+| ----------------------- | ------- | ---------------------------------------------- |
+| kube-apiserver          | strict  | <https://snapcraft.io/kube-apiserver>          |
+| kube-controller-manager | strict  | <https://snapcraft.io/kube-controller-manager> |
+| kube-proxy              | classic | <https://snapcraft.io/kube-proxy>              |
+| kube-scheduler          | strict  | <https://snapcraft.io/kube-scheduler>          |
+| kubelet                 | classic | <https://snapcraft.io/kubelet>                 |
 
 ### Example: kube-apiserver
 
@@ -91,15 +90,15 @@ sudo snap set kube-apiserver args="
 "
 ```
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  Note: Any files used by the service, such as certificate files, must be
-  placed within the /root/ directory to be visible to the service. This
-  limitation allows us to run a few of the services in a strict confinement
-  mode that offers better isolation and security.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Any files used by the service, such as certificate files, must be
+    placed within the /root/ directory to be visible to the service. This
+    limitation allows us to run a few of the services in a strict confinement
+    mode that offers better isolation and security.</p>
+  </div>
 </div>
-
 
 After configuring, restart the service and you should see it running:
 
@@ -107,6 +106,7 @@ After configuring, restart the service and you should see it running:
 sudo snap restart kube-apiserver
 systemctl status snap.kube-apiserver.daemon
 ```
+
 ```no-highlight
 ● snap.kube-apiserver.daemon.service - Service for snap application kube-apiserver.daemon
    Loaded: loaded (/etc/systemd/system/snap.kube-apiserver.daemon.service; enabled; vendor preset: enabled)
@@ -134,13 +134,14 @@ This contains the actual arguments that get passed to the service by the snap:
 --service-cluster-ip-range "10.123.123.0/24"
 ```
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  Note: While you can technically bypass <code>snap set</code> and edit the args file
-  directly, it's best not to do so. The next time the configure hook runs, it
-  will obliterate your changes. This can occur not only from a call to
-  <code>snap set</code> but also during a background refresh of the snap.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">While you can technically bypass <code>snap set</code> and edit the args file
+    directly, it's best not to do so. The next time the configure hook runs, it
+    will obliterate your changes. This can occur not only from a call to
+    <code>snap set</code> but also during a background refresh of the snap.</p>
+  </div>
 </div>
 
 The source code for the snaps can be found here:
@@ -163,11 +164,11 @@ The source code for the snaps can be found here:
 
 Debian packages are available through a PPA which provides the following:
 
-* <https://launchpad.net/kubectl>
-* <https://launchpad.net/kubelet>
-* <https://launchpad.net/kubeadm>
-* <https://launchpad.net/kubernetes-cni>
-* <https://launchpad.net/cri-tools>
+- <https://launchpad.net/kubectl>
+- <https://launchpad.net/kubelet>
+- <https://launchpad.net/kubeadm>
+- <https://launchpad.net/kubernetes-cni>
+- <https://launchpad.net/cri-tools>
 
 To install, first add the PPA of desired version:
 
@@ -183,12 +184,13 @@ Once the PPA is added, installing the tools can be performed with:
 sudo apt install kubeadm
 ```
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  Note: If you install tools such as **kubectl** from both the snap
-  store and the apt archive they will be in different locations. Depending on your
-  environment the snap may be resolved before the Debian installed package.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Note: If you install tools such as **kubectl** from both the snap
+    store and the apt archive they will be in different locations. Depending on your
+    environment the snap may be resolved before the Debian installed package.</p>
+  </div>
 </div>
 
 <!-- LINKS -->
@@ -201,13 +203,12 @@ sudo apt install kubeadm
 [kubefed-snap]: https://snapcraft.io/kubefed
 [kubectl-snap]: https://snapcraft.io/kubectl
 
-
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/packages.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
