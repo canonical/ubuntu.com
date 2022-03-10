@@ -47,6 +47,12 @@
           { "channelId" : 6793, "language": "en-US", "commId" : 524647, "displayMode" : "standalone", "height" : "280" }
         </script>
         <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
+        <script>
+          const iframe = document.querySelector('.jsBrightTALKEmbedWrapper iframe');
+          iframe.addEventListener('load', () => {
+            iframe.scrolling = "yes";
+          });
+        </script>        
       </div>
     </div>
   </div>
