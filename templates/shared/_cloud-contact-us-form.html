@@ -58,8 +58,10 @@
         <fieldset class="u-no-margin--bottom">
           <ul class="p-list">
             <li class="p-list__item">
-              <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-              <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+              </label>
             </li>
             <li class="p-list__item">
               In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.
@@ -94,20 +96,20 @@
         </fieldset>
       </form>
     </div>
-
+    
     <div class="col-4">
       <div class="p-card">
         <h3 class="p-card__title">Any questions? Call us</h3>
-          {% include "shared/_call-sales-long.html" %}
+        {% include "shared/_call-sales-long.html" %}
       </div>
       <div class="p-card" />
-        <h3 class="p-card__title">Need help with Ubuntu?</h3>
-        <p>If you are just looking for some free support for yourself, you can try:</p>
-        <ul class="p-list--divided">
-          <li class="p-list__item"><a class="p-link--external" href="https://askubuntu.com/">Ask Ubuntu</a></li>
-          <li class="p-list__item"><a class="p-link--external" href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
-          <li class="p-list__item"><a class="p-link--external" href="https://help.ubuntu.com/">Help docs</a></li>
-        </ul>
-      </div>
+      <h3 class="p-card__title">Need help with Ubuntu?</h3>
+      <p>If you are just looking for some free support for yourself, you can try:</p>
+      <ul class="p-list--divided">
+        <li class="p-list__item"><a class="p-link--external" href="https://askubuntu.com/">Ask Ubuntu</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
+        <li class="p-list__item"><a class="p-link--external" href="https://help.ubuntu.com/">Help docs</a></li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>

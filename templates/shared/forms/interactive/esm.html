@@ -78,9 +78,13 @@
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <span class="p-active-reveal">
-              <input type="checkbox" id="less-5-machines" class="p-active-reveal__switch">
-              <label for="less-5-machines" >&lt;5 machines</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input p-active-reveal__switch" type="checkbox" aria-labelledby="less-5-machines">
+                <span class="p-checkbox__label" id="less-5-machines">&lt; 5 machines</span>
+              </label>
+
               <p class="p-form-help-text p-active-reveal__item" style="margin-top: 0">For a small amount of machines, <a href="/advantage">Ubuntu ESM is available for free</a>.</p>
+
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="less-50-machines" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="less-50-machines">&lt;50 machines</span>
@@ -172,8 +176,10 @@
                   <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
                 </li>
                 <li class="p-list__item">
-                  <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                  <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                    <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                  </label>
                 </li>
                 <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
                 {# These are honey pot fields to catch bots #}

@@ -17,15 +17,15 @@
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="who-is-your-target-audience-enterprise" name="target-audience" value="Enterprise">
-  <span class="p-radio__label" id="who-is-your-target-audience-enterprise">Enterprise</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="who-is-your-target-audience-enterprise" name="target-audience" value="Enterprise">
+              <span class="p-radio__label" id="who-is-your-target-audience-enterprise">Enterprise</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="who-is-your-target-audience-consumer" name="target-audience" value="Consumer">
-  <span class="p-radio__label" id="who-is-your-target-audience-consumer">Consumer</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="who-is-your-target-audience-consumer" name="target-audience" value="Consumer">
+              <span class="p-radio__label" id="who-is-your-target-audience-consumer">Consumer</span>
+            </label>
           </div>
         </div>
       </div>
@@ -120,8 +120,10 @@
             </label>
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="go-faster-other">
-              <label for="go-faster-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="go-faster-other">
+                <span class="p-checkbox__label" id="go-faster-other">Other</span>
+              </label>
               <input type="text" id="go-faster-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
           </div>
@@ -211,8 +213,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-servers-other">
-              <label for="platform-servers-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-servers-other">
+                <span class="p-checkbox__label" id="platform-servers-other">Other</span>
+              </label>
               <input type="text" id="platform-servers-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
           </div>
@@ -256,8 +260,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-networking-other">
-              <label for="platform-networking-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-networking-other">
+                <span class="p-checkbox__label" id="platform-networking-other">Other</span>
+              </label>
               <input type="text" id="platform-networking-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
           </div>
@@ -289,8 +295,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-storage-other">
-              <label for="platform-storage-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-storage-other">
+                <span class="p-checkbox__label" id="platform-storage-other">Other</span>
+              </label>
               <input type="text" id="platform-storage-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
           </div>
@@ -329,8 +337,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}

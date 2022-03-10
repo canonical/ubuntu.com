@@ -152,8 +152,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="areas-of-interest--other">
-              <label for="areas-of-interest--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="areas-of-interest--other">
+                <span class="p-checkbox__label" id="areas-of-interest--other">Other</span>
+              </label>
               <input type="text" id="areas-of-interest--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
             
@@ -228,8 +230,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-servers--other">
-              <label for="platform-preferences-servers--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-servers--other">
+                <span class="p-checkbox__label" id="platform-preferences-servers--other">Other</span>
+              </label>
               <input type="text" id="platform-preferences-servers--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
             
@@ -268,8 +272,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-networking--other">
-              <label for="platform-preferences-networking--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-networking--other">
+                <span class="p-checkbox__label" id="platform-preferences-networking--other">Other</span>
+              </label>
               <input type="text" id="platform-preferences-networking--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
             
@@ -298,8 +304,10 @@
             
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-storage--other">
-              <label for="platform-preferences-storage--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-storage--other">
+                <span class="p-checkbox__label" id="platform-preferences-storage--other">Other</span>
+              </label>
               <input type="text" id="platform-preferences-storage--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
             
@@ -460,8 +468,10 @@
                 <input required="" id="phone" name="phone" maxlength="255" type="tel">
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}

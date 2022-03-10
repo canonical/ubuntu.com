@@ -62,9 +62,12 @@
               <option value="Not working on a commercial IoT deployment">No</option></select>
             </li>
             <li class="p-list__item">
-              <input value="yes" id="CanonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-              <label for="CanonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></span>
+              </label>
             </li>
+
             {# These are honey pot fields to catch bots #}
             <li class="u-off-screen">
               <label class="website" for="website">Website:</label>

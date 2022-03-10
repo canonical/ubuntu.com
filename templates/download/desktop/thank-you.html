@@ -191,12 +191,16 @@
                 
               </li>
               <li class="p-list__item u-clearfix">
-                <input id="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
-                <label for="insightsrobotics">Robotics</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" aria-labelledby="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
+                  <span class="p-checkbox__label" id="insightsrobotics">Robotics</span>
+                </label>
               </li>
               <li class="p-list__item u-clearfix">
-                <input id="insightstutorials" name="insightstutorials" value="true" type="checkbox">
-                <label for="insightstutorials">Tutorials</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" aria-labelledby="insightstutorials" name="insightstutorials" value="true" type="checkbox">
+                  <span class="p-checkbox__label" id="insightstutorials">Tutorials</span>
+                </label>
               </li>
               {# These are honey pot fields to catch bots #}
               <li class="u-off-screen">
@@ -216,12 +220,12 @@
               </label>
             </div>
             <div>
-              <span>
-                <input name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
-                <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
+                <span class="p-checkbox__label" id="CanonicalUpdatesOptIn">
                   <small>I agree to receive information about Canonical's products and services.</small>
-                </label>
-              </span>
+                </span>
+              </label>
             </div>
             <p>
               <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>

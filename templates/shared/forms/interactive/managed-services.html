@@ -9,16 +9,26 @@
         <h3 class="p-heading--5">What services can we help with?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-12 u-sv3">
-            <input type="checkbox" id="service-openstack" />
-            <label for="service-openstack">Openstack</label>
-            <input type="checkbox" id="service-kubernetes" />
-            <label for="service-kubernetes">Kubernetes</label>
-            <input type="checkbox" id="service-ceph" />
-            <label for="service-ceph">Ceph</label>
-            <input type="checkbox" id="service-database-apps" />
-            <label for="service-database-apps">Database and Applications</label>
-            <input type="checkbox" id="service-observability" />
-            <label for="service-observability">Observability</label>
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" type="checkbox" aria-labelledby="service-openstack" />
+              <span class="p-checkbox__label" id="service-openstack">Openstack</span>
+            </label>
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" type="checkbox" aria-labelledby="service-kubernetes" />
+              <span class="p-checkbox__label" id="service-kubernetes">Kubernetes</span>
+            </label>
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" type="checkbox" aria-labelledby="service-ceph" />
+              <span class="p-checkbox__label" id="service-ceph">Ceph</span>
+            </label>
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" type="checkbox" aria-labelledby="service-database-apps" />
+              <span class="p-checkbox__label" id="service-database-apps">Database and Applications</span>
+            </label>
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" type="checkbox" aria-labelledby="service-observability" />
+              <span class="p-checkbox__label" id="service-observability">Observability</span>
+            </label>
           </div>
         </div>
       </div>
@@ -61,8 +71,10 @@
                   <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
                 </li>
                 <li class="p-list__item">
-                  <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                  <label for="canonicalUpdatesOptIn" >I agree to receive information about Canonical's products and services.</label >
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                    <span class="p-checkbox__label" id="canonicalUpdatesOptIn" >I agree to receive information about Canonical's products and services.</span>
+                  </label>
                 </li>
                 <li class="p-list__item">
                   In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact" >Canonical's Privacy Notice</a > and <a href="/legal/data-privacy">Privacy Policy</a>.

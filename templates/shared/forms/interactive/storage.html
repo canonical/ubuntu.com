@@ -153,8 +153,10 @@
             </label>
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="compute-infrastructure-other">
-              <label for="compute-infrastructure-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="compute-infrastructure-other">
+                <span class="p-checkbox__label" id="compute-infrastructure-other">Other</span>
+              </label>
               <input type="text" id="compute-infrastructure-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
           </div>
@@ -186,8 +188,10 @@
             </label>
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="consuming-storage-other">
-              <label for="consuming-storage-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="consuming-storage-other">
+                <span class="p-checkbox__label" id="consuming-storage-other">Other</span>
+              </label>
               <input type="text" id="consuming-storage-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
           </div>
@@ -247,8 +251,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}

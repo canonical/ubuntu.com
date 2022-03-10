@@ -9,10 +9,10 @@
         <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
       </li>
       <li class="p-list__item">
-        <span>
-          <input name="canonicalUpdatesOptIn" id="canonicalOptIn" value="yes" type="checkbox" />
-          <label class="contextual-footer__text--label" for="canonicalOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;
-        </span>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalOptIn" value="yes" type="checkbox" />
+          <label class="p-checkbox__label contextual-footer__text--label" id="canonicalOptIn">I agree to receive information about Canonical's products and services.</label>&nbsp;
+        </label>
       </li>
       
       {# These are honey pot fields to catch bots #}

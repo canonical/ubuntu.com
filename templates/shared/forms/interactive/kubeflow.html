@@ -41,8 +41,10 @@
             </label>
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="on-prem-other">
-              <label for="on-prem-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="on-prem-other">
+                <span class="p-checkbox__label" id="on-prem-other">Other</span>
+              </label>
               <input type="text" id="on-prem-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
             </div>
           </div>
@@ -73,8 +75,10 @@
             </label>
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="public-cloud-other">
-              <label for="public-cloud-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="public-cloud-other">
+                <span class="p-checkbox__label" id="public-cloud-other">Other</span>
+              </label>
               <input type="text" id="public-cloud-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
             </div>
           </div>
@@ -207,8 +211,10 @@
             </label>
             
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="pain-points-other">
-              <label for="pain-points-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="pain-points-other">
+                <span class="p-checkbox__label" id="pain-points-other">Other</span>
+              </label>
               <input type="text" id="pain-points-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
             </div>
           </div>
@@ -247,8 +253,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}

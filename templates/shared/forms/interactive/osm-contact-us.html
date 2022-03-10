@@ -48,8 +48,10 @@
           </div>
           <div class="col-4 u-sv3">
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="infrastructure-preferences-other">
-              <label for="infrastructure-preferences-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="infrastructure-preferences-other">
+                <span class="p-checkbox__label" id="infrastructure-preferences-other">Other</span>
+              </label>
               <input type="text" id="infrastructure-preferences-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other infrastructure preferences">
             </div>
           </div>
@@ -117,8 +119,10 @@
           </div>
           <div class="col-4 u-sv3">
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="priority-cases-other">
-              <label for="priority-cases-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="priority-cases-other">
+                <span class="p-checkbox__label" id="priority-cases-other">Other</span>
+              </label>
               <input type="text" id="priority-cases-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other priority cases">
             </div>
           </div>
@@ -172,15 +176,15 @@
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="automated-deployment-yes" name="automated-deployment">
-  <span class="p-radio__label" id="automated-deployment-yes">Yes</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="automated-deployment-yes" name="automated-deployment">
+              <span class="p-radio__label" id="automated-deployment-yes">Yes</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="automated-deployment-no" name="automated-deployment">
-  <span class="p-radio__label" id="automated-deployment-no">No</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="automated-deployment-no" name="automated-deployment">
+              <span class="p-radio__label" id="automated-deployment-no">No</span>
+            </label>
           </div>
         </div>
       </div>
@@ -195,27 +199,27 @@
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-0" name="orchestration-capabilities">
-  <span class="p-radio__label" id="orchestration-capabilities-day-0">Day 0</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-0" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-day-0">Day 0</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-1" name="orchestration-capabilities">
-  <span class="p-radio__label" id="orchestration-capabilities-day-1">Day 1</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-1" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-day-1">Day 1</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-2" name="orchestration-capabilities">
-  <span class="p-radio__label" id="orchestration-capabilities-day-2">Day 2</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-2" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-day-2">Day 2</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
             <label class="p-radio">
-  <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-all-of-them" name="orchestration-capabilities">
-  <span class="p-radio__label" id="orchestration-capabilities-all-of-them">All of them</span>
-</label>
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-all-of-them" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-all-of-them">All of them</span>
+            </label>
           </div>
         </div>
       </div>
@@ -251,8 +255,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
