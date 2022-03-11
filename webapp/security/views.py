@@ -723,7 +723,7 @@ def cve(cve_id):
     cve = security_api.get_cve(cve_id)
 
     if not cve:
-        flask.abort(404)
+        flask.abort(404, f"Cannot find a CVE with ID '{cve_id}'")
 
     if cve.get("published"):
         cve["published"] = dateutil.parser.parse(cve["published"]).strftime(
