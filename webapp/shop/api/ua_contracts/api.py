@@ -56,8 +56,8 @@ class UAContractsAPI:
         ).json()
 
     def get_account_contracts(
-        self, account_id: str, include_active_machines: bool = False
-    ):
+        self, account_id: str, include_active_machines: str
+    ) -> dict:
         return self._request(
             method="get",
             path=(
