@@ -239,6 +239,20 @@ function formatKeyLabel(key) {
 
 /**
  *
+ * @param {Array} taskTypes
+ *
+ * Calculate the longest Y-Axis label
+ */
+function calculateYAxisWidth(YAxisLabels) {
+  var YAxisLabelsCopy = YAxisLabels.slice();
+  var longestLabel = YAxisLabelsCopy.sort(function (a, b) {
+    return b.length - a.length;
+  })[0];
+  return longestLabel.length * 7;
+}
+
+/**
+ *
  * @param {String} chartSelector
  * @param {Array} taskTypes
  * @param {Object} taskStatus
@@ -259,8 +273,8 @@ export function createChart(
     top: 0,
     right: 40,
     bottom: 20,
-    left: 150,
   };
+  margin.left = calculateYAxisWidth(taskTypes);
   var rowHeight = 32;
   var timeDomainStart;
   var timeDomainEnd;
