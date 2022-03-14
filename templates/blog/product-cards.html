@@ -10,7 +10,7 @@
    {# Private-cloud tag cards #}
   {% elif article.tags and 1342 in article.tags %}
     {% include "blog/product-cards/_private_cloud.html" %}
-        
+
    {# Public cloud tag cards #}
   {% elif article.tags and 1350 in article.tags %}
     {% include "blog/product-cards/_public_cloud.html" %}
@@ -26,8 +26,8 @@
    {# IoT tag cards #}
   {% elif article.tags and 1665 in article.tags %}
     {% include "blog/product-cards/_smartstart.html" %}
-    {% include "blog/product-cards/_IoT_appstore.html" %} 
-  
+    {% include "blog/product-cards/_IoT_appstore.html" %}
+
   {# Finance tag cards #}
   {% elif article.tags and 1419 in article.tags %}
     {% include "blog/product-cards/_financialservices-awerness.html" %}
@@ -57,7 +57,7 @@
   {# Bosch tag cards #}
   {% elif article.tags and 3680 in article.tags %}
     {% include "blog/product-cards/_bosch_ubuntu-for-iot.html" %}
-  
+
   {# Legacy fallback content #}
   {% elif article.group and article.group.slug == "kubernetes" %}
   <div class="p-card" id="rtp-k8s">
@@ -69,7 +69,7 @@
     <p>
       Deploy, scale and upgrade Kubernetes clusters across multiple physical or virtual machines with Charmed Kubernetes, with full support available.
     </p>
-    <p><a href="/kubernetes">Get started with Charmed K8s&nbsp;&rsaquo;</a></p>
+    <p><a href="/kubernetes">Get started with Charmed K8s</a></p>
   </div>
   {% elif article.group and article.group.slug == "openstack" %}
   <div class="p-card" id="rtp-openstack">
@@ -81,7 +81,7 @@
     <p>
       Ready to move from expensive, proprietary virtualisation to OpenStack? Canonical designs, builds, operates and supports OpenStack private clouds.
     </p>
-    <p><a href="/openstack">Move to OpenStack&nbsp;&rsaquo;</a></p>
+    <p><a href="/openstack">Move to OpenStack</a></p>
   </div>
   {% elif article.group and article.group.slug == "support" %}
   <div class="p-card" id="rtp-support">
@@ -93,7 +93,7 @@
     <p>
       UA Infrastructure is a single subscription for open source software, security and IaaS support, with OpenStack and Kubernetes included.
     </p>
-    <p><a href="/support">Solve open source security and compliance&nbsp;&rsaquo;</a></p>
+    <p><a href="/support">Solve open source security and compliance</a></p>
   </div>
   {% elif article.group and article.group.slug == "cloud-and-server" %}
   <div class="p-card" id="rtp-cloud">

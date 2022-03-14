@@ -120,7 +120,7 @@
                 {% for hardware_subtitle, values in release["components"].items() %}
                   <tr>
                     <th colspan="2" class="u-text--muted">{{ hardware_subtitle }}</th>
-                    <td colspan="8">{% for value in values %} 
+                    <td colspan="8">{% for value in values %}
                       <p style="margin-bottom: 0.5rem;">{{ value.name }}{% if value.bus in ["usb", "pci"] %} {{ value.bus }} ({{ value.identifier }}{% if value.subsystem != '' %} {{ value.subsystem }}{% endif %}){% endif %}</p>
                       {% endfor %}
                     </td>
@@ -129,7 +129,7 @@
                 </tbody>
               </table>
               <p class="u-sv3">
-                <a href="/certified/{{ canonical_id }}/{{ release.version }}">Hardware details&nbsp;&rsaquo;</a>
+                <a href="/certified/{{ canonical_id }}/{{ release.version }}">Hardware details</a>
               </p>
             </section>
           </li>

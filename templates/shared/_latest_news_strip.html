@@ -1,7 +1,7 @@
 <noscript>
   <section class="{% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}">
     <div class="row">
-      <h3><a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}">Read the latest {{ heading_topic }} news on our blog&nbsp;&rsaquo;</a></h3>
+      <h3><a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}">Read the latest {{ heading_topic }} news on our blog</a></h3>
     </div>
   </section>
 </noscript>
@@ -11,7 +11,7 @@
     <h3>
       Latest {{ heading_topic }} news from
       <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
-        our blog&nbsp;&rsaquo;
+        our blog
       </a>
     </h3>
   </div>
