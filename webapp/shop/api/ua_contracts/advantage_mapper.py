@@ -35,8 +35,13 @@ class AdvantageMapper:
 
         return parse_accounts(accounts)
 
-    def get_account_contracts(self, account_id: str) -> List[Contract]:
-        response = self.ua_contracts_api.get_account_contracts(account_id)
+    def get_account_contracts(
+        self, account_id: str, include_active_machines: bool = False
+    ) -> List[Contract]:
+        include_active_machines = str(include_active_machines).lower()
+        response = self.ua_contracts_api.get_account_contracts(
+            account_id, include_active_machines
+        )
         contracts = response.get("contracts", [])
 
         return parse_contracts(contracts)
@@ -117,7 +122,7 @@ class AdvantageMapper:
 
         user_summary = []
         for account in accounts:
-            contracts = self.ua_contracts_api.get_account_contracts(
+            contracts = self.get_account_contracts(
                 account_id=account.id,
                 include_active_machines=True,
             )
