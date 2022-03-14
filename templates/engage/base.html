@@ -83,9 +83,9 @@
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="{% if document['metadata']['form_id'] != '' %}col-7{% else %}col-8{% endif %}">
+    <div class="{% if 'form_id' in document['metadata'] and document['metadata']['form_id'] != '' %}col-7{% else %}col-12{% endif %}">
       {% for text in document["body_html"] %}
-      {{ text | safe }}
+        {{ text | safe }}
       {% endfor %}
     </div>
     {% if "form_id" in document["metadata"] and document["metadata"]["form_id"] != "" %}
