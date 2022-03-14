@@ -121,7 +121,7 @@
           <p>The world's most famous maker board! Fully certified and supported by Canonical. Ubuntu works on all 64-bit Raspberry Pi devices and is our primary focus for testing and development of new ARM Ubuntu Appliances.</p>
           <p>The popular single-board computer with 40-pin connector is a de facto standard for prototyping and experimentation and the Compute Module range is suited for production embedding in a wide range of devices.</p>
         </div>
-        <div class="col-4 u-vertically-center u-align--center u-hide--small">
+        <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
           {{
             image(
               url="https://assets.ubuntu.com/v1/016b770d-raspberry+pi+horizontal.svg",
@@ -415,7 +415,7 @@
           <p>The board that puts the power of a full-size PC in the palm of your hand. Fully certified and supported by Canonical. Ubuntu 'just works' on numerous Intel-NUC devices, and is recommended for testing and development of Ubuntu Appliances that require X86 architecture or more computational power than a Raspberry Pi.</p>
           <p>This small-form-factor PC can be thought of as a laptop without a screen or battery. It is the best choice for discreet or computationally heavy appliances.</p>
         </div>
-        <div class="col-4 u-vertically-center u-align--center u-hide--small">
+        <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
           {{
             image(
               url="https://assets.ubuntu.com/v1/26b411f9-Intel+NUC.png",
@@ -583,16 +583,52 @@
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/6077ee45-Dell.svg" alt="Dell">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/987acdaa-dell-logo.png",
+              alt="Dell",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="auto",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/1ca57ae1-Lenovo.svg" alt="Lenovo">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c70b529e-lenovo-logo.png",
+              alt="Lenovo",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="auto",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/ffda2d20-HP.svg" alt="HP">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/11814428-hp-logo.png",
+              alt="Hewlett Packard",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="auto",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
           </div>
           <div class="p-logo-section__item">
-            <img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/185a14f4-Avnet.png" alt="Avnet">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/6d820b6d-avnet-logo.png",
+              alt="Avnet",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="auto",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
           </div>
         </div>
       </div>
