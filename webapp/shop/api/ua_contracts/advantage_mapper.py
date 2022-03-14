@@ -38,7 +38,6 @@ class AdvantageMapper:
     def get_account_contracts(
         self, account_id: str, include_active_machines: bool = False
     ) -> List[Contract]:
-        include_active_machines = str(include_active_machines).lower()
         response = self.ua_contracts_api.get_account_contracts(
             account_id, include_active_machines
         )
