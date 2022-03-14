@@ -14,6 +14,40 @@
 @import "vanilla-framework/scss/build";
 @import "vanilla-placeholders";
 
+%vf-link-base {
+  @include vf-focus;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+
+  color: $color-link;
+
+  &:focus {
+    outline-offset: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+  }
+
+  &:visited {
+    color: $color-link-visited;
+  }
+}
+
+a,
+.p-button--link {
+  @extend %vf-link-base;
+}
+
+.p-navigation a,
+footer a,
+.p-footer a {
+  text-decoration: none;
+}
+
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
