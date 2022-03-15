@@ -17,10 +17,9 @@
       <h1>Ubuntu on WSL</h1>
       <p>Install a complete Ubuntu terminal environment in minutes on Windows 10 with Windows Subsystem for Linux (WSL).</p>
       <p>Access the Linux terminal on Windows, develop cross-platform applications, and manage IT infrastructure without leaving Windows.</p>
-      <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-link--external p-button--positive">Download from the Microsoft Store</a>
-      <p>
-        <a class="p-link--external p-link--inverted" href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6">Instructions for installing Windows Subsystem for Linux</a>
-      </p>
+      <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-button--positive">Download from the Microsoft Store</a>
+      <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview">Install Ubuntu on WSL for Windows 10&nbsp;&rsaquo;</a></p>
+      <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview">Install Ubuntu on WSL for Windows 11&nbsp;&rsaquo;</a></p>
     </div>
 
     <div class="col-5 col-start-large-8 u-hide--small">
@@ -44,28 +43,6 @@
       <h2>Deploying WSL at your company?</h2>
       <p>We help companies achieve a seamless integration with their WSL deployments. Contact us to learn more about how we support enterprises on the Windows Subsystem for Linux.</p>
       <p class="u-no-margin--bottom"><a href="/wsl/contact-us" data-testid="interactive-form-link" class="p-button--positive js-invoke-modal u-no-margin--bottom">Contact us</a></p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Access the Linux terminal on Windows</h3>
-      <p>In seconds, be able to access the Linux terminal and run Linux applications and workflows on your Windows machine.</p>
-      <p><a href="/tutorials/command-line-for-beginners#1-overview">Take our command line for beginners tutorial&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Develop cross-platform</h3>
-      <p>Build and debug Linux applications  with Windows tools like Visual Studio Code, Visual Studio, and JetBrains IDEs before deploying to the cloud.</p>
-      <p><a class="p-link--external" href="https://youtu.be/DmfuJzX6vJQ">Discover how to easily access "Kubernetes on Windows with WSL2" in our webinar</a></p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">Manage IT infrastructure</h3>
-      <p>From the same workstation, manage mixed Linux and Windows infrastructure both on-prem and across public clouds.</p>
-      <p><a class="p-link--external" href="https://youtu.be/50bokFFOvtA">Learn from our community members and experts at the WSLConf</a></p>
     </div>
   </div>
 </section>
@@ -134,163 +111,137 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <h2>Why WSL</h2>
+<section class="p-strip--square-suru is-bordered">
+  <div class="u-fixed-width u-sv3">
+    <h2>Why WSL?</h2>
   </div>
 
-  <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">
-        Easy to Use
-      </h3>
-      <p>
-        Ubuntu is intuitive, user-friendly, and offers the flexibility for customizations when operating within WSL.
-      </p>
+  <div class="row u-equal-height u-sv2">
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/672aa7e9-logo-ubuntu_cof-white_orange-hex.svg",
+        alt="",
+        width="80",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>The Best of Ubuntu</h4>
+      <p>WSL gives you access to a full Ubuntu terminal environment. Develop cross-platform applications and manage IT infrastructure without leaving Windows.</p>
+      <p><a class="p-link--inverted" href="/tutorials/command-line-for-beginners#1-overview">Take our command line for beginners tutorial&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">
-        Security
-      </h3>
-      <p>
-        Achieve the same first-class, out-of-the-box, compliant security that is synonymous with Ubuntu.  With long-term support releases,  you'll have five years of security patches and updates.
-      </p>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/23111d97-AI_sml_white.svg",
+        alt="",
+        width="85",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>Data Science</h4>
+      <p>nVidia Data Science Stack lets you maximise the performance of your Data Science and Machine Learning projects on top of native Windows nVidia drivers.</p>
+      <p><a class="p-link--inverted" href="/tutorials/enabling-gpu-acceleration-on-ubuntu-on-wsl2-with-the-nvidia-cuda-platform#1-overview">Learn how to enable GPU acceleration with NVIDIA CUDA&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 p-divider__block">
-      <h3 class="p-heading--4">
-        Enterprise support
-      </h3>
-      <p>
-        Ubuntu is certified on WSL through close collaboration with Microsoft. Enterprise support is provided for Ubuntu from Azure to Windows workstations creating a seamless operating environment.
-      </p>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a57bdf40-laptop-white-orange.svg",
+        alt="",
+        width="145",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>Web Development</h4>
+      <p>Develop in WSL using native Windows IDEs including VS Code and IntelliJ. Use containers to improve your workflow and benefit from full NodeJS and Ruby support.</p>
+      <p><a class="p-link--inverted" href="/tutorials/working-with-visual-studio-code-on-ubuntu-on-wsl2#1-overview">Learn how to use VS Code with Ubuntu on WSL&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/579f5db0-monitor-white.svg",
+        alt="",
+        width="107",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>Develop Graphical Applications</h4>
+      <p>Develop and preview web and graphical applications on Linux using WSLg. Create multiplatform graphical applications using popular open source development frameworks like Flutter or React Native.</p>
+      <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview">Learn how to run graphical apps with Ubuntu on WSL&nbsp;&rsaquo;</a></p>
+    </div>            
   </div>
-</section>
 
-<section class="p-strip--light is-bordered" id="install-ubuntu-on-wsl">
-  <div class="u-fixed-width">
-    <h2>Install Ubuntu on Windows Subsystem for Linux (WSL)</h2>
-
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Enable WSL on Windows 10</h3>
-
-        <div class="p-stepped-list__content">
-          <p>Open PowerShell as Administrator:</p>
-
-          <a href="https://assets.ubuntu.com/v1/ab33f8fa-wsl1-enablewslonwindows10.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/ab33f8fa-wsl1-enablewslonwindows10.png",
-              alt="",
-              height="964",
-              width="852",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </a>
-          <p>
-            Type the following command to enable WSL 1:
-          </p>
-          <pre><code>dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</code></pre>
-          <p>
-            Type the following command to enable WSL 2:
-          </p>
-          <pre><code>dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</code></pre>
-          <p>
-            Restart your computer.
-          </p>
-          <pre><code>Restart-Computer</code></pre>
-          <p>
-            After restarting, download and install the WSL 2 Linux kernel from Microsoft for your device architecture:
-          </p>
-          <ul>
-            <li>
-              <a class="p-link--external" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi">x86_64</a> for Intel and AMD devices
-            </li>
-            <li>
-              <a class="p-link--external" href="https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi">arm64</a> for Snapdragon and other ARM devices
-            </li>
-          </ul>
-          <p>
-            Finally, it is recommended to set WSL 2 as the default WSL environment.
-          </p>
-          <p>
-            Open PowerShell as Administrator as above and type the following command:
-          </p>
-          <pre><code>wsl.exe --set-default-version 2</code></pre>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install Ubuntu</h3>
-
-        <div class="p-stepped-list__content">
-          <p>Download Ubuntu for WSL from the Microsoft Store.</p>
-
-          <a class="u-sv3" href="https://assets.ubuntu.com/v1/ecc8acb4-installubuntu.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/ecc8acb4-installubuntu.png",
-              alt="",
-              height="903",
-              width="1208",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </a>
-
-          <p>
-            <a href="https://www.microsoft.com/store/productId/9NBLGGH4MSV6" class="p-button--positive p-link--external">Download from the Microsoft Store</a>
-          </p>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Run Ubuntu</h3>
-
-        <div class="p-stepped-list__content">
-          <p>Run Ubuntu from the Start Menu.</p>
-
-          <a href="https://assets.ubuntu.com/v1/293a2201-runubuntu.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/293a2201-runubuntu.png",
-              alt="",
-              height="497",
-              width="404",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </a>
-        </div>
-      </li>
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Set up Ubuntu</h3>
-
-        <div class="p-stepped-list__content">
-          <p>Select a username and password for your administrative user.</p>
-
-          <a href="https://assets.ubuntu.com/v1/01d46dfe-setupubuntu.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/01d46dfe-setupubuntu.png",
-              alt="",
-              height="268",
-              width="512",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </a>
-          <p>
-            Once complete, it is recommended you download and try the new <a class="p-link--external" href="https://www.microsoft.com/store/productId/9N0DX20HK701">Windows Terminal</a> for the best Ubuntu on WSL experience.
-          </p>
-        </div>
-      </li>
-    </ol>
-  </div>
+  <div class="row">
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ccd68f67-CI_CD-white.svg",
+        alt="",
+        width="152",
+        height="64",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem;padding-top:16px;"}
+        ) | safe
+      }}
+      <h4>Cross Platform Development</h4>
+      <p>Create and test your CI/CD pipelines locally on an Ubuntu WSL instance. When ready, publish to a cloud production environment running Ubuntu VMs.</p>
+      <p><a class="p-link--inverted" href="https://youtu.be/DmfuJzX6vJQ">Discover how to easily access “Kubernetes on Windows with WSL2” in our webinar</a></p>
+    </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/72c4ec88-Security-wht-outline.svg",
+        alt="",
+        width="70",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>Security</h4>
+      <p>Achieve the same first-class, out-of-the-box, compliant security
+      that is synonymous with Ubuntu.  With long-term support releases,  you'll have five years of security patches and updates.</p>
+      <p><a class="p-link--inverted" href="/about/release-cycle">Read more about the Ubuntu lifecycle and release cadence&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/274e1895-laptop-user-white.svg",
+        alt="",
+        width="80",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>Manage IT Infrastructure</h4>
+      <p>From the same workstation, manage mixed Linux and Windows infrastructure both on-prem and across public clouds.</p>
+      <p><a class="p-link--inverted" href="https://youtu.be/50bokFFOvtA">Learn from our community members and experts at the WSLConf&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6f30f9a5-Linux-laptop.svg",
+        alt="",
+        width="147",
+        height="80",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "padding-bottom:1rem"}
+        ) | safe
+      }}
+      <h4>Enterprise support</h4>
+      <p>Ubuntu is certified on WSL through close collaboration with Microsoft. Enterprise support is provided for Ubuntu from Azure to Windows workstations creating a seamless operating environment.</p>
+      <p><a class="p-button js-invoke-modal" data-testid="interactive-form-link" class="p-button" href="https://ubuntu.com/wsl/contact-us">Get in touch</a></p>
+    </div>            
+  </div>  
 </section>
 
 <section class="p-strip is-deep">
@@ -316,7 +267,7 @@
           <h4 class="p-heading-icon__title">Tutorial</h4>
         </div>
       </div>
-      <h3 class="p-heading--4"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL?action=subscribe#Installing_Packages_on_Ubuntu">Installing packages on Ubuntu on WSL</a></h3>
+      <h3 class="p-heading--4"><a href="https://wiki.ubuntu.com/WSL?action=subscribe#Installing_Packages_on_Ubuntu">Installing packages on Ubuntu on WSL</a></h3>
     </div>
 
     <div class="col-4 p-divider__block">
@@ -336,7 +287,7 @@
           <h4 class="p-heading-icon__title">Tutorial</h4>
         </div>
       </div>
-      <h3 class="p-heading--4"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Running_Graphical_Applications">Running graphical applications with X on WSL</a></h3>
+      <h3 class="p-heading--4"><a href="https://wiki.ubuntu.com/WSL#Running_Graphical_Applications">Running graphical applications with X on WSL</a></h3>
     </div>
 
     <div class="col-4 p-divider__block">
@@ -356,7 +307,7 @@
           <h4 class="p-heading-icon__title">Tutorial</h4>
         </div>
       </div>
-      <h3 class="p-heading--4"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Hello_World">Hello World on WSL</a></h3>
+      <h3 class="p-heading--4"><a href="https://wiki.ubuntu.com/WSL#Hello_World">Hello World on WSL</a></h3>
     </div>
   </div>
 </section>
