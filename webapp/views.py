@@ -548,6 +548,26 @@ def openstack_install():
     )
 
 
+def build_wsl_tutorials(tutorials_docs):
+    def wsl_tutorials():
+        topic = "wsl2"
+
+        tutorials_docs.parser.parse()
+        tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
+
+        tutorials = [
+            doc
+            for doc in tutorials_docs.parser.tutorials
+            if topic in doc["categories"]
+        ]
+
+        return flask.render_template(
+            "/wsl/index.html",
+            tutorials=tutorials,
+        )
+    return wsl_tutorials
+
+
 # Blog
 # ===
 class BlogView(flask.views.View):

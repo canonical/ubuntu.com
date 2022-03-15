@@ -71,6 +71,7 @@ from webapp.views import (
     marketo_submit,
     thank_you,
     mirrors_query,
+    build_wsl_tutorials,
 )
 
 from webapp.shop.views import (
@@ -720,6 +721,10 @@ app.add_url_rule(
     tutorials_path, view_func=build_tutorials_index(session, tutorials_docs)
 )
 tutorials_docs.init_app(app)
+
+app.add_url_rule(
+    "/wsl", view_func=build_wsl_tutorials(tutorials_docs)
+)
 
 # Ceph docs
 ceph_docs = Docs(

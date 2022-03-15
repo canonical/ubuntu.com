@@ -299,6 +299,7 @@
   </div>
 
   <div class="row p-divider">
+    {% for item in tutorials %}
     <div class="col-4 p-divider__block" id="ubuntu-com_core_left">
       <div class="p-heading-icon--muted">
         <div class="p-heading-icon__header">
@@ -316,48 +317,9 @@
           <h4 class="p-heading-icon__title">Tutorial</h4>
         </div>
       </div>
-      <h3 class="p-heading--4"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL?action=subscribe#Installing_Packages_on_Ubuntu">Installing packages on Ubuntu on WSL</a></h3>
+      <h3 class="p-heading--4"><a href="{{ item.link }}">{{ item.title }}</a></h3>
     </div>
-
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            height="32",
-            width="38",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Running_Graphical_Applications">Running graphical applications with X on WSL</a></h3>
-    </div>
-
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            height="32",
-            width="38",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a class="p-link--external" href="https://wiki.ubuntu.com/WSL#Hello_World">Hello World on WSL</a></h3>
-    </div>
+    {% endfor %}
   </div>
 </section>
 
