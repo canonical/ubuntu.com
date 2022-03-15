@@ -550,7 +550,7 @@ def openstack_install():
 
 def build_wsl_tutorials(tutorials_docs):
     def wsl_tutorials():
-        topic = "wsl2"
+        topic = "wsl"
 
         tutorials_docs.parser.parse()
         tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
@@ -561,10 +561,18 @@ def build_wsl_tutorials(tutorials_docs):
             if topic in doc["categories"]
         ]
 
+        tutorials = sorted(
+            tutorials, key=lambda k: k["difficulty"], reverse=False
+        )
+
+        total_results = len(tutorials)
+
         return flask.render_template(
             "/wsl/index.html",
             tutorials=tutorials,
+            total_results=total_results,
         )
+
     return wsl_tutorials
 
 

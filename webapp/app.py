@@ -722,9 +722,7 @@ app.add_url_rule(
 )
 tutorials_docs.init_app(app)
 
-app.add_url_rule(
-    "/wsl", view_func=build_wsl_tutorials(tutorials_docs)
-)
+app.add_url_rule("/wsl", view_func=build_wsl_tutorials(tutorials_docs))
 
 # Ceph docs
 ceph_docs = Docs(
