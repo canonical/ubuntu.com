@@ -1,5 +1,4 @@
 import unittest
-from typing import List, Dict
 
 from tests.shop.advantage.helpers import (
     Session,
@@ -14,13 +13,6 @@ from webapp.shop.api.ua_contracts.api import (
     UnauthorizedError,
     AccessForbiddenError,
 )
-from webapp.shop.api.ua_contracts.models import Listing
-from webapp.shop.api.ua_contracts.primitives import (
-    Account,
-    Contract,
-    Subscription,
-    User,
-)
 
 
 class TestGetAccounts(unittest.TestCase):
@@ -33,15 +25,11 @@ class TestGetAccounts(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_accounts()
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         json_accounts = get_fixture("accounts")
@@ -51,9 +39,7 @@ class TestGetAccounts(unittest.TestCase):
                 content={"accounts": json_accounts},
             )
         )
-        client = make_client(session)
-
-        response = client.get_accounts()
+        make_client(session).get_accounts()
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -63,20 +49,16 @@ class TestGetAccounts(unittest.TestCase):
             "url": "https://1.2.3.4/v1/accounts",
         }
 
-        self.assertEqual(response, json_accounts)
         self.assertEqual(session.request_kwargs, expected_args)
 
     def test_view_as_adds_email(self):
-        json_accounts = get_fixture("accounts")
         session = Session(
             Response(
                 status_code=200,
-                content={"accounts": json_accounts},
+                content={"accounts": get_fixture("accounts")},
             )
         )
-        client = make_client(session)
-
-        response = client.get_accounts(email="email@address.abc")
+        make_client(session).get_accounts(email="email@address.abc")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -85,33 +67,6 @@ class TestGetAccounts(unittest.TestCase):
             "params": {"email": "email@address.abc"},
             "url": "https://1.2.3.4/v1/accounts",
         }
-
-        self.assertEqual(response, json_accounts)
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response_returns_list_of_accounts(self):
-        json_accounts = get_fixture("accounts")
-        session = Session(
-            Response(
-                status_code=200,
-                content={"accounts": json_accounts},
-            )
-        )
-        client = make_client(session, convert_response=True)
-
-        response = client.get_accounts()
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "get",
-            "params": None,
-            "url": "https://1.2.3.4/v1/accounts",
-        }
-
-        self.assertIsInstance(response, List)
-        for item in response:
-            self.assertIsInstance(item, Account)
 
         self.assertEqual(session.request_kwargs, expected_args)
 
@@ -126,27 +81,21 @@ class TestGetAccountContracts(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_account_contracts(account_id="aABbCcdD")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_contracts = get_fixture("contracts")
         session = Session(
             response=Response(
                 status_code=200,
-                content={"contracts": json_contracts},
+                content={"contracts": get_fixture("contracts")},
             )
         )
-        client = make_client(session)
 
-        response = client.get_account_contracts("aAbBcCdD")
+        make_client(session).get_account_contracts("aAbBcCdD")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -159,37 +108,6 @@ class TestGetAccountContracts(unittest.TestCase):
                 "&include-active-machines=false"
             ),
         }
-
-        self.assertEqual(response, json_contracts)
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response_returns_list_of_contracts(self):
-        json_contracts = get_fixture("contracts")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content={"contracts": json_contracts},
-            )
-        )
-        client = make_client(session, convert_response=True)
-
-        response = client.get_account_contracts("aAbBcCdD")
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "get",
-            "params": None,
-            "url": (
-                "https://1.2.3.4/v1/accounts/aAbBcCdD/contracts"
-                "?productTags=ua,classic,pro,blender"
-                "&include-active-machines=false"
-            ),
-        }
-
-        self.assertIsInstance(response, List)
-        for item in response:
-            self.assertIsInstance(item, Contract)
 
         self.assertEqual(session.request_kwargs, expected_args)
 
@@ -204,28 +122,21 @@ class TestGetContract(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_contract(contract_id="cABbCcdD")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_contract = get_fixture("contract")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_contract,
+                content=get_fixture("contract"),
             )
         )
 
-        client = make_client(session)
-
-        response = client.get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
+        make_client(session).get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -237,32 +148,6 @@ class TestGetContract(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_contract)
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response_returns_list_of_contracts(self):
-        json_contract = get_fixture("contract")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content=json_contract,
-            )
-        )
-        client = make_client(session, convert_response=True)
-
-        response = client.get_contract("cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP")
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": {},
-            "method": "get",
-            "params": None,
-            "url": (
-                "https://1.2.3.4/v1/contracts/cAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP"
-            ),
-        }
-
-        self.assertIsInstance(response, Contract)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -276,60 +161,24 @@ class TestGetProductListings(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_product_listings(marketplace="canonical-ua")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_listings = {
-            "productListings": get_fixture("product-listings"),
-            "products": get_fixture("products"),
-        }
-
-        session = Session(
-            response=Response(status_code=200, content=json_listings)
-        )
-
-        client = make_client(session)
-
-        response = client.get_product_listings(marketplace="canonical-ua")
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "get",
-            "params": None,
-            "url": (
-                "https://1.2.3.4"
-                "/v1/marketplace/canonical-ua/product-listings"
-            ),
-        }
-
-        self.assertEqual(response, json_listings)
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response_returns_list_of_contracts(self):
-        json_listings = {
-            "productListings": get_fixture("product-listings"),
-            "products": get_fixture("products"),
-        }
-
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_listings,
+                content={
+                    "productListings": get_fixture("product-listings"),
+                    "products": get_fixture("products"),
+                },
             )
         )
 
-        client = make_client(session, convert_response=True)
-
-        response = client.get_product_listings(marketplace="canonical-ua")
+        make_client(session).get_product_listings(marketplace="canonical-ua")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -341,10 +190,6 @@ class TestGetProductListings(unittest.TestCase):
                 "/v1/marketplace/canonical-ua/product-listings"
             ),
         }
-
-        self.assertIsInstance(response, Dict)
-        for listing in response.values():
-            self.assertIsInstance(listing, Listing)
 
         self.assertEqual(session.request_kwargs, expected_args)
 
@@ -359,30 +204,23 @@ class TestGetAccountSubscriptions(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_account_subscriptions(
                     account_id="aABbCcdD", marketplace="canonical-ua"
                 )
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_subscriptions = get_fixture("subscriptions")
         session = Session(
             response=Response(
                 status_code=200,
-                content={"subscriptions": json_subscriptions},
+                content={"subscriptions": get_fixture("subscriptions")},
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_subscriptions(
-            account_id="aABbCcdD", marketplace="canonical-ua"
+        make_client(session).get_account_subscriptions(
+            account_id="aABbCcdD", marketplace="canonical-ua", filters=""
         )
 
         expected_args = {
@@ -396,23 +234,19 @@ class TestGetAccountSubscriptions(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_subscriptions)
         self.assertEqual(session.request_kwargs, expected_args)
 
     def test_account_subscriptions_filters(self):
-        json_subscriptions = get_fixture("subscriptions")
         session = Session(
             response=Response(
                 status_code=200,
-                content={"subscriptions": json_subscriptions},
+                content={"subscriptions": get_fixture("subscriptions")},
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_subscriptions(
+        make_client(session).get_account_subscriptions(
             account_id="aABbCcdD",
             marketplace="canonical-ua",
-            filters={"status": "active", "period": "monthly"},
+            filters="?status=active&period=monthly",
         )
 
         expected_args = {
@@ -426,41 +260,6 @@ class TestGetAccountSubscriptions(unittest.TestCase):
                 "?status=active&period=monthly"
             ),
         }
-
-        self.assertEqual(response, json_subscriptions)
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response_returns_list_of_subscriptions(self):
-        json_subscriptions = get_fixture("subscriptions")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content={"subscriptions": json_subscriptions},
-            )
-        )
-        client = make_client(session, convert_response=True)
-
-        response = client.get_account_subscriptions(
-            account_id="aABbCcdD",
-            marketplace="canonical-ua",
-            filters={"status": "active", "period": "monthly"},
-        )
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "get",
-            "params": None,
-            "url": (
-                "https://1.2.3.4/v1/accounts/aABbCcdD"
-                "/marketplace/canonical-ua/subscriptions"
-                "?status=active&period=monthly"
-            ),
-        }
-
-        self.assertIsInstance(response, List)
-        for item in response:
-            self.assertIsInstance(item, Subscription)
 
         self.assertEqual(session.request_kwargs, expected_args)
 
@@ -477,15 +276,11 @@ class TestGetContractToken(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_contract_token(contract_id="cABbCcdD")
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -494,9 +289,7 @@ class TestGetContractToken(unittest.TestCase):
                 content={"contractToken": "token"},
             )
         )
-        client = make_client(session)
-
-        response = client.get_contract_token(contract_id="cABbCcdD")
+        make_client(session).get_contract_token(contract_id="cABbCcdD")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -506,7 +299,6 @@ class TestGetContractToken(unittest.TestCase):
             "url": "https://1.2.3.4/v1/contracts/cABbCcdD/token",
         }
 
-        self.assertEqual(response, "token")
         self.assertEqual(session.request_kwargs, expected_args)
 
     def test_success_returns_none(self):
@@ -516,9 +308,7 @@ class TestGetContractToken(unittest.TestCase):
                 content={"no-token": ""},
             )
         )
-        client = make_client(session)
-
-        response = client.get_contract_token(contract_id="cABbCcdD")
+        make_client(session).get_contract_token(contract_id="cABbCcdD")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -528,7 +318,6 @@ class TestGetContractToken(unittest.TestCase):
             "url": "https://1.2.3.4/v1/contracts/cABbCcdD/token",
         }
 
-        self.assertEqual(response, None)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -544,27 +333,20 @@ class TestGetCustomerInfo(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_customer_info(account_id="aABbCcdD")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_customer_info = get_fixture("customer-info")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_customer_info,
+                content=get_fixture("customer-info"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_customer_info(account_id="aAaBbCcDdEeFfGg")
+        make_client(session).get_customer_info(account_id="aAaBbCcDdEeFfGg")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -577,7 +359,6 @@ class TestGetCustomerInfo(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_customer_info)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -589,58 +370,43 @@ class TestPutCustomerInfo(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            address = {
+            with self.assertRaises(expected_error):
+                client.put_customer_info(
+                    account_id="aAaBbCcDdEeFfGg",
+                    payment_method_id="pm_abcdef",
+                    address={
+                        "city": "Lone Done",
+                        "country": "GB",
+                        "line1": "Road Street",
+                        "postal_code": "111000",
+                        "state": "",
+                    },
+                    name="Joe Doe",
+                    tax_id={"type": "eu_vat", "value": "GB 123 1234 14"},
+                )
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=get_fixture("account"),
+            )
+        )
+        make_client(session).put_customer_info(
+            account_id="aAaBbCcDdEeFfGg",
+            payment_method_id="pm_abcdef",
+            address={
                 "city": "Lone Done",
                 "country": "GB",
                 "line1": "Road Street",
                 "postal_code": "111000",
                 "state": "",
-            }
-
-            tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
-
-            with self.assertRaises(expected_error) as error:
-                client.put_customer_info(
-                    account_id="aAaBbCcDdEeFfGg",
-                    payment_method_id="pm_abcdef",
-                    address=address,
-                    name="Joe Doe",
-                    tax_id=tax_id,
-                )
-
-            self.assertEqual(error.exception.response.json(), response_content)
-
-    def test_success(self):
-        json_account = get_fixture("account")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content=json_account,
-            )
-        )
-        client = make_client(session)
-
-        address = {
-            "city": "Lone Done",
-            "country": "GB",
-            "line1": "Road Street",
-            "postal_code": "111000",
-            "state": "",
-        }
-
-        tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
-
-        response = client.put_customer_info(
-            account_id="aAaBbCcDdEeFfGg",
-            payment_method_id="pm_abcdef",
-            address=address,
+            },
             name="Joe Doe",
-            tax_id=tax_id,
+            tax_id={"type": "eu_vat", "value": "GB 123 1234 14"},
         )
 
         expected_args = {
@@ -648,9 +414,15 @@ class TestPutCustomerInfo(unittest.TestCase):
             "json": {
                 "defaultPaymentMethod": {"Id": "pm_abcdef"},
                 "paymentMethodID": "pm_abcdef",
-                "address": address,
+                "address": {
+                    "city": "Lone Done",
+                    "country": "GB",
+                    "line1": "Road Street",
+                    "postal_code": "111000",
+                    "state": "",
+                },
                 "name": "Joe Doe",
-                "taxID": tax_id,
+                "taxID": {"type": "eu_vat", "value": "GB 123 1234 14"},
             },
             "method": "put",
             "params": None,
@@ -660,7 +432,6 @@ class TestPutCustomerInfo(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_account)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -672,64 +443,55 @@ class TestAnonymousCustomerInfo(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            address = {
+            with self.assertRaises(expected_error):
+                client.put_anonymous_customer_info(
+                    account_id="aAaBbCcDdEeFfGg",
+                    address={
+                        "city": "Lone Done",
+                        "country": "GB",
+                        "line1": "Road Street",
+                        "postal_code": "111000",
+                        "state": "",
+                    },
+                    name="Joe Doe",
+                    tax_id={"type": "eu_vat", "value": "GB 123 1234 14"},
+                )
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=get_fixture("account"),
+            )
+        )
+        make_client(session).put_anonymous_customer_info(
+            account_id="aAaBbCcDdEeFfGg",
+            address={
                 "city": "Lone Done",
                 "country": "GB",
                 "line1": "Road Street",
                 "postal_code": "111000",
                 "state": "",
-            }
-
-            tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
-
-            with self.assertRaises(expected_error) as error:
-                client.put_anonymous_customer_info(
-                    account_id="aAaBbCcDdEeFfGg",
-                    address=address,
-                    name="Joe Doe",
-                    tax_id=tax_id,
-                )
-
-            self.assertEqual(error.exception.response.json(), response_content)
-
-    def test_success(self):
-        json_account = get_fixture("account")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content=json_account,
-            )
-        )
-        client = make_client(session)
-
-        address = {
-            "city": "Lone Done",
-            "country": "GB",
-            "line1": "Road Street",
-            "postal_code": "111000",
-            "state": "",
-        }
-
-        tax_id = {"type": "eu_vat", "value": "GB 123 1234 14"}
-
-        response = client.put_anonymous_customer_info(
-            account_id="aAaBbCcDdEeFfGg",
-            address=address,
+            },
             name="Joe Doe",
-            tax_id=tax_id,
+            tax_id={"type": "eu_vat", "value": "GB 123 1234 14"},
         )
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
             "json": {
-                "address": address,
+                "address": {
+                    "city": "Lone Done",
+                    "country": "GB",
+                    "line1": "Road Street",
+                    "postal_code": "111000",
+                    "state": "",
+                },
                 "name": "Joe Doe",
-                "taxID": tax_id,
+                "taxID": {"type": "eu_vat", "value": "GB 123 1234 14"},
             },
             "method": "put",
             "params": None,
@@ -739,7 +501,6 @@ class TestAnonymousCustomerInfo(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_account)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -751,30 +512,23 @@ class TestPutPaymentMethod(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.put_payment_method(
                     account_id="aAaBbCcDdEeFfGg",
                     payment_method_id="pm_abcdef",
                 )
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_account = get_fixture("account")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_account,
+                content=get_fixture("account"),
             )
         )
-        client = make_client(session)
-
-        response = client.put_payment_method(
+        make_client(session).put_payment_method(
             account_id="aAaBbCcDdEeFfGg",
             payment_method_id="pm_abcdef",
         )
@@ -792,7 +546,6 @@ class TestPutPaymentMethod(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_account)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -804,19 +557,15 @@ class TestPostStripeInvoiceId(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.post_stripe_invoice_id(
                     tx_type="purchase",
                     tx_id="pAaBbCcDdEeFfGg",
                     invoice_id="in_aAbBbCcDdEe",
                 )
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -825,9 +574,7 @@ class TestPostStripeInvoiceId(unittest.TestCase):
                 content={},
             )
         )
-        client = make_client(session)
-
-        response = client.post_stripe_invoice_id(
+        make_client(session).post_stripe_invoice_id(
             tx_type="purchase",
             tx_id="pAaBbCcDdEeFfGg",
             invoice_id="in_aAbBbCcDdEe",
@@ -844,7 +591,6 @@ class TestPostStripeInvoiceId(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, {})
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -858,27 +604,20 @@ class TestGetAccountPurchases(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_account_purchases(account_id="aABbCcdD")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_purchases = get_fixture("purchases")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_purchases,
+                content=get_fixture("purchases"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_purchases(account_id="aABbCcdD")
+        make_client(session).get_account_purchases(account_id="aABbCcdD")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -888,22 +627,18 @@ class TestGetAccountPurchases(unittest.TestCase):
             "url": "https://1.2.3.4/v1/accounts/aABbCcdD/purchases",
         }
 
-        self.assertEqual(response, json_purchases.get("purchases"))
         self.assertEqual(session.request_kwargs, expected_args)
 
     def test_account_purchases_filters(self):
-        json_purchases = get_fixture("purchases")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_purchases,
+                content=get_fixture("purchases"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_purchases(
+        make_client(session).get_account_purchases(
             account_id="aABbCcdD",
-            filters={"marketplace": "canonical-ua"},
+            filters="?marketplace=canonical-ua",
         )
 
         expected_args = {
@@ -917,22 +652,18 @@ class TestGetAccountPurchases(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_purchases.get("purchases"))
         self.assertEqual(session.request_kwargs, expected_args)
 
     def test_account_purchases_filters_none_values(self):
-        json_purchases = get_fixture("purchases")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_purchases,
+                content=get_fixture("purchases"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_purchases(
+        make_client(session).get_account_purchases(
             account_id="aABbCcdD",
-            filters=None,
+            filters="",
         )
 
         expected_args = {
@@ -943,7 +674,6 @@ class TestGetAccountPurchases(unittest.TestCase):
             "url": "https://1.2.3.4/v1/accounts/aABbCcdD/purchases",
         }
 
-        self.assertEqual(response, json_purchases.get("purchases"))
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -957,27 +687,20 @@ class TestGetPurchase(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_purchase(purchase_id="pAaAbBbCcDdEe")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_purchase = get_fixture("purchase")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_purchase,
+                content=get_fixture("purchase"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_purchase(purchase_id="pAaAbBbCcDdEe")
+        make_client(session).get_purchase(purchase_id="pAaAbBbCcDdEe")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -987,7 +710,6 @@ class TestGetPurchase(unittest.TestCase):
             "url": "https://1.2.3.4/v1/purchase/pAaAbBbCcDdEe",
         }
 
-        self.assertEqual(response, json_purchase)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1005,27 +727,20 @@ class TestGetPurchaseAccount(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_purchase_account("canonical-ua")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_account = get_fixture("account")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_account,
+                content=get_fixture("account"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_purchase_account("canonical-ua")
+        make_client(session).get_purchase_account("canonical-ua")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -1035,30 +750,6 @@ class TestGetPurchaseAccount(unittest.TestCase):
             "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
-        self.assertEqual(response, json_account)
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response(self):
-        json_account = get_fixture("account")
-        session = Session(
-            Response(
-                status_code=200,
-                content=json_account,
-            )
-        )
-        client = make_client(session, convert_response=True)
-
-        response = client.get_purchase_account("canonical-ua")
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "get",
-            "params": None,
-            "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
-        }
-
-        self.assertIsInstance(response, Account)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1075,27 +766,20 @@ class TestGetAccountOffers(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "expected error"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_account_offers("account_id")
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_offers = get_fixture("offers")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_offers,
+                content=get_fixture("offers"),
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_offers("account_id")
+        make_client(session).get_account_offers("account_id")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -1105,27 +789,48 @@ class TestGetAccountOffers(unittest.TestCase):
             "url": "https://1.2.3.4/v1/accounts/account_id/offers",
         }
 
-        self.assertEqual(response, json_offers)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
 class TestPurchaseFromMarketplace(unittest.TestCase):
     def test_errors(self):
-        default_response_content = {"code": "expected error"}
-
         cases = [
-            (401, False, UAContractsAPIError, default_response_content),
-            (401, True, UAContractsAPIErrorView, default_response_content),
-            (500, False, UAContractsAPIError, default_response_content),
-            (500, True, UAContractsAPIErrorView, default_response_content),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
         ]
 
-        for code, is_for_view, expected_error, response_content in cases:
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+        for code, is_for_view, expected_error in cases:
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            purchase_request = {
+            with self.assertRaises(expected_error):
+                client.purchase_from_marketplace(
+                    marketplace="canonical-ua",
+                    purchase_request={
+                        "accountID": "aAaBbCcDdEeFfGg",
+                        "purchaseItems": [
+                            {
+                                "productListingID": "lAaBbCcDdEeFfGg",
+                                "metric": "active-machines",
+                                "value": 5,
+                            }
+                        ],
+                        "previousPurchaseID": "pAaBbCcDdEeFfGg",
+                    },
+                )
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=get_fixture("purchase"),
+            )
+        )
+        make_client(session).purchase_from_marketplace(
+            marketplace="canonical-ua",
+            purchase_request={
                 "accountID": "aAaBbCcDdEeFfGg",
                 "purchaseItems": [
                     {
@@ -1135,72 +840,69 @@ class TestPurchaseFromMarketplace(unittest.TestCase):
                     }
                 ],
                 "previousPurchaseID": "pAaBbCcDdEeFfGg",
-            }
-
-            with self.assertRaises(expected_error) as error:
-                client.purchase_from_marketplace(
-                    marketplace="canonical-ua",
-                    purchase_request=purchase_request,
-                )
-
-            self.assertEqual(error.exception.response.json(), response_content)
-
-    def test_success(self):
-        json_purchase = get_fixture("purchase")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content=json_purchase,
-            )
-        )
-        client = make_client(session)
-
-        purchase_request = {
-            "accountID": "aAaBbCcDdEeFfGg",
-            "purchaseItems": [
-                {
-                    "productListingID": "lAaBbCcDdEeFfGg",
-                    "metric": "active-machines",
-                    "value": 5,
-                }
-            ],
-            "previousPurchaseID": "pAaBbCcDdEeFfGg",
-        }
-
-        response = client.purchase_from_marketplace(
-            marketplace="canonical-ua",
-            purchase_request=purchase_request,
+            },
         )
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
-            "json": purchase_request,
+            "json": {
+                "accountID": "aAaBbCcDdEeFfGg",
+                "purchaseItems": [
+                    {
+                        "productListingID": "lAaBbCcDdEeFfGg",
+                        "metric": "active-machines",
+                        "value": 5,
+                    }
+                ],
+                "previousPurchaseID": "pAaBbCcDdEeFfGg",
+            },
             "method": "post",
             "params": None,
             "url": "https://1.2.3.4/v1/marketplace/canonical-ua/purchase",
         }
 
-        self.assertEqual(response, json_purchase)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
 class TestPreviewPurchaseFromMarketplace(unittest.TestCase):
     def test_errors(self):
-        default_response_content = {"code": "expected error"}
-
         cases = [
-            (401, False, UAContractsAPIError, default_response_content),
-            (401, True, UAContractsAPIErrorView, default_response_content),
-            (500, False, UAContractsAPIError, default_response_content),
-            (500, True, UAContractsAPIErrorView, default_response_content),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
         ]
 
-        for code, is_for_view, expected_error, response_content in cases:
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+        for code, is_for_view, expected_error in cases:
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            purchase_request = {
+            with self.assertRaises(expected_error):
+                client.preview_purchase_from_marketplace(
+                    marketplace="canonical-ua",
+                    purchase_request={
+                        "accountID": "aAaBbCcDdEeFfGg",
+                        "purchaseItems": [
+                            {
+                                "productListingID": "lAaBbCcDdEeFfGg",
+                                "metric": "active-machines",
+                                "value": 5,
+                            }
+                        ],
+                        "previousPurchaseID": "pAaBbCcDdEeFfGg",
+                    },
+                )
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content=get_fixture("purchase"),
+            )
+        )
+        make_client(session).preview_purchase_from_marketplace(
+            marketplace="canonical-ua",
+            purchase_request={
                 "accountID": "aAaBbCcDdEeFfGg",
                 "purchaseItems": [
                     {
@@ -1210,46 +912,22 @@ class TestPreviewPurchaseFromMarketplace(unittest.TestCase):
                     }
                 ],
                 "previousPurchaseID": "pAaBbCcDdEeFfGg",
-            }
-
-            with self.assertRaises(expected_error) as error:
-                client.preview_purchase_from_marketplace(
-                    marketplace="canonical-ua",
-                    purchase_request=purchase_request,
-                )
-
-            self.assertEqual(error.exception.response.json(), response_content)
-
-    def test_success(self):
-        json_purchase = get_fixture("purchase")
-        session = Session(
-            response=Response(
-                status_code=200,
-                content=json_purchase,
-            )
-        )
-        client = make_client(session)
-
-        purchase_request = {
-            "accountID": "aAaBbCcDdEeFfGg",
-            "purchaseItems": [
-                {
-                    "productListingID": "lAaBbCcDdEeFfGg",
-                    "metric": "active-machines",
-                    "value": 5,
-                }
-            ],
-            "previousPurchaseID": "pAaBbCcDdEeFfGg",
-        }
-
-        response = client.preview_purchase_from_marketplace(
-            marketplace="canonical-ua",
-            purchase_request=purchase_request,
+            },
         )
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
-            "json": purchase_request,
+            "json": {
+                "accountID": "aAaBbCcDdEeFfGg",
+                "purchaseItems": [
+                    {
+                        "productListingID": "lAaBbCcDdEeFfGg",
+                        "metric": "active-machines",
+                        "value": 5,
+                    }
+                ],
+                "previousPurchaseID": "pAaBbCcDdEeFfGg",
+            },
             "method": "post",
             "params": None,
             "url": (
@@ -1258,7 +936,6 @@ class TestPreviewPurchaseFromMarketplace(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, json_purchase)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1270,15 +947,11 @@ class TestCancelSubscription(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.cancel_subscription(subscription_id="sAaBbCcDdEeFfGg")
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -1287,9 +960,7 @@ class TestCancelSubscription(unittest.TestCase):
                 content={},
             )
         )
-        client = make_client(session)
-
-        response = client.cancel_subscription(
+        make_client(session).cancel_subscription(
             subscription_id="sAaBbCcDdEeFfGg"
         )
 
@@ -1301,7 +972,6 @@ class TestCancelSubscription(unittest.TestCase):
             "url": "https://1.2.3.4/v1/subscriptions/sAaBbCcDdEeFfGg",
         }
 
-        self.assertEqual(response, {})
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1313,18 +983,14 @@ class TestPostSubscriptionAutoRenewal(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.post_subscription_auto_renewal(
                     subscription_id="sAaBbCcDdEeFfGg",
                     should_auto_renew=True,
                 )
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -1333,9 +999,7 @@ class TestPostSubscriptionAutoRenewal(unittest.TestCase):
                 content={},
             )
         )
-        client = make_client(session)
-
-        response = client.post_subscription_auto_renewal(
+        make_client(session).post_subscription_auto_renewal(
             subscription_id="sAaBbCcDdEeFfGg",
             should_auto_renew=True,
         )
@@ -1351,7 +1015,6 @@ class TestPostSubscriptionAutoRenewal(unittest.TestCase):
             ),
         }
 
-        self.assertEqual(response, {})
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1365,12 +1028,10 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.ensure_purchase_account(
                     email="email@url",
                     account_name="Joe Doe",
@@ -1378,19 +1039,14 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
                     captcha_value="abcd1234",
                 )
 
-            self.assertEqual(error.exception.response.json(), response_content)
-
     def test_success(self):
-        json_ensure_account = get_fixture("ensured-account")
         session = Session(
             response=Response(
                 status_code=200,
-                content=json_ensure_account,
+                content=get_fixture("ensured-account"),
             )
         )
-        client = make_client(session)
-
-        response = client.ensure_purchase_account(
+        make_client(session).ensure_purchase_account(
             email="email@url",
             account_name="Joe Doe",
             marketplace="canonical-ua",
@@ -1409,7 +1065,6 @@ class TestEnsurePurchaseAccount(unittest.TestCase):
             "url": "https://1.2.3.4/v1/marketplace/canonical-ua/account",
         }
 
-        self.assertEqual(response, json_ensure_account)
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1421,15 +1076,11 @@ class TestGetAccountUsers(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.get_account_users(account_id="aAbBcCdD")
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -1446,9 +1097,7 @@ class TestGetAccountUsers(unittest.TestCase):
                 },
             )
         )
-        client = make_client(session)
-
-        response = client.get_account_users(account_id="aAbBcCdD")
+        make_client(session).get_account_users(account_id="aAbBcCdD")
 
         expected_args = {
             "headers": {"Authorization": "Macaroon secret-token"},
@@ -1457,41 +1106,6 @@ class TestGetAccountUsers(unittest.TestCase):
             "params": None,
             "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/users",
         }
-
-        self.assertEqual(response, [get_fixture("user")])
-        self.assertEqual(session.request_kwargs, expected_args)
-
-    def test_convert_response_returns_list_of_users(self):
-        session = Session(
-            Response(
-                status_code=200,
-                content={
-                    "accountInfo": get_fixture("account"),
-                    "users": [
-                        {
-                            "accountInfo": get_fixture("account"),
-                            "userInfo": get_fixture("user"),
-                        }
-                    ],
-                },
-            )
-        )
-
-        client = make_client(session, convert_response=True)
-
-        response = client.get_account_users(account_id="aAbBcCdD")
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": {},
-            "method": "get",
-            "params": None,
-            "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/users",
-        }
-
-        self.assertIsInstance(response, List)
-        for item in response:
-            self.assertIsInstance(item, User)
 
         self.assertEqual(session.request_kwargs, expected_args)
 
@@ -1504,18 +1118,14 @@ class TestPutAccountUserRole(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.put_account_user_role(
                     account_id="aAbBcCdD",
                     user_role_request={},
                 )
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -1524,9 +1134,7 @@ class TestPutAccountUserRole(unittest.TestCase):
                 content={},
             )
         )
-        client = make_client(session)
-
-        response = client.put_account_user_role(
+        make_client(session).put_account_user_role(
             account_id="aAbBcCdD",
             user_role_request={
                 "email": "joe.doe@canonical.com",
@@ -1547,7 +1155,6 @@ class TestPutAccountUserRole(unittest.TestCase):
             "url": "https://1.2.3.4/v1/accounts/aAbBcCdD/user-role",
         }
 
-        self.assertEqual(response, {})
         self.assertEqual(session.request_kwargs, expected_args)
 
 
@@ -1559,20 +1166,16 @@ class TestPutContractEntitlements(unittest.TestCase):
         ]
 
         for code, is_for_view, expected_error in cases:
-            response_content = {"code": "bad request"}
-            response = Response(status_code=code, content=response_content)
-            session = Session(response=response)
+            session = Session(response=Response(status_code=code, content={}))
             client = make_client(session, is_for_view=is_for_view)
 
-            with self.assertRaises(expected_error) as error:
+            with self.assertRaises(expected_error):
                 client.put_contract_entitlements(
                     contract_id="cAbBcCdD",
                     entitlements_request={
                         "entitlements": [{"type": "fips", "is_enabled": True}]
                     },
                 )
-
-            self.assertEqual(error.exception.response.json(), response_content)
 
     def test_success(self):
         session = Session(
@@ -1581,9 +1184,7 @@ class TestPutContractEntitlements(unittest.TestCase):
                 content={},
             )
         )
-        client = make_client(session)
-
-        response = client.put_contract_entitlements(
+        make_client(session).put_contract_entitlements(
             contract_id="cAbBcCdD",
             entitlements_request={
                 "entitlements": [{"type": "fips", "is_enabled": True}]
@@ -1598,5 +1199,4 @@ class TestPutContractEntitlements(unittest.TestCase):
             "url": "https://1.2.3.4/v1/contracts/cAbBcCdD/defaultEnablement",
         }
 
-        self.assertEqual(response, {})
         self.assertEqual(session.request_kwargs, expected_args)

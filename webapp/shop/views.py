@@ -48,11 +48,11 @@ def account_view(**kwargs):
 
 @shop_decorator(area="account", permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
-def invoices_view(ua_contracts_api, **kwargs):
+def invoices_view(advantage_mapper, ua_contracts_api, **kwargs):
     marketplace = kwargs.get("marketplace")
 
     try:
-        account = ua_contracts_api.get_purchase_account("canonical-ua")
+        account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         account = None
     except AccessForbiddenError:
@@ -62,8 +62,8 @@ def invoices_view(ua_contracts_api, **kwargs):
     filters = {"marketplace": marketplace} if marketplace else None
 
     if account:
-        raw_payments = ua_contracts_api.get_account_purchases(
-            account_id=account["id"],
+        raw_payments = advantage_mapper.get_account_purchases(
+            account_id=account.id,
             filters=filters,
         )
 
@@ -130,25 +130,25 @@ def download_invoice(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="account", permission="user", response="html")
-def payment_methods_view(ua_contracts_api, **kwargs):
+def payment_methods_view(advantage_mapper, ua_contracts_api, **kwargs):
     account = None
     default_payment_method = None
     account_id = ""
     pending_purchase_id = ""
 
     try:
-        account = ua_contracts_api.get_purchase_account("canonical-ua")
+        account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
         pass
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
 
     if account:
-        account_id = account["id"]
+        account_id = account.id
         subscriptions = []
 
         for marketplace in SERVICES:
-            market_subscriptions = ua_contracts_api.get_account_subscriptions(
+            market_subscriptions = advantage_mapper.get_account_subscriptions(
                 account_id=account_id,
                 marketplace=marketplace,
                 filters={"status": "locked"},
@@ -156,8 +156,8 @@ def payment_methods_view(ua_contracts_api, **kwargs):
             subscriptions.extend(market_subscriptions)
 
         for subscription in subscriptions:
-            if subscription.get("pendingPurchases"):
-                pending_purchase_id = subscription.get("pendingPurchases")[0]
+            if subscription.pending_purchases:
+                pending_purchase_id = subscription.pending_purchases[0]
                 break
 
         try:
@@ -197,9 +197,7 @@ def post_payment_methods(ua_contracts_api, **kwargs):
     return response
 
 
-@shop_decorator(
-    area="account",
-)
+@shop_decorator(area="account")
 @use_kwargs(ensure_purchase_account, location="json")
 def ensure_purchase_account(ua_contracts_api, **kwargs):
     """
@@ -314,16 +312,15 @@ def get_purchase(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="account", permission="user", response="json")
-def get_last_purchase_ids(ua_contracts_api, **kwargs):
+def get_last_purchase_ids(advantage_mapper, **kwargs):
     account_id = kwargs.get("account_id")
-    ua_contracts_api.set_convert_response(True)
 
     last_purchase_ids = {}
     for marketplace in SERVICES:
         if marketplace == "canonical-cube":
             continue
 
-        subscriptions = ua_contracts_api.get_account_subscriptions(
+        subscriptions = advantage_mapper.get_account_subscriptions(
             account_id=account_id, marketplace=marketplace
         )
 
