@@ -221,7 +221,7 @@ and the root token you generated previously.
 
 <!-- LINKS -->
 
-[vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vault-pki-overlay.yaml
+[vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vault-pki-overlay.yaml
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io

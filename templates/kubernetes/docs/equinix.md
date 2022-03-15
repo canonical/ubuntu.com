@@ -400,8 +400,8 @@ Hello Kubernetes!
 
 <!-- LINKS -->
 
-[asset-equinix-bundle]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/specs/equinix-bundle.yaml
-[asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/equinix-overlay.yaml
+[asset-equinix-bundle]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/specs/equinix-bundle.yaml
+[asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/equinix-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes

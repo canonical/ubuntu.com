@@ -15,7 +15,7 @@ toc: False
 
 # 1.18+ck2 Bugfix release
 
-### August 12, 2020 - [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml)
+### August 12, 2020 - [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.18/bundle.yaml)
 
 ## Fixes
 
@@ -167,7 +167,7 @@ PVCs using those storage classes will hang until the storage class is updated.
 
 # 1.17+ck2 Bugfix release
 
-### March 2, 2020 - [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)
+### March 2, 2020 - [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.17/bundle.yaml)
 
 ## Fixes
 
@@ -353,7 +353,7 @@ The Kubernetes Dashboard shipped with Charmed Kubernetes 1.16 is version 2.0.0-b
 
 # 1.15+ck1 Bugfix release
 
-### August 15, 2019 - [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml)
+### August 15, 2019 - [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.15/bundle.yaml)
 
 ## Fixes
 
@@ -466,7 +466,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### June 19th, 2019 - [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml)
+### June 19th, 2019 - [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.14/bundle.yaml)
 
 ## Fixes
 
