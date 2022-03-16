@@ -44,6 +44,7 @@ function PaymentMethodForm({ setCardValid }: Props) {
   const isEmailPrepopulated = !!userInfo?.customerInfo?.email;
 
   const {
+    dirty,
     errors,
     touched,
     values,
@@ -135,7 +136,7 @@ function PaymentMethodForm({ setCardValid }: Props) {
   }, [values.country]);
 
   useEffect(() => {
-    if (window.accountId) {
+    if (window.accountId && dirty) {
       updateCustomerInfoForPurchasePreviewDebounced(values);
     }
   }, [values.country, values.VATNumber]);
