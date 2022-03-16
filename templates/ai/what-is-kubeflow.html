@@ -14,10 +14,10 @@
         <p class="p-heading--4">Kubeflow is the open source machine learning toolkit on top of Kubernetes.</p>
         <p class="u-sv3">Kubeflow translates steps in your data science workflow into Kubernetes jobs,  providing the cloud-native interface for your ML libraries, frameworks, pipelines and notebooks.</p>
         <p>
-          <a class="p-button--positive p-link--external" href="https://charmed-kubeflow.io/docs/install">
-          Try Kubeflow in 5 min
+          <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/install">
+          Charmed Kubeflow
           </a>
-          <a class="p-link--external" href="https://charmed-kubeflow.io">Kubeflow operators</a>
+          <a href="https://charmed-kubeflow.io/#get-in-touch">Contact us now&nbsp;&rsaquo;</a>
         </p>
       </div>
       <div class="col-4 col-start-large-8 u-vertically-center u-align--center u-hide--small">
@@ -129,13 +129,13 @@
   <div class="row">
     <div class="col-7">
       <p class="p-heading--4">Kubeflow dashboard</p>
-      <p><a class="p-link--external" href="https://www.kubeflow.org/docs/components/central-dash/overview/">Central dashboard</a> with <a class="p-link--external" href="https://www.kubeflow.org/docs/components/multi-tenancy/overview/">multi-user isolation</a> provides a platform for data scientists and engineers to leverage K8s to develop, deploy and monitor their models in production.</p>
+      <p><a href="https://www.kubeflow.org/docs/components/central-dash/overview/">Central dashboard</a> with <a href="https://www.kubeflow.org/docs/components/multi-tenancy/overview/">multi-user isolation</a> provides a platform for data scientists and engineers to leverage K8s to develop, deploy and monitor their models in production.</p>
 
-      <p class="p-heading--4">Jupyter, VSCode and RStudio </p>
-      <p>After Kubeflow v1.3 users can <a class="p-link--external" href="https://www.kubeflow.org/docs/components/notebooks/setup/">spin-up Jupyter notebook servers</a> but also RStudio or VSCode directly from the dashboard, allocating the right storage, CPUs and GPUs.</p>
+      <p class="p-heading--4">JupyterLab and VSCode</p>
+      <p>With Kubeflow v1.4 users can <a href="https://www.kubeflow.org/docs/components/notebooks/setup/">spin-up Jupyter notebook servers</a> but also VSCode directly from the dashboard, allocating the right storage, CPUs and GPUs.</p>
 
       <p class="p-heading--4">ML libraries & frameworks</p>
-      <p>Kubeflow is compatible with your choice of data science libraries and frameworks. <a class="p-link--external" href="https://www.kubeflow.org/docs/components/training/tftraining/">TensorFlow</a>, <a class="p-link--external" href="https://www.kubeflow.org/docs/components/training/pytorch/">PyTorch</a>, <a class="p-link--external" href="https://www.kubeflow.org/docs/components/training/mxnet/">MXNet</a>, <a class="p-link--external" href="https://github.com/kubeflow/xgboost-operator">XGBoost</a>, <a class="p-link--external" href="https://medium.com/kubeflow/introduction-to-kubeflow-mpi-operator-and-industry-adoption-296d5f2e6edc">MPI distributed training</a>, <a class="p-link--external" href="https://scikit-learn.org/stable/">scikit-learn</a> and more.</p>
+      <p>Kubeflow is compatible with your choice of data science libraries and frameworks. <a href="https://www.kubeflow.org/docs/components/training/tftraining/">TensorFlow</a>, <a href="https://www.kubeflow.org/docs/components/training/pytorch/">PyTorch</a>, <a href="https://www.kubeflow.org/docs/components/training/mxnet/">MXNet</a>, <a href="https://github.com/kubeflow/xgboost-operator">XGBoost</a>, <a href="https://scikit-learn.org/stable/">scikit-learn</a> and more.</p>
 
       <p class="p-heading--4">Kubeflow Pipelines</p>
       <p>Automate your ML workflow into pipelines by containerizing steps as pipeline components and defining inputs, outputs, parameters and generated artifacts. <a class="/blog/data-science-workflows-on-kubernetes-with-kubeflow-pipelines-part-1">Learn more&nbsp;&rsaquo;</a></p>
@@ -144,16 +144,16 @@
       <p>Experiments, groups of <a href="https://www.kubeflow.org/docs/pipelines/pipelines-quickstart/#run-an-ml-pipeline">Kubeflow Pipeline 'Runs'</a> and <a href="https://www.kubeflow.org/docs/components/pipelines/overview/concepts/run/">Recurring Runs</a>, allow you to find the right parameters for your model, compare and replicate results.</p>
 
       <p class="p-heading--4">Hyperparameter tuning / AutoML</p>
-      <p>Kubeflow includes <a class="p-link--external" href="https://www.kubeflow.org/docs/components/katib/">Katib</a> for hyperparameter tuning. Katib runs pipelines with different hyperparameters (e.g. learning rate, # of hidden layers) optimising for the best ML model.</p>
+      <p>Kubeflow includes <a href="https://www.kubeflow.org/docs/components/katib/">Katib</a> for hyperparameter tuning. Katib runs pipelines with different hyperparameters (e.g. learning rate, # of hidden layers) optimising for the best ML model.</p>
 
-      <p class="p-heading--4">KFServing for inference serving</p>
-      <p><a class="p-link--external" href="https://www.kubeflow.org/docs/components/serving/kfserving/">KFServing</a> is a multi-framework model deployment tool with serverless inferencing, canary roll-outs, pre & post-processing and explainability. <a href="/blog/what-is-kfserving">Learn more&nbsp;&rsaquo;</a></p>
+      <p class="p-heading--4">KServe for inference serving</p>
+      <p><a href="https://www.kubeflow.org/docs/components/serving/kfserving/">KServe</a> is a multi-framework model deployment tool with serverless inferencing, canary roll-outs, pre & post-processing and explainability. <a href="/blog/what-is-kfserving">Learn more&nbsp;&rsaquo;</a></p>
 
       <p class="p-heading--4">The integrations you need</p>
-      <p>Kubeflow integrates with <a class="p-link--external" href="https://github.com/mlopsworks/charms">MLFlow</a> for model registry, staging, and monitoring in production, <a class="p-link--external" href="https://www.kubeflow.org/docs/external-add-ons/feature-store/overview/" >Feast</a> for feature store capabilities, and <a class="p-link--external" href="https://www.pachyderm.com/blog/pachyderm-1-10-s3-gateway-expansion-brings-support-for-kubeflow/">Pachyderm</a> for data versioning.</p>
+      <p>Kubeflow integrates with <a href="https://github.com/mlopsworks/charms">MLFlow</a> for model registry, staging, and monitoring in production, <a href="https://github.com/SeldonIO/seldon-core">Seldon Core</a> for inference serving and <a href="https://spark.apache.org/">Apache Spark</a> for parallel data processing.
 
       <p class="p-heading--4">More...</p>
-      <p>Save, compare and share generated artifacts - models, images, plots. Serve your models with a <a class="p-link--external" href="https://www.kubeflow.org/docs/external-add-ons/serving/">list of tools</a>, including <a class="p-link--external" href="https://www.kubeflow.org/docs/external-add-ons/serving/seldon/">Seldon Core</a>.</p>
+      <p>Save, compare and share generated artifacts - models, images, plots.</p>
 
     </div>
     <div class="col-5 u-hide--small u-hide--medium">
@@ -336,11 +336,13 @@
   <div class="row u-equal-height">
     <div class="col-7 u-vertically-center">
       <div>
-        <h2>Easy Kubeflow operations</h2>
-        <p>Charmed Kubeflow is a composable bundle of Kubeflow applications, packaged into K8s operators and pre-integrated for you.</p>
-        <p>Deploy 30+ apps that make up Kubeflow, integrate with ecosystem operators to extend functionality, and upgrade on-demand.</p>
-          <a class="p-link--external p-button--positive" href="https://charmed-kubeflow.io">Visit Charmed-Kubeflow</a>
-          <a href="https://www.youtube.com/watch?v=kutDYSB-_PI&t=149s" class="p-button p-link--external">Watch demo</a>
+        <h2>Kubeflow AI and MLOps at any scale</h2>
+        <p>Enterprise-ready Charmed Kubeflow, the fully supported MLOps platform for any cloud.</p>
+        <p>A complete solution for sophisticated data science labs. Upgrades and security updates - all supported in the free, open source distribution.</p>
+        <p>
+          <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">Install now</a>
+          <a href="https://www.youtube.com/watch?v=kutDYSB-_PI&t=149s" class="p-button">Watch demo</a>
+        </p>
       </div>
     </div>
     <div class="col-5 u-align--center">
@@ -365,7 +367,7 @@
     <div class="col-8">
       <p>Bringing AI solutions to market can involve many steps: data pre-processing, training, model deployment or inference serving at scale... The list of tasks is complex and keeping them in a set of notebooks or scripts is hard to maintain, share and collaborate on, leading to inefficient processes.</p>
       <p>
-      In the study, <a class="p-link--external" href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Hidden Technical Debt in Machine Learning Systems</a>, Google describes that only about 20% of the effort and code required to bring AI systems to production is the development of ML code, while the remaining is operations. Standardizing ops in your ML workflows can hence greatly decrease time-to-market and costs for your AI solutions.
+      In the study, <a href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Hidden Technical Debt in Machine Learning Systems</a>, Google describes that only about 20% of the effort and code required to bring AI systems to production is the development of ML code, while the remaining is operations. Standardizing ops in your ML workflows can hence greatly decrease time-to-market and costs for your AI solutions.
       </p>
       <div class="u-fixed-width u-hide--small">
         <figure class="u-no-margin">
@@ -512,14 +514,14 @@
     </div>
     <div class="col-8">
       <h2 class="u-fixed-width u-sv1">Get started today</h2>
-      <p class="u-sv2 p-heading--4">Try-out Kubeflow on your K8s deployment. Or on MicroK8s - Zero-ops Kubernetes with high availability.</p>
-      <p>Single-command deploy locally on your desktop, public cloud VM or on-prem server.</p>
+      <p class="u-sv2 p-heading--4">Try-out Kubeflow on your Kubernetes environment. Or on MicroK8s - Zero-ops Kubernetes with high availability.</p>
+      <p>Deploy locally on your workstation cloud VM or on-prem server.</p>
       <p>
-        <a class="p-button--positive p-link--external" href="http://charmed-kubeflow.io/docs/install">
-        Try Kubeflow on any K8s
+        <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">
+        Try Kubeflow on MicroK8s
         </a>
-        <a class="p-link--external" href="https://microk8s.io/docs/addon-kubeflow">
-          Kubeflow on MicroK8s
+        <a href="https://charmed-kubeflow.io/#get-in-touch">
+          Contact us now&nbsp;&rsaquo;
         </a>
       </p>
     </div>
