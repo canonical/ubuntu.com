@@ -297,6 +297,6 @@ List of extra apt sources, per charm-helpers standard format (a yaml list of str
 
 
 
-[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml
+[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-azure-integration
 [api-doc]: https://github.com/juju-solutions/interface-azure-integration/blob/master/docs/requires.md

@@ -101,21 +101,19 @@ It will be derived from `url` if not provided, e.g.:
 
 If required, you can supply credentials with option keys 'username' and 'password',
 or 'ca_file', 'cert_file', and 'key_file' for ssl/tls communication,
-which should be base64 encoded file contents in string form
+which should be base64 encoded file contents in string form:
 
-"ca_file": "'"$(base64 -w 0 < my.custom.registry.pem)"'"
+`"ca_file": "'"$(base64 -w 0 < my.custom.registry.pem)"'"`
 
-example config)
-juju config containerd custom_registries='[{
-
+example config:
 ```
+juju config containerd custom_registries='[{
     "url": "https://registry.example.com",
     "ca_file": "'"$(base64 -w 0 < ~/my.custom.ca.pem)"'",
     "cert_file": "'"$(base64 -w 0 < ~/my.custom.cert.pem)"'",
     "key_file": "'"$(base64 -w 0 < ~/my.custom.key.pem)"'",
-```
-
 }]'
+```
 
 [Back to table](#table-custom_registries)
 

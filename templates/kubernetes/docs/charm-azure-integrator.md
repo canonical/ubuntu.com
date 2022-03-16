@@ -318,6 +318,6 @@ juju-internal-network
 <!-- CONFIG ENDS -->
 
 
-[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml
+[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-azure-integration
 [api-doc]: https://github.com/juju-solutions/interface-azure-integration/blob/master/docs/requires.md

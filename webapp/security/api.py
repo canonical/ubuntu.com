@@ -21,14 +21,12 @@ class SecurityAPI:
         Defines get request set up, returns data if succesful,
         raises HTTP errors if not
         """
+
         uri = f"{self.base_url}{path}"
 
         response = self.session.get(uri, params=params)
 
-        try:
-            response.raise_for_status()
-        except HTTPError as error:
-            raise SecurityAPIError(error)
+        response.raise_for_status()
 
         return response
 
@@ -40,7 +38,15 @@ class SecurityAPI:
         Makes request for specific cve_id,
         returns json object if found
         """
-        return self._get(f"cves/{id.upper()}.json").json()
+
+        try:
+            cve_response = self._get(f"cves/{id.upper()}.json")
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                return None
+            raise SecurityAPIError(error)
+
+        return cve_response.json()
 
     def get_releases(self):
         """
@@ -48,4 +54,9 @@ class SecurityAPI:
         returns json object if found
         """
 
-        return self._get("releases.json").json()
+        try:
+            releases_response = self._get("releases.json")
+        except HTTPError as error:
+            raise SecurityAPIError(error)
+
+        return releases_response.json()

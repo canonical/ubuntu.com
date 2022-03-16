@@ -15,7 +15,7 @@ toc: False
 
 # 1.23
 
-### December 15, 2021 - [charmed-kubernetes-862](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-862/archive/bundle.yaml)
+### December 15, 2021 - [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml)
 
 ## What's new
 
@@ -73,7 +73,7 @@ relevant sections of the [upstream release notes][upstream-changelog-1.23].
 
 # 1.22+ck2 Bugfix release
 
-### October 27, 2021 - [charmed-kubernetes-814](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-814/archive/bundle.yaml)
+### October 27, 2021 - [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.22/bundle.yaml)
 
 ## Fixes
 
@@ -185,7 +185,7 @@ Please see [this page][rel] for release notes of earlier versions.
 
 # 1.21+ck3 Bugfix release
 
-### August 02, 2021 - [charmed-kubernetes-733](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-733/archive/bundle.yaml)
+### August 02, 2021 - [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.21/bundle.yaml)
 
 ## Fixes
 
@@ -276,7 +276,7 @@ Please see [this page][rel] for release notes of earlier versions.
 
 # 1.20+ck1 Bugfix release
 
-### February 23rd, 2021 - [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml)
+### February 23rd, 2021 - [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml)
 
 ## Fixes
 
@@ -349,7 +349,7 @@ relevant sections of the [upstream release notes](https://github.com/kubernetes/
 
 # 1.19+ck2 Bugfix release
 
-### November 27th, 2020 - [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml)
+### November 27th, 2020 - [charmed-kubernetes-545](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.19/bundle.yaml)
 
 ## Fixes
 
