@@ -56,8 +56,10 @@
           </li>
 
           <li class="p-list__item">
-            <input value="yes" id="3-canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-            <label for="3-canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+            <label class="p-checkbox">
+              <input class="p-checkbox__input" value="yes" aria-labelledby="3-canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+              <span class="p-checkbox__label" id="3-canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></span>
+            </label>
           </li>
 
           {# These are honey pot fields to catch bots #}

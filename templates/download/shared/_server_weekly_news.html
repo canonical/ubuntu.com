@@ -31,8 +31,12 @@
           </div>
         </div>
       </div>
-      <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-      <label for="canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></label>
+
+      <label class="p-checkbox">
+        <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+        <span class="p-checkbox__label" id="canonicalUpdatesOptIn"><small>I would like to receive occasional news from Canonical by email.</small></span>
+      </label>
+      
       <p><small>All information provided will be handled in accordance with the Canonical <a href="/legal">privacy policy</a>.</small></p>
       <button type="submit" class="p-button--positive">Download the pro tips</button>
       <input type="hidden" name="formid" value="3485">

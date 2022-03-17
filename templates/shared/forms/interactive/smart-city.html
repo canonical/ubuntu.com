@@ -11,39 +11,77 @@
         <h3 class="p-heading--5">Which topics are you interested in?</h3>
         <div class="row u-no-padding">
           <div class="col-4">
-            <input type="checkbox" id="topic-energy" name="smart-city-topic" value="Energy">
-            <label for="topic-energy">Energy</label>
-            <input type="checkbox" id="topic-government-services" name="smart-city-topic" value="Government services">
-            <label for="topic-government-services">Government services</label>
-            <input type="checkbox" id="topic-infrastructure" name="smart-city-topic" value="Infrasructure">
-            <label for="topic-infrastructure">Infrastructure</label>
-            <input type="checkbox" id="topic-smart-homes" name="smart-city-topic" value="Smart Homes">
-            <label for="topic-smart-homes">Smart Homes</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-energy" name="smart-city-topic" value="Energy" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-energy" name="smart-city-topic" value="Energy">Energy</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-government-services" name="smart-city-topic" value="Government services" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-government-services" name="smart-city-topic" value="Government services">Government services</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-infrastructure" name="smart-city-topic" value="Infrasructure" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-infrastructure" name="smart-city-topic" value="Infrasructure">Infrastructure</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-smart-homes" name="smart-city-topic" value="Smart Homes" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-smart-homes" name="smart-city-topic" value="Smart Homes">Smart Homes</span>
+            </label>
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="priority-workloads-other">
-              <label for="priority-workloads-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="priority-workloads-other">
+                <span class="p-checkbox__label" id="priority-workloads-other">Other</span>
+              </label>
               <input type="text" id="priority-workloads-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
             </div>
           </div>
           <div class="col-4">
-            <input type="checkbox" id="topic-environment" name="smart-city-topic" value="Environment">
-            <label for="topic-environment">Environment</label>
-            <input type="checkbox" id="topic-healthcare" name="smart-city-topic" value="Energy">
-            <label for="topic-healthcare">Healthcare</label>
-            <input type="checkbox" id="topic-retail-commerce" name="smart-city-topic" value="Retail and commerce">
-            <label for="topic-retail-commerce">Retail and Commerce</label>
-            <input type="checkbox" id="topic-telecommunications" name="smart-city-topic" value="Telecommunications">
-            <label for="topic-telecommunications">Telecommunications</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-environment" name="smart-city-topic" value="Environment" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-environment" name="smart-city-topic" value="Environment">Environment</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-healthcare" name="smart-city-topic" value="Energy" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-healthcare" name="smart-city-topic" value="Energy">Healthcare</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-retail-commerce" name="smart-city-topic" value="Retail and commerce" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-retail-commerce" name="smart-city-topic" value="Retail and commerce">Retail and Commerce</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-telecommunications" name="smart-city-topic" value="Telecommunications" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-telecommunications" name="smart-city-topic" value="Telecommunications">Telecommunications</span>
+            </label>
+            
           </div>
           <div class="col-4">
-            <input type="checkbox" id="topic-finance" name="smart-city-topic" value="Finance">
-            <label for="topic-finance">Finance</label>
-            <input type="checkbox" id="topic-information-technology" name="smart-city-topic" value="Information Technology">
-            <label for="topic-information-technology">Information Technology</label>
-            <input type="checkbox" id="topic-robotics-drones" name="smart-city-topic" value="Robotics and drones">
-            <label for="topic-robotics-drones">Robotics and drones</label>
-            <input type="checkbox" id="topic-transport-mobility" name="smart-city-topic" value="Robotics and drones">
-            <label for="topic-transport-mobility">Trasport and mobility</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-finance" name="smart-city-topic" value="Finance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-finance" name="smart-city-topic" value="Finance">Finance</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-information-technology" name="smart-city-topic" value="Information Technology" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-information-technology" name="smart-city-topic" value="Information Technology">Information Technology</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-robotics-drones" name="smart-city-topic" value="Robotics and drones" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-robotics-drones" name="smart-city-topic" value="Robotics and drones">Robotics and drones</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="topic-transport-mobility" name="smart-city-topic" value="Robotics and drones" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="topic-transport-mobility" name="smart-city-topic" value="Robotics and drones">Trasport and mobility</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -53,9 +91,9 @@
             <div class="col-8 u-sv3">
               <h3 class="p-heading--5">Tell us more about your smart city use case</h3>
               <textarea
-                id="smart-city-use-case"
-                aria-label="Tell us more"
-                rows="3"
+              id="smart-city-use-case"
+              aria-label="Tell us more"
+              rows="3"
               ></textarea>
             </div>
           </div>
@@ -65,7 +103,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -89,11 +127,13 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-            
+              
               {# These are honey pot fields to catch bots #}
               <li class="u-off-screen">
                 <label class="website" for="website">Website:</label>
@@ -105,7 +145,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -126,7 +166,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -135,7 +175,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -143,7 +183,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about embedded Ubuntu</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

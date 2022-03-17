@@ -4,168 +4,235 @@
       <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
       <h2 class="p-modal__title u-sv1" id="modal-title">Orchestrate your network functions</h2>
     </header>
-
+    
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width"></p>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">What are the infrastructure preferences for your network function? (Optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="infrastructure-preferences-kubernetes-cluster" name="infrastructure-preferences">
-            <label for="infrastructure-preferences-kubernetes-cluster">Kubernetes cluster</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="infrastructure-preferences-kubernetes-cluster" name="infrastructure-preferences" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="infrastructure-preferences-kubernetes-cluster" name="infrastructure-preferences">Kubernetes cluster</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="infrastructure-preferences-bare-metal" name="infrastructure-preferences">
-            <label for="infrastructure-preferences-bare-metal">Bare metal</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="infrastructure-preferences-bare-metal" name="infrastructure-preferences" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="infrastructure-preferences-bare-metal" name="infrastructure-preferences">Bare metal</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="infrastructure-preferences-public-cloud" name="infrastructure-preferences">
-            <label for="infrastructure-preferences-public-cloud">Public cloud</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="infrastructure-preferences-public-cloud" name="infrastructure-preferences" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="infrastructure-preferences-public-cloud" name="infrastructure-preferences">Public cloud</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="infrastructure-preferences-openstack" name="infrastructure-preferences">
-            <label for="infrastructure-preferences-openstack">OpenStack</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="infrastructure-preferences-openstack" name="infrastructure-preferences" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="infrastructure-preferences-openstack" name="infrastructure-preferences">OpenStack</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="infrastructure-preferences-vmware" name="infrastructure-preferences">
-            <label for="infrastructure-preferences-vmware">VMware</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="infrastructure-preferences-vmware" name="infrastructure-preferences" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="infrastructure-preferences-vmware" name="infrastructure-preferences">VMware</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="infrastructure-preferences-other">
-              <label for="infrastructure-preferences-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="infrastructure-preferences-other">
+                <span class="p-checkbox__label" id="infrastructure-preferences-other">Other</span>
+              </label>
               <input type="text" id="infrastructure-preferences-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other infrastructure preferences">
             </div>
           </div>
         </div>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">What are the priority use cases? (optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-private-lte/5g-network" name="priority-cases">
-            <label for="priority-cases-private-lte/5g-network">Private LTE/5G network</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-private-lte/5g-network" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-private-lte/5g-network" name="priority-cases">Private LTE/5G network</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-ims" name="priority-cases">
-            <label for="priority-cases-ims">IMS</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-ims" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-ims" name="priority-cases">IMS</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-packet-core" name="priority-cases">
-            <label for="priority-cases-packet-core">Packet core</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-packet-core" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-packet-core" name="priority-cases">Packet core</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-subscriber-data-management" name="priority-cases">
-            <label for="priority-cases-subscriber-data-management">Subscriber data management</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-subscriber-data-management" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-subscriber-data-management" name="priority-cases">Subscriber data management</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-ran-oran" name="priority-cases">
-            <label for="priority-cases-ran-oran">RAN / ORAN</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-ran-oran" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-ran-oran" name="priority-cases">RAN / ORAN</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-oss-bss" name="priority-cases">
-            <label for="priority-cases-oss-bss">OSS/BSS</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-oss-bss" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-oss-bss" name="priority-cases">OSS/BSS</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-transport" name="priority-cases">
-            <label for="priority-cases-transport">Transport</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-transport" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-transport" name="priority-cases">Transport</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="priority-cases-general-it-use-case" name="priority-cases">
-            <label for="priority-cases-general-it-use-case">General IT use case</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="priority-cases-general-it-use-case" name="priority-cases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="priority-cases-general-it-use-case" name="priority-cases">General IT use case</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="priority-cases-other">
-              <label for="priority-cases-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="priority-cases-other">
+                <span class="p-checkbox__label" id="priority-cases-other">Other</span>
+              </label>
               <input type="text" id="priority-cases-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other priority cases">
             </div>
           </div>
         </div>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">What is the nature of the network function? (Optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="network-nature-virtual-network-function" name="network-nature">
-            <label for="network-nature-virtual-network-function">Virtual network function (VNF)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="network-nature-virtual-network-function" name="network-nature" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="network-nature-virtual-network-function" name="network-nature">Virtual network function (VNF)</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="network-nature-cloud-native-or-kubernetes-network-function" name="network-nature">
-            <label for="network-nature-cloud-native-or-kubernetes-network-function">Cloud-native or kubernetes network function (CNF/KNF)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="network-nature-cloud-native-or-kubernetes-network-function" name="network-nature" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="network-nature-cloud-native-or-kubernetes-network-function" name="network-nature">Cloud-native or kubernetes network function (CNF/KNF)</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="network-nature-physical-network-function" name="network-nature">
-            <label for="network-nature-physical-network-function">Physical network function (PNF)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="network-nature-physical-network-function" name="network-nature" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="network-nature-physical-network-function" name="network-nature">Physical network function (PNF)</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="network-nature-hybrid-network-function" name="network-nature">
-            <label for="network-nature-hybrid-network-function">Hybrid network function (HNF)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="network-nature-hybrid-network-function" name="network-nature" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="network-nature-hybrid-network-function" name="network-nature">Hybrid network function (HNF)</span>
+            </label>
+            
           </div>
         </div>
       </div>
-
+      
       <div class="pagination">
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
-
+      
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Do you want automated deployment of your network functions? (Optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="automated-deployment-yes" name="automated-deployment">
-            <label for="automated-deployment-yes">Yes</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="automated-deployment-yes" name="automated-deployment">
+              <span class="p-radio__label" id="automated-deployment-yes">Yes</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="automated-deployment-no" name="automated-deployment">
-            <label for="automated-deployment-no">No</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="automated-deployment-no" name="automated-deployment">
+              <span class="p-radio__label" id="automated-deployment-no">No</span>
+            </label>
           </div>
         </div>
       </div>
-
+      
       <div class="u-sv3 js-formfield">
         <h3 class="p-heading--5">Tell us about your network function and team? (Optional)</h3>
         <textarea id="network-functions-team" aria-label="Tell us about your network function and team?" rows="3" placeholder="What are the features of your network function, where do you want to use your network function, how it is beneficial for telcos or any other information.."></textarea>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Which orchestration capabilities are important for your network function? (Optional)</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="orchestration-capabilities-day-0" name="orchestration-capabilities">
-            <label for="orchestration-capabilities-day-0">Day 0</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-0" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-day-0">Day 0</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="orchestration-capabilities-day-1" name="orchestration-capabilities">
-            <label for="orchestration-capabilities-day-1">Day 1</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-1" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-day-1">Day 1</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="orchestration-capabilities-day-2" name="orchestration-capabilities">
-            <label for="orchestration-capabilities-day-2">Day 2</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-day-2" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-day-2">Day 2</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="orchestration-capabilities-all-of-them" name="orchestration-capabilities">
-            <label for="orchestration-capabilities-all-of-them">All of them</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="orchestration-capabilities-all-of-them" name="orchestration-capabilities">
+              <span class="p-radio__label" id="orchestration-capabilities-all-of-them">All of them</span>
+            </label>
           </div>
         </div>
       </div>
-
+      
       <div class="pagination">
         <a class="pagination__link--previous p-button" href="">Previous</a>
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
-
-
+    
+    
     <div class="js-pagination js-pagination--3 u-hide">
-
+      
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
@@ -188,8 +255,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -203,7 +272,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -224,7 +293,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -233,7 +302,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -241,7 +310,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about Telco</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

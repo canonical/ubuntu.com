@@ -11,12 +11,16 @@
         <h3 class="p-heading--5">Are you interested in learning more about ROS ESM and our enterprise support for ROS?</h3>
         <div class="row u-no-padding">
           <div class="col-2 u-sv3">
-            <input type="radio" id="enterprise-support-for-ROS-yes" name="enterprise-support-for-ROS" value="Yes">
-            <label for="enterprise-support-for-ROS-yes">Yes</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="enterprise-support-for-ROS-yes" name="enterprise-support-for-ROS" value="Yes">
+  <span class="p-radio__label" id="enterprise-support-for-ROS-yes">Yes</span>
+</label>
           </div>
           <div class="col-2 u-sv3">
-            <input type="radio" id="enterprise-support-for-ROS-no" name="enterprise-support-for-ROS" value="No">
-            <label for="enterprise-support-for-ROS-no">No</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="enterprise-support-for-ROS-no" name="enterprise-support-for-ROS" value="No">
+  <span class="p-radio__label" id="enterprise-support-for-ROS-no">No</span>
+</label>
           </div>
         </div>
       </div>
@@ -25,12 +29,16 @@
         <h3 class="p-heading--5">Are you interested in custom Hardware Enablement and Certification?</h3>
         <div class="row u-no-padding">
           <div class="col-2 u-sv3">
-            <input type="radio" id="Hardware-Enablement-and-Certification-yes" name="Hardware-Enablement-and-Certification" value="Yes">
-            <label for="Hardware-Enablement-and-Certification-yes">Yes</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="Hardware-Enablement-and-Certification-yes" name="Hardware-Enablement-and-Certification" value="Yes">
+  <span class="p-radio__label" id="Hardware-Enablement-and-Certification-yes">Yes</span>
+</label>
           </div>
           <div class="col-2 u-sv3">
-            <input type="radio" id="Hardware-Enablement-and-Certification-no" name="Hardware-Enablement-and-Certification" value="No">
-            <label for="Hardware-Enablement-and-Certification-no">No</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="Hardware-Enablement-and-Certification-no" name="Hardware-Enablement-and-Certification" value="No">
+  <span class="p-radio__label" id="Hardware-Enablement-and-Certification-no">No</span>
+</label>
           </div>
         </div>
       </div>
@@ -39,12 +47,16 @@
         <h3 class="p-heading--5">Do you want to learn more about Brand Store and our management solution to deploy software?</h3>
         <div class="row u-no-padding">
           <div class="col-2 u-sv3">
-            <input type="radio" id="Brand-Store-and-our-management-solution-yes" name="Brand-Store-and-our-management-solution" value="Yes">
-            <label for="Brand-Store-and-our-management-solution-yes">Yes</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="Brand-Store-and-our-management-solution-yes" name="Brand-Store-and-our-management-solution" value="Yes">
+  <span class="p-radio__label" id="Brand-Store-and-our-management-solution-yes">Yes</span>
+</label>
           </div>
           <div class="col-2 u-sv3">
-            <input type="radio" id="Brand-Store-and-our-management-solution-no" name="Brand-Store-and-our-management-solution" value="No">
-            <label for="Brand-Store-and-our-management-solution-no">No</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="Brand-Store-and-our-management-solution-no" name="Brand-Store-and-our-management-solution" value="No">
+  <span class="p-radio__label" id="Brand-Store-and-our-management-solution-no">No</span>
+</label>
           </div>
         </div>
       </div>
@@ -53,12 +65,16 @@
         <h3 class="p-heading--5">Do you need support getting to market?</h3>
         <div class="row u-no-padding">
           <div class="col-2 u-sv3">
-            <input type="radio" id="support-getting-to-market-yes" name="support-getting-to-market" value="Yes">
-            <label for="support-getting-to-market-yes">Yes</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="support-getting-to-market-yes" name="support-getting-to-market" value="Yes">
+  <span class="p-radio__label" id="support-getting-to-market-yes">Yes</span>
+</label>
           </div>
           <div class="col-2 u-sv3">
-            <input type="radio" id="support-getting-to-market-no" name="support-getting-to-market" value="No">
-            <label for="support-getting-to-market-no">No</label>
+            <label class="p-radio">
+  <input class="p-radio__input" type="radio" aria-labelledby="support-getting-to-market-no" name="support-getting-to-market" value="No">
+  <span class="p-radio__label" id="support-getting-to-market-no">No</span>
+</label>
           </div>
         </div>
       </div>
@@ -105,8 +121,10 @@
                 <input id="phone" name="phone" maxlength="255" type="tel">
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical’s products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical’s Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -157,7 +175,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about robotics</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200" loading="auto">
           </div>
         </div>

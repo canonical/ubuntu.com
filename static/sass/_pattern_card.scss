@@ -40,7 +40,7 @@
     }
 
     .p-card__main {
-      padding-top: calc(#{$spv-inner--large} - 1px);
+      padding-top: calc(#{$spv--large} - 1px);
     }
 
     .p-card__footer {
@@ -135,42 +135,40 @@
       width: auto;
     }
 
-    [type="radio"] {
-      left: 0;
+    .p-radio {
+      margin: 0;
+      max-width: none;
+      padding: 0;
+      position: initial;
+      text-indent: 0;
+      width: 100%;
 
-      & + label {
-        background-color: transparent;
-        display: flex;
-        flex-direction: column;
-        margin: 0;
-        max-width: none;
-        padding: 0;
-        position: initial;
-        text-align: center;
-        width: 100%;
-      }
-
-      & + label::after {
-        display: none;
-      }
-
-      & + label::before {
-        background: none;
-        border: none;
-        border-radius: 0;
+      &::before {
         bottom: 0;
-        height: 100%;
+        content: "";
         left: 0;
         position: absolute;
         right: 0;
         top: 0;
-        width: 100%;
       }
 
-      &:focus + label::before {
-        border: 0.1875rem solid #2e96ff;
-        outline: none;
+      &__label {
+        padding: 0;
+
+        &::after,
+        &::before {
+          content: none;
+        }
       }
+
+      small {
+        display: block;
+      }
+    }
+
+    &.is-selected .p-radio::before {
+      border: 0.1875rem solid #2e96ff;
+      outline: none;
     }
   }
 
@@ -186,13 +184,6 @@
 
   .p-card--radio--feature {
     @extend .p-card--radio;
-
-    [type="radio"] {
-      & + label {
-        height: 100%;
-        text-align: left;
-      }
-    }
 
     span {
       margin-top: auto;
@@ -225,6 +216,13 @@
         left: 0.3125rem;
         top: 0.5rem;
         width: 0.375rem;
+      }
+    }
+
+    .p-radio {
+      span {
+        height: 100%;
+        text-align: left;
       }
     }
 

@@ -14,7 +14,7 @@
       <p>{{ vendor_data.short_description }}</p>
       <a {% if vendor == 'Dell' %}href="https://www.dell.com/" {% else %}href="{{ vendor_data.partner_website }}" {% endif %} target="blank">Visit {{ vendor }}'s website here</a>
     </div>
-    <div class="col-3 u-hide--small u-align--center">
+    <div class="col-3 u-hide--medium u-hide--small u-align--center">
       <img src="{{vendor_data.logo}}"/>
     </div>
   </div>

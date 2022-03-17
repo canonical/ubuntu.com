@@ -8,12 +8,12 @@
   <div class="row">
     <div class="col-8">
       <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
-
+        
         <fieldset class="u-no-margin--bottom">
           <label for="Comments_from_lead__c">Tell us about your project and what problem(s) you’re looking to solve:</label>
           <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" maxlength="2000"></textarea>
         </fieldset>
-
+        
         <fieldset class="u-no-margin--bottom">
           <p>How should we get in touch?</p>
           <ul class="p-list">
@@ -39,13 +39,15 @@
             </li>
           </ul>
         </fieldset>
-
-
+        
+        
         <fieldset class="u-no-margin--bottom">
           <ul class="p-list">
             <li class="p-list__item">
-              <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-              <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+              </label>
             </li>
             <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
             {# These are honey pot fields to catch bots #}

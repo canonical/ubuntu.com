@@ -14,7 +14,7 @@
       <a class="p-button--positive js-invoke-modal" href="/gov/contact-us" data-testid="interactive-form-link">Contact us</a>
       <p><a href="/security">Learn more about our security story&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-vertically-center u-hide--small">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
@@ -57,7 +57,7 @@
       <p>In this webinar, the Public Sector team discuss the importance of open source technology in government, how it’s being used and the range of secure services available from Canonical.</p>
       <a href="/engage/gov-webinar" class="p-button--positive">Watch the webinar</a>
     </div>
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/9977f64c-shields-security.svg",
         alt="",
@@ -107,7 +107,7 @@
 
 <section class="p-strip--light">
   <div class="row u-vertically-center">
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/57d2e0de-Certified.svg",
         alt="",
@@ -145,7 +145,7 @@
       <p>How Ubuntu Pro FIPS on Microsoft Azure gives government agencies and contractors new ways to control costs and boost innovation while maintaining FIPS compliance.</p>
       <a href="/engage/azure-ubuntu-pro-fips-whitepaper" class="p-button">Read the whitepaper</a>
     </div>
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/ffbd410d-Ubuntu-Azure-Clouds_wht.svg",
         alt="",
@@ -170,176 +170,176 @@
 
 <section class="p-strip u-no-padding--top">
   <div class="u-fixed-width">
-    <h2 class="p-muted-heading u-align--center">Public cloud</h2>
-    <ul class="p-inline-images u-no-margin--bottom">
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/79a533b8-google-cloud.png?w=144",
-          alt="Google Cloud Platform",
-          width="144",
-          height="88",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logos"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/208cd3a7-azure-logo-blue-on-white.svg",
-          alt="Azure",
-          width="144",
-          height="41",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/39002345-AmazonWebservices_Logo.svg",
-          alt="AWS",
-          width="144",
-          height="54",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-    </ul>
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/f1d885ce-Oracle-cloud.png?w=144",
-          alt="Oracle Cloud",
-          width="144",
-          height="44",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-    </ul>
+    <div class="p-logo-section">
+      <h2 class="p-logo-section__title u-align--center">Public cloud</h2>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/79a533b8-google-cloud.png?w=144",
+            alt="Google Cloud Platform",
+            width="144",
+            height="88",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/208cd3a7-azure-logo-blue-on-white.svg",
+            alt="Azure",
+            width="144",
+            height="41",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/39002345-AmazonWebservices_Logo.svg",
+            alt="AWS",
+            width="144",
+            height="54",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/f1d885ce-Oracle-cloud.png?w=144",
+            alt="Oracle Cloud",
+            width="144",
+            height="44",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="p-strip u-no-padding--top">
   <div class="u-fixed-width">
-    <h2 class="p-muted-heading u-align--center">Hardware partners</h2>
-    <ul class="p-inline-images u-no-margin--bottom">
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/225ab637-logo-asus.svg",
-            alt="ASUS",
-            height="88",
-            width="400",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
-            loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
-          alt="Cisco",
-          width="144",
-          height="76",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
-              alt="Dell",
-              width="88",
+    <div class="p-logo-section">
+      <h2 class="p-logo-section__title u-align--center">Hardware partners</h2>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/225ab637-logo-asus.svg",
+              alt="ASUS",
               height="88",
+              width="400",
               hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
               loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="last-item p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
-              alt="Intel",
-              width="133",
-              height="88",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-    </ul>
-    <ul class="p-inline-images">
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg",
-              alt="HP",
-              width="88",
-              height="88",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/118404f2-partner-logo-hp.svg",
-            alt="HP Enterprise",
-            width="130",
-            height="54",
-            hi_def=True,
-            loading="auto|lazy",
-            attrs={"class": "p-inline-images__logo"},
             ) | safe
           }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-              url="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg",
-              alt="Lenovo",
-              width="144",
-              height="24",
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
+            alt="Cisco",
+            width="144",
+            height="76",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
+                alt="Dell",
+                width="88",
+                height="88",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/c24cb4b9-logo-intel.svg",
+                alt="Intel",
+                width="133",
+                height="88",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg",
+                alt="HP",
+                width="88",
+                height="88",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/118404f2-partner-logo-hp.svg",
+              alt="HP Enterprise",
+              width="130",
+              height="54",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/3528a12f-logo-microsoft-160.png",
-            alt="Microsoft",
-            height="72",
-            width="144",
-            hi_def=True,
-            attrs={"class": "p-inline-images__logos"},
-            loading="lazy",
-          ) | safe
-        }}
-      </li>
-    </ul>
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg",
+                alt="Lenovo",
+                width="144",
+                height="24",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/3528a12f-logo-microsoft-160.png",
+              alt="Microsoft",
+              height="72",
+              width="144",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
+              loading="lazy",
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -523,7 +523,7 @@
 
 <section class="p-strip--light">
   <div class="row u-vertically-center">
-    <div class="col-6 u-align--center u-hide--small">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
         alt="",

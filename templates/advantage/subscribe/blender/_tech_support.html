@@ -1,16 +1,12 @@
 <div class="row u-no-padding--left u-no-padding--right">
   <div class="col-6">
     <div class="p-card--radio--support js-radio">
-      <input
-        autocomplete="off"
-        type="radio"
-        id="support_one"
-        name="support"
-        value="blender-support-standard"
-      />
-      <label for="support_one">
-        24 hours, 5 days a week<br />
-        <small class="u-text-light">Phone and ticket support</small>
+      <label class="p-radio u-align-text--center">
+        <input autocomplete="off" class="p-radio__input" type="radio" aria-labelledby="support_one" name="support" value="blender-support-standard" />
+        <span class="p-radio__label" id="support_one">
+          24 hours, 5 days a week<br />
+          <small class="u-text-light">Phone and ticket support</small>
+        </span>
       </label>
       {{
         image(
@@ -28,16 +24,12 @@
   </div>
   <div class="col-6">
     <div class="p-card--radio--support js-radio">
-      <input
-        autocomplete="off"
-        type="radio"
-        id="support_two"
-        name="support"
-        value="blender-support-advanced"
-      />
-      <label for="support_two">
-        24 hours, 7 days a week<br />
-        <small class="u-text-light">Phone and ticket support</small>
+      <label class="p-radio u-align-text--center">
+        <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="support_two" name="support" value="blender-support-advanced" />
+        <span class="p-radio__label" id="support_two">
+          24 hours, 7 days a week<br />
+          <small class="u-text-light">Phone and ticket support</small>
+        </span>
       </label>
       {{
         image(

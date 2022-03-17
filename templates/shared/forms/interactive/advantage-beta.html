@@ -10,16 +10,25 @@
         <h3 class="p-heading--5">Which Ubuntu LTS are you using?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="which-ubuntu-Xenial">
-            <label for="which-ubuntu-Xenial">16.04 (Xenial)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="which-ubuntu-Xenial" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="which-ubuntu-Xenial">16.04 (Xenial)</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="which-ubuntu-Bionic">
-            <label for="which-ubuntu-Bionic">18.04 (Bionic)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="which-ubuntu-Bionic" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="which-ubuntu-Bionic">18.04 (Bionic)</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="which-ubuntu-Focal">
-            <label for="which-ubuntu-Focal">20.04 (Focal)</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="which-ubuntu-Focal" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="which-ubuntu-Focal">20.04 (Focal)</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -27,46 +36,96 @@
         <h3 class="p-heading--5">Do you use any of the below packages?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="packages-redis">
-            <label for="packages-redis">redis</label>
-            <input type="checkbox" id="packages-zookeeper">
-            <label for="packages-zookeeper">zookeeper</label>
-            <input type="checkbox" id="packages-python-rsa">
-            <label for="packages-python-rsa">python-rsa</label>
-            <input type="checkbox" id="packages-pigz">
-            <label for="packages-pigz">pigz</label>
-            <input type="checkbox" id="packages-opencv">
-            <label for="packages-opencv">opencv</label>
-            <input type="checkbox" id="packages-openjpeg2">
-            <label for="packages-openjpeg2">openjpeg2</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-redis" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-redis">redis</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-zookeeper" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-zookeeper">zookeeper</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-python-rsa" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-python-rsa">python-rsa</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-pigz" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-pigz">pigz</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-opencv" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-opencv">opencv</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-openjpeg2" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-openjpeg2">openjpeg2</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="packages-xerces-c">
-            <label for="packages-xerces-c">xerces-c</label>
-            <input type="checkbox" id="packages-monit">
-            <label for="packages-monit">monit</label>
-            <input type="checkbox" id="packages-ntp">
-            <label for="packages-ntp">ntp</label>
-            <input type="checkbox" id="packages-wireshark">
-            <label for="packages-wireshark">wireshark</label>
-            <input type="checkbox" id="packages-runc">
-            <label for="packages-runc">runc</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-xerces-c" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-xerces-c">xerces-c</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-monit" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-monit">monit</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-ntp" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-ntp">ntp</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-wireshark" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-wireshark">wireshark</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-runc" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-runc">runc</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="packages-jq">
-            <label for="packages-jq">jq</label>
-            <input type="checkbox" id="packages-nodejs">
-            <label for="packages-nodejs">nodejs</label>
-            <input type="checkbox" id="packages-tomcat">
-            <label for="packages-tomcat">tomcat 6 or 7</label>
-            <input type="checkbox" id="packages-libonig">
-            <label for="packages-libonig">libonig</label>
-            <input type="checkbox" id="packages-zeromq3">
-            <label for="packages-zeromq3">zeromq3</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-jq" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-jq">jq</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-nodejs" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-nodejs">nodejs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-tomcat" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-tomcat">tomcat 6 or 7</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-libonig" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-libonig">libonig</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="packages-zeromq3" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="packages-zeromq3">zeromq3</span>
+            </label>
+            
             <div class="col-4 u-sv3">
               <div class="js-other-container">
-                <input type="checkbox" class="js-other-container__checkbox" id="packages-other">
-                <label for="packages-other">Other</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="packages-other">
+                  <span class="p-checkbox__label" id="packages-other">Other</span>
+                </label>
                 <input type="text" id="packages-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
               </div>
             </div>
@@ -77,16 +136,25 @@
         <h3 class="p-heading--5">Where do you get your open source software from?</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="open-source-from-Ubuntu-repositories">
-            <label for="open-source-from-Ubuntu-repositories">Ubuntu repositories</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="open-source-from-Ubuntu-repositories" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="open-source-from-Ubuntu-repositories">Ubuntu repositories</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="open-source-from-Upstream-packages">
-            <label for="open-source-from-Upstream-packages">Upstream packages</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="open-source-from-Upstream-packages" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="open-source-from-Upstream-packages">Upstream packages</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="open-source-from-Github">
-            <label for="open-source-from-Github">Github</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="open-source-from-Github" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="open-source-from-Github">Github</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -94,7 +162,7 @@
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -114,8 +182,10 @@
                 <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -129,7 +199,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -150,7 +220,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -159,14 +229,14 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding u-equal-height">
         <div class="col-7">
           <h3 class="p-heading--2">Thank you</h3>
           <p>Thank you for registering your interest in the Ubuntu Pro on-prem beta programme. If selected as a participant, you will receive an email from Canonical with more details on getting started.</p>
         </div>
-        <div class="col-5 u-vertically-center u-align--center u-hide--small">
+        <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
           {{
             image(
             url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

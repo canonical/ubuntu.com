@@ -10,16 +10,25 @@
 				<h3 class="p-heading--5">Which Ubuntu LTS are you using?</h3>
 				<div class="row u-no-padding">
 					<div class="col-4 u-sv3">
-						<input type="checkbox" id="security-fips-xenial">
-						<label for="security-fips-xenial">16.04 (Xenial)</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-xenial" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-xenial">16.04 (Xenial)</span>
+						</label>
+						
 					</div>
 					<div class="col-4 u-sv3">
-						<input type="checkbox" id="security-fips-bionic">
-						<label for="security-fips-bionic">18.04 (Bionic)</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-bionic" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-bionic">18.04 (Bionic)</span>
+						</label>
+						
 					</div>
 					<div class="col-4 u-sv3">
-							<input type="checkbox" id="security-fips-focal">
-							<label for="security-fips-focal">20.04 (Focal)</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-focal" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-focal">20.04 (Focal)</span>
+						</label>
+						
 					</div>
 				</div>
 			</div>
@@ -27,11 +36,16 @@
 				<h3 class="p-heading--5">Do you use any of the packages below?</h3>
 				<div class="row u-no-padding">
 					<div class="col-6">
-						<input type="checkbox" id="security-fips-tomcat">
-						<label for="security-fips-tomcat">tomcat</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-tomcat" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-tomcat">tomcat</span>
+						</label>
+						
 						<div class="js-other-container">
-							<input type="checkbox" class="js-other-container__checkbox" id="security-fips-other">
-							<label for="security-fips-other">Other</label>
+							<label class="p-checkbox">
+								<input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="security-fips-other">
+								<span class="p-checkbox__label" id="security-fips-other">Other</span>
+							</label>
 							<input type="text" id="security-fips-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;">
 						</div>
 					</div>
@@ -41,24 +55,33 @@
 				<h3 class="p-heading--5">Which java runtime do your applications depend on?</h3>
 				<div class="row u-no-padding">
 					<div class="col-4 u-sv3">
-						<input type="checkbox" id="security-fips-openjdk-8">
-						<label for="security-fips-openjdk-8">OpenJDK-8</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-openjdk-8" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-openjdk-8">OpenJDK-8</span>
+						</label>
+						
 					</div>
 					<div class="col-4 u-sv3">
-						<input type="checkbox" id="security-fips-openjdk-11">
-						<label for="security-fips-openjdk-11">OpenJDK-11</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-openjdk-11" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-openjdk-11">OpenJDK-11</span>
+						</label>
+						
 					</div>
 					<div class="col-4 u-sv3">
-						<input type="checkbox" id="security-fips-openjdk-16">
-						<label for="security-fips-openjdk-16">OpenJDK-16</label>
+						<label class="p-checkbox">
+							<input type="checkbox" aria-labelledby="security-fips-openjdk-16" class="p-checkbox__input">
+							<span class="p-checkbox__label" id="security-fips-openjdk-16">OpenJDK-16</span>
+						</label>
+						
 					</div>
 				</div>
 			</div>
 			<div class="pagination">
-					<a class="p-button--positive pagination__link--next" href="">Next</a>
+				<a class="p-button--positive pagination__link--next" href="">Next</a>
 			</div>
 		</div>
-
+		
 		<div class="js-pagination js-pagination--2 u-hide">
 			<h3 class="p-heading--5">How should we get in touch?</h3>
 			<div class="row u-no-padding">
@@ -82,8 +105,10 @@
 								<input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
 							</li>
 							<li class="p-list__item">
-								<input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-								<label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+								<label class="p-checkbox">
+									<input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+									<span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+								</label>
 							</li>
 							<li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
 							{# These are honey pot fields to catch bots #}
@@ -97,7 +122,7 @@
 							</li>
 							{# End of honey pots #}
 						</ul>
-
+						
 						<div class="u-hide">
 							<h3>Your comments</h3>
 							<ul class="p-list">
@@ -105,8 +130,8 @@
 									<label for="Comments_from_lead__c">What would you like to talk to us about?</label>
 									<textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
 								</li>
-              </ul>
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+							</ul>
+							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
 							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
 							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
 							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
@@ -117,7 +142,7 @@
 							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
 							<input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
 						</div>
-
+						
 						<div class="pagination">
 							<a class="pagination__link--previous p-button" href="">Previous</a>
 							<button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -126,7 +151,7 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<div class="js-pagination js-pagination--3 u-hide">
 			<div class="row u-no-padding">
 				<div class="u-equal-height">
@@ -134,7 +159,7 @@
 						<h3 class="p-heading--2">Thank you</h3>
 						<p class="p-heading--4">Thank you for registering your interest in the OpenJDK for FIPS beta programme. If selected as a participant, you will receive an email from Canonical with more details on getting started.</p>
 					</div>
-					<div class="col-5 u-vertically-center u-align--center u-hide--small">
+					<div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
 						{{
 							image(
 							url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

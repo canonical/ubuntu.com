@@ -10,34 +10,70 @@
         <h3 class="p-heading--5">Tell us more about your cloud project:</h3>
         <div class="row u-no-padding u-equal-height">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="project-less-than-50-VMs">
-            <label for="project-less-than-50-VMs">&lt; 50 VMs</label>
-            <input type="checkbox" id="project-project-less-than-500-VMs">
-            <label for="project-project-less-than-500-VMs">&lt; 500 VMs</label>
-            <input type="checkbox" id="project-greater-than-500-VMs">
-            <label for="project-greater-than-500-VMs">&gt; 500 VMs</label>
-            <input type="checkbox" id="project-containers">
-            <label for="project-containers">Containers</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-less-than-50-VMs" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-less-than-50-VMs">&lt; 50 VMs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-project-less-than-500-VMs" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-project-less-than-500-VMs">&lt; 500 VMs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-greater-than-500-VMs" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-greater-than-500-VMs">&gt; 500 VMs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-containers" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-containers">Containers</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="project-aws-vms">
-            <label for="project-aws-vms">AWS only VMs</label>
-            <input type="checkbox" id="project-aws-aks">
-            <label for="project-aws-aks">AWS only AKS</label>
-            <input type="checkbox" id="project-multiple-public-clouds">
-            <label for="project-multiple-public-clouds">Multiple public clouds</label>
-            <input type="checkbox" id="project-private-or-edge-cloud">
-            <label for="project-private-or-edge-cloud">Private or edge cloud</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-aws-vms" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-aws-vms">AWS only VMs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-aws-aks" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-aws-aks">AWS only AKS</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-multiple-public-clouds" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-multiple-public-clouds">Multiple public clouds</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-private-or-edge-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-private-or-edge-cloud">Private or edge cloud</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="project-development-and-CI-CD">
-            <label for="project-development-and-CI-CD">Development and CI/CD</label>
-            <input type="checkbox" id="project-standard-production">
-            <label for="project-standard-production">Standard Production</label>
-            <input type="checkbox" id="project-mission-critical-production">
-            <label for="project-mission-critical-production">Mission-critical Production</label>
-            <input type="checkbox" id="project-mission-regulated-workloads">
-            <label for="project-mission-regulated-workloads">Regulated workloads</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-development-and-CI-CD" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-development-and-CI-CD">Development and CI/CD</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-standard-production" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-standard-production">Standard Production</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-mission-critical-production" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-mission-critical-production">Mission-critical Production</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="project-mission-regulated-workloads" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="project-mission-regulated-workloads">Regulated workloads</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -45,52 +81,106 @@
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <div class="js-formfield">
         <h3 class="p-heading--5">Which of the below topics are important to you?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-Regulatory-compliance">
-            <label for="important-Regulatory-compliance">Regulatory compliance</label>
-            <input type="checkbox" id="important-FIPS">
-            <label for="important-FIPS">FIPS</label>
-            <input type="checkbox" id="important-CC-EAL">
-            <label for="important-CC-EAL">CC-EAL</label>
-            <input type="checkbox" id="important-Certification">
-            <label for="important-Certification">Certification</label>
-            <input type="checkbox" id="important-Ubuntu-security-patching">
-            <label for="important-Ubuntu-security-patching">Ubuntu security patching</label>
-            <input type="checkbox" id="important-10-year-lifetime">
-            <label for="important-10-year-lifetime">10-year lifetime</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Regulatory-compliance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Regulatory-compliance">Regulatory compliance</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-FIPS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-FIPS">FIPS</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-CC-EAL" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-CC-EAL">CC-EAL</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Certification" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Certification">Certification</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Ubuntu-security-patching" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Ubuntu-security-patching">Ubuntu security patching</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-10-year-lifetime" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-10-year-lifetime">10-year lifetime</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-Containers-AKS">
-            <label for="important-Containers-AKS">Containers (AKS)</label>
-            <input type="checkbox" id="important-Compute-AWS-VM">
-            <label for="important-Compute-AWS-VM">Compute (AWS VM)</label>
-            <input type="checkbox" id="important-Image-size">
-            <label for="important-Image-size">Image size</label>
-            <input type="checkbox" id="important-Kernel-livepatch">
-            <label for="important-Kernel-livepatch">Kernel livepatch</label>
-            <input type="checkbox" id="important-Support">
-            <label for="important-Support">Support</label>
-            <input type="checkbox" id="important-Performance">
-            <label for="important-Performance">Performance</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Containers-AKS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Containers-AKS">Containers (AKS)</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Compute-AWS-VM" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Compute-AWS-VM">Compute (AWS VM)</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Image-size" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Image-size">Image size</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Kernel-livepatch" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Kernel-livepatch">Kernel livepatch</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Support" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Support">Support</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Performance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Performance">Performance</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="important-Open-Source-security">
-            <label for="important-Open-Source-security">Open Source security</label>
-            <input type="checkbox" id="important-Apache-Kafka">
-            <label for="important-Apache-Kafka">Apache Kafka</label>
-            <input type="checkbox" id="important-RabbitMQ">
-            <label for="important-RabbitMQ">RabbitMQ</label>
-            <input type="checkbox" id="important-Redis">
-            <label for="important-Redis">Redis</label>
-            <input type="checkbox" id="important-MongoDB">
-            <label for="important-MongoDB">MongoDB</label>
-            <input type="checkbox" id="important-NodeJS">
-            <label for="important-NodeJS">NodeJS</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Open-Source-security" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Open-Source-security">Open Source security</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Apache-Kafka" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Apache-Kafka">Apache Kafka</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-RabbitMQ" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-RabbitMQ">RabbitMQ</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-Redis" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-Redis">Redis</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-MongoDB" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-MongoDB">MongoDB</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="important-NodeJS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="important-NodeJS">NodeJS</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -105,7 +195,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -129,8 +219,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -144,7 +236,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -165,7 +257,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -174,14 +266,14 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--4 u-hide">
       <div class="row u-no-padding u-equal-height">
         <div class="col-7">
           <h3 class="p-heading--2">Thank you for enquiring about BootStack</h3>
           <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
         </div>
-        <div class="col-5 u-vertically-center u-align--center u-hide--small">
+        <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
           {{
             image(
             url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
