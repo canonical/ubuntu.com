@@ -1297,12 +1297,12 @@
   resolved "https://registry.yarnpkg.com/@canonical/cookie-policy/-/cookie-policy-3.4.0.tgz#0d6708da340df5867fd2cc9dbd95538c46f20cf8"
   integrity sha512-cdVqxQmGu+j+Q86UobihWWVFzGzHlekFeMFxlbRpm+yqxEOUCrLkA9/t/RsMfLNDToP2ECPgsMbS20aPlA2tIg==
 
-"@canonical/global-nav@2.5.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-2.5.0.tgz#f1cff4474ebbc435381a22fee353e123df870bda"
-  integrity sha512-emgBRHl9pDswbpg2/UvGRLZcclMs9EP09xWc3PdxC9NKlHr5dr9OeU/OEYsQ1+/VA2NmLLioVmqVe63TNRQW4w==
+"@canonical/global-nav@2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-2.7.0.tgz#6a61cba769a367c984b89bb7c4286a674f88354a"
+  integrity sha512-jepwipTPIlceeHMvLSC8mafziknvhefr0SNCvSWMOdkPnZC28Rd45wBahfnEJ7THi4qt9xkZ99I+xHuJVKfpOA==
   dependencies:
-    vanilla-framework "2.25.1"
+    vanilla-framework "3.0.1"
 
 "@canonical/latest-news@1.3.0":
   version "1.3.0"
@@ -8727,10 +8727,17 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vanilla-framework@2.25.1:
-  version "2.25.1"
-  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-2.25.1.tgz#fb3a30bc832d1ffc3b1b909a87dbe8f7a03b8618"
-  integrity sha512-jZeyUsjNqUI9LW5A5UUS8X/asMOlKwMbD/HoSnxegAUH0fil7XUzB+F1A1IqRSGdgonWxFehAZA2qIzmKtOnIA==
+vanilla-framework@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-3.0.1.tgz#16a7f19ccb24f6b3885b6d176b5754113e4d9c0d"
+  integrity sha512-KwZ0wZCbNhEjuTb50BkAX2frWwNjtgmKRcQEDHOQFNuEweDUT2O1E0ps2GLHv7lSOVxli1jQv56VvIBEr0+lqw==
+  dependencies:
+    "@canonical/cookie-policy" "3.3.0"
+    "@canonical/latest-news" "1.3.0"
+    autoprefixer "10.4.1"
+    postcss "8.4.5"
+    postcss-cli "9.1.0"
+    sass "1.45.2"
 
 vanilla-framework@3.1.1:
   version "3.1.1"
