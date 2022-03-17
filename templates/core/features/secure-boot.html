@@ -49,7 +49,7 @@
     <h2>Integrity verification</h2>
     <p>The integrity of the boot firmware must be proven before trust is established in user space processes. This requires a secure mechanism to establish integrity.</p>
     <p>Such a mechanism should be implemented into low level computer initialisation firmware like UEFI, as validating the boot process integrity at this low level assures that a device has started up in a secure state.</p>
-    <p>Standard requirements and recommendations for boot integrity measurement are following (<a class="p-link--external" href="https://csrc.nist.gov/publications/detail/sp/800-155/draft">NIST 800-155</a>):</p>
+    <p>Standard requirements and recommendations for boot integrity measurement are following (<a href="https://csrc.nist.gov/publications/detail/sp/800-155/draft">NIST 800-155</a>):</p>
     <ul class="p-list">
       <li class="p-list__item is-ticked">Enable endpoints to measure the integrity of all executables and configuration metadata at boot time</li>
       <li class="p-list__item is-ticked">Securely transmit measurements of integrity</li>
@@ -70,7 +70,7 @@
     </div>
     <div class="p-card col-6 u-vertically-center">
       <h3 class="p-card__title">Free for pre-certified boards</h3>
-      <p class="p-card__content">Secure boot is available out of the box on <a href="/certified/iot">certified devices</a>, like the Raspberry Pi, at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.</p>
+      <p class="p-card__content">Secure boot is available out of the box on <a href="/certified/devices">certified devices</a> at no additional cost. An enablement fee is required to fully certify Ubuntu Core on non-certified boards.</p>
     </div>
   </div>
 </section>
@@ -78,7 +78,7 @@
 <section class="p-strip">
   <div class="row">
     <h2>How it works</h2>
-    <p>Ubuntu Core 20 authenticates the boot process by default. Authentication is based on the verification of digital signatures.</p>
+    <p>Since Ubuntu Core 20, the boot process is authenticated by default. Authentication is based on the verification of digital signatures.</p>
   </div>
   <div class="row u-equal-height">
     <div class="col-8">
