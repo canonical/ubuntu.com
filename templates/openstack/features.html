@@ -2,7 +2,7 @@
 
 {% block title %}Enterprise private cloud - Canonical's Charmed OpenStack{% endblock %}
 
-{% block meta_description %}Canonical’s Charmed OpenStack is an enterprise private cloud that provides total automation, architectural freedom, enterprise dashboard and stability, and security above all.{% endblock meta_description %}
+{% block meta_description %}Canonical's Charmed OpenStack is an enterprise private cloud that provides total automation, architectural freedom, enterprise dashboard and stability, and security above all.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1odFXuFtN1GjuZvgd8tW48HB4J9PjZJtP3w6wY0xlmog/edit{% endblock meta_copydoc %}
 
@@ -36,12 +36,27 @@
         <li class="p-list__item is-ticked">Interoperability across various platforms</li>
         <li class="p-list__item is-ticked">Integrated observability stack</li>
       </ul>
-      <p><a href="/openstack">See the benefits of OpenStack&nbsp;&rsaquo;</a></p>
+      <p><a href="/openstack">See the benefits of Charmed OpenStack&nbsp;&rsaquo;</a></p>
     </article>
+    <article class="col-6 p-card">
+      <h3 class="p-card__image p-heading--4">Public cloud architecture</h3>
+      <hr class="u-sv1" />
+      <p>For service providers looking for a cost&ndash;effective alternative to hyperscalers.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Fully automated scale out capabilities</li>
+        <li class="p-list__item is-ticked">IaC and CI/CD integration</li>
+        <li class="p-list__item is-ticked">Extendable containers layer with K8s</li>
+        <li class="p-list__item is-ticked">Various storage platforms supported</li>
+        <li class="p-list__item is-ticked">Ubuntu and third&ndash;party workloads</li>
+      </ul>
+      <p><a href="/engage/nayatel-casestudy-charmed-openstack">Read how Nayatel built public cloud with Charmed OpenStack&nbsp;&rsaquo;</a></p>
+    </article>
+  </div>
+  <div class="row u-equal-height">
     <article class="col-6 p-card">
       <h3 class="p-card__image p-heading--4">Telco NFV architecture</h3>
       <hr class="u-sv1" />
-      <p>For telecommunications service providers looking for a network function virtualisation infrastructure.</p>
+      <p>For telcos looking for a network function virtualisation infrastructure.</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">100 Gbps networking with hardware offload</li>
         <li class="p-list__item is-ticked">Numerous performance extensions included</li>
@@ -50,9 +65,7 @@
         <li class="p-list__item is-ticked">Tenant&ndash;level IPv6 support</li>
       </ul>
       <p><a href="/telco">How service providers leverage OpenStack&nbsp;&rsaquo;</a></p>
-    </article>
-  </div>
-  <div class="row u-equal-height">
+    </article>    
     <article class="col-6 p-card">
       <h3 class="p-card__image p-heading--4">Finance and government architecture</h3>
       <hr class="u-sv1" />
@@ -65,19 +78,6 @@
         <li class="p-list__item is-ticked">Containerised control plane</li>
       </ul>
       <p><a href="/financial-services">Why financial institutions use Ubuntu&nbsp;&rsaquo;</a></p>
-    </article>
-    <article class="col-6 p-card">
-      <h3 class="p-card__image p-heading--4">AI/ML and HPC architecture</h3>
-      <hr class="u-sv1" />
-      <p>For businesses and research institutions who are running compute&ndash;intensive workloads.</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">GPU passthrough</li>
-        <li class="p-list__item is-ticked">Extendable containers layer with K8s</li>
-        <li class="p-list__item is-ticked">Various storage platforms supported</li>
-        <li class="p-list__item is-ticked">Fully automated scale-out capabilities</li>
-        <li class="p-list__item is-ticked">CI/CD integration</li>
-      </ul>
-      <p><a href="/ai">Developing AI models on Ubuntu&nbsp;&rsaquo;</a></p>
     </article>
   </div>
   <div class="row">
@@ -274,7 +274,7 @@
         <h2>Move to OpenStack</h2>
         <h3 class="p-heading--4">Wherever you are coming from, Canonical offers hussle&ndash;free migration to OpenStack</h3>
       </div>
-      <p>The main driver for most OpenStack deployments is the cost benefit of using a leaner and more open IaaS. Canonical’s Charmed OpenStack also offers a range of cloud services, and compatibility with hybrid cloud and multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations, which Charmed OpenStack delivers.</p>
+      <p>The main driver for most OpenStack deployments is the cost benefit of using a leaner and more open IaaS. Canonical's Charmed OpenStack also offers a range of cloud services, and compatibility with hybrid cloud and multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations, which Charmed OpenStack delivers.</p>
       <p>Canonical provides workload analysis and migration services from VMware and other cloud types. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can move to OpenStack easily, and are much more cost-efficient to run there.</p>
       <p>
         <a href="/engage/vmware-to-charmed-openstack">Read the OpenStack whitepaper&nbsp;&rsaquo;</a>
@@ -320,20 +320,20 @@
   </div>
   <div class="row u-equal-height u-vertically-center">
     <div class="col-12">
-      <h4><a href="https://charmhub.io/" class="p-link--external">With OpenStack Charms</a>:</h4>
+      <h4><a href="https://charmhub.io/">With OpenStack Charms</a>:</h4>
       <ul class="p-list--divided is-split">
         <li class="p-list__item is-ticked">OpenStack operations code is packaged for reusability across different architectures, organisations and industries</li>
         <li class="p-list__item is-ticked">Upgrades are guaranteed between consecutive OpenStack versions</li>
         <li class="p-list__item is-ticked">Daily operations, such as cluster scale out or database backups, are fully automated</li>
-        <li class="p-list__item is-ticked">OpenStack complexity gets abstracted in favor of model-driven operations</li>
+        <li class="p-list__item is-ticked">OpenStack complexity gets abstracted in favour of model-driven operations</li>
         <li class="p-list__item is-ticked">Security and quality improves for every deployment at the same time</li>
       </ul>
     </div>
   </div>
   <div class="row">
     <div class="col-6">
-      <p>You don’t need to hire a large operations team that follows every aspect of OpenStack development. Just focus on high-level operations and your business workloads.</p>
-      <p><a href="https://pages.ubuntu.com/stuckstack_webinar_upgrades_register.html?utm_source=Insights&utm_medium=link&utm_campaign=FY18_Cloud_StuckStack_WBN&" class="p-link--external">Watch our OpenStack upgrade webinar</a></p>
+      <p>You don't need to hire a large operations team that follows every aspect of OpenStack development. Just focus on high-level operations and your business workloads.</p>
+      <p><a href="https://pages.ubuntu.com/stuckstack_webinar_upgrades_register.html?utm_source=Insights&utm_medium=link&utm_campaign=FY18_Cloud_StuckStack_WBN&">Watch our OpenStack upgrade webinar</a></p>
     </div>
   </div>
 </section>
@@ -358,7 +358,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h4><a href="https://maas.io" class="p-link--external">With MAAS</a>:</h4>
+      <h4><a href="https://maas.io">With MAAS</a>:</h4>
       <ul class="p-list--divided is-split">
         <li class="p-list__item is-ticked">A data centre turns into a bare metal cloud</li>
         <li class="p-list__item is-ticked">All machines in the data centre are automatically discovered and analysed for their base resources</li>
@@ -380,7 +380,7 @@
   <div class="row u-vertically-center">
     <div class="col-7">
       <h2>Managed OpenStack</h2>
-      <p>OpenStack is a complex system consisting of various interconnected components. Therefore, its operations are challenging even in a fully automated environment. We recognise that and offer fully managed services for organisations who do not have sufficient OpenStack knowledge, but want to go to market fast. With Canonical’s Managed OpenStack our customers get 24x7 cloud monitoring, daily maintenance, regular software updates, OpenStack upgrades and more. Managed OpenStack is also a more economical option up to 300 nodes.</p>
+      <p>OpenStack is a complex system consisting of various interconnected components. Therefore, its operations are challenging even in a fully automated environment. We recognise that and offer fully managed services for organisations who do not have sufficient OpenStack knowledge, but want to go to market fast. With Canonical's Managed OpenStack our customers get 24x7 cloud monitoring, daily maintenance, regular software updates, OpenStack upgrades and more. Managed OpenStack is also a more economical option up to 300 nodes.</p>
       <a href="/openstack/managed">Learn more about Managed OpenStack&nbsp;&rsaquo;</a>
     </div>
     <div class="col-5 u-align--center u-hide--small">
@@ -401,7 +401,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Hyper-Converged or other architectures</h2>
-      <p>Designing the cloud for the best price-performance starts with making an architecture choice. Although the Hyper-Converged architecture is the most often chosen by organisations, Canonical supports other architectures as well to meet customers’ needs.</p>
+      <p>Designing the cloud for the best price-performance starts with making an architecture choice. Although the Hyper-Converged architecture is the most often chosen by organisations, Canonical supports other architectures as well to meet customers' needs.</p>
     </div>
   </div>
   <div class="row">
@@ -421,7 +421,7 @@
       <h2>Compute</h2>
       <p>The biggest challenge when building a private cloud is to maximise performance of workloads, utilisation of data centre resources and cost efficiency at the same time. This is challenging as multiple factors shape this multidimensional curve, from cloud architecture to hardware choices.</p>
       <p>Canonical partners with leading silicon and hardware vendors to ensure the latest improvements in the compute space are tested and validated on Ubuntu. This enables us to design a cloud architecture that answers the performance needs. We also assist with workload analysis to make sure that the cloud we build has an optimal capacity. In order to guarantee the maximum cost efficiency, we run a bidding process with leading hardware vendors on behalf of our customers.</p>
-      <p>With Canonical’s Charmed OpenStack you get:</p>
+      <p>With Canonical's Charmed OpenStack you get:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Access to the latest technologies, including GPUs, FPGA and other accelerators</li>
         <li class="p-list__item is-ticked">Architecture and hardware guidance</li>
@@ -475,8 +475,8 @@
   <div class="row">
     <div class="col-6">
       <p>Network is an essential component in every data centre. A poorly designed network can significantly affect the overall performance of the cloud and become a bottleneck in the traffic flow. On the other hand, network improvements should always be driven by economics so as not to affect the overall budget.</p>
-      <p>Canonical’s partnership with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Moreover, our experience with telcos for NFV and edge clouds ensures that our solution works well in complex environments where latency and security are critical.</p>
-      <p>With Canonical’s Charmed OpenStack you get:</p>
+      <p>Canonical's partnership with hyperscale public clouds ensures that we have deep insight into the dynamics of cloud network performance and security best practices for large-scale multi-tenanted operations. Moreover, our experience with telcos for NFV and edge clouds ensures that our solution works well in complex environments where latency and security are critical.</p>
+      <p>With Canonical's Charmed OpenStack you get:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Up to 100 Gbps tenant-level performance</li>
         <li class="p-list__item is-ticked">Underlay network architecture and security design</li>
@@ -490,7 +490,7 @@
         <h3 class="p-card__image">Open source SDN</h3>
         <hr class="u-sv1" />
         <p>Open Virtual Network (OVN) and Open vSwitch (OVS) are a foundation of an open source SDN which is gaining popularity, especially in general-purpose OpenStack deployments.</p>
-        <p><a href="https://www.youtube.com/watch?v=TpSTDQnoIRM&ab_channel=OpenInfrastructureFoundation" class="p-link--external">How to migrate from OVS to OVN</a></p>
+        <p><a href="https://www.youtube.com/watch?v=TpSTDQnoIRM&ab_channel=OpenInfrastructureFoundation">How to migrate from OVS to OVN</a></p>
         <div class="u-hide--small" style="display: inline-block;">
           {{ image (
             url="https://assets.ubuntu.com/v1/da0469aa-ovn-logo.png",
@@ -553,8 +553,8 @@
   <div class="row">
     <div class="col-6">
       <p>Storage is one of the most tricky components when architecting a cloud. Storage costs per TB vary by several orders of magnitude depending on the storage types and technologies used. Thus, making careful selections when designing storage architecture is essential from a price-performance point of view.</p>
-      <p>Canonical’s approach towards storage architecture optimisation leverages multiple storage tiers. While big, cheap, low performance disks are used as ultimate storage devices, several smaller, more expensive, high performance devices serve as a cache in front. This approach ensures the required performance of the entire cloud, while not affecting hardware costs significantly.</p>
-      <p>With Canonical’s Charmed OpenStack you get:</p>
+      <p>Canonical's approach towards storage architecture optimisation leverages multiple storage tiers. While big, cheap, low performance disks are used as ultimate storage devices, several smaller, more expensive, high performance devices serve as a cache in front. This approach ensures the required performance of the entire cloud, while not affecting hardware costs significantly.</p>
+      <p>With Canonical's Charmed OpenStack you get:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Up to 72TB raw storage per node</li>
         <li class="p-list__item is-ticked">Data encryption in transit and at rest</li>
@@ -583,8 +583,8 @@
       <div class="p-card">
         <h3 class="p-card__image">Other platforms</h3>
         <hr class="u-sv1" />
-        <p>While Ceph provides the best price-performance rate, it is not always an option. Therefore, Canonical’s Charmed OpenStack provides support for various other storage platforms including Swift, iSCSI and more.</p>
-        <p><a href="https://charmhub.io/?q=swift" class="p-link--external">Explore other storage options</a></p>
+        <p>While Ceph provides the best price-performance rate, it is not always an option. Therefore, Canonical's Charmed OpenStack provides support for various other storage platforms including Swift, iSCSI and more.</p>
+        <p><a href="https://charmhub.io/?q=swift">Explore other storage options</a></p>
       </div>
     </div>
   </div>
@@ -617,7 +617,7 @@
       <h2>Security and compliance</h2>
       <p>Building an enterprise private cloud entails additional security and compliance challenges. While in the public cloud, these activities are handled by the cloud service provider out of the box, when deploying an on-premises infrastructure, all must be undertaken by internal teams.</p>
       <p>Canonical's Charmed OpenStack includes up to ten years of security updates, cloud hardening options according to common security benchmarks and compliance programmes to meet local US and EU regulations for enterprise customers.</p>
-      <p>What’s included:</p>
+      <p>What's included:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">CIS and DISA benchmarks</li>
         <li class="p-list__item is-ticked">CSEC and GDPR certification</li>
@@ -699,7 +699,7 @@
     <div class="col-6">
       <p>Operations in highly coherent large-scale distributed clusters require a new level of observability. Cloud operations teams have to be able to check cluster health, monitor cloud capacity and investigate individual server logs from a centralised operations dashboard.</p>
       <p>Canonical delivers an integrated observability stack for logging, monitoring and alerting based on established open source technologies with every deployed infrastructure component, including Charmed OpenStack.</p>
-      <p>What’s included:</p>
+      <p>What's included:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Filebeat for log forwarding</li>
         <li class="p-list__item is-ticked">Graylog for log aggregation</li>
@@ -729,8 +729,8 @@
     <div class="col-6">
       <h2 class="u-sv2">Data protection</h2>
       <p>With increasingly complex and critical OpenStack environments, companies and service providers need to look for the best ways to fully protect their business, while at the same time providing easier, faster and more reliable recovery.</p>
-      <p>TrilioVault’s cloud-native design can dramatically reduce the amount of time organisations spend on restoration activities. It integrates with the OpenStack dashboard out-of-the-box to provide sysadmins with complete visibility into their private cloud operations in a single view.</p>
-      <p>What’s included:</p>
+      <p>TrilioVault's cloud-native design can dramatically reduce the amount of time organisations spend on restoration activities. It integrates with the OpenStack dashboard out-of-the-box to provide sysadmins with complete visibility into their private cloud operations in a single view.</p>
+      <p>What's included:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Joint tested and validated solution</li>
         <li class="p-list__item is-ticked">Automated deployment and operations of Charmed OpenStack with TrilioVault add-on</li>
