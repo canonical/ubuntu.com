@@ -188,7 +188,7 @@ For more detail on overlays and how they work, see the section [below](#overlay)
 
 ## Deploying a specific Charmed Kubernetes bundle
 
-The **Juju Charm Store** hosts the **Charmed Kubernetes** bundles as well as
+**Charmhub.io** hosts the **Charmed Kubernetes** bundles as well as
 individual charms. To deploy the latest, stable bundle, run the command:
 
 ```bash
@@ -378,7 +378,7 @@ locally and edit it with a standard text editor.
 
 The latest version of the **Charmed Kubernetes** bundle can always be retrieved
 by
-[fetching the current stable version from the Juju Charm Store][latest-bundle-file]. For other versions, see the [table above](#table).
+[fetching the current stable version from Charmhub][latest-bundle-file]. For other versions, see the [table above](#table).
 
 Care should be taken when editing the YAML file as the format is very strict.
 For more details on the format used by Juju, see the
@@ -435,7 +435,7 @@ Now you have a cluster up and running, check out the
 [juju-gui]: https://juju.is/docs/olm/accessing-juju%E2%80%99s-web-interface
 [juju-constraints]: https://juju.is/docs/olm/constraints
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
-[latest-bundle-file]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes/archive/bundle.yaml?channel=stable
+[latest-bundle-file]: https://charmhub.io/charmed-kubernetes
 [charm-kworker]: https://charmhub.io/containers-kubernetes-worker
 [snaps]: https://docs.snapcraft.io/snap-documentation
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
