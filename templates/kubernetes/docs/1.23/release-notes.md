@@ -15,7 +15,7 @@ toc: False
 
 # 1.23
 
-### December 15, 2021 - [charmed-kubernetes-862](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-862/archive/bundle.yaml)
+### December 15, 2021 - charmed-kubernetes-862
 
 ## What's new
 
@@ -104,7 +104,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.22
 
-### September 1, 2021 - [charmed-kubernetes-761](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-761/archive/bundle.yaml)
+### September 1, 2021 - charmed-kubernetes-761
 
 ## What's new
 

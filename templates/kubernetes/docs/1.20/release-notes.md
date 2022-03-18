@@ -15,7 +15,7 @@ toc: False
 
 # 1.20+ck1 Bugfix release
 
-### February 23rd, 2021 - [charmed-kubernetes-596](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-596/archive/bundle.yaml)
+### February 23rd, 2021 - charmed-kubernetes-596
 
 ## Fixes
 
@@ -42,7 +42,7 @@ Workaround this by disabling FAN configuration for Google cloud models:
 
 # 1.20
 
-### December 16th, 2020 - [charmed-kubernetes-559](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-559/archive/bundle.yaml)
+### December 16th, 2020 - charmed-kubernetes-559
 
 ## What's new
 
@@ -93,9 +93,7 @@ Please see [this page][rel] for release notes of earlier versions.
 
 <!--LINKS-->
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [cis-benchmark]: /kubernetes/docs/cis-compliance
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [rel]: /kubernetes/docs/release-notes
 [ipv6]: /kubernetes/docs/ipv6
 [cni-sriov]: /kubernetes/docs/cni-sriov

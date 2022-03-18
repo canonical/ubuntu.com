@@ -15,7 +15,7 @@ toc: False
 
 # 1.18+ck2 Bugfix release
 
-### August 12, 2020 - [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.18/bundle.yaml)
+### August 12, 2020 - charmed-kubernetes-485
 
 ## Fixes
 
@@ -24,7 +24,7 @@ Bug fixes included in this release can be found at
 
 # 1.18+ck1 Bugfix release
 
-### June 11, 2020 - [charmed-kubernetes-464](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-464/archive/bundle.yaml)
+### June 11, 2020 - charmed-kubernetes-464(
 
 Before upgrading from 1.17 or earlier, please read the
 [upgrade notes](/kubernetes/docs/upgrade-notes).
@@ -72,7 +72,7 @@ Bug fixes included in this release can be found at
 
 # 1.18
 
-### April 13, 2020 - [charmed-kubernetes-430](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-430/archive/bundle.yaml)
+### April 13, 2020 - charmed-kubernetes-430
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -167,7 +167,7 @@ PVCs using those storage classes will hang until the storage class is updated.
 
 # 1.17+ck2 Bugfix release
 
-### March 2, 2020 - [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.17/bundle.yaml)
+### March 2, 2020 - charmed-kubernetes-410
 
 ## Fixes
 
@@ -180,8 +180,7 @@ Additional bug fixes included in this release can be found at
 
 # 1.17+ck1 Bugfix release
 
-### January 15, 2020 - [charmed-kubernetes-372](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-372/archive/bundle.yaml)
-
+### January 15, 2020 - charmed-kubernetes-372
 ## Fixes
 
 We fixed an issue where pod-to-pod network traffic was being unnecessarily
@@ -190,7 +189,7 @@ masqueraded when using Flannel or Canal. More details can be found at
 
 # 1.17
 
-### December 17, 2019 - [charmed-kubernetes-335](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-335/archive/bundle.yaml)
+### December 17, 2019 - charmed-kubernetes-335
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -232,7 +231,7 @@ cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
 - Support for etcd 3.3 and 3.4
 
 Whilst Charmed Kubernetes 1.17 ships with etcd 3.3 by default, it also brings support for
-running etcd 3.4. To do so, you can simply run the followiung Juju command:
+running etcd 3.4. To do so, you can simply run the following Juju command:
 
 ```bash
 juju config etcd channel=3.4/stable
@@ -262,7 +261,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.16+ck2 Bugfix release
 
-### November 22, 2019 - [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-316/archive/bundle.yaml)
+### November 22, 2019 - charmed-kubernetes-316
 
 ## Fixes
 
@@ -271,7 +270,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.16+ck1 Bugfix release
 
-### October 4, 2019 - [charmed-kubernetes-270](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-270/archive/bundle.yaml)
+### October 4, 2019 - charmed-kubernetes-270
 
 ## Fixes
 
@@ -280,7 +279,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.16
 
-### September 27, 2019 - [charmed-kubernetes-252](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-252/archive/bundle.yaml)
+### September 27, 2019 - charmed-kubernetes-252
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -353,7 +352,7 @@ The Kubernetes Dashboard shipped with Charmed Kubernetes 1.16 is version 2.0.0-b
 
 # 1.15+ck1 Bugfix release
 
-### August 15, 2019 - [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.15/bundle.yaml)
+### August 15, 2019 - charmed-kubernetes-209
 
 ## Fixes
 
@@ -362,7 +361,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.15
 
-### June 28, 2019 - [charmed-kubernetes-142](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-142/archive/bundle.yaml)
+### June 28, 2019 - charmed-kubernetes-142
 
 ## What's new
 
@@ -466,7 +465,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### June 19th, 2019 - [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.14/bundle.yaml)
+### June 19th, 2019 - charmed-kubernetes-124
 
 ## Fixes
 
@@ -474,7 +473,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### June 6th, 2019 - [charmed-kubernetes-96](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-96/archive/bundle.yaml)
+### June 6th, 2019 - charmed-kubernetes-96
 
 ## Fixes
 
@@ -484,7 +483,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### May 23rd, 2019 - [charmed-kubernetes-74](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-74/archive/bundle.yaml)
+### May 23rd, 2019 - charmed-kubernetes-74
 
 ## Fixes
 
@@ -497,7 +496,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### April 23rd, 2019 - [charmed-kubernetes-31](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-31/archive/bundle.yaml)
+### April 23rd, 2019 - charmed-kubernetes-31
 
 ## Fixes
 
@@ -520,7 +519,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### April 4th, 2019 - [canonical-kubernetes-471][bundle]
+### April 4th, 2019 - canonical-kubernetes-471
 
 ## Fixes
 
@@ -532,7 +531,7 @@ updated.
 
 # 1.14
 
-### March 27, 2019 - [canonical-kubernetes-466](https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-466/archive/bundle.yaml)
+### March 27, 2019 - canonical-kubernetes-466
 
 ## What's new
 
@@ -614,7 +613,7 @@ continue to use **KubeDNS** until the operator chooses to upgrade to
 
 # 1.13 Bugfix Release
 
-### February 21, 2019 - [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-435/archive/bundle.yaml)
+### February 21, 2019 - canonical-kubernetes-435
 
 ## Fixes
 
