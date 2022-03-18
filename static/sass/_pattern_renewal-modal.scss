@@ -195,7 +195,8 @@
       &.p-radio--inline {
         float: none;
         &:not(:first-child) {
-          margin-left: $sph-inner--large;
+          // TODO: this should be "expressed as a sum of other variables"
+          margin-left: 1.5rem;
         }
       }
     }

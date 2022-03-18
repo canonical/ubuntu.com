@@ -1,7 +1,7 @@
 # Packages
-from dateutil.parser import parse
 import flask
 from requests.exceptions import HTTPError
+from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 
 # Local
 from webapp.shop.decorators import shop_decorator
@@ -48,7 +48,7 @@ def account_view(**kwargs):
 
 @shop_decorator(area="account", permission="user", response="html")
 @use_kwargs(invoice_view, location="query")
-def invoices_view(advantage_mapper, ua_contracts_api, **kwargs):
+def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
 
     try:
@@ -58,75 +58,25 @@ def invoices_view(advantage_mapper, ua_contracts_api, **kwargs):
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
 
-    total_payments = []
-    filters = {"marketplace": marketplace} if marketplace else None
-
+    payments = []
     if account:
-        raw_payments = advantage_mapper.get_account_purchases(
+        payments = advantage_mapper.get_account_purchases(
             account_id=account.id,
-            filters=filters,
+            filters={"marketplace": marketplace} if marketplace else None,
         )
-
-        product_listings = (
-            raw_payments["productListings"] if raw_payments else []
-        )
-        all_raw_payments = raw_payments["purchases"] if raw_payments else []
-        for raw_payment in all_raw_payments:
-            payment_id = raw_payment["id"]
-            payment_marketplace = raw_payment["marketplace"]
-            created_at = raw_payment["createdAt"]
-
-            total = None
-            invoice = raw_payment.get("invoice")
-            status = invoice.get("status") if invoice else "Pending"
-            if invoice and invoice.get("total"):
-                cost = invoice.get("total") / 100
-                currency = invoice.get("currency")
-                total = f"{cost} {currency}"
-
-            period = None
-            listing_id = raw_payment["purchaseItems"][0]["productListingID"]
-            if payment_marketplace != "canonical-cube":
-                for product_listing in product_listings:
-                    if product_listing["id"] == listing_id:
-                        period = product_listing["period"]
-
-                        break
-                period = "Monthly" if period == "monthly" else "Annual"
-
-            download_link = ""
-            if raw_payment.get("invoice"):
-                download_link = f"invoices/download/{payment_id}"
-
-            total_payments.append(
-                {
-                    "created_at": created_at,
-                    "service": SERVICES[payment_marketplace]["name"],
-                    "period": period,
-                    "date": parse(created_at).strftime("%d %B, %Y"),
-                    "total": total,
-                    "download_file_name": "Download",
-                    "download_link": download_link,
-                    "status": status,
-                }
-            )
-
-    total_payments.sort(key=lambda item: item["created_at"], reverse=True)
 
     return flask.render_template(
         "account/invoices/index.html",
-        invoices=total_payments,
+        invoices=payments,
         marketplace=marketplace,
     )
 
 
 @shop_decorator(area="account", permission="user", response="html")
-def download_invoice(ua_contracts_api, **kwargs):
-    purchase_id = kwargs.get("purchase_id")
-    purchase = ua_contracts_api.get_purchase(purchase_id)
-    download_link = purchase["invoice"]["url"]
+def download_invoice(advantage_mapper: AdvantageMapper, **kwargs):
+    purchase = advantage_mapper.get_purchase(kwargs.get("purchase_id"))
 
-    return flask.redirect(download_link)
+    return flask.redirect(purchase.invoice.url)
 
 
 @shop_decorator(area="account", permission="user", response="html")

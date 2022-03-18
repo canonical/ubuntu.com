@@ -5,11 +5,6 @@
       position: fixed;
       z-index: 100;
 
-      input[type="checkbox"] + label {
-        margin-bottom: 0;
-        margin-top: 0;
-      }
-
       .p-modal__dialog {
         margin-bottom: 0;
 
@@ -21,11 +16,11 @@
 
       .p-modal__header {
         border-bottom: 1px solid $color-mid-light;
-        margin-bottom: $spv-inner--medium;
+        margin-bottom: $spv--medium;
       }
 
       .p-modal__title {
-        margin-bottom: $spv-inner--small;
+        margin-bottom: $spv--small;
       }
 
       &.thank-you {

@@ -6,17 +6,21 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width u-no-margin--bottom">Canonical partners with silicon companies, board manufacturers and ODMs to help you bring smart devices to market faster. Tell us about your project so we can bring the right team to the conversation.</p>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Do you have a commercial project?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="commerical-project-yes" name="commercial-project" value="Yes">
-            <label for="commerical-project-yes">Yes</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commerical-project-yes" name="commercial-project" value="Yes">
+              <span class="p-radio__label" id="commerical-project-yes">Yes</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="commercial-project-no" name="commercial-project" value="No">
-            <label for="commercial-project-no">No</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
+              <span class="p-radio__label" id="commercial-project-no">No</span>
+            </label>
           </div>
         </div>
       </div>
@@ -25,16 +29,24 @@
           <h3 class="p-heading--5">When do you need to ship?</h3>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
-              <input type="radio" id="shipping-time-next-3-months" name="shipping-time" value="In the next 3 months">
-              <label for="shipping-time-next-3-months">In the next 3 months</label>
-              <input type="radio" id="shipping-time-next-6-months" name="shipping-time" value="In the next 6 months">
-              <label for="shipping-time-next-6-months">In the next 6 months</label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-months" name="shipping-time" value="In the next 3 months">
+                <span class="p-radio__label" id="shipping-time-next-3-months">In the next 3 months</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-6-months" name="shipping-time" value="In the next 6 months">
+                <span class="p-radio__label" id="shipping-time-next-6-months">In the next 6 months</span>
+              </label>
             </div>
             <div class="col-4 u-sv3">
-              <input type="radio" id="shipping-time-next-12-months" name="shipping-time" value="In the next 12 months">
-              <label for="shipping-time-next-12-months">In the next 12 months</label>
-              <input type="radio" id="shipping-time-do-not-know" name="shipping-time" value="Don't know">
-              <label for="shipping-time-do-not-know">Don't know</label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-12-months" name="shipping-time" value="In the next 12 months">
+                <span class="p-radio__label" id="shipping-time-next-12-months">In the next 12 months</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-do-not-know" name="shipping-time" value="Don't know">
+                <span class="p-radio__label" id="shipping-time-do-not-know">Don't know</span>
+              </label>
             </div>
           </div>
         </div>
@@ -43,86 +55,144 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">What is your first year ship volume?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="ship-volume-0-100" name="ship-volume" value="0-100 units">
-            <label for="ship-volume-0-100">0-100 units</label>
-            <input type="radio" id="ship-volume-100-1000" name="ship-volume" value="100-1000 units">
-            <label for="ship-volume-100-1000">100-1000 units</label>
-            <input type="radio" id="ship-volume-1000-5000" name="ship-volume" value="1000-5,000 units">
-            <label for="ship-volume-1000-5000">1000-5,000 units</label>
-            <input type="radio" id="ship-volume-5000-25000" name="ship-volume" value="5,000-25,000 units">
-            <label for="ship-volume-5000-25000">5,000-25,000 units</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-0-100" name="ship-volume" value="0-100 units">
+              <span class="p-radio__label" id="ship-volume-0-100">0-100 units</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-100-1000" name="ship-volume" value="100-1000 units">
+              <span class="p-radio__label" id="ship-volume-100-1000">100-1000 units</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-1000-5000" name="ship-volume" value="1000-5,000 units">
+              <span class="p-radio__label" id="ship-volume-1000-5000">1000-5,000 units</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-5000-25000" name="ship-volume" value="5,000-25,000 units">
+              <span class="p-radio__label" id="ship-volume-5000-25000">5,000-25,000 units</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="ship-volume-25000-50000" name="ship-volume" value="25,000-50,000 units">
-            <label for="ship-volume-25000-50000">25,000-50,000 units</label>
-            <input type="radio" id="ship-volume-50000-100000" name="ship-volume" value="50,000-100,000 units">
-            <label for="ship-volume-50000-100000">50,000-100,000 units</label>
-            <input type="radio" id="ship-volume-100000-plus" name="ship-volume" value="100,000+ units">
-            <label for="ship-volume-100000-plus">100,000+ units</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-25000-50000" name="ship-volume" value="25,000-50,000 units">
+              <span class="p-radio__label" id="ship-volume-25000-50000">25,000-50,000 units</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-50000-100000" name="ship-volume" value="50,000-100,000 units">
+              <span class="p-radio__label" id="ship-volume-50000-100000">50,000-100,000 units</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="ship-volume-100000-plus" name="ship-volume" value="100,000+ units">
+              <span class="p-radio__label" id="ship-volume-100000-plus">100,000+ units</span>
+            </label>
           </div>
         </div>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">What is your selected hardware?</h3>
         <div class="row u-no-padding js-radio-group">
           <div class="col-4 u-sv3">
-            <input type="radio" id="selected-hardware-intel" name="selected-hardware" value="Intel">
-            <label for="selected-hardware-intel">Intel</label>
-            <input type="radio" id="selected-hardware-arm" name="selected-hardware" value="Arm">
-            <label for="selected-hardware-arm">Arm</label>
-            <input type="radio" id="selected-hardware-raspberry-pi-cm" name="selected-hardware" value="Raspberry Pi/CM">
-            <label for="selected-hardware-raspberry-pi-cm">Raspberry Pi/CM</label>
-            <input type="radio" id="selected-hardware-nxp" name="selected-hardware" value="NXP">
-            <label for="selected-hardware-nxp">NXP</label>
-            <input type="radio" id="selected-hardware-nvidia" name="selected-hardware" value="Nvidia">
-            <label for="selected-hardware-nvidia">Nvidia</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-intel" name="selected-hardware" value="Intel">
+              <span class="p-radio__label" id="selected-hardware-intel">Intel</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-arm" name="selected-hardware" value="Arm">
+              <span class="p-radio__label" id="selected-hardware-arm">Arm</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-raspberry-pi-cm" name="selected-hardware" value="Raspberry Pi/CM">
+              <span class="p-radio__label" id="selected-hardware-raspberry-pi-cm">Raspberry Pi/CM</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-nxp" name="selected-hardware" value="NXP">
+              <span class="p-radio__label" id="selected-hardware-nxp">NXP</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-nvidia" name="selected-hardware" value="Nvidia">
+              <span class="p-radio__label" id="selected-hardware-nvidia">Nvidia</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="selected-hardware-qualcomm" name="selected-hardware" value="Qualcomm">
-            <label for="selected-hardware-qualcomm">Qualcomm</label>
-            <input type="radio" id="selected-hardware-texas-instruments" name="selected-hardware" value="Texas Instruments">
-            <label for="selected-hardware-texas-instruments">Texas Instruments</label>
-            <input type="radio" id="selected-hardware-rockchip" name="selected-hardware" value="Rockchip">
-            <label for="selected-hardware-rockchip">Rockchip</label>
-            <input type="radio" id="selected-hardware-not-sure" name="selected-hardware" value="Not sure">
-            <label for="selected-hardware-not-sure">Not sure</label>
-            <input type="radio" id="selected-hardware-other" name="selected-hardware" value="Other - please describe" class="js-toggle-description-field" data-description-field-id="selected-hardware-other-description">
-            <label for="selected-hardware-other">Other - please describe</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-qualcomm" name="selected-hardware" value="Qualcomm">
+              <span class="p-radio__label" id="selected-hardware-qualcomm">Qualcomm</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-texas-instruments" name="selected-hardware" value="Texas Instruments">
+              <span class="p-radio__label" id="selected-hardware-texas-instruments">Texas Instruments</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-rockchip" name="selected-hardware" value="Rockchip">
+              <span class="p-radio__label" id="selected-hardware-rockchip">Rockchip</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-not-sure" name="selected-hardware" value="Not sure">
+              <span class="p-radio__label" id="selected-hardware-not-sure">Not sure</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="selected-hardware-other" name="selected-hardware" value="Other - please describe" class="js-toggle-description-field" data-description-field-id="selected-hardware-other-description">
+              <span class="p-radio__label" id="selected-hardware-other">Other - please describe</span>
+            </label>
             <textarea class="u-hide" name="selected-hardware-other-description" id="selected-hardware-other-description" aria-label="Other selected hardware - please describe"></textarea>
           </div>
         </div>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Which products are you most interested in?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="interested-products-smart-start" name="interested-products" value="SMART START">
-            <label for="interested-products-smart-start">SMART START</label>
-            <input type="checkbox" id="interested-products-app-store" name="interested-products" value="App Store">
-            <label for="interested-products-app-store">App Store</label>
-            <input type="checkbox" id="interested-products-board-enablement" name="interested-products" value="Board Enablement">
-            <label for="interested-products-board-enablement">Board Enablement</label>
-            <input type="checkbox" id="interested-products-maintenance" name="interested-products" value="Maintenance">
-            <label for="interested-products-maintenance">Maintenance</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-smart-start" name="interested-products" value="SMART START" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-smart-start" name="interested-products" value="SMART START">SMART START</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-app-store" name="interested-products" value="App Store" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-app-store" name="interested-products" value="App Store">App Store</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-board-enablement" name="interested-products" value="Board Enablement" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-board-enablement" name="interested-products" value="Board Enablement">Board Enablement</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-maintenance" name="interested-products" value="Maintenance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-maintenance" name="interested-products" value="Maintenance">Maintenance</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="interested-products-esm" name="interested-products" value="Extended Security Maintenance (ESM)">
-            <label for="interested-products-esm">Extended Security Maintenance (ESM)</label>
-            <input type="checkbox" id="interested-products-technical-support" name="interested-products" value="Technical Support">
-            <label for="interested-products-technical-support">Technical Support</label>
-            <input type="checkbox" id="interested-products-training" name="interested-products" value="Training">
-            <label for="interested-products-training">Training</label>
-            <input type="checkbox" id="interested-products-all" name="interested-products" value="All of the above">
-            <label for="interested-products-all">All of the above</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-esm" name="interested-products" value="Extended Security Maintenance (ESM)" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-esm" name="interested-products" value="Extended Security Maintenance (ESM)">Extended Security Maintenance (ESM)</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-technical-support" name="interested-products" value="Technical Support" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-technical-support" name="interested-products" value="Technical Support">Technical Support</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-training" name="interested-products" value="Training" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-training" name="interested-products" value="Training">Training</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="interested-products-all" name="interested-products" value="All of the above" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="interested-products-all" name="interested-products" value="All of the above">All of the above</span>
+            </label>
+            
           </div>
         </div>
         <div class="row u-no-padding">
@@ -132,13 +202,13 @@
           </div>
         </div>
       </div>
-
+      
       <div class="pagination">
         <a class="pagination__link--previous p-button" href="">Previous</a>
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -166,8 +236,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -181,7 +253,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -202,7 +274,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -211,7 +283,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--4 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -219,7 +291,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about embedded Ubuntu</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

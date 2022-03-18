@@ -2,35 +2,48 @@
   <header class="blog-p-card__header">
     <h5 class="p-muted-heading u-no-margin--bottom">Newsletter signup</h5>
   </header>
-
+  
   <div class="blog-p-card__content">
     <form action="/marketo/submit" method="post" id="mktoForm_1212" onsubmit="ga('send', 'Newsletter', 'Signup', 'New homepage newsletter signup');">
       <h3 class="p-card--title p-heading--4">Select topics you're <br />interested in</h3>
-
+      
       <ul class="p-list">
         <li class="p-list__item u-clearfix">
-          <input type="checkbox" id="insightscloudserver" name="insightscloudserver" value="true" />
-          <label for="insightscloudserver">Cloud and Server</label>
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby="insightscloudserver" class="p-checkbox__input" name="insightscloudserver" value="true" />
+            <span class="p-checkbox__label" id="insightscloudserver">Cloud and Server</span>
+          </label>
+          
         </li>
-
+        
         <li class="p-list__item u-clearfix">
-          <input type="checkbox" id="insightsdesktop" name="insightsdesktop" value="true" />
-          <label for="insightsdesktop">Desktop</label>
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby="insightsdesktop" class="p-checkbox__input" name="insightsdesktop" value="true" />
+            <span class="p-checkbox__label" id="insightsdesktop">Desktop</span>
+          </label>
+          
         </li>
-
+        
         <li class="p-list__item u-clearfix">
-          <input type="checkbox" id="insightsiot" name="insightsiot" value="true" />
-          <label for="insightsiot">Internet of Things</label>
+          <label class="p-checkbox">
+            <input type="checkbox" aria-labelledby="insightsiot" class="p-checkbox__input" name="insightsiot" value="true" />
+            <span class="p-checkbox__label" id="insightsiot">Internet of Things</span>
+          </label>
+          
         </li>
-
+        
         <li class="p-list__item u-clearfix">
-          <input id="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
-          <label for="insightsrobotics">Robotics</label>
+          <label class="p-checkbox">
+            <input class="p-checkbox__input" aria-labelledby="insightsrobotics" name="insightsrobotics" value="true" type="checkbox">
+            <span class="p-checkbox__label" id="insightsrobotics">Robotics</span>
+          </label>
         </li>
-
+        
         <li class="p-list__item u-clearfix">
-          <input id="insightstutorials" name="insightstutorials" value="true" type="checkbox">
-          <label for="insightstutorials">Tutorials</label>
+          <label class="p-checkbox">
+            <input class="p-checkbox__input" aria-labelledby="insightstutorials" name="insightstutorials" value="true" type="checkbox">
+            <span class="p-checkbox__label" id="insightstutorials">Tutorials</span>
+          </label>
         </li>
         {# These are honey pot fields to catch bots #}
         <li class="u-off-screen">
@@ -43,31 +56,31 @@
         </li>
         {# End of honey pots #}
       </ul>
-
+      
       <div>
         <label>
           <span class="u-no-margin--top">Work email: <span>*</span></span>
           <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"/>
         </label>
       </div>
-
+      
       <div>
-        <span>
-          <input class="u-no-margin--top" name="canonicalUpdatesOptIn" id="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
-          <label for="CanonicalUpdatesOptIn" class="p-form__label u-no-margin--top">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input u-no-margin--top" name="canonicalUpdatesOptIn" aria-labelledby="CanonicalUpdatesOptIn" value="yes" type="checkbox" />
+          <span class="p-checkbox__label" for="CanonicalUpdatesOptIn">
             <small>I agree to receive information about Canonical's products and services.</small>
-          </label>
-        </span>
+          </span>
+        </label>
       </div>
       <p>
         <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
       </p>
-
+      
       <div>
         <span class="p-card--content">
           <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
         </span>
-
+        
         <input value="1212" name="formid" type="hidden">
         <input type="hidden" name="Consent_to_Processing__c" value="yes" />
         <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/blog#success" />

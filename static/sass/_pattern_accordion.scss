@@ -28,7 +28,7 @@
       // we also need to account for the bottom margin of one label
       // as all but the first label's margin collapses into the padding of
       // the label above it.
-      $label-margin-nudge: $spv-outer--small-scaleable - $spv-nudge;
+      $label-margin-nudge: $spv--large - $spv-nudge;
 
       max-height: calc(
         #{$label-height} * #{$visible-rows} + #{$label-margin-nudge}

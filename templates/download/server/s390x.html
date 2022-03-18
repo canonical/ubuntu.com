@@ -95,7 +95,10 @@
               <input id="purchaseordernumber" name="purchaseordernumber" maxlength="255" type="text">
             </li>
             <li class="p-list__item">
-              <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox"> <label for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</span>
+              </label>
             </li>
 
             {# These are honey pot fields to catch bots #}

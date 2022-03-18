@@ -4,7 +4,7 @@
       <h1>Thank you for {{ thanks_context }}</h1>
       <p class="p-heading--4">{% if thanks_message %}{{ thanks_message | safe }}{% else %}A member of our team will be in touch {{ details | safe }}within one working day{% endif %}</p>
     </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
             url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",

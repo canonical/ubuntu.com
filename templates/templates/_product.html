@@ -76,10 +76,12 @@
 
     <section class="p-strip is-bordered">
       <div class="u-fixed-width">
-        <h2 class="p-muted-heading u-align--center">MAAS is trusted by</h2>
-        <ul class="p-inline-images">
-          {% block logos %}{% endblock %}
-        </ul>
+        <div class="p-logo-section">
+          <p class="p-logo-setcion__title u-align--center">MAAS is trusted by</p>
+          <div class="p-logo-section__items">
+            {% block logos %}{% endblock %}
+          </div>
+        </div>
       </div>
     </section>
 
