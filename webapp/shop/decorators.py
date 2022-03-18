@@ -43,6 +43,21 @@ MARKETING_FLAGS = {
     "fbclid": "facebook-click-id",
 }
 
+SERVICES = {
+    "canonical-ua": {
+        "short": "ua",
+        "name": "Canonical UA",
+    },
+    "blender": {
+        "short": "blender",
+        "name": "Blender Support",
+    },
+    "canonical-cube": {
+        "short": "cube",
+        "name": "Canonical CUBE",
+    },
+}
+
 
 def shop_decorator(area=None, permission=None, response="json", redirect=None):
     permission = permission if permission in PERMISSION_LIST else None

@@ -85,6 +85,7 @@ from webapp.shop.views import (
     post_customer_info,
     post_anonymised_customer_info,
     get_purchase,
+    get_purchase_v2,
     post_stripe_invoice_id,
     get_last_purchase_ids,
     support,
@@ -113,6 +114,7 @@ from webapp.shop.advantage.views import (
     blender_shop_view,
     post_offer,
     get_advantage_offers,
+    post_advantage_purchase,
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
@@ -447,6 +449,11 @@ app.add_url_rule(
     methods=["GET"],
 )
 app.add_url_rule(
+    "/account/purchases_v2/<purchase_id>",
+    view_func=get_purchase_v2,
+    methods=["GET"],
+)
+app.add_url_rule(
     "/account/<tx_type>/<tx_id>/invoices/<invoice_id>",
     view_func=post_stripe_invoice_id,
     methods=["POST"],
@@ -455,6 +462,18 @@ app.add_url_rule("/support", view_func=support)
 app.add_url_rule(
     "/account/last-purchase-ids/<account_id>",
     view_func=get_last_purchase_ids,
+)
+app.add_url_rule(
+    "/advantage/purchase",
+    view_func=post_advantage_purchase,
+    methods=["POST"],
+    defaults={"preview": False},
+)
+app.add_url_rule(
+    "/advantage/purchase/preview",
+    view_func=post_advantage_purchase,
+    methods=["POST"],
+    defaults={"preview": True},
 )
 # end of shop
 

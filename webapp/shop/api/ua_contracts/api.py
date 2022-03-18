@@ -23,6 +23,12 @@ class UAContractsAPI:
         self.api_url = api_url.rstrip("/")
         self.is_for_view = is_for_view
 
+    def set_authentication_token(self, token):
+        self.authentication_token = token
+
+    def set_token_type(self, token_type):
+        self.token_type = token_type
+
     def set_is_for_view(self, is_for_view):
         self.is_for_view = is_for_view
 
@@ -200,7 +206,7 @@ class UAContractsAPI:
                 f"/marketplace/{marketplace}"
                 f"/subscriptions{filters}"
             ),
-            error_rules=["default"],
+            error_rules=["default", "auth"],
         ).json()
 
     def get_account_purchases(
@@ -234,14 +240,14 @@ class UAContractsAPI:
                 "accountName": account_name,
                 "recaptchaToken": captcha_value,
             },
-            error_rules=["default", "ensure-purchase-account"],
+            error_rules=["default"],
         ).json()
 
     def get_purchase_account(self, marketplace: str = "") -> dict:
         return self._request(
             method="get",
             path=f"v1/marketplace/{marketplace}/account",
-            error_rules=["default", "no-found", "user-role"],
+            error_rules=["default", "auth", "no-found", "user-role"],
         ).json()
 
     def purchase_from_marketplace(
@@ -306,7 +312,7 @@ class UAContractsAPI:
         if "user-role" in error_rules and status_code == 403:
             raise AccessForbiddenError(error)
 
-        if "ensure-purchase-account" in error_rules and status_code == 401:
+        if "auth" in error_rules and status_code == 401:
             raise UnauthorizedError(error)
 
         if "no-found" in error_rules and status_code == 404:
