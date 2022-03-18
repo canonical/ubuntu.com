@@ -1,0 +1,77 @@
+{
+    "accountID": "aAaBbCcDd", 
+    "createdAt": "2022-02-23T13:46:05.871Z", 
+    "createdBy": "email.address@canonical.com", 
+    "id": "pAaBbCcDd", 
+    "invoice": {
+      "amountDue": 27000, 
+      "currency": "usd", 
+      "customerAddress": {
+        "city": "London", 
+        "country": "GB", 
+        "line1": "Street", 
+        "line2": "", 
+        "postal_code": "123321", 
+        "state": ""
+      }, 
+      "customerEmail": "email.address@canonical.com", 
+      "customerName": "Email Address Name", 
+      "id": {
+        "IDs": [
+          "in_aAaBbCcDd"
+        ], 
+        "origin": "Stripe"
+      }, 
+      "identifier": "abcde", 
+      "lineItems": [
+        {
+          "currency": "usd", 
+          "description": "1 machine x UA Infrastructure - Essential (Physical) (at $225.00 / year)", 
+          "planID": {
+            "IDs": [
+              "123123"
+            ], 
+            "origin": "Stripe"
+          }, 
+          "proRatedAmount": 22500, 
+          "quantity": 1
+        }
+      ], 
+      "paymentStatus": {
+        "piClientSecret": "pi_aAbBcCdD", 
+        "status": "need_3ds_authorization"
+      }, 
+      "reason": "subscription_create", 
+      "status": "open", 
+      "subscriptionID": {
+        "IDs": [
+          "sub_aAbBcCdD"
+        ], 
+        "origin": "Stripe"
+      }, 
+      "taxAmount": 4500, 
+      "total": 27000, 
+      "url": "download.link"
+    }, 
+    "lastModified": "2022-02-23T13:46:07.954Z", 
+    "marketplace": "canonical-ua", 
+    "purchaseItems": [
+      {
+        "paidForInCycle": 1, 
+        "productListingID": "lAaBbCcDd", 
+        "value": 1
+      }
+    ], 
+    "status": "processing", 
+    "stripeInvoices": [
+      {
+        "id": "in_aAaBbCcDd", 
+        "last_update": "2022-02-23T13:46:09.758702Z", 
+        "pi_secret": "pi_aAbBcCdD", 
+        "pi_status": "requires_action", 
+        "subscription_status": "incomplete"
+      }
+    ], 
+    "subscriptionID": "sAaBbCcDd"
+  }
+  
