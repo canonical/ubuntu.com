@@ -579,202 +579,43 @@
     </div>
   </div>
 </section>
-
-<section class="p-strip--square-darksuru is-dark">
+  
+<section class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2>Easy Kubeflow operations</h2>
-        <p>Charmed Kubeflow is a composable bundle of Kubeflow applications, packaged into K8s operators and pre-integrated for you.</p>
-        <p>Deploy 30+ apps that make up Kubeflow, integrate with ecosystem operators to extend functionality, and upgrade on-demand.</p>
-        <a class="p-link--external p-button--positive" href="https://charmed-kubeflow.io">Visit Charmed-Kubeflow</a>
-        <a href="https://www.youtube.com/watch?v=kutDYSB-_PI&t=149s" class="p-button p-link--external">Watch demo</a>
-      </div>
-    </div>
-    <div class="col-5 u-align--center">
+    <div class="col-4">
       {{
         image(
-        url="https://assets.ubuntu.com/v1/20f5bfae-Kubeflow-nicely-packaged-simple-transparent.svg",
-        alt="",
-        width="212",
-        height="201",
+        url="https://assets.ubuntu.com/v1/a1317807-Install+Kubeflow.svg",
+        alt="Uber",
+        height="175",
+        width="250",
         hi_def=True,
-        ) | safe
-      }}
-      
-    </div>
-  </section>
-  
-  <section class="p-strip">
-    <div class="u-fixed-width u-sv1">
-      <h2>Why MLOps?</h2>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <p>Bringing AI solutions to market can involve many steps: data pre-processing, training, model deployment or inference serving at scale... The list of tasks is complex and keeping them in a set of notebooks or scripts is hard to maintain, share and collaborate on, leading to inefficient processes.</p>
-        <p>
-          In the study, <a class="p-link--external" href="https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf">Hidden Technical Debt in Machine Learning Systems</a>, Google describes that only about 20% of the effort and code required to bring AI systems to production is the development of ML code, while the remaining is operations. Standardizing ops in your ML workflows can hence greatly decrease time-to-market and costs for your AI solutions.
-        </p>
-        <div class="u-fixed-width u-hide--small">
-          <figure class="u-no-margin">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/aa8145e8-what+is+kubeflow+-+outlined.svg",
-              alt="",
-              height="274",
-              width="800",
-              hi_def=True,
-              loading="lazy",
-              ) | safe
-            }}
-            <figcaption>
-              Area = effort & code
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="p-strip--light">
-    
-    <div class="row">
-      <div class="col-6">
-        <h2 class="u-fixed-width u-sv1">Who uses Kubeflow?</h2>
-        <p>Thousands of companies have chosen Kubeflow for their AI/ML stack.</p>
-        <p>From research institutions like CERN, to transport and logistics companies - Uber, Lyft, GoJek - to financial and media industries with Spotify, Bloomberg, Shopify and PayPal.</p>
-        <p>Forward-looking enterprises are using Kubeflow to empower their data scientists.</p>
-      </div>
-      <div class="col-6 u-vertically-center">
-        <div class="p-logo-section">
-          <div class="p-logo-section__items">
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/a6d62ef1-paypal-logo.png",
-                alt="PayPal",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/1f9d6318-lyft-logo.png",
-                alt="Lyft",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/0194b789-cern-logo.png",
-                alt="CERN",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/6889bfcb-uber-logo.png",
-                alt="Uber",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/2ef9f6ff-spotify-logo.png",
-                alt="Spotify",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/b1e3d2d2-bloomberg-logo.png",
-                alt="Bloomberg",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/4f597a36-Shopify.svg",
-                alt="Shopify",
-                height="288",
-                width="288",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-                loading="lazy",
-                ) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section class="p-strip">
-    <div class="row u-equal-height">
-      <div class="col-4">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/a1317807-Install+Kubeflow.svg",
-          alt="Uber",
-          height="175",
-          width="250",
-          hi_def=True,
-          attrs={"class": "u-hide--small"},
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h2 class="u-fixed-width u-sv1">Get started today</h2>
-      <p class="u-sv2 p-heading--4">Try-out Kubeflow on your Kubernetes environment. Or on MicroK8s - Zero-ops Kubernetes with high availability.</p>
-      <p>Deploy locally on your workstation cloud VM or on-prem server.</p>
-      <p>
-        <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">
-        Try Kubeflow on MicroK8s
-        </a>
-        <a href="https://charmed-kubeflow.io/#get-in-touch">
-          Contact us now&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-  </section>
-  
-  
-  {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-  
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/ai/thank-you?product=ai-features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+        attrs={"class": "u-hide--small"},
+        loading="lazy",
+      ) | safe
+    }}
   </div>
-  
-  {% endblock content %}
+  <div class="col-8">
+    <h2 class="u-fixed-width u-sv1">Get started today</h2>
+    <p class="u-sv2 p-heading--4">Try-out Kubeflow on your Kubernetes environment. Or on MicroK8s - Zero-ops Kubernetes with high availability.</p>
+    <p>Deploy locally on your workstation cloud VM or on-prem server.</p>
+    <p>
+      <a class="p-button--positive" href="https://charmed-kubeflow.io/docs/quickstart">
+      Try Kubeflow on MicroK8s
+      </a>
+      <a href="https://charmed-kubeflow.io/#get-in-touch">
+        Contact us now&nbsp;&rsaquo;
+      </a>
+    </p>
+  </div>
+</section>
+
+
+{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/ai/thank-you?product=ai-features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}
   
