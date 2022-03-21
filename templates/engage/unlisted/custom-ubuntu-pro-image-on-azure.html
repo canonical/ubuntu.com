@@ -1,0 +1,65 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Using Shell's Ubuntu Pro image on Azure{% endblock %}
+{% block meta_description %}Get started with custom images of Ubuntu Pro with Support on Azure{% endblock %}
+
+{% block head_extra %}
+<meta name="robots" content="noindex, nofollow" />
+{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip p-engage-banner--grad">
+  <div class="u-fixed-width navigation-logo-engage">
+    <a href="/">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+          alt="Ubuntu",
+          height="32",
+          width="143",
+          hi_def=True,
+          loading="auto"
+        ) | safe
+      }}
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="col-7 u-vertically-center">
+      <h1>Using Shell&#39;s Ubuntu Pro image on Azure</h1>
+      <p class="u-no-padding--top p-heading--4">
+        Get started with custom images of Ubuntu Pro with Support on Azure
+      </p>
+      
+    </div>
+    
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/605efe63-ubuntu-microsoft-azure-logos.svg",
+          alt="",
+          height="133",
+          width="160",
+          hi_def=True,
+          loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-shallow is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <p>A quick overview of the work that we at Canonical (the company that makes Ubuntu) have been doing with <b>Ubuntu Pro Shell</b>, how to deploy the secure/supported image we have built together on Azure and how to make the most of its features.</p>
+
+      <h2>Arrange onboarding</h2>
+
+      <iframe src="https://calendly.com/niklas-brag/30min-1?hide_gdpr_banner=1" height="1000px" width="1000px"></iframe>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
