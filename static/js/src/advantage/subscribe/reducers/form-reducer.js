@@ -166,9 +166,12 @@ const formSlice = createSlice({
         state.support = "essential";
       }
 
-      if (action.payload !== "infra") {
+      if (action.payload === "apps") {
+        state.billing = "monthly";
+      } else {
         state.billing = "yearly";
       }
+
       state.product = getProduct(state);
       state.periods = getProductPeriods(state.product.productID);
     },
