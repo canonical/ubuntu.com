@@ -15,8 +15,7 @@ toc: False
 
 # 1.18+ck2 Bugfix release
 
-### August 12, 2020 - [charmed-kubernetes-485](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-485/archive/bundle.yaml)
-
+### August 12, 2020 - charmed-kubernetes-485
 ## Fixes
 
 Bug fixes included in this release can be found at
@@ -24,7 +23,7 @@ Bug fixes included in this release can be found at
 
 # 1.18+ck1 Bugfix release
 
-### June 11, 2020 - [charmed-kubernetes-464](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-464/archive/bundle.yaml)
+### June 11, 2020 - charmed-kubernetes-464
 
 Before upgrading from 1.17 or earlier, please read the
 [upgrade notes](/kubernetes/docs/upgrade-notes).
@@ -72,7 +71,7 @@ Bug fixes included in this release can be found at
 
 # 1.18
 
-### April 13th, 2020 - [charmed-kubernetes-430](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-430/archive/bundle.yaml)
+### April 13th, 2020 - charmed-kubernetes-430
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -165,7 +164,6 @@ Please see [this page][historic] for release notes of earlier versions.
 <!--LINKS-->
 
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [upgrading-docker]: /kubernetes/docs/upgrading#upgrading-docker
 [tigera-home]: https://www.tigera.io/tigera-products/calico-enterprise/

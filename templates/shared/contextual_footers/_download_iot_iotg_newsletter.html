@@ -8,8 +8,10 @@
         <input id="email" name="email" maxlength="255" aria-labelledby="LblEmail InstructEmail" type="email"  aria-required="true" >
       </li>
       <li class="p-list__item">
-        <input value="yes" id="canonicalUpdatesOptIn_newsletter" name="canonicalUpdatesOptIn" type="checkbox" />
-        <label for="canonicalUpdatesOptIn_newsletter">I agree to receive information about Canonical's products and services.</label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalOptIn" value="yes" type="checkbox" />
+          <span class="p-checkbox__label" id="canonicalOptIn">I agree to receive information about Canonical's products and services.</span>
+        </label>
       </li>
       <li class="p-list__item">
         <p>

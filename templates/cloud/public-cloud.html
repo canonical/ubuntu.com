@@ -28,7 +28,7 @@
   <div class="row p-divider">
     <div class="col-6 p-divider__block">
       <h2 class="p-heading--3">Fast service deployment with&nbsp;Juju</h2>
-      <div class="u-hide--small u-align--center u-sv1">
+      <div class="u-hide--medium u-hide--small u-align--center u-sv1">
         {{
           image(
             url="https://assets.ubuntu.com/v1/162002c2-charms_juju.svg",
@@ -45,7 +45,7 @@
     </div>
     <div class="col-6 p-divider__block">
       <h2 class="p-heading--3">Trusted Container (OCI) Images</h2>
-      <div class="u-hide--small u-align--center u-sv1">
+      <div class="u-hide--medium u-hide--small u-align--center u-sv1">
         {{
           image(
             url="https://assets.ubuntu.com/v1/fcb97fce-canonical-on-amazon-ecr.png",
@@ -70,7 +70,7 @@
       <p>Accelerate innovation across clouds with fully managed Apache Kafka, Kubeflow, ElasticSearch and more. We build and operate the solution for you, backed by a full SLA. With Canonical's managed open source application services there's no lock in and you can take over control whenever you want.</p>
       <p><a href="/desktop/developers">Learn more about Canonical Managed Apps&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-7 u-hide--small u-align--center">
+    <div class="col-7 u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/8961ce5a-managed-apps-kafka-osm-mysql-kubeflow-influxdb-mariadb-cassandra-postgresql-grafana.png",
@@ -105,43 +105,45 @@
       </p>
     </div>
     <div class="col-6 u-vertically-center">
-      <ul class="p-inline-images">
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-              alt="AWS",
-              height="67",
-              width="112",
-              hi_def=True,
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
-              alt="Microsoft Azure",
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+                alt="AWS",
+                height="67",
+                width="112",
+                hi_def=True,
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+                alt="Microsoft Azure",
+                width="350",
+                height="100",
+                hi_def=True,
+                loading="auto",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8c1c38b0-google-cloud-3.svg",
+              alt="Google Cloud",
               width="350",
-              height="100",
+              height="61",
               hi_def=True,
-              loading="auto",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/8c1c38b0-google-cloud-3.svg",
-            alt="Google Cloud",
-            width="350",
-            height="61",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

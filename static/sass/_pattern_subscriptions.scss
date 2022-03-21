@@ -1,12 +1,12 @@
 @mixin ubuntu-p-ua-subscriptions {
   // The default card padding.
-  $card-padding: calc(#{$spv-inner--large} - 1px);
+  $card-padding: calc(#{$spv--large} - 1px);
 
   .p-subscriptions__header-title {
     margin-bottom: $sp-xx-large;
 
     @media only screen and (max-width: $breakpoint-medium) {
-      margin-bottom: $spv-outer--medium;
+      margin-bottom: $spv--large;
     }
   }
 
@@ -189,18 +189,18 @@
   // Add extra space between the details header and the actions when there is no
   // notification.
   .p-subscriptions__details-header + .p-subscriptions__details-action {
-    margin-top: $spv-outer--small;
+    margin-top: $spv--small;
   }
 
   .p-subscriptions__details-small-title {
-    margin-bottom: $spv-outer--small;
+    margin-bottom: $spv--small;
   }
 
   .p-subscriptions__list-group {
     // Add extra space between groups. Padding is used instead of margin
     // otherwise it'll be collapsed with the bottom margin from the previous
     // group.
-    padding-top: $spv-outer--small;
+    padding-top: $spv--small;
 
     &:first-child {
       // No need to add space before the first group.
@@ -214,7 +214,7 @@
     // Space the context menu to the right of the container.
     justify-content: space-between;
     // Provide space before the first card.
-    margin-bottom: $spv-inner--large;
+    margin-bottom: $spv--large;
   }
 
   .p-subscriptions__list-card-title {
@@ -233,8 +233,8 @@
 
   .p-subscriptions__list-card-features {
     border-top: 1px solid $colors--light-theme--border-default;
-    margin-top: $spv-outer--small;
-    padding-top: $spv-inner--x-small + $spv-inner--small;
+    margin-top: $spv--small;
+    padding-top: $spv--small + $spv--small;
   }
 
   // Requested as a variant in Vanilla:
@@ -275,8 +275,8 @@
   }
 
   .p-subscriptions-separator {
-    margin-bottom: $spv-outer--medium;
-    margin-top: $spv-outer--medium;
+    margin-bottom: $spv--large;
+    margin-top: $spv--large;
   }
 
   .p-subscriptions-tooltip {

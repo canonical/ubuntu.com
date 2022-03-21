@@ -7,17 +7,21 @@
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width">Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster.</p>
       <p class="u-no-max-width u-no-margin--bottom">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Do you have a commercial project?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="commerical-project-yes" name="commercial-project" value="Yes">
-            <label for="commerical-project-yes">Yes</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commerical-project-yes" name="commercial-project" value="Yes">
+              <span class="p-radio__label" id="commerical-project-yes">Yes</span>
+            </label>
           </div>
           <div class="col-4 u-sv3">
-            <input type="radio" id="commercial-project-no" name="commercial-project" value="No">
-            <label for="commercial-project-no">No</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
+              <span class="p-radio__label" id="commercial-project-no">No</span>
+            </label>
           </div>
         </div>
       </div>
@@ -26,16 +30,24 @@
           <h3 class="p-heading--5">When do you need to ship?</h3>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
-              <input type="radio" id="shipping-time-next-3-months" name="shipping-time" value="Next 3 months">
-              <label for="shipping-time-next-3-months">Next 3 months</label>
-              <input type="radio" id="shipping-time-next-3-6-months" name="shipping-time" value="Next 3 - 6 months">
-              <label for="shipping-time-next-3-6-months">Next 3 - 6 months</label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-months" name="shipping-time" value="Next 3 months">
+                <span class="p-radio__label" id="shipping-time-next-3-months">Next 3 months</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-6-months" name="shipping-time" value="Next 3 - 6 months">
+                <span class="p-radio__label" id="shipping-time-next-3-6-months">Next 3 - 6 months</span>
+              </label>
             </div>
             <div class="col-4 u-sv3">
-              <input type="radio" id="shipping-time-next-6-12-months" name="shipping-time" value="Next 6 - 12 months">
-              <label for="shipping-time-next-6-12-months">Next 6 - 12 months</label>
-              <input type="radio" id="shipping-time-no-timeline" name="shipping-time" value="No timeline - just researching">
-              <label for="shipping-time-no-timeline">No timeline - just researching</label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-6-12-months" name="shipping-time" value="Next 6 - 12 months">
+                <span class="p-radio__label" id="shipping-time-next-6-12-months">Next 6 - 12 months</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-no-timeline" name="shipping-time" value="No timeline - just researching">
+                <span class="p-radio__label" id="shipping-time-no-timeline">No timeline - just researching</span>
+              </label>
             </div>
           </div>
           <div class="row u-no-padding">
@@ -50,7 +62,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -78,8 +90,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               
@@ -94,7 +108,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -115,7 +129,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -124,7 +138,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -132,7 +146,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about embedded Ubuntu</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

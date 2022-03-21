@@ -26,7 +26,7 @@ def parse_product(raw_product: Dict) -> Product:
 
 
 def parse_product_listing(
-    raw_product_listing: Dict, raw_products: List[Dict]
+    raw_product_listing: Dict, raw_products: List[Dict] = None
 ) -> Listing:
     product = None
     raw_products = raw_products or []

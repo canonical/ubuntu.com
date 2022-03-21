@@ -10,16 +10,26 @@
         <h3 class="p-heading--5">Who's your target audience?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="radio" id="target-audience-Enterprise" name="target-audience" value="Enterprise">
-            <label for="target-audience-Enterprise">Enterprise</label>
-            <input type="radio" id="target-audience-Government" name="target-audience" value="Government">
-            <label for="target-audience-Government">Government</label>
-            <input type="radio" id="target-audience-Educations" name="target-audience" value="Educations">
-            <label for="target-audience-Educations">Educations</label>
-            <input type="radio" id="target-audience-Consumer" name="target-audience" value="Consumer">
-            <label for="target-audience-Consumer">Consumer</label>
-            <input type="radio" id="target-audience-Research" name="target-audience" value="Research">
-            <label for="target-audience-Research">Research</label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="target-audience-Enterprise" name="target-audience" value="Enterprise">
+              <span class="p-radio__label" id="target-audience-Enterprise">Enterprise</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="target-audience-Government" name="target-audience" value="Government">
+              <span class="p-radio__label" id="target-audience-Government">Government</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="target-audience-Educations" name="target-audience" value="Educations">
+              <span class="p-radio__label" id="target-audience-Educations">Educations</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="target-audience-Consumer" name="target-audience" value="Consumer">
+              <span class="p-radio__label" id="target-audience-Consumer">Consumer</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="target-audience-Research" name="target-audience" value="Research">
+              <span class="p-radio__label" id="target-audience-Research">Research</span>
+            </label>
           </div>
         </div>
       </div>
@@ -27,68 +37,146 @@
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <div class="js-formfield">
         <h3 class="p-heading--5">What capabilities are important to you?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="capabilities-ROS">
-            <label for="capabilities-ROS">ROS</label>
-            <input type="checkbox" id="capabilities-OpenCV">
-            <label for="capabilities-OpenCV">OpenCV</label>
-            <input type="checkbox" id="capabilities-DroneCode">
-            <label for="capabilities-DroneCode">DroneCode</label>
-            <input type="checkbox" id="capabilities-GPU-acceleration">
-            <label for="capabilities-GPU-acceleration">GPU acceleration</label>
-            <input type="checkbox" id="capabilities-CUDA">
-            <label for="capabilities-CUDA">CUDA</label>
-            <input type="checkbox" id="capabilities-OpenCL">
-            <label for="capabilities-OpenCL">OpenCL</label>
-            <input type="checkbox" id="capabilities-AI-ML">
-            <label for="capabilities-AI-ML">AI / machine learning</label>
-            <input type="checkbox" id="capabilities-Real-time">
-            <label for="capabilities-Real-time">Real-time</label>
-            <input type="checkbox" id="capabilities-Low-latency">
-            <label for="capabilities-Low-latency">Low-latency</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-ROS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-ROS">ROS</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-OpenCV" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-OpenCV">OpenCV</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-DroneCode" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-DroneCode">DroneCode</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-GPU-acceleration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-GPU-acceleration">GPU acceleration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-CUDA" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-CUDA">CUDA</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-OpenCL" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-OpenCL">OpenCL</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-AI-ML" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-AI-ML">AI / machine learning</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Real-time" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Real-time">Real-time</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Low-latency" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Low-latency">Low-latency</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="capabilities-Security">
-            <label for="capabilities-Security">Security</label>
-            <input type="checkbox" id="capabilities-Compliance">
-            <label for="capabilities-Compliance">Compliance</label>
-            <input type="checkbox" id="capabilities-EAL">
-            <label for="capabilities-EAL">EAL</label>
-            <input type="checkbox" id="capabilities-FIPS">
-            <label for="capabilities-FIPS">FIPS</label>
-            <input type="checkbox" id="capabilities-Secure-boot">
-            <label for="capabilities-Secure-boot">Secure boot</label>
-            <input type="checkbox" id="capabilities-Recovery-partition">
-            <label for="capabilities-Recovery-partition">Recovery partition</label>
-            <input type="checkbox" id="capabilities-Over-the-air-updates">
-            <label for="capabilities-Over-the-air-updates">Over-the-air updates</label>
-            <input type="checkbox" id="capabilities-10-year-certification">
-            <label for="capabilities-10-year-certification">10-year certification</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Security" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Security">Security</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Compliance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Compliance">Compliance</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-EAL" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-EAL">EAL</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-FIPS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-FIPS">FIPS</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Secure-boot" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Secure-boot">Secure boot</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Recovery-partition" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Recovery-partition">Recovery partition</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Over-the-air-updates" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Over-the-air-updates">Over-the-air updates</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-10-year-certification" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-10-year-certification">10-year certification</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="capabilities-App-store">
-            <label for="capabilities-App-store">App store</label>
-            <input type="checkbox" id="capabilities-App-ecosystem">
-            <label for="capabilities-App-ecosystem">App ecosystem</label>
-            <input type="checkbox" id="capabilities-Management">
-            <label for="capabilities-Management">Management</label>
-            <input type="checkbox" id="capabilities-Factory-process">
-            <label for="capabilities-Factory-process">Factory process</label>
-            <input type="checkbox" id="capabilities-Developer-experience">
-            <label for="capabilities-Developer-experience">Developer experience</label>
-            <input type="checkbox" id="capabilities-CI-CD">
-            <label for="capabilities-CI-CD">CI/CD</label>
-            <input type="checkbox" id="capabilities-Board-enablement">
-            <label for="capabilities-Board-enablement">Board enablement</label>
-            <input type="checkbox" id="capabilities-Boot-time">
-            <label for="capabilities-Boot-time">Boot time</label>
-            <input type="checkbox" id="capabilities-Battery-life">
-            <label for="capabilities-Battery-life">Battery life</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-App-store" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-App-store">App store</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-App-ecosystem" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-App-ecosystem">App ecosystem</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Management" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Management">Management</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Factory-process" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Factory-process">Factory process</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Developer-experience" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Developer-experience">Developer experience</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-CI-CD" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-CI-CD">CI/CD</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Board-enablement" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Board-enablement">Board enablement</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Boot-time" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Boot-time">Boot time</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="capabilities-Battery-life" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="capabilities-Battery-life">Battery life</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -101,53 +189,101 @@
         <div class="row u-no-padding">
           <div class="col-4">
             <p class="js-sub-section">Architecture</p>
-            <input type="checkbox" id="architecture-intel">
-            <label for="architecture-intel">Intel</label>
-            <input type="checkbox" id="architecture-ARM">
-            <label for="architecture-ARM">ARM</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="architecture-intel" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="architecture-intel">Intel</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="architecture-ARM" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="architecture-ARM">ARM</span>
+            </label>
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="architecture-other">
-              <label for="architecture-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="architecture-other">
+                <span class="p-checkbox__label" id="architecture-other">Other</span>
+              </label>
               <input type="text" id="architecture-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other architecture">
             </div>
           </div>
           <div class="col-4">
             <p class="js-sub-section">Board</p>
-            <input type="checkbox" id="board-undecided">
-            <label for="board-undecided">Undecided</label>
-            <input type="checkbox" id="board-raspberry-pi-cm">
-            <label for="board-raspberry-pi-cm">Raspberry Pi / CM</label>
-            <input type="checkbox" id="board-intel">
-            <label for="board-intel">Intel</label>
-            <input type="checkbox" id="board-AMD">
-            <label for="board-AMD">AMD</label>
-            <input type="checkbox" id="board-Nvidia">
-            <label for="board-Nvidia">Nvidia</label>
-            <input type="checkbox" id="board-NXP">
-            <label for="board-NXP">NXP</label>
-            <input type="checkbox" id="board-Qualcomm">
-            <label for="board-Qualcomm">Qualcomm</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-undecided" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-undecided">Undecided</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-raspberry-pi-cm" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-raspberry-pi-cm">Raspberry Pi / CM</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-intel" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-intel">Intel</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-AMD" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-AMD">AMD</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-Nvidia" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-Nvidia">Nvidia</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-NXP" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-NXP">NXP</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="board-Qualcomm" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="board-Qualcomm">Qualcomm</span>
+            </label>
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="board-other">
-              <label for="board-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="board-other">
+                <span class="p-checkbox__label" id="board-other">Other</span>
+              </label>
               <input type="text" id="board-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board">
             </div>
           </div>
           <div class="col-4">
             <p class="js-sub-section">ROS Version</p>
-            <input type="checkbox" id="ros-version-Melodic-Morenia">
-            <label for="ros-version-Melodic-Morenia">12, Melodic Morenia</label>
-            <input type="checkbox" id="ros-version-Lunar-Loggerhead">
-            <label for="ros-version-Lunar-Loggerhead">11, Lunar Loggerhead</label>
-            <input type="checkbox" id="ros-version-Kinetic-Kame">
-            <label for="ros-version-Kinetic-Kame">10, Kinetic Kame</label>
-            <input type="checkbox" id="ros-version-Custom">
-            <label for="ros-version-Custom">Custom</label>
-            <input type="checkbox" id="ros-version-Not-using-ROS">
-            <label for="ros-version-Not-using-ROS">Not using ROS</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="ros-version-Melodic-Morenia" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="ros-version-Melodic-Morenia">12, Melodic Morenia</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="ros-version-Lunar-Loggerhead" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="ros-version-Lunar-Loggerhead">11, Lunar Loggerhead</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="ros-version-Kinetic-Kame" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="ros-version-Kinetic-Kame">10, Kinetic Kame</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="ros-version-Custom" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="ros-version-Custom">Custom</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="ros-version-Not-using-ROS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="ros-version-Not-using-ROS">Not using ROS</span>
+            </label>
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="ros-version-other">
-              <label for="ros-version-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="ros-version-other">
+                <span class="p-checkbox__label" id="ros-version-other">Other</span>
+              </label>
               <input type="text" id="ros-version-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other ODM">
             </div>
           </div>
@@ -158,7 +294,7 @@
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -182,8 +318,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -197,7 +335,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -217,7 +355,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -226,7 +364,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--4 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -234,7 +372,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about robotics</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

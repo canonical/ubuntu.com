@@ -4,7 +4,7 @@
   line-height: 1.5;
   margin-bottom: 0;
 
-  @media only screen and (max-width: $breakpoint-medium) {
+  @media only screen and (max-width: $breakpoint-small) {
     cursor: pointer;
   }
 }
@@ -19,11 +19,11 @@
     margin-bottom: 0;
     padding: 0 0 $sp-xx-large 0;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       padding: $sp-xx-large 0;
     }
 
-    @media only screen and (max-width: $breakpoint-medium - 1) {
+    @media only screen and (max-width: $breakpoint-small - 1) {
       &__nav-col {
         width: 100%;
       }
@@ -33,22 +33,22 @@
   .p-footer__nav {
     border-bottom: 1px solid $color-mid-light;
 
-    @media only screen and (max-width: $breakpoint-medium - 1) {
+    @media only screen and (max-width: $breakpoint-small - 1) {
       margin-top: 0 !important;
     }
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       border: 0;
     }
 
     &.u-clearfix {
-      @media only screen and (max-width: $breakpoint-medium - 1) {
+      @media only screen and (max-width: $breakpoint-small - 1) {
         padding-bottom: 0;
       }
     }
 
     &-col.col-2 {
-      @media only screen and (max-width: $breakpoint-medium - 1) {
+      @media only screen and (max-width: $breakpoint-small - 1) {
         margin-top: 0;
       }
     }
@@ -63,7 +63,7 @@
     height: 0;
     margin-top: 2rem;
 
-    @media only screen and (max-width: $breakpoint-medium - 1px) {
+    @media only screen and (max-width: $breakpoint-small - 1px) {
       display: none;
     }
   }
@@ -77,12 +77,12 @@
     display: block;
     margin-bottom: 0;
 
-    @media only screen and (max-width: $breakpoint-medium - 1px) {
+    @media only screen and (max-width: $breakpoint-small - 1px) {
       margin-top: 0;
     }
 
     + .p-footer__item {
-      @media only screen and (min-width: $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-small) {
         margin-top: $sp-large;
       }
     }
@@ -102,7 +102,7 @@
     max-width: inherit;
     padding: $sp-medium 0;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       background: none;
       border: 0;
       padding: 0 0 $sp-x-small;
@@ -117,7 +117,7 @@
       color: $color-dark;
       padding-left: $sp-x-small;
 
-      @media only screen and (min-width: $breakpoint-medium) {
+      @media only screen and (min-width: $breakpoint-small) {
         font-weight: normal;
         padding-left: 0;
       }
@@ -131,7 +131,7 @@
   .p-footer__title + .second-level-nav {
     display: none;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       display: block;
     }
   }
@@ -152,7 +152,7 @@
     position: relative;
     z-index: 2;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       display: none;
     }
 
@@ -164,11 +164,11 @@
   .p-footer--secondary {
     padding: $sp-large $sp-small 0;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       padding: 0;
     }
 
-    @media only screen and (max-width: $breakpoint-medium - 1px) {
+    @media only screen and (max-width: $breakpoint-small - 1px) {
       margin-top: 0;
     }
 
@@ -182,7 +182,7 @@
     padding: 0;
 
     &.second-level-nav-small {
-      @media only screen and (max-width: $breakpoint-medium) {
+      @media only screen and (max-width: $breakpoint-small) {
         margin-left: -0.7rem;
 
         li {
@@ -196,7 +196,7 @@
     li {
       margin-bottom: 0;
 
-      @media only screen and (max-width: $breakpoint-medium) {
+      @media only screen and (max-width: $breakpoint-small) {
         margin-top: 0;
       }
 
@@ -207,7 +207,7 @@
         font-size: 0.8125rem;
         padding: $sp-medium $sp-small $sp-medium;
 
-        @media only screen and (min-width: $breakpoint-medium) {
+        @media only screen and (min-width: $breakpoint-small) {
           border: 0;
           padding: 0;
         }
@@ -218,7 +218,7 @@
   .p-footer__title.active {
     background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       background: none;
     }
   }
@@ -228,12 +228,12 @@
   }
 
   .p-footer__title-text {
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       color: $color-dark;
       font-weight: 400;
     }
 
-    @media only screen and (max-width: $breakpoint-medium) {
+    @media only screen and (max-width: $breakpoint-small) {
       padding-left: $sp-x-small;
 
       a {
@@ -243,7 +243,7 @@
   }
 
   .p-footer__container {
-    @media only screen and (max-width: $breakpoint-medium - 1px) {
+    @media only screen and (max-width: $breakpoint-small - 1px) {
       padding-left: 0;
       padding-right: 0;
     }
@@ -261,13 +261,13 @@
   }
 
   .p-footer--secondary .p-inline-list-icons {
-    @media (max-width: $breakpoint-medium) {
+    @media (max-width: $breakpoint-small) {
       margin-left: 0;
       margin-top: 1rem;
       padding-left: 0;
     }
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       float: right;
       padding-left: 0;
     }
@@ -280,25 +280,25 @@
   .p-footer--secondary .p-inline-list__item {
     display: block;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       display: inline-block;
     }
 
     &::after {
-      @media only screen and (max-width: $breakpoint-medium - 1) {
+      @media only screen and (max-width: $breakpoint-small - 1) {
         display: none;
       }
     }
   }
 
   .p-footer__item--spaced {
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       margin-bottom: $sp-large;
     }
   }
 
   .p-footer-list-single-child {
-    @media only screen and (max-width: $breakpoint-medium) {
+    @media only screen and (max-width: $breakpoint-small) {
       margin-left: $sp-small;
     }
   }

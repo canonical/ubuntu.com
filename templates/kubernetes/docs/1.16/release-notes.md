@@ -15,7 +15,7 @@ toc: False
 
 # 1.16+ck2 Bugfix release
 
-### November 22, 2019 - [charmed-kubernetes-316](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-316/archive/bundle.yaml)
+### November 22, 2019 - charmed-kubernetes-316
 
 ## Fixes
 
@@ -24,7 +24,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.16+ck1 Bugfix release
 
-### October 4, 2019 - [charmed-kubernetes-270](https://api.jujucharms.com/charmstore/v5/bundle/charmed-kubernetes-270/archive/bundle.yaml)
+### October 4, 2019 - charmed-kubernetes-270
 
 ## Fixes
 
@@ -33,7 +33,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.16
 
-### September 27, 2019 -  [charmed-kubernetes-252](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-252/archive/bundle.yaml)
+### September 27, 2019 - charmed-kubernetes-252
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -112,7 +112,6 @@ Please see [this page][historic] for release notes of earlier versions.
 
 <!--LINKS-->
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [upgrading-docker]: /kubernetes/docs/upgrading#upgrading-docker
 [tigera-home]: https://www.tigera.io/tigera-products/calico-enterprise/

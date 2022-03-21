@@ -8,13 +8,14 @@
 
 {% block content %}
 
-<section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom" style="background-image: url(https://assets.ubuntu.com/v1/2c3ad93c-digital-signage-2.png); background-position: right bottom; background-size: 1246px auto;">
+<section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom" style="background-image: url(https://assets.ubuntu.com/v1/2c3ad93c-digital-signage-2.png); background-position: right bottom; background-size: 980px auto;">
   <div class="p-strip--suru-half-and-half-reversed">
     <div class="row u-equal-height u-vertically-center">
       <div class="col-6">
         <h1>
           Digital signage and kiosk <br class="u-hide--large">with Ubuntu
         </h1>
+        <p class="p-heading--4">The easy, secure, and reliable way of building smart <br class="u-hide--large"> displays for your business.</p>        
         <p><a href="/core/smartstart" class="p-button--positive">Build digital signage with SMART START</a></p>
         <p><a href="/engage/Embedding_IoT_GUI_with_Ubuntu_Frame" class="p-link--inverted">Develop GUIs for IoT with our guide&nbsp;&rsaquo;</a></p>
       </div>
@@ -45,61 +46,70 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width u-sv3">
-    <h2>Get started now</h2>
-    <p class="p-heading--4">Building a smart display solution? Ubuntu Core and Ubuntu Frame is all you need. Entirely open source and long term supported by Canonical.</p>
-    <p class="p-heading--4">Or contact us and let us bring your device to market.</p>
-    <p><a href="/internet-of-things/digital-signage#get-in-touch" class="p-button">Reach out to hear more</a></p>
+  <div class="row u-sv3">
+    <div class="col-12">
+      <h2>Get started now</h2>
+      <p class="p-heading--4">Building a smart display solution? Ubuntu Core and Ubuntu Frame is all you need. Entirely open source and long term supported by Canonical.</p>
+      <p class="p-heading--4">Or contact us and let us bring your device to market.</p>
+      <p><a href="/internet-of-things/digital-signage#get-in-touch" class="p-button">Reach out to hear more</a></p>
+    </div>
   </div>
 
   <div class="row">
-    <div class="col-6">
+    <div class="p-card col-6">
       <div class="u-sv2">
         {{ image (
           url="https://assets.ubuntu.com/v1/e5202df6-ubuntu-core_black-orange_hex+copy.svg",
           alt="Ubuntu core",
-          width="270",
-          height="40",
+          width="216",
+          height="32",
           hi_def=True,
-          loading="lazy"
+          loading="lazy",
+          attrs={"class": "p-card__thumbnail"}
           ) | safe
         }}
       </div>
       <p class="p-heading--4">An operating system designed for the edge</p>
-      <p>With a small footprint and serious power, <a href="/core">Ubuntu Core</a> reduces hardware costs while still running 4k video. As a low-cost, open source solution, it builds from its heritage on servers to bring a secure and stable platform, designed for 24/7 availability, and resistant to screen takeovers and other attacks.</p>
-      <p>Ubuntu Core brings all the security features and device management solutions you need to deploy, provision, and maintain your device. </p>
+      <div class="p-card__content">
+        <p>With a small footprint and serious power, <a href="/core">Ubuntu Core</a> reduces hardware costs while still running 4k video. As a low-cost, open source solution, it builds from its heritage on servers to bring a secure and stable platform, designed for 24/7 availability, and resistant to screen takeovers and other attacks.</p>
+        <p>Ubuntu Core brings all the security features and device management solutions you need to deploy, provision, and maintain your device. </p>
+      </div>
+      <p><a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6">
+    <div class="p-card col-6">
       <div class="u-sv2">
         {{ image (
           url="https://assets.ubuntu.com/v1/79e5a4c2-Ubuntu+Frame.svg",
           alt="Ubuntu frame",
-          width="299",
-          height="40",
+          width="239",
+          height="32",
           hi_def=True,
-          loading="lazy"
+          loading="lazy",
+          attrs={"class": "p-card__thumbnail"}
           ) | safe
         }}
       </div>
       <p class="p-heading--4">A fullscreen shell for embedded displays</p>
-      <p><a href="https://mir-server.io/ubuntu-frame/">Ubuntu Frame</a> unlocks a kiosk mode that helps you create a dedicated and locked-down user experience. Your graphic application will instantly run on full screen with all input modalities without needing to deal with the specific hardware.</p>
-      <p>Ubuntu Frame supports a range of applications built with GTK, Qt, Flutter, Electron. and SDL2. It also has a solution for applications based on HTML5 and Java.</p>
+      <div class="p-card__content">
+        <p><a href="https://mir-server.io/ubuntu-frame/">Ubuntu Frame</a> unlocks a kiosk mode that helps you create a dedicated and locked-down user experience. Your graphic application will instantly run on full screen with all input modalities without needing to deal with the specific hardware.</p>
+        <p>Ubuntu Frame supports a range of applications built with GTK, Qt, Flutter, Electron. and SDL2. It also has a solution for applications based on HTML5 and Java.</p>
+        <p><a href="https://mir-server.io/ubuntu-frame/">Learn more about Ubuntu Frame&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="u-fixed-width">
-    <h2>The ultimate bundle for smart displays </h2>
-    <p>Ubuntu Core gives your screens the uptime and robustness they need. Uniquely stable and secure, it is based on the same operating system that runs the majority of the world's clouds.</p>
-    <p>Ubuntu Frame bundles communication protocols, input protocols, and security policies into a single kit. It makes the integration of your GUI easy, while providing your end-users with all the functionality they expect while interacting with digital displays. </p>
-    <p>It also allows you to leverage fleet management features to upgrade the entire software stack remotely and securely, from the kernel all the way up to the apps. </p>
-    <ul class="p-list--divided is-split">
-      <li class="p-list__item is-ticked">Atomic upgradability: over the air, low bandwidth, prompt delivery of new features with failure rollback</li>
-      <li class="p-list__item is-ticked">Software development: existing libraries and codebase, flexibility in development, all the way down to the device driver</li>
-      <li class="p-list__item is-ticked">Remote maintenance: no need for on-site personnel</li>
-      <li class="p-list__item is-ticked">Application isolation enables security, robustness and simpler maintenance</li>
-      <li class="p-list__item is-ticked">Faster innovation: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio, and camera support (including RealSense)</li>
+    <h2>Unlock the best smart displays experience</h2>
+    <p class="p-heading--4">Enable a seamless and secure graphic experience powered by Canonical's open source technologies.</p>
+    <p>Give your screens the uptime and robustness they need, while simplifying the integration of your graphic application. From security to fleet management, with Ubuntu you can unlock:</p>
+    <ul class="p-list">
+      <li class="p-list__item is-ticked"><strong>Faster innovation</strong>: wide peripheral support, Wi-Fi, 3G/4G, NFC, Bluetooth, software-defined radio, deep learning, audio, and camera support (including RealSense)</li>
+      <li class="p-list__item is-ticked"><strong>Streamline development</strong>: simplify the build of graphical outputs with services that bundle communication protocols, input protocols, and security policies into a single kit</li>
+      <li class="p-list__item is-ticked"><strong>Security</strong>: in-built security features, such as strict confinement, secure boot, and disk encryption, with up to ten years of security maintenance</li>
+      <li class="p-list__item is-ticked"><strong>Updated infrastructure</strong>: leverage a reliable software management infrastructure, with over-the-air low bandwidth updates, with automatic failure recovery</li>
+      <li class="p-list__item is-ticked"><strong>Remote maintenance</strong>: no need for on-site personnel with management tools to deploy, monitor and manage your Ubuntu devices</li>
     </ul>
   </div>
 </section>
@@ -164,7 +174,7 @@
           <h4 class="p-heading-icon__title">Case study</h4>
         </div>
       </div>
-      <h3 class="p-heading--4"><a href="https://ubuntu.com/engage/secure-digital-signage-screenly">Screenly innovates IoT fleet management for secure digital signage</a></h3>
+      <h3 class="p-heading--4"><a href="https://ubuntu.com/engage/secure-digital-signage-screenly">Screenly innovates IoT fleet management for secure digital signage&nbsp;&rsaquo;</a></h3>
     </div>        
   </div>
 </section>
@@ -178,7 +188,7 @@
     </div>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
+    <div class="col-4 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
         <a href="https://www.screenly.io/">
           {{
@@ -198,7 +208,7 @@
       <p class="p-card__content">The world's most popular digital signage player for the Raspberry Pi.</p>
       <a href="https://www.brighttalk.com/webcast/6793/206421?utm_source=ubuntuweb&utm_medium=dspage&utm_campaign=DSwebinar" title="View Screenly webinar">View webinar&nbsp;&rsaquo;</a>
     </div>
-    <div class="col-6 p-card">
+    <div class="col-4 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
         <a href="https://www.4yousee.com.br/">
           {{
@@ -217,9 +227,7 @@
       <h3 class="p-card__title">4YouSee</h3>
       <p class="p-card__content">A complete digital signage solution to create, manage and play your digital content, and analyse your audience.</p>
     </div>
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
+    <div class="col-4 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--small" style="min-height: 7rem;">
         <a href="https://www.risevision.com/">
           {{
@@ -238,7 +246,6 @@
       <h3 class="p-card__title">Rise Vision</h3>
       <p class="p-card__content">A simple solution for delivering content worth sharing to digital signage everywhere.</p>
     </div>
-  </div>
 </section>
 
 <section class="p-strip">
@@ -246,13 +253,14 @@
     <div class="col-8">
       <h2>Ready for all boards, frameworks, and applications</h2>
       <p>Minimise your costs and time to market: Ubuntu Frame is compatible with the most popular boards and silicon.</p>
+      <p>Check the <a href="/certified/devices">full list of Ubuntu certified hardware</a> and find the right one for your application.</p>
     </div>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 p-card u-align--center">
+    <div class="col-4 p-card u-align--center">
       <div class="p-card__content">
-        <h3 class="u-sv3">Raspberry Pi</h3>
-        <a href="/download/raspberry-pi-core" class="u-sv1">
+        <h3 class="u-sv3 u-vertically-center">Raspberry Pi</h3>
+        <a href="/download/raspberry-pi-core" class="u-hide--small u-hide--medium">
         {{ image (
           url="https://assets.ubuntu.com/v1/a999bb5f-Raspberry+Pi+4.png",
           alt="",
@@ -266,11 +274,10 @@
         </a>
       </div>
     </div>
-    <div class="col-6 p-card u-align--center">
+    <div class="col-4 p-card u-align--center">
       <div class="p-card__content">
-        <h3 class="u-sv3">Intel NUC</h3>
-        <a href="/download/iot/intel-iotg" class="u-sv2">
-
+        <h3 class="u-sv3 u-vertically-center">Intel NUC</h3>
+        <a href="/download/iot/intel-iotg" class="u-hide--small u-hide--medium">
           {{ image (
             url="https://assets.ubuntu.com/v1/09356811-intel-nuc-chip.png",
             alt="",
@@ -284,10 +291,10 @@
         </a>
       </div>
     </div>
-    <div class="col-6 p-card u-align--center">
+    <div class="col-4 p-card u-align--center">
       <div class="p-card__content">
-        <h3 class="u-sv3">Dragonboard</h3>
-        <a href="/download/qualcomm-dragonboard-410c" class="u-sv2">
+        <h3 class="u-sv3 u-vertically-center">Dragonboard</h3>
+        <a href="/download/qualcomm-dragonboard-410c" class="u-hide--small u-hide--medium">
           {{ image (
             url="https://assets.ubuntu.com/v1/a64b7ee2-dragonboard.png",
             alt="",
@@ -309,7 +316,7 @@
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
-    <div class="col-4 u-align--left u-hide--small">
+    <div class="col-4 u-align--left u-hide--small u-hide--medium">
       {{
         image(
           url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
@@ -320,7 +327,6 @@
         ) | safe
       }}
     </div>
-
     <div class="col-8 u-vertically-center">
       <div>
         <h2>Let us bring your device to market</h2>

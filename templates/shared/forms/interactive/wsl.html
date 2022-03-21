@@ -6,7 +6,7 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width">Ubuntu brings you the best-in-class, seamless experience for the Windows Subsystem for Linux. We can help you unleash more capabilities and supply the right level of support you need to have the best experience out-of-the-box.</p>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Describe your project</h3>
         <div class="row u-no-padding">
@@ -20,31 +20,54 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <div class="js-formfield">
         <h3 class="p-heading--5">How will you use WSL?</h3>
         <div class="row u-no-padding">
           <div class="col-6 u-sv3">
-            <input type="checkbox" id="use-wsl-ai-ml">
-            <label for="use-wsl-ai-ml">AI / machine learning</label>
-            <input type="checkbox" id="use-wsl-endpoints">
-            <label for="use-wsl-endpoints">Managing both Windows and Linux endpoints</label>
-            <input type="checkbox" id="use-wsl-applications">
-            <label for="use-wsl-applications">Leveraging legacy applications that will only work on Linux</label>
-            <input type="checkbox" id="use-wsl-GUI">
-            <label for="use-wsl-GUI">GUI access</label>
-            <input type="checkbox" id="use-Cross-platform">
-            <label for="use-wsl-Cross-platform">Cross platform development</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-wsl-ai-ml" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-wsl-ai-ml">AI / machine learning</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-wsl-endpoints" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-wsl-endpoints">Managing both Windows and Linux endpoints</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-wsl-applications" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-wsl-applications">Leveraging legacy applications that will only work on Linux</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-wsl-GUI" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-wsl-GUI">GUI access</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-Cross-platform" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-Cross-platform">Cross platform development</span>
+            </label>
+            
           </div>
           <div class="col-6 u-sv3">
-            <input type="checkbox" id="use-wsl-Training">
-            <label for="use-wsl-Training">Training Windows users on Linux</label>
-            <input type="checkbox" id="use-wsl-Robotics">
-            <label for="use-wsl-Robotics">IoT / Robotics</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-wsl-Training" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-wsl-Training">Training Windows users on Linux</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="use-wsl-Robotics" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="use-wsl-Robotics">IoT / Robotics</span>
+            </label>
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="use-wsl-other">
-              <label for="use-wsl-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="use-wsl-other">
+                <span class="p-checkbox__label" id="use-wsl-other">Other</span>
+              </label>
               <input type="text" id="use-wsl-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other target vertical">
             </div>
           </div>
@@ -54,15 +77,26 @@
         <h3 class="p-heading--5">What version of Windows 10 will you have access to?</h3>
         <div class="row u-no-padding">
           <div class="col-6">
-            <input type="checkbox" id="platform-architecture-Windows-Insiders">
-            <label for="platform-architecture-Windows-Insiders">Windows Insiders Program</label>
-            <input type="checkbox" id="platform-architecture-Version-1903">
-            <label for="platform-architecture-Version-1903">Version 1903, Build 18362* or higher</label>
-            <input type="checkbox" id="platform-architecture-Windows-Server">
-            <label for="platform-architecture-Windows-Server">Windows Server 2019</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-architecture-Windows-Insiders" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-architecture-Windows-Insiders">Windows Insiders Program</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-architecture-Version-1903" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-architecture-Version-1903">Version 1903, Build 18362* or higher</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-architecture-Windows-Server" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-architecture-Windows-Server">Windows Server 2019</span>
+            </label>
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-architecture-other">
-              <label for="platform-architecture-other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-architecture-other">
+                <span class="p-checkbox__label" id="platform-architecture-other">Other</span>
+              </label>
               <input type="text" id="platform-architecture-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other target vertical">
             </div>
           </div>
@@ -74,7 +108,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -102,8 +136,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -117,7 +153,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -137,7 +173,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -146,7 +182,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -154,7 +190,7 @@
             <h3 class="p-heading--2">Thank you for enquiring about embedded Ubuntu</h3>
             <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",

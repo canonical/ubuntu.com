@@ -9,237 +9,443 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width u-no-margin--bottom"></p>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">At which stage of NFV transformation are you?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="stage-of-transformation-i-want-to-learn-more-about-nfv">
-            <label for="stage-of-transformation-i-want-to-learn-more-about-nfv">I want to learn more about NFV</label>
-            <input type="checkbox" id="stage-of-transformation-i-am-evaluating-the-need-to-transition-to-nfv">
-            <label for="stage-of-transformation-i-am-evaluating-the-need-to-transition-to-nfv">I am evaluating the need to transition to NFV</label>
-            <input type="checkbox" id="stage-of-transformation-i-am-planning-to-transition-to-nfv-in-the-next-12-months">
-            <label for="stage-of-transformation-i-am-planning-to-transition-to-nfv-in-the-next-12-months">I am planning to transition to NFV in the next 12 months</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-want-to-learn-more-about-nfv" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-want-to-learn-more-about-nfv">I want to learn more about NFV</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-am-evaluating-the-need-to-transition-to-nfv" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-am-evaluating-the-need-to-transition-to-nfv">I am evaluating the need to transition to NFV</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-am-planning-to-transition-to-nfv-in-the-next-12-months" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-am-planning-to-transition-to-nfv-in-the-next-12-months">I am planning to transition to NFV in the next 12 months</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="stage-of-transformation-i-have-already-started-the-transition-process-but-havent-implemented-anything-yet">
-            <label for="stage-of-transformation-i-have-already-started-the-transition-process-but-havent-implemented-anything-yet">I have already started the transition process, but haven't implemented anything yet</label>
-            <input type="checkbox" id="stage-of-transformation-i-have-already-started-the-transition-process-tried-various-platforms-and-failed">
-            <label for="stage-of-transformation-i-have-already-started-the-transition-process-tried-various-platforms-and-failed">I have already started the transition process, tried various platforms and failed</label>
-            <input type="checkbox" id="stage-of-transformation-i-am-in-the-process-of-implementing-nfv">
-            <label for="stage-of-transformation-i-am-in-the-process-of-implementing-nfv">I am in the process of implementing NFV</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-have-already-started-the-transition-process-but-havent-implemented-anything-yet" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-have-already-started-the-transition-process-but-havent-implemented-anything-yet">I have already started the transition process, but haven't implemented anything yet</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-have-already-started-the-transition-process-tried-various-platforms-and-failed" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-have-already-started-the-transition-process-tried-various-platforms-and-failed">I have already started the transition process, tried various platforms and failed</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-am-in-the-process-of-implementing-nfv" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-am-in-the-process-of-implementing-nfv">I am in the process of implementing NFV</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-4g-network">
-            <label for="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-4g-network">I have successfully implemented NFV for my 4G network</label>
-            <input type="checkbox" id="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-5g-network">
-            <label for="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-5g-network">I have successfully implemented NFV for my 5G network</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-4g-network" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-4g-network">I have successfully implemented NFV for my 4G network</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-5g-network" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="stage-of-transformation-i-have-successfully-implemented-nfv-for-my-5g-network">I have successfully implemented NFV for my 5G network</span>
+            </label>
+            
           </div>
         </div>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">In which NFV areas are you interested the most?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="areas-of-interest-nfvi">
-            <label for="areas-of-interest-nfvi">NFVI</label>
-            <input type="checkbox" id="areas-of-interest-mano">
-            <label for="areas-of-interest-mano">MANO</label>
-            <input type="checkbox" id="areas-of-interest-multi-cloud">
-            <label for="areas-of-interest-multi-cloud">Multi-cloud</label>
-            <input type="checkbox" id="areas-of-interest-distributed-cloud">
-            <label for="areas-of-interest-distributed-cloud">Distributed cloud</label>
-            <input type="checkbox" id="areas-of-interest-edge-cloud">
-            <label for="areas-of-interest-edge-cloud">Edge cloud</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-nfvi" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-nfvi">NFVI</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-mano" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-mano">MANO</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-multi-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-multi-cloud">Multi-cloud</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-distributed-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-distributed-cloud">Distributed cloud</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-edge-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-edge-cloud">Edge cloud</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="areas-of-interest-bare-metal-cloud">
-            <label for="areas-of-interest-bare-metal-cloud">Bare metal cloud</label>
-            <input type="checkbox" id="areas-of-interest-iot">
-            <label for="areas-of-interest-iot">IoT</label>
-            <input type="checkbox" id="areas-of-interest-virtualisation">
-            <label for="areas-of-interest-virtualisation">Virtualisation</label>
-            <input type="checkbox" id="areas-of-interest-containers">
-            <label for="areas-of-interest-containers">Containers</label>
-            <input type="checkbox" id="areas-of-interest-openstack">
-            <label for="areas-of-interest-openstack">OpenStack</label>
-            <input type="checkbox" id="areas-of-interest-kubernetes">
-            <label for="areas-of-interest-kubernetes">Kubernetes</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-bare-metal-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-bare-metal-cloud">Bare metal cloud</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-iot" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-iot">IoT</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-virtualisation" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-virtualisation">Virtualisation</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-containers" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-containers">Containers</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-openstack" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-openstack">OpenStack</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-kubernetes" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-kubernetes">Kubernetes</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="areas-of-interest-cloud-native">
-            <label for="areas-of-interest-cloud-native">Cloud-native</label>
-            <input type="checkbox" id="areas-of-interest-osm">
-            <label for="areas-of-interest-osm">OSM</label>
-            <input type="checkbox" id="areas-of-interest-onap">
-            <label for="areas-of-interest-onap">ONAP</label>
-            <input type="checkbox" id="areas-of-interest-vnfs">
-            <label for="areas-of-interest-vnfs">VNFs</label>
-            <input type="checkbox" id="areas-of-interest-sdn">
-            <label for="areas-of-interest-sdn">SDN</label>
-
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-cloud-native" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-cloud-native">Cloud-native</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-osm" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-osm">OSM</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-onap" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-onap">ONAP</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-vnfs" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-vnfs">VNFs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="areas-of-interest-sdn" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="areas-of-interest-sdn">SDN</span>
+            </label>
+            
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="areas-of-interest--other">
-              <label for="areas-of-interest--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="areas-of-interest--other">
+                <span class="p-checkbox__label" id="areas-of-interest--other">Other</span>
+              </label>
               <input type="text" id="areas-of-interest--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
-
+            
           </div>
         </div>
       </div>
-
+      
       <div class="pagination">
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">What are your platform preferences?</h3>
         <div class="row u-no-padding">
           <div class="col-3 u-sv3">
             <h4>Architecture</h4>
-            <input type="checkbox" id="platform-preferences-intel">
-            <label for="platform-preferences-intel">Intel</label>
-            <input type="checkbox" id="platform-preferences-arm">
-            <label for="platform-preferences-arm">ARM</label>
-            <input type="checkbox" id="platform-preferences-power">
-            <label for="platform-preferences-power">POWER</label>
-            <input type="checkbox" id="platform-preferences-z">
-            <label for="platform-preferences-z">Z</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-intel" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-intel">Intel</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-arm" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-arm">ARM</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-power" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-power">POWER</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-z" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-z">Z</span>
+            </label>
+            
           </div>
           <div class="col-3 u-sv3">
             <h4>Servers</h4>
-            <input type="checkbox" id="platform-preferences-dell-servers">
-            <label for="platform-preferences-dell-servers">Dell</label>
-            <input type="checkbox" id="platform-preferences-hp">
-            <label for="platform-preferences-hp">HP</label>
-            <input type="checkbox" id="platform-preferences-lenovo">
-            <label for="platform-preferences-lenovo">Lenovo</label>
-            <input type="checkbox" id="platform-preferences-supermicro">
-            <label for="platform-preferences-supermicro">Supermicro</label>
-            <input type="checkbox" id="platform-preferences-intel-select">
-            <label for="platform-preferences-intel-select">Intel Select</label>
-            <input type="checkbox" id="platform-preferences-cisco-servers">
-            <label for="platform-preferences-cisco-servers">Cisco</label>
-
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-dell-servers" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-dell-servers">Dell</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-hp" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-hp">HP</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-lenovo" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-lenovo">Lenovo</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-supermicro" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-supermicro">Supermicro</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-intel-select" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-intel-select">Intel Select</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-cisco-servers" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-cisco-servers">Cisco</span>
+            </label>
+            
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-servers--other">
-              <label for="platform-preferences-servers--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-servers--other">
+                <span class="p-checkbox__label" id="platform-preferences-servers--other">Other</span>
+              </label>
               <input type="text" id="platform-preferences-servers--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
-
+            
           </div>
           <div class="col-3 u-sv3">
             <h4>Networking</h4>
-            <input type="checkbox" id="platform-preferences-cisco-networking">
-            <label for="platform-preferences-cisco-networking">Cisco</label>
-            <input type="checkbox" id="platform-preferences-juniper">
-            <label for="platform-preferences-juniper">Juniper</label>
-            <input type="checkbox" id="platform-preferences-arista">
-            <label for="platform-preferences-arista">Arista</label>
-            <input type="checkbox" id="platform-preferences-dell-networking">
-            <label for="platform-preferences-dell-networking">Dell</label>
-            <input type="checkbox" id="platform-preferences-mellanox">
-            <label for="platform-preferences-mellanox">Mellanox</label>
-            <input type="checkbox" id="platform-preferences-open-box">
-            <label for="platform-preferences-open-box">Open-box</label>
-
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-cisco-networking" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-cisco-networking">Cisco</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-juniper" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-juniper">Juniper</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-arista" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-arista">Arista</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-dell-networking" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-dell-networking">Dell</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-mellanox" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-mellanox">Mellanox</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-open-box" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-open-box">Open-box</span>
+            </label>
+            
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-networking--other">
-              <label for="platform-preferences-networking--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-networking--other">
+                <span class="p-checkbox__label" id="platform-preferences-networking--other">Other</span>
+              </label>
               <input type="text" id="platform-preferences-networking--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
-
+            
           </div>
           <div class="col-3">
             <h4>Storage</h4>
-            <input type="checkbox" id="platform-preferences-commodity">
-            <label for="platform-preferences-commodity">Commodity</label>
-            <input type="checkbox" id="platform-preferences-netapp">
-            <label for="platform-preferences-netapp">NetApp</label>
-            <input type="checkbox" id="platform-preferences-emc">
-            <label for="platform-preferences-emc">EMC</label>
-            <input type="checkbox" id="platform-preferences-purestorage">
-            <label for="platform-preferences-purestorage">PureStorage</label>
-
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-commodity" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-commodity">Commodity</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-netapp" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-netapp">NetApp</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-emc" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-emc">EMC</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="platform-preferences-purestorage" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="platform-preferences-purestorage">PureStorage</span>
+            </label>
+            
+            
             <div class="js-other-container">
-              <input type="checkbox" class="js-other-container__checkbox" id="platform-preferences-storage--other">
-              <label for="platform-preferences-storage--other">Other</label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-storage--other">
+                <span class="p-checkbox__label" id="platform-preferences-storage--other">Other</span>
+              </label>
               <input type="text" id="platform-preferences-storage--other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other">
             </div>
-
+            
           </div>
         </div>
       </div>
-
+      
       <div class="js-formfield">
         <h3 class="p-heading--5">Which of these technologies matter to you the most?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="tech-that-matters-most-kvm">
-            <label for="tech-that-matters-most-kvm">KVM</label>
-            <input type="checkbox" id="tech-that-matters-most-docker">
-            <label for="tech-that-matters-most-docker">Docker</label>
-            <input type="checkbox" id="tech-that-matters-most-lxd">
-            <label for="tech-that-matters-most-lxd">LXD</label>
-            <input type="checkbox" id="tech-that-matters-most-ceph">
-            <label for="tech-that-matters-most-ceph">Ceph</label>
-            <input type="checkbox" id="tech-that-matters-most-san">
-            <label for="tech-that-matters-most-san">SAN</label>
-            <input type="checkbox" id="tech-that-matters-most-ovs">
-            <label for="tech-that-matters-most-ovs">OVS</label>
-            <input type="checkbox" id="tech-that-matters-most-ovn">
-            <label for="tech-that-matters-most-ovn">OVN</label>
-            <input type="checkbox" id="tech-that-matters-most-contrail">
-            <label for="tech-that-matters-most-contrail">Contrail</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-kvm" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-kvm">KVM</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-docker" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-docker">Docker</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-lxd" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-lxd">LXD</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-ceph" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-ceph">Ceph</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-san" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-san">SAN</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-ovs" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-ovs">OVS</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-ovn" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-ovn">OVN</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-contrail" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-contrail">Contrail</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="tech-that-matters-most-aci">
-            <label for="tech-that-matters-most-aci">ACI</label>
-            <input type="checkbox" id="tech-that-matters-most-nuage">
-            <label for="tech-that-matters-most-nuage">Nuage</label>
-            <input type="checkbox" id="tech-that-matters-most-sr-iov">
-            <label for="tech-that-matters-most-sr-iov">SR-IOV</label>
-            <input type="checkbox" id="tech-that-matters-most-dpdk">
-            <label for="tech-that-matters-most-dpdk">DPDK</label>
-            <input type="checkbox" id="tech-that-matters-most-cpu-pinning">
-            <label for="tech-that-matters-most-cpu-pinning">CPU pinning</label>
-            <input type="checkbox" id="tech-that-matters-most-numa">
-            <label for="tech-that-matters-most-numa">NUMA</label>
-            <input type="checkbox" id="tech-that-matters-most-hugepages">
-            <label for="tech-that-matters-most-hugepages">Hugepages</label>
-            <input type="checkbox" id="tech-that-matters-most-fpga">
-            <label for="tech-that-matters-most-fpga">FPGA</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-aci" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-aci">ACI</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-nuage" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-nuage">Nuage</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-sr-iov" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-sr-iov">SR-IOV</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-dpdk" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-dpdk">DPDK</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-cpu-pinning" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-cpu-pinning">CPU pinning</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-numa" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-numa">NUMA</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-hugepages" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-hugepages">Hugepages</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-fpga" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-fpga">FPGA</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="tech-that-matters-most-smartnics">
-            <label for="tech-that-matters-most-smartnics">SmartNICs</label>
-            <input type="checkbox" id="tech-that-matters-most-security">
-            <label for="tech-that-matters-most-security">Security</label>
-            <input type="checkbox" id="tech-that-matters-most-hardening">
-            <label for="tech-that-matters-most-hardening">Hardening</label>
-            <input type="checkbox" id="tech-that-matters-most-automation">
-            <label for="tech-that-matters-most-automation">Automation</label>
-            <input type="checkbox" id="tech-that-matters-most-orchestration">
-            <label for="tech-that-matters-most-orchestration">Orchestration</label>
-            <input type="checkbox" id="tech-that-matters-most-performance">
-            <label for="tech-that-matters-most-performance">Performance</label>
-
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-smartnics" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-smartnics">SmartNICs</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-security" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-security">Security</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-hardening" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-hardening">Hardening</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-automation" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-automation">Automation</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-orchestration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-orchestration">Orchestration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="tech-that-matters-most-performance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="tech-that-matters-most-performance">Performance</span>
+            </label>
+            
+            
           </div>
         </div>
       </div>
-
+      
       <div class="pagination">
         <a class="pagination__link--previous p-button" href="">Previous</a>
         <a class="pagination__link--next p-button--positive" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
-
+      
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
@@ -262,8 +468,10 @@
                 <input required="" id="phone" name="phone" maxlength="255" type="tel">
               </li>
               <li class="p-list__item">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}
@@ -277,7 +485,7 @@
               </li>
               {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
@@ -297,7 +505,7 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
             </div>
-
+            
             <div class="pagination">
               <a class="pagination__link--previous p-button" href="">Previous</a>
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
@@ -306,7 +514,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--4 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
@@ -314,7 +522,7 @@
             <h3 class="p-heading--2">Thank you for getting in touch</h3>
             <p class="p-heading--4">We will get back to you with one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             <img src="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg" alt="smile" width="200" height="200" loading="auto">
           </div>
         </div>

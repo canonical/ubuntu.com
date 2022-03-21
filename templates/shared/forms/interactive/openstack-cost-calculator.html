@@ -36,8 +36,10 @@
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
               <li class="p-list__item u-sv2">
-                <input value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</span>
+                </label>
               </li>
               <li class="p-list__item">All information provided will be handled in accordance with the Canonical<a href="/legal/data-privacy/contact">Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
               {# These are honey pot fields to catch bots #}

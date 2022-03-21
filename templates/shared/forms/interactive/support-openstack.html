@@ -1,645 +1,690 @@
 <div class="p-modal" id="contact-modal">
   <div
-    class="p-modal__dialog"
-    role="dialog"
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
+  class="p-modal__dialog"
+  role="dialog"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
   >
-    <header class="p-modal__header" style="display: block; border-bottom: 0;">
-      <button
-        class="p-modal__close"
-        aria-label="Close active modal"
-        style="margin-left: -1rem"
-      >
-        Close
-      </button>
-      <h2 class="p-modal__title u-sv1" id="modal-title">
-        Accelerate your OpenStack project
-      </h2>
-      <p>
-        Tell us about your project so we bring the right team to the
-        conversation.
-      </p>
-    </header>
+  <header class="p-modal__header" style="display: block; border-bottom: 0;">
+    <button
+    class="p-modal__close"
+    aria-label="Close active modal"
+    style="margin-left: -1rem"
+    >
+    Close
+  </button>
+  <h2 class="p-modal__title u-sv1" id="modal-title">
+    Accelerate your OpenStack project
+  </h2>
+  <p>
+    Tell us about your project so we bring the right team to the
+    conversation.
+  </p>
+</header>
 
-    <div class="js-pagination js-pagination--1">
-      <div class="js-formfield">
-        <h3 class="p-heading--5">Where do you want your OpenStack?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input
-              type="radio"
-              id="where-Own-data-center"
-              name="openstack-where"
-              value="Our own data center"
-            />
-            <label for="where-Own-data-center">Our own data center</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input
-              type="radio"
-              id="where-My-hosting-company"
-              name="openstack-where"
-              value="My hosting company"
-            />
-            <label for="where-My-hosting-company">My hosting company</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input
-              type="radio"
-              id="where-Any-hosting-company"
-              name="openstack-where"
-              value="Any hosting company"
-            />
-            <label for="where-Any-hosting-company">Any hosting company</label>
-          </div>
-        </div>
+<div class="js-pagination js-pagination--1">
+  <div class="js-formfield">
+    <h3 class="p-heading--5">Where do you want your OpenStack?</h3>
+    <div class="row u-no-padding">
+      <div class="col-4 u-sv3">
+        <label class="p-radio">
+          <input class="p-radio__input" type="radio" aria-labelledby="where-Own-data-center" name="openstack-where" value="Our own data center" />
+          <span class="p-radio__label" id="where-Own-data-center">Our own data center</span>
+        </label>
       </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--5">
-          What are priority workloads and use cases?
-        </h3>
-        <div class="row u-no-padding u-equal-height">
-          <div class="col-3 u-sv3">
-            <input type="checkbox" id="priority-workloads-High-availability" />
-            <label for="priority-workloads-High-availability"
-              >High availability</label
-            >
-            <input type="checkbox" id="priority-workloads-High-performance" />
-            <label for="priority-workloads-High-performance"
-              >High performance</label
-            >
-            <input type="checkbox" id="priority-workloads-Multi-region" />
-            <label for="priority-workloads-Multi-region">Multi-region</label>
-            <input type="checkbox" id="priority-workloads-Multi-cloud" />
-            <label for="priority-workloads-Multi-cloud">Multi-cloud</label>
-            <input type="checkbox" id="priority-workloads-Disaster-recovery" />
-            <label for="priority-workloads-Disaster-recovery"
-              >Disaster recovery</label
-            >
-            <input type="checkbox" id="priority-workloads-Encryption-at-rest" />
-            <label for="priority-workloads-Encryption-at-rest"
-              >Encryption at rest</label
-            >
-            <input type="checkbox" id="priority-workloads-FedRAMP" />
-            <label for="priority-workloads-FedRAMP">FedRAMP</label>
-            <input type="checkbox" id="priority-workloads-PCI-DSS" />
-            <label for="priority-workloads-PCI-DSS">PCI-DSS</label>
-            <input type="checkbox" id="priority-workloads-FIPS" />
-            <label for="priority-workloads-FIPS">FIPS</label>
-          </div>
-          <div class="col-3 u-sv3">
-            <input type="checkbox" id="priority-workloads-Kubernetes" />
-            <label for="priority-workloads-Kubernetes">Kubernetes</label>
-            <input type="checkbox" id="priority-workloads-Enterprise-Apps" />
-            <label for="priority-workloads-Enterprise-Apps"
-              >Enterprise Apps</label
-            >
-            <input type="checkbox" id="priority-workloads-Telco-NFV" />
-            <label for="priority-workloads-Telco-NFV">Telco NFV</label>
-            <input type="checkbox" id="priority-workloads-Databases" />
-            <label for="priority-workloads-Databases">Databases</label>
-            <input type="checkbox" id="priority-workloads-HPC" />
-            <label for="priority-workloads-HPC">HPC</label>
-            <input type="checkbox" id="priority-workloads-Messaging" />
-            <label for="priority-workloads-Messaging">Messaging</label>
-            <input type="checkbox" id="priority-workloads-Web-apps" />
-            <label for="priority-workloads-Web-apps">Web apps</label>
-            <input type="checkbox" id="priority-workloads-Service-catalog" />
-            <label for="priority-workloads-Service-catalog"
-              >Service catalog</label
-            >
-          </div>
-          <div class="col-3 u-sv3">
-            <input type="checkbox" id="priority-workloads-Dev-and-test" />
-            <label for="priority-workloads-Dev-and-test">Dev and test</label>
-            <input type="checkbox" id="priority-workloads-CI-CD" />
-            <label for="priority-workloads-CI-CD">CI/CD</label>
-            <input type="checkbox" id="priority-workloads-Build-farm" />
-            <label for="priority-workloads-Build-farm">Build farm</label>
-            <input type="checkbox" id="priority-workloads-Containers" />
-            <label for="priority-workloads-Containers">Containers</label>
-            <input type="checkbox" id="priority-workloads-VDI" />
-            <label for="priority-workloads-VDI">VDI</label>
-            <input type="checkbox" id="priority-workloads-LDAP" />
-            <label for="priority-workloads-LDAP">LDAP</label>
-            <input type="checkbox" id="priority-workloads-AD" />
-            <label for="priority-workloads-AD">AD</label>
-          </div>
-          <div class="col-3 u-sv3 u-align">
-            <input type="checkbox" id="priority-workloads-Data-lake" />
-            <label for="priority-workloads-Data-lake">Data lake</label>
-            <input type="checkbox" id="priority-workloads-Hadoop" />
-            <label for="priority-workloads-Hadoop">Hadoop</label>
-            <input type="checkbox" id="priority-workloads-Spark" />
-            <label for="priority-workloads-Spark">Spark</label>
-            <input type="checkbox" id="priority-workloads-Analytics" />
-            <label for="priority-workloads-Analytics">Analytics</label>
-            <input type="checkbox" id="priority-workloads-ETL" />
-            <label for="priority-workloads-ETL">ETL</label>
-            <div class="js-other-container">
-              <input
-                type="checkbox"
-                class="js-other-container__checkbox"
-                id="priority-workloads-other"
-              />
-              <label for="priority-workloads-other">Other</label>
-              <input
-                type="text"
-                id="priority-workloads-other-specified"
-                class="js-other-container__input"
-                placeholder="Please specify"
-                style="opacity: 0; margin-top: .25rem;"
-                aria-label="Other Board"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="col-4 u-sv3">
+        <label class="p-radio">
+          <input class="p-radio__input" type="radio" aria-labelledby="where-My-hosting-company" name="openstack-where" value="My hosting company" />
+          <span class="p-radio__label" id="where-My-hosting-company">My hosting company</span>
+        </label>
       </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--5">What are your platform preferences?</h3>
-        <div class="row u-no-padding u-equal-height">
-          <div class="col-3 u-sv3 u-align">
-            <p class="js-sub-section">Architecture</p>
-            <input
-              type="checkbox"
-              id="platform-preferences-Architecture-Intel"
-            />
-            <label for="platform-preferences-Architecture-Intel">Intel</label>
-            <input type="checkbox" id="platform-preferences-Architecture-ARM" />
-            <label for="platform-preferences-Architecture-ARM">ARM</label>
-            <input
-              type="checkbox"
-              id="platform-preferences-Architecture-POWER"
-            />
-            <label for="platform-preferences-Architecture-POWER">POWER</label>
-            <input type="checkbox" id="platform-preferences-Architecture-Z" />
-            <label for="platform-preferences-Architecture-Z">Z</label>
-          </div>
-          <div class="col-3 u-sv3 u-align">
-            <p class="js-sub-section">Servers</p>
-            <input
-              type="checkbox"
-              id="platform-preferences-Servers-Undecided"
-            />
-            <label for="platform-preferences-Servers-Undecided"
-              >Undecided</label
-            >
-            <input type="checkbox" id="platform-preferences-Servers-Dell" />
-            <label for="platform-preferences-Servers-Dell">Dell</label>
-            <input type="checkbox" id="platform-preferences-Servers-HP" />
-            <label for="platform-preferences-Servers-HP">HP</label>
-            <input type="checkbox" id="platform-preferences-Servers-Lenovo" />
-            <label for="platform-preferences-Servers-Lenovo">Lenovo</label>
-            <input
-              type="checkbox"
-              id="platform-preferences-Servers-Supermicro"
-            />
-            <label for="platform-preferences-Servers-Supermicro"
-              >Supermicro</label
-            >
-            <input
-              type="checkbox"
-              id="platform-preferences-Servers-Intel-Select"
-            />
-            <label for="platform-preferences-Servers-Intel-Select"
-              >Intel Select</label
-            >
-            <input type="checkbox" id="platform-preferences-Servers-Cisco" />
-            <label for="platform-preferences-Servers-Cisco">Cisco</label>
-            <div class="js-other-container">
-              <input
-                type="checkbox"
-                class="js-other-container__checkbox"
-                id="platform-preferences-Servers-other"
-              />
-              <label for="platform-preferences-Servers-other">Other</label>
-              <input
-                type="text"
-                id="platform-preferences-Servers-other-specified"
-                class="js-other-container__input"
-                placeholder="Please specify"
-                style="opacity: 0; margin-top: .25rem;"
-                aria-label="Other Board"
-              />
-            </div>
-          </div>
-          <div class="col-3 u-sv3 u-align">
-            <p class="js-sub-section">Networking</p>
-            <input type="checkbox" id="platform-preferences-Networking-Cisco" />
-            <label for="platform-preferences-Networking-Cisco">Cisco</label>
-            <input
-              type="checkbox"
-              id="platform-preferences-Networking-Juniper"
-            />
-            <label for="platform-preferences-Networking-Juniper">Juniper</label>
-            <input
-              type="checkbox"
-              id="platform-preferences-Networking-Arista"
-            />
-            <label for="platform-preferences-Networking-Arista">Arista</label>
-            <input type="checkbox" id="platform-preferences-Networking-Dell" />
-            <label for="platform-preferences-Networking-Dell">Dell</label>
-            <input
-              type="checkbox"
-              id="platform-preferences-Networking-Mellanox"
-            />
-            <label for="platform-preferences-Networking-Mellanox"
-              >Mellanox</label
-            >
-            <input
-              type="checkbox"
-              id="platform-preferences-Networking-Open-box"
-            />
-            <label for="platform-preferences-Networking-Open-box"
-              >Open-box</label
-            >
-            <div class="js-other-container">
-              <input
-                type="checkbox"
-                class="js-other-container__checkbox"
-                id="platform-preferences-Networking-other"
-              />
-              <label for="platform-preferences-Networking-other">Other</label>
-              <input
-                type="text"
-                id="platform-preferences-Networking-other-specified"
-                class="js-other-container__input"
-                placeholder="Please specify"
-                style="opacity: 0; margin-top: .25rem;"
-                aria-label="Other Board"
-              />
-            </div>
-          </div>
-          <div class="col-3 u-sv3 u-align">
-            <p class="js-sub-section">Storage</p>
-            <input
-              type="checkbox"
-              id="platform-preferences-Storage-Commodity"
-            />
-            <label for="platform-preferences-Storage-Commodity"
-              >Commodity</label
-            >
-            <input type="checkbox" id="platform-preferences-Storage-NetApp" />
-            <label for="platform-preferences-Storage-NetApp">NetApp</label>
-            <input type="checkbox" id="platform-preferences-Storage-EMC" />
-            <label for="platform-preferences-Storage-EMC">EMC</label>
-            <input
-              type="checkbox"
-              id="platform-preferences-Storage-PureStorage"
-            />
-            <label for="platform-preferences-Storage-PureStorage"
-              >PureStorage</label
-            >
-            <div class="js-other-container">
-              <input
-                type="checkbox"
-                class="js-other-container__checkbox"
-                id="platform-preferences-Storage-other"
-              />
-              <label for="platform-preferences-Storage-other">Other</label>
-              <input
-                type="text"
-                id="platform-preferences-Storage-other-specified"
-                class="js-other-container__input"
-                placeholder="Please specify"
-                style="opacity: 0; margin-top: .25rem;"
-                aria-label="Other Board"
-              />
-            </div>
-          </div>
-        </div>
+      <div class="col-4 u-sv3">
+        <label class="p-radio">
+          <input class="p-radio__input" type="radio" aria-labelledby="where-Any-hosting-company" name="openstack-where" value="Any hosting company" />
+          <span class="p-radio__label" id="where-Any-hosting-company">Any hosting company</span>
+        </label>
       </div>
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--2 u-hide">
-      <div class="js-formfield">
-        <h3 class="p-heading--5">
-          Which OpenStack capabilities matter to you?
-        </h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="openstack-capabilities-KVM" />
-            <label for="openstack-capabilities-KVM">KVM</label>
-            <input type="checkbox" id="openstack-capabilities-LXD" />
-            <label for="openstack-capabilities-LXD">LXD</label>
-            <input type="checkbox" id="openstack-capabilities-Ceph" />
-            <label for="openstack-capabilities-Ceph">Ceph</label>
-            <input type="checkbox" id="openstack-capabilities-Swift" />
-            <label for="openstack-capabilities-Swift">Swift</label>
-            <input type="checkbox" id="openstack-capabilities-Manila" />
-            <label for="openstack-capabilities-Manila">Manila</label>
-            <input
-              type="checkbox"
-              id="openstack-capabilities-SAN-integration"
-            />
-            <label for="openstack-capabilities-SAN-integration"
-              >iSCSI/SAN integration</label
-            >
-            <input type="checkbox" id="openstack-capabilities-OVS" />
-            <label for="openstack-capabilities-OVS">OVS</label>
-            <input type="checkbox" id="openstack-capabilities-OVN" />
-            <label for="openstack-capabilities-OVN">OVN</label>
-            <input type="checkbox" id="openstack-capabilities-Contrail" />
-            <label for="openstack-capabilities-Contrail">Contrail</label>
-            <input type="checkbox" id="openstack-capabilities-ACI" />
-            <label for="openstack-capabilities-ACI">ACI</label>
-            <input type="checkbox" id="openstack-capabilities-Nuage" />
-            <label for="openstack-capabilities-Nuage">Nuage</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="openstack-capabilities-Keystone" />
-            <label for="openstack-capabilities-Keystone">Keystone</label>
-            <input type="checkbox" id="openstack-capabilities-Designate" />
-            <label for="openstack-capabilities-Designate">Designate</label>
-            <input type="checkbox" id="openstack-capabilities-Barbican" />
-            <label for="openstack-capabilities-Barbican">Barbican</label>
-            <input type="checkbox" id="openstack-capabilities-Octavia" />
-            <label for="openstack-capabilities-Octavia">Octavia</label>
-            <input type="checkbox" id="openstack-capabilities-Monitoring" />
-            <label for="openstack-capabilities-Monitoring">Monitoring</label>
-            <input
-              type="checkbox"
-              id="openstack-capabilities-Air-gapped-enviroment"
-            />
-            <label for="openstack-capabilities-Air-gapped-enviroment"
-              >Air-gapped enviroment</label
-            >
-            <input
-              type="checkbox"
-              id="openstack-capabilities-LDAP-AD-integration"
-            />
-            <label for="openstack-capabilities-LDAP-AD-integration"
-              >LDAP/AD integration</label
-            >
-            <input type="checkbox" id="openstack-capabilities-Vault" />
-            <label for="openstack-capabilities-Vault">Vault</label>
-            <input
-              type="checkbox"
-              id="openstack-capabilities-High-Availability"
-            />
-            <label for="openstack-capabilities-High-Availability"
-              >High Availability</label
-            >
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="openstack-capabilities-SR-IOV" />
-            <label for="openstack-capabilities-SR-IOV">SR-IOV</label>
-            <input type="checkbox" id="openstack-capabilities-DPDK" />
-            <label for="openstack-capabilities-DPDK">DPDK</label>
-            <input type="checkbox" id="openstack-capabilities-CPU-pinning" />
-            <label for="openstack-capabilities-CPU-pinning">CPU pinning</label>
-            <input type="checkbox" id="openstack-capabilities-NUMA" />
-            <label for="openstack-capabilities-NUMA">NUMA</label>
-            <input type="checkbox" id="openstack-capabilities-VNF-Workloads" />
-            <label for="openstack-capabilities-VNF-Workloads"
-              >VNF Workloads</label
-            >
-            <input type="checkbox" id="openstack-capabilities-SmartNICs" />
-            <label for="openstack-capabilities-SmartNICs">SmartNICs</label>
-            <input type="checkbox" id="openstack-capabilities-GPU" />
-            <label for="openstack-capabilities-GPU">GPU</label>
-            <input type="checkbox" id="openstack-capabilities-Encryption" />
-            <label for="openstack-capabilities-Encryption">Encryption</label>
-          </div>
-        </div>
-      </div>
-      <div class="row u-no-padding js-formfield">
-        <h3 class="p-heading--5">What would be most helpful?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="most-helpful-Fully-managed-cloud" />
-            <label for="most-helpful-Fully-managed-cloud"
-              >Fully managed cloud</label
-            >
-            <input type="checkbox" id="most-helpful-One-time-deployment" />
-            <label for="most-helpful-One-time-deployment"
-              >One-time deployment</label
-            >
-            <input type="checkbox" id="most-helpful-Architecture-design" />
-            <label for="most-helpful-Architecture-design"
-              >Architecture design</label
-            >
-            <input type="checkbox" id="most-helpful-Performance-tuning" />
-            <label for="most-helpful-Performance-tuning"
-              >Performance tuning</label
-            >
-            <input type="checkbox" id="most-helpful-Conformance-Production" />
-            <label for="most-helpful-Conformance-Production">Production</label>
-            <input type="checkbox" id="most-helpful-Workload-migration" />
-            <label for="most-helpful-Workload-migration"
-              >Workload migration</label
-            >
-            <input type="checkbox" id="most-helpful-Integration" />
-            <label for="most-helpful-Integration">Integration</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="most-helpful-Version-upgrades" />
-            <label for="most-helpful-Version-upgrades"
-              >Upgrade to new version</label
-            >
-            <input type="checkbox" id="most-helpful-Upstream-enhancement" />
-            <label for="most-helpful-Upstream-enhancement"
-              >Upstream enhancement</label
-            >
-            <input type="checkbox" id="most-helpful-Security-updates" />
-            <label for="most-helpful-Security-updates">Security updates</label>
-            <input type="checkbox" id="most-helpful-POC" />
-            <label for="most-helpful-POC"> POC</label>
-            <input type="checkbox" id="most-helpful-Single-sign-on" />
-            <label for="most-helpful-Single-sign-on">Single sign-on</label>
-            <input type="checkbox" id="most-helpful-Training" />
-            <label for="most-helpful-Training">Training</label>
-            <input type="checkbox" id="most-helpful-Documentation" />
-            <label for="most-helpful-Documentation">Documentation</label>
-          </div>
-          <div class="col-4 u-sv3">
-            <input type="checkbox" id="most-helpful-Automation" />
-            <label for="most-helpful-Automation">Automation</label>
-            <input type="checkbox" id="most-helpful-Hardware-selection" />
-            <label for="most-helpful-Hardware-selection"
-              >Hardware selection</label
-            >
-            <input type="checkbox" id="most-helpful-Enterprise-support" />
-            <label for="most-helpful-Enterprise-support"
-              >Enterprise support</label
-            >
-            <input type="checkbox" id="most-helpful-Data-replication" />
-            <label for="most-helpful-Data-replication">Data replication</label>
-            <input type="checkbox" id="most-helpful-Backup-and-recovery" />
-            <label for="most-helpful-Backup-and-recovery"
-              >Backup and recovery</label
-            >
-            <input type="checkbox" id="most-helpful-Logging-and-monitoring" />
-            <label for="most-helpful-Logging-and-monitoring"
-              >Logging and monitoring</label
-            >
-          </div>
-        </div>
-        <div class="pagination">
-          <a class="pagination__link--previous p-button" href=""
-            >Previous</a
-          >
-          <a class="pagination__link--next p-button--positive" href="">Next</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="js-pagination js-pagination--3 u-hide">
-      <div class="u-sv3 js-formfield">
-        <h3 class="p-heading--5">Have we missed something?</h3>
-        <textarea
-          id="particular-sectors"
-          aria-label="Have we missed something?"
-          rows="3"
-          placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"
-        ></textarea>
-      </div>
-      <h3 class="p-heading--5">How should we get in touch?</h3>
-      <div class="row u-no-padding">
-        <div class="col-6">
-          <form
-            action="/marketo/submit"
-            method="post"
-            id="mktoForm_%% formid %%"
-            class="modal-form"
-          >
-            <ul class="p-list">
-              <li class="p-list__item">
-                <label for="firstName">First name:</label>
-                <input
-                  required
-                  id="firstName"
-                  name="firstName"
-                  maxlength="255"
-                  type="text"
-                  required="required"
-                />
-              </li>
-              <li class="p-list__item">
-                <label for="lastName">Last name:</label>
-                <input
-                  required
-                  id="lastName"
-                  name="lastName"
-                  maxlength="255"
-                  type="text"
-                  required="required"
-                />
-              </li>
-              <li class="p-list__item">
-                <label for="email">Work email:</label>
-                <input
-                  required
-                  id="email"
-                  name="email"
-                  maxlength="255"
-                  type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
-                  required="required"
-                />
-              </li>
-              <li class="p-list__item">
-                <label for="phone">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
-              </li>
-              <li class="p-list__item">
-                <input
-                  value="yes"
-                  id="canonicalUpdatesOptIn"
-                  name="canonicalUpdatesOptIn"
-                  type="checkbox"
-                />
-                <label
-                  for="canonicalUpdatesOptIn"
-                  >I agree to receive information about Canonical's products and
-                  services.</label
-                >
-              </li>
-              <li class="p-list__item">
-                In submitting this form, I confirm that I have read and agree to
-                <a href="/legal/data-privacy/contact"
-                  >Canonical's Privacy Notice</a
-                >
-                and <a href="/legal/data-privacy">Privacy Policy</a>.
-              </li>
-              {# These are honey pot fields to catch bots #}
-              <li class="u-off-screen">
-                <label class="website" for="website">Website:</label>
-                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-              </li>
-              <li class="u-off-screen">
-                <label class="name" for="name">Name:</label>
-                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-              </li>
-              {# End of honey pots #}
-            </ul>
-
-            <div class="u-hide">
-              <h3>Your comments</h3>
-              <ul class="p-list">
-                <li class="p-list__item">
-                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
-                </li>
-              </ul>
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
-            </div>
-
-            <div class="pagination">
-              <a class="pagination__link--previous p-button" href=""
-                >Previous</a
-              >
-              <button
-                type="submit"
-                class="pagination__link--next p-button--positive"
-                aria-label="Submit"
-              >
-                Let's discuss
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- There is no info in the copy doc for this page -->
-    <div class="js-pagination js-pagination--4 u-hide">
-      <div class="row u-no-padding">
-        <div class="u-equal-height">
-          <div class="col-7">
-            <h3 class="p-heading--2">
-              Thank you for enquiring about Ubuntu Advantage
-            </h3>
-            <p class="p-heading--4">
-              A member of our team will be in touch within one working day.
-            </p>
-          </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
-              alt="smile",
-              width="200",
-              height="200",
-              hi_def=True,
-              loading="auto",
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-      <a class="js-close p-button" href="">Close</a>
     </div>
   </div>
+  <div class="js-formfield">
+    <h3 class="p-heading--5">
+      What are priority workloads and use cases?
+    </h3>
+    <div class="row u-no-padding u-equal-height">
+      <div class="col-3 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-High-availability" />
+          <span class="p-checkbox__label" id="priority-workloads-High-availability">High availability</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-High-performance" />
+          <span class="p-checkbox__label" id="priority-workloads-High-performance">High performance</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Multi-region" />
+          <span class="p-checkbox__label" id="priority-workloads-Multi-region">Multi-region</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Multi-cloud" />
+          <span class="p-checkbox__label" id="priority-workloads-Multi-cloud">Multi-cloud</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Disaster-recovery" />
+          <span class="p-checkbox__label" id="priority-workloads-Disaster-recovery">Disaster recovery</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Encryption-at-rest" />
+          <span class="p-checkbox__label" id="priority-workloads-Encryption-at-rest">Encryption at rest</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-FedRAMP" />
+          <span class="p-checkbox__label" id="priority-workloads-FedRAMP">FedRAMP</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-PCI-DSS" />
+          <span class="p-checkbox__label" id="priority-workloads-PCI-DSS">PCI-DSS</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-FIPS" />
+          <span class="p-checkbox__label" id="priority-workloads-FIPS">FIPS</span>
+        </label>
+      </div>
+      <div class="col-3 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Kubernetes" />
+          <span class="p-checkbox__label" id="priority-workloads-Kubernetes">Kubernetes</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Enterprise-Apps" />
+          <span class="p-checkbox__label" id="priority-workloads-Enterprise-Apps">Enterprise Apps</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Telco-NFV" />
+          <span class="p-checkbox__label" id="priority-workloads-Telco-NFV">Telco NFV</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Databases" />
+          <span class="p-checkbox__label" id="priority-workloads-Databases">Databases</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-HPC" />
+          <span class="p-checkbox__label" id="priority-workloads-HPC">HPC</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Messaging" />
+          <span class="p-checkbox__label" id="priority-workloads-Messaging">Messaging</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Web-apps" />
+          <span class="p-checkbox__label" id="priority-workloads-Web-apps">Web apps</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Service-catalog" />
+          <span class="p-checkbox__label" id="priority-workloads-Service-catalog">Service catalog</span>
+        </label>
+      </div>
+      <div class="col-3 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Dev-and-test" />
+          <span class="p-checkbox__label" id="priority-workloads-Dev-and-test">Dev and test</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-CI-CD" />
+          <span class="p-checkbox__label" id="priority-workloads-CI-CD">CI/CD</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Build-farm" />
+          <span class="p-checkbox__label" id="priority-workloads-Build-farm">Build farm</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Containers" />
+          <span class="p-checkbox__label" id="priority-workloads-Containers">Containers</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-VDI" />
+          <span class="p-checkbox__label" id="priority-workloads-VDI">VDI</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-LDAP" />
+          <span class="p-checkbox__label" id="priority-workloads-LDAP">LDAP</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-AD" />
+          <span class="p-checkbox__label" id="priority-workloads-AD">AD</span>
+        </label>
+      </div>
+      <div class="col-3 u-sv3 u-align">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Data-lake" />
+          <span class="p-checkbox__label" id="priority-workloads-Data-lake">Data lake</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Hadoop" />
+          <span class="p-checkbox__label" id="priority-workloads-Hadoop">Hadoop</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Spark" />
+          <span class="p-checkbox__label" id="priority-workloads-Spark">Spark</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-Analytics" />
+          <span class="p-checkbox__label" id="priority-workloads-Analytics">Analytics</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="priority-workloads-ETL" />
+          <span class="p-checkbox__label" id="priority-workloads-ETL">ETL</span>
+        </label>
+        <div class="js-other-container">
+          <label class="p-checkbox">
+            <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="priority-workloads-other" />
+            <span class="p-checkbox__label" id="priority-workloads-other">Other</span>
+          </label>
+          <input
+          type="text"
+          id="priority-workloads-other-specified"
+          class="js-other-container__input"
+          placeholder="Please specify"
+          style="opacity: 0; margin-top: .25rem;"
+          aria-label="Other Board"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="js-formfield">
+    <h3 class="p-heading--5">What are your platform preferences?</h3>
+    <div class="row u-no-padding u-equal-height">
+      <div class="col-3 u-sv3 u-align">
+        <p class="js-sub-section">Architecture</p>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Architecture-Intel" />
+          <span class="p-checkbox__label" id="platform-preferences-Architecture-Intel">Intel</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Architecture-ARM" />
+          <span class="p-checkbox__label" id="platform-preferences-Architecture-ARM">ARM</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Architecture-POWER" />
+          <span class="p-checkbox__label" id="platform-preferences-Architecture-POWER">POWER</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Architecture-Z" />
+          <span class="p-checkbox__label" id="platform-preferences-Architecture-Z">Z</span>
+        </label>
+      </div>
+      <div class="col-3 u-sv3 u-align">
+        <p class="js-sub-section">Servers</p>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-Undecided" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-Undecided">Undecided</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-Dell" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-Dell">Dell</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-HP" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-HP">HP</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-Lenovo" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-Lenovo">Lenovo</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-Supermicro" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-Supermicro">Supermicro</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-Intel-Select" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-Intel-Select">Intel Select</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Servers-Cisco" />
+          <span class="p-checkbox__label" id="platform-preferences-Servers-Cisco">Cisco</span>
+        </label>
+        <div class="js-other-container">
+          <label class="p-checkbox">
+            <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-Servers-other" />
+            <span class="p-checkbox__label" id="platform-preferences-Servers-other">Other</span>
+          </label>
+          <input
+          type="text"
+          id="platform-preferences-Servers-other-specified"
+          class="js-other-container__input"
+          placeholder="Please specify"
+          style="opacity: 0; margin-top: .25rem;"
+          aria-label="Other Board"
+          />
+        </div>
+      </div>
+      <div class="col-3 u-sv3 u-align">
+        <p class="js-sub-section">Networking</p>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Networking-Cisco" />
+          <span class="p-checkbox__label" id="platform-preferences-Networking-Cisco">Cisco</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Networking-Juniper" />
+          <span class="p-checkbox__label" id="platform-preferences-Networking-Juniper">Juniper</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Networking-Arista" />
+          <span class="p-checkbox__label" id="platform-preferences-Networking-Arista">Arista</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Networking-Dell" />
+          <span class="p-checkbox__label" id="platform-preferences-Networking-Dell">Dell</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Networking-Mellanox" />
+          <span class="p-checkbox__label" id="platform-preferences-Networking-Mellanox">Mellanox</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Networking-Open-box" />
+          <span class="p-checkbox__label" id="platform-preferences-Networking-Open-box">Open-box</span>
+        </label>
+        <div class="js-other-container">
+          <label class="p-checkbox">
+            <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-Networking-other" />
+            <span class="p-checkbox__label" id="platform-preferences-Networking-other">Other</span>
+          </label>
+          <input type="text" id="platform-preferences-Networking-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board" />
+        </div>
+      </div>
+      <div class="col-3 u-sv3 u-align">
+        <p class="js-sub-section">Storage</p>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Storage-Commodity" />
+          <span class="p-checkbox__label" id="platform-preferences-Storage-Commodity">Commodity</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Storage-NetApp" />
+          <span class="p-checkbox__label" id="platform-preferences-Storage-NetApp">NetApp</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Storage-EMC" />
+          <span class="p-checkbox__label" id="platform-preferences-Storage-EMC">EMC</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="platform-preferences-Storage-PureStorage" />
+          <span class="p-checkbox__label" id="platform-preferences-Storage-PureStorage">PureStorage</span>
+        </label>
+        <div class="js-other-container">
+          <label class="p-checkbox">
+            <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="platform-preferences-Storage-other" />
+            <span class="p-checkbox__label" id="platform-preferences-Storage-other">Other</span>
+          </label>
+          <input type="text" id="platform-preferences-Storage-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other Board" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <a class="p-button--positive pagination__link--next" href="">Next</a>
+  </div>
+</div>
+
+<div class="js-pagination js-pagination--2 u-hide">
+  <div class="js-formfield">
+    <h3 class="p-heading--5">
+      Which OpenStack capabilities matter to you?
+    </h3>
+    <div class="row u-no-padding">
+      <div class="col-4 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-KVM" />
+          <span class="p-checkbox__label" id="openstack-capabilities-KVM">KVM</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-LXD" />
+          <span class="p-checkbox__label" id="openstack-capabilities-LXD">LXD</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Ceph" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Ceph">Ceph</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Swift" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Swift">Swift</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Manila" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Manila">Manila</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-SAN-integration" />
+          <span class="p-checkbox__label" id="openstack-capabilities-SAN-integration">iSCSI/SAN integration</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-OVS" />
+          <span class="p-checkbox__label" id="openstack-capabilities-OVS">OVS</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-OVN" />
+          <span class="p-checkbox__label" id="openstack-capabilities-OVN">OVN</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Contrail" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Contrail">Contrail</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-ACI" />
+          <span class="p-checkbox__label" id="openstack-capabilities-ACI">ACI</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Nuage" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Nuage">Nuage</span>
+        </label>
+      </div>
+      <div class="col-4 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Keystone" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Keystone">Keystone</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Designate" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Designate">Designate</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Barbican" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Barbican">Barbican</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Octavia" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Octavia">Octavia</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Monitoring" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Monitoring">Monitoring</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Air-gapped-enviroment" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Air-gapped-enviroment">Air-gapped enviroment</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-LDAP-AD-integration" />
+          <span class="p-checkbox__label" id="openstack-capabilities-LDAP-AD-integration">LDAP/AD integration</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Vault" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Vault">Vault</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-High-Availability" />
+          <span class="p-checkbox__label" id="openstack-capabilities-High-Availability">High Availability</span>
+        </label>
+      </div>
+      <div class="col-4 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-SR-IOV" />
+          <span class="p-checkbox__label" id="openstack-capabilities-SR-IOV">SR-IOV</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-DPDK" />
+          <span class="p-checkbox__label" id="openstack-capabilities-DPDK">DPDK</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-CPU-pinning" />
+          <span class="p-checkbox__label" id="openstack-capabilities-CPU-pinning">CPU pinning</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-NUMA" />
+          <span class="p-checkbox__label" id="openstack-capabilities-NUMA">NUMA</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-VNF-Workloads" />
+          <span class="p-checkbox__label" id="openstack-capabilities-VNF-Workloads">VNF Workloads</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-SmartNICs" />
+          <span class="p-checkbox__label" id="openstack-capabilities-SmartNICs">SmartNICs</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-GPU" />
+          <span class="p-checkbox__label" id="openstack-capabilities-GPU">GPU</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="openstack-capabilities-Encryption" />
+          <span class="p-checkbox__label" id="openstack-capabilities-Encryption">Encryption</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row u-no-padding js-formfield">
+    <h3 class="p-heading--5">What would be most helpful?</h3>
+    <div class="row u-no-padding">
+      <div class="col-4 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Fully-managed-cloud" />
+          <span class="p-checkbox__label" id="most-helpful-Fully-managed-cloud">Fully managed cloud</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-One-time-deployment" />
+          <span class="p-checkbox__label" id="most-helpful-One-time-deployment">One-time deployment</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Architecture-design" />
+          <span class="p-checkbox__label" id="most-helpful-Architecture-design">Architecture design</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Performance-tuning" />
+          <span class="p-checkbox__label" id="most-helpful-Performance-tuning">Performance tuning</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Conformance-Production" />
+          <span class="p-checkbox__label" id="most-helpful-Conformance-Production">Production</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Workload-migration" />
+          <span class="p-checkbox__label" id="most-helpful-Workload-migration">Workload migration</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Integration" />
+          <span class="p-checkbox__label" id="most-helpful-Integration">Integration</span>
+        </label>
+      </div>
+      <div class="col-4 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Version-upgrades" />
+          <span class="p-checkbox__label" id="most-helpful-Version-upgrades">Upgrade to new version</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Upstream-enhancement" />
+          <span class="p-checkbox__label" id="most-helpful-Upstream-enhancement">Upstream enhancement</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Security-updates" />
+          <span class="p-checkbox__label" id="most-helpful-Security-updates">Security updates</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-POC" />
+          <span class="p-checkbox__label" id="most-helpful-POC"> POC</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Single-sign-on" />
+          <span class="p-checkbox__label" id="most-helpful-Single-sign-on">Single sign-on</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Training" />
+          <span class="p-checkbox__label" id="most-helpful-Training">Training</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Documentation" />
+          <span class="p-checkbox__label" id="most-helpful-Documentation">Documentation</span>
+        </label>
+      </div>
+      <div class="col-4 u-sv3">
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Automation" />
+          <span class="p-checkbox__label" id="most-helpful-Automation">Automation</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Hardware-selection" />
+          <span class="p-checkbox__label" id="most-helpful-Hardware-selection">Hardware selection</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Enterprise-support" />
+          <span class="p-checkbox__label" id="most-helpful-Enterprise-support">Enterprise support</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Data-replication" />
+          <span class="p-checkbox__label" id="most-helpful-Data-replication">Data replication</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Backup-and-recovery" />
+          <span class="p-checkbox__label" id="most-helpful-Backup-and-recovery">Backup and recovery</span>
+        </label>
+        <label class="p-checkbox">
+          <input class="p-checkbox__input" type="checkbox" aria-labelledby="most-helpful-Logging-and-monitoring" />
+          <span class="p-checkbox__label" id="most-helpful-Logging-and-monitoring">Logging and monitoring</span>
+        </label>
+      </div>
+    </div>
+    <div class="pagination">
+      <a class="pagination__link--previous p-button" href="">Previous</a>
+      <a class="pagination__link--next p-button--positive" href="">Next</a>
+    </div>
+  </div>
+</div>
+
+<div class="js-pagination js-pagination--3 u-hide">
+  <div class="u-sv3 js-formfield">
+    <h3 class="p-heading--5">Have we missed something?</h3>
+    <textarea
+    id="particular-sectors"
+    aria-label="Have we missed something?"
+    rows="3"
+    placeholder="Are there particular sectors which are important to you such as industrial, automotive, display, retail, home, office, data center, networking, robotics?"
+    ></textarea>
+  </div>
+  <h3 class="p-heading--5">How should we get in touch?</h3>
+  <div class="row u-no-padding">
+    <div class="col-6">
+      <form
+      action="/marketo/submit"
+      method="post"
+      id="mktoForm_%% formid %%"
+      class="modal-form"
+      >
+      <ul class="p-list">
+        <li class="p-list__item">
+          <label for="firstName">First name:</label>
+          <input
+          required
+          id="firstName"
+          name="firstName"
+          maxlength="255"
+          type="text"
+          required="required"
+          />
+        </li>
+        <li class="p-list__item">
+          <label for="lastName">Last name:</label>
+          <input
+          required
+          id="lastName"
+          name="lastName"
+          maxlength="255"
+          type="text"
+          required="required"
+          />
+        </li>
+        <li class="p-list__item">
+          <label for="email">Work email:</label>
+          <input
+          required
+          id="email"
+          name="email"
+          maxlength="255"
+          type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$"
+          required="required"
+          />
+        </li>
+        <li class="p-list__item">
+          <label for="phone">Mobile/cell phone number:</label>
+          <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+        </li>
+        <li class="p-list__item">
+          <label class="p-checkbox">
+            <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+            <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+          </label>
+        </li>
+        <li class="p-list__item">
+          In submitting this form, I confirm that I have read and agree to
+          <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a>    and <a href="/legal/data-privacy">Privacy Policy</a>.
+        </li>
+        {# These are honey pot fields to catch bots #}
+        <li class="u-off-screen">
+          <label class="website" for="website">Website:</label>
+          <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+        </li>
+        <li class="u-off-screen">
+          <label class="name" for="name">Name:</label>
+          <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+        </li>
+        {# End of honey pots #}
+      </ul>
+      
+      <div class="u-hide">
+        <h3>Your comments</h3>
+        <ul class="p-list">
+          <li class="p-list__item">
+            <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+            <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+          </li>
+        </ul>
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+        <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+      </div>
+      
+      <div class="pagination">
+        <a class="pagination__link--previous p-button" href="">Previous</a>  <button
+        type="submit"
+        class="pagination__link--next p-button--positive"
+        aria-label="Submit">    Let's discuss
+      </button>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+<!-- There is no info in the copy doc for this page -->
+<div class="js-pagination js-pagination--4 u-hide">
+  <div class="row u-no-padding">
+    <div class="u-equal-height">
+      <div class="col-7">
+        <h3 class="p-heading--2">
+          Thank you for enquiring about Ubuntu Advantage
+        </h3>
+        <p class="p-heading--4">
+          A member of our team will be in touch within one working day.
+        </p>
+      </div>
+      <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+          alt="smile",
+          width="200",
+          height="200",
+          hi_def=True,
+          loading="auto",
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+  <a class="js-close p-button" href="">Close</a>
+</div>
+</div>
 </div>
