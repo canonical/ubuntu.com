@@ -31,8 +31,22 @@ markdown_parser = Markdown(
 session = talisker.requests.get_session()
 
 
+def get_processed_details(notice):
+    pattern = re.compile(r"(cve|CVE-)\d{4}-\d{4,7}", re.MULTILINE)
+
+    return re.sub(
+        pattern, r'<a href="/security/\g<0>">\g<0></a>', notice["description"]
+    )
+
+
 def notice(notice_id):
-    notice = db_session.query(Notice).get(notice_id)
+
+    security_api = SecurityAPI(
+        session=session,
+        base_url="http://192.168.64.6:8030/security/",
+    )
+
+    notice = security_api.get_notice(notice_id)
 
     if not notice:
         flask.abort(404)
@@ -41,13 +55,15 @@ def notice(notice_id):
     package_versions = {}
     release_packages = SortedDict()
 
-    releases = {
-        release.codename: release.version
-        for release in db_session.query(Release).all()
-    }
+    all_releases = security_api.get_releases().get("releases")
 
-    if notice.release_packages:
-        for codename, pkgs in notice.release_packages.items():
+    releases = {
+        release["codename"]: release["version"] for release in all_releases
+    }
+    print(releases)
+
+    if notice["release_packages"]:
+        for codename, pkgs in notice["release_packages"].items():
             release_version = releases[codename]
             release_packages[release_version] = {}
             for package in pkgs:
@@ -59,7 +75,7 @@ def notice(notice_id):
                     release_packages[release_version][name] = package
                     continue
 
-                if notice.get_type == "LSN":
+                if notice["type"] == "LSN":
                     if name not in package_descriptions:
                         package_versions[name] = []
 
@@ -80,38 +96,29 @@ def notice(notice_id):
             for key in sorted(package_descriptions.keys())
         }
 
-    notice_cve_ids = [cve.id for cve in notice.cves]
-    related_notices = (
-        db_session.query(Notice)
-        .filter(Notice.cves.any(CVE.id.in_(notice_cve_ids)))
-        .filter(Notice.id != notice.id)
-        .all()
-    )
-
-    if notice.get_type == "LSN":
+    if notice["type"] == "LSN":
         template = "security/notices/lsn.html"
     else:
         template = "security/notices/usn.html"
 
+    if notice.get("published"):
+        notice["published"] = dateutil.parser.parse(
+            notice["published"]
+        ).strftime("%-d %B %Y")
+
     notice = {
-        "id": notice.id,
-        "title": notice.title,
-        "published": notice.published,
-        "summary": notice.summary,
-        "details": markdown_parser(notice.get_processed_details),
-        "instructions": markdown_parser(notice.instructions),
+        "id": notice["id"],
+        "title": notice["title"],
+        "published": notice["published"],
+        "summary": notice["summary"],
+        "details": markdown_parser(get_processed_details(notice)),
+        "instructions": markdown_parser(notice["instructions"]),
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
-        "releases": notice.releases,
-        "cves": notice.cves,
-        "references": notice.references,
-        "related_notices": [
-            {
-                "id": related_notice.id,
-                "package_list": ", ".join(related_notice.package_list),
-            }
-            for related_notice in related_notices
-        ],
+        "releases": notice["releases"],
+        "cves": notice["cves"],
+        "references": notice["references"],
+        "related_notices": notice["related_notices"],
     }
 
     return flask.render_template(template, notice=notice)

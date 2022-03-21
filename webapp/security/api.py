@@ -60,3 +60,21 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return releases_response.json()
+
+    def get_notice(
+        self,
+        id: str,
+    ):
+        """
+        Makes request for specific notice_id,
+        returns json object if found
+        """
+
+        try:
+            notice_response = self._get(f"notices/{id.upper()}.json")
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                return None
+            raise SecurityAPIError(error)
+
+        return notice_response.json()
