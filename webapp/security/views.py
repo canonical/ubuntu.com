@@ -521,24 +521,28 @@ def cve_index():
 
     # releases in desc order
     releases_json = security_api.get_releases().get("releases")
-    
+
     # releases without "upstream"
     all_releases = []
     for release in releases_json:
         if release["codename"] != "upstream":
             all_releases.append(release)
-    
+
     # empty list what will eventually store the filtered releases
     filtered_releases = []
-    
+
     if versions and not any(a in ["", "current"] for a in versions):
-        # THIS LINE STILL NEEDS REFACTORING 
+        # THIS LINE STILL NEEDS REFACTORING
         releases_json = releases_json.filter(Release.codename.in_(versions))
     else:
         for release in all_releases:
             # format dates
-            support_date = datetime.strptime(release["support_expires"], "%Y-%m-%dT%H:%M:%S")
-            esm_date = datetime.strptime(release["esm_expires"], "%Y-%m-%dT%H:%M:%S")
+            support_date = datetime.strptime(
+                release["support_expires"], "%Y-%m-%dT%H:%M:%S"
+            )
+            esm_date = datetime.strptime(
+                release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
+            )
 
             # filter releases
             if support_date > datetime.now() or esm_date > datetime.now():
