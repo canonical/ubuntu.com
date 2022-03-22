@@ -60,7 +60,6 @@ def notice(notice_id):
     releases = {
         release["codename"]: release["version"] for release in all_releases
     }
-    print(releases)
 
     if notice["release_packages"]:
         for codename, pkgs in notice["release_packages"].items():
