@@ -730,7 +730,6 @@ def cve(cve_id):
             "%-d %B %Y"
         )
 
-    
     all_releases = security_api.get_releases().get("releases")
 
     releases = []
@@ -739,10 +738,17 @@ def cve(cve_id):
     for release in all_releases:
         if release["codename"] != "upstream":
             # format dates
-            support_expiry_date = datetime.strptime(release["support_expires"], "%Y-%m-%dT%H:%M:%S")
-            esm_expiry_date = datetime.strptime(release["esm_expires"], "%Y-%m-%dT%H:%M:%S")
+            support_expiry_date = datetime.strptime(
+                release["support_expires"], "%Y-%m-%dT%H:%M:%S"
+            )
+            esm_expiry_date = datetime.strptime(
+                release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
+            )
             # filter out if support has expired
-            if support_expiry_date > datetime.now() or esm_expiry_date > datetime.now():
+            if (
+                support_expiry_date > datetime.now()
+                or esm_expiry_date > datetime.now()
+            ):
                 releases.append(release)
 
     return flask.render_template(
