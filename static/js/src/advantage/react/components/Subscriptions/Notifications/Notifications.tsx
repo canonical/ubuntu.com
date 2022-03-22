@@ -1,5 +1,5 @@
 import { Notification } from "@canonical/react-components";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useURLs } from "../../../hooks";
 import { useUserSubscriptions } from "advantage/react/hooks";
@@ -7,6 +7,7 @@ import { selectStatusesSummary } from "advantage/react/hooks/useUserSubscription
 import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
 import useGetOffersList from "advantage/offers/hooks/useGetOffersList";
+import useRequestAccountUsers from "advantage/users/hooks/useRequestAccountUsers";
 
 const Notifications = () => {
   const urls = useURLs();
@@ -14,6 +15,28 @@ const Notifications = () => {
     select: selectStatusesSummary,
   });
   const { data: offers } = useGetOffersList();
+
+  const {
+    data: accountUsers,
+    isSuccess: isAccountUsersSuccess,
+  } = useRequestAccountUsers();
+
+  const [
+    isShowingOnboardingNotification,
+    setIsShowingOnboardingNotification,
+  ] = React.useState(
+    localStorage.getItem("dismissedOnboardingNotification") !== "true"
+  );
+
+  const dismissOnboardingNotification = () => {
+    localStorage.setItem("dismissedOnboardingNotification", "true");
+    setIsShowingOnboardingNotification(false);
+  };
+  useEffect(() => {
+    if ((accountUsers?.users.length ?? 1) > 1) {
+      dismissOnboardingNotification();
+    }
+  }, [accountUsers]);
 
   return (
     <>
@@ -28,6 +51,29 @@ const Notifications = () => {
           <a href={urls.account.paymentMethods}>update your payment methods</a>{" "}
           to ensure there is no interruption to your Ubuntu Advantage
           subscriptions
+        </Notification>
+      ) : null}
+      {isAccountUsersSuccess && isShowingOnboardingNotification ? (
+        <Notification
+          data-test="onboarding"
+          severity="information"
+          actions={[
+            {
+              label: "Dismiss this message",
+              onClick: dismissOnboardingNotification,
+            },
+            {
+              label: "Manage account users",
+              onClick: () => {
+                location.href = urls.advantage.users;
+              },
+            },
+          ]}
+          onDismiss={dismissOnboardingNotification}
+        >
+          Tip: You can add additional Technical & Billing contacts in
+          &quot;Account users&quot; to ensure service continuity and allow the
+          right people access to your Subscriptions
         </Notification>
       ) : null}
       {offers?.length > 0 ? (

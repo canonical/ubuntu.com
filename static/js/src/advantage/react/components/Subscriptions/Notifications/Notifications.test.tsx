@@ -76,3 +76,56 @@ describe("Offers Notifications", () => {
     expect(wrapper.find("[data-test='offers']").exists()).toBe(false);
   });
 });
+
+describe("Account users Notification", () => {
+  let queryClient: QueryClient;
+
+  beforeEach(() => {
+    queryClient = new QueryClient();
+  });
+
+  jest.spyOn(window.localStorage.__proto__, "setItem");
+  window.localStorage.__proto__.setItem = jest.fn();
+
+  it("displays an onboarding notification if there is only one account user", () => {
+    queryClient.setQueryData("accountUsers", {
+      users: [{ name: "blip" }],
+    });
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='onboarding']").exists()).toBe(true);
+  });
+  it("does not display an onboarding notification if there are multiple account users", () => {
+    queryClient.setQueryData("accountUsers", {
+      users: [{ name: "blip" }, { name: "blop" }],
+    });
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("[data-test='onboarding']").exists()).toBe(false);
+  });
+
+  it("dismisses the notification when clicking the close button", () => {
+    queryClient.setQueryData("accountUsers", {
+      users: [{ name: "blip" }],
+    });
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <Notifications />
+      </QueryClientProvider>
+    );
+    wrapper
+      .find("[data-test='onboarding']")
+      .find("[data-testid='notification-close-button']")
+      .simulate("click");
+    expect(localStorage.setItem).toHaveBeenCalledWith(
+      "dismissedOnboardingNotification",
+      "true"
+    );
+  });
+});
