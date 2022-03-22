@@ -13,7 +13,7 @@
     <div class="col-6">
       <h1>Run system containers with LXD</h1>
       <p class="p-heading--4">Fast, dense, and secure container and VM management at any scale </p>
-      <p> LXD provides a unified user experience for managing system containers and virtual machines. For more demanding workloads, LXD can be set up in a cluster environment to run containers, VMs, or a combination of the two on a set of machines. LXD has direct hardware access, minimising overhead and matching the density and efficiency of containers. </p>
+      <p> LXD provides a unified user experience for managing system containers and virtual machines. For more demanding workloads, LXD can be set up in a cluster environment to run containers, VMs, or a combination of the two on a set of machines. LXD has direct hardware access, minimising overhead and matching the density and efficiency of containers.</p>
       <p>
         <a class="p-button--positive" href="https://linuxcontainers.org/lxd/try-it/">Try LXD Online</a>
         <a class="p-button js-invoke-modal" data-testid="interactive-form-link" href="/kubernetes/contact-us">Get in touch</a>
@@ -86,15 +86,14 @@
       <p>LXD is also easy to scale — from containers on your laptop to thousands of instances in the data centre.</p>
     </div>
   </div>
-  <div class="p-strip--light u-fixed-width">
-    <hr>
-  </div>
+</section>
+<section class="p-strip is-bordered">
   <div class="u-fixed-width u-sv3">
     <h2>Alternatives for running workloads</h2>
   </div>
-  <div class="row">
+  <div class="row u-sv3">
     <div class="col-6">
-      <p class="p-heading--4">System containers</p>
+      <h3 class="p-heading--4">System containers</h3>
       <ul class="p-list">
         <li class="p-list__item is-ticked">To run a full Linux OS inside a container</li>
         <li class="p-list__item is-ticked">Utilises Kernel of the host</li>
@@ -110,11 +109,9 @@
       </ul>
     </div>
   </div>
-</section>
-<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-6">
-      <h2>Clusters for more demanding workloads</h2>
+      <h3 class="p-heading--4">Clusters for more demanding workloads</h3>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Up to 50 servers in a unified cluster with 1000s of instances</li>
         <li class="p-list__item is-ticked">Run containers, VMs, or a combination of the two</li>
@@ -127,13 +124,14 @@
       {{ image (
         url="https://assets.ubuntu.com/v1/904e5156-LXD+illustration+2.svg",
         alt="",
-        width="320",
-        height="300",
+        width="300",
+        height="280",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
+  </div>
 </section>
 <section class="p-strip is-bordered">
   <div class="row">
@@ -200,7 +198,7 @@
   <div class="row">
     <h2 class="u-sv3">Join the LXD community</h2>
     <div class="col-3">
-      <div class="u-sv1 u-hide--small">
+      <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/dead5f08-containers.svg",
         alt="",
@@ -214,7 +212,7 @@
       <a href="https://linuxcontainers.org/lxd/try-it/">Try LXD online demo</a>
     </div>
     <div class="col-3">
-      <div class="u-sv1 u-hide--small">
+      <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
         alt="",
@@ -228,7 +226,7 @@
       <a href="https://linuxcontainers.org/lxd/docs/master/">Read the documentation </a>
     </div>
     <div class="col-3">
-      <div class="u-sv1 u-hide--small">
+      <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/3aef5bf9-forum-icon.svg",
         alt="",
@@ -242,7 +240,7 @@
       <a href="https://discuss.linuxcontainers.org/">Discuss with other users</a>
     </div>
     <div class="col-3">
-      <div class="u-sv1 u-hide--small">
+      <div class="u-sv1 u-hide--medium u-hide--small">
       {{ image (
         url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
         alt="",
@@ -281,13 +279,13 @@
     </div>
   </div>
 </section>
-<section class="p-strip--suru">
+<section class="p-strip--suru-blog-header">
   <div class="row">
     <h2 class="u-sv3">Learn more about LXD</h2>
   </div>
   <div class="row">
     <div class="col-4">
-      <div class="p-heading-icon">
+      <div class="p-heading-icon--small">
         <div class="p-heading-icon__header"> 
         {{ 
           image (
@@ -297,17 +295,16 @@
           height="28",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
           ) | safe
         }}
         <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
       </div>
     </div>
     <p>Learn the basics of LXD</p>
-    <a class="p-link--inverted" href="https://www.brighttalk.com/webcast/6793/298235?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=viewing-history">Watch the webinar&nbsp;&rsaquo;</a>
+    <a class="p-link--inverted u-sv1" href="https://www.brighttalk.com/webcast/6793/298235?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=viewing-history">Watch the webinar&nbsp;&rsaquo;</a>
     </div>
     <div class="col-4">
-      <div class="p-heading-icon">
+      <div class="p-heading-icon--small">
         <div class="p-heading-icon__header"> 
           {{ 
             image (
@@ -317,17 +314,16 @@
             height="28",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
             ) | safe
           }}
           <h3 class="p-heading-icon__title p-heading--4">Whitepaper</h3>
         </div>
       </div>
       <p>How to build a lightweight system container cluster</p>
-      <a class="p-link--inverted" href="/engage/lxd-whitepaper?utm_source=Linkedin&utm_medium=Social&utm_campaign=CY19_DC_Containers_Whitepaper_LXD">Download the whitepaper&nbsp;&rsaquo;</a>
+      <a class="p-link--inverted u-sv1" href="/engage/lxd-whitepaper?utm_source=Linkedin&utm_medium=Social&utm_campaign=CY19_DC_Containers_Whitepaper_LXD">Download the whitepaper&nbsp;&rsaquo;</a>
     </div>
     <div class="col-4">
-      <div class="p-heading-icon">
+      <div class="p-heading-icon--small">
         <div class="p-heading-icon__header"> 
           {{ 
             image (
@@ -337,14 +333,13 @@
             height="28",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
             ) | safe
           }}
           <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
         </div>
       </div>
       <p>Run Kubernetes on LXD for edge computing</p>
-      <a class="p-link--inverted" href="https://www.brighttalk.com/webcast/6793/470152?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=viewing-history">Watch the webinar&nbsp;&rsaquo;</a>
+      <a class="p-link--inverted u-sv1" href="https://www.brighttalk.com/webcast/6793/470152?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=viewing-history">Watch the webinar&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
