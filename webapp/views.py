@@ -501,6 +501,14 @@ def engage_thank_you(engage_pages):
     return render_template
 
 
+def unlisted_engage_page(slug):
+    """
+    Renders an engage page that is separate from the
+    discourse implementation
+    """
+    return flask.render_template(f"engage/unlisted/{slug}.html")
+
+
 def openstack_install():
     """
     OpenStack install docs

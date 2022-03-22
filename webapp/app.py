@@ -64,6 +64,7 @@ from webapp.views import (
     show_template,
     build_engage_index,
     engage_thank_you,
+    unlisted_engage_page,
     sitemap_index,
     account_query,
     sixteen_zero_four,
@@ -623,6 +624,10 @@ app.add_url_rule(
     "/engage/<language>/<page>/thank-you",
     endpoint="alternative_thank-you",
     view_func=engage_thank_you(engage_pages),
+)
+app.add_url_rule(
+    "/engage/unlisted/<slug>",
+    view_func=unlisted_engage_page,
 )
 
 
