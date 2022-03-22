@@ -414,7 +414,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
   .dropdown-window {
     @include vf-animation(all, brisk, in);
 
-    background-color: #383838;
+    background-color: #2d2d2d;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
     position: absolute;
@@ -458,6 +458,10 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
           border-bottom: 0;
         }
       }
+    }
+
+    &__nav-panel {
+      border-right: 1px solid $color-mid-dark;
     }
 
     &__side-panel {
@@ -515,18 +519,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       padding: 1rem 0;
       position: relative;
 
-      &::after {
-        background: #2b2b2b;
-        bottom: 0;
-        content: "";
-        display: block;
-        left: -50vw;
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: -1;
-      }
-
       &__drawer {
         height: 100%;
       }
@@ -536,15 +528,23 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
       }
 
       &.is-dark .p-side-navigation__drawer {
-        background: #2b2b2b;
+        background: #2d2d2d;
       }
 
-      .p-side-navigation__link:visited {
-        color: $color-x-light;
-      }
+      .p-side-navigation__link {
+        padding-left: 0.5rem;
 
-      .p-side-navigation__link.is-active {
-        background-color: #383838;
+        &:visited {
+          color: $color-x-light;
+        }
+
+        &.is-active {
+          background-color: #383838;
+
+          &::before {
+            content: none;
+          }
+        }
       }
     }
   }
