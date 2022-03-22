@@ -725,10 +725,12 @@ body {
 // Styling to display a success message when forms are successfully submitted.
 #success {
   display: none;
+  position: absolute;
 }
 
 #success:target {
   display: block;
+  z-index: 10;
 }
 
 html {
