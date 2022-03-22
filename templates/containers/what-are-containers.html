@@ -35,21 +35,21 @@
     <h2>Container virtualisation</h2>
     <p>Containers are instantiated from container images, a layered packaging system, to distribute applications along with their configuration and runtime dependencies.</p>
     <p>From development to production, containers power modern cloud applications as they allow developers to move fast between platforms and versions.</p>
-    <p>Inside Google alone, at least <a href="https://cloud.google.com/containers/" class="p-link--external">two billion containers are generated each week</a> to manage its vast operations. There are many tools to create, deploy and manage containers, including LXD, Docker and Kubernetes.</p>
+    <p>Inside Google alone, at least <a href="https://cloud.google.com/containers/">two billion containers are generated each week</a> to manage its vast operations. There are many tools to create, deploy and manage containers, including LXD, Docker and Kubernetes.</p>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2>What is Docker?</h2>
-    <p><a href="https://www.docker.com/" class="p-link--external">Docker</a>  is an open-source containerisation platform. It provides an easy way to build and deploy containers in the cloud or on-premises. Docker didn’t introduce container technologies, but they made the user experience of container technologies so easy for developers that Docker soon became shorthand for containers and the most popular container format. <a href="https://www.docker.com/" class="p-link--external">Docker Inc</a>, the company that supports the Docker project and community, also operates <a href="https://hub.docker.com/" class="p-link--external">Docker Hub</a>, a space for hosting container images.</p>
+    <p><a href="https://www.docker.com/">Docker</a>  is an open-source containerisation platform. It provides an easy way to build and deploy containers in the cloud or on-premises. Docker didn’t introduce container technologies, but they made the user experience of container technologies so easy for developers that Docker soon became shorthand for containers and the most popular container format. <a href="https://www.docker.com/">Docker Inc</a>, the company that supports the Docker project and community, also operates <a href="https://hub.docker.com/">Docker Hub</a>, a space for hosting container images.</p>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Docker for beginners: docker-cli, containerd, and runc</h2>
-    <p>Docker is many things: a community, a company, and multiple software projects. The so-called “Docker developer experience” uses three projects: <a href="https://github.com/docker/cli" class="p-link--external">docker-cli</a>, <a href="https://containerd.io/" class="p-link--external">containerd</a>, and <a href="https://github.com/opencontainers/runc" class="p-link--external">runc</a>. The Docker command-line mostly interfaces with the containerd daemon to provide a great end-user experience. Containerd manages and supervises containers, images, storage, and networking. Finally, runc is the container runtime. It consists of all the code used to interact with container system features (think user namespaces, cgroups, and so on).</p>
+    <p>Docker is many things: a community, a company, and multiple software projects. The so-called “Docker developer experience” uses three projects: <a href="https://github.com/docker/cli">docker-cli</a>, <a href="https://containerd.io/">containerd</a>, and <a href="https://github.com/opencontainers/runc">runc</a>. The Docker command-line mostly interfaces with the containerd daemon to provide a great end-user experience. Containerd manages and supervises containers, images, storage, and networking. Finally, runc is the container runtime. It consists of all the code used to interact with container system features (think user namespaces, cgroups, and so on).</p>
   </div>
 </section>
 
@@ -57,7 +57,7 @@
   <div class="u-fixed-width">
     <h2>Kubernetes vs Docker: CRI-O and OCI</h2>
     <p>With more and more applications deployed on containers, simple orchestration tools are not enough to support complex production environments. '<a href="/kubernetes/what-is-kubernetes#container-orchestration">Container orchestration</a>'' becomes a problem space of its own. The rise of <a href="/kubernetes">Kubernetes</a> is the industry's answer to the container orchestration problem, providing a way to manage containers at scale efficiently.</p>
-    <p>CRI (Container Runtime Interface) is a Kubernetes API to interface between Kubernetes orchestration features and container runtimes, such as containerd or CRI-O. The <a href="https://opencontainers.org/" class="p-link--external">Open Container Initiative</a> (OCI) defines a set of specifications to enable all these technologies to work together. Docker, runc, containerd, CRI-O are all OCI compatible.</p>
+    <p>CRI (Container Runtime Interface) is a Kubernetes API to interface between Kubernetes orchestration features and container runtimes, such as containerd or CRI-O. The <a href="https://opencontainers.org/">Open Container Initiative</a> (OCI) defines a set of specifications to enable all these technologies to work together. Docker, runc, containerd, CRI-O are all OCI compatible.</p>
   </div>
 </section>
 
@@ -126,7 +126,7 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2>Docker vs LXD: comparing container technologies</h2>
-    <p>Process containers (for example, Docker) and machine containers (traditional <a href="https://linuxcontainers.org/" class="p-link--external">linux containers</a>) are two types of container technologies that can address different use cases. Process containers typically contain a single application, while machine containers can contain one or more applications as well as their own operating system. Both container technologies share a kernel with the host operating system. </p>
+    <p>Process containers (for example, Docker) and machine containers (traditional <a href="/blog/what-are-linux-containers">linux containers</a>) are two types of container technologies that can address different use cases. Process containers typically contain a single application, while machine containers can contain one or more applications as well as their own operating system. Both container technologies share a kernel with the host operating system. </p>
     <div class="u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/c06f7eed-What+are+containers+-+outlined.svg",
@@ -150,7 +150,7 @@
   <div class="row">
     <div class="col-8">
       <h2>How to secure container images</h2>
-      <p>Canonical’s <a href="https://juju.is/cloud-native-kubernetes-usage-report-2021#selection-criteria-for-container-images" class="p-link--external">Kubernetes and cloud native operations report</a> showed that the best container images are secure, stable, and easy to use. While containerisation adds a layer of security by keeping workloads isolated from one another and the host system, it is not enough to secure an application.</p>
+      <p>Canonical’s <a href="https://juju.is/cloud-native-kubernetes-usage-report-2021#selection-criteria-for-container-images">Kubernetes and cloud native operations report</a> showed that the best container images are secure, stable, and easy to use. While containerisation adds a layer of security by keeping workloads isolated from one another and the host system, it is not enough to secure an application.</p>
       <p>Container images are made of software from many different projects and sources, not all equally well-maintained. Developers need to ask themselves what content can developers rely on today, tomorrow and for a long time thereafter. Particular attention should be paid to the base layer, specifically in selecting a frequently updated one with credible maintenance commitment, a large software ecosystem of well-maintained packages, and a great developer experience.</p>
       <p>Canonical publishes a portfolio of base, runtime, and application images with an up to 10-year maintenance commitment. In collaboration with Docker, this content is publicly available on Docker Hub.</p>
       <p><a href="/security/docker-images">Secure your software supply chain with LTS Docker Images&nbsp;&rsaquo;</a></p>
@@ -191,7 +191,7 @@
           <h3 class="p-heading-icon__title p-heading--4 ">Data sheet</h3>
         </div>
       </div>
-      <p><a class="p-link--inverted p-link--external"href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></p>
+      <p><a class="p-link--inverted" href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></p>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
