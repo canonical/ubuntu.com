@@ -35,41 +35,41 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width u-sv3">
-    <h2>Why choose LXD?</h2>
+    <h2 class="u-sv3">Why choose LXD?</h2>
   </div>
   <div class="row u-equal-height u-sv3">
     <div class="col-4">
-      <p>
-      {{ image (
-        url="https://assets.ubuntu.com/v1/3bb96e34-LXD+containers.svg",
-        alt="",
-        width="173",
-        height="98",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      </p>
+      <div class="u-hide--small u-sv3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3bb96e34-LXD+containers.svg",
+          alt="",
+          width="173",
+          height="98",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
       <h3 class="p-heading--4">Run a full Linux OS inside a container</h3>
       <p>LXD <a href="/blog/what-are-linux-containers">system containers</a> run a complete filesystem with background processes. This allows you to run any workload, or containerise your traditional systems and apps without modifying the apps or your operations. LXD containers offer the density and efficiency of containers with a VM-like experience.</p>
     </div>
     <div class="col-4">
-      <p>
-      {{ image (
-        url="https://assets.ubuntu.com/v1/efe71794-Developer-convenience-1.svg",
-        alt="",
-        width="172",
-        height="98",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-      </p>
+      <div class="u-hide--small u-sv3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/efe71794-Developer-convenience-1.svg",
+          alt="",
+          width="172",
+          height="98",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
       <h3 class="p-heading--4">Cloud-like experience</h3>
       <p>LXD is image based, providing images for a large number of Linux distributions. It comes with a built-in image store that allows you to spin up a container or a VM in a matter of seconds. Existing integrations with various deployment and orchestration tools allow you to manage your infrastructure in a cloud-like way.</p>
     </div>
     <div class="col-4">
-      <p>
+      <div class="u-hide--small u-sv3">
       {{ image (
         url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
         alt="",
@@ -79,8 +79,8 @@
         loading="lazy"
         ) | safe
       }}
-     </p>
-      <h3 class="p-heading--4">Transfer control</h3>
+      </div>
+      <h3 class="p-heading--4">Secure and scalable</h3>
       <p>LXD runs unprivileged containers by default - protecting the host system from potential attacks. For virtual machines, LXD uses modern virtual hardware (<a href="https://wiki.libvirt.org/page/Virtio">VirtIO</a>) exclusively. In addition, it utilises UEFI SecureBoot and provides vTPM support.</p>
       <p>Resource restrictions through cgroups and ulimits, as well as RBAC, are also supported.</p>
       <p>LXD is also easy to scale — from containers on your laptop to thousands of instances in the data centre.</p>
@@ -134,21 +134,19 @@
   </div>
 </section>
 <section class="p-strip is-bordered">
-  <div class="row">
-    <div class="col-12">
-      <h2 class="u-sv3">Key features</h2>
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Flexible resource limits (CPU, memory, network I/O, disk space, and some kernel resources)</li>
-        <li class="p-list__item is-ticked">Advanced snapshot support, including scheduling and automatic expiry</li>
-        <li class="p-list__item is-ticked">Projects for segmenting your LXD server, and easy multi-user setup for enhanced security</li>
-        <li class="p-list__item is-ticked">Hardware passthrough (GPU, USB, NIC, disks, and more)</li>
-        <li class="p-list__item is-ticked">Support for live-migration and stateful snapshotting</li>
-        <li class="p-list__item is-ticked">Advanced networking support (OVN, SR-IOV, hardware acceleration support, ...)</li>
-        <li class="p-list__item is-ticked">High availability clustering when combined with CEPH and OVN for storage and network redundancy</li>
-        <li class="p-list__item is-ticked">LTS releases every two years - supported for five years</li>
-        <li class="p-list__item is-ticked">Commercial support available through <a href="/pricing/infra">Ubuntu Advantage</a></li>
-      </ul>
-    </div>
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Key features</h2>
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Flexible resource limits (CPU, memory, network I/O, disk space, and some kernel resources)</li>
+      <li class="p-list__item is-ticked">Advanced snapshot support, including scheduling and automatic expiry</li>
+      <li class="p-list__item is-ticked">Projects for segmenting your LXD server, and easy multi-user setup for enhanced security</li>
+      <li class="p-list__item is-ticked">Hardware passthrough (GPU, USB, NIC, disks, and more)</li>
+      <li class="p-list__item is-ticked">Support for live-migration and stateful snapshotting</li>
+      <li class="p-list__item is-ticked">Advanced networking support (OVN, SR-IOV, hardware acceleration support, ...)</li>
+      <li class="p-list__item is-ticked">High availability clustering when combined with CEPH and OVN for storage and network redundancy</li>
+      <li class="p-list__item is-ticked">LTS releases every two years - supported for five years</li>
+      <li class="p-list__item is-ticked">Commercial support available through <a href="/pricing/infra">Ubuntu Advantage</a></li>
+    </ul>
   </div>
 </section>
 <section class="p-strip">
@@ -209,7 +207,7 @@
         ) | safe
       }}
       </div>
-      <a href="https://linuxcontainers.org/lxd/try-it/">Try LXD online demo</a>
+      <a href="https://linuxcontainers.org/lxd/try-it/">Try LXD online demo&nbsp;&rsaquo;</a>
     </div>
     <div class="col-3">
       <div class="u-sv1 u-hide--medium u-hide--small">
@@ -223,7 +221,7 @@
         ) | safe
       }}
       </div>
-      <a href="https://linuxcontainers.org/lxd/docs/master/">Read the documentation </a>
+      <a href="https://linuxcontainers.org/lxd/docs/master/">Read the documentation&nbsp;&rsaquo;</a>
     </div>
     <div class="col-3">
       <div class="u-sv1 u-hide--medium u-hide--small">
@@ -237,7 +235,7 @@
         ) | safe
       }}
       </div>
-      <a href="https://discuss.linuxcontainers.org/">Discuss with other users</a>
+      <a href="https://discuss.linuxcontainers.org/">Discuss with other users&nbsp;&rsaquo;</a>
     </div>
     <div class="col-3">
       <div class="u-sv1 u-hide--medium u-hide--small">
@@ -251,7 +249,7 @@
         ) | safe
       }}
       </div>
-      <a href="https://www.youtube.com/c/LXDvideos/videos">Watch tutorials on YouTube</a>
+      <a href="https://www.youtube.com/c/LXDvideos/videos">Watch tutorials on YouTube&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
@@ -273,35 +271,35 @@
       <p>To set up your own MAAS and LXD environment please read <a href="https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu#1-overview">this tutorial</a>.</p>
     </div>
     <div class="col-4">
-      <h3 class="p-heading--4">Deploy workloads across different platforms with Juju</h3>
-      <p>Juju makes it easy to deploy the exact same software on a variety of different platforms, including public and private cloud, bare metal, Kubernetes clusters. It is also a useful tool for local deployments, ideal for development.</p>
-      <p>For operating your instances using Juju please read <a href="https://juju.is/docs/olm/lxd">this tutorial</a>.</p>
+      <h3 class="p-heading--4">Run Linux Apps on ChromeOS</h3>
+      <p>Linux Apps allow a Chrome OS user to install applications from the Debian repositories and have them integrated into the underlying Chrome OS desktop. This gives users easy access to a variety of applications and tools.</p>
+      <p>Want to run Linux applications on your Chromebook using LXD? Learn how in this <a href="/blog/using-lxd-on-your-chromebook">blog</a>.</p>
     </div>
   </div>
 </section>
 <section class="p-strip--suru-blog-header">
-  <div class="row">
+  <div class="u-fixed-width">
     <h2 class="u-sv3">Learn more about LXD</h2>
   </div>
   <div class="row">
     <div class="col-4">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header"> 
-        {{ 
-          image (
-          url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
-          alt="",
-          width="32",
-          height="28",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
         <h3 class="p-heading-icon__title p-heading--4">Webinar</h3>
+        </div>
       </div>
-    </div>
-    <p>Learn the basics of LXD</p>
-    <a class="p-link--inverted u-sv1" href="https://www.brighttalk.com/webcast/6793/298235?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=viewing-history">Watch the webinar&nbsp;&rsaquo;</a>
+      <p>Learn the basics of LXD</p>
+      <a class="p-link--inverted u-sv1" href="https://www.brighttalk.com/webcast/6793/298235?utm_source=brighttalk-portal&utm_medium=web&utm_campaign=viewing-history">Watch the webinar&nbsp;&rsaquo;</a>
     </div>
     <div class="col-4">
       <div class="p-heading-icon--small">
@@ -347,4 +345,5 @@
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/lxd" data-form-id="3230" data-lp-id="6274" data-return-url="/lxd" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
+
 {% endblock content %}
