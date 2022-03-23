@@ -43,7 +43,7 @@ def notice(notice_id):
 
     security_api = SecurityAPI(
         session=session,
-        base_url="http://192.168.64.6:8030/security/",
+        base_url="http://ubuntu.com/security/",
     )
 
     notice = security_api.get_notice(notice_id)
