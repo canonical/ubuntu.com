@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as Sentry from "@sentry/react";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 import AccountUsers from "./AccountUsers";
-import { FetchError, requestAccountUsers } from "./api";
+import { FetchError } from "./api";
 import { errorMessages, getErrorMessage } from "./utils";
+import useRequestAccountUsers from "./hooks/useRequestAccountUsers";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -43,22 +45,21 @@ Sentry.init({
 
 const AccountUsersWithQuery = () => {
   const [errorMessage, setErrorMessage] = React.useState("");
-  const { status, data } = useQuery(
-    "accountUsers",
-    async () => {
-      const res = await requestAccountUsers();
-      return res;
-    },
-    {
-      onError: (error: FetchError) => {
-        const errorMessage = getErrorMessage(error);
-        if (errorMessage === errorMessages.unknown) {
-          Sentry.captureException(error);
-        }
-        setErrorMessage(errorMessage);
-      },
+  const {
+    isLoading: isLoadingAccountUsers,
+    isError: isAccountUsersError,
+    isSuccess: isAccountUsersSuccess,
+    data: accountUsers,
+    error: accountUsersError,
+  } = useRequestAccountUsers();
+
+  if (isAccountUsersError) {
+    const errorMessage = getErrorMessage(accountUsersError);
+    if (errorMessage === errorMessages.unknown) {
+      Sentry.captureException(accountUsersError);
     }
-  );
+    setErrorMessage(errorMessage);
+  }
 
   return (
     <div>
@@ -72,7 +73,7 @@ const AccountUsersWithQuery = () => {
       <section className="p-strip u-no-padding--top">
         <div className="row">
           <div className="col-12">
-            {status === "error" ? (
+            {isAccountUsersError ? (
               <div className="row">
                 <div className="col-6">
                   <div className={`p-notification--negative`}>
@@ -86,7 +87,7 @@ const AccountUsersWithQuery = () => {
                 </div>
               </div>
             ) : null}
-            {status === "loading" ? (
+            {isLoadingAccountUsers ? (
               <div className="u-no-margin--bottom p-card">
                 <div className="p-card__content">
                   <span className="p-text--default">
@@ -96,11 +97,11 @@ const AccountUsersWithQuery = () => {
                 </div>
               </div>
             ) : null}
-            {status === "success" && data ? (
+            {isAccountUsersSuccess && accountUsers ? (
               <AccountUsers
-                organisationName={data.organisationName}
-                users={data.users}
-                accountId={data.accountId}
+                organisationName={accountUsers.organisationName}
+                users={accountUsers.users}
+                accountId={accountUsers.accountId}
               />
             ) : null}
           </div>
@@ -115,6 +116,7 @@ function App() {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <AccountUsersWithQuery />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </Sentry.ErrorBoundary>
   );

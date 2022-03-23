@@ -8,6 +8,7 @@ export const APP_URLS = {
   },
   advantage: {
     offers: "/advantage/offers",
+    users: "/advantage/users",
   },
 };
 

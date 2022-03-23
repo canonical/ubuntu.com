@@ -15,7 +15,7 @@ toc: False
 
 # 1.17+ck2 Bugfix release
 
-### March 2, 2020 - [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)
+### March 2, 2020 - charmed-kubernetes-410
 
 ## Fixes
 
@@ -28,7 +28,7 @@ Additional bug fixes included in this release can be found at
 
 # 1.17+ck1 Bugfix release
 
-### January 15, 2020 - [charmed-kubernetes-372](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-372/archive/bundle.yaml)
+### January 15, 2020 - charmed-kubernetes-372
 
 ## Fixes
 
@@ -38,7 +38,7 @@ masqueraded when using Flannel or Canal. More details can be found at
 
 # 1.17
 
-### December 17, 2019 - [charmed-kubernetes-335](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-335/archive/bundle.yaml)
+### December 17, 2019 - charmed-kubernetes-335
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -115,7 +115,6 @@ Please see [this page][historic] for release notes of earlier versions.
 <!--LINKS-->
 
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [upgrading-docker]: /kubernetes/docs/upgrading#upgrading-docker
 [tigera-home]: https://www.tigera.io/tigera-products/calico-enterprise/

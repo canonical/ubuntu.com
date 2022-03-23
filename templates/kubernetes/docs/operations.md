@@ -294,7 +294,7 @@ things you may wish to try:
 [logging]: /kubernetes/docs/logging
 [decommission]: /kubernetes/docs/decommissioning
 [get-in-touch]: /kubernetes/docs/get-in-touch
-[bundle-source]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable
+[bundle-source]: https://charmhub.io/charmed-kubernetes
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
