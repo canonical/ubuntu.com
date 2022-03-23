@@ -16,7 +16,7 @@ const FeatureSwitch = ({
       <input
         disabled={isDisabled}
         type="checkbox"
-        className="p-switch"
+        className="p-switch__input"
         checked={isChecked}
         onChange={handleOnChange}
       />
