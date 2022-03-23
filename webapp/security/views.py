@@ -717,7 +717,7 @@ def cve(cve_id):
 
     security_api = SecurityAPI(
         session=session,
-        base_url="http://192.168.64.6:8030/security/",
+        base_url="http://ubuntu.com/security/",
     )
 
     cve = security_api.get_cve(cve_id)
@@ -730,30 +730,7 @@ def cve(cve_id):
             "%-d %B %Y"
         )
 
-    all_releases = security_api.get_releases().get("releases")
-
-    releases = []
-
-    # filter releases
-    for release in all_releases:
-        if release["codename"] != "upstream":
-            # format dates
-            support_expiry_date = datetime.strptime(
-                release["support_expires"], "%Y-%m-%dT%H:%M:%S"
-            )
-            esm_expiry_date = datetime.strptime(
-                release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
-            )
-            # filter out if support has expired
-            if (
-                support_expiry_date > datetime.now()
-                or esm_expiry_date > datetime.now()
-            ):
-                releases.append(release)
-
-    return flask.render_template(
-        "security/cve/cve.html", cve=cve, releases=releases
-    )
+    return flask.render_template("security/cve/cve.html", cve=cve)
 
 
 # CVE API
