@@ -9,7 +9,7 @@ const productsArray = Object.entries(window.productList);
 
 const initialFormState = {
   type: "physical",
-  version: "18.0a",
+  version: "20.04",
   feature: "infra",
   support: "unset",
   quantity: isSmallVP ? 0 : 1,
