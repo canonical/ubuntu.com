@@ -717,7 +717,7 @@ def cve(cve_id):
 
     security_api = SecurityAPI(
         session=session,
-        base_url="http://ubuntu.com/security/",
+        base_url="https://ubuntu.com/security/",
     )
 
     cve = security_api.get_cve(cve_id)
