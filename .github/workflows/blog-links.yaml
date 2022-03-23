@@ -25,7 +25,8 @@ jobs:
           	--ignore-url c_fill \
           	--ignore-url e_sharpen \
           	--ignore-url w_[0-9]* \
-          	--ignore-url h_[0-9]*
+          	--ignore-url h_[0-9]* \
+            --ignore-url https://www.amd.com/*
 
       - name: Send message on failure
         if: failure()
