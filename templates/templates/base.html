@@ -79,12 +79,14 @@
   {% endif %}
 
   <div class="wrapper u-no-margin--top">
-    <div id="success">
+    <div id="success" class="p-strip u-no-padding--top">
+      <div class="u-fixed-width">
         <div class="p-notification--positive u-no-margin--bottom">
-            <div class="p-notification__content">
-              <p class="p-notification__message">Your submission was sent successfully! <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
-            </div>
+          <div class="p-notification__content">
+            <p class="p-notification__message">Your submission was sent successfully! <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
+          </div>
         </div>
+      </div>
     </div>
     <div id="main-content" class="inner-wrapper">
       {% block content_head %}{% endblock %}
