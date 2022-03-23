@@ -30,6 +30,11 @@ markdown_parser = Markdown(
 )
 session = talisker.requests.get_session()
 
+security_api = SecurityAPI(
+    session=session,
+    base_url="https://ubuntu.com/security/",
+)
+
 
 def get_processed_details(notice):
     pattern = re.compile(r"(cve|CVE-)\d{4}-\d{4,7}", re.MULTILINE)
@@ -41,11 +46,6 @@ def get_processed_details(notice):
 
 def notice(notice_id):
 
-    security_api = SecurityAPI(
-        session=session,
-        base_url="http://ubuntu.com/security/",
-    )
-
     notice = security_api.get_notice(notice_id)
 
     if not notice:
@@ -55,10 +55,9 @@ def notice(notice_id):
     package_versions = {}
     release_packages = SortedDict()
 
-    all_releases = security_api.get_releases().get("releases")
-
     releases = {
-        release["codename"]: release["version"] for release in all_releases
+        release["codename"]: release["version"]
+        for release in notice["releases"]
     }
 
     if notice["release_packages"]:
@@ -720,11 +719,6 @@ def cve(cve_id):
     """
     Retrieve and display an individual CVE details page
     """
-
-    security_api = SecurityAPI(
-        session=session,
-        base_url="https://ubuntu.com/security/",
-    )
 
     cve = security_api.get_cve(cve_id)
 
