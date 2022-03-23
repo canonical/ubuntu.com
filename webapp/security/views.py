@@ -730,11 +730,7 @@ def cve(cve_id):
             "%-d %B %Y"
         )
 
-    releases = security_api.get_releases()
-
-    return flask.render_template(
-        "security/cve/cve.html", cve=cve, releases=releases
-    )
+    return flask.render_template("security/cve/cve.html", cve=cve)
 
 
 # CVE API
