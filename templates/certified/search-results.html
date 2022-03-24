@@ -157,7 +157,7 @@
             {% for result in results %}
             <tr>
               <td><a href="/certified/vendors/{{ result.make }}">{{ result.make }}</a></td>
-              <td><a href="/certified/{{ result.canonical_id }}">{{ result.make }} {{ result.model }}</a></td>
+              <td><a href="/certified/{{ result.canonical_id }}">{{ result.model }}</a></td>
               <td>{{ result.category }}</td>
             </tr>
             {% endfor %}
