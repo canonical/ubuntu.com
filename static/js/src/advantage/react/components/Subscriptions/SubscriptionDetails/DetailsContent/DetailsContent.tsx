@@ -66,7 +66,7 @@ const DetailsContent = ({ selectedId }: Props) => {
     return (
       <>
         <h5 className="u-no-padding--top p-subscriptions__details-small-title">
-          Subscription
+          Token
         </h5>
         {isLoadingToken ? (
           <div className="u-sv4" data-test="token-spinner">
