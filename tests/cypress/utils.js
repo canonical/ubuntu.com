@@ -432,16 +432,4 @@ export const interactiveForms = [
     submitBtn: /Let's discuss/,
     noOfPages: 3,
   },
-  {
-    url: "/wsl",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company/, "test"],
-      [/Work email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 3,
-  },
 ];
