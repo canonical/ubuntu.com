@@ -78,3 +78,18 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return notice_response.json()
+
+    def get_notices(self):
+        """
+        Makes request for all releases with ongoing support,
+        returns json object if found
+        """
+
+        try:
+            releases_response = self._get("notices.json")
+        except HTTPError as error:
+            raise SecurityAPIError(error)
+
+        return releases_response.json()
+
+    
