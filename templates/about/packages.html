@@ -17,25 +17,25 @@
   <div class="row">
     <div class="col-8">
       <h2>'Deb' packages are the heart of Ubuntu</h2>
-      <p>The 'deb' package format comes from the <a class="p-link--external" href="https://www.debian.org/">Debian Linux distribution</a> and is widely considered the best package format for system-level libraries and applications with rich and dynamic dependencies. We use .deb packages to create the base Ubuntu operating system and we include tens of thousands of debs for a wide range of open source applications.</p>
+      <p>The 'deb' package format comes from the <a href="https://www.debian.org/">Debian Linux distribution</a> and is widely considered the best package format for system-level libraries and applications with rich and dynamic dependencies. We use .deb packages to create the base Ubuntu operating system and we include tens of thousands of debs for a wide range of open source applications.</p>
       <p>Deb packages are installed without confinement - that means that a deb package has full control of your system when it is being installed, and you should only install deb packages that you trust completely with your system security. Be very careful when you are asked to add third-party deb packages manually, or additional archives or repositories of deb packages, because they will have effective control of your machine. We recommend you decline to install debs from third parties unless you have very specific reasons to do so.</p>
-      <p>Deb packaged software can include <a class="p-link--external" href="https://wiki.ubuntu.com/AppArmor">AppArmor</a> profiles that limit their reach, which is beneficial for general system security but does not confine or limit the scripts which handle package installation and updates or removal. Debs cannot be used in the appliance-oriented Ubuntu Core.</p>
-      <p>The standard Ubuntu packages are built on <a class="p-link--external" href="https://launchpad.net/builders">a trusted infrastructure</a> from open source. While they cannot be guaranteed to be secure, the provenance of the code and the build system ensure that they can be audited and known to work in a particular way.</p>
+      <p>Deb packaged software can include <a href="https://wiki.ubuntu.com/AppArmor">AppArmor</a> profiles that limit their reach, which is beneficial for general system security but does not confine or limit the scripts which handle package installation and updates or removal. Debs cannot be used in the appliance-oriented Ubuntu Core.</p>
+      <p>The standard Ubuntu packages are built on <a href="https://launchpad.net/builders">a trusted infrastructure</a> from open source. While they cannot be guaranteed to be secure, the provenance of the code and the build system ensure that they can be audited and known to work in a particular way.</p>
       <p>Updates to debs are not managed; a problematic upgrade can leave files on your disk which cause problems later. When debs are unpacked on your system it is no longer possible to validate them precisely and efficiently, which means that compromises and intrusions on a deb based system are more difficult to identify.</p>
       <p>
-        <a class="p-link--external" href="http://packaging.ubuntu.com/html/">
+        <a href="http://packaging.ubuntu.com/html/">
           Get started with the Ubuntu Packaging Guide
         </a>
       </p>
 
       <h2>'Snap' packages have better security and updates</h2>
-      <p>Newer 'snap' packages are preferred for free-standing components, especially applications. They can be rigorously <a class="p-link--external" href="https://snapcraft.io/docs/snap-confinement">confined</a>, meaning that every stage of the application installation and operation can be kept secure. A 'strictly' confined snap has a very specific set of features that it is allowed to use, which requires appropriate oversight by Canonical, and if that software is compromised then those safeguards should limit the impact of the vulnerability.</p>
+      <p>Newer 'snap' packages are preferred for free-standing components, especially applications. They can be rigorously <a href="https://snapcraft.io/docs/snap-confinement">confined</a>, meaning that every stage of the application installation and operation can be kept secure. A 'strictly' confined snap has a very specific set of features that it is allowed to use, which requires appropriate oversight by Canonical, and if that software is compromised then those safeguards should limit the impact of the vulnerability.</p>
       <p>There are also 'classic' snaps, which are not confined and which are thus equivalent to third-party debs. We strongly recommend that you establish the bona-fides of any third-party classic snap publisher. Important or widely-used classic snaps should have 'verified' publishers in the store.</p>
       <p>Snaps are less likely to have problems with dependencies over their lifetime because they bundle these dependencies or use standard system-provided dependencies in a standardised way. However, it is up to the publisher of the snap to ensure that issues in dependencies are addressed with newer versions of the snap because snaps are build and published directly by the upstream vendor of the software. That also means that the architectures supported by a snap are determined by the vendor, not Canonical, and the security of the build system is often up to the vendor as well. Some snaps are build on trusted infrastructure for all architectures. You can ask your vendor to follow that approach for snaps where this is important to you.</p>
       <p>The update mechanism for snaps is highly reliable, with automatic backups of relevant data and the ability to roll back to the previous version of the update fails.</p>
       <p>Snaps are always stored in a format which supports signature validation, meaning that intrusions are easier to detect.</p>
       <p>
-        <a class="p-link--external" href="https://snapcraft.io/">
+        <a href="https://snapcraft.io/">
           Get started making a snap with Snapcraft
         </a>
       </p>
@@ -46,7 +46,7 @@
       <p>Charms handle the application lifecycle - deployment, integration and configuration, upgrades, and teardown.</p>
       <p>There are charms for both VM-based cloud operations, and Kubernetes-based cloud operations. Charms can use a range of operating systems, but most charms as Ubuntu-based, so they benefit from the standard security and familiarity of the rest of Ubuntu.</p>
       <p>
-        <a class="p-link--external" href="https://discourse.juju.is/t/charm-writing/1260">
+        <a href="https://discourse.juju.is/t/charm-writing/1260">
           Get started making a charm
         </a>
       </p>

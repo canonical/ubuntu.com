@@ -114,7 +114,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 Alternatively, you can use the relevant contact us form.
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at <a class="p-link--external" href="https://ico.org.uk/make-a-complaint">ico.org.uk/make-a-complaint</a> or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at <a href="https://ico.org.uk/make-a-complaint">ico.org.uk/make-a-complaint</a> or write to them at:
 
 <div style="margin: 2rem;">
   <p>

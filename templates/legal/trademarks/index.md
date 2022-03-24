@@ -8,7 +8,7 @@ context:
 
 # Trademarks
 
-Please refer to Canonical's [Intellectual Property Rights Policy](/legal/intellectual-property-policy) and <a class="p-link--external" href="https://design.ubuntu.com/brand/">Brand Guidelines</a> for details on Canonical's intellectual property rights.
+Please refer to Canonical's [Intellectual Property Rights Policy](/legal/intellectual-property-policy) and <a href="https://design.ubuntu.com/brand/">Brand Guidelines</a> for details on Canonical's intellectual property rights.
 
 Canonical's trademarks (registered in word and logo form) include:
 

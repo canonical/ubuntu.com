@@ -216,7 +216,7 @@ if (accountContainer && accountContainerSmall) {
                 <a href="/account/invoices${queryString}" class="p-navigation__dropdown-item">Invoices & Payments</a>
               </li>
               <li>
-                <a href="https://login.ubuntu.com/" class="p-navigation__dropdown-item p-link--external">Account settings</a>
+                <a href="https://login.ubuntu.com/" class="p-navigation__dropdown-item">Account settings</a>
               </li>
               <li>
                 <a href="/logout${queryString}" class="p-navigation__dropdown-item">Logout</a>

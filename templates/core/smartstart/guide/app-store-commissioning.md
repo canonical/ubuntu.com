@@ -10,7 +10,7 @@ context:
 
 SMART START customers benefit from their own IoT app store. While app stores are hosted by Canonical, they are entirely operated by customers. This section describes the first steps a customer takes when commissioning their app store.
 
-<p><a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf" class="p-link--external">Read the IoT app store datasheet&nbsp;&rsaquo;</a></p>
+<p><a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the IoT app store datasheet&nbsp;&rsaquo;</a></p>
 
 ## IoT app store overview
 

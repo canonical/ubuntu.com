@@ -9,10 +9,10 @@
         <code style="display: block; margin-top: 1rem;">echo "{{ releases.checksums[system][version] }}" | shasum -a 256 --check</code><br />
         <small>You should get the following output:</small><br />
         <code style="display: block; margin-top: 1rem;">ubuntu-{{ version }}-{% if system != architecture %}{{ system }}-{% else %}preinstalled-server-{% endif %}{{ architecture }}.iso: OK</code><br />
-        <small>Or follow this tutorial to learn <a class="p-link--external" href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
+        <small>Or follow this tutorial to learn <a href="/tutorials/tutorial-how-to-verify-ubuntu">how to verify downloads</a></small>
       </span>
       {% else %}
-        <small>Please check the <a class="p-link--external" href="https://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256SUMS page</a> for the checksum numbers.</small>
+        <small>Please check the <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/SHA256SUMS">SHA256SUMS page</a> for the checksum numbers.</small>
       {% endif %}
     </span>
   </span>{% if not 'raspi' in system %}, or get <a href="/tutorials/tutorial-install-ubuntu-{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}?backURL=https://ubuntu.com/download/{% if system == 'live-server'%}server{% else %}{{ system }}{% endif %}/thank-you">help on installing</a>{% endif %}.
