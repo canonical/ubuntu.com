@@ -127,7 +127,7 @@ extraHosts:
 
 # Overrides for production
 production:
-  replicas: 9
+  replicas: 5
 
   routes:
     - paths: [/blog]
@@ -154,7 +154,7 @@ production:
       name: ubuntu-com-cube
       app_name: ubuntu.com-cube
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 5
+      replicas: 3
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
@@ -215,7 +215,7 @@ production:
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 5
+      replicas: 3
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
@@ -408,7 +408,7 @@ staging:
       name: ubuntu-com-blog
       app_name: ubuntu.com-blog
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 2
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
@@ -428,7 +428,7 @@ staging:
       name: ubuntu-com-cube
       app_name: ubuntu.com-cube
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 2
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
@@ -489,7 +489,7 @@ staging:
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 2
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
@@ -519,7 +519,7 @@ staging:
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 3
+      replicas: 2
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
@@ -552,7 +552,7 @@ staging:
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
-      replicas: 2
+      replicas: 1
       memoryLimit: 512Mi
       env:
         - name: DATABASE_URL
