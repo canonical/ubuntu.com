@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-12">
 	    <h1>{{ notice.id }}: {{ notice.title }}</h1>
-      <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
+      <p class="p-muted-heading">{{ notice.published }}</p>
       <p>{{ notice.summary | safe }}</p>
       <h2>Releases</h2>
       <ul class="p-inline-list u-no-margin--bottom">
