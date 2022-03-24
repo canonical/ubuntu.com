@@ -450,14 +450,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
     &__main-panel {
       border-right: 1px solid $color-mid-dark;
       padding-top: 1rem;
-
-      .p-list__item {
-        border-bottom: 1px solid $color-mid-dark;
-
-        &:last-child {
-          border-bottom: 0;
-        }
-      }
     }
 
     &__nav-panel {
@@ -469,6 +461,26 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph-inner;
 
       a:not([class="p-link--inverted"]) {
         color: #66b2ff;
+      }
+    }
+
+    .is-divided-list {
+    }
+
+    .p-list {
+      small {
+        color: #aaa;
+      }
+
+      &.is-divided-list {
+        .p-list__item {
+          border-bottom: 1px solid $color-mid-dark;
+
+          &:last-child,
+          &.u-no-border--bottom {
+            border-bottom: 0;
+          }
+        }
       }
     }
 
