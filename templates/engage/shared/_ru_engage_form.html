@@ -27,16 +27,6 @@
             <input required id="phone" name="phone" maxlength="255" type="tel">
         </li>
         <li>
-            <input name="utm_campaign" aria-label="utm_campaign" value="{{utm_campaign}}"
-            type="hidden">
-        </li>
-        <li>
-            <input name="utm_medium" aria-label="utm_medium" value="{{utm_medium}}" type="hidden">
-        </li>
-        <li>
-            <input name="utm_source" aria-label="utm_source" value="{{utm_source}}" type="hidden">
-        </li>
-        <li>
             <label class="p-checkbox">
                 <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalUpdatesOptIn" value="yes" type="checkbox">
                 <span class="p-checkbox__label" id="canonicalUpdatesOptIn">Я согласен получать информацию о продуктах и услугах Canonical.</span>
@@ -64,9 +54,9 @@
             <button type="submit" class="u-no-margin--bottom" >{% if cta %}{{ cta }}{% else %}Загрузить документ{% endif %}</button>
             <input name="formid" aria-label="formid" value="{{ id }}" type="hidden">
             <input type="hidden" name="returnURL" aria-label="returnURL" value="{{ returnURL }}" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="{{utm_campaign}}" />
+            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="{{utm_medium}}" />
+            <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="{{utm_source}}" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
