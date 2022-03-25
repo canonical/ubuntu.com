@@ -527,12 +527,17 @@ app.add_url_rule(
     "/security/notices", view_func=create_notice, methods=["POST"]
 )
 
-app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 app.add_url_rule(
-    "/security/notices/<notice_id>", view_func=update_notice, methods=["PUT"]
+    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
+    view_func=notice,
 )
 app.add_url_rule(
-    "/security/notices/<notice_id>",
+    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
+    view_func=update_notice,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
     view_func=delete_notice,
     methods=["DELETE"],
 )
