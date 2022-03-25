@@ -9,7 +9,7 @@ const productsArray = Object.entries(window.productList);
 
 const initialFormState = {
   type: "physical",
-  version: "18.0a",
+  version: "20.04",
   feature: "infra",
   support: "unset",
   quantity: isSmallVP ? 0 : 1,
@@ -166,9 +166,12 @@ const formSlice = createSlice({
         state.support = "essential";
       }
 
-      if (action.payload !== "infra") {
+      if (action.payload === "apps") {
+        state.billing = "monthly";
+      } else {
         state.billing = "yearly";
       }
+
       state.product = getProduct(state);
       state.periods = getProductPeriods(state.product.productID);
     },
