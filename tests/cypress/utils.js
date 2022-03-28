@@ -44,17 +44,6 @@ export const formsWithEmailTestId = [
     noOfPages: 3,
   },
   {
-    url: "/internet-of-things/digital-signage",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
-  },
-  {
     url: "/internet-of-things/appstore",
     inputs: [
       [/First name/, "test"],
