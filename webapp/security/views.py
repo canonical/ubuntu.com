@@ -14,7 +14,7 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import asc, desc, or_, and_, func, case
+from sqlalchemy import desc, or_, and_, func, case
 from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm import contains_eager
 
@@ -128,45 +128,80 @@ def notices():
     release = flask.request.args.get("release", type=str)
     order_by = flask.request.args.get("order", type=str)
 
-    releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(Release.version.isnot(None))
-        .all()
-    )
-    notices_query = db_session.query(Notice)
+    # call endpopint to get all releases
+    all_releases = security_api.get_releases().get("releases")
 
+    # filter releases
+    releases = []
+    for single_release in all_releases:
+        if single_release["codename"] != "upstream":
+            if single_release["version"] is not None:
+                releases.append(single_release)
+
+    # call endpoint to get notices
+    notices_query = security_api.get_notices().get("notices")
+
+    # filter notices based on release query
+    release_filtered_notices = []
     if release:
-        notices_query = notices_query.join(Release, Notice.releases).filter(
-            Release.codename == release
-        )
+        for notice in notices_query:
+            for notice_release in notice["releases"]:
+                if notice_release["codename"] == release:
+                    release_filtered_notices.append(notice)
+
+    # if filtered notices are not empty, set query to that
+    if release_filtered_notices:
+        notices_query = release_filtered_notices
+
+    # filter notices based on matching details
+    detail_filtered_notices = []
 
     if details:
-        notices_query = notices_query.filter(
-            or_(
-                Notice.id.ilike(f"%{details}%"),
-                Notice.details.ilike(f"%{details}%"),
-                Notice.title.ilike(f"%{details}%"),
-                Notice.cves.any(CVE.id.ilike(f"%{details}%")),
-            )
-        )
+        for notice in notices_query:
+            for cve in notice["cves"]:
+                if details.lower() in cve["id"].lower():
+                    detail_filtered_notices.append(notice)
+
+            if details.lower() in notice["id"].lower():
+                detail_filtered_notices.append(notice)
+            elif details.lower() in notice["description"].lower():
+                detail_filtered_notices.append(notice)
+            elif details.lower() in notice["title"].lower():
+                detail_filtered_notices.append(notice)
+
+    if detail_filtered_notices:
+        notices_query = detail_filtered_notices
 
     # Snapshot total results for search
     page_size = 10
-    total_results = notices_query.count()
+    total_results = len(notices_query)
     total_pages = ceil(total_results / page_size)
     offset = page * page_size - page_size
 
     if page < 1 or 1 < page > total_pages:
         flask.abort(404)
 
-    sort = asc if order_by == "oldest" else desc
-    notices = (
-        notices_query.order_by(sort(Notice.published))
-        .offset(offset)
-        .limit(page_size)
-        .all()
-    )
+    # order notice query by publish date
+    if order_by == "oldest":
+        notices = sorted(notices_query, key=lambda d: d["published"])
+    else:
+        notices = sorted(
+            notices_query, key=lambda d: d["published"], reverse=True
+        )
+
+    # notices = (
+    #     sorted(notices_query, key=itemgetter("published"))
+    #     # .sort(notice["published"])
+    #     # .offset(offset)
+    #     # .limit(page_size)
+    #     # .all()
+    # )
+
+    for notice in notices:
+        if notice.get("published"):
+            notice["published"] = dateutil.parser.parse(
+                notice["published"]
+            ).strftime("%-d %B %Y")
 
     return flask.render_template(
         "security/notices.html",

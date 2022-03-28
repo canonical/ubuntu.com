@@ -91,5 +91,3 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return releases_response.json()
-
-    
