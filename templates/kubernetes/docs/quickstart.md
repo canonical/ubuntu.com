@@ -46,7 +46,7 @@ Kubernetes cluster running on the cloud of your choice in minutes!
       <li class="p-stepped-list__item">
         <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">1</span>Install Juju</h3>
         <div class="p-stepped-list__content">
-<a class="p-link--external" href="https://jaas.ai" >Juju</a> is a tool for
+<a href="https://jaas.ai" >Juju</a> is a tool for
 deploying, configuring, and operating complex software on public or private
 clouds. It can be installed with a snap:
           <div class="p-code-snippet">
@@ -68,7 +68,7 @@ Google. You can see which ones are ready to use by running this command:
           </div>
           <script id="asciicast-254740" src="https://asciinema.org/a/254740.js" async data-rows="18" ></script>
 
-          <p><a class="p-link--external" href="https://juju.is/docs/olm/clouds">Find out more about Clouds in Juju</a></p>
+          <p><a href="https://juju.is/docs/olm/clouds">Find out more about Clouds in Juju</a></p>
         </div>
       </li>
 

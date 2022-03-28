@@ -172,13 +172,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
   }
 }
 
-// XXX Karl: 19.10.17
-// VF 1.6.0 is missing this
-.p-link--external::after {
-  -webkit-mask-size: cover;
-  mask-size: cover;
-}
-
 // XXX Caleb: 15.01.18 Autoprefixer issue
 select {
   -moz-appearance: none;

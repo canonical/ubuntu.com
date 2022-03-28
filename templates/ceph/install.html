@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-12">
       <h2>How to install Ceph on Ubuntu</h2>
-      <p>Charmed Ceph is Ubuntu’s fully automated, model-driven approach to installing and managing Ceph. <a href="/ceph">Charmed Ceph</a> is generally deployed on bare-metal that is managed by <a href="https://maas.io/" class="p-link--external">MAAS</a>.</p>
+      <p>Charmed Ceph is Ubuntu’s fully automated, model-driven approach to installing and managing Ceph. <a href="/ceph">Charmed Ceph</a> is generally deployed on bare-metal that is managed by <a href="https://maas.io/">MAAS</a>.</p>
       <h3>How to install Ceph on MAAS</h3>
       <p>These instructions will result in an environment consisting of Ubuntu 20.04 LTS on three machines (one OSD node and one containerised MON node on each) that will run Ceph Octopus.</p>
       <ol class="p-stepped-list--detailed">
@@ -48,7 +48,7 @@
             <div class="p-code-snippet">
               <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic</code></pre>
             </div>
-            <p>This requires snapd to be installed. The latest Ubuntu release comes with this built in. For other Linux systems <a href="https://docs.snapcraft.io/installing-snapd" class="p-link--external">install snapd first</a>.</p>
+            <p>This requires snapd to be installed. The latest Ubuntu release comes with this built in. For other Linux systems <a href="https://docs.snapcraft.io/installing-snapd">install snapd first</a>.</p>
           </div>
         </li>
 
@@ -59,7 +59,7 @@
             <div class="p-code-snippet">
               <pre class="p-code-snippet__block--icon"><code>juju add-cloud</code></pre>
             </div>
-            <p>You would choose MAAS in the interactive session and answer a few questions (see <a href="https://juju.is/docs/maas-cloud" class="p-link--external">Juju</a> for details). Let us assume that we have named the cloud &rsquo;mymaas&rsquo;.</a></p>
+            <p>You would choose MAAS in the interactive session and answer a few questions (see <a href="https://juju.is/docs/maas-cloud">Juju</a> for details). Let us assume that we have named the cloud &rsquo;mymaas&rsquo;.</a></p>
           </div>
         </li>
 
@@ -96,7 +96,7 @@
         <li class="p-stepped-list__item">
           <h3 class="p-stepped-list__title">Deploy Ceph</h3>
           <div class="p-stepped-list__content">
-            <p>Deploy the Ceph cluster with the <a href="https://jaas.ai/ceph-base" class="p-link--external">ceph-base</a> bundle from the Charm Store:</p>
+            <p>Deploy the Ceph cluster with the <a href="https://jaas.ai/ceph-base">ceph-base</a> bundle from the Charm Store:</p>
             <div class="p-code-snippet">
               <pre class="p-code-snippet__block--icon"><code>juju deploy ceph-base</code></pre>
             </div>

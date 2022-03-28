@@ -44,9 +44,9 @@ As an Essential customer, you are entitled to the following:
         4. FIPS 140-2 Level 1 certified modules for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
         5. Common Criteria EAL2 for Ubuntu 18.04 LTS and 16.04 LTS
         6. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
-4. <a id="uasd-landscape" class="p-link--external" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
+4. <a id="uasd-landscape" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
     9. Access to Canonical’s Landscape systems management and the knowledge base
-5. <a id="uasd-livepatch" class="p-link--external" href="/livepatch">Kernel Livepatch</a>
+5. <a id="uasd-livepatch" href="/livepatch">Kernel Livepatch</a>
     10. Access to Canonical’s kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
     11. Kernel Livepatch may provide non-security bug fixes as kernel livepatches
     12. Only the [default LTS kernel](https://ubuntu.com/about/release-cycle) is available for livepatching. This includes its backport as the last HWE kernel to the previous LTS release
