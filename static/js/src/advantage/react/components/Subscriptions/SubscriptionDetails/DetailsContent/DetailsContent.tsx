@@ -157,7 +157,7 @@ const DetailsContent = ({ selectedId }: Props) => {
                       {subscription.number_of_active_machines}
                       <Tooltip
                         tooltipClassName="p-subscriptions-tooltip"
-                        message="The number of machines that contacted Ubuntu Advantage in the last 24 hour period (Beta)"
+                        message="The number of machines with this token that contacted Ubuntu Advantage in the last 24 hours (Beta)"
                         position="right"
                       >
                         <Button
