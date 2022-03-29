@@ -4,14 +4,17 @@ from requests.exceptions import HTTPError
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 
 # Local
-from webapp.shop.decorators import shop_decorator
+from webapp.shop.decorators import shop_decorator, SERVICES
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.api.ua_contracts.api import (
-    UnauthorizedError,
+    UAContractsAPIError,
     UAContractsUserHasNoAccount,
     AccessForbiddenError,
 )
-from webapp.shop.api.ua_contracts.helpers import extract_last_purchase_ids
+from webapp.shop.api.ua_contracts.helpers import (
+    extract_last_purchase_ids,
+    to_dict,
+)
 from webapp.shop.schemas import (
     post_anonymised_customer_info,
     post_customer_info,
@@ -19,21 +22,6 @@ from webapp.shop.schemas import (
     invoice_view,
     post_payment_methods,
 )
-
-SERVICES = {
-    "canonical-ua": {
-        "short": "ua",
-        "name": "Canonical UA",
-    },
-    "blender": {
-        "short": "blender",
-        "name": "Blender Support",
-    },
-    "canonical-cube": {
-        "short": "cube",
-        "name": "Canonical CUBE",
-    },
-}
 
 
 @shop_decorator(area="account", permission="user", response="html")
@@ -169,7 +157,7 @@ def ensure_purchase_account(ua_contracts_api, **kwargs):
             account_name=account_name,
             captcha_value=captcha_value,
         )
-    except UnauthorizedError as error:
+    except UAContractsAPIError as error:
         response = {
             "code": error.response.json()["code"],
             "message": error.response.json()["message"],
@@ -259,6 +247,15 @@ def get_purchase(ua_contracts_api, **kwargs):
     purchase_id = kwargs.get("purchase_id")
 
     return ua_contracts_api.get_purchase(purchase_id)
+
+
+@shop_decorator(area="account", permission="user_or_guest", response="json")
+def get_purchase_v2(advantage_mapper, **kwargs):
+    purchase_id = kwargs.get("purchase_id")
+
+    purchase = advantage_mapper.get_purchase(purchase_id)
+
+    return flask.jsonify(to_dict(purchase)), 200
 
 
 @shop_decorator(area="account", permission="user", response="json")

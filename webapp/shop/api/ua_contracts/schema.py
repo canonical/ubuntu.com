@@ -2,6 +2,7 @@ from marshmallow import Schema, post_load, validate, EXCLUDE
 from marshmallow.fields import Function, String, Integer, Nested, List
 
 from webapp.shop.api.ua_contracts.models import Purchase, PurchaseItem, Invoice
+from webapp.shop.api.ua_contracts.primitives import Account
 
 
 class BaseSchema(Schema):
@@ -65,3 +66,22 @@ class PurchaseSchema(BaseSchema):
     @post_load
     def make_purchase(self, data, **kwargs) -> Purchase:
         return Purchase(**data)
+
+
+class AccountSchema(BaseSchema):
+    id = String(required=True, attribute="id")
+    name = String(required=True)
+    userRoleOnAccount = String(required=True, attribute="role")
+
+    @post_load
+    def make_purchase(self, data, **kwargs) -> Account:
+        return Account(**data)
+
+
+class EnsurePurchaseAccountSchema(BaseSchema):
+    accountID = String(required=True, attribute="id")
+    token = String(required=True)
+
+    @post_load
+    def make_purchase(self, data, **kwargs) -> Account:
+        return Account(**data)

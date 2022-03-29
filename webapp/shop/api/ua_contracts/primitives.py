@@ -121,12 +121,14 @@ class Account:
     def __init__(
         self,
         id: str,
-        name: str,
-        role: str,
+        name: str = None,
+        role: str = None,
+        token: str = None,
     ):
         self.id = id
         self.name = name
         self.role = role
+        self.token = token
 
 
 class User:

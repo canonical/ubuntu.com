@@ -40,6 +40,33 @@ class SubscriptionRenewalSchema(Schema):
     should_auto_renew = Boolean()
 
 
+class ProductListing(Schema):
+    product_listing_id = String(required=True)
+    quantity = Int(required=True)
+
+
+class CustomerInfo(Schema):
+    email = String()
+    name = String()
+    payment_method_id = String()
+    address = Nested(AddressSchema())
+    tax_id = Nested(TaxIdSchema())
+
+
+account_purhcase = {
+    "account_id": String(),
+    "captcha_value": String(requied=True),
+    "customer_info": Nested(CustomerInfo),
+    "products": List(Nested(ProductListing), required=True),
+    "previous_purchase_id": String(required=True),
+    "marketplace": String(
+        validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
+        required=True,
+    ),
+    "action": String(validate=validate.OneOf(["purchase", "resize", "trial"])),
+}
+
+
 post_advantage_subscriptions = {
     "account_id": String(required=True),
     "period": String(enum=["monthly", "yearly"], required=True),

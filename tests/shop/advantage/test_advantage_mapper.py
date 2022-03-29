@@ -40,6 +40,21 @@ class TestGetAccounts(unittest.TestCase):
         for item in response:
             self.assertIsInstance(item, Account)
 
+        expectation = [
+            Account(
+                id="a123AbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                name="Free",
+                role="admin",
+            ),
+            Account(
+                id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+                name="Account Name",
+                role="admin",
+            ),
+        ]
+
+        self.assertEqual(to_dict(expectation), to_dict(response))
+
 
 class TestGetAccountContracts(unittest.TestCase):
     def test_returns_list_of_contracts(self):
@@ -316,6 +331,14 @@ class TestGetPurchaseAccount(unittest.TestCase):
         response = advantage_mapper.get_purchase_account("canonical-ua")
 
         self.assertIsInstance(response, Account)
+
+        expectation = Account(
+            id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
+            name="Account Name",
+            role="admin",
+        )
+
+        self.assertEqual(to_dict(expectation), to_dict(response))
 
 
 class TestGetAccountOffers(unittest.TestCase):

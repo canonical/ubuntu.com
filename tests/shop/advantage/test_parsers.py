@@ -12,8 +12,6 @@ from webapp.shop.api.ua_contracts.models import (
     Offer,
 )
 from webapp.shop.api.ua_contracts.parsers import (
-    parse_account,
-    parse_accounts,
     parse_offer_items,
     parse_offer,
     parse_offers,
@@ -32,7 +30,6 @@ from webapp.shop.api.ua_contracts.parsers import (
     parse_users,
 )
 from webapp.shop.api.ua_contracts.primitives import (
-    Account,
     Subscription,
     SubscriptionItem,
     ContractItem,
@@ -43,39 +40,6 @@ from webapp.shop.api.ua_contracts.primitives import (
 
 
 class TestParsers(unittest.TestCase):
-    def test_parse_account(self):
-        raw_account = get_fixture("account")
-        parsed_account = parse_account(raw_account=raw_account)
-
-        expectation = Account(
-            id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
-            name="Account Name",
-            role="admin",
-        )
-
-        self.assertIsInstance(parsed_account, Account)
-        self.assertEqual(to_dict(expectation), to_dict(parsed_account))
-
-    def test_parse_accounts(self):
-        raw_accounts = get_fixture("accounts")
-        parsed_accounts = parse_accounts(raw_accounts=raw_accounts)
-
-        expectation = [
-            Account(
-                id="a123AbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
-                name="Free",
-                role="admin",
-            ),
-            Account(
-                id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
-                name="Account Name",
-                role="admin",
-            ),
-        ]
-
-        self.assertIsInstance(parsed_accounts, List)
-        self.assertEqual(to_dict(expectation), to_dict(parsed_accounts))
-
     def test_parse_subscription_items(self):
         raw_subscription_items = get_fixture("subscription-items")
         parsed_subscription_items = parse_subscription_items(

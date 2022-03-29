@@ -1,7 +1,6 @@
 from typing import List, Dict
 
 from webapp.shop.api.ua_contracts.primitives import (
-    Account,
     Contract,
     ContractItem,
     Entitlement,
@@ -60,18 +59,6 @@ def parse_product_listings(
         )
         for product_listing in raw_product_listings
     }
-
-
-def parse_account(raw_account: Dict) -> Account:
-    return Account(
-        id=raw_account.get("id"),
-        name=raw_account.get("name"),
-        role=raw_account.get("userRoleOnAccount"),
-    )
-
-
-def parse_accounts(raw_accounts: List[Dict]) -> List[Account]:
-    return [parse_account(raw_account) for raw_account in raw_accounts]
 
 
 def parse_entitlements(

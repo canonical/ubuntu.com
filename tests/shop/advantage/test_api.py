@@ -197,8 +197,8 @@ class TestGetProductListings(unittest.TestCase):
 class TestGetAccountSubscriptions(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UAContractsAPIError),
-            (401, True, UAContractsAPIErrorView),
+            (401, False, UnauthorizedError),
+            (401, True, UnauthorizedError),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -718,8 +718,8 @@ class TestGetPurchaseAccount(unittest.TestCase):
         cases = [
             (403, False, AccessForbiddenError),
             (403, False, AccessForbiddenError),
-            (401, False, UAContractsAPIError),
-            (401, True, UAContractsAPIErrorView),
+            (401, False, UnauthorizedError),
+            (401, True, UnauthorizedError),
             (404, False, UAContractsUserHasNoAccount),
             (404, True, UAContractsUserHasNoAccount),
             (500, False, UAContractsAPIError),
@@ -1021,8 +1021,8 @@ class TestPostSubscriptionAutoRenewal(unittest.TestCase):
 class TestEnsurePurchaseAccount(unittest.TestCase):
     def test_errors(self):
         cases = [
-            (401, False, UnauthorizedError),
-            (401, True, UnauthorizedError),
+            (401, False, UAContractsAPIError),
+            (401, True, UAContractsAPIErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
