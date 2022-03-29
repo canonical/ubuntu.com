@@ -247,49 +247,67 @@
   <div class="u-fixed-width">
     <h2>Getting Started with Ubuntu WSL</h2>
   </div>
-
-  <div class="row p-divider">
-    {% for item in tutorials %}
-    <div class="col-4 {% if loop.index0 % 3 != 0 %}p-divider__block{% endif %}" id="ubuntu-com_core_left">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
-            alt="",
-            height="32",
-            width="38",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="{{ item.link }}">{{ item.title }}</a></h3>
-    </div>
-    {% endfor %}
-    <div class="col-4 {% if total_results % 3 != 0 %}p-divider__block{% endif %}" id="ubuntu-com_core_left">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
-            alt="",
-            width="56",
-            height="47",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
-            ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Docs</h4>
-        </div>
-      </div>
-      <h3 class="p-heading--4"><a href="https://wiki.ubuntu.com/WSL">Check out the Ubuntu docs for more information</a></h3>
-    </div>
+  <div class="row p-divider" id="wsl-tutorials"></div>
   </div>
 </section>
+
+<script>
+  var targetURL = '/tutorials.json?topic=wsl';
+  var tutorialIcon = `
+  {{
+    image(
+    url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+    alt="",
+    height="32",
+    width="38",
+    hi_def=True,
+    loading="lazy",
+    attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+    ) | safe
+  }}`
+  document.addEventListener("DOMContentLoaded", function(){
+    fetch(targetURL)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        var tutorials = data;
+        var tutorialContainer = document.getElementById("wsl-tutorials")
+
+        for (let i = 0; i < tutorials.length; i++) {
+          var tutorialCard = document.createElement("div");
+          if (i % 3 !== 0) tutorialCard.className = "col-4 p-divider__block";
+          else tutorialCard.className = "col-4";
+
+          var headingIcon = document.createElement("div");
+          headingIcon.className = "p-heading-icon--muted";
+          var headingIconHeader = document.createElement("div");
+          headingIconHeader.className = "p-heading-icon__header";
+          headingIconHeader.innerHTML = tutorialIcon;
+          var headingIconTitle = document.createElement("h4");
+          headingIconTitle.className = "p-heading-icon__title";
+          headingIconTitle.innerHTML = "Tutorial";
+          headingIcon.appendChild(headingIconHeader);
+          headingIcon.appendChild(headingIconTitle);
+
+          var tutorialLinkContainer = document.createElement("h3");
+          tutorialLinkContainer.className = "p-heading--4";
+          var tutorialLink = document.createElement("a");
+          tutorialLink.href = `${tutorials[i].link}`;
+          tutorialLink.innerHTML = `${tutorials[i].title}`;
+          tutorialLinkContainer.appendChild(tutorialLink);
+
+          tutorialCard.appendChild(headingIcon);
+          tutorialCard.appendChild(tutorialLinkContainer);
+
+          tutorialContainer.append(tutorialCard);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+  });
+</script>
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
