@@ -5,8 +5,15 @@ const useRequestAccountUsers = () => {
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     "accountUsers",
     async () => {
-      const res = await requestAccountUsers();
-      return res;
+      try {
+        await requestAccountUsers();
+      } catch (error) {
+        if (error?.response?.status === 404) {
+          return ([]);
+        } else {
+          throw(error);
+        }
+      }
     }
   );
 

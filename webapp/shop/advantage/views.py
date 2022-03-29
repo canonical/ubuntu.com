@@ -63,9 +63,8 @@ def get_user_subscriptions(advantage_mapper, **kwargs):
 def get_account_users(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
-    except UAContractsUserHasNoAccount as error:
-        # if no account throw 404
-        raise UAContractsAPIError(error)
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({"errors": "cannot find purchase account"}), 404
 
     account_users = advantage_mapper.get_account_users(account_id=account.id)
 
