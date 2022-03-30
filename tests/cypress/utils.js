@@ -44,39 +44,6 @@ export const formsWithEmailTestId = [
     noOfPages: 3,
   },
   {
-    url: "/internet-of-things/appstore",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
-  },
-  {
-    url: "/internet-of-things/gateways",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
-  },
-  {
-    url: "/internet-of-things/networking",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
-  },
-  {
     url: "/openstack/managed",
     inputs: [
       [/First name/, "test"],
@@ -176,30 +143,6 @@ export const interactiveForms = [
     ],
     submitBtn: /Let's discuss/,
     noOfPages: 3,
-  },
-  {
-    url: "/core",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
-  },
-  {
-    url: "/core/smartstart",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company:/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
   },
   {
     url: "/dell",
@@ -421,4 +364,13 @@ export const interactiveForms = [
     submitBtn: /Let's discuss/,
     noOfPages: 3,
   },
+];
+
+export const internetOfThingsForm = [
+    "/internet-of-things/networking",
+    "/internet-of-things/gateways",
+    "/internet-of-things/appstore",
+    "/internet-of-things/digital-signage",
+    "/core",
+    "/core/smartstart"
 ];
