@@ -14,7 +14,7 @@ const useRequestAccountUsers = () => {
           error instanceof Error &&
           error.message.includes("cannot find purchase account")
         ) {
-          return [];
+          return undefined;
         } else {
           throw error;
         }
