@@ -289,7 +289,7 @@ def build_tutorials_index(session, tutorials_docs):
         """
 
         # The webteam's default custom search ID
-        search_engine_id = "009048213575199080868:i3zoqdwqk8o"
+        search_engine_id = "adb2397a224a1fe55"
 
         # API key should always be provided as an environment variable
         search_api_key = os.getenv("SEARCH_API_KEY")
