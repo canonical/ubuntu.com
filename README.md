@@ -24,11 +24,12 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 ## Local development
 
-The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap and [`docker`](https://docs.docker.com/engine/install/ubuntu/):
+The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap. Please use the installation scripts [mentioned in the README](https://github.com/canonical-web-and-design/dotrun/blob/main/README.md#installation) to install `dotrun`.
+
+Once it's installed, run the project with:
 
 ```bash
-docker-compose up -d
-NODE_ENV=development dotrun
+dotrun
 ```
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
