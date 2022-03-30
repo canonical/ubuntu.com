@@ -6,9 +6,14 @@ const useRequestAccountUsers = () => {
     "accountUsers",
     async () => {
       try {
-        await requestAccountUsers();
+        const res = await requestAccountUsers();
+
+        return res;
       } catch (error) {
-        if (error?.response?.status === 404) {
+        if (
+          error instanceof Error &&
+          error.message.includes("cannot find purchase account")
+        ) {
           return [];
         } else {
           throw error;
