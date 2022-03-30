@@ -749,8 +749,7 @@ app.add_url_rule(
 tutorials_docs.init_app(app)
 
 app.add_url_rule(
-    "/tutorials.json", 
-    view_func=build_tutorials_query(tutorials_docs)
+    "/tutorials.json", view_func=build_tutorials_query(tutorials_docs)
 )
 
 # Ceph docs
