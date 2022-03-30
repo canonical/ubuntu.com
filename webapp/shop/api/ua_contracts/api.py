@@ -271,11 +271,13 @@ class UAContractsAPI:
         ).json()
 
     def cancel_subscription(self, subscription_id: str) -> dict:
-        return self._request(
+        self._request(
             method="delete",
             path=f"v1/subscriptions/{subscription_id}",
             error_rules=["default"],
-        ).json()
+        )
+
+        return {}
 
     def post_subscription_auto_renewal(
         self, subscription_id: str, should_auto_renew: bool

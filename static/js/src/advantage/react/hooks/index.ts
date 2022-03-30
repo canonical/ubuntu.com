@@ -8,4 +8,5 @@ export { useSetAutoRenewal } from "./useSetAutoRenewal";
 export { useStripePublishableKey } from "./useStripePublishableKey";
 export { useURLs } from "./useURLs";
 export { useUserSubscriptions } from "./useUserSubscriptions";
+export { useCancelTrial } from "./useCancelTrail";
 export { useUpdateContractEntitlementsMutation } from "./useUpdateContractEntitlementsMutation";

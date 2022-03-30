@@ -1,17 +1,18 @@
 import { Col, Row } from "@canonical/react-components";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormikContext } from "formik";
 import FormikField from "../../../FormikField";
 
 type Props = {
   setIsValid: (isValid: boolean) => void;
+  isTrial?: boolean;
 };
 
 export type SubscriptionCancelValues = {
   cancel: string;
 };
 
-const SubscriptionCancelFields = ({ setIsValid }: Props) => {
+const SubscriptionCancelFields = ({ setIsValid, isTrial }: Props) => {
   const { handleSubmit, isValid } = useFormikContext();
 
   useEffect(() => {
@@ -20,7 +21,11 @@ const SubscriptionCancelFields = ({ setIsValid }: Props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>If you cancel this subscription:</p>
+      {isTrial ? (
+        <p>If you cancel this trial:</p>
+      ) : (
+        <p>If you cancel this subscription:</p>
+      )}
       <ul>
         <li>No additional charge will be incurred.</li>
         <li>
