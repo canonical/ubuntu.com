@@ -265,18 +265,6 @@ export const interactiveForms = [
     noOfPages: 3,
   },
   {
-    url: "/pricing/devices",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company/, "test"],
-      [/Email/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 2,
-  },
-  {
     url: "/pricing/consulting",
     inputs: [
       [/First name/, "test"],
@@ -372,5 +360,6 @@ export const internetOfThingsForm = [
     "/internet-of-things/appstore",
     "/internet-of-things/digital-signage",
     "/core",
-    "/core/smartstart"
+    "/core/smartstart",
+    "/pricing/devices",
 ];
