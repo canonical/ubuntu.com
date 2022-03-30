@@ -9,9 +9,9 @@ const useRequestAccountUsers = () => {
         await requestAccountUsers();
       } catch (error) {
         if (error?.response?.status === 404) {
-          return ([]);
+          return [];
         } else {
-          throw(error);
+          throw error;
         }
       }
     }

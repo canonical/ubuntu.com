@@ -17,7 +17,6 @@ from webapp.shop.api.ua_contracts.helpers import (
 )
 from webapp.shop.api.ua_contracts.api import (
     UAContractsUserHasNoAccount,
-    UAContractsAPIError,
     AccessForbiddenError,
 )
 
