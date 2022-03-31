@@ -72,7 +72,7 @@ from webapp.views import (
     marketo_submit,
     thank_you,
     mirrors_query,
-    build_wsl_tutorials,
+    build_tutorials_query,
 )
 
 from webapp.shop.views import (
@@ -756,7 +756,9 @@ app.add_url_rule(
 )
 tutorials_docs.init_app(app)
 
-app.add_url_rule("/wsl", view_func=build_wsl_tutorials(tutorials_docs))
+app.add_url_rule(
+    "/tutorials.json", view_func=build_tutorials_query(tutorials_docs)
+)
 
 # Ceph docs
 ceph_docs = Docs(
