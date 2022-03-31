@@ -193,6 +193,9 @@ discourse_api = DiscourseAPI(
     get_topics_query_id=2,
 )
 
+# Web tribe websites custom search ID
+search_engine_id = "adb2397a224a1fe55"
+
 
 # Error pages
 @app.errorhandler(400)
@@ -497,7 +500,11 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search",
     "search",
-    build_search_view(session=session, template_path="search.html"),
+    build_search_view(
+        session=session,
+        template_path="search.html",
+        search_engine_id=search_engine_id,
+    ),
 )
 app.add_url_rule(
     (
@@ -720,6 +727,7 @@ app.add_url_rule(
         session=session,
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
+        search_engine_id=search_engine_id,
     ),
 )
 
@@ -769,6 +777,7 @@ app.add_url_rule(
         session=session,
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
+        search_engine_id=search_engine_id,
     ),
 )
 
@@ -789,6 +798,7 @@ app.add_url_rule(
         session=session,
         site="ubuntu.com/core/docs",
         template_path="/core/docs/search-results.html",
+        search_engine_id=search_engine_id,
     ),
 )
 core_docs.init_app(app)
@@ -913,6 +923,7 @@ app.add_url_rule(
         session=session,
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
+        search_engine_id=search_engine_id,
     ),
 )
 
@@ -938,6 +949,7 @@ app.add_url_rule(
         session=session,
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
+        search_engine_id=search_engine_id,
     ),
 )
 
@@ -963,6 +975,7 @@ app.add_url_rule(
         session=session,
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
+        search_engine_id=search_engine_id,
     ),
 )
 

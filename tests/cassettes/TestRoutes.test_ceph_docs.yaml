@@ -1,28 +1,21 @@
 interactions:
 - request:
     body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.25.1
+    headers: {}
     method: GET
     uri: https://discourse.ubuntu.com/t/17250.json
   response:
     body:
       string: "{\"post_stream\":{\"posts\":[{\"id\":48578,\"name\":\"Carlos Wu Fei\",\"username\":\"carkod\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\",\"created_at\":\"2020-07-15T15:21:30.992Z\",\"cooked\":\"\\u003ch1\\u003eCharmed
         Ceph Documentation\\u003c/h1\\u003e\\n\\u003chr\\u003e\\n\\u003cp\\u003e\\u003ca
-        href=\\\"https://ceph.com\\\"\\u003eCeph\\u003c/a\\u003e is a unified, distributed
-        storage system designed for excellent performance, reliability, and scalability.\\u003c/p\\u003e\\n\\u003cp\\u003eCharmed
-        Ceph deploys and manages Ceph using Juju\u2019s modelling paradigm. This makes
-        operating the cluster easier by eliminating the minutiae of operational tasks.
-        In addition, improvements are added to Charmed Ceph that are specific to Debian
-        and Ubuntu such as bug and security fixes.\\u003c/p\\u003e\\n\\u003cp\\u003eFind
-        out more in the \\u003ca href=\\\"/t/overview-of-charmed-ceph/18797\\\"\\u003eCharmed
+        href=\\\"https://ceph.com/en/\\\"\\u003eCeph\\u003c/a\\u003e is a unified,
+        distributed storage system designed for excellent performance, reliability,
+        and scalability.\\u003c/p\\u003e\\n\\u003cp\\u003eCharmed Ceph deploys and
+        manages Ceph using Juju\u2019s modelling paradigm. This makes operating the
+        cluster easier by eliminating the minutiae of operational tasks. In addition,
+        improvements are added to Charmed Ceph that are specific to Debian and Ubuntu
+        such as bug and security fixes.\\u003c/p\\u003e\\n\\u003cp\\u003eFind out
+        more in the \\u003ca href=\\\"/t/overview-of-charmed-ceph/18797\\\"\\u003eCharmed
         Ceph overview \u203A\\u003c/a\\u003e\\u003c/p\\u003e\\n\\u003cp\\u003e\\u003cdiv
         class=\\\"lightbox-wrapper\\\"\\u003e\\u003ca class=\\\"lightbox\\\" href=\\\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2ea15caf72aa45cb65768f47ef35c102675094ff.png\\\"
         data-download-href=\\\"/uploads/short-url/6EvGaQVFGigKApbUttKv2xb82Un.png?dl=1\\\"
@@ -35,24 +28,25 @@ interactions:
         5.89 KB\\u003c/span\\u003e\\u003csvg class=\\\"fa d-icon d-icon-discourse-expand
         svg-icon\\\" aria-hidden=\\\"true\\\"\\u003e\\u003cuse xlink:href=\\\"#discourse-expand\\\"\\u003e\\u003c/use\\u003e\\u003c/svg\\u003e\\u003c/div\\u003e\\u003c/a\\u003e\\u003c/div\\u003e\\u003c/p\\u003e\\n\\u003ch2\\u003eNavigation\\u003c/h2\\u003e\\n\\u003cdetails\\u003e\\n\\u003csummary\\u003e\\nNavigation\\u003c/summary\\u003e\\n\\u003cdiv
         class=\\\"md-table\\\"\\u003e\\n\\u003ctable\\u003e\\n\\u003cthead\\u003e\\n\\u003ctr\\u003e\\n\\u003cth\\u003eLevel\\u003c/th\\u003e\\n\\u003cth\\u003ePath\\u003c/th\\u003e\\n\\u003cth\\u003eNavlink\\u003c/th\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/thead\\u003e\\n\\u003ctbody\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/new-about-the-documentation-category/21186\\\"\\u003eHome\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eoverview\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"/t/new-about-the-documentation-category/17250\\\"\\u003eHome\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eoverview\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/overview-of-charmed-ceph/18797\\\"\\u003eOverview\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eCharmed
         Ceph\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003erequirements\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/requirements-for-charmed-ceph/18798\\\"\\u003eRequirements\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003esupported-ceph-versions\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/supported-ceph-versions/18799\\\"\\u003eSupported Ceph versions\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003erelease-cycle\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/release-cycle/18800\\\"\\u003eRelease cycle\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eInstall\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003equickstart\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/quickstart/18801\\\"\\u003eQuickstart\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003einstall\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/install-charmed-ceph/18803\\\"\\u003eInstall\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003ePool
+        href=\\\"/t/install-charmed-ceph/18803\\\"\\u003eInstall\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eceph-dashboard\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"/t/ceph-dashboard/24829\\\"\\u003eDashboard\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003ePool
         types\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003ereplicated-pools\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/replicated-pools/18805\\\"\\u003eReplicated pools\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eerasure-coded-pools\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/erasure-coded-pools/18807\\\"\\u003eErasure coded pools\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eStorage
         types\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003efile-storage\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/file-storage/18818\\\"\\u003eFile storage\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eobject-storage\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/block-storage/18819\\\"\\u003eObject storage\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eblock-storage\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/block-storage/18821\\\"\\u003eBlock storage\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eIntegrations\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eintegration-kubernetes\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/kubernetes/18794\\\"\\u003eKubernetes\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eintegration-lxd\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/lxd-containers/18793\\\"\\u003eLXD\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eintegration-openstack\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/openstack-cloud/18792\\\"\\u003eOpenStack\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eintegration-vmware\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"/t/block-storage/18821\\\"\\u003eBlock storage\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eIntegrations\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003ekubernetes\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"/t/kubernetes/18794\\\"\\u003eKubernetes\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003elxd\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"/t/lxd-containers/18793\\\"\\u003eLXD\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eopenstack\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
+        href=\\\"/t/openstack-cloud/18792\\\"\\u003eOpenStack\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003evmware\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/vmware-integration/18791\\\"\\u003eVMware\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e0\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eOperations\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003c/td\\u003e\\n\\u003ctd\\u003eNode
         lifecycle\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003eadding-osds\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/adding-osds/18783\\\"\\u003eAdding OSDs\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003eadding-mons\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
@@ -69,19 +63,16 @@ interactions:
         href=\\\"/t/client-setup/18765\\\"\\u003eClient setup\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003eapp-charm-list\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/charm-list/18766\\\"\\u003eCharm list\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e2\\u003c/td\\u003e\\n\\u003ctd\\u003eapp-upgrade-notes\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
         href=\\\"/t/upgrade-notes/18767\\\"\\u003eUpgrade notes\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003ctr\\u003e\\n\\u003ctd\\u003e1\\u003c/td\\u003e\\n\\u003ctd\\u003eget-in-touch\\u003c/td\\u003e\\n\\u003ctd\\u003e\\u003ca
-        href=\\\"/t/get-in-touch/18763\\\"\\u003eGet in touch\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003c/details\\u003e\",\"post_number\":1,\"post_type\":1,\"updated_at\":\"2021-03-03T11:48:54.723Z\",\"reply_count\":0,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\":147,\"reads\":15,\"readers_count\":14,\"score\":738.0,\"yours\":false,\"topic_id\":17250,\"topic_slug\":\"about-the-documentation-category\",\"display_username\":\"Carlos
-        Wu Fei\",\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\":\"/uploads/short-url/paWz8RxxmKxiYXUmH2ABvqKp0Gg.png\",\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\",\"version\":16,\"can_edit\":false,\"can_delete\":false,\"can_recover\":false,\"can_wiki\":false,\"link_counts\":[{\"url\":\"https://discourse.ubuntu.com/t/overview-of-charmed-ceph/18797\",\"internal\":true,\"reflection\":false,\"title\":\"Overview
-        of Charmed Ceph\",\"clicks\":3},{\"url\":\"https://discourse.ubuntu.com/t/quickstart/18801\",\"internal\":true,\"reflection\":false,\"title\":\"Quickstart\",\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/client-setup/18765\",\"internal\":true,\"reflection\":false,\"title\":\"Client
-        setup\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/replacing-osd-disks/18788\",\"internal\":true,\"reflection\":false,\"title\":\"Replacing
-        OSD disks\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/release-cycle/18800\",\"internal\":true,\"reflection\":false,\"title\":\"Release
+        href=\\\"/t/get-in-touch/18763\\\"\\u003eGet in touch\\u003c/a\\u003e\\u003c/td\\u003e\\n\\u003c/tr\\u003e\\n\\u003c/tbody\\u003e\\n\\u003c/table\\u003e\\n\\u003c/div\\u003e\\u003c/details\\u003e\",\"post_number\":1,\"post_type\":1,\"updated_at\":\"2021-10-26T18:16:08.330Z\",\"reply_count\":0,\"reply_to_post_number\":null,\"quote_count\":0,\"incoming_link_count\":1991,\"reads\":20,\"readers_count\":19,\"score\":9899.0,\"yours\":true,\"topic_id\":17250,\"topic_slug\":\"about-the-documentation-category\",\"display_username\":\"Carlos
+        Wu Fei\",\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\":\"/uploads/short-url/paWz8RxxmKxiYXUmH2ABvqKp0Gg.png\",\"primary_group_flair_bg_color\":\"\",\"primary_group_flair_color\":\"\",\"version\":42,\"can_edit\":true,\"can_delete\":false,\"can_recover\":false,\"can_wiki\":true,\"link_counts\":[{\"url\":\"https://discourse.ubuntu.com/t/overview-of-charmed-ceph/18797\",\"internal\":true,\"reflection\":false,\"title\":\"Overview
+        of Charmed Ceph\",\"clicks\":8},{\"url\":\"https://discourse.ubuntu.com/t/quickstart/18801\",\"internal\":true,\"reflection\":false,\"title\":\"Quickstart\",\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-ceph/18778\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrading
+        Ceph\",\"clicks\":2},{\"url\":\"https://ceph.com/en/\",\"internal\":false,\"reflection\":false,\"clicks\":2},{\"url\":\"https://discourse.ubuntu.com/t/release-cycle/18800\",\"internal\":true,\"reflection\":false,\"title\":\"Release
         cycle\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/supported-ceph-versions/18799\",\"internal\":true,\"reflection\":false,\"title\":\"Supported
         Ceph versions\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/requirements-for-charmed-ceph/18798\",\"internal\":true,\"reflection\":false,\"title\":\"Requirements
-        for Charmed Ceph\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/ceph-release-notes/18764\",\"internal\":true,\"reflection\":false,\"title\":\"Ceph
-        release notes\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-ceph/18778\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrading
-        Ceph\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-node-operating-system/18777\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrading
-        node operating system\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-charms/18776\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrading
-        charms\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/software-upgrades/18769\",\"internal\":true,\"reflection\":false,\"title\":\"Software
-        upgrades\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/encryption-at-rest/18779\",\"internal\":true,\"reflection\":false,\"title\":\"Encryption
+        for Charmed Ceph\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/replacing-osd-disks/18788\",\"internal\":true,\"reflection\":false,\"title\":\"Replacing
+        OSD disks\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/client-setup/18765\",\"internal\":true,\"reflection\":false,\"title\":\"Client
+        setup\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/install-charmed-ceph/18803\",\"internal\":true,\"reflection\":false,\"title\":\"Install
+        Charmed Ceph\",\"clicks\":1},{\"url\":\"https://discourse.ubuntu.com/t/encryption-at-rest/18779\",\"internal\":true,\"reflection\":false,\"title\":\"Encryption
         at Rest\",\"clicks\":0},{\"url\":\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2ea15caf72aa45cb65768f47ef35c102675094ff.png\",\"internal\":false,\"reflection\":false,\"title\":\"2ea15caf72aa45cb65768f47ef35c102675094ff.png\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/adding-mons/18784\",\"internal\":true,\"reflection\":false,\"title\":\"Adding
         MONs\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/adding-osds/18783\",\"internal\":true,\"reflection\":false,\"title\":\"Adding
         OSDs\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/openstack-cloud/18792\",\"internal\":true,\"reflection\":false,\"title\":\"OpenStack
@@ -91,46 +82,60 @@ interactions:
         storage\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/file-storage/18818\",\"internal\":true,\"reflection\":false,\"title\":\"File
         storage\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/erasure-coded-pools/18807\",\"internal\":true,\"reflection\":false,\"title\":\"Erasure
         coded pools\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/replicated-pools/18805\",\"internal\":true,\"reflection\":false,\"title\":\"Replicated
-        pools\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/install-charmed-ceph/18803\",\"internal\":true,\"reflection\":false,\"title\":\"Install
-        Charmed Ceph\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/power-cycling-nodes/18780\",\"internal\":true,\"reflection\":false,\"title\":\"Power
-        cycling nodes\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/new-about-the-documentation-category/21186\",\"internal\":true,\"reflection\":false,\"title\":\"New
-        About the Documentation category\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/vmware-integration/18791\",\"internal\":true,\"reflection\":false,\"title\":\"VMware
-        integration\",\"clicks\":0},{\"url\":\"https://ceph.com\",\"internal\":false,\"reflection\":false,\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/get-in-touch/18763\",\"internal\":true,\"reflection\":false,\"title\":\"Get
+        pools\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/power-cycling-nodes/18780\",\"internal\":true,\"reflection\":false,\"title\":\"Power
+        cycling nodes\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/ceph-dashboard/24829\",\"internal\":true,\"reflection\":false,\"title\":\"Ceph
+        Dashboard\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/vmware-integration/18791\",\"internal\":true,\"reflection\":false,\"title\":\"VMware
+        integration\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/get-in-touch/18763\",\"internal\":true,\"reflection\":false,\"title\":\"Get
         in touch\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/upgrade-notes/18767\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrade
         notes\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/charm-list/18766\",\"internal\":true,\"reflection\":false,\"title\":\"Charm
-        list\",\"clicks\":0}],\"read\":true,\"user_title\":null,\"bookmarked\":false,\"actions_summary\":[],\"moderator\":false,\"admin\":true,\"staff\":true,\"user_id\":9642,\"hidden\":false,\"trust_level\":3,\"deleted_at\":null,\"user_deleted\":false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\":false}],\"stream\":[48578]},\"timeline_lookup\":[[1,230]],\"suggested_topics\":[{\"id\":17423,\"title\":\"OSX:
-        Instance not running on Reboot in one Host\",\"fancy_title\":\"OSX: Instance
-        not running on Reboot in one Host\",\"slug\":\"osx-instance-not-running-on-reboot-in-one-host\",\"posts_count\":6,\"reply_count\":2,\"highest_post_number\":6,\"image_url\":null,\"created_at\":\"2020-07-17T17:36:44.541Z\",\"last_posted_at\":\"2020-07-22T13:53:35.837Z\",\"bumped\":true,\"bumped_at\":\"2020-07-22T13:53:35.837Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":357,\"category_id\":21,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
-        Poster\",\"user\":{\"id\":5701,\"username\":\"pavibhai\",\"name\":\"Pavan
-        Lanka\",\"avatar_template\":\"/letter_avatar/pavibhai/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":\"latest\",\"description\":\"Most
-        Recent Poster\",\"user\":{\"id\":6386,\"username\":\"ricab\",\"name\":\"Ricardo
-        Abreu\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ricab/{size}/4886_2.png\"}}]},{\"id\":18085,\"title\":\"How
-        to known cmd run process when I launch?\",\"fancy_title\":\"How to known cmd
-        run process when I launch?\",\"slug\":\"how-to-known-cmd-run-process-when-i-launch\",\"posts_count\":2,\"reply_count\":0,\"highest_post_number\":2,\"image_url\":null,\"created_at\":\"2020-08-29T03:47:42.168Z\",\"last_posted_at\":\"2020-09-02T06:39:28.779Z\",\"bumped\":true,\"bumped_at\":\"2020-09-02T06:39:28.779Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[\"multipass\"],\"like_count\":0,\"views\":200,\"category_id\":21,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
-        Poster\",\"user\":{\"id\":12167,\"username\":\"shaneing\",\"name\":\"Shaneing\",\"avatar_template\":\"/letter_avatar/shaneing/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":\"latest\",\"description\":\"Most
-        Recent Poster\",\"user\":{\"id\":167,\"username\":\"saviq\",\"name\":\"Micha\u0142
-        Sawicz\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/saviq/{size}/8770_2.png\"}}]},{\"id\":19544,\"title\":\"Additional
-        network interfaces\",\"fancy_title\":\"Additional network interfaces\",\"slug\":\"additional-network-interfaces\",\"posts_count\":4,\"reply_count\":1,\"highest_post_number\":4,\"image_url\":null,\"created_at\":\"2020-11-27T18:36:26.188Z\",\"last_posted_at\":\"2021-01-22T10:53:31.871Z\",\"bumped\":true,\"bumped_at\":\"2021-01-22T10:53:31.871Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[\"multipass\",\"network\",\"advanced\"],\"like_count\":0,\"views\":905,\"category_id\":24,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest\",\"description\":\"Original
-        Poster, Most Recent Poster\",\"user\":{\"id\":6386,\"username\":\"ricab\",\"name\":\"Ricardo
-        Abreu\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ricab/{size}/4886_2.png\"}},{\"extras\":null,\"description\":\"Frequent
-        Poster\",\"user\":{\"id\":13502,\"username\":\"hburak\",\"name\":\"Burak\",\"avatar_template\":\"/letter_avatar/hburak/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":null,\"description\":\"Frequent
-        Poster\",\"user\":{\"id\":13601,\"username\":\"polarapfel\",\"name\":\"polarapfel\",\"avatar_template\":\"/letter_avatar/polarapfel/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":19891,\"title\":\"How
-        to protect your real-time document co-editing with end-to-end encryption\",\"fancy_title\":\"How
-        to protect your real-time document co-editing with end-to-end encryption\",\"slug\":\"how-to-protect-your-real-time-document-co-editing-with-end-to-end-encryption\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/optimized/2X/2/2ec1654d548f0dc825338f0ba7affba179eec2cf_2_1024x584.png\",\"created_at\":\"2020-12-16T10:43:52.731Z\",\"last_posted_at\":\"2020-12-16T10:43:53.086Z\",\"bumped\":true,\"bumped_at\":\"2020-12-16T10:43:53.086Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":68,\"category_id\":34,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
-        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9731,\"username\":\"masha0609\",\"name\":\"Masha0609\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/masha0609/{size}/9696_2.png\"}}]},{\"id\":19974,\"title\":\"Bluez
-        reference introduction\",\"fancy_title\":\"Bluez reference introduction\",\"slug\":\"bluez-reference-introduction\",\"posts_count\":1,\"reply_count\":0,\"highest_post_number\":1,\"image_url\":null,\"created_at\":\"2020-12-17T16:59:55.474Z\",\"last_posted_at\":\"2020-12-17T16:59:55.585Z\",\"bumped\":true,\"bumped_at\":\"2020-12-17T16:59:55.585Z\",\"archetype\":\"regular\",\"unseen\":false,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"bookmarked\":null,\"liked\":null,\"tags\":[],\"like_count\":0,\"views\":143,\"category_id\":70,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":\"latest
-        single\",\"description\":\"Original Poster, Most Recent Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
-        Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]}],\"tags\":[],\"id\":17250,\"title\":\"About
-        the Documentation category\",\"fancy_title\":\"About the Documentation category\",\"posts_count\":1,\"created_at\":\"2020-07-15T15:21:30.966Z\",\"views\":1344,\"reply_count\":0,\"like_count\":0,\"last_posted_at\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"has_summary\":false,\"archetype\":\"regular\",\"slug\":\"about-the-documentation-category\",\"category_id\":53,\"word_count\":600,\"deleted_at\":null,\"user_id\":9642,\"featured_link\":null,\"pinned_globally\":false,\"pinned_at\":\"2020-07-15T15:21:30.958Z\",\"pinned_until\":null,\"image_url\":\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2ea15caf72aa45cb65768f47ef35c102675094ff.png\",\"slow_mode_seconds\":0,\"draft\":null,\"draft_key\":\"topic_17250\",\"draft_sequence\":null,\"unpinned\":null,\"pinned\":true,\"current_post_number\":1,\"highest_post_number\":1,\"deleted_by\":null,\"actions_summary\":[{\"id\":4,\"count\":0,\"hidden\":false,\"can_act\":false},{\"id\":8,\"count\":0,\"hidden\":false,\"can_act\":false},{\"id\":7,\"count\":0,\"hidden\":false,\"can_act\":false}],\"chunk_size\":20,\"bookmarked\":false,\"topic_timer\":null,\"message_bus_last_id\":4,\"participant_count\":1,\"show_read_indicator\":false,\"thumbnails\":[{\"max_width\":null,\"max_height\":null,\"width\":900,\"height\":144,\"url\":\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2ea15caf72aa45cb65768f47ef35c102675094ff.png\"}],\"details\":{\"notification_level\":1,\"participants\":[{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
+        list\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/ceph-release-notes/18764\",\"internal\":true,\"reflection\":false,\"title\":\"Ceph
+        release notes\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-node-operating-system/18777\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrading
+        node operating system\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-charms/18776\",\"internal\":true,\"reflection\":false,\"title\":\"Upgrading
+        charms\",\"clicks\":0},{\"url\":\"https://discourse.ubuntu.com/t/software-upgrades/18769\",\"internal\":true,\"reflection\":false,\"title\":\"Software
+        upgrades\",\"clicks\":0}],\"read\":true,\"user_title\":null,\"bookmarked\":false,\"actions_summary\":[{\"id\":3,\"can_act\":true},{\"id\":4,\"can_act\":true},{\"id\":8,\"can_act\":true},{\"id\":7,\"can_act\":true}],\"moderator\":false,\"admin\":true,\"staff\":true,\"user_id\":9642,\"hidden\":false,\"trust_level\":3,\"deleted_at\":null,\"user_deleted\":false,\"edit_reason\":null,\"can_view_edit_history\":true,\"wiki\":false,\"reviewable_id\":0,\"reviewable_score_count\":0,\"reviewable_score_pending_count\":0,\"can_accept_answer\":false,\"can_unaccept_answer\":false,\"accepted_answer\":false}],\"stream\":[48578]},\"timeline_lookup\":[[1,623]],\"suggested_topics\":[{\"id\":19930,\"title\":\"NetworkManager
+        and netplan\",\"fancy_title\":\"NetworkManager and netplan\",\"slug\":\"networkmanager-and-netplan\",\"posts_count\":3,\"reply_count\":1,\"highest_post_number\":3,\"image_url\":null,\"created_at\":\"2020-12-17T10:38:35.170Z\",\"last_posted_at\":\"2022-03-21T09:40:03.544Z\",\"bumped\":true,\"bumped_at\":\"2022-03-21T09:40:03.544Z\",\"archetype\":\"regular\",\"unseen\":false,\"last_read_post_number\":1,\"unread\":0,\"new_posts\":2,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"notification_level\":3,\"bookmarked\":false,\"liked\":false,\"tags\":[],\"like_count\":2,\"views\":2992,\"category_id\":66,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
+        Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos Wu
+        Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":null,\"description\":\"Frequent
+        Poster\",\"user\":{\"id\":8700,\"username\":\"hellsworth\",\"name\":\"Heather
+        Ellsworth\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/hellsworth/{size}/6862_2.png\"}},{\"extras\":\"latest\",\"description\":\"Most
+        Recent Poster\",\"user\":{\"id\":18021,\"username\":\"rahul\",\"name\":\"rahul\",\"avatar_template\":\"/letter_avatar/rahul/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":19809,\"title\":\"Custom
+        images\",\"fancy_title\":\"Custom images\",\"slug\":\"custom-images\",\"posts_count\":4,\"reply_count\":1,\"highest_post_number\":4,\"image_url\":null,\"created_at\":\"2020-12-11T12:10:02.525Z\",\"last_posted_at\":\"2022-03-03T09:31:38.658Z\",\"bumped\":true,\"bumped_at\":\"2022-03-03T09:31:38.658Z\",\"archetype\":\"regular\",\"unseen\":false,\"last_read_post_number\":1,\"unread\":0,\"new_posts\":3,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"notification_level\":3,\"bookmarked\":false,\"liked\":false,\"tags\":[],\"like_count\":0,\"views\":3249,\"category_id\":47,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
+        Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos Wu
+        Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":null,\"description\":\"Frequent
+        Poster\",\"user\":{\"id\":17453,\"username\":\"rpjday1\",\"name\":\"Robert
+        P. J. Day\",\"avatar_template\":\"/letter_avatar/rpjday1/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":\"latest\",\"description\":\"Most
+        Recent Poster\",\"user\":{\"id\":9578,\"username\":\"degville\",\"name\":\"Graham
+        Morrison\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/degville/{size}/9336_2.png\"}}]},{\"id\":22815,\"title\":\"FIPS
+        in containers and VMs\",\"fancy_title\":\"FIPS in containers and VMs\",\"slug\":\"fips-in-containers-and-vms\",\"posts_count\":2,\"reply_count\":0,\"highest_post_number\":2,\"image_url\":null,\"created_at\":\"2021-06-23T14:25:31.299Z\",\"last_posted_at\":\"2022-02-25T14:24:12.050Z\",\"bumped\":true,\"bumped_at\":\"2022-02-25T14:24:12.050Z\",\"archetype\":\"regular\",\"unseen\":false,\"last_read_post_number\":1,\"unread\":0,\"new_posts\":1,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"notification_level\":3,\"bookmarked\":false,\"liked\":false,\"tags\":[],\"like_count\":0,\"views\":955,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
+        Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos Wu
+        Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":\"latest\",\"description\":\"Most
+        Recent Poster\",\"user\":{\"id\":17793,\"username\":\"_person_name\",\"name\":\"{{Person
+        Name}}\",\"avatar_template\":\"/letter_avatar/_person_name/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":22820,\"title\":\"CIS
+        Benchmark via Juju\",\"fancy_title\":\"CIS Benchmark via Juju\",\"slug\":\"cis-benchmark-via-juju\",\"posts_count\":2,\"reply_count\":0,\"highest_post_number\":2,\"image_url\":null,\"created_at\":\"2021-06-23T14:49:41.582Z\",\"last_posted_at\":\"2021-09-01T22:47:13.483Z\",\"bumped\":true,\"bumped_at\":\"2021-09-01T22:47:13.483Z\",\"archetype\":\"regular\",\"unseen\":false,\"last_read_post_number\":1,\"unread\":0,\"new_posts\":1,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"notification_level\":3,\"bookmarked\":false,\"liked\":false,\"tags\":[],\"like_count\":0,\"views\":947,\"category_id\":87,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
+        Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos Wu
+        Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":\"latest\",\"description\":\"Most
+        Recent Poster\",\"user\":{\"id\":8707,\"username\":\"sarnold\",\"name\":\"Seth
+        Arnold\",\"avatar_template\":\"/letter_avatar/sarnold/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}}]},{\"id\":19808,\"title\":\"Image
+        building\",\"fancy_title\":\"Image building\",\"slug\":\"image-building\",\"posts_count\":6,\"reply_count\":4,\"highest_post_number\":6,\"image_url\":null,\"created_at\":\"2020-12-11T12:06:10.284Z\",\"last_posted_at\":\"2021-05-14T10:50:28.370Z\",\"bumped\":true,\"bumped_at\":\"2021-05-14T10:50:28.370Z\",\"archetype\":\"regular\",\"unseen\":false,\"last_read_post_number\":1,\"unread\":0,\"new_posts\":5,\"pinned\":false,\"unpinned\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"notification_level\":3,\"bookmarked\":false,\"liked\":false,\"tags\":[],\"like_count\":5,\"views\":2985,\"category_id\":47,\"featured_link\":null,\"has_accepted_answer\":false,\"posters\":[{\"extras\":null,\"description\":\"Original
+        Poster\",\"user\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos Wu
+        Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"}},{\"extras\":null,\"description\":\"Frequent
+        Poster\",\"user\":{\"id\":14088,\"username\":\"rzr\",\"name\":\"\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/rzr/{size}/12642_2.png\"}},{\"extras\":null,\"description\":\"Frequent
+        Poster\",\"user\":{\"id\":9578,\"username\":\"degville\",\"name\":\"Graham
+        Morrison\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/degville/{size}/9336_2.png\"}},{\"extras\":\"latest\",\"description\":\"Most
+        Recent Poster\",\"user\":{\"id\":1046,\"username\":\"ogra\",\"name\":\"Oliver
+        Grawert\",\"avatar_template\":\"/user_avatar/discourse.ubuntu.com/ogra/{size}/8750_2.png\"}}]}],\"tags\":[],\"id\":17250,\"title\":\"About
+        the Documentation category\",\"fancy_title\":\"About the Documentation category\",\"posts_count\":1,\"created_at\":\"2020-07-15T15:21:30.966Z\",\"views\":4990,\"reply_count\":0,\"like_count\":0,\"last_posted_at\":null,\"visible\":true,\"closed\":false,\"archived\":false,\"has_summary\":false,\"archetype\":\"regular\",\"slug\":\"about-the-documentation-category\",\"category_id\":53,\"word_count\":605,\"deleted_at\":null,\"user_id\":9642,\"featured_link\":null,\"pinned_globally\":false,\"pinned_at\":\"2020-07-15T15:21:30.958Z\",\"pinned_until\":null,\"image_url\":\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2ea15caf72aa45cb65768f47ef35c102675094ff.png\",\"slow_mode_seconds\":0,\"draft\":null,\"draft_key\":\"topic_17250\",\"draft_sequence\":61,\"posted\":false,\"unpinned\":true,\"pinned\":false,\"current_post_number\":1,\"highest_post_number\":1,\"last_read_post_number\":1,\"last_read_post_id\":48578,\"deleted_by\":null,\"has_deleted\":false,\"actions_summary\":[{\"id\":4,\"count\":0,\"hidden\":false,\"can_act\":true},{\"id\":8,\"count\":0,\"hidden\":false,\"can_act\":true},{\"id\":7,\"count\":0,\"hidden\":false,\"can_act\":true}],\"chunk_size\":20,\"bookmarked\":false,\"topic_timer\":null,\"message_bus_last_id\":0,\"participant_count\":1,\"queued_posts_count\":0,\"show_read_indicator\":false,\"thumbnails\":[{\"max_width\":null,\"max_height\":null,\"width\":900,\"height\":144,\"url\":\"//ubuntucommunity.s3.dualstack.us-east-2.amazonaws.com/original/2X/2/2ea15caf72aa45cb65768f47ef35c102675094ff.png\"}],\"details\":{\"notification_level\":2,\"notifications_reason_id\":null,\"can_move_posts\":true,\"can_edit\":true,\"can_remove_allowed_users\":true,\"can_invite_to\":true,\"can_create_post\":true,\"can_reply_as_new_topic\":true,\"can_flag_topic\":true,\"can_review_topic\":true,\"can_close_topic\":true,\"can_archive_topic\":true,\"can_split_merge_topic\":true,\"can_edit_staff_notes\":true,\"can_moderate_category\":true,\"can_remove_self_id\":9642,\"participants\":[{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
         Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\",\"post_count\":1,\"primary_group_name\":\"Canonical\",\"primary_group_flair_url\":\"/uploads/short-url/paWz8RxxmKxiYXUmH2ABvqKp0Gg.png\",\"primary_group_flair_color\":\"\",\"primary_group_flair_bg_color\":\"\"}],\"created_by\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
         Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"},\"last_poster\":{\"id\":9642,\"username\":\"carkod\",\"name\":\"Carlos
         Wu Fei\",\"avatar_template\":\"/letter_avatar/carkod/{size}/5_6d6f4cde2641c35611d5cac2fb97c77e.png\"},\"links\":[{\"url\":\"https://discourse.ubuntu.com/t/overview-of-charmed-ceph/18797\",\"title\":\"Overview
-        of Charmed Ceph\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":3,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/quickstart/18801\",\"title\":\"Quickstart\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":2,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/replacing-osd-disks/18788\",\"title\":\"Replacing
-        OSD disks\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/requirements-for-charmed-ceph/18798\",\"title\":\"Requirements
-        for Charmed Ceph\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/supported-ceph-versions/18799\",\"title\":\"Supported
+        of Charmed Ceph\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":8,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://ceph.com/en/\",\"title\":null,\"internal\":false,\"attachment\":false,\"reflection\":false,\"clicks\":2,\"user_id\":9642,\"domain\":\"ceph.com\",\"root_domain\":\"ceph.com\"},{\"url\":\"https://discourse.ubuntu.com/t/quickstart/18801\",\"title\":\"Quickstart\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":2,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/upgrading-ceph/18778\",\"title\":\"Upgrading
+        Ceph\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":2,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/supported-ceph-versions/18799\",\"title\":\"Supported
         Ceph versions\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/release-cycle/18800\",\"title\":\"Release
-        cycle\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/client-setup/18765\",\"title\":\"Client
-        setup\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"}]}}"
+        cycle\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/replacing-osd-disks/18788\",\"title\":\"Replacing
+        OSD disks\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/requirements-for-charmed-ceph/18798\",\"title\":\"Requirements
+        for Charmed Ceph\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/install-charmed-ceph/18803\",\"title\":\"Install
+        Charmed Ceph\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"},{\"url\":\"https://discourse.ubuntu.com/t/client-setup/18765\",\"title\":\"Client
+        setup\",\"internal\":true,\"attachment\":false,\"reflection\":false,\"clicks\":1,\"user_id\":9642,\"domain\":\"discourse.ubuntu.com\",\"root_domain\":\"ubuntu.com\"}]},\"pending_posts\":[]}"
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -143,14 +148,10 @@ interactions:
       - https://didrocks.fr
       Cache-Control:
       - no-cache, no-store
-      Connection:
-      - Keep-Alive
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 03 Mar 2021 12:13:59 GMT
-      Keep-Alive:
-      - timeout=5, max=100
+      - Thu, 31 Mar 2022 06:39:52 GMT
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -159,10 +160,10 @@ interactions:
       - chunked
       X-Content-Type-Options:
       - nosniff
-      X-Discourse-Cached:
-      - skip
       X-Discourse-Route:
       - topics/show
+      X-Discourse-Username:
+      - carkod
       X-Download-Options:
       - noopen
       X-Frame-Options:
@@ -170,9 +171,9 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Request-Id:
-      - d1973c29-cc85-4639-ae3d-8aa945bfb521
+      - 67fd005d-f7e1-43b8-8f99-7fd3c9d4c8cb
       X-Runtime:
-      - '0.168754'
+      - '0.213713'
       X-XSS-Protection:
       - 1; mode=block
     status:
