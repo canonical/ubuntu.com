@@ -50,19 +50,75 @@
               </label>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="js-formfield">
+        <div class="u-sv3">
+          <h3 class="p-heading--5">What platform are you interested in?</h3>
           <div class="row u-no-padding">
-            <div class="col-6 u-sv3">
-              <label for="about-project">Tell us more about your project</label>
-              <textarea name="about-project" id="about-project"></textarea>
+            <div class="u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="platform-elkhart-lake" name="platform" value="elkhart-lake">
+                <span class="p-radio__label" id="platform-elkhart-lake">Intel Atom® X6000E Series and Intel® Pentium® and Celeron® N and J Series Processors (Elkhart Lake)</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="platform-intel-11th-core" name="platform" value="intel-11th-core">
+                <span class="p-radio__label" id="platform-intel-11th-core">Intel 11th Gen Intel® Core™ processors (Tiger Lake)</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="platform-intel-12th-mobile" name="platform" value="intel-12th-mobile">
+                <span class="p-radio__label" id="platform-intel-12th-mobile">12th Gen Intel® Core™ mobile processors for IoT applications (Alder Lake-S)</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="platform-intel-12th-core-desktop" name="platform" value="intel-12th-core-desktop">
+                <span class="p-radio__label" id="platform-intel-12th-core-desktop"> 12th Gen Intel® Core™ desktop processors for IoT applications (Alder Lake-P)
+                </span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="platform-all-of-them" name="platform" value="all-of-them">
+                <span class="p-radio__label" id="platform-all-of-them">All of them</span>
+              </label>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="js-formfield">
+        <div class="u-sv3">
+          <h3 class="p-heading--5">What Ubuntu flavour are you interested in?</h3>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="ubuntu-flavour-ubnutu-server" name="ubuntu-flavour" value="ubnutu-server">
+                <span class="p-radio__label" id="ubuntu-flavour-ubnutu-server">Ubuntu Server</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="ubuntu-flavour-ubnutu-desktop" name="ubuntu-flavour" value="ubnutu-desktop">
+                <span class="p-radio__label" id="ubuntu-flavour-ubnutu-desktop">Ubuntu Desktop</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="ubuntu-flavour-ubnutu-core" name="ubuntu-flavour" value="ubnutu-core">
+                <span class="p-radio__label" id="ubuntu-flavour-ubnutu-core">Ubuntu Core</span>
+              </label>
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="ubuntu-flavour-all-of-them" name="ubuntu-flavour" value="all-of-them">
+                <span class="p-radio__label" id="ubuntu-flavour-all-of-them">All of them</span>
+              </label>
             </div>
           </div>
         </div>
-        <div class="pagination">
-          <a class="p-button--positive pagination__link--next" href="">Next</a>
+        <div class="row u-no-padding">
+          <div class="col-6 u-sv3">
+            <label for="about-project">Tell us more about your project</label>
+            <textarea name="about-project" id="about-project"></textarea>
+          </div>
         </div>
       </div>
+      <div class="pagination">
+        <a class="p-button--positive pagination__link--next" href="">Next</a>
+      </div>
     </div>
-
     <div class="js-pagination js-pagination--2 u-hide">
       <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
@@ -80,6 +136,10 @@
               <li class="p-list__item">
                 <label for="company">Company:</label>
                 <input required id="company" name="company" maxlength="255" type="text" required="required" />
+              </li>
+              <li class="p-list__item">
+                <label for="title">Job title:</label>
+                <input data-testid="form-jobTitle" required id="title" name="title" maxlength="255" type="text">
               </li>
               <li class="p-list__item">
                 <label for="email">Email:</label>

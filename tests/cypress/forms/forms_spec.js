@@ -3,7 +3,6 @@ import {
   standardFormUrls,
   interactiveForms,
   formsWithEmailTestId,
-  internetOfThingsForm
 } from "../utils";
 
 beforeEach(() => {
@@ -217,16 +216,13 @@ context("Interactive marketo forms", () => {
     }
   );
 
-  // wrote separate test for the pages using the same internet-of-things form (The form ids are differnent)
+  // wrote separate test for /download/iot/intel-iotg as cypress couldn't find the job title input field by label text
   it(
-    "should check each contact modal using the internet-of-things form",
+    "should check interactive contact modal on /download/iot/intel-iotg",
     { scrollBehavior: "center" },
     () => {
-    cy.visit("/");
-    cy.acceptCookiePolicy();
-
-    internetOfThingsForm.forEach((url) => {
-      cy.visit(url);
+      cy.visit("/download/iot/intel-iotg");
+      cy.acceptCookiePolicy();
       cy.findByTestId("interactive-form-link").click();
       cy.findByRole("link", { name: /Next/ }).click();
       cy.findByLabelText(/First name/).type("Test");
@@ -237,8 +233,9 @@ context("Interactive marketo forms", () => {
       cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
       cy.findByText(/Let's discuss/).click();
       cy.url().should("include", "#success");
-    });
-  });
+    }
+  );
+
 
   // wrote separate test for /robotics page as cypress couldn't find the job title input field by label text
   it(
