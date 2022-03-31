@@ -288,8 +288,8 @@ def build_tutorials_index(session, tutorials_docs):
         Get search results from Google Custom Search
         """
 
-        # The webteam's default custom search ID
-        search_engine_id = "009048213575199080868:i3zoqdwqk8o"
+        # Web tribe websites custom search ID
+        search_engine_id = "adb2397a224a1fe55"
 
         # API key should always be provided as an environment variable
         search_api_key = os.getenv("SEARCH_API_KEY")
