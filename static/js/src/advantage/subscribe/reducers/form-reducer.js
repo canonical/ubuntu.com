@@ -153,7 +153,16 @@ const formSlice = createSlice({
       state.periods = getProductPeriods(state.product.productID);
     },
     changeVersion(state, action) {
+      if (
+        (action.payload === "14.04" || action.payload === "16.04") &&
+        state.support !== "unset"
+      ) {
+        state.support = "essential";
+      }
       state.version = action.payload;
+
+      state.product = getProduct(state);
+      state.periods = getProductPeriods(state.product.productID);
     },
     changeFeature(state, action) {
       state.feature = state.isAppsEnabled ? action.payload : "infra"; //if ESM Apps is disabled we default to infra

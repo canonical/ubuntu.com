@@ -122,7 +122,12 @@ function renderSupport(state) {
   setSupportCost(state, "advanced");
 
   // disable all the options but essential if desktop and apps are selected
-  if (state.type === "desktop" && state.feature === "apps") {
+  // or if 16.04 or 14.04 is selected
+  if (
+    (state.type === "desktop" && state.feature === "apps") ||
+    state.version === "16.04" ||
+    state.version === "14.04"
+  ) {
     radios.forEach((radio) => {
       const input = radio.querySelector("input");
       if (input.value !== "essential") {
