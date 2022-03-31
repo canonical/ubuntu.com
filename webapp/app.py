@@ -26,6 +26,8 @@ from webapp.shop.context import get_stripe_publishable_key
 from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
+    UnauthorizedError,
+    UnauthorizedErrorView,
 )
 from webapp.security.api import SecurityAPIError
 from webapp.context import (
@@ -234,6 +236,7 @@ def ua_contracts_validation_error(error):
 
 
 @app.errorhandler(UAContractsAPIError)
+@app.errorhandler(UnauthorizedError)
 def ua_contracts_api_error(error):
     sentry.captureException(
         extra={
@@ -255,6 +258,7 @@ def ua_contracts_api_error(error):
 
 
 @app.errorhandler(UAContractsAPIErrorView)
+@app.errorhandler(UnauthorizedErrorView)
 def ua_contracts_api_error_view(error):
     sentry.captureException(
         extra={

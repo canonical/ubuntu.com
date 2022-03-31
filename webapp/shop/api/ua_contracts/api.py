@@ -313,6 +313,8 @@ class UAContractsAPI:
             raise AccessForbiddenError(error)
 
         if "auth" in error_rules and status_code == 401:
+            if self.is_for_view:
+                raise UnauthorizedErrorView(error)
             raise UnauthorizedError(error)
 
         if "no-found" in error_rules and status_code == 404:
@@ -330,6 +332,11 @@ class AccessForbiddenError(HTTPError):
 
 
 class UnauthorizedError(HTTPError):
+    def __init__(self, error: HTTPError):
+        super().__init__(request=error.request, response=error.response)
+
+
+class UnauthorizedErrorView(HTTPError):
     def __init__(self, error: HTTPError):
         super().__init__(request=error.request, response=error.response)
 
