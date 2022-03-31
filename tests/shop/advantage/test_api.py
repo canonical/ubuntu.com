@@ -11,6 +11,7 @@ from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIErrorView,
     UAContractsUserHasNoAccount,
     UnauthorizedError,
+    UnauthorizedErrorView,
     AccessForbiddenError,
 )
 
@@ -198,7 +199,7 @@ class TestGetAccountSubscriptions(unittest.TestCase):
     def test_errors(self):
         cases = [
             (401, False, UnauthorizedError),
-            (401, True, UnauthorizedError),
+            (401, True, UnauthorizedErrorView),
             (500, False, UAContractsAPIError),
             (500, True, UAContractsAPIErrorView),
         ]
@@ -719,7 +720,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
             (403, False, AccessForbiddenError),
             (403, False, AccessForbiddenError),
             (401, False, UnauthorizedError),
-            (401, True, UnauthorizedError),
+            (401, True, UnauthorizedErrorView),
             (404, False, UAContractsUserHasNoAccount),
             (404, True, UAContractsUserHasNoAccount),
             (500, False, UAContractsAPIError),
