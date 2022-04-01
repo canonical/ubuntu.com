@@ -22,11 +22,11 @@ Supported releases: **1.23.x,1.22.x, 1.21.x**
 
 ## Charmed Kubernetes bundle versions
 
-The **Juju Charm Store** hosts the **Charmed Kubernetes** bundles as well as
+**Charmhub.io** hosts the **Charmed Kubernetes** bundles as well as
 individual charms. To deploy the latest, stable bundle, run the command:
 
 ```bash
-juju deploy cs:charmed-kubernetes
+juju deploy charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
@@ -34,7 +34,7 @@ revision number. For example, to deploy the **Charmed Kubernetes** bundle for th
 release, you could run:
 
 ```bash
-juju deploy cs:~containers/charmed-kubernetes-733
+juju deploy charmed-kubernetes --revision=733
 ```
 
 <div class="p-notification--positive is-inline">
@@ -47,13 +47,13 @@ juju deploy cs:~containers/charmed-kubernetes-733
   </div>
 </div>
 
+
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
 that a higher revision number is 'better'. The revision numbers for the release
 versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 <a  id="table"></a>
-
 
 | Kubernetes version | Charmed Kubernetes bundle |
 | --- | --- |
@@ -74,6 +74,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 Only the latest three versions of Charmed Kubernetes are supported at any time.
   </p>
 </div>
+
 
 ## Finding version info
 
@@ -98,7 +99,7 @@ description: |
   for the api objects which include pods, services, replicationcontrollers, and others. The API
   Server services REST operations and provides the frontend to the cluster’s shared state through
   which all other components interact.
-
+  
   For more information, consult the [reference
   documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/).
 snap-id: KMZLusdClmUyLXAjjcI4sVnpjk1kM653
@@ -107,9 +108,9 @@ channels:
   latest/candidate: 1.23.0         2021-12-15 (2493) 23MB -
   latest/beta:      1.23.0         2021-12-15 (2493) 23MB -
   latest/edge:      1.23.0         2021-12-15 (2493) 23MB -
-  1.24/stable:      –
-  1.24/candidate:   –
-  1.24/beta:        –
+  1.24/stable:      –                                     
+  1.24/candidate:   –                                     
+  1.24/beta:        –                                     
   1.24/edge:        1.24.0-alpha.1 2021-12-11 (2513) 23MB -
   1.23/stable:      1.23.0         2021-12-08 (2493) 23MB -
   1.23/candidate:   1.23.0         2021-12-08 (2493) 23MB -
@@ -198,6 +199,10 @@ If you are looking for additional support, find out about [Ubuntu Advantage][sup
 
 Canonical can also provide [managed solutions][managed] for Kubernetes.
 
+<!-- LINKS -->
+[support]: /support
+[managed]: /kubernetes/managed
+
 <!-- FEEDBACK -->
 <div class="p-notification--information">
   <p class="p-notification__content">
@@ -207,9 +212,3 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
   </p>
 </div>
-
-<!-- LINKS -->
-
-[support]: /support
-[managed]: /kubernetes/managed
-```
