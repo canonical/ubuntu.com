@@ -7,10 +7,22 @@
 {% block content %}
 <section class="p-strip--suru-topped is-deep is-bordered">
   <div class="row">
-    <div class="col-8">
+    <div class="col-6">
       <h1>Ubuntu on public clouds</h1>
       <p>Ubuntu is the world's most popular cloud operating system across public clouds. Thanks to its security, versatility and policy of regular updates, Ubuntu is the leading cloud guest OS and the only free cloud operating system with the option of enterprise-grade commercial support.</p>
       <p><a class="p-button--positive js-invoke-modal" href="/openstack/managed">Contact us</a></p>
+    </div>
+    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/1c786630-image-cloud.svg",
+          alt="Ubuntu image cloud",
+          height="236",
+          width="365",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -41,7 +53,7 @@
         }}
       </div>
       <p>Juju is the fastest way to deploy and scale out your workloads on the leading public clouds. With Juju charm bundles, you can launch an entire cloud environment with one click, or just one command using the CLI. Use Juju to  deploy your entire application infrastructure, all in one.</p>
-      <p><a href="https://jujucharms.com/">Learn more about Juju</a></p>
+      <p><a href="https://jujucharms.com/">Learn more about Juju&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-divider__block">
       <h2 class="p-heading--3">Trusted Container (OCI) Images</h2>
@@ -102,6 +114,9 @@
       <p>Ubuntu Pro includes optimised kernel, hardening and security coverage for the entire collection of software packages shipped with Ubuntu.</p>
       <p>
         <a class="p-button--positive" href="/download/cloud">Start using Ubuntu today</a>
+      </p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/openstack/managed">Contact us</a>
       </p>
     </div>
     <div class="col-6 u-vertically-center">
