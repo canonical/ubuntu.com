@@ -14,6 +14,9 @@ https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/
 
 {% block content %}
 <section class="p-strip--suru-image is-bordered">
+  {% with cols = "6" %}
+    {% include "shared/_cloud-survey-banner.html" %}
+  {% endwith %}
   <div class="row">
     <div class="col-7">
       <h1>What is OpenStack?</h1>
