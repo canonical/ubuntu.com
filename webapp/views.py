@@ -616,6 +616,19 @@ class BlogView(flask.views.View):
         self.blog_views = blog_views
 
 
+class BlogRedirects(BlogView):
+    def dispatch_request(self, slug):
+        article = self.blog_views.api.get_article(
+            slug, self.blog_views.tag_ids, self.blog_views.excluded_tags
+        )
+
+        # Redirect canonical annoucements
+        if article["group"]["id"] == 2100:
+            return flask.redirect(f"https://canonical.com/blog/{slug}")
+
+        return flask.render_template("blog/article.html", article=article)
+
+
 class BlogCustomTopic(BlogView):
     def dispatch_request(self, slug):
         page_param = flask.request.args.get("page", default=1, type=int)
@@ -633,19 +646,6 @@ class BlogCustomGroup(BlogView):
         context = self.blog_views.get_group(slug, page_param, category_param)
 
         return flask.render_template(f"blog/{slug}.html", **context)
-
-
-class BlogPressCentre(BlogView):
-    def dispatch_request(self):
-        page_param = flask.request.args.get("page", default=1, type=int)
-        category_param = flask.request.args.get(
-            "category", default="", type=str
-        )
-        context = self.blog_views.get_group(
-            "canonical-announcements", page_param, category_param
-        )
-
-        return flask.render_template("blog/press-centre.html", **context)
 
 
 class BlogSitemapIndex(BlogView):
