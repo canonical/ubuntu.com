@@ -1,5 +1,5 @@
 import { Col, Row } from "@canonical/react-components";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useFormikContext } from "formik";
 import FormikField from "../../../FormikField";
 

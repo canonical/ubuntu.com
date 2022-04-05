@@ -240,4 +240,26 @@ describe("SubscriptionDetails", () => {
       "The machine entitlement below will update to 15 at the next billing cycle on 10 Jul 2022."
     );
   });
+
+  it("cannot show the cance trial button", () => {
+    const contract = userSubscriptionFactory.build({
+      statuses: userSubscriptionStatusesFactory.build({
+        is_trialled: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+        />
+      </QueryClientProvider>
+    );
+    expect(
+      wrapper.find("Button[data-test='cancel-trial-button']").exists()
+    ).toBe(true);
+  });
 });
