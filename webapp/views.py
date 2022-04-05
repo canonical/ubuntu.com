@@ -715,7 +715,9 @@ def marketo_submit():
 
     if "email" in form_fields:
         # Enrichment data for global enrichment form (id:4198)
-        enrichment_fields = {"email": form_fields["email"]}
+        enrichment_fields = {
+            "email": form_fields["email"],
+            "acquisition_url": referrer}
 
     try:
         ip_location = ip_reader.get(client_ip)
