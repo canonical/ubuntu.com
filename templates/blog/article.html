@@ -110,14 +110,14 @@
           {{ article.content.rendered|safe }}
         </div>
       </div>
-
-      <div class="col-4">
-        {% include 'blog/product-cards.html' %}
-
-        <div>
-          {% include 'blog/newsletter-form.html' %}
+      {% if article.slug != 'canonical-standing-with-ukraine' %}
+        <div class="col-4">
+            {% include 'blog/product-cards.html' %}
+          <div>
+            {% include 'blog/newsletter-form.html' %}
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </section>
 </article>
