@@ -7,6 +7,9 @@
 {% block content %}
 <section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
   <div class="p-strip--suru-image">
+    {% with cols = "6" %}
+      {% include "shared/_cloud-survey-banner.html" %}
+    {% endwith %}
     <div class="row u-equal-height">
       <div class="col-7 col-medium-4">
         <h1>Ceph storage on Ubuntu</h1>
