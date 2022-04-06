@@ -490,14 +490,19 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
         }
 
         .p-navigation__item {
+          font-weight: $font-weight-bold;
           line-height: 1rem;
           padding: 0.5rem 2rem 0.5rem 0;
         }
       }
 
       .p-navigation__link {
+        color: $color-mid-light;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
+      }
+      .p-navigation__item--dropdown-toggle::after {
+        top: 0.5rem;
       }
     }
   }
