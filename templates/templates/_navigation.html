@@ -1,7 +1,7 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
 <a href="#main-content" class="p-link--skip">Jump to main content</a>
 
-<header id="navigation" class="p-navigation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced{% endif %}">
+<header id="navigation" class="p-navigation is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced{% endif %}">
   {% block header_banner %}
   <div class="p-navigation__row">
     <div class="p-navigation__banner">
@@ -36,17 +36,17 @@
     </div>
     <nav aria-label="Main navigation" class="p-navigation__nav">
       <ul class="p-navigation__items u-hide js-show-nav" role="menu">
-        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
-          <a class="p-navigation__link-anchor" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
         </li>
-        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="developer" onmouseover="fetchDropdown('/templates/navigation-developer-h', 'developer-content'); this.onmouseover = null;">
-          <a class="p-navigation__link-anchor" href="#developer-content" onfocus="fetchDropdown('/templates/navigation-developer-h', 'developer-content');">Developer</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="developer" onmouseover="fetchDropdown('/templates/navigation-developer-h', 'developer-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#developer-content" onfocus="fetchDropdown('/templates/navigation-developer-h', 'developer-content');">Developer</a>
         </li>
-        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
-          <a class="p-navigation__link-anchor" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
         </li>
-        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
-          <a class="p-navigation__link-anchor" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
         </li>
       </ul>
       <noscript>
@@ -56,8 +56,8 @@
       </noscript>
       <ul class="p-navigation__items u-hide--small">
         <li class="p-navigation__item" id="link-4">
-          <a href="/search" class="js-search-button p-navigation__link-anchor" style="padding-right: 1rem;">
-            <span class="u-hide u-show--large">Search</span> <i class="p-icon--search is-light">Search</i>
+          <a href="/search" class="js-search-button p-navigation__link" style="padding-right: 1rem;">
+            <i class="p-icon--search is-light">Search</i>
           </a>
         </li>
         <li class="p-navigation__user js-account" id="canonical-login"></li>
