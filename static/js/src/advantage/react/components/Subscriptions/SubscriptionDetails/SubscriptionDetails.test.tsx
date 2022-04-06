@@ -241,7 +241,7 @@ describe("SubscriptionDetails", () => {
     );
   });
 
-  it("cannot show the cance trial button", () => {
+  it("shows the cance trial button if the subscription is a trial", () => {
     const contract = userSubscriptionFactory.build({
       statuses: userSubscriptionStatusesFactory.build({
         is_trialled: true,
