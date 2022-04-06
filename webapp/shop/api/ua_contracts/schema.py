@@ -53,7 +53,7 @@ class PurchaseSchema(BaseSchema):
     id = String(required=True)
     createdAt = String(required=True, attribute="created_at")
     status = String(required=True)
-    subscriptionID = String(required=True, attribute="subscription_id")
+    subscriptionID = String(attribute="subscription_id")
     invoice = Nested(InvoiceSchema)
     purchaseItems = List(
         Nested(PurchaseItemSchema), required=True, attribute="items"
