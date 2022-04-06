@@ -17,4 +17,25 @@ describe("SubscriptionCancelFields", () => {
       .simulate("change", { target: { name: "cancel", value: "cancel" } });
     expect(setIsValid).toHaveBeenCalledWith(true);
   });
+  it("displays right title if it's a normal subscription", () => {
+    const setIsValid = jest.fn();
+    const wrapper = mount(
+      <Formik initialValues={{ cancel: "" }} onSubmit={jest.fn()}>
+        <SubscriptionCancelFields setIsValid={setIsValid} />
+      </Formik>
+    );
+    wrapper.find("If you cancel this subscription");
+    expect(setIsValid).toHaveBeenCalledWith(true);
+  });
+  it("displays right title if it's a trial", () => {
+    const setIsValid = jest.fn();
+    const isTrial = true;
+    const wrapper = mount(
+      <Formik initialValues={{ cancel: "" }} onSubmit={jest.fn()}>
+        <SubscriptionCancelFields setIsValid={setIsValid} isTrial={isTrial} />
+      </Formik>
+    );
+    wrapper.find("If you cancel this trial");
+    expect(setIsValid).toHaveBeenCalledWith(true);
+  });
 });

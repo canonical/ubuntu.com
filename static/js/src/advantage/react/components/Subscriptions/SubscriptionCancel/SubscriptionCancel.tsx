@@ -8,7 +8,11 @@ import {
 import type { ModalProps } from "@canonical/react-components";
 import React, { useState } from "react";
 import * as Yup from "yup";
-import { useCancelContract, useUserSubscriptions } from "advantage/react/hooks";
+import {
+  useCancelContract,
+  useUserSubscriptions,
+  useCancelTrial,
+} from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import { SelectedId } from "../Content/types";
 import { Formik } from "formik";
@@ -17,6 +21,7 @@ import { SubscriptionCancelValues } from "./SubscriptionCancelFields/Subscriptio
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 
 type Props = {
+  isTrial?: boolean;
   selectedId?: SelectedId;
   onCancelSuccess: () => void;
   onClose: NonNullable<ModalProps["close"]>;
@@ -52,6 +57,7 @@ const generateError = (error: CancelError | null) => {
 };
 
 const SubscriptionCancel = ({
+  isTrial,
   selectedId,
   onCancelSuccess,
   onClose,
@@ -62,6 +68,8 @@ const SubscriptionCancel = ({
     select: selectSubscriptionById(selectedId),
   });
   const cancelContract = useCancelContract(subscription);
+  const cancelTrial = useCancelTrial(subscription?.account_id);
+  const subscriptionType = isTrial ? "trial" : "subscription";
 
   return (
     <div className="p-subscriptions__sticky-footer-modal">
@@ -70,22 +78,35 @@ const SubscriptionCancel = ({
           cancel: "",
         }}
         onSubmit={() => {
-          cancelContract.mutate(null, {
-            onError: (error) =>
-              setError(
-                error.message.includes("no monthly subscription")
-                  ? CancelError.SubscriptionMissing
-                  : CancelError.Failed
-              ),
-            onSuccess: () => {
-              onCancelSuccess();
-              sendAnalyticsEvent({
-                eventCategory: "Advantage",
-                eventAction: "subscription-cancel-form",
-                eventLabel: "subscription cancelled",
-              });
-            },
-          });
+          if (subscriptionType === "subscription") {
+            cancelContract.mutate(null, {
+              onError: (error) =>
+                setError(
+                  error.message.includes("no monthly subscription")
+                    ? CancelError.SubscriptionMissing
+                    : CancelError.Failed
+                ),
+              onSuccess: () => {
+                onCancelSuccess();
+                sendAnalyticsEvent({
+                  eventCategory: "Advantage",
+                  eventAction: "subscription-cancel-form",
+                  eventLabel: "subscription cancelled",
+                });
+              },
+            });
+          } else {
+            cancelTrial.mutate(null, {
+              onSuccess: () => {
+                onCancelSuccess();
+                sendAnalyticsEvent({
+                  eventCategory: "Advantage",
+                  eventAction: "subscription-cancel-form",
+                  eventLabel: "trial cancelled",
+                });
+              },
+            });
+          }
         }}
         validateOnMount
         validationSchema={CancelSchema}
@@ -102,11 +123,15 @@ const SubscriptionCancel = ({
                 onClick={() => handleSubmit()}
                 type="button"
               >
-                Yes, cancel subscription
+                Yes, cancel {subscriptionType}
               </ActionButton>
             }
             close={onClose}
-            title={<>Cancel subscription {subscription?.product_name}</>}
+            title={
+              <>
+                Cancel {subscriptionType} {subscription?.product_name}
+              </>
+            }
           >
             {isLoading ? (
               <Spinner data-test="form-loading" />
@@ -116,12 +141,15 @@ const SubscriptionCancel = ({
                   <Notification
                     data-test="cancel-error"
                     severity="negative"
-                    title="Could not cancel subscription:"
+                    title={`Could not cancel ${subscriptionType}:`}
                   >
                     {generateError(error)}
                   </Notification>
                 ) : null}
-                <SubscriptionCancelFields setIsValid={setIsValid} />
+                <SubscriptionCancelFields
+                  setIsValid={setIsValid}
+                  isTrial={isTrial}
+                />
               </>
             )}
           </Modal>

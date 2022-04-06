@@ -4,9 +4,11 @@ import {
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { forwardRef, useEffect, useState } from "react";
+import React, { useCallback, forwardRef, useEffect, useState } from "react";
 import classNames from "classnames";
+import usePortal from "react-useportal";
 
+import SubscriptionCancel from "../SubscriptionCancel";
 import DetailsContent from "./DetailsContent";
 import SubscriptionEdit from "../SubscriptionEdit";
 import { useUserSubscriptions } from "advantage/react/hooks";
@@ -31,6 +33,18 @@ type Props = {
 
 export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
   ({ modalActive, onCloseModal, selectedId }: Props, ref) => {
+    const { openPortal, closePortal, isOpen, Portal } = usePortal();
+    const showPortal = useCallback((show: boolean) => {
+      // Programatically opening portals currently has an unresolved issue so we
+      // need to provide a fake event:
+      // https://github.com/alex-cory/react-useportal/issues/36
+      const NULL_EVENT = { currentTarget: { contains: () => false } };
+      if (show) {
+        openPortal(NULL_EVENT);
+      } else {
+        closePortal(NULL_EVENT);
+      }
+    }, []);
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
     const [showingRenewalModal, setShowingRenewalModal] = useState(false);
@@ -149,6 +163,41 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     Renew subscription&hellip;
                   </Button>
                 ) : null}
+                {subscription.statuses.is_trialled ? (
+                  <Button
+                    appearance="neutral"
+                    className="p-subscriptions__details-action"
+                    data-test="cancel-trial-button"
+                    disabled={editing}
+                    onClick={() => {
+                      showPortal(true);
+                      sendAnalyticsEvent({
+                        eventCategory: "Advantage",
+                        eventAction: "subscription-cancel-trial",
+                        eventLabel: "cancel trial button clicked",
+                      });
+                    }}
+                  >
+                    Cancel trial
+                  </Button>
+                ) : null}
+                {isOpen && (
+                  <Portal>
+                    <SubscriptionCancel
+                      isTrial
+                      selectedId={selectedId}
+                      onClose={() => showPortal(false)}
+                      onCancelSuccess={() => {
+                        showPortal(false);
+                        setNotification({
+                          severity: "positive",
+                          children: "Trial was cancelled.",
+                          onDismiss: () => setNotification(null),
+                        });
+                      }}
+                    />
+                  </Portal>
+                )}
                 {isResizable ? (
                   <Button
                     appearance="neutral"

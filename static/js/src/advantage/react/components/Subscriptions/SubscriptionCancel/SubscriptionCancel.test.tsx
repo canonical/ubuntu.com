@@ -15,6 +15,7 @@ import { UserSubscriptionPeriod } from "advantage/api/enum";
 
 describe("SubscriptionCancel", () => {
   let cancelContractSpy: jest.SpyInstance;
+  let cancelTrialSpy: jest.SpyInstance;
   let queryClient: QueryClient;
   let subscription: UserSubscription;
   let lastPurchaseIds: LastPurchaseIds;
@@ -22,6 +23,8 @@ describe("SubscriptionCancel", () => {
   beforeEach(() => {
     cancelContractSpy = jest.spyOn(contracts, "cancelContract");
     cancelContractSpy.mockImplementation(() => Promise.resolve({}));
+    cancelTrialSpy = jest.spyOn(contracts, "endTrial");
+    cancelTrialSpy.mockImplementation(() => Promise.resolve({}));
     queryClient = new QueryClient();
     subscription = userSubscriptionFactory.build({
       period: UserSubscriptionPeriod.Monthly,
@@ -279,5 +282,28 @@ describe("SubscriptionCancel", () => {
     wrapper.update();
     expect(wrapper.find(ActionButton).prop("loading")).toBe(false);
     expect(wrapper.find(ActionButton).prop("success")).toBe(true);
+  });
+  it("can submit the form via the cancel trial button", async () => {
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionCancel
+          selectedId={subscription.id}
+          onCancelSuccess={jest.fn()}
+          onClose={jest.fn()}
+          isTrial
+        />
+      </QueryClientProvider>
+    );
+    await act(async () => {
+      wrapper
+        .find("input[name='cancel']")
+        .simulate("change", { target: { name: "cancel", value: "cancel" } });
+    });
+    wrapper.update();
+    await act(async () => {
+      wrapper.find(ActionButton).simulate("click");
+    });
+    wrapper.update();
+    expect(cancelTrialSpy).toHaveBeenCalled();
   });
 });
