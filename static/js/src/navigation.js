@@ -1,5 +1,5 @@
 var navDropdowns = [].slice.call(
-  document.querySelectorAll(".p-navigation__dropdown-link")
+  document.querySelectorAll(".p-navigation__item--dropdown-toggle")
 );
 var dropdownWindow = document.querySelector(".dropdown-window");
 var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
@@ -221,7 +221,9 @@ if (accountContainer && accountContainerSmall) {
       }
 
       function toggleMenu(element, show) {
-        const container = element.closest(".p-navigation__dropdown-link");
+        const container = element.closest(
+          ".p-navigation__item--dropdown-toggle"
+        );
         var target = document.getElementById(
           element.getAttribute("aria-controls")
         );
