@@ -197,11 +197,11 @@ if (accountContainer && accountContainerSmall) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link-anchor">Sign in</a>`;
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>`;
+        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link-anchor"><i class="p-icon--user is-light">Sign in</i> </a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link-anchor" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
+        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor"><i class="p-icon--user is-light">${data.account.fullname}</i>(<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
         accountContainer.innerHTML = `<div class="p-navigation__dropdown-link">
             <a href="#" class="p-navigation__link-anchor p-navigation__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
