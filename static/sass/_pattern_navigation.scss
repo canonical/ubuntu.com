@@ -496,6 +496,38 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   }
 }
 
+@mixin ubuntu-p-navigation-reduced {
+  .p-navigation.is-reduced {
+    @extend %small-text;
+
+    background-color: $color-dark;
+
+    .p-navigation__item {
+      color: $color-mid-light;
+    }
+
+    .p-navigation__banner {
+      background-color: transparent;
+      padding-left: 0;
+
+      .p-navigation__logo {
+        background-color: transparent;
+        height: auto;
+      }
+
+      .p-navigation__item {
+        line-height: 1rem;
+        padding: 0.5rem 2rem 0.5rem 0;
+      }
+    }
+
+    .p-navigation__link-anchor {
+      line-height: 1rem;
+      padding: 0.5rem 2rem 0.5rem 1rem;
+    }
+  }
+}
+
 .p-card--navigation {
   @include vf-p-card;
 
