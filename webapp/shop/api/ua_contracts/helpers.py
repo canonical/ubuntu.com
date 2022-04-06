@@ -225,10 +225,11 @@ def get_user_subscription_statuses(
     if type == "free":
         return statuses
 
-    date_statuses = get_date_statuses(type, end_date)
-    statuses["is_expiring"] = date_statuses["is_expiring"]
-    statuses["is_in_grace_period"] = date_statuses["is_in_grace_period"]
-    statuses["is_expired"] = date_statuses["is_expired"]
+    if renewal is None or (renewal and renewal.status != "closed"):
+        date_statuses = get_date_statuses(type, end_date)
+        statuses["is_expiring"] = date_statuses["is_expiring"]
+        statuses["is_in_grace_period"] = date_statuses["is_in_grace_period"]
+        statuses["is_expired"] = date_statuses["is_expired"]
 
     if statuses["is_expired"]:
         return statuses

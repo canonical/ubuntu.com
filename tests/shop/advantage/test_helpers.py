@@ -938,6 +938,37 @@ class TestHelpers(unittest.TestCase):
                     "has_access_to_token": True,
                 },
             },
+            "test_closed_legacy_user_subscription": {
+                "parameters": {
+                    "account": make_account(),
+                    "type": "legacy",
+                    "end_date": "2020-10-01T10:00:00Z",
+                    "renewal": make_renewal(
+                        actionable=True,
+                        status="closed",
+                        start_date="2020-08-01T10:00:00Z",
+                        end_date="2020-10-01T10:00:00Z",
+                    ),
+                },
+                "expectations": {
+                    "is_upsizeable": False,
+                    "is_downsizeable": False,
+                    "is_cancellable": False,
+                    "is_cancelled": False,
+                    "is_expiring": False,
+                    "is_in_grace_period": False,
+                    "is_expired": False,
+                    "is_trialled": False,
+                    "is_renewable": False,
+                    "is_renewal_actionable": True,
+                    "has_pending_purchases": False,
+                    "is_subscription_active": False,
+                    "is_subscription_auto_renewing": False,
+                    "should_present_auto_renewal": False,
+                    "has_access_to_support": True,
+                    "has_access_to_token": True,
+                },
+            },
             "test_billing_user_subscription": {
                 "parameters": {
                     "account": make_account(role="billing"),
