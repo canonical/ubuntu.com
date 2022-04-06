@@ -2,7 +2,7 @@
 
 <header id="navigation" class="p-navigation">
   {% block header_banner %}
-  <div class="p-navigation__row">
+  <div class="p-navigation__row {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced{% endif %}">
     <div class="p-navigation__banner">
       <div class="p-navigation__logo">
         <a class="p-navigation__item" href="/">
