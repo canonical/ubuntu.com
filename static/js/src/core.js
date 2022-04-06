@@ -1,5 +1,5 @@
-import { createNav } from "@canonical/global-nav";
 import { cookiePolicy } from "@canonical/cookie-policy";
+import { createNav } from "@canonical/global-nav";
 
 // Initalise the global navigation.
 createNav({
