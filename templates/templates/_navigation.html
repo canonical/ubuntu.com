@@ -1,4 +1,5 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
+<a href="#main-content" class="p-link--skip">Jump to main content</a>
 
 <header id="navigation" class="p-navigation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced{% endif %}">
   {% block header_banner %}
