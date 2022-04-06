@@ -100,15 +100,11 @@ def certified_hardware_details(canonical_id, release):
 
         hardware_details[category].append(device_info)
 
-    # default to category, which contains the least specific form_factor
-    form_factor = release_details.get("form_factor", category)
-
     return render_template(
         "certified/hardware-details.html",
         canonical_id=canonical_id,
         model_name=models["model"],
         form=models["category"],
-        form_factor=form_factor,
         vendor=models["make"],
         major_release=models["major_release"],
         hardware_details=hardware_details,
