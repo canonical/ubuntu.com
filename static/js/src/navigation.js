@@ -201,7 +201,7 @@ if (accountContainer && accountContainerSmall) {
         accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainerSmall.innerHTML = `<span class="p-navigation__link"><i class="p-icon--user is-light">${data.account.fullname}</i>(<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
+        accountContainerSmall.innerHTML = `<span class="p-navigation__link">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
         accountContainer.innerHTML = `<div class="p-navigation__item--dropdown-toggle">
             <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
