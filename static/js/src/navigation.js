@@ -197,7 +197,7 @@ if (accountContainer && accountContainerSmall) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link-anchor"><i class="p-icon--user is-light">Sign in</i> </a>`;
+        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link"><i class="p-icon--user is-light">Sign in</i> </a>`;
         accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
       } else {
         window.accountJSONRes = data.account;
@@ -221,6 +221,8 @@ if (accountContainer && accountContainerSmall) {
       }
 
       function toggleMenu(element, show) {
+        console.log("toggle");
+        console.log(element);
         const container = element.closest(
           ".p-navigation__item--dropdown-toggle"
         );
@@ -229,9 +231,9 @@ if (accountContainer && accountContainerSmall) {
         );
 
         if (show) {
-          container.classList.add("is-selected");
+          container.classList.add("is-active");
         } else {
-          container.classList.remove("is-selected");
+          container.classList.remove("is-active");
         }
 
         if (target) {
@@ -296,7 +298,9 @@ if (accountContainer && accountContainerSmall) {
         }
       }
 
-      setupAllContextualMenus(".p-navigation__link");
+      setupAllContextualMenus(
+        ".p-navigation__user .p-navigation__item--dropdown-toggle .p-navigation__link"
+      );
     });
 }
 
