@@ -500,9 +500,34 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
         color: $color-mid-light;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
+        transition: none;
       }
-      .p-navigation__item--dropdown-toggle::after {
-        top: 0.5rem;
+
+      .p-navigation__item--dropdown-toggle {
+        &::after {
+          top: 0.5rem;
+        }
+
+        &.is-selected {
+          background: $color-x-light;
+
+          &::after {
+            @include vf-icon-chevron($color-dark);
+            transform: rotate(180deg);
+          }
+
+          .p-navigation__link {
+            color: $color-dark;
+          }
+
+          .p-navigation__link::before {
+            display: none;
+          }
+        }
+      }
+
+      .p-navigation__dropdown--right {
+        top: 2rem;
       }
     }
   }
