@@ -175,8 +175,8 @@ class Purchase:
         id: str,
         marketplace: str,
         status: str,
-        subscription_id: str,
         items: List[PurchaseItem],
+        subscription_id: str = None,
         invoice: Invoice = None,
     ):
         self.account_id = account_id
