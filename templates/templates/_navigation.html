@@ -1,6 +1,5 @@
 {% set breadcrumbs = get_navigation(request.path).breadcrumbs %}
 <a href="#main-content" class="p-link--skip">Jump to main content</a>
-
 <header id="navigation" class="p-navigation is-dark {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced{% endif %}">
   {% block header_banner %}
   <div class="p-navigation__row">
@@ -15,27 +14,12 @@
             <script>performance.mark("Logo rendered")</script>
           {% endif %}
         </a>
-
-        <!-- {% if breadcrumbs %}
-        <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
-          <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}">
-            {{ breadcrumbs.section.title }}
-          </a>
-        </h5>
-        {% endif %} -->
-
-        {% if section_title and section_path %}
-        <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
-          <a class="p-navigation--secondary__banner" href="{{ section_path }}">
-            {{ section_title }}
-          </a>
-        </h5>
-        {% endif %}
       </div>
-      <div class="u-hide u-show--small js-account--small"></div>
+      <a href="#navigation" class="p-navigation__toggle--open" title="menu">Menu</a>
+      <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
     </div>
-    <nav aria-label="Main navigation" class="p-navigation__nav">
-      <ul class="p-navigation__items u-hide js-show-nav" role="menu">
+    <nav class="p-navigation__nav" aria-label="Categories">
+      <ul class="p-navigation__items">
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
         </li>
@@ -49,11 +33,6 @@
           <a class="p-navigation__link" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
         </li>
       </ul>
-      <noscript>
-        <ul class="p-navigation__items" role="menu">
-          {% include "templates/header_noscript.html" %}
-        </ul>
-      </noscript>
       <ul class="p-navigation__items u-hide--small">
         <li class="p-navigation__item" id="link-4">
           <a href="/search" class="js-search-button p-navigation__link" style="padding-right: 1rem;">
@@ -76,7 +55,7 @@
 <div class="dropdown-window-overlay fade-animation"></div>
 <div class="dropdown-window slide-animation">
   <div class="u-hide" id="enterprise-content"></div>
-  <div class="u-hide" id="developer-content">  </div>
+  <div class="u-hide" id="developer-content"></div>
   <div class="u-hide" id="community-content"></div>
   <div class="u-hide" id="download-content"></div>
 </div>
@@ -130,25 +109,8 @@
 </nav>
 {% endif %}
 {% endif %}
-
 <script>
-  var nav = document.querySelector('.js-show-nav');
-  var hash = window.location.hash;
-  nav.classList.remove('u-hide');
-
-  // If the page loads with a preselected hash load and open the menu
-  if (hash) {
-    try {
-      var selected = nav.querySelector(hash);
-    } catch(error) {
-      console.warn("Hash " + hash + " not found in topnav");
-    }
-    if (selected) {
-      selected.onmouseover();
-    }
-  }
-
-  function fetchDropdown(url, id) {
+   function fetchDropdown(url, id) {
     var div = document.getElementById(id);
     var req = new XMLHttpRequest();
     req.open('GET', url);
@@ -157,66 +119,53 @@
       div.innerHTML = this.responseText;
     });
   }
+  
+  function toggleDropdown(toggle, open) {
+  var parentElement = toggle.parentNode;
+  var dropdown = document.getElementById(toggle.getAttribute('aria-controls'));
+  dropdown.setAttribute('aria-hidden', !open);
 
-  function initSearch() {
-    var searchButton = document.querySelector('.js-search-button');
-    var searchReset = document.querySelector('.p-search-box__reset');
-    if (searchButton) {
-      searchButton.addEventListener('click', openSearch);
+  if (open) {
+    parentElement.classList.add('is-active');
+  } else {
+    parentElement.classList.remove('is-active');
+  }
+}
+
+function closeAllDropdowns(toggles) {
+  toggles.forEach(function (toggle) {
+    toggleDropdown(toggle, false);
+  });
+}
+
+function handleClickOutside(toggles, containerClass) {
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+
+    if (target.closest) {
+      if (!target.closest(containerClass)) {
+        closeAllDropdowns(toggles);
+      }
     }
+  });
+}
 
-    if (searchReset) {
-      searchReset.addEventListener('click', closeSearch);
-    }
-  }
-  initSearch();
+function initNavDropdowns(containerClass) {
+  var toggles = [].slice.call(document.querySelectorAll(containerClass + ' [aria-controls]'));
 
-  function openSearch(e) {
-    e.preventDefault();
-    var navigation = document.querySelector('.p-navigation__nav');
-    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
-    var banner = document.querySelector(".p-navigation__banner");
-    var dropdownWindow = document.querySelector(".dropdown-window");
-    var navigationItems = document.querySelector('.p-navigation__items');
-    var searchButton = document.querySelector('.js-search-button');
-    var search = document.querySelector('.p-navigation__search');
-    var searchInput = document.querySelector('.p-search-box__input');
-    var searchActive = !search.classList.contains('u-hide');
-    search.classList.remove('u-hide');
-    searchButton.classList.add('u-hide');
-    banner.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
-    navigationItems.style= "opacity: 0.4; transition: opacity 0.5s ease-in-out;"
-    dropdownWindow.style="z-index: 37;"
-    dropdownWindowOverlay.classList.remove("fade-animation");
-    navigation.classList.add('has-active-search');
-    searchInput.focus();
-    dropdownWindowOverlay.addEventListener('click', closeSearch);
-    document.addEventListener('keyup', keyPressHandler);
-  }
+  handleClickOutside(toggles, containerClass);
 
-  function closeSearch() {
-    var navigation = document.querySelector('.p-navigation__nav');
-    var banner = document.querySelector(".p-navigation__banner")
-    var dropdownWindow = document.querySelector(".dropdown-window");
-    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
-    var navigationItems = document.querySelector('.p-navigation__items');
-    var searchButton = document.querySelector('.js-search-button');
-    var search = document.querySelector('.p-navigation__search');
-    search.classList.add('u-hide');
-    banner.style= "opacity: 1;"
-    dropdownWindow.style="z-index: 39;"
-    navigationItems.style= "opacity: 1;"
-    dropdownWindowOverlay.classList.add("fade-animation");
-    navigation.classList.remove('has-active-search');
-    searchButton.classList.remove('u-hide');
-    document.removeEventListener('keyup', keyPressHandler);
-    dropdownWindowOverlay.removeEventListener('click', closeSearch);
-  }
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
 
-  function keyPressHandler (e) {
-    console.log(e);
-    if (e.key === "Escape") {
-      closeSearch();
-    }
-  }
+      closeAllDropdowns(toggles);
+      toggleDropdown(toggle, true);
+    });
+  });
+}
+  
+initNavDropdowns('.p-navigation__item--dropdown-toggle')
+
+
 </script>
