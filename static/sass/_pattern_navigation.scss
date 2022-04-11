@@ -507,23 +507,44 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
         &::after {
           top: 0.5rem;
         }
-
-        &.is-selected {
-          background: $color-x-light;
-
+        &.is-selected{
+          background-color: rgba(255,255,255,.1);
           &::after {
-            @include vf-icon-chevron($color-dark);
             transform: rotate(180deg);
           }
-
           .p-navigation__link {
-            color: $color-dark;
+            color: $color-x-light;
           }
-
           .p-navigation__link::before {
             display: none;
           }
         }
+
+        // &.is-selected{
+        //   background: $color-x-light;
+
+        //   &::after {
+        //     @include vf-icon-chevron($color-dark);
+        //     transform: rotate(180deg);
+        //   }
+
+        //   .p-navigation__link {
+        //     color: $color-dark;
+        //   }
+
+        //   .p-navigation__link::before {
+        //     display: none;
+        //   }
+        // }
+        // &.is-active{
+        //   background: $color-x-light;
+        //   &::after {
+        //     @include vf-icon-chevron($color-dark);
+        //   }
+        //   .p-navigation__link {
+        //     color: $color-dark;
+        //   }
+        // }
       }
 
       .p-navigation__dropdown--right {
