@@ -357,16 +357,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
       }
     }
 
-    &__toggle--open,
-    &__toggle--close {
-      color: $color-light !important;
-      font-size: 0.875rem;
-
-      // @media (max-width: $breakpoint-x-small - 1) {
-      //   margin-right: math.div($grid-margin-width, 1.5) !important;
-      // }
-    }
-
     @media (min-width: $breakpoint-navigation-threshold) {
       .p-search-box {
         margin-left: 1rem;
@@ -472,6 +462,25 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   .p-navigation.is-reduced {
     @extend %small-text;
 
+    .p-navigation__banner{
+      background-color: #111111;
+      height: auto;
+      color: $color-mid-light;
+    
+      .p-navigation__logo {
+          background-color : #111111;
+          height: 0;
+          .p-navigation__item {
+            color: $color-mid-light;
+          }
+      }
+      .js-account--small {
+        .p-navigation__link {
+          padding: 0 1rem 0 0;
+        }
+      }
+    }
+    
     @media (min-width: $breakpoint-navigation-threshold) {
       background-color: $color-dark;
       margin-bottom: 0;
