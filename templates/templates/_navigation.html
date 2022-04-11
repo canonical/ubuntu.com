@@ -60,22 +60,36 @@
   <div class="u-hide" id="download-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
-{% if breadcrumbs and breadcrumbs.children %}
-<nav aria-label="Sub navigation" class="p-navigation--secondary">
-  <div class="row">
-    <div class="col-12 u-equal-height">
-      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
-        <h5 class="p-navigation--secondary__logo">
-          {{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}
-        </h5>
-      </a>
+{% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
+<div id="secondary-navigation" class="p-navigation is-dark">
+  <div class="p-navigation__row">
+    <div class="p-navigation__banner">
+      <div class="p-navigation__tagged-logo">
+        <a class="p-navigation__link" href="{{ breadcrumbs.section.path }}">
+          <div class="p-navigation__logo-tag">
+            <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
+          </div>
+          <span class="p-navigation__logo-title">{{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}</span>
+        </a>
+      </div>
+      <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down"></i></a>
+      <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up"></i></a>
+    </div>
+    
+    <nav class="p-navigation__nav" aria-label="secondary-navigation-children">
       {% if breadcrumbs.children %}
-      <ul class="breadcrumbs--secondary">
+      <ul class="p-navigation__items">
         {% for child in breadcrumbs.children %}
+<<<<<<< HEAD
           {% if child.title != "Overview" %}
             {% if child.path == '/blog/topics' %}
             <li class="breadcrumbs__item p-contextual-menu u-hide--small">
               <a aria-controls="topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+=======
+          {% if child.path == '/blog/topics' %}
+          <li class="p-navigation__item is-selected">
+            <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+>>>>>>> cac74e3c0 (WIP - secondary dropdowns)
 
               <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
                 <span class="p-contextual-menu__group">
@@ -84,12 +98,33 @@
                   {% endfor %}
                 </span>
               </span>
+<<<<<<< HEAD
             </li>
             {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
             <li class="breadcrumbs__item">
               <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
             </li>
             {% endif %}
+=======
+            </span>
+          </li>
+          {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+          <li class="breadcrumbs__item">
+            <a class="p-navigation__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
+          </li>
+          {% endif %}
+
+          {% if breadcrumbs.grandchildren %}
+          <li class="p-navigation__item">
+            {% for grandchild in breadcrumbs.grandchildren %}
+            <li class="breadcrumbs__item">
+              <a class="p-navigation__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
+                {{ grandchild.title }}
+              </a>
+            </li>
+          </li>
+            {% endfor %}
+>>>>>>> cac74e3c0 (WIP - secondary dropdowns)
           {% endif %}
         {% endfor %}
 
@@ -97,16 +132,16 @@
           {% if child.path == "/blog/topics" %}
             {% for item in child.children %}
             <li class="breadcrumbs__item u-hide--medium u-hide--large">
-              <a class="breadcrumbs__link {% if request.path == item.path %}p-link--active{% else %}p-link--soft {% endif %}" href="{{ item.path }}">{{ item.title }}</a>
+              <a class="p-navigation__link {% if request.path == item.path %}p-link--active{% else %}p-link--soft {% endif %}" href="{{ item.path }}">{{ item.title }}</a>
             </li>
             {% endfor %}
           {% endif %}
         {% endfor %}
       </ul>
-      {% endif %}
-    </div>
+      {% endif %}   
+    </nav>
   </div>
-</nav>
+</div>
 {% endif %}
 {% endif %}
 <script>
