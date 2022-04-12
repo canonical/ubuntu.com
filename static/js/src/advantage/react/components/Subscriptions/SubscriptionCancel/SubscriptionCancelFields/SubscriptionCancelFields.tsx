@@ -32,6 +32,10 @@ const SubscriptionCancelFields = ({ setIsValid, isTrial }: Props) => {
           The <strong>10 machines</strong> will stop receiving updates and
           services at the end of the billing period.
         </li>
+        <li>
+          Additional subscriptions purchased directly with Canonical will not be
+          affected.
+        </li>
       </ul>
       <p>
         Want help or advice? <a href="/contact-us">Chat with us</a>.
