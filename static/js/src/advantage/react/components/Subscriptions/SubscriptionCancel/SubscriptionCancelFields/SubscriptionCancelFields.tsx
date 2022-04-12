@@ -33,7 +33,8 @@ const SubscriptionCancelFields = ({ setIsValid, isTrial }: Props) => {
           services at the end of the billing period.
         </li>
         <li>
-          Additional subscriptions purchased directly with Canonical will not be affected.
+          Additional subscriptions purchased directly with Canonical will not be
+          affected.
         </li>
       </ul>
       <p>
