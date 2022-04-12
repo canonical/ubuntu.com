@@ -3,7 +3,7 @@ import { MainTable, Icon, ICONS } from "@canonical/react-components";
 
 const ExplainingTable = () => (
   <>
-    <h2 className="p-heading--3">Roles descriptions</h2>
+    <h2 className="p-heading--3">Role permissions</h2>
     <MainTable
       headers={[
         {
