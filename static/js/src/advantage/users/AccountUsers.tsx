@@ -3,6 +3,7 @@ import { useQueryClient, useMutation } from "react-query";
 import * as Sentry from "@sentry/react";
 import { User, AccountUsersData, NewUserValues, UserRole } from "./types";
 import Organisation from "./components/Organisation";
+import ExplainingTable from "./components/ExplainingTable";
 import AddNewUser from "./components/AddNewUser/AddNewUser";
 import TableView from "./components/TableView/TableView";
 import DeleteConfirmationModal from "./components/DeleteConfirmationModal/DeleteConfirmationModal";
@@ -207,6 +208,9 @@ const AccountUsers = ({
             />
           </div>
         </div>
+      </section>
+      <section>
+        <ExplainingTable />
       </section>
     </div>
   );
