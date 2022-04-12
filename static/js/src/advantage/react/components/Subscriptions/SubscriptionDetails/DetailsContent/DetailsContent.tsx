@@ -19,6 +19,7 @@ import {
   isFreeSubscription,
   isBlenderSubscription,
 } from "advantage/react/utils";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import React, { ReactNode } from "react";
 
 import DetailsTabs from "../DetailsTabs";
@@ -108,6 +109,13 @@ const DetailsContent = ({ selectedId }: Props) => {
         },
       ]}
       className="u-sv4 u-no-margin--bottom"
+      onClick={() => {
+        sendAnalyticsEvent({
+          eventCategory: "Advantage",
+          eventAction: "subscription-token-click",
+          eventLabel: "Token copied",
+        });
+      }}
     />
   ) : null;
 

@@ -1,3 +1,4 @@
+import { logSelectOptionEvent } from "advantage/ecom-events";
 import {
   changeFeature,
   changeQuantity,
@@ -38,6 +39,7 @@ export default function initFormInputs(store) {
     inputs.forEach((input) => {
       input.addEventListener("input", (e) => {
         store.dispatch(action(e.target.value));
+        logSelectOptionEvent(name, e.target.value);
       });
     });
   }
