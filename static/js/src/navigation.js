@@ -7,7 +7,6 @@ var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
 navDropdowns.forEach(function (dropdown) {
   dropdown.addEventListener("click", function (event) {
     event.preventDefault();
-
     var clickedDropdown = this;
 
     dropdownWindow.classList.remove("slide-animation");
@@ -19,6 +18,8 @@ navDropdowns.forEach(function (dropdown) {
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains("is-selected")) {
           closeMenu(dropdown, dropdownContent);
+          dropdownContent.classList.add("u-hide");
+
         } else {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
@@ -221,8 +222,6 @@ if (accountContainer && accountContainerSmall) {
       }
 
       function toggleMenu(element, show) {
-        console.log("toggle");
-        console.log(element);
         const container = element.closest(
           ".p-navigation__item--dropdown-toggle"
         );
