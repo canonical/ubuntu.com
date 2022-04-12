@@ -13,7 +13,19 @@ $navigation-logo-width: 1.1rem;
 $sph-navigation-link: 0.3rem;
 $spv-navigation-logo: 0.3125rem;
 // temporary copied from vanilla to here
+@mixin ubuntu-p-navigation {
+  .dropdown-window {
+    @include vf-animation(all, brisk, in);    
+  }
+  .slide-animation {
+    transform: translateY(-101%);
+  }
 
+  .fade-animation {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 @mixin ubuntu-p-navigation-reduced {
   .p-navigation.is-reduced {
     @extend %small-text;
