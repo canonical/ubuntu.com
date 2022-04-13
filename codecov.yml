@@ -13,12 +13,22 @@ coverage:
   status:
     project:
       javascript:
+        # set to non-blocking until we fix codecov reports https://github.com/canonical-web-and-design/ubuntu.com/issues/11479
+        informational: true
         target: auto
-        threshold: 0%
+        # this allows a 1% drop in code coverage
+        threshold: 1%
         flags:
           - javascript
       python:
+        # set to non-blocking until we fix codecov reports https://github.com/canonical-web-and-design/ubuntu.com/issues/11479
+        informational: true
         target: auto
-        threshold: 0%
+        # this allows a 1% drop in code coverage
+        threshold: 1%
         flags:
           - python
+    patch:
+      default:
+        # set to non-blocking until we fix codecov reports https://github.com/canonical-web-and-design/ubuntu.com/issues/11479
+        informational: true
