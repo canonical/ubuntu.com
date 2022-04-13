@@ -6,13 +6,6 @@ $ubuntu-logo-svg-width: 5rem; // width in rems
 $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
 $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
 
-// temporary copied from vanilla from here 
-$navigation-logo-tag-width: 1.5rem;
-$navigation-logo-tag-height: 2.4rem;
-$navigation-logo-width: 1.1rem;
-$sph-navigation-link: 0.3rem;
-$spv-navigation-logo: 0.3125rem;
-// temporary copied from vanilla to here
 @mixin ubuntu-p-navigation {
   .dropdown-window {
     @include vf-animation(all, brisk, in);    
@@ -20,7 +13,6 @@ $spv-navigation-logo: 0.3125rem;
   .slide-animation {
     transform: translateY(-101%);
   }
-
   .fade-animation {
     opacity: 0;
     visibility: hidden;
@@ -33,22 +25,29 @@ $spv-navigation-logo: 0.3125rem;
     
     .p-navigation__banner{
       background-color: #111111;
-      height: auto;
-      color: $color-mid-light;
 
-      .p-navigation__toggle--open, .p-navigation__toggle--close {
-        padding: 0.5rem 1rem 0.5rem 0;
+      .p-navigation__tagged-logo {
+        .p-navigation__link {
+          color: $color-mid-light;
+          padding-left: 0;
+          padding-top: 0.5rem;
+          padding-bottom: 0.5rem;
+        }
       }
-      .p-navigation__logo {
-          background-color : #111111;
-          height: auto;
-         
-          .p-navigation__item {
-            color: $color-mid-light;
-          }
+    }
+    .p-navigation__item {
+      .p-navigation__link{
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        color: $color-mid-light;
       }
-      .p-navigation__item {
-        padding: 0.5rem 2rem 0.5rem 0;
+    }
+    .p-navigation__link--search-toggle {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      &::after {
+        top: 0.75rem;
+        color: $color-mid-light;
       }
     }
     
@@ -59,22 +58,12 @@ $spv-navigation-logo: 0.3125rem;
       .p-navigation__item {
         color: $color-mid-light;
       }
-
       .p-navigation__banner {
-        background-color: transparent;
-        padding-left: 0;
-        .p-navigation__logo {
-          background-color: transparent;
-          height: auto;
-          .p-navigation__item {
-            padding-left :1.5rem;
+        .p-navigation__tagged-logo{
+          .p-navigation__link {
+            padding: 0.5rem 0 0.5rem 0;
           }
         }
-        .p-navigation__item {
-            font-weight: $font-weight-bold;
-            line-height: 1rem;
-            padding: 0.5rem 2rem 0.5rem 0;
-          }
       }
 
       .p-navigation__link {
@@ -83,7 +72,15 @@ $spv-navigation-logo: 0.3125rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
       }
-
+      .p-navigation__link--search-toggle {
+        padding: 0.5rem 2rem 0.5rem 0;
+        line-height: 1rem;
+        color: $color-mid-light;
+        &::after {
+          top: 0.5rem;
+          color: $color-mid-light;
+        }
+      }
       .p-navigation__item--dropdown-toggle {
         &::after {
           top: 0.5rem;
@@ -100,32 +97,6 @@ $spv-navigation-logo: 0.3125rem;
             display: none;
           }
         }
-
-        // &.is-selected{
-        //   background: $color-x-light;
-
-        //   &::after {
-        //     @include vf-icon-chevron($color-dark);
-        //     transform: rotate(180deg);
-        //   }
-
-        //   .p-navigation__link {
-        //     color: $color-dark;
-        //   }
-
-        //   .p-navigation__link::before {
-        //     display: none;
-        //   }
-        // }
-        // &.is-active{
-        //   background: $color-x-light;
-        //   &::after {
-        //     @include vf-icon-chevron($color-dark);
-        //   }
-        //   .p-navigation__link {
-        //     color: $color-dark;
-        //   }
-        // }
       }
 
       .p-navigation__dropdown--right {
@@ -133,97 +104,4 @@ $spv-navigation-logo: 0.3125rem;
       }
     }
   }
-}
-
-//copy from vanilla temporarily
-.p-navigation__tagged-logo {
-  margin-right: 0;
-
-  .p-navigation__logo-tag {
-    background-color: $color-accent;
-    height: $navigation-logo-tag-height;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: $navigation-logo-tag-width;
-  }
-
-  .p-navigation__logo-icon {
-    bottom: $spv-navigation-logo;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, 0);
-    width: $navigation-logo-width;
-  }
-
-  .p-navigation__logo-title {
-    @extend %vf-heading-4;
-
-    line-height: map-get($line-heights, x-small);
-  }
-
-  .p-navigation__link {
-    @extend %navigation-link;
-
-    padding-left: $navigation-logo-tag-width + $sph-navigation-link;
-
-    &:hover {
-      background-color: transparent !important;
-    }
-
-    &::before {
-      content: none;
-    }
-  }
-}
-// 
-
-.p-card--navigation {
-  @include vf-p-card;
-
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0;
-  padding: 0;
-}
-
-.p-card--light {
-  @extend %vf-has-round-corners;
-
-  @extend %bg--light;
-
-  @include vf-p-card;
-
-  flex-direction: column;
-  margin-bottom: $spv--large;
-  padding: calc(#{$spv--large} - 1px);
-  transition: all 0.2s;
-}
-
-.u-hide--nav-threshold-down {
-  @media (max-width: $breakpoint-navigation-threshold - 1) {
-    display: none !important;
-  }
-}
-
-.u-hide--nav-threshold-up {
-  @media (min-width: $breakpoint-navigation-threshold) {
-    display: none !important;
-  }
-}
-
-.p-logomark {
-  display: inline-block;
-  margin-bottom: $spv--large;
-  margin-right: $sph--small;
-  max-height: 4 * $sp-unit;
-  max-width: 4 * $sp-unit;
-  position: relative;
-  top: 0.1rem;
-}
-
-.p-button--small {
-  @extend %small-text;
-
-  padding-top: $sp-unit * 0.5 + map-get($nudges, nudge--small);
 }
