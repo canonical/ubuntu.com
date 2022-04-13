@@ -10,20 +10,44 @@
 <section class="p-strip--suru-topped is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7">
-      <h1>Enterprise Kubernetes for multi-cloud operations</h1>
-      <p class="p-heading--4">Container orchestration streamlined from cloud to edge</p>
+      <h1>Canonical Kubernetes for multi-cloud operations</h1>
+      <p class="p-heading--4">From the operating system to a full cloud native stack</p>
       <p>
-        Ubuntu is the reference platform for Kubernetes on all major public clouds.<br>
-        Canonical Kubernetes is built on Ubuntu and combines security with optimal price-performance.<br>
-        Our cloud-native automation framework ensures developer productivity and business innovation.
+        Ubuntu is the reference platform for Kubernetes on all major public cloud.
+      </p>
+      <p>
+        Canonical Kubernetes is built on Ubuntu and combines security with optimal price-performance.
+      </p>
+      <p>
+        Canonical is a Certified Kubernetes Service Provider, your trusted advisor for a successful cloud native strategy.
+      </p>
+      <p>
+        Our cloud native automation framework ensures developer productivity and business innovation.
       </p>
       <p>
         <a class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" href="/kubernetes/contact-us">Get in touch</a>
         <a href="/kubernetes/install">Try it now&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center u-embedded-media">
-      <iframe title="Kubernetes by Canonical" class="u-embedded-media__element" src="https://www.youtube.com/embed/tG5kqnnytIg" allowfullscreen=""></iframe>
+    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/62b09bad-certified-kubernetes-color.svg",
+        alt="",
+        width="113",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/48ee616b-kubernetes-kcsp-color.svg",
+        alt="",
+        width="154",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}      
     </div>
   </div>
 </section>
@@ -34,10 +58,10 @@
       <h2 class="p-heading--2">Public cloud Kubernetes powered by Ubuntu</h2>
       <p class="p-heading--4 u-sv3">Cloud-tailored experience, optimised kernels, unlimited options</p>
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Ubuntu is the host OS for the world’s most popular cloud-hosted Kubernetes</li>
+        <li class="p-list__item is-ticked">Ubuntu is the host OS for the world's most popular cloud-hosted Kubernetes</li>
         <li class="p-list__item is-ticked">Per-cloud optimisations for performance, boot speed, and drivers on all major public clouds</li>
         <li class="p-list__item is-ticked">Out-of-the-box cloud integration with the option of enterprise-grade commercial support</li>
-        <li class="p-list__item is-ticked">Ubuntu Pro provides deeper integrations on logging, monitoring, analytics and identity</li>
+        <li class="p-list__item is-ticked">Ubuntu Pro provides deeper integrations with cloud services</li>
         <li class="p-list__item is-ticked">In-cloud Ubuntu package mirrors for high bandwidth and local updates</li>
         <li class="p-list__item is-ticked">Full control over kernel security patching with Canonical Livepatch</li>
       </ul>
@@ -117,40 +141,21 @@
   </div>
 </section>
 
-<section class="p-strip--suru">
-  <div class="u-fixed-width">
-    <h2>The hybrid multi-cloud Kubernetes future</h2>
-  </div>
-  <div class="row p-divider is-dark">
-    <div class="col-4 p-divider__block">
-      <p>Combining best-of-breed solutions from public and private clouds guarantees long-term cost & performance optimisations.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <p >Our Kubernetes seamlessly integrates with public and private clouds.</p>
-    </div>
-    <div class="col-4 p-divider__block">
-      <p>Tailor K8s to your business, build affordable clusters, connect them across environments.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <a href="/engage/enterprise-kubernetes-guide" class="p-button">Get the buyer’s guide</a>
-      <a href="http://juju.is/cloud-native-kubernetes-usage-report-2021" class="p-button--positive">Read the industry report</a>
-    </div>
-  </div>
-</section>
+<div class="u-fixed-width">
+  <hr class="p-seperator">
+</div>
 
 <section class="p-strip">
   <div class="row">
     <div class="col-12">
-      <h2>Kubernetes with Canonical support</h2>
-      <p class="p-heading--4 u-sv3">CNCF conformant Kubernetes with streamlined multi-cloud operations</p>
+      <h2>Canonical Kubernetes distributions</h2>
+      <p class="p-heading--4 u-sv3">CNCF conformant Kubernetes with enterprise support</p>
     </div>
   </div>
   <div class="row">
     <div class="p-card col-6">
       <p class="p-card__title p-heading--3">MicroK8s</p>
-      <p class="p-heading--5">Low-touch Kubernetes for micro clouds, thin edge and IoT</p>
+      <p class="p-heading--5">Low-touch Kubernetes for clouds, edge and IoT</p>
       <div class="p-card__content">
         {{
           image(
@@ -159,7 +164,7 @@
           width="440",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-sv3 u-hide--small"},
+          attrs={"class": "u-sv3 u-hide--small u-hide--medium"},
           ) | safe
         }}
         <ul class="p-list">
@@ -171,8 +176,8 @@
           <li class="p-list__item is-ticked">Compatible with Linux, Windows and macOS</li>
         </ul>
         <ul class="p-inline-list">
-          <li class="p-inline-list__item"><a href="https://microk8s.io/">Try MicroK8s today</a></li>
-          <li class="p-inline-list__item"><a href="/engage/microk8s-451research">Read the whitepaper&nbsp;&rsaquo;</a></li>
+          <li class="p-inline-list__item"><a href="https://microk8s.io/">Try MicroK8s today&nbsp;&rsaquo;</a></li>
+          <li class="p-inline-list__item"><a href="https://microk8s.io/resources">Learn more about MicroK8s&nbsp;&rsaquo;</a></li>
         </ul>
       </div>
     </div>
@@ -187,34 +192,35 @@
           width="200",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-sv3 u-hide--small"},
+          attrs={"class": "u-sv3 u-hide--small u-hide--medium"},
           ) | safe
         }}
         <ul class="p-list">
-          <li class="p-list__item is-ticked"><a href="https://jaas.ai/canonical-kubernetes">Model-driven Kubernetes</a> for fully automated operations</li>
+          <li class="p-list__item is-ticked">Model-driven Kubernetes for fully customisable deployments</li>
           <li class="p-list__item is-ticked">Pluggable CNI, CSI, CRI and monitoring components</li>
           <li class="p-list__item is-ticked">Carrier-grade and hardware acceleration features</li>
           <li class="p-list__item is-ticked">Support for third-party components and services
           </li>
-          <li class="p-list__item is-ticked">Fine-grained service placement</li>
+          <li class="p-list__item is-ticked">Full life cycle management for host and in-cluster with <a href="https://juju.is/">Juju</a></li>
         </ul>
         <ul class="p-inline-list">
-          <li class="p-inline-list__item"><a href="/kubernetes/install#multi-node">Install Charmed Kubernetes&nbsp;&rsaquo;</a></li>
-          <li class="p-inline-list__item"><a href="https://assets.ubuntu.com/v1/c5f59e1c-Enterprise_Kubernetes+Datasheet_16.09.21.pdf">Read the datasheet&nbsp;&rsaquo;</a></li>
+          <li class="p-inline-list__item"><a href="/kubernetes/install#multi-node">Install Charmed K8&nbsp;&rsaquo;</a></li>
+          <li class="p-inline-list__item"><a href="/kubernetes/features">Learn more about Charmed K8s&nbsp;&rsaquo;</a></li>
         </ul>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="p-card col-12">
-      <h3 class="p-card__title">Shared Benefits</h3>
+      <h3 class="p-card__title">Canonical Kubernetes benefits</h3>
       <div class="p-card__content">
         <ul class="p-list is-split">
-          <li class="p-list__item is-ticked">Pure upstream Kubernetes across clouds of all form factors</li>
-          <li class="p-list__item is-ticked">Extensive tooling catalogue, lifecycle automation, and hundreds of integrations</li>
+          <li class="p-list__item is-ticked">Delivering the latest pure upstream Kubernetes across clouds of all form factors</li>
+          <li class="p-list__item is-ticked">Extensive tooling catalog, lifecycle automation, and hundreds of integrations</li>
           <li class="p-list__item is-ticked">Enterprise-grade high-availability & GPU acceleration, tested across all major clouds</li>
           <li class="p-list__item is-ticked">Security patching and updates from the Ubuntu security team</li>
           <li class="p-list__item is-ticked">ARM, x86 and <a href="/certified">specialised hardware</a> to empower your innovation</li>
+          <li class="p-list__item is-ticked">Fully supported components to enable a complete working solution</li>
         </ul>
       </div>
     </div>
@@ -354,7 +360,7 @@
         height="200",
         hi_def=True,
         loading="lazy",
-        attrs={"class": "u-hide--small"},
+        attrs={"class": "u-hide--small u-hide--medium"},
         ) | safe
       }}
     </div>
@@ -376,9 +382,67 @@
   </div>
 </section>
 
-<div class="u-fixed-width">
-  <hr>
-</div>
+<section class="p-strip--suru">
+  <div class="row">
+    <h2>Kubernetes resources</h2>
+  </div>
+  <div class="row p-divider is-dark">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <p class="p-heading--4">Case study</p>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="/engage/atresmedia-charmed-kubernetes-case-study">Atresmedia dominates Spain’s OTT media market with Charmed Kubernetes</a>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <p class="p-heading--4">Whitepaper</p>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="/engage/kubernetes-deployment-enterprise-whitepaper">Five strategies to accelerate Kubernetes deployment in the enterprise</a>
+    </div>    
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <p class="p-heading--4">Whitepaper</p>
+        </div>
+      </div>
+      <p><a class="p-link--inverted" href="https://ubuntu.com/engage/bare-metal-kubernetes">How to run workloads on bare metal Kubernetes with MAAS</a></p>
+    </div>
+  </div>
+</section>
 
 <section class="p-strip">
   <div class="row">
@@ -388,18 +452,20 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <p class="p-heading--4">Next level Infrastructure-as-code for intent-driven operations and integrations</p>
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/52579016-JAAS+diagram-update.svg",
-        alt="Managed Kubernetes",
-        width="213",
-        height="200",
-        hi_def=True,
-        loading="lazy",
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
+      <p class="p-heading--4">Next generation Infrastructure-as-code for intent-driven operations and integrations</p>
+      <div class="u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/52579016-JAAS+diagram-update.svg",
+          alt="Managed Kubernetes",
+          width="213",
+          height="200",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "u-hide--small u-hide--medium"},
+          ) | safe
+        }}
+      </div>
     </div>
     <div class="col-6">
       <ul class="p-list">
@@ -412,7 +478,7 @@
         <li class="p-list__item is-ticked">Less YAML, simpler operations code</li>
       </ul>
       <p>
-        <a href="https://charmhub.io/overview">Explore the Charmed Operator Collection</a>
+        <a href="https://charmhub.io/overview">Explore the Charmed Operator Collection&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
@@ -430,18 +496,20 @@
   </div>
   <div class="row">
     <div class="col-6">
-      <p class="p-heading--4">Remove complexity of Kubernetes cluster management</p>
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/db240da7-K8s_management_platform-01.svg",
-        alt="Managed Kubernetes",
-        width="290",
-        height="200",
-        hi_def=True,
-        loading="lazy",
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
+      <p class="p-heading--4">Remove the toil of Kubernetes cluster management<p>
+      <div class="u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/db240da7-K8s_management_platform-01.svg",
+          alt="Managed Kubernetes",
+          width="290",
+          height="200",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "u-hide--small u-hide--medium"},
+          ) | safe
+        }}
+      </div>
     </div>
     <div class="col-6">
       <ul class="p-list u-no-margin--bottom">
@@ -455,18 +523,16 @@
       <div class="p-logo-section">
         <div class="p-logo-section__items u-hide--small">
           <div class="p-logo-section__item u-no-margin--left">
-            <a href="/kubernetes/features">
-              {{ image (
-                  url="https://assets.ubuntu.com/v1/017e0818-rancher-logo.png",
-                  alt="Rancher",
-                  width="288",
-                  height="288",
-                  hi_def=True,
-                  loading="auto",
-                  attrs={"class": "p-logo-section__logo"}
-                  ) | safe
-                }}
-            </a>
+            {{ image (
+                url="https://assets.ubuntu.com/v1/017e0818-rancher-logo.png",
+                alt="Rancher",
+                width="288",
+                height="288",
+                hi_def=True,
+                loading="auto",
+                attrs={"class": "p-logo-section__logo"}
+                ) | safe
+              }}
           </div>
           <div class="p-logo-section__item">
             {{
@@ -482,20 +548,29 @@
             }}
           </div>
           <div class="p-logo-section__item u-no-margin--right">
-            <a href="/kubernetes/features">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/e372106d-azurearcWAC.png",
+              {{ image (
+                url="https://assets.ubuntu.com/v1/717291f2-download.png",
                 alt="",
-                width="70",
-                height="50",
+                width="311",
+                height="162",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-logo-section__logo"},
                 ) | safe
               }}
-            </a>
           </div>
+          <div class="p-logo-section__item u-no-margin--right">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/86396b3f-azure-arc3634.jpg",
+                alt="",
+                width="866",
+                height="650",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+                ) | safe
+              }}
+          </div>          
         </div>
       </div>
       <p>
@@ -524,6 +599,7 @@
         A single subscription for long-term security maintenance, kernel live patching and mission-critical infrastructure support from kernel to containers.<br>
         24/7 enterprise-grade support for  K8s, OS and applications, from public cloud to the edge.
       </p>
+      <p><a href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf?_ga=2.249162884.2061711891.1648626744-1660063247.1626983102">Read the datasheet&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-hide--medium u-hide--small u-align--center">
       {{
@@ -540,6 +616,7 @@
   
   <div class="row">
     <h3>Bootstrap your Kubernetes journey</h3>
+    <h4>Canonical Kubernetes consulting and cluster deployment services</h4>
   </div>
   <div class="row">
     <div class="p-card col-4">
@@ -547,7 +624,7 @@
       <p>Training &amp; onboarding package</p>
       <hr>
       <div class="p-card__content">
-        <p>Three-day Kubernetes training to ramp up your team’s skills, including:</p>
+        <p>Three-day Kubernetes training to ramp up your team's skills, including:</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">Kubernetes fundamentals</li>
           <li class="p-list__item is-ticked">Container development basics</li>
@@ -561,14 +638,14 @@
     </div>
     <div class="p-card col-4">
       <h4 class="p-card__title">Kubernetes Discoverer</h4>
-      <p>Reference architecture design & deployment</p>
+      <p>Reference architecture design &amp; deployment</p>
       <hr>
       <div class="p-card__content">
-        <p>Three-day training & 2-week deployment of reference K8s architecture, including:</p>
+        <p>Three-day training &amp; 2-week deployment of reference K8s architecture, including:</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">High Availability</li>
           <li class="p-list__item is-ticked"><a href="/cloud/public-cloud">Public clouds</a>, VMware, <a href="/openstack">Openstack</a></li>
-          <li class="p-list__item is-ticked">Storage & SDN basic options</li>
+          <li class="p-list__item is-ticked">Storage &amp; SDN basic options</li>
           <li class="p-list__item is-ticked">Logging, monitoring, alerting </li>
           <li class="p-list__item is-ticked">Kubernetes lifecycle management</li>
           <li class="p-list__item is-ticked">Security essentials</li>
@@ -578,14 +655,14 @@
     </div>
     <div class="p-card col-4">
       <h4 class="p-card__title">Kubernetes Discoverer Plus</h4>
-      <p>Custom architecture design & deployment</p>
+      <p>Custom architecture design &amp; deployment</p>
       <hr>
       <div class="p-card__content">
         <p>Three-week custom architecture deployment project and knowledge transfer, including:</p>
         <ul class="p-list">
           <li class="p-list__item is-ticked">High Availability</li>
           <li class="p-list__item is-ticked"><a href="/cloud/public-cloud">Public clouds</a>, VMware, <a href="/openstack">Openstack</a>, <a href="https://maas.io/">Bare metal</a></li>
-          <li class="p-list__item is-ticked">Storage & SDN extensive options</li>
+          <li class="p-list__item is-ticked">Storage &amp; SDN extensive options</li>
           <li class="p-list__item is-ticked">Third-party integrations</li>
           <li class="p-list__item is-ticked">GPU Acceleration</li>
           <li class="p-list__item is-ticked">Private registry options</li>
@@ -648,69 +725,7 @@
   </div>
 </section>
 
-<section class="p-strip--suru">
-  <div class="row">
-    <h2>Kubernetes resources</h2>
-  </div>
-  <div class="row p-divider is-dark">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-          <p class="p-heading--4">Data Sheet</p>
-        </div>
-      </div>
-      <a class="p-link--inverted" href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-          <p class="p-heading--4">Case study</p>
-        </div>
-      </div>
-      <a class="p-link--inverted" href="/engage/atresmedia-charmed-kubernetes-case-study">Atresmedia dominates Spain’s OTT media market with Charmed Kubernetes</a>
-    </div>
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
-            alt="",
-            width="32",
-            height="28",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-          <p class="p-heading--4">Industry Report</p>
-        </div>
-      </div>
-      <a class="p-link--inverted" href="https://juju.is/cloud-native-kubernetes-usage-report-2021">The Kubernetes and cloud native operations report 2021</a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-8">
       <h1 class="p-heading--3">Get your K8s questions answered today</h1>
@@ -718,7 +733,7 @@
         <a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us">Contact us</a>
       </p>
     </div>
-    <div class="col-4 u-hide--small">
+    <div class="col-4 u-hide--small u-hide--medium">
       {{
         image(
         url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
