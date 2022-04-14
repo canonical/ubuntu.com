@@ -8,7 +8,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
 
 @mixin ubuntu-p-navigation {
   .dropdown-window {
-    @include vf-animation(all, brisk, in);    
+    @include vf-animation(all, brisk, in);
   }
   .slide-animation {
     transform: translateY(-101%);
@@ -22,7 +22,20 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   .p-navigation.is-reduced {
     @extend %small-text;
     margin-bottom: 0;
-    
+    .p-navigation__user {
+      
+      .p-navigation__link span{
+        display: none;
+      }
+
+      @media (min-width: $breakpoint-large) {
+        .p-navigation__link span{
+          display: initial;
+          padding-right: 0.5rem;
+        }
+      }
+    }
+  
     .p-navigation__banner{
       background-color: #111111;
 
