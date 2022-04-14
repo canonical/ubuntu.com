@@ -19,7 +19,6 @@ navDropdowns.forEach(function (dropdown) {
         if (dropdown.classList.contains("is-selected")) {
           closeMenu(dropdown, dropdownContent);
           dropdownContent.classList.add("u-hide");
-
         } else {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
@@ -198,8 +197,8 @@ if (accountContainer && accountContainerSmall) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link"><i class="p-icon--user is-light">Sign in</i> </a>`;
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
+        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link"><i class="p-icon--user is-light">Sign in</i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><span>Sign in</span><i class="p-icon--user is-light"></i></a>`;
       } else {
         window.accountJSONRes = data.account;
         accountContainerSmall.innerHTML = `<span class="p-navigation__link">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;

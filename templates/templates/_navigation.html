@@ -48,7 +48,7 @@
             <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
-        <li class="p-navigation__user js-account" id="canonical-login"></li>
+        <li class="p-navigation__user js-account"></li>
       </ul>
       <div class="p-navigation__search">
         <form action="/search" class="p-search-box">
@@ -81,6 +81,7 @@
           <span class="p-navigation__logo-title">{{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}</span>
         </a>
       </div>
+      <div class="u-hide js-account--small"></div>
       <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down"></i></a>
       <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up"></i></a>
     </div>
@@ -253,4 +254,54 @@
 
 var navigation = document.querySelector('#navigation');
 initNavigationSearch(navigation);
+
+
+//dropddwon
+
+function toggleDropdown(toggle, open) {
+  var parentElement = toggle.parentNode;
+  var dropdown = document.getElementById(toggle.getAttribute('aria-controls'));
+  dropdown.setAttribute('aria-hidden', !open);
+
+  if (open) {
+    parentElement.classList.add('is-active');
+  } else {
+    parentElement.classList.remove('is-active');
+  }
+}
+
+function closeAllDropdowns(toggles) {
+  toggles.forEach(function (toggle) {
+    toggleDropdown(toggle, false);
+  });
+}
+
+function handleClickOutside(toggles, containerClass) {
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+
+    if (target.closest) {
+      if (!target.closest(containerClass)) {
+        closeAllDropdowns(toggles);
+      }
+    }
+  });
+}
+
+function initNavDropdowns(containerClass) {
+  var toggles = [].slice.call(document.querySelectorAll(containerClass + ' [aria-controls]'));
+
+  handleClickOutside(toggles, containerClass);
+
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      closeAllDropdowns(toggles);
+      toggleDropdown(toggle, true);
+    });
+  });
+}
+
+initNavDropdowns('.p-navigation__item--dropdown-toggle')
 </script>
