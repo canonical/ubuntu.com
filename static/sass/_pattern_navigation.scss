@@ -9,6 +9,40 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
 @mixin ubuntu-p-navigation {
   .dropdown-window {
     @include vf-animation(all, brisk, in);
+    background-color: $color-x-light;
+    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    z-index: 39; 
+    
+    &__content {
+      @extend %p-strip--very-shallow;
+
+      background-color: $color-x-light;
+      color: $color-dark;
+
+      &:last-child {
+        padding-bottom: math.div($spv--x-large, 1.5);
+      }
+
+      @media (max-width: $breakpoint-x-small - 1) {
+        .p-inline-list--middot.is-x-dense {
+          margin-bottom: 0.3rem;
+        }
+      }
+    }
+    & .p-inline-list__item {
+      @extend %small-text-fixed;
+
+      list-style-type: none;
+
+      &::after {
+        @media only screen and (max-width: $breakpoint-medium - 1) {
+          display: none;
+        }
+      }
+    }
   }
   .slide-animation {
     transform: translateY(-101%);
