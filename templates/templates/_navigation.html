@@ -244,11 +244,23 @@
     var banner = document.querySelector('.p-navigation__banner');
     var buttons = document.querySelectorAll('.js-menu-button');
     var dropdownWindow =  document.querySelector('.dropdown-window');
+    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+    var reducedNavItems = document.querySelectorAll('[role="menuitem"]');
+    dropdownWindow.classList.add("slide-animation");
+    dropdownWindowOverlay.classList.add("fade-animation");
+
+    reducedNavItems.forEach( item => {
+        if (item.classList.contains("is-selected")){ 
+          item.classList.remove("is-selected"); 
+        }
+      }
+    );
 
     [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
-    if (dropdownContent.classList.contains("u-hide") === false) {
-        dropdownContent.classList.add("u-hide");
-    }}
+        if (dropdownContent.classList.contains("u-hide") === false) {
+          dropdownContent.classList.add("u-hide");
+        }
+      }
     )
     buttons.forEach((searchButton) => {
       searchButton.removeAttribute('aria-pressed');
