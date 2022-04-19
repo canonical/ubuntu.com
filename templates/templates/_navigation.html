@@ -290,11 +290,17 @@ initNavigationSearch(navigation);
 
 function toggleDropdown(toggle, open) {
   var parentElement = toggle.parentNode;
+  var dropdownWindow =  document.querySelector('.dropdown-window');
   var dropdown = document.getElementById(toggle.getAttribute('aria-controls'));
   dropdown.setAttribute('aria-hidden', !open);
 
   if (open) {
     parentElement.classList.add('is-active');
+    [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
+      if (dropdownContent.classList.contains("u-hide") === false) {
+        dropdownContent.classList.add("u-hide");
+      }
+    })
   } else {
     parentElement.classList.remove('is-active');
   }
