@@ -1472,6 +1472,11 @@
         takeoverAnimation.className +=  " is-loaded";
       }
     }
+
+    if (image.getAttribute("src") === "") {
+      takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
+      takeoverAnimation.className +=  " is-loaded";
+    }
     
     image.removeAttribute("style");
     image.width = selectedTakeover.image_width;
