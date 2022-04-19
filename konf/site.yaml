@@ -15,12 +15,12 @@ env:
 
   - name: DISCOURSE_API_KEY
     secretKeyRef:
-      key: ubuntu-api-key
+      key: api-key
       name: discourse-api
 
   - name: DISCOURSE_API_USERNAME
     secretKeyRef:
-      key: ubuntu-api-username
+      key: api-username
       name: discourse-api
 
   - name: LAUNCHPAD_IMAGE_BUILD_USER
