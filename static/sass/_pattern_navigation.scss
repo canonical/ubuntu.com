@@ -7,14 +7,29 @@ $ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
 $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
 
 @mixin ubuntu-p-navigation {
-  .dropdown-window-overlay {
-    background-color: rgba(17, 17, 17, 0.4);
-    height: 100%;
-    position: fixed;
-    top: 0;
-    transition: opacity 0.5s ease-in-out;
-    width: 100%;
-    z-index: 8;
+  // .dropdown-window-overlay {
+  //   background-color: rgba(17, 17, 17, 0.4);
+  //   height: 100%;
+  //   position: fixed;
+  //   top: 0;
+  //   transition: opacity 0.5s ease-in-out;
+  //   width: 100%;
+  //   z-index: 7;
+  // }
+ 
+  @media (max-width: $breakpoint-navigation-threshold) {
+    .dropdown-window.is-enterprise {
+      top: 88px;
+    }
+    .dropdown-window.is-developer {
+      top: 136px;
+    }
+    .dropdown-window.is-community {
+      top: 184px;
+    }
+    .dropdown-window.is-download {
+      top: 232px;
+    }
   }
   .dropdown-window {
     @include vf-animation(all, brisk, in);
@@ -23,7 +38,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
     flex-direction: column;
     position: absolute;
     width: 100%;
-    z-index: 39; 
+    z-index: 11; 
     
     &__content {
       @extend %p-strip--very-shallow;
@@ -62,6 +77,21 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   }
 }
 @mixin ubuntu-p-navigation-reduced {
+  @media (max-width: $breakpoint-navigation-threshold) {
+    .p-navigation.is-reduced.has-menu-open {
+      .p-navigation__row{
+        .p-navigation__nav{
+          position: absolute;
+          top: 40px;
+          background-color: #111111;
+          width: 100%;
+        }
+      }
+    }
+  }
+  .p-navigation.is-secondary{
+    z-index: 9;
+  }
   .p-navigation.is-reduced {
     @extend %small-text;
     margin-bottom: 0;
