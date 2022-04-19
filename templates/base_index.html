@@ -1481,8 +1481,14 @@
     image.removeAttribute("style");
     image.width = selectedTakeover.image_width;
     image.height = selectedTakeover.image_height;
-    primaryUrl.href = selectedTakeover.primary_url;
-    primaryUrl.textContent = selectedTakeover.primary_cta;
+
+    if (selectedTakeover.primary_url && selectedTakeover.primary_cta) {
+      primaryUrl.href = selectedTakeover.primary_url;
+      primaryUrl.textContent = selectedTakeover.primary_cta;
+    } else {
+      primaryUrl.remove();
+    }
+
     if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
       secondaryUrl.href = selectedTakeover.secondary_url;
       secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
