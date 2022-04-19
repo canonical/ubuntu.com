@@ -231,7 +231,13 @@
 
     var banner = document.querySelector('.p-navigation__banner');
     var buttons = document.querySelectorAll('.js-menu-button');
+    var dropdownWindow =  document.querySelector('.dropdown-window');
 
+    [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
+    if (dropdownContent.classList.contains("u-hide") === false) {
+        dropdownContent.classList.add("u-hide");
+    }}
+    )
     buttons.forEach((searchButton) => {
       searchButton.removeAttribute('aria-pressed');
     });
