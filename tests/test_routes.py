@@ -96,15 +96,15 @@ class TestRoutes(VCRTestCase):
             200,
         )
 
-    # def test_tutorials_search(self):
-    #     """
-    #     Check the tutorials search works
-    #     """
+    def test_tutorials_search(self):
+        """
+        Check the tutorials search works
+        """
 
-    #     search_response = self.client.get("/tutorials?q=ubuntu")
+        search_response = self.client.get("/tutorials?q=ubuntu")
 
-    #     self.assertEqual(search_response.status_code, 200)
-    #     self.assertIn(b"search results", search_response.data)
+        self.assertEqual(search_response.status_code, 200)
+        self.assertIn(b"search results", search_response.data)
 
     def test_download(self):
         """

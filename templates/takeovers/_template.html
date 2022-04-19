@@ -32,7 +32,7 @@
       </div>
     </div>
     {% if header_image %}
-      <div class="{% if equal_cols %}col-6{% else %}col-5{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
+      <div class="{% if equal_cols == 'false' %}col-12{% else %}col-5{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
         {% if image_width and image_height %}
           {% if 'http' not in header_image %}
             {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
@@ -52,7 +52,7 @@
             ) | safe
           }}
         {% else %}
-          <img src="{% if 'http' not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" alt="" {% if image_style %}style="{{ image_style }}"{% endif %}>
+          <img src="{% if 'http' not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" alt="" width="{{ image_height }}" height="{{ image_width }}">
         {% endif %}
       </div>
     {% endif %}

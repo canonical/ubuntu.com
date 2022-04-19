@@ -17,7 +17,6 @@ from canonicalwebteam.discourse import (
     DiscourseAPI,
     Docs,
     DocParser,
-    EngageParser,
     EngagePages,
     Tutorials,
     TutorialParser,
@@ -58,6 +57,7 @@ from webapp.views import (
     BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
+    build_engage_page,
     build_tutorials_index,
     download_server_steps,
     download_thank_you,
@@ -586,43 +586,34 @@ app.add_url_rule("/logout", view_func=logout)
 
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
-
+engage_pages_discourse_api = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=session,
+    get_topics_query_id=14,
+    api_key=DISCOURSE_API_KEY,
+    api_username=DISCOURSE_API_USERNAME,
+)
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-        ),
-        index_topic_id=17229,
-        url_prefix=takeovers_path,
-    ),
-    # Takeovers doesn't need a base template
-    # But it is a required arg
-    document_template="/base.html",
-    url_prefix=takeovers_path,
-    blueprint_name="takeovers",
+    api=engage_pages_discourse_api,
+    page_type="takeovers",
+    category_id=106,
+    exclude_topics=[28426, 17250],
 )
 
 engage_path = "/engage"
 engage_pages = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-        ),
-        index_topic_id=18033,
-        url_prefix=engage_path,
-    ),
-    document_template="/engage/base.html",
-    url_prefix=engage_path,
-    blueprint_name="engage-pages",
+    api=engage_pages_discourse_api,
+    category_id=51,
+    page_type="engage-pages",
+    exclude_topics=[17229, 18033, 17250],
 )
 
 app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
 )
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+app.add_url_rule("/engage/<page>", view_func=build_engage_page(engage_pages))
 app.add_url_rule(
     "/engage/<page>/thank-you",
     defaults={"language": None},
@@ -639,45 +630,42 @@ app.add_url_rule(
 )
 
 
-def get_takeovers():
-    takeovers = {}
-
-    discourse_takeovers.parser.parse()
-    takeovers["sorted"] = sorted(
-        discourse_takeovers.parser.takeovers,
+def takeovers_json():
+    active_takeovers = discourse_takeovers.parse_active_takeovers()
+    takeovers = sorted(
+        active_takeovers,
         key=lambda takeover: takeover["publish_date"],
         reverse=True,
     )
-    takeovers["active"] = [
-        takeover
-        for takeover in discourse_takeovers.parser.takeovers
-        if takeover["active"] == "true"
-    ]
-
-    return takeovers
-
-
-def takeovers_json():
-    takeovers = get_takeovers()
-    response = flask.jsonify(takeovers["active"])
+    response = flask.jsonify(takeovers)
     response.cache_control.max_age = "300"
 
     return response
 
 
 def takeovers_index():
-    takeovers = get_takeovers()
+    all_takeovers = discourse_takeovers.get_index()
+    all_takeovers.sort(
+        key=lambda takeover: takeover["active"] == "true", reverse=True
+    )
+    active_count = len(
+        [
+            takeover
+            for takeover in all_takeovers
+            if takeover["active"] == "true"
+        ]
+    )
 
     return flask.render_template(
         "takeovers/index.html",
-        takeovers=takeovers,
+        takeovers=all_takeovers,
+        active_count=active_count,
     )
 
 
 app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
-engage_pages.init_app(app)
 
 
 core_services_guide_url = "/core/services/guide"

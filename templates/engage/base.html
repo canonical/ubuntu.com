@@ -3,30 +3,31 @@
 {% set section_title="Engage Page" %}
 {% set section_path="/engage" %}
 
-{% block title %}{{document['metadata']['topic_name']}}{% endblock %}
-{% block meta_description %}{{document['metadata']['subtitle']}}{% endblock %}
-{% block meta_image %}{{document['metadata']['meta_image']}}{% endblock %}
+{% block title %}{{metadata['topic_name']}}{% endblock %}
+{% block meta_description %}{{metadata['subtitle']}}{% endblock %}
+{% block meta_image %}{{metadata['meta_image']}}{% endblock %}
 
 {% block head_extra %}
-  {% if 'active' in document['metadata'] and document['metadata']['active'] == "false" %}
+  {% if 'active' in metadata and metadata['active'] == "false" %}
     <meta name="robots" content="nofollow" />
   {% endif %}
 
   {# This is a hack to indicate to crawls to not index this page #}
-  {% if document['metadata']['path'] == "/engage/ShellOnboarding" %}
+  {% if metadata['path'] == "/engage/ShellOnboarding" %}
     <meta name="robots" content="noindex, nofollow" />
   {% endif %}
 {% endblock %}
 
-{% block meta_copydoc %}{{document["metadata"]["meta_copydoc"]}}{% endblock meta_copydoc %}
+{% block meta_copydoc %}{{ metadata["meta_copydoc"] }}{% endblock meta_copydoc %}
 
 {% block content %}
 
-<span id="publish_date" class="u-hide">{{document["metadata"]["publish_date"]}}</span>
-<section class="p-strip p-engage-banner--{{document['metadata']['banner_class']}}">
+<span id="publish_date" class="u-hide">{{metadata["publish_date"]}}</span>
+<span id="created_date" class="u-hide">{{metadata["created_at"]}}</span>
+<section class="p-strip p-engage-banner--{{metadata['banner_class']}}">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">
-      {% if document['metadata']['banner_class'] == 'light' %}
+      {% if metadata['banner_class'] == 'light' %}
         {{
           image(
             url="https://assets.ubuntu.com/v1/04115a7e-ubuntu_black-orange_hex.svg",
@@ -54,65 +55,63 @@
   </div>
   <div class="row">
     <div class="col-7 u-vertically-center">
-      <h1>{{ document["title"] }}</h1>
+      <h1>{{ metadata["topic_name"] }}</h1>
       <p class="u-no-padding--top p-heading--4">
-        {{ document['metadata']['subtitle'] }}
+        {{ metadata['subtitle'] }}
       </p>
-      {% if ("primary_cta" in document["metadata"]) and (document["metadata"]["primary_cta"] != "") %}
-      <p class="{% if 'secondary_cta' not in document['metadata'] %}u-hide--large{% endif %}">
-          <a href="{{ document['metadata']['primary_link'] }}" class="p-button--positive">
-            {{ document["metadata"]["primary_cta"] }}
+      {% if ("primary_cta" in metadata) and (metadata["primary_cta"] != "") %}
+      <p class="{% if 'secondary_cta' not in metadata %}u-hide--large{% endif %}">
+          <a href="{{ metadata['primary_link'] }}" class="p-button--positive">
+            {{ metadata["primary_cta"] }}
           </a>
-        {% if ("secondary_cta" in document['metadata']) and (document["metadata"]["primary_cta"] != "") %}
-          <a href="{{ document['metadata']['secondary_link'] }}" class="p-button">
-            {{document['metadata']['secondary_cta']}}
+        {% if ("secondary_cta" in metadata) and (metadata["primary_cta"] != "") %}
+          <a href="{{ metadata['secondary_link'] }}" class="p-button">
+            {{ metadata['secondary_cta'] }}
           </a>
         {% endif %}
       </p>
       {% endif %}
     </div>
-    {% if document["metadata"]["image"] != '' %}
+    {% if metadata["image"] != '' %}
     <div class="col-5 u-hide--small u-vertically-center u-align--center">
-      <img src="{{document['metadata']['image']}}" alt="" width="{{document['metadata']['image_width']}}"/>
+      <img src="{{metadata['image']}}" alt="" width="{{metadata['image_width']}}"/>
     </div>
     {% endif %}
   </div>
 </section>
 
-{% if document["metadata"]["webinar_date"] is defined %}
-  {% if document["metadata"]["webinar_date"] | date_has_passed %}
+{% if metadata["webinar_date"] is defined %}
+  {% if metadata["webinar_date"] | date_has_passed %}
     {% include "engage/shared/_webinar-embed.html" %}
   {% endif %}
 {% endif %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="{% if 'form_id' in document['metadata'] and document['metadata']['form_id'] != '' %}col-7{% else %}col-12{% endif %}">
-      {% for text in document["body_html"] %}
-        {{ text | safe }}
-      {% endfor %}
+    <div class="{% if 'form_id' in metadata and metadata['form_id'] != '' %}col-7{% else %}col-12{% endif %}">
+      {{ metadata["body_html"] | safe }}
     </div>
-    {% if "form_id" in document["metadata"] and document["metadata"]["form_id"] != "" %}
+    {% if "form_id" in metadata and metadata["form_id"] != "" %}
     <div class="col-5" id="the-form">
-      {% if document["metadata"]["language"] != '' %}
-        {% set form = "engage/shared/_" + document["metadata"]["language"] + "_engage_form.html" %}
-        {% if "form_cta" in document["metadata"] and document["metadata"]["form_cta"] != '' %}
-          {% with id=document["metadata"]["form_id"], returnURL=document['metadata']['path']+"/thank-you", cta=document['metadata']['form_cta'] %}
+      {% if metadata["language"] != '' %}
+        {% set form = "engage/shared/_" + metadata["language"] + "_engage_form.html" %}
+        {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
+          {% with id=metadata["form_id"], returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'] %}
             {% include form %}
           {% endwith %}
         {% else %}
-          {% with id=document["metadata"]["form_id"], returnURL=document['metadata']['path']+"/thank-you" %}
+          {% with id=metadata["form_id"], returnURL=metadata['path']+"/thank-you" %}
             {% include form %}
           {% endwith %}
         {% endif %}
 
       {% else %}
-      {% if "form_cta" in document["metadata"] and document["metadata"]["form_cta"] != '' %}
-        {% with id=document["metadata"]["form_id"], returnURL=document['metadata']['path']+"/thank-you", cta=document['metadata']['form_cta'] %}
+      {% if "form_cta" in metadata and metadata["form_cta"] != '' %}
+        {% with id=metadata["form_id"], returnURL=metadata['path']+"/thank-you", cta=metadata['form_cta'] %}
           {% include "engage/shared/_en_engage_form.html" %}
         {% endwith %}
       {% else %}
-        {% with id=document["metadata"]["form_id"], returnURL=document['metadata']['path']+"/thank-you" %}
+        {% with id=metadata["form_id"], returnURL=metadata['path']+"/thank-you" %}
           {% include "engage/shared/_en_engage_form.html" %}
         {% endwith %}
       {% endif %}
@@ -124,31 +123,29 @@
 
 </section>
 
-{% if document["metadata"]["webinar_date"] is defined %}
-  {% if not document["metadata"]["webinar_date"] | date_has_passed %}
+{% if metadata["webinar_date"] is defined %}
+  {% if not metadata["webinar_date"] | date_has_passed %}
     {% include "engage/shared/_webinar-embed.html" %}
   {% endif %}
 {% else %}
   {% include "engage/shared/_webinar-embed.html" %}
 {% endif %}
 
-
-{% if "youtube_id" in document["metadata"] %}
+{% if "youtube_id" in metadata %}
 <!-- Youtube webinars -->
 <section class="p-strip is-shallow" id="youtube-section">
   <div class="row" id="webinar">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ document['metadata']['youtube_id'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ metadata['youtube_id'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}
 
-{% if "vimeo_id" in document["metadata"] %}
+{% if "vimeo_id" in metadata %}
 <!-- Vimeo webinars -->
 <section class="p-strip is-shallow" id="vimeo-section">
   <div class="row" id="webinar">
-    <iframe src="https://player.vimeo.com/video/{{ document['metadata']['vimeo_id'] }}" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/{{ metadata['vimeo_id'] }}" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}
-
 {% endblock content %}
