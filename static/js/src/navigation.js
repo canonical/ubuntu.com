@@ -14,7 +14,10 @@ navDropdowns.forEach(function (dropdown) {
 
     navDropdowns.forEach(function (dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
-
+      var hasMenuOpen = document.querySelector(".has-menu-open");
+      if (hasMenuOpen) {
+        dropdownWindow.classList.add("is-" + dropdown.id);
+      }
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains("is-selected")) {
           closeMenu(dropdown, dropdownContent);
@@ -30,6 +33,7 @@ navDropdowns.forEach(function (dropdown) {
       } else {
         dropdown.classList.remove("is-selected");
         dropdownContent.classList.add("u-hide");
+        dropdownWindow.classList.remove("is-" + dropdown.id);
       }
     });
   });
