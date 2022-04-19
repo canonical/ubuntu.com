@@ -52,9 +52,9 @@
       </ul>
       <div class="p-navigation__search">
         <form class="p-search-box">
-          <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
-          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-          <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+        <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
+        <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
         </form>
       </div>
     </nav>
@@ -195,12 +195,18 @@
 
     var searchInput = navigation.querySelector('.p-search-box__input');
     var buttons = document.querySelectorAll('.js-search-button');
+    var secondaryNav = document.querySelector(".is-secondary")
+    // Replace this one when the secondary items are selected
+    // var secondaryNav = document.querySelector(".is-secondary .p-navigation__banner")
 
     buttons.forEach((searchButton) => {
       searchButton.setAttribute('aria-pressed', true);
     });
 
     navigation.classList.add('has-search-open');
+    if(secondaryNav){
+      secondaryNav.classList.add('u-hide');
+    }
     searchInput.focus();
     document.addEventListener('keyup', keyPressHandler);
   }
@@ -230,8 +236,14 @@
     buttons.forEach((searchButton) => {
       searchButton.removeAttribute('aria-pressed');
     });
-
+    var secondaryNav = document.querySelector(".is-secondary")
+    // Replace this one when the secondary items are selected
+    // var secondaryNav = document.querySelector(".is-secondary .p-navigation__banner")
+    
     navigation.classList.remove('has-search-open');
+    if(secondaryNav){
+      secondaryNav.classList.remove('u-hide');
+    }
     document.removeEventListener('keyup', keyPressHandler);
   }
 
