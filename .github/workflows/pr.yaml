@@ -147,6 +147,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history for codecov
 
       - name: Install requirements
         run: |
@@ -178,6 +180,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history for codecov
 
       - name: Install dependencies
         run: yarn install --immutable
