@@ -1,13 +1,14 @@
 codecov:
-  require_ci_to_pass: yes
+  require_ci_to_pass: True
   branch: main
+  allow_coverage_offsets: True
 
 comment:
   layout: "diff, files"
   behavior: default
-  require_changes: no
-  require_base: no
-  require_head: yes
+  require_changes: False
+  require_base: True
+  require_head: True
 
 coverage:
   status:
