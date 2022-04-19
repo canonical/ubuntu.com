@@ -1483,11 +1483,24 @@
     image.height = selectedTakeover.image_height;
     primaryUrl.href = selectedTakeover.primary_url;
     primaryUrl.textContent = selectedTakeover.primary_cta;
+
     if (selectedTakeover.secondary_url && selectedTakeover.secondary_url !== "") {
       secondaryUrl.href = selectedTakeover.secondary_url;
       secondaryUrl.innerHTML = selectedTakeover.secondary_cta + "&nbsp;&rsaquo;";
     } else {
       secondaryUrl.remove();
+    }
+
+    // Make cta unclickable if there is no link
+    // This doesn't work with href property, as it always returns at least the homepage
+    if (!selectedTakeover.primary_url) {
+      primaryUrl.style.cursor = "default";
+      primaryUrl.style.pointerEvents = "none";
+    }
+
+    if (!selectedTakeover.secondary_url) {
+      secondaryUrl.style.cursor = "default";
+      secondaryUrl.style.pointerEvents = "none";
     }
     
     dataLayer.push({
