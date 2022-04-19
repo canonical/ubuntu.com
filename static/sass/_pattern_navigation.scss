@@ -16,7 +16,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   //   width: 100%;
   //   z-index: 7;
   // }
- 
+
   @media (max-width: $breakpoint-navigation-threshold) {
     .dropdown-window.is-enterprise {
       top: 88px;
@@ -33,13 +33,13 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   }
   .dropdown-window {
     @include vf-animation(all, brisk, in);
+
     background-color: $color-x-light;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
     position: absolute;
     width: 100%;
-    z-index: 11; 
-    
+    z-index: 11;
     &__content {
       @extend %p-strip--very-shallow;
 
@@ -79,64 +79,63 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
 @mixin ubuntu-p-navigation-reduced {
   @media (max-width: $breakpoint-navigation-threshold) {
     .p-navigation.is-reduced.has-menu-open {
-      .p-navigation__row{
-        .p-navigation__nav{
+      .p-navigation__row {
+        .p-navigation__nav {
+          background-color: #111;
           position: absolute;
           top: 40px;
-          background-color: #111111;
           width: 100%;
         }
       }
     }
   }
-  .p-navigation.is-secondary{
+  .p-navigation.is-secondary {
     z-index: 9;
   }
   .p-navigation.is-reduced {
     @extend %small-text;
+
     margin-bottom: 0;
     .p-navigation__user {
-      
-      .p-navigation__link span{
+      .p-navigation__link span {
         display: none;
       }
 
       @media (min-width: $breakpoint-large) {
-        .p-navigation__link span{
+        .p-navigation__link span {
           display: initial;
           padding-right: 0.5rem;
         }
       }
     }
-  
-    .p-navigation__banner{
-      background-color: #111111;
+
+    .p-navigation__item {
+      .p-navigation__link {
+        color: $color-mid-light;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+      }
+    }
+    .p-navigation__banner {
+      background-color: #111;
 
       .p-navigation__tagged-logo {
         .p-navigation__link {
           color: $color-mid-light;
+          padding-bottom: 0.5rem;
           padding-left: 0;
           padding-top: 0.5rem;
-          padding-bottom: 0.5rem;
         }
       }
     }
-    .p-navigation__item {
-      .p-navigation__link{
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        color: $color-mid-light;
-      }
-    }
     .p-navigation__link--search-toggle {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
       &::after {
-        top: 0.75rem;
         color: $color-mid-light;
+        top: 0.75rem;
       }
     }
-    
     @media (min-width: $breakpoint-navigation-threshold) {
       background-color: $color-dark;
       margin-bottom: 0;
@@ -144,35 +143,35 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
       .p-navigation__item {
         color: $color-mid-light;
       }
-      .p-navigation__banner {
-        .p-navigation__tagged-logo{
-          .p-navigation__link {
-            padding: 0.5rem 0 0.5rem 0;
-          }
-        }
-      }
-
       .p-navigation__link {
         color: $color-mid-light;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
       }
+      .p-navigation__banner {
+        .p-navigation__tagged-logo {
+          .p-navigation__link {
+            padding: 0.5rem 0 0.5rem 0;
+          }
+        }
+      }
+
       .p-navigation__link--search-toggle {
-        padding: 0.5rem 2rem 0.5rem 0;
-        line-height: 1rem;
         color: $color-mid-light;
+        line-height: 1rem;
+        padding: 0.5rem 2rem 0.5rem 0;
         &::after {
-          top: 0.5rem;
           color: $color-mid-light;
+          top: 0.5rem;
         }
       }
       .p-navigation__item--dropdown-toggle {
         &::after {
           top: 0.5rem;
         }
-        &.is-selected{
-          background-color: rgba(255,255,255,.1);
+        &.is-selected {
+          background-color: rgba(255, 255, 255, 0.1);
           &::after {
             transform: rotate(180deg);
           }
