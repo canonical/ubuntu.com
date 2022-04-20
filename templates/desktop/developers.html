@@ -8,22 +8,20 @@
   <section class="u-image-position p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-6">
-        <h1>Ubuntu Desktop for&nbsp;developers</h1>
-        <p>Whether you're a mobile app developer, an engineering manager, a music or video editor or a financial analyst with large-scale models to run &mdash; in fact, anyone in need of a powerful machine for your work &mdash; Ubuntu is  your ideal workstation.</p>
+        <h1>Ubuntu Desktop for&nbsp;Linux developers</h1>
+        <p>Whether you're an app or web developer, engineering manager, data scientist, or AI/ML researcher &mdash; Ubuntu is your ideal workstation.</p>
         <p><a href="/download/desktop" class="p-button--positive">Get Ubuntu now</a></p>
       </div>
       <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/2fc45f60-laptop.png",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fa57dc30-desktop-22.04-laptop.png",
             alt="",
-            height="300",
-            width="500",
+            width="1000",
+            height="578",
             hi_def=True,
-            attrs={"class": "col-6 u-vertically-center u-hide--medium u-hide--small u-align--center"},
-            loading="auto",
-          ) | safe
-        }}
+            loading="auto"
+            ) | safe
+          }}        
       </div>
     </div>
   </section>
@@ -34,69 +32,77 @@
       <ul class="p-list is-split">
         <li class="p-list__item is-ticked">Provides the fastest route from development to deployment on desktop, mobile, server or cloud</li>
         <li class="p-list__item is-ticked">Offers the broadest and best development tools and libraries</li>
-        <li class="p-list__item is-ticked">Has all the most popular productivity apps such as Slack, Skype, Telegram and Discord, available in the snap store</li>
         <li class="p-list__item is-ticked">Features official snaps for Visual Studio Code and the JetBrains suite of IDEs</li>
-        <li class="p-list__item is-ticked">Makes for hassle free gaming and AI development with NVIDIA GPUs supported out the box</li>
-        <li class="p-list__item is-ticked">Certified AI and developer laptops and workstations are available from Dell, Lenovo and HP – get a seamless, pre-installed Ubuntu experience</li>
-        <li class="p-list__item is-ticked">The lightweight OS runs natively or in a VM, ideal for any resource-intensive environment, from data mining to large-scale financial modelling</li>
+        <li class="p-list__item is-ticked">Has all the most popular productivity apps such as Slack, Zoom, Microsoft Teams, Telegram, and Discord, available in the Snap Store</li>
+        <li class="p-list__item is-ticked">Makes for hassle-free gaming and AI development with NVIDIA GPU supported out the box</li>
+        <li class="p-list__item is-ticked">Certified AI and developer laptops and workstations are available from Dell, Lenovo and HP &mdash; get a seamless, pre-installed Ubuntu experience</li>
+        <li class="p-list__item is-ticked">The lightweight OS runs natively or in a VM, ideal for any resource-intensive environment, from data mining to large-scale financial modeling</li>
         <li class="p-list__item is-ticked">66% of experienced developers prefer Ubuntu</li>
       </ul>
     </div>
   </section>
 
   <section class="p-strip">
-    <div class="row">
-      <div class="col-6">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5dfbac32-20211012_a-developers-favourite.svg",
-            alt="Ubuntu is a developer's favourite linux",
-            width="600",
-            height="371",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        <p><small>Source: Behind the code - <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020 HackerEarth Developer Survey</a></small></p>
-        <p><small>* This graph excludes non-Linux OSs and allowed users to select multiple OSs</small></p>
-      </div>
-      <div class="col-6">
-        <h2>With Ubuntu, you're in good company</h2>
-        <p>Ubuntu is trusted by thousands of development teams around the world because of its versatility, reliability, constantly updated features, and extensive developer libraries.</p>
-        <p>If you're managing developers, Ubuntu is the best way to increase your team's productivity and guarantee a smooth transition from development all the way to production. Ubuntu is the world's most popular open source OS for both development and deployment, from the data centre to the cloud to the Internet of Things.</p>
-        <p><a href="/engage/developer-desktop-productivity-whitepaper">Read our whitepaper&nbsp;&rsaquo;</a></p>
-        <p><a href="/cloud">Learn more about Ubuntu's cloud offering&nbsp;&rsaquo;</a></p>
-      </div>
+    <div class="u-fixed-width">
+      <h2>With Ubuntu, you're in good company</h2>
+      <p>Ubuntu is trusted by thousands of development teams around the world because of its versatility, reliability, constantly updated features, and extensive developer libraries.</p>
+      <p>If you're managing developers, Ubuntu is the best way to increase your team's productivity and guarantee a smooth transition from development all the way to production. Ubuntu is the world's most popular open source OS for both development and deployment, from the data center to the cloud to the Internet of Things.</p>
+      <p><a href="/engage/developer-desktop-productivity-whitepaper">Read our whitepaper&nbsp;&rsaquo;</a></p>
+      <p><a href="/cloud">Learn more about Ubuntu's cloud offering&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="u-fixed-width u-hide--small u-hide--medium">
+      <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fb4db53e-Operating+systems+that+developers+prefer+%282%29.svg",
+          alt="",
+          width="1036",
+          height="524",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }} 
+      </a>
     </div>
   </section>
+
 
   <section class="p-strip--light">
     <div class="row">
       <div class="col-8">
-        <h2>What's new in Ubuntu {{ releases.latest.short_version }}?</h2>
+        <h2>What's new in Ubuntu {{ releases.lts.short_version }}?</h2>
       </div>
     </div>
     <div class="u-fixed-width">
       <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Linux 5.13 kernel with support for future Intel and AMD chips</li>
-        <li class="p-list__item is-ticked">GNOME 40 desktop environment supporting horizontal, interactive workspaces, an improved Activities Overview and intuitive keyboard shortcuts and touchpad gestures</li>
-        <li class="p-list__item is-ticked">NVIDIA driver support for Wayland sessions</li>
-        <li class="p-list__item is-ticked">PulseAudio 15 delivering improved audio quality over Bluetooth</li>
-        <li class="p-list__item is-ticked">Up to date toolchains including Python 3.9, PHP 8, Ruby 2.7,  Perl 5.32, Golang 1.17 and GCC-11</li>
-        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.2.1, Thunderbird 91.1.2 and Firefox 93</li>
-      </ul>
-      <p>
-        21.10 builds on key additions from 21.04, including:
-      </p>
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Default Yaru dark GNOME shell theme</li>
-        <li class="p-list__item is-ticked">Updated power profile modes</li>
-        <li class="p-list__item is-ticked">Wayland as the default display server, delivering improved security and performance</li>
+        <li class="p-list__item is-ticked">Linux 5.15 kernel</li>
+        <li class="p-list__item is-ticked">New Ubuntu theme with accent colors, improved integration for snaps and system-wide dark style preference support</li>
+        <li class="p-list__item is-ticked">GNOME Shell and most GNOME libraries updated to the 42 release
+          <ul>
+            <li>Streamlined user interface and workspace transitions</li>
+            <li>Compact and modern on-screen display notifications</li>
+            <li>New screenshot/screen recording interface</li>
+            <li>New power profile selection</li>
+            <li>Improved multi-monitor support</li>
+          </ul>
+        </li>
+        <li class="p-list__item is-ticked">GNOME desktop performance improvements
+          <ul>
+            <li>Up to 2X improvement in frame rates with Intel and Raspberry Pi graphics drivers</li>
+            <li>Significant improvements for AMD and NVIDIA</li>
+          </ul>
+        </li>
+        <li class="p-list__item is-ticked">Wayland as the default display server for most systems whilst X11 remains the default for those with an NVIDIA discrete GPU</li>
+        <li class="p-list__item is-ticked">Latest PulseAudio support for LDAC and AptX bluetooth codecs, HFP bluetooth profiles and bluetooth device battery level reporting</li>
+        <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.0, Perl 5.34, Go 1.18, GCC 11.2, Rust 1.58.1</li>
+        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.3.2, Thunderbird 91.8, and Firefox 99 which is now included as a snap</li>
         <li class="p-list__item is-ticked">Active Directory integration with the Ubuntu installer</li>
-        <li class="p-list__item is-ticked">Private home directory</li>
-        <li class="p-list__item is-ticked">Recovery key option for encrypted installations</li>
+        <li class="p-list__item is-ticked">Policy-based administration using Microsoft Active Directory Group Policy (GPO) and advanced policy support for Ubuntu Advantage Desktop users</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 4 2GB Desktop support as a result of various performance improvements</li>
+        <li class="p-list__item is-ticked">Better power management for NVIDIA dGPUs</li>
+        <li class="p-list__item is-ticked">Wifi 6E support</li>
       </ul>
       <p>
-        <a href="{{ releases.latest.release_notes_url }}">
+        <a href="{{ releases.lts.release_notes_url }}">
           Read the full release notes&nbsp;&rsaquo;
         </a>
       </p>
@@ -104,39 +110,12 @@
   </section>
 
   <section class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h2>What's new in Ubuntu {{ releases.lts.short_version }} LTS?</h2>
-        <p>Ubuntu {{ releases.lts.short_version }} is the latest LTS release. Alongside support for the very latest hardware, this release includes new versions of many core apps and developer technologies.</p>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Linux 5.4 kernel</li>
-        <li class="p-list__item is-ticked">The fastest and most responsive GNOME Desktop, running v3.36 by default</li>
-        <li class="p-list__item is-ticked">A new default theme, Yaru, gives Ubuntu a fresh new look</li>
-        <li class="p-list__item is-ticked">Improved settings for WiFi, wallpaper and application groups in the Activities overview</li>
-        <li class="p-list__item is-ticked">Change between a light or dark environment directly from system settings</li>
-        <li class="p-list__item is-ticked">Support for ZFS as your root filesystem as well as zsys, with system snapshots, rolling backwards and forwards between snapshots and automated snapshots</li>
-        <li class="p-list__item is-ticked">Latest versions of the most popular browsers</li>
-        <li class="p-list__item is-ticked">LibreOffice 6.4</li>
-        <li class="p-list__item is-ticked">NVIDIA hardware is now supported out of the box</li>
-      </ul>
-      <p>
-        <a href="{{ releases.lts.release_notes_url }}">
-          Read the full release notes
-        </a>
-      </p>
-    </div>
-  </section>
-
-  <section class="p-strip--light">
     <div class="row u-vertically-center">
       <div class="col-6">
         <h2>All the tools developers need</h2>
         <p>Whether your team uses Python, Ruby, Node.js or Java, no operating system is easier to set up than Ubuntu. Everything your developers need is just a <code>snap</code> or an <code>apt</code> away.</p>
         <p>Want to get your app published for Ubuntu? Snapcraft can help you reach all users of current Ubuntu versions and other popular distributions.</p>
-        <p><a href="https://snapcraft.io">Learn more about publishing with Snapcraft&nbsp;&rsaquo;</a></p>
+        <p><a href="https://snapcraft.io">Learn more about Snapcraft&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-6 u-hide--medium u-hide--small u-align--center">
         {{
@@ -168,7 +147,7 @@
         <h2>Package, distribute, and update apps with Snapcraft</h2>
         <p>Snaps are applications packaged with all their dependencies to run on all popular Linux distributions from a single build. They update automatically and roll back gracefully. Whether you're building for desktop, cloud, or the Internet of Things, publishing as a snap keeps users up to date and makes system configuration issues less likely, freeing you to code more and debug less.</p>
         <p>Snapcraft, the open source tool to publish snaps, picks up from your existing build artefacts or language of choice, be it Python, Go, C/C++, Node.js, or even .NET. With 20 minutes you can have your first app built and released in the Snap Store.</p>
-        <p><a href="https://snapcraft.io/">Find out more about snaps</a></p>
+        <p><a href="https://snapcraft.io/">Find out more about snaps&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-5 col-start-large-7 u-align--center u-vertically-center">
         {{
@@ -187,73 +166,20 @@
   </section>
 
   <section class="p-strip--light">
-    <div class="u-fixed-width">
-      <h2>Get started with snaps</h2>
-      <p>The easiest way to build and publish a snap is with snapcraft,<br>
-        which supports building from source and from existing packages.</p>
-    </div>
-    <div class="row u-equal-height">
-      <div class="col-4 p-card u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/00e630da-Installation-instructions.svg",
-            alt="",
-            height="32",
-            width="32",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-card__icon"}
-          ) | safe
-        }}
-        <h3 class="p-card__title p-heading--4"><a href="https://docs.snapcraft.io/installing-snapd">Installation instructions&nbsp;&rsaquo;</a></h3>
-      </div>
-      <div class="col-4 p-card u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/c9dc2869-Use-snap-commands.svg",
-            alt="",
-            height="32",
-            width="32",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-card__icon"}
-          ) | safe
-        }}
-        <h3 class="p-card__title p-heading--4"><a href="https://docs.snapcraft.io/getting-started">Use snap commands&nbsp;&rsaquo;</a></h3>
-      </div>
-      <div class="col-4 p-card u-align--center ">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/d3aa493c-Build-your-first-snap.svg",
-            alt="",
-            height="32",
-            width="32",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-card__icon"}
-          ) | safe
-        }}
-        <h3 class="p-card__title p-heading--4"><a href="https://snapcraft.io/first-snap">Build your first snap&nbsp;&rsaquo;</a></h3>
-      </div>
-    </div>
-  </section>
-
-  <section class="p-strip">
     <div class="row">
       <div class="col-7">
         <h2>By developers, for developers</h2>
         <p>Ubuntu is the result of contributions by thousands of developers, motivated by the desire to create their own perfect developer environment. That's why it's used by some of the world's most exciting technology companies and it's why Valve decided to port its hugely popular Steam virtual games store to Ubuntu. Ubuntu runs on architectures from x86 to ARM and on cloud platforms from OpenStack to Azure and EC2. This versatility makes it the ideal choice for companies with a diverse hardware infrastructure.</p>
-        <p><a href="/certified/desktops">See all Ubuntu certified PCs</a></p>
+        <p><a href="/certified/desktops">See all Ubuntu certified PCs&nbsp;&rsaquo;</a></p>
       </div>
       <div class="col-5 u-vertically-center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/89abf289-Dell_XPS_Laptop_Left-Developer.png",
-            alt="",
-            height="249",
-            width="413",
-            hi_def=True,
-            loading="lazy"
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cf5198aa-desktop-22.04-laptop-developers.png",
+          alt="",
+          width="826",
+          height="498",
+          hi_def=True,
+          loading="lazy"
           ) | safe
         }}
       </div>
@@ -271,7 +197,7 @@
   </section>
 
   <section class="p-strip">
-    <div class="row u-equal-height u-vertically-center">
+    <div class="row u-equal-height u-vertically-center u-hide--small u-hide--medium">
       <div class="col-5">
         {{
           image(
@@ -288,19 +214,19 @@
         <h2>Deployment made easy</h2>
         <p>When it comes to speed and simplicity of deployment, nothing touches Ubuntu.</p>
         <p>Taking a service developed on the desktop and running it on a server or in the cloud just works. Ubuntu also has developed Juju, a service orchestration tool, that simplifies the often-cumbersome handover between development and ops teams &mdash; and it speeds the process up dramatically.</p>
-        <p><a href="https://jujucharms.com/">More about Juju</a></p>
+        <p><a href="https://jujucharms.com/">Learn more about Juju&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </section>
 
-  <section class="p-strip">
+  <section class="p-strip--light">
     <div class="row">
       <div class="col-6">
-        <h2>Support tailored to developers' needs</h2>
-        <p>With Ubuntu Advantage and Landscape, you can standardise your developer workstations. It helps you manage updates, security patches, and reporting, while minimising downtime. Give your developers the freedom they want while retaining the control you need.</p>
-        <p><a href="/support">Learn more about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+        <h2>Enterprise support for Ubuntu developers</h2>
+        <p>With Ubuntu Advantage and Landscape, you can standardise your developer workstations. Landscape helps you manage updates, security patches, and reporting while minimising downtime. Give your developers the freedom they want while retaining the control you need.</p>
+        <p><a href="/support">Learn more about Ubuntu Advantage for Desktop&nbsp;&rsaquo;</a></p>
       </div>
-      <div class="col-5 col-start-large-8 u-hide--small u-vertically-center">
+      <div class="col-5 col-start-large-8 u-hide--small u-hide--medium u-vertically-center">
         {{
           image(
             url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
@@ -312,6 +238,30 @@
           ) | safe
         }}
       </div>
+    </div>
+  </section>
+
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop:</h2>
+    </div>
+    <div class="row p-divider">
+      <div class="col-3 p-divider__block">
+        <p><a href="/blog/planning-phased-ubuntu-22-04-enterprise-desktop-upgrades-with-landscape">Planning phased Ubuntu 22.04 Enterprise Desktop upgrades with Landscape</a></p>
+        <p><em>by <a href="/blog/author/rajanpatel927">Rajan Patel</a> on 8 February 2022</em></p>
+      </div>
+      <div class="col-3 p-divider__block">
+        <p><a href="/blog/get-started-with-linux-game-development-on-ubuntu">Linux game development on Ubuntu: Godot and Unity</a></p>
+        <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 24 January 2022</em></p>
+      </div>
+      <div class="col-3 p-divider__block">
+        <p><a href="/blog/how-low-can-you-go-running-ubuntu-desktop-on-a-2gb-raspberry-pi-4">How low can you go? Running Ubuntu Desktop on a 2GB Raspberry Pi 4</a></p>
+        <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 11 January 2022</em></p>
+      </div>
+      <div class="col-3 p-divider__block">
+        <p><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a></p>
+        <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 9 December 2021</em></p>
+      </div>            
     </div>
   </section>
 

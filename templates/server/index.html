@@ -1,29 +1,25 @@
 {% extends "server/base_server.html" %}
 
-
 {% block title %}Ubuntu Server - for scale out workloads{% endblock %}
+
 {% block meta_description %}Secure, fast and economically scalable, Ubuntu helps you make the most of your infrastructure. Whether you want to deploy a cloud or a web farm, Ubuntu Server supports the most popular hardware and software.{% endblock %}
+
 {% block meta_copydoc %}https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit{% endblock meta_copydoc %}
 
-{% block content %}
-<div class="p-strip--suru is-dark">
-  {% include "shared/_cloud-survey-banner.html" %}
-  
+{% block content %} 
+
+<div class="p-strip--suru is-dark"> {% include "shared/_cloud-survey-banner.html" %} 
   <div class="row u-equal-height">
     <div class="col-7">
       <h1>Scale out with Ubuntu Server</h1>
+      <p> Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a
+        Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available. </p>
       <p>
-        Ubuntu Server brings economic and technical scalability to your datacentre, public or private. Whether you want to deploy an OpenStack cloud, a Kubernetes cluster or a 50,000-node render farm, Ubuntu Server delivers the best value scale-out performance available.
-      </p>
-      <p>
-        <a class="p-button--positive" href="/download/server">
-          Download Ubuntu Server
-        </a>
+        <a class="p-button--positive" href="/download/server"> Download Ubuntu Server </a>
       </p>
     </div>
     <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
+      {{ image(
         url="https://assets.ubuntu.com/v1/55eda3ae-Servers+-white.svg",
         alt="",
         width="350",
@@ -38,81 +34,39 @@
 
 <div class="p-strip is-bordered">
   <div class="u-fixed-width">
-    <h2>
-      What's new in {{ releases.latest.full_version }}
+    <h2> What's new in {{ releases.lts.short_version }}
     </h2>
     <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">Supported by Canonical until {{ releases.latest.eol }}</li>
-      <li class="p-list__item is-ticked">Certified native drivers for NVIDIA virtual GPU (vGPU) software on Ubuntu 20.04 LTS and Ubuntu 18.04 LTS <sup>*</sup></li>
-      <li class="p-list__item is-ticked">Minimal system installation option through the Ubuntu Server Live Installer</li>
-      <li class="p-list__item is-ticked"><a href="http://manpages.ubuntu.com/manpages/xenial/man1/needrestart.1.html">Needrestart</a> by default for automated daemon restarts after applying library upgrades</li>
-      <li class="p-list__item is-ticked">The latest stable Linux 5.13 kernel for the latest hardware and security updates</li>
-      <li class="p-list__item is-ticked">Runs on all major architectures - x86-64, ARM v7, ARM64, POWER8, POWER9, IBM s390x (LinuxONE) and RISC-V</li>
-      <li class="p-list__item is-ticked">Updates to QEMU (6.0), libvirt (7.6), PHP (8.0.8), Apache2 (2.4.48), GCC (11.2.0), Python (3.9.4), Bind9 (9.16.15), Open vSwitch (2.16.0) and OpenLDAP (2.5.6)</li>
-    </ul>
-    <p>
-      <small>
-        <sup>*</sup> available to <a href="/advantage">Ubuntu Advantage</a> customers only
-      </small>
-    </p>
-    <p>
-      <a
-     
-      href="{{ releases.latest.release_notes_url }}">
-      Read more in the release notes
-    </a>
-  </p>
-</div>
-</div>
-
-<div class="p-strip is-bordered">
+      <li class="p-list__item is-ticked"><a href="/support">Supported by Canonical</a> for 10 years until 2032</li>
+      <li class="p-list__item is-ticked">Cloud images for <a href="/aws/pro">AWS</a>, <a href="/azure/pro">Azure</a> and <a href="/gcp/pro">GCP</a> with hardening, compliance programmes, Kernel Livepatch and more with Ubuntu Pro</li>
+      <li class="p-list__item is-ticked">Kafka, Grafana and Loki joined the growing <a href="/security/docker-images">portfolio of trusted OCI images</a>, Ubuntu-based and maintained by Canonical</li>
+      <li class="p-list__item is-ticked">OpenSSL 3.0 for modern, general-purpose cryptography and secure communication</li>
+      <li class="p-list__item is-ticked">Native host and guest drivers for NVIDIA virtual GPU (vGPU) software 14</li>
+      <li class="p-list__item is-ticked">Network acceleration improvements with SmartNIC support in Netplan</li>
+      <li class="p-list__item is-ticked">General support for GlusterFS, FRRouting and realmd/adcli under the Ubuntu main component</li>
+      <li class="p-list__item is-ticked">Runs on all major architectures: x86-64, ARM v7, ARM64, POWER8, POWER9, IBM s390x (LinuxONE) and RISC-V</li>
+      <li class="p-list__item is-ticked">The latest long-term Linux 5.15 kernel for the recent hardware and security updates</li>
+      <li class="p-list__item is-ticked">Updates to QEMU (v6.2), libvirt (v8.0), PHP (v8.1), Ruby (v3.0), GCC (V11.2), Python (v3.10.1), MySQL (v8.0.28), OpenLDAP (v.2.5.11), Samba 4.15.5</li>
+  </div>
   <div class="u-fixed-width">
-    <h2>
-      What's new in {{ releases.lts.short_version }} LTS
-    </h2>
-    <ul class="p-list is-split">
-      <li class="p-list__item is-ticked">Supported by Canonical until 2025 with ESM coverage until 2030</li>
-      <li class="p-list__item is-ticked">Runs on all major architectures &ndash; x86-64, ARM v7, ARM64, POWER8, POWER9, IBM s390x (LinuxONE) and introducing initial support for RISC-V</li>
-      <li class="p-list__item is-ticked">Ubuntu Pro cloud images for <a href="/aws">AWS</a> and <a href="/azure">Azure</a>, which include hardening, certification, kernel livepatch and more</li>
-      <li class="p-list__item is-ticked">The Ubuntu Server Live installer is now able to update itself when connected to the internet for the latest features and bug fixes. Initial support for automated installs is now available as well.</li>
-      <li class="p-list__item is-ticked">SSH that supports enabling two-factor authorization (2FA)</li>
-      <li class="p-list__item is-ticked">WireGuard<sup>&reg;</sup> &ndash; an innovative VPN technology with modern cryptography defaults and streamlined usability</li>
-      <li class="p-list__item is-ticked">AppArmor3 for an even more secure system</li>
-      <li class="p-list__item is-ticked">More resilient bootloader that tolerates disk failures</li>
-      <li class="p-list__item is-ticked">Greater support for IPv6 on Microsoft Azure</li>
-      <li class="p-list__item is-ticked">Support for latest Instance Metadata Service (IMDSv2) on Amazon Web Services (AWS)</li>
-      <li class="p-list__item is-ticked">The latest long-term Linux 5.4 kernel for the latest hardware and security updates</li>
-      <li class="p-list__item is-ticked">Updates to QEMU (v4.2), libvirt (v6.0), PHP (v7.4), Ruby (v2.7), GCC (V9.3), Python (v3.8), MySQL (v8.0), NGINX (v1.17)</li>
-    </ul>
-    <p>
-      <a
-     
-      href="{{ releases.lts.release_notes_url }}">
-      Read more in the release notes
-    </a>
-  </p>
-</div>
+    <p><a href="{{ releases.lts.release_notes_url }}">Read more in the release notes&nbsp;&rsaquo;</a></p>
+  </div>
 </div>
 
 <div class="p-strip is-deep" style="padding-bottom: 2rem;">
   <div class="u-fixed-width">
-    <h2 id="performance-and-versatility">
-      Performance and versatility
-    </h2>
+    <h2> Performance and versatility </h2>
     <p class="p-heading--3">Agile, secure, deploy-anywhere technology for fast-moving companies</p>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-6">
-    <p>
-      It doesn't matter whether you want to deploy a NoSQL database, web farm or cloud. Certified by leading hardware OEMs and with comprehensive deployment tools, so you can get the most from your infrastructure.
-    </p>
-  </div>
-  <div class="col-6">
-    <p>
-      Our regular release cycle means access to the latest and most performant open source. A lean initial installation and integrated deployment and application modelling technologies make Ubuntu Server a great solution for simple deployment and management at scale.
-    </p>
+  <div class="row">
+    <div class="col-6">
+      <p> It doesn't matter whether you want to deploy a NoSQL database, web farm or cloud. Certified by leading hardware OEMs and with comprehensive deployment
+        tools, so you can get the most from your infrastructure. </p>
+    </div>
+    <div class="col-6">
+      <p> Our regular release cycle means access to the latest and most performant open source. A lean initial installation along with integrated deployment and
+        application modelling technologies make Ubuntu Server a great solution for simple deployment and management at scale. </p>
+    </div>
   </div>
 </div>
 
@@ -122,61 +76,55 @@
       <h3 class="p-logo-section__title u-align--center">Works with all your hardware and software</h3>
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c70b529e-lenovo-logo.png",
             alt="Lenovo",
-            width="144",
-            height="24",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
-          
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/987acdaa-dell-logo.png",
             alt="Dell",
-            width="88",
-            height="88",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/683950fd-logo-ibm.svg",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5588e80d-ibm-logo.png",
             alt="IBM",
-            width="144",
-            height="58",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg",
-            alt="HP",
-            width="88",
-            height="88",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/11814428-hp-logo.png",
+            alt="Hewlett Packard",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
-            image (
+          {{ image (
             url="https://assets.ubuntu.com/v1/67f81bfe-intel-new-logo.png",
             alt="Intel",
             width="288",
@@ -188,137 +136,115 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7eebe11c-cisco-logo.png",
             alt="Cisco",
-            width="144",
-            height="76",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/731aab6c-logo-amd.svg",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
             alt="AMD",
-            width="144",
-            height="44",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
-            alt="Arm",
-            width="144",
-            height="44",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/711be910-arm-logo.png",
+            alt="ARM",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
       </div>
     </div>
-    <p class="u-align--center u-vertically-spaced"><a href="/certified">
-      View all certified hardware partners&nbsp;&rsaquo;
-    </a></p>
-    
+    <p class="u-align--center u-vertically-spaced"><a href="/certified"> View all certified hardware partners&nbsp;&rsaquo; </a></p>
     <div class="p-logo-section">
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/76999dfc-logo-centrify.png",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d784fe44-centrify-logo.png",
             alt="Centrify",
-            width="132",
-            height="87",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/eed716e9-logo-openstack.svg",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f0089726-openstack-logo.png",
             alt="OpenStack",
-            width="88",
-            height="88",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/c228b4e9-logo-likewise.png?w=144",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ae513503-likewise-logo.png",
             alt="Likewise",
-            width="144",
-            height="79",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/64493bba-logo-openbravo.png?w=144",
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1ebe929e-openbravo-logo.png",
             alt="Openbravo",
-            width="144",
-            height="34",
+            width="288",
+            height="288",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
       </div>
     </div>
     <p class="u-align--center u-vertically-spaced">
-      <a href="https://partners.ubuntu.com/programmes/software">
-        View all certified software partners&nbsp;&rsaquo;
-      </a>
+      <a href="https://partners.ubuntu.com/programmes/software"> View all certified software partners&nbsp;&rsaquo; </a>
     </p>
   </div>
-</div>
+</div> 
 
-{% include "shared/_release_schedule.html" %}
+{% include "shared/_release_schedule.html" %} 
 
 <section class="p-strip is-bordered">
   <div class="row">
     <div class="col-7">
-      <h2>
-        Infrastructure and applications foundation
-      </h2>
-      <h3>
-        From public clouds to data centres to devices
-      </h3>
+      <h2>Infrastructure and applications foundation </h2>
+      <h3>From public clouds to data centres to devices </h3>
+      <p>Ubuntu is the most popular guest operating system on public cloud, the foundation for private cloud implementation and the platform of choice of developers according to the <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">2020 HackerEarth Developer Survey</a>.</p>
       <p>
-        Ubuntu is the most popular guest operating system on public clouds, the foundation for private clouds implementation and the platform of choice of developers according to the <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">2020 HackerEarth Developer Survey</a>.
+        <a href="/cloud/public-cloud">Learn more about Ubuntu for public clouds&nbsp;&rsaquo; </a>
       </p>
       <p>
-        <a href="/cloud/public-cloud">
-          Learn more about Ubuntu for public clouds&nbsp;&rsaquo;
-        </a>
-      </p>
-      <p>
-        <a href="/openstack">
-          Learn more about Ubuntu for private clouds&nbsp;&rsaquo;
-        </a>
+        <a href="/openstack">Learn more about Ubuntu for private clouds&nbsp;&rsaquo; </a>
       </p>
     </div>
   </div>
@@ -329,8 +255,7 @@
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{
-            image(
+          {{ image(
             url="https://assets.ubuntu.com/v1/60bd6cf1-picto-juju.svg",
             alt="",
             width="100",
@@ -340,25 +265,19 @@
             attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">
-            Juju &mdash; multi-cloud orchestration
-          </h3>
+          <h3 class="p-heading-icon__title"> Juju &mdash; multi-cloud orchestration </h3>
         </div>
+        <p> With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works
+          on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS. </p>
         <p>
-          With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS.
-        </p>
-        <p>
-          <a href="https://jujucharms.com/">
-            Learn more about Juju
-          </a>
+          <a href="https://jujucharms.com/"> Learn more about Juju </a>
         </p>
       </div>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{
-            image(
+          {{ image(
             url="https://assets.ubuntu.com/v1/0de4fcd5-logo-maas-icon.svg",
             alt="",
             width="100",
@@ -368,25 +287,19 @@
             attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">
-            MAAS &mdash; bare metal provisioning
-          </h3>
+          <h3 class="p-heading-icon__title"> MAAS &mdash; bare metal provisioning </h3>
         </div>
+        <p> MAAS is a time-saving provisioning system that makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu's
+          OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest. </p>
         <p>
-          MAAS is a time-saving provisioning system which makes it quick and easy to set up the physical hardware to deploy complex services, like Ubuntu's OpenStack cloud infrastructure. Just plug in your servers, connect them to the network and let MAAS do the rest.
-        </p>
-        <p>
-          <a href="https://maas.io/">
-            Learn more about MAAS
-          </a>
+          <a href="https://maas.io/"> Learn more about MAAS </a>
         </p>
       </div>
     </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{
-            image(
+          {{ image(
             url="https://assets.ubuntu.com/v1/425efe3a-lxd.svg",
             alt="LXD",
             width="100",
@@ -396,17 +309,12 @@
             attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h3 class="p-heading-icon__title">
-            LXD &mdash; machine containers
-          </h3>
+          <h3 class="p-heading-icon__title"> LXD &mdash; machine containers </h3>
         </div>
+        <p> Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the
+          manageability and security of traditional virtual machines. </p>
         <p>
-          Economics are directly tied to compute density. LXD, the Linux container hypervisor, merges the speed and density of containers with the manageability and security of traditional virtual machines.
-        </p>
-        <p>
-          <a href="/lxd">
-            Learn more about LXD
-          </a>
+          <a href="/lxd"> Learn more about LXD </a>
         </p>
       </div>
     </div>
@@ -415,24 +323,20 @@
 
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
-    <h2>
-      Ubuntu Advantage for your Infrastructure
-    </h2>
+    <h2> Ubuntu Advantage for your Infrastructure </h2>
   </div>
   <div class="row">
     <div class="col-6">
-      <p>
-        Ubuntu Advantage for infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry. With OpenStack and Kubernetes support included, Ubuntu Advantage for Infrastructure provides everything you need to future-proof your data centre.
-      </p>
-      <p>
-        UA for Infrastructure, Advanced includes Server, OpenStack and Kubernetes support and is available at Standard (24x5) and Advanced (24x7) response times.
-      </p>
+      <p> Ubuntu Advantage for infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry.
+        With OpenStack and Kubernetes support included, Ubuntu Advantage for Infrastructure provides everything you need to future-proof your data centre. </p>
+      <p> UA for Infrastructure, Advanced includes Server, OpenStack and Kubernetes support and is available at Standard (24x5) and Advanced (24x7) response
+        times. </p>
       <p><a href="/pricing/infra">Learn more about Ubuntu Advantage for Infrastructure&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 col-start-large-9 u-float-right">
       <div class="p-card">
         <h3 class="p-card__title">Get in touch</h3>
-        <p class="p-card__content">Speak to our technical support team about your support requirements.</p>
+        <p class="p-card__content u-sv3">Speak to our technical support team about your support requirements.</p>
         <p class="p-card__content"><a class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" href="/server/contact-us?product=server-overview">Contact us</a></p>
       </div>
     </div>
@@ -442,24 +346,16 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h2 id="a-thriving-community">
-        A thriving community
-      </h2>
+      <h2 id="a-thriving-community"> A thriving community </h2>
+      <p> Exchange expertise and ideas with thousands of other IT professionals </p>
+      <p> Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a
+        community, we set high standards for friendliness and tolerance, we welcome your questions and contributions! </p>
       <p>
-        Exchange expertise and ideas with thousands of other IT professionals
-      </p>
-      <p>
-        Want to talk to other Ubuntu users straightaway? Share ideas and get advice and help from our large, active community of IT professionals. As a community, we set high standards for friendliness and tolerance, we welcome your questions and contributions!
-      </p>
-      <p>
-        <a href="/community">
-          Join the community&nbsp;&rsaquo;
-        </a>
+        <a href="/community"> Join the community&nbsp;&rsaquo; </a>
       </p>
     </div>
     <div class="col-3 u-vertically-center u-align--center">
-      {{
-        image(
+      {{ image(
         url="https://assets.ubuntu.com/v1/5552afb7-community-support.svg",
         alt="",
         width="150",
@@ -471,14 +367,12 @@
       }}
     </div>
   </div>
-</section>
+</section> 
 
-{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include
+"shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1254" data-lp-id="2152" data-return-url="https://ubuntu.com/server/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
-</div>
-
-
-
-{% endblock content %}
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1254" data-lp-id="2152"
+     data-return-url="https://ubuntu.com/server/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div> {% endblock content %}
