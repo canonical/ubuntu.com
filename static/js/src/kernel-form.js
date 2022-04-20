@@ -244,15 +244,25 @@
               window.location.pathname
             );
           } else {
-            index = index + 1;
-            setState(index);
-            ga(
-              "send",
-              "event",
-              "interactive-forms",
-              "goto:" + index,
-              window.location.pathname
-            );
+            var valid = true;
+
+            if (button.classList.contains("js-validate-form")) {
+              var form = button.closest("form");
+
+              valid = validateForm(form);
+            }
+
+            if (valid) {
+              index = index + 1;
+              setState(index);
+              ga(
+                "send",
+                "event",
+                "interactive-forms",
+                "goto:" + index,
+                window.location.pathname
+              );
+            }
           }
         });
       });
@@ -277,6 +287,48 @@
       function setState(index) {
         contactIndex = index;
         render();
+      }
+
+      // Checks additional required fields to see whether a value has been set
+      function validateForm(form) {
+        var fields = [
+          "which-industry",
+          "latency-requirements",
+          "which-architecture",
+        ];
+        var validStates = [];
+
+        fields.forEach((field) => {
+          var inputs = form.querySelectorAll(`[name="${field}"]`);
+          var validationMessage = document.querySelector(
+            `.js-validation-${field}`
+          );
+          var inputValid = false;
+
+          inputs.forEach((input) => {
+            if (input.type === "checkbox" && input.checked) {
+              inputValid = true;
+            }
+
+            if (input.type === "radio" && input.checked) {
+              inputValid = true;
+            }
+
+            if (input.type === "text" && input.value) {
+              inputValid = true;
+            }
+          });
+
+          if (!inputValid) {
+            validationMessage.classList.remove("u-hide");
+          } else {
+            validationMessage.classList.add("u-hide");
+          }
+
+          validStates.push(inputValid);
+        });
+
+        return !validStates.includes(false);
       }
 
       // Close the modal and set the index back to the first stage

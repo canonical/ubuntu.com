@@ -8,105 +8,107 @@
     <div class="js-pagination js-pagination--1">
       <p>With the 22.04 Ubuntu release, Canonical announced a beta version of the real-time Ubuntu kernel for latency-critical applications. Register your interest below for an opportunity to become a beta tester and to be the first to know once the kernel is production-ready.</p>
       
-      <div class="js-formfield">
-        <h3 class="p-heading--5">In which industry do you operate?</h3>
-        <div class="row u-no-padding u-equal-height">
-          <div class="col-4 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="which-industry-Industrial" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="which-industry-Industrial">Industrial</span>
-            </label>
+      <form id="kernel-required-fields">
+        <div class="js-formfield">
+          <h3 class="p-heading--5">*In which industry do you operate?</h3>
+          <div class="p-form-validation is-error u-hide js-validation-which-industry">
+            <p class="p-form-validation__message" id="exampleInputErrorMessage">This field is required.</p>
           </div>
-          <div class="col-4 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="which-industry-Telco" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="which-industry-Telco">Telco</span>
-            </label>
-          </div>
-          <div class="col-4 u-sv3">
-            <label class="p-checkbox">
-              <input type="checkbox" aria-labelledby="which-industry-Robotics" class="p-checkbox__input">
-              <span class="p-checkbox__label" id="which-industry-Robotics">Robotics</span>
-            </label>
-          </div>
-        </div>
-        <div class="row u-no-padding">
-          <div class="col-6">
-            <label for="which-industry-Other">Other, please specify</label>
-            <input id="which-industry-Other" name="which-industry-Other" maxlength="255" type="text" />
-          </div>
-        </div>
-      </div>
-      <div class="js-formfield">
-        <h3 class="p-heading--5">What architecture are you using?</h3>
-        <div class="row u-no-padding">
-          <div class="col-4 u-sv3">
-            <label class="p-radio">
-              <input type="radio" aria-labelledby="which-architecture-ARM64" name="radioPattern" class="p-radio__input">
-              <span class="p-radio__label" id="which-architecture-ARM64">ARM64</span>
-            </label>
-          </div>
-          <div class="col-4 u-sv3">
-            <label class="p-radio">
-              <input type="radio" aria-labelledby="which-architecture-x86_64" class="p-radio__input">
-              <span class="p-radio__label" id="which-architecture-x86_64">x86_64</span>
-            </label>
+          <div class="row u-no-padding u-equal-height">
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" name="which-industry" aria-labelledby="which-industry-Industrial" class="p-checkbox__input" value="Industrial">
+                <span class="p-checkbox__label" id="which-industry-Industrial">Industrial</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" name="which-industry" aria-labelledby="which-industry-Telco" class="p-checkbox__input" value="Telco">
+                <span class="p-checkbox__label" id="which-industry-Telco">Telco</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" name="which-industry" aria-labelledby="which-industry-Robotics" class="p-checkbox__input" value="Robotics">
+                <span class="p-checkbox__label" id="which-industry-Robotics">Robotics</span>
+              </label>
+            </div>
           </div>
           <div class="row u-no-padding">
-            <div class="col-6 u-sv3">
-              <label for="which-architecture-Other">Other, please specify</label>
-              <input id="which-architecture-Other" name="which-architecture-Other" maxlength="255" type="text" />
+            <div class="col-6">
+              <label for="which-industry-Other">Other, please specify</label>
+              <input id="which-industry-Other" name="which-industry" maxlength="255" type="text" />
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="js-formfield">
-        <h3 class="p-heading--5">How are you currently meeting your latency requirements?</h3>
-        <div class="row u-no-padding u-equal-height">
-          <div class="col-6 u-sv3">
-            <label class="p-radio">
-              <input type="radio" aria-labelledby="latency-requirements-RTOS" name="radioPattern" class="p-radio__input">
-              <span class="p-radio__label" id="latency-requirements-RTOS">RTOS</span>
-            </label>
-
-            <label class="p-radio">
-              <input type="radio" aria-labelledby="latency-requirements-real-time-Linux" name="radioPattern" class="p-radio__input">
-              <span class="p-radio__label" id="latency-requirements-real-time-Linux">Commercially supported real-time Linux </span>
-            </label>
+        <div class="js-formfield">
+          <h3 class="p-heading--5">*What architecture are you using?</h3>
+          <div class="p-form-validation is-error u-hide js-validation-which-architecture">
+            <p class="p-form-validation__message" id="exampleInputErrorMessage">This field is required.</p>
           </div>
-          <div class="col-6 u-sv3">
-            <label class="p-radio">
-              <input type="radio" aria-labelledby="latency-requirements-Linux-kernel" name="radioPattern" class="p-radio__input">
-              <span class="p-radio__label" id="latency-requirements-Linux-kernel">Building own Linux kernel</span>
-            </label>
-
-            <label class="p-radio">
-              <input type="radio" aria-labelledby="latency-requirements-no-solution" name="radioPattern" class="p-radio__input">
-              <span class="p-radio__label" id="latency-requirements-no-solution">No solution</span>
-            </label>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input type="radio" required aria-labelledby="which-architecture-ARM64" name="which-architecture" class="p-radio__input" value="ARM64">
+                <span class="p-radio__label" id="which-architecture-ARM64">ARM64</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input type="radio" required aria-labelledby="which-architecture-x86_64" name="which-architecture" class="p-radio__input" value="x86_64">
+                <span class="p-radio__label" id="which-architecture-x86_64">x86_64</span>
+              </label>
+            </div>
+            <div class="row u-no-padding">
+              <div class="col-6 u-sv3">
+                <label for="which-architecture-Other">Other, please specify</label>
+                <input id="which-architecture-Other" name="which-architecture" maxlength="255" type="text" />
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
-            <label for="latency-requirements-Other">Other, please specify</label>
-            <input id="latency-requirements-Other" name="latency-requirements-Other" maxlength="255" type="text" />
+
+        <div class="js-formfield">
+          <h3 class="p-heading--5">*How are you currently meeting your latency requirements?</h3>
+          <div class="p-form-validation is-error u-hide js-validation-latency-requirements">
+            <p class="p-form-validation__message" id="exampleInputErrorMessage">This field is required.</p>
+          </div>
+          <div class="row u-no-padding u-equal-height">
+            <div class="col-6 u-sv3">
+              <label class="p-radio">
+                <input type="radio" required aria-labelledby="latency-requirements-RTOS" name="latency-requirements" class="p-radio__input" value="RTOS">
+                <span class="p-radio__label" id="latency-requirements-RTOS">RTOS</span>
+              </label>
+
+              <label class="p-radio">
+                <input type="radio" required aria-labelledby="latency-requirements-real-time-Linux" name="latency-requirements" class="p-radio__input" value="Commercially supported real-time Linux">
+                <span class="p-radio__label" id="latency-requirements-real-time-Linux">Commercially supported real-time Linux </span>
+              </label>
+            </div>
+            <div class="col-6 u-sv3">
+              <label class="p-radio">
+                <input type="radio" required aria-labelledby="latency-requirements-Linux-kernel" name="latency-requirements" class="p-radio__input" value="Building own Linux kernel">
+                <span class="p-radio__label" id="latency-requirements-Linux-kernel">Building own Linux kernel</span>
+              </label>
+
+              <label class="p-radio">
+                <input type="radio" required aria-labelledby="latency-requirements-no-solution" name="latency-requirements" class="p-radio__input" value="No solution">
+                <span class="p-radio__label" id="latency-requirements-no-solution">No solution</span>
+              </label>
+            </div>
+          </div>
+          <div class="row u-no-padding">
+            <div class="col-6 u-sv3">
+              <label for="latency-requirements-Other">Other, please specify</label>
+              <input id="latency-requirements-Other" name="latency-requirements" maxlength="255" type="text" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="u-hide">
-        <h3>Your comments</h3>
-        <ul class="p-list">
-          <li class="p-list__item">
-            <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-            <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
-          </li>
-        </ul>
-      </div>
 
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
+        <div class="pagination">
+          <a class="p-button--positive pagination__link--next js-validate-form" href="">Next</a>
+        </div>
+      </form>
     </div>
   
     <div class="js-pagination js-pagination--2 u-hide">
@@ -146,6 +148,16 @@
                 </li>
                 {# End of honey pots #}
             </ul>
+
+            <div class="u-hide">
+              <h3>Your comments</h3>
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+                </li>
+              </ul>
+            </div>
 
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
