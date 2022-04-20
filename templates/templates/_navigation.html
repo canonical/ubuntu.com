@@ -92,20 +92,19 @@
         {% for child in breadcrumbs.children %}
           {% if child.title != "Overview" %}
             {% if child.path == '/blog/topics' %}
-            <li class="p-navigation__item is-selected">
-              <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
-
-                <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
-                  <span class="p-contextual-menu__group">
-                    {% for item in child.children %}
-                    <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
-                    {% endfor %}
-                  </span>
+            <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}">
+              <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link  p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+              <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
+                <span class="p-contextual-menu__group">
+                  {% for item in child.children %}
+                  <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
+                  {% endfor %}
                 </span>
+              </span>
             </li>
             {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
-            <li class="breadcrumbs__item {% if child.active %}is-selected{% endif %}">
-              <a class="breadcrumbs__link" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
+            <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
+              <a class="p-navigation__link" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
             </li>
             {% endif %}
           {% endif %}
@@ -114,8 +113,8 @@
         {% for child in breadcrumbs.children %}
           {% if child.path == "/blog/topics" %}
             {% for item in child.children %}
-            <li class="breadcrumbs__item u-hide--medium u-hide--large">
-              <a class="p-navigation__link {% if request.path == item.path %}p-link--active{% else %}p-link--soft {% endif %}" href="{{ item.path }}">{{ item.title }}</a>
+            <li class="p-navigation__item u-hide--medium u-hide--large {% if request.path == item.path %}is-selected{% endif %}">
+              <a class="p-navigation__link" href="{{ item.path }}">{{ item.title }}</a>
             </li>
             {% endfor %}
           {% endif %}
