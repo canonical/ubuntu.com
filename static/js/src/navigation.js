@@ -56,6 +56,7 @@ if (dropdownWindowOverlay) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
 
       if (dropdown.classList.contains("is-selected")) {
+        dropdownContent.classList.add("u-hide");
         closeMenu(dropdown, dropdownContent);
       }
     });
