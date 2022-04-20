@@ -5,7 +5,54 @@
       <h2 class="p-modal__title  u-sv1" id="modal-title">Register your interest for the Ubuntu Pro on-prem beta</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <p>In 22.04, Canonical  launched a beta version of the real-time Ubuntu kernel for latency-critical applications. As part of the beta program, you will receive free, early access to the real-time kernel for three months - register your interest below for an opportunity to become a beta tester.</p>
+      <p>With the 22.04 Ubuntu release, Canonical announced a beta version of the real-time Ubuntu kernel for latency-critical applications. Register your interest below for an opportunity to become a beta tester and to be the first to know once the kernel is production-ready.</p>
+      <div class="js-formfield">
+        <h3>How can we get in touch?</h3>
+        <div class="row u-no-padding">
+          <div class="col-6">
+            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label for="firstName">First name:</label>
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+                </li>
+                <li class="p-list__item">
+                  <label for="lastName">Last name:</label>
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                </li>
+                <li class="p-list__item">
+                  <label for="email">Work email:</label>
+                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                </li>
+                
+                <li class="p-list__item">
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                    <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                  </label>
+                </li>
+                <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+                  {# These are honey pot fields to catch bots #}
+                  <li class="u-off-screen">
+                    <label class="website" for="website">Website:</label>
+                    <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+                  </li>
+                  <li class="u-off-screen">
+                    <label class="name" for="name">Name:</label>
+                    <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+                  </li>
+                  {# End of honey pots #}
+              </ul>
+            </form>
+          </div>
+        </div>
+        <div class="pagination">
+          <a class="p-button--positive pagination__link--next" href="">Next</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="js-pagination js-pagination--2 u-hide">
       <div class="js-formfield">
         <h3 class="p-heading--5">In which industry do you operate?</h3>
         <div class="row u-no-padding u-equal-height">
@@ -14,24 +61,20 @@
               <input type="checkbox" aria-labelledby="which-industry-Industrial" class="p-checkbox__input">
               <span class="p-checkbox__label" id="which-industry-Industrial">Industrial</span>
             </label>
-            
           </div>
           <div class="col-4 u-sv3">
             <label class="p-checkbox">
               <input type="checkbox" aria-labelledby="which-industry-Telco" class="p-checkbox__input">
               <span class="p-checkbox__label" id="which-industry-Telco">Telco</span>
             </label>
-            
           </div>
           <div class="col-4 u-sv3">
             <label class="p-checkbox">
               <input type="checkbox" aria-labelledby="which-industry-Robotics" class="p-checkbox__input">
               <span class="p-checkbox__label" id="which-industry-Robotics">Robotics</span>
             </label>
-            
           </div>
         </div>
-
         <div class="row u-no-padding">
           <div class="col-6">
             <label for="which-industry-Other">Other, please specify</label>
@@ -48,21 +91,21 @@
               <span class="p-radio__label" id="which-architecture-ARM64">ARM64</span>
             </label>
           </div>
-          
           <div class="col-4 u-sv3">
             <label class="p-radio">
               <input type="radio" aria-labelledby="which-architecture-x86_64" class="p-radio__input">
               <span class="p-radio__label" id="which-architecture-x86_64">x86_64</span>
             </label>
           </div>
-        </div>
-        <div class="row u-no-padding">
-          <div class="col-6 u-sv3">
-            <label for="which-architecture-Other">Other, please specify</label>
-            <input required id="which-architecture-Other" name="which-architecture-Other" maxlength="255" type="text" required="required" />
+          <div class="row u-no-padding">
+            <div class="col-6 u-sv3">
+              <label for="which-architecture-Other">Other, please specify</label>
+              <input required id="which-architecture-Other" name="which-architecture-Other" maxlength="255" type="text" required="required" />
+            </div>
           </div>
         </div>
       </div>
+
       <div class="js-formfield">
         <h3 class="p-heading--5">How are you currently meeting your latency requirements?</h3>
         <div class="row u-no-padding u-equal-height">
@@ -91,7 +134,6 @@
             </label>
           </div>
         </div>
-
         <div class="row u-no-padding">
           <div class="col-6 u-sv3">
             <label for="which-architecture-Other">Other, please specify</label>
@@ -99,77 +141,33 @@
           </div>
         </div>
       </div>
-      <div class="pagination">
-        <a class="p-button--positive pagination__link--next" href="">Next</a>
-      </div>
-    </div>
-    
-    <div class="js-pagination js-pagination--2 u-hide">
-      <h3 class="p-heading--5">How should we get in touch?</h3>
-      <div class="row u-no-padding">
-        <div class="col-6">
-          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
-            <ul class="p-list">
-              <li class="p-list__item">
-                <label for="firstName">First name:</label>
-                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="lastName">Last name:</label>
-                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label for="email">Work email:</label>
-                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
-              </li>
-              <li class="p-list__item">
-                <label class="p-checkbox">
-                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
-                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
-                </label>
-              </li>
-              <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              {# These are honey pot fields to catch bots #}
-              <li class="u-off-screen">
-                <label class="website" for="website">Website:</label>
-                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-              </li>
-              <li class="u-off-screen">
-                <label class="name" for="name">Name:</label>
-                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-              </li>
-              {# End of honey pots #}
-            </ul>
-            
-            <div class="u-hide">
-              <h3>Your comments</h3>
-              <ul class="p-list">
-                <li class="p-list__item">
-                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
-                </li>
-              </ul>
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/advantage/beta/thank-you" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
-            </div>
-            
-            <div class="pagination">
-              <a class="pagination__link--previous p-button" href="">Previous</a>
-              <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
-            </div>
-          </form>
+      <div class="u-hide">
+          <h3>Your comments</h3>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+            </li>
+          </ul>
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/advantage/beta/thank-you" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
         </div>
-      </div>
+        
+        <div class="pagination">
+          <a class="pagination__link--previous p-button" href="">Previous</a>
+          <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
+        </div>
     </div>
+  </div>
     
     <div class="js-pagination js-pagination--3 u-hide">
       <div class="row u-no-padding u-equal-height">
