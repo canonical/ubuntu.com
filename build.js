@@ -31,6 +31,7 @@ let entries = {
     "./static/js/src/advantage/subscribe/blender/blender-store-modal.js",
   tabbedContent: "./static/js/src/tabbed-content.js",
   utmInheritance: "./static/js/src/utm-inheritance.js",
+  "kernel-form": "./static/js/src/kernel-form.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
