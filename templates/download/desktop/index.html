@@ -4,13 +4,20 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1ScuTtdrm3-iAvizTDxksVTAerV6QkCUN8Sg60uUlJsk/edit{% endblock meta_copydoc %}
 
 {% block content %}
+
 <section class="p-strip--suru-topped">
   <div class="u-fixed-width">
-    <h1 class="u-no-margin--bottom">
+    <h1>
       Download Ubuntu Desktop
     </h1>
+    <p>The open-source desktop operating system that powers millions of PCs and laptops around the world. Find out more about Ubuntu's features and how we support developers and organisations below.</p>
+    <p>
+      <a href="/desktop" class="p-button--positive">Ubuntu Desktop homepage</a>
+      <a href="/blog/desktop">Visit the Ubuntu Desktop blog&nbsp;&rsaquo;</a>
+    </p>
   </div>
 </section>
+
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
@@ -20,7 +27,7 @@
         <p><a href="{{ releases.lts.release_notes_url }}">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
         <p>Recommended system requirements:</p>
         <ul class="p-list is-split">
-          <li class="p-list__item is-ticked">2 GHz dual core processor or better</li>
+          <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
           <li class="p-list__item is-ticked">4 GB system memory</li>
           <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
           <li class="p-list__item is-ticked">Internet access is helpful</li>
@@ -36,125 +43,156 @@
       </div>
     </div>
   </div>
-
-  {% if releases.latest.short_version > releases.lts.short_version %}
-  <div class="p-strip is-shallow">
-    <div class="u-fixed-width">
-      <hr>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <h2>Ubuntu {{ releases.latest.full_version }}</h2>
-    <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
-      <div class="col-8 p-divider__block">
-        <p class="u-no-padding--top">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.full_version }} comes with nine months, until {{ releases.latest.eol }}, of security and maintenance updates.</p>
-        <p>Recommended system requirements are the same as for Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr>.</p>
-        <p><a href="{{ releases.latest.release_notes_url }}">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
-      </div>
-      <div class="col-4">
-        <p>
-          <a class="p-button--positive is-wide js-latest-download" href="/download/desktop/thank-you/?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
-        </p>
-        <p>
-          <small><a href="/download/alternative-downloads">Alternative downloads and torrents&nbsp;&rsaquo;</a></small>
-        </p>
-      </div>
-    </div>
-  </div>
-  {% endif %}
 </section>
 
-{% include 'download/shared/_everywhere.html' %}
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>How to install Ubuntu Desktop</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu desktop</a></h3>
+      <p>Follow this tutorial to find out how to install Ubuntu Desktop on your laptop or PC.</p>
+      <p>You can also run Ubuntu from a USB to try it without installing it on your machine.</p>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop on a virtual machine using VirtualBox</a></h3>
+      <p>Learn how to run Ubuntu Desktop on any operating system using VirtualBox to set up a virtual machine with this quick start guide.</p>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
+      <p>Read the complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu desktop</a></h3>
+      <p>If you're already running Ubuntu, you can upgrade in a few clicks from the Software Updater.</p>
+      <p>Discover how with this quick tutorial.</p>
+    </div>            
+  </div>
+</section>
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2>Easy ways to switch to Ubuntu</h2>
+    <h2>Spin up Ubuntu VMs on Linux, Mac or Windows</h2>
   </div>
-
-  <div class="row u-equal-height">
-    <div class="col-4 p-card">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-                url="https://assets.ubuntu.com/v1/cb3ecebb-picto-ubuntu.svg",
-                alt="",
-                width="60",
-                height="60",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
-              ) | safe
-          }}
-          <h3 class="p-heading-icon__title">From an older version</h3>
-        </div>
-      </div>
-      <p>If you're already running Ubuntu, you can upgrade in a few clicks from <a href="/tutorials/tutorial-upgrading-ubuntu-desktop">Software Updater</a>.</p>
-      <ul class="p-list">
-        <li class="p-list__item"><a href="/tutorials/tutorial-burn-a-dvd-on-ubuntu">How to burn a DVD on Ubuntu</a></li>
-        <li class="p-list__item"><a href="/tutorials/tutorial-create-a-usb-stick-on-ubuntu">How to create a bootable USB stick on Ubuntu</a></li>
-      </ul>
+  <div class="row">
+    <div class="col-8">
+      <h3>Mini-clouds on desktops with Multipass</h3>
+      <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with latest updates preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
+      <p><a href="https://multipass.run/#install" class="p-button--positive">Download for (macOS|Windows|Linux)</a></p>
+      <p><a href="https://multipass.run">Learn more about Multipass&nbsp;&rsaquo;</a></p>
     </div>
-
-    <div class="col-4 p-card">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-                url="https://assets.ubuntu.com/v1/08563efa-picto-windows.svg",
-                alt="",
-                width="60",
-                height="60",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
-                ) | safe
-          }}
-          <h3 class="p-heading-icon__title">From Windows</h3>
-        </div>
-      </div>
-      <p>If you're using Windows 10 or any computer with a 64-bit processor, we recommend the 64-bit download.</p>
-      <ul class="p-list">
-        <li class="p-list__item"><a href="/tutorials/tutorial-burn-a-dvd-on-windows">How to burn a DVD on Windows</a></li>
-        <li class="p-list__item"><a href="/tutorials/tutorial-create-a-usb-stick-on-windows">How to create a bootable USB stick on Windows</a></li>
-      </ul>
+    <div class="col-4 u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
-
-    <div class="col-4 p-card">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-                url="https://assets.ubuntu.com/v1/4239507e-picto-mac.svg",
-                alt="",
-                width="60",
-                height="60",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
-              ) | safe
-          }}
-          <h3 class="p-heading-icon__title">From macOS</h3>
-        </div>
-      </div>
-      <p>Most Macs with Intel processors will work with either 64-bit or Mac images. If the 64-bit image doesn't work, try the Mac image.</p>
-      <ul class="p-list">
-        <li class="p-list__item"><a href="/tutorials/tutorial-burn-a-dvd-on-macos">How to burn a DVD on macOS</a></li>
-        <li class="p-list__item"><a href="/tutorials/tutorial-create-a-usb-stick-on-macos">How to create a bootable USB stick on macOS</a></li>
-      </ul>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row">
+    <div class="col-4 u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg",
+        alt="",
+        width="140",
+        height="140",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/66c99aa0-windows-logo-blue.svg",
+        alt="",
+        width="112",
+        height="115",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
+    <div class="col-8">
+      <h3>Access the Linux Terminal on Windows with Ubuntu WSL</h3>
+      <p>For a more integrated environment, activate Windows Subsystem for Linux (WSL) to run Linux applications and workflows while developing cross-platform on your Windows machine.</p>
+      <p>You can download Ubuntu directly from the Microsoft store</p>
+      <p><a href="https://www.microsoft.com/en-us/p/ubuntu/9pdxgncfsczv?rtc=1&activetab=pivot:overviewtab" class="p-button--positive">Download Ubuntu WSL</a></p>
+      <p><a href="/wsl">Learn more about WSL&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Run system containers with LXD</h3>
+      <p>When running Linux on Linux, consider LXD system containers instead of VMs for optimizing resources. LXD runs a full OS inside containers, providing all the benefits of a VM without the usual overhead.</p>
+      <p><a href="/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
+      <p><a href="https://linuxcontainers.org/lxd/try-it/">Try LXD with an online demo tool&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/459e1d4b-lxd_black-pictogram.svg",
+        alt="",
+        width="152",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}      
+    </div>
+  </div>    
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Help is always at hand</h2>
+    <p>Join our global community for support and tips on how to get started with Ubuntu.</p>
+  </div>
+  <div class="row">
+    <div class="col-3 p-card">
+      <p class="p-card__content u-align--center"><a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a></p>
+    </div>
+    <div class="col-3 p-card">
+      <p class="p-card__content u-align--center"><a href="https://askubuntu.com/">Ask Ubuntu</a></p>
+    </div>
+    <div class="col-3 p-card">
+      <p class="p-card__content u-align--center"><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a></p>
+    </div>
+    <div class="col-3 p-card">
+      <p class="p-card__content u-align--center"><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support</a></p>
+    </div>            
   </div>
 </section>
 
-
-{% with first_item="_download_desktop_installation",
-  first_item_class="",
-  second_item="_download_try_desktop",
-  second_item_class="",
-  third_item="_download_helping_hands",
-  third_item_class="" %}
-  {% include "shared/contextual_footers/_contextual_footer.html" %}
-{% endwith %}
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop:</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-3 p-divider__block">
+      <p><a href="/blog/planning-phased-ubuntu-22-04-enterprise-desktop-upgrades-with-landscape">Planning phased Ubuntu 22.04 Enterprise Desktop upgrades with Landscape</a></p>
+      <p><em>by <a href="/blog/author/rajanpatel927">Rajan Patel</a> on 8 February 2022</em></p>
+    </div>
+    <div class="col-3 p-divider__block">
+      <p><a href="/blog/get-started-with-linux-game-development-on-ubuntu">Linux game development on Ubuntu: Godot and Unity</a></p>
+      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 24 January 2022</em></p>
+    </div>
+    <div class="col-3 p-divider__block">
+      <p><a href="/blog/how-low-can-you-go-running-ubuntu-desktop-on-a-2gb-raspberry-pi-4">How low can you go? Running Ubuntu Desktop on a 2GB Raspberry Pi 4</a></p>
+      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 11 January 2022</em></p>
+    </div>
+    <div class="col-3 p-divider__block">
+      <p><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a></p>
+      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 9 December 2021</em></p>
+    </div>            
+  </div>
+</section>
 
 {% endblock content %}

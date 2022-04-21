@@ -22,16 +22,15 @@
         <li class="p-list__item is-ticked">Commercial support for enterprise customers</li>
       </ul>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
+    <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
       <div class="u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg",
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
           alt="",
-          height="200",
-          width="256",
+          width="260",
+          height="150",
           hi_def=True,
-          loading="lazy"
+          loading="auto"
           ) | safe
         }}
       </div>
@@ -46,9 +45,8 @@
             <input type="hidden" name="architecture" value="amd64">
             <input type="hidden" name="next-step" value="download">
             <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
-          </form>
+        </form>
         </li>
-        <li class="p-inline-list__item"><a href="#releases">Alternative releases&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></li>
       </ul>
