@@ -10,22 +10,30 @@
 
 {% block content %}
 
-<nav class="p-navigation--secondary">
-  <div class="row">
-    <div class="col-12 u-equal-height">
-      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/tutorials">
-        <h5 class="p-navigation--secondary__logo">
-          Tutorials
-        </h5>
-      </a>
-      <ul class="breadcrumbs--secondary">
-        <li class="breadcrumbs__item" style="width: 100%;"> <!-- style only applies to this template -->
-          <a class="breadcrumbs__link p-link--soft" href="{{ document['slug'] }}">{{ document.title }}</a>
+<div id="secondary-navigation" class="p-navigation is-secondary is-dark">
+  <div class="p-navigation__row">
+    <div class="p-navigation__banner">
+      <div class="p-navigation__tagged-logo">
+        <a class="p-navigation__link" href="/tutorials">
+          <div class="p-navigation__logo-tag">
+            <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
+          </div>
+          <span class="p-navigation__logo-title">Tutorials</span>
+        </a>
+      </div>
+      <div class="u-hide js-account--small"></div>
+      <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down"></i></a>
+      <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up"></i></a>
+    </div>
+    <nav class="p-navigation__nav" aria-label="secondary-navigation-children">
+      <ul class="p-navigation__items">
+        <li class="p-navigation__item">
+          <a class="p-navigation__link" href="{{ document['slug'] }}" style="overflow:visible;">{{ document.title }}</a>
         </li>
       </ul>
-    </div>
+    </nav>
   </div>
-</nav>
+</div>
 
 <div class="l-tutorial">
   <aside class="l-tutorial__sidebar">
