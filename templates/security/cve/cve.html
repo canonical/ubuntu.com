@@ -3,32 +3,6 @@
 
 {% block content %}
 
-<nav class="p-navigation--secondary">
-  <div class="row">
-    <div class="col-12 u-equal-height">
-      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="/security">
-        <h5 class="p-navigation--secondary__logo">
-          Security
-        </h5>
-      </a>
-      <ul class="breadcrumbs--secondary">
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link p-link--soft" href="/security">Overview</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link p-link--soft" href="/security/certifications">Certifications</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link p-link--soft" href="/security/notices">Notices</a>
-        </li>
-        <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link p-link--active" href="/security/cves">CVEs</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
 {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
   <section class="p-strip--light is-bordered--top">
 {% else %}
