@@ -537,6 +537,9 @@
 
     // Opens the form when the initial hash matches the trigger
     if (window.location.hash === triggeringHash) {
+      if (window.location.pathname) {
+        contactForm.setAttribute("data-return-url", returnData);
+      }
       fetchForm(formContainer.dataset);
       open();
     }
