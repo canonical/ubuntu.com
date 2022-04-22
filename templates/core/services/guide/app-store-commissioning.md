@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "App store commissioning"
   description: SMART START customers benefit from their own IoT app store. While app stores are hosted by Canonical, they are entirely operated by customers. This section describes the first steps a customer takes when commissioning their app store.
@@ -27,9 +27,9 @@ Commissioning an IoT app store occurs in four simple steps:
 
 The first step is to create a brand account. A brand account has extensive permissions. It can be used for certain functions including to:
 
-* Generate, register and hold the signing keys for all associated IoT app stores.
-* Sign configuration files used to build device images with access to the IoT app store.
-* Register key software components hosted in the app store (kernels and bootloaders).
+- Generate, register and hold the signing keys for all associated IoT app stores.
+- Sign configuration files used to build device images with access to the IoT app store.
+- Register key software components hosted in the app store (kernels and bootloaders).
 
 ### 2. Create SSO accounts and assign roles
 
@@ -63,8 +63,8 @@ All of these are used by the device, serial vault and IoT app store to verify an
 
 Store Administrators can create derivative IoT app stores hierarchically tied to their account. Sub stores can be created for the following use cases:
 
-* Product sub stores: enterprises with a product portfolio can create sub stores associated with different product lines or to specific product models.
-* Ecosystem sub stores: enterprises can create stores on behalf of their ecosystem partners. These could be resellers, subsidiaries or business partners.
+- Product sub stores: enterprises with a product portfolio can create sub stores associated with different product lines or to specific product models.
+- Ecosystem sub stores: enterprises can create stores on behalf of their ecosystem partners. These could be resellers, subsidiaries or business partners.
 
 ### Helpful resources
 
@@ -72,11 +72,11 @@ Store Administrators can create derivative IoT app stores hierarchically tied to
 - [IoT app store datasheet](https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/snap-publishing">
+  <a class="p-article-pagination__link--previous" href="/core/services/guide/snap-publishing">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Snap publishing</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/custom-image-creation">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/custom-image-creation">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Custom image creation</span>
   </a>

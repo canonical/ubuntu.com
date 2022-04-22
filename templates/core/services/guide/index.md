@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "What is SMART START?"
   description: SMART START is a comprehensive toolbox that allows enterprises to bootstrap commercial IoT products.
@@ -21,16 +21,16 @@ SMART START brings agility to enterprise IoT projects. Through this bundle enter
 
 ## What's included?
 
-|Pre-certified hardware|Baseline OS image on pre-certified ARM or x86 board|
-| --- | --- |
-|IoT app embedding|Porting of up to 3 IoT applications to [snaps](http://snapcraft.io/docs/getting-started)|
-|Hosted cloud infrastructure|A dedicated repository for your apps for up to 1,000 devices|
-|Over the air (OTA) update services|Monthly OTA software updates for a year|
-|Technical support|Engineering support (24/5)|
-|Consulting|3 days of consulting|
-|Training|Dedicated engineering and product training workshops|
-|Lead time|Delivery in two weeks, advanced options will take longer|
-|Add-ons (optional)|Board bring-up (custom kernel with BSP integration) <br>Full disk encryption <br>Secure boot  Kernel livepatch|
+| Pre-certified hardware             | Baseline OS image on pre-certified ARM or x86 board                                                           |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| IoT app embedding                  | Porting of up to 3 IoT applications to [snaps](http://snapcraft.io/docs/getting-started)                      |
+| Hosted cloud infrastructure        | A dedicated repository for your apps for up to 1,000 devices                                                  |
+| Over the air (OTA) update services | Monthly OTA software updates for a year                                                                       |
+| Technical support                  | Engineering support (24/5)                                                                                    |
+| Consulting                         | 3 days of consulting                                                                                          |
+| Training                           | Dedicated engineering and product training workshops                                                          |
+| Lead time                          | Delivery in two weeks, advanced options will take longer                                                      |
+| Add-ons (optional)                 | Board bring-up (custom kernel with BSP integration) <br>Full disk encryption <br>Secure boot Kernel livepatch |
 
 ### Helpful resources
 
@@ -39,7 +39,7 @@ SMART START brings agility to enterprise IoT projects. Through this bundle enter
 - [Ubuntu Core](/core)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/hardware-setup">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/hardware-setup">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Hardware setup</span>
   </a>

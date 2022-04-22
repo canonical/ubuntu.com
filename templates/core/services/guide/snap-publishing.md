@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "Publishing snaps"
   description: The Snap store is a global application repository hosted and managed by Canonical. It is accessible to any developer who wants to leverage snaps to distribute software across any Linux distribution.
@@ -14,12 +14,12 @@ This section describes how to publish a snap in the global repository (snap stor
 
 IoT app stores are private application repositories hosted and managed by Canonical. Access to IoT app stores is restricted to the repository owner's team, customers, users and business partners.
 
-| | Snap store |  IoT app store |
-| -- | -- | -- |
-| Access | Public | Restricted |
-| Content | Curated by Canonical | Curated by owner |
-| Hosting | Hosted and managed by Canonical | Hosted and managed by Canonical |
-|Security | Security monitoring by Canonical | Security monitoring by Canonical |
+|          | Snap store                       | IoT app store                    |
+| -------- | -------------------------------- | -------------------------------- |
+| Access   | Public                           | Restricted                       |
+| Content  | Curated by Canonical             | Curated by owner                 |
+| Hosting  | Hosted and managed by Canonical  | Hosted and managed by Canonical  |
+| Security | Security monitoring by Canonical | Security monitoring by Canonical |
 
 ## Publishing to the snap store
 
@@ -123,11 +123,11 @@ Snaps are published to a private IoT app store in 3 simple steps:
 - [Process for manually reviewing security-sensitive snaps](https://forum.snapcraft.io/t/process-for-reviewing-classic-confinement-snaps/1460)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/snap-application-packaging">
+  <a class="p-article-pagination__link--previous" href="/core/services/guide/snap-application-packaging">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Snap application packaging</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/app-store-commissioning">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/app-store-commissioning">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">App Store commissioning</span>
   </a>
