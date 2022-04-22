@@ -8,7 +8,7 @@ context:
   copydoc: "https://docs.google.com/document/d/1kpZihTOUrC1VlyeN376l3mpiAqd_g3apsgzPj0sX5H8/edit"
 ---
 
-Board certification for Ubuntu is a prerequisite for commercialisation with SMART START. Canonical has [certified a selection x86 and ARM-based](https://certification.ubuntu.com/iot) off-the-shelf boards for Ubuntu. Customers can choose one, and benefit from the shortest time to market (two weeks delivery). Alternatively, customers can purchase [Canonical's device enablement](/smartstart/guide/device-enablement) service as an add-on to get any board on their choice certified for Ubuntu.
+Board certification for Ubuntu is a prerequisite for commercialisation with SMART START. Canonical has [certified a selection x86 and ARM-based](https://certification.ubuntu.com/iot) off-the-shelf boards for Ubuntu. Customers can choose one, and benefit from the shortest time to market (two weeks delivery). Alternatively, customers can purchase [Canonical's device enablement](/core/services/guide/device-enablement) service as an add-on to get any board on their choice certified for Ubuntu.
 
 ## Certified boards
 

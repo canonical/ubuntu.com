@@ -21,7 +21,7 @@ export const standardFormUrls = [
   "/azure/contact-us",
   "/ceph/contact-us",
   "/core/contact-us",
-  "/core/smartstart/contact-us",
+  "/core/services/contact-us",
   "/dell/contact-us",
   "/desktop/contact-us",
   "/gcp/contact-us",
@@ -201,7 +201,7 @@ export const interactiveForms = [
     noOfPages: 2,
   },
   {
-    url: "/core/smartstart",
+    url: "/core/services",
     inputs: [
       [/First name/, "test"],
       [/Last name/, "test"],
