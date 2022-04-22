@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "Secure device onboarding"
   description: Ubuntu Core devices are onboarded to their owner's IoT app store in a secure manner. Secure onboarding prevents unauthorised access to private software and services. It also establishes a secure communication link between devices and their cloud backend.
@@ -26,11 +26,11 @@ The secure onboarding process starts at first boot. When turned on for the first
 Both the serial and the model assertions will be used by devices to access your app store. Devices will use these secure documents to initiate a handshake with your app store. The app store authenticates the keys and authorises the device for a fixed period of time.
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/custom-image-creation">
+  <a class="p-article-pagination__link--previous" href="/core/services/guide/custom-image-creation">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Custom image creation</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/operating-an-app-store">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/operating-an-app-store">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Operating an app store</span>
   </a>
