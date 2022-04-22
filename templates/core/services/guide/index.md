@@ -1,14 +1,14 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "What is SMART START?"
-  description: SMART START is a comprehensive toolbox that allows enterprises to bootstrap commercial IoT products.
+  description: SMART START is a comprehensive services package that allows enterprises to bootstrap commercial IoT products.
   copydoc: "https://docs.google.com/document/d/1_RM806MdeRB6MDU8yoUyQFdZqopJobiKrqzgwUQm8J8/edit"
 ---
 
-SMART START is a comprehensive toolbox that allows enterprises to bootstrap commercial IoT products. With a two week delivery, SMART START reduces the risks and uncertainty involved in launching and scaling commercial IoT products while accelerating time to market.
+SMART START is a comprehensive services package that allows enterprises to bootstrap commercial IoT products. SMART START reduces the risks and uncertainty involved in launching and scaling commercial IoT products while accelerating time to market.
 
 <figure>
   <img src="https://assets.ubuntu.com/v1/eb79a8ba-5b010931dbb1e5285b3232bde2c3c212a75fa4d9_2_690x423.png" style="margin: 0;" alt="">
@@ -21,25 +21,23 @@ SMART START brings agility to enterprise IoT projects. Through this bundle enter
 
 ## What's included?
 
-|Pre-certified hardware|Baseline OS image on pre-certified ARM or x86 board|
-| --- | --- |
-|IoT app embedding|Porting of up to 3 IoT applications to [snaps](http://snapcraft.io/docs/getting-started)|
-|Hosted cloud infrastructure|A dedicated repository for your apps for up to 1,000 devices|
-|Over the air (OTA) update services|Monthly OTA software updates for a year|
-|Technical support|Engineering support (24/5)|
-|Consulting|3 days of consulting|
-|Training|Dedicated engineering and product training workshops|
-|Lead time|Delivery in two weeks, advanced options will take longer|
-|Add-ons (optional)|Board bring-up (custom kernel with BSP integration) <br>Full disk encryption <br>Secure boot  Kernel livepatch|
+| Pre-certified hardware             | Baseline OS image on pre-certified ARM or x86 board                                          |
+| ---------------------------------- | -------------------------------------------------------------------------------------------- |
+| IoT app embedding                  | Porting of up to 3 IoT applications to [snaps](http://snapcraft.io/docs/getting-started)     |
+| Hosted cloud infrastructure        | A dedicated repository for your apps for up to 1,000 devices                                 |
+| Over the air (OTA) update services | Monthly OTA software updates for a year                                                      |
+| Technical support                  | Engineering support (24/5)                                                                   |
+| Training options                   | Dedicated engineering and product training workshops                                         |
+| Add-ons (optional)                 | Board bring-up (custom kernel with BSP integration) <br>Full disk encryption <br>Secure boot |
 
 ### Helpful resources
 
 - [Ubuntu pre-certified IoT hardware](https://certification.ubuntu.com/iot)
-- [SMART START pricing](/pricing/devices)
+- [Consulting pricing](/pricing/devices)
 - [Ubuntu Core](/core)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/hardware-setup">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/hardware-setup">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Hardware setup</span>
   </a>

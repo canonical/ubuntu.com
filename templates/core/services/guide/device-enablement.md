@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "Device enablement"
   description: Device enablement is a service available for OEMs who want to bring up a board to run Ubuntu. Embedded applications depend on the kernel, drivers, libraries, filesystems and runtimes.
@@ -37,20 +37,20 @@ We monitor software continuously and rigorously to quickly identify and fix any 
 
 Should a high or critical security CVE threat emerge, we provide maintenance updates. Canonical systematically runs automated Checkbox tests to verify updates do not introduce any software regressions.
 
-* Maintenance follows the Ubuntu stable release update process as currently defined at https://wiki.ubuntu.com/StableReleaseUpdates.
-* Maintenance updates follow the kernel SRU cadence. Specific kernel SRU cadence dates and schedule is posted to the [kernel-sru-announce mailing list](https://lists.ubuntu.com/mailman/listinfo/kernel-sru-announce), as well as on the front page of https://kernel.ubuntu.com/.
-* Operating system updates and driver updates follow the above noted kernel SRU cadence; generally on a cadence of once per month.
+- Maintenance follows the Ubuntu stable release update process as currently defined at https://wiki.ubuntu.com/StableReleaseUpdates.
+- Maintenance updates follow the kernel SRU cadence. Specific kernel SRU cadence dates and schedule is posted to the [kernel-sru-announce mailing list](https://lists.ubuntu.com/mailman/listinfo/kernel-sru-announce), as well as on the front page of https://kernel.ubuntu.com/.
+- Operating system updates and driver updates follow the above noted kernel SRU cadence; generally on a cadence of once per month.
 
 ### Helpful resources
 
 - [Ubuntu stable release process](https://wiki.ubuntu.com/StableReleaseUpdates)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/advanced-options">
+  <a class="p-article-pagination__link--previous" href="/core/services/guide/advanced-options">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Advanced options</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/certification-and-validation">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/certification-and-validation">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Certification and validation</span>
   </a>
