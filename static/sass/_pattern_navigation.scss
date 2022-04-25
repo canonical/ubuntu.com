@@ -1,22 +1,5 @@
-// Vanilla 2.32 removes internal $grid-margin-width variable,
-// $grid-margin-widths map should be used instead
-$grid-margin-width: map-get($grid-margin-widths, default);
-
-$ubuntu-logo-svg-width: 5rem; // width in rems
-$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
-$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
-
 @mixin ubuntu-p-navigation {
-  .dropdown-window-overlay {
-    background-color: rgba(17, 17, 17, 0.4);
-    height: 100%;
-    position: fixed;
-    top: 0;
-    transition: opacity 0.5s ease-in-out;
-    width: 100%;
-    z-index: 7;
-  }
-
+  // dropdown mobile view
   @media (max-width: $breakpoint-navigation-threshold) {
     .dropdown-window.is-enterprise {
       top: 88px;
@@ -28,9 +11,20 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
       top: 184px;
     }
     .dropdown-window.is-download {
-      top: 232px;
+      top: 231px;
     }
   }
+  // overlay
+  .dropdown-window-overlay {
+    background-color: rgba(17, 17, 17, 0.4);
+    height: 100%;
+    position: fixed;
+    top: 0;
+    transition: opacity 1s ease-in-out;
+    width: 100%;
+    z-index: 7;
+  }
+
   .dropdown-window {
     @include vf-animation(all, brisk, in);
 
@@ -69,13 +63,22 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
     }
   }
   .slide-animation {
-    transform: translateY(-101%);
+    transform: translateY(101%);
   }
   .fade-animation {
     opacity: 0;
     visibility: hidden;
   }
+  // chevron transformation when menu is open
+  .p-navigation__item--dropdown-toggle {
+    &.is-selected {
+      &::after {
+        transform: rotate(180deg);
+      }
+    }
+  }
 }
+
 @mixin ubuntu-p-navigation-reduced {
   @media (min-width: $breakpoint-navigation-threshold) {
     .p-navigation.is-reduced.has-search-open {
@@ -167,6 +170,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
       }
       .p-navigation__link {
         color: $color-mid-light;
+        font-weight: 300;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
@@ -188,6 +192,8 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
           top: 0.5rem;
         }
         .p-navigation__search-label {
+          font-size: 0.875rem;
+          font-weight: 300;
           padding-left: 0.5rem;
         }
       }
