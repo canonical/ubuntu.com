@@ -50,7 +50,7 @@
             <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
-        <li class="p-navigation__user js-account"></li>
+        <li class="p-navigation__user js-account" id="canonical-login"></li>
       </ul>
       <div class="p-navigation__search">
         <form action="/search" class="p-search-box">
@@ -62,6 +62,7 @@
     </nav>
   </div>
   {% endblock header_banner %}
+  <div class="p-navigation__search-overlay"></div>
 </header>
 <div class="dropdown-window-overlay fade-animation"></div>
 <div class="dropdown-window slide-animation">
@@ -129,7 +130,20 @@
 {% endif %}
 {% endif %}
 <script>
-   function fetchDropdown(url, id) {
+  function focusSecondaryNav (){
+  const secondaryNav = document.querySelectorAll('.is-secondary .p-navigation__item')
+    secondaryNav.forEach( item => {
+        if (item.classList.contains("is-selected")){ 
+          var current_url = new URL(document.URL);
+          current_url.hash = '#secondary-navigation';
+          var new_url = current_url.href;
+          document.location.href = new_url;
+        }
+      }
+    );
+  }
+  focusSecondaryNav(); 
+  function fetchDropdown(url, id) {
     var div = document.getElementById(id);
     var req = new XMLHttpRequest();
     req.open('GET', url);
