@@ -9,9 +9,10 @@ env:
   MARKETO_API_SECRET: ${{secrets.MARKETO_API_SECRET}}
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: "0 14 * 1-5 *"
+      branches:
+        - main
 
 jobs:
   run-cypress:
