@@ -94,9 +94,9 @@
         {% for child in breadcrumbs.children %}
           {% if child.title != "Overview" %}
             {% if child.path == '/blog/topics' %}
-            <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}">
+            <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}" style="position: relative;">
               <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link  p-contextual-menu__toggle" href="#">{{ child.title }}</a>
-              <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
+              <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="position: absolute; font-size: .875rem;">
                 <span class="p-contextual-menu__group">
                   {% for item in child.children %}
                   <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
