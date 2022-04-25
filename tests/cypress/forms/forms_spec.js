@@ -235,27 +235,6 @@ context("Interactive marketo forms", () => {
       cy.url().should("include", "#success");
     }
   );
-
-
-  // wrote separate test for /robotics page as cypress couldn't find the job title input field by label text
-  it(
-    "should check interactive contact modal on /robotics",
-    { scrollBehavior: "center" },
-    () => {
-      cy.visit("/robotics");
-      cy.acceptCookiePolicy();
-      cy.findByTestId("interactive-form-link").click();
-      cy.findByRole("link", { name: /Next/ }).click();
-      cy.findByLabelText(/First name/).type("Test");
-      cy.findByLabelText(/Last name:/).type("Test");
-      cy.findByLabelText(/Company:/).type("Test");
-      cy.findByTestId("form-jobTitle").type("Test");
-      cy.findByTestId("form-email").type("test@test.com");
-      cy.findByLabelText(/Phone number:/).type("07777777777");
-      cy.findByText(/Let's discuss/).click();
-      cy.url().should("include", "#success");
-    }
-  );
   
   it(
     "should check interactive contact modal on /kubernetes/managed",
