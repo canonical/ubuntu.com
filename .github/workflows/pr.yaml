@@ -147,6 +147,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history for codecov
 
       - name: Install requirements
         run: |
@@ -169,7 +171,7 @@ jobs:
         run: /snap/bin/dotrun --env SEARCH_API_KEY=fake-key exec coverage run --source=. -m unittest discover tests
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           flags: python
 
@@ -178,6 +180,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # fetch all history for codecov
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -187,7 +191,7 @@ jobs:
           yarn test-js --coverage
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           flags: javascript
 

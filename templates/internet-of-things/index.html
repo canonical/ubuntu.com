@@ -8,12 +8,13 @@
 {% block content %}
 
 <section class="p-strip--suru is-dark">
+  {% include "shared/_rt-kernel-beta-banner.html" %}
   <div class="row u-vertically-center">
     <div class="col-6">
       <h1>Ubuntu for the Internet&nbsp;of&nbsp;Things</h1>
       <p>From smart homes to smart drones, robots, and industrial systems, Ubuntu is the <a class="p-link--inverted" href="/embedded">new standard for embedded Linux</a>. Get the world's best security, an operating system designed for IoT, a private app store, a huge developer community and reliable OTA updates.
       </p>
-      <p><a href="/core/smartstart" class="p-button--positive">Launch a smart product with SMART START</a></p>
+      <p><a href="/core/services" class="p-button--positive">Launch a smart product with IoT Professional Services</a></p>
     </div>
     <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center">
       {{
@@ -33,7 +34,7 @@
   <div class="row">
     <div class="col-6 p-tile">
       <div class="row p-tile__row">
-        <div class="col-3 col-medium-3">
+        <div class="col-3 col-medium-3 u-hide--small">
           <div class="u-align--center">
             {{
               image(
@@ -47,7 +48,7 @@
           </div>
         </div>
         <div class="col-3 col-medium-3">
-          <h3>Signage</h3>
+          <h2 class="p-heading--3">Signage</h2>
           <p>A small footprint and full OpenGL make Ubuntu Core the perfect platform for secure digital signs.</p>
           <p><a href="/internet-of-things/smart-displays">Learn more&nbsp;&rsaquo;</a></p>
         </div>
@@ -55,7 +56,7 @@
     </div>
     <div class="col-6 p-tile" style="margin-bottom: 64px;">
       <div class="row p-tile__row">
-        <div class="col-3 col-medium-3">
+        <div class="col-3 col-medium-3 u-hide--small">
           <div class="u-align--center">
             {{
               image(
@@ -69,7 +70,7 @@
           </div>
         </div>
         <div class="col-3 col-medium-3">
-          <h3>Robotics</h3>
+          <h2 class="p-heading--3">Robotics</h2>
           <p>Unleash the robots with ROS on Ubuntu. For autonomous vehicles and smart manufacturing.</p>
           <p><a href="/robotics">Learn more&nbsp;&rsaquo;</a></p>
         </div>
@@ -77,7 +78,7 @@
     </div>
     <div class="col-6 p-tile" style="margin-bottom: 64px;">
       <div class="row p-tile__row">
-        <div class="col-3 col-medium-3">
+        <div class="col-3 col-medium-3 u-hide--small">
           <div class="u-align--center">
             {{
               image(
@@ -91,7 +92,7 @@
           </div>
         </div>
         <div class="col-3 col-medium-3">
-          <h3>Gateways</h3>
+          <h2 class="p-heading--3">Gateways</h2>
           <p>Rich networking and comms make Ubuntu the perfect choice for your industrial gateways.</p>
           <p><a href="/internet-of-things/gateways">Learn more&nbsp;&rsaquo;</a></p>
         </div>
@@ -99,7 +100,7 @@
     </div>
     <div class="col-6 p-tile">
       <div class="row p-tile__row">
-        <div class="col-3 col-medium-3">
+        <div class="col-3 col-medium-3 u-hide--small">
           <div class="u-align--center">
             {{
               image(
@@ -113,7 +114,7 @@
           </div>
         </div>
         <div class="col-3 col-medium-3">
-          <h3>Automotive</h3>
+          <h2 class="p-heading--3">Automotive</h2>
           <p>Reinvent the automobile with Ubuntu, designed for critical embedded systems.</p>
           <p><a href="/automotive">Learn more&nbsp;&rsaquo;</a></p>
         </div>
@@ -121,7 +122,7 @@
     </div>
     <div class="col-6 p-tile">
       <div class="row p-tile__row">
-        <div class="col-3 col-medium-3">
+        <div class="col-3 col-medium-3 u-hide--small">
           <div class="u-align--center">
             {{
               image(
@@ -135,7 +136,7 @@
           </div>
         </div>
         <div class="col-3 col-medium-3">
-          <h3>Networking</h3>
+          <h2 class="p-heading--3">Networking</h2>
           <p>Build secure SmartNICs and operate them at scale on Ubuntu.</p>
           <p><a href="/internet-of-things/networking">Learn more&nbsp;&rsaquo;</a></p>
         </div>
@@ -143,7 +144,7 @@
     </div>
     <div class="col-6 p-tile">
       <div class="row p-tile__row">
-        <div class="col-3 col-medium-3">
+        <div class="col-3 col-medium-3 u-hide--small">
           <div class="u-align--center">
             {{ 
               image (
@@ -158,7 +159,7 @@
           </div>
         </div>
         <div class="col-3 col-medium-3">
-          <h3>Smart city</h3>
+          <h2 class="p-heading--3">Smart city</h2>
           <p>Harness the power of Ubuntu Core to keep distributed devices connected and secure.</p>
           <p><a href="/internet-of-things/smart-city">Learn more&nbsp;&rsaquo;</a></p>
         </div>
@@ -167,11 +168,40 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
+          alt="",
+          width="150",
+          height="200",
+          hi_def=True,
+        ) | safe
+      }}
+    </div>
+    <div class="col-6 col-start-large-7">
+      <h2>Ubuntu Core</h2>
+      <p>Ubuntu Core is a version of Ubuntu optimised for IoT-native embedded systems.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Fully containerised</li>
+        <li class="p-list__item is-ticked">Low footprint</li>
+        <li class="p-list__item is-ticked">Ultra-reliable and low-touch</li>
+        <li class="p-list__item is-ticked">Advanced security out of the box</li>
+        <li class="p-list__item is-ticked">Mission-critical over-the-air updates</li>
+        <li class="p-list__item is-ticked">10 years of long term support and security updates</li>
+      </ul>
+      <p><a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
   <div class="row">
     <div class="col-8">
       <h2>IoT App Store</h2>
-      <p>A custom, private app store. Enterprise-ready for efficient software distribution and IoT package management, with on-premise options to support your use case. Utilise our huge range of existing apps or build your own. Included in the SMART START package.</p>
+      <p>A custom, private app store. Enterprise-ready for efficient software distribution and IoT package management, with on-premise options to support your use case. Utilise our huge range of existing apps or build your own.</p>
     </div>
     <p><a href="https://assets.ubuntu.com/v1/d6d1d3fc-IoT+App+Store+Datasheet+v3.pdf">Read the datasheet&nbsp;&rsaquo;</a></p>
     <p><a href="/internet-of-things/appstore" class="p-button--positive">Learn more</a></p>
@@ -191,11 +221,39 @@
   </div>
 </section>
 
-{% with class="p-strip" %}
-  {% include "shared/pricing/_smart-start-prices.html" %}
-{% endwith %}
-
 <section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>IoT professional services</h2>
+      <p>Canonical offers full-service enablement, customisation and development to get your first device to market. App store and security updates guaranteed.</p>
+
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Bring your IoT devices to market in no time with our IoT Professional Services</li>
+        <li class="p-list__item is-ticked">Focus on your apps, we handle the rest </li>
+        <li class="p-list__item is-ticked">Fast time to market, low risk, and scalable</li>
+      </ul>
+
+      <p>
+        <a href="/internet-of-things/contact-us?product=iot-overview" class="p-button--positive js-invoke-modal">Contact us</a>
+        <a href="https://ubuntu.com/pricing/devices">Available pricing and packages&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+
+    <div class="col-6 u-vertically-center u-align--center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Ready&ndash;to&ndash;go gateway solutions</h2>
     <p>For industrial and enterprise solutions, just add your apps and they'll handle the rest.</p>
@@ -242,7 +300,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h2>Update Control</h2>
@@ -264,16 +322,16 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
-          alt="",
-          width="150",
-          height="200",
-          hi_def=True,
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -287,12 +345,12 @@
         <li class="p-list__item is-ticked">Easy to create and distribute</li>
         <li class="p-list__item is-ticked">Widely adopted by industry leaders</li>
       </ul>
-      <p><a href="https://snapcraft.io/first-snap?from=iotpage">Learn how to make a snap</a></p>
+      <p><a href="https://snapcraft.io/first-snap?from=iotpage">Learn how to make a snap&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-8">
       <h2>Look who's leading</h2>
@@ -302,29 +360,29 @@
     <div class="col-6 p-card">
       <h3 class="p-card__title">SNA Displays unlocks proactive maintenance with Domotz and Ubuntu</h3>
       <p class="p-card__content">With deployment numbers and customer expectations rising, SNA Displays needed a way to monitor more displays more efficiently, while delivering a more seamless customer experience. By implementing Domotz – a network monitoring solution built on Ubuntu Core – the company has unlocked automated display monitoring and a proactive maintenance model.</p>
-      <p class="p-card__content"><a href="https://www.brighttalk.com/webcast/6793/224403?utm_campaign=Device_FY17_IOT&utm_medium=iotpage&utm_source=ubuntuwebsite&utm_content=themakingofnextcloudboxcasestudy">Read the SNA Displays case study</a></p>
+      <p class="p-card__content"><a href="https://www.brighttalk.com/webcast/6793/224403?utm_campaign=Device_FY17_IOT&utm_medium=iotpage&utm_source=ubuntuwebsite&utm_content=themakingofnextcloudboxcasestudy">Read the SNA Displays case study&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">Tunnel drones, going where man cannot</h3>
       <p class="p-card__content">AeroLion Technologies's UAVs are undertaking tasks autonomously and helping to inspect areas that were previously unreachable, either due to extreme or dangerous conditions or because the area is geographically inaccessible.</p>
-      <p class="p-card__content"><a href="https://pages.ubuntu.com/AerolionCS.html?from=iotpage">Read the AeroLion case study</a></p>
+      <p class="p-card__content"><a href="https://pages.ubuntu.com/AerolionCS.html?from=iotpage">Read the AeroLion case study&nbsp;&rsaquo;</a></p>
     </div>
   </div>
   <div class="row u-equal-height">
     <div class="col-6 p-card">
       <h3 class="p-card__title">Azeti raises the bar for field operations</h3>
       <p class="p-card__content">Azeti Networks is a global provider of IoT technology to companies from telecommunications to manufacturing, finance and healthcare. Azeti chose Ubuntu Core for improved operations and security.</p>
-      <p class="p-card__content"><a href="https://pages.ubuntu.com/AzetiCS.html?from=iotpage">Read the Azeti Networks case study</a></p>
+      <p class="p-card__content"><a href="https://pages.ubuntu.com/AzetiCS.html?from=iotpage">Read the Azeti Networks case study&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-card__title">Dell &mdash; defining industrial intelligence</h3>
       <p class="p-card__content">The Dell Edge Gateway range bring familiar X86 robust connectivity to the industrial market, making it easy to create and manage diverse industrial control systems for static and mobile applications.</p>
-      <p class="p-card__content"><a href="http://www.dell.com/us/business/p/edge-gateway">Learn more about the Dell Edge Gateway</a></p>
+      <p class="p-card__content"><a href="http://www.dell.com/us/business/p/edge-gateway">Learn more about the Dell Edge Gateway&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
     <div class="col-8">
       <h2>From prototype to production on all major platforms</h2>
@@ -346,7 +404,7 @@
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Intel IoT platforms</h3>
       <p class="p-card__content">Intel’s portfolio of edge-ready compute and connectivity technologies make it easy to deploy edge applications quickly.</p>
-      <p class="p-card__content"><a href="/download/iot/intel-iotg">Learn more</a></p>
+      <p class="p-card__content"><a href="/download/iot/intel-iotg">Learn more&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--medium u-hide--small" style="min-height: 7rem;">
@@ -363,7 +421,7 @@
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Raspberry Pi 2, 3 and 4</h3>
       <p class="p-card__content">For fun, for education and for profit, the RPi makes device development personal and entertaining. With support for both the Pi2, Pi3 and the new Pi4, Ubuntu Core supports the world's most beloved board.</p>
-      <p class="p-card__content"><a href="https://www.raspberrypi.org/">Learn more on rasberrypi.org</a></p>
+      <p class="p-card__content"><a href="https://www.raspberrypi.org/">Learn more on rasberrypi.org&nbsp;&rsaquo;</a></p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -382,7 +440,7 @@
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Qualcomm Dragonboard</h3>
       <p class="p-card__content">64-bit ARM boards bring high-end performance to the low-power segment, enabling a new class of drones and mobile intelligence.</p>
-      <p class="p-card__content"><a href="https://developer.qualcomm.com/hardware/dragonboard-410c">Learn more on qualcomm.com</a></p>
+      <p class="p-card__content"><a href="https://developer.qualcomm.com/hardware/dragonboard-410c">Learn more on qualcomm.com&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 p-card">
       <header class="no-border u-align--center u-vertically-center u-hide--medium u-hide--small" style="min-height: 7rem;">
@@ -399,17 +457,17 @@
       <hr class="u-sv1 u-hide--small" />
       <h3 class="p-card__title">Xilinx Evaluation Kits and SOMs</h3>
       <p class="p-card__content">Zynq&reg; UltraScale+&trade; MPSoCs integrate a quad-core 64-bit Arm application processor with real-time processors and FPGA logic to offer an embedded, low-latency acceleration platform.</p>
-      <p class="p-card__content"><a href="https://www.xilinx.com/applications/industrial/robotics.html#solutionStack?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=iot&utm_term=eval_kit">Learn more on xilinx.com</a></p>
+      <p class="p-card__content"><a href="https://www.xilinx.com/applications/industrial/robotics.html#solutionStack?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=iot&utm_term=eval_kit">Learn more on xilinx.com&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-7">
       <h2>Best for developers</h2>
       <p>With Ubuntu, you can develop a packaged application on your laptop, then monetise it by publishing it directly to the snap store.</p>
-      <p><a href="https://docs.ubuntu.com/core/en/">Learn about developing your IoT project with Ubuntu</a></p>
+      <p><a href="https://docs.ubuntu.com/core/en/">Learn about developing your IoT project with Ubuntu&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
@@ -425,7 +483,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-hide--medium u-hide--small u-align--left">
       {{

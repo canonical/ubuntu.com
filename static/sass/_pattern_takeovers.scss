@@ -88,6 +88,67 @@
     color: $color-x-light;
   }
 
+  @include p-takeovers("jammy") {
+    background-color: #772953;
+    background-image: linear-gradient(
+        to bottom left,
+        rgba(119, 41, 83, 0.16) 0,
+        rgba(119, 41, 83, 0.16) 49.9%,
+        transparent 50%
+      ),
+      linear-gradient(
+        to bottom right,
+        rgba(228, 228, 228, 0.5) 0,
+        rgba(228, 228, 228, 0.5) 49.9%,
+        transparent 50%
+      ),
+      linear-gradient(
+        to top left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 1) 49.3%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0) 100%
+      ),
+      linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
+    @supports not (background-blend-mode: multiply) {
+      background-image: linear-gradient(
+          to bottom left,
+          rgba(119, 41, 83, 0.16) 0,
+          rgba(119, 41, 83, 0.16) 49.9%,
+          transparent 50%
+        ),
+        linear-gradient(
+          to bottom right,
+          rgba(228, 228, 228, 0.1) 0,
+          rgba(228, 228, 228, 0.1) 49.9%,
+          transparent 50%
+        ),
+        linear-gradient(
+          to top left,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 1) 49.3%,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(255, 255, 255, 0) 100%
+        ),
+        linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%);
+    }
+
+    color: $color-x-light;
+
+    &::before {
+      @media (min-width: $breakpoint-medium) {
+        background-image: url("https://assets.ubuntu.com/v1/d7c0ef52-JJ_Takeover_Pre.svg");
+        background-position: top right 10%;
+        background-repeat: no-repeat;
+        background-size: 40%;
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100%;
+      }
+    }
+  }
+
   @include p-takeovers("k8s") {
     background-color: #326de6;
     background-image: linear-gradient(

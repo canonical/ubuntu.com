@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "Custom image creation"
   description: With a private IoT app store to host your snaps, it becomes very easy for you to create custom Ubuntu system images for your certified devices. This section shows how.
@@ -37,7 +37,7 @@ Model assertions are json files in which OS components and additional metadata a
   "model": "mypi3",
   "kernel": "pi-kernel=18-pi3",
   "gadget": "pi=18-pi3",
-  "required-snaps": [ "network-manager" ],
+  "required-snaps": ["network-manager"],
   "timestamp": "2019-01-11T15:55:59+00:00"
 }
 ```
@@ -56,11 +56,11 @@ Ubuntu-image is the build tool for creating Ubuntu Core images. It is freely ava
 - [Download Ubuntu-image](https://snapcraft.io/ubuntu-image)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/app-store-commissioning">
+  <a class="p-article-pagination__link--previous" href="/core/services/guide/app-store-commissioning">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">App store commissioning</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/secure-device-onboarding">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/secure-device-onboarding">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Secure device onboarding</span>
   </a>

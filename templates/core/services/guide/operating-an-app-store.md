@@ -1,7 +1,7 @@
 ---
-wrapper_template: "core/smartstart/_markdown.html"
+wrapper_template: "core/services/_markdown.html"
 markdown_includes:
-  nav: "core/smartstart/shared/_side-navigation.md"
+  nav: "core/services/shared/_side-navigation.md"
 context:
   title: "Operating an app store"
   description: Once connected to an app store, devices access a catalog of snaps curated by the owner. Connected devices check for updates of these apps regularly.
@@ -36,9 +36,9 @@ Software updates are not necessarily applied to devices when they are fetched au
 
 Channels define which release of a snap is installed and tracked for updates. A channel consists of, and is subdivided into, tracks, risk-levels and branches:
 
-* [Tracks](https://snapcraft.io/docs/channels#heading--tracks) enable snap developers to publish multiple supported releases of their application.
-* [Risk-levels](https://snapcraft.io/docs/channels#heading--risk-levels) reflect the stability of a snap.
-* [Branches](https://snapcraft.io/docs/channels#heading--branches) help with bug-fixing.
+- [Tracks](https://snapcraft.io/docs/channels#heading--tracks) enable snap developers to publish multiple supported releases of their application.
+- [Risk-levels](https://snapcraft.io/docs/channels#heading--risk-levels) reflect the stability of a snap.
+- [Branches](https://snapcraft.io/docs/channels#heading--branches) help with bug-fixing.
 
 After a snap has been [created](https://snapcraft.io/docs/creating-a-snap) and [released](https://snapcraft.io/docs/releasing-your-app) to the [snap store](https://snapcraft.io/store), its published revisions can be moved between [channels](https://snapcraft.io/docs/channels) from both the command line and from the [snap store web UI](https://snapcraft.io/docs/using-the-snap-store).
 
@@ -61,11 +61,11 @@ Monitoring capabilities embedded in app stores enable detailed usage metering. A
 - [Refresh control](https://core.docs.ubuntu.com/en/build-store/refresh-control)
 
 <footer class="p-article-pagination">
-  <a class="p-article-pagination__link--previous" href="/core/smartstart/guide/secure-device-onboarding">
+  <a class="p-article-pagination__link--previous" href="/core/services/guide/secure-device-onboarding">
     <span class="p-article-pagination__label">Previous</span>
     <span class="p-article-pagination__title">Secure device onboarding</span>
   </a>
-  <a class="p-article-pagination__link--next" href="/core/smartstart/guide/technical-support">
+  <a class="p-article-pagination__link--next" href="/core/services/guide/technical-support">
     <span class="p-article-pagination__label">Next</span>
     <span class="p-article-pagination__title">Technical support</span>
   </a>
