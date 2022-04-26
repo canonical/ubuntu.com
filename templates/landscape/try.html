@@ -1,0 +1,126 @@
+{% extends "landscape/base_landscape.html" %}
+
+{% block title %}Landscape | Try Landscape{% endblock %}
+{% block meta_description %}Choose the best Landscape for you.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1pESmRniuiaDHkbzY_60GlOJdCiH2pZ9erI9KV49eDyM/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip">
+  <div class="u-fixed-width u-sv4">
+    <h1 class="u-sv4">Choose the best Landscape for you:</h1>
+    <table class="p-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th class="u-align--center">Self hosted Landscape <br>Runs behind your firewall</th>
+          <th class="u-align--center">Landscape SaaS <br> No server software to maintain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Software and inventory management</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>Security patches and notices</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>System monitoring and custom reporting</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>Inventory management</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>Compliance management</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>Role based access control</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>SSO with UbuntuOne</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>3rd party SSO integration</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Custom software repositories</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>
+        <tr>
+          <td>Private repository hosting</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Unlimited Virtual Machine guests</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Unlimited Ubuntu KVM guest support</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Unlimited Ubuntu LXD guest support</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Air gapped</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="u-fixed-width">
+    <table class="p-table">
+      <thead>
+        <tr>
+          <th>Product pricing</th>
+          <th class="u-align--center">Self hosted Landscape</th>
+          <th class="u-align--center">Landscape SaaS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td class="u-align--center">Free for up to 10 machines for personal use, or evaluation purposes</td>
+          <td class="u-align--center"><a href="/pricing">See pricing</a></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="u-align--center">UA subscription required for more than 10 machines</td>
+          <td class="u-align--center"><a href="/pricing">See pricing</a></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td class="u-align--center">Set up your self hosted Landscape</td>
+          <td class="u-align--center">Learn more about Ubuntu Advantage</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+{% endblock content %}
