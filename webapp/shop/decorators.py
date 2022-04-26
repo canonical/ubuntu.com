@@ -193,13 +193,6 @@ def get_redirect_default(area) -> str:
     return redirect_path
 
 
-def get_api_url(is_test_backend) -> str:
-    if is_test_backend:
-        return flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    return flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-
 def get_badgr_url(is_test_backend) -> str:
     return (
         "https://api.test.badgr.com"
@@ -279,7 +272,9 @@ def get_ua_contracts_api_instance(
         session=session,
         authentication_token=(user_token or guest_token),
         token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=get_api_url(is_test_backend),
+        api_url=os.getenv(
+            "CONTRACTS_API_URL", "https://contracts.canonical.com"
+        ),
     )
 
     if response == "html":

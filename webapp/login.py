@@ -1,3 +1,5 @@
+import os
+
 # Packages
 import flask
 import flask_openid
@@ -11,6 +13,8 @@ from webapp.macaroons import (
     MacaroonResponse,
 )
 
+
+CANONICAL_LOGIN_URL = "https://login.ubuntu.com"
 
 open_id = flask_openid.OpenID(
     store_factory=lambda: None,
@@ -54,12 +58,7 @@ def empty_session(user_session):
 
 @open_id.loginhandler
 def login_handler():
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+    api_url = os.getenv("CONTRACTS_API_URL", "https://contracts.canonical.com")
 
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
@@ -77,7 +76,7 @@ def login_handler():
             break
 
     return open_id.try_login(
-        flask.current_app.config["CANONICAL_LOGIN_URL"],
+        CANONICAL_LOGIN_URL,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
         extensions=[openid_macaroon],
@@ -104,7 +103,7 @@ def after_login(resp):
     ).decode("utf-8")
 
     if not resp.nickname:
-        return flask.redirect(flask.current_app.config["CANONICAL_LOGIN_URL"])
+        return flask.redirect(CANONICAL_LOGIN_URL)
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
