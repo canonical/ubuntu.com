@@ -1,0 +1,168 @@
+{% extends "landscape/base_landscape.html" %}
+
+{% block title %}Landscape | Features{% endblock %}
+{% block meta_description %}Landscape makes it more cost-effective to support large deployments of desktops, servers and cloud instances. Its functionality encompasses software management, deployment and bare-metal provisioning, inventory management and performance monitoring.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1AM3pioDfZapMw_HpQOYei2k7IfiChu0YN8Iwp7JzWRY/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-7">
+      <h1>Manage thousands of Ubuntu machines as easily as one</h1>
+      <p>Landscape is the most cost-effective way to support and administer large and growing networks of desktops, servers, and clouds. Reduce your team's efforts required for basic, day-to-day management.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Systems management</h2>
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Manage desktop, server and cloud deployments</li>
+      <li class="p-list__item is-ticked">Up to 40,000 machines with a single instance</li>
+      <li class="p-list__item is-ticked">Create custom profiles for managing different machine classes</li>
+      <li class="p-list__item is-ticked">Easily install, update and remove software</li>
+      <li class="p-list__item is-ticked">Define policies for automated updates and security patches</li>
+      <li class="p-list__item is-ticked">Configure users and groups</li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Monitor your machines at scale</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Set alerts for updates on specific machines</li>
+        <li class="p-list__item is-ticked">Graph trends of temperature, disk, memory usage and system load</li>
+        <li class="p-list__item is-ticked">List all processes running on a machine and remotely kill rogue processes</li>
+        <li class="p-list__item is-ticked">Build your own graphs with custom metrics</li>
+      </ul>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/fe2cdde9-features-graph.png",
+        alt="",
+        width="979",
+        height="519",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6 u-hide--small u-hide--medium u-align--center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/0c8225b7-men-icons.png",
+        alt="",
+        width="327",
+        height="257",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Maintain security and compliance</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Patch compliance &ndash; keep systems secure and up to date</li>
+        <li class="p-list__item is-ticked">Role Based Access Control (RBAC)</li>
+        <li class="p-list__item is-ticked">Automated audit logging and compliance reporting</li>
+        <li class="p-list__item is-ticked">Regulatory compliance is significantly simplified with custom reporting</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Control your inventory</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Quickly track full software package information for all registered machines</li>
+        <li class="p-list__item is-ticked">Gather asset information in real time</li>
+        <li class="p-list__item is-ticked">Create dynamic search groups to perform operations on categories of machines</li>
+        <li class="p-list__item is-ticked">Easily access any machine property</li>
+      </ul>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/990093e1-features-control.png",
+        alt="",
+        width="1030",
+        height="510",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6 u-hide--small u-hide--medium u-align--center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/8c9b1434-repo-management.svg",
+        alt="",
+        width="331",
+        height="241",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>Package repository management</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Mirror and stage internal or external APT repositories</li>
+        <li class="p-list__item is-ticked">Upload and manage custom packages</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Integrate Landscape with your current systems</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Scriptable API to customise Landscape for your organisation's needs</li>
+        <li class="p-list__item is-ticked">Integrate with your current configuration management, monitoring and ticketing systems</li>
+      </ul>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium u-align--center u-vertically-center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/b585b805-terminal.svg",
+        alt="",
+        width="188",
+        height="172",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Deploy, monitor and manage your Ubuntu systems</h2>
+    <p>
+      <a href="/landscape/try" class="p-button--positive">Get Landscape</a>
+    </p>
+  </div>
+</section>
+
+
+{% endblock content %}
