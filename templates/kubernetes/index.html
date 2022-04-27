@@ -33,23 +33,36 @@
     </div>
     <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/62b09bad-certified-kubernetes-color.svg",
+        url="https://assets.ubuntu.com/v1/f39b70f7-Canonical-Kubernetes-Stacked-logo-2022_RGB.svg",
         alt="",
-        width="113",
-        height="150",
+        width="300",
+        height="84",
         hi_def=True,
-        loading="lazy"
+        loading="auto"
         ) | safe
       }}
-      {{ image (
-        url="https://assets.ubuntu.com/v1/48ee616b-kubernetes-kcsp-color.svg",
-        alt="",
-        width="154",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}      
+      <div style="display: flex; justify-content: center; align-items: center;">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/62b09bad-certified-kubernetes-color.svg",
+          alt="",
+          width="113",
+          height="150",
+          hi_def=True,
+          loading="lazy",
+          attrs={"style": "padding:30px 15px;"}
+          ) | safe
+        }}
+        {{ image (
+          url="https://assets.ubuntu.com/v1/48ee616b-kubernetes-kcsp-color.svg",
+          alt="",
+          width="154",
+          height="150",
+          hi_def=True,
+          loading="lazy",
+          attrs={"style": "padding: 30px 20px;"}
+          ) | safe
+        }}      
+      </div>
     </div>
   </div>
 </section>
@@ -156,21 +169,32 @@
   </div>
   <div class="row">
     <div class="p-card col-6">
-      <p class="p-card__title p-heading--3">MicroK8s</p>
-      <p class="p-heading--5">Low-touch Kubernetes for clouds, edge and IoT</p>
-      <div class="p-card__content">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/1781735b-Microk8s.svg",
-          alt="Microk8s",
-          width="440",
+      <p class="p-card__title">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/03617f57-MicroK8s-logo-2022_RGB.svg",
+          alt="",
+          width="150",
+          height="45",
           hi_def=True,
-          loading="lazy",
-          attrs={"class": "u-sv3 u-hide--small u-hide--medium"},
+          loading="lazy"
           ) | safe
         }}
+      </p>
+      <p class="p-heading--5">Low-touch Kubernetes for clouds, edge and IoT</p>
+      <div class="p-card__content">
+        <div class="u-sv3 u-hide--small u-hide--medium u-align--center">
+        {{
+          image(
+          url="https://assets.ubuntu.com/v1/9c55d397-IoT-Gateways-Kubernetes2.svg",
+          alt="",
+          width="400",
+          hi_def=True,
+          loading="lazy",
+          ) | safe
+        }}
+        </div>
         <ul class="p-list">
-          <li class="p-list__item is-ticked">All Kubernetes services and the most popular add-ons in a single package</li>
+          <li class="p-list__item is-ticked">All Kubernetes services and the most popular add ons in a single package</li>
           <li class="p-list__item is-ticked">Minimal ops for easy clustering, self-healing HA and simpler upgrades</li>
           <li class="p-list__item is-ticked">Lightweight K8s for resource-constrained environments</li>
           <li class="p-list__item is-ticked">Secure by default, strict confinement, and long term support</li>
@@ -184,19 +208,30 @@
       </div>
     </div>
     <div class="p-card col-6">
-      <p class="p-card__title p-heading--3">Charmed Kubernetes</p>
-      <p class="p-heading--5">Composable, operator-based Kubernetes for the enterprise</p>
-      <div class="p-card__content">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/63a03a52-CharmedK8s.svg",
-          alt="Charmed k8s",
-          width="200",
+      <p class="p-card__title">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e6cd15f7-Charmed+Kubernetes_RGB_2022.svg",
+          alt="",
+          width="300",
+          height="45",
           hi_def=True,
-          loading="lazy",
-          attrs={"class": "u-sv3 u-hide--small u-hide--medium"},
+          loading="lazy"
           ) | safe
         }}
+      </p>
+      <p class="p-heading--5">Composable, operator-based Kubernetes for the enterprise</p>
+      <div class="p-card__content">
+        <div class="u-sv3 u-hide--small u-hide--medium u-align--center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/5a71594a-updated-charmed-k8s-calico.svg.svg",
+            alt="",
+            width="320",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
         <ul class="p-list">
           <li class="p-list__item is-ticked">Model-driven Kubernetes for fully customisable deployments</li>
           <li class="p-list__item is-ticked">Pluggable CNI, CSI, CRI and monitoring components</li>
@@ -441,7 +476,8 @@
           <p class="p-heading--4">Whitepaper</p>
         </div>
       </div>
-      <p><a class="p-link--inverted" href="https://ubuntu.com/engage/bare-metal-kubernetes">How to run workloads on bare metal Kubernetes with MAAS</a></p>
+      <p><a class="p-link--inverted" href="/engage/bare-metal-kubernetes">How to run workloads on bare metal Kubernetes with MAAS</a></p>
+      <p><a class="p-link--inverted" href="/kubernetes/resources">Find more resoureces&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
@@ -681,7 +717,11 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow">
+<div class="u-fixed-width">
+  <hr>
+</div>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h1 class="p-heading--3">Kubernetes clusters with Kubeadm</h1>
