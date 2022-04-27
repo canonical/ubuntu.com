@@ -205,29 +205,12 @@
         </h3>
         <p class="u-sv3">Tear down your OpenStack lab environment.</p>
       </div>
-    </div>                                          
+    </div>
+    <p>Not sure what is OpenStack? <a href="/openstack/what-is-openstack" class="js-invoke-modal">Find more more here</a>.</p>
   </div>
 </section>
 <section class="p-strip is-bordered">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h2>OpenStack cheat sheet</h2>
-      <p>We created the most comprehensive OpenStack cheat sheet possible to help you work with OpenStack and its key components.</p>
-      <p>Perfect for both beginners and more advanced users.</p>
-      <p><a href="/openstack/openstack-cheat-sheet" class="p-button--positive">Download the OpenStack cheat sheet</a></p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/7bf0af87-Openstack-cheatsheet-grfx.png",
-        alt="",
-        width="1504",
-        height="1085",
-        hi_def=True,
-        loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
+  {% include "/openstack/shared/_cheatsheet.html" %}
 </section>
 <section class="p-strip is-deep is-bordered">
   <div class="u-fixed-width">
