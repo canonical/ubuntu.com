@@ -48,47 +48,6 @@ env:
       key: auth-consumer
       name: launchpad-imagebuild
 
-  - name: BADGR_URL
-    value: https://api.eu.badgr.io
-
-  - name: BAGDR_USER
-    secretKeyRef:
-      key: user
-      name: badgr
-
-  - name: BADGR_PASSWORD
-    secretKeyRef:
-      key: password
-      name: badgr
-
-  - name: BADGR_QA_PASSWORD
-    secretKeyRef:
-      key: qa-password
-      name: badgr
-
-  - name: CUBE_EDX_URL
-    value: https://cube.ubuntu.com
-
-  - name: CUBE_EDX_CLIENT_ID
-    secretKeyRef:
-      key: client-id
-      name: cube-edx
-
-  - name: CUBE_EDX_CLIENT_SECRET
-    secretKeyRef:
-      key: client-secret
-      name: cube-edx
-  
-  - name: CUBE_EDX_QA_CLIENT_ID
-    secretKeyRef:
-      key: qa-client-id
-      name: cube-edx
-
-  - name: CUBE_EDX_CLIENT_QA_SECRET
-    secretKeyRef:
-      key: qa-client-secret
-      name: cube-edx
-
   - name: MARKETO_API_CLIENT
     secretKeyRef:
       key: api_client
@@ -182,11 +141,6 @@ production:
           secretKeyRef:
             key: password
             name: badgr
-        
-        - name: BADGR_QA_PASSWORD
-          secretKeyRef:
-            key: qa-password
-            name: badgr
 
         - name: CUBE_EDX_URL
           value: https://cube.ubuntu.com
@@ -200,16 +154,12 @@ production:
           secretKeyRef:
             key: client-secret
             name: cube-edx
-        
-        - name: CUBE_EDX_QA_CLIENT_ID
-          secretKeyRef:
-            key: qa-client-id
-            name: cube-edx
 
-        - name: CUBE_EDX_CLIENT_QA_SECRET
-          secretKeyRef:
-            key: qa-client-secret
-            name: cube-edx
+        - name: BADGR_ISSUER
+          value: eTedPNzMTuqy1SMWJ05UbA
+
+        - name: CERTIFIED_BADGE
+          value: hs8gVorCRgyO2mNUfeXaLw
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -333,6 +283,12 @@ production:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+        - name: CONTRACTS_API_URL
+          value: https://contracts.canonical.com/
+
+        - name: STRIPE_PUBLISHABLE_KEY
+          value: pk_live_68aXqowUeX574aGsVck8eiIE
 
   nginxConfigurationSnippet: |
     if ($host = 'apps.ubuntu.com' ) {
@@ -445,7 +401,7 @@ staging:
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
         - name: BADGR_URL
-          value: https://api.eu.badgr.io
+          value: https://api.test.badgr.com
 
         - name: BAGDR_USER
           secretKeyRef:
@@ -454,36 +410,32 @@ staging:
 
         - name: BADGR_PASSWORD
           secretKeyRef:
-            key: password
-            name: badgr
-        
-        - name: BADGR_QA_PASSWORD
-          secretKeyRef:
             key: qa-password
             name: badgr
 
         - name: CUBE_EDX_URL
-          value: https://cube.ubuntu.com
-
-        - name: CUBE_EDX_CLIENT_ID
-          secretKeyRef:
-            key: client-id
-            name: cube-edx
+          value: https://qa.cube.ubuntu.com
 
         - name: CUBE_EDX_CLIENT_SECRET
           secretKeyRef:
             key: client-secret
             name: cube-edx
-        
-        - name: CUBE_EDX_QA_CLIENT_ID
+
+        - name: CUBE_EDX_CLIENT_ID
           secretKeyRef:
             key: qa-client-id
             name: cube-edx
 
-        - name: CUBE_EDX_CLIENT_QA_SECRET
+        - name: CUBE_EDX_CLIENT_SECRET
           secretKeyRef:
             key: qa-client-secret
             name: cube-edx
+
+        - name: BADGR_ISSUER
+          value: 36ZEJnXdTjqobw93BJElog
+
+        - name: CERTIFIED_BADGE
+          value: x9kzmcNhSSyqYhZcQGz0qg
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -607,6 +559,12 @@ staging:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+        - name: CONTRACTS_API_URL
+          value: https://contracts.staging.canonical.com/
+
+        - name: STRIPE_PUBLISHABLE_KEY
+          value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
   nginxConfigurationSnippet: |
     if ($host = 'staging.cloud.ubuntu.com' ) {
