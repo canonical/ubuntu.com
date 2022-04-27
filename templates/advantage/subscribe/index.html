@@ -15,7 +15,7 @@
         <p>
           If you have existing subscriptions or sales offers,
           <a
-            href="{% if get_test_backend %}/login?test_backend=true{% else %}/login{% endif %}"
+            href="/login"
             onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });" 
           >
             sign in

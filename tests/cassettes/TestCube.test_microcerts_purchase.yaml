@@ -18,7 +18,7 @@ interactions:
       content-type:
       - application/json
     method: POST
-    uri: http://localhost:8001/cube/microcerts/purchase.json?test_backend=true
+    uri: http://localhost:8001/cube/microcerts/purchase.json
   response:
     body:
       string: "{\n  \"amountDue\": 1200, \n  \"currency\": \"usd\", \n  \"customerAddress\":

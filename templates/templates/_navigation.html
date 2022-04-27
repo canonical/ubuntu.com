@@ -10,14 +10,9 @@
           <script>performance.mark("Logo rendered")</script>
         </a>
 
-        {% if get_test_backend %}
-          <div class="u-hide u-show--small" style="padding: 15px 0 15px 10px">
-            <div class="p-label--new">Testing</div>
-          </div>
-        {% endif %}
         {% if breadcrumbs %}
         <h5 class="p-navigation--secondary__logo u-hide--nav-threshold-up">
-          <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}{% if get_test_backend %}?test_backend=true{% endif %}">
+          <a class="p-navigation--secondary__banner" href="{{ breadcrumbs.section.path }}">
             {{ breadcrumbs.section.title }}
           </a>
         </h5>
@@ -34,11 +29,6 @@
       <div class="u-hide u-show--small js-account--small"></div>
     </div>
     <nav class="p-navigation__nav">
-      {% if get_test_backend %}
-        <div class="u-hide--small" style="margin-right: -75px; padding: 15px 0 15px 10px">
-          <div class="p-label--new">Testing</div>
-        </div>
-      {% endif %}
       <ul class="p-navigation__items u-hide js-show-nav" role="menu">
         <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
           <a class="p-navigation__link-anchor" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
@@ -89,7 +79,7 @@
 <nav class="p-navigation--secondary">
   <div class="row">
     <div class="col-12 u-equal-height">
-      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}{% if get_test_backend %}?test_backend=true{% endif %}">
+      <a class="p-navigation--secondary__banner u-hide--nav-threshold-down" href="{{ breadcrumbs.section.path }}">
         <h5 class="p-navigation--secondary__logo">
           {{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}
         </h5>
@@ -111,7 +101,7 @@
           </li>
           {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
           <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}{% if get_test_backend %}?test_backend=true{% endif %}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
+            <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
           </li>
           {% endif %}
 

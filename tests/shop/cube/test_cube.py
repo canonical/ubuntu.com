@@ -80,8 +80,7 @@ class TestCube(VCRTestCase):
                 cookie = {"session": "session-key"}
 
                 response = requests.get(
-                    "http://localhost:8001/cube/microcerts.json"
-                    "?test_backend=true",
+                    "http://localhost:8001/cube/microcerts.json",
                     headers=headers,
                     cookies=cookie,
                 )
@@ -109,10 +108,7 @@ class TestCube(VCRTestCase):
             }
             with self.client:
                 # This URL should match the cassette URL
-                url = (
-                    "http://localhost:8001/cube/microcerts/"
-                    "purchase.json?test_backend=true"
-                )
+                url = "http://localhost:8001/cube/microcerts/purchase.json"
                 response = requests.post(url, json=data, headers=headers)
                 self.assertEqual(response.status_code, 200)
 

@@ -179,12 +179,7 @@ const BuyButton = ({
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
-          const testBackend = window?.location?.search?.includes(
-            "test_backend=true"
-          )
-            ? "?test_backend=true"
-            : "";
-          location.href = `/advantage${testBackend}`;
+          location.href = `/advantage`;
         }
       };
     }

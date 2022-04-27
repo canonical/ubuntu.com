@@ -197,29 +197,25 @@ if (accountContainer && accountContainerSmall) {
   fetch("/account.json")
     .then((response) => response.json())
     .then((data) => {
-      const queryString = window.location.search.includes("test_backend=true")
-        ? "?test_backend=true"
-        : "";
-
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor">Sign in</a>`;
-        accountContainer.innerHTML = `<a href="/login${queryString}" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>`;
+        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link-anchor">Sign in</a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout${queryString}" class="p-link--inverted">logout</a>)</span>`;
+        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
         accountContainer.innerHTML = `<div class="p-navigation__dropdown-link">
             <a href="#" class="p-navigation__link-anchor p-navigation__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
-              <li><a href="/advantage${queryString}" class="p-navigation__dropdown-item">UA subscriptions</a></li>
+              <li><a href="/advantage" class="p-navigation__dropdown-item">UA subscriptions</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
-                <a href="/account/invoices${queryString}" class="p-navigation__dropdown-item">Invoices & Payments</a>
+                <a href="/account/invoices" class="p-navigation__dropdown-item">Invoices & Payments</a>
               </li>
               <li>
                 <a href="https://login.ubuntu.com/" class="p-navigation__dropdown-item">Account settings</a>
               </li>
               <li>
-                <a href="/logout${queryString}" class="p-navigation__dropdown-item">Logout</a>
+                <a href="/logout" class="p-navigation__dropdown-item">Logout</a>
               </li>
             </ul>
           </div>`;

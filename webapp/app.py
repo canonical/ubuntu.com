@@ -279,7 +279,6 @@ def context():
         "month_name": month_name,
         "months_list": months_list,
         "get_navigation": get_navigation,
-        "get_test_backend": flask.request.args.get("test_backend", ""),
         "get_stripe_publishable_key": os.getenv(
             "STRIPE_PUBLISHABLE_KEY",
             "pk_live_68aXqowUeX574aGsVck8eiIE",

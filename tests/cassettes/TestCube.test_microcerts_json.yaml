@@ -13,7 +13,7 @@ interactions:
       User-Agent:
       - python-requests/2.25.1
     method: GET
-    uri: http://localhost:8001/cube/microcerts.json?test_backend=true
+    uri: http://localhost:8001/cube/microcerts.json
   response:
     body:
       string: '{"account_id":"account-id","certified_badge":null,"edx_register_url":"https://qa.cube.ubuntu.com/auth/login/tpa-saml/?auth_entry=login&idp=ubuntuone&next=%2F","edx_user":{"accomplishments_shared":true,"account_privacy":"private","bio":null,"country":null,"course_certificates":null,"date_joined":"2021-09-14T14:21:57Z","email":"cube@canonical.com","extended_profile":[],"gender":null,"goals":"","is_active":true,"language_proficiencies":[],"level_of_education":null,"mailing_address":"","name":"Cube Engineer","phone_number":null,"profile_image":{"has_image":false,"image_url_full":"https://qa.cube.ubuntu.com/static/images/profiles/default_500.4215dbe8010f.png","image_url_large":"https://qa.cube.ubuntu.com/static/images/profiles/default_120.4a5e0900098e.png","image_url_medium":"https://qa.cube.ubuntu.com/static/images/profiles/default_50.3455a6581573.png","image_url_small":"https://qa.cube.ubuntu.com/static/images/profiles/default_30.deee7287e843.png"},"requires_parental_consent":true,"secondary_email":null,"secondary_email_enabled":null,"social_links":[],"state":null,"time_zone":null,"username":"carloswufei","year_of_birth":null},"has_enrollments":true,"has_study_labs":true,"modules":[{"badge-class":"tEAG-zVjRMKeUsR6tKefgA","badge-url":"https://assets.ubuntu.com/v1/cd7785d1-Storage.svg","id":"course-v1:CUBE+storage+2020","name":"Configuring
