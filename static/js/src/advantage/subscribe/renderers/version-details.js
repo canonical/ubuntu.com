@@ -15,7 +15,6 @@ const versionDetails = {
     `${ESMEndDate} 2032`,
     livepatch,
     KVMDrivers,
-    FIPS,
     CISBenchmarkAndAutomation,
     landscape,
     knowledgeBase,
