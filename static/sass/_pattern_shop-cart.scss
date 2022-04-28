@@ -56,7 +56,12 @@
         flex-direction: row;
       }
       @media (min-width: $breakpoint-medium) {
+        flex-wrap: wrap;
         margin-top: 0;
+
+        > button {
+          margin-right: 0;
+        }
       }
 
       > span {
