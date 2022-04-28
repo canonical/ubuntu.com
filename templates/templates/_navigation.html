@@ -88,7 +88,7 @@
       <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down"></i></a>
       <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up"></i></a>
     </div>
-    
+
     <nav class="p-navigation__nav" aria-label="secondary-navigation-children">
       {% if breadcrumbs.children %}
       <ul class="p-navigation__items">
@@ -123,7 +123,7 @@
           {% endif %}
         {% endfor %}
       </ul>
-      {% endif %}   
+      {% endif %}
     </nav>
   </div>
 </div>
@@ -133,7 +133,7 @@
   function focusSecondaryNav (){
   const secondaryNav = document.querySelectorAll('.is-secondary .p-navigation__item')
     secondaryNav.forEach( item => {
-        if (item.classList.contains("is-selected")){ 
+        if (item.classList.contains("is-selected")){
           var current_url = new URL(document.URL);
           current_url.hash = '#secondary-navigation';
           var new_url = current_url.href;
@@ -142,7 +142,20 @@
       }
     );
   }
-  focusSecondaryNav(); 
+
+  document.addEventListener('mousewheel', function(e) {
+    if (window.scrollY <= 0) {
+      document.body.style.transform = 'translateY(0px)';
+    }
+  });
+
+  document.addEventListener('scroll', function(e) {
+    if (window.scrollY <= 0) {
+      document.body.style.transform = 'translateY(0px)';
+    }
+  });
+
+  // focusSecondaryNav();
   function fetchDropdown(url, id) {
     var div = document.getElementById(id);
     var req = new XMLHttpRequest();
@@ -244,7 +257,7 @@
     var secondaryNav = document.querySelector(".is-secondary")
     // Replace this one when the secondary items are selected
     // var secondaryNav = document.querySelector(".is-secondary .p-navigation__banner")
-    
+
     navigation.classList.remove('has-search-open');
     if(secondaryNav){
       secondaryNav.classList.remove('u-hide');
@@ -265,8 +278,8 @@
     dropdownWindowOverlay.classList.add("fade-animation");
 
     reducedNavItems.forEach( item => {
-        if (item.classList.contains("is-selected")){ 
-          item.classList.remove("is-selected"); 
+        if (item.classList.contains("is-selected")){
+          item.classList.remove("is-selected");
         }
       }
     );
