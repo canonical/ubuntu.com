@@ -90,7 +90,7 @@ function getInitialFormValues(
 export { getUserInfoFromVariables, getInitialFormValues };
 
 export const getIsFreeTrialEnabled = () =>
-  location.search.includes("test_backend=true");
+  process.env.NODE_ENV === "development";
 
 export type BuyButtonProps = {
   areTermsChecked: boolean;
