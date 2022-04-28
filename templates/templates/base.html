@@ -73,6 +73,14 @@
   </noscript>
   <!-- end google tag manager -->
 
+  <noscript>
+    <style>
+      body {
+        transform: translateY(0) !important;
+      }
+    </style>
+  </noscript>
+
   {% if not(hide_nav == True) %}
     {% include "templates/_navigation.html" %}
   {% endif %}
