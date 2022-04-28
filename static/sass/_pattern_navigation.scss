@@ -1,4 +1,9 @@
 @mixin ubuntu-p-navigation {
+  body:not(.navigation-lock) {
+    transform: translateY(-33px);
+    transition: transform .25s;
+  }
+
   // dropdown mobile view
   @media (max-width: $breakpoint-navigation-threshold) {
     .dropdown-window.is-enterprise {
