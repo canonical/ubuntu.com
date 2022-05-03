@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1lkH-MSPmgjCMP4gI0FW29YIKVDvBuddxA63iQhmsYIU{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip u-no-padding--top u-no-padding--bottom">
+<section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7 col-medium-4">
@@ -30,7 +30,23 @@
     </div>
   </div>
 </section>
-
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <div class="u-align--center">
+      <a href="/engage/aws-summit-washington-DC">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/795d2fae-Copy+of+Meet+our+Public+Sector+team+at+AWS+Summit+in+Washington%2C+DC+%281%29.png",
+          alt="",
+          width="1200",
+          height="150",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </a>
+    </div>
+  </div>
+</section>
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <div class="p-logo-section">
