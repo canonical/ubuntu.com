@@ -65,7 +65,7 @@
   <div class="p-navigation__search-overlay"></div>
 </header>
 <div class="dropdown-window-overlay fade-animation"></div>
-<div class="dropdown-window slide-animation">
+<div class="dropdown-window slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
   <div class="u-hide" id="enterprise-content"></div>
   <div class="u-hide" id="developer-content"></div>
   <div class="u-hide" id="community-content"></div>
