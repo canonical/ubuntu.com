@@ -33,15 +33,19 @@
       <ul class="p-navigation__items">
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
+          <div class="u-hide u-hide--large" id="enterprise-content-mobile"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="developer" onmouseover="fetchDropdown('/templates/navigation-developer-h', 'developer-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#developer-content" onfocus="fetchDropdown('/templates/navigation-developer-h', 'developer-content');">Developer</a>
+          <div class="u-hide u-hide--large" id="developer-content-mobile"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
+          <div class="u-hide u-hide--large" id="community-content-mobile"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
+          <div class="u-hide u-hide--large" id="download-content-mobile"></div>
         </li>
       </ul>
       <ul class="p-navigation__items">
@@ -130,19 +134,6 @@
 {% endif %}
 {% endif %}
 <script>
-  function focusSecondaryNav (){
-  const secondaryNav = document.querySelectorAll('.is-secondary .p-navigation__item')
-    secondaryNav.forEach( item => {
-        if (item.classList.contains("is-selected")){
-          var current_url = new URL(document.URL);
-          current_url.hash = '#secondary-navigation';
-          var new_url = current_url.href;
-          document.location.href = new_url;
-        }
-      }
-    );
-  }
-
   document.addEventListener('mousewheel', function(e) {
     if (window.scrollY <= 0) {
       document.body.style.transform = 'translateY(0px)';
@@ -154,10 +145,14 @@
       document.body.style.transform = 'translateY(0px)';
     }
   });
-
-  // focusSecondaryNav();
+  
   function fetchDropdown(url, id) {
-    var div = document.getElementById(id);
+    var mobile =document.getElementById(id+"-mobile");
+    if (window.innerWidth >= 1024) {
+      div = document.getElementById(id);
+    } else {
+      div = mobile;
+    }
     var req = new XMLHttpRequest();
     req.open('GET', url);
     req.send();
@@ -165,6 +160,7 @@
       div.innerHTML = this.responseText;
     });
   }
+
   function initNavigationSearch(element) {
   const searchButtons = element.querySelectorAll('.js-search-button');
 
