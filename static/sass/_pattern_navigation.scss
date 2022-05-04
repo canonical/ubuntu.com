@@ -1,7 +1,11 @@
 @mixin ubuntu-p-navigation {
   body:not(.navigation-lock) {
     transform: translateY(-33px);
-    transition: transform .25s;
+    transition: transform 0.25s;
+  }
+
+  .p-navigation {
+    z-index: 40;
   }
 
   // dropdown mobile view
