@@ -13,14 +13,11 @@ navDropdowns.forEach(function (dropdown) {
     dropdownWindowOverlay.classList.remove("fade-animation");
 
     navDropdowns.forEach(function (dropdown) {
-      var dropdownContent = document.getElementById(dropdown.id + "-content");
-      var hasMenuOpen = document.querySelector(".has-menu-open");
-      if (hasMenuOpen) {
-        dropdownWindow.classList.add("is-" + dropdown.id);
-      }
+      var dropdownContent = window.innerWidth >= 1024 ? document.getElementById(dropdown.id + "-content") : document.getElementById(dropdown.id + "-content-mobile") 
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains("is-selected")) {
           closeMenu(dropdown, dropdownContent);
+
         } else {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
@@ -31,8 +28,6 @@ navDropdowns.forEach(function (dropdown) {
         }
       } else {
         dropdown.classList.remove("is-selected");
-        dropdownContent.classList.add("u-hide");
-        dropdownWindow.classList.remove("is-" + dropdown.id);
       }
     });
   });
@@ -41,7 +36,7 @@ navDropdowns.forEach(function (dropdown) {
 // Close the menu if browser back button is clicked
 window.addEventListener("hashchange", function () {
   navDropdowns.forEach(function (dropdown) {
-    const dropdownContent = document.getElementById(dropdown.id + "-content");
+    var dropdownContent = window.innerWidth >= 1024 ? document.getElementById(dropdown.id + "-content") : document.getElementById(dropdown.id + "-content-mobile");
 
     if (dropdown.classList.contains("is-selected")) {
       closeMenu(dropdown, dropdownContent);
@@ -52,7 +47,7 @@ window.addEventListener("hashchange", function () {
 if (dropdownWindowOverlay) {
   dropdownWindowOverlay.addEventListener("click", function () {
     navDropdowns.forEach(function (dropdown) {
-      var dropdownContent = document.getElementById(dropdown.id + "-content");
+     var dropdownContent = window.innerWidth >= 1024 ? document.getElementById(dropdown.id + "-content") : document.getElementById(dropdown.id + "-content-mobile") 
 
       if (dropdown.classList.contains("is-selected")) {
         dropdownContent.classList.add("u-hide");
@@ -62,10 +57,11 @@ if (dropdownWindowOverlay) {
   });
 }
 
-function closeMenu(dropdown) {
+function closeMenu(dropdown, dropdownContent) {
   dropdown.classList.remove("is-selected");
   dropdownWindow.classList.add("slide-animation");
   dropdownWindowOverlay.classList.add("fade-animation");
+  dropdownContent.classList.add("u-hide");
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split("#")[0]);
   }

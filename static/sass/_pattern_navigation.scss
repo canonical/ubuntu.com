@@ -8,34 +8,6 @@
     z-index: 40;
   }
 
-  // dropdown mobile view
-  @media (max-width: $breakpoint-navigation-threshold) {
-    .dropdown-window.is-enterprise.is-reduced {
-      top: 88px;
-    }
-    .dropdown-window.is-developer.is-reduced {
-      top: 136px;
-    }
-    .dropdown-window.is-community.is-reduced {
-      top: 184px;
-    }
-    .dropdown-window.is-download.is-reduced {
-      top: 231px;
-    }
-    .dropdown-window.is-enterprise {
-      top: 96px;
-    }
-    .dropdown-window.is-developer {
-      top: 144px;
-    }
-    .dropdown-window.is-community {
-      top: 192px;
-    }
-    .dropdown-window.is-download {
-      top: 240px;
-    }
-  }
-
   // overlay
   .dropdown-window-overlay {
     background-color: rgba(17, 17, 17, 0.4);
