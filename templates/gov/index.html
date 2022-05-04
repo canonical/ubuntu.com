@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<section class="p-strip--suru-bottomed">
+<section class="p-strip--suru-topped">
   <div class="row">
     <div class="col-8">
       <h1>Secure and certified open source for Public Sector</h1>
@@ -22,14 +22,13 @@
           height="200",
           width="350",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
       }}
     </div>
   </div>
 </section>
-
+{% include "/aws/shared/_aws-public-sector-summit.html" %}
 <section class="p-strip">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
@@ -49,7 +48,6 @@
     </div>
   </div>
 </section>
-
 <section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-7">
