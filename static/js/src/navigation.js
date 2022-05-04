@@ -21,7 +21,6 @@ navDropdowns.forEach(function (dropdown) {
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains("is-selected")) {
           closeMenu(dropdown, dropdownContent);
-          dropdownContent.classList.add("u-hide");
         } else {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
