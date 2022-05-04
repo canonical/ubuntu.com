@@ -77,11 +77,6 @@ env:
   - name: CUBE_EDX_URL
     value: https://qa.cube.ubuntu.com
 
-  - name: CUBE_EDX_CLIENT_SECRET
-    secretKeyRef:
-      key: client-secret
-      name: cube-edx
-
   - name: CUBE_EDX_CLIENT_ID
     secretKeyRef:
       key: qa-client-id
@@ -464,11 +459,6 @@ staging:
     - name: CUBE_EDX_URL
       value: https://qa.cube.ubuntu.com
 
-    - name: CUBE_EDX_CLIENT_SECRET
-      secretKeyRef:
-        key: client-secret
-        name: cube-edx
-
     - name: CUBE_EDX_CLIENT_ID
       secretKeyRef:
         key: qa-client-id
@@ -548,9 +538,9 @@ staging:
         - name: CUBE_EDX_URL
           value: https://qa.cube.ubuntu.com
 
-        - name: CUBE_EDX_CLIENT_SECRET
+        - name: 
           secretKeyRef:
-            key: client-secret
+            key: qa-client-secret
             name: cube-edx
 
         - name: CUBE_EDX_CLIENT_ID
@@ -668,7 +658,7 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/advantage]
+    - paths: [/advantage, /account]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
