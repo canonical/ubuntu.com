@@ -28,45 +28,7 @@
     </div>
   </div>
 </section>
-<section class="p-strip--square-suru">
-  <div class="row">
-    <div class="col-8">
-      <h2 class="p-heading--3">Meet our Public Sector team at AWS Public Sector Summit</h2>
-      <p class="u-sv1">May 23 &ndash; 24 at Walter E. Washington Convention Center, Washington DC</p>
-      <a href="/engage/aws-summit-washington-DC" class="p-button--positive">Meet the team</a>
-    </div> 
-    <div class="col-4">
-      <div class="p-logo-section">
-        <div class="p-logo-section__items u-hide--medium u-hide--small">
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/983695d7-AWS_sticker+1.pdf.png",
-              alt="",
-              width="300",
-              height="300",
-              hi_def=True,
-              loading="auto",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/db2e14c0-aws-public-sector.svg",
-              alt="",
-              width="120",
-              height="120",
-              hi_def=True,
-              loading="auto",
-              attrs={"class": "p-logo-section__logo", "style": "padding: 0.5rem"}
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{% include "/aws/shared/_aws-public-sector-summit.html" %}
 <section class="p-strip">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
