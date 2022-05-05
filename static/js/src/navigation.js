@@ -13,14 +13,17 @@ navDropdowns.forEach(function (dropdown) {
     dropdownWindowOverlay.classList.remove("fade-animation");
 
     navDropdowns.forEach(function (dropdown) {
-      var dropdownContent = window.innerWidth >= 1024 ? document.getElementById(dropdown.id + "-content") : document.getElementById(dropdown.id + "-content-mobile") 
+      var dropdownContent = document.getElementById(dropdown.id + "-content");
+      var dropdownContentMobile = document.getElementById(
+        dropdown.id + "-content-mobile"
+      );
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains("is-selected")) {
-          closeMenu(dropdown, dropdownContent);
-
+          closeMenu(dropdown, dropdownContent, dropdownContentMobile);
         } else {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
+          dropdownContentMobile.classList.remove("u-hide");
 
           if (window.history.pushState) {
             window.history.pushState(null, null, "#" + dropdown.id);
@@ -28,6 +31,8 @@ navDropdowns.forEach(function (dropdown) {
         }
       } else {
         dropdown.classList.remove("is-selected");
+        dropdownContent.classList.add("u-hide");
+        dropdownContentMobile.classList.add("u-hide");
       }
     });
   });
@@ -36,10 +41,13 @@ navDropdowns.forEach(function (dropdown) {
 // Close the menu if browser back button is clicked
 window.addEventListener("hashchange", function () {
   navDropdowns.forEach(function (dropdown) {
-    var dropdownContent = window.innerWidth >= 1024 ? document.getElementById(dropdown.id + "-content") : document.getElementById(dropdown.id + "-content-mobile");
+    var dropdownContent = document.getElementById(dropdown.id + "-content");
+    var dropdownContentMobile = document.getElementById(
+      dropdown.id + "-content-mobile"
+    );
 
     if (dropdown.classList.contains("is-selected")) {
-      closeMenu(dropdown, dropdownContent);
+      closeMenu(dropdown, dropdownContent, dropdownContentMobile);
     }
   });
 });
@@ -47,21 +55,26 @@ window.addEventListener("hashchange", function () {
 if (dropdownWindowOverlay) {
   dropdownWindowOverlay.addEventListener("click", function () {
     navDropdowns.forEach(function (dropdown) {
-     var dropdownContent = window.innerWidth >= 1024 ? document.getElementById(dropdown.id + "-content") : document.getElementById(dropdown.id + "-content-mobile") 
-
+      var dropdownContent = document.getElementById(dropdown.id + "-content");
+      var dropdownContentMobile = document.getElementById(
+        dropdown.id + "-content-mobile"
+      );
       if (dropdown.classList.contains("is-selected")) {
         dropdownContent.classList.add("u-hide");
-        closeMenu(dropdown, dropdownContent);
+        closeMenu(dropdown, dropdownContent, dropdownContentMobile);
       }
     });
   });
 }
 
-function closeMenu(dropdown, dropdownContent) {
+function closeMenu(dropdown, dropdownContent, dropdownContentMobile) {
+  console.log("dropdonw", dropdown);
+  console.log("dropdownContent", dropdownContent);
   dropdown.classList.remove("is-selected");
   dropdownWindow.classList.add("slide-animation");
   dropdownWindowOverlay.classList.add("fade-animation");
   dropdownContent.classList.add("u-hide");
+  dropdownContentMobile.classList.add("u-hide");
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split("#")[0]);
   }
