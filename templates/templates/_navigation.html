@@ -33,19 +33,19 @@
       <ul class="p-navigation__items">
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
-          <div class="u-hide dropdown-content-mobile" id="enterprise-content-mobile"></div>
+          <div class="u-hide dropdown-content-mobile" id="enterprise-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="developer" onmouseover="fetchDropdown('/templates/navigation-developer-h', 'developer-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#developer-content" onfocus="fetchDropdown('/templates/navigation-developer-h', 'developer-content');">Developer</a>
-          <div class="u-hide dropdown-content-mobile" id="developer-content-mobile"></div>
+          <div class="u-hide dropdown-content-mobile" id="developer-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
-          <div class="u-hide dropdown-content-mobile" id="community-content-mobile"></div>
+          <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
-          <div class="u-hide dropdown-content-mobile" id="download-content-mobile"></div>
+          <div class="u-hide dropdown-content-mobile" id="download-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
       </ul>
       <ul class="p-navigation__items">
