@@ -1,4 +1,14 @@
 @mixin ubuntu-p-navigation {
+  @media (min-width: 1024px) {
+    .dropdown-content-mobile {
+      display: none !important;
+    }
+  }
+  @media (max-width: 1024px) {
+    .dropdown-content-desktop {
+      display: none !important;
+    }
+  }
   body:not(.navigation-lock) {
     transform: translateY(-33px);
     transition: transform 0.25s;
@@ -68,7 +78,7 @@
   .p-navigation__item--dropdown-toggle {
     &.is-selected {
       &::after {
-        transform: rotate(180deg);
+        transform: rotate(-180deg);
       }
     }
   }
@@ -206,7 +216,7 @@
         &.is-selected {
           background-color: rgba(255, 255, 255, 0.1);
           &::after {
-            transform: rotate(180deg);
+            transform: rotate(-180deg);
           }
           .p-navigation__link {
             color: $color-x-light;
