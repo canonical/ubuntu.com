@@ -11,7 +11,6 @@ navDropdowns.forEach(function (dropdown) {
 
     dropdownWindow.classList.remove("slide-animation");
     dropdownWindowOverlay.classList.remove("fade-animation");
-
     navDropdowns.forEach(function (dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
       var dropdownContentMobile = document.getElementById(
@@ -38,6 +37,35 @@ navDropdowns.forEach(function (dropdown) {
   });
 });
 
+var navigation = document.querySelector(".p-navigation");
+
+function mobileViewUpdate() {
+  var viewportWidth = window.innerWidth;
+  if (viewportWidth <= 1024) {
+    navDropdowns.forEach(function (dropdown) {
+      if (dropdown.classList.contains("is-selected")) {
+        navigation.classList.add("has-menu-open");
+      }
+    });
+  }
+}
+window.onload = mobileViewUpdate;
+window.onresize = mobileViewUpdate;
+
+window.addEventListener("test", function (e) {
+  var navigation = document.querySelector(".p-navigation");
+  function menuOpenMobile() {
+    navDropdowns.forEach(function (dropdown) {
+      if (
+        dropdown.classList.contains("is-selected") &&
+        window.innerWidth < 1024
+      ) {
+        navigation.classList.add("has-menu-open");
+      }
+    });
+  }
+  window.onresize = menuOpenMobile;
+});
 // Close the menu if browser back button is clicked
 window.addEventListener("hashchange", function () {
   navDropdowns.forEach(function (dropdown) {
@@ -68,12 +96,9 @@ if (dropdownWindowOverlay) {
 }
 
 function closeMenu(dropdown, dropdownContent, dropdownContentMobile) {
-  console.log("dropdonw", dropdown);
-  console.log("dropdownContent", dropdownContent);
   dropdown.classList.remove("is-selected");
   dropdownWindow.classList.add("slide-animation");
   dropdownWindowOverlay.classList.add("fade-animation");
-  dropdownContent.classList.add("u-hide");
   dropdownContentMobile.classList.add("u-hide");
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split("#")[0]);
