@@ -48,7 +48,7 @@ manually manage [`VirtualServices`][virt-svc] for your applications, or even use
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">The Istio bundle requires a load balancer provider. If you're not using a cloud integrator which provides this, [MetalLB][] can be used.</p>
+    <p class="p-notification__message">The Istio bundle requires a load balancer provider. If you're not using a cloud integrator which provides this, <a href="/kubernetes/docs/metallb">MetalLB</a> can be used.</p>
   </div>
 </div>
 
