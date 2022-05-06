@@ -9,7 +9,7 @@
         <h3 class="p-heading--5">If you want to learn more about Landscape or our professional services options, meet with us and discuss your needs with one of our advisors.</h3>
         <div class="row u-no-padding">
           <div class="col-6">
-            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" onsubmit="contactPrefrence()" class="modal-form" id="landscape-form">
               <ul class="p-list">
                 <li class="p-list__item">
                   <label for="firstName">First name:</label>
@@ -36,13 +36,13 @@
                   <div class="row">
                     <div class="col-3">
                       <label class="p-radio--inline">
-                        <input type="radio" class="p-radio__input" name="preferredContact" aria-labelledby="preferredContactTelephone" required="required">
+                        <input type="radio" class="p-radio__input" id="telephonePreferred" name="preferredContact" aria-labelledby="preferredContactTelephone" required="required">
                         <span class="p-radio__label" id="preferredContactTelephone">Telephone</span>
                       </label>
                     </div>
                     <div class="col-3">
                       <label class="p-radio--inline u-align--right">
-                        <input type="radio" class="p-radio__input" name="preferredContact" checked="" aria-labelledby="preferredContactEmail" required="required">
+                        <input type="radio" class="p-radio__input" id="emailPreferred" name="preferredContact" aria-labelledby="preferredContactEmail" checked="" required="required">
                         <span class="p-radio__label" id="preferredContactEmail">Email</span>
                       </label>
                     </div>
@@ -72,14 +72,6 @@
                 <ul class="p-list">
                   <li class="p-list__item">
                     <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
-                    <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
-                  </li>
-                  <li class="p-list__item">
-                    <label for="Comments_from_lead__c">Preferred contact method: Telephone</label>
-                    <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
-                  </li>
-                  <li class="p-list__item">
-                    <label for="Comments_from_lead__c">Preferred contact method: Email</label>
                     <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
                   </li>
                 </ul>
@@ -129,3 +121,6 @@
     </div>
   </div>
 </div>
+
+
+
