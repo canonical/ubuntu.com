@@ -13,9 +13,10 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-**Charmed Kubernetes** will run seamlessly on AWS. With the addition of the
+**Charmed Kubernetes** will run seamlessly on AWS.  With the addition of the
 `aws-integrator`, your cluster will also be able to directly use AWS native
 features.
+
 
 ## AWS integrator
 
@@ -41,9 +42,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ["aws-integrator", "kubernetes-master"]
-  - ["aws-integrator", "kubernetes-worker"]
-```
+  - ['aws-integrator', 'kubernetes-control-plane']
+  - ['aws-integrator', 'kubernetes-worker']
+  ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified during deploy like this:
 
@@ -54,7 +55,7 @@ juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the integrator uses,
@@ -62,7 +63,7 @@ please see the [charm readme][aws-integrator-readme].
 
 ### Using EBS volumes
 
-Many pods you may wish to deploy will require storage. Although you can use
+Many  pods you may wish to deploy will require storage. Although you can use
 any type of storage supported by Kubernetes (see the
 [storage documentation][storage]), you also have the option to use the native
 AWS storage, Elastic Block Store (EBS).
@@ -90,7 +91,6 @@ kubectl get sc
 ```
 
 which should return:
-
 ```bash
 NAME      PROVISIONER             AGE
 ebs-gp2   kubernetes.io/aws-ebs   39s
@@ -171,7 +171,7 @@ EOY
 ### Using ELB Loadbalancers
 
 With the aws-integrator charm in place, actions which invoke a loadbalancer in
-Kubernetes will automatically generate an AWS Elastic Load Balancer. This can
+Kubernetes  will automatically generate an AWS Elastic Load Balancer.  This can
 be demonstrated with a simple application. Here we will create a simple
 application and scale it to five pods:
 
@@ -208,31 +208,30 @@ kubectl describe service hello
 ...which should return output similar to:
 
 ```yaml
-Name: hello
-Namespace: default
-Labels: run=load-balancer-example
-Annotations: <none>
-Selector: run=load-balancer-example
-Type: LoadBalancer
-IP: 10.152.183.134
-LoadBalancer Ingress: ad5fc7750350611e99768068a686bb67-239702253.eu-west-1.elb.amazonaws.com
-Port: <unset>  8080/TCP
-TargetPort: 8080/TCP
-NodePort: <unset>  31203/TCP
-Endpoints: 10.1.13.4:8080,10.1.13.5:8080,10.1.35.8:8080 + 2 more...
-Session Affinity: None
-External Traffic Policy: Cluster
-Events: <none>
+Name:                     hello
+Namespace:                default
+Labels:                   run=load-balancer-example
+Annotations:              <none>
+Selector:                 run=load-balancer-example
+Type:                     LoadBalancer
+IP:                       10.152.183.134
+LoadBalancer Ingress:     ad5fc7750350611e99768068a686bb67-239702253.eu-west-1.elb.amazonaws.com
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  31203/TCP
+Endpoints:                10.1.13.4:8080,10.1.13.5:8080,10.1.35.8:8080 + 2 more...
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
 ```
 
 You can see that the LoadBalancer Ingress is now associated with an ELB address in front
-of the five endpoints of the example deployment. Leaving a while for DNS propagation, you
+of the five endpoints of the  example deployment. Leaving a while for DNS propagation, you
 can test the ingress address:
 
 ```bash
 curl  http://ad5fc7750350611e99768068a686bb67-239702253.eu-west-1.elb.amazonaws.com:8080
 ```
-
 ```
 Hello Kubernetes!
 ```
@@ -291,8 +290,7 @@ If you are an AWS user, you may also be interested in how to
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
       <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/aws-integration.md" >edit this page</a>
-      or
-      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-    </p>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>

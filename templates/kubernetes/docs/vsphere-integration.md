@@ -14,7 +14,7 @@ toc: False
 ---
 
 **Charmed Kubernetes** will install and run on vSphere virtual servers.
-With the addition of the `vsphere-integrator`, your cluster will also be able
+With the  addition of the `vsphere-integrator`, your cluster will also be able
 to directly use native vSphere features such as storage.
 
 <div class="p-notification--information is-inline">
@@ -48,9 +48,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ["vsphere-integrator", "kubernetes-master"]
-  - ["vsphere-integrator", "kubernetes-worker"]
-```
+  - ['vsphere-integrator', 'kubernetes-control-plane']
+  - ['vsphere-integrator', 'kubernetes-worker']
+  ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
 during deploy like this:
@@ -62,7 +62,7 @@ juju deploy charmed-kubernetes --overlay vsphere-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 <div class="p-notification--caution is-inline">
@@ -83,22 +83,22 @@ The vSphere integrator supports multiple configuration options which can be
 used to describe the vSphere environment.
 
 The only required option is `datastore`, as it is not included in the Juju
-credential that this charm relies on. By default, this is set to _datastore1_.
+credential that this charm relies on. By default, this is set to *datastore1*.
 This can be changed with:
 
 ```bash
 juju config vsphere-integrator datastore='mydatastore'
 ```
 
-You may also configure a _folder_ and _resource pool path_ for this charm.
+You may also configure a *folder* and *resource pool path* for this charm.
 Details about these options can be found in the [vmware documentation][]:
 
 ```bash
 juju config vsphere-integrator folder='juju-kubernetes' respool_path='foo'
 ```
 
-The credentials used to interact with vSphere are obtained from Juju
-(via '--trust' during deployment). These may be overriden by specifying
+The credentials used to interact with vSphere are obtained from Juju 
+(via '--trust' during deployment). These may be overriden by specifying 
 credentials directly in the charm configuration:
 
 ```bash
@@ -124,6 +124,7 @@ back to the credential data it received via `juju trust`.
 The vSphere integrator can make use of vSphere-backed storage for Kubernetes.
 The steps below create a busybox pod with a persistent volume claim backed by
 vSphere's PersistentDisk as an example.
+
 
 ### 1. Create a storage class using the `kubernetes.io/vsphere-volume` provisioner:
 
@@ -191,6 +192,7 @@ please see the [vSphere integrator charm page][vsphere-integrator].
 <!-- LINKS -->
 
 [asset-vsphere-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vsphere-overlay.yaml
+
 [storage]: /kubernetes/docs/storage
 [vsphere-integrator]: /kubernetes/docs/charm-vsphere-integrator
 [vsphere-juju]: https://juju.is/docs/olm/vmware-vsphere

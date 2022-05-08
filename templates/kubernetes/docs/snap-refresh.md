@@ -38,27 +38,27 @@ juju config <charm> snapd_refresh=<value>
 ```
 
 The value returned or set above should be an explicit timer, an empty string,
-or the special keyword _max_.
+or the special keyword *max*.
 
 - Explicit timer
 
-  An explicit timer may be a simple `mon` (scan every Monday) or a more
-  complex `mon3,23:00` (scan on the third Monday of the month at 23:00). See
-  possible values for explicit timers in the the _refresh.timer_ section of
-  the [system options][system-snap-opts] documentation.
+    An explicit timer may be a simple `mon` (scan every Monday) or a more
+    complex `mon3,23:00` (scan on the third Monday of the month at 23:00). See
+    possible values for explicit timers in the the *refresh.timer* section of
+    the [system options][system-snap-opts] documentation.
 
 - Empty string
 
-  An empty string instructs `snapd` to refresh snap packages according to the
-  default system policy. This is currently 4 times per day.
+    An empty string instructs `snapd` to refresh snap packages according to the
+    default system policy. This is currently 4 times per day.
 
-- _max_
+- *max*
 
-  When set to `max`, refresh scans will be delayed for the maximum amount of
-  time allowed by `snapd`. This is currently once per month based on the
-  date this option was set.
+    When set to `max`, refresh scans will be delayed for the maximum amount of
+    time allowed by `snapd`. This is currently once per month based on the
+    date this option was set.
 
-### Determine the actual _max_ value
+### Determine the actual *max* value
 
 Use `snap get` on a deployed system to determine the value that `snapd` uses
 when a charm is configured with `snapd_refresh=max`. An example with `etcd`
@@ -76,7 +76,7 @@ sun5
 
 **Charmed Kubernetes** applications that support peering will use **Juju**
 leadership to configure a consistent refresh interval among peers. The lead
-unit for `etcd`, `kubernetes-master`, and `kubernetes-worker` applications
+unit for `etcd`, `kubernetes-control-plane`, and `kubernetes-worker` applications
 will set an initial refresh value. Subsequent units that join as followers
 will use the leader value as their snap refresh interval. This ensures all
 units in a peer group will refresh at approximately the same time.
@@ -92,10 +92,10 @@ juju run --application etcd 'snap refresh'
 ```
 
 As another example, only refresh the `cdk-addons` snap on the
-`kubernetes-master/0` unit with:
+`kubernetes-control-plane/0` unit with:
 
 ```bash
-juju run --unit kubernetes-master/0 'snap refresh cdk-addons'
+juju run --unit kubernetes-control-plane/0 'snap refresh cdk-addons'
 ```
 
 <!-- LINKS -->

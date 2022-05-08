@@ -50,12 +50,13 @@ applications:
   kata:
     charm: cs:~containers/kata
 relations:
-  - - kata:untrusted
-    - containerd:untrusted
-  - - kata
-    - kubernetes-master
-  - - kata
-    - kubernetes-worker
+- - kata:untrusted
+  - containerd:untrusted
+- - kata
+  - kubernetes-control-plane
+- - kata
+  - kubernetes-worker
+
 ```
 
 Save this YAML and then deploy:
@@ -69,8 +70,8 @@ juju deploy charmed-kubernetes --overlay kata.yaml
 Deploy the Kata charm and add the necessary relations using the following commands:
 
 ```bash
-juju deploy cs:~containers/kata
-juju add-relation kata kubernetes-master
+juju deploy kata
+juju add-relation kata kubernetes-control-plane
 juju add-relation kata kubernetes-worker
 juju add-relation kata:untrusted containerd:untrusted
 ```
@@ -90,12 +91,12 @@ applications:
   kata:
     charm: cs:~containers/kata
 relations:
-  - - kata:untrusted
-    - containerd:untrusted
-  - - kata
-    - kubernetes-master
-  - - kata
-    - kubernetes-worker
+- - kata:untrusted
+  - containerd:untrusted
+- - kata
+  - kubernetes-control-plane
+- - kata
+  - kubernetes-worker
 ```
 
 Once written, deploy it with:
@@ -113,7 +114,7 @@ workers later with the `juju add-unit kubernetes-worker` command.
 ### Untrusted annotation
 
 The simplest way to run your pods with Kata is to annotate them with
-`io.kubernetes.cri.untrusted-workload: "true"`. For example:
+`io.kubernetes.cri.untrusted-workload: "true"`.  For example:
 
 ```yaml
 apiVersion: v1
@@ -124,8 +125,8 @@ metadata:
     io.kubernetes.cri.untrusted-workload: "true"
 spec:
   containers:
-    - name: nginx
-      image: nginx
+  - name: nginx
+    image: nginx
 ```
 
 ### RuntimeClass
@@ -152,8 +153,8 @@ metadata:
 spec:
   runtimeClassName: kata
   containers:
-    - name: nginx
-      image: nginx
+  - name: nginx
+    image: nginx
 ```
 
 <!-- LINKS -->
@@ -171,3 +172,5 @@ spec:
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+
+

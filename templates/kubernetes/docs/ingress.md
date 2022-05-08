@@ -30,6 +30,7 @@ traffic appropriately. The ingress endpoint itself still needs to be exposed via
 of the above methods but can provide feature-rich management of traffic routing into
 the cluster.
 
+
 ## NGINX Ingress
 
 By default, **Charmed Kubernetes** sets up the [NGINX Ingress Controller][ingress-nginx],
@@ -52,6 +53,7 @@ manually manage [`VirtualServices`][virt-svc] for your applications, or even use
   </div>
 </div>
 
+
 ## Multiple Ingress Controllers
 
 Multiple ingress controllers or gateways can be used at the same time, typically with
@@ -63,10 +65,10 @@ controllers may rely on annotations, such as Istio's
 <!-- LINKS -->
 
 [ingress-nginx]: https://kubernetes.github.io/ingress-nginx/
-[metallb]: metallb
+[MetalLB]: metallb
 [worker charm]: charm-kubernetes-worker
 [ingress-resources]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[istio bundle]: https://jaas.ai/istio
+[Istio bundle]: https://jaas.ai/istio
 [istio-traffic]: https://istio.io/latest/docs/concepts/traffic-management/
 [virt-svc]: https://istio.io/latest/docs/concepts/traffic-management/#virtual-services
 [istio-ingress]: https://istio.io/latest/docs/tasks/traffic-management/ingress/kubernetes-ingress/
@@ -82,3 +84,5 @@ controllers may rely on annotations, such as Istio's
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+
+

@@ -39,26 +39,27 @@ NOTE: Make sure the series is the same as the rest of your kubernetes bundle. Eg
 ```yaml
 applications:
   prometheus:
-    series: bionic
-    charm: cs:prometheus2
+    series: focal
+    charm: prometheus2
     constraints: "mem=4G root-disk=16G"
     num_units: 1
   grafana:
-    charm: cs:grafana
+    charm: grafana
     expose: true
     num_units: 1
   telegraf:
-    charm: cs:telegraf
+    charm: telegraf
 relations:
   - [prometheus:grafana-source, grafana:grafana-source]
   - [telegraf:prometheus-client, prometheus:target]
-  - [kubernetes-master:juju-info, telegraf:juju-info]
-  - [kubernetes-worker:juju-info, telegraf:juju-info]
-  - [kubernetes-master:prometheus, prometheus:manual-jobs]
-  - [kubernetes-master:grafana, grafana:dashboards]
+  - [kubernetes-control-plane:juju-info, telegraf:juju-info]
+  - [kubernetes-control-plane:prometheus, prometheus:manual-jobs]
+  - [kubernetes-control-plane:grafana, grafana:dashboards]
   - [prometheus:certificates, easyrsa:client]
+  - [kubernetes-worker:juju-info, telegraf:juju-info]
+  - [kubernetes-worker:scrape, prometheus:juju-info]
   - [etcd:grafana, grafana:dashboards]
-  - [etcd:prometheus, prometheus:manual-jobs]
+  - [etcd:prometheus, prometheus:scrape]
 ```
 
 <div class="p-notification--information">
@@ -134,12 +135,12 @@ endpoint for scraping, and then setting up Grafana to use this data.
 
 Starting with Charmed Kubernetes 1.17,
 [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics)
-are added, automatically, when `enable-metrics` is set to `true ` on the
-`kubernetes-master` charm. This is enabled by default. Enable
+are added, automatically, when `enable-metrics` is set to  `true ` on the
+`kubernetes-control-plane` charm.  This is enabled by default.  Enable
 with the following command.
 
 ```bash
-juju config kubernetes-master enable-metrics=true
+juju config kubernetes-control-plane enable-metrics=true
 ```
 
 #### Viewing kube-state-metrics
@@ -148,7 +149,7 @@ To view metrics scraped from
 [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics),
 refer to
 [Monitoring with Prometheus, Grafana, and Telegraf](#monitoring-with-prometheus-grafana-and-telegraf)
-and enable Grafana. You can then open the **Charmed Kubernetes Dashboard**.
+and enable Grafana.  You can then open the **Charmed Kubernetes Dashboard**.
 
 ## Monitoring with Nagios
 
@@ -171,11 +172,11 @@ juju add-relation nagios nrpe
 ```
 
 Now add relations to NRPE for all the applications you wish to monitor, for
-example kubernetes-master, kubernetes-worker, etcd, easyrsa, and
+example kubernetes-control-plane, kubernetes-worker, etcd, easyrsa, and
 kubeapi-load-balancer.
 
 ```bash
-juju add-relation nrpe kubernetes-master
+juju add-relation nrpe kubernetes-control-plane
 juju add-relation nrpe kubernetes-worker
 juju add-relation nrpe etcd
 juju add-relation nrpe easyrsa
@@ -225,3 +226,4 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

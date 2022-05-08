@@ -285,7 +285,7 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['aws-integrator', 'kubernetes-master']
+  - ['aws-integrator', 'kubernetes-control-plane']
   - ['aws-integrator', 'kubernetes-worker']
   ```
 

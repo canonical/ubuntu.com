@@ -14,18 +14,18 @@ toc: False
 ---
 
 **Charmed Kubernetes** supports setting a
-custom IP address for the control plane. There are two ways of achieving this, depending
+custom IP address for the control plane.  There are two ways of achieving this, depending
 on which type of load balancing solution you wish to configure:
 
-- If you have a virtual IP to place in front of machines, configure the settings on the
-  `kubeapi-load-balancer` charm.
+ -  If you have a virtual IP to place in front of machines, configure the settings on the
+    `kubeapi-load-balancer` charm.
 
-- If a full load balancing solution is in place such as an F5 appliance, remove the
-  `kubeapi-load-balancer` and use the settings on the `kubernetes-master` charm to
-  configure the load balancer. This is also the appropriate step if you want to use
-  a load balancer integrated with a particular cloud (e.g **OctaviaLB** for
-  OpenStack). See the relevant entry in the "Cloud Integration" section of the
-  documentation for more on native load balancers.
+ -  If a full load balancing solution is in place such as an F5 appliance, remove the
+     `kubeapi-load-balancer` and use the settings on the `kubernetes-control-plane` charm to
+      configure the load balancer. This is also the appropriate step if you want to use
+      a load balancer integrated with a particular cloud (e.g **OctaviaLB** for
+      OpenStack). See the relevant entry in the "Cloud Integration" section of the
+      documentation for more on native load balancers.
 
 Both solutions are described in the sections below.
 
@@ -41,11 +41,12 @@ juju config kubeapi-load-balancer loadbalancer-ips="10.0.0.1 10.0.0.2"
 
 Multiple IP addresses should be given as a space-separated list.
 
-# Custom load balancer in front of kubernetes-master charm
+
+# Custom load balancer in front of kubernetes-control-plane charm
 
 If you have a full load balancer such as an F5 appliance or OpenStack's Neutron,
-use the configuration options on the `kubernetes-master` charm and forgo
-`kubeapi-load-balancer` entirely.
+use the configuration options on the `kubernetes-control-plane` charm and forgo
+`kubeapi-load-balancer`  entirely.
 
 Remove the `kubeapi-load-balancer` application if it exists:
 
@@ -54,10 +55,10 @@ juju remove-application kubeapi-load-balancer
 ```
 
 Then configure the IP addresses provided by the load balancing solution with the
-`kubernetes-master` charm.
+`kubernetes-control-plane` charm.
 
 ```bash
-juju config kubernetes-master loadbalancer-ips="192.168.1.1 192.168.2.1"
+juju config kubernetes-control-plane loadbalancer-ips="192.168.1.1 192.168.2.1"
 ```
 
 Multiple IP addresses should be given as a space-separated list.
@@ -71,3 +72,4 @@ Multiple IP addresses should be given as a space-separated list.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

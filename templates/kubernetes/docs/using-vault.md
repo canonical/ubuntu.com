@@ -44,16 +44,16 @@ applications:
     charm: cs:percona-cluster
     num_units: 1
 relations:
-  - - kubernetes-master:certificates
-    - vault:certificates
-  - - etcd:certificates
-    - vault:certificates
-  - - kubernetes-worker:certificates
-    - vault:certificates
-  - - kubeapi-load-balancer:certificates
-    - vault:certificates
-  - - vault:shared-db
-    - percona-cluster:shared-db
+- - kubernetes-control-plane:certificates
+  - vault:certificates
+- - etcd:certificates
+  - vault:certificates
+- - kubernetes-worker:certificates
+  - vault:certificates
+- - kubeapi-load-balancer:certificates
+  - vault:certificates
+- - vault:shared-db
+  - percona-cluster:shared-db
 ```
 
 Save this to a file named `vault-pki-overlay.yaml` and deploy with:
@@ -145,7 +145,7 @@ and idle. Then relate **Vault** to Kubernetes:
 
 ```bash
 juju add-relation vault:certificates kubeapi-load-balancer:certificates
-juju add-relation vault:certificates kubernetes-master:certificates
+juju add-relation vault:certificates kubernetes-control-plane:certificates
 juju add-relation vault:certificates kubernetes-worker:certificates
 ```
 
@@ -163,7 +163,7 @@ You will need to re-download the `kubectl` config file,
 since it contains the certificate info for connecting to the cluster:
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 <div class="p-notification--caution is-inline">
@@ -194,7 +194,7 @@ involved in managing the unseal keys and root token, you can add the following
 to the `options` section of `vault` in the overlay above:
 
 ```yaml
-totally-unsecure-auto-unlock: true
+    totally-unsecure-auto-unlock: true
 ```
 
 ## Using Vault with HA
@@ -219,8 +219,8 @@ Once the second unit of **Vault** is up, you will also need to unseal it
 using the same instructions above with any three of the five unseal keys
 and the root token you generated previously.
 
-<!-- LINKS -->
 
+<!-- LINKS -->
 [vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vault-pki-overlay.yaml
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
@@ -243,3 +243,4 @@ and the root token you generated previously.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+
