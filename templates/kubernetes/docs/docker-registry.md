@@ -13,19 +13,19 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-The [docker-registry][registry-charm] charm deploys a local image registry
-for your cluster, taking care of the storage and distribution of
+The [docker-registry][registry-charm] charm deploys a local image registry 
+for your cluster, taking care of the storage and distribution of 
 container images. There are a few reasons why this may be a useful option
 for your cluster:
 
-- Providing the images required by Charmed Kubernetes without requiring
-  access to a public registry (e.g. in environments where network access
-  is controlled, expensive or otherwise problematic).
-- Providing images required by workloads running on the cluster.
+-  Providing the images required by Charmed Kubernetes without requiring
+   access to a public registry (e.g. in environments where network access
+   is controlled, expensive or otherwise problematic).
+-  Providing images required by workloads running on the cluster.
 
-When deployed and related to the cluster as described below, this
+When deployed and related to the cluster as described below, this 
 registry will be checked first for any image requests, so it can be used
-in addition to public registries. For more details of the mechanics of
+in addition to public registries. For more details of the mechanics of 
 the Docker Registry, see the
 [upstream documentation at https://docs.docker.com/registry][upstream-registry].
 
@@ -95,6 +95,7 @@ juju add-relation docker-registry haproxy:reverseproxy
   </div>
 </div>
 
+
 ## Verify
 
 Make note of the registry address. By default, this address is only accessible
@@ -141,7 +142,7 @@ the [container-images.txt][container-images-txt] document. This is a
 comprehensive list sorted by release; not all images are required for all
 deployments. Take note of the images required by your deployment that will
 need to be hosted in your private registry. A list of images required by
-a specific release is also included on the 'components' page in the
+a specific release is also included on the 'components' page in the 
 documentation, for example, the list for the 1.20 release is located on the
 [1.20 components page][1.20]
 
@@ -170,11 +171,11 @@ The above procedure should be repeated for all required images.
 ## Using the registry for cluster components
 
 The image registry used by **Charmed Kubernetes** for images used in managing
-or supporting components of the cluster itself is controlled by a `kubernetes-master`
-config option. Configure `kubernetes-master` to use your private registry as follows:
+or supporting components of the cluster itself is controlled by a `kubernetes-control-plane`
+config option. Configure `kubernetes-control-plane` to use your private registry as follows:
 
 ```bash
-juju config kubernetes-master image-registry=$REGISTRY
+juju config kubernetes-control-plane image-registry=$REGISTRY
 ```
 
 <!-- LINKS -->
@@ -195,3 +196,4 @@ juju config kubernetes-master image-registry=$REGISTRY
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

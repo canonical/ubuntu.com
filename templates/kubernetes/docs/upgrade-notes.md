@@ -24,6 +24,36 @@ any of the intervening steps.
 There is a known issue ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
 with container profiles not surviving an upgrade in clouds running on LXD. If your container-based applications fail to work properly after an upgrade, please see this [topic on the troubleshooting page](/kubernetes/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot)
 
+<a  id="1.24"> </a>
+
+## Upgrading to 1.24
+
+There are several important changes to 1.24 that will effect all users:
+
+ - Charms have migrated to the [Charmhub.io](https://charmhub.io) store.
+ - Control-plane units will switch to a new charm named
+   `kubernetes-control-plane`.The application in the juju model and all
+   relations to it will remain under the same name `kubernetes-master`, only the
+   charm supporting the application will switch. See [inclusive-naming] for an
+   explanation about this.
+
+Due to these and other changes, it is recommended to follow the specific upgrade
+procedure described in the <a class='p-button--brand' href='/kubernetes/docs/1.24/upgrading'>Upgrade to 1.24 </a> docs.
+
+### ceph-storage relation deprecated
+
+The `kubernetes-control-plane:ceph-storage` relation has been deprecated. After
+upgrading the kubernetes-control-plane charm, the charm may enter `blocked`
+status with the message:
+`ceph-storage relation deprecated, use ceph-client instead`.
+
+If you see this message, you can resolve it by removing the ceph-storage
+relation:
+
+```
+juju remove-relation kubernetes-control-plane:ceph-storage ceph-mon
+```
+
 <a  id="1.19"> </a>
 
 ## Upgrading to 1.19
@@ -50,6 +80,7 @@ If you see `proxy-mode=userspace` in the charm configs, remove it, then proceed
 with the upgrade.
 
 Please follow the [upgrade instructions for 1.19](/kubernetes/docs/1.19/upgrading).
+
 
 <a  id="1.18"> </a>
 
@@ -89,13 +120,11 @@ parameter was `--admission-control`; the new parameter is `--enable-admission-pl
 
 For example, prior to 1.16, The 'PodSecurityPolicy' admission plugin could be
 applied like this:
-
 ```bash
 juju config kubernetes-master api-extra-args="admission-control=PodSecurityPolicy"
 ```
 
 As of 1.16, this changes to:
-
 ```bash
 juju config kubernetes-master api-extra-args="enable-admission-plugins=PodSecurityPolicy"
 ```
@@ -109,7 +138,7 @@ accordingly after upgrading to 1.16.
 
 This upgrade switches the container runtime to make use of containerd, rather
 than Docker. You have the option of keeping Docker as the container runtime,
-but even in that case you **_must_** perform the upgrade steps. To facilitate
+but even in that case you ***must*** perform the upgrade steps. To facilitate
 different container runtimes, the architecture of **Charmed Kubernetes** has
 changed slightly, and the container runtime is now part of a separate,
 subordinate charm rather than being included in the `kubernetes-master` and
@@ -138,7 +167,6 @@ temporary extra worker units. While not strictly necessary, skipping this step w
 in some cluster down time. Adding temporary additional workers provides a place for keeping pods running while new workers are brought online. The temporary workers can then be removed as the pods are migrated to the new workers. The rest of these instructions assume that you have deployed temporary workers.
 
 #### Deploy temporary workers
-
 ```bash
 CURRENT_WORKER_REV=$(juju status | grep '^kubernetes-worker\s' | awk '{print $7}')
 CURRENT_WORKER_COUNT=$(juju status | grep '^kubernetes-worker/' | wc -l | sed -e 's/^[ \t]*//')
@@ -147,14 +175,11 @@ juju deploy cs:~containers/kubernetes-worker-$CURRENT_WORKER_REV  kubernetes-wor
 ```
 
 #### Add necessary relations
-
 ```bash
 juju status --relations | grep worker: | awk '{print $1,$2}' | sed 's/worker:/worker-temp:/g' | xargs -n2 juju relate
 ```
-
 Wait for the temporary workers to become active before continuing.
 Upgrade the master and worker charms:
-
 ```bash
 juju upgrade-charm kubernetes-master
 juju upgrade-charm kubernetes-worker
@@ -185,7 +210,6 @@ juju run-action [unit] pause --wait
 ```
 
 For example:
-
 ```bash
 juju run-action kubernetes-worker/0 pause --wait
 juju run-action kubernetes-worker/1 pause --wait
@@ -193,7 +217,6 @@ juju run-action kubernetes-worker/2 pause --wait
 ```
 
 One-liner:
-
 ```bash
 juju status | grep ^kubernetes-worker/ | awk '{print $1}' | tr -d '*' | xargs -n1 -I '{}' juju run-action {} pause --wait
 ```
@@ -217,7 +240,6 @@ juju add-relation containerd kubernetes-worker
 ```
 
 #### Resume workers
-
 Now we can allow pods to be rescheduled to our original workers.
 
 ```bash
@@ -225,7 +247,6 @@ juju run-action [unit] resume --wait
 ```
 
 E.g.
-
 ```bash
 juju run-action kubernetes-worker/0 resume --wait
 juju run-action kubernetes-worker/1 resume --wait
@@ -233,7 +254,6 @@ juju run-action kubernetes-worker/2 resume --wait
 ```
 
 One-liner:
-
 ```bash
 juju status | grep ^kubernetes-worker/ | awk '{print $1}' | tr -d '*' | xargs -n1 -I '{}' juju run-action {} resume --wait
 ```
@@ -249,7 +269,9 @@ juju status | grep ^kubernetes-worker-temp/ | awk '{print $1}' | tr -d '*' | xar
 juju remove-application kubernetes-worker-temp
 ```
 
+
 #### Mixing Containerd and Docker
+
 
 Once you have a Containerd backed Charmed Kubernetes running, you can add Docker backed
 workers like so:
@@ -280,6 +302,7 @@ Existing deployments which are upgraded to **Charmed Kubernetes 1.14** will cont
 **KubeDNS** until the operator chooses to upgrade to **CoreDNS**. To upgrade,
 set the new dns-provider config:
 
+
 ```bash
 juju config kubernetes-master dns-provider=core-dns
 ```
@@ -300,6 +323,7 @@ For more information on the new `dns-provider config`, see the
 
 This upgrade includes a transistion between major versions of **etcd**, from 2.3 to 3.x. Between these releases, **etcd** changed the way it accesses storage, so it is necessary to reconfigure this. There is more detailed information on the change and the upgrade proceedure in the [upstream **etcd** documentation][etcd-upgrade].
 
+
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Caution:</span>
@@ -316,23 +340,19 @@ To use the script to update **etcd**, follow these steps:
 ```bash
 curl -O https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 ```
-
 ### 2. Make the script executable:
 
 ```bash
 chmod +x migrate
 ```
-
 ### 3. Execute the script:
 
 ```bash
 ./migrate
 ```
-
 ### 4. etcd OutputSed
 
 The script should update **etcd** and you will see output similar to the following:
-
 ```no-highlight
 · Waiting for etcd units to be active and idle...
 · Acquiring configured version of etcd...
@@ -352,6 +372,7 @@ The script should update **etcd** and you will see output similar to the followi
 · Done.
 ```
 
+
 You can now proceed with the rest of the upgrade.
 
 <!--LINKS-->
@@ -360,6 +381,7 @@ You can now proceed with the rest of the upgrade.
 [script]: https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 [dns-provider-config]: https://github.com/juju-solutions/kubernetes/blob/5f4868af82705a0636680a38d7f3ea760d35dadb/cluster/juju/layers/kubernetes-master/config.yaml#L58-L67
 [docker-page]: https://jaas.ai/u/containers/docker#configuration
+[inclusive-naming]: /kubernetes/docs/inclusive-naming
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

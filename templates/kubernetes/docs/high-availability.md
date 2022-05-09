@@ -24,15 +24,15 @@ This documentation will present the strategies and methodology for software
 solutions only - if you have a hardware load-balancer, that would obviously be
 a better option.
 
-We start with the two basic components of a **Charmed Kubernetes** cluster:
+ We start with the two basic components of a **Charmed Kubernetes** cluster:
 
-- your control plane, the `kubernetes-master` charm
-- the worker units, the `kubernetes-worker` charm
+ - your control plane, the `kubernetes-control-plane` charm
+ - the worker units, the `kubernetes-worker` charm
 
 ## Control Plane
 
 An initial plan to make the control plane more resilient might be to simply add more
-master nodes with `juju add-unit kubernetes-master`:
+master nodes with  `juju add-unit kubernetes-control-plane`:
 
 ![multi-master worker image][img-multi-master]
 
@@ -101,10 +101,10 @@ development with projects that are Kubernetes-aware such as MetalLB.
 The pages linked below give practical details on how to use the currently supported
 software to enable HA
 
-- [Keepalived][keepalived]
-- [HAcluster][hacluster]
-- [MetalLB][metallb]
-- [Custom Load Balancer/Virtual IP][customlb]
+  - [Keepalived][keepalived]
+  - [HAcluster][hacluster]
+  - [MetalLB][metallb]
+  - [Custom Load Balancer/Virtual IP][customlb]
 
 <!-- IMAGES -->
 
@@ -128,3 +128,4 @@ software to enable HA
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

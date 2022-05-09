@@ -13,6 +13,94 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.24
+
+### May 6th, 2022 - `charmed-kubernetes --channel 1.24/stable`
+
+Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
+Specific instructions for the 1.23 => 1.24 upgrade can be found [here](/kubernetes/docs/1.24/upgrading).
+
+## What's new
+
+- Transition to Charmhub
+
+Starting with this release, charms and bundles will be published to Charmhub
+instead of the Charm Store.
+
+If you have any processes that rely on pulling Charmed Kubernetes components
+from the Charm Store (for example, references to `cs:charmed-kubernetes` or
+`cs:~containers/...`), make sure you update those processes to pull from
+Charmhub instead.
+
+When upgrading existing clusters, please refer to the
+[upgrade notes](/kubernetes/docs/upgrade-notes) for instructions on how to
+navigate this transition properly.
+
+- kubernetes-master renamed to kubernetes-control-plane
+
+The kubernetes-master charm has been renamed to kubernetes-control-plane. See
+the [inclusive naming](/kubernetes/docs/inclusive-naming) page for more details about this change.
+
+- Kubelet added to kubernetes-control-plane
+
+The kubernetes-control-plane charm now includes Kubelet, allowing
+kubernetes-control-plane units to participate as fully functioning nodes within
+Kubernetes clusters.
+
+By default, the kubernetes-control-plane nodes will be
+configured with a taint to prevent pods from being scheduled to them. The new
+`register-with-taints` config option can be used to control this behavior at
+deploy time.
+
+- Calico is now the default CNI
+
+The `charmed-kubernetes` and `kubernetes-core` reference bundles have been
+updated to use Calico for pod networking instead of Flannel. We recommend Calico
+as the default CNI choice for all new deployments due to the rich set of
+advanced networking features that it provides.
+
+While we do recommend Calico as the default choice, we will continue to support
+new and existing deployments that use Flannel as well.
+
+- Docker support deprecated
+
+The default container runtime in Charmed Kubernetes has been containerd for 
+some time. The Docker container runtime is no longer supported.
+
+## Component upgrades
+
+- calico 3.21.4
+- cephcsi 3.5.1
+- cinder-csi-plugin 1.23.0
+- coredns 1.9.0
+- ingress-nginx 1.2.0
+- k8s-keystone-auth 1.23.0
+- kube-state-metrics 2.4.2
+- kubernetes-dashboard 2.5.1
+- openstack-cloud-controller-manager 1.23.0
+
+## Fixes
+
+A list of bug fixes and other feature updates in this release can be found at
+[the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.24).
+
+## Notes and Known Issues
+
+- [LP 1907153](https://bugs.launchpad.net/snapd/+bug/1907153) Snap install failure in LXD
+
+Snaps may fail to install when the `kubernetes-control-plane` charm is deployed to a LXD container.
+This happens when the version of `snapd` on the host does not match the version inside the
+container. As a workaround, ensure the same version of `snapd` is installed on the host and
+in LXD containers.
+
+## Deprecations and API changes
+
+- Upstream
+
+For details of other deprecation notices and API changes for Kubernetes 1.24, please see the
+relevant sections of the [upstream release notes][upstream-changelog-1.24].
+
+
 # 1.23
 
 ### December 15, 2021 - [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml)
@@ -54,15 +142,15 @@ in LXD containers.
 - [LP 1936816](https://bugs.launchpad.net/bugs/1936816) and [LP 1913228](https://bugs.launchpad.net/bugs/1913228) Filesystem Hierachy Standards
 
   Applications running inside a kubernetes-master should set pid files and log files in
-  appropriate operational locations like `/run/` and `/var/log/kubernetes/`. Care was taken to restart
-  services using these new locations and migrate some existing files out of `/root/cdk/`.
+appropriate operational locations like `/run/` and `/var/log/kubernetes/`. Care was taken to restart
+services using these new locations and migrate some existing files out of `/root/cdk/`.
 
   For the service `cdk.master.auth-webhook` the new pid file and log files are named
-  `/run/cdk.master.auth-webhook.pid` and `/var/log/kubernetes/cdk.master.auth-webhook.log`
-  to match the systemctl service name.
+`/run/cdk.master.auth-webhook.pid` and `/var/log/kubernetes/cdk.master.auth-webhook.log`
+to match the systemctl service name.
 
   If the [`filebeat`](https://charmhub.io/filebeat) charm is related to kubernetes-master,
-  ensure that its logpath include this new path ( e.g. `juju config filebeat logpath='/var/log/kubernetes/*.log'` )
+ensure that its logpath include this new path ( e.g. `juju config filebeat logpath='/var/log/kubernetes/*.log'` )
 
 ## Deprecations and API changes
 
@@ -71,14 +159,16 @@ in LXD containers.
 For details of other deprecation notices and API changes for Kubernetes 1.23, please see the
 relevant sections of the [upstream release notes][upstream-changelog-1.23].
 
+
 # 1.22+ck2 Bugfix release
 
-### October 27, 2021 - [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.22/bundle.yaml)
+### October 27, 2021 - charmed-kubernetes-814
 
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page for 1.22+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck2).
+
 
 # 1.22+ck1 Bugfix release
 
@@ -112,6 +202,7 @@ action to force a recheck immediately.
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page for 1.22+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck1).
+
 
 # 1.22
 
@@ -150,7 +241,7 @@ A list of bug fixes and other feature updates in this release can be found at
 - [LP 1935992](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1935992) Code cleanup
 
   Previously deprecated features have been removed in this release. This includes
-  the following `kubernetes-master` features:
+the following `kubernetes-master` features:
 
   - `addons-registry` config
   - `create-rbd-pv` action and related templates
@@ -168,16 +259,16 @@ A list of bug fixes and other feature updates in this release can be found at
 - [LP 1907153](https://bugs.launchpad.net/snapd/+bug/1907153) Snap install failure in LXD
 
   Snaps may fail to install when the `kubernetes-master` charm is deployed to a LXD container.
-  This happens when the version of `snapd` on the host does not match the version inside the
-  container. As a workaround, ensure the same version of `snapd` is installed on the host and
-  in LXD containers.
+This happens when the version of `snapd` on the host does not match the version inside the
+container. As a workaround, ensure the same version of `snapd` is installed on the host and
+in LXD containers.
 
 ## Deprecations and API changes
 
 - Upstream
 
   For details of other deprecation notices and API changes for Kubernetes 1.22, please see the
-  relevant sections of the [upstream release notes][upstream-changelog].
+relevant sections of the [upstream release notes][upstream-changelog].
 
 ## Previous releases
 
@@ -192,14 +283,15 @@ Please see [this page][rel] for release notes of earlier versions.
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck3).
 
+
 # 1.21+ck2 Bugfix release
 
 ### May 28, 2021 - charmed-kubernetes-679
-
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck2).
+
 
 # 1.21+ck1 Bugfix release
 
@@ -209,6 +301,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
+
 
 # 1.21
 
@@ -247,7 +340,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 ## Notes and Known Issues
 
 - [LP 1920216](https://bugs.launchpad.net/operator-metallb/+bug/1920216) MetalLB
-  speaker pod logs error with "selfLink was empty, can't make reference".
+speaker pod logs error with "selfLink was empty, can't make reference".
 
 ## Deprecations and API changes
 
@@ -268,15 +361,15 @@ relevant sections of the [upstream release notes](https://github.com/kubernetes/
 Please see [this page][rel] for release notes of earlier versions.
 
 <!--LINKS-->
-
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
 [rel]: /kubernetes/docs/release-notes
 [images-per-release]: https://github.com/charmed-kubernetes/bundle/tree/master/container-images
 [arc-docs]: https://github.com/Azure/azure-arc-validation/blob/main/README.md
 
+
 # 1.20+ck1 Bugfix release
 
-### February 23rd, 2021 - charmed-kubernetes-596
+### February 23rd, 2021 - [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml)
 
 ## Fixes
 
@@ -301,10 +394,11 @@ Workaround this by disabling FAN configuration for Google cloud models:
 
 `juju model-config -m <model_name> fan-config="" container-networking-method=""`
 
+
+
 # 1.20
 
 ### December 16th, 2020 - charmed-kubernetes-559
-
 ## What's new
 
 - Calico VXLAN support
@@ -340,6 +434,7 @@ Details on how to set this up can be found in the [Kubernetes Dashboard section 
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.20](https://launchpad.net/charmed-kubernetes/+milestone/1.20).
 
+
 ## Notes / Known Issues
 
 ## Deprecations and API changes
@@ -347,12 +442,12 @@ A list of bug fixes and other minor feature updates in this release can be found
 For details of deprecation notices and API changes for Kubernetes 1.20, please see the
 relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation)
 
+
 # 1.19+ck2 Bugfix release
 
 ### November 27th, 2020 - charmed-kubernetes-545
 
 ## Fixes
-
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck2).
 
@@ -361,7 +456,6 @@ A list of bug fixes and other minor feature updates in this release can be found
 ### November 20th, 2020 - charmed-kubernetes-541
 
 ## Fixes
-
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1).
 
@@ -457,17 +551,17 @@ A list of bug fixes and other minor feature updates in this release can be found
 ## Notes / Known Issues
 
 - The `insecure-bind-address` and `insecure-port` options to `kube-apiserver` have
-  been removed in this release. Using `juju run` with `kubectl` to interact with the
-  cluster now requires an explicit `--kubeconfig <file>` option:
+been removed in this release. Using `juju run` with `kubectl` to interact with the
+cluster now requires an explicit `--kubeconfig <file>` option:
 
-      ```bash
-      juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get nodes'
-      NAME              STATUS   ROLES    AGE   VERSION
-      ip-172-31-10-19   Ready    <none>   71m   v1.19.0
-      ```
+    ```bash
+    juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get nodes'
+    NAME              STATUS   ROLES    AGE   VERSION
+    ip-172-31-10-19   Ready    <none>   71m   v1.19.0
+    ```
 
 - The webhook authentication service included in this release runs on port 5000 of each
-  kubernetes-master unit. Ensure this port is available prior to upgrading.
+kubernetes-master unit. Ensure this port is available prior to upgrading.
 
 - Additional known issues scheduled for the first 1.19 bugfix release can be found at [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1)
 
@@ -479,6 +573,10 @@ relevant sections of the [upstream release notes](https://github.com/kubernetes/
 ## Previous releases
 
 Please see [this page][historic] for release notes of earlier versions.
+
+<!--LINKS-->
+
+
 
 ## Previous releases
 
@@ -508,7 +606,9 @@ Please see [this page][historic] for release notes of earlier versions.
 [calico-service-ip-advertisement]: /kubernetes/docs/cni-calico#service-ip-advertisement
 [upstream-changelog]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.22.md#deprecation
 [upstream-changelog-1.23]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.23.md#deprecation
+[upstream-changelog-1.24]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#deprecation
 [cephcsi-upgrade]: https://github.com/ceph/ceph-csi/blob/devel/docs/ceph-csi-upgrade.md
+[inclusive-naming]: /kubernetes/docs/inclusive-naming
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
@@ -519,3 +619,4 @@ Please see [this page][historic] for release notes of earlier versions.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

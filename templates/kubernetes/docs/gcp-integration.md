@@ -14,7 +14,7 @@ toc: False
 ---
 
 **Charmed Kubernetes** will run seamlessly on
-**Google Cloud Platform**(GCP). With the addition of the `gcp-integrator`,
+**Google Cloud Platform**(GCP).  With the addition of the `gcp-integrator`,
 your cluster will also be able to use GCP native features directly.
 
 ## GCP Credentials
@@ -30,10 +30,10 @@ project in the [GCP console][owner].
 If you chose a more fine-grained approach to role administration, the service account
 should have at least:
 
-- roles/compute.loadBalancerAdmin
-- roles/compute.instanceAdmin.v1
-- roles/compute.securityAdmin
-- roles/iam.serviceAccountUser
+  - roles/compute.loadBalancerAdmin
+  - roles/compute.instanceAdmin.v1
+  - roles/compute.securityAdmin
+  - roles/iam.serviceAccountUser
 
 A full description of the various pre-defined roles is available in the
 [GCP Documentation][iam-roles].
@@ -62,9 +62,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ["gcp-integrator", "kubernetes-master"]
-  - ["gcp-integrator", "kubernetes-worker"]
-```
+  - ['gcp-integrator', 'kubernetes-control-plane']
+  - ['gcp-integrator', 'kubernetes-worker']
+  ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
 during deploy like this:
@@ -76,7 +76,7 @@ juju deploy charmed-kubernetes --overlay ~/path/gcp-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the
@@ -128,7 +128,6 @@ kubectl get sc
 ```
 
 which should return:
-
 ```bash
 NAME           PROVISIONER            AGE
 gcp-ssd        kubernetes.io/gce-pd   9s
@@ -211,8 +210,8 @@ kubectl patch storageclass gcp-standard -p '{"metadata": {"annotations":{"storag
 ### Using GCP Loadbalancers
 
 With the gcp-integrator charm in place, actions which invoke a loadbalancer in
-Kubernetes will automatically generate a GCP [Target Pool][target-pool] and the
-relevant forwarding rules. This can be demonstrated with a simple application. Here we
+Kubernetes  will automatically generate a GCP [Target Pool][target-pool] and the
+relevant forwarding rules.  This can be demonstrated with a simple application. Here we
 will create a simple application and scale it to five pods:
 
 ```bash
@@ -249,34 +248,35 @@ kubectl describe service hello
 ...which should return output similar to:
 
 ```yaml
-Name: hello
-Namespace: default
-Labels: run=load-balancer-example
-Annotations: <none>
-Selector: run=load-balancer-example
-Type: LoadBalancer
-IP: 10.152.183.63
-LoadBalancer Ingress: 34.76.144.215
-Port: <unset>  8080/TCP
-TargetPort: 8080/TCP
-NodePort: <unset>  31864/TCP
-Endpoints: 10.1.54.11:8080,10.1.54.12:8080,10.1.54.13:8080 + 2 more...
-Session Affinity: None
-External Traffic Policy: Cluster
-Events: Type    Reason                Age    From                Message
+Name:                     hello
+Namespace:                default
+Labels:                   run=load-balancer-example
+Annotations:              <none>
+Selector:                 run=load-balancer-example
+Type:                     LoadBalancer
+IP:                       10.152.183.63
+LoadBalancer Ingress:     34.76.144.215
+Port:                     <unset>  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 <unset>  31864/TCP
+Endpoints:                10.1.54.11:8080,10.1.54.12:8080,10.1.54.13:8080 + 2 more...
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age    From                Message
   ----    ------                ----   ----                -------
   Normal  EnsuringLoadBalancer  9m21s  service-controller  Ensuring load balancer
   Normal  EnsuredLoadBalancer   7m37s  service-controller  Ensured load balancer
+
 ```
 
 You can see that the `LoadBalancer Ingress` is now associated with a new
-ingress address in front of the five endpoints of the example deployment. You
+ingress address in front of the five endpoints of the  example deployment. You
 can test this address:
 
 ```bash
 curl 34.76.144.215:8080
 ```
-
 ```
 Hello Kubernetes!
 ```
@@ -306,6 +306,7 @@ Juju to replay the log history for that specific unit:
 juju debug-log --replay --include gcp-integrator/0
 ```
 
+
 <!-- LINKS -->
 
 [quickstart]: /kubernetes/docs/quickstart
@@ -328,3 +329,4 @@ juju debug-log --replay --include gcp-integrator/0
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

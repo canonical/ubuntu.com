@@ -37,7 +37,7 @@ as soon as the installation has settled. You should use the following command to
 **.kube** directory if it was not created after kubectl installation):
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 <div class="p-notification--caution is-inline">
@@ -48,6 +48,7 @@ juju scp kubernetes-master/0:config ~/.kube/config
     Kubernetes documentation</a> for more information on managing multiple clusters.</p>
   </div>
 </div>
+
 
 You can verify that kubectl is configured correctly and can see the cluster by running:
 
@@ -72,6 +73,7 @@ List all services in the cluster:
 ```bash
 kubectl get services
 ```
+
 
 ## Accessing the Kubernetes dashboard
 
@@ -131,7 +133,7 @@ If you would like to disable DNS (for example, to deploy your own custom DNS
 solution), you can use:
 
 ```bash
-juju config kubernetes-master dns-provider=none
+juju config kubernetes-control-plane dns-provider=none
 ```
 
 To deploy a customised DNS configuration, first disable the charm-managed DNS
@@ -150,13 +152,13 @@ both deploy an example and clean itself up.
 This action performs the following steps:
 
 - It creates a deployment titled 'microbots' comprised of a number of replicas defined
-  during the run of the action.
+during the run of the action.
 
-- It also creates a service named 'microbots' which binds an 'endpoint', using all of
-  the 'microbots' pods.
+- It also creates a service named 'microbots' which binds an 'endpoint', using all  of
+the 'microbots' pods.
 
 - Finally, it will create an ingress resource, which points at a
-  [nip.io](http://nip.io) domain to simulate a proper DNS service.
+[nip.io](http://nip.io) domain to simulate a proper DNS service.
 
 To deploy 3 replicas of the microbot web application inside the Kubernetes
 cluster run the following command:
@@ -196,12 +198,13 @@ kubectl get pods
     microbot-5b9864df4d-x7ppr   1/1     Running   0          2m31s
 ```
 
+
+
 ### List the services and endpoints
 
 ```bash
 kubectl get services,endpoints
 ```
-
 ```
 NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
 service/kubernetes   ClusterIP   10.152.183.1    <none>        443/TCP   112m
@@ -218,7 +221,6 @@ endpoints/microbot     10.1.77.12:80,10.1.77.13:80,10.1.77.14:80   3m50s
 ```bash
 kubectl get ingress
 ```
-
 ```
 NAME               HOSTS                           ADDRESS   PORTS   AGE
 microbot-ingress   microbot.52.87.186.136.nip.io             80      5m36s
@@ -263,6 +265,8 @@ websocket support) view the
 [nginx-ingress-controller](https://github.com/kubernetes/contrib/tree/master/ingress/controllers/nginx)
 project on github.
 
+
+
 <a id='next'> </a>
 
 ## Next steps
@@ -281,11 +285,10 @@ things you may wish to try:
 
 - [Kubernetes User Guide](https://kubernetes.io/docs/user-guide/)
 - [The Charmed Kubernetes page on Charmhub.io](https://charmhub.io/charmed-kubernetes/)
-- [Bundle source][bundle-source]
 - [Bug tracker](https://bugs.launchpad.net/charmed-kubernetes)
 
-<!--LINKS-->
 
+<!--LINKS-->
 [next]: #next
 [addons]: /kubernetes/docs/cdk-addons
 [kubectl]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
@@ -293,8 +296,8 @@ things you may wish to try:
 [scaling]: /kubernetes/docs/scaling
 [logging]: /kubernetes/docs/logging
 [decommission]: /kubernetes/docs/decommissioning
-[get-in-touch]: /kubernetes/docs/get-in-touch
-[bundle-source]: https://charmhub.io/charmed-kubernetes
+[get-in-touch]:  /kubernetes/docs/get-in-touch
+
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
@@ -305,3 +308,4 @@ things you may wish to try:
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

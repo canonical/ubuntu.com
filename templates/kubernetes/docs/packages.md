@@ -40,13 +40,14 @@ installed from snap packages. The installation and management of these snaps is
 undertaken by the charms; there is no need for a user to interact with the
 snaps directly. The details here are provided for information only.
 
-| Snap                    | Type    | Store page                                     |
-| ----------------------- | ------- | ---------------------------------------------- |
-| kube-apiserver          | strict  | <https://snapcraft.io/kube-apiserver>          |
-| kube-controller-manager | strict  | <https://snapcraft.io/kube-controller-manager> |
-| kube-proxy              | classic | <https://snapcraft.io/kube-proxy>              |
-| kube-scheduler          | strict  | <https://snapcraft.io/kube-scheduler>          |
-| kubelet                 | classic | <https://snapcraft.io/kubelet>                 |
+
+| Snap | Type | Store page |
+|------|------|------------|
+| kube-apiserver | strict | <https://snapcraft.io/kube-apiserver> |
+| kube-controller-manager | strict  | <https://snapcraft.io/kube-controller-manager>  |
+| kube-proxy | classic | <https://snapcraft.io/kube-proxy> |
+| kube-scheduler  |  strict  | <https://snapcraft.io/kube-scheduler>  |
+| kubelet  | classic  | <https://snapcraft.io/kubelet>  |
 
 ### Example: kube-apiserver
 
@@ -100,13 +101,13 @@ sudo snap set kube-apiserver args="
   </div>
 </div>
 
+
 After configuring, restart the service and you should see it running:
 
 ```bash
 sudo snap restart kube-apiserver
 systemctl status snap.kube-apiserver.daemon
 ```
-
 ```no-highlight
 ● snap.kube-apiserver.daemon.service - Service for snap application kube-apiserver.daemon
    Loaded: loaded (/etc/systemd/system/snap.kube-apiserver.daemon.service; enabled; vendor preset: enabled)
@@ -144,6 +145,7 @@ This contains the actual arguments that get passed to the service by the snap:
   </div>
 </div>
 
+
 The source code for the snaps can be found here:
 
 <https://launchpad.net/snap-kubectl>
@@ -164,11 +166,11 @@ The source code for the snaps can be found here:
 
 Debian packages are available through a PPA which provides the following:
 
-- <https://launchpad.net/kubectl>
-- <https://launchpad.net/kubelet>
-- <https://launchpad.net/kubeadm>
-- <https://launchpad.net/kubernetes-cni>
-- <https://launchpad.net/cri-tools>
+* <https://launchpad.net/kubectl>
+* <https://launchpad.net/kubelet>
+* <https://launchpad.net/kubeadm>
+* <https://launchpad.net/kubernetes-cni>
+* <https://launchpad.net/cri-tools>
 
 To install, first add the PPA of desired version:
 

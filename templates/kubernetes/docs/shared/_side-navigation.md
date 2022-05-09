@@ -3,9 +3,9 @@
 - [Overview](/kubernetes/docs/overview)
 
 ## Supported versions
+- [1.24](/kubernetes/docs/1.24/components)
 - [1.23](/kubernetes/docs/1.23/components)
 - [1.22](/kubernetes/docs/1.22/components)
-- [1.21](/kubernetes/docs/1.21/components)
 - [Version info](/kubernetes/docs/supported-versions)
 
 ## Install
@@ -78,4 +78,5 @@
 - [Supported versions](/kubernetes/docs/supported-versions)
 - [Snap refresh settings](/kubernetes/docs/snap-refresh)
 - [Kubernetes Packages](/kubernetes/docs/packages)
+- [Inclusive naming](/kubernetes/docs/inclusive-naming)
 - [Get in touch](/kubernetes/docs/get-in-touch)

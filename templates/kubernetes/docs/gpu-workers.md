@@ -28,7 +28,7 @@ varies considerably depending on the underlying cloud, this requires specifying
 a particular instance type.
 
 This can be done with a YAML overlay file. For example, when deploying Charmed
-Kubernetes on AWS, you may decide you wish to use AWS's 'p2.xlarge' instances
+Kubernetes on AWS, you may decide you wish to use AWS's 'p3.2xlarge' instances
 (you can check the AWS instance definitions on the
 [AWS website][aws-instance]). A YAML overlay file can be constructed like this:
 
@@ -36,7 +36,7 @@ Kubernetes on AWS, you may decide you wish to use AWS's 'p2.xlarge' instances
 #gpu-overlay.yaml
 applications:
   kubernetes-worker:
-    constraints: instance-type=p2.xlarge
+    constraints: instance-type=p3.2xlarge
 ```
 
 And then deployed with Charmed Kubernetes like this:
@@ -57,7 +57,7 @@ add GPU-enabled workers to a running cluster. The recommended way to do this is
 to first create a new constraint for the kubernetes-worker:
 
 ```bash
-juju set-constraints kubernetes-worker instance-type=p2.xlarge
+juju set-constraints kubernetes-worker instance-type=p3.2xlarge
 ```
 
 Then you can add as many new worker units as required. For example, to add two
@@ -102,6 +102,8 @@ also be installed.
 
 As GPU instances can be costly, it is useful to test that they can actually be
 used. A simple test job can be created to run NVIDIA's hardware reporting tool.
+Please note that you may need to replace the image tag in the following
+YAML with [the latest supported one][nvidia-supported-tags].
 
 This can also be [downloaded here][asset-nvidia].
 
@@ -117,27 +119,28 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-        - image: nvidia/cuda
-          name: nvidia-smi
-          args:
-            - nvidia-smi
-          resources:
-            limits:
-              nvidia.com/gpu: 1
-            requests:
-              nvidia.com/gpu: 1
-          volumeMounts:
-            - mountPath: /usr/bin/
-              name: binaries
-            - mountPath: /usr/lib/x86_64-linux-gnu
-              name: libraries
+      - image: nvidia/cuda:11.6.0-base-ubuntu20.04
+        name: nvidia-smi
+        args:
+          - nvidia-smi
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+          requests:
+            nvidia.com/gpu: 1
+        volumeMounts:
+        - mountPath: /usr/bin/
+          name: binaries
+        - mountPath: /usr/lib/x86_64-linux-gnu
+          name: libraries
       volumes:
-        - name: binaries
-          hostPath:
-            path: /usr/bin/
-        - name: libraries
-          hostPath:
-            path: /usr/lib/x86_64-linux-gnu
+      - name: binaries
+        hostPath:
+          path: /usr/bin/
+      - name: libraries
+        hostPath:
+          path: /usr/lib/x86_64-linux-gnu
+
 ```
 
 Download the file and run it with:
@@ -146,18 +149,36 @@ Download the file and run it with:
 kubectl create -f nvidia-test.yaml
 ```
 
-If you then check the Kubernetes dashboard, you can inspect the logs to
-find the hardware report.
+You can inspect the logs to find the hardware report.
 
-![dashboard image][img-log]
+```bash
+kubectl logs job.batch/nvidia-smi
 
-<!-- IMAGES -->
-
-[img-log]: https://assets.ubuntu.com/v1/2ba88cee-nvidia.png
+Thu Mar  3 14:52:26 2022       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 510.47.03    Driver Version: 510.47.03    CUDA Version: 11.6     |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|                               |                      |               MIG M. |
+|===============================+======================+======================|
+|   0  Tesla V100-SXM2...  On   | 00000000:00:1E.0 Off |                    0 |
+| N/A   39C    P0    24W / 300W |      0MiB / 16384MiB |      0%      Default |
+|                               |                      |                  N/A |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                                  |
+|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
+|        ID   ID                                                   Usage      |
+|=============================================================================|
+|  No running processes found                                                 |
++-----------------------------------------------------------------------------+
+```
 
 <!-- LINKS -->
-
-[asset-nvidia]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/nvidia-test.yaml
+[asset-nvidia]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/main/assets/nvidia-test.yaml
+[nvidia-supported-tags]: https://gitlab.com/nvidia/container-images/cuda/blob/master/doc/README.md#supported-tags
 [quickstart]: /kubernetes/docs/quickstart
 [aws-instance]: https://aws.amazon.com/ec2/instance-types/
 [azure-instance]: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sizes-gpu
@@ -171,3 +192,4 @@ find the hardware report.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

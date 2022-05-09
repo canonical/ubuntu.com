@@ -22,7 +22,7 @@ head(STONITH) via **MAAS** to prevent issues in a split-brain scenario.
 
 **Charmed Kubernetes** supports **HAcluster** via a relation and the
 configuration options `ha-cluster-vip` and `ha-cluster-dns`. Relations to the
-kubernetes-master and kubeapi-load-balancer charms are supported. These options
+kubernetes-control-plane and kubeapi-load-balancer charms are supported. These options
 are mutually exclusive.
 
 ## Deploying
@@ -30,7 +30,7 @@ are mutually exclusive.
 In order to use HAcluster, the first decision is if a load balancer is desired.
 This depends on the size of the cluster and the expected control plane load.
 Note that it is recommended to run HAcluster on a minimum of 3 units for a
-reliable quorum, so you will need 3 kubeapi-load-balancer or 3 kubernetes-master
+reliable quorum, so you will need 3 kubeapi-load-balancer or 3 kubernetes-control-plane
 units to use HAcluster.
 
 ### With Load Balancer
@@ -47,10 +47,10 @@ juju relate kubeapi-load-balancer hacluster
 
 ```bash
 juju deploy kubernetes-core
-juju add-unit -n 2 kubernetes-master
+juju add-unit -n 2 kubernetes-control-plane
 juju deploy hacluster
-juju config kubernetes-master ha-cluster-vip="192.168.0.1 192.168.0.2"
-juju relate kubernetes-master hacluster
+juju config kubernetes-control-plane ha-cluster-vip="192.168.0.1 192.168.0.2"
+juju relate kubernetes-control-plane hacluster
 ```
 
 ## Validation
@@ -60,7 +60,7 @@ kubeconfig file will be created containing the virtual IP addresses. You will
 need to replace your kubeconfig with the new one:
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 <!-- LINKS -->
@@ -77,3 +77,4 @@ juju scp kubernetes-master/0:config ~/.kube/config
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

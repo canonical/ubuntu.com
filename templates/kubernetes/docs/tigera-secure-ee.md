@@ -25,6 +25,9 @@ Support for Tigera Secure EE in **Charmed Kubernetes** is provided in the form o
 
 Before you start, you will need:
 
+*  Tigera Secure EE licence key
+*  Tigera private Docker registry credentials (provided as a Docker config.json)
+
 - Tigera Secure EE licence key
 - Tigera private Docker registry credentials (provided as a Docker config.json)
 
@@ -36,6 +39,7 @@ Before you start, you will need:
     configure instances to disable source/destination checking.</p>
   </div>
 </div>
+
 
 To start, deploy **Charmed Kubernetes** with Tigera Secure EE:
 
@@ -84,6 +88,7 @@ metadata:
 provisioner: kubernetes.io/host-path
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -99,6 +104,7 @@ spec:
   storageClassName: elasticsearch-storage
 
 ---
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -122,7 +128,6 @@ kubectl apply -f elasticsearch-storage.yaml
 
 Once you have a StorageClass available, delete the existing PVC and pods so
 Kubernetes will recreate them using the new StorageClass:
-
 ```bash
 kubectl delete pvc -n calico-monitoring es-data-es-data-tigera-elasticsearch-default-0
 kubectl delete pvc -n calico-monitoring es-data-es-master-tigera-elasticsearch-default-0
@@ -156,7 +161,7 @@ juju run --application kubernetes-worker open-port 30003
 
 Then connect to `https://<kubernetes-worker-ip>:30003` in your web browser. Use
 the Kubernetes admin credentials to log in (you can find these in the kubeconfig
-file created on kubernetes-master units at `/home/ubuntu/config`).
+file created on kubernetes-control-plane units at `/home/ubuntu/config`).
 
 ## Accessing kibana
 

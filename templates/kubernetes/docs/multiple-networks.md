@@ -32,9 +32,9 @@ Juju. If you're not, you can familiarise yourself with them by reading the
 
 Preconditions:
 
-- You have MAAS nodes that are attached to multiple logical networks (separate
-  physical networks or VLANs).
-- You have commissioned the nodes in MAAS.
+-   You have MAAS nodes that are attached to multiple logical networks (separate
+physical networks or VLANs).
+-   You have commissioned the nodes in MAAS.
 
 ### Create spaces in MAAS
 
@@ -81,7 +81,7 @@ applications:
   kubeapi-load-balancer:
     bindings:
       "": control
-  kubernetes-master:
+  kubernetes-control-plane:
     bindings:
       "": control
   kubernetes-worker:
@@ -105,20 +105,21 @@ juju deploy charmed-kubernetes --overlay my-overlay.yaml
 
 The following endpoints are available for use in bindings:
 
-| Charm                 | Endpoint          | Description of traffic                                                 |
-| --------------------- | ----------------- | ---------------------------------------------------------------------- |
-| etcd                  | cluster           | ETCD internal (peer)                                                   |
-| etcd                  | db                | ETCD external (client)                                                 |
-| flannel               | cni               | Flannel traffic (pod to pod communication)                             |
-| canal                 | cni               | Flannel traffic (pod to pod communication)                             |
-| calico                | cni               | Calico traffic (pod to pod communication)                              |
-| kubernetes-master     | kube-api-endpoint | Main traffic to kube-apiserver, from kubeapi-load-balancer             |
-| kubernetes-master     | kube-control      | Secondary traffic to kube-apiserver, from pods                         |
-| kubeapi-load-balancer | website           | Traffic to kubeapi-load-balancer, from kubectl, kubelet and kube-proxy |
-| kubernetes-worker     | kube-control      | Traffic to kubelet, from kube-apiserver (health checks)                |
+| Charm | Endpoint | Description of traffic |
+| ----- | -------- | ----------- |
+| etcd  | cluster  | ETCD internal (peer) |
+| etcd  | db       | ETCD external (client) |
+| flannel | cni | Flannel traffic (pod to pod communication) |
+| canal | cni | Flannel traffic (pod to pod communication) |
+| calico | cni | Calico traffic (pod to pod communication) |
+| kubernetes-control-plane | kube-api-endpoint | Main traffic to kube-apiserver, from kubeapi-load-balancer |
+| kubernetes-control-plane | kube-control | Secondary traffic to kube-apiserver, from pods |
+| kubeapi-load-balancer | website | Traffic to kubeapi-load-balancer, from kubectl, kubelet and kube-proxy |
+| kubernetes-worker | kube-control | Traffic to kubelet, from kube-apiserver (health checks) |
 
 You can read more about bindings in the Juju documentation here:
 [Binding endpoints within a bundle](https://juju.is/docs/sdk/bundles)
+
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
@@ -129,3 +130,4 @@ You can read more about bindings in the Juju documentation here:
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+
