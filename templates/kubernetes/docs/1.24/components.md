@@ -42,6 +42,8 @@ release, please see the [Release notes](release-notes).
 These charms are the core components or official optional components of the
 release. These charms are maintained by the Charmed Kubernetes team.
 
+|charm | summary | source | docs | bugs |
+|-|-|-|-|-|
 | [calico](https://charmhub.io/calico) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/layer-calico.git) | [docs](https://charmhub.io/calico/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [containerd](https://charmhub.io/containerd) | Containerd container runtime subordinate | [source](https://github.com/charmed-kubernetes/charm-containerd.git) | [docs](https://charmhub.io/containerd/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [easyrsa](https://charmhub.io/easyrsa) | Deploys and manages EasyRSA to create a Certificate Authority (CA) | [source](https://github.com/charmed-kubernetes/layer-easyrsa.git) | [docs](https://charmhub.io/easyrsa/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
@@ -55,6 +57,8 @@ release. These charms are maintained by the Charmed Kubernetes team.
 
 These are the CNI charms also supported by Charmed Kubernetes ( calico is the default CNI and is included in the core charms above)
 
+|charm | summary | source | docs | bugs |
+|-|-|-|-|-|
 | [canal](https://charmhub.io/canal) | A Software Defined Network based on Flannel and Calico | [source](https://github.com/charmed-kubernetes/layer-canal.git) | [docs](https://charmhub.io/canal/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [flannel](https://charmhub.io/flannel) | A charm that provides a robust Software Defined Network | [source](https://github.com/charmed-kubernetes/charm-flannel.git) | [docs](https://charmhub.io/flannel/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [tigera-secure-ee](https://charmhub.io/tigera-secure-ee) | Tigera Secure Enterprise Edition | [source](https://github.com/charmed-kubernetes/layer-tigera-secure-ee.git) | [docs](https://charmhub.io/tigera-secure-ee/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
@@ -67,6 +71,8 @@ These are the CNI charms also supported by Charmed Kubernetes ( calico is the de
 
 These charms provide cloud integration for Charmed Kubernetes (e.g. for running native loadbalancers and storage).
 
+|charm | summary | source | docs | bugs |
+|-|-|-|-|-|
 | [azure-integrator](https://charmhub.io/azure-integrator) |  | [source](https://github.com/juju-solutions/charm-azure-integrator.git) | [docs](https://charmhub.io/azure-integrator/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [gcp-integrator](https://charmhub.io/gcp-integrator) | Charm which enables Google GCP integrations for Juju | [source](https://github.com/juju-solutions/charm-gcp-integrator.git) | [docs](https://charmhub.io/gcp-integrator/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [aws-integrator](https://charmhub.io/aws-integrator) | Charm to enable AWS integrations via Juju relations. | [source](https://github.com/juju-solutions/charm-aws-integrator.git) | [docs](https://charmhub.io/aws-integrator/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
@@ -77,6 +83,8 @@ These charms provide cloud integration for Charmed Kubernetes (e.g. for running 
 
 These charms are also maintained and supported by the Charmed Kubernetes team to provide extra features for your K8s cluster.
 
+|charm | summary | source | docs | bugs |
+|-|-|-|-|-|
 | [kube-state-metrics](https://charmhub.io/kube-state-metrics) | a service that listens to the Kubernetes API and generates metrics | [source](https://github.com/charmed-kubernetes/kube-state-metrics-operator.git) | [docs](https://charmhub.io/kube-state-metrics/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [kubernetes-autoscaler](https://charmhub.io/kubernetes-autoscaler) | automatically scales up and down a kubernetes cluster | [source](https://github.com/charmed-kubernetes/charm-kubernetes-autoscaler.git) | [docs](https://charmhub.io/kubernetes-autoscaler/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [kubernetes-e2e](https://charmhub.io/kubernetes-e2e) | End-to-end (e2e) tests for Kubernetes | [source](https://github.com/charmed-kubernetes/charm-kubernetes-e2e.git) | [docs](https://charmhub.io/kubernetes-e2e/docs) | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
@@ -93,6 +101,10 @@ These are the container images used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
 
+-  addon-resizer-amd64:1.8.9
+-  addon-resizer-arm64:1.8.9
+-  addon-resizer-ppc64le:1.8.9
+-  addon-resizer-s390x:1.8.9
 -  calico/cni:v3.21.4
 -  calico/kube-controllers:v3.21.4
 -  calico/node:v3.21.4
@@ -100,14 +112,36 @@ These are the container images used by this release:
 -  cdkbot/microbot-amd64:latest
 -  cdkbot/microbot-arm64:latest
 -  cdkbot/microbot-s390x:latest
+-  cephcsi/cephcsi:v3.5.1
+-  coredns/coredns:1.9.0
 -  defaultbackend-amd64:1.5
 -  defaultbackend-arm64:1.5
 -  defaultbackend-ppc64le:1.5
 -  defaultbackend-s390x:1.4
+-  dns/k8s-dns-dnsmasq-nanny:1.21.1
+-  dns/k8s-dns-kube-dns:1.21.1
+-  dns/k8s-dns-sidecar:1.21.1
 -  external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
 -  k8s-artifacts-prod/ingress-nginx/controller:v1.2.0
+-  k8scloudprovider/cinder-csi-plugin:v1.23.0
+-  k8scloudprovider/k8s-keystone-auth:v1.23.0
+-  k8scloudprovider/openstack-cloud-controller-manager:v1.23.0
+-  kube-state-metrics/kube-state-metrics:v2.4.2
 -  kubernetes-ingress-controller/nginx-ingress-controller-ppc64le:0.20.0
+-  kubernetesui/dashboard:v2.5.1
+-  kubernetesui/metrics-scraper:v1.0.7
+-  metrics-server/metrics-server:v0.5.2
+-  nvidia/k8s-device-plugin:v0.11.0
 -  pause:3.6
+-  sig-storage/csi-attacher:v3.3.0
+-  sig-storage/csi-attacher:v3.4.0
+-  sig-storage/csi-node-driver-registrar:v2.4.0
+-  sig-storage/csi-provisioner:v3.0.0
+-  sig-storage/csi-provisioner:v3.1.0
+-  sig-storage/csi-resizer:v1.3.0
+-  sig-storage/csi-snapshotter:v4.2.0
+-  sig-storage/csi-snapshotter:v4.2.1
+-  sig-storage/livenessprobe:v2.5.0
 
 <!-- CONTAINER IMAGES END -->
 
