@@ -324,6 +324,12 @@
             switch (input.type) {
               case "radio":
                 if (input.checked) {
+                  message += comma + input.value + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
+              case "checkbox":
+                if (input.checked) {
                   var subSectionText = "";
                   var subSection = input
                     .closest('[class*="col-"]')
@@ -335,17 +341,6 @@
                   var label = formField.querySelector(
                     "span#" + input.getAttribute("aria-labelledby")
                   );
-                  if (label) {
-                    label = subSectionText + label.innerText;
-                  } else {
-                    label = input.getAttribute("aria-labelledby");
-                  }
-                  message += comma + label + "\r\n\r\n";
-                  comma = ", ";
-                }
-                break;
-              case "checkbox":
-                if (input.checked) {
                   if (subSection) {
                     subSectionText = subSection.innerText + ": ";
                   }
