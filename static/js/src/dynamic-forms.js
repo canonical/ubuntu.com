@@ -341,6 +341,7 @@
                   var label = formField.querySelector(
                     "span#" + input.getAttribute("aria-labelledby")
                   );
+
                   if (label) {
                     label = subSectionText + label.innerText;
                   } else {
