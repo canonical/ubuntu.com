@@ -6,9 +6,9 @@ function contactPrefrence() {
 
   if (telephoneOption.checked) {
     const text = document.getElementById("preferredContactTelephone").outerText;
-    textarea.value += text;
+    textarea.value = text;
   } else if (emailOption.checked) {
     const text = document.getElementById("preferredContactEmail").outerText;
-    textarea.value += text;
+    textarea.value = text;
   }
 }
