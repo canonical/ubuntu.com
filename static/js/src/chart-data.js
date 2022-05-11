@@ -1290,7 +1290,7 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2022-05-06T00:00:00"),
-    endDate: new Date("2022-05-06T00:00:00"),
+    endDate: new Date("2023-05-06T00:00:00"),
     taskName: "Kubernetes 1.24",
     status: "CANONICAL_KUBERNETES_CURRENT_VERSION",
   },
