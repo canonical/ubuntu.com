@@ -1,0 +1,212 @@
+{% extends "legal/_base_legal.html" %}
+
+{% block title %}Open-source licences{% endblock %}
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+<div class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-8">
+      <h1>Open-source licences</h1>
+    </div>
+  </div>
+</div>
+<div class="p-strip u-no-padding--top">
+  <div class="row">
+    <aside class="col-3">
+      <nav class="p-side-navigation is-drawer-hidden" id="side-navigation-drawer" aria-label="Side">
+        <a href="#side-navigation-drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="side-navigation-drawer" aria-expanded="false">
+          Toggle side navigation
+        </a>
+
+        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="side-navigation-drawer" aria-expanded="false"></div>
+
+        <div class="p-side-navigation__drawer">
+          <div class="p-side-navigation__drawer-header">
+            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="side-navigation-drawer" aria-expanded="false">
+              Toggle side navigation
+            </a>
+          </div>
+          <ul class="p-side-navigation__list" id="side-navigation">
+            <li class="p-side-navigation__item--title"><span class="p-side-navigation__text">Releases</span></li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=jammy-desktop" data-file="7e8bfe27-jammy-server_copyright+license.json">
+                Jammy Desktop
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=impish-desktop" data-file="5237da0a-impish-desktop_copyright+license.json">
+                Impish Desktop
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=focal-desktop" data-file="12917471-focal-desktop_copyright+license.json">
+                Focal Desktop
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=focal-server" data-file="35961738-focal-server_copyright+license.json">
+                Focal Server
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=bionic-server" data-file="f5290e0d-bionic-server_copyright+license.json">
+                Bionic Server
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=xenial-server" data-file="7647ac2f-xenial-server_copyright+license.json">
+                Xenial Server
+              </a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="/legal/open-source-licences?release=trusty-server" data-file="6d1785d6-trusty-server_copyright+license.json">
+                Trusty Server
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+    <main class="col-9" id="main-content">
+      <table aria-label="Open-source package licences">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Architecture</th>
+            <th>Description</th>
+            <th>Licenses</th>
+          </tr>
+        </thead>
+        <caption id="loading">
+          <div class="p-strip is-shallow">
+            <div class="row">
+              <div class="u-align--center col-8">
+                <p><i class="p-icon--spinner u-animation--spin"></i> Loading package licences.</p>
+              </div>
+            </div>
+          </div>
+        </caption>
+        <tbody id="content"></tbody>
+        <caption class="u-hide" id="empty">
+          <div class="p-strip">
+            <div class="row">
+              <div class="u-align--right col-3 col-medium-2 col-small-1">
+                <img src="https://assets.ubuntu.com/v1/263e7c5d-iot_orange.svg" alt="">
+              </div>
+              <div class="u-align--left col-5 col-medium-3 col-small-3">
+                <p class="p-heading--4 u-no-margin--bottom">No package information not available</p>
+                <p>There are no package information for this release</p>
+                <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=%0a%0a%0a---%0a*Reported%20from:%20https:ubuntu.com/legal/open-source-licences*" class="p-button--positive">Let us know by reporting an issue</a>
+              </div>
+            </div>
+          </div>
+        </caption>
+        <caption class="u-hide" id="error">
+          <div class="p-strip">
+            <div class="row">
+              <div class="u-align--right col-3 col-medium-2 col-small-1">
+                <img src="https://assets.ubuntu.com/v1/263e7c5d-iot_orange.svg" alt="">
+              </div>
+              <div class="u-align--left col-5 col-medium-3 col-small-3">
+                <p class="p-heading--4 u-no-margin--bottom">Oh no, we hit a snag</p>
+                <p>There was an error loading the package licence information</p>
+                <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=%0a%0a%0a---%0a*Reported%20from:%20https:ubuntu.com/legal/open-source-licences*" class="p-button--positive">Let us know by reporting an issue</a>
+              </div>
+            </div>
+          </div>
+        </caption>
+      </table>
+    </main>
+  </div>
+</div>
+
+<script>
+  const elements = {
+    content: document.getElementById("content"),
+    empty: document.getElementById("empty"),
+    loading: document.getElementById("loading"),
+    error: document.getElementById("error"),
+    navigation: document.getElementById("side-navigation"),
+  };
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const release = urlParams.get('release');
+
+    const jsonFile = getJsonFile(release);
+
+    if (jsonFile) {
+      fetch(`/asset/${jsonFile}`)
+        .then(response => response.json())
+        .then(json => {
+          try {
+            elements.loading.classList.add("u-hide");
+            const packages = json.Dist.Packages;
+            renderTable(packages)
+          }
+          catch(error) {
+            handleError(error)
+          }
+        })
+        .catch((error) => {
+          handleError(error)
+        });
+    } else {
+      handleError(`No release file found for "${release}"`);
+    }
+  });
+
+  function getJsonFile(release) {
+    let file = null;
+    if (release) {
+      const links = elements.navigation.querySelectorAll('.p-side-navigation__link');
+      links.forEach(link => {
+        if (link.href.split("?release=")[1] === release.toLowerCase()) {
+          link.setAttribute("aria-current", "page");
+          file = link.dataset.file;
+        }
+      });
+    } else {
+      const link = elements.navigation.querySelector('.p-side-navigation__link');
+      link.setAttribute("aria-current", "page");
+      file = link.dataset.file;
+    }
+    return file;
+  }
+
+  function renderTable(json) {
+    if (json.length === 0) {
+      elements.empty.classList.remove("u-hide");
+      return;
+    }
+    const rows = renderTableRows(json);
+    elements.content.innerHTML = rows;
+  }
+
+  function renderTableRows(packages) {
+    let rows = "";
+    packages.forEach(function(package) {
+      rows += `<tr>
+        <td>${package.Name}</td>
+        <td>${package.Version}</td>
+        <td>${package.Architecture}</td>
+        <td>${package.Description}</td>
+        <td><a href="${package.CopyrightURL}">${package.Licenses}</a></td>
+      </tr>`;
+    });
+    return rows;
+  }
+
+  function handleError(error) {
+    console.log(error);
+    elements.loading.classList.add("u-hide");
+    elements.error.classList.remove("u-hide");
+  }
+
+
+
+</script>
+
+{% endblock content %}
