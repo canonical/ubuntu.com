@@ -88,9 +88,9 @@
       </div>
       <div class="col-3">
         {{ image (
-          url="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg",
+          url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
           alt="",
-          width="163",
+          width="72",
           height="45",
           hi_def=True,
           loading="auto"
@@ -126,6 +126,14 @@
           ) | safe
         }}
       </div>
+      <div class="u-fixed-width">
+        <h2>Ubuntu Core 22 Beta is now available</h2>
+        <p>
+          Pre-built Ubuntu Core 22 Beta images are available to download for some of the most popular architectures. Developers have the chance to try the new features ahead of the planned stable release on May 24, 2022.
+        </p>
+        <p>
+          <a class="p-button is-inline" style="margin-left: 0;" href="https://cdimage.ubuntu.com/ubuntu-core/22/beta/current/">Browse all supported images</a><br class="u-hide--large u-hide--medium" /><a href="https://forum.snapcraft.io/t/ubuntu-core-22-beta-is-now-available/29955">Read the announcement&nbsp;&rsaquo;</a>
+        </p>
     </div>
   </section>
 
@@ -153,7 +161,15 @@
           <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg" width="163" height="45" alt="Xilinx">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
+            alt="",
+            width="72",
+            height="45",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
           <p><a href="/download/xilinx">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-3">
