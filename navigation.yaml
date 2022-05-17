@@ -528,71 +528,14 @@ kubernetes:
         - title: AWS IAM auth
           path: /kubernetes/docs/aws-iam-auth
           hidden: True
+        - title: Inclusive naming
+          path: /kubernetes/docs/inclusive-naming
+          hidden: True
         - title: Get in touch
           path: /kubernetes/docs/get-in-touch
           hidden: True
-        - title: AWS-IAM Charm
-          path: /kubernetes/docs/charm-aws-iam/
-          hidden: True
-        - title: AWS Integrator Charm
-          path: /kubernetes/docs/charm-aws-integrator/
-          hidden: True
-        - title: Azure Integrator Charm
-          path: /kubernetes/docs/charm-azure-integrator/
-          hidden: True
-        - title: Calico Charm
-          path: /kubernetes/docs/charm-calico/
-          hidden: True
-        - title: Canal Charm
-          path: /kubernetes/docs/charm-canal/
-          hidden: True
-        - title: Containerd Charm
-          path: /kubernetes/docs/charm-containerd/
-          hidden: True
-        - title: Docker Charm
-          path: /kubernetes/docs/charm-docker/
-          hidden: True
-        - title: Docker Registry Charm
-          path: /kubernetes/docs/charm-docker-registry/
-          hidden: True
-        - title: EasyRSA Charm
-          path: /kubernetes/docs/charm-easyrsa/
-          hidden: True
-        - title: Etcd Charm
-          path: /kubernetes/docs/charm-etcd/
-          hidden: True
-        - title: Flannel Charm
-          path: /kubernetes/docs/charm-flannel/
-          hidden: True
-        - title: GCP Integrator Charm
-          path: /kubernetes/docs/charm-gcp-integrator/
-          hidden: True
-        - title: Kata Charm
-          path: /kubernetes/docs/charm-kata/
-          hidden: True
-        - title: Keepalived Charm
-          path: /kubernetes/docs/charm-keepalived/
-          hidden: True
-        - title: Kubeapi Loadbalancer Charm
-          path: /kubernetes/docs/charm-kubeapi-load-balancer/
-          hidden: True
-        - title: Kubernetes Master Charm
-          path: /kubernetes/docs/charm-kubernetes-master/
-          hidden: True
-        - title: Kubernetes Worker Charm
-          path: /kubernetes/docs/charm-kubernetes-worker/
-          hidden: True
-        - title: OpenStack Integrator Charm
-          path: /kubernetes/docs/charm-openstack-integrator/
-          hidden: True
         - title: Charm reference page
           path: /kubernetes/docs/charm-reference/
-          hidden: True
-        - title: Tigera Secure EE Charm
-          path: /kubernetes/docs/charm-tigera-secure-ee/
-          hidden: True
-        - title: vSphere Integrator Charm
-          path: /kubernetes/docs/charm-vsphere-integrator/
           hidden: True
         - title: Supported versions
           path: /kubernetes/docs/supported-versions
@@ -1151,6 +1094,16 @@ kubernetes:
             - title: 1.23 vSphere integrator
               path: /kubernetes/docs/1.23/charm-vsphere-integrator
               hidden: True
+            - title: 1.24 Release notes
+              path: /kubernetes/docs/1.24/release-notes
+              hidden: True
+            - title: 1.24 Components
+              path: /kubernetes/docs/1.24/components
+              hidden: True
+            - title: 1.24 Upgrading
+              path: /kubernetes/docs/1.24/upgrading
+              hidden: True
+
     - title: Contact us
       path: /kubernetes/contact-us
       hidden: True
@@ -1533,6 +1486,9 @@ legal:
       children:
         - title: Data protection enquiry
           path: /legal/data-privacy/enquiry
+        - title: Recruitment
+          path: /legal/data-privacy/recruitment
+          hidden: True
         - title: Newsletter
           path: /legal/data-privacy/newsletter
           hidden: True
@@ -1933,3 +1889,5 @@ landscape:
       path: /landscape/install
     - title: Docs
       path: https://docs.ubuntu.com/landscape/en/
+    - title: Log in to Landscape
+      path: https://landscape.canonical.com/login/authenticate

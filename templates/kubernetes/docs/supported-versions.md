@@ -16,9 +16,9 @@ toc: False
 Charmed Kubernetes officially supports the most recent three (3) minor releases
 of Kubernetes.
 
-Current Release: **1.23**
+Current Release: **1.24**
 
-Supported releases: **1.23.x,1.22.x, 1.21.x**
+Supported releases: **1.24.x,1.23.x, 1.21.x**
 
 ## Charmed Kubernetes bundle versions
 
@@ -209,6 +209,6 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
     We appreciate your feedback on the documentation. You can
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/supported-versions.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

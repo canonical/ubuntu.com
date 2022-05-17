@@ -14,8 +14,9 @@ toc: False
 ---
 
 **Charmed Kubernetes** will run seamlessly on Microsoft Azure <sup>&reg;</sup>.
-With the addition of the `azure-integrator`, your cluster will also be able
-to directly use Azure native features.
+With the  addition of the `azure-integrator`, your cluster will also be able
+to directly  use Azure native features.
+
 
 ## Azure integrator
 
@@ -41,9 +42,9 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ["azure-integrator", "kubernetes-master:azure"]
-  - ["azure-integrator", "kubernetes-worker:azure"]
-```
+  - ['azure-integrator', 'kubernetes-control-plane:azure']
+  - ['azure-integrator', 'kubernetes-worker:azure']
+  ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
 during deploy like this:
@@ -55,7 +56,7 @@ juju deploy charmed-kubernetes --overlay azure-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 <div class="p-notification--information">
@@ -84,6 +85,7 @@ backed by
 Azure's Disk Storage.
 
 ### 1. Create a storage class using the `kubernetes.io/azure-disk` provisioner:
+
 
 ```bash
 kubectl create -f - <<EOY
@@ -178,10 +180,10 @@ please see the [azure charm page][azure-integrator].
 
 ## Azure load-balancers for the control plane
 
-With revision 1015 and later of the `kubernetes-master` charm, Charmed
+With revision 1015 and later of the `kubernetes-control-plane` charm, Charmed
 Kubernetes can also use Azure native load balancers in front of the control
 plane, replacing the need to deploy the `kubeapi-load-balancer` charm. The
-`kubernetes-master` charm supports two relation endpoints, `loadbalancer-external`
+`kubernetes-control-plane` charm supports two relation endpoints, `loadbalancer-external`
 for a publicly accessible load balancer which can be used by external clients as
 well as the control plane, and `loadbalancer-internal` for a non-public load
 balancer which can only be used by the rest of the control plane but not by
@@ -189,10 +191,11 @@ external clients.
 
 <!-- LINKS -->
 
-
 [asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
+
 [storage]: /kubernetes/docs/storage
 [azure-integrator]: /kubernetes/docs/charm-azure-integrator
+
 [install]: /kubernetes/docs/install-manual
 
 <!-- FEEDBACK -->
@@ -204,3 +207,4 @@ external clients.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

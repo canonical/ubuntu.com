@@ -21,6 +21,7 @@ regard to where it is hosted. The only requirement is that both the client
 machine running `kubectl` and the nodes running the webhook pod(s) are able to
 reach AWS in order to get and validate tokens.
 
+
 ### Installing
 
 The [aws-iam][aws-iam-charm] subordinate charm
@@ -32,8 +33,8 @@ applications:
   aws-iam:
     charm: cs:~containers/aws-iam
 relations:
-  - ["aws-iam", "kubernetes-master"]
-  - ["aws-iam", "vault"]
+  - ['aws-iam', 'kubernetes-control-plane']
+  - ['aws-iam', 'vault']
 ```
 
 or if using easyrsa:
@@ -43,8 +44,8 @@ applications:
   aws-iam:
     charm: cs:~containers/aws-iam
 relations:
-  - ["aws-iam", "kubernetes-master"]
-  - ["aws-iam", "easyrsa"]
+  - ['aws-iam', 'kubernetes-control-plane']
+  - ['aws-iam', 'easyrsa']
 ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
@@ -77,7 +78,7 @@ spec:
   # Groups to be attached to your users/roles. For example `system:masters` to
   # create cluster admin, or `view` for view only,
   groups:
-    - view
+  - view
 ```
 
 ### Using AWS-IAM with kubectl
@@ -94,23 +95,22 @@ on the [aws-iam-authenticator releases page][aws-iam-authenticator-releases].
 The aws-iam-authenticator is able to use any ARN for authentication. The easiest
 way to get started is to use an empty role as described in the
 [aws-iam documentation][aws-iam-role-creation].
-
-- Log into AWS console and navigate to [the IAM page][aws-iam-page].
-- Click "create new role".
-- Choose the "Role for cross-account access" / "Provide access between AWS accounts you own" option.
-- Paste in your AWS account ID number (available in the top right in the console).
-- Your role does not need any additional policies attached.
+ * Log into AWS console and navigate to [the IAM page][aws-iam-page].
+ * Click "create new role".
+ * Choose the "Role for cross-account access" / "Provide access between AWS accounts you own" option.
+ * Paste in your AWS account ID number (available in the top right in the console).
+ * Your role does not need any additional policies attached.
 
 #### Updating kubectl config
 
 In order to use the [aws-iam-authenticator][aws-iam-authenticator-github] with
 kubectl, an updated config file is needed. The config file written to the
-kubernetes-master unit will have a user named `aws-iam-user` that uses the
+kubernetes-control-plane unit will have a user named `aws-iam-user` that uses the
 `aws-iam-authenticator` client binary and a context named aws-iam-authenticator.
 First, copy the config:
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 The config file will need to be edited in order to add the desired
@@ -152,14 +152,13 @@ IAMIdentityMapping CRD.
 In order to get authorisation with AWS-IAM, you will need to use RBAC.
 Refer to the Charmed Kubernetes [RBAC documentation][k8s-rbac-docs] for
 complete options, but at a minimum you will need to enable RBAC with
-`juju config kubernetes-master authorization-mode="RBAC,Node"`. At
+`juju config kubernetes-control-plane authorization-mode="RBAC,Node"`. At
 this point, valid AWS credentials will fail unless connected to a default
 account.
 
 ```bash
 kubectl get po -A
 ```
-
 ... will result in an error:
 
 ```
@@ -183,9 +182,8 @@ spec:
   # create cluster admin, or `system:nodes`, `system:bootstrappers` for nodes to
   # access the API server.
   groups:
-    - view
+  - view
 ```
-
 Logging in with the k8s-view-role matched against the RBAC user 'knobby', but this user has
 no permissions so the command failed. Create an RBAC Role and RoleBinding to grant permissions:
 
@@ -195,13 +193,13 @@ kind: Role
 metadata:
   name: pod-reader
 rules:
-  - apiGroups: [""]
-    resources:
-      - pods
-    verbs:
-      - get
-      - list
-      - watch
+- apiGroups: [""]
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -211,9 +209,9 @@ metadata:
   name: read-pods
   namespace: default
 subjects:
-  - kind: User
-    name: knobby
-    apiGroup: rbac.authorization.k8s.io
+- kind: User
+  name: knobby
+  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: pod-reader
@@ -235,7 +233,6 @@ Note that the permissions in this example are limited to the 'default' namespace
 ```bash
 kubectl get po --all-namespaces
 ```
-
 ...will result in an error:
 
 ```no-highlight
@@ -262,10 +259,9 @@ perform actions, activity logs can be obtained from
 [Amazon's CloudTrail][cloudtrail].
 
 The flow of operations that occur when using kubectl with aws-iam is as follows:
-
 1. kubectl execs `aws-iam-authenticator` to get a token.
 2. `aws-iam-authenticator` contacts AWS from the user's machine
-   to get the token.
+to get the token.
 3. kubectl passes token to the Kubernetes API server.
 4. The API server passes the token to the webhook pod for verification.
 5. The webhook pod contacts AWS to verify the token.
@@ -273,15 +269,14 @@ The flow of operations that occur when using kubectl with aws-iam is as follows:
 7. The API server uses RBAC rules to authorise the user.
 
 One can troubleshoot these steps to figure out where things are going wrong.
-
-- Run `aws-iam-authenticator token -i <cluster id> -r <aws arn>` to see if a
-  token is returned. Note that `aws-iam-authenticator` will cache credentials
-  between calls.
-- Check verbose output of `kubectl` command by adding `--v=9` such as
-  `kubectl get po --v=9`
-- Check the logs of the `aws-iam-authenticator` deployment with
-  `juju run --unit kubernetes-master/0 -- /snap/bin/kubectl --kubeconfig /root/.kube/config -n kube-system logs deploy/aws-iam-authenticator`
-- Check the logs of the API server with `juju run --unit kubernetes-master/0 -- journalctl -u snap.kube-apiserver.daemon.service`
+ * Run `aws-iam-authenticator token -i <cluster id> -r <aws arn>` to see if a
+token is returned. Note that `aws-iam-authenticator` will cache credentials
+between calls.
+ * Check verbose output of `kubectl` command by adding `--v=9` such as
+`kubectl get po --v=9`
+ * Check the logs of the `aws-iam-authenticator` deployment with
+`juju run --unit kubernetes-control-plane/0 -- /snap/bin/kubectl --kubeconfig /root/.kube/config -n kube-system logs deploy/aws-iam-authenticator`
+ * Check the logs of the API server with `juju run --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver.daemon.service`
 
 <!-- LINKS -->
 
@@ -305,8 +300,7 @@ One can troubleshoot these steps to figure out where things are going wrong.
     <p class="p-notification__message">
       We appreciate your feedback on the documentation. You can
       <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/aws-iam-auth.md" >edit this page</a>
-      or
-      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-    </p>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>

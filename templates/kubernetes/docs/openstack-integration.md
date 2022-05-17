@@ -17,6 +17,7 @@ toc: False
 on OpenStack. With the addition of the `openstack-integrator`, your cluster
 will also be able to directly use OpenStack native features.
 
+
 ## OpenStack integrator
 
 The `openstack-integrator` charm simplifies working with **Charmed Kubernetes** on OpenStack. Using the
@@ -46,8 +47,8 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ["openstack-integrator", "kubernetes-master:openstack"]
-  - ["openstack-integrator", "kubernetes-worker:openstack"]
+  - ['openstack-integrator', 'kubernetes-control-plane:openstack']
+  - ['openstack-integrator', 'kubernetes-worker:openstack']
 ```
 
 To use the overlay with the **Charmed Kubernetes** bundle, specify it during deploy like this:
@@ -59,7 +60,7 @@ juju deploy charmed-kubernetes --overlay ~/path/openstack-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the integrator uses,
@@ -105,7 +106,7 @@ allow for external access.
 
 To use Octavia for `LoadBalancer` type services in the cluster, you will also need to set the
 `subnet-id` config to the appropriate tenant subnet where your nodes reside, and if desired, the
-`floating-network-id` config to whatever network you want FIPs created in. See the
+`floating-network-id` config to whatever network you want FIPs created in.  See the 
 [Charm config docs][charm-config] for more details.
 
 As an example of this usage, this will create a simple application, scale it to five pods,
@@ -149,10 +150,10 @@ example deployment. You can test the ingress address:
 ```bash
 curl  http://202.49.242.3:8080
 ```
-
 ```
 Hello Kubernetes!
 ```
+
 
 #### API Server Load Balancer
 
@@ -172,27 +173,24 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - [
-      "kubernetes-master:kube-api-endpoint",
-      "kubernetes-worker:kube-api-endpoint",
-    ]
-  - ["openstack-integrator", "kubernetes-master:loadbalancer"]
-  - ["openstack-integrator", "kubernetes-master:openstack"]
-  - ["openstack-integrator", "kubernetes-worker:openstack"]
+  - ['kubernetes-control-plane:kube-api-endpoint', 'kubernetes-worker:kube-api-endpoint']
+  - ['openstack-integrator', 'kubernetes-control-plane:loadbalancer']
+  - ['openstack-integrator', 'kubernetes-control-plane:openstack']
+  - ['openstack-integrator', 'kubernetes-worker:openstack']
 ```
 
 You will also need to set the `lb-subnet` config to the appropriate tenant subnet where your nodes
 reside, and if desired, the `lb-floating-network` config to whatever network you want the FIP created
-in. See the [Charm config docs][charm-config] for more details.
+in.  See the [Charm config docs][charm-config] for more details.
 
 ### Using Cinder Volumes
 
-Many pods you may wish to deploy will require storage. Although you can use any type
+Many  pods you may wish to deploy will require storage. Although you can use any type
 of storage supported by Kubernetes (see the [storage documentation][storage]), you
 also have the option to use Cinder storage volumes, if supported by your OpenStack.
 
 A `cdk-cinder` storage class will be automatically created when the integrator is
-used. This storage class can then be used when creating a Persistent Volume Claim:
+used.  This storage class can then be used when creating a Persistent Volume Claim:
 
 ```bash
 kubectl create -f - <<EOY
@@ -278,6 +276,7 @@ the log history for that specific unit:
 juju debug-log --replay --include openstack-integrator/0
 ```
 
+
 <!-- LINKS -->
 
 [octavia]: https://docs.openstack.org/octavia/latest/reference/introduction.html
@@ -299,3 +298,4 @@ juju debug-log --replay --include openstack-integrator/0
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

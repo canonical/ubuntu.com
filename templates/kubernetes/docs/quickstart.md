@@ -152,9 +152,10 @@ Google. You can see which ones are ready to use by running this command:
   </div>
 </div>
 
+
 <!-- LINKS -->
 
-[jujucharms-com]: https://jujucharms.com
+[jujucharms-com]: https://charmhub.io
 [install]: /kubernetes/docs/install-manual
 [overview]: /kubernetes/docs/overview
 [snapd-docs]: https://docs.snapcraft.io/core/install
@@ -175,3 +176,4 @@ Google. You can see which ones are ready to use by running this command:
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

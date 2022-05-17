@@ -11,6 +11,14 @@ const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate = "Extended Security Maintenance (ESM) until ";
 
 const versionDetails = {
+  22.04: [
+    `${ESMEndDate} 2032`,
+    livepatch,
+    KVMDrivers,
+    CISBenchmarkAndAutomation,
+    landscape,
+    knowledgeBase,
+  ],
   20.04: [
     `${ESMEndDate} 2030`,
     livepatch,

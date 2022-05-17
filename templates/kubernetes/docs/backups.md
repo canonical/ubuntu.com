@@ -22,7 +22,7 @@ please refer to their own documentation for details.
 
 ## Creating an **etcd** snapshot
 
- <div class="p-notification--caution is-inline">
+<div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Warning:</span>
     <p class="p-notification__message">Snapshots can only be restored on the **same version of etcd**.</p>
@@ -39,25 +39,24 @@ By specifying `--wait`, the console will wait to return the result of running th
 
 ```yaml
 unit-etcd-0:
-  id: 3d6a505e-07d7-4697-8471-60156f87b1b4
-  results:
-    copy:
-      cmd:
-        juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
-        .
-    snapshot:
-      path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
-      sha256: e85ae4d49b6a889de2063031379ab320cc8f09b6e328cdff2fb9179fc641eee9
-      size: 68K
-      version: |-
-        etcdctl version: 3.2.10
-        API version: 2
-  status: completed
-  timing:
-    completed: 2018-09-26 18:04:04 +0000 UTC
-    enqueued: 2018-09-26 18:04:04 +0000 UTC
-    started: 2018-09-26 18:04:03 +0000 UTC
-  unit: etcd/0
+ id: 3d6a505e-07d7-4697-8471-60156f87b1b4
+ results:
+   copy:
+     cmd: juju scp etcd/0:/home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
+       .
+   snapshot:
+     path: /home/ubuntu/etcd-snapshots/etcd-snapshot-2018-09-26-18.04.02.tar.gz
+     sha256: e85ae4d49b6a889de2063031379ab320cc8f09b6e328cdff2fb9179fc641eee9
+     size: 68K
+     version: |-
+       etcdctl version: 3.2.10
+       API version: 2
+ status: completed
+ timing:
+   completed: 2018-09-26 18:04:04 +0000 UTC
+   enqueued: 2018-09-26 18:04:04 +0000 UTC
+   started: 2018-09-26 18:04:03 +0000 UTC
+ unit: etcd/0
 ```
 
 This path/filename relates to the unit where the action was run. As we will likely want to use the snapshot on a different unit, we should fetch the snapshot to the local machine. The command to perform this is also helpfully supplied in the `copy` section of the output (see above):
@@ -110,9 +109,9 @@ Once the restore action has finished, you should see output confirming that the 
 
 ```bash
 juju add-relation new-etcd flannel
-juju add-relation new-etcd kubernetes-master
+juju add-relation new-etcd kubernetes-control-plane
 juju add-relation kubeapi-load-balancer:certificates new-easyrsa:client
-juju add-relation kubernetes-master:certificates new-easyrsa:client
+juju add-relation kubernetes-control-plane:certificates new-easyrsa:client
 juju add-relation kubernetes-worker:certificates new-easyrsa:client
 ```
 
@@ -150,9 +149,8 @@ unit-new-etcd-0:
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/backups.md" >edit this page</a>
-      or
-      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
-    </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/backups.md" >edit this page</a>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>

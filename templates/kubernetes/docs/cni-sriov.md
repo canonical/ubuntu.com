@@ -61,7 +61,7 @@ To deploy the SR-IOV charms, you will first need a Kubernetes model in Juju.
 Make sure your local kubeconfig is pointing to the correct Kubernetes cluster:
 
 ```
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 Next, add your Kubernetes as a cloud to your Juju controller:
@@ -180,16 +180,15 @@ metadata:
     k8s.v1.cni.cncf.io/networks: sriov
 spec:
   containers:
-    - name: ubuntu
-      image: ubuntu:20.04
-      command: ["sleep", "3600"]
-      resources:
-        requests:
-          intel.com/intel_sriov_netdevice: "1"
-        limits:
-          intel.com/intel_sriov_netdevice: "1"
+  - name: ubuntu
+    image: ubuntu:20.04
+    command: ['sleep', '3600']
+    resources:
+      requests:
+        intel.com/intel_sriov_netdevice: '1'
+      limits:
+        intel.com/intel_sriov_netdevice: '1'
 ```
-
 <div class="p-notification--information is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
@@ -235,3 +234,4 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

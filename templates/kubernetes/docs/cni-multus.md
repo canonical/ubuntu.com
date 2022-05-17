@@ -48,7 +48,7 @@ To deploy the Multus charm, you will first need a Kubernetes model in Juju.
 Make sure your local kubeconfig is pointing to the correct Kubernetes cluster:
 
 ```
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 Next, add your Kubernetes as a cloud to your Juju controller:
@@ -76,10 +76,10 @@ juju deploy cs:~containers/multus
 
 Multus delegates to a single CNI network by default. If you have multiple CNI
 subordinates in your cluster then you can use the default-cni config on
-kubernetes-master to set the default:
+kubernetes-control-plane to set the default:
 
 ```
-juju config kubernetes-master default-cni=flannel
+juju config kubernetes-control-plane default-cni=flannel
 ```
 
 Multus will use this as the default network as well.
@@ -91,7 +91,6 @@ network interfaces to your pods. In this example, we'll create an Ubuntu pod
 with 2 extra Flannel interfaces, in addition to the default one.
 
 Create a NetworkAttachmentDefinition for Flannel:
-
 ```
 apiVersion: "k8s.cni.cncf.io/v1"
 kind: NetworkAttachmentDefinition
@@ -119,7 +118,6 @@ spec:
 ```
 
 Create a Pod with the `k8s.v1.cni.cncf.io/networks` annotation:
-
 ```
 apiVersion: v1
 kind: Pod
@@ -215,3 +213,4 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

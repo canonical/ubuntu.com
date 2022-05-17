@@ -20,6 +20,7 @@ while utilizing Flannel's UDP-based network traffic to provide for an easier set
 experience that works in a wider variety of host network environments without
 special configuration.
 
+
 ## Deploying Charmed Kubernetes with Canal
 
 To deploy a cluster with Canal, deploy the kubernetes-canal bundle:
@@ -34,15 +35,15 @@ that would apply to `charmed-kubernetes` to this bundle also.
 
 ## Canal configuration options
 
-| Name                 | Type   | Default                                  | Description                                                                                                                                                                                                                                                                                                        |
-| -------------------- | ------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| calico-node-image    | string | docker.io/calico/node:v3.6.1             | The image id to use for calico/node.                                                                                                                                                                                                                                                                               |
-| calico-policy-image  | string | docker.io/calico/kube-controllers:v3.6.1 | The image id to use for calico/kube-controllers.                                                                                                                                                                                                                                                                   |
-| cidr                 | string | 10.1.0.0/16                              | Network CIDR to assign to Flannel                                                                                                                                                                                                                                                                                  |
-| iface                | string |                                          | The interface to bind flannel overlay networking. The default value is the interface bound to the cni endpoint.                                                                                                                                                                                                    |
-| nagios_context       | string | juju                                     | Used by the nrpe subordinate charms. A string that will be prepended to instance name to set the host name in nagios. So for instance the hostname would be something like: juju-myservice-0 If you're running multiple environments with the same services in them this allows you to differentiate between them. |
-| nagios_servicegroups | string |                                          | A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup                                                                                                                                                                                                 |
-|                      |
+|Name                  | Type    | Default   | Description                      |
+|----------------------|---------|-----------|----------------------------------|
+| calico-node-image    | string  | docker.io/calico/node:v3.6.1|The image id to use for calico/node. |
+| calico-policy-image  | string  | docker.io/calico/kube-controllers:v3.6.1|The image id to use for calico/kube-controllers. |
+| cidr                 | string  | 10.1.0.0/16|Network CIDR to assign to Flannel |
+| iface                | string  |           |The interface to bind flannel overlay networking. The default value is the interface bound to the cni endpoint. |
+| nagios_context       | string  | juju      |Used by the nrpe subordinate charms. A string that will be prepended to instance name to set the host name in nagios. So for instance the hostname would be something like:     juju-myservice-0 If you're running multiple environments with the same services in them this allows you to differentiate between them. |
+| nagios_servicegroups | string  |           |A comma-separated list of nagios servicegroups. If left empty, the nagios_context will be used as the servicegroup |
+                                |
 
 ### Checking the current configuration
 
@@ -86,3 +87,4 @@ For additional troubleshooting pointers, please see the
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

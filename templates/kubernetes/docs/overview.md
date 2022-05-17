@@ -61,7 +61,7 @@ additional configuration or hassle.
 [managedk8s]: /kubernetes/managed
 [maas]: https://maas.io
 [cdk]: /kubernetes
-[juju]: https://jujucharms.com
+[juju]: https://charmhub.io
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
@@ -72,3 +72,4 @@ additional configuration or hassle.
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

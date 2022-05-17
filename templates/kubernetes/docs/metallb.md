@@ -12,7 +12,6 @@ permalink: metallb.html
 layout: [base, ubuntu-com]
 toc: False
 ---
-
 # About
 
 [MetalLB][metallb] is a Kubernetes-aware solution that will monitor for services with
@@ -41,7 +40,6 @@ anti-affinity to prevent Kubernetes pods from stacking on a single node.
     <a href="https://metallb.universe.tf/"> MetalLB website</a></p>
   </div>
 </div>
-
 # Deployment
 
 ## Layer 2 mode
@@ -105,7 +103,7 @@ juju config metallb-controller iprange="192.168.1.240/28, 10.0.0.0/28"
 
 If RBAC is enabled in the Kubernetes cluster, an extra deployment step is
 required: before deploying MetalLB, you must apply the [RBAC permissions
-manifest][rbac-manifest]. This manifest gives permissions to the operator pods
+manifest][rbac-manifest].  This manifest gives permissions to the operator pods
 to use the Kubernetes API to create the necessary resources to make MetalLB
 work. You can apply the manifest using `kubectl`:
 
@@ -115,7 +113,7 @@ kubectl apply -f rbac-permissions-operators.yaml
 ```
 
 Be aware that the manifest has to refer to the namespace in which MetalLB is
-deployed. This namespace will be the same as the Juju model you deployed it
+deployed.  This namespace will be the same as the Juju model you deployed it
 into, above. If you used a model name other than `metallb-system`, you will
 need to edit the manifest before applying it.
 
@@ -173,6 +171,7 @@ To remove the test webapp and service, simply delete the manifest with kubectl:
 kubectl delete -f example-microbot-lb.yaml
 ```
 
+
 <!-- LINKS -->
 
 [metallb]: https://metallb.universe.tf
@@ -193,3 +192,4 @@ kubectl delete -f example-microbot-lb.yaml
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

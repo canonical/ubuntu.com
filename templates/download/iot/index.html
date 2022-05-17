@@ -88,9 +88,9 @@
       </div>
       <div class="col-3">
         {{ image (
-          url="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg",
+          url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
           alt="",
-          width="163",
+          width="72",
           height="45",
           hi_def=True,
           loading="auto"
@@ -100,13 +100,27 @@
           <a href="/download/amd-xilinx">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
+      <div class="col-3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
+          alt="",
+          width="75",
+          height="42",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+        <p>
+          <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
   </section>
 
   <section id="core" class="p-strip--light">
     <div class="row u-equal-height">
       <div class="col-8">
-        <h2>Ubuntu Core</h2>
+        <h3 class="p-heading--2">Ubuntu Core</h3>
         <p>
           Ubuntu Core is a lean, strictly confined and fully transactional operating system. We designed it from the ground up, to focus on security and simplified maintenance, for appliances and large device networks. Ubuntu Core is powered by snaps - the universal Linux packaging format.
         </p>
@@ -125,6 +139,15 @@
             loading="lazy"
           ) | safe
         }}
+      </div>
+      <div class="u-fixed-width">
+        <h3 class="p-heading--2">Ubuntu Core 22 Beta is now available</h3>
+        <p>
+          Pre-built Ubuntu Core 22 Beta images are available to download for some of the most popular architectures. Developers have the chance to try the new features ahead of the planned stable release on May 24, 2022.
+        </p>
+        <p>
+          <a class="p-button is-inline" style="margin-left: 0;" href="https://cdimage.ubuntu.com/ubuntu-core/22/beta/current/">Browse all supported images</a><br class="u-hide--large u-hide--medium" /><a href="https://forum.snapcraft.io/t/ubuntu-core-22-beta-is-now-available/29955">Read the announcement&nbsp;&rsaquo;</a>
+        </p>
       </div>
     </div>
   </section>
@@ -153,12 +176,30 @@
           <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/8a8c250f-xilinx-logo.svg" width="163" height="45" alt="Xilinx">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
+            alt="",
+            width="72",
+            height="45",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
           <p><a href="/download/amd-xilinx">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-3">
-          <p>Can't find your board of choice?</p>
-          <a class="p-button--positive js-invoke-modal" href="/download/contact-us" data-testid="interactive-form-link">Get in touch</a>
+          {{ image (
+            url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
+            alt="",
+            width="75",
+            height="42",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+          <p>
+            <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
+          </p>
         </div>
       </div>
       <div class="u-fixed-width" style="margin-top: 2rem;">
@@ -166,6 +207,19 @@
           <a class="p-button" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">
             <span>Browse all supported images</span>
           </a>
+        </p>
+      </div>
+    </section>
+  
+    <div class="u-fixed-width">
+      <hr />
+    </div>
+
+    <section class="p-strip">
+      <div class="u-fixed-width">
+        <h3 class="u-sv3 p-heading--2">Can't find your board of choice?</h3>
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/download/contact-us" data-testid="interactive-form-link">Get in touch</a>
         </p>
       </div>
     </section>

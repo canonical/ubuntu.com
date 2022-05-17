@@ -23,7 +23,7 @@ recommended for a machine with 32GB RAM and 250GB of SSD storage.
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">If you don't meet these requirements or want a lightweight way to develop on pure Kubernetes, we recommend  <a href="https://microk8s.io/">microk8s</a></p>
+    <p class="p-notification__message">If you don't meet these requirements or want a lightweight way to develop on pure Kubernetes, we recommend  <a href="https://microk8s.io/">MicroK8s</a></p>
   </div>
 </div>
 
@@ -136,6 +136,7 @@ All that remains is to deploy **Charmed Kubernetes**. A simple install can be ac
 juju deploy charmed-kubernetes
 ```
 
+
 This will install the latest stable version of **Charmed Kubernetes** with
 the default components and configuration. If you wish to customise this install
 (which may be helpful if you are close to the system requirements), please see
@@ -216,11 +217,37 @@ juju remove-unit kubernetes-worker/[n]
 juju add-unit kubernetes-worker
 ```
 
+### Kubelet fails to start with errors related to inotify_add_watch
+
+For example, `systemctl status snap.kubelet.daemon.service` may report the following error:
+
+```bash
+kubelet.go:1414] "Failed to start cAdvisor" err="inotify_add_watch /sys/fs/cgroup/cpu,cpuacct: no space left on device"
+```
+
+This problem usually is related to the kernel parameters,
+`fs.inotify.max_user_instances` and `fs.inotify.max_user_watches`.
+
+At first, you should increase their values on the machine that is hosting
+the **Charmed Kubernetes** (`v1.23.4`) installation:
+
+```bash
+sysctl -w fs.inotify.max_user_instances=8192
+sysctl -w fs.inotify.max_user_watches=1048576
+```
+
+Then the new values should be applied to the worker units:
+
+```bash
+juju config kubernetes-worker sysctl="{ fs.inotify.max_user_instances=8192 }"
+juju config kubernetes-worker sysctl="{ fs.inotify.max_user_watches=1048576 }"
+```
+
 <!-- LINKS -->
 
 [lxd-home]: https://linuxcontainers.org/
-[lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/master/lxd-profile.yaml
-[juju]: https://jaas.ai
+[lxd-profile]: https://github.com/charmed-kubernetes/charm-kubernetes-worker/blob/main/lxd-profile.yaml
+[Juju]: https://jaas.ai
 [snap]: https://snapcraft.io/docs/installing-snapd
 [install]: /kubernetes/docs/install-manual
 [operations]: /kubernetes/docs/operations
@@ -234,3 +261,4 @@ juju add-unit kubernetes-worker
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

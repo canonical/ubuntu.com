@@ -15,8 +15,8 @@ toc: False
 
 The components of **Charmed Kubernetes**
 need to be able to communicate securely over the network. This is accomplished
-using [TLS][] and [public-key encryption][pki] with a [chain of trust][] up
-to a shared root [Certificate Authority (CA)][ca]. However, when the cluster
+using [TLS][] and [public-key encryption][PKI] with a [chain of trust][] up
+to a shared root [Certificate Authority (CA)][CA]. However, when the cluster
 is being brought up or a new unit is being added, the chain of trust and
 certificates required must be bootstrapped into the machines somehow.
 
@@ -43,7 +43,7 @@ generating or distributing additional certificates to be used by the
 applications on the machines, so they must be managed by the charms via the
 secure relation data channel. This is done using the [tls-certificates][]
 [interface protocol][interface] and a relation to an application providing a
-Certificate Authority. (This CA could be either a root CA, or an intermediary
+Certificate Authority.  (This CA could be either a root CA, or an intermediary
 CA authorised by some other root CA to issue certificates.)
 
 When the relation is established, the root CA's certificate is sent via the
@@ -69,15 +69,15 @@ Each service that will be connected to will need a [server certificate][]
 identifying and validating it to any clients that wish to connect.
 
 The primary address at which the service can be reached will be its [common
-name][cn]; ideally, this will be a fully-qualified domain name (FQDN) which
+name][CN]; ideally, this will be a fully-qualified domain name (FQDN) which
 will not change, but for internal service communication, it is often just the
 [ingress address][network primitives] for the unit. Any additional names or
 addresses by which the service can be reached will be its [subject alternative
-names (SANs)][sans].
+names (SANs)][SANs].
 
 **Charmed Kubernetes** will manage the server certificates automatically, including
 generating the certificate with the proper CN and SANs. However, the
-[kubernetes-master][] charm also supports an [`extra_sans`][] option which
+[kubernetes-control-plane][] charm also supports an [`extra_sans`][] option which
 can be used to provide additional names to be added to the SANs list.
 
 ## Client certificates
@@ -116,12 +116,14 @@ be accessed.
 
 See the [operations documentation][vault-cdk] for details on how to deploy Vault as a CA.
 
-[tls]: https://www.networkworld.com/article/2303073/lan-wan/lan-wan-what-is-transport-layer-security-protocol.html
-[pki]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
+
+
+[TLS]: https://www.networkworld.com/article/2303073/lan-wan/lan-wan-what-is-transport-layer-security-protocol.html
+[PKI]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
 [chain of trust]: https://en.wikipedia.org/wiki/Chain_of_trust
-[ca]: https://en.wikipedia.org/wiki/Certificate_authority
-[juju units]: https://juju.is/docs/olm/quick-reference
-[juju controller]: https://juju.is/docs/olm/quick-reference
+[CA]: https://en.wikipedia.org/wiki/Certificate_authority
+[Juju units]: https://juju.is/docs/olm/quick-reference
+[Juju controller]: https://juju.is/docs/olm/quick-reference
 [tls-certificates]: https://github.com/juju-solutions/interface-tls-certificates
 [interface]: https://juju.is/docs/olm/quick-reference
 [websockets]: https://en.wikipedia.org/wiki/WebSocket
@@ -132,17 +134,17 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [easyrsa-charm]: https://charmhub.io/containers-easyrsa
 [easy-rsa]: https://github.com/OpenVPN/easy-rsa
 [install_ca_cert]: https://charm-helpers.readthedocs.io/en/latest/api/charmhelpers.core.host.html#charmhelpers.core.host.install_ca_cert
-[comodo]: https://en.wikipedia.org/wiki/Comodo_Group
-[digicert]: https://en.wikipedia.org/wiki/DigiCert
+[Comodo]: https://en.wikipedia.org/wiki/Comodo_Group
+[DigiCert]: https://en.wikipedia.org/wiki/DigiCert
 [kubelet]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 [server certificate]: https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_server_certificate
 [client certificate]: https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_client_certificate
-[cn]: https://knowledge.digicert.com/solution/SO7239.html
-[sans]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
+[CN]: https://knowledge.digicert.com/solution/SO7239.html
+[SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
 [network primitives]: https://juju.is/docs/olm/quick-reference
-[kubernetes-master]: /kubernetes/docs/charm-kubernetes-master
-[`extra_sans`]: /kubernetes/docs/charm-kubernetes-master#extra_sans
-[ha]: https://en.wikipedia.org/wiki/High_availability
+[kubernetes-control-plane]: /kubernetes/docs/charm-kubernetes-control-plane
+[`extra_sans`]:  https://charmhub.io/kubernetes-control-plane/configure
+[HA]: https://en.wikipedia.org/wiki/High_availability
 [vault-cdk]: /kubernetes/docs/using-vault
 
 <!-- FEEDBACK -->
@@ -154,3 +156,4 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
+

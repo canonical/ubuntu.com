@@ -29,7 +29,7 @@ current. If desired, an administrator can setup a
 [Snap Store Proxy][store-proxy] to have more control over the snap revisions
 used in a deployment.
 
-When configured, snaps used by `kubernetes-master` and `kubernetes-worker`
+When configured, snaps used by `kubernetes-control-plane` and `kubernetes-worker`
 charms will track revisions defined on the proxy rather than those available
 in the upstream Snap Store.
 
@@ -73,10 +73,10 @@ snap-store-proxy/0*  active    idle   11       18.144.52.58    80/tcp  \
   sudo snap set core proxy.store=<STORE_ID>
 ```
 
-Run the required commands on `kubernetes-master` and `kubernetes-worker` units:
+Run the required commands on `kubernetes-control-plane` and `kubernetes-worker` units:
 
 ```bash
-juju run --application kubernetes-master \
+juju run --application kubernetes-control-plane \
   'curl -s http://18.144.52.58/v2/auth/store/assertions | sudo snap ack /dev/stdin ; \
   sudo snap set core proxy.store=<STORE_ID>'
 juju run --application kubernetes-worker \
@@ -103,7 +103,7 @@ any desired snap.
 
 Every subsequent hook will check for new snap revisions from the snap store
 proxy. When updates are available, the relevant snaps will first be refreshed
-across all `kubernetes-master` units. If the update is successful, the
+across all `kubernetes-control-plane` units. If the update is successful, the
 `kubernetes-worker` units will then be refreshed.
 
 <!-- LINKS -->
