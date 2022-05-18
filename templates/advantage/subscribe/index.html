@@ -7,6 +7,14 @@
 
 {% block content %}
 
+<div id="react-root">
+  <section class="p-strip u-no-padding--top">
+    <div class="row">
+      <div class="col-12 u-no-margin--bottom p-card"><i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;</div>
+    </div>
+  </section>
+</div>
+
 <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
   <div class="row">
     <div class="col-12 u-sv3">
@@ -127,8 +135,6 @@
   type="module"
   defer
 ></script>
-
-{% include '/advantage/subscribe/_purchase-modal.html' %}
 
 <script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>

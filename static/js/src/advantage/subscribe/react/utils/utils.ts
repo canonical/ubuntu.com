@@ -99,3 +99,14 @@ export type BuyButtonProps = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export enum ProductTypes {
+  physical = "physical",
+  aws = "aws",
+  azure = "azure",
+  gcp = "gcp",
+  virtual = "virtual",
+  desktop = "desktop",
+}
+
+export type ProductTypeType = keyof typeof ProductTypes;
