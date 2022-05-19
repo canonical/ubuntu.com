@@ -52,7 +52,7 @@ function mobileViewUpdate() {
 window.onload = mobileViewUpdate;
 window.onresize = mobileViewUpdate;
 
-window.addEventListener("test", function (e) {
+window.addEventListener("Open menu on mobile", function (e) {
   var navigation = document.querySelector(".p-navigation");
   function menuOpenMobile() {
     navDropdowns.forEach(function (dropdown) {
@@ -270,9 +270,7 @@ if (accountContainer && accountContainerSmall) {
         if (show) {
           container.classList.add("is-active");
           [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
-            if (dropdownContent.classList.contains("u-hide") === false) {
-              dropdownContent.classList.add("u-hide");
-            }
+            dropdownContent.classList.add("u-hide");
           });
         } else {
           container.classList.remove("is-active");
