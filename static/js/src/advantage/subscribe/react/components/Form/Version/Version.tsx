@@ -129,7 +129,7 @@ const Version = () => {
         <Col size={12}>
           <Card
             title={`For Ubuntu ${selectedValue}, all UA plans include:`}
-            className="version-features"
+            className="version-features-section"
           >
             <Row>
               <Col size={12}>
