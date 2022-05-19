@@ -1,8 +1,8 @@
+import os
 import flask
 import json
 
 from urllib.parse import quote_plus
-from webapp.shop.context import get_stripe_publishable_key
 from webapp.shop.decorators import shop_decorator
 from webapp.shop.api.ua_contracts.api import UAContractsUserHasNoAccount
 from webapp.login import user_info
@@ -329,7 +329,10 @@ def get_microcerts(
     return flask.jsonify(
         {
             "account_id": account["id"] if account else None,
-            "stripe_publishable_key": get_stripe_publishable_key(),
+            "stripe_publishable_key": os.getenv(
+                "STRIPE_PUBLISHABLE_KEY",
+                "pk_live_68aXqowUeX574aGsVck8eiIE",
+            ),
             "certified_badge": certified_badge or None,
             "modules": sorted(
                 courses, key=lambda c: MODULES_ORDER.index(c["id"])

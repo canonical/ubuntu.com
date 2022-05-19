@@ -22,7 +22,6 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
-from webapp.shop.context import get_stripe_publishable_key
 from webapp.shop.api.ua_contracts.api import (
     UAContractsAPIError,
     UAContractsAPIErrorView,
@@ -176,16 +175,6 @@ app = FlaskBase(
 
 sentry = app.extensions["sentry"]
 
-# Settings
-app.config["CONTRACTS_LIVE_API_URL"] = os.getenv(
-    "CONTRACTS_LIVE_API_URL", "https://contracts.canonical.com"
-).rstrip("/")
-app.config["CONTRACTS_TEST_API_URL"] = os.getenv(
-    "CONTRACTS_TEST_API_URL", "https://contracts.staging.canonical.com"
-).rstrip("/")
-app.config["CANONICAL_LOGIN_URL"] = os.getenv(
-    "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
-)
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
@@ -291,7 +280,10 @@ def context():
         "months_list": months_list,
         "get_navigation": get_navigation,
         "get_test_backend": flask.request.args.get("test_backend", ""),
-        "get_stripe_publishable_key": get_stripe_publishable_key(),
+        "get_stripe_publishable_key": os.getenv(
+            "STRIPE_PUBLISHABLE_KEY",
+            "pk_live_68aXqowUeX574aGsVck8eiIE",
+        ),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),

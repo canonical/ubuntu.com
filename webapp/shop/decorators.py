@@ -12,11 +12,6 @@ from webapp.shop.api.edx.api import EdxAPI
 from requests import Session
 
 
-QA_BADGR_ISSUER = "36ZEJnXdTjqobw93BJElog"
-QA_CERTIFIED_BADGE = "x9kzmcNhSSyqYhZcQGz0qg"
-BADGR_ISSUER = "eTedPNzMTuqy1SMWJ05UbA"
-CERTIFIED_BADGE = "hs8gVorCRgyO2mNUfeXaLw"
-
 AREA_LIST = {
     "account": "Account pages",
     "advantage": "UA pages",
@@ -90,9 +85,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 flask.session.pop("guest_authentication_token")
                 guest_token = None
 
-            test_backend = flask.request.args.get("test_backend", "false")
-            is_test_backend = strtobool(test_backend)
-
             if permission == "user" and response == "json":
                 if not user_token:
                     message = {"error": "authentication required"}
@@ -110,40 +102,32 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     if flask.request.path == "/advantage":
                         return flask.render_template(
                             "advantage/index-no-login.html",
-                            is_test_backend=is_test_backend,
                         )
 
                     redirect_path = redirect or flask.request.path
 
-                    return flask.redirect(
-                        get_redirect_url(redirect_path, is_test_backend)
-                    )
+                    return flask.redirect(f"/login?next={redirect_path}")
 
             if permission == "guest" and response == "html":
                 if user_token:
-                    return flask.redirect(
-                        f"{get_redirect_default(area)}?test_backend=true"
-                        if is_test_backend
-                        else get_redirect_default(area)
-                    )
+                    return flask.redirect(get_redirect_default(area))
 
             ua_contracts_api = get_ua_contracts_api_instance(
-                user_token, guest_token, response, is_test_backend, session
+                user_token, guest_token, response, session
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
 
             return func(
-                is_test_backend=is_test_backend,
-                badgr_issuer=get_badgr_issuer(is_test_backend),
-                badge_certification=get_certified_badge(is_test_backend),
+                badgr_issuer=os.getenv(
+                    "BADGR_ISSUER", "eTedPNzMTuqy1SMWJ05UbA"
+                ),
+                badge_certification=os.getenv(
+                    "CERTIFIED_BADGE", "hs8gVorCRgyO2mNUfeXaLw"
+                ),
                 ua_contracts_api=ua_contracts_api,
                 advantage_mapper=advantage_mapper,
-                badgr_api=get_badgr_api_instance(
-                    area, is_test_backend, badgr_session
-                ),
-                edx_api=get_edx_api_instance(
-                    area, is_test_backend, edx_session
-                ),
+                badgr_api=get_badgr_api_instance(area, badgr_session),
+                edx_api=get_edx_api_instance(area, edx_session),
                 *args,
                 **kwargs,
             )
@@ -193,106 +177,43 @@ def get_redirect_default(area) -> str:
     return redirect_path
 
 
-def get_api_url(is_test_backend) -> str:
-    if is_test_backend:
-        return flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    return flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-
-def get_badgr_url(is_test_backend) -> str:
-    return (
-        "https://api.test.badgr.com"
-        if is_test_backend
-        else "https://api.eu.badgr.io"
-    )
-
-
-def get_badgr_password(is_test_backend) -> str:
-    return (
-        os.getenv("BADGR_QA_PASSWORD")
-        if is_test_backend
-        else os.getenv("BADGR_PASSWORD")
-    )
-
-
-def get_edx_url(is_test_backend) -> str:
-    return (
-        "https://qa.cube.ubuntu.com"
-        if is_test_backend
-        else "https://cube.ubuntu.com"
-    )
-
-
-def get_edx_client_id(is_test_backend) -> str:
-    return (
-        os.getenv("CUBE_EDX_QA_CLIENT_ID")
-        if is_test_backend
-        else os.getenv("CUBE_EDX_CLIENT_ID")
-    )
-
-
-def get_edx_secret(is_test_backend) -> str:
-    return (
-        os.getenv("CUBE_EDX_CLIENT_QA_SECRET")
-        if is_test_backend
-        else os.getenv("CUBE_EDX_CLIENT_SECRET")
-    )
-
-
-def get_badgr_api_instance(area, is_test_backend, badgr_session) -> BadgrAPI:
+def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
     if area != "cube":
         return None
 
     return BadgrAPI(
-        get_badgr_url(is_test_backend),
+        os.getenv("BADGR_URL", "https://api.eu.badgr.io"),
         os.getenv("BAGDR_USER"),
-        get_badgr_password(is_test_backend),
+        os.getenv("BADGR_PASSWORD"),
         badgr_session,
     )
 
 
-def get_edx_api_instance(area, is_test_backend, edx_session) -> EdxAPI:
+def get_edx_api_instance(area, edx_session) -> EdxAPI:
     if area != "cube":
         return None
 
     return EdxAPI(
-        get_edx_url(is_test_backend),
-        get_edx_client_id(is_test_backend),
-        get_edx_secret(is_test_backend),
+        os.getenv("CUBE_EDX_URL", "https://cube.ubuntu.com"),
+        os.getenv("CUBE_EDX_CLIENT_ID"),
+        os.getenv("CUBE_EDX_CLIENT_SECRET"),
         edx_session,
     )
 
 
-def get_badgr_issuer(is_test_backend) -> str:
-    return QA_BADGR_ISSUER if is_test_backend else BADGR_ISSUER
-
-
-def get_certified_badge(is_test_backend) -> str:
-    return QA_CERTIFIED_BADGE if is_test_backend else CERTIFIED_BADGE
-
-
 def get_ua_contracts_api_instance(
-    user_token, guest_token, response, is_test_backend, session
+    user_token, guest_token, response, session
 ) -> UAContractsAPI:
     ua_contracts_api = UAContractsAPI(
         session=session,
         authentication_token=(user_token or guest_token),
         token_type=("Macaroon" if user_token else "Bearer"),
-        api_url=get_api_url(is_test_backend),
+        api_url=os.getenv(
+            "CONTRACTS_API_URL", "https://contracts.canonical.com"
+        ),
     )
 
     if response == "html":
         ua_contracts_api.set_is_for_view(True)
 
     return ua_contracts_api
-
-
-def get_redirect_url(redirect_path, is_test_backend) -> str:
-    if is_test_backend:
-        return (
-            "/login?test_backend=true&"
-            f"next={redirect_path}?test_backend=true"
-        )
-
-    return f"/login?next={redirect_path}"
