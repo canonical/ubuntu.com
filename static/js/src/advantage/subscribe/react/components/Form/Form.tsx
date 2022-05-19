@@ -1,15 +1,16 @@
 import React from "react";
+import Support from "./Support";
 import Type from "./Type";
+import Version from "./Version";
 
 const Form = () => {
   return (
-    <form
-      className="js-shop-form"
-      // style="padding-top: 4rem"
-    >
+    <form>
       <div className="row">
         <ol className="p-stepped-list col-12">
           <Type />
+          <Version />
+          <Support />
         </ol>
       </div>
     </form>

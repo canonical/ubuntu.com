@@ -110,3 +110,17 @@ export enum ProductTypes {
 }
 
 export type ProductTypeType = keyof typeof ProductTypes;
+
+export enum LTSVersions {
+  jammy = "22.04",
+  focal = "20.04",
+  bionic = "18.04",
+  xenial = "16.04",
+  trusty = "14.04",
+}
+
+export enum Support {
+  essential = "essential",
+  standard = "standard",
+  advanced = "advanced",
+}
