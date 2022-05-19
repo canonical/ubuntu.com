@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import UAPurchase from "./UAPurchase";
+import { FormProvider } from "./utils/FormContext";
 
 declare global {
   interface Window {
@@ -48,9 +49,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Elements stripe={stripePromise}>
-        <UAPurchase />
-      </Elements>
+      <FormProvider>
+        <Elements stripe={stripePromise}>
+          <UAPurchase />
+        </Elements>
+      </FormProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

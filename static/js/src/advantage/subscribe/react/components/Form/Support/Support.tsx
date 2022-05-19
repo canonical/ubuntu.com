@@ -1,15 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Col, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
 import { Support as SupportEnum } from "advantage/subscribe/react/utils/utils";
+import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Support = () => {
-  const [selectedValue, setSelectedValue] = React.useState<SupportEnum>(
-    SupportEnum.essential
-  );
+  const { support, setSupport } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value as SupportEnum);
+    setSupport(event.target.value as SupportEnum);
   };
 
   return (
@@ -19,7 +18,7 @@ const Support = () => {
           <RadioCard
             name="support"
             value={SupportEnum.essential}
-            selectedValue={selectedValue}
+            selectedValue={support}
             handleChange={handleChange}
           >
             <div className="u-align-items--center">
@@ -37,7 +36,7 @@ const Support = () => {
           <RadioCard
             name="support"
             value={SupportEnum.standard}
-            selectedValue={selectedValue}
+            selectedValue={support}
             handleChange={handleChange}
           >
             <div className="u-align-items--center">
@@ -53,7 +52,7 @@ const Support = () => {
           <RadioCard
             name="support"
             value={SupportEnum.advanced}
-            selectedValue={selectedValue}
+            selectedValue={support}
             handleChange={handleChange}
           >
             <div className="u-align-items--center">

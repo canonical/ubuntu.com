@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Col, List, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
 import { LTSVersions } from "advantage/subscribe/react/utils/utils";
 import OlderVersionModal from "./OlderVersionModal";
+import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const livepatch = "Kernel Livepatch to avoid unscheduled reboots";
 const landscape = "Ubuntu systems management with Landscape";
@@ -66,12 +67,10 @@ const versionDetails = {
 };
 
 const Version = () => {
-  const [selectedValue, setSelectedValue] = React.useState<LTSVersions>(
-    LTSVersions.bionic
-  );
+  const { version, setVersion } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value as LTSVersions);
+    setVersion(event.target.value as LTSVersions);
   };
 
   return (
@@ -86,7 +85,7 @@ const Version = () => {
           <RadioCard
             name="version"
             value={LTSVersions.jammy}
-            selectedValue={selectedValue}
+            selectedValue={version}
             handleChange={handleChange}
           >
             <h4>Ubuntu 22.04 LTS</h4>
@@ -94,7 +93,7 @@ const Version = () => {
           <RadioCard
             name="version"
             value={LTSVersions.focal}
-            selectedValue={selectedValue}
+            selectedValue={version}
             handleChange={handleChange}
           >
             <h4>Ubuntu 20.04 LTS</h4>
@@ -102,7 +101,7 @@ const Version = () => {
           <RadioCard
             name="version"
             value={LTSVersions.bionic}
-            selectedValue={selectedValue}
+            selectedValue={version}
             handleChange={handleChange}
           >
             <h4>Ubuntu 18.04 LTS</h4>
@@ -110,7 +109,7 @@ const Version = () => {
           <RadioCard
             name="version"
             value={LTSVersions.xenial}
-            selectedValue={selectedValue}
+            selectedValue={version}
             handleChange={handleChange}
           >
             <h4>Ubuntu 16.04 LTS</h4>
@@ -118,7 +117,7 @@ const Version = () => {
           <RadioCard
             name="version"
             value={LTSVersions.trusty}
-            selectedValue={selectedValue}
+            selectedValue={version}
             handleChange={handleChange}
           >
             <h4>Ubuntu 14.04 LTS</h4>
@@ -128,16 +127,12 @@ const Version = () => {
       <Row>
         <Col size={12}>
           <Card
-            title={`For Ubuntu ${selectedValue}, all UA plans include:`}
+            title={`For Ubuntu ${version}, all UA plans include:`}
             className="version-features-section"
           >
             <Row>
               <Col size={12}>
-                <List
-                  items={versionDetails[selectedValue ?? "18.04"]}
-                  split
-                  ticked
-                />
+                <List items={versionDetails[version ?? "18.04"]} split ticked />
               </Col>
             </Row>
           </Card>

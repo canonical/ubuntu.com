@@ -1,10 +1,8 @@
+import React, { useContext } from "react";
 import { Col, Row } from "@canonical/react-components";
-import React from "react";
 import RadioCard from "../RadioCard";
-import {
-  ProductTypes,
-  ProductTypeType,
-} from "advantage/subscribe/react/utils/utils";
+import { ProductTypes } from "advantage/subscribe/react/utils/utils";
+import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const PublicCloudInfo = {
   [ProductTypes.aws]: {
@@ -37,16 +35,14 @@ const PublicCloudInfo = {
 };
 
 const Type = () => {
-  const [selectedValue, setSelectedValue] = React.useState<ProductTypeType>(
-    ProductTypes.physical
-  );
+  const { type, setType } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(event.target.value as ProductTypeType);
+    setType(event.target.value as ProductTypes);
   };
 
   const switchToVirtual = () => {
-    setSelectedValue("virtual");
+    setType(ProductTypes.virtual);
   };
 
   return (
@@ -56,7 +52,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.physical}
-            selectedValue={selectedValue}
+            selectedValue={type}
             handleChange={handleChange}
           >
             <>
@@ -72,7 +68,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.aws}
-            selectedValue={selectedValue}
+            selectedValue={type}
             handleChange={handleChange}
           >
             <>
@@ -88,7 +84,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.azure}
-            selectedValue={selectedValue}
+            selectedValue={type}
             handleChange={handleChange}
           >
             <>
@@ -104,7 +100,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.gcp}
-            selectedValue={selectedValue}
+            selectedValue={type}
             handleChange={handleChange}
           >
             <>
@@ -120,7 +116,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.virtual}
-            selectedValue={selectedValue}
+            selectedValue={type}
             handleChange={handleChange}
           >
             <>
@@ -136,7 +132,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.desktop}
-            selectedValue={selectedValue}
+            selectedValue={type}
             handleChange={handleChange}
           >
             <>
@@ -150,15 +146,15 @@ const Type = () => {
             </>
           </RadioCard>
         </Col>
-        {selectedValue === ProductTypes.aws ||
-        selectedValue === ProductTypes.azure ||
-        selectedValue === ProductTypes.gcp ? (
+        {type === ProductTypes.aws ||
+        type === ProductTypes.azure ||
+        type === ProductTypes.gcp ? (
           <Col size={12} className="public-cloud-section">
             <span>
               <strong>
                 You can buy{" "}
-                <a href={PublicCloudInfo[selectedValue]?.link}>
-                  Ubuntu Pro on the {PublicCloudInfo[selectedValue]?.name}
+                <a href={PublicCloudInfo[type]?.link}>
+                  Ubuntu Pro on the {PublicCloudInfo[type]?.name}
                 </a>{" "}
                 at an hourly, per-machine rate, with all UA software features
                 included.
