@@ -89,8 +89,8 @@
         </a>
       </div>
       <div class="u-hide js-account--small"></div>
-      <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down"></i></a>
-      <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up"></i></a>
+      <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down"></i>Open</a>
+      <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up">Close</i></a>
     </div>
 
     <nav class="p-navigation__nav" aria-label="secondary-navigation-children">
@@ -147,7 +147,7 @@
   });
   
   function fetchDropdown(url, id) {
-    var mobile =document.getElementById(id+"-mobile");
+    var mobile = document.getElementById(id+"-mobile");
     var div = document.getElementById(id);
     var req = new XMLHttpRequest();
     req.open('GET', url);
@@ -209,8 +209,6 @@
     var searchInput = navigation.querySelector('.p-search-box__input');
     var buttons = document.querySelectorAll('.js-search-button');
     var secondaryNav = document.querySelector(".is-secondary")
-    // Replace this one when the secondary items are selected
-    // var secondaryNav = document.querySelector(".is-secondary .p-navigation__banner")
 
     buttons.forEach((searchButton) => {
       searchButton.setAttribute('aria-pressed', true);
@@ -250,8 +248,6 @@
       searchButton.removeAttribute('aria-pressed');
     });
     var secondaryNav = document.querySelector(".is-secondary")
-    // Replace this one when the secondary items are selected
-    // var secondaryNav = document.querySelector(".is-secondary .p-navigation__banner")
 
     navigation.classList.remove('has-search-open');
     if(secondaryNav){
@@ -307,9 +303,6 @@
 
 var navigation = document.querySelector('#navigation');
 initNavigationSearch(navigation);
-
-
-//dropddwon
 
 function toggleDropdown(toggle, open) {
   var parentElement = toggle.parentNode;
