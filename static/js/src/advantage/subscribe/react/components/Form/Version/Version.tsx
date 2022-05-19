@@ -75,10 +75,7 @@ const Version = () => {
   };
 
   return (
-    <li className="p-stepped-list__item" data-step="version">
-      <h3 className="p-stepped-list__title">
-        What Ubuntu version are you running?
-      </h3>
+    <>
       <p>
         Ubuntu Advantage is available for Ubuntu 14.04 and higher.
         <br />
@@ -146,7 +143,7 @@ const Version = () => {
           </Card>
         </Col>
       </Row>
-    </li>
+    </>
   );
 };
 

@@ -50,8 +50,7 @@ const Type = () => {
   };
 
   return (
-    <li className="p-stepped-list__item" data-step="type">
-      <h3 className="p-stepped-list__title">What are you setting up?</h3>
+    <>
       <Row>
         <Col size={12} className="radio-wrapper--staggering">
           <RadioCard
@@ -182,7 +181,7 @@ const Type = () => {
           </Col>
         ) : null}
       </Row>
-    </li>
+    </>
   );
 };
 

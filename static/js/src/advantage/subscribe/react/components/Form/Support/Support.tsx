@@ -13,8 +13,7 @@ const Support = () => {
   };
 
   return (
-    <li className="p-stepped-list__item" data-step="version">
-      <h3 className="p-stepped-list__title">Do you also want tech support?</h3>
+    <>
       <Row>
         <Col size={12} className="radio-wrapper--staggering">
           <RadioCard
@@ -82,7 +81,7 @@ const Support = () => {
           </p>
         </Col>
       </Row>
-    </li>
+    </>
   );
 };
 
