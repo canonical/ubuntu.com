@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Col, Input, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
-const Support = () => {
+const Quantity = () => {
   const { quantity, setQuantity } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,4 +32,4 @@ const Support = () => {
   );
 };
 
-export default Support;
+export default Quantity;

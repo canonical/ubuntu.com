@@ -140,13 +140,14 @@
 <script defer>
   var productList = {
     {% for listing_id, listing in product_listings.items() %}
-      "{{ listing.id }}": {
+      "{{ listing.product.id }}": {
         name: "{{ listing.product.name }}",
         price: {
-          value: "{{ listing.price }}",
+          value: {{ listing.price }},
           currency: "{{ listing.currency }}"
         },
         period: "{{ listing.period }}",
+        longId: "{{ listing.id }}",
         productID: "{{ listing.product.id }}",
         canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
         private: false,

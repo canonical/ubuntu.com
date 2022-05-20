@@ -8,6 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import UAPurchase from "./UAPurchase";
 import { FormProvider } from "./utils/FormContext";
+import { ProductListings } from "./utils/utils";
 
 declare global {
   interface Window {
@@ -18,6 +19,7 @@ declare global {
     tempAccountId?: string;
     previousPurchaseIds?: string[];
     handleTogglePurchaseModal?: () => void;
+    productList: ProductListings;
   }
 }
 

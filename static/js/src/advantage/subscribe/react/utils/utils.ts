@@ -102,14 +102,12 @@ export type BuyButtonProps = {
 
 export enum ProductTypes {
   physical = "physical",
+  virtual = "virtual",
+  desktop = "desktop",
   aws = "aws",
   azure = "azure",
   gcp = "gcp",
-  virtual = "virtual",
-  desktop = "desktop",
 }
-
-export type ProductTypeType = keyof typeof ProductTypes;
 
 export enum LTSVersions {
   jammy = "22.04",
@@ -124,3 +122,22 @@ export enum Support {
   standard = "standard",
   advanced = "advanced",
 }
+
+export type ProductIDs = `uai-${Support}-${ProductTypes}`;
+
+export type Product = {
+  canBeTrialled: boolean;
+  longId: string;
+  name: string;
+  period: string;
+  price: {
+    value: number;
+    currency: string;
+  };
+  private: boolean;
+  productID: ProductIDs;
+};
+
+export type ProductListings = {
+  [key in ProductIDs]: Product;
+};

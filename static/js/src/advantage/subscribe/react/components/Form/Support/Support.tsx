@@ -14,7 +14,7 @@ const Support = () => {
   return (
     <>
       <Row>
-        <Col size={12} className="radio-wrapper--staggering">
+        <Col size={12} className="radio-wrapper--stacking">
           <RadioCard
             name="support"
             value={SupportEnum.essential}

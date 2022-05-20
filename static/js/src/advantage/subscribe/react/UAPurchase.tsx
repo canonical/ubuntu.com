@@ -8,6 +8,7 @@ import { Section } from "@canonical/react-components";
 import useStripeCustomerInfo from "../../../PurchaseModal/hooks/useStripeCustomerInfo";
 import Heading from "./components/Heading";
 import Form from "./components/Form";
+import ProductSummary from "./components/ProductSummary";
 
 const UAPurchase = () => {
   const { product, quantity } = useProduct();
@@ -37,6 +38,7 @@ const UAPurchase = () => {
     <>
       <Heading />
       <Form />
+      <ProductSummary />
       {/* <PurchaseModal
         termsLabel={termsLabel}
         marketingLabel={marketingLabel}
