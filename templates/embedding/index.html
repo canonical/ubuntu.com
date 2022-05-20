@@ -4,11 +4,11 @@
 
 {% block meta_description %}Ubuntu Embedding Programme offers the optimal technical, commercial and legal framework to deploy your products and solutions with Canonical offerings.{% endblock meta_description %}
 
-{% block meta_copydoc %}https://docs.google.com/document/d/12xxH9lPp2_zfAZoLqonuo0crXmI_NwA9SKi2XdXbWIs/edit#{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1evAFIXbNztOd5yZee-uV8_OM-s6o27P46yXFaaeEhy0/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip--suru">
+<section class="p-strip--suru-bottomed">
   <div class="row">
     <div class="col-6">
       <h1>Canonical Embedding programme</h1>
@@ -32,9 +32,22 @@
 </section>
 
 <section class="p-strip is-deep">
-  <div class="u-fixed-width">
-    <h2>Build your products with Canonical</h2>
-    <p>From containers through Ubuntu to MicroK8s, Canonical's portfolio is used by ISVs to power their SaaS, appliances and software solutions deployed within public clouds, data-centres, edge infrastructure and workstations. It is also used by device manufacturers embedding Ubuntu into their products, from IoT devices to robotics and more.</p>
+  <div class="row">
+    <div class="col-6">
+      <h2>Build your products with Canonical</h2>
+      <p>From containers through Ubuntu to MicroK8s, Canonical's portfolio is used by ISVs to power their SaaS, appliances and software solutions deployed within public clouds, data-centres, edge infrastructure and workstations. It is also used by device manufacturers embedding Ubuntu into their products, from IoT devices to robotics and more.</p>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/bcf36072-Ubuntu+Deep+tech+-+dark.svg",
+        alt="",
+        width="273",
+        height="188",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
@@ -167,7 +180,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2>What's included</h2>
     <p>Our Embedding programme brings all the advantages of Ubuntu Advantage together with the framework you need to deploy and distribute your products and solutions powered with Canonical offerings.</p>
@@ -187,6 +200,10 @@
       </p>
   </div>
 </section>
+
+<div class="u-fixed-width">
+  <hr class="p-separator"/>
+</div>
 
 <section class="p-strip">
   <div class="row">
