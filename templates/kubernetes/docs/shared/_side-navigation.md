@@ -48,6 +48,8 @@
 - [Upgrading](/kubernetes/docs/upgrading)
 - [Storage](/kubernetes/docs/storage)
 - [Scaling](/kubernetes/docs/scaling)
+- [K8s Operator Charms](/kubernetes/docs/operator-charms)
+- [Cluster autoscaler](/kubernetes/docs/autoscaler)
 - [Validation](/kubernetes/docs/validation)
 - [Decommissioning](/kubernetes/docs/decommissioning)
 - [Security](/kubernetes/docs/security)
