@@ -51,15 +51,9 @@ documentation for instructions.
 
 ## Deploying Charmed Kubernetes with Calico
 
-To deploy Charmed Kubernetes with Calico, deploy the kubernetes-calico bundle:
-
-```bash
-juju deploy cs:~containers/kubernetes-calico
-```
-
-The Calico bundle is identical to the standard `charmed-kubernetes` bundle with the
-exception of replacing Flannel with Calico. You can apply any customisation overlays
-that would apply to `charmed-kubernetes` to this bundle also.
+Calico became the default choice for networking with **Charmed Kubernetes** 1.24.
+If you [deploy the bundle][quickstart] without changing the default settings,
+calico will be the CNI.
 
 ## Calico configuration options
 

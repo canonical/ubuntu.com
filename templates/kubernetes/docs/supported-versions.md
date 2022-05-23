@@ -18,7 +18,7 @@ of Kubernetes.
 
 Current Release: **1.24**
 
-Supported releases: **1.24.x,1.23.x, 1.21.x**
+Supported releases: **1.24.x,1.23.x, 1.22.x**
 
 ## Charmed Kubernetes bundle versions
 
@@ -30,23 +30,12 @@ juju deploy charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.21
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.23
 release, you could run:
 
 ```bash
-juju deploy charmed-kubernetes --revision=733
+juju deploy cs:charmed-kubernetes-862
 ```
-
-<div class="p-notification--positive is-inline">
-  <div markdown="1" class="p-notification__content">
-    <span class="p-notification__title">Older Versions:</span>
-    <p class="p-notification__message">Previous versions of <strong>Charmed Kubernetes</strong> used the name
-    <code>canonical-kubernetes</code>. These versions are still available under that name
-    and links in the charm store. Versions from 1.14 onwards will use
-    <code>charmed-kubernetes</code>.</p>
-  </div>
-</div>
-
 
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
@@ -104,22 +93,22 @@ description: |
   documentation](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/).
 snap-id: KMZLusdClmUyLXAjjcI4sVnpjk1kM653
 channels:
-  latest/stable:    1.23.0         2021-12-15 (2493) 23MB -
-  latest/candidate: 1.23.0         2021-12-15 (2493) 23MB -
-  latest/beta:      1.23.0         2021-12-15 (2493) 23MB -
-  latest/edge:      1.23.0         2021-12-15 (2493) 23MB -
-  1.24/stable:      –                                     
-  1.24/candidate:   –                                     
-  1.24/beta:        –                                     
-  1.24/edge:        1.24.0-alpha.1 2021-12-11 (2513) 23MB -
-  1.23/stable:      1.23.0         2021-12-08 (2493) 23MB -
-  1.23/candidate:   1.23.0         2021-12-08 (2493) 23MB -
-  1.23/beta:        1.23.0         2021-12-08 (2493) 23MB -
-  1.23/edge:        1.23.0         2021-12-08 (2493) 23MB -
-  1.22/stable:      1.22.4         2021-11-18 (2456) 22MB -
-  1.22/candidate:   1.22.4         2021-11-18 (2456) 22MB -
-  1.22/beta:        1.22.4         2021-11-18 (2456) 22MB -
-  1.22/edge:        1.22.4         2021-11-18 (2456) 22MB -
+  latest/stable:    1.24.0         2022-05-07 (2764) 24MB -
+  latest/candidate: 1.24.0         2022-05-07 (2764) 24MB -
+  latest/beta:      1.24.0         2022-05-07 (2764) 24MB -
+  latest/edge:      1.24.0         2022-05-07 (2764) 24MB -
+  1.24/stable:      1.24.0         2022-05-04 (2764) 24MB -
+  1.24/candidate:   1.24.0         2022-05-04 (2764) 24MB -
+  1.24/beta:        1.24.0         2022-05-04 (2764) 24MB -
+  1.24/edge:        1.24.0         2022-05-04 (2764) 24MB -
+  1.23/stable:      1.23.6         2022-04-21 (2746) 23MB -
+  1.23/candidate:   1.23.6         2022-04-21 (2746) 23MB -
+  1.23/beta:        1.23.6         2022-04-21 (2746) 23MB -
+  1.23/edge:        1.23.6         2022-04-21 (2746) 23MB -
+  1.22/stable:      1.22.9         2022-04-21 (2745) 22MB -
+  1.22/candidate:   1.22.9         2022-04-21 (2745) 22MB -
+  1.22/beta:        1.22.9         2022-04-21 (2745) 22MB -
+  1.22/edge:        1.22.9         2022-04-21 (2745) 22MB -
   1.21/stable:      1.21.7         2021-11-18 (2433) 22MB -
   1.21/candidate:   1.21.7         2021-11-18 (2433) 22MB -
   1.21/beta:        1.21.7         2021-11-18 (2433) 22MB -
@@ -190,8 +179,8 @@ channels:
   1.5/edge:         1.5.5          2017-05-17    (3) 17MB -
 
 
-In the above output, the stable release is identified as 1.23, and so 1.22 and
-1.21 are also currently supported.
+In the above output, the stable release is identified as 1.24, and so 1.23 and
+1.22 are also currently supported.
 
 ## Professional support
 

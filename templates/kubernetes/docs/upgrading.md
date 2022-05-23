@@ -79,20 +79,19 @@ The applications which run alongside the core Kubernetes components can be upgra
 
 This includes:
 
-- Docker
+- containerd
 - easyrsa
 - etcd
-- flannel, calico or other CNI
+- calico, flannel or other CNI charms
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
-
 
 
 <a id='upgrading-containerd'> </a>
 
 ### Upgrading Containerd
 
-By default, Versions 1.15 and later use Containerd as the container
+By default, **Charmed Kubernetes** 1.15 and later use Containerd as the container
 runtime. This subordinate charm can be upgraded with the command:
 
 ```bash
@@ -103,10 +102,11 @@ juju upgrade-charm containerd
 
 ### Upgrading Docker (if used)
 
-By default, versions of Charmed Kubernetes since 1.15 use the Containerd
-runtime. You will only need to upgrade the Docker runtime if you have
-explicitly set that to be the container runtime. If this is not the case, you
-should skip this section.
+By default, **Charmed Kubernetes** 1.15 and later use Containerd as the container
+runtime. Support for the Docker container runtime was removed in 1.24. You will only
+need to upgrade the Docker runtime if you have explicitly configured it to be the
+runtime for a deployment prior to 1.24. If this is not the case, you should skip this
+section.
 
 **Charmed Kubernetes** will use the latest stable version of Docker when it is
 deployed. Since upgrading Docker can cause service disruption, there will be no
@@ -116,8 +116,6 @@ Note that this upgrade step only applies to deployments which actually use the
 Docker container runtime. Versions 1.15 and later use containerd by default,
 and you should instead follow the [instructions above](#upgrading-containerd).
 
-#### Version 1.15 and later
-
 The `kubernetes-control-plane` and `kubernetes-worker` are related to the docker subordinate
 charm where present. Whether you are running Docker on its own, or mixed with Containerd,
 the upgrade process is the same:
@@ -125,42 +123,6 @@ the upgrade process is the same:
 ```bash
 juju upgrade-charm docker
 ```
-
-#### Versions prior to 1.15
-Only the `kubernetes-control-plane` and `kubernetes-worker` units require Docker. The charms for each
-include an action to trigger the upgrade.
-
-Before the upgrade, it is useful to list all the units effected:
-
-```bash
-juju status kubernetes-* --format=short
-```
-
-...will return a list of the current `kubernetes-control-plane` and `kubernetes-worker` units.
-
-Start with the `kubernetes-control-plane` units and run the upgrade action on one unit at a time:
-
-```bash
-juju run-action kubernetes-control-plane/0 upgrade-docker --wait
-```
-
-As Docker is restarted on the unit, pods will be terminated. Wait for them to respawn before
-moving on to the next unit:
-
-```bash
-juju run-action kubernetes-control-plane/1 upgrade-docker --wait
-```
-
-Once all the `kubernetes-control-plane` units have been upgraded and the pods have respawned, the
-same procedure can then be applied to the `kubernetes-worker` units.
-
-```bash
-juju run-action kubernetes-worker/0 upgrade-docker --wait
-```
-
-As previously, wait between running the action on sucessive units to allow pods to migrate.
-
-
 
 
 ### Upgrading etcd
@@ -220,6 +182,7 @@ Once you know the correct channel, set the **etcd** charm's channel config:
 ```bash
 juju config etcd channel=3.4/stable
 ```
+
 
 ### Upgrading additional components
 

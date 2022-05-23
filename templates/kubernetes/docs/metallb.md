@@ -64,7 +64,7 @@ juju add-model metallb-system k8s-cloud
 Then you can deploy MetalLB:
 
 ```bash
-juju deploy cs:~containers/metallb
+juju deploy metallb
 ```
 
 ### Configuration
@@ -89,7 +89,7 @@ applications:
 You would then specify this when deploying the bundle:
 
 ```bash
-juju deploy cs:~containers/metallb --overlay ./overlay.yaml
+juju deploy metallb --overlay ./overlay.yaml
 ```
 
 Alternatively, you can change the config directly on the metallb-controller

@@ -85,9 +85,7 @@ sha256sum etcd-snapshot-2018-09-26-18.04.02.tar.gz
 As restoring only works when there is a single unit of **etcd**, it is usual to deploy a new instance of the application first.
 
 ```bash
-juju deploy etcd new-etcd --series=bionic --config channel=3.2/stable
-juju deploy cs:~containers/easyrsa new-easyrsa --series=bionic
-juju add-relation new-etcd:certificates new-easyrsa:client
+juju deploy etcd new-etcd --series=focal --config channel=3.4/stable
 ```
 
 The `--series` option is included here to illustrate how to specify which series the new unit should be running on.
@@ -108,11 +106,8 @@ juju run-action new-etcd/0 restore --wait
 Once the restore action has finished, you should see output confirming that the operation is `completed`. The new etcd application will need to be connected to the rest of the deployment:
 
 ```bash
-juju add-relation new-etcd flannel
+juju add-relation new-etcd [calico|flannel|$cni]
 juju add-relation new-etcd kubernetes-control-plane
-juju add-relation kubeapi-load-balancer:certificates new-easyrsa:client
-juju add-relation kubernetes-control-plane:certificates new-easyrsa:client
-juju add-relation kubernetes-worker:certificates new-easyrsa:client
 ```
 
 To restore the cluster capabilities of etcd, you can now add more units:

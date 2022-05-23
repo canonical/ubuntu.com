@@ -144,7 +144,7 @@ units _will_not_ be re-used.
 
 ## etcd
 
-The **Charmed Distribution of Kubernetes<sup>&reg;</sup>** installs a three
+**Charmed Kubernetes** installs a three
 machine cluster for etcd, which provides tolerence for a single failure. Should you wish to
 extend the fault tolerance, you can add additional units of etcd.
 

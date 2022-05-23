@@ -58,7 +58,7 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/gcp-integrator
+    charm: gcp-integrator
     num_units: 1
     trust: true
 relations:

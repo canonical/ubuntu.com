@@ -81,8 +81,8 @@ The majority of charms, including all the core Charmed Kubernetes charms, rely o
 IoT that are easy to install, secure, cross‐platform and dependency‐free.
 
 The list of snaps required by Charmed Kubernetes is detailed in the "components"
-page for each release. For example, for 1.22, the
-[snaps are listed here][1.22-components].
+page for each release. For example, for 1.23, the
+[snaps are listed here][1.23-components].
 
 If your installation needs to proxy the connection to the Snap Store for any reason,
 the recommended solution is to use the [Snap Store Proxy][] software. This can
@@ -92,7 +92,7 @@ also be configured for offline use (see the
 <!-- LINKS -->
 
 [Juju proxy documentation]: https://juju.is/docs/t/offline-mode-strategies/1071
-[1.22-components]: 1.22/components
+[1.23-components]: 1.23/components#snaps
 [offline]: install-offline
 [snap]: https://snapcraft.io
 [Snap Store Proxy]: https://docs.ubuntu.com/snap-store-proxy/en/

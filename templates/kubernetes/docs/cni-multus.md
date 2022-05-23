@@ -69,7 +69,7 @@ Once all of the requirements have been met, you can deploy Multus into a
 Kubernetes model by running:
 
 ```
-juju deploy cs:~containers/multus
+juju deploy multus
 ```
 
 ## Configuring the Default CNI

@@ -84,7 +84,7 @@ it is possible to re-use it for authenticating and authorising users in Kubernet
 To do so, first deploy the [openstack-integrator charm][openstack-integrator]
 
 ```bash
-juju deploy cs:~containers/openstack-integrator
+juju deploy openstack-integrator
 ```
 
 Use 'juju trust' to grant openstack-integrator a permission to access the OpenStack model,

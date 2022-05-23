@@ -48,7 +48,7 @@ the following YAML overlay:
 ```yaml
 applications:
   kata:
-    charm: cs:~containers/kata
+    charm: kata
 relations:
 - - kata:untrusted
   - containerd:untrusted
@@ -89,7 +89,7 @@ applications:
     constraints: instance-type=i3.metal
     num_units: 1
   kata:
-    charm: cs:~containers/kata
+    charm: kata
 relations:
 - - kata:untrusted
   - containerd:untrusted

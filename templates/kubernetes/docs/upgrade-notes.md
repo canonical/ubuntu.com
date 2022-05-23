@@ -152,7 +152,7 @@ To upgrade whilst retaining Docker as the runtime, you need to additionally depl
 and add relations to the master and worker components:
 
 ```bash
-juju deploy cs:~containers/docker
+juju deploy docker
 juju add-relation docker kubernetes-master
 juju add-relation docker kubernetes-worker
 ```
@@ -171,7 +171,7 @@ in some cluster down time. Adding temporary additional workers provides a place 
 CURRENT_WORKER_REV=$(juju status | grep '^kubernetes-worker\s' | awk '{print $7}')
 CURRENT_WORKER_COUNT=$(juju status | grep '^kubernetes-worker/' | wc -l | sed -e 's/^[ \t]*//')
 
-juju deploy cs:~containers/kubernetes-worker-$CURRENT_WORKER_REV  kubernetes-worker-temp -n $CURRENT_WORKER_COUNT
+juju deploy kubernetes-worker-$CURRENT_WORKER_REV  kubernetes-worker-temp -n $CURRENT_WORKER_COUNT
 ```
 
 #### Add necessary relations
@@ -196,7 +196,7 @@ the Docker subordinate includes clean-up code to uninstall Docker when the
 Docker charm is replaced with the containerd charm.
 
 ```bash
-juju deploy cs:~containers/docker
+juju deploy docker
 juju add-relation docker kubernetes-master
 juju add-relation docker kubernetes-worker
 ```
@@ -234,7 +234,7 @@ juju remove-application docker
 #### Deploy Containerd
 
 ```bash
-juju deploy cs:~containers/containerd
+juju deploy containerd
 juju add-relation containerd kubernetes-master
 juju add-relation containerd kubernetes-worker
 ```
@@ -277,8 +277,8 @@ Once you have a Containerd backed Charmed Kubernetes running, you can add Docker
 workers like so:
 
 ```bash
-juju deploy cs:~containers/kubernetes-worker kubernetes-worker-docker
-juju deploy cs:~containers/docker
+juju deploy kubernetes-worker kubernetes-worker-docker
+juju deploy docker
 juju relate docker kubernetes-worker-docker
 ```
 

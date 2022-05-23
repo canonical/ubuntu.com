@@ -44,7 +44,7 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/vsphere-integrator
+    charm: vsphere-integrator
     num_units: 1
     trust: true
 relations:

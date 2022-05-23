@@ -40,11 +40,8 @@ containers to create a cluster), please see the separate
 
 ## Quick custom installs
 
-
-The details of how to edit and customise the **Charmed Kubernetes** bundle are
-outlined [below](#). However, using overlays (also explained in more
-detail below) you can make some common quick customisations for networking and
-cloud integration.
+Bundle overlays facilitate common, quick customisations for components such as
+networking and cloud integration.
 
 Overlay files can be applied when deploying Charmed Kubernetes by specifying them along with the deploy command:
 
@@ -65,15 +62,15 @@ each category!
 <div class="CNI">
  <div class="row">
  <div class="col-2 ">
-   <span>Calico</span>
+   <span>Flannel</span>
  </div>
   <div class="col-4 ">
-   <span>Calico provides out-of-the-box support for the
-   NetworkPolicy feature of Kubernetes, along with different modes of
-   network encapsulation. <a href="/kubernetes/docs/cni-calico"> Read more...</a></span>
+   <span>Flannel is a simple, lightweight layer 3 fabric for Kubernetes.
+   It manages an IPv4 network between multiple nodes in a cluster.
+   <a href="/kubernetes/docs/cni-flannel"> Read more...</a></span>
   </div>
   <div class="col-3 ">
-    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/calico-overlay.yaml" class="p-button--positive">Download calico-overlay.yaml</a></span>
+    <span><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/flannel-overlay.yaml" class="p-button--positive">Download flannel-overlay.yaml</a></span>
   </div>
 </div>
 <br>
@@ -107,7 +104,7 @@ each category!
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">By default, Charmed Kubernetes uses <em>Flannel</em> for networking. You can read more about CNI support <a href="/kubernetes/docs/cni-overview"> here </a>.</p>
+    <p class="p-notification__message">By default, Charmed Kubernetes uses <em>Calico</em> for networking. You can read more about CNI support <a href="/kubernetes/docs/cni-overview"> here </a>.</p>
   </div>
 </div>
 
@@ -204,22 +201,12 @@ juju deploy charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.21
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.23
 release, you could run:
 
 ```bash
-juju deploy charmed-kubernetes --revision=733
+juju deploy cs:charmed-kubernetes-862
 ```
-
-<div class="p-notification--positive is-inline">
-  <div markdown="1" class="p-notification__content">
-    <span class="p-notification__title">Older Versions:</span>
-    <p class="p-notification__message">Previous versions of <strong>Charmed Kubernetes</strong> used the name <code>canonical-kubernetes</code>. These versions are still available under that name
-    and links in the charm store. Versions from 1.14 onwards use
-    <code>charmed-kubernetes</code>.</p>
-  </div>
-</div>
-
 
 The revision numbers for bundles are generated automatically when the bundle is
 updated, including for testing and beta versions, so it isn't always the case
@@ -281,7 +268,7 @@ example, to replicate the steps to deploy and connect the
 ```yaml
 applications:
   aws-integrator:
-    charm: cs:~containers/aws-integrator
+    charm: aws-integrator
     num_units: 1
     trust: true
 relations:
@@ -339,16 +326,16 @@ kubernetes-worker:
   annotations:
     gui-x: '100'
     gui-y: '850'
-  charm: cs:~containers/kubernetes-worker
-  constraints: cores=4 mem=4G root-disk=16G
+  charm: kubernetes-worker
+  constraints: cores=2 mem=8G root-disk=16G
   expose: true
   num_units: 3
   options:
-    channel: 1.18/stable
+    channel: 1.24/stable
   resources:
-    cni-amd64: 12
-    cni-arm64: 10
-    cni-s390x: 11
+    cni-amd64: 0
+    cni-arm64: 0
+    cni-s390x: 0
     kube-proxy: 0
     kubectl: 0
     kubelet: 0

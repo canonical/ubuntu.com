@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Overview"
-  description: Understand how the Charmed Distribution of Kubernetes works.
+  description: Understand how Charmed Kubernetes works.
 keywords: juju, kubernetes, cdk
 tags: [intro]
 sidebar: k8smain-sidebar

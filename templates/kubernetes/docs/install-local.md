@@ -229,7 +229,7 @@ This problem usually is related to the kernel parameters,
 `fs.inotify.max_user_instances` and `fs.inotify.max_user_watches`.
 
 At first, you should increase their values on the machine that is hosting
-the **Charmed Kubernetes** (`v1.23.4`) installation:
+the **Charmed Kubernetes** installation:
 
 ```bash
 sysctl -w fs.inotify.max_user_instances=8192
