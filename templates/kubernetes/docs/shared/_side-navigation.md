@@ -13,6 +13,7 @@
 - [Install](/kubernetes/docs/install-manual)
 - [Local install](/kubernetes/docs/install-local)
 - [Offline install](/kubernetes/docs/install-offline)
+- [NVIDIA DGX](/kubernetes/docs/nvidia-dgx)
 
 ## Cloud Integration
 - [AWS integration](/kubernetes/docs/aws-integration)
