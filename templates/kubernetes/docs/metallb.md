@@ -40,6 +40,7 @@ anti-affinity to prevent Kubernetes pods from stacking on a single node.
     <a href="https://metallb.universe.tf/"> MetalLB website</a></p>
   </div>
 </div>
+
 # Deployment
 
 ## Layer 2 mode
