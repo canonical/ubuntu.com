@@ -23,15 +23,15 @@ special configuration.
 
 ## Deploying Charmed Kubernetes with Canal
 
-To deploy a cluster with Canal, deploy the kubernetes-canal bundle:
+To deploy a cluster with Canal, deploy the `charmed-kubernetes` bundle with the
+[canal overlay][canal-overlay]:
 
 ```bash
-juju deploy cs:bundle/canonical-kubernetes-canal
+juju deploy charmed-kubernetes --overlay canal-overlay.yaml
 ```
 
-The canal bundle is identical to the standard `charmed-kubernetes` bundle with the
-exception of replacing flannel with canal. You can apply any customisation overlays
-that would apply to `charmed-kubernetes` to this bundle also.
+You can apply any additional customisation overlays that would apply to
+`charmed-kubernetes` to this deployment as well.
 
 ## Canal configuration options
 
@@ -76,6 +76,7 @@ For additional troubleshooting pointers, please see the
 <!-- LINKS -->
 
 [canal]: https://docs.projectcalico.org/v3.7/getting-started/kubernetes/installation/flannel
+[canal-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/canal-overlay.yaml
 [troubleshooting]: /kubernetes/docs/troubleshooting
 
 <!-- FEEDBACK -->

@@ -38,7 +38,7 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/aws-integrator
+    charm: aws-integrator
     num_units: 1
     trust: true
 relations:

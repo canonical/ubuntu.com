@@ -76,7 +76,7 @@ machines:
     constraints: mem=32G
 applications:
   calico:
-    charm: cs:~containers/calico-826
+    charm: calico
     annotations:
       gui-x: '450'
       gui-y: '750'
@@ -105,7 +105,7 @@ applications:
     - lxd:1
     - lxd:2
   ceph-fs:
-    charm: cs:ceph-fs
+    charm: ceph-fs
     num_units: 1
     bindings:
       "": alpha
@@ -115,7 +115,7 @@ applications:
     to:
     - lxd:0
   ceph-mon:
-    charm: 'cs:ceph-mon'
+    charm: ceph-mon
     num_units: 3
     options:
       expected-osd-count: 3
@@ -129,7 +129,7 @@ applications:
      - lxd:1
      - lxd:2
   ceph-osd:
-    charm: cs:ceph-osd
+    charm: ceph-osd
     num_units: 3
     options:
       osd-devices: /dev/sda /dev/sdb
@@ -146,7 +146,7 @@ applications:
     annotations:
       gui-x: '1000'
       gui-y: '250'
-    charm: cs:ceph-radosgw
+    charm: ceph-radosgw
     num_units: 1
     bindings:
       "": alpha

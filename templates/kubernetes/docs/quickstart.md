@@ -23,7 +23,7 @@ Kubernetes cluster running on the cloud of your choice in minutes!
 
 ## What you'll need
 
-- An Ubuntu 20.04 LTS, 18.04 LTS or 16.04 LTS environment to run the commands (or another operating system which supports `snapd` - see the [snapd documentation][snapd-docs])
+- An Ubuntu 22.04 LTS, 20.04 LTS or 18.04 LTS environment to run the commands (or another operating system which supports `snapd` - see the [snapd documentation][snapd-docs])
 - Account credentials for one of the following public clouds:
   - [Amazon Web Services][cloud-aws], including AWS-China and AWS-gov
   - [CloudSigma][cloud-cloudsigma]

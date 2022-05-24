@@ -25,11 +25,8 @@ Support for Tigera Secure EE in **Charmed Kubernetes** is provided in the form o
 
 Before you start, you will need:
 
-*  Tigera Secure EE licence key
-*  Tigera private Docker registry credentials (provided as a Docker config.json)
-
-- Tigera Secure EE licence key
-- Tigera private Docker registry credentials (provided as a Docker config.json)
+* Tigera Secure EE licence key
+* Tigera private Docker registry credentials (provided as a Docker config.json)
 
 <div class="p-notification--information is-inline">
   <div class="p-notification__content">
@@ -40,11 +37,10 @@ Before you start, you will need:
   </div>
 </div>
 
-
-To start, deploy **Charmed Kubernetes** with Tigera Secure EE:
+Deploy the `charmed-kubernetes` bundle with the [tigera overlay][tigera-overlay]:
 
 ```bash
-juju deploy cs:~containers/kubernetes-tigera-secure-ee
+juju deploy charmed-kubernetes --overlay tigera-overlay.yaml
 ```
 
 Configure the `tigera-secure-ee` charm with your licence key and registry
@@ -228,6 +224,7 @@ juju config tigera-secure-ee registry=$REGISTRY
 
 <!-- LINKS -->
 
+[tigera-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/tigera-overlay.yaml
 [elasticsearch-operator]: https://github.com/upmc-enterprises/elasticsearch-operator
 [tigera byo-elasticsearch]: https://docs.tigera.io/v2.2/getting-started/kubernetes/installation/byo-elasticsearch
 [storage]: /kubernetes/docs/storage

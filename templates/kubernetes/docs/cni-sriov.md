@@ -82,8 +82,8 @@ Once all of the requirements have been met, you can deploy the SR-IOV charms
 into a Kubernetes model by running:
 
 ```
-juju deploy cs:~containers/sriov-cni
-juju deploy cs:~containers/sriov-network-device-plugin
+juju deploy sriov-cni
+juju deploy sriov-network-device-plugin
 ```
 
 ## Creating SR-IOV Virtual Functions

@@ -31,7 +31,7 @@ following overlay([download it here][asset-aws-iam-overlay]):
 ```yaml
 applications:
   aws-iam:
-    charm: cs:~containers/aws-iam
+    charm: aws-iam
 relations:
   - ['aws-iam', 'kubernetes-control-plane']
   - ['aws-iam', 'vault']
@@ -42,7 +42,7 @@ or if using easyrsa:
 ```yaml
 applications:
   aws-iam:
-    charm: cs:~containers/aws-iam
+    charm: aws-iam
 relations:
   - ['aws-iam', 'kubernetes-control-plane']
   - ['aws-iam', 'easyrsa']

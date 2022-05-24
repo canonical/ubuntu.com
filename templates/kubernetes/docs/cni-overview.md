@@ -29,12 +29,12 @@ Kubernetes**, which are listed below:
 
 The currently supported base CNI solutions for **Charmed Kubernetes** are:
 
- -   [Flannel][flannel]
  -   [Calico][calico]
  -   [Canal][canal]
+ -   [Flannel][flannel]
  -   [Tigera Secure EE][tigera]
 
-By default, **Charmed Kubernetes** will deploy the cluster using flannel. To chose a different CNI provider, see the individual links above.
+By default, **Charmed Kubernetes** will deploy the cluster using calico. To chose a different CNI provider, see the individual links above.
 
 The following CNI addons are also available:
  -   [Multus][multus]
@@ -49,9 +49,9 @@ Kubernetes, such a migration should be manageable with no downtime.
 
 <!-- LINKS -->
 
-[flannel]: /kubernetes/docs/cni-flannel
 [calico]: /kubernetes/docs/cni-calico
 [canal]: /kubernetes/docs/cni-canal
+[flannel]: /kubernetes/docs/cni-flannel
 [tigera]: /kubernetes/docs/tigera-secure-ee
 [multus]: /kubernetes/docs/cni-multus
 [sr-iov]: /kubernetes/docs/cni-sriov

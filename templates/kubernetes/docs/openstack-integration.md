@@ -43,7 +43,7 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/openstack-integrator
+    charm: openstack-integrator
     num_units: 1
     trust: true
 relations:
@@ -169,7 +169,7 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/openstack-integrator
+    charm: openstack-integrator
     num_units: 1
     trust: true
 relations:

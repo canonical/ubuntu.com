@@ -78,8 +78,8 @@ The majority of charms, including all the core Charmed Kubernetes charms, rely o
 IoT that are easy to install, secure, cross‐platform and dependency‐free.
 
 The list of snaps required by Charmed Kubernetes is detailed in the "components"
-page for each release. For example, for 1.22, the
-[snaps are listed here][1.22-components].
+page for each release. For example, for 1.23, the
+[snaps are listed here][1.23-components].
 
 While it is _possible_ to download a snap package from the store, each snap will then
 need to be authenticated, and subsequent updates, even in the case of security
@@ -212,7 +212,7 @@ from an internet connected machine:
 ```bash
 git clone https://github.com/charmed-kubernetes/cdk-shrinkwrap.git /tmp/.shrinkwrap
 cd /tmp/.shrinkwrap
-BUNDLE=cs:charmed-kubernetes-733       # Choose a deployment bundle (example is 1.21.x)
+BUNDLE=cs:charmed-kubernetes-862       # Choose a deployment bundle (example is 1.23.x)
 ./shrinkwrap-lxc.sh $BUNDLE 
 ls /tmp/.shrinkwrap/build/
 ```
@@ -227,8 +227,8 @@ In air-gapped environment with access to the Juju controller,
    1. Ensure `applications.containerd.options` includes `custom_registries` settings
 1. Finally, deploy the Juju charms and resources from the provided local bundle.
 ```bash
-tar -xvf cs:charmed-kubernetes-733-stable-*.tar.gz --force-local
-cd cs:charmed-kubernetes-733-stable-*/
+tar -xvf cs:charmed-kubernetes-862-stable-*.tar.gz --force-local
+cd cs:charmed-kubernetes-862-stable-*/
 ./deploy.sh
 # examine provided instructions
 # ensure necessary modifications are considered
@@ -253,8 +253,7 @@ is covered in the [proxy documentation][].
 [maas-images]: https://maas.io/docs/snap/3.1/ui/using-image-streams
 [simplestreams]: https://juju.is/docs/olm/cloud-image-metadata
 [bundles]: /kubernetes/docs/supported-versions
-[containerd]: https://ubuntu.com/kubernetes/docs/1.21/charm-containerd
-[1.22-components]: https://ubuntu.com/kubernetes/docs/1.22/components#snaps
+[1.23-components]: /kubernetes/docs/1.23/components#snaps
 [cdk-shrinkwrap]: https://github.com/charmed-kubernetes/cdk-shrinkwrap
 [controller-config]: https://juju.is/docs/olm/controllers
 [credentials]: https://juju.is/docs/olm/credentials

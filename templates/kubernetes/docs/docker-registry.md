@@ -41,7 +41,7 @@ If needed, consult the [quickstart guide][quickstart] to install
 follows.
 
 ```bash
-juju deploy cs:~containers/docker-registry
+juju deploy docker-registry
 juju add-relation docker-registry easyrsa:client
 juju config docker-registry \
   auth-basic-user='admin' \
@@ -143,8 +143,8 @@ comprehensive list sorted by release; not all images are required for all
 deployments. Take note of the images required by your deployment that will
 need to be hosted in your private registry. A list of images required by
 a specific release is also included on the 'components' page in the 
-documentation, for example, the list for the 1.20 release is located on the
-[1.20 components page][1.20]
+documentation, for example, the list for the 1.24 release is located on the
+[1.24 components page][1.24]
 
 ## Hosting images
 
@@ -180,12 +180,12 @@ juju config kubernetes-control-plane image-registry=$REGISTRY
 
 <!-- LINKS -->
 
-[registry-charm]: https://jaas.ai/u/containers/docker-registry
+[registry-charm]: https://charmhub.io/docker-registry
 [upstream-registry]: https://docs.docker.com/registry/
 [quickstart]: /kubernetes/docs/quickstart
 [container-runtime]: /kubernetes/docs/container-runtime
 [container-images-txt]: https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt
-[1.20]: /kubernetes/docs/1.20/components#images
+[1.24]: /kubernetes/docs/1.24/components#images
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

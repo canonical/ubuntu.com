@@ -29,12 +29,12 @@ familiar with the [known issues](#known-issues) described below.
 ## Enabling IPv6 and dual-stack in Charmed Kubernetes
 
 These features can be used simply by changing the configuration for Calico and the
-Kubernetes master to include the relevant CIDRs.
+Kubernetes control-plane to include the relevant CIDRs.
 
 For Calico, the `cidr` configuration can contain two comma-separated values, with the
 first CIDR in the list being the preferred family for pods.
 
-For the Kubernetes master, the `service-cidr` configuration can contain two
+For the Kubernetes control-plane, the `service-cidr` configuration can contain two
 comma-separated values, with the first being the default family for services.
 
 Note that Kubernetes supports [explicitly setting the `ipFamilies`][ip-families] for a
@@ -48,8 +48,7 @@ enabled.
 ### Example deployment
 
 You can use the following overlay file ([download it here][asset-ipv4-ipv6-overlay])
-along with [the Calico overlay][asset-calico-overlay] to enable IPv4-preferred
-dual-stack:
+along with `charmed-kubernetes` to enable IPv4-preferred dual-stack:
 
 ```yaml
 description: Charmed Kubernetes overlay to enable IPv4-IPv6 dual-stack.
@@ -62,10 +61,10 @@ applications:
       service-cidr: "10.152.183.0/24,fd00:c00b:2::/112"
 ```
 
-You can deploy all of that with:
+Deploy with:
 
 ```
-juju deploy cs:charmed-kubernetes --overlay ./calico-overlay.yaml --overlay ipv4-ipv6-overlay.yaml
+juju deploy charmed-kubernetes --overlay ipv4-ipv6-overlay.yaml
 ```
 
 Once that is deployed, you can use the following spec ([download it

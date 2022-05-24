@@ -4,7 +4,7 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Container runtimes"
-  description: Configure and use containerd or docker as the container runtime
+  description: Configure and use containerd as the container runtime
 keywords: containerd, docker, runtime, image
 tags: [architecture]
 sidebar: k8smain-sidebar
@@ -13,13 +13,12 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-From 1.15 onwards, **Charmed Kubernetes** uses **containerd** as part of a pluggable architecture for
-container runtimes, instead of directly using Docker only. This change has been
-demonstrated to increase performance, and also provides scope for using different
-runtimes on a case-by case basis.
+From 1.15 onwards, **Charmed Kubernetes** uses **containerd** as part of a pluggable architecture
+for container runtimes. This change has been demonstrated to increase performance, and also
+provides scope for using different runtimes on a case-by case basis.
 
-However, it is also possible to use Docker for running containers as in previous versions
-of **Charmed Kubernetes**.
+Upstream support for the Docker container runtime was removed in the 1.24 release. Thus, the
+`docker` subordinate charm will no longer function from **Charmed Kubernetes** 1.24 onwards.
 
 
 ## Configuring containerd
@@ -88,20 +87,9 @@ juju config containerd gpu_driver=none
 
 ## Migrating to containerd
 
-If you have upgraded to  **Charmed Kubernetes** version 1.15, you can transition to using containerd by following the steps outlined in
-[this section of the upgrade notes][docker2containerd].
-
-## Using Docker
-
-Although the default set up for **Charmed Kubernetes** from version 1.15 is to use containerd to provide the container runtime, it is also possible to
-run workers specifically using Docker. This is done by adding the Docker
-charm to your cluster and deploying Docker-based workers:
-
-```bash
-juju deploy cs:~containers/kubernetes-worker kubernetes-worker-docker
-juju deploy cs:~containers/docker
-juju relate docker kubernetes-worker-docker
-```
+If you are upgrading from a version of **Charmed Kubernetes** that uses the `docker`
+subordinate charm for the container runtime, transition to `containerd` by following
+the steps outlined in [this section of the upgrade notes][docker2containerd].
 
 
 <!-- LINKS -->
