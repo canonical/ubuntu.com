@@ -1,5 +1,8 @@
 {% extends "internet-of-things/base_things.html" %}
 
+{% block title %}Contact us{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1pJ_Y3RIFgoDCBG_8CwvCn66qzExz1313orGnmlCYYz8/edit#{% endblock meta_copydoc %}
+
 {% block content %}
 
 <section class="p-strip is-deep">
@@ -145,54 +148,9 @@
       }
       
       inputs.forEach(function (input) {
-        switch (input.type) {
-          case "radio":
-            if (input.checked) {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "checkbox":
-            if (input.checked) {
-              var subSectionText = "";
-              var subSection = input
-                .closest('[class*="col-"]')
-                .querySelector(".js-sub-section");
-              if (subSection) {
-                subSectionText = subSection.innerText + ": ";
-              }
-
-              var label = formField.querySelector(
-                "span#" + input.getAttribute("aria-labelledby")
-              );
-
-              if (label) {
-                label = subSectionText + label.innerText;
-              } else {
-                label = input.getAttribute("aria-labelledby");
-              }
-              message += comma + label + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "text":
-            if (input.value !== "") {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "number":
-            if (input.value !== "") {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
-          case "textarea":
-            if (input.value !== "") {
-              message += comma + input.value + "\r\n\r\n";
-              comma = ", ";
-            }
-            break;
+        if (input.checked) {
+          message += comma + input.value + "\r\n\r\n";
+          comma = ", ";
         }
       });
     });
@@ -202,20 +160,15 @@
 
   function handleSubmission(e) {
     e.preventDefault();
-
-    var leadComments = document.getElementById("Comments_from_lead__c");
+    var form = e.target;
+    var leadComments = form.querySelector("#Comments_from_lead__c");
     leadComments.value = createMessage();
-    
-    //Only submit Marketo forms
-    var forms = document.getElementsByTagName("form");
-    for (let i = 0; i < forms.length; i++) {
-      if (forms[i].action.includes("/marketo/submit")) forms[i].submit();
-    }
+    form.submit();
   }
   
   (function init() {
-    var submitButton = document.querySelector(".p-button--positive");
-    submitButton.addEventListener("click", handleSubmission);
+    var formElement = document.getElementById("mktoForm_4479");
+    formElement.addEventListener("submit", handleSubmission);
   })()
 </script>
 
