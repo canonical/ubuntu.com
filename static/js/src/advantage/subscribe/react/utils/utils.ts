@@ -166,3 +166,6 @@ export const isPublicCloud = (type: ProductTypes) =>
   type === ProductTypes.aws ||
   type === ProductTypes.azure ||
   type === ProductTypes.gcp;
+
+export const shouldShowApps = () =>
+  !!window.productList["uaia-essential-physical-yearly"];

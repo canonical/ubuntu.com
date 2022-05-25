@@ -7,6 +7,7 @@ import {
   Features,
   Periods,
   isMonthlyAvailable,
+  shouldShowApps,
 } from "./utils";
 
 interface FormContext {
@@ -86,6 +87,9 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   useEffect(() => {
     if (!isMonthlyAvailable(product)) {
       setPeriod(Periods.yearly);
+    }
+    if (!shouldShowApps()) {
+      setFeature(Features.infra);
     }
   }, [product]);
 

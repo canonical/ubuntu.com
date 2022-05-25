@@ -1,5 +1,6 @@
 import { List } from "@canonical/react-components";
 import React from "react";
+import { shouldShowApps } from "../../utils/utils";
 import Feature from "./Feature";
 import Quantity from "./Quantity";
 import Support from "./Support";
@@ -19,7 +20,7 @@ const Form = () => {
               title: "What Ubuntu version are you running?",
               content: <Version />,
             },
-            ...(true
+            ...(shouldShowApps()
               ? [
                   {
                     title: "Select your feature coverage",
