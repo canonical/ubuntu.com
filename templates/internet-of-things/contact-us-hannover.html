@@ -1,3 +1,7 @@
+{% extends "internet-of-things/base_things.html" %}
+
+{% block content %}
+
 <section class="p-strip is-deep">
   <div class="row">
     <div class="col-8">
@@ -8,56 +12,56 @@
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="/marketo/submit" method="post" id="mktoForm_4479">
-        <fieldset class="u-no-margin--bottom">
-          <div class="js-formfield">
-            <h3 class="p-heading--5">Do you have a commercial project?</h3>
+      <fieldset class="u-no-margin--bottom">
+        <div class="js-formfield">
+          <h3 class="p-heading--5">Do you have a commercial project?</h3>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="commerical-project-yes" name="commercial-project" value="Yes">
+                <span class="p-radio__label" id="commerical-project-yes">Yes</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
+                <span class="p-radio__label" id="commercial-project-no">No</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="u-no-margin--bottom">
+        <div class="js-formfield">
+          <div class="u-sv3">
+            <h3 class="p-heading--5">When do you need to ship?</h3>
             <div class="row u-no-padding">
               <div class="col-4 u-sv3">
                 <label class="p-radio">
-                  <input class="p-radio__input" type="radio" aria-labelledby="commerical-project-yes" name="commercial-project" value="Yes">
-                  <span class="p-radio__label" id="commerical-project-yes">Yes</span>
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-months" name="shipping-time" value="In the next 3 months">
+                  <span class="p-radio__label" id="shipping-time-next-3-months">In the next 3 months</span>
+                </label>
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-6-months" name="shipping-time" value="In the next 6 months">
+                  <span class="p-radio__label" id="shipping-time-next-6-months">In the next 6 months</span>
                 </label>
               </div>
               <div class="col-4 u-sv3">
                 <label class="p-radio">
-                  <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
-                  <span class="p-radio__label" id="commercial-project-no">No</span>
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-12-months" name="shipping-time" value="In the next 12 months">
+                  <span class="p-radio__label" id="shipping-time-next-12-months">In the next 12 months</span>
+                </label>
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-do-not-know" name="shipping-time" value="Don't know">
+                  <span class="p-radio__label" id="shipping-time-do-not-know">Don't know</span>
                 </label>
               </div>
             </div>
           </div>
-        </fieldset>
-        <fieldset class="u-no-margin--bottom">
-          <div class="js-formfield">
-            <div class="u-sv3">
-              <h3 class="p-heading--5">When do you need to ship?</h3>
-              <div class="row u-no-padding">
-                <div class="col-4 u-sv3">
-                  <label class="p-radio">
-                    <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-months" name="shipping-time" value="In the next 3 months">
-                    <span class="p-radio__label" id="shipping-time-next-3-months">In the next 3 months</span>
-                  </label>
-                  <label class="p-radio">
-                    <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-6-months" name="shipping-time" value="In the next 6 months">
-                    <span class="p-radio__label" id="shipping-time-next-6-months">In the next 6 months</span>
-                  </label>
-                </div>
-                <div class="col-4 u-sv3">
-                  <label class="p-radio">
-                    <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-12-months" name="shipping-time" value="In the next 12 months">
-                    <span class="p-radio__label" id="shipping-time-next-12-months">In the next 12 months</span>
-                  </label>
-                  <label class="p-radio">
-                    <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-do-not-know" name="shipping-time" value="Don't know">
-                    <span class="p-radio__label" id="shipping-time-do-not-know">Don't know</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </fieldset>
-
+        </div>
+      </fieldset>
+        
+      <form action="/marketo/submit" method="post" id="mktoForm_4479">
         <fieldset class="u-no-margin--bottom">
           <h3>About you</h3>
           <ul class="p-list">
@@ -86,6 +90,10 @@
         
         <fieldset class="u-no-margin--bottom">
           <ul class="p-list">
+            <li class="p-list__item u-hide">
+              <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+            </li>
             <li class="p-list__item">
               <label class="p-checkbox">
                 <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
@@ -104,11 +112,11 @@
             </li>
             {# End of honey pots #}
             <li class="p-list__item">
-              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : 'hannover', 'eventValue' : undefined });">Submit</button>
+              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'hannover contact-us', 'eventLabel' : 'hannover', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4479" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/contact-us?product=hannover" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/contact-us-hannover" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
@@ -122,3 +130,93 @@
     </div>
   </div>
 </section>
+
+<script>
+  function createMessage() {
+    var message = "";
+    var formFields = document.querySelectorAll(".js-formfield");
+
+    formFields.forEach(function (formField) {
+      var comma = "";
+      var fieldTitle = formField.querySelector(".p-heading--5");
+      var inputs = formField.querySelectorAll("input");
+      if (fieldTitle) {
+      message += fieldTitle.innerText + "\r\n";
+      }
+      
+      inputs.forEach(function (input) {
+        switch (input.type) {
+          case "radio":
+            if (input.checked) {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "checkbox":
+            if (input.checked) {
+              var subSectionText = "";
+              var subSection = input
+                .closest('[class*="col-"]')
+                .querySelector(".js-sub-section");
+              if (subSection) {
+                subSectionText = subSection.innerText + ": ";
+              }
+
+              var label = formField.querySelector(
+                "span#" + input.getAttribute("aria-labelledby")
+              );
+
+              if (label) {
+                label = subSectionText + label.innerText;
+              } else {
+                label = input.getAttribute("aria-labelledby");
+              }
+              message += comma + label + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "text":
+            if (input.value !== "") {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "number":
+            if (input.value !== "") {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+          case "textarea":
+            if (input.value !== "") {
+              message += comma + input.value + "\r\n\r\n";
+              comma = ", ";
+            }
+            break;
+        }
+      });
+    });
+
+    return message;
+  }
+
+  function handleSubmission(e) {
+    e.preventDefault();
+
+    var leadComments = document.getElementById("Comments_from_lead__c");
+    leadComments.value = createMessage();
+    
+    //Only submit Marketo forms
+    var forms = document.getElementsByTagName("form");
+    for (let i = 0; i < forms.length; i++) {
+      if (forms[i].action.includes("/marketo/submit")) forms[i].submit();
+    }
+  }
+  
+  (function init() {
+    var submitButton = document.querySelector(".p-button--positive");
+    submitButton.addEventListener("click", handleSubmission);
+  })()
+</script>
+
+{% endblock content %}
