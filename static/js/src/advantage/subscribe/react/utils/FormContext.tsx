@@ -6,6 +6,7 @@ import {
   Product,
   Features,
   Periods,
+  isMonthlyAvailable,
 } from "./utils";
 
 interface FormContext {
@@ -64,6 +65,16 @@ export const FormProvider = ({ children }: FormProviderProps) => {
   }, [version, support]);
 
   useEffect(() => {
+    if (type === ProductTypes.desktop && feature === Features.apps) {
+      setSupport(Support.essential);
+    }
+
+    if (type === ProductTypes.desktop && feature === Features.pro) {
+      setFeature(defaultValues.feature);
+    }
+  }, [type, feature]);
+
+  useEffect(() => {
     if (feature === Features.apps && type === ProductTypes.physical) {
       // @ts-expect-error The product ID for apps products is missing the type if it's physical ¯\_(ツ)_/¯
       setProduct(window.productList[`${feature}-${support}-${period}`]);
@@ -71,6 +82,12 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       setProduct(window.productList[`${feature}-${support}-${type}-${period}`]);
     }
   }, [feature, type, support, period]);
+
+  useEffect(() => {
+    if (!isMonthlyAvailable(product)) {
+      setPeriod(Periods.yearly);
+    }
+  }, [product]);
 
   return (
     <FormContext.Provider

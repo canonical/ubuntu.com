@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import { Col, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
-import { ProductTypes } from "advantage/subscribe/react/utils/utils";
+import {
+  isPublicCloud,
+  ProductTypes,
+} from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const PublicCloudInfo = {
@@ -146,9 +149,7 @@ const Type = () => {
             </>
           </RadioCard>
         </Col>
-        {type === ProductTypes.aws ||
-        type === ProductTypes.azure ||
-        type === ProductTypes.gcp ? (
+        {isPublicCloud(type) ? (
           <Col size={12} className="public-cloud-section">
             <span>
               <strong>

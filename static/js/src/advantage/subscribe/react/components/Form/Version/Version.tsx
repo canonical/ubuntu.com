@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 import { Card, Col, List, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
-import { LTSVersions } from "advantage/subscribe/react/utils/utils";
+import {
+  isPublicCloud,
+  LTSVersions,
+} from "advantage/subscribe/react/utils/utils";
 import OlderVersionModal from "./OlderVersionModal";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
@@ -67,14 +70,14 @@ const versionDetails = {
 };
 
 const Version = () => {
-  const { version, setVersion } = useContext(FormContext);
+  const { version, setVersion, type } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setVersion(event.target.value as LTSVersions);
   };
 
   return (
-    <>
+    <div className={isPublicCloud(type) ? "u-disable" : ""}>
       <p>
         Ubuntu Advantage is available for Ubuntu 14.04 and higher.
         <br />
@@ -138,7 +141,7 @@ const Version = () => {
           </Card>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

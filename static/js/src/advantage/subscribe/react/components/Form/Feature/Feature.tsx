@@ -1,18 +1,22 @@
 import React, { useContext } from "react";
 import { Col, List, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
-import { Features } from "advantage/subscribe/react/utils/utils";
+import {
+  Features,
+  isPublicCloud,
+  ProductTypes,
+} from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
-  const { feature, setFeature } = useContext(FormContext);
+  const { type, feature, setFeature } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
   };
 
   return (
-    <>
+    <div className={isPublicCloud(type) ? "u-disable" : ""}>
       <Row>
         <p>
           Essential features are already included in your subscription.
@@ -78,6 +82,7 @@ const Feature = () => {
             selectedValue={feature}
             handleChange={handleChange}
             radioLabel="Select Infra + Apps"
+            disabled={type === ProductTypes.desktop}
           >
             <h4 className="p-card__title">Infra + Apps</h4>
             <hr className="u-sv1" />
@@ -112,7 +117,7 @@ const Feature = () => {
           </p>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

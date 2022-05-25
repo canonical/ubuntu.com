@@ -1,3 +1,4 @@
+import { Product } from "./utils";
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 
 interface DefaultPaymentMethod {
@@ -90,9 +91,6 @@ export { getUserInfoFromVariables, getInitialFormValues };
 export const getIsFreeTrialEnabled = () =>
   process.env.NODE_ENV === "development";
 
-export const isMonthlyAvailable = () =>
-  !!window.productList["uai-essential-physical-monthly"];
-
 export type BuyButtonProps = {
   areTermsChecked: boolean;
   isUsingFreeTrial: boolean;
@@ -150,9 +148,21 @@ export type Product = {
     currency: string;
   };
   private: boolean;
-  productID: ProductIDs;
+  id: ProductIDs;
 };
 
 export type ProductListings = {
   [key in ProductIDs]: Product;
 };
+
+export const isMonthlyAvailable = (product: Product | null) => {
+  if (!product) return false;
+
+  const monthlyID = product.id.replace("yearly", "monthly");
+  return !!window.productList[monthlyID as ProductIDs];
+};
+
+export const isPublicCloud = (type: ProductTypes) =>
+  type === ProductTypes.aws ||
+  type === ProductTypes.azure ||
+  type === ProductTypes.gcp;

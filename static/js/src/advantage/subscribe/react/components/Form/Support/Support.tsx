@@ -2,23 +2,30 @@ import React, { useContext } from "react";
 import { Col, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
 import {
+  Features,
+  isPublicCloud,
   LTSVersions,
+  ProductTypes,
   Support as SupportEnum,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Support = () => {
-  const { support, setSupport, version } = useContext(FormContext);
+  const { support, setSupport, version, type, feature } = useContext(
+    FormContext
+  );
 
   const onlyEssential =
-    version === LTSVersions.xenial || version === LTSVersions.trusty;
+    version === LTSVersions.xenial ||
+    version === LTSVersions.trusty ||
+    (type === ProductTypes.desktop && feature === Features.apps);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
   };
 
   return (
-    <>
+    <div className={isPublicCloud(type) ? "u-disable" : ""}>
       <Row>
         <Col size={12} className="radio-wrapper--stacking">
           <RadioCard
@@ -88,7 +95,7 @@ const Support = () => {
           </p>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

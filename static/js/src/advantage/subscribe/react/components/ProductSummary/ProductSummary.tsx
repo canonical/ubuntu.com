@@ -23,10 +23,12 @@ const ProductSummary = () => {
     setPeriod(event.target.value as Periods);
   };
 
+  const isHidden = !product || !quantity || quantity < 1;
+
   return (
     <section
       className={`p-strip--light is-shallow p-shop-cart ${
-        !product || !quantity || quantity < 1 ? "p-shop-cart--hidden" : ""
+        isHidden ? "p-shop-cart--hidden" : ""
       }`}
       id="summary-section"
     >
@@ -41,7 +43,7 @@ const ProductSummary = () => {
           <img id="summary-plan-image" src={imgUrl[type]} />
           <span id="summary-plan-name">{product?.name}</span>
         </Col>
-        {isMonthlyAvailable() ? (
+        {isMonthlyAvailable(product) ? (
           <div>
             <Select
               name="billing-period"
@@ -79,6 +81,7 @@ const ProductSummary = () => {
             className="p-button--positive u-no-margin--bottom u-float-right"
             id="buy-now-button"
             aria-controls="purchase-modal"
+            disabled={isHidden}
           >
             Buy now
           </button>
