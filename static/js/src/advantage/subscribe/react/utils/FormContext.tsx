@@ -1,49 +1,27 @@
 import React, { useState, createContext, useEffect } from "react";
-import { ProductTypes, LTSVersions, Support, Product } from "./utils";
-
-const products = {
-  [ProductTypes.physical]: {
-    [Support.essential]: window.productList["uai-essential-physical"],
-    [Support.standard]: window.productList["uai-standard-physical"],
-    [Support.advanced]: window.productList["uai-advanced-physical"],
-  },
-  [ProductTypes.virtual]: {
-    [Support.essential]: window.productList["uai-essential-virtual"],
-    [Support.standard]: window.productList["uai-standard-virtual"],
-    [Support.advanced]: window.productList["uai-advanced-virtual"],
-  },
-  [ProductTypes.desktop]: {
-    [Support.essential]: window.productList["uai-essential-desktop"],
-    [Support.standard]: window.productList["uai-standard-desktop"],
-    [Support.advanced]: window.productList["uai-advanced-desktop"],
-  },
-  [ProductTypes.aws]: {
-    [Support.essential]: null,
-    [Support.standard]: null,
-    [Support.advanced]: null,
-  },
-  [ProductTypes.azure]: {
-    [Support.essential]: null,
-    [Support.standard]: null,
-    [Support.advanced]: null,
-  },
-  [ProductTypes.gcp]: {
-    [Support.essential]: null,
-    [Support.standard]: null,
-    [Support.advanced]: null,
-  },
-};
+import {
+  ProductTypes,
+  LTSVersions,
+  Support,
+  Product,
+  Features,
+  Periods,
+} from "./utils";
 
 interface FormContext {
   type: ProductTypes;
   setType: React.Dispatch<React.SetStateAction<ProductTypes>>;
   version: LTSVersions;
   setVersion: React.Dispatch<React.SetStateAction<LTSVersions>>;
+  feature: Features;
+  setFeature: React.Dispatch<React.SetStateAction<Features>>;
   support: Support;
   setSupport: React.Dispatch<React.SetStateAction<Support>>;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
   product: Product | null;
+  period: Periods;
+  setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
 }
 
 const defaultValues: FormContext = {
@@ -51,10 +29,14 @@ const defaultValues: FormContext = {
   setType: () => {},
   version: LTSVersions.focal,
   setVersion: () => {},
-  support: Support.essential,
+  feature: Features.infra,
+  setFeature: () => {},
+  support: Support.unset,
   setSupport: () => {},
   quantity: 0,
   setQuantity: () => {},
+  period: Periods.yearly,
+  setPeriod: () => {},
   product: null,
 };
 
@@ -67,13 +49,28 @@ interface FormProviderProps {
 export const FormProvider = ({ children }: FormProviderProps) => {
   const [type, setType] = useState<ProductTypes>(defaultValues.type);
   const [version, setVersion] = useState<LTSVersions>(defaultValues.version);
+  const [feature, setFeature] = useState<Features>(defaultValues.feature);
   const [support, setSupport] = useState<Support>(defaultValues.support);
   const [quantity, setQuantity] = useState(1);
+  const [period, setPeriod] = useState<Periods>(defaultValues.period);
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    setProduct(products[type][support]);
-  }, [type, support]);
+    if (version === LTSVersions.trusty || version === LTSVersions.xenial) {
+      if (support !== Support.unset) {
+        setSupport(Support.essential);
+      }
+    }
+  }, [version, support]);
+
+  useEffect(() => {
+    if (feature === Features.apps && type === ProductTypes.physical) {
+      // @ts-expect-error The product ID for apps products is missing the type if it's physical ¯\_(ツ)_/¯
+      setProduct(window.productList[`${feature}-${support}-${period}`]);
+    } else {
+      setProduct(window.productList[`${feature}-${support}-${type}-${period}`]);
+    }
+  }, [feature, type, support, period]);
 
   return (
     <FormContext.Provider
@@ -82,10 +79,14 @@ export const FormProvider = ({ children }: FormProviderProps) => {
         setType,
         version,
         setVersion,
+        feature,
+        setFeature,
         support,
         setSupport,
         quantity,
         setQuantity,
+        period,
+        setPeriod,
         product,
       }}
     >

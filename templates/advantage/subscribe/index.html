@@ -140,7 +140,7 @@
 <script defer>
   var productList = {
     {% for listing_id, listing in product_listings.items() %}
-      "{{ listing.product.id }}": {
+      "{{ listing.product.id }}-{{ listing.period }}": {
         name: "{{ listing.product.name }}",
         price: {
           value: {{ listing.price }},

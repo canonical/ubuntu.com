@@ -118,12 +118,27 @@ export enum LTSVersions {
 }
 
 export enum Support {
+  unset = "unset",
   essential = "essential",
   standard = "standard",
   advanced = "advanced",
 }
 
-export type ProductIDs = `uai-${Support}-${ProductTypes}`;
+export enum Features {
+  infra = "uai",
+  apps = "uaa",
+  pro = "uaia",
+}
+
+export enum Periods {
+  monthly = "monthly",
+  yearly = "yearly",
+}
+
+export const isMonthlyAvailable = () =>
+  !!window.productList["uai-essential-physical-monthly"];
+
+export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
 
 export type Product = {
   canBeTrialled: boolean;

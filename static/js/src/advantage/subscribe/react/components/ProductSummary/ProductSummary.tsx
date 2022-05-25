@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { Col, Row } from "@canonical/react-components";
+import { Col, Row, Select } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
-import { ProductTypes } from "../../utils/utils";
+import { isMonthlyAvailable, Periods, ProductTypes } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
 
 const imgUrl = {
@@ -15,7 +15,13 @@ const imgUrl = {
 };
 
 const ProductSummary = () => {
-  const { quantity, type, product } = useContext(FormContext);
+  const { quantity, type, period, setPeriod, product } = useContext(
+    FormContext
+  );
+
+  const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setPeriod(event.target.value as Periods);
+  };
 
   return (
     <section
@@ -35,13 +41,38 @@ const ProductSummary = () => {
           <img id="summary-plan-image" src={imgUrl[type]} />
           <span id="summary-plan-name">{product?.name}</span>
         </Col>
+        {isMonthlyAvailable() ? (
+          <div>
+            <Select
+              name="billing-period"
+              className="u-no-margin--bottom"
+              defaultValue={period}
+              options={[
+                {
+                  label: "Annual billing",
+                  value: Periods.yearly,
+                },
+                {
+                  label: "Monthly billing",
+                  value: Periods.monthly,
+                },
+              ]}
+              onChange={handlePeriodChange}
+            />
+            {period === Periods.monthly ? (
+              <p className="p-text--small">
+                <strong>Switch to annual billing and save over 15%</strong>
+              </p>
+            ) : null}
+          </div>
+        ) : null}
         <div className="col-4 p-shop-cart__buy">
           <span>
             <strong className="js-summary-cost">
               {currencyFormatter.format(
                 ((product?.price.value ?? 0) / 100) * quantity
               )}{" "}
-              /year
+              /{period === Periods.yearly ? "year" : "month"}
             </strong>
           </span>
           <button

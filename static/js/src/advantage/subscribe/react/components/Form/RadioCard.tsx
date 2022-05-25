@@ -5,6 +5,7 @@ type Props<T> = {
   value: T;
   selectedValue: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
   children?: React.ReactNode;
 };
 
@@ -13,11 +14,12 @@ const RadioCard = <T extends string>({
   value,
   selectedValue,
   handleChange,
+  disabled = false,
   children,
 }: Props<T>) => (
   <div
-    className={`p-card--radio ${
-      selectedValue === value ? "is-selected" : null
+    className={`p-card--radio ${selectedValue === value ? "is-selected" : ""} ${
+      disabled ? "u-disable" : ""
     }`}
   >
     <label className="p-radio u-align-text--center">
