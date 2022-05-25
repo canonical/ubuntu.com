@@ -5,15 +5,43 @@ import {
   Features,
   isPublicCloud,
   LTSVersions,
+  ProductIDs,
   ProductTypes,
   Support as SupportEnum,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
+import { currencyFormatter } from "advantage/react/utils";
 
 const Support = () => {
   const { support, setSupport, version, type, feature } = useContext(
     FormContext
   );
+
+  const isWeirdAppsID =
+    feature === Features.apps && type === ProductTypes.physical;
+
+  const essentialID = isWeirdAppsID
+    ? `${feature}-essential-yearly`
+    : `${feature}-essential-${type}-yearly`;
+
+  const standardID = isWeirdAppsID
+    ? `${feature}-standard-yearly`
+    : `${feature}-standard-${type}-yearly`;
+
+  const advancedID = isWeirdAppsID
+    ? `${feature}-advanced-yearly`
+    : `${feature}-advanced-${type}-yearly`;
+
+  const supportPrices = {
+    standard:
+      (window.productList[standardID as ProductIDs]?.price.value -
+        window.productList[essentialID as ProductIDs]?.price.value) /
+      100,
+    advanced:
+      (window.productList[advancedID as ProductIDs]?.price.value -
+        window.productList[essentialID as ProductIDs]?.price.value) /
+      100,
+  };
 
   const onlyEssential =
     version === LTSVersions.xenial ||
@@ -60,7 +88,12 @@ const Support = () => {
                 <small className="u-text-light">Phone and ticket support</small>
               </span>
               <img src="https://assets.ubuntu.com/v1/86f3a312-UA_24-5_Support.svg" />
-              <p id="essential-support-costs">$750 per machine per year</p>
+              {supportPrices.standard ? (
+                <p id="essential-support-costs">
+                  +{currencyFormatter.format(supportPrices.standard)} per
+                  machine per year
+                </p>
+              ) : null}
             </div>
           </RadioCard>
           <RadioCard
@@ -77,7 +110,12 @@ const Support = () => {
                 <small className="u-text-light">Phone and ticket support</small>
               </span>
               <img src="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg" />
-              <p id="essential-support-costs">$1,500 per machine per year</p>
+              {supportPrices.advanced ? (
+                <p id="essential-support-costs">
+                  +{currencyFormatter.format(supportPrices.advanced)} per
+                  machine per year
+                </p>
+              ) : null}
             </div>
           </RadioCard>
         </Col>
