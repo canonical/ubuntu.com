@@ -135,14 +135,14 @@
       width: auto;
     }
 
-    .p-radio {
+    > .p-radio {
       margin: 0;
       max-width: none;
       padding: 0;
       position: initial;
       text-indent: 0;
       width: 100%;
-
+      
       &::before {
         bottom: 0;
         content: "";
@@ -152,9 +152,8 @@
         top: 0;
       }
 
-      &__label {
+      > .p-radio__label {
         padding: 0;
-
         &::after,
         &::before {
           content: none;

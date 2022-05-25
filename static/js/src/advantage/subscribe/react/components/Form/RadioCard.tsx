@@ -1,3 +1,4 @@
+import { RadioInput } from "@canonical/react-components";
 import React from "react";
 
 type Props<T> = {
@@ -6,6 +7,7 @@ type Props<T> = {
   selectedValue: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
+  radioLabel?: string;
   children?: React.ReactNode;
 };
 
@@ -15,29 +17,37 @@ const RadioCard = <T extends string>({
   selectedValue,
   handleChange,
   disabled = false,
+  radioLabel,
   children,
-}: Props<T>) => (
-  <div
-    className={`p-card--radio ${selectedValue === value ? "is-selected" : ""} ${
-      disabled ? "u-disable" : ""
-    }`}
-  >
-    <label className="p-radio u-align-text--center">
-      <input
-        className="p-radio__input"
-        autoComplete="off"
-        type="radio"
-        aria-labelledby={`${name}-label`}
-        name={name}
-        value={value}
-        checked={selectedValue === value}
-        onChange={handleChange}
-      />
-      <span className="p-radio__label" id={`${name}-label`}>
-        {children}
-      </span>
-    </label>
-  </div>
-);
+}: Props<T>) => {
+  const checked = selectedValue === value;
+
+  return (
+    <div
+      className={`p-card--radio ${checked ? "is-selected" : ""} ${
+        disabled ? "u-disable" : ""
+      }`}
+    >
+      <label className="p-radio u-align-text--center">
+        <input
+          className="p-radio__input"
+          autoComplete="off"
+          type="radio"
+          aria-labelledby={`${name}-label`}
+          name={name}
+          value={value}
+          checked={checked}
+          onChange={handleChange}
+        />
+        <span className="p-radio__label" id={`${name}-label`}>
+          {children}
+          {radioLabel ? (
+            <RadioInput label={radioLabel} checked={checked} />
+          ) : null}
+        </span>
+      </label>
+    </div>
+  );
+};
 
 export default RadioCard;

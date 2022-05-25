@@ -90,6 +90,9 @@ export { getUserInfoFromVariables, getInitialFormValues };
 export const getIsFreeTrialEnabled = () =>
   process.env.NODE_ENV === "development";
 
+export const isMonthlyAvailable = () =>
+  !!window.productList["uai-essential-physical-monthly"];
+
 export type BuyButtonProps = {
   areTermsChecked: boolean;
   isUsingFreeTrial: boolean;
@@ -134,9 +137,6 @@ export enum Periods {
   monthly = "monthly",
   yearly = "yearly",
 }
-
-export const isMonthlyAvailable = () =>
-  !!window.productList["uai-essential-physical-monthly"];
 
 export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
 

@@ -1,5 +1,6 @@
 import { List } from "@canonical/react-components";
 import React from "react";
+import Feature from "./Feature";
 import Quantity from "./Quantity";
 import Support from "./Support";
 import Type from "./Type";
@@ -18,6 +19,14 @@ const Form = () => {
               title: "What Ubuntu version are you running?",
               content: <Version />,
             },
+            ...(true
+              ? [
+                  {
+                    title: "Select your feature coverage",
+                    content: <Feature />,
+                  },
+                ]
+              : []),
             { title: "Do you also want tech support?", content: <Support /> },
             { title: "How many?", content: <Quantity /> },
           ]}
