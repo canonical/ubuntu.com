@@ -1,6 +1,10 @@
 <div class="p-modal" id="contact-modal">
   <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
-    <div class="js-pagination js-pagination--1" style="padding-top:2rem;">
+    <header class="p-modal__header" style="display: block; border-bottom: 0;">
+      <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+      <h2 class="p-modal__title u-sv1" id="modal-title">Contact us</h2>
+    </header>
+    <div class="js-pagination js-pagination--1">
       <div class="u-sv2 js-formfield">
         <h3 class="p-heading--4">What can we help you with?</h3>
         <textarea id="open-question" name="open-question" aria-label="What can we help you with?" rows="3"></textarea>
@@ -68,7 +72,6 @@
 
             <div class="pagination">
               <button type="submit" class="p-button--positive" aria-label="Submit">Let's discuss</button>
-							<a class="js-close p-button" href="">Close</a>
             </div>
           </form>
         </div>
