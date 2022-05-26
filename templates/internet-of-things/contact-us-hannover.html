@@ -103,7 +103,7 @@
                 <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
               </label>
             </li>
-            <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+            <li class="p-list__item u-sv2">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
             {# These are honey pot fields to catch bots #}
             <li class="u-off-screen">
               <label class="website" for="website">Website:</label>
@@ -119,7 +119,7 @@
             </li>
           </ul>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4479" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/contact-us-hannover" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/contact-us-hannover#success" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
@@ -165,8 +165,19 @@
     leadComments.value = createMessage();
     form.submit();
   }
+
+  function handleSuccessNotification() {
+    var successNotification = document.getElementById("success");
+    var delayInMilliseconds = 4000;
+    if (successNotification.style.display != "none") {
+      setTimeout(function() {
+        successNotification.style.display = "none";
+      }, delayInMilliseconds);
+    }
+  }
   
   (function init() {
+    handleSuccessNotification();
     var formElement = document.getElementById("mktoForm_4479");
     formElement.addEventListener("submit", handleSubmission);
   })()
