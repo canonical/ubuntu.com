@@ -1,0 +1,186 @@
+{% extends "internet-of-things/base_things.html" %}
+
+{% block title %}Contact us{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1pJ_Y3RIFgoDCBG_8CwvCn66qzExz1313orGnmlCYYz8/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-8">
+      <h1>Let's get your project to market faster!</h1>
+      <p>Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster.</p>
+      <p>Keep in touch with us after Hannover Messe! Tell us about your project so we can bring the right Canonical expert to the conversation to help you.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <fieldset class="u-no-margin--bottom">
+        <div class="js-formfield">
+          <h3 class="p-heading--5">Do you have a commercial project?</h3>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="commerical-project-yes" name="commercial-project" value="Yes">
+                <span class="p-radio__label" id="commerical-project-yes">Yes</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-radio">
+                <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
+                <span class="p-radio__label" id="commercial-project-no">No</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset class="u-no-margin--bottom">
+        <div class="js-formfield">
+          <div class="u-sv3">
+            <h3 class="p-heading--5">When do you need to ship?</h3>
+            <div class="row u-no-padding">
+              <div class="col-4">
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-months" name="shipping-time" value="In the next 3 months">
+                  <span class="p-radio__label" id="shipping-time-next-3-months">In the next 3 months</span>
+                </label>
+                <label class="p-radio u-no-margin--bottom">
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-6-months" name="shipping-time" value="In the next 6 months">
+                  <span class="p-radio__label" id="shipping-time-next-6-months">In the next 6 months</span>
+                </label>
+              </div>
+              <div class="col-4 u-sv3">
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-12-months" name="shipping-time" value="In the next 12 months">
+                  <span class="p-radio__label" id="shipping-time-next-12-months">In the next 12 months</span>
+                </label>
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-do-not-know" name="shipping-time" value="Don't know">
+                  <span class="p-radio__label" id="shipping-time-do-not-know">Don't know</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+        
+      <form action="/marketo/submit" method="post" id="mktoForm_4479">
+        <fieldset class="u-no-margin--bottom">
+          <h3>About you</h3>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label for="firstName">First name:</label>
+              <input required id="firstName" name="firstName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="lastName">Last name:</label>
+              <input required id="lastName" name="lastName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="company">Company:</label>
+              <input required id="company" name="company" maxlength="255" type="text" />
+            </li>            
+            <li class="p-list__item">
+              <label for="email">Email:</label>
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+            </li>
+            <li class="p-list__item">
+              <label for="phone">Mobile/cell phone number:</label>
+              <input required id="phone" name="phone" maxlength="255" type="tel" />
+            </li>
+          </ul>
+        </fieldset>
+        
+        <fieldset class="u-no-margin--bottom">
+          <ul class="p-list">
+            <li class="p-list__item u-hide">
+              <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+            </li>
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+              </label>
+            </li>
+            <li class="p-list__item u-sv2">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+            <li class="p-list__item">
+              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'hannover contact-us', 'eventLabel' : 'hannover', 'eventValue' : undefined });">Submit</button>
+            </li>
+          </ul>
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4479" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/contact-us-hannover#success" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  function createMessage() {
+    var message = "";
+    var formFields = document.querySelectorAll(".js-formfield");
+
+    formFields.forEach(function (formField) {
+      var comma = "";
+      var fieldTitle = formField.querySelector(".p-heading--5");
+      var inputs = formField.querySelectorAll("input");
+      if (fieldTitle) {
+      message += fieldTitle.innerText + "\r\n";
+      }
+      
+      inputs.forEach(function (input) {
+        if (input.checked) {
+          message += comma + input.value + "\r\n\r\n";
+          comma = ", ";
+        }
+      });
+    });
+
+    return message;
+  }
+
+  function handleSubmission(e) {
+    e.preventDefault();
+    var form = e.target;
+    var leadComments = form.querySelector("#Comments_from_lead__c");
+    leadComments.value = createMessage();
+    form.submit();
+  }
+
+  function handleSuccessNotification() {
+    var successNotification = document.getElementById("success");
+    var delayInMilliseconds = 4000;
+    if (successNotification.style.display != "none") {
+      setTimeout(function() {
+        successNotification.style.display = "none";
+      }, delayInMilliseconds);
+    }
+  }
+  
+  (function init() {
+    handleSuccessNotification();
+    var formElement = document.getElementById("mktoForm_4479");
+    formElement.addEventListener("submit", handleSubmission);
+  })()
+</script>
+
+{% endblock content %}
