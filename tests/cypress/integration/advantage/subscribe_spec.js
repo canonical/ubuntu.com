@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import { getTestURL, getRandomEmail } from "../../utils";
+import { getRandomEmail } from "../../utils";
 
 Cypress.config("defaultCommandTimeout", 10000);
 
@@ -51,7 +51,7 @@ const completeFirstStep = (email = Cypress.env("UBUNTU_USERNAME")) => {
 
 context("/advantage/subscribe", () => {
   it("should display the modal when pressing 'Buy now'", () => {
-    cy.visit(getTestURL("/advantage/subscribe"));
+    cy.visit("/advantage/subscribe");
     cy.findByText("Accept all and visit site").click();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
@@ -69,7 +69,7 @@ context("/advantage/subscribe", () => {
   it("should be able to start a free trial", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit(getTestURL("/advantage/subscribe"));
+    cy.visit("/advantage/subscribe");
     cy.acceptCookiePolicy();
 
     cy.findByRole("dialog").should("not.exist");
@@ -132,7 +132,7 @@ context("/advantage/subscribe", () => {
   it("should be able to buy a subscription", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit(getTestURL("/advantage/subscribe"));
+    cy.visit("/advantage/subscribe");
     cy.acceptCookiePolicy();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
@@ -201,7 +201,7 @@ context("/advantage/subscribe", () => {
     cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
 
     cy.login();
-    cy.visit(getTestURL("/advantage/subscribe"));
+    cy.visit("/advantage/subscribe");
     cy.acceptCookiePolicy();
 
     cy.scrollTo("bottom");
@@ -219,6 +219,6 @@ context("/advantage/subscribe", () => {
     cy.wait("@purchase");
     cy.wait("@pendingPurchase");
 
-    cy.url().should("include", getTestURL("/advantage"));
+    cy.url().should("include", "/advantage");
   });
 });

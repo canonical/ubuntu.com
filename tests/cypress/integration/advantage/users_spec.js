@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { getTestURL, getRandomEmail } from "../../utils";
+import { getRandomEmail } from "../../utils";
 
 context("/advantage/users", () => {
   it("adds and deletes a user correctly", () => {
@@ -7,7 +7,7 @@ context("/advantage/users", () => {
 
     const email = getRandomEmail();
 
-    cy.visit(getTestURL("/advantage/users"));
+    cy.visit("/advantage/users");
     cy.acceptCookiePolicy();
 
     cy.findByRole("button", { name: /Add new user/ }).click();

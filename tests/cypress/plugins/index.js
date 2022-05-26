@@ -41,7 +41,7 @@ module.exports = async (on, config) => {
               throw new Error("Puppeteer error:", err);
             });
 
-            await page.goto(config.baseUrl + "/login?test_backend=true", {
+            await page.goto(config.baseUrl + "/login", {
               // The app redirects to the login-page
               waitUntil: "networkidle2", // Wait until login-page has been reached
             });

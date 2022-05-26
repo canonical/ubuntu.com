@@ -162,13 +162,9 @@ const BuyButton = ({
         if (request.readyState === 4) {
           //redirect
           if (window.isGuest && !window.isLoggedIn) {
-            const queryString = window.location.search;
-            const testBackend = queryString.includes("test_backend=true")
-              ? "&test_backend=true"
-              : "";
             location.href = `/advantage/subscribe/blender/thank-you?email=${encodeURIComponent(
               pendingPurchase?.invoice?.customerEmail
-            )}${testBackend}`;
+            )}`;
           } else {
             location.pathname = "/advantage";
           }

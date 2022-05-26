@@ -1,7 +1,5 @@
 /// <reference types="cypress" />
 
-import { getTestURL } from "../../utils";
-
 context("/advantage", () => {
   it("header links work correctly", () => {
     const links = [
@@ -14,19 +12,19 @@ context("/advantage", () => {
     ];
 
     cy.login();
-    cy.visit(getTestURL("/advantage"));
+    cy.visit("/advantage");
     cy.acceptCookiePolicy();
 
     links.forEach(({ name, href }) => {
       cy.findByRole("link", { name }).click();
       cy.url().should("include", href);
-      cy.visit(getTestURL("/advantage"));
+      cy.visit("/advantage");
     });
   });
 
   it("free personal token is at the bottom of the list", () => {
     cy.login();
-    cy.visit(getTestURL("/advantage"));
+    cy.visit("/advantage");
     cy.acceptCookiePolicy();
 
     cy.get("[data-test=subscription-card-content] h5")
@@ -36,7 +34,7 @@ context("/advantage", () => {
 
   it.skip("sends a correct request when resizing a subscription", () => {
     cy.login();
-    cy.visit(getTestURL("/advantage"));
+    cy.visit("/advantage");
     cy.acceptCookiePolicy();
 
     cy.intercept("POST", "advantage/subscribe*", {}).as("subscribe");
@@ -72,7 +70,7 @@ context("/advantage", () => {
   it.skip("prevents a user from creating disallowed combinations of features", () => {
     cy.login();
 
-    cy.visit(getTestURL("/advantage"));
+    cy.visit("/advantage");
     cy.acceptCookiePolicy();
     cy.findByLabelText("FIPS").should("be.disabled");
     cy.findByLabelText("Livepatch").should("be.checked").click({ force: true });
@@ -85,7 +83,7 @@ context("/advantage", () => {
   it.skip("saves changes to feature settings successfully", () => {
     cy.login();
 
-    cy.visit(getTestURL("/advantage"));
+    cy.visit("/advantage");
     cy.acceptCookiePolicy();
 
     cy.findByLabelText("Livepatch").should("be.checked").click({ force: true });

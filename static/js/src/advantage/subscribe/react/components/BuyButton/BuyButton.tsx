@@ -67,13 +67,10 @@ const BuyButton = ({
   };
 
   const handleOnAfterPurchaseSuccess = () => {
-    const testBackend = window?.location?.search?.includes("test_backend=true")
-      ? "&test_backend=true"
-      : "";
     if (window.isGuest && !window.isLoggedIn) {
       location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
         userInfo?.customerInfo?.email
-      )}${testBackend}`;
+      )}`;
     } else {
       location.pathname = "/advantage";
     }

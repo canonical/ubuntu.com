@@ -71,7 +71,7 @@
                 </td>
                 <td aria-label="Download PDF">
                   {% if invoice.invoice %}
-                    <a href="invoices/download/{{ invoice.id }}{% if get_test_backend %}?test_backend=true{% endif %}" target="_blank">Download</a>
+                    <a href="invoices/download/{{ invoice.id }}" target="_blank">Download</a>
                   {% else %}
                     No invoice available
                   {% endif %}

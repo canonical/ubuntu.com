@@ -1,5 +1,5 @@
 export async function getPurchase(purchaseID) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/account/purchases/${purchaseID}${queryString}`, {
     cache: "no-store",
@@ -15,7 +15,7 @@ export async function ensurePurchaseAccount({
   captchaValue,
   marketplace,
 }) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/account/purchase-account${queryString}`, {
     method: "POST",
@@ -38,7 +38,7 @@ export async function ensurePurchaseAccount({
 }
 
 export async function getRenewal(renewalID) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/advantage/renewals/${renewalID}${queryString}`, {
     cache: "no-store",
@@ -49,7 +49,7 @@ export async function getRenewal(renewalID) {
 }
 
 export async function getCustomerInfo(accountId) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(
     `/account/customer-info/${accountId}${queryString}`,
@@ -63,7 +63,7 @@ export async function getCustomerInfo(accountId) {
 }
 
 export async function getUserInfo() {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(`/advantage/user-info${queryString}`, {
     cache: "no-store",
   });
@@ -71,7 +71,7 @@ export async function getUserInfo() {
 }
 
 export async function getUserSubscriptions() {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(`/advantage/user-subscriptions${queryString}`, {
     cache: "no-store",
   });
@@ -79,7 +79,7 @@ export async function getUserSubscriptions() {
 }
 
 export async function getContractToken(contractId) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(
     `/advantage/contracts/${contractId}/token${queryString}`,
     {
@@ -90,7 +90,7 @@ export async function getContractToken(contractId) {
 }
 
 export async function putContractEntitlements(contractId, entitlements) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(
     `/advantage/contracts/${contractId}/entitlements${queryString}`,
     {
@@ -111,7 +111,7 @@ export async function putContractEntitlements(contractId, entitlements) {
 }
 
 export async function getLastPurchaseIds(accountId) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(
     `/account/last-purchase-ids/${accountId}${queryString}`,
     {
@@ -122,7 +122,7 @@ export async function getLastPurchaseIds(accountId) {
 }
 
 export async function postInvoiceID(transactionType, transactionID, invoiceID) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(
     `/account/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
@@ -138,7 +138,7 @@ export async function postInvoiceID(transactionType, transactionID, invoiceID) {
 }
 
 export async function postRenewalIDToProcessPayment(renewalID) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(
     `/advantage/renewals/${renewalID}/process-payment${queryString}`,
@@ -159,7 +159,7 @@ export async function postPurchaseData(
   previousPurchaseId,
   marketplace
 ) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   const purchaseData = {
     account_id: accountID,
@@ -193,7 +193,7 @@ export async function cancelContract(
   productId,
   marketplace
 ) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "DELETE",
@@ -223,7 +223,7 @@ export async function resizeContract(
   period,
   marketplace
 ) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
@@ -258,7 +258,7 @@ export async function previewResizeContract(
   period,
   marketplace
 ) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
   let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
     method: "POST",
     cache: "no-store",
@@ -292,7 +292,7 @@ export async function postPurchasePreviewData(
   previousPurchaseId,
   marketplace
 ) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   const previewData = {
     account_id: accountID,
@@ -327,7 +327,7 @@ export async function postCustomerInfoToStripeAccount({
   name,
   taxID,
 }) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/account/customer-info${queryString}`, {
     method: "POST",
@@ -356,7 +356,7 @@ export async function postCustomerInfoForPurchasePreview(
   address,
   taxID
 ) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/account/customer-info-anon${queryString}`, {
     method: "POST",
@@ -379,7 +379,7 @@ export async function postCustomerInfoForPurchasePreview(
 }
 
 export async function setPaymentMethod(accountID, paymentMethodId) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/account/payment-methods${queryString}`, {
     method: "POST",
@@ -400,7 +400,7 @@ export async function setPaymentMethod(accountID, paymentMethodId) {
 }
 
 export async function setAutoRenewal(value) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let subscriptions = [];
   Object.entries(value).forEach(([subscription_id, should_auto_renew]) =>
@@ -426,7 +426,7 @@ export async function postFreeTrial({
   products,
   previousPurchaseId,
 }) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/advantage/subscribe${queryString}`, {
     method: "POST",
@@ -450,7 +450,7 @@ export async function postFreeTrial({
 }
 
 export async function endTrial(accountID) {
-  const queryString = window.location.search; // Pass arguments to the flask backend eg. "test_backend=true"
+  const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(`/advantage/trial/${accountID}${queryString}`, {
     method: "DELETE",

@@ -117,7 +117,6 @@ def after_login(resp):
 
 
 def logout():
-    is_test_backend = flask.request.args.get("test_backend", False)
     return_to = flask.request.args.get("return_to") or flask.request.path
 
     # Protect against redirect loop if return_to is logout
@@ -125,8 +124,5 @@ def logout():
         return_to = "/"
 
     empty_session(flask.session)
-
-    if is_test_backend:
-        return_to = f"{return_to}?test_backend=true"
 
     return flask.redirect(return_to)
