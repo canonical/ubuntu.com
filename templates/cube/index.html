@@ -38,7 +38,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-slanted--top-right u-image-position is-grid-pinned" id="syllabus">
+<section class="p-strip--light u-image-position is-grid-pinned" id="syllabus">
   <div class="u-fixed-width">
   <h2 class="u-sv2">Complete Canonical Ubuntu Essentials Syllabus &ndash; at a glance</h2>
     <ul class="p-matrix">
@@ -119,39 +119,48 @@
       </li>
     </ul>
   </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
-      <p class="p-heading--4">Exam features:</p>
+      <h2>Exam features</h2>
       <ul class="p-list">
-        <li class="p-list__item">Multiple choice questions</li>
-        <li class="p-list__item">3-5 practical hands-on lab questions</li>
+        <li class="p-list__item is-ticked">Multiple choice questions</li>
+        <li class="p-list__item is-ticked">3-5 practical hands-on lab questions</li>
       </ul>
-      </p>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <p class="p-heading--4">Or take a single exam covering all three microcertifications:</p>
-      <p class="p-heading--4">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/7bf909cc-Admin.svg",
-          alt="Canonical Ubuntu Essentials badge",
-          width="51",
-          height="60",
-          hi_def=True,
-          loading="auto",
-          attrs={"style": "vertical-align:middle"}
-          ) | safe
-        }}
-        Canonical Ubuntu Essentials single exam
-      </p>
-      <a
-        href="/cube/contact-us"
-        class="p-button--positive cube-access js-invoke-modal"
-        data-testid="interactive-form-link"
-        >Sign up</a
-      >
+      <h3>Or take a single exam covering all three microcertifications</h3>
+      <ul class="p-matrix">
+        <li class="p-matrix__item" style="border: 0;">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/7bf909cc-Admin.svg",
+            alt="Canonical Ubuntu Essentials badge",
+            width="32",
+            height="38",
+            hi_def=True,
+            loading="auto",
+            attrs={"class": "p-matrix__img"}
+            ) | safe
+          }}
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Canonical Ubuntu Essentials single exam</h3>
+            <div class="p-matrix__desc">
+              <p> </p>
+              <a
+                href="/cube/contact-us"
+                class="p-button--positive cube-access js-invoke-modal"
+                data-testid="interactive-form-link"
+                >Sign up
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
