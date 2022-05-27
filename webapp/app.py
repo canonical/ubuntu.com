@@ -891,7 +891,7 @@ core_als_autils_docs = Docs(
 core_als_autils_docs.init_app(app)
 
 # Cube docs
-app.add_url_rule("/certs", view_func=cube_home)
+app.add_url_rule("/credentialing", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(
