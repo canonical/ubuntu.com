@@ -371,7 +371,15 @@ def post_microcerts_purchase(ua_contracts_api, **kwargs):
     return flask.jsonify(purchase)
 
 
-def cube_home():
+@shop_decorator(area="cube", permission="user", response="html")
+def cube_home(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    badge_certification,
+    **kwargs,
+):
     return flask.render_template("credentialing/index.html")
 
 
