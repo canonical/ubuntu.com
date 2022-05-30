@@ -5,15 +5,14 @@
       <h2 class="p-modal__title u-sv1" id="modal-title">Contact us</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <div class="u-sv2 js-formfield">
-        <h3 class="p-heading--4">What can we help you with?</h3>
-        <textarea id="open-question" name="open-question" aria-label="What can we help you with?" rows="3"></textarea>
-      </div>
-
-      <h3 class="p-heading--4">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
           <form action="/marketo/submit" onsubmit="createLeadComment()" method="post" id="mktoForm_%% formid %%" class="modal-form">
+            <div class="u-sv2">
+              <h3 class="p-heading--4">What can we help you with?</h3>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" aria-label="What can we help you with?" maxlength="2000" rows="3"></textarea>
+            </div>
+            <h3 class="p-heading--4">How should we get in touch?</h3>
             <ul class="p-list">
               <li class="p-list__item">
                 <label for="firstName">First name:</label>
