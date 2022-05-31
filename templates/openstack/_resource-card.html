@@ -1,0 +1,20 @@
+{% with 
+  title=item.topic_name,
+  title_link=item.path,
+  description=item.subtitle,
+  type=item.type
+%}
+<div class="col-4 blog-p-card--post">
+  <header class="blog-p-card__header">
+    <h5 class="p-muted-heading u-no-margin--bottom">
+      {{ type }}
+    </h5>
+  </header>
+  <div class="blog-p-card__content">
+    <h4>
+      <a href="{{ title_link }}">{{ title }}</a>
+    </h4>
+    <p class="u-no-padding--bottom u-hide--small">{{ description }}</p>
+  </div>
+</div>
+{% endwith %}
