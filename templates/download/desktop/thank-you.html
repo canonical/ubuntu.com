@@ -84,10 +84,17 @@
       <p>If you want to verify the  data integrity and authenticity of your Ubuntu download, follow our guide.</p>
       <p><a href="/tutorials/tutorial-how-to-verify-ubuntu">Learn how to verify</a></p>
     </div>
+<<<<<<< Updated upstream
     <div class="col-3 p-divider__block">
       <h3 class="p-heading--4">Ubuntu desktop guide</h3>
       <p>Read the official Ubuntu desktop documentation.</p>
       <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu {{ releases.lts.short_version }} LTS documentation</a></p>
+=======
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Desktop guide</h3>
+      <p>Read the official Ubuntu Desktop documentation.</p>
+      <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu documentation&nbsp;&rsaquo;</a></p>
+>>>>>>> Stashed changes
     </div>
     <div class="col-3 p-divider__block">
       <h3 class="p-heading--4">Professional support for Ubuntu</h3>
@@ -317,10 +324,11 @@
 
 {% if version %}
 
-<section class="p-strip">
+<section class="p-strip" aria-colspan="">
   <div class="u-fixed-width">
     <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop:</h2>
   </div>
+<<<<<<< Updated upstream
   <div class="row p-divider">
     <div class="col-3 p-divider__block">
       <p><a href="/blog/planning-phased-ubuntu-22-04-enterprise-desktop-upgrades-with-landscape">Planning phased Ubuntu 22.04 Enterprise Desktop upgrades with Landscape</a></p>
@@ -339,7 +347,19 @@
       <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 9 December 2021</em></p>
     </div>            
   </div>
+=======
+  <div class="row p-divider" id="latest-articles"></div>
+>>>>>>> Stashed changes
 </section>
+
+<template style="display:none" class="" id="articles-template">
+  <article id="articles-template">
+    <div class="col-3 p-divider__block">
+      <p><a class="article-title article-link" href=""></a></p>
+      <p><em>by <span class="article-author"></span>on <time datetime="" class="article-time"></time></em></p>
+    </div>
+  </article>
+</template>
 
 {% endif %}
 
@@ -360,6 +380,16 @@
     
     window.initImageDownload(imagePath, GAlabel);
   }
+
+  canonicalLatestNews.fetchLatestNews(
+    {
+      articlesContainerSelector: "#latest-articles",
+      articleTemplateSelector: "#articles-template",
+      hostname: "ubuntu.com",
+      groupId: "1479",
+      limit: "4",
+    }
+  )
 </script>
 {% endif %}
 
