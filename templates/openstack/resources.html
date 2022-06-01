@@ -2,7 +2,7 @@
 
 {% block title %}OpenStack resources{% endblock %}
 
-{% block meta_description %}OpenStack resources:  collection of useful and educational material and information. Learn more about OpenStack and private cloud from some of the industry's best.{% endblock meta_description %}
+{% block meta_description %}OpenStack resources: A collection of useful and educational material and information. Learn more about OpenStack and private cloud from some of the industry's best.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1ySynE6LOEWKbg4Q_udqM_W3BWkMPi5AfLjiM0qcLrn4/edit#heading=h.d2yomvm8pmy4{% endblock meta_copydoc %}
 
@@ -130,15 +130,195 @@
   </div>
 </section>
 
-<section class="p-strip">
+<div class="u-fixed-width">
+  <hr class="p-separator">
+</div>
+
+<section class="p-strip u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2>OpenStack blogs & related topics</h2>
     <p>This rich set of content covers everything from high-level product announcements to hands-on technical guides that dig into more complicated topics.</p>
     <p>Scroll through our entire library of blogs about <a href="/blog/tag/openstack">OpenStack</a> and <a href="/blog/tag/private-cloud">private-cloud</a>.</p>
   </div>
 </section>
-{% with section_classes='p-strip is-bordered', heading_topic='Openstack', tag_name='openstack', tag_id='1672', limit='4' %}
+{% with section_classes='p-strip', heading_topic='Openstack', tag_name='openstack', tag_id='1672', limit='4' %}
   {% include "shared/_latest_news_strip.html" %}
 {% endwith %}
 
+<div class="u-fixed-width">
+  <hr class="p-separator">
+</div>
+
+<section class="p-strip">
+  <div class="u-fixed-width u-sv3">
+    <h2>More OpenStack resources</h2>
+    <p>Once you get started with OpenStack, start reading our library of resources, that includes tutorials & documentation on various topics.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h3>Tutorials</h3>
+      <p>Starting with just your workstation, learn how to use OpenStack for cloud infrastructure implementation purposes, from a single-node installation to large-scale clusters using a series of tutorials.</p>
+      <p>
+        <a href="/openstack/tutorials">Go to the tutorials&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h3>Documentation</h3>
+      <p>Deploy your own infrastructure based on Charmed OpenStack and benefit from full automation and rich lifecycle managemenet capabilities. Charmed OpenStack is a cost-effective cloud platform designed to host mission critical applications.</p>
+      <p>
+        <a href="/openstack/docs">Go to the documentation&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2>OpenStack pricing calculator</h2>
+      <h4>Should your workloads run in a public or private cloud?</h4>
+      <p>Depending on your requirements, overall CapEx and OpEx costs and cost-per-resource metrics, it may be more economical to run your workloads in the private cloud. Use the following private cloud pricing calculator to estimate the costs of running your instances in the Charmed OpenStack private cloud. And see how much you can save compared to the public clouds.</p>
+      <h3 class="p-heading--4">Number of instances
+        <span style="display: inline-block;">
+          <i class="tco-tooltip p-icon--help"></i>
+        </span>
+      </h3>
+      <div class="p-slider__wrapper u-sv4"> 
+        <input type="range" min="0" max="10000" value="1000" step="1" id="slider3" aria-label="Example slider, range 0 to 10000">
+        <input class="p-slider__input" type="text" maxlength="5" id="slider3-input" tabindex="0">
+      </div>
+      <p>
+        <a class="p-button--positive" href="/openstack/pricing-calculator">View estimate</a>
+      </p>
+    </div>
+    <div class="col-5 u-vertically-center">
+      <div class="p-card">
+        <h3 class="p-heading--4">
+          Have non-standard requirements? 
+        </h3>
+        <p>Tell us more about your specific needs here - we will send you a detailed report and help you find the cloud architecture that best suits your requirements.</p>
+        <p>
+          <a href="/openstack/contact-us">Get in touch&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width u-sv3">
+    <h2>Beyond OpenStack</h2>
+    <p>Explore the following resources to learn more about various cloud architectures and how to effectively use Ubuntu in public cloud infrastructure.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
+        alt="",
+        width="96",
+        height="75",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">What is hybrid cloud?</p>
+      <p>
+        <a href="/cloud/hybrid-cloud">Read more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 p-divider__block">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+        alt="",
+        width="134",
+        height="76",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">What is multi-cloud?</p>
+      <p>
+        <a href="/cloud/multi-cloud">Read more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 p-divider__block">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/eaadbd1f-hero-ecosystem-cloud.png",
+        alt="",
+        width="115",
+        height="74",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">Ubuntu for public clouds</p>
+      <p>
+        <a href="cloud/public-cloud">Read more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  var isWebkit =
+  /Chrome/i.test(navigator.userAgent) || /Safari/i.test(navigator.userAgent);
+
+  var PROGRESS_COLOUR = '#06c';
+  var EMPTY_COLOUR = '#D9D9D9';
+
+  /**
+   Renders gradient to fake progress color in webkit browsers.
+  @param {HTMLElement} slider Slider element to render background on.
+  */
+    function renderSlider(slider) {
+    if (isWebkit) {
+      var value = (slider.value - slider.min) / (slider.max - slider.min);
+      slider.style.backgroundImage = (
+        '-webkit-gradient(linear, left top, right top, color-stop('
+        + value + ', ' + PROGRESS_COLOUR + '), color-stop('
+        + value + ', ' + EMPTY_COLOUR + '))'
+      );
+    }
+  }
+
+function equaliseValues(receive, give) {
+  receive.value = give.value;
+  give.value = receive.value;
+}
+
+/**
+  Attaches change listener to sliders to update their background color.
+  @param {HTMLElement} slider Slider element to render background on.
+*/
+function initSlider(slider) {
+  var input = document.getElementById(slider.id + '-input');
+  renderSlider(slider);
+
+  if (input) {
+    // Synchronise values of input and slider
+    equaliseValues(input, slider);
+    input.addEventListener('input', function() {
+      if (!input.value) {
+        input.value = 0;
+      }
+      equaliseValues(slider, input);
+      renderSlider(slider);
+    });
+  }
+
+  slider.addEventListener('input', function() {
+    if (input) {
+      equaliseValues(input, slider);
+    }
+    renderSlider(slider);
+  });
+}
+
+// Setup all sliders on the page.
+var sliders = document.querySelectorAll('input[type=range]');
+
+for (var i = 0, l = sliders.length; i < l; i++) {
+  initSlider(sliders[i]);
+}
+</script>
 {% endblock %}
