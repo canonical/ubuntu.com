@@ -8,17 +8,17 @@
       <div class="js-formfield">
         <div class="row u-no-padding">
           <div class="col-8">
-            <p class="p-heading--5">Does your product or service include Canonical products?</p>
+            <p class="p-heading--5" id="canonicalProductsQuestion">Does your product or service include Canonical products?</p>
             <div class="row">
               <div class="col-4">
                 <label class="p-radio">
-                  <input type="radio" class="p-radio__input" name="canonicalProducts" aria-labelledby="canonicalProductsYes">
+                  <input type="radio" class="p-radio__input" id="selectionYes" name="canonicalProducts" aria-labelledby="canonicalProductsYes">
                   <span class="p-radio__label" id="canonicalProductsYes">Yes</span>
                 </label>
               </div>
               <div class="col-4">
                 <label class="p-radio">
-                  <input type="radio" class="p-radio__input" name="canonicalProducts" aria-labelledby="canonicalProductsNo">
+                  <input type="radio" class="p-radio__input" id="selectionNo" name="canonicalProducts" aria-labelledby="canonicalProductsNo">
                   <span class="p-radio__label" id="canonicalProductsNo">No</span>
                 </label>
               </div>
@@ -30,7 +30,7 @@
         <h3 class="p-heading--5">How should we get in touch?</h3>
         <div class="row u-no-padding">
           <div class="col-6">
-            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+            <form action="/marketo/submit" onsubmit="canonicalProducts()" method="post" id="mktoForm_%% formid %%" class="modal-form">
               <ul class="p-list">
                 <li class="p-list__item">
                   <label for="firstName">First name:</label>
