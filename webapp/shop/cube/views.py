@@ -167,7 +167,7 @@ def cube_microcerts(
     edx_register_url = f"{edx_url}{flask.request.base_url}"
 
     return flask.render_template(
-        "cube/microcerts.html",
+        "credentialing/microcerts.html",
         **{
             "account_id": account["id"] if account else None,
             "edx_user": edx_user,
@@ -371,8 +371,16 @@ def post_microcerts_purchase(ua_contracts_api, **kwargs):
     return flask.jsonify(purchase)
 
 
-def cube_home():
-    return flask.render_template("cube/index.html")
+@shop_decorator(area="cube", permission="user", response="html")
+def cube_home(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    badge_certification,
+    **kwargs,
+):
+    return flask.render_template("credentialing/index.html")
 
 
 @shop_decorator(area="cube", permission="user", response="json")
