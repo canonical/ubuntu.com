@@ -305,6 +305,18 @@ class UAContractsAPI:
 
         return {}
 
+    def post_purchase_calculate(
+        self,
+        marketplace: str,
+        request_body: dict,
+    ) -> dict:
+        return self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase/calculate",
+            json=request_body,
+            error_rules=["default"],
+        ).json()
+
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
