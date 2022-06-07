@@ -281,20 +281,20 @@ def get_last_purchase_ids(advantage_mapper, **kwargs):
     return flask.jsonify(last_purchase_ids)
 
 
-@shop_decorator(area="account", permission="user_or_guest", response="json")
+@shop_decorator(area="account", response="json")
 @use_kwargs(post_purchase_calculate, location="json")
 def post_purchase_calculate(ua_contracts_api: UAContractsAPI, **kwargs):
     response = ua_contracts_api.post_purchase_calculate(
         marketplace=kwargs.get("marketplace"),
         request_body={
             "country": kwargs.get("country"),
-            "productItems": {
+            "purchaseItems": [
                 {
                     "value": product.get("quantity"),
                     "productListingID": product.get("product_listing_id"),
                 }
                 for product in kwargs.get("products")
-            },
+            ],
             "hasTaxID": kwargs.get("has_tax"),
         },
     )
