@@ -67,7 +67,7 @@
                 height="35",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -80,7 +80,7 @@
                 height="50",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -93,7 +93,7 @@
                 height="60",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -106,7 +106,7 @@
                 height="50",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -119,7 +119,7 @@
                 height="40",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -132,7 +132,7 @@
                 height="50",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -145,7 +145,7 @@
                 height="66",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -158,7 +158,7 @@
                 height="50",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -171,7 +171,7 @@
                 height="36",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-logo-section__logo", "id": ""},
+                attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
         </div>
@@ -311,14 +311,20 @@
     const optionYes = document.getElementById("selectionYes");
     const optionNo = document.getElementById("selectionNo");
     const textarea = document.getElementById("Comments_from_lead__c");
+    const extraCommentsText = document.getElementById("about-use-case");
+    const extraCommentsLabel = document.querySelector(`[for="about-use-case"]`).innerHTML;
 
     if (optionYes.checked) {
       const text = document.getElementById("canonicalProductsYes").outerText;
-      textarea.value = productsQuestion + text;
+      textarea.value = productsQuestion + ": " + text + " \r\n";
     } else if (optionNo.checked) {
       const text = document.getElementById("canonicalProductsNo").outerText;
-      textarea.value = productsQuestion + text;
+      textarea.value = productsQuestion + ": " + text + " \r\n";
     }
+
+    if (extraCommentsText.value) {
+      textarea.value += extraCommentsLabel + " " + extraCommentsText.value
+    }  
 }
 </script>
 {% endblock content %}
