@@ -89,11 +89,10 @@
         </a>
       </div>
       <div class="u-hide js-account--small"></div>
-      <a href="#secondary-navigation" class="p-navigation__toggle--open" title="menu"><i class="p-icon--chevron-down is-light">Open</i></a>
-      <a href="#secondary-navigation-closed" class="p-navigation__toggle--close" title="close menu"><i class="p-icon--chevron-up is-light">Close</i></a>
+      <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
     </div>
 
-    <nav class="p-navigation__nav" aria-label="secondary-navigation-children">
+    <nav class="p-navigation__nav" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
       {% if breadcrumbs.children %}
       <ul class="p-navigation__items">
         {% for child in breadcrumbs.children %}
@@ -285,11 +284,10 @@
     dropdownWindowOverlay.classList.add("fade-animation");
 
     reducedNavItems.forEach( item => {
-        if (item.classList.contains("is-selected")){
-          item.classList.remove("is-selected");
-        }
+      if (item.classList.contains("is-selected")){
+        item.classList.remove("is-selected");
       }
-    );
+    });
 
     [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
         if (dropdownContent.classList.contains("u-hide") === false) {
@@ -297,6 +295,7 @@
         }
       }
     )
+
     buttons.forEach((searchButton) => {
       searchButton.removeAttribute('aria-pressed');
     });
