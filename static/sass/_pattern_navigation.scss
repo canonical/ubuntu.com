@@ -70,18 +70,27 @@
   .slide-animation {
     transform: translateY(-101%);
   }
+  
   .fade-animation {
     opacity: 0;
     visibility: hidden;
   }
+
   // chevron transformation when menu is open
   .p-navigation__item--dropdown-toggle {
     &.is-selected {
       &::after {
         transform: rotate(-180deg);
       }
+
+      .p-navigation__link::before {
+        @media (max-width: $breakpoint-navigation-threshold) {
+          display: none;
+        }
+      }
     }
   }
+  
   .p-navigation.has-menu-open {
     .p-navigation__row {
       .p-navigation__nav {
