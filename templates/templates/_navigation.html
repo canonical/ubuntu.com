@@ -29,7 +29,7 @@
         </li>
       </ul>
     </div>
-    <nav class="p-navigation__nav" aria-label="Categories">
+    <nav class="p-navigation__nav js-show-nav u-hide" aria-label="Categories">
       <ul class="p-navigation__items">
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
           <a class="p-navigation__link" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
@@ -134,6 +134,22 @@
 {% endif %}
 {% endif %}
 <script>
+  var nav = document.querySelector('.js-show-nav');
+  var hash = window.location.hash;
+  nav.classList.remove('u-hide')
+
+  // If the page loads with a preselected hash load and open the menu
+  if (hash) {
+    try {
+      var selected = nav.querySelector(hash);
+    } catch(error) {
+      console.warn("Hash " + hash + " not found in topnav");
+    }
+    if (selected) {
+      selected.onmouseover();
+    }
+  }
+
   document.addEventListener('mousewheel', function(e) {
     if (window.scrollY <= 0) {
       document.body.style.transform = 'translateY(0px)';
