@@ -12,6 +12,10 @@
   body:not(.navigation-lock) {
     transform: translateY(-33px);
     transition: transform 0.25s;
+
+    @media (min-width: $breakpoint-x-large) {
+      transform: translateY(-37px);
+    }
   }
 
   .p-navigation {
