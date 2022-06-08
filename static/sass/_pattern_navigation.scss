@@ -120,6 +120,7 @@
         position: absolute;
         top: 2rem;
         width: 100%;
+
         .p-search-box {
           margin: 0;
           max-width: 50rem;
@@ -137,13 +138,28 @@
       }
     }
   }
+
   .p-navigation.is-secondary {
     z-index: 9;
+
+    .p-navigation__nav.is-open {
+      display: flex;
+
+      .p-navigation__items {
+        display: block;
+      }
+    }
+
+    .p-navigation__toggle--open.is-open {
+      transform: rotate(-180deg);
+    }
   }
+
   .p-navigation.is-reduced {
     @extend %small-text;
 
     margin-bottom: 0;
+
     .p-navigation__user {
       .p-navigation__link span {
         display: none;
@@ -164,6 +180,7 @@
         padding-top: 0.5rem;
       }
     }
+
     .p-navigation__banner {
       background-color: #111;
 
@@ -176,6 +193,7 @@
         }
       }
     }
+
     .p-navigation__link--search-toggle {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
@@ -184,12 +202,15 @@
         top: 0.75rem;
       }
     }
+
     @media (min-width: $breakpoint-navigation-threshold) {
       background-color: $color-dark;
       margin-bottom: 0;
+
       .p-navigation__item {
         color: $color-mid-light;
       }
+
       .p-navigation__link {
         color: $color-mid-light;
         font-weight: 300;
@@ -197,6 +218,7 @@
         padding: 0.5rem 2rem 0.5rem 1rem;
         transition: none;
       }
+
       .p-navigation__banner {
         .p-navigation__tagged-logo {
           .p-navigation__link {
@@ -209,28 +231,35 @@
         color: $color-mid-light;
         line-height: 1rem;
         padding: 0.5rem 2rem 0.5rem 0;
+
         &::after {
           color: $color-mid-light;
           top: 0.5rem;
         }
+
         .p-navigation__search-label {
           font-size: 0.875rem;
           font-weight: 300;
           padding-left: 0.5rem;
         }
       }
+
       .p-navigation__item--dropdown-toggle {
         &::after {
           top: 0.5rem;
         }
+
         &.is-selected {
           background-color: rgba(255, 255, 255, 0.1);
+
           &::after {
             transform: rotate(-180deg);
           }
+
           .p-navigation__link {
             color: $color-x-light;
           }
+
           .p-navigation__link::before {
             display: none;
           }
