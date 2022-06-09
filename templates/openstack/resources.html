@@ -188,7 +188,7 @@
         <input class="p-slider__input" type="text" maxlength="5" id="slider3-input" tabindex="0">
       </div>
       <p>
-        <a class="p-button--positive" href="/openstack/pricing-calculator">View estimate</a>
+        <a class="p-button--positive" id="estimateURL" href="/openstack/pricing-calculator?instances=1000">View estimate</a>
       </p>
     </div>
     <div class="col-5 u-vertically-center">
@@ -293,7 +293,7 @@ function equaliseValues(receive, give) {
 function initSlider(slider) {
   var input = document.getElementById(slider.id + '-input');
   renderSlider(slider);
-
+  
   if (input) {
     // Synchronise values of input and slider
     equaliseValues(input, slider);
@@ -301,8 +301,10 @@ function initSlider(slider) {
       if (!input.value) {
         input.value = 0;
       }
+      console.log("here")
       equaliseValues(slider, input);
       renderSlider(slider);
+      updateCalculatorValue(input.value);
     });
   }
 
@@ -312,6 +314,14 @@ function initSlider(slider) {
     }
     renderSlider(slider);
   });
+}
+
+function updateCalculatorValue(value){
+  // update cta url with value
+  const ctaButtom = document.getElementById("estimateURL");
+  const currentURL = new URL(ctaButtom.getAttribute("href"));
+  let params = new URLSearchParams(currentURL.search);
+  console.log(currentURL)
 }
 
 // Setup all sliders on the page.
