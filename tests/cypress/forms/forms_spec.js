@@ -61,8 +61,8 @@ context("Static marketo forms", () => {
     cy.findByRole("heading", { name: /Thank you/ });
   });
 
-  it("should check contact form on /cube/contact-us", () => {
-    cy.visit("/cube/contact-us");
+  it("should check contact form on /credentialing/contact-us", () => {
+    cy.visit("/credentialing/contact-us");
     cy.acceptCookiePolicy();
     cy.findByLabelText(/First name:/).type("Test");
     cy.findByLabelText(/Last name:/).type("Test");
@@ -104,31 +104,6 @@ context("Interactive marketo forms", () => {
         });
         cy.url().should("include", "#success");
       });
-    }
-  );
-
-  it(
-    "should check interactive contact modal on /cube",
-    { scrollBehavior: "center" },
-    () => {
-      cy.visit("/cube");
-      cy.acceptCookiePolicy();
-      cy.findByTestId("interactive-form-link").click();
-      cy.findByLabelText(/First name:/).type("Test");
-      cy.findByLabelText(/Last name:/).type("Test");
-      cy.findByLabelText(/Work email:/).type("test@test.com");
-      cy.findByLabelText(/Current employer:/).type("Test");
-      cy.findByLabelText(/Employment level:/).select("Senior");
-      cy.findByLabelText(/Title:/).type("Test");
-      cy.findByLabelText(/What is your experience with Ubuntu?/).select(
-        "None or very minimal experience"
-      );
-      cy.findByTestId("form-comment").type("test test test test");
-      cy.findByLabelText(/I agree to receive information/).click({
-        force: true,
-      });
-      cy.findByText(/Join the beta/).click();
-      cy.url().should("include", "#success");
     }
   );
 
@@ -269,6 +244,22 @@ context("Interactive marketo forms", () => {
       cy.findByLabelText(/Work email:/).type("test@gmail.com");
       cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
       cy.findByTestId("form-submit").click();
+      cy.url().should("include", "#success");
+    }
+  );
+
+  // wrote separate test for /automotive page as it is an interactive single-paged form
+  it(
+    "should check interactive contact modal on /automotive",
+    () => {
+      cy.visit("/automotive");
+      cy.acceptCookiePolicy();
+      cy.findByTestId("interactive-form-link").click();
+      cy.findByLabelText(/First name/).type("Test");
+      cy.findByLabelText(/Last name:/).type("Test");
+      cy.findByLabelText(/Email address:/).type("test@gmail.com");
+      cy.findByLabelText(/Phone number:/).type("07777777777");
+      cy.findByText(/Let's discuss/).click();
       cy.url().should("include", "#success");
     }
   );
