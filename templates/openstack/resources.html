@@ -311,6 +311,7 @@ function initSlider(slider) {
   slider.addEventListener('input', function() {
     if (input) {
       equaliseValues(input, slider);
+      updateCalculatorValue(input.value);
     }
     renderSlider(slider);
   });
@@ -318,10 +319,11 @@ function initSlider(slider) {
 
 function updateCalculatorValue(value){
   // update cta url with value
-  const ctaButtom = document.getElementById("estimateURL");
-  const currentURL = new URL(ctaButtom.getAttribute("href"));
-  let params = new URLSearchParams(currentURL.search);
-  console.log(currentURL)
+  const cta = document.getElementById("estimateURL");
+  const ctaHref = cta.getAttribute("href");
+  const path = ctaHref.split("?")[0]
+
+  cta.setAttribute('href', `${path}?instances=${value}`)
 }
 
 // Setup all sliders on the page.
