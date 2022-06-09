@@ -116,7 +116,7 @@
     <div class="row">
       <div class="col-8">
         <h2>Free for personal use</h2>
-        <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a> we will gladly increase that to 50 machines.</p>
+        <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a>, we will gladly increase that to 50 machines.</p>
         <a href="/advantage" class="p-button--positive u-no-margin--bottom">Get ESM now</a>
       </div>
     </div>
@@ -175,7 +175,7 @@
         <div class="col-8">
           <h2>ESM on Azure, AWS and Google Cloud with Ubuntu Pro</h2>
           <p>
-            If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built in.
+            If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built-in.
           </p>
           <p>Learn more about Ubuntu Pro 16.04 LTS on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">Google Cloud</a></p>
         </div>
@@ -197,7 +197,19 @@
             </div>
           </div>
           <div class="row">
-            <h5 class="col-4">ESM is now enabled!</h5>
+            <h5 class="col-4">If ESM is not listed as enabled after attaching your Token, the ESM entitlement can be enabled using the UA client.</h5>
+            <div class="col-4">
+              <pre><code>sudo ua enable esm-infra</code></pre>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4">If ESM is enabled manually, the status of this entitlement can be confirmed with the UA client as well.</h5>
+            <div class="col-4">
+              <pre><code>sudo ua status</code></pre>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4 u-sv3">ESM is now enabled!</h5>
           </div>
 
           <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
@@ -259,9 +271,9 @@
     <section class="p-strip">
       <div class="row u-equal-height">
         <div class="col-6">
-          <h4>Ubuntu 16.04 LTS moving to Extended Security Maintenance period</h4>
+          <h2>Ubuntu 16.04 LTS moving to Extended Security Maintenance period</h2>
           <p>
-            Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
+            Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period in April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
           </p>
           <p><a href="/engage/16-04-ESM-webinar" class="p-button--positive">Watch the webinar</a></p>
         </div>
