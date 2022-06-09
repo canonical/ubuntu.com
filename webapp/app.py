@@ -90,6 +90,7 @@ from webapp.shop.views import (
     get_purchase_v2,
     post_stripe_invoice_id,
     get_last_purchase_ids,
+    post_purchase_calculate,
     support,
 )
 
@@ -473,6 +474,11 @@ app.add_url_rule(
     view_func=post_advantage_purchase,
     methods=["POST"],
     defaults={"preview": True},
+)
+app.add_url_rule(
+    "/account/<marketplace>/purchase/calculate",
+    view_func=post_purchase_calculate,
+    methods=["POST"],
 )
 # end of shop
 

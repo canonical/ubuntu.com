@@ -53,6 +53,13 @@ class CustomerInfo(Schema):
     tax_id = Nested(TaxIdSchema())
 
 
+class PurchaseTotalSchema(Schema):
+    currency = String(required=True)
+    subtotal = Int(required=True)
+    tax = Int()
+    total = Int(required=True)
+
+
 account_purhcase = {
     "account_id": String(),
     "captcha_value": String(requied=True),
@@ -158,4 +165,10 @@ put_contract_entitlements = {
 
 post_auto_renewal_settings = {
     "subscriptions": List(Nested(SubscriptionRenewalSchema), required=True)
+}
+
+post_purchase_calculate = {
+    "country": String(required=True),
+    "products": List(Nested(ProductSchema), required=True),
+    "has_tax": Boolean(),
 }

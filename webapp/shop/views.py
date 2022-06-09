@@ -7,6 +7,7 @@ from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.decorators import shop_decorator, SERVICES
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPI,
     UAContractsAPIError,
     UAContractsUserHasNoAccount,
     AccessForbiddenError,
@@ -16,11 +17,13 @@ from webapp.shop.api.ua_contracts.helpers import (
     to_dict,
 )
 from webapp.shop.schemas import (
+    PurchaseTotalSchema,
     post_anonymised_customer_info,
     post_customer_info,
     ensure_purchase_account,
     invoice_view,
     post_payment_methods,
+    post_purchase_calculate,
 )
 
 
@@ -276,6 +279,27 @@ def get_last_purchase_ids(advantage_mapper, **kwargs):
         )
 
     return flask.jsonify(last_purchase_ids)
+
+
+@shop_decorator(area="account", response="json")
+@use_kwargs(post_purchase_calculate, location="json")
+def post_purchase_calculate(ua_contracts_api: UAContractsAPI, **kwargs):
+    response = ua_contracts_api.post_purchase_calculate(
+        marketplace=kwargs.get("marketplace"),
+        request_body={
+            "country": kwargs.get("country"),
+            "purchaseItems": [
+                {
+                    "value": product.get("quantity"),
+                    "productListingID": product.get("product_listing_id"),
+                }
+                for product in kwargs.get("products")
+            ],
+            "hasTaxID": kwargs.get("has_tax"),
+        },
+    )
+
+    return PurchaseTotalSchema().load(response)
 
 
 @shop_decorator(area="account", response="html")
