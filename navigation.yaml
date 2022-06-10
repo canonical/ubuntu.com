@@ -214,8 +214,13 @@ raspberrypi:
 financial-services:
   title: Finance
   path: /financial-services
+  persit: True
 
   children:
+    - title: Overview
+      path: /financial-services
+    - title: Resources
+      path: /financial-services/resources
     - title: Contact us
       path: /financial-services/contact-us
       hidden: True
@@ -1900,3 +1905,4 @@ landscape:
       path: https://docs.ubuntu.com/landscape/en/
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
+
