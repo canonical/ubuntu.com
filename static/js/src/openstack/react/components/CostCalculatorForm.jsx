@@ -14,7 +14,7 @@ import CostCalculations from "./CostCalculations";
 const CostCalculatorForm = () => {
   const search = window.location.search;
   const params = new URLSearchParams(search);
-  const instanceCount = params.get('instances') || 1000;
+  const instanceCount = params.get("instances") || 1000;
   const [formState, setFormState] = useState({
     instances: { value: instanceCount, error: "" },
     vcpus: { value: 2, error: "" },

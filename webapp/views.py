@@ -564,7 +564,8 @@ def openstack_engage(engage_docs):
         resource_tags = [
             "openstack",
             "OpenStack",
-            "Openstack" "charmedopenstack",
+            "Openstack",
+            "charmedopenstack",
             "privatecloud",
         ]
 
