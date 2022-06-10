@@ -10,7 +10,7 @@ const DISA = "DISA STIG";
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate = "Extended Security Maintenance (ESM) until ";
 const MicrosoftActiveDirectory =
-  "Advanced Group Policy Object support for Microsoft Active Directory";
+  "Advanced Group Policy Object support for Microsoft Active Directory on Ubuntu Desktops";
 
 const versionDetails = {
   22.04: [
