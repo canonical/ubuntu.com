@@ -5,14 +5,14 @@
       <h2 class="p-modal__title u-sv1" id="modal-title">Talk to our Kafka experts</h2>
     </header>
     <div class="js-pagination js-pagination--1">
-      <div class="u-sv3 js-formfield">
-        <h3 class="p-heading--5">Tell us more about your Kafka use case</h3>
-        <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" aria-label="Tell us more about your Kafka use case" rows="3" placeholder="Anything you'd like to communicate about your needs or interests?"></textarea>
-      </div>
-      <h3 class="p-heading--5">How should we get in touch?</h3>
-      <div class="row u-no-padding">
-        <div class="col-6">
-          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form p-form p-form--stacked">
+      <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form p-form p-form--stacked">
+        <div class="u-sv2">
+          <h3 class="p-heading--5">Tell us more about your Kafka use case</h3>
+          <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" aria-label="Anything you'd like to communicate about your needs or interests?" rows="3" placeholder="Anything you'd like to communicate about your needs or interests?"></textarea>
+        </div>
+        <div class="row u-no-padding">
+          <div class="col-6">
+            <h3 class="p-heading--5">How should we get in touch?</h3>
             <ul class="p-list">
               <li class="p-list__item">
                 <label for="firstName">First name:</label>
@@ -74,9 +74,9 @@
             <div class="pagination">
               <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
             </div>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
     
     <div class="js-pagination js-pagination--2 u-hide">
