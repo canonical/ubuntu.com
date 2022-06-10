@@ -17,7 +17,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--bottom">
   <div class="u-fixed-width u-sv4">
     <h2>OpenStack whitepapers</h2>
   </div>
@@ -49,6 +49,9 @@
     {% for item in whitepapers_metadata%}
       {% include "openstack/_resource-card.html" %}
     {% endfor %}
+    <p style="padding-top: 1rem;">
+      <a href="/engage?resource=whitepaper&tag=openstack">View all OpenStack whitepapers&nbsp;&rsaquo;</a>
+    </p>
   </div>
 </section>
 
@@ -56,7 +59,7 @@
   <hr class="p-separator">
 </div>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="u-fixed-width u-sv4">
     <h2>OpenStack webinars</h2>
   </div>
@@ -88,6 +91,9 @@
     {% for item in webinars_metadata%}
       {% include "openstack/_resource-card.html" %}
     {% endfor %}
+    <p style="padding-top: 1rem;">
+      <a href="/engage?tag=openstack&resource=webinar">View all OpenStack webinars&nbsp;&rsaquo;</a>
+    </p>
   </div>
 </section>
 
@@ -95,7 +101,7 @@
   <hr class="p-separator">
 </div>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="u-fixed-width u-sv4">
     <h2>OpenStack case studies</h2>
   </div>
@@ -127,6 +133,9 @@
     {% for item in casestudies_metadata%}
       {% include "openstack/_resource-card.html" %}
     {% endfor %}
+    <p style="padding-top: 1rem;">
+      <a href="/engage?tag=openstack&resource=case+study">View all OpenStack case studies&nbsp;&rsaquo;</a>
+    </p>
   </div>
 </section>
 
@@ -134,14 +143,14 @@
   <hr class="p-separator">
 </div>
 
-<section class="p-strip u-no-padding--bottom">
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2>OpenStack blogs & related topics</h2>
     <p>This rich set of content covers everything from high-level product announcements to hands-on technical guides that dig into more complicated topics.</p>
     <p>Scroll through our entire library of blogs about <a href="/blog/tag/openstack">OpenStack</a> and <a href="/blog/tag/private-cloud">private-cloud</a>.</p>
   </div>
 </section>
-{% with section_classes='p-strip', heading_topic='Openstack', tag_name='openstack', tag_id='1672', limit='4' %}
+{% with section_classes='p-strip u-no-padding--bottom', heading_topic='OpenStack', tag_name='OpenStack', tag_id='1672', limit='4' %}
   {% include "shared/_latest_news_strip.html" %}
 {% endwith %}
 
@@ -149,7 +158,7 @@
   <hr class="p-separator">
 </div>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--top">
   <div class="u-fixed-width u-sv3">
     <h2>More OpenStack resources</h2>
     <p>Once you get started with OpenStack, start reading our library of resources, that includes tutorials & documentation on various topics.</p>
@@ -179,13 +188,14 @@
       <h4>Should your workloads run in a public or private cloud?</h4>
       <p>Depending on your requirements, overall CapEx and OpEx costs and cost-per-resource metrics, it may be more economical to run your workloads in the private cloud. Use the following private cloud pricing calculator to estimate the costs of running your instances in the Charmed OpenStack private cloud. And see how much you can save compared to the public clouds.</p>
       <h3 class="p-heading--4">Number of instances
-        <span style="display: inline-block;">
+        <span class="p-tooltip--top-left" aria-describedby="tp-lft">
           <i class="tco-tooltip p-icon--help"></i>
+          <span class="p-tooltip__message" role="tooltip" id="default-tooltip">A number of virtual machines that will run on the cloud.</span>
         </span>
       </h3>
       <div class="p-slider__wrapper u-sv4"> 
-        <input type="range" min="0" max="10000" value="1000" step="1" id="slider3" aria-label="Example slider, range 0 to 10000">
-        <input class="p-slider__input" type="text" maxlength="5" id="slider3-input" tabindex="0">
+        <input type="range" min="0" max="10000" value="1000" step="1" id="pricing-calculator-slider" aria-label="OpenStack pricing calculator slider, range 0 to 10000">
+        <input class="p-slider__input" type="text" maxlength="5" id="pricing-calculator-slider-input" tabindex="0">
       </div>
       <p>
         <a class="p-button--positive" id="estimateURL" href="/openstack/pricing-calculator?instances=1000">View estimate</a>
@@ -253,7 +263,7 @@
       }}
       <p class="p-heading--4">Ubuntu for public clouds</p>
       <p>
-        <a href="cloud/public-cloud">Read more&nbsp;&rsaquo;</a>
+        <a href="/cloud/public-cloud">Read more&nbsp;&rsaquo;</a>
       </p>
     </div>
   </div>
@@ -301,7 +311,6 @@ function initSlider(slider) {
       if (!input.value) {
         input.value = 0;
       }
-      console.log("here")
       equaliseValues(slider, input);
       renderSlider(slider);
       updateCalculatorValue(input.value);
@@ -323,7 +332,7 @@ function updateCalculatorValue(value){
   const ctaHref = cta.getAttribute("href");
   const path = ctaHref.split("?")[0]
 
-  cta.setAttribute('href', `${path}?instances=${value}`)
+  cta.setAttribute('href', `${path}?instances=${value}#cost-calculator-section`)
 }
 
 // Setup all sliders on the page.
