@@ -133,8 +133,10 @@
 {% endif %}
 {% endif %}
 <script>
-  var nav = document.querySelector('.js-show-nav');
-  var hash = window.location.hash;
+  const nav = document.querySelector('.js-show-nav');
+  const hash = window.location.hash;
+  const currentBubble = window.location.pathname.split('/')[1]
+
   nav.classList.remove('u-hide')
 
   // If the page loads with a preselected hash load and open the menu
@@ -149,17 +151,35 @@
     }
   }
 
+  checkTopNav();
+
   document.addEventListener('mousewheel', function(e) {
     if (window.scrollY <= 0) {
-      document.body.style.transform = 'translateY(0px)';
+      revealTopNav();
     }
   });
 
   document.addEventListener('scroll', function(e) {
     if (window.scrollY <= 0) {
-      document.body.style.transform = 'translateY(0px)';
+      revealTopNav();
     }
   });
+
+  // if the user has previously visited a page in the same bubble,
+  // and scrolled up to reveal the reduced nav, show the nav on
+  // pages within the same bubble
+  function checkTopNav() {
+    const lastBubble = sessionStorage.getItem('navBubble');
+
+    if (lastBubble === currentBubble) {
+      document.body.classList.add('navigation-lock');
+    }
+  }
+
+  function revealTopNav() {
+    document.body.style.transform = 'translateY(0px)';
+    sessionStorage.setItem('navBubble', currentBubble)
+  }
   
   function fetchDropdown(url, id) {
     var mobile = document.getElementById(id+"-mobile");
