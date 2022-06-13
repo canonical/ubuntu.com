@@ -24,10 +24,6 @@ navDropdowns.forEach(function (dropdown) {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
           dropdownContentMobile.classList.remove("u-hide");
-
-          if (window.history.pushState) {
-            window.history.pushState(null, null, "#" + dropdown.id);
-          }
         }
       } else {
         dropdown.classList.remove("is-selected");
@@ -66,20 +62,6 @@ window.addEventListener("Open menu on mobile", function (e) {
     });
   }
   window.onresize = menuOpenMobile;
-});
-
-// Close the menu if browser back button is clicked
-window.addEventListener("hashchange", function () {
-  navDropdowns.forEach(function (dropdown) {
-    var dropdownContent = document.getElementById(dropdown.id + "-content");
-    var dropdownContentMobile = document.getElementById(
-      dropdown.id + "-content-mobile"
-    );
-
-    if (dropdown.classList.contains("is-selected")) {
-      closeMenu(dropdown, dropdownContent, dropdownContentMobile);
-    }
-  });
 });
 
 if (dropdownWindowOverlay) {
@@ -123,17 +105,6 @@ function closeMenu(dropdown, dropdownContent, dropdownContentMobile) {
   dropdownContentMobile.classList.add("u-hide");
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split("#")[0]);
-  }
-}
-
-if (window.location.hash) {
-  var tabId = window.location.hash.split("#")[1];
-  var tab = document.getElementById(tabId);
-
-  if (tab) {
-    setTimeout(function () {
-      document.getElementById(tabId).click();
-    }, 0);
   }
 }
 
