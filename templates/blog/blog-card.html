@@ -2,28 +2,29 @@
   {% include 'blog/blog-card-header.html' %}
 
   <div class="blog-p-card__content">
+
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
       <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
-        {{ article.image.rendered|safe }}
+        <img src="{{ article.image.source_url }}" alt="" class="p-card__image">
       </a>
     </div>
     {% endif %}
-
+      
     <h3 class="p-heading--4">
       <a href="/blog/{{ article.slug }}">{{ article.title.rendered|safe }}</a>
     </h3>
-
+    
     <p>
       <em>by
         <a href="/blog/author/{{article.author.slug}}">{{ article.author.name }}</a>
         on {{ article.date }}</em>
-    </p>
-
+      </p>
+    </div>
+    
     {% if summary_visible or not article.image.source_url %}
     <p class="u-no-padding--bottom{% if summary_visible %} u-hide--small{% endif %}">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
     {% endif %}
-  </div>
 
   <p class="blog-p-card__footer">
     {% include 'blog/singular-category.html' %}
