@@ -238,6 +238,7 @@ class AdvantageMapper:
         customer_info: dict,
         action: str,
         products: dict,
+        offer_id: str,
         previous_purchase_id: str,
         session: dict,
         preview: bool = False,
@@ -294,6 +295,9 @@ class AdvantageMapper:
 
         if action == "trial":
             purchase_request["inTrial"] = True
+
+        if action == "offer":
+            purchase_request["offerID"] = offer_id
 
         # marketing parameters
         metadata_keys = [

@@ -62,15 +62,18 @@ class PurchaseTotalSchema(Schema):
 
 account_purhcase = {
     "account_id": String(),
-    "captcha_value": String(requied=True),
     "customer_info": Nested(CustomerInfo),
-    "products": List(Nested(ProductListing), required=True),
-    "previous_purchase_id": String(required=True),
+    "products": List(Nested(ProductListing)),
+    "offer_id": String(),
+    "previous_purchase_id": String(),
+    "captcha_value": String(),
     "marketplace": String(
         validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
         required=True,
     ),
-    "action": String(validate=validate.OneOf(["purchase", "resize", "trial"])),
+    "action": String(
+        validate=validate.OneOf(["purchase", "resize", "trial", "offer"])
+    ),
 }
 
 
