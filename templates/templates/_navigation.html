@@ -134,22 +134,9 @@
 {% endif %}
 <script>
   const nav = document.querySelector('.js-show-nav');
-  const hash = window.location.hash;
   const currentBubble = window.location.pathname.split('/')[1]
 
   nav.classList.remove('u-hide')
-
-  // If the page loads with a preselected hash load and open the menu
-  if (hash) {
-    try {
-      var selected = nav.querySelector(hash);
-    } catch(error) {
-      console.warn("Hash " + hash + " not found in topnav");
-    }
-    if (selected) {
-      selected.onmouseover();
-    }
-  }
 
   checkTopNav();
 
