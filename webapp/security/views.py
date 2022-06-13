@@ -127,6 +127,8 @@ def notices():
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
     order_by = flask.request.args.get("order", type=str)
+    limit = flask.request.args.get("limit", default=10, type=int)
+    offset = flask.request.args.get("offset", default=0, type=int)
 
     # call endpopint to get all releases
     all_releases = security_api.get_releases().get("releases")
@@ -172,14 +174,6 @@ def notices():
     if detail_filtered_notices:
         notices_query = detail_filtered_notices
 
-    # Snapshot total results for search
-    page_size = 10
-    total_results = len(notices_query)
-    total_pages = ceil(total_results / page_size)
-    offset = page * page_size - page_size
-
-    if page < 1 or 1 < page > total_pages:
-        flask.abort(404)
 
     # order notice query by publish date
     if order_by == "oldest":
@@ -189,31 +183,37 @@ def notices():
             notices_query, key=lambda d: d["published"], reverse=True
         )
 
-    # notices = (
-    #     sorted(notices_query, key=itemgetter("published"))
-    #     # .sort(notice["published"])
-    #     # .offset(offset)
-    #     # .limit(page_size)
-    #     # .all()
-    # )
+    
+    # Snapshot total results for search\
+    # import ipdb
+    # ipdb.set_trace()
+    total_results = len(notices)
+    total_pages = ceil(total_results / limit)
+    offset = page * limit - limit
+    # print("page size: ", page_size, "toral resulst: ", total_results, "toatal pages: ", total_pages, "offset: ", offset)
+
+    if page < 1 or 1 < page > total_pages:
+        flask.abort(404)
+
 
     for notice in notices:
         if notice.get("published"):
             notice["published"] = dateutil.parser.parse(
                 notice["published"]
             ).strftime("%-d %B %Y")
+            
 
     return flask.render_template(
         "security/notices.html",
         notices=notices,
         releases=releases,
-        pagination=dict(
-            current_page=page,
-            total_pages=total_pages,
-            total_results=total_results,
-            page_first_result=offset + 1,
-            page_last_result=offset + len(notices),
-        ),
+        current_page=page,
+        limit=limit,
+        total_pages=total_pages,
+        total_results=total_results,
+        page_first_result=offset + 1,
+        page_last_result=offset + len(notices),
+        page=page,
     )
 
 

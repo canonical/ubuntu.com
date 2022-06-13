@@ -62,7 +62,7 @@
     <div class="row">
       <div class="col-8">
         <h2 class="p-heading--4">
-          {{ pagination.page_first_result}} - {{ pagination.page_last_result }} of {{ pagination.total_results }} results
+          {{ page_first_result}} - {{ page_last_result }} of {{ total_results }} results
         </h2>
       </div>
       <div class="col-4 p-form p-form--inline">
@@ -85,8 +85,10 @@
         <h2>Latest Notices</h2>
       {% endif %}
       {% if notices %}
-        {% for notice in notices %}
-        {% include "security/_notice-brief.html" %}
+        {% for notice in notices %} 
+          {% if loop.index <= limit * page and loop.index >= limit * page - limit + 1 %}
+            {% include "security/_notice-brief.html" %}
+          {% endif %}
         {% endfor %}
       {% else %}
         <h2 class="p-heading--4">No notices found</h2>
@@ -98,7 +100,7 @@
     </div>
     {% endif %}
   </div>
-  {% with total_pages = pagination.total_pages, current_page=pagination.current_page %}
+  {% with total_pages = total_pages, current_page=current_page%}
     {% include "shared/_pagination.html" %}
   {% endwith %}
   {% if not search %}

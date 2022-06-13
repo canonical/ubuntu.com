@@ -86,8 +86,9 @@ class SecurityAPI:
         """
 
         try:
-            releases_response = self._get("notices.json")
+            notices_response = self._get("notices.json?limit=50")
+            print (notices_response)
         except HTTPError as error:
             raise SecurityAPIError(error)
 
-        return releases_response.json()
+        return notices_response.json()
