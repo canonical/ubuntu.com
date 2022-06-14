@@ -173,7 +173,6 @@ applications:
     num_units: 1
     trust: true
 relations:
-  - ['kubernetes-control-plane:kube-api-endpoint', 'kubernetes-worker:kube-api-endpoint']
   - ['openstack-integrator', 'kubernetes-control-plane:loadbalancer']
   - ['openstack-integrator', 'kubernetes-control-plane:openstack']
   - ['openstack-integrator', 'kubernetes-worker:openstack']

@@ -18,7 +18,7 @@ toc: False
 <div class="p-notification--caution">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading.</p>
+    <p class="p-notification__message">This page describes a specific upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading.</p>
   </div>
   <div class="p-notification__meta">
     <div class="p-notification__actions">
@@ -58,11 +58,11 @@ As with all upgrades, there is a possibility that there may be unforeseen diffic
 
 You should also make sure:
 
-- The machine from which you will perform the backup has sufficient internet access to retrieve updated software
-- Your cluster is running normally
-- You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
-- You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
-- You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.22.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.22 which may impact your workloads.
+-   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
+-   Your cluster is running normally
+-   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
+-   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.22.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.22 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -283,13 +283,13 @@ To start upgrading the Kubernetes master units, first upgrade the charm:
 juju upgrade-charm kubernetes-master
 ```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
+Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.22 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-master channel=1.19/stable
+juju config kubernetes-master channel=1.22/stable
 ```
 
-If you wanted to try a release candidate for 1.20, the channel would be `1.20/candidate`.
+If you wanted to try a release candidate for 1.22, the channel would be `1.22/candidate`.
 
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
@@ -344,7 +344,7 @@ juju upgrade-charm kubernetes-worker
 Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.19/stable
+juju config kubernetes-worker channel=1.22/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -396,7 +396,7 @@ juju upgrade-charm kubernetes-worker
 Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the master units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.12/stable
+juju config kubernetes-worker channel=1.22/stable
 ```
 
 All the units can now be upgraded by running the `upgrade` action on each one:
@@ -496,7 +496,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrading.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.22/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>

@@ -64,7 +64,7 @@ You should also make sure:
 -   Your cluster is running normally
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.19 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.24 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -95,35 +95,19 @@ By default, **Charmed Kubernetes** 1.15 and later use Containerd as the containe
 runtime. This subordinate charm can be upgraded with the command:
 
 ```bash
-juju upgrade-charm containerd
+juju upgrade-charm containerd --channel=1.24/stable
 ```
 
 <a id='upgrading-docker'> </a>
 
-### Upgrading Docker (if used)
+### Migrating to Containerd
 
-By default, **Charmed Kubernetes** 1.15 and later use Containerd as the container
-runtime. Support for the Docker container runtime was removed in 1.24. You will only
-need to upgrade the Docker runtime if you have explicitly configured it to be the
-runtime for a deployment prior to 1.24. If this is not the case, you should skip this
-section.
+Upstream support for the Docker container runtime was removed in the 1.24 release. Thus, the
+`docker` subordinate charm will no longer function from **Charmed Kubernetes** 1.24 onwards.
 
-**Charmed Kubernetes** will use the latest stable version of Docker when it is
-deployed. Since upgrading Docker can cause service disruption, there will be no
-automatic upgrades and instead this process must be triggered by the operator.
-
-Note that this upgrade step only applies to deployments which actually use the
-Docker container runtime. Versions 1.15 and later use containerd by default,
-and you should instead follow the [instructions above](#upgrading-containerd).
-
-The `kubernetes-control-plane` and `kubernetes-worker` are related to the docker subordinate
-charm where present. Whether you are running Docker on its own, or mixed with Containerd,
-the upgrade process is the same:
-
-```bash
-juju upgrade-charm docker
-```
-
+If you are upgrading from a version of **Charmed Kubernetes** that uses the `docker`
+subordinate charm for the container runtime, transition to `containerd` by following
+the steps outlined in [this section of the upgrade notes][docker2containerd].
 
 ### Upgrading etcd
 
@@ -164,7 +148,7 @@ output. Remember to add the ` .` at the end to copy to your local directory!
 You can now upgrade the **etcd** charm:
 
 ```bash
-juju upgrade-charm etcd
+juju upgrade-charm etcd --channel=1.24/stable
 ```
 
 #### 4. Upgrade etcd
@@ -190,14 +174,14 @@ The other infrastructure applications can be upgraded by running the `upgrade-ch
 command:
 
 ```bash
-juju upgrade-charm easyrsa
+juju upgrade-charm easyrsa --channel=1.24/stable
 ```
 
 Any other infrastructure charms should be upgraded in a similar way. For
 example, if you are using the flannel CNI:
 
 ```bash
-juju upgrade-charm flannel
+juju upgrade-charm flannel --channel=1.24/stable
 ```
 
 <div class="p-notification--caution is-inline">
@@ -237,7 +221,7 @@ continuity this upgrade should precede any upgrades to the **Kubernetes** contro
 worker units.
 
 ```bash
-juju upgrade-charm kubeapi-load-balancer
+juju upgrade-charm kubeapi-load-balancer --channel=1.24/stable
 ```
 
 The load balancer itself is based on NGINX, and the version reported by `juju status` is
@@ -269,13 +253,13 @@ To upgrade the current application
 juju upgrade-charm kubernetes-control-plane --channel=1.24/stable
 ```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
+Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.24 version of **Kubernetes**, you would enter:
 
 ```bash
-juju config kubernetes-control-plane channel=1.23/stable
+juju config kubernetes-control-plane channel=1.24/stable
 ```
 
-If you wanted to try a release candidate for 1.23, the channel would be `1.23/candidate`.
+If you wanted to try a release candidate for 1.24, the channel would be `1.24/candidate`.
 
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
@@ -324,13 +308,13 @@ Both methods are outlined below. The blue-green method is recommended for produc
 To begin, upgrade the kubernetes-worker charm itself:
 
 ```bash
-juju upgrade-charm kubernetes-worker
+juju upgrade-charm kubernetes-worker --channel=1.24/stable
 ```
 
 Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.23/stable
+juju config kubernetes-worker channel=1.24/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -376,13 +360,13 @@ Removing these units from the model will also release the underlying machines/in
 To proceed with an in-place upgrade, first upgrade the charm itself:
 
 ```bash
-juju upgrade-charm kubernetes-worker
+juju upgrade-charm kubernetes-worker --channel=1.24/stable
 ```
 
 Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.23/stable
+juju config kubernetes-worker channel=1.24/stable
 ```
 
 All the units can now be upgraded by running the `upgrade` action on each one:
