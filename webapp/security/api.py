@@ -59,7 +59,7 @@ class SecurityAPI:
         except HTTPError as error:
             raise SecurityAPIError(error)
 
-        return releases_response.json()
+        return releases_response.json().get("releases")
 
     def get_notice(
         self,
@@ -79,16 +79,20 @@ class SecurityAPI:
 
         return notice_response.json()
 
-    def get_notices(self):
+    def get_notices(
+        self,
+        limit: int,
+        offset: int,   
+    ):
         """
         Makes request for all releases with ongoing support,
         returns json object if found
         """
 
         try:
-            notices_response = self._get("notices.json?limit=50")
+            notices_response = self._get(f"notices.json?limit={limit}&offset={offset}")
             print (notices_response)
         except HTTPError as error:
             raise SecurityAPIError(error)
 
-        return notices_response.json()
+        return notices_response.json().get("notices")

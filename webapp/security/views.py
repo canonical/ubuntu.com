@@ -131,7 +131,7 @@ def notices():
     offset = flask.request.args.get("offset", default=0, type=int)
 
     # call endpopint to get all releases
-    all_releases = security_api.get_releases().get("releases")
+    all_releases = security_api.get_releases()
 
     # filter releases
     releases = []
@@ -141,7 +141,7 @@ def notices():
                 releases.append(single_release)
 
     # call endpoint to get notices
-    notices_query = security_api.get_notices().get("notices")
+    notices_query = security_api.get_notices(limit=limit, offset=offset)
 
     # filter notices based on release query
     release_filtered_notices = []
