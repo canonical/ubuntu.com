@@ -4,17 +4,19 @@
       display: none !important;
     }
   }
+
   @media (max-width: 1024px) {
     .dropdown-content-desktop {
       display: none !important;
     }
   }
+
   body:not(.navigation-lock) {
-    transform: translateY(-33px);
-    transition: transform 0.25s;
+    margin-top: -33px;
+    transition: margin-top 0.25s;
 
     @media (min-width: $breakpoint-x-large) {
-      transform: translateY(-37px);
+      margin-top: -37px;
     }
   }
 
