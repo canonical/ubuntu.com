@@ -12,8 +12,12 @@
   }
 
   body:not(.navigation-lock) {
-    margin-top: -33px;
+    margin-top: -41px;
     transition: margin-top 0.25s;
+
+    @media (min-width: $breakpoint-navigation-threshold) {
+      margin-top: -33px;
+    }
 
     @media (min-width: $breakpoint-x-large) {
       margin-top: -37px;
