@@ -65,6 +65,7 @@ account_purhcase = {
     "customer_info": Nested(CustomerInfo),
     "products": List(Nested(ProductListing)),
     "offer_id": String(),
+    "renewal_id": String(),
     "previous_purchase_id": String(),
     "captcha_value": String(),
     "marketplace": String(
@@ -72,7 +73,9 @@ account_purhcase = {
         required=True,
     ),
     "action": String(
-        validate=validate.OneOf(["purchase", "resize", "trial", "offer"])
+        validate=validate.OneOf(
+            ["purchase", "resize", "trial", "offer", "renewal"]
+        )
     ),
 }
 
