@@ -135,6 +135,8 @@
 <script>
   const nav = document.querySelector('.js-show-nav');
   const currentBubble = window.location.pathname.split('/')[1]
+  const skipLink = document.querySelector('.p-link--skip');
+  const reducedNav = document.querySelector('.p-navigation.is-reduced ')
 
   nav.classList.remove('u-hide')
 
@@ -151,6 +153,22 @@
       revealTopNav();
     }
   });
+
+  if (skipLink) {
+    skipLink.addEventListener('focus', function(e) {
+      if (window.scrollY <= 0) {
+        revealTopNav();
+      }
+    })
+  }
+  
+  if (reducedNav) {
+    reducedNav.addEventListener('focus', function(e) {
+      if (window.scrollY <= 0) {
+        revealTopNav();
+      }
+    })
+  }
 
   // if the user has previously visited a page in the same bubble,
   // and scrolled up to reveal the reduced nav, show the nav on
