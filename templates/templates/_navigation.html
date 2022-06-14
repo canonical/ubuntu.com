@@ -140,7 +140,7 @@
 
   checkTopNav();
 
-  document.addEventListener('mousewheel', function(e) {
+  document.addEventListener('wheel', function(e) {
     if (window.scrollY <= 0) {
       revealTopNav();
     }
@@ -164,7 +164,7 @@
   }
 
   function revealTopNav() {
-    document.body.style.transform = 'translateY(0px)';
+    document.body.style.marginTop = 0;
     sessionStorage.setItem('navBubble', currentBubble)
   }
   
