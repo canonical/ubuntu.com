@@ -505,6 +505,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
+        site_restricted_search=True,
     ),
 )
 app.add_url_rule(
