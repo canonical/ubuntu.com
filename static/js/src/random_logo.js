@@ -1,4 +1,4 @@
-let partners_logo = [
+const partners_logos = [
   {
     url: "https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
     alt: "AMD",
@@ -93,9 +93,11 @@ let partners_logo = [
 
 const logo_section_items = document.querySelector(".p-logo-section__items");
 let randomIndexArray = [];
-for (i = 1; i <= 5; i += 1) {
-  randomNum = Math.floor(Math.random() * partners_logo.length);
-  const logo = partners_logo[randomNum];
+
+for (let i = 1; i <= 5; i += 1) {
+  const randomNum = Math.floor(Math.random() * partners_logos.length);
+  const logo = partners_logos[randomNum];
+
   if (randomIndexArray.indexOf(randomNum) === -1) {
     randomIndexArray.push(randomNum);
     let element = `<div class="p-logo-section__item">
