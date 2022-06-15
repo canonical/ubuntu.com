@@ -17,7 +17,7 @@ declare global {
     isLoggedIn?: boolean;
     accountId?: string;
     tempAccountId?: string;
-    previousPurchaseIds?: string[];
+    previousPurchaseIds?: { monthly: string; yearly: string };
     handleTogglePurchaseModal?: () => void;
     productList: ProductListings;
   }

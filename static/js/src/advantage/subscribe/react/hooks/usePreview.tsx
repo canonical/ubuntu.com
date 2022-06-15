@@ -1,15 +1,20 @@
 import { useQuery } from "react-query";
 import { postPurchasePreviewData } from "../../../api/contracts";
-import useProduct from "./useProduct";
 import useStripeCustomerInfo from "../../../../PurchaseModal/hooks/useStripeCustomerInfo";
+import { useContext } from "react";
+import { FormContext } from "../utils/FormContext";
 
 const usePreview = () => {
-  const { product, quantity } = useProduct();
+  const { quantity, product } = useContext(FormContext);
   const { isError: isUserInfoError } = useStripeCustomerInfo();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["preview", product],
     async () => {
+      if (!product) {
+        throw new Error("Product missing");
+      }
+
       const res = await postPurchasePreviewData(
         window.accountId,
         [
@@ -17,7 +22,7 @@ const usePreview = () => {
             name: product.name,
             period: product.period,
             price: product.price.value,
-            product_listing_id: product.id,
+            product_listing_id: product.longId,
             quantity: quantity,
           },
         ],

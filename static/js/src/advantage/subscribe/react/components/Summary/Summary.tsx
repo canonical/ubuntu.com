@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
 import { formatter } from "../../../renderers/form-renderer";
 import usePreview from "../../hooks/usePreview";
-import useProduct from "../../hooks/useProduct";
+import { FormContext } from "../../utils/FormContext";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
-  const { product, quantity } = useProduct();
+  const { quantity, product } = useContext(FormContext);
   const { data: preview } = usePreview();
-
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
@@ -18,7 +17,7 @@ function Summary() {
       </Col>
       <Col size={8}>
         <div data-test="subtotal">
-          {formatter.format((product?.price?.value * quantity) / 100)}
+          {formatter.format(((product?.price?.value ?? 0) * quantity) / 100)}
         </div>
       </Col>
     </Row>
@@ -101,7 +100,7 @@ function Summary() {
         </Col>
         <Col size={8}>
           <div data-test="machines">
-            {quantity} x {formatter.format(product?.price?.value / 100)}
+            {quantity} x {formatter.format((product?.price?.value ?? 0) / 100)}
           </div>
         </Col>
       </Row>

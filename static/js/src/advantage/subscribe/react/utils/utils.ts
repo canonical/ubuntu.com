@@ -1,4 +1,3 @@
-import { Product } from "./utils";
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 
 interface DefaultPaymentMethod {
@@ -142,13 +141,14 @@ export type Product = {
   canBeTrialled: boolean;
   longId: string;
   name: string;
-  period: string;
+  period: Periods;
   price: {
     value: number;
     currency: string;
   };
   private: boolean;
   id: ProductIDs;
+  productID: string;
 };
 
 export type ProductListings = {

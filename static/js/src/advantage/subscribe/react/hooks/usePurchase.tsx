@@ -1,16 +1,14 @@
+import { useContext } from "react";
 import { useMutation } from "react-query";
 import { postPurchaseData } from "../../../api/contracts";
-import useProduct from "./useProduct";
+import { FormContext } from "../utils/FormContext";
 
 const usePurchase = () => {
-  const { product, quantity } = useProduct();
-
+  const { quantity, product } = useContext(FormContext);
   const mutation = useMutation(async () => {
     if (!product) {
       throw new Error("Product missing");
     }
-
-    let marketplace = window?.STATE?.product?.marketplace;
 
     const res = await postPurchaseData(
       window.accountId,
@@ -19,12 +17,12 @@ const usePurchase = () => {
           name: product.name,
           period: product.period,
           price: product.price.value,
-          product_listing_id: product.id,
+          product_listing_id: product.longId,
           quantity: quantity,
         },
       ],
       window.previousPurchaseIds?.[product.period],
-      marketplace
+      window?.STATE?.product?.marketplace
     );
 
     if (res.errors) {
