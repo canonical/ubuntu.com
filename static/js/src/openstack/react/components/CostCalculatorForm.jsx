@@ -12,8 +12,11 @@ import {
 import CostCalculations from "./CostCalculations";
 
 const CostCalculatorForm = () => {
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  const instanceCount = params.get("instances") || 1000;
   const [formState, setFormState] = useState({
-    instances: { value: 1000, error: "" },
+    instances: { value: instanceCount, error: "" },
     vcpus: { value: 2, error: "" },
     ephemeralStorage: { value: 8, error: "" },
     ram: { value: 8, error: "" },

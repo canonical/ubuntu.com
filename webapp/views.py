@@ -557,6 +557,58 @@ def openstack_install():
     )
 
 
+def openstack_engage(engage_docs):
+    def openstack_resource_data():
+        engage_docs.parser.parse()
+        metadata = engage_docs.parser.metadata
+
+        resource_tags = [
+            "openstack",
+            "OpenStack",
+            "Openstack",
+            "charmedopenstack",
+            "privatecloud",
+        ]
+
+        # filter for language, tags, publish_date
+        filtered_metadata = []
+        for item in metadata:
+            if (
+                any(tag in item["tags"] for tag in resource_tags)
+                and "en" in item["language"]
+                and item["publish_date"] != ""
+            ):
+                filtered_metadata.append(item)
+
+        # filter and seperate by type
+        whitepapers_metadata = []
+        webinars_metadata = []
+        casestudies_metadata = []
+
+        for item in filtered_metadata:
+            if "whitepaper" in item["type"]:
+                whitepapers_metadata.append(item)
+            elif "webinar" in item["type"]:
+                webinars_metadata.append(item)
+            elif "case study" in item["type"]:
+                casestudies_metadata.append(item)
+
+        # only show the latest three
+        whitepapers_metadata = whitepapers_metadata[:3]
+        webinars_metadata = webinars_metadata[:3]
+        casestudies_metadata = casestudies_metadata[:3]
+
+        return flask.render_template(
+            "openstack/resources.html",
+            metadata=metadata,
+            whitepapers_metadata=whitepapers_metadata,
+            webinars_metadata=webinars_metadata,
+            casestudies_metadata=casestudies_metadata,
+        )
+
+    return openstack_resource_data
+
+
 def build_tutorials_query(tutorials_docs):
     def tutorials_query():
         topic = flask.request.args.get("topic", default="", type=str)

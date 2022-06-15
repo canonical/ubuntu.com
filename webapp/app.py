@@ -74,6 +74,7 @@ from webapp.views import (
     thank_you,
     mirrors_query,
     build_tutorials_query,
+    openstack_engage,
 )
 
 from webapp.shop.views import (
@@ -648,6 +649,9 @@ engage_pages = EngagePages(
     blueprint_name="engage-pages",
 )
 
+app.add_url_rule(
+    "/openstack/resources", view_func=openstack_engage(engage_pages)
+)
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 app.add_url_rule(
     "/engage/<page>/thank-you",
