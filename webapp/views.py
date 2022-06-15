@@ -306,7 +306,7 @@ def build_tutorials_index(session, tutorials_docs):
                 search_engine_id=search_engine_id,
                 siteSearch="ubuntu.com/tutorials",
                 query=query,
-                site_restricted_search=True,
+                site_restricted_search=False,
             )
 
         tutorials_docs.parser.parse()
