@@ -500,15 +500,6 @@ app.add_url_rule(
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
-    "/search",
-    "search",
-    build_search_view(
-        session=session,
-        template_path="search.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"
         "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
