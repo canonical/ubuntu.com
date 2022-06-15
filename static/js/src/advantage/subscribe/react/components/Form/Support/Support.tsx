@@ -64,7 +64,7 @@ const Support = () => {
           >
             <div className="u-align-items--center">
               <span>
-                No, thanks
+                <strong>No, thanks</strong>
                 <br />
                 <small className="u-text-light">
                   Software and security updates only
@@ -83,7 +83,7 @@ const Support = () => {
           >
             <div className="u-align-items--center">
               <span>
-                24 hours, 5 days a week
+                <strong>24 hours, 5 days a week</strong>
                 <br />
                 <small className="u-text-light">Phone and ticket support</small>
               </span>
@@ -105,7 +105,7 @@ const Support = () => {
           >
             <div className="u-align-items--center">
               <span>
-                24 hours, 7 days a week
+                <strong>24 hours, 7 days a week</strong>
                 <br />
                 <small className="u-text-light">Phone and ticket support</small>
               </span>

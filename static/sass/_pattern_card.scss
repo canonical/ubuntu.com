@@ -55,19 +55,23 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+    .image-wrapper {
+      height: 48px;
+      margin-bottom: 2.4rem;
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       display: flex;
 
       > div {
+        flex: 1 1 0px
+      }
+
+     span.p-radio__label {
         display: flex;
         flex-basis: 0;
         flex-direction: column;
         flex-grow: 1;
-
-        > .image-wrapper {
-          height: 48px;
-          margin-bottom: 2.4rem;
-        }
       }
     }
   }

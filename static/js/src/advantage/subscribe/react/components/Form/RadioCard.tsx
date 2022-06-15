@@ -8,6 +8,7 @@ type Props<T> = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   radioLabel?: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
@@ -18,15 +19,16 @@ const RadioCard = <T extends string>({
   handleChange,
   disabled = false,
   radioLabel,
+  className,
   children,
 }: Props<T>) => {
   const checked = selectedValue === value;
 
   return (
     <div
-      className={`p-card--radio ${checked ? "is-selected" : ""} ${
-        disabled ? "u-disable" : ""
-      }`}
+      className={`${className ? className : "p-card--radio"} ${
+        checked ? "is-selected" : ""
+      } ${disabled ? "u-disable" : ""}`}
     >
       <label className="p-radio u-align-text--center">
         <input

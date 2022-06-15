@@ -94,6 +94,7 @@ const Version = () => {
             value={LTSVersions.jammy}
             selectedValue={version}
             handleChange={handleChange}
+            className="p-card--radio--version"
           >
             <h4>Ubuntu 22.04 LTS</h4>
           </RadioCard>
@@ -102,6 +103,7 @@ const Version = () => {
             value={LTSVersions.focal}
             selectedValue={version}
             handleChange={handleChange}
+            className="p-card--radio--version"
           >
             <h4>Ubuntu 20.04 LTS</h4>
           </RadioCard>
@@ -110,6 +112,7 @@ const Version = () => {
             value={LTSVersions.bionic}
             selectedValue={version}
             handleChange={handleChange}
+            className="p-card--radio--version"
           >
             <h4>Ubuntu 18.04 LTS</h4>
           </RadioCard>
@@ -118,6 +121,7 @@ const Version = () => {
             value={LTSVersions.xenial}
             selectedValue={version}
             handleChange={handleChange}
+            className="p-card--radio--version"
           >
             <h4>Ubuntu 16.04 LTS</h4>
           </RadioCard>
@@ -126,6 +130,7 @@ const Version = () => {
             value={LTSVersions.trusty}
             selectedValue={version}
             handleChange={handleChange}
+            className="p-card--radio--version"
           >
             <h4>Ubuntu 14.04 LTS</h4>
           </RadioCard>
