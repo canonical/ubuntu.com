@@ -16,7 +16,6 @@ let entries = {
   "sticky-nav": "./static/js/src/sticky-nav.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
-  productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
   advantageOffers: "./static/js/src/advantage/offers/app.jsx",
   openstackChart: "./static/js/src/openstack-chart.js",

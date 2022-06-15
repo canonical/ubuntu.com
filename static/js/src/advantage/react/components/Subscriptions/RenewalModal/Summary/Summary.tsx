@@ -1,8 +1,8 @@
 import React from "react";
 import { Row, Col } from "@canonical/react-components";
 import { format } from "date-fns";
-import { formatter } from "../../../../../subscribe/renderers/form-renderer";
 import { UserSubscription } from "../../../../../api/types";
+import { formatter } from "advantage/subscribe/react/utils/utils";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 

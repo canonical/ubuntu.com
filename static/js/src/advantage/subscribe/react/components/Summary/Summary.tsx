@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
-import { formatter } from "../../../renderers/form-renderer";
 import usePreview from "../../hooks/usePreview";
 import { FormContext } from "../../utils/FormContext";
+import { formatter } from "../../utils/utils";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 

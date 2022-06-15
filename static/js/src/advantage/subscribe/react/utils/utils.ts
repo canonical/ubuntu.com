@@ -156,7 +156,7 @@ export type ProductListings = {
 };
 
 export const isMonthlyAvailable = (product: Product | null) => {
-  if (!product) return false;
+  if (!product || !product.id) return false;
 
   const monthlyID = product.id.replace("yearly", "monthly");
   return !!window.productList[monthlyID as ProductIDs];
@@ -169,3 +169,8 @@ export const isPublicCloud = (type: ProductTypes) =>
 
 export const shouldShowApps = () =>
   !!window.productList["uaia-essential-physical-yearly"];
+
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});

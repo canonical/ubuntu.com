@@ -21,11 +21,11 @@
   defer
 ></script>
 
-<script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
   var productList = {
     {% for listing_id, listing in product_listings.items() %}
       "{{ listing.product.id }}-{{ listing.period }}": {
+        id: "{{ listing.product.id }}-{{ listing.period }}",
         name: "{{ listing.product.name }}",
         price: {
           value: {{ listing.price }},
