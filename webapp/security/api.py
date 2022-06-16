@@ -90,7 +90,7 @@ class SecurityAPI:
         Makes request for all releases with ongoing support,
         returns json object if found
         """
-       
+
         if release:
             try:
                 notices_response = self._get(
