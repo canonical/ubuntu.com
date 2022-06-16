@@ -2,7 +2,7 @@
 import re
 from collections import defaultdict
 from datetime import datetime
-from math import ceil
+from math import ceil, floor
 
 # Packages
 import flask
@@ -123,7 +123,6 @@ def notice(notice_id):
 
 
 def notices():
-    page = flask.request.args.get("page", default=1, type=int)
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
     order_by = flask.request.args.get("order", type=str)
@@ -133,47 +132,19 @@ def notices():
     # call endpopint to get all releases
     all_releases = security_api.get_releases()
 
+    api_call = security_api.get_notices(
+        limit=limit, offset=offset, details=details, release=release
+    )
+
+    notices_query = api_call.get("notices")
+    total_results = api_call.get("total_results")
+
     # filter releases
     releases = []
     for single_release in all_releases:
         if single_release["codename"] != "upstream":
             if single_release["version"] is not None:
                 releases.append(single_release)
-
-    # call endpoint to get notices
-    notices_query = security_api.get_notices(limit=limit, offset=offset)
-
-    # filter notices based on release query
-    release_filtered_notices = []
-    if release:
-        for notice in notices_query:
-            for notice_release in notice["releases"]:
-                if notice_release["codename"] == release:
-                    release_filtered_notices.append(notice)
-
-    # if filtered notices are not empty, set query to that
-    if release_filtered_notices:
-        notices_query = release_filtered_notices
-
-    # filter notices based on matching details
-    detail_filtered_notices = []
-
-    if details:
-        for notice in notices_query:
-            for cve in notice["cves"]:
-                if details.lower() in cve["id"].lower():
-                    detail_filtered_notices.append(notice)
-
-            if details.lower() in notice["id"].lower():
-                detail_filtered_notices.append(notice)
-            elif details.lower() in notice["description"].lower():
-                detail_filtered_notices.append(notice)
-            elif details.lower() in notice["title"].lower():
-                detail_filtered_notices.append(notice)
-
-    if detail_filtered_notices:
-        notices_query = detail_filtered_notices
-
 
     # order notice query by publish date
     if order_by == "oldest":
@@ -183,37 +154,26 @@ def notices():
             notices_query, key=lambda d: d["published"], reverse=True
         )
 
-    
-    # Snapshot total results for search\
-    # import ipdb
-    # ipdb.set_trace()
-    total_results = len(notices)
     total_pages = ceil(total_results / limit)
-    offset = page * limit - limit
-    # print("page size: ", page_size, "toral resulst: ", total_results, "toatal pages: ", total_pages, "offset: ", offset)
-
-    if page < 1 or 1 < page > total_pages:
-        flask.abort(404)
-
+    page_number = floor(offset / limit) + 1
 
     for notice in notices:
         if notice.get("published"):
             notice["published"] = dateutil.parser.parse(
                 notice["published"]
             ).strftime("%-d %B %Y")
-            
 
     return flask.render_template(
         "security/notices.html",
         notices=notices,
         releases=releases,
-        current_page=page,
+        current_page=page_number,
         limit=limit,
         total_pages=total_pages,
         total_results=total_results,
         page_first_result=offset + 1,
         page_last_result=offset + len(notices),
-        page=page,
+        offset=offset,
     )
 
 

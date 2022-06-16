@@ -3,7 +3,7 @@
     <ol class="p-pagination u-align--center">
       <li class="p-pagination__item">
         {% if current_page > 1 %}
-          <a href="?{{ modify_query({'page': current_page - 1}) }}" class="p-pagination__link--previous">
+          <a href="?{{ modify_query({'offset': offset - limit}) }}" class="p-pagination__link--previous">
             <i class="p-icon--chevron-down">Previous page</i>
           </a>
         {% else %}
@@ -16,66 +16,66 @@
       {# always show 5 pages in pagination #}
       {% if current_page > 4 and current_page == total_pages %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page - 4}) }}" class="p-pagination__link">{{ current_page - 4 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page - 5) * limit}) }}" class="p-pagination__link">{{ current_page - 4 }}</a>
         </li>
       {% endif %}
 
       {% if current_page > 3 and current_page == total_pages %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page - 3}) }}" class="p-pagination__link">{{ current_page - 3 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page - 4) * limit}) }}" class="p-pagination__link">{{ current_page - 3 }}</a>
         </li>
       {% endif %}
 
       {% if current_page > 2 %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page - 2}) }}" class="p-pagination__link">{{ current_page - 2 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page - 3) * limit}) }}" class="p-pagination__link">{{ current_page - 2 }}</a>
         </li>
       {% endif %}
 
       {% if current_page > 1 %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page - 1}) }}" class="p-pagination__link">{{ current_page - 1 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page - 2) * limit}) }}" class="p-pagination__link">{{ current_page - 1 }}</a>
         </li>
       {% endif %}
 
       {# current current_page #}
       <li class="p-pagination__item">
-        <a href="?{{ modify_query({'page': current_page }) }}" class="p-pagination__link is-active">{{ current_page }}</a>
+        <a href="?{{ modify_query({'offset': current_page - 1}) }}" class="p-pagination__link is-active">{{ current_page }}</a>
       </li>
 
       {% if current_page < total_pages %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page + 1}) }}" class="p-pagination__link">{{ current_page + 1 }}</a>
+          <a href="?{{ modify_query({'offset': current_page * limit}) }}" class="p-pagination__link">{{ current_page + 1 }}</a>
         </li>
       {% endif %}
 
       {% if current_page < total_pages - 1 %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page + 2}) }}" class="p-pagination__link">{{ current_page + 2 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page + 1) * limit}) }}" class="p-pagination__link">{{ current_page + 2 }}</a>
         </li>
       {% endif %}
 
       {% if current_page < total_pages - 2 and current_page == 1 %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page + 3}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
         </li>
       {% endif %}
 
       {% if current_page < total_pages - 3 and current_page == 1 %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page + 4}) }}" class="p-pagination__link">{{ current_page + 4 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page + 3) * limit}) }}" class="p-pagination__link">{{ current_page + 4 }}</a>
         </li>
       {% endif %}
 
       {% if current_page < total_pages - 3 and current_page == 2 %}
         <li class="p-pagination__item">
-          <a href="?{{ modify_query({'page': current_page + 3}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
+          <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
         </li>
       {% endif %}
 
       <li class="p-pagination__item">
         {% if current_page != total_pages %}
-          <a href="?{{ modify_query({'page': current_page + 1}) }}" class="p-pagination__link--next">
+          <a href="?{{ modify_query({'offset': current_page * limit}) }}" class="p-pagination__link--next">
             <i class="p-icon--chevron-down">Next page</i>
           </a>
         {% else %}

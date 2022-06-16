@@ -86,9 +86,7 @@
       {% endif %}
       {% if notices %}
         {% for notice in notices %} 
-          {% if loop.index <= limit * page and loop.index >= limit * page - limit + 1 %}
-            {% include "security/_notice-brief.html" %}
-          {% endif %}
+          {% include "security/_notice-brief.html" %}
         {% endfor %}
       {% else %}
         <h2 class="p-heading--4">No notices found</h2>
@@ -100,7 +98,7 @@
     </div>
     {% endif %}
   </div>
-  {% with total_pages = total_pages, current_page=current_page%}
+  {% with total_pages = total_pages, current_page=current_page, offset=offset%}
     {% include "shared/_pagination.html" %}
   {% endwith %}
   {% if not search %}
