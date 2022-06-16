@@ -19,12 +19,12 @@
       <em>by
         <a href="/blog/author/{{article.author.slug}}">{{ article.author.name }}</a>
         on {{ article.date }}</em>
-      </p>
-    </div>
-    
-    {% if summary_visible or not article.image.source_url %}
-    <p class="u-no-padding--bottom{% if summary_visible %} u-hide--small{% endif %}">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
-    {% endif %}
+    </p>
+      
+      {% if summary_visible or not article.image.source_url %}
+      <p class="{% if summary_visible %} u-hide--small{% endif %}" style="padding-top:1rem;">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
+      {% endif %}
+  </div>
 
   <p class="blog-p-card__footer">
     {% include 'blog/singular-category.html' %}
