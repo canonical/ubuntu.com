@@ -129,17 +129,18 @@ def notices():
     limit = flask.request.args.get("limit", default=10, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
 
-    # call endpopint to get all releases
+    # call endpopint to get all releases and notices
     all_releases = security_api.get_releases()
 
     api_call = security_api.get_notices(
         limit=limit, offset=offset, details=details, release=release
     )
 
+    # get notices and total results from response object
     notices_query = api_call.get("notices")
     total_results = api_call.get("total_results")
 
-    # filter releases
+    # filter releases for dropdown
     releases = []
     for single_release in all_releases:
         if single_release["codename"] != "upstream":

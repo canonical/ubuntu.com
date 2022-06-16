@@ -103,7 +103,6 @@ class SecurityAPI:
                 notices_response = self._get(
                     f"notices.json?limit={limit}&offset={offset}&details={details}"
                 )
-                print(notices_response.json().get("total_results"))
             except HTTPError as error:
                 raise SecurityAPIError(error)
 
