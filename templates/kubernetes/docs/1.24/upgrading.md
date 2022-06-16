@@ -45,7 +45,7 @@ You should also make sure:
 -   Your cluster is running normally
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.22 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.24 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -60,19 +60,18 @@ The applications which run alongside the core Kubernetes components can be upgra
 
 This includes:
 
+- containerd
 - easyrsa
 - etcd
-- flannel, calico or other CNI charms
+- calico, flannel or other CNI charms
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
-
-
 
 <a id='upgrading-containerd'> </a>
 
 ### Upgrading Containerd
 
-By default, Versions 1.15 and later use Containerd as the container
+By default, **Charmed Kubernetes** 1.15 and later use Containerd as the container
 runtime. This subordinate charm can be upgraded with the command:
 
 ```bash
@@ -81,10 +80,14 @@ juju upgrade-charm containerd --switch ch:containerd --channel 1.24/stable
 
 <a id='upgrading-docker'> </a>
 
-### Docker deprecation
+### Migrating to Containerd
 
-By default, versions of Charmed Kubernetes since 1.15 use the Containerd
-runtime. The Docker runtime is no longer supported.
+Upstream support for the Docker container runtime was removed in the 1.24 release. Thus, the
+`docker` subordinate charm will no longer function from **Charmed Kubernetes** 1.24 onwards.
+
+If you are upgrading from a version of **Charmed Kubernetes** that uses the `docker`
+subordinate charm for the container runtime, transition to `containerd` by following
+the steps outlined in [this section of the upgrade notes][docker2containerd].
 
 ### Upgrading etcd
 
@@ -148,7 +151,7 @@ juju config etcd channel=3.4/stable
 ### Upgrading additional components
 
 The other infrastructure applications can be upgraded by running the `upgrade-charm`
-command. However, unlike previous upgrades, you will need to use `--switch` to reset the source to charmhub.io :
+command. However, unlike previous upgrades, you will need to use `--switch` to reset the source to charmhub.io:
 
 ```bash
 juju upgrade-charm easyrsa --switch ch:easyrsa --channel 1.24/stable
@@ -428,7 +431,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 <div class="p-notification--information">
   <div class="p-notification__content">
     <p class="p-notification__message">We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrading.md" >edit this page</a>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/1.24/upgrading.md" >edit this page</a>
     or
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
