@@ -34,12 +34,12 @@ const Support = () => {
 
   const supportPrices = {
     standard:
-      (window.productList[standardID as ProductIDs]?.price.value -
-        window.productList[essentialID as ProductIDs]?.price.value) /
+      ((window.productList[standardID as ProductIDs]?.price.value ?? 0) -
+        (window.productList[essentialID as ProductIDs]?.price.value ?? 0)) /
       100,
     advanced:
-      (window.productList[advancedID as ProductIDs]?.price.value -
-        window.productList[essentialID as ProductIDs]?.price.value) /
+      ((window.productList[advancedID as ProductIDs]?.price.value ?? 0) -
+        (window.productList[essentialID as ProductIDs]?.price.value ?? 0)) /
       100,
   };
 

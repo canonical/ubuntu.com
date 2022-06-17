@@ -45,16 +45,28 @@ const defaultValues: FormContext = {
 export const FormContext = createContext<FormContext>(defaultValues);
 
 interface FormProviderProps {
+  initialType?: ProductTypes;
+  initialVersion?: LTSVersions;
+  initialFeature?: Features;
+  initialSupport?: Support;
+  initialPeriod?: Periods;
   children: React.ReactNode;
 }
 
-export const FormProvider = ({ children }: FormProviderProps) => {
-  const [type, setType] = useState<ProductTypes>(defaultValues.type);
-  const [version, setVersion] = useState<LTSVersions>(defaultValues.version);
-  const [feature, setFeature] = useState<Features>(defaultValues.feature);
-  const [support, setSupport] = useState<Support>(defaultValues.support);
+export const FormProvider = ({
+  initialType = defaultValues.type,
+  initialVersion = defaultValues.version,
+  initialFeature = defaultValues.feature,
+  initialSupport = defaultValues.support,
+  initialPeriod = defaultValues.period,
+  children,
+}: FormProviderProps) => {
+  const [type, setType] = useState<ProductTypes>(initialType);
+  const [version, setVersion] = useState<LTSVersions>(initialVersion);
+  const [feature, setFeature] = useState<Features>(initialFeature);
+  const [support, setSupport] = useState<Support>(initialSupport);
   const [quantity, setQuantity] = useState(1);
-  const [period, setPeriod] = useState<Periods>(defaultValues.period);
+  const [period, setPeriod] = useState<Periods>(initialPeriod);
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -80,7 +92,9 @@ export const FormProvider = ({ children }: FormProviderProps) => {
       // @ts-expect-error The product ID for apps products is missing the type if it's physical ¯\_(ツ)_/¯
       setProduct(window.productList[`${feature}-${support}-${period}`]);
     } else {
-      setProduct(window.productList[`${feature}-${support}-${type}-${period}`]);
+      setProduct(
+        window.productList[`${feature}-${support}-${type}-${period}`] ?? null
+      );
     }
   }, [feature, type, support, period]);
 

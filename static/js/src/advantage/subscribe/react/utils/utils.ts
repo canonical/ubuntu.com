@@ -152,7 +152,7 @@ export type Product = {
 };
 
 export type ProductListings = {
-  [key in ProductIDs]: Product;
+  [key in ProductIDs]?: Product;
 };
 
 export const isMonthlyAvailable = (product: Product | null) => {
