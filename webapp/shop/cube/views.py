@@ -36,9 +36,6 @@ def cube_microcerts(
     badge_certification,
     **kwargs,
 ):
-    """
-    View for Microcerts homepage
-    """
     sso_user = user_info(flask.session)
     study_labs = "course-v1:CUBE+study_labs+2020"
     account = None
