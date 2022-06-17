@@ -98,7 +98,7 @@
     </div>
     {% endif %}
   </div>
-  {% with total_pages = total_pages, current_page=current_page, offset=offset%}
+  {% with total_pages = total_pages, current_page=current_page, offset=offset %}
     {% include "shared/_pagination.html" %}
   {% endwith %}
   {% if not search %}
