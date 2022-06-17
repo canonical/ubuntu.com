@@ -226,8 +226,9 @@ class AdvantageMapper:
                 captcha_value=captcha_value,
             )
 
-            self.ua_contracts_api.set_authentication_token(account.token)
-            self.ua_contracts_api.set_token_type("Bearer")
+            if account.token:
+                self.ua_contracts_api.set_authentication_token(account.token)
+                self.ua_contracts_api.set_token_type("Bearer")
 
             return account
 
@@ -238,6 +239,7 @@ class AdvantageMapper:
         customer_info: dict,
         action: str,
         products: dict,
+        offer_id: str,
         previous_purchase_id: str,
         session: dict,
         preview: bool = False,
@@ -294,6 +296,9 @@ class AdvantageMapper:
 
         if action == "trial":
             purchase_request["inTrial"] = True
+
+        if action == "offer":
+            purchase_request["offerID"] = offer_id
 
         # marketing parameters
         metadata_keys = [

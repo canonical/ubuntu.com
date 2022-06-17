@@ -80,7 +80,7 @@ class AccountSchema(BaseSchema):
 
 class EnsurePurchaseAccountSchema(BaseSchema):
     accountID = String(required=True, attribute="id")
-    token = String(required=True)
+    token = String()
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Account:

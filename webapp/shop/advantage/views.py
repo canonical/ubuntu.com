@@ -321,14 +321,15 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
             return flask.jsonify(response), 403
 
     response = advantage_mapper.post_user_purchase(
-        account_id,
-        marketplace,
-        customer_info,
-        kwargs.get("action", "purchase"),
-        kwargs.get("products"),
-        kwargs.get("previous_purchase_id"),
-        flask.session,
-        kwargs.get("preview"),
+        account_id=account_id,
+        marketplace=marketplace,
+        customer_info=customer_info,
+        action=kwargs.get("action", "purchase"),
+        products=kwargs.get("products", []),
+        offer_id=kwargs.get("offer_id"),
+        previous_purchase_id=kwargs.get("previous_purchase_id"),
+        session=flask.session,
+        preview=kwargs.get("preview"),
     )
 
     return flask.jsonify(to_dict(response)), 200
