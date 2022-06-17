@@ -507,31 +507,45 @@ def cve_index():
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
 
-    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
-
-    if is_cve_id and db_session.query(CVE).get(query.upper()):
-        return flask.redirect(f"/security/{query.lower()}")
-
-    all_releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(Release.codename != "upstream")
-        .all()
+    security_api = SecurityAPI(
+        session=session,
+        base_url="http://192.168.64.6:8030/security/",
     )
 
-    releases_query = db_session.query(Release).order_by(Release.release_date)
+    cves_query = security_api.get_cves()
 
+    is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
+
+    if is_cve_id and cves_query.get(query.upper()):
+        return flask.redirect(f"/security/{query.lower()}")
+
+    # releases in desc order
+    releases_json = security_api.get_releases().get("releases")
+    
+    # releases without "upstream"
+    all_releases = []
+    for release in releases_json:
+        if release["codename"] != "upstream":
+            all_releases.append(release)
+    
+    # empty list what will eventually store the filtered releases
+    filtered_releases = []
+    
     if versions and not any(a in ["", "current"] for a in versions):
-        releases_query = releases_query.filter(Release.codename.in_(versions))
+        # THIS LINE STILL NEEDS REFACTORING 
+        releases_json = releases_json.filter(Release.codename.in_(versions))
     else:
-        releases_query = releases_query.filter(
-            or_(
-                Release.support_expires > datetime.now(),
-                Release.esm_expires > datetime.now(),
-            )
-        ).filter(Release.codename != "upstream")
+        for release in all_releases:
+            # format dates
+            support_date = datetime.strptime(release["support_expires"], "%Y-%m-%dT%H:%M:%S")
+            esm_date = datetime.strptime(release["esm_expires"], "%Y-%m-%dT%H:%M:%S")
 
-    releases = releases_query.all()
+            # filter releases
+            if support_date > datetime.now() or esm_date > datetime.now():
+                filtered_releases.append(release)
+
+    # set releases to the list of filtered releases
+    releases = filtered_releases
 
     should_filter_by_version_and_status = (
         versions and statuses and len(versions) == len(statuses)
@@ -549,7 +563,7 @@ def cve_index():
             (
                 [version]
                 if version not in ["", "current"]
-                else [r.codename for r in releases]
+                else [release["codename"] for release in releases]
             )
             for version in versions
         ]
@@ -559,15 +573,15 @@ def cve_index():
         ]
 
     # query cves by filters
-    cves_query = db_session.query(
+    cves_query_test = cves_query(
         CVE, func.count("*").over().label("total")
     ).filter(CVE.status == "active")
 
     if priority:
-        cves_query = cves_query.filter(CVE.priority == priority)
+        cves_query_test = cves_query_test.filter(CVE.priority == priority)
 
     if query:
-        cves_query = cves_query.filter(
+        cves_query_test = cves_query_test.filter(
             or_(
                 CVE.description.ilike(f"%{query}%"),
                 CVE.ubuntu_description.ilike(f"%{query}%"),
