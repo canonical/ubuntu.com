@@ -2,7 +2,7 @@
 import re
 from collections import defaultdict
 from datetime import datetime
-from math import ceil
+from math import ceil, floor
 
 # Packages
 import flask
@@ -14,7 +14,7 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import asc, desc, or_, and_, func, case
+from sqlalchemy import desc, or_, and_, func, case
 from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm import contains_eager
 
@@ -123,62 +123,57 @@ def notice(notice_id):
 
 
 def notices():
-    page = flask.request.args.get("page", default=1, type=int)
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
     order_by = flask.request.args.get("order", type=str)
+    limit = flask.request.args.get("limit", default=10, type=int)
+    offset = flask.request.args.get("offset", default=0, type=int)
 
-    releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(Release.version.isnot(None))
-        .all()
+    # call endpopint to get all releases and notices
+    all_releases = security_api.get_releases()
+
+    notices_response = security_api.get_notices(
+        limit=limit, offset=offset, details=details, release=release
     )
-    notices_query = db_session.query(Notice)
 
-    if release:
-        notices_query = notices_query.join(Release, Notice.releases).filter(
-            Release.codename == release
-        )
+    # get notices and total results from response object
+    notices = notices_response.get("notices")
+    total_results = notices_response.get("total_results")
 
-    if details:
-        notices_query = notices_query.filter(
-            or_(
-                Notice.id.ilike(f"%{details}%"),
-                Notice.details.ilike(f"%{details}%"),
-                Notice.title.ilike(f"%{details}%"),
-                Notice.cves.any(CVE.id.ilike(f"%{details}%")),
-            )
-        )
+    # filter releases for dropdown
+    releases = []
+    for single_release in all_releases:
+        if single_release["codename"] != "upstream":
+            if single_release["version"] is not None:
+                releases.append(single_release)
 
-    # Snapshot total results for search
-    page_size = 10
-    total_results = notices_query.count()
-    total_pages = ceil(total_results / page_size)
-    offset = page * page_size - page_size
+    # order notice query by publish date
+    if order_by == "oldest":
+        notices = sorted(notices, key=lambda d: d["published"])
+    else:
+        notices = sorted(notices, key=lambda d: d["published"], reverse=True)
 
-    if page < 1 or 1 < page > total_pages:
-        flask.abort(404)
+    total_pages = ceil(total_results / limit)
+    page_number = floor(offset / limit) + 1
 
-    sort = asc if order_by == "oldest" else desc
-    notices = (
-        notices_query.order_by(sort(Notice.published))
-        .offset(offset)
-        .limit(page_size)
-        .all()
-    )
+    # format date
+    for notice in notices:
+        if notice.get("published"):
+            notice["published"] = dateutil.parser.parse(
+                notice["published"]
+            ).strftime("%-d %B %Y")
 
     return flask.render_template(
         "security/notices.html",
         notices=notices,
         releases=releases,
-        pagination=dict(
-            current_page=page,
-            total_pages=total_pages,
-            total_results=total_results,
-            page_first_result=offset + 1,
-            page_last_result=offset + len(notices),
-        ),
+        current_page=page_number,
+        limit=limit,
+        total_pages=total_pages,
+        total_results=total_results,
+        page_first_result=offset + 1,
+        page_last_result=offset + len(notices),
+        offset=offset,
     )
 
 
