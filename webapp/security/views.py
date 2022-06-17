@@ -132,13 +132,13 @@ def notices():
     # call endpopint to get all releases and notices
     all_releases = security_api.get_releases()
 
-    api_call = security_api.get_notices(
+    notices_response = security_api.get_notices(
         limit=limit, offset=offset, details=details, release=release
     )
 
     # get notices and total results from response object
-    notices_query = api_call.get("notices")
-    total_results = api_call.get("total_results")
+    notices = notices_response.get("notices")
+    total_results = notices_response.get("total_results")
 
     # filter releases for dropdown
     releases = []
@@ -149,15 +149,14 @@ def notices():
 
     # order notice query by publish date
     if order_by == "oldest":
-        notices = sorted(notices_query, key=lambda d: d["published"])
+        notices = sorted(notices, key=lambda d: d["published"])
     else:
-        notices = sorted(
-            notices_query, key=lambda d: d["published"], reverse=True
-        )
+        notices = sorted(notices, key=lambda d: d["published"], reverse=True)
 
     total_pages = ceil(total_results / limit)
     page_number = floor(offset / limit) + 1
 
+    # format date
     for notice in notices:
         if notice.get("published"):
             notice["published"] = dateutil.parser.parse(

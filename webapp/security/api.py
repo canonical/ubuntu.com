@@ -1,5 +1,6 @@
 from requests import Session
 from requests.exceptions import HTTPError
+from urllib.parse import urlencode
 
 
 class SecurityAPIError(HTTPError):
@@ -91,19 +92,21 @@ class SecurityAPI:
         returns json object if found
         """
 
-        if release:
-            try:
-                notices_response = self._get(
-                    f"notices.json?limit={limit}&offset={offset}&release={release}&details={details}"
-                )
-            except HTTPError as error:
-                raise SecurityAPIError(error)
-        else:
-            try:
-                notices_response = self._get(
-                    f"notices.json?limit={limit}&offset={offset}&details={details}"
-                )
-            except HTTPError as error:
-                raise SecurityAPIError(error)
+        parameters = {
+            "limit": limit,
+            "offset": offset,
+            "details": details,
+            "release": release,
+        }
+
+        # Remove falsey items from dictionary
+        parameters = {k: v for k, v in parameters.items() if v}
+
+        filtered_parameters = urlencode(parameters)
+
+        try:
+            notices_response = self._get(f"notices.json?{filtered_parameters}")
+        except HTTPError as error:
+            raise SecurityAPIError(error)
 
         return notices_response.json()
