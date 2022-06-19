@@ -121,7 +121,7 @@ As a Standard or Advanced customer, you are entitled to all of the benefits of t
         14. Each Charm version is supported for one year from the release date
         15. Canonical will not provide support for any Charms that have been modified from the [supported version](https://docs.openstack.org/charm-guide/latest/reference/openstack-charms.html)
     9. <span id="uasd-storage-support">Storage support</span>
-        16. Canonical will provide support for 72TB of raw storage per storage node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 72TB free tier of raw storage per node
+        16. Canonical will provide support for 192TB of raw storage per storage node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 192TB free tier of raw storage per node
         17. If the Node allowance is exceeded, [additional Storage Support](https://ubuntu.com/pricing/infra) needs to be acquired
         18. Customers who have purchased Storage Support for an unlimited amount of storage are limited to support in a single Ceph Cluster or Swift Cluster
     10. <span id="uasd-maas-support">MAAS support</span>
