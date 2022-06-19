@@ -277,8 +277,8 @@ def certified_home():
             else:
                 server_releases[release] = vendor[release]
 
-    if request.args:
-        query = request.args.get("q", default=None, type=str)
+    if "q" in request.args:
+        query = request.args["q"]
 
         # Old site replacements
         if set(request.args) & set(["query", "vendors"]):
