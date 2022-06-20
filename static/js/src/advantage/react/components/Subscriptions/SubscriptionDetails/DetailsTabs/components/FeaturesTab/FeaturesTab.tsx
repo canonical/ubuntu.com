@@ -56,6 +56,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
     if (!entitlementsToUpdate.includes(label)) {
       setEntitlementsToUpdate([...entitlementsToUpdate, label]);
     }
+    handleSubmit(event);
   };
 
   const handleOnCancel = () => {
