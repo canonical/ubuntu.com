@@ -222,6 +222,8 @@
 
     var navigation = e.target.closest('.p-navigation');
     if (navigation.classList.contains('has-menu-open')) {
+      var mobileContent = document.querySelector('.dropdown-content-mobile')
+      mobileContent.classList.add('u-hide')
       closeAll();
     } else {
       closeAll();
