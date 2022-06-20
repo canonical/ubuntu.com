@@ -102,6 +102,8 @@ def get_navigation(path):
                     breadcrumbs["children"] = _remove_hidden(
                         nav_section.get("children", [])
                     )
+            elif path.startswith("/tutorials/"):
+                breadcrumbs = "tutorials"
             else:
                 for grandchild in child.get("children", []):
                     if grandchild["path"] == path:

@@ -1,426 +1,42 @@
-// Vanilla 2.32 removes internal $grid-margin-width variable,
-// $grid-margin-widths map should be used instead
-$grid-margin-width: map-get($grid-margin-widths, default);
-
-$ubuntu-logo-svg-width: 5rem; // width in rems
-$ubuntu-logo-width--desktop: $ubuntu-logo-svg-width + 2 * $grid-margin-width;
-$ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
-
 @mixin ubuntu-p-navigation {
-  html {
-    overflow-x: hidden !important; // prevent horizontal overflow full width breakout
+  @media (min-width: 1024px) {
+    .dropdown-content-mobile {
+      display: none !important;
+    }
   }
 
-  %row-no-margins-on-mobile {
-    @media (max-width: $breakpoint-navigation-threshold) {
-      padding-left: 0;
-      padding-right: 0;
+  @media (max-width: 1024px) {
+    .dropdown-content-desktop {
+      display: none !important;
+    }
+  }
+
+  body:not(.navigation-lock) {
+    margin-top: -41px;
+    transition: margin-top 0.25s;
+
+    @media (min-width: $breakpoint-navigation-threshold) {
+      margin-top: -33px;
     }
 
-    @media (min-width: $breakpoint-navigation-threshold + 1) {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
+    @media (min-width: $breakpoint-x-large) {
+      margin-top: -37px;
     }
   }
 
   .p-navigation {
-    background-color: $nav-bg-color;
-    flex-direction: column;
     z-index: 40;
-
-    &__items {
-      @media (max-width: $breakpoint-x-small - 1) {
-        font-size: 0.875rem;
-      }
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        align-items: stretch;
-        display: flex;
-        justify-content: center;
-        order: 2;
-
-        .p-navigation__dropdown-link {
-          flex: 1;
-          text-align: center;
-        }
-      }
-    }
-
-    &__link-anchor {
-      @media (max-width: $breakpoint-x-small - 1) {
-        padding-left: math.div($grid-margin-width, 4) !important;
-        padding-right: math.div($grid-margin-width, 4) !important;
-      }
-    }
-
-    &__banner {
-      background-color: $color-brand;
-      padding-left: 1rem;
-
-      @media (max-width: $breakpoint-navigation-threshold - 1) {
-        padding-left: 1.5rem;
-      }
-    }
-
-    &::after {
-      // disable rule under nav
-      background-color: none;
-      height: 0;
-    }
-
-    & &__nav {
-      border-bottom: 0;
-      display: flex;
-      margin-right: 0;
-      width: 100%;
-
-      &.has-active-search {
-        @media (min-width: $breakpoint-navigation-threshold) {
-          .p-navigation__items {
-            display: none;
-          }
-        }
-      }
-    }
-
-    &__user .p-navigation__link-anchor {
-      max-width: 160px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition-duration: 0s;
-      white-space: nowrap;
-
-      @media (min-width: $breakpoint-large) {
-        max-width: 240px;
-      }
-    }
-
-    & &__link-anchor {
-      color: $color-light;
-      display: block;
-      line-height: 1.5rem;
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        padding: $spv--large $grid-margin-width $spv--large $grid-margin-width;
-      }
-
-      @media (min-width: $breakpoint-navigation-threshold + 1) {
-        padding: $spv--large 2rem $spv--large $sph--large;
-      }
-
-      &:focus,
-      &:visited {
-        background-color: $nav-bg-color;
-        color: $color-light;
-      }
-
-      &:hover {
-        background-color: darken($nav-bg-color, 3%);
-        color: $color-x-light;
-      }
-
-      .p-icon--search {
-        margin-left: 0.25rem;
-      }
-    }
-
-    .p-navigation__dropdown-link--noscript {
-      position: relative;
-
-      .p-navigation__link-anchor {
-        padding: 0.75rem 1rem;
-      }
-    }
-
-    .p-navigation__user .p-navigation__dropdown--right {
-      border-radius: 0 0 0.125rem 0.125rem;
-      box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
-
-      &[aria-hidden="true"] {
-        display: none;
-      }
-
-      &[aria-hidden="false"] {
-        display: block;
-      }
-    }
-
-    & &__row {
-      @extend %row-no-margins-on-mobile;
-
-      &.row {
-        grid-gap: 0;
-
-        @media (max-width: $breakpoint-x-small) {
-          display: block;
-          padding-left: 0 !important;
-          padding-right: 0 !important;
-        }
-      }
-    }
-
-    .p-navigation__banner .p-navigation__link-anchor {
-      @media (max-width: $breakpoint-x-small) {
-        margin-right: calc(1rem - 6px);
-      }
-
-      .p-link--inverted:visited {
-        color: $color-x-light;
-      }
-    }
-
-    &__dropdown-link {
-      position: relative;
-
-      &::after {
-        @include vf-icon-chevron(vf-url-friendly-color($color-mid-light));
-
-        background-position: top 52% right 50%;
-        background-repeat: no-repeat;
-        background-size: 0.75rem;
-        content: "";
-        height: 100%;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-        top: 0;
-        transition: transform 0.1s;
-        width: 2rem;
-        @media (max-width: $breakpoint-navigation-threshold) {
-          display: none;
-        }
-      }
-
-      &.is-selected {
-        &::after {
-          @include vf-icon-chevron(vf-url-friendly-color($color-dark));
-
-          transform: rotate(-180deg);
-        }
-
-        .p-navigation__link-anchor {
-          background-color: $color-x-light;
-          color: $color-dark;
-
-          &::after {
-            background-color: transparent;
-          }
-
-          &:focus,
-          &:visited {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-
-          &:hover {
-            background-color: $color-x-light;
-            color: $color-dark;
-          }
-        }
-      }
-    }
-
-    .p-navigation__banner .p-navigation__link-anchor:hover {
-      background-color: transparent;
-    }
-
-    &__image {
-      max-height: 1.5rem;
-      max-width: $ubuntu-logo-svg-width;
-    }
-
-    &__logo {
-      background: $color-brand;
-      height: 3.5rem;
-    }
-
-    &__search {
-      align-items: center;
-      display: inline-flex;
-      flex-grow: 1;
-      margin: 0;
-
-      @media (max-width: $breakpoint-navigation-threshold) {
-        margin-top: $sp-medium !important;
-        order: 1;
-      }
-    }
-
-    &--secondary {
-      background-color: $color-light;
-      display: flex;
-      margin-top: 0;
-      position: relative;
-      width: 100%;
-      z-index: 36;
-
-      @media (max-width: $breakpoint-x-small - 1) {
-        padding-bottom: $sp-medium;
-        padding-top: math.div($sp-small, 2);
-      }
-
-      &__banner {
-        background-color: $color-brand;
-        float: left;
-        font-weight: 300;
-
-        &:hover {
-          color: $color-x-light;
-        }
-      }
-
-      &__logo {
-        @extend %paragraph;
-
-        align-items: center;
-        color: $color-x-light;
-        display: flex;
-        font-size: 0.875rem;
-        margin-bottom: $sp-unit * 2 - map-get($nudges, nudge--p);
-        padding-top: 0.55rem;
-        position: relative;
-
-        @media (max-width: $breakpoint-navigation-threshold - 1) {
-          padding-left: $sp-small !important;
-          padding-right: 0 !important;
-        }
-
-        a {
-          border-left: 1px solid rgba(247, 247, 247, 0.3);
-          color: $color-light !important;
-          padding-left: $sp-small;
-
-          @media (max-width: $breakpoint-navigation-threshold - 1) {
-            position: relative;
-            top: 1px;
-          }
-        }
-
-        &::after {
-          // white separator inside lockup
-          @extend %vf-pseudo-border--top;
-
-          display: none;
-
-          @media only screen and (min-width: $breakpoint-navigation-threshold) {
-            background-color: $color-light;
-            display: block;
-            left: $sph--large;
-            opacity: 0.3;
-            right: $sph--large - $circle-of-friends-compensation;
-          }
-        }
-
-        @media only screen and (min-width: $breakpoint-navigation-threshold) {
-          padding-left: $sph--large;
-          padding-right: $sph--large - $circle-of-friends-compensation;
-          width: $ubuntu-logo-svg-width + 2 * $sph--large -
-            $circle-of-friends-compensation;
-        }
-      }
-
-      .breadcrumbs {
-        &--secondary {
-          @extend .p-inline-list;
-
-          display: flex;
-          flex-wrap: wrap;
-          margin-bottom: 0;
-          width: auto;
-        }
-
-        &__item {
-          color: $color-dark;
-          display: inline-flex;
-          list-style: none;
-        }
-
-        &__chevron {
-          font-size: 0.875rem;
-          padding: 0.55rem 0 0.2rem 0;
-        }
-
-        &__space {
-          display: none;
-
-          @media (max-width: $breakpoint-small - 1) {
-            display: block;
-          }
-        }
-
-        &__link {
-          font-size: math.div(
-            1rem,
-            pow($ms-ratio, 1)
-          ); //XXX: move font-sizes to map in vanilla so it can be changed globally
-
-          padding-left: $spv--medium;
-          padding-right: $spv--medium;
-          padding-top: $nudge--small;
-
-          @media (max-width: $breakpoint-x-small - 1) {
-            padding-bottom: 0;
-            padding-left: 0;
-            padding-right: 0;
-          }
-
-          @media (min-width: $breakpoint-x-small) and (max-width: $breakpoint-medium - 1) {
-            padding-bottom: map-get($sp-after, small) + $p-small-lh-diff -
-              $nudge--small;
-          }
-
-          &:first-child {
-            padding-left: 1rem;
-          }
-
-          &.p-link--active {
-            color: $color-brand;
-          }
-        }
-      }
-
-      .row {
-        @extend %row-no-margins-on-mobile;
-      }
-    }
-
-    &__toggle--open,
-    &__toggle--close {
-      color: $color-light !important;
-      font-size: 0.875rem;
-
-      @media (max-width: $breakpoint-x-small - 1) {
-        margin-right: math.div($grid-margin-width, 1.5) !important;
-      }
-    }
-
-    @media (min-width: $breakpoint-navigation-threshold) {
-      .p-search-box {
-        margin-left: 1rem;
-        max-width: none;
-
-        .p-search-box__button {
-          display: none;
-        }
-
-        .p-search-box__input:not(:valid) ~ .p-search-box__reset {
-          display: inherit;
-          margin-bottom: 0;
-          margin-top: 0.3rem;
-        }
-      }
-    }
   }
 
+  // overlay
   .dropdown-window-overlay {
     background-color: rgba(17, 17, 17, 0.4);
     height: 100%;
-    opacity: 1;
     position: fixed;
     top: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 1s ease-in-out;
     width: 100%;
-    z-index: 38;
+    z-index: 7;
   }
 
   .dropdown-window {
@@ -431,15 +47,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
     flex-direction: column;
     position: absolute;
     width: 100%;
-    z-index: 39;
-
-    &.slide-animation {
-      box-shadow: none;
-    }
-    .row {
-      padding-left: $grid-margin-width;
-      padding-right: $grid-margin-width;
-    }
+    z-index: 11;
 
     &__content {
       @extend %p-strip--very-shallow;
@@ -457,7 +65,6 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
         }
       }
     }
-
     & .p-inline-list__item {
       @extend %small-text-fixed;
 
@@ -469,16 +76,7 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
         }
       }
     }
-
-    &__summary {
-      @extend %small-text-fixed;
-
-      margin-bottom: map-get($sp-after, small) * 2 + $p-small-lh-diff -
-        $nudge--small;
-      max-width: $text-max-width;
-    }
   }
-
   .slide-animation {
     transform: translateY(-101%);
   }
@@ -486,61 +84,197 @@ $ubuntu-logo-width--mobile: $ubuntu-logo-svg-width + 2 * $sph--large;
   .fade-animation {
     opacity: 0;
     visibility: hidden;
+  }
 
-    .u-visible-nav & {
-      opacity: 1;
-      transform: none;
-      visibility: visible;
+  // chevron transformation when menu is open
+  .p-navigation__item--dropdown-toggle {
+    &.is-selected {
+      &::after {
+        transform: rotate(-180deg);
+      }
+
+      .p-navigation__link::before {
+        @media (max-width: $breakpoint-navigation-threshold) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .p-navigation.has-menu-open {
+    .p-navigation__row {
+      .p-navigation__nav {
+        background-color: transparent;
+      }
     }
   }
 }
 
-.p-card--navigation {
-  @include vf-p-card;
-
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0;
-  padding: 0;
-}
-
-.p-card--light {
-  @extend %vf-has-round-corners;
-
-  @extend %bg--light;
-
-  @include vf-p-card;
-
-  flex-direction: column;
-  margin-bottom: $spv--large;
-  padding: calc(#{$spv--large} - 1px);
-  transition: all 0.2s;
-}
-
-.u-hide--nav-threshold-down {
-  @media (max-width: $breakpoint-navigation-threshold - 1) {
-    display: none !important;
-  }
-}
-
-.u-hide--nav-threshold-up {
+@mixin ubuntu-p-navigation-reduced {
   @media (min-width: $breakpoint-navigation-threshold) {
-    display: none !important;
+    .p-navigation.is-reduced.has-search-open {
+      .p-navigation__nav .p-navigation__items {
+        display: inline-flex;
+      }
+      .p-navigation__search {
+        align-items: center;
+        background-color: #262626;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        padding: 1rem;
+        position: absolute;
+        top: 2rem;
+        width: 100%;
+
+        .p-search-box {
+          margin: 0;
+          max-width: 50rem;
+        }
+      }
+    }
   }
-}
 
-.p-logomark {
-  display: inline-block;
-  margin-bottom: $spv--large;
-  margin-right: $sph--small;
-  max-height: 4 * $sp-unit;
-  max-width: 4 * $sp-unit;
-  position: relative;
-  top: 0.1rem;
-}
+  @media (max-width: $breakpoint-navigation-threshold) {
+    .p-navigation.is-reduced.has-menu-open {
+      .p-navigation__row {
+        .p-navigation__nav {
+          background-color: #111;
+        }
+      }
+    }
+  }
 
-.p-button--small {
-  @extend %small-text;
+  .p-navigation.is-secondary {
+    z-index: 9;
 
-  padding-top: $sp-unit * 0.5 + map-get($nudges, nudge--small);
+    .p-navigation__nav.is-open {
+      display: flex;
+
+      .p-navigation__items {
+        display: block;
+      }
+    }
+
+    .p-navigation__toggle--open.is-open {
+      transform: rotate(-180deg);
+    }
+  }
+
+  .p-navigation.is-reduced {
+    @extend %small-text;
+
+    margin-bottom: 0;
+
+    .p-navigation__user {
+      .p-navigation__link span {
+        display: none;
+      }
+
+      @media (min-width: $breakpoint-large) {
+        .p-navigation__link span {
+          display: initial;
+          padding-right: 0.5rem;
+        }
+      }
+    }
+
+    .p-navigation__item {
+      .p-navigation__link {
+        color: $color-mid-light;
+        padding-bottom: 0.5rem;
+        padding-top: 0.5rem;
+      }
+    }
+
+    .p-navigation__banner {
+      background-color: #111;
+
+      .p-navigation__tagged-logo {
+        .p-navigation__link {
+          color: $color-mid-light;
+          padding-bottom: 0.5rem;
+          padding-left: 0;
+          padding-top: 0.5rem;
+        }
+      }
+    }
+
+    .p-navigation__link--search-toggle {
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+      &::after {
+        color: $color-mid-light;
+        top: 0.75rem;
+      }
+    }
+
+    @media (min-width: $breakpoint-navigation-threshold) {
+      background-color: $color-dark;
+      margin-bottom: 0;
+
+      .p-navigation__item {
+        color: $color-mid-light;
+      }
+
+      .p-navigation__link {
+        color: $color-mid-light;
+        font-weight: 300;
+        line-height: 1rem;
+        padding: 0.5rem 2rem 0.5rem 1rem;
+        transition: none;
+      }
+
+      .p-navigation__banner {
+        .p-navigation__tagged-logo {
+          .p-navigation__link {
+            padding: 0.5rem 0 0.5rem 0;
+          }
+        }
+      }
+
+      .p-navigation__link--search-toggle {
+        color: $color-mid-light;
+        line-height: 1rem;
+        padding: 0.5rem 2rem 0.5rem 0;
+
+        &::after {
+          color: $color-mid-light;
+          top: 0.5rem;
+        }
+
+        .p-navigation__search-label {
+          font-size: 0.875rem;
+          font-weight: 300;
+          padding-left: 0.5rem;
+        }
+      }
+
+      .p-navigation__item--dropdown-toggle {
+        &::after {
+          top: 0.5rem;
+        }
+
+        &.is-selected {
+          background-color: rgba(255, 255, 255, 0.1);
+
+          &::after {
+            transform: rotate(-180deg);
+          }
+
+          .p-navigation__link {
+            color: $color-x-light;
+          }
+
+          .p-navigation__link::before {
+            display: none;
+          }
+        }
+      }
+
+      .p-navigation__dropdown--right {
+        top: 2rem;
+      }
+    }
+  }
 }

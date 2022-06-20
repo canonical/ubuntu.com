@@ -1,80 +1,110 @@
 var navDropdowns = [].slice.call(
-  document.querySelectorAll(".p-navigation__dropdown-link")
+  document.querySelectorAll(".p-navigation__item--dropdown-toggle")
 );
 var dropdownWindow = document.querySelector(".dropdown-window");
 var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+var secondaryNav = document.querySelector(".p-navigation.is-secondary");
 
 navDropdowns.forEach(function (dropdown) {
   dropdown.addEventListener("click", function (event) {
     event.preventDefault();
-
     var clickedDropdown = this;
 
     dropdownWindow.classList.remove("slide-animation");
     dropdownWindowOverlay.classList.remove("fade-animation");
-
     navDropdowns.forEach(function (dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
-
+      var dropdownContentMobile = document.getElementById(
+        dropdown.id + "-content-mobile"
+      );
       if (dropdown === clickedDropdown) {
         if (dropdown.classList.contains("is-selected")) {
-          closeMenu(dropdown, dropdownContent);
+          closeMenu(dropdown, dropdownContent, dropdownContentMobile);
         } else {
           dropdown.classList.add("is-selected");
           dropdownContent.classList.remove("u-hide");
-
-          if (window.history.pushState) {
-            window.history.pushState(null, null, "#" + dropdown.id);
-          }
+          dropdownContentMobile.classList.remove("u-hide");
         }
       } else {
         dropdown.classList.remove("is-selected");
         dropdownContent.classList.add("u-hide");
+        dropdownContentMobile.classList.add("u-hide");
       }
     });
   });
 });
 
-// Close the menu if browser back button is clicked
-window.addEventListener("hashchange", function () {
-  navDropdowns.forEach(function (dropdown) {
-    const dropdownContent = document.getElementById(dropdown.id + "-content");
+var navigation = document.querySelector(".p-navigation");
 
-    if (dropdown.classList.contains("is-selected")) {
-      closeMenu(dropdown, dropdownContent);
-    }
-  });
+function mobileViewUpdate() {
+  var viewportWidth = window.innerWidth;
+  if (viewportWidth <= 1024) {
+    navDropdowns.forEach(function (dropdown) {
+      if (dropdown.classList.contains("is-selected")) {
+        navigation.classList.add("has-menu-open");
+      }
+    });
+  }
+}
+window.onload = mobileViewUpdate;
+window.onresize = mobileViewUpdate;
+
+window.addEventListener("Open menu on mobile", function (e) {
+  var navigation = document.querySelector(".p-navigation");
+  function menuOpenMobile() {
+    navDropdowns.forEach(function (dropdown) {
+      if (
+        dropdown.classList.contains("is-selected") &&
+        window.innerWidth < 1024
+      ) {
+        navigation.classList.add("has-menu-open");
+      }
+    });
+  }
+  window.onresize = menuOpenMobile;
 });
 
 if (dropdownWindowOverlay) {
   dropdownWindowOverlay.addEventListener("click", function () {
     navDropdowns.forEach(function (dropdown) {
       var dropdownContent = document.getElementById(dropdown.id + "-content");
-
+      var dropdownContentMobile = document.getElementById(
+        dropdown.id + "-content-mobile"
+      );
       if (dropdown.classList.contains("is-selected")) {
-        closeMenu(dropdown, dropdownContent);
+        dropdownContent.classList.add("u-hide");
+        closeMenu(dropdown, dropdownContent, dropdownContentMobile);
       }
     });
   });
 }
 
-function closeMenu(dropdown) {
+if (secondaryNav) {
+  var toggleMobileDropdownCTA = secondaryNav.querySelector(
+    ".p-navigation__toggle--open"
+  );
+  var mobileNavDropdown = secondaryNav.querySelector(".p-navigation__nav");
+
+  toggleMobileDropdownCTA.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (mobileNavDropdown.classList.contains("is-open")) {
+      mobileNavDropdown.classList.remove("is-open");
+      toggleMobileDropdownCTA.classList.remove("is-open");
+    } else {
+      mobileNavDropdown.classList.add("is-open");
+      toggleMobileDropdownCTA.classList.add("is-open");
+    }
+  });
+}
+
+function closeMenu(dropdown, dropdownContent, dropdownContentMobile) {
   dropdown.classList.remove("is-selected");
   dropdownWindow.classList.add("slide-animation");
   dropdownWindowOverlay.classList.add("fade-animation");
+  dropdownContentMobile.classList.add("u-hide");
   if (window.history.pushState) {
     window.history.pushState(null, null, window.location.href.split("#")[0]);
-  }
-}
-
-if (window.location.hash) {
-  var tabId = window.location.hash.split("#")[1];
-  var tab = document.getElementById(tabId);
-
-  if (tab) {
-    setTimeout(function () {
-      document.getElementById(tabId).click();
-    }, 0);
   }
 }
 
@@ -198,13 +228,13 @@ if (accountContainer && accountContainerSmall) {
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link-anchor">Sign in</a>`;
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link-anchor" style="padding-right: 1rem;">Sign in</a>`;
+        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link"><i class="p-icon--user is-light">Sign in</i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><span>Sign in</span><i class="p-icon--user is-light"></i></a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainerSmall.innerHTML = `<span class="p-navigation__link-anchor">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
-        accountContainer.innerHTML = `<div class="p-navigation__dropdown-link">
-            <a href="#" class="p-navigation__link-anchor p-navigation__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
+        accountContainerSmall.innerHTML = `<span class="p-navigation__link">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
+        accountContainer.innerHTML = `<div class="p-navigation__item--dropdown-toggle">
+            <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
               <li><a href="/advantage" class="p-navigation__dropdown-item">UA subscriptions</a></li>
               <li>
@@ -222,15 +252,21 @@ if (accountContainer && accountContainerSmall) {
       }
 
       function toggleMenu(element, show) {
-        const container = element.closest(".p-navigation__dropdown-link");
+        const dropdownWindow = document.querySelector(".dropdown-window");
+        const container = element.closest(
+          ".p-navigation__item--dropdown-toggle"
+        );
         var target = document.getElementById(
           element.getAttribute("aria-controls")
         );
 
         if (show) {
-          container.classList.add("is-selected");
+          container.classList.add("is-active");
+          [].slice.call(dropdownWindow.children).forEach((dropdownContent) => {
+            dropdownContent.classList.add("u-hide");
+          });
         } else {
-          container.classList.remove("is-selected");
+          container.classList.remove("is-active");
         }
 
         if (target) {
@@ -296,7 +332,7 @@ if (accountContainer && accountContainerSmall) {
       }
 
       setupAllContextualMenus(
-        ".p-navigation__link-anchor.p-navigation__toggle"
+        ".p-navigation__user .p-navigation__item--dropdown-toggle .p-navigation__link"
       );
     });
 }
