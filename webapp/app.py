@@ -9,7 +9,7 @@ import flask
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 
-# from canonicalwebteam.search import build_search_view
+from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
 from canonicalwebteam.discourse import (
@@ -188,7 +188,7 @@ discourse_api = DiscourseAPI(
 )
 
 # Web tribe websites custom search ID
-# search_engine_id = "adb2397a224a1fe55"
+search_engine_id = "adb2397a224a1fe55"
 
 
 # Error pages
@@ -745,16 +745,16 @@ server_docs = Docs(
 )
 
 # Server docs search
-# app.add_url_rule(
-#     "/server/docs/search",
-#     "server-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/server/docs",
-#         template_path="/server/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/server/docs/search",
+    "server-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/server/docs",
+        template_path="/server/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 server_docs.init_app(app)
 
