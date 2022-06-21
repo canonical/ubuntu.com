@@ -64,10 +64,10 @@
       display: flex;
 
       > div {
-        flex: 1 1 0px
+        flex: 1 1 0;
       }
 
-     span.p-radio__label {
+      span.p-radio__label {
         display: flex;
         flex-basis: 0;
         flex-direction: column;
@@ -146,7 +146,7 @@
       position: initial;
       text-indent: 0;
       width: 100%;
-      
+
       &::before {
         bottom: 0;
         content: "";
