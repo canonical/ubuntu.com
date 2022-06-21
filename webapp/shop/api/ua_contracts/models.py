@@ -137,8 +137,8 @@ class Invoice:
         reason: str,
         currency: str,
         status: str,
-        total: int,
         id: str,
+        total: int = 0,
         items: dict = None,
         tax_amount: int = None,
         payment_status: dict = None,
@@ -201,8 +201,10 @@ class Purchase:
         if self.invoice is None:
             return None
 
-        if self.invoice.total:
+        if self.invoice.total is not None:
             cost = self.invoice.total / 100
             currency = self.invoice.currency
 
             return f"{cost} {currency}"
+
+        return None

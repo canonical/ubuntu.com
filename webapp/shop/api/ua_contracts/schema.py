@@ -29,7 +29,7 @@ class InvoiceSchema(BaseSchema):
     status = String(required=True)
     url = String()
     currency = String(required=True)
-    total = Integer(required=True)
+    total = Integer()
     taxAmount = Integer(attribute="tax_amount")
     paymentStatus = Nested(PaymentStatusSchema, attribute="payment_status")
     lineItems = List(Nested(InvoiceItemSchema), attribute="items")
