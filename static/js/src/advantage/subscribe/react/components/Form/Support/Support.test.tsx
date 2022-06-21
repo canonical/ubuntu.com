@@ -37,16 +37,17 @@ test("Support section displays the correct price for virtual product", () => {
   screen.getByText("+$175.00 per machine per year");
 });
 
-test("Essential and advanced support are disabled if an older LTS is selected", () => {
+test("Standard and advanced support are disabled if an older LTS is selected", () => {
   render(
     <FormProvider initialVersion={LTSVersions.xenial}>
       <Support />
     </FormProvider>
   );
-  expect(document.getElementsByClassName("u-disable")).toHaveLength(2);
+  expect(screen.getByTestId("standard")).toHaveClass("u-disable");
+  expect(screen.getByTestId("advanced")).toHaveClass("u-disable");
 });
 
-test("Essential and advanced support are disabled destkop and Apps are selected", () => {
+test("Standard and advanced support are disabled destkop and Apps are selected", () => {
   render(
     <FormProvider
       initialType={ProductTypes.desktop}
@@ -55,7 +56,8 @@ test("Essential and advanced support are disabled destkop and Apps are selected"
       <Support />
     </FormProvider>
   );
-  expect(document.getElementsByClassName("u-disable")).toHaveLength(2);
+  expect(screen.getByTestId("standard")).toHaveClass("u-disable");
+  expect(screen.getByTestId("advanced")).toHaveClass("u-disable");
 });
 
 test("The section is disabled if a public cloud is selected", () => {
@@ -65,5 +67,5 @@ test("The section is disabled if a public cloud is selected", () => {
     </FormProvider>
   );
 
-  expect(document.getElementsByClassName("u-disable")).toHaveLength(1);
+  expect(screen.getByTestId("wrapper")).toHaveClass("u-disable");
 });

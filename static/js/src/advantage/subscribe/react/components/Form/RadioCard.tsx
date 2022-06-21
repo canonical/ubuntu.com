@@ -1,14 +1,16 @@
-import { RadioInput } from "@canonical/react-components";
 import React from "react";
+import { RadioInput } from "@canonical/react-components";
+import classNames from "classnames";
 
 type Props<T> = {
   name: string;
   value: T;
-  selectedValue: string;
+  selectedValue: T;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   disabled?: boolean;
   radioLabel?: string;
   className?: string;
+  dataTestid?: string;
   children?: React.ReactNode;
 };
 
@@ -20,15 +22,19 @@ const RadioCard = <T extends string>({
   disabled = false,
   radioLabel,
   className,
+  dataTestid,
   children,
 }: Props<T>) => {
   const checked = selectedValue === value;
 
   return (
     <div
-      className={`${className ? className : "p-card--radio"} ${
-        checked ? "is-selected" : ""
-      } ${disabled ? "u-disable" : ""}`}
+      className={classNames(className, {
+        "p-card--radio": !className,
+        "is-selected": checked,
+        "u-disabled": disabled,
+      })}
+      data-testid={dataTestid}
     >
       <label className="p-radio u-align-text--center">
         <input

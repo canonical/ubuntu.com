@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
 import { Card, Col, List, Row } from "@canonical/react-components";
+import classNames from "classnames";
 import RadioCard from "../RadioCard";
 import {
   isPublicCloud,
   LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
 import OlderVersionModal from "./OlderVersionModal";
-import { FormContext } from "advantage/subscribe/react/utils/FormContext";
+import {
+  defaultValues,
+  FormContext,
+} from "advantage/subscribe/react/utils/FormContext";
 
 const livepatch = "Kernel Livepatch to avoid unscheduled reboots";
 const landscape = "Ubuntu systems management with Landscape";
@@ -74,14 +78,19 @@ const versionDetails = {
 };
 
 const Version = () => {
-  const { version, setVersion, type } = useContext(FormContext);
+  const { version, setVersion, productType } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setVersion(event.target.value as LTSVersions);
   };
 
   return (
-    <div className={isPublicCloud(type) ? "u-disable" : ""}>
+    <div
+      className={classNames({
+        "u-disabled": isPublicCloud(productType),
+      })}
+      data-testid="wrapper"
+    >
       <p>
         Ubuntu Advantage is available for Ubuntu 14.04 and higher.
         <br />
@@ -144,7 +153,11 @@ const Version = () => {
           >
             <Row>
               <Col size={12}>
-                <List items={versionDetails[version ?? "18.04"]} split ticked />
+                <List
+                  items={versionDetails[version ?? defaultValues.version]}
+                  split
+                  ticked
+                />
               </Col>
             </Row>
           </Card>

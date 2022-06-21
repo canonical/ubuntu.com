@@ -11,8 +11,8 @@ import {
 } from "./utils";
 
 interface FormContext {
-  type: ProductTypes;
-  setType: React.Dispatch<React.SetStateAction<ProductTypes>>;
+  productType: ProductTypes;
+  setProductType: React.Dispatch<React.SetStateAction<ProductTypes>>;
   version: LTSVersions;
   setVersion: React.Dispatch<React.SetStateAction<LTSVersions>>;
   feature: Features;
@@ -26,9 +26,9 @@ interface FormContext {
   setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
 }
 
-const defaultValues: FormContext = {
-  type: ProductTypes.physical,
-  setType: () => {},
+export const defaultValues: FormContext = {
+  productType: ProductTypes.physical,
+  setProductType: () => {},
   version: LTSVersions.focal,
   setVersion: () => {},
   feature: Features.infra,
@@ -54,14 +54,14 @@ interface FormProviderProps {
 }
 
 export const FormProvider = ({
-  initialType = defaultValues.type,
+  initialType = defaultValues.productType,
   initialVersion = defaultValues.version,
   initialFeature = defaultValues.feature,
   initialSupport = defaultValues.support,
   initialPeriod = defaultValues.period,
   children,
 }: FormProviderProps) => {
-  const [type, setType] = useState<ProductTypes>(initialType);
+  const [productType, setProductType] = useState<ProductTypes>(initialType);
   const [version, setVersion] = useState<LTSVersions>(initialVersion);
   const [feature, setFeature] = useState<Features>(initialFeature);
   const [support, setSupport] = useState<Support>(initialSupport);
@@ -78,25 +78,26 @@ export const FormProvider = ({
   }, [version, support]);
 
   useEffect(() => {
-    if (type === ProductTypes.desktop && feature === Features.apps) {
+    if (productType === ProductTypes.desktop && feature === Features.apps) {
       setSupport(Support.essential);
     }
 
-    if (type === ProductTypes.desktop && feature === Features.pro) {
+    if (productType === ProductTypes.desktop && feature === Features.pro) {
       setFeature(defaultValues.feature);
     }
-  }, [type, feature]);
+  }, [productType, feature]);
 
   useEffect(() => {
-    if (feature === Features.apps && type === ProductTypes.physical) {
+    if (feature === Features.apps && productType === ProductTypes.physical) {
       // @ts-expect-error The product ID for apps products is missing the type if it's physical ¯\_(ツ)_/¯
-      setProduct(window.productList[`${feature}-${support}-${period}`]);
+      setProduct(window.productList[`${feature}-${support}-${period}`] ?? null);
     } else {
       setProduct(
-        window.productList[`${feature}-${support}-${type}-${period}`] ?? null
+        window.productList[`${feature}-${support}-${productType}-${period}`] ??
+          null
       );
     }
-  }, [feature, type, support, period]);
+  }, [feature, productType, support, period]);
 
   useEffect(() => {
     if (!isMonthlyAvailable(product)) {
@@ -110,8 +111,8 @@ export const FormProvider = ({
   return (
     <FormContext.Provider
       value={{
-        type,
-        setType,
+        productType,
+        setProductType,
         version,
         setVersion,
         feature,

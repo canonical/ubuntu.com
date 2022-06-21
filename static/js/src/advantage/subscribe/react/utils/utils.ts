@@ -158,7 +158,7 @@ export type ProductListings = {
 export const isMonthlyAvailable = (product: Product | null) => {
   if (!product || !product.id) return false;
 
-  const monthlyID = product.id.replace("yearly", "monthly");
+  const monthlyID = product.id.replace(Periods.yearly, Periods.monthly);
   return !!window.productList[monthlyID as ProductIDs];
 };
 

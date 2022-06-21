@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Col, Row } from "@canonical/react-components";
+import { Button, Col, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
 import {
   isPublicCloud,
@@ -37,15 +37,15 @@ const PublicCloudInfo = {
   },
 };
 
-const Type = () => {
-  const { type, setType } = useContext(FormContext);
+const ProductType = () => {
+  const { productType, setProductType } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setType(event.target.value as ProductTypes);
+    setProductType(event.target.value as ProductTypes);
   };
 
   const switchToVirtual = () => {
-    setType(ProductTypes.virtual);
+    setProductType(ProductTypes.virtual);
   };
 
   return (
@@ -55,7 +55,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.physical}
-            selectedValue={type}
+            selectedValue={productType}
             handleChange={handleChange}
           >
             <>
@@ -71,7 +71,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.aws}
-            selectedValue={type}
+            selectedValue={productType}
             handleChange={handleChange}
           >
             <>
@@ -87,7 +87,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.azure}
-            selectedValue={type}
+            selectedValue={productType}
             handleChange={handleChange}
           >
             <>
@@ -103,7 +103,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.gcp}
-            selectedValue={type}
+            selectedValue={productType}
             handleChange={handleChange}
           >
             <>
@@ -119,7 +119,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.virtual}
-            selectedValue={type}
+            selectedValue={productType}
             handleChange={handleChange}
           >
             <>
@@ -135,7 +135,7 @@ const Type = () => {
           <RadioCard
             name="type"
             value={ProductTypes.desktop}
-            selectedValue={type}
+            selectedValue={productType}
             handleChange={handleChange}
           >
             <>
@@ -149,13 +149,13 @@ const Type = () => {
             </>
           </RadioCard>
         </Col>
-        {isPublicCloud(type) ? (
+        {isPublicCloud(productType) ? (
           <Col size={12} className="public-cloud-section">
             <span>
               <strong>
                 You can buy{" "}
-                <a href={PublicCloudInfo[type]?.link}>
-                  Ubuntu Pro on the {PublicCloudInfo[type]?.name}
+                <a href={PublicCloudInfo[productType]?.link}>
+                  Ubuntu Pro on the {PublicCloudInfo[productType]?.name}
                 </a>{" "}
                 at an hourly, per-machine rate, with all UA software features
                 included.
@@ -171,9 +171,12 @@ const Type = () => {
                 Ubuntu 16.04 (Xenial)?
               </strong>
               <br />
-              Choose the &quot;<a onClick={switchToVirtual}>Other VMs</a>&quot;
-              option to purchase a subscription you can attach to your existing
-              VM.
+              Choose the &quot;
+              <Button appearance="link" onClick={switchToVirtual}>
+                Other VMs
+              </Button>
+              &quot; option to purchase a subscription you can attach to your
+              existing VM.
             </span>
           </Col>
         ) : null}
@@ -182,4 +185,4 @@ const Type = () => {
   );
 };
 
-export default Type;
+export default ProductType;

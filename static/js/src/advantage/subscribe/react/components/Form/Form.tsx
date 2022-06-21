@@ -4,7 +4,7 @@ import { shouldShowApps } from "../../utils/utils";
 import Feature from "./Feature";
 import Quantity from "./Quantity";
 import Support from "./Support";
-import Type from "./Type";
+import ProductType from "./ProductType";
 import Version from "./Version";
 
 const Form = () => {
@@ -15,7 +15,7 @@ const Form = () => {
           className="subscribe-form"
           stepped
           items={[
-            { title: "What are you setting up?", content: <Type /> },
+            { title: "What are you setting up?", content: <ProductType /> },
             {
               title: "What Ubuntu version are you running?",
               content: <Version />,

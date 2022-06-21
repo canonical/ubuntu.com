@@ -46,5 +46,5 @@ test("The section is disabled if a public cloud is selected", () => {
     </FormProvider>
   );
 
-  expect(document.getElementsByClassName("u-disable")).toHaveLength(1);
+  expect(screen.getByTestId("wrapper")).toHaveClass("u-disable");
 });

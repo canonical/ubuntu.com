@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { FormProvider } from "advantage/subscribe/react/utils/FormContext";
-import Type from "./Type";
+import ProductType from "./ProductType";
 import { ProductListings } from "advantage/subscribe/react/utils/utils";
 import { productListFixture } from "advantage/subscribe/react/utils/test/Mocks";
 
@@ -14,18 +14,18 @@ beforeAll(() => {
 test("Type selector doesn't display the public cloud section by default", () => {
   render(
     <FormProvider>
-      <Type />
+      <ProductType />
     </FormProvider>
   );
 
-  expect(screen.queryByText(/^You can buy/)).toBeNull();
+  expect(screen.queryByText(/^You can buy/)).not.toBeInTheDocument();
 });
 
 test("Type selector displays the public cloud section if a public cloud is selected", async () => {
   const user = userEvent.setup();
   render(
     <FormProvider>
-      <Type />
+      <ProductType />
     </FormProvider>
   );
 

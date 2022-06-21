@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import classNames from "classnames";
 import { Col, Row } from "@canonical/react-components";
 import RadioCard from "../RadioCard";
 import {
@@ -13,24 +14,24 @@ import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import { currencyFormatter } from "advantage/react/utils";
 
 const Support = () => {
-  const { support, setSupport, version, type, feature } = useContext(
+  const { support, setSupport, version, productType, feature } = useContext(
     FormContext
   );
 
   const isWeirdAppsID =
-    feature === Features.apps && type === ProductTypes.physical;
+    feature === Features.apps && productType === ProductTypes.physical;
 
   const essentialID = isWeirdAppsID
     ? `${feature}-essential-yearly`
-    : `${feature}-essential-${type}-yearly`;
+    : `${feature}-essential-${productType}-yearly`;
 
   const standardID = isWeirdAppsID
     ? `${feature}-standard-yearly`
-    : `${feature}-standard-${type}-yearly`;
+    : `${feature}-standard-${productType}-yearly`;
 
   const advancedID = isWeirdAppsID
     ? `${feature}-advanced-yearly`
-    : `${feature}-advanced-${type}-yearly`;
+    : `${feature}-advanced-${productType}-yearly`;
 
   const supportPrices = {
     standard:
@@ -46,14 +47,19 @@ const Support = () => {
   const onlyEssential =
     version === LTSVersions.xenial ||
     version === LTSVersions.trusty ||
-    (type === ProductTypes.desktop && feature === Features.apps);
+    (productType === ProductTypes.desktop && feature === Features.apps);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
   };
 
   return (
-    <div className={isPublicCloud(type) ? "u-disable" : ""}>
+    <div
+      className={classNames({
+        "u-disabled": isPublicCloud(productType),
+      })}
+      data-testid="wrapper"
+    >
       <Row>
         <Col size={12} className="radio-wrapper--stacking">
           <RadioCard
@@ -61,6 +67,7 @@ const Support = () => {
             value={SupportEnum.essential}
             selectedValue={support}
             handleChange={handleChange}
+            dataTestid="essential"
           >
             <div className="u-align-items--center">
               <span>
@@ -80,6 +87,7 @@ const Support = () => {
             selectedValue={support}
             handleChange={handleChange}
             disabled={onlyEssential}
+            dataTestid="standard"
           >
             <div className="u-align-items--center">
               <span>
@@ -102,6 +110,7 @@ const Support = () => {
             selectedValue={support}
             handleChange={handleChange}
             disabled={onlyEssential}
+            dataTestid="advanced"
           >
             <div className="u-align-items--center">
               <span>
