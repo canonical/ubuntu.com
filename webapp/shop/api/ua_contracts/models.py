@@ -200,7 +200,7 @@ class Purchase:
     def get_total(self):
         if self.invoice is None:
             return None
-        
+
         if self.invoice.total is not None:
             cost = self.invoice.total / 100
             currency = self.invoice.currency
