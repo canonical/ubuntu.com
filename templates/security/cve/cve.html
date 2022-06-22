@@ -199,7 +199,6 @@
                   {% endif %}
                 </tr>
               {% endfor %}
-
               {% if patches %}
                 <tr>
                   <td style="border-top: 0px"></td>
@@ -258,7 +257,6 @@
                               This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
                             {% else %}
                               {{ tag.text }}
-                              <p>here</p>
                             {% endif %}
                           {% endif %}
                         {% endfor %}
