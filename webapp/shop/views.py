@@ -2,7 +2,6 @@
 import flask
 from requests.exceptions import HTTPError
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
-from webapp.shop.api.ua_contracts.schema import PurchaseSchema
 
 # Local
 from webapp.shop.decorators import shop_decorator, SERVICES
@@ -62,9 +61,10 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
         rows_per_page = 10
     if not page:
         page = 1
-    payments_page = payments[
-        (page - 1) * rows_per_page : (page * rows_per_page)
-    ]
+    payments_slice = slice(
+        (page - 1) * rows_per_page, (page * rows_per_page)
+    )  # because black and autopep8 don't agree on rules
+    payments_page = payments[payments_slice]
 
     return flask.render_template(
         "account/invoices/index.html",
