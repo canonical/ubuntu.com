@@ -8,12 +8,15 @@
 {% block content %}
 
 <section class="p-strip--suru-topped">
- <div class="row u-equal-height u-vertically-center">
-   <div class="col-8">
-     <h1>Security Certifications & Hardening</h1>
-     <h2 class="p-heading--3">Run regulated and high security workloads on Ubuntu</h2>
-     <p>Whatever cybersecurity framework you have chosen, including ISO 27000, NIST, PCI or CIS Controls, <a href="/cloud/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a> enable your compliance and reduce your operational risk. Access automation for hardening and compliance profiles, such as CIS and DISA-STIG as well as the FIPS 140-2 and Common Criteria certifications.</p>
-     <p><a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a></p>
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-8">
+      <h1>Security Certifications & Hardening</h1>
+      <h2 class="p-heading--3">Run regulated and high security workloads on Ubuntu</h2>
+      <p>Whatever cybersecurity framework you have chosen, including ISO 27000, NIST, PCI or CIS Controls, <a href="/cloud/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a> enable your compliance and reduce your operational risk. Access automation for hardening and compliance profiles, such as CIS and DISA-STIG as well as the FIPS 140-2 and Common Criteria certifications.</p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
+        <a href="/security/certifications/docs">Read the documentation&nbsp;&rsaquo;</a>
+      </p>
    </div>
    <div class="col-4 u-hide--medium u-hide--small u-align--center">
      {{
@@ -52,6 +55,34 @@
 </section>
 
 <section class="p-strip">
+  <div class="row p-divider">
+    <div class="col-3 p-divider__block">
+      <h2 class="p-heading--3">FIPS</h2>
+      <p>A US and Canada government cryptographic module certification of compliance with the FIPS140-2 information processing standard</p>
+      <a href="/security/fips">Learn more&nbsp;&rsaquo;</a>
+    </div>
+
+    <div class="col-3 p-divider__block">
+      <h2 class="p-heading--3">Common Criteria</h2>
+      <p>3rd party attestation of the security mechanisms. Ubuntu has an EAL2 certification recognised by CCRA and EU SOGIS members</p>
+      <a href="/security/cc">Learn more&nbsp;&rsaquo;</a>
+    </div>
+
+    <div class="col-3 p-divider__block">
+      <h2 class="p-heading--3">DISA-STIG</h2>
+      <p>Ubuntu Pro and Ubuntu Advantage have the necessary automated tooling to comply with DISA-STIG guidelines on Linux</p>
+      <a href="/security/disa-stig">Learn more&nbsp;&rsaquo;</a>
+    </div>
+
+    <div class="col-3 p-divider__block">
+      <h2 class="p-heading--3">CIS</h2>
+      <p>Canonical provides Ubuntu Security Guide (USG) for automated audit and compliance with the CIS benchmarks</p>
+      <a href="/security/cis">Learn more&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="row u-vertically-center">
     <div class="col-6">
       <h2>How does Ubuntu enable your compliance with FIPS, and DISA-STIG?</h2>
@@ -200,6 +231,26 @@
    <p>Achieving and maintaining compliance is a complex and costly process that involves business processes in addition to software requirements. Ubuntu by Canonical contains software and security controls, such as disk encryption, password settings configuration, <a href="/security/fips">cryptographic compliance with FIPS140-2</a>, CIS hardening as well as <a href="/advantage">a comprehensive Enterprise software maintenance program</a>, to achieve and maintain compliance with the standard.</p>
    <a href="/security/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5865c9d2-image-document-ubuntuterms.png",
+        alt="",
+        width="166",
+        height="200",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Security Compliance and Certification documentation</h2>
+      <a href="/security/certifications/docs" class="p-button--positive">Read the docs</a>
+    </div>
+  </div>
 </section>
 
 
