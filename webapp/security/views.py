@@ -762,18 +762,22 @@ def cve(cve_id):
                 )
 
             if ":" not in patch:
-                formatted_patches.append({"type": "text", "content": patch, "name": patch})
+                formatted_patches.append(
+                    {"type": "text", "content": patch, "name": patch}
+                )
 
     # format tags
     formatted_tags = []
-   
+
     for package_name, tags in cve["tags"].items():
         for tag in tags:
             formatted_tags.append({"name": package_name, "text": tag})
 
-
     return flask.render_template(
-        "security/cve/cve.html", cve=cve, patches=formatted_patches, tags=formatted_tags
+        "security/cve/cve.html",
+        cve=cve,
+        patches=formatted_patches,
+        tags=formatted_tags,
     )
 
 
