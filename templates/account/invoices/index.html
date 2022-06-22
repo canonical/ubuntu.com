@@ -80,6 +80,31 @@
             {% endfor %}
           </tbody>
         </table>
+        <nav class="p-pagination" aria-label="Pagination">
+          <ol class="p-pagination__items">
+            <li class="p-pagination__item">
+            {% if current_page==1 %}
+              <a class="p-pagination__link--previous is-disabled" href="{{url_for('invoices_view',marketplace=marketplace,page=current_page-1)}}" title="Previous page"><i class="p-icon--chevron-down">Previous page</i></a>
+            {% else %}
+              <a class="p-pagination__link--previous" href="{{url_for('invoices_view',marketplace=marketplace,page=current_page-1)}}" title="Previous page"><i class="p-icon--chevron-down">Previous page</i></a>
+            {% endif %}
+            </li>
+            {% for i in range(total_pages) %}
+            <li class="p-pagination__item">
+              {% if current_page==i+1 %}
+              <a class="p-pagination__link is-active" href="{{url_for('invoices_view',marketplace=marketplace,page=i+1)}}" aria-label="Page {{i+1}}">{{i+1}}</a>
+              {% else %}
+              <a class="p-pagination__link" href="{{url_for('invoices_view',marketplace=marketplace,page=i+1)}}" aria-label="Page {{i+1}}">{{i+1}}</a>
+              {% endif %}
+            </li>
+            {% endfor %}
+            <li class="p-pagination__item">
+              {% if current_page==total_pages %}
+              <a class="p-pagination__link--next is-disabled" href="{{url_for('invoices_view',marketplace=marketplace,page=current_page+1)}}" title="Next page"><i class="p-icon--chevron-down">Next page</i></a>
+              {% else %}
+              <a class="p-pagination__link--next" href="{{url_for('invoices_view',marketplace=marketplace,page=current_page+1)}}" title="Next page"><i class="p-icon--chevron-down">Next page</i></a>
+              {% endif %}
+            </li>
       {% else %}
         <p>No invoices available.</p>
       {% endif %}

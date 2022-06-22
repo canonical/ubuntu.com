@@ -138,6 +138,7 @@ invoice_view = {
             ["", "canonical-ua", "canonical-cube", "blender"]
         )
     ),
+    "page": Int(),
 }
 
 post_account_user_role = {

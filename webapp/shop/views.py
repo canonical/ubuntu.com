@@ -2,6 +2,7 @@
 import flask
 from requests.exceptions import HTTPError
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
+from webapp.shop.api.ua_contracts.schema import PurchaseSchema
 
 # Local
 from webapp.shop.decorators import shop_decorator, SERVICES
@@ -41,7 +42,8 @@ def account_view(**kwargs):
 @use_kwargs(invoice_view, location="query")
 def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
-
+    page = kwargs.get("page")
+    rows_per_page = kwargs.get("rows_per_page")
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
@@ -56,10 +58,20 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             filters={"marketplace": marketplace} if marketplace else None,
         )
 
+    if not rows_per_page:
+        rows_per_page = 10
+    if not page:
+        page = 1
+    payments_page = payments[
+        (page - 1) * rows_per_page : (page * rows_per_page)
+    ]
+
     return flask.render_template(
         "account/invoices/index.html",
-        invoices=payments,
+        invoices=payments_page,
         marketplace=marketplace,
+        total_pages=(len(payments) // rows_per_page) + 1,
+        current_page=page,
     )
 
 
