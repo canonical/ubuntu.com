@@ -58,14 +58,12 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
 
     per_page = 10
 
-    payments_slice = slice(
-        (page - 1) * per_page, (page * per_page)
-    )  # because black and autopep8 don't agree on rules
-    payments_page = payments[payments_slice]
+    start_page = (page - 1) * per_page
+    end_page = page * per_page
 
     return flask.render_template(
         "account/invoices/index.html",
-        invoices=payments_page,
+        invoices=payments[start_page:end_page],
         marketplace=marketplace,
         total_pages=(len(payments) // per_page) + 1,
         current_page=page,
