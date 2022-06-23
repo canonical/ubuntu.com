@@ -9,7 +9,7 @@ import flask
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 
-# from canonicalwebteam.search import build_search_view
+from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
 from canonicalwebteam.discourse import (
@@ -188,7 +188,7 @@ discourse_api = DiscourseAPI(
 )
 
 # Web tribe websites custom search ID
-# search_engine_id = "adb2397a224a1fe55"
+search_engine_id = "adb2397a224a1fe55"
 
 
 # Error pages
@@ -501,6 +501,15 @@ app.add_url_rule(
 
 app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
+    "/search",
+    "search",
+    build_search_view(
+        session=session,
+        template_path="search.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"
         "<regex('(raspberry-pi2?|intel-nuc|vm)'):device>"
@@ -713,16 +722,16 @@ core_services_guide = Docs(
     blueprint_name="core-services-guide",
 )
 
-# app.add_url_rule(
-#     "/core/services/guide/search",
-#     "core-services-guide-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/core/services/guide",
-#         template_path="core/services/guide/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/core/services/guide/search",
+    "core-services-guide-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/core/services/guide",
+        template_path="core/services/guide/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 core_services_guide.init_app(app)
 
@@ -798,16 +807,16 @@ ceph_docs = Docs(
 ceph_docs.init_app(app)
 
 # Ceph docs search
-# app.add_url_rule(
-#     "/ceph/docs/search",
-#     "ceph-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/ceph/docs",
-#         template_path="ceph/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/ceph/docs/search",
+    "ceph-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/ceph/docs",
+        template_path="ceph/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 # Core docs
 core_docs = Docs(
@@ -819,16 +828,16 @@ core_docs = Docs(
     blueprint_name="core",
 )
 # Core docs search
-# app.add_url_rule(
-#     "/core/docs/search",
-#     "core-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/core/docs",
-#         template_path="/core/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/core/docs/search",
+    "core-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/core/docs",
+        template_path="/core/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 core_docs.init_app(app)
 
 # Core docs - Modem Manager
@@ -944,16 +953,16 @@ openstack_docs = Docs(
 )
 
 # Charmed OpenStack docs search
-# app.add_url_rule(
-#     "/openstack/docs/search",
-#     "openstack-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/openstack/docs",
-#         template_path="openstack/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/openstack/docs/search",
+    "openstack-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/openstack/docs",
+        template_path="openstack/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 openstack_docs.init_app(app)
 
@@ -970,16 +979,16 @@ security_livepatch_docs = Docs(
 )
 
 # Security Livepatch search
-# app.add_url_rule(
-#     "/security/livepatch/docs/search",
-#     "security-livepatch-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/security/livepatch/docs",
-#         template_path="/security/livepatch/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/security/livepatch/docs/search",
+    "security-livepatch-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/livepatch/docs",
+        template_path="/security/livepatch/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 security_livepatch_docs.init_app(app)
 
@@ -996,16 +1005,16 @@ security_certs_docs = Docs(
 )
 
 # Security Certifications search
-# app.add_url_rule(
-#     "/security/certifications/docs/search",
-#     "security-certs-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/security/certifications/docs",
-#         template_path="/security/certifications/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/security/certifications/docs/search",
+    "security-certs-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/certifications/docs",
+        template_path="/security/certifications/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 security_certs_docs.init_app(app)
 
