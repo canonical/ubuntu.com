@@ -17,7 +17,7 @@ from requests import Session
 from requests.exceptions import HTTPError
 
 # from canonicalwebteam.search.models import get_search_results
-from canonicalwebteam.search.views import NoAPIKeyError
+# from canonicalwebteam.search.views import NoAPIKeyError
 from bs4 import BeautifulSoup
 from werkzeug.exceptions import BadRequest
 from canonicalwebteam.discourse import (
@@ -282,21 +282,21 @@ def build_tutorials_index(session, tutorials_docs):
         page = flask.request.args.get("page", default=1, type=int)
         topic = flask.request.args.get("topic", default=None, type=str)
         sort = flask.request.args.get("sort", default=None, type=str)
-        query = flask.request.args.get("q", default=None, type=str)
+        # query = flask.request.args.get("q", default=None, type=str)
         posts_per_page = 15
 
         """
         Get search results from Google Custom Search
         """
 
-        # Web tribe websites custom search ID
+        # # Web tribe websites custom search ID
         # search_engine_id = "adb2397a224a1fe55"
 
-        # API key should always be provided as an environment variable
-        search_api_key = os.getenv("SEARCH_API_KEY")
+        # # API key should always be provided as an environment variable
+        # search_api_key = os.getenv("SEARCH_API_KEY")
 
-        if query and not search_api_key:
-            raise NoAPIKeyError("Unable to search: No API key provided")
+        # if query and not search_api_key:
+        #     raise NoAPIKeyError("Unable to search: No API key provided")
 
         # results = None
 
@@ -364,7 +364,7 @@ def build_tutorials_index(session, tutorials_docs):
             topic=topic,
             topics_list=sorted(list(topics_list)),
             sort=sort,
-            query=query,
+            # query=query,
             posts_per_page=posts_per_page,
             total_results=total_results,
             total_pages=total_pages,

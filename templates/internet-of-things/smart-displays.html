@@ -337,6 +337,10 @@
   </div>
 </section>
 
+{% with current="signage", strip_class="p-strip" %}
+  {% include "internet-of-things/shared/_links.html" %}
+{% endwith %}
+
 {% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
