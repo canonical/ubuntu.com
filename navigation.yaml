@@ -1193,45 +1193,18 @@ core:
   children:
     - title: Overview
       path: /core
-    - title: Docs
-      path: /core/docs
-      persist: True
-    - title: Tutorials
-      path: /tutorials?q=core
-    - title: Features
-      path: /core/features
-
-      children:
-        - title: Secure boot
-          path: /core/features/secure-boot
-        - title: Full disk encryption
-          path: /core/features/full-disk-encryption
-        - title: Recovery
-          path: /core/features/recovery
-        - title: OTA updates
-          path: /core/features/ota-updates
-
+    - title: Consulting
+      path: /core/services
     - title: Success stories
       path: /core/stories
-
-    - services:
-      title: Consulting
-      path: /core/services
-      persist: True
-
-      children:
-        - title: Guide
-          path: /core/services/guide
-          persist: True
-        - title: Contact us
-          path: /core/services/contact-us
-          hidden: True
-
-          children:
-            - title: Thank you
-              path: /core/services/thank-you
-              hidden: True
-
+    - title: Features
+      path: /core/features
+    - title: Secure boot
+      path: /core/features/secure-boot
+    - title: Tutorials
+      path: /tutorials?q=core
+    - title: Docs
+      path: /core/docs
     - title: Contact us
       path: /core/contact-us
       hidden: True
