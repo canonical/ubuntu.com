@@ -80,6 +80,13 @@
             {% endfor %}
           </tbody>
         </table>
+        <section class="p-strip is-shallow">
+          {% with %}
+            {% set total_pages = total_pages %}
+            {% set current_page = current_page %}
+            {% include "shared/_pagination.html" %}
+          {% endwith %}
+        </section>
       {% else %}
         <p>No invoices available.</p>
       {% endif %}
