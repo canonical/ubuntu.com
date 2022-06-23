@@ -1,7 +1,7 @@
 {% extends "landscape/base_landscape.html" %}
 
-{% block title %}Landscape | Features{% endblock %}
-{% block meta_description %}Landscape makes it more cost-effective to support large deployments of desktops, servers and cloud instances. Its functionality encompasses software management, deployment and bare-metal provisioning, inventory management and performance monitoring.{% endblock meta_description %}
+{% block title %}Landscape Features{% endblock %}
+{% block meta_description %}Landscape makes security and compliance cost-effective for any number of of desktops, servers and cloud instances. Its functionality encompasses software management, patching security vulnerabilities, inventory management and monitoring.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1AM3pioDfZapMw_HpQOYei2k7IfiChu0YN8Iwp7JzWRY/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -10,7 +10,11 @@
   <div class="row">
     <div class="col-7">
       <h1>Manage thousands of Ubuntu machines as easily as one</h1>
-      <p>Landscape is the most cost-effective way to support and administer large and growing networks of desktops, servers, and clouds. Reduce your team's efforts required for basic, day-to-day management.</p>
+      <p>Landscape is the most cost-effective way to support and administer large and growing networks of desktops, servers, and clouds. Reduce your team's efforts for day-to-day Linux server management and desktop administration.</p>
+      <p>
+        <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
+        <a href="#get-in-touch" class="p-button">Contact us</a>
+      </p>
     </div>
     <div class="col-5 u-hide--small u-hide--medium u-align--center u-vertically-center">
       {{ 
@@ -172,9 +176,16 @@
     <h2 class="u-sv3">Deploy, monitor and manage your Ubuntu systems</h2>
     <p>
       <a href="/landscape/pricing" class="p-button--positive">Get Landscape</a>
+      <a href="#get-in-touch" class="p-button">Contact us</a>
     </p>
   </div>
 </section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape" data-form-id="4473" data-lp-id="" data-return-url="/landscape/features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="/static/js/src/landscape-form.js"></script>
 
 
 {% endblock content %}
