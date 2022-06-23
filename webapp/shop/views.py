@@ -41,8 +41,7 @@ def account_view(**kwargs):
 @use_kwargs(invoice_view, location="query")
 def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
-    page = kwargs.get("page")
-    rows_per_page = kwargs.get("rows_per_page")
+    page = kwargs.get("page", 1)
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
@@ -57,12 +56,10 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             filters={"marketplace": marketplace} if marketplace else None,
         )
 
-    if not rows_per_page:
-        rows_per_page = 10
-    if not page:
-        page = 1
+    per_page = 10
+
     payments_slice = slice(
-        (page - 1) * rows_per_page, (page * rows_per_page)
+        (page - 1) * per_page, (page * per_page)
     )  # because black and autopep8 don't agree on rules
     payments_page = payments[payments_slice]
 
@@ -70,7 +67,7 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
         "account/invoices/index.html",
         invoices=payments_page,
         marketplace=marketplace,
-        total_pages=(len(payments) // rows_per_page) + 1,
+        total_pages=(len(payments) // per_page) + 1,
         current_page=page,
     )
 
