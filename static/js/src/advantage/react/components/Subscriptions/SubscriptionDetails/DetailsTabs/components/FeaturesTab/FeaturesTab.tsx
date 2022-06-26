@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   ActionButton,
   Col,
   Row,
   Tooltip,
+  Modal,
 } from "@canonical/react-components";
 
 import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
@@ -42,6 +43,10 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
     EntitlementLabel[]
   >([]);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const closeHandler = () => setModalOpen(false);
+
+
   const handleOnFeatureSwitch = (
     label: EntitlementLabel,
     event: React.ChangeEvent<HTMLInputElement>
@@ -72,6 +77,20 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
     setFeaturesFormState(featuresFormState);
   }, [subscription]);
 
+  useEffect(()=>{
+    window.addEventListener('beforeunload', alertUser);
+    window.addEventListener('unload',alertUser);
+    return () => {
+      window.removeEventListener('beforeunload', alertUser);
+      window.removeEventListener('unload', alertUser);
+    };
+  },[]);
+
+  const alertUser = (event: { preventDefault: () => void; }) =>{
+    event.preventDefault();
+    setModalOpen(true);
+  };
+
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     mutateAsync({
@@ -95,6 +114,19 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
       onSubmit={handleSubmit}
       data-testid="features-content"
     >
+      {modalOpen ? <Modal close={closeHandler} title="Confirm delete" buttonRow={<>
+                  <button className="u-no-margin--bottom" onClick={closeHandler}>
+                    Cancel
+                  </button>
+                  <button className="p-button--negative u-no-margin--bottom">
+                    Delete
+                  </button>
+                </>}>
+              <p>
+                Are you sure you want to delete user Simon? This action is
+                permanent and can not be undone.
+              </p>
+            </Modal> : null}
       <Row className="u-sv1" data-testid="included-features">
         <Col size={4}>
           {features.included.length
@@ -239,6 +271,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
           </div>
         </div>
       ) : null}
+      
     </form>
   );
 };
