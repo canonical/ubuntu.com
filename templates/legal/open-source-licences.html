@@ -7,7 +7,7 @@
 <div class="p-strip--suru-topped">
   <div class="row">
     <div class="col-8">
-      <h1>Open-source licences</h1>
+      <h1>Ubuntu open-source licences</h1>
     </div>
   </div>
 </div>
@@ -31,37 +31,37 @@
             <li class="p-side-navigation__item--title"><span class="p-side-navigation__text">Releases</span></li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=jammy-desktop" data-file="7e8bfe27-jammy-server_copyright+license.json">
-                Jammy Desktop
+                20.04 LTS (Jammy Jellyfish) Desktop
               </a>
             </li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=impish-desktop" data-file="5237da0a-impish-desktop_copyright+license.json">
-                Impish Desktop
+                21.10 (Impish Indri) Desktop
               </a>
             </li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=focal-desktop" data-file="12917471-focal-desktop_copyright+license.json">
-                Focal Desktop
+                20.04 (Focal Fossa) Desktop
               </a>
             </li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=focal-server" data-file="35961738-focal-server_copyright+license.json">
-                Focal Server
+                20.04 (Focal Fossa) Server
               </a>
             </li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=bionic-server" data-file="f5290e0d-bionic-server_copyright+license.json">
-                Bionic Server
+                18.04 LTS (Bionic Beaver) Server
               </a>
             </li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=xenial-server" data-file="7647ac2f-xenial-server_copyright+license.json">
-                Xenial Server
+                16.04 LTS (Xenial Xerus) Server
               </a>
             </li>
             <li class="p-side-navigation__item">
               <a class="p-side-navigation__link" href="/legal/open-source-licences?release=trusty-server" data-file="6d1785d6-trusty-server_copyright+license.json">
-                Trusty Server
+                14.04 LTS (Trusty Tahr) Server
               </a>
             </li>
           </ul>
@@ -69,7 +69,8 @@
       </nav>
     </aside>
     <main class="col-9" id="main-content">
-      <table aria-label="Open-source package licences">
+      <h2 class="u-hide--large" id="selection-title"></h2>
+      <table class="p-table--mobile-card" aria-label="Open-source package licences">
         <thead>
           <tr>
             <th>Name</th>
@@ -129,6 +130,7 @@
     loading: document.getElementById("loading"),
     error: document.getElementById("error"),
     navigation: document.getElementById("side-navigation"),
+    title: document.getElementById("selection-title"),
   };
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -165,6 +167,7 @@
       links.forEach(link => {
         if (link.href.split("?release=")[1] === release.toLowerCase()) {
           link.setAttribute("aria-current", "page");
+          elements.title.innerText = link.innerText.trim();
           file = link.dataset.file;
         }
       });
@@ -189,11 +192,11 @@
     let rows = "";
     packages.forEach(function(package) {
       rows += `<tr>
-        <td>${package.Name}</td>
-        <td>${package.Version}</td>
-        <td>${package.Architecture}</td>
-        <td>${package.Description}</td>
-        <td><a href="${package.CopyrightURL}">${package.Licenses}</a></td>
+        <td data-heading="Name">${package.Name}</td>
+        <td data-heading="Version">${package.Version}</td>
+        <td data-heading="Architecture">${package.Architecture}</td>
+        <td data-heading="Description">${package.Description}</td>
+        <td data-heading="Licenses"><a href="${package.CopyrightURL}">${package.Licenses}</a></td>
       </tr>`;
     });
     return rows;
@@ -204,9 +207,115 @@
     elements.loading.classList.add("u-hide");
     elements.error.classList.remove("u-hide");
   }
+</script>
 
 
+<script>
+  /**
+  Toggles the expanded/collapsed classed on side navigation element.
 
+  @param {HTMLElement} sideNavigation The side navigation element.
+  @param {Boolean} show Whether to show or hide the drawer.
+*/
+function toggleDrawer(sideNavigation, show) {
+  const toggleButtonOutsideDrawer = sideNavigation.querySelector('.p-side-navigation__toggle');
+  const toggleButtonInsideDrawer = sideNavigation.querySelector('.p-side-navigation__toggle--in-drawer');
+
+  if (sideNavigation) {
+    if (show) {
+      sideNavigation.classList.remove('is-drawer-collapsed');
+      sideNavigation.classList.add('is-drawer-expanded');
+
+      toggleButtonInsideDrawer.focus();
+      toggleButtonOutsideDrawer.setAttribute('aria-expanded', true);
+      toggleButtonInsideDrawer.setAttribute('aria-expanded', true);
+    } else {
+      sideNavigation.classList.remove('is-drawer-expanded');
+      sideNavigation.classList.add('is-drawer-collapsed');
+
+      toggleButtonOutsideDrawer.focus();
+      toggleButtonOutsideDrawer.setAttribute('aria-expanded', false);
+      toggleButtonInsideDrawer.setAttribute('aria-expanded', false);
+    }
+  }
+}
+
+// throttle util (for window resize event)
+var throttle = function (fn, delay) {
+  var timer = null;
+  return function () {
+    var context = this,
+      args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
+/**
+  Attaches event listeners for the side navigation toggles
+  @param {HTMLElement} sideNavigation The side navigation element.
+*/
+function setupSideNavigation(sideNavigation) {
+  var toggles = [].slice.call(sideNavigation.querySelectorAll('.js-drawer-toggle'));
+  var drawerEl = sideNavigation.querySelector('.p-side-navigation__drawer');
+
+  // hide navigation drawer on small screens
+  sideNavigation.classList.add('is-drawer-hidden');
+
+  // setup drawer element
+  drawerEl.addEventListener('animationend', () => {
+    if (!sideNavigation.classList.contains('is-drawer-expanded')) {
+      sideNavigation.classList.add('is-drawer-hidden');
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      toggleDrawer(sideNavigation, false);
+    }
+  });
+
+  // setup toggle buttons
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      if (sideNavigation) {
+        sideNavigation.classList.remove('is-drawer-hidden');
+        toggleDrawer(sideNavigation, !sideNavigation.classList.contains('is-drawer-expanded'));
+      }
+    });
+  });
+
+  // hide side navigation drawer when screen is resized
+  window.addEventListener(
+    'resize',
+    throttle(function () {
+      toggles.forEach((toggle) => {
+        return toggle.setAttribute('aria-expanded', false);
+      });
+      // remove expanded/collapsed class names to avoid unexpected animations
+      sideNavigation.classList.remove('is-drawer-expanded');
+      sideNavigation.classList.remove('is-drawer-collapsed');
+      sideNavigation.classList.add('is-drawer-hidden');
+    }, 10)
+  );
+}
+
+/**
+  Attaches event listeners for all the side navigations in the document.
+  @param {String} sideNavigationSelector The CSS selector matching side navigation elements.
+*/
+function setupSideNavigations(sideNavigationSelector) {
+  // Setup all side navigations on the page.
+  var sideNavigations = [].slice.call(document.querySelectorAll(sideNavigationSelector));
+
+  sideNavigations.forEach(setupSideNavigation);
+}
+
+setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
 </script>
 
 {% endblock content %}
