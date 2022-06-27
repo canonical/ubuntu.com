@@ -199,26 +199,29 @@
                   {% endif %}
                 </tr>
               {% endfor %}
-              {% if cve.patches[package_name]|length > 0  %}
+              {% if package["name"] in patches|map(attribute="name")%}
                 <tr>
                   <td style="border-top: 0px"></td>
                   <td colspan="2" style="border-top: 5px double #cdcdcd">
                     Patches: <br>
                     <small>
-                      {% for patch in cve.formatted_patches[package_name] %}
-                        {% if patch.type == "text" %}
-                          {{ patch.content }}
-                        {% elif patch.type == "break-fix" %}
-                          Introduced by
-                          <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a><br>
-                          Fixed by
-                          <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
-                        {% elif patch.type == "link" %}
-                          {{ patch.content.prefix }}:
-                          {% if patch.content.suffix %}
-                            <a href="{{ cve.patch.content.suffix }}">{{ patch.content.suffix }}</a>
-                          {% else %}
-                            {{ patch.content.suffix }}
+                      {% for patch in patches %}
+                        {% if patch.name == package["name"]%}
+                          {% if patch.type == "text" %}
+                            {{ patch.content }}
+                          {% elif patch.type == "break-fix" %}
+                            Introduced by
+                            <p><a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a><br>
+                            </p>
+                              Fixed by
+                            <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
+                          {% elif patch.type == "link" %}
+                            {{ patch.content.prefix }}:
+                            {% if patch.content.suffix %}
+                              <a href="{{ patch.content.suffix }}">{{ patch.content.suffix }}</a>
+                            {% else %}
+                              {{ patch.content.suffix }}
+                            {% endif %}
                           {% endif %}
                         {% endif %}
                         <br>
@@ -226,40 +229,42 @@
                     </small>
                   </td>
                 </tr>
-              {% endif %}
-              {% if cve.tags[package_name]|length > 0  %}
+              {% endif%}
+              {% if package["name"] in tags|map(attribute="name") %}
                 <tr>
                   <td style="border-top: 0px"></td>
                   <td colspan="2" style="border-top: 5px double #cdcdcd">
                     <small>
-                      {% for tag in cve.tags[package_name] %}
-                        {% if tag == "not-ue" %}
-                          This package is not directly supported by the Ubuntu Security Team
-                        {% elif tag == "universe-binary" %}
-                          Binaries built from this source package are in <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support">Universe</a> and so are supported by the community.
-                        {% elif tag == "apparmor" %}
-                          This vulnerability is mitigated in part by an <a href="https://wiki.ubuntu.com/Security/Features#apparmor">AppArmor</a> profile.
-                        {% elif tag == "stack-protector" %}
-                          This vulnerability is mitigated in part by the use of gcc's <a href="https://wiki.ubuntu.com/Security/Features#stack-protector">stack protector</a> in Ubuntu.
-                        {% elif tag == "fortify-source" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#fortify-source">-D_FORTIFY_SOURCE=2</a> in Ubuntu.
-                        {% elif tag == "symlink-restriction" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#symlink">symlink</a> restrictions in Ubuntu.
-                        {% elif tag == "hardlink-restriction" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#hardlink">hardlink</a> restrictions in Ubuntu.
-                        {% elif tag == "heap-protector" %}
-                          This vulnerability is mitigated in part by the use of GNU C Library <a href="https://wiki.ubuntu.com/Security/Features#heap-protector">heap protector</a> in Ubuntu.
-                        {% elif tag == "pie" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
-                        {% else %}
-                          {{ tag }}
-                        {% endif %}
-                      {% endfor %}
+                        {% for tag in tags %}
+                          {% if tag.name == package["name"] %}
+                            {% if tag.text == "not-ue" %}
+                              This package is not directly supported by the Ubuntu Security Team
+                            {% elif tag.text == "universe-binary" %}
+                              Binaries built from this source package are in <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support">Universe</a> and so are supported by the community.
+                            {% elif tag.text == "apparmor" %}
+                              This vulnerability is mitigated in part by an <a href="https://wiki.ubuntu.com/Security/Features#apparmor">AppArmor</a> profile.
+                            {% elif tag.text == "stack-protector" %}
+                              This vulnerability is mitigated in part by the use of gcc's <a href="https://wiki.ubuntu.com/Security/Features#stack-protector">stack protector</a> in Ubuntu.
+                            {% elif tag.text == "fortify-source" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#fortify-source">-D_FORTIFY_SOURCE=2</a> in Ubuntu.
+                            {% elif tag.text == "symlink-restriction" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#symlink">symlink</a> restrictions in Ubuntu.
+                            {% elif tag.text == "hardlink-restriction" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#hardlink">hardlink</a> restrictions in Ubuntu.
+                            {% elif tag.text == "heap-protector" %}
+                              This vulnerability is mitigated in part by the use of GNU C Library <a href="https://wiki.ubuntu.com/Security/Features#heap-protector">heap protector</a> in Ubuntu.
+                            {% elif tag.text == "pie" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
+                            {% else %}
+                              {{ tag.text }}
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
                     </small>
                   </td>
                 </tr>
               {% endif %}
-            {% endfor %}
+              {% endfor %}
           </tbody>
         </table>
       </div>
@@ -311,7 +316,7 @@
           </li>
         </ul>
 
-        {% if cve.bugs %}
+        {% if cve.bugs|length > 1 %}
           <h2>Bugs</h2>
           <ul>
             {% for bug in cve.bugs %}
