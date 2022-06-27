@@ -199,7 +199,7 @@
                   {% endif %}
                 </tr>
               {% endfor %}
-              {% if patches %}
+              {% if package["name"] in patches|map(attribute="name")%}
                 <tr>
                   <td style="border-top: 0px"></td>
                   <td colspan="2" style="border-top: 5px double #cdcdcd">
@@ -229,8 +229,8 @@
                     </small>
                   </td>
                 </tr>
-              {% endif %}
-              {% if tags %}
+              {% endif%}
+              {% if package["name"] in tags|map(attribute="name") %}
                 <tr>
                   <td style="border-top: 0px"></td>
                   <td colspan="2" style="border-top: 5px double #cdcdcd">
@@ -316,7 +316,7 @@
           </li>
         </ul>
 
-        {% if cve.bugs %}
+        {% if cve.bugs|length > 1 %}
           <h2>Bugs</h2>
           <ul>
             {% for bug in cve.bugs %}
