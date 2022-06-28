@@ -110,3 +110,37 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return notices_response.json()
+
+    def get_cves(
+        self,
+        query: str,
+        priority: str,
+        package: str,
+        limit: int,
+        offset: int,
+        component: str,
+        version: str,
+        status: str,
+    ):
+        parameters = {
+            "query": query,
+            "priority": priority,
+            "package": package,
+            "limit": limit,
+            "offset": offset,
+            "component": component,
+            "version": version,
+            "status": status,
+        }
+        # Remove falsey items from dictionary
+        parameters = {k: v for k, v in parameters.items() if v}
+
+        filtered_parameters = urlencode(parameters)
+        try:
+            cves_response = self._get(f"cves.json?{filtered_parameters}")
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                return None
+            raise SecurityAPIError(error)
+
+        return cves_response.json()
