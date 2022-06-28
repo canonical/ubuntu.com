@@ -28,6 +28,7 @@ import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   selectedId?: SelectedId;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type Feature = {
@@ -50,7 +51,7 @@ const generateFeatures = (features: Feature[]) =>
     </Col>
   ));
 
-const DetailsContent = ({ selectedId }: Props) => {
+const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const { data: subscription, isLoading } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
@@ -182,7 +183,11 @@ const DetailsContent = ({ selectedId }: Props) => {
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}
-      <DetailsTabs subscription={subscription} token={token} />
+      <DetailsTabs
+        subscription={subscription}
+        token={token}
+        setHasUnsavedChanges={setHasUnsavedChanges}
+      />
     </div>
   );
 };

@@ -24,7 +24,12 @@ import {
 
 import { generateList } from "../../DetailsTabs";
 
-const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
+type Props = {
+  subscription: UserSubscription;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
   const [features, setFeatures] = React.useState<EntitlementsStore>(
     filterAndFormatEntitlements(subscription.entitlements)
   );
@@ -57,10 +62,10 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
       getNewFeaturesFormState(featuresFormState, entitlement)
     );
 
-    if (!entitlementsToUpdate.includes(label)) {
-      setEntitlementsToUpdate([...entitlementsToUpdate, label]);
-    }
-    console.log(entitlementsToUpdate);
+    if (label)
+      if (!entitlementsToUpdate.includes(label)) {
+        setEntitlementsToUpdate([...entitlementsToUpdate, label]);
+      }
   };
 
   const handleOnCancel = () => {
@@ -77,23 +82,22 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
   }, [subscription]);
 
   useEffect(() => {
-    window.addEventListener("beforeunload", alertUser);
-    // window.addEventListener('unload',alertUser);
-    return () => {
-      window.removeEventListener("beforeunload", alertUser);
-      // window.removeEventListener('unload', alertUser);
-    };
-  }, []);
+    console.log(entitlementsToUpdate);
+    if (entitlementsToUpdate.length <= 0) {
+      setHasUnsavedChanges(false);
+    } else {
+      // console.log("set to true");
+      setHasUnsavedChanges(true);
+      window.addEventListener("beforeunload", alertUser);
+    }
+  }, [entitlementsToUpdate]);
 
   const alertUser = async (e: Event) => {
     console.log(entitlementsToUpdate.length);
-    if (entitlementsToUpdate.length > 0) {
-      e.preventDefault();
-      setModalOpen(true);
-      return (e.returnValue = "Are you sure you want to exit?");
-    } else {
-      return true;
-    }
+    // if (entitlementsToUpdate.length > 0) {
+    e.preventDefault();
+    // setModalOpen(true);
+    return (e.returnValue = "Are you sure you want to exit?");
   };
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
