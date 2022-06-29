@@ -48,9 +48,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     EntitlementLabel[]
   >([]);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const closeHandler = () => setModalOpen(false);
-
   const handleOnFeatureSwitch = (
     label: EntitlementLabel,
     event: React.ChangeEvent<HTMLInputElement>
