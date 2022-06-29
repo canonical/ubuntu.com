@@ -1,0 +1,177 @@
+{% extends "internet-of-things/base_things.html" %}
+
+
+{% block title %}Open source smart home | Ubuntu for the Internet of Things {% endblock %}
+{% block meta_description %}The open source smart home is easier, faster, and more secure with Ubuntu. Linux in the smart home is here to stay, and Canonical is here to guide you on your journey. Ubuntu Core is the operating system for the smart home.{% endblock meta_description %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-6">
+      <h1>Reduce development cost for the open source smart home with Ubuntu</h1>
+      <p class="p-heading--4">Shorter development cycles, effortless maintenance</p>
+
+      <p>Product development for the smart home comes with unique challenges: margins can be thin, and time-to-market is critical. Canonical can provide the support and security maintenance you need so your team can focus on developing world-class products.</p>
+      <p>
+        <a href="#get-in-touch" class="p-button--positive">Contact us to get started</a>
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/32675035-smart-home.png",
+        alt="",
+        width="1810",
+        height="1204",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-4">
+      <h2 class="p-heading--4">Free up resources</h2>
+      <p>Security update issues are a thing of the past with Canonical's support. Let your developers <a href="/engage/embedded-linux-make-or-buy">focus on the application instead of maintenance</a>.</p>
+    </div>
+    <div class="col-4">
+      <h2 class="p-heading--4">Start development earlier</h2>
+      <p>With existing support for <a href="/certified">dozens of the most popular IoT chips</a>, and board support offered as a service, you can start developing on Ubuntu now, and move to your final hardware when it's ready.</p>
+    </div>
+    <div class="col-4">
+      <h2 class="p-heading--4">Have confidence in your OTAs</h2>
+      <p>Over-the-air updates always have an element of risk. With <a href="/core">Ubuntu Core</a> you have the assurance that a failed update will never affect your device.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Secure, resilient, low-touch</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3>Data privacy assured</h3>
+      <p>Keep customer data safe with Snaps. Applications in Ubuntu Core are fully confined, so security threats in one application cant affect other parts of the system.</p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a43d61ae-update+control.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h3>Continuous security updates</h3>
+      <p>As soon as vulnerabilities become known, security patches are delivered to each device in your fleet. Our Extended Security Maintenance offering for Ubuntu Core is active for up to ten years. You don't have to worry about CVEs, we keep your security debt at zero.</p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <h3>Fleet management through the snap store</h3>
+      <p>Get fine-grained control on OTAs. Roll out delta updates gradually, with the confidence of automatic rollback. Know that each version of each application on every device has been tested together with <a href="/core/docs/reference/assertions/validation-set">validation sets</a>.</p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/da83f401-4+-+Register+to+the+snap+store+and+distribute+your+application+to+RasPi+users+everywhere.svg",
+        alt="",
+        width="232",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>How to develop your open source smart home application</h2>
+
+    <ol class="p-stepped-list--detailed">
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Get started with any development kit</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Ubuntu supports a large <a href="/certified">library of hardware</a> out of the box, and Canonical provides board support as a service. This means you can start your development before your hardware is finalised, with the confidence that your application will run smoothly on the final product.</p>
+        </div>
+      </li>
+
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Find the building blocks of your application in the Snap Store</h3>
+
+        <div class="p-stepped-list__content">
+          <p>The <a href="https://snapcraft.io/search?category=devices-and-iot">Snap Store</a> includes a huge collection of open source projects that can be seamlessly integrated into your application. Each snap comes with the same level of OTA and revision control you have for your own application.</p>
+
+
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d22c1230-snap-store-iot-devices.png",
+            alt="",
+            width="636",
+            height="346",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+      </li>
+
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Snap your application or let us do the heavy lifting</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Getting started with Snap is a breeze. Canonical is on this journey with you, and can give you the assurance that your project won't hit roadblocks down the line. When you're ready to put all the pieces together, we're here to help.</p>
+        </div>
+      </li>
+
+      <li class="p-stepped-list__item">
+        <h3 class="p-stepped-list__title">Port to certified hardware or get support for custom boards</h3>
+
+        <div class="p-stepped-list__content">
+          <p>Once your hardware is ready, it's easy to move your application from the development board to your production hardware. There is a library of hardware that comes pre-certified for Ubuntu, and Canonical is here to help with more customised use cases.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/smart-home" data-form-id="1422" data-lp-id="2166" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=smart-home" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+
+
+{% endblock content %}
