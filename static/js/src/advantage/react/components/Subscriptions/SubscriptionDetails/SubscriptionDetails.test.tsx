@@ -41,6 +41,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -54,6 +55,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -68,6 +70,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -90,6 +93,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -108,6 +112,7 @@ describe("SubscriptionDetails", () => {
           modalActive={modalActive}
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -127,6 +132,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -150,7 +156,11 @@ describe("SubscriptionDetails", () => {
     queryClient.setQueryData("userSubscriptions", [account]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <SubscriptionDetails onCloseModal={jest.fn()} selectedId={account.id} />
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={account.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("Button[data-test='edit-button']").exists()).toBe(
@@ -169,6 +179,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={onCloseModal}
           selectedId={account.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -184,6 +195,7 @@ describe("SubscriptionDetails", () => {
           modalActive={true}
           onCloseModal={onCloseModal}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -204,6 +216,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -229,6 +242,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );
@@ -255,6 +269,7 @@ describe("SubscriptionDetails", () => {
         <SubscriptionDetails
           onCloseModal={jest.fn()}
           selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
         />
       </QueryClientProvider>
     );

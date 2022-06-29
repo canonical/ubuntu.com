@@ -27,7 +27,10 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe("Never");
@@ -45,7 +48,10 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='expires-col']").text()).toBe(
@@ -60,7 +66,10 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
@@ -78,7 +87,10 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='token-spinner'] Spinner").exists()).toBe(
@@ -96,7 +108,10 @@ describe("DetailsContent", () => {
     );
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("CodeSnippet").exists()).toBe(true);
@@ -111,7 +126,10 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='cost-col']").exists()).toBe(false);
@@ -124,7 +142,10 @@ describe("DetailsContent", () => {
     queryClient.setQueryData("userSubscriptions", [contract]);
     const wrapper = mount(
       <QueryClientProvider client={queryClient}>
-        <DetailsContent selectedId={contract.id} />
+        <DetailsContent
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
       </QueryClientProvider>
     );
     expect(wrapper.find("[data-test='machine-type-col']").exists()).toBe(false);

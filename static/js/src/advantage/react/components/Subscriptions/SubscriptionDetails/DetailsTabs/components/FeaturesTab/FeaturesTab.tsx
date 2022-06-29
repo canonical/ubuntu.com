@@ -86,7 +86,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     if (entitlementsToUpdate.length <= 0) {
       setHasUnsavedChanges(false);
     } else {
-      // console.log("set to true");
       setHasUnsavedChanges(true);
       window.addEventListener("beforeunload", alertUser);
     }
@@ -94,10 +93,8 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
 
   const alertUser = async (e: Event) => {
     console.log(entitlementsToUpdate.length);
-    // if (entitlementsToUpdate.length > 0) {
     e.preventDefault();
-    // setModalOpen(true);
-    return (e.returnValue = "Are you sure you want to exit?");
+    e.returnValue = false;
   };
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
@@ -123,24 +120,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
       onSubmit={handleSubmit}
       data-testid="features-content"
     >
-      {modalOpen ? (
-        <Modal
-          close={closeHandler}
-          title="Confirm delete"
-          buttonRow={
-            <>
-              <button className="u-no-margin--bottom" onClick={closeHandler}>
-                No
-              </button>
-              <button className="p-button--negative u-no-margin--bottom">
-                Yes
-              </button>
-            </>
-          }
-        >
-          <p>You have unsaved changes. Are you sure you want to leave?</p>
-        </Modal>
-      ) : null}
       <Row className="u-sv1" data-testid="included-features">
         <Col size={4}>
           {features.included.length

@@ -32,7 +32,12 @@ describe("DetailsTabs", () => {
   });
 
   it("defaults to the features tab if there are entitlements", () => {
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
       true
     );
@@ -40,14 +45,24 @@ describe("DetailsTabs", () => {
 
   it("hides the feature content tab is there are not entitlements", () => {
     subscription = userSubscriptionFactory.build();
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
       false
     );
   });
 
   it("can change tabs", () => {
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(false);
     wrapper.find("[data-test='docs-tab']").simulate("click");
     wrapper.update();
@@ -67,7 +82,12 @@ describe("DetailsTabs", () => {
         }),
       ],
     });
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
@@ -88,7 +108,12 @@ describe("DetailsTabs", () => {
         }),
       ],
     });
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
@@ -121,7 +146,12 @@ describe("DetailsTabs", () => {
         }),
       ],
     });
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
@@ -137,6 +167,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         token={contractTokenFactory.build()}
+        setHasUnsavedChanges={jest.fn()}
       />
     );
     // Switch to the docs tab:
@@ -149,6 +180,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
         token={contractTokenFactory.build()}
+        setHasUnsavedChanges={jest.fn()}
       />
     );
     // Switch to the docs tab:
