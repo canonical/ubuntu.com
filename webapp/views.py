@@ -89,40 +89,19 @@ def _build_mirror_list(local=False):
 
 
 def sixteen_zero_four():
-    host = "https://ubuntu.com"
-    total_notices_issued = "-"
-    total_cves_issued = "-"
+    total_notices_issued = "0"
     latest_notices = []
 
     try:
         response = session.request(
             method="GET",
-            url=f"{host}/security/notices.json?release=xenial&limit=1",
-        )
-
-        total_notices_issued = response.json().get("total_results")
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-
-    try:
-        response = session.request(
-            method="GET",
             url=(
-                f"{host}/security/cves.json"
-                f"?version=xenial&status=released&limit=1"
+                "https://ubuntu.com/security/"
+                "notices.json?release=xenial&limit=5"
             ),
         )
 
-        total_cves_issued = response.json().get("total_results")
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-
-    try:
-        response = session.request(
-            method="GET",
-            url=f"{host}/security/notices.json?release=xenial&limit=5",
-        )
-
+        total_notices_issued = response.json().get("total_results")
         latest_notices = [
             {
                 "id": notice.get("id"),
@@ -137,11 +116,9 @@ def sixteen_zero_four():
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
 
+    # Can only assume there were 1477 notices before ESM
     notices_since_esm = total_notices_issued - 1477
     context = {
-        "total_patches_applied": 69,  # hard-coded for now
-        "total_notices_issued": f"{total_notices_issued:,}",
-        "total_cves_issued": f"{total_cves_issued:,}",
         "latest_notices": latest_notices,
         "notices_since_esm": notices_since_esm,
     }
