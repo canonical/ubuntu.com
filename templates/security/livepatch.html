@@ -9,7 +9,7 @@
 meta_copydoc %}
 
 {% block content %}
-<section class="p-strip u-no-padding--top is-bordered">
+<section class="p-strip u-no-padding">
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7">
@@ -29,13 +29,11 @@ meta_copydoc %}
       </div>
     </div>
   </div>
+</section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-
+<section class="p-strip--light is-shallow u-equal-height">
   <div class="row">
-    <div class="col-4">
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/5865c9d2-image-document-ubuntuterms.png",
         alt="",
@@ -46,9 +44,11 @@ meta_copydoc %}
         ) | safe
       }}
     </div>
-    <div class="col-8">
-      <h2>Read the Livepatch documentation</h2>
-      <a href="/security/livepatch/docs" class="p-button--positive">Read the docs</a>
+    <div class="col-8 u-vertically-center">
+      <div>
+        <h2>Read the Livepatch documentation</h2>
+        <a href="/security/livepatch/docs" class="p-button--positive">Read the docs</a>
+      </div>
     </div>
   </div>
 </section>
@@ -126,7 +126,7 @@ meta_copydoc %}
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/72bfe690-Livepatching+at-a-glance-diagram.svg",
@@ -152,7 +152,7 @@ meta_copydoc %}
       <p>Livepatch on-prem is designed for complex Enterprise environments that follow their own rollout policy and remain in control of which machines will get updated and when. Livepatch on-prem regularly syncs with the Ubuntu Livepatch service and obtains the latest patches. It then deploys the livepatches gradually in as many stages as required.</p>
       <a href="/security/livepatch/docs/on_prem" class="p-button">Read more</a>
     </div>
-    <div class="col-6">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/0fe5fa1d-Livepatch+on-prem+overview-diagram.svg",
@@ -387,7 +387,7 @@ meta_copydoc %}
 
 <section class="p-strip is-deep is-bordered">
   <div class="row u-equal-height">
-    <div class="col-3 u-vertically-center u-hide--medium u-hide--small">
+    <div class="col-3 u-vertically-center u-align--center u-hide--medium u-hide--small">
       {{
       image(
       url="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png",
