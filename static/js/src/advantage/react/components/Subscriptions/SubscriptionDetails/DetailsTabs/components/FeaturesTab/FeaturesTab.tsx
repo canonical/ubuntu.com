@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   ActionButton,
   Col,
   Row,
   Tooltip,
-  Modal,
 } from "@canonical/react-components";
 
 import { useUpdateContractEntitlementsMutation } from "advantage/react/hooks";
