@@ -4,7 +4,7 @@
 {% block title %}Open source smart home | Ubuntu for the Internet of Things {% endblock %}
 {% block meta_description %}The open source smart home is easier, faster, and more secure with Ubuntu. Linux in the smart home is here to stay, and Canonical is here to guide you on your journey. Ubuntu Core is the operating system for the smart home.{% endblock meta_description %}
 
-{% block meta_copydoc %}{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1zwB-6Flt0Jm7XIxhWUWRJjKC1WCGVmVVNmPHtyOTHuE/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
 
       <p>Product development for the smart home comes with unique challenges: margins can be thin, and time-to-market is critical. Canonical can provide the support and security maintenance you need so your team can focus on developing world-class products.</p>
       <p>
-        <a href="#get-in-touch" class="p-button--positive">Contact us to get started</a>
+        <a href="#get-in-touch" class="js-invoke-modal p-button--positive">Contact us to get started</a>
       </p>
     </div>
     <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
@@ -26,7 +26,7 @@
         width="1810",
         height="1204",
         hi_def=True,
-        loading="auto|lazy"
+        loading="auto"
         ) | safe
       }}
     </div>
@@ -57,7 +57,7 @@
   <div class="row">
     <div class="col-6">
       <h3>Data privacy assured</h3>
-      <p>Keep customer data safe with Snaps. Applications in Ubuntu Core are fully confined, so security threats in one application cant affect other parts of the system.</p>
+      <p>Keep customer data safe with Snaps. Applications in Ubuntu Core are fully confined, so security threats in one application can't affect other parts of the system.</p>
     </div>
     <div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{ image (
@@ -143,7 +143,8 @@
             width="636",
             height="346",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "u-hide--small"}
             ) | safe
           }}
         </div>
@@ -153,7 +154,7 @@
         <h3 class="p-stepped-list__title">Snap your application or let us do the heavy lifting</h3>
 
         <div class="p-stepped-list__content">
-          <p>Getting started with Snap is a breeze. Canonical is on this journey with you, and can give you the assurance that your project won't hit roadblocks down the line. When you're ready to put all the pieces together, we're here to help.</p>
+          <p><a href="https://snapcraft.io/first-snap">Getting started with Snap</a> is a breeze. Canonical is on this journey with you, and can give you the assurance that your project won't hit roadblocks down the line. When you're ready to put all the pieces together, we're here to help.</p>
         </div>
       </li>
 
@@ -161,7 +162,7 @@
         <h3 class="p-stepped-list__title">Port to certified hardware or get support for custom boards</h3>
 
         <div class="p-stepped-list__content">
-          <p>Once your hardware is ready, it's easy to move your application from the development board to your production hardware. There is a library of hardware that comes pre-certified for Ubuntu, and Canonical is here to help with more customised use cases.</p>
+          <p>Once your hardware is ready, it's easy to move your application from the development board to your production hardware. There is a <a href="/certified">library of hardware</a> that comes pre-certified for Ubuntu, and Canonical is here to help with more customised use cases.</p>
         </div>
       </li>
     </ol>
