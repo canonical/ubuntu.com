@@ -16,7 +16,7 @@ from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
 
-from canonicalwebteam.search.models import get_search_results
+# from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from bs4 import BeautifulSoup
 from werkzeug.exceptions import BadRequest
@@ -267,7 +267,7 @@ def build_tutorials_index(session, tutorials_docs):
         """
 
         # Web tribe websites custom search ID
-        search_engine_id = "adb2397a224a1fe55"
+        # search_engine_id = "adb2397a224a1fe55"
 
         # API key should always be provided as an environment variable
         search_api_key = os.getenv("SEARCH_API_KEY")
@@ -275,17 +275,17 @@ def build_tutorials_index(session, tutorials_docs):
         if query and not search_api_key:
             raise NoAPIKeyError("Unable to search: No API key provided")
 
-        results = None
+        # results = None
 
-        if query:
-            results = get_search_results(
-                session=session,
-                api_key=search_api_key,
-                search_engine_id=search_engine_id,
-                siteSearch="ubuntu.com/tutorials",
-                query=query,
-                site_restricted_search=False,
-            )
+        # if query:
+        #     results = get_search_results(
+        #         session=session,
+        #         api_key=search_api_key,
+        #         search_engine_id=search_engine_id,
+        #         siteSearch="ubuntu.com/tutorials",
+        #         query=query,
+        #         site_restricted_search=False,
+        #     )
 
         tutorials_docs.parser.parse()
         tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
@@ -307,18 +307,18 @@ def build_tutorials_index(session, tutorials_docs):
                     item["categories"].replace(" ", "").lower().split(",")
                 )
 
-        if query:
-            temp_metadata = []
-            if results.get("entries"):
-                for result in results["entries"]:
-                    start = result["link"].find("tutorials/")
-                    end = len(result["link"])
-                    identifier = result["link"][start:end]
-                    if start != -1:
-                        for doc in tutorials:
-                            if identifier in doc["link"]:
-                                temp_metadata.append(doc)
-            tutorials = temp_metadata
+        # if query:
+        #     temp_metadata = []
+        #     if results.get("entries"):
+        #         for result in results["entries"]:
+        #             start = result["link"].find("tutorials/")
+        #             end = len(result["link"])
+        #             identifier = result["link"][start:end]
+        #             if start != -1:
+        #                 for doc in tutorials:
+        #                     if identifier in doc["link"]:
+        #                         temp_metadata.append(doc)
+        #     tutorials = temp_metadata
 
         if sort == "difficulty-desc":
             tutorials = sorted(
