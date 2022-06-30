@@ -327,6 +327,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
         action=kwargs.get("action", "purchase"),
         products=kwargs.get("products", []),
         offer_id=kwargs.get("offer_id"),
+        renewal_id=kwargs.get("renewal_id"),
         previous_purchase_id=kwargs.get("previous_purchase_id"),
         session=flask.session,
         preview=kwargs.get("preview"),

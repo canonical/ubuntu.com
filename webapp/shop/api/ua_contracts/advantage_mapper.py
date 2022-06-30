@@ -240,6 +240,7 @@ class AdvantageMapper:
         action: str,
         products: dict,
         offer_id: str,
+        renewal_id: str,
         previous_purchase_id: str,
         session: dict,
         preview: bool = False,
@@ -299,6 +300,9 @@ class AdvantageMapper:
 
         if action == "offer":
             purchase_request["offerID"] = offer_id
+
+        if action == "renewal":
+            purchase_request["renewalID"] = renewal_id
 
         # marketing parameters
         metadata_keys = [
