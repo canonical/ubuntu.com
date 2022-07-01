@@ -40,47 +40,19 @@
   }
 
   .p-tabs--vertical {
-    grid-gap: 0;
-
-    .p-tabs__list {
-      display: block;
-
-      &::after {
-        display: none;
-      }
-    }
+    list-style: none;
 
     .p-tabs__item {
-      &:last-child {
-        margin-right: 0;
-      }
-    }
+      @extend %side-navigation__text;
 
-    .p-tabs__link {
-      padding-bottom: 0.25rem;
-      padding-top: 0.25rem;
-
-      &::before {
-        display: none;
-      }
+      border: 0;
+      display: initial;
+      text-align: left;
+      width: 100%;
 
       &[aria-selected="true"] {
-        background-color: $color-light;
-
-        &::before {
-          display: block;
-          height: 100%;
-          left: 0;
-          right: auto;
-          width: 0.1875rem;
-        }
+        @include vf-highlight-bar($color-brand, left);
       }
-    }
-
-    .p-tabs__content {
-      background-color: $color-light;
-      min-height: 100%;
-      padding: 1.5rem;
     }
   }
 

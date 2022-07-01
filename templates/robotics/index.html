@@ -11,13 +11,13 @@
 {% block content %}
 <section class="p-strip--suru-bottomed js-livestream__intro">
   <div class="row u-equal-height">
-    <div class="col-5">
+    <div class="col-6">
       <h1>Powering robotics in every industry</h1>
-      <h4>Develop, deploy and maintain your fleet of robots with Ubuntu.</h4>
+      <p class="p-heading--4">Develop, deploy and maintain your fleet of robots with Ubuntu.</p>
       <p><a class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" href="/core/contact-us">Reach out to hear more</a></p>
       <p><a href="/engage/robot-operating-system-choice">Read our guide to pick the right OS for your robot&nbsp;&rsaquo;</a></p>
     </div>
-    <div id="robotics-header" class="col-7 u-align--center u-vertically-center u-hide--medium u-hide--small">
+    <div id="robotics-header" class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{ 
         image (
         url="https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg",
@@ -36,7 +36,7 @@
 <section class="p-strip">
   <div class="u-fixed-width">
     <h2>Ubuntu is all your robot needs</h2>
-    <h4>We provide you with the essential infrastructure to easily, securely, and reliably deploy your robots</h4>
+    <p class="p-heading--4">We provide you with the essential infrastructure to easily, securely, and reliably deploy your robots</p>
     <p>Our open source tools help you:</p>
     <ul class="p-list">
       <li class="p-list__item is-ticked">Keep your robots up-to-date efficiently and cost-effectively with over-the-air and low bandwidth updates with failure rollback.</li>
@@ -182,34 +182,89 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--2">Bringing Ubuntu's worldwide infrastructure to your robot</h2>
-    <h4>Deploying a robotics solution? For more than a decade, Ubuntu has provided the best development environment for robotics developers.</h4>
-    <p style="max-width: none;">Together with <a href="/core">Ubuntu Core</a>, OS optimised for decentralised computing environments, and <a href="https://snapcraft.io/docs/robotics">snap</a>, fully confined embedded containers, developers can easily build and securely deploy their devices. And for the software management of your device, the <a href="/internet-of-things/appstore">IoT Snap Store</a> allows developers to unlock the reliable and widely used update infrastructure of Ubuntu applications in their robots.</p>
-    <div class="u-fixed-width u-hide--small u-hide--medium">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/35323832-Right-OS-diagram.svg",
+<section class="p-strip u-no-padding--bottom">
+  <div class="u-fixed-width u-align--center">
+    <h2 class="u-sv3">Bringing Ubuntu's worldwide infrastructure to your robot</h2>
+
+    <div class="u-hide--large">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/00524b9e-Right-OS-Diagram-Mobile.png",
         alt="",
-        width="3000",
-        height="1460",
+        width="1000",
+        height="2013",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
-    <div class="u-fixed-width u-hide--large">
-      {{
-        image (
-        url="https://assets.ubuntu.com/v1/c90df7a5-Right-OS-Diagram-Mobile.svg",
-        alt="",
-        width="750",
-        height="1500",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    
+    <div class="u-fixed-width u-hide--small u-hide--medium js-robotics-diagrams">
+      <img src="https://assets.ubuntu.com/v1/6a795f4f-Right-OS-diagram-core-1.png" id="robotics-diagram-1" alt=""/>
+      <img src="https://assets.ubuntu.com/v1/235ca3d0-Right-OS-diagram-core-ubuntu-1.png" id="robotics-diagram-2"  class="u-hide" alt=""/>
+      <img src="https://assets.ubuntu.com/v1/bc07ea11-Right-OS-diagram-core-snapcraft-1.png" id="robotics-diagram-3"  class="u-hide" alt=""/>
+      <img src="https://assets.ubuntu.com/v1/c037a0a1-Right-OS-diagram-core-iot-app-store-1.png" id="robotics-diagram-4"  class="u-hide" alt=""/>
+      <img src="https://assets.ubuntu.com/v1/fcf5c86a-Right-OS-diagram-core-core-1.png" id="robotics-diagram-5"  class="u-hide" alt=""/>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-3">
+      <ul class="js-robotics-tabs p-tabs--vertical u-hide--small u-hide--medium" role="tablist" aria-label="Robotics features">
+        <li><button class="p-tabs__item js-robotics-tab" id="robotics-tab-1" role="tab" aria-selected="true" aria-controls="robotics-content-1">Overview</button></li>
+        <li><button class="p-tabs__item js-robotics-tab" id="robotics-tab-2" role="tab" aria-selected="false" tab-index="-1" aria-controls="robotics-content-2">Ubuntu</button></li>
+        <li><button class="p-tabs__item js-robotics-tab" id="robotics-tab-3" role="tab" aria-selected="false" tab-index="-1" aria-controls="robotics-content-3">Snapcraft</button></li>
+        <li><button class="p-tabs__item js-robotics-tab" id="robotics-tab-4" role="tab" aria-selected="false" tab-index="-1" aria-controls="robotics-content-4">IoT App Store</button></li>
+        <li><button class="p-tabs__item js-robotics-tab" id="robotics-tab-5" role="tab" aria-selected="false" tab-index="-1" aria-controls="robotics-content-5">Ubuntu Core</button></li>
+      </ul>
+    </div>
+
+    <div class="col-9">
+      <div class="js-robotics-content" id="robotics-content-1">
+        <h3 class="p-heading--2">Deploying a robotics solution?</h3>
+        <p>For more than a decade, Ubuntu has provided the best development environment for robotics developers. Together with <a href="/core">Ubuntu Core</a>; OS optimised for decentralised computing environments, and <a href="https://snapcraft.io/docs/robotics">Snap</a>; fully confined embedded containers, developers can easily build and securely deploy their devices. And for the software management of your device, the <a href="/internet-of-things/appstore">IoT Snap Store</a> allows developers to unlock the reliable and widely used update infrastructure of Ubuntu applications in their robots.</p>
+      </div>
+
+      <div class="u-hide--large js-robotics-content" id="robotics-content-2">
+        <h3 class="p-heading--2">Ubuntu</h3>
+        <p>Ubuntu is an open-source operating system. For more than a decade, Ubuntu has supported key robotics open-source projects, such as <a href="/robotics/what-is-ros">ROS</a>, PX4, Autoware, Open-CV, PCL, and more.</p>
+        <p>Every aspect of the development process benefits from Ubuntu's responsiveness, ease of use, regular software updates, lightweight nature, and a high degree of security.</p>
+
+        <p>
+          <a href="https://www.ubuntu.com/" class="p-button--positive">Learn more about Ubuntu</a>
+        </p>
+      </div>
+
+      <div class="u-hide--large js-robotics-content" id="robotics-content-3">
+        <h3 class="p-heading--2">Snapcraft</h3>
+        <p>Snapcraft is the command-line tool for packaging your software as a Snap. Snaps are containerised software packages designed for embedded applications, with increased performance compared to <a href="/engage/dockerandros">other technologies</a>. Snaps give you all the interfaces you need to bundle your dependencies in one package while providing secure interfaces to access the host disc and privileged resources.</p>
+
+        <p>
+          <a href="https://snapcraft.io/docs/robotics" class="p-button--positive">Learn more about Snapcraft</a>
+        </p>
+      </div>
+
+      <div class="u-hide--large js-robotics-content" id="robotics-content-4">
+        <h3 class="p-heading--2">IoT App Store</h3>
+        <p>Canonical's worldwide used IoT App Store enables developers to host and manage software updates for their devices. It provides a trusted update infrastructure including reliable over-the-air updates, secure authentication, CI/CD integration, and more.</p>
+        <p>Companies can create either a public or private marketplace, where applications can be managed by developers and contributors.</p>
+
+        <p>
+          <a href="/internet-of-things/appstore" class="p-button--positive">Learn more about IoT App Stores</a>
+        </p>
+      </div>
+
+      <div class="u-hide--large js-robotics-content" id="robotics-content-5">
+        <h3 class="p-heading--2">Ubuntu Core</h3>
+        <p>Ubuntu Core is an optimized version of Ubuntu for edge devices. It brings a reliable software management infrastructure, including independent, transactional, and delta updates for the OS, kernel, and applications. It provides advanced security features such as secure boot and strict confinement.</p>
+        
+        <p>Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production.</p>
+
+        <p>
+          <a href="/core" class="p-button--positive">Learn more about Ubuntu Core</a>
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -217,8 +272,8 @@
 <section class="p-strip--light">
   <div class="row">
     <div class="col-6">
-      <h3>Robotics software updates</h3>
-      <h4>Unlock a reliable infrastructure for compressed, transactional, signed, and secure updates</h4>
+      <h2>Robotics software updates</h2>
+      <p class="p-heading--4">Unlock a reliable infrastructure for compressed, transactional, signed, and secure updates</p>
       <p>With Ubuntu Core and the Snap store, full containerisation means:</p>
       <ul>
         <li>Transactional, <a href="/core/features/ota-updates">over-the-air</a> updates</li>
@@ -230,7 +285,7 @@
         <a href="/core/features/ota-updates" class="p-button-positive">Learn more about OTA updates for Ubuntu Core&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--small u-hide--medium u-align--center u-vertically-center">
       {{
         image (
         url="https://assets.ubuntu.com/v1/c711b814-reliable_updates.svg",
@@ -247,7 +302,7 @@
     <hr class="p-separator" />
   </div>
   <div class="row">
-    <div class="col-5 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--small u-hide--medium u-align--center u-vertically-center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/6eb072a2-ESM+for+ROS_9.svg",
@@ -258,9 +313,9 @@
         ) | safe
       }}
     </div>
-    <div class="col-7">
-      <h3>Robotics security</h3>
-      <h4>Comply with cybersecurity requirements with in-built security for your device</h4>
+    <div class="col-6">
+      <h2>Robotics security</h2>
+      <p class="p-heading--4">Comply with cybersecurity requirements with in-built security for your device</p>
       <p>With Ubuntu Core, in-built security means:</p>
       <ul>
         <li><a href="/core/features/secure-boot">Secure boot</a></li>
@@ -282,8 +337,8 @@
 <section class="p-strip--light">
   <div class="u-fixed-width">
     <h2>Enterprise services for robotics companies</h2>
-    <h4>Deploy robust platforms with our enterprise services for robotics companies and provide a production grade solution to your customer.</h4>
-    <p>Our services allow robotics companies to reduce overhead costs and operational expenses for deployment, maintenance, security, and support. Our services for robotics companies include:</p>
+    <p class="p-heading--4">Deploy robust platforms with our enterprise services for robotics companies and provide a production grade solution to your customer.</p>
+    <p>Our services allow robotics companies to reduce overhead costs and operational expenses for deployment, maintenance, security, and support. Our portfolio covers each stage of your go-to market, while helping you spend more time on your innovation. Our services for robotics companies include:</p>
   </div>
   <div class="row u-equal-height">
     <div class="col-6 p-card">
@@ -342,12 +397,32 @@
   </div>
 
   <div class="u-fixed-width">
-    <h3>Download the optimized OS for your robotics boards</h3>
+    <h3>Compatible with popular open source robotics frameworks</h3>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-4">
+      <h4 class="p-card__title">ROS</h4>
+      <p class="p-card__desc">Ubuntu is the tier 1 operating system for <a href="/robotics/what-is-ros">ROS</a>. Snapping ROS modules helps manage the complexity of ROS-based applications.</p>
+      <p><a href="/robotics/what-is-ros">Learn more about ROS&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="p-card col-4">
+      <h4 class="p-card__title">OpenCV</h4>
+      <p class="p-card__desc">Deep learning machine vision applications can be developed with OpenCV on top of Ubuntu.</p>
+    </div>
+    <div class="p-card col-4">
+      <h4 class="p-card__title">PX4</h4>
+      <p class="p-card__desc">Ubuntu Core is the best fit for autonomous drones. Snaps allow orchestrating the different components of the PX4 library to develop aerial robotic systems.</p>
+      <p><a href="https://px4.io/">Learn more about PX4&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <h3>Enabling robotics boards with our ODMs partners</h3>
   </div>
 
   <div class="row u-equal-height">
-    <div class="p-card col-4">
-      <h3>Raspberry Pi</h3>
+    <div class="p-card col-3">
+      <h4 class="p-card__title">Raspberry Pi</h4>
       <hr class="u-sv1" />
       <div class="p-card__content">
         <a href="/download/raspberry-pi ">
@@ -365,8 +440,8 @@
         </a>
       </div>
     </div>
-    <div class="p-card col-4">
-      <h3>Xilinx Kria SOMs</h3>
+    <div class="p-card col-3">
+      <h4 class="p-card__title">Xilinx Kria SOMs</h4>
       <hr class="u-sv1" />
       <div class="p-card__content">
         <a href="https://www.xilinx.com/applications/industrial/robotics.html?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=iot_robotics&utm_term=kria_soms">
@@ -383,8 +458,8 @@
         </a>
       </div>
     </div>
-    <div class="p-card col-4">
-      <h3>Dragonboard</h3>
+    <div class="p-card col-3">
+      <h4 class="p-card__title">Dragonboard</h4>
       <hr class="u-sv1" />
       <div class="p-card__content">
         <a href="/download/qualcomm-dragonboard-410c">
@@ -432,36 +507,75 @@
 </section>
 
 <script>
-(function() {
+  function rotateRoboticsHeroImage() {
+    const roboticsImages = ["https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg", "https://assets.ubuntu.com/v1/1fd9982a-MedicalRobot03.png", "https://assets.ubuntu.com/v1/ce4156dd-MobileRobots04+%282%29.png"]
+    const roboticsImageEl = document.getElementById("robotics-image");
 
-  const roboticsImages = ["https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg", "https://assets.ubuntu.com/v1/1fd9982a-MedicalRobot03.png", "https://assets.ubuntu.com/v1/1db90ac6-Mobile_Warehouse.svg", "https://assets.ubuntu.com/v1/b3be16a3-Turbine04.png"]
-  const roboticsImageEl = document.getElementById("robotics-image");
+    if (window.localStorage && roboticsImageEl) {
+      /**
+      * Choose robotics image randomly
+      * ===
+      */    
+      var selectedIndex = null;
 
-  if (window.localStorage && roboticsImageEl) {
-    /**
-    * Choose robotics image randomly
-    * ===
-    */
-
-    let selectedIndex = null;
-
-    if (window.localStorage.getItem('selected_robotics_image') !== null) {
-      // If we previously visited a takeover, increment the number to show the next takeover
-      let nextIndex = parseInt(window.localStorage.getItem('selected_robotics_image')) + 1
-      selectedIndex = nextIndex < roboticsImages.length ? nextIndex : 0;
-    } else {
-      // Otherwise, randomly choose one of the takeovers and store it for next time
-      selectedIndex = Math.floor(Math.random() * roboticsImages.length);
+      if (window.localStorage.getItem('selected_robotics_image') !== null) {
+        // If we previously visited a takeover, increment the number to show the next takeover
+        var nextIndex = parseInt(window.localStorage.getItem('selected_robotics_image')) + 1
+        selectedIndex = nextIndex < roboticsImages.length ? nextIndex : 0;
+      } else {
+        // Otherwise, randomly choose one of the takeovers and store it for next time
+        selectedIndex = Math.floor(Math.random() * roboticsImages.length);
+      }
+      // Set takeover content
+      roboticsImageEl.src = roboticsImages[selectedIndex];
+      
+      roboticsImageEl.removeAttribute("style");
+      roboticsImageEl.width = 1468;
+      roboticsImageEl.height = 1078;
+      roboticsImageEl.classList.remove('u-hide')
+      
+      // Store the current takeover index
+      localStorage.setItem('selected_robotics_image', selectedIndex)
     }
-    // Set image content
-    roboticsImageEl.src = roboticsImages[selectedIndex];
-    roboticsImageEl.classList.remove("u-hide")
-
-    // Store the current image index
-    localStorage.setItem('selected_robotics_image', selectedIndex)
-    
   }
-})()
+
+  function initRoboticsTabs() {
+    const tabs = document.querySelectorAll('.js-robotics-tab');
+    
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (e) => {  
+        e.preventDefault();
+        setActiveTab(tab, tabs);
+      });
+    })
+  }
+
+  function setActiveTab(tab, tabs) {
+    tabs.forEach((tabElement) => {
+      let imageID = tabElement.getAttribute('id').replace('tab', 'diagram');
+      let targetContentID = tabElement.getAttribute('aria-controls');
+      let targetImage = document.getElementById(imageID);
+      let tabContent = document.getElementById(targetContentID);
+
+      console.log(targetContentID)
+
+      if (tab === tabElement) {  
+        tabElement.setAttribute('aria-selected', true);
+        tabContent.classList.remove('u-hide--large');
+        targetImage.classList.remove('u-hide');
+      } else {
+        tabElement.setAttribute('aria-selected', false);
+        tabContent.classList.add('u-hide--large');
+        targetImage.classList.add('u-hide');
+      }
+    })
+  }
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    rotateRoboticsHeroImage();
+    initRoboticsTabs();
+  });
+
 </script>
 
 {% endblock content %}
