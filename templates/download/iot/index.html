@@ -117,11 +117,11 @@
     </div>
     <br />
     <div class="row">
-      <div class="col-10">
+      <div class="col-8">
         <a class="p-button--positive" href="/certified">The ultimate Ubuntu Experience: Get Certified Hardware</a>
         <p>Ubuntu works along with silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.</p>
       </div>
-      <div class="col-2">
+      <div class="col-4 u-align--center u-hide--medium u-hide--small">
         {{
           image (
           url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
@@ -129,7 +129,7 @@
           width="102",
           height="150",
           hi_def=True,
-          loading="auto|lazy"
+          loading="lazy"
           ) | safe
         }}
       </div>
@@ -163,32 +163,64 @@
   </section>
 
   <section class="p-strip">
-    <div class="u-fixed-width">
+    <div class="u-fixed-width u-sv3">
       <h3>Supported platforms</h3>
     </div>
-    <div class="row p-divider">
-      <div class="col-3">
-        <img src="https://assets.ubuntu.com/v1/977f2b7a-raspberry+pi+horizontal.svg" width="168" height="45" alt="Raspberry Pi">
+    <div class="row u-sv3">
+      <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/977f2b7a-raspberry+pi+horizontal.svg",
+            alt="Raspberry Pi logo",
+            width="168",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
         <p><a href="/download/iot/raspberry-pi">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg" width="120" height="45" alt="Intel NUC">
+        <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
+            alt="Intel NUC logo",
+            width="120",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
           <p><a href="/download/iot/intel-nuc">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg" width="163" height="45" alt="Intel IEI TANK 870">
+        <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg",
+            alt="Intel Tank logo",
+            width="163",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
           <p><a href="/download/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg" width="139" height="45" alt="Qualcomm Snapdragon">
+      <div class="row u-sv3">
+        <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg",
+            alt="Qualcomm Snapdragon logo",
+            width="139",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
           <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           {{ image (
             url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
-            alt="",
+            alt="AMD Xilinx logo",
             width="72",
             height="45",
             hi_def=True,
@@ -197,10 +229,10 @@
           }}
           <p><a href="/download/amd-xilinx">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           {{ image (
             url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
-            alt="",
+            alt="Intel logo",
             width="75",
             height="42",
             hi_def=True,
@@ -212,10 +244,10 @@
           </p>
         </div>
       </div>
-      <div class="u-fixed-width" style="margin-top: 2rem;">
+      <div class="u-fixed-width">
         <p>
           <a class="p-button" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">
-            <span>Browse all supported images</span>
+            Browse all supported images
           </a>
         </p>
       </div>
