@@ -316,7 +316,7 @@
           </li>
         </ul>
 
-        {% if cve.bugs|length > 1 %}
+        {% if cve.bugs and cve.bugs|length > 1 %}
           <h2>Bugs</h2>
           <ul>
             {% for bug in cve.bugs %}
