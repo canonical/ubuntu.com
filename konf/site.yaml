@@ -265,7 +265,7 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
     - paths: [/security/notices, /security/cves]
@@ -644,7 +644,7 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
     - paths: [/security/notices, /security/cves]
