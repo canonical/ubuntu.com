@@ -728,50 +728,54 @@ def cve(cve_id):
     # format patches
     formatted_patches = []
 
-    for package_name, patches in cve["patches"].items():
-        for patch in patches:
-            prefix, suffix = patch.split(":", 1)
-            suffix = suffix.strip()
+    if cve["patches"]:
+        for package_name, patches in cve["patches"].items():
+            for patch in patches:
+                prefix, suffix = patch.split(":", 1)
+                suffix = suffix.strip()
 
-            if prefix == "break-fix" and " " in suffix:
-                introduced, fixed = suffix.split(" ", 1)
+                if prefix == "break-fix" and " " in suffix:
+                    introduced, fixed = suffix.split(" ", 1)
 
-                if introduced == "-":
-                    # First commit to Linux git tree
-                    introduced = "1da177e4c3f41524e886b7f1b8a0c1fc7321cac2"
+                    if introduced == "-":
+                        # First commit to Linux git tree
+                        introduced = "1da177e4c3f41524e886b7f1b8a0c1fc7321cac2"
 
-                formatted_patches.append(
-                    {
-                        "type": "break-fix",
-                        "content": {"introduced": introduced, "fixed": fixed},
-                        "name": package_name,
-                    }
-                )
+                    formatted_patches.append(
+                        {
+                            "type": "break-fix",
+                            "content": {
+                                "introduced": introduced,
+                                "fixed": fixed,
+                            },
+                            "name": package_name,
+                        }
+                    )
 
-            if (
-                "ftp://" in suffix
-                or "http://" in suffix
-                or "https://" in suffix
-            ):
-                formatted_patches.append(
-                    {
-                        "type": "link",
-                        "content": {"prefix": prefix, "suffix": suffix},
-                        "name": package_name,
-                    }
-                )
+                if (
+                    "ftp://" in suffix
+                    or "http://" in suffix
+                    or "https://" in suffix
+                ):
+                    formatted_patches.append(
+                        {
+                            "type": "link",
+                            "content": {"prefix": prefix, "suffix": suffix},
+                            "name": package_name,
+                        }
+                    )
 
-            if ":" not in patch:
-                formatted_patches.append(
-                    {"type": "text", "content": patch, "name": patch}
-                )
+                if ":" not in patch:
+                    formatted_patches.append(
+                        {"type": "text", "content": patch, "name": patch}
+                    )
 
     # format tags
     formatted_tags = []
-
-    for package_name, tags in cve["tags"].items():
-        for tag in tags:
-            formatted_tags.append({"name": package_name, "text": tag})
+    if cve["tags"]:
+        for package_name, tags in cve["tags"].items():
+            for tag in tags:
+                formatted_tags.append({"name": package_name, "text": tag})
 
     return flask.render_template(
         "security/cve/cve.html",
