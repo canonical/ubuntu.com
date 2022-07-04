@@ -81,10 +81,14 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
     console.log(entitlementsToUpdate);
     if (entitlementsToUpdate.length <= 0) {
       setHasUnsavedChanges(false);
+      window.removeEventListener("beforeunload", alertUser);
     } else {
       setHasUnsavedChanges(true);
       window.addEventListener("beforeunload", alertUser);
     }
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
   }, [entitlementsToUpdate]);
 
   const alertUser = async (e: Event) => {
