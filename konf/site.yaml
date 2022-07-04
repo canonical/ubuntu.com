@@ -268,7 +268,7 @@ production:
     - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
-    - paths: [/security/notices, /security/cves]
+    - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -296,7 +296,7 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
     - paths: [/advantage, /account]
       name: ubuntu-com-advantage
@@ -326,7 +326,7 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
 
         - name: CONTRACTS_API_URL
           value: https://contracts.canonical.com/
@@ -647,7 +647,7 @@ staging:
     - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
 
-    - paths: [/security/notices, /security/cves]
+    - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -675,7 +675,7 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
     - paths: [/advantage, /account]
       name: ubuntu-com-advantage
@@ -705,7 +705,7 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
 
         - name: CONTRACTS_API_URL
           value: https://contracts.staging.canonical.com/
