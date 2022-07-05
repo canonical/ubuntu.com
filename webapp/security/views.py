@@ -14,9 +14,8 @@ from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import desc, or_, and_, func, case
+from sqlalchemy import desc
 from sqlalchemy.exc import IntegrityError, DataError
-from sqlalchemy.orm import contains_eager
 
 # Local
 from webapp.security.database import db_session
@@ -499,13 +498,13 @@ def cve_index():
     """
     # Query parameters
     query = flask.request.args.get("q", "").strip()
-    priority = flask.request.args.get("priority")
-    package = flask.request.args.get("package")
+    priority = flask.request.args.get("priority", default="", type=str)
+    package = flask.request.args.get("package", default="", type=str)
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     component = flask.request.args.get("component")
-    version = flask.request.args.get("version")
-    status = flask.request.args.get("status")
+    version = flask.request.args.get("version", default="", type=str)
+    status = flask.request.args.get("status", default="", type=str)
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
 

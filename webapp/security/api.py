@@ -122,8 +122,9 @@ class SecurityAPI:
         version: str,
         status: str,
     ):
+
         parameters = {
-            "query": query,
+            "q": query,
             "priority": priority,
             "package": package,
             "limit": limit,
@@ -132,10 +133,18 @@ class SecurityAPI:
             "version": version,
             "status": status,
         }
-        # Remove falsey items from dictionary
-        parameters = {k: v for k, v in parameters.items() if v}
 
-        filtered_parameters = urlencode(parameters)
+        # Remove falsey items from dictionary
+        filtered_parameters = {k: v for k, v in parameters.items() if v}
+
+        if parameters["status"] == "":
+            filtered_parameters.update({"status": ""})
+
+        if parameters["version"] == "":
+            filtered_parameters.update({"version": ""})
+
+        filtered_parameters = urlencode(filtered_parameters)
+
         try:
             cves_response = self._get(f"cves.json?{filtered_parameters}")
         except HTTPError as error:
