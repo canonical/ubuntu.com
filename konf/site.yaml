@@ -121,6 +121,7 @@ extraHosts:
   - domain: core.docs.ubuntu.com
   - domain: certification.ubuntu.com
   - domain: security-certs.docs.ubuntu.com
+  - domain: usn.ubuntu.com
 
 # Overrides for production
 production:
@@ -377,6 +378,9 @@ production:
     if ($host = 'certification.ubuntu.com' ) {
       rewrite ^ https://ubuntu.com/certified$request_uri? permanent;
     }
+    if ($host = 'usn.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/security/notices$request_uri? permanent;
+    }
     if ($host = 'core.docs.ubuntu.com' ) {
       rewrite ^(\/en)?(\/.*)$ https://ubuntu.com/core/docs$2? permanent;
     }
@@ -389,6 +393,7 @@ production:
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
     }
+
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
@@ -397,6 +402,9 @@ production:
     }
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+    }
+    location ^~ /usn-db/ {
+      proxy_pass https://people.canonical.com/%7Eubuntu-security/usn/;
     }
 
 # Overrides for staging
