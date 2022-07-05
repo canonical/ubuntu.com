@@ -24,9 +24,7 @@ let entries = {
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
-  blenderStore: "./static/js/src/advantage/subscribe/blender/blender-store.js",
-  blenderStoreModal:
-    "./static/js/src/advantage/subscribe/blender/blender-store-modal.js",
+  blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
   tabbedContent: "./static/js/src/tabbed-content.js",
   utmInheritance: "./static/js/src/utm-inheritance.js",
   "kernel-form": "./static/js/src/kernel-form.js",
