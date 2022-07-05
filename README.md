@@ -3,14 +3,6 @@
 [![Code coverage](https://codecov.io/gh/canonical-web-and-design/ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/ubuntu.com)
 [![Cypress checks](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Cypress+checks%22)
 [![Cypress checks / main](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20main%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/cypress-main.yaml?query=workflow%3A%22Cypress+checks%22)
-[![Links in master](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20in%20master/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+in+master%22)
-[![Links on live](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20on%20live/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+on+live%22)
-[![Blog Links](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/blog-links.yaml/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/blog-links.yaml)
-[![Security Links](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/security-links.yaml/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/security-links.yaml)
-[![docs links on ubuntu.com/ceph/docs](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/ceph-docs-links.yaml/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/ceph-docs-links.yaml)
-[![docs links on ubuntu.com/core/docs](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/core-docs-links.yaml/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/core-docs-links.yaml)
-[![docs links on ubuntu.com/kubernetes/docs](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/kubernetes-docs-links.yaml/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/kubernetes-docs-links.yaml)
-[![docs links on ubuntu.com/server/docs](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/server-docs-links.yaml/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/server-docs-links.yaml)
 
 Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things. [Ubuntu.com](https://ubuntu.com) is the website that helps people learn about, download and get started with Ubuntu. This repo is the codebase and content for the [ubuntu.com](https://ubuntu.com) website.
 
