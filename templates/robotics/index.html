@@ -18,17 +18,7 @@
       <p><a href="/engage/robot-operating-system-choice">Read our guide to pick the right OS for your robot&nbsp;&rsaquo;</a></p>
     </div>
     <div id="robotics-header" class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ 
-        image (
-        url="https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg",
-        alt="",
-        width="1468",
-        height="1078",
-        hi_def=True,
-        loading="auto",
-        attrs={"id": "robotics-image", "class": "u-hide"},
-        ) | safe
-      }}
+      <img src="https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg" id="robotics-image" class="u-hide" />
     </div>
   </div>
 </section>
@@ -488,7 +478,7 @@
 
 <script>
   function rotateRoboticsHeroImage() {
-    const roboticsImages = ["https://assets.ubuntu.com/v1/1db90ac6-Mobile_Warehouse.svg", "https://assets.ubuntu.com/v1/af935154-Medical.svg", "https://assets.ubuntu.com/v1/d55972c6-HomeRobots.svg", "https://assets.ubuntu.com/v1/22499d49-Turbine.svg"]
+    const roboticsImages = ["https://assets.ubuntu.com/v1/5750f1c1-Ubuntu_Robotics_Agriculture_Illus.svg", "https://assets.ubuntu.com/v1/1db90ac6-Mobile_Warehouse.svg", "https://assets.ubuntu.com/v1/af935154-Medical.svg", "https://assets.ubuntu.com/v1/d55972c6-HomeRobots.svg", "https://assets.ubuntu.com/v1/22499d49-Turbine.svg"]
     const roboticsImageEl = document.getElementById("robotics-image");
 
     if (window.localStorage && roboticsImageEl) {
