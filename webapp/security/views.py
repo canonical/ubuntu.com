@@ -520,7 +520,7 @@ def cve_index():
         version=version,
         status=status,
     )
-    
+
     cves = cves_response.get("cves")
     # Pagination
     total_results = cves_response.get("total_results")
@@ -540,8 +540,7 @@ def cve_index():
     for release in releases_json:
         if release["codename"] != "upstream":
             all_releases.append(release)
-    
-   
+
     releases = []
 
     for release in all_releases:
@@ -558,7 +557,26 @@ def cve_index():
 
     releases = sorted(releases, key=lambda d: d["version"])
 
-    print(len(releases))
+    friendly_names = {
+        "DNE": "Does not exist",
+        "needs-triage": "Needs triage",
+        "not-affected": "Not vulnerable",
+        "needed": "Needed",
+        "deferred": "Deferred",
+        "ignored": "Ignored",
+        "pending": "Pending",
+        "released": "Released",
+    }
+
+    for cve in cves:
+        for cve_package in cve["packages"]:
+            cve_package["release_statuses"] = {}
+            for status in cve_package["statuses"]:
+                cve_package["release_statuses"][status["release_codename"]] = {
+                    "slug": status["status"],
+                    "name": friendly_names[status["status"]],
+                    "pocket": status["pocket"],
+                }
 
     return flask.render_template(
         "security/cve/index.html",
