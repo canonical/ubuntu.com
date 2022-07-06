@@ -1,9 +1,11 @@
+import { onLoginClick } from "advantage/ecom-events";
 import React from "react";
 import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
+import { getIsFreeTrialEnabled } from "../../utils/utils";
 
 export default function Heading() {
   const { data: userInfo } = useStripeCustomerInfo();
-  const freeTrial = false;
+  const freeTrial = getIsFreeTrialEnabled();
 
   return (
     <section className="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
@@ -16,10 +18,7 @@ export default function Heading() {
               <h1>Subscribe to Ubuntu Advantage</h1>
               <p>
                 If you have existing subscriptions or sales offers,{" "}
-                <a
-                  href="/login"
-                  // onClick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });"
-                >
+                <a href="/login" onClick={onLoginClick}>
                   sign in
                 </a>{" "}
                 to see them.

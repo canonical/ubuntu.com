@@ -1,3 +1,4 @@
+import { onLoginClick } from "advantage/ecom-events";
 import React from "react";
 import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
 
@@ -17,10 +18,7 @@ export default function Heading() {
             <>
               <p>
                 If you have existing subscriptions or sales offers,{" "}
-                <a
-                  href="/login"
-                  // onClick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });"
-                >
+                <a href="/login" onClick={onLoginClick}>
                   sign in
                 </a>{" "}
                 to see them.
