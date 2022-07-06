@@ -182,6 +182,14 @@
         </li>
         {% endfor %}
       </ul>
+      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
+      <ul class="p-inline-list--midline">
+        {% for iot_release in iot_releases %}
+        <li class="p-inline-list__item">
+          <a href="/certified/devices?release={{ iot_release.release }}">{{ iot_release.release }}&nbsp;({{ iot_release.smart_core }})</a>
+        </li>
+        {% endfor %}
+      </ul>
       <p><a href="/certified/devices" class="p-button--positive">See all devices</a></p>
     </div>
   </div>
@@ -201,6 +209,14 @@
         </li>
         {% endfor %}
       </ul>
+      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
+      <ul class="p-inline-list--midline">
+        {% for soc_release in soc_releases %}
+        <li class="p-inline-list__item">
+          <a href="/certified/socs?release={{ soc_release.release }}">{{ soc_release.release }}&nbsp;({{ soc_release.soc }})</a>
+        </li>
+        {% endfor %}
+      </ul>      
       <p><a href="/certified/socs" class="p-button--positive">See all SoCs</a></p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
