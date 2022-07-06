@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
-import usePurchase from "../../hooks/usePurchase";
-import usePendingPurchase from "../../hooks/usePendingPurchase";
+import usePurchase from "advantage/subscribe/react/hooks/usePurchase";
+import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { getSessionData } from "../../../../../utils/getSessionData";
 import { BuyButtonProps } from "advantage/subscribe/react/utils/utils";
 
@@ -39,8 +39,9 @@ const BuyButton = ({
   }, []);
 
   const { data: userInfo } = useStripeCustomerInfo();
+  const { quantity, product } = useContext(FormContext);
 
-  const purchaseMutation = usePurchase();
+  const purchaseMutation = usePurchase({ quantity, product });
 
   const {
     data: pendingPurchase,
@@ -48,7 +49,6 @@ const BuyButton = ({
     error: purchaseError,
   } = usePendingPurchase();
 
-  const { quantity, product } = useContext(FormContext);
   const GAFriendlyProduct = {
     id: product?.id,
     name: product?.name,
@@ -60,13 +60,12 @@ const BuyButton = ({
     // empty the product selector state persisted in the local storage
     // after the user chooses to make a purchase
     // to prevent page refreshes from causing accidental double purchasing
-    localStorage.removeItem("ua-subscribe-state");
     setIsLoading(true);
   };
 
   const handleOnAfterPurchaseSuccess = () => {
     if (window.isGuest && !window.isLoggedIn) {
-      location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+      location.href = `/advantage/subscribe/blender/thank-you?email=${encodeURIComponent(
         userInfo?.customerInfo?.email
       )}`;
     } else {
@@ -153,17 +152,12 @@ const BuyButton = ({
     if (pendingPurchase?.status === "done") {
       const purchaseInfo = {
         id: pendingPurchase?.id,
-        origin: "UA Shop",
+        origin: "Blender Shop",
         total: pendingPurchase?.invoice?.total / 100,
         tax: pendingPurchase?.invoice?.taxAmount / 100,
       };
 
       purchaseEvent(purchaseInfo, GAFriendlyProduct);
-
-      // The state of the product selector is stored in the local storage
-      // if a purchase is successful we empty it so the customer will see
-      // the default values pre-selected instead of what they just bought.
-      localStorage.removeItem("ua-subscribe-state");
 
       const request = new XMLHttpRequest();
       const formData = new FormData();
@@ -174,7 +168,7 @@ const BuyButton = ({
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
       formData.append("utm_source", sessionData?.utm_source || "");
       formData.append("utm_medium", sessionData?.utm_medium || "");
-      formData.append("store_name__c", "ua");
+      formData.append("store_name__c", "blender");
       formData.append(
         "canonicalUpdatesOptIn",
         isMarketingOptInChecked ? "yes" : "no"

@@ -3,7 +3,7 @@ import Heading from "./components/Heading";
 import Form from "./components/Form";
 import ProductSummary from "./components/ProductSummary";
 
-const UAPurchase = () => {
+const BlenderPurchase = () => {
   return (
     <>
       <Heading />
@@ -13,4 +13,4 @@ const UAPurchase = () => {
   );
 };
 
-export default UAPurchase;
+export default BlenderPurchase;

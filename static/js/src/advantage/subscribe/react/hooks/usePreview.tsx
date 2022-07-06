@@ -1,11 +1,15 @@
 import { useQuery } from "react-query";
 import { postPurchasePreviewData } from "../../../api/contracts";
 import useStripeCustomerInfo from "../../../../PurchaseModal/hooks/useStripeCustomerInfo";
-import { useContext } from "react";
-import { FormContext } from "../utils/FormContext";
+import { Product as UAProduct } from "../utils/utils";
+import { Product as BlenderProduct } from "advantage/subscribe/blender/utils/utils";
 
-const usePreview = () => {
-  const { quantity, product } = useContext(FormContext);
+type Props = {
+  quantity: number;
+  product: UAProduct | BlenderProduct | null;
+};
+
+const usePreview = ({ quantity, product }: Props) => {
   const { isError: isUserInfoError } = useStripeCustomerInfo();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
@@ -27,7 +31,7 @@ const usePreview = () => {
           },
         ],
         window.previousPurchaseIds?.[product.period],
-        window.STATE?.product?.marketplace
+        product?.marketplace
       );
 
       if (res.errors) {

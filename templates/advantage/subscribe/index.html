@@ -36,6 +36,7 @@
         productID: "{{ listing.product.id }}",
         canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
         private: false,
+        marketplace: "canonical-ua",
       },
     {% endfor %}
   };

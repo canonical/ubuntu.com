@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
-import usePreview from "../../hooks/usePreview";
+import usePreview from "advantage/subscribe/react/hooks/usePreview";
 import { FormContext } from "../../utils/FormContext";
 import { currencyFormatter } from "advantage/react/utils";
 
@@ -9,7 +9,7 @@ const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
   const { quantity, product } = useContext(FormContext);
-  const { data: preview } = usePreview();
+  const { data: preview } = usePreview({ quantity, product });
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
@@ -100,10 +100,10 @@ function Summary() {
       </Row>
       <Row className="u-no-padding u-sv1">
         <Col size={4}>
-          <div className="u-text-light">Machines:</div>
+          <div className="u-text-light">Users:</div>
         </Col>
         <Col size={8}>
-          <div data-test="machines">
+          <div data-test="users">
             {quantity} x{" "}
             {currencyFormatter.format((product?.price?.value ?? 0) / 100)}
           </div>

@@ -1,3 +1,4 @@
+import { marketplace } from "./../../../../PurchaseModal/utils/utils";
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 
 interface DefaultPaymentMethod {
@@ -149,6 +150,7 @@ export type Product = {
   private: boolean;
   id: ProductIDs;
   productID: string;
+  marketplace: "canonical-ua" | "cube";
 };
 
 export type ProductListings = {
@@ -168,7 +170,9 @@ export const isPublicCloud = (type: ProductTypes) =>
   type === ProductTypes.gcp;
 
 export const shouldShowApps = () =>
-  !!window.productList["uaia-essential-physical-yearly"];
+  !!window.productList[
+    `${Features.pro}-${Support.essential}-${ProductTypes.physical}-${Periods.yearly}`
+  ];
 
 export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",

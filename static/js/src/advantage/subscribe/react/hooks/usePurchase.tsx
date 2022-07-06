@@ -1,10 +1,14 @@
-import { useContext } from "react";
 import { useMutation } from "react-query";
 import { postPurchaseData } from "../../../api/contracts";
-import { FormContext } from "../utils/FormContext";
+import { Product as UAProduct } from "../utils/utils";
+import { Product as BlenderProduct } from "advantage/subscribe/blender/utils/utils";
 
-const usePurchase = () => {
-  const { quantity, product } = useContext(FormContext);
+type Props = {
+  quantity: number;
+  product: UAProduct | BlenderProduct | null;
+};
+
+const usePurchase = ({ quantity, product }: Props) => {
   const mutation = useMutation(async () => {
     if (!product) {
       throw new Error("Product missing");
@@ -22,7 +26,7 @@ const usePurchase = () => {
         },
       ],
       window.previousPurchaseIds?.[product.period],
-      window?.STATE?.product?.marketplace
+      product?.marketplace
     );
 
     if (res.errors) {

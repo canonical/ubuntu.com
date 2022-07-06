@@ -14,7 +14,7 @@ type Props = {
 export default function PaymentModal({ isHidden }: Props) {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
   const { quantity, product } = useContext(FormContext);
-  const { data: preview } = usePreview();
+  const { data: preview } = usePreview({ quantity, product });
 
   const termsLabel = (
     <>

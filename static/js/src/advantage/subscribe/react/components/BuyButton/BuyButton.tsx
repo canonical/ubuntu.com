@@ -40,8 +40,10 @@ const BuyButton = ({
   }, []);
 
   const { data: userInfo } = useStripeCustomerInfo();
+  const { quantity, product } = useContext(FormContext);
 
-  const purchaseMutation = usePurchase();
+  const purchaseMutation = usePurchase({ quantity, product });
+
   const freeTrialMutation = useFreeTrial();
 
   const {
@@ -50,7 +52,6 @@ const BuyButton = ({
     error: purchaseError,
   } = usePendingPurchase();
 
-  const { quantity, product } = useContext(FormContext);
   const GAFriendlyProduct = {
     id: product?.id,
     name: product?.name,

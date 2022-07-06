@@ -23,6 +23,7 @@ export type Product = {
   private: boolean;
   id: ProductIDs;
   productID: string;
+  marketplace: "canonical-ua" | "cube";
 };
 
 export type ProductListings = {
@@ -30,8 +31,8 @@ export type ProductListings = {
 };
 
 export const isMonthlyAvailable = (product: Product | null) => {
-  if (!product || !product.id) return false;
+  if (!product || !product.productID) return false;
 
-  const monthlyID = product.id.replace(Periods.yearly, Periods.monthly);
+  const monthlyID = `${product.productID}-${Periods.monthly}`;
   return !!window.blenderProductList[monthlyID as ProductIDs];
 };

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Col, Row } from "@canonical/react-components";
-import RadioCard from "../RadioCard";
+import RadioCard from "advantage/subscribe/react/components/Form/RadioCard";
 import { FormContext } from "advantage/subscribe/blender/utils/FormContext";
 import { Support as SupportEnum } from "advantage/subscribe/blender/utils/utils";
 

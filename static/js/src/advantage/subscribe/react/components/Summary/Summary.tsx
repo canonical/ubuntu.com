@@ -9,7 +9,7 @@ const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
   const { quantity, product } = useContext(FormContext);
-  const { data: preview } = usePreview();
+  const { data: preview } = usePreview({ quantity, product });
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
