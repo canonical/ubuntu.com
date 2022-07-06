@@ -197,6 +197,11 @@ def bad_request_error(error):
     return flask.render_template("400.html", message=error.description), 400
 
 
+@app.errorhandler(403)
+def forbidden_error(error):
+    return flask.render_template("403.html", message=error.description), 403
+
+
 @app.errorhandler(410)
 def deleted_error(error):
     return flask.render_template("410.html", message=error.description), 410
