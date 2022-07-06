@@ -50,12 +50,14 @@
                 <td aria-label="Status">
                   {% if invoice.invoice %}
                     {% if invoice.invoice.status == "paid" %}
-                      <div class="p-label--new">Paid</div>
+                      <div class="p-status-label--positive">Paid</div>
                     {% elif invoice.invoice.status == "open" %}
-                      <div class="p-label--deprecated">Failed</div>
-                    {% else %}
                       <div class="p-label">Pending</div>
+                    {% else %}
+                      <div class="p-status-label--negative">Failed</div>
                     {% endif %}
+                  {% elif invoice.status == "done" %}
+                    <div class="p-status-label--negative">Failed</div>
                   {% else %}
                     <div class="p-label">Pending</div>
                   {% endif %}
