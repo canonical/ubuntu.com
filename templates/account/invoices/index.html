@@ -52,9 +52,9 @@
                     {% if invoice.invoice.status == "paid" %}
                       <div class="p-label--new">Paid</div>
                     {% elif invoice.invoice.status == "open" %}
-                      <div class="p-label--deprecated">Failed</div>
-                    {% else %}
                       <div class="p-label">Pending</div>
+                    {% else %}
+                      <div class="p-label--deprecated">Failed</div>
                     {% endif %}
                   {% else %}
                     <div class="p-label">Pending</div>
