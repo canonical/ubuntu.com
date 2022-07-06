@@ -938,3 +938,11 @@ security/cve/sitemap(?P<suffix>.*).xml: /security/cves/sitemap{suffix}.xml
 /advantage/purchases/(?P<purchase_id>.*): /account/purchases/{purchase_id}
 /advantage/(?P<tx_type>.*)/(?P<tx_id>.*)/invoices/(?P<invoice_id>.*): "/account/{tx_type}/{tx_id}/invoices/{invoice_id}"
 /advantage/last-purchase-ids/(?P<account_id>.*): "/account/last-purchase-ids/{account_id}"
+
+# USN redirects
+/security/notices/months(/.*)?/?: /security/notices
+/security/notices/releases(/.*)?/?: /security/notices
+/security/notices/usn/atom.xml: /security/notices/atom.xml
+/security/notices/usn/rss.xml: /security/notices/rss.xml
+/security/notices/usn/(usn-|USN-)(?P<usn_id>.*)/?: /security/notices/USN-{usn_id}
+/security/notices/(usn/)?(?P<usn_id>[\d]{4}-[\d]{1,2})/?: /security/notices/USN-{usn_id}
