@@ -16,7 +16,7 @@ const imgUrl = {
 };
 
 const ProductSummary = () => {
-  const { quantity, type, period, setPeriod, product } = useContext(
+  const { quantity, productType, period, setPeriod, product } = useContext(
     FormContext
   );
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -40,7 +40,7 @@ const ProductSummary = () => {
       <Row className="u-sv3">
         <Col size={8} className="p-shop-cart__selected-product">
           <span id="summary-plan-quantity">{quantity}x</span>
-          <img id="summary-plan-image" src={imgUrl[type]} />
+          <img id="summary-plan-image" src={imgUrl[productType]} />
           <span id="summary-plan-name">{product?.name}</span>
           {isMonthlyAvailable(product) ? (
             <div>

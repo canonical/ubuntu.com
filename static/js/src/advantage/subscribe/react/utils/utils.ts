@@ -150,7 +150,7 @@ export type Product = {
   private: boolean;
   id: ProductIDs;
   productID: string;
-  marketplace: "canonical-ua" | "cube";
+  marketplace: marketplace;
 };
 
 export type ProductListings = {

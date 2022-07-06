@@ -1,3 +1,5 @@
+import { marketplace } from "./../../../../PurchaseModal/utils/utils";
+
 export enum Support {
   unset = "unset",
   standard = "standard",
@@ -23,7 +25,7 @@ export type Product = {
   private: boolean;
   id: ProductIDs;
   productID: string;
-  marketplace: "canonical-ua" | "cube";
+  marketplace: marketplace;
 };
 
 export type ProductListings = {

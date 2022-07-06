@@ -138,6 +138,7 @@ export const productListFixture = {
     productID: "uaa-advanced",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-advanced-virtual-yearly": {
     id: "uaa-advanced-virtual-yearly",
@@ -151,6 +152,7 @@ export const productListFixture = {
     productID: "uaa-advanced-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-essential-desktop-yearly": {
     id: "uaa-essential-desktop-yearly",
@@ -164,6 +166,7 @@ export const productListFixture = {
     productID: "uaa-essential-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-essential-monthly": {
     id: "uaa-essential-monthly",
@@ -177,6 +180,7 @@ export const productListFixture = {
     productID: "uaa-essential",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-essential-yearly": {
     id: "uaa-essential-yearly",
@@ -190,6 +194,7 @@ export const productListFixture = {
     productID: "uaa-essential",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-essential-virtual-monthly": {
     id: "uaa-essential-virtual-monthly",
@@ -203,6 +208,7 @@ export const productListFixture = {
     productID: "uaa-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-essential-virtual-yearly": {
     id: "uaa-essential-virtual-yearly",
@@ -216,6 +222,7 @@ export const productListFixture = {
     productID: "uaa-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-standard-yearly": {
     id: "uaa-standard-yearly",
@@ -229,6 +236,7 @@ export const productListFixture = {
     productID: "uaa-standard",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaa-standard-virtual-yearly": {
     id: "uaa-standard-virtual-yearly",
@@ -242,6 +250,7 @@ export const productListFixture = {
     productID: "uaa-standard-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-advanced-desktop-none": {
     id: "uai-advanced-desktop-none",
@@ -255,6 +264,7 @@ export const productListFixture = {
     productID: "uai-advanced-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-advanced-desktop-yearly": {
     id: "uai-advanced-desktop-yearly",
@@ -268,6 +278,7 @@ export const productListFixture = {
     productID: "uai-advanced-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-advanced-physical-none": {
     id: "uai-advanced-physical-none",
@@ -281,6 +292,7 @@ export const productListFixture = {
     productID: "uai-advanced-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-advanced-physical-yearly": {
     id: "uai-advanced-physical-yearly",
@@ -294,6 +306,7 @@ export const productListFixture = {
     productID: "uai-advanced-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-advanced-virtual-none": {
     id: "uai-advanced-virtual-none",
@@ -307,6 +320,7 @@ export const productListFixture = {
     productID: "uai-advanced-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-advanced-virtual-yearly": {
     id: "uai-advanced-virtual-yearly",
@@ -320,6 +334,7 @@ export const productListFixture = {
     productID: "uai-advanced-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-desktop-none": {
     id: "uai-essential-desktop-none",
@@ -333,6 +348,7 @@ export const productListFixture = {
     productID: "uai-essential-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-desktop-yearly": {
     id: "uai-essential-desktop-yearly",
@@ -346,6 +362,7 @@ export const productListFixture = {
     productID: "uai-essential-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-physical-monthly": {
     id: "uai-essential-physical-monthly",
@@ -359,6 +376,7 @@ export const productListFixture = {
     productID: "uai-essential-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-physical-none": {
     id: "uai-essential-physical-none",
@@ -372,6 +390,7 @@ export const productListFixture = {
     productID: "uai-essential-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-physical-yearly": {
     id: "uai-essential-physical-yearly",
@@ -385,6 +404,7 @@ export const productListFixture = {
     productID: "uai-essential-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-virtual-monthly": {
     id: "uai-essential-virtual-monthly",
@@ -398,6 +418,7 @@ export const productListFixture = {
     productID: "uai-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-standard-physical-yearly": {
     id: "uai-standard-physical-yearly",
@@ -411,6 +432,7 @@ export const productListFixture = {
     productID: "uai-standard-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-essential-physical-monthly": {
     id: "uaia-essential-physical-monthly",
@@ -424,6 +446,7 @@ export const productListFixture = {
     productID: "uaia-essential-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-standard-virtual-yearly": {
     id: "uaia-standard-virtual-yearly",
@@ -437,6 +460,7 @@ export const productListFixture = {
     productID: "uaia-standard-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-virtual-none": {
     id: "uai-essential-virtual-none",
@@ -450,6 +474,7 @@ export const productListFixture = {
     productID: "uai-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-essential-virtual-yearly": {
     id: "uai-essential-virtual-yearly",
@@ -463,6 +488,7 @@ export const productListFixture = {
     productID: "uai-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-essential-virtual-monthly": {
     id: "uaia-essential-virtual-monthly",
@@ -476,6 +502,7 @@ export const productListFixture = {
     productID: "uaia-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-standard-desktop-none": {
     id: "uai-standard-desktop-none",
@@ -489,6 +516,7 @@ export const productListFixture = {
     productID: "uai-standard-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-standard-physical-none": {
     id: "uai-standard-physical-none",
@@ -502,6 +530,7 @@ export const productListFixture = {
     productID: "uai-standard-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-advanced-physical-yearly": {
     id: "uaia-advanced-physical-yearly",
@@ -515,6 +544,7 @@ export const productListFixture = {
     productID: "uaia-advanced-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-standard-desktop-yearly": {
     id: "uai-standard-desktop-yearly",
@@ -528,6 +558,7 @@ export const productListFixture = {
     productID: "uai-standard-desktop",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-standard-virtual-none": {
     id: "uai-standard-virtual-none",
@@ -541,6 +572,7 @@ export const productListFixture = {
     productID: "uai-standard-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uai-standard-virtual-yearly": {
     id: "uai-standard-virtual-yearly",
@@ -554,6 +586,7 @@ export const productListFixture = {
     productID: "uai-standard-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-advanced-virtual-yearly": {
     id: "uaia-advanced-virtual-yearly",
@@ -567,6 +600,7 @@ export const productListFixture = {
     productID: "uaia-advanced-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-essential-physical-yearly": {
     id: "uaia-essential-physical-yearly",
@@ -580,6 +614,7 @@ export const productListFixture = {
     productID: "uaia-essential-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-standard-physical-yearly": {
     id: "uaia-standard-physical-yearly",
@@ -593,6 +628,7 @@ export const productListFixture = {
     productID: "uaia-standard-physical",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
   "uaia-essential-virtual-yearly": {
     id: "uaia-essential-virtual-yearly",
@@ -606,5 +642,6 @@ export const productListFixture = {
     productID: "uaia-essential-virtual",
     canBeTrialled: false,
     private: false,
+    marketplace: "canonical-ua",
   },
 };
