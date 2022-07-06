@@ -577,6 +577,29 @@ def cve_index():
                     "pocket": status["pocket"],
                 }
 
+    version_releases = []
+    if versions:
+        for release in all_releases:
+            for version in versions:
+                if version == release["codename"]:
+                    version_releases.append(
+                        {
+                            "version": release["version"],
+                            "support_tag": release["support_tag"],
+                            "codename": release["codename"],
+                        }
+                    )
+    elif version:
+        for release in all_releases:
+            if version == release["codename"]:
+                version_releases.append(
+                    {
+                        "version": release["version"],
+                        "support_tag": release["support_tag"],
+                        "codename": release["codename"],
+                    }
+                )
+
     return flask.render_template(
         "security/cve/index.html",
         releases=releases,
@@ -592,6 +615,7 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
+        version_releases=version_releases,
     )
 
 
