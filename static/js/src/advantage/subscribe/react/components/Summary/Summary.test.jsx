@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { add, format } from "date-fns";
 import Summary from "./Summary";
 import * as usePreview from "../../hooks/usePreview";
+import * as utils from "../../utils/utils";
 
 import { product, preview } from "../../utils/test/Mocks";
 import { Features, Periods, Support } from "../../utils/utils";
@@ -20,7 +21,6 @@ describe("Summary", () => {
         },
         "uai-essential-physical-monthly": {
           ...product,
-          name: "aAAAAAAAAAAAAAAAAA",
           id: "uai-essential-physical-monthly",
           period: "monthly",
         },
@@ -61,6 +61,9 @@ describe("Summary", () => {
   it("renders correctly with no preview and a monthly product", () => {
     jest.spyOn(usePreview, "default").mockImplementation(() => {
       return { data: null };
+    });
+    jest.spyOn(utils, "isMonthlyAvailable").mockImplementation(() => {
+      return true;
     });
 
     render(
