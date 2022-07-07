@@ -16,7 +16,7 @@ function Summary() {
         <div className="u-text-light">Subtotal:</div>
       </Col>
       <Col size={8}>
-        <div data-test="subtotal">
+        <div data-testid="subtotal">
           {formatter.format(((product?.price?.value ?? 0) * quantity) / 100)}
         </div>
       </Col>
@@ -32,7 +32,7 @@ function Summary() {
               <div className="u-text-light">For this period:</div>
             </Col>
             <Col size={8}>
-              <div data-test="for-this-period">
+              <div data-testid="for-this-period">
                 {formatter.format((preview?.total - preview?.taxAmount) / 100)}
               </div>
             </Col>
@@ -43,7 +43,7 @@ function Summary() {
             <div className="u-text-light">Tax:</div>
           </Col>
           <Col size={8}>
-            <div data-test="tax">
+            <div data-testid="tax">
               {formatter.format(preview?.taxAmount / 100)}
             </div>
           </Col>
@@ -53,7 +53,7 @@ function Summary() {
             <div className="u-text-light">Total</div>
           </Col>
           <Col size={8}>
-            <div data-test="total">
+            <div data-testid="total">
               <b>{formatter.format(preview?.total / 100)}</b>
             </div>
           </Col>
@@ -89,7 +89,7 @@ function Summary() {
         </Col>
         <Col size={8}>
           <div
-            data-test="name"
+            data-testid="name"
             dangerouslySetInnerHTML={{ __html: product?.name ?? "" }}
           />
         </Col>
@@ -99,7 +99,7 @@ function Summary() {
           <div className="u-text-light">Machines:</div>
         </Col>
         <Col size={8}>
-          <div data-test="machines">
+          <div data-testid="machines">
             {quantity} x {formatter.format((product?.price?.value ?? 0) / 100)}
           </div>
         </Col>
@@ -109,7 +109,7 @@ function Summary() {
           <div className="u-text-light">Starts:</div>
         </Col>
         <Col size={8}>
-          <div data-test="start-date">{format(new Date(), DATE_FORMAT)}</div>
+          <div data-testid="start-date">{format(new Date(), DATE_FORMAT)}</div>
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">
@@ -119,7 +119,7 @@ function Summary() {
 
         {preview?.subscriptionEndOfCycle ? (
           <Col size={8}>
-            <div data-test="end-date">
+            <div data-testid="end-date">
               {format(new Date(preview?.subscriptionEndOfCycle), DATE_FORMAT)}
             </div>
             <br />
@@ -127,7 +127,7 @@ function Summary() {
           </Col>
         ) : (
           <Col size={8}>
-            <div data-test="end-date">
+            <div data-testid="end-date">
               {format(
                 add(new Date(), {
                   months: product?.period === "monthly" ? 1 : 12,

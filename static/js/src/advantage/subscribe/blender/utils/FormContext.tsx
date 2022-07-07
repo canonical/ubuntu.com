@@ -14,7 +14,7 @@ interface FormContext {
 export const defaultValues: FormContext = {
   support: Support.unset,
   setSupport: () => {},
-  quantity: 0,
+  quantity: 1,
   setQuantity: () => {},
   period: Periods.yearly,
   setPeriod: () => {},
@@ -25,17 +25,19 @@ export const FormContext = createContext<FormContext>(defaultValues);
 
 interface FormProviderProps {
   initialSupport?: Support;
+  initialQuantity?: number;
   initialPeriod?: Periods;
   children: React.ReactNode;
 }
 
 export const FormProvider = ({
   initialSupport = defaultValues.support,
+  initialQuantity = defaultValues.quantity,
   initialPeriod = defaultValues.period,
   children,
 }: FormProviderProps) => {
   const [support, setSupport] = useState<Support>(initialSupport);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(initialQuantity);
   const [period, setPeriod] = useState<Periods>(initialPeriod);
   const [product, setProduct] = useState<Product | null>(null);
 

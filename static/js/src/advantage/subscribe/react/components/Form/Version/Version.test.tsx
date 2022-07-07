@@ -16,7 +16,6 @@ beforeAll(() => {
 });
 
 test("Version section displays the matching features to the selected version", async () => {
-  const user = userEvent.setup();
   render(
     <FormProvider initialVersion={LTSVersions.jammy}>
       <Version />
@@ -24,18 +23,17 @@ test("Version section displays the matching features to the selected version", a
   );
   expect(screen.getByText(/^For Ubuntu 22.04, all UA plans include/));
 
-  await user.click(screen.getByText("Ubuntu 16.04 LTS"));
+  await userEvent.click(screen.getByText("Ubuntu 16.04 LTS"));
   expect(screen.getByText(/^For Ubuntu 16.04, all UA plans include/));
 });
 
 test("It opens the modal if 'other versions' is clicked", async () => {
-  const user = userEvent.setup();
   render(
     <FormProvider>
       <Version />
     </FormProvider>
   );
-  await user.click(screen.getByText("Are you using an older version?"));
+  await userEvent.click(screen.getByText("Are you using an older version?"));
   expect(screen.getByText(/^Other versions?/)).toBeInTheDocument();
 });
 

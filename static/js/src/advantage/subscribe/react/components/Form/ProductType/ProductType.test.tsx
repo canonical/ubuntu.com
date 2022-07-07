@@ -22,14 +22,13 @@ test("Type selector doesn't display the public cloud section by default", () => 
 });
 
 test("Type selector displays the public cloud section if a public cloud is selected", async () => {
-  const user = userEvent.setup();
   render(
     <FormProvider>
       <ProductType />
     </FormProvider>
   );
 
-  await user.click(screen.getByText("AWS instances"));
+  await userEvent.click(screen.getByText("AWS instances"));
 
   expect(
     screen.getByText(/^Ubuntu Pro on the AWS Marketplace/)

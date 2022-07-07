@@ -8,7 +8,8 @@ export const product = {
   productID: "uai-essential-physical",
   private: "",
   canBeTrialled: true,
-  id: "lAP9tvoGWp_TNHQGSvbS0VCNyrDulLTkImAID7ITVZMM",
+  id: "uai-essential-physical-yearly",
+  longId: "lANPPiYnezoP7Iwi2NOYjnYOnaXf8J-HLhGror9C_ACQ",
   ok: true,
   supportPriceRange: {
     essential: 22500,
