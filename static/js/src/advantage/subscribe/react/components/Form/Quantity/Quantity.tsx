@@ -14,7 +14,7 @@ const Quantity = () => {
   return (
     <div
       className={classNames({
-        "u-disabled": isPublicCloud(productType),
+        "u-disable": isPublicCloud(productType),
       })}
       data-testid="wrapper"
     >
