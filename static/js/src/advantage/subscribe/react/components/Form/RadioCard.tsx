@@ -32,7 +32,7 @@ const RadioCard = <T extends string>({
       className={classNames(className, {
         "p-card--radio": !className,
         "is-selected": checked,
-        "u-disabled": disabled,
+        "u-disable": disabled,
       })}
       data-testid={dataTestid}
     >
