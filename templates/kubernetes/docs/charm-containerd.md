@@ -62,34 +62,66 @@ principal charm.
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-| <a id="table-custom_registries"> </a> custom_registries | string | [] | [See notes](#custom_registries-description)  |
-| <a id="table-disable-juju-proxy"> </a> disable-juju-proxy | boolean | False | Ignore juju-http(s) proxy settings on this charm. If set to true, all juju https proxy settings will be ignored  |
-| <a id="table-enable-cgroups"> </a> enable-cgroups | boolean | False | Enable GRUB cgroup overrides cgroup_enable=memory swapaccount=1. WARNING changing this option will reboot the host - use with caution on production services.  |
-| <a id="table-gpu_driver"> </a> gpu_driver | string | auto | Override GPU driver installation.  Options are "auto", "nvidia", "none".  |
-| <a id="table-http_proxy"> </a> http_proxy | string |  | URL to use for HTTP_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
-| <a id="table-https_proxy"> </a> https_proxy | string |  | URL to use for HTTPS_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images.  |
-| <a id="table-no_proxy"> </a> no_proxy | string |  | [See notes](#no_proxy-description)  |
-| <a id="table-runtime"> </a> runtime | string | auto | Set a custom containerd runtime.  Set "auto" to select based on hardware.  |
-| <a id="table-shim"> </a> shim | string | containerd-shim | Set a custom containerd shim.  |
+| <a id="table-custom-registry-ca"> </a> custom-registry-ca | string |  | Base64 encoded Certificate Authority (CA) bundle. Setting this config allows container runtimes to pull images from registries with TLS certificates signed by an external CA. |
+| <a id="table-custom_registries"> </a> custom_registries | string | [] | [See notes](#custom_registries-description) |
+| <a id="table-disable-juju-proxy"> </a> disable-juju-proxy | boolean | False | Ignore juju-http(s) proxy settings on this charm. If set to true, all juju https proxy settings will be ignored |
+| <a id="table-enable-cgroups"> </a> enable-cgroups | boolean | False | Enable GRUB cgroup overrides cgroup_enable=memory swapaccount=1. WARNING changing this option will reboot the host - use with caution on production services. |
+| <a id="table-gpu_driver"> </a> gpu_driver | string | auto | Override GPU driver installation.  Options are "auto", "nvidia", "none". |
+| <a id="table-http_proxy"> </a> http_proxy | string |  | URL to use for HTTP_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images. |
+| <a id="table-https_proxy"> </a> https_proxy | string |  | URL to use for HTTPS_PROXY to be used by Containerd. Useful in egress-filtered environments where a proxy is the only option for accessing the registry to pull images. |
+| <a id="table-no_proxy"> </a> no_proxy | string |  | [See notes](#no_proxy-description) |
+| <a id="table-runtime"> </a> runtime | string | auto | Set a custom containerd runtime.  Set "auto" to select based on hardware. |
+| <a id="table-shim"> </a> shim | string | containerd-shim | Set a custom containerd shim. |
+
 
 ---
 
+
 ### custom_registries
+
 
 
 <a id="custom_registries-description"> </a>
 **Description:**
 
-Registry credentials. Setting this config allows Kubelet to pull images from
-registries where auth is required.
+Registry endpoints and credentials. Setting this config allows Kubelet
+to pull images from registries where auth is required.
 
 The value for this config must be a JSON array of credential objects, like this:
-  [{"url": "https://my.registry:port", "username": "user", "password": "pass"}]
+`[{"host": "my.registry:port", "username": "user", "password": "pass"}]`
+
+`host` could be registry host address, e.g.:  myregistry.io:9000, 10.10.10.10:5432.
+or a name, e.g.: myregistry.io, myregistry.
+It will be derived from `url` if not provided, e.g.:
+
+```
+  url: <http://10.10.10.10:8000> --> host: 10.10.10.10:8000
+```
+
+
+If required, you can supply credentials with option keys 'username' and 'password',
+or 'ca_file', 'cert_file', and 'key_file' for ssl/tls communication,
+which should be base64 encoded file contents in string form:
+
+`"ca_file": "'"$(base64 -w 0 < my.custom.registry.pem)"'"`
+
+example config:
+```
+juju config containerd custom_registries='[{
+    "url": "https://registry.example.com",
+    "ca_file": "'"$(base64 -w 0 < ~/my.custom.ca.pem)"'",
+    "cert_file": "'"$(base64 -w 0 < ~/my.custom.cert.pem)"'",
+    "key_file": "'"$(base64 -w 0 < ~/my.custom.key.pem)"'",
+}]'
+```
 
 [Back to table](#table-custom_registries)
 
 
+
+
 ### no_proxy
+
 
 
 <a id="no_proxy-description"> </a>
@@ -103,8 +135,8 @@ the proxy defined in http_proxy or https_proxy. Must be less than
 [Back to table](#table-no_proxy)
 
 
-
 <!-- CONFIG ENDS -->
+
 
 ## Actions
 

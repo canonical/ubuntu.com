@@ -10,22 +10,24 @@
         @media only screen and (min-width: 768px) { #mce-success-response { height: 90%; }}
         #mc_embed_signup input.mce_inline_error { border-color: red; }
       </style>
-      <form action="https://canonical.us3.list-manage.com/subscribe/post?u=56dac47c206ba0f58ec25f314&amp;id=97a67dea26" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mc-embedded-subscribe-form validate" target="_blank" rel="noopener noreferrer" novalidate>
+      <form action="https://canonical.us3.list-manage.com/subscribe/post?u=56dac47c206ba0f58ec25f314&amp;id=97a67dea26" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" rel="noopener noreferrer">
 
-          <h3 class="p-heading--four">Sign up for our monthly Devices newsletter</h3>
+          <h3 class="p-heading--4">Sign up for our monthly Devices newsletter</h3>
 
           <ul class="u-clearfix">
               <li class="p-list">
                   <label class="u-off-screen" for="mce-EMAIL">Your email</label>
-                  <input type="email" placeholder="Your email" value="" name="EMAIL" class="required email" id="mce-EMAIL" />
+                  <input type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" placeholder="Your email" value="" name="EMAIL" class="required email" id="mce-EMAIL" />
                   <div id="mce-responses">
                       <div class="response" id="mce-error-response" style="display: none; width: 100%;"></div>
                       <div class="response" id="mce-success-response" style="display: none; width: 100%;"></div>
                   </div>
               </li>
               <li>
-                  <input type="checkbox" value="1" name="group[5][1]" id="mce-group[5]-5-0" />
-                  <label class="contextual-footer__text--label" for="mce-group[5]-5-0">I would also like to receive other updates from Canonical by email.</label>
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input" type="checkbox" value="1" name="group[5][1]" aria-labelledby="mce-group[5]-5-0" />
+                    <span class="p-checkbox__label contextual-footer__text--label" id="mce-group[5]-5-0">I would also like to receive other updates from Canonical by email.</span>
+                  </label>
               </li>
               <li>
                 <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'devices newsletter sign-up', 'eventLabel' : 'Sign-up no image', 'eventValue' : undefined });"/>

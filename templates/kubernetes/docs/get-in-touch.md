@@ -47,7 +47,7 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
 
 <!-- LINKS -->
 
-[docs]:  https://github.com/juju-solutions/kubernetes-docs
+[docs]:  https://github.com/charmed-kubernetes/kubernetes-docs
 [lp]: https://bugs.launchpad.net/charmed-kubernetes
 [support]: /support
 [managed]: /kubernetes/managed
@@ -56,10 +56,11 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/get-in-touch.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/get-in-touch.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -9,6 +9,8 @@ module.exports = {
     "eslint:recommended",
     "eslint-config-prettier",
     "plugin:cypress/recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -20,12 +22,30 @@ module.exports = {
     grecaptcha: "readonly",
     serialize: "readonly",
   },
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: "module",
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: ["@babel/plugin-syntax-jsx", "@typescript-eslint"],
+      presets: ["@babel/preset-react"],
+    },
   },
   rules: {
     semi: ["error", "always"],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-var-requires": "off",
     "no-prototype-builtins": "off",
   },
+  overrides: [
+    {
+      files: ["**/*.tsx"],
+      rules: {
+        "react/prop-types": "off",
+      },
+    },
+  ],
 };

@@ -1,76 +1,46 @@
-<div class="row u-equal-height">
-  <div class="col-{{ 12 // columns }} p-card">
-    <h2 class="p-heading--four">Private Cloud Build</h2>
-    <p><span class="p-heading--two">$75,000</span> fixed price</p>
-    <hr class="u-sv1" />
-    <p>Design and deployment of OpenStack reference architecture.</p>
-    <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
-      <li class="p-list__item is-ticked">Reference architecture</li>
-      <li class="p-list__item is-ticked">Open source storage</li>
-      <li class="p-list__item is-ticked">Simplified networking</li>
-      <li class="p-list__item is-ticked">Hyper-converged</li>
-      <li class="p-list__item is-ticked">Containerised control plane</li>
-      <li class="p-list__item is-ticked">Log aggregation</li>
-      <li class="p-list__item is-ticked">Monitoring cluster</li>
-      <li class="p-list__item is-ticked">Upgrades on demand</li>
-      <li class="p-list__item is-ticked">High availability</li>
-    </ul>
-    <p>Design and delivery on certified hardware.</p>
-    <p><a href="/openstack/consulting">Get OpenStack&nbsp;&rsaquo;</a></p>
+  <div class="row">
+    <div class="col-6 p-card">
+      <h2 class="p-heading--4">Private Cloud Build</h2>
+      <p><span class="p-heading--2">$75,000</span> fixed price</p>
+      <hr class="u-sv1">
+      <p>Design and deployment of a baseline OpenStack cloud based on the reference architecture.</p>
+      <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Hardware guidance and sizing</li>
+        <li class="p-list__item is-ticked">Reference architecture</li>
+        <li class="p-list__item is-ticked">Simplified networking</li>
+        <li class="p-list__item is-ticked">Hyper-converged or Converged</li>
+        <li class="p-list__item is-ticked">Containerised control plane</li>
+        <li class="p-list__item is-ticked">Observability stack</li>
+        <li class="p-list__item is-ticked">Block and object storage</li>
+        <li class="p-list__item is-ticked">High availability</li>
+      </ul>
+      <p>Design and delivery on certified hardware.</p>
+      <p><a href="/openstack/consulting">Get OpenStack&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 p-card">
+      <h2 class="p-heading--4">Private Cloud Build Plus</h2>
+      <p><span class="p-heading--2">$150,000</span> fixed price</p>
+      <hr class="u-sv1">
+      <p>Design and deployment of a carrier-grade, feature-rich OpenStack cloud based on a custom architecture.</p>
+      <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
+      <p>Everything in Private Cloud Build, plus:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Custom architecture</li>
+        <li class="p-list__item is-ticked">Containerised or isolated control plane</li>
+        <li class="p-list__item is-ticked">Complex networking</li>
+        <li class="p-list__item is-ticked">LDAP or Active Directory integration</li>
+        <li class="p-list__item is-ticked">Regulatory compliance</li>
+        <li class="p-list__item is-ticked">Encryption in flight and at rest</li>
+        <li class="p-list__item is-ticked">EPA tuning options</li>
+        <li class="p-list__item is-ticked">Block, object and file storage</li>
+        <li class="p-list__item is-ticked">Layer&ndash;7 load balancer</li>
+        <li class="p-list__item is-ticked">Secrets management</li>
+      </ul>
+      <p>Workshops determine the optimal architecture for your workloads and integration requirements.</p>
+      <p><a href="/openstack/consulting">Migrate from VMware&nbsp;&rsaquo;</a></p>
+    </div>
   </div>
-  <div class="col-{{ 12 // columns }} p-card">
-    <h2 class="p-heading--four">Private Cloud Build Plus</h2>
-    <p><span class="p-heading--two">$150,000</span> fixed price</p>
-    <hr class="u-sv1" />
-    <p>Design and Deployment of a secure, carrier grade, feature rich OpenStack custom architecture.</p>
-    <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">Workload analysis</li>
-      <li class="p-list__item is-ticked">Customised architecture</li>
-      <li class="p-list__item is-ticked">Containerised or isolated control plane</li>
-      <li class="p-list__item is-ticked">Complex networking</li>
-      <li class="p-list__item is-ticked">LDAP or Active Directory</li>
-      <li class="p-list__item is-ticked">Regulatory compliance</li>
-      <li class="p-list__item is-ticked">High availability</li>
-      <li class="p-list__item is-ticked">Encryption in flight and at rest</li>
-      <li class="p-list__item is-ticked">Layer-7 load balancer</li>
-      <li class="p-list__item is-ticked">Secrets Management</li>
-    </ul>
-    <p>On site workshops determine the optimal architecture for your workloads and integration requirements.</p>
-    <p><a href="/openstack/consulting">Migrate from VMware&nbsp;&rsaquo;</a></p>
+  <div class="u-fixed-width">
+    <p id="os-footnote">* Additional features, functionality and integrations are available via add-ons</p>
   </div>
-  {% if columns == 3 %}
-  <div class="col-4 p-card">
-    <h2 class="p-heading--four">Fully managed cloud</h2>
-    <p><span class="p-heading--two">$15</span> per server per day</p>
-    <hr class="u-sv1" />
-    <p>Full remote operations of your Canonical OpenStack at half the price of VMware.</p>
-    <p>What's included: <sup><a href="#os-footnote">*</a></sup></p>
-    <ul class="p-list">
-      <li class="p-list__item is-ticked">24/7 monitoring</li>
-      <li class="p-list__item is-ticked">Proactive management</li>
-      <li class="p-list__item is-ticked">EU and US regulatory compliance options</li>
-      <li class="p-list__item is-ticked">Integrated data protection</li>
-      <li class="p-list__item is-ticked">Telco NFV options</li>
-      <li class="p-list__item is-ticked">Finance sector options</li>
-      <li class="p-list__item is-ticked">SDN options</li>
-    </ul>
-    <p>The best way to start with OpenStack. <a href="engage/cloud-economics ">Recognised by cloud economists</a> as the best value private cloud.</p>
-    <p><a href="/openstack/managed">Fully Managed OpenStack&nbsp;&rsaquo;</a></p>
-  </div>
-  {% endif %}
-  <div class="u-no-fixed-width">
-    <p id="os-footnote">
-      <small>
-      <sup>*</sup> Additional features, functionality and integrations are available via add-ons
-      </small>
-    </p>
-      <p class="p-button">
-        <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf">
-          Read the datasheet
-        </a>
-      </p>
-  </div>
-</div>

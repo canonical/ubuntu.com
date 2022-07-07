@@ -5,7 +5,7 @@
   }
 
   .p-button--tag {
-    @extend %p-button;
+    @extend %p-button-light;
 
     border-radius: 3px;
     color: $color-mid-dark;
@@ -15,10 +15,5 @@
     &:visited {
       color: $color-mid-dark;
     }
-  }
-
-  .is-selected.p-button {
-    background-color: $color-mid-x-light;
-    border-color: $color-mid-dark;
   }
 }

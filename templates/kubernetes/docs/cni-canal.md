@@ -23,15 +23,15 @@ special configuration.
 
 ## Deploying Charmed Kubernetes with Canal
 
-To deploy a cluster with Canal, deploy the kubernetes-canal bundle:
+To deploy a cluster with Canal, deploy the `charmed-kubernetes` bundle with the
+[canal overlay][canal-overlay]:
 
 ```bash
-juju deploy cs:bundle/canonical-kubernetes-canal
+juju deploy charmed-kubernetes --overlay canal-overlay.yaml
 ```
 
-The canal bundle is identical to the standard `charmed-kubernetes` bundle with the
-exception of replacing flannel with canal. You can apply any customisation overlays
-that would apply to `charmed-kubernetes` to this bundle also.
+You can apply any additional customisation overlays that would apply to
+`charmed-kubernetes` to this deployment as well.
 
 ## Canal configuration options
 
@@ -76,14 +76,16 @@ For additional troubleshooting pointers, please see the
 <!-- LINKS -->
 
 [canal]: https://docs.projectcalico.org/v3.7/getting-started/kubernetes/installation/flannel
+[canal-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/canal-overlay.yaml
 [troubleshooting]: /kubernetes/docs/troubleshooting
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-canal.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-canal.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

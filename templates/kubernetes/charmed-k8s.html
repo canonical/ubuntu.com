@@ -1,0 +1,343 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+
+{% block title %}Charmed Kubernetes{% endblock %}
+
+{% block meta_description %}Canonical allows you to compose your Kubernetes clusters on any infrastructure, such as OpenStack, VMware and bare metal. Charmed Kubernetes unlocks the productivity of your DevOps and developer teams through its automation framework and rich tooling ecosystem.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1mEOBW4pfsWJqTLm9Pn9myKtaslD-QB2RvUKcNQ52bXU/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-6">
+      <h1>The composable Kubernetes</h1>
+      <h4>Architectural freedom. Fully automated operations. Extensible Kubernetes for all.</h4>
+      <p>Charmed Kubernetes brings a curated set of tools to help you build your clusters from the ground up, and deliver 'containers as a service' across the enterprise.</p>
+      <p>Built on Ubuntu, the platform of choice for enterprise Kubernetes, our distribution gives you a streamlined multi-cloud experience with unparalleled price-performance and lifecycle automation.</p>
+      <p>Choose your infrastructure and seamlessly integrate with <a href="/blog/what-is-cloud-native">cloud native</a> storage, networking, load balancing and observability.</p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-features">Get in touch</a>
+        <a href="https://assets.ubuntu.com/v1/c5f59e1c-Enterprise_Kubernetes+Datasheet_16.09.21.pdf">Read the datasheet&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-vertically-center">
+      <div class="u-embedded-media" >
+        <iframe class="u-embedded-media__element" src="https://player.vimeo.com/video/707830859" width="560" height="315" frameborder="0" title="Charmed Kubernetes"></iframe>
+       </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Highly configurable, pure upstream, production-grade K8s clusters</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h3 class="p-heading--4 u-sv3">CNCF-certified distribution and best-of-breed tools for a turnkey Kubernetes</h3>
+      <div class="u-hide--small u-sv3">
+        {{ 
+          image (
+          url="https://assets.ubuntu.com/v1/f2505124-164488352-ceaad6dd-4eee-407c-9e73-64afa353226c.png",
+          alt="",
+          width="2396",
+          height="1399",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p>Additionally, Charmed Kubernetes features include:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">High availability setup by default</li>
+        <li class="p-list__item is-ticked">Automatic updates and security fixes for all core Kubernetes components</li>
+        <li class="p-list__item is-ticked">Full OCI compatability with Docker and containderd runtimes</li>
+        <li class="p-list__item is-ticked">PCI device passthrough for GPU, FPGA and SR-IOV workloads</li>
+        <li class="p-list__item is-ticked">VMs on Kubernetes with Kata containers</li>
+        <li class="p-list__item is-ticked">Extensible, third-party ecosystem for storage and networking</li>
+      </ul>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/96d35aa4-certified-kubernetes-logo.svg",
+        alt="",
+        width="173",
+        height="233",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <a href="/kubernetes/install">Try it now&nbsp;&rsaquo;</a>
+      <p>Can't find what you're looking for? <a href="/kubernetes#services">Consult our custom K8s architecture services&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Model driven Kubernetes</h2>
+      <h3 class="p-heading--4">Streamlined cluster lifecycle management with Charmed Operators</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p>Juju, the Charmed Operator Framework, helps platform teams to codify their extensive knowledge of operating applications and infrastructure. Juju leverages <a href="https://juju.is/model-driven-operations-manifesto">model driven operations</a> to build simple or complex topologies at scale on bare metal, VMs and containers. In Charmed Kubernetes, every service is driven by a Charmed Operator allowing for:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Vast cloud compatability with OpenStack, VMware, AWS, GCP and Azure support</li>
+        <li class="p-list__item is-ticked">Centralised operational control and lifecycle automation for all Charmed Kubernetes clusters</li>
+        <li class="p-list__item is-ticked">Reduction of manual configuration and complexity for Day-0 to Day-2 operations</li>
+        <li class="p-list__item is-ticked">Out-of-the-box integrations with storage, networking, LBaaS, logging, monitoring and alerting tools</li>
+        <li class="p-list__item is-ticked">Easy upgrades to the latest versions</li>
+        <li class="p-list__item is-ticked">Fine-grained service placement</li>
+      </ul>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/2c7e3fab-juju-header-illustration.svg",
+        alt="",
+        width="372",
+        height="338",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><a href="https://juju.is/">Learn more about the Charmed Operator Framework&nbsp;&rsaquo;</a></p>
+      <p>Need help to tackle the K8s complexity? <a href="/kubernetes/managed">Let us manage Kubernetes for you&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <h2>Kubernetes on OpenStack</h2>
+      <p class="p-heading--4">A great K8s experience on the #1 OpenStack distribution</p>
+      <p>Build a multi-tenant, high-performing, cost-effective private cloud with Charmed Kubernetes on Charmed OpenStack. The Charmed Operator framework ensures your private cloud provides:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">A single platform for containerised and workloads</li>
+        <li class="p-list__item is-ticked">A unified approach to operate apps and infra</li>
+        <li class="p-list__item is-ticked">Built-in security and isolation of workloads</li>
+        <li class="p-list__item is-ticked">Hardware acceleration with SR-IOV, DPDK &amp; OVS offloading</li>
+        <li class="p-list__item is-ticked">Load balancing in ingress</li>
+        <li class="p-list__item is-ticked">A single subscription for full-stack support</li>
+      </ul>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/38b81b99-kubernetes-on-openstack.svg",
+        alt="",
+        width="324",
+        height="306",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><a href="/kubernetes/docs/openstack-integration">How to install Kubernetes on OpenStack&nbsp;&rsaquo;</a></p>
+      <p><a href="/openstack">Learn more about Charmed OpenStack&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+      <h2>Kubernetes on bare metal</h2>
+      <p class="p-heading--4">Optimal performance, management and automation of physical and container assets</p>
+      <p>Charmed Kubernetes seamlessly runs on bare metal in conjunction with MAAS, Canonical's bare metal cloud orchestrator. MAAS offers a cloud-like experience for K8s deployments on the most popular hardware infrastructure. Charmed Kubernetes on MAAS provides:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Bare-metal performance</li>
+        <li class="p-list__item is-ticked">Guaranteed full-stack high availability</li>
+        <li class="p-list__item is-ticked">DevOps-driven bare metal management</li>
+        <li class="p-list__item is-ticked">Optimised hardware utilisation and elastic machine allocation</li>
+        <li class="p-list__item is-ticked">Enhanced platform awareness for GPU auto-detection</li>
+        <li class="p-list__item is-ticked">Fault-tolerant software-defined storage</li>
+      </ul>
+    </div>
+    <div class="col-7 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/e279ccc1-kubernetes-on-bare-metal.svg",
+        alt="",
+        width="607",
+        height="213",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <a href="https://technology.amis.nl/platform/kubernetes/charmed-kubernetes-on-kvm-using-maas-and-juju/">Learn more about MAAS&nbsp;&rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Leverage the Ubuntu cloud native ecosystem</h2>
+    <p class="p-heading--4">Charmed Kubernetes gives you total cluster control at scale. Integrate it with the Ubuntu ecosystem to build your full stack cloud native platform</p>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h3 class="p-heading--4">Edge and IoT</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">MicroK8s delivers a fully-conformant, low-touch, self-healing <a href="/engage/micro-clouds">Kubernetes at the edge.</a></li>
+        <li class="p-list__item is-ticked">Single-command user experience, sensible defaults and batteries included.</li>
+        <li class="p-list__item is-ticked">x86 and ARM support for containers at your fingertips on any device.</li>
+      </ul>
+      <p><a href="https://microk8s.io/">Learn more about MicroK8s&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-3">
+      <h3 class="p-heading--4">AI/ML and HPC</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Ubuntu is the leading platform for public cloud GPU instances, and Canonical offers private cloud expertise to match.</li>
+        <li class="p-list__item is-ticked">GPU and FPGA pass-through make your Kubernetes cluster a shared machine learning platform for your data scientists.</li>
+        <li class="p-list__item is-ticked">Kubeflow on Charmed Kubernetes completes a cloud-native framework for MLOps at scale.</li>
+      </ul>
+      <p><a href="/ai">Canonical Artificial Intelligence&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-3">
+      <h3 class="p-heading--4">Kubernetes for Telco</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Full set of EPA features such as SR-IOV, DPDK, NUMA, CPU pinning and GPU support.</li>
+        <li class="p-list__item is-ticked">Validated with tier 1 operators with most popular CNFs on the market.</li>
+        <li class="p-list__item is-ticked">Telco grade security and compliance with ETSI, DISA STIG, NCSC, FIPS.</li>
+      </ul>
+      <p><a href="/telco/cnf">More on Telco&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-3">
+      <h3 class="p-heading--4">Containers for legacy apps</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Use the Linux Containers Daemon, LXD, for pure-container guests in OpenStack.</li>
+        <li class="p-list__item is-ticked">Faster to launch, with zero latency and amazing quality of service, LXD guests are the bridge between traditional VMs and next-generation Kubernetes.</li>
+        <p><a href="https://linuxcontainers.org/">Visit the LXD website&nbsp;&rsaquo;</a></p>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru is-dark">
+  <div class="u-fixed-width">
+    <h2>Kubernetes resources</h2>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <div>
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/30037eac-datasheet-white.svg",
+              alt="Data sheet",
+              width="171",
+              height="150",
+              hi_def=True,
+              loading="lazy" ) |
+              safe
+            }}
+          </div>
+          <h4 class="p-heading-icon__title p-heading--5">WHITEPAPER</h4>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="/engage/enterprise-kubernetes-comparison">Kubernetes platform comparison: Red Hat OpenShift, SUSE Rancher and Canonical Kubernetes</a>
+    </div>
+    <div class="col-4">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <div>
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/005c3416-webinar-white.svg",
+              alt="",
+              width="171",
+              height="150",
+              hi_def=True,
+              loading="lazy" ) |
+              safe
+            }}
+          </div>
+          <h4 class="p-heading-icon__title p-heading--5">WEBINAR ON DEMAND</h4>
+        </div>
+      </div>
+      <a class="p-link--inverted" href="https://www.brighttalk.com/webcast/6793/435999/how-to-accelerate-kubernetes-deployment-in-the-enterprise">How to accelerate Kubernetes deployment in the enterprise</a>
+    </div>
+    <div class="col-4">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          <div>
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/30037eac-datasheet-white.svg",
+              alt="Data sheet",
+              width="171",
+              height="150",
+              hi_def=True,
+              loading="lazy" ) |
+              safe
+            }}
+          </div>
+          <h4 class="p-heading-icon__title p-heading--5">WHITEPAPER</h4>
+        </div>
+      </div>
+      <p><a class="p-link--inverted" href="/engage/bare-metal-kubernetes">How to run workloads on bare metal Kubernetes with MAAS</a></p>
+      <p><a class="p-link--inverted" href="/kubernetes/resources">More K8s resources&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h2>Let's talk Kubernetes architecture</h2>
+      <p>Find out how Canonical facilitates Kubernetes on demand for your DevOps teams on OpenStack, VMware, public clouds, and bare metal clusters.</p>
+      <p><a href="/kubernetes/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+    </div>
+    <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+        alt="",
+        width="281",
+        height="200",
+        hi_def=True,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubernetes" data-form-id="3230" data-lp-id="6274" data-return-url="https://ubuntu.com/kubernetes/thank-you?product=kubernetes-features" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content %}

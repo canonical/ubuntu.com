@@ -188,7 +188,7 @@ project-name, user-domain-name, and project-domain-name.
 It could also contain a base64-encoded CA certificate in endpoint-tls-ca key value.
 
 This can be used from bundles with 'include-base64://' (see
-https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
+https://discourse.charmhub.io/t/bundle-reference/1158),
 or from the command-line with 'juju config openstack credentials="$(base64 /path/to/file)"'.
 
 It is strongly recommended that you use 'juju trust' instead, if available.
@@ -333,6 +333,6 @@ recommended approach.  If not set, will use the upstream default.
 
 <!-- ACTIONS ENDS -->
 
-[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml
+[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

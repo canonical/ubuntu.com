@@ -15,7 +15,7 @@ toc: False
 
 # 1.17+ck2 Bugfix release
 
-### March 2, 2020 - [charmed-kubernetes-410](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-410/archive/bundle.yaml)
+### March 2, 2020 - charmed-kubernetes-410
 
 ## Fixes
 
@@ -28,7 +28,7 @@ Additional bug fixes included in this release can be found at
 
 # 1.17+ck1 Bugfix release
 
-### January 15, 2020 - [charmed-kubernetes-372](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-372/archive/bundle.yaml)
+### January 15, 2020 - charmed-kubernetes-372
 
 ## Fixes
 
@@ -38,7 +38,7 @@ masqueraded when using Flannel or Canal. More details can be found at
 
 # 1.17
 
-### December 17, 2019 - [charmed-kubernetes-335](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-335/archive/bundle.yaml)
+### December 17, 2019 - charmed-kubernetes-335
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -74,7 +74,7 @@ dashboards are also included to highlight these metrics with Prometheus/Grafana.
 ### Storage Classes created by default
 
 Storage classes will now be created if the `kubernetes-master` charm is related to an
-integrator charm. These classes are for AWS, GCE, Openstack, and Azure and are named cdk-ebs,
+integrator charm. These classes are for AWS, GCE, OpenStack, and Azure and are named cdk-ebs,
 cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
 
 ### Support for etcd 3.3 and 3.4
@@ -105,19 +105,19 @@ A list of bug fixes and other minor feature updates in this release can be found
 ## Notes / Known Issues
 
 - The `registry` action for the `kubernetes-worker` charm has been deprecated and will be removed
-in a future release. To enable a custom container registry, please see the
-[registry](/kubernetes/docs/docker-registry) documentation.
+  in a future release. To enable a custom container registry, please see the
+  [registry](/kubernetes/docs/docker-registry) documentation.
 
 ## Previous releases
 
 Please see [this page][historic] for release notes of earlier versions.
 
 <!--LINKS-->
+
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [upgrading-docker]: /kubernetes/docs/upgrading#upgrading-docker
-[tigera-home]: https://www.tigera.io/tigera-secure-ee/
+[tigera-home]: https://www.tigera.io/tigera-products/calico-enterprise/
 [tigera-docs]: /kubernetes/docs/tigera-secure-ee
 [haoverview]: /kubernetes/docs/high-availability
 [metallb-docs]: /kubernetes/docs/metallb
@@ -129,10 +129,10 @@ Please see [this page][historic] for release notes of earlier versions.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/release-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

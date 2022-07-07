@@ -1,0 +1,94 @@
+{% extends "templates/base.html" %}
+
+{% block title %} {{ vendor }} {{ model }} certified with Ubuntu {{ release }}{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+
+{% block outer_content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row u-sv3">
+    <div class="col-7">
+      <p class="p-heading--4">
+        <a href="/certified/{{ release_details.canonical_id }}">{{ release_details.make }} {{ release_details.model }} certified on Ubuntu {{ release_details.certified_release }}</a>
+      </p>
+      <h1 class="p-heading--2">Hardware details</h1>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+    {% if release_details.category == "Desktop" or release_details.category == "Laptop" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+        alt="",
+        width="132",
+        height="77",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if release_details.category == "Server" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="Server",
+        width="80",
+        height="96",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if release_details.category == "Ubuntu Core" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+        alt="Gateway",
+        width="96",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if release_details.category == "Server SoC" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+        alt="Chip",
+        width="84",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table class="p-table-hardware-details" aria-label="Hardware details for {{ release_details.make }} {{ release_details.model }}">
+        <tbody>
+          {% for category, devices in hardware_details.items() %}
+            {% if category != "Other" %}
+            <tr>
+              <th class="u-text--muted">
+                {{ category }}
+              </th>
+              <td>
+                <ul class="p-list u-no-margin--bottom">
+                {% for device in devices %}
+                <li class="p-list__item u-no-padding--top">
+                  {{ device.name }} {% if device.bus in ["usb", "pci"] %}({{ device.identifier }}{% if device.subsystem != '' %} {{ device.subsystem }}{% endif %}){% endif %}
+                </li>
+                {% endfor %}
+                </ul>
+              </td>
+            </tr>
+            {% endif %}
+          {% else %}
+            There are no hardware details available for this machine.
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

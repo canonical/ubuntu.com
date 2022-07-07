@@ -54,7 +54,7 @@ class Component(String):
 
 class Pocket(String):
     default_error_messages = {
-        "unrecognised_component": (
+        "unrecognised_pocket": (
             "Pocket must be one of "
             "'security', 'updates', 'esm-infra', 'esm-apps'"
         )
@@ -78,6 +78,7 @@ class NoticePackage(Schema):
     version = String(required=True)
     description = String()
     is_source = Boolean(required=True)
+    is_visible = Boolean()
     source_link = String(allow_none=True)
     version_link = String(allow_none=True)
     pocket = Pocket(required=False)

@@ -1,0 +1,608 @@
+{% extends "gov/base_gov.html" %}
+
+{% block title %}Ubuntu for Public Sector{% endblock %}
+{% block meta_description %}Ubuntu provides a secure, certified platform for the government, defence and public sector Enterprise IT or Mission - with FIPS, DISA STIG compliant modules.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1umM1XMEzqeXklPkyCjDr98Q-RvwCcNNXgwNwfLoynTo/edit#heading=h.h8lo4gnw0yf{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-8">
+      <h1>Secure and certified open source for Public Sector</h1>
+      <p>Ubuntu provides a secure platform for government agencies to build, operate and innovate with open source infrastructure, applications and technologies. With enterprise support from Canonical, Ubuntu can significantly reduce total cost of ownership (TCO) while meeting strict, unique requirements for the Federal government and public sector.</p>
+      <a class="p-button--positive js-invoke-modal" href="/gov/contact-us" data-testid="interactive-form-link">Contact us</a>
+      <p><a href="/security">Learn more about our security story&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+          alt="",
+          height="200",
+          width="350",
+          hi_def=True,
+          loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3>Secure</h3>
+      <p>Ubuntu is a secure Linux OS distribution &mdash; whether used in <a href="https://ubuntu.com/security/docker-images">containers</a>, virtualised servers, on premises or in the <a href="/cloud/public-cloud">public cloud</a>. Our solutions provide enterprise-grade security and support for mission-critical applications and workloads in production.</p>
+      <a href="/engage/gov-webinar">See how we're securing the public sector&nbsp;&rsaquo;</a>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Compliant</h3>
+      <p>We have your critical government IT certifications covered. Ubuntu Advantage meets certification requirements for the public sector and government agencies including SOC 2, FIPS 140-2, DISA/STIG, Common Criteria EAL2, CIS and more.</p>
+      <p><a href="#certification-specs">See our certifications&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3>Economical</h3>
+      <p>Stop worrying about licenses and counting CPU sockets, cores and memory. Ubuntu and Canonical provide upstream solutions to rival proprietary offerings so you can avoid vendor licensing lock-in and reduce TCO.</p>
+      <p>See how Canonical's <a href="/openstack/compare">OpenStack</a> and <a href="/kubernetes/compare">Kubernetes</a> compare to the competition.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Open source in government</h2>
+      <p>In this webinar, the Public Sector team discuss the importance of open source technology in government, how it’s being used and the range of secure services available from Canonical.</p>
+      <a href="/engage/gov-webinar" class="p-button--positive">Watch the webinar</a>
+    </div>
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9977f64c-shields-security.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2 style="margin-bottom: 2rem;">Ubuntu solutions for the public sector,<br> delivered by Canonical</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 p-card">
+      <h4>Ubuntu is a multi-cloud platform</h4>
+      <p>Ubuntu provides a secure, certified platform across <a href="/cloud/multi-cloud">multi-cloud</a> and <a href="/cloud/hybrid-cloud">hybrid cloud</a> environments. We can work with you to build, deploy, operate and support your infrastructure - <a href="/aws">AWS</a>, <a href="/azure">Azure</a>, <a href="/gcp">Google</a>, VMware, Hyper-V, <a href="/openstack">OpenStack</a> and <a href="/security/docker-images">Docker</a> and <a href="/kubernetes">Kubernetes</a> containers. We enable multi-cloud portability for the public sector.</p>
+    </div>
+    <div class="col-4 p-card">
+      <h4>Comprehensive open source support</h4>
+      <p>Get <a href="/support">open source support</a> from a single vendor for all of the layers of your stack, from OS to applications. Canonical provides a unified model for open source support services with transparent per-node pricing, avoiding the often high and hidden fees that come with per-core or per-socket pricing models.</p>
+    </div>
+    <div class="col-4 p-card">
+      <h4>Secure, upstream OpenStack and K8s</h4>
+      <p>Take advantage of best-in-class server virtualisation with <a href="/openstack">Charmed OpenStack</a> and production-grade container orchestration with <a href="/kubernetes">Charmed Kubernetes</a> on Ubuntu. Canonical provides consulting, design/build, training and 24/7 enterprise-grade support services for key open source technologies.</p>
+    </div>
+    <div class="col-4 p-card">
+      <h4>Enterprise-grade management tools</h4>
+      <p>Canonical provides an automation portfolio with multi-tier service modelling. Offering <a href="https://maas.io/">metal-as-a-service (MAAS)</a> for automated server provisioning, <a href="https://jaas.ai/">Juju</a> for configuration and deployment, and <a href="https://landscape.canonical.com/">Landscape</a> for Ubuntu systems management at scale for audit and compliance reporting, across your infra, service and application tiers.</p>
+    </div>
+    <div class="col-4 p-card">
+      <h4>Platform across all of IoT, from cloud to edge</h4>
+      <p><a href="/core">Ubuntu Core</a> is a security-first platform built on the new containerised linux packaging format, <a href="https://snapcraft.io/">Snaps</a>, delivering stronger resiliency and security. From smart drones and autonomous vehicles to robots, Ubuntu is the new standard for embedded Linux. Get the world&rsquo;s best security, a custom app store and reliable updates.</p>
+    </div>
+    <div class="col-4 p-card">
+      <h4>Classified, isolated or limited networks</h4>
+      <p>Reduce time to deployment from one day to one hour. Rapidly deploy the latest in cloud technology to isolated, classified (high side) or slow, bandwidth-limited networks. Implementing Canonical&rsquo;s AIRstack process provides a secure and compliant on-premise deployment solution.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/57d2e0de-Certified.svg",
+        alt="",
+        width="171",
+        height="229",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h2>Find out why the UK Government puts Ubuntu in first place for security </h2>
+      <p>CESG, the security arm of the UK government rated Ubuntu as the most secure operating system of the 11 they tested.</p>
+      <a href="https://insights.ubuntu.com/2014/01/10/ubuntu-scores-highest-in-uk-gov-security-assessment/"  class="p-button">Read the case study</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <h2>Azure and AWS compliance with Ubuntu Pro</h2>
+      <p>Ubuntu Pro and Ubuntu Pro FIPS are premium images that are optimised for Azure and AWS with compliance, security and hardening for production environments. Ubuntu Pro includes comprehensive, 10-year open source security coverage for key applications, like <a href="/managed/kafka">Apache Kafka</a>, NGINX and PostgreSQL, access to kernel Livepatch service to avoid unplanned downtime and is priced for the cloud.</p>
+      <p>The Ubuntu Pro FIPS premium images provide access to <a href="/aws">AWS</a> and <a href="/azure">Azure</a> FIPS and CC-EAL2 certified components to enable operating environments under compliance regimes. Ubuntu Pro FIPS is built upon the power of Ubuntu Pro's enhanced stability and security features and provides a compliant platform for government and public sector agencies and contract vehicles.</p>
+      <p>Learn more about <a href="/aws/pro">Ubuntu Pro</a> and <a href="/aws/fips">Ubuntu Pro FIPS</a> on AWS</p>
+      <p>Learn more about <a href="/azure/pro">Ubuntu Pro</a> and <a href="/azure/fips">Ubuntu Pro FIPS</a> on Azure</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru-accent">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Staying compliant while delivering innovation in government services</h2>
+      <p>How Ubuntu Pro FIPS on Microsoft Azure gives government agencies and contractors new ways to control costs and boost innovation while maintaining FIPS compliance.</p>
+      <a href="/engage/azure-ubuntu-pro-fips-whitepaper" class="p-button">Read the whitepaper</a>
+    </div>
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ffbd410d-Ubuntu-Azure-Clouds_wht.svg",
+        alt="",
+        width="220",
+        height="198",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Ubuntu Partners</h2>
+      <p>Ubuntu works with a number of award holders, prime and sub-contractors. <a class="js-invoke-modal" href="/gov/contact-us">Contact us</a> to discuss working with your preferred vendors.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <h2 class="p-logo-section__title u-align--center">Public cloud</h2>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/79a533b8-google-cloud.png?w=144",
+            alt="Google Cloud Platform",
+            width="144",
+            height="88",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/208cd3a7-azure-logo-blue-on-white.svg",
+            alt="Azure",
+            width="144",
+            height="41",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/39002345-AmazonWebservices_Logo.svg",
+            alt="AWS",
+            width="144",
+            height="54",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/f1d885ce-Oracle-cloud.png?w=144",
+            alt="Oracle Cloud",
+            width="144",
+            height="44",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <h2 class="p-logo-section__title u-align--center">Hardware partners</h2>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/225ab637-logo-asus.svg",
+              alt="ASUS",
+              height="88",
+              width="400",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
+              loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/4d6054f9-logo-cisco.svg",
+            alt="Cisco",
+            width="144",
+            height="76",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/5ddba83a-logo-dell.svg",
+                alt="Dell",
+                width="88",
+                height="88",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/67f81bfe-intel-new-logo.png",
+            alt="Intel",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/a298e7ec-logo-hp.svg",
+                alt="HP",
+                width="88",
+                height="88",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/118404f2-partner-logo-hp.svg",
+              alt="HP Enterprise",
+              width="130",
+              height="54",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+                url="https://assets.ubuntu.com/v1/68713fd5-logo-lenovo.svg",
+                alt="Lenovo",
+                width="144",
+                height="24",
+                hi_def=True,
+                loading="lazy",
+                attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/3528a12f-logo-microsoft-160.png",
+              alt="Microsoft",
+              height="72",
+              width="144",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"},
+              loading="lazy",
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="u-sv2" id="certification-specs">Ubuntu Advantage, Ubuntu Pro, Ubuntu Pro FIPS specs</h2>
+    <table>
+      <tr>
+        <td><strong>FIPS 140-2 certified</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            FIPS 140-2 Level 1 certification for cryptographic modules on Ubuntu 16.04 LTS and Ubuntu 18.04 LTS.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>DISA STIG</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            Defense Information System Agency (DISA) Security Technical Implementation Guide (STIG) for Ubuntu 16.04 LTS and Ubuntu 18.04 LTS.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Common Criteria EAL2 certified</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--placeholder"></i>
+          </div>
+          <div class="icon-container__text">
+            Common Criteria (CC) EAL2 certification for Ubuntu 16.04 Final certification from CSEC is pending for Ubuntu 18.04.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>CIS Benchmarks</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--placeholder"></i>
+          </div>
+          <div class="icon-container__text">
+            CIS has published benchmarks for Ubuntu 12.04 LTS and Ubuntu 14.04 LTS, with Ubuntu 16.04 LTS and Ubuntu 18.04 LTS benchmarks drafted.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>SOC2 Type 2 certified</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            <p>For Managed Services.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>OpenSCAP</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+           <p>Partially - OpenSCAP is available through the DISA STIG certification, but does not cover the entire STIG. SCAP content is available after STIG's are released, but is not immediately available.</p>
+           <p>It has been made available for both 16.04 LTS and 18.04 LTS. As of 4 February 2021 is not on the 20.04 LTS certification roadmap.</p>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>GDPR</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            <a href="/legal/data-privacy">Read our data privacy policy</a>.
+          </div>
+        </td>
+      </tr>
+    </table>
+    <a href="/security/certifications">Learn more about our certifications&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2>Security, accessibility and reliability</h2>
+    <table>
+      <tr>
+        <td><strong>Security Patching</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            Canonical provides security patching for high and critical CVEs for all  30,000 packages in Main and Universe Ubuntu repositories.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Kernel</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            Canonical&rsquo;s <a href="/livepatch">Kernel Livepatch Service</a> applies high and critical kernel CVE updates without rebooting.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Support</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            A broad range of open source infrastructure software (OpenStack, Kubernetes, Docker, etc.) and applications (Kafka, PostgreSQL, Elasticsearch, etc.) are supported through an <a href="/support">Ubuntu Advantage</a> subscription.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>24/7 Support & Monitoring</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            Canonical support engineers cover all geographic regions and time-zones.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Break-fix Response</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            <a href="/support">Ubuntu Advantage</a> includes break-fix support and answering questions about supported packages.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>SLA</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            99.9% up-time with Canonical&rsquo;s <a href="/managed">managed services</a>.
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>VPAT</strong></td>
+        <td>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            Level AA  <a href="https://www.w3.org/TR/WCAG21">Web Content Accessibility Guidelines 2.1</a>
+          </div>
+          <div class="icon-container__icon">
+            <i class="p-icon--dark-tick"></i>
+          </div>
+          <div class="icon-container__text">
+            <a href="https://www.access-board.gov/ict/">Revised Section 508 standards published January 18, 2017</a> and <a href="https://assets.ubuntu.com/v1/cda246df-Ubuntu.Accessibility.Conformance.Report_17.11.21.3+%281%29.pdf" target="_blank">Read the full report</a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h2>FIPS certification and CIS compliance with Ubuntu</h2>
+      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our webinar to ensure you and your team are, and remain, compliant.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/432536" class="p-button">Watch the webinar</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h2>We can support your specific requirements.</h2>
+        <p>Canonical can support specific requirements for public sector, and oftentimes works with award holders, prime and sub-contractors. Contact us for more, and find us with Canonical's CAGE Code: 7VDN3 and NCAGE Code: U09K6.</p>
+        <p><a class="p-button--positive js-invoke-modal" href="/gov/contact-us">Contact us</a></p>
+      </div>
+    </div>
+    <div class="col-5 u-hide--small u-align--right">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          height="280",
+          width="280",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-deep">
+  <div class="u-fixed-width">
+    <h2 class="u-sv2">FIPS compliance made easy</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/dccb30f2-AWS-Ubuntu-Pro-FIPS-webinar.png",
+        alt="",
+        width="440",
+        height="248",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "margin-bottom: 2rem;"},
+        ) | safe
+      }}
+      <h3 class="p-heading--4">Ubuntu Pro FIPS on AWS</h3>
+      <p>AWS and Canonical are excited to discuss the FIPS certified Ubuntu Pro image available on AWS.</p>
+      <a href="/engage/ubuntu-pro-for-aws" class="p-button--positive">Watch the webinar</a>
+    </div>
+    <div class="col-6">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/127f1cf2-preview_1605631360.png",
+        alt="",
+        width="440",
+        height="248",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style": "margin-bottom: 2rem;"},
+        ) | safe
+      }}
+      <h3 class="p-heading--4">Ubuntu Pro FIPS on Azure</h3>
+      <p>Microsoft and Canonical have collaborated to create a new way for government agencies to consume Linux on Azure.</p>
+      <a href="https://www.brighttalk.com/webcast/6793/452063" class="p-button--positive">Watch the webinar</a>
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/gov/form" data-form-id="3609" data-return-url="https://ubuntu.com/gov/thank-you">
+</div>
+
+{% endblock content %}

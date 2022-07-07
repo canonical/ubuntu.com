@@ -1,9 +1,16 @@
 {% extends "legal/_base_legal.html" %}
 
+{% block title %}Contributor agreement form | Contributors{% endblock %}
+
 {% block meta_description %}Canonical Contribution Agreement for work to be included in selected open source software projects.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1MfgTzlAxiFE6VUW1qAPmrks2ui1zzsX5T7d-DZJlOAw/edit{% endblock meta_copydoc %}
 
 {% block head_extra %}
 <!-- FORM: HEAD SECTION -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="referrer" content="no-referrer-when-downgrade">
 <style>
   .captcha {
     padding-bottom: 1em !important;
@@ -12,12 +19,15 @@
     margin: 0;
     padding: 0;
   }
+  .errMsg > span {
+    color: red;
+  }
 </style>
 <script type="text/javascript">
   // initialize our variables
   var captchaReady = 0;
   var wFORMSReady = 0;
-
+  
   // when wForms is loaded call this
   var wformsReadyCallback = function () {
     // using this var to denote if wForms is loaded
@@ -37,10 +47,10 @@
     // wFORMSReady = 1 and captchaReady = 1
     onloadCallback();
   };
-
+  
   // add event listener to fire when wForms is fully loaded
   document.addEventListener("wFORMSLoaded", wformsReadyCallback);
-
+  
   var enableSubmitButton = function() {
     var submitButton = document.getElementById('submit_button');
     var explanation = document.getElementById('disabled-explanation');
@@ -61,7 +71,7 @@
       }
     }
   };
-
+  
   // call this on both captcha async complete and wforms fully
   // initialized since we can't be sure which will complete first
   // and we need both done for this to function just check that they are
@@ -71,26 +81,26 @@
     // and wFORMS is completely loaded then we are ready to add
     // the captcha to the page
     if (captchaReady && wFORMSReady) {
-      grecaptcha.render('g-recaptcha-render-div', {
-        'sitekey': '6LeISQ8UAAAAAL-Qe-lDcy4OIElnii__H_cEGV0C',
+      grecaptcha.enterprise.render('g-recaptcha-render-div', {
+        'sitekey': '6LfMg_EaAAAAAMhDNLMlgqDChzmtYHlx1yU2y7GI',
         'theme': 'light',
         'size': 'normal',
         'callback': 'enableSubmitButton',
         'expired-callback': 'disableSubmitButton'
-      });
+      })
       var oldRecaptchaCheck = parseInt('1');
       if (oldRecaptchaCheck === -1) {
         var standardCaptcha = document.getElementById("tfa_captcha_text");
         standardCaptcha = standardCaptcha.parentNode.parentNode.parentNode;
         standardCaptcha.parentNode.removeChild(standardCaptcha);
       }
-
+      
       if (!wFORMS.instances['paging']) {
         document.getElementById("g-recaptcha-render-div").parentNode.parentNode.parentNode.style.display = "block";
         //document.getElementById("g-recaptcha-render-div").parentNode.parentNode.parentNode.removeAttribute("hidden");
       }
       document.getElementById("g-recaptcha-render-div").getAttributeNode('id').value = 'tfa_captcha_text';
-
+      
       var captchaError = '';
       if (captchaError == '1') {
         var errMsgText = 'The CAPTCHA was not completed successfully.';
@@ -100,7 +110,7 @@
         errMsgDiv.innerText = errMsgText;
         var loc = document.querySelector('.g-captcha-error');
         loc.insertBefore(errMsgDiv, loc.childNodes[0]);
-
+        
         /* See wFORMS.behaviors.paging.applyTo for origin of this code */
         if (wFORMS.instances['paging']) {
           var b = wFORMS.instances['paging'][0];
@@ -118,11 +128,10 @@
         }
       }
     }
-  };
+  }
 </script>
-<script src='https://www.google.com/recaptcha/api.js?onload=gCaptchaReadyCallback&render=explicit&hl=en_GB' async
-defer>
-</script>
+<script src='https://www.google.com/recaptcha/enterprise.js?onload=gCaptchaReadyCallback&render=explicit&hl=en_GB' async
+defer></script>
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function() {
     var warning = document.getElementById("javascript-warning");
@@ -178,539 +187,486 @@ defer>
   });
 </script>
 
-<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.11/js/wforms.js?v=493c5f33ce7d839915bfd8033b50fcad">
-</script>
+<link href="https://www.tfaforms.com/dist/form-builder/5.0.0/wforms-layout.css?v=1630596505" rel="stylesheet" type="text/css" />
+
+<link href="https://www.tfaforms.com/wForms/3.4/css/nicerblank/wforms.css" rel="stylesheet" type="text/css" />
+<link href="https://www.tfaforms.com/dist/form-builder/5.0.0/wforms-jsonly.css?v=1630596505" rel="alternate stylesheet" title="This stylesheet activated by javascript" type="text/css" />
+<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.11/js/wforms.js?v=1630596505"></script>
 <script type="text/javascript">
   wFORMS.behaviors.prefill.skip = false;
 </script>
-<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.11/js/localization-en_GB.js?v=493c5f33ce7d839915bfd8033b50fcad">
-</script>
+<script type="text/javascript" src="https://www.tfaforms.com/wForms/3.11/js/localization-en_GB.js?v=1630596505"></script>
+{% endblock head_extra %}
 
 
-  {% endblock %}
 
-  {% block title %}Contributor agreement form | Contributors{% endblock %}
-  {% block meta_copydoc %}https://docs.google.com/document/d/1MfgTzlAxiFE6VUW1qAPmrks2ui1zzsX5T7d-DZJlOAw/edit{% endblock meta_copydoc %}
-
-  {% block content %}
-  <div class="p-strip">
-    <div class="row">
-      <div class="col-8">
-        <h1>Contributor agreement form</h1>
-        <p>Before you contribute to one of our open source projects, you must complete all the fields in this form, sign it and return it to Canonical. Please make sure you have your GitHub username at the ready. If you don't have one, you can create one now at <a href="https://github.com">GitHub</a>.</p>
-        <p>All fields are required.</p>
-      </div>
+{% block content %}
+<div class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h1>Contributor agreement form</h1>
+      <p>Before you contribute to one of our open source projects, you must complete all the fields in this form, sign it and return it to Canonical. Please make sure you have your GitHub username at the ready. If you don't have one, you can create one now at <a href="https://github.com">GitHub</a>.</p>
+      <p>All fields are required.</p>
     </div>
-    <div class="row">
-      <div class="col-8">
-
-        <div class="">
-          <div class="p-form wForm" id="237277-WRPR" dir="ltr">
-            <div class="codesection" id="code-237277">
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <style type="text/css">
+        .wForm fieldset { border:0; }
+      </style>
+      <div class="">
+        <div class="p-form " id="237277-WRPR" dir="ltr">
+          <div class="codesection" id="code-237277"></div>
+          <form method="post" action="https://www.tfaforms.com/responses/processor" class="hintsTooltip labelsAbove" id="237277" role="form">
+            <div class="oneField field-container-D    " id="tfa_Agreementtype1-D" role="radiogroup" aria-labelledby="tfa_Agreementtype1-L" data-tfa-labelledby="-L tfa_Agreementtype1-L">
+              <h2>
+                <label id="tfa_Agreementtype1-L" class="label preField reqMark">Agreement type</label>
+              </h2>
+              <div class="inputWrapper">
+                <span id="tfa_Agreementtype1" class="choices  required" aria-required="true">
+                  <span class="oneChoice">
+                    <label class="p-radio">
+                      <input type="radio" value="tfa_Iamsigningasanin1" class="p-radio__input" id="tfa_Iamsigningasanin1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalIndivid" aria-labelledby="tfa_Iamsigningasanin1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningasanin1-L">
+                      <span class="p-radio__label postField" id="tfa_Iamsigningasanin1-L">
+                        I am signing as an individual contributor.
+                      </span>
+                    </label>
+                  </span>
+                  
+                  <span class="oneChoice">
+                    <label class="p-radio">
+                      <input type="radio" value="tfa_Iamsigningonbeha1" class="p-radio__input" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalEntityC" aria-labelledby="tfa_Iamsigningonbeha1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningonbeha1-L">
+                      <span class="p-radio__label postField" id="tfa_Iamsigningonbeha1-L">I am signing on behalf of an organization, foundation, company or other entity, which may have multiple contributors.
+                      </span>
+                    </label>
+                  </span>
+                </span>
+              </div>
             </div>
-            <form method="post" action="https://www.tfaforms.com/responses/processor" class="hintsTooltip labelsAbove" id="237277" role="form">
-              <div class="oneField field-container-D    " id="tfa_Agreementtype1-D" role="radiogroup" aria-labelledby="tfa_Agreementtype1-L" data-tfa-labelledby="-L tfa_Agreementtype1-L">
-                <label id="tfa_Agreementtype1-L" class="label preField reqMark">Agreement type:</label>
-                <br>
-                <div class="inputWrapper">
-                  <span id="tfa_Agreementtype1" class="choices  required">
-                    <span class="oneChoice">
-                      <input type="radio" value="tfa_Iamsigningasanin1" class="" id="tfa_Iamsigningasanin1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalIndivid" aria-labelledby="tfa_Iamsigningasanin1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningasanin1-L">
-                      <label class="label postField" id="tfa_Iamsigningasanin1-L" for="tfa_Iamsigningasanin1">
-                        <span class="input-radio-faux">
-                        </span>I am signing as an individual contributor.</label>
-                      </span>
-                      <span class="oneChoice">
-                        <input type="radio" value="tfa_Iamsigningonbeha1" class="" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalEntityC" aria-labelledby="tfa_Iamsigningonbeha1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningonbeha1-L">
-                        <label class="label postField" id="tfa_Iamsigningonbeha1-L" for="tfa_Iamsigningonbeha1">
-                          <span class="input-radio-faux">
-                          </span>I am signing on behalf of an organization, foundation, company or other entity, which may have multiple contributors.</label>
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                  <fieldset id="tfa_CanonicalIndivid" class="section" data-condition="`#tfa_Iamsigningasanin1`">
-                    <legend id="tfa_CanonicalIndivid-L">Canonical Individual Contributor License Agreement</legend>
-                    <div class="htmlSection" id="tmp-7480075684173">
-                      <div class="htmlContent" id="tmp-7480075684173-HTML">
-                        <p class="text-body-lead-western">Thank you for your interest in contributing to software projects managed by Canonical ("We" or "Us").</p>
-                        <p class="text-body-lead-western">
-                          <span style="color: #000000;">This contributor agreement ("Agreement") documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email <span style="color: #000000;">or electronic submission</span>, following the instructions at www.canonical.com/contributors . This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.</span>
-                        </p>
-                        <h2 class="western">1. Definitions</h2>
-                        <p>"You" means the individual who Submits a Contribution to Us.</p>
-                        <p>"Contribution" means any work of authorship that is Submitted by You to Us in which You own or assert ownership of the Copyright. If You do not own the Copyright in the entire work of authorship, please follow the instructions in www.canonical.com/contributors.</p>
-                        <p>"Copyright" means all rights protecting works of authorship owned or controlled by You, including copyright, moral and neighboring rights, as appropriate, for the full term of their existence including any extensions by You.</p>
-                        <p>"Material" means the work of authorship which is made available by Us to third parties. When this Agreement covers more than one software project, the Material means the work of authorship to which the Contribution was Submitted. After You Submit the Contribution, it may be included in the Material.</p>
-                        <p>"Submit" means any form of electronic, verbal, or written communication sent to Us or our representatives, including but not limited to electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, Us for the purpose of discussing and improving the Material, but excluding communication that is conspicuously marked or otherwise designated in writing by You as "Not a Contribution."</p>
-                        <p>"Submission Date" means the date on which You Submit a Contribution to Us.</p>
-                        <p>"Effective Date" means the date You execute this Agreement or the date You first Submit a Contribution to Us, whichever is earlier.</p>
-                        <p>"Media" means any portion of a Contribution which is not software.</p>
-                        <h2 class="western">2. Grant of Rights</h2>
-                        <h3 class="western">2.1 Copyright License</h3>
-                        <p>(a) You retain ownership of the Copyright in Your Contribution and have the same rights to use or license the Contribution which You would have had without entering into the Agreement.</p>
-                        <p>(b) To the maximum extent permitted by the relevant law, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable license under the Copyright covering the Contribution, with the right to sublicense such rights through multiple tiers of sublicensees, to reproduce, modify, display, perform and distribute the Contribution as part of the Material; provided that this license is conditioned upon compliance with Section 2.3.</p>
-                        <h3 class="western">2.2 Patent License</h3>
-                        <p style="margin-bottom: 0cm;">For patent claims including, without limitation, method, process, and apparatus claims which You own, control or have the right to grant, now or in the future, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable patent license, with the right to sublicense these rights to multiple tiers of sublicensees, to make, have made, use, sell, offer for sale, import and otherwise transfer the Contribution and the Contribution in combination with the Material (and portions of such combination). This license is granted only to the extent that the exercise of the licensed rights infringes such patent claims; and provided that this license is conditioned upon compliance with Section 2.3.</p>
-                        <h3 class="western">2.3 Outbound License</h3>
-                        <p>Based on the grant of rights in Sections 2.1 and 2.2, if We include Your Contribution in a Material, We may license the Contribution under any license, including copyleft, permissive, commercial, or proprietary licenses. As a condition on the exercise of this right, We agree to also license the Contribution under the terms of the license or licenses which We are using for the Material on the Submission Date.</p>
-                        <h3 class="western">2.4 Moral Rights.</h3>
-                        <p>If moral rights apply to the Contribution, to the maximum extent permitted by law, You waive and agree not to assert such moral rights against Us or our successors in interest, or any of our licensees, either direct or indirect.</p>
-                        <h3 class="western">2.5 Our Rights.</h3>
-                        <p>You acknowledge that We are not obligated to use Your Contribution as part of the Material and may decide to include any Contribution We consider appropriate.</p>
-                        <h3 class="western">2.6 Reservation of Rights.</h3>
-                        <p>Any rights not expressly licensed under this section are expressly reserved by You.</p>
-                        <h2 class="western">3. Agreement</h2>
-                        <p>You confirm that:</p>
-                        <p>(a) You have the legal authority to enter into this Agreement.</p>
-                        <p>(b) You own the Copyright and patent claims covering the Contribution which are required to grant the rights under Section 2.</p>
-                        <p>(c) The grant of rights under Section 2 does not violate any grant of rights which You have made to third parties, including Your employer. If You are an employee, You have had Your employer approve this Agreement or sign the Entity version of this document. If You are less than eighteen years old, please have Your parents or guardian sign the Agreement.</p>
-                        <p>(d) You have followed the instructions in www.canonical.com/contributors, if You do not own the Copyright in the entire work of authorship Submitted.</p>
-                        <h2 class="western">4. Disclaimer</h2>
-                        <p>EXCEPT FOR THE EXPRESS WARRANTIES IN SECTION 3, THE CONTRIBUTION IS PROVIDED "AS IS". MORE PARTICULARLY, ALL EXPRESS OR IMPLIED WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXPRESSLY DISCLAIMED BY YOU TO US. TO THE EXTENT THAT ANY SUCH WARRANTIES CANNOT BE DISCLAIMED, SUCH WARRANTY IS LIMITED IN DURATION TO THE MINIMUM PERIOD PERMITTED BY LAW.</p>
-                        <h2 class="western">5. Consequential Damage Waiver</h2>
-                        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL YOU BE LIABLE FOR ANY LOSS OF PROFITS, LOSS OF ANTICIPATED SAVINGS, LOSS OF DATA, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL AND EXEMPLARY DAMAGES ARISING OUT OF THIS AGREEMENT REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) UPON WHICH THE CLAIM IS BASED.</p>
-                        <h2 class="western">6. Miscellaneous</h2>
-                        <p>6.1 This Agreement will be governed by and construed in accordance with the laws of England excluding its conflicts of law provisions. Under certain circumstances, the governing law in this section might be superseded by the United Nations Convention on Contracts for the International Sale of Goods ("UN Convention") and the parties intend to avoid the application of the UN Convention to this Agreement and, thus, exclude the application of the UN Convention in its entirety to this Agreement.</p>
-                        <p>6.2 This Agreement sets out the entire agreement between You and Us for Your Contributions to Us and overrides all other agreements or understandings.</p>
-                        <p>6.3 If You or We assign the rights or obligations received through this Agreement to a third party, as a condition of</p>
-                        <p style="margin-bottom: 0cm;">the assignment, that third party must agree in writing to abide by all the rights and obligations in the Agreement.</p>
-                        <p>6.4 The failure of either party to require performance by the other party of any provision of this Agreement in one situation shall not affect the right of a party to require such performance at any time in the future. A waiver of performance under a provision in one situation shall not be considered a waiver of the performance of the provision in the future or a waiver of the provision in its entirety.</p>
-                        <p>6.5 If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision and which is enforceable. The terms and conditions set forth in this Agreement shall apply notwithstanding any failure of essential purpose of this Agreement or any limited remedy to the maximum extent possible under law.</p>
-                        <p>To <a href="http://www.canonical.com/sites/default/files/active/images/Canonical-HA-CLA-ANY-I.pdf">download as a PDF</a>
-                        </p>
-                      </div>
-                    </div>
-                  </fieldset>
-                  <fieldset id="tfa_CanonicalEntityC" class="section" data-condition="`#tfa_Iamsigningonbeha1`">
-                    <legend id="tfa_CanonicalEntityC-L">Canonical Entity Contributor License Agreement</legend>
-                    <div class="htmlSection" id="tmp-7485358696932">
-                      <div class="htmlContent" id="tmp-7485358696932-HTML">
-                        <p class="text-body-lead-western">Thank you for your interest in contributing to software projects managed by Canonical ("We" or "Us").</p>
-                        <p class="text-body-lead-western">
-                          <span style="color: #000000;">This contributor agreement ("Agreement") documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email <span style="color: #000000;">or electronic submission</span>, following the instructions at www.canonical.com/contributors. This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.</span>
-                        </p>
-                        <h2 class="western">1. Definitions</h2>
-                        <p>
-                          <span style="font-family: Ubuntu;">"You" <span style="font-family: Ubuntu;">means any Legal Entity on behalf of whom a Contribution has been received by Us. "Legal Entity" means an entity which is not a natural person. "Affiliates" means other Legal Entities that control, are controlled by, or under common control with that Legal Entity. For the purposes of this definition, "control" means (i) the power, direct or indirect, to cause the direction or management of such Legal Entity, whether by contract or otherwise, (ii) ownership of fifty percent (50%) or more of the outstanding shares or securities which vote to elect the management or other persons who direct such Legal Entity or (iii) beneficial ownership of such entity.</span>
-                        </span>
-                      </p>
-                      <p>"Contribution" means any work of authorship that is Submitted by You to Us in which You own or assert ownership of the Copyright. If You do not own the Copyright in the entire work of authorship, please follow the instructions in www.canonical.com/contributors.</p>
-                      <p>"Copyright" means all rights protecting works of authorship owned or controlled by You o<span style="font-family: Ubuntu;">r Your Affiliates</span>, including copyright, moral and neighboring rights, as appropriate, for the full term of their existence including any extensions by You.</p>
-                      <p>"Material" means the work of authorship which is made available by Us to third parties. When this Agreement covers more than one software project, the Material means the work of authorship to which the Contribution was Submitted. After You Submit the Contribution, it may be included in the Material.</p>
-                      <p>"Submit" means any form of electronic, verbal, or written communication sent to Us or our representatives, including but not limited to electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, Us for the purpose of discussing and improving the Material, but excluding communication that is conspicuously marked or otherwise designated in writing by You as "Not a Contribution."</p>
-                      <p>"Submission Date" means the date on which You Submit a Contribution to Us.</p>
-                      <p>"Effective Date" means the date You execute this Agreement or the date You first Submit a Contribution to Us, whichever is earlier.</p>
-                      <p>"Media" means any portion of a Contribution which is not software.</p>
-                      <h2 class="western">2. Grant of Rights</h2>
-                      <h3 class="western">2.1 Copyright License</h3>
-                      <p>(a) You retain ownership of the Copyright in Your Contribution and have the same rights to use or license the Contribution which You would have had without entering into the Agreement.</p>
-                      <p>(b) To the maximum extent permitted by the relevant law, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable license under the Copyright covering the Contribution, with the right to sublicense such rights through multiple tiers of sublicensees, to reproduce, modify, display, perform and distribute the Contribution as part of the Material; provided that this license is conditioned upon compliance with Section 2.3.</p>
-                      <h3 class="western">2.2 Patent License</h3>
-                      <p>For patent claims including, without limitation, method, process, and apparatus claims which You or Your Affiliates own, control or have the right to grant, now or in the future, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable patent license, with the right to sublicense these rights to multiple tiers of sublicensees, to make, have made, use, sell, offer for sale, import and otherwise transfer the Contribution and the Contribution in combination with the Material (and portions of such combination). This license is granted only to the extent that the exercise of the licensed rights infringes such patent claims; and provided that this license is conditioned upon compliance with Section 2.3.</p>
-                      <h3 class="western">2.3 Outbound License</h3>
-                      <p>Based on the grant of rights in Sections 2.1 and 2.2, if We include Your Contribution in a Material, We may license the Contribution under any license, including copyleft, permissive, commercial, or proprietary licenses. As a condition on the exercise of this right, We agree to also license the Contribution under the terms of the license or licenses which We are using for the Material on the Submission Date.</p>
-                      <h3 class="western">2.4 Moral Rights.</h3>
-                      <p>If moral rights apply to the Contribution, to the maximum extent permitted by law, You waive and agree not to assert such moral rights against Us or our successors in interest, or any of our licensees, either direct or indirect.</p>
-                      <h3 class="western">2.5 Our Rights.</h3>
-                      <p>You acknowledge that We are not obligated to use Your Contribution as part of the Material and may decide to include any Contribution We consider appropriate.</p>
-                      <h3 class="western">2.6 Reservation of Rights.</h3>
-                      <p>Any rights not expressly licensed under this section are expressly reserved by You.</p>
-                      <h2 class="western">3. Agreement</h2>
-                      <p>You confirm that:</p>
-                      <p>(a) You have the legal authority to enter into this Agreement.</p>
-                      <p>(b) You or Your Affiliates own the Copyright and patent claims covering the Contribution which are required to grant the rights under Section 2.</p>
-                      <p>(c) The grant of rights under Section 2 does not violate any grant of rights which You or Your Affiliates have made to third parties.</p>
-                      <p>(d) You have followed the instructions in www.canonical.com/contributors, if You do not own the Copyright in the entire work of authorship Submitted.</p>
-                      <h2 class="western">4. Disclaimer</h2>
-                      <p>EXCEPT FOR THE EXPRESS WARRANTIES IN SECTION 3, THE CONTRIBUTION IS PROVIDED "AS IS". MORE PARTICULARLY, ALL EXPRESS OR IMPLIED WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXPRESSLY DISCLAIMED BY YOU TO US. TO THE EXTENT THAT ANY SUCH WARRANTIES CANNOT BE DISCLAIMED, SUCH WARRANTY IS LIMITED IN DURATION TO THE MINIMUM PERIOD PERMITTED BY LAW.</p>
-                      <h2 class="western">5. Consequential Damage Waiver</h2>
-                      <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL YOU BE LIABLE FOR ANY LOSS OF PROFITS, LOSS OF ANTICIPATED SAVINGS, LOSS OF DATA, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL AND EXEMPLARY DAMAGES ARISING OUT OF THIS AGREEMENT REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) UPON WHICH THE CLAIM IS BASED.</p>
-                      <h2 class="western">6. Miscellaneous</h2>
-                      <p>6.1 This Agreement will be governed by and construed in accordance with the laws of England excluding its conflicts of law provisions. Under certain circumstances, the governing law in this section might be superseded by the United Nations Convention on Contracts for the International Sale of Goods ("UN Convention") and the parties intend to avoid the application of the UN Convention to this Agreement and, thus, exclude the application of the UN Convention in its entirety to this Agreement.</p>
-                      <p>6.2 This Agreement sets out the entire agreement between You and Us for Your Contributions to Us and overrides all other agreements or understandings.</p>
-                      <p>6.3 If You or We assign the rights or obligations received through this Agreement to a third party, as a condition of the assignment, that third party must agree in writing to abide by all the rights and obligations in the Agreement.</p>
-                      <p>6.4 The failure of either party to require performance by the other party of any provision of this Agreement in one situation shall not affect the right of a party to require such performance at any time in the future. A waiver of performance under a provision in one situation shall not be considered a waiver of the performance of the provision in the future or a waiver of the provision in its entirety.</p>
-                      <p>6.5 If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision and which is enforceable. The terms and conditions set forth in this Agreement shall apply notwithstanding any failure of essential purpose of this Agreement or any limited remedy to the maximum extent possible under law.</p>
-                      <p>To <a href="http://www.canonical.com/sites/default/files/active/images/Canonical-HA-CLA-ANY-E.pdf">download as a PDF</a>
-                      </p>
-                    </div>
-                  </div>
-                </fieldset>
-                <fieldset id="tfa_Yourcontactdetai1" class="section">
-                  <legend id="tfa_Yourcontactdetai1-L">Your contact details</legend>
-                  <div class="oneField field-container-D    " id="tfa_Firstname1-D">
-                    <label id="tfa_Firstname1-L" class="label preField reqMark" for="tfa_Firstname1">First name</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <input type="text" id="tfa_Firstname1" name="tfa_Firstname1" value="" default="" aria-required="true" title="First name" class="required">
-                    </div>
-                  </div>
-                  <div class="oneField field-container-D    " id="tfa_Lastname1-D">
-                    <label id="tfa_Lastname1-L" class="label preField reqMark" for="tfa_Lastname1">Last name</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <input type="text" id="tfa_Lastname1" name="tfa_Lastname1" value="" default="" aria-required="true" title="Last name" class="required">
-                    </div>
-                  </div>
-                  <div class="oneField field-container-D    " id="tfa_Email1-D">
-                    <label id="tfa_Email1-L" class="label preField reqMark" for="tfa_Email1">Email</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <input type="text" id="tfa_Email1" name="tfa_Email1" value="" default="" aria-required="true" title="Email" class="validate-email required">
-                    </div>
-                  </div>
-                  <div class="oneField field-container-D    " id="tfa_Phone-D">
-                    <label id="tfa_Phone-L" class="label preField reqMark" for="tfa_Phone">Phone</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <input type="text" id="tfa_Phone" name="tfa_Phone" value="" default="" aria-required="true" title="Phone" class="required">
-                    </div>
-                  </div>
-                  <input type="hidden" id="tfa_Openid" name="tfa_Openid" value="" class="">
-                  <input type="hidden" id="tfa_LPid" name="tfa_LPid" value="" class="">
-                  <div class="oneField field-container-D    " id="tfa_1-D">
-                    <label id="tfa_1-L" class="label preField " for="tfa_1">GitHub username</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <input type="text" id="tfa_1" name="tfa_1" value="" title="GitHub Username" class="">
-                    </div>
-                  </div>
-                  <div class="oneField field-container-D    " id="tfa_Address-D">
-                    <label id="tfa_Address-L" class="label preField reqMark" for="tfa_Address">Address</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <textarea cols="40" rows="4" aria-required="true" id="tfa_Address" name="tfa_Address" title="Address" class="required">
-                      </textarea>
-                    </div>
-                  </div>
-                  <div class="oneField field-container-D    " id="tfa_Country-D">
-                    <label id="tfa_Country-L" class="label preField reqMark" for="tfa_Country">Country</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <select id="tfa_Country" name="tfa_Country" title="Country" aria-required="true" class="required">
-                        <option value="">Please select...</option>
-                        <option value="tfa_Afghanistan" id="tfa_Afghanistan" class="">Afghanistan</option>
-                        <option value="tfa_Albania" id="tfa_Albania" class="">Albania</option>
-                        <option value="tfa_Algeria" id="tfa_Algeria" class="">Algeria</option>
-                        <option value="tfa_AmericanSamoa" id="tfa_AmericanSamoa" class="">American Samoa</option>
-                        <option value="tfa_Andorra" id="tfa_Andorra" class="">Andorra</option>
-                        <option value="tfa_Angola" id="tfa_Angola" class="">Angola</option>
-                        <option value="tfa_Anguilla" id="tfa_Anguilla" class="">Anguilla</option>
-                        <option value="tfa_Antarctica" id="tfa_Antarctica" class="">Antarctica</option>
-                        <option value="tfa_AntiguaandBarbud" id="tfa_AntiguaandBarbud" class="">Antigua and Barbuda</option>
-                        <option value="tfa_Argentina" id="tfa_Argentina" class="">Argentina</option>
-                        <option value="tfa_Armenia" id="tfa_Armenia" class="">Armenia</option>
-                        <option value="tfa_Aruba" id="tfa_Aruba" class="">Aruba</option>
-                        <option value="tfa_Australia" id="tfa_Australia" class="">Australia</option>
-                        <option value="tfa_Austria" id="tfa_Austria" class="">Austria</option>
-                        <option value="tfa_Azerbaijan" id="tfa_Azerbaijan" class="">Azerbaijan</option>
-                        <option value="tfa_Bahamas" id="tfa_Bahamas" class="">Bahamas</option>
-                        <option value="tfa_Bahrain" id="tfa_Bahrain" class="">Bahrain</option>
-                        <option value="tfa_Bangladesh" id="tfa_Bangladesh" class="">Bangladesh</option>
-                        <option value="tfa_Barbados" id="tfa_Barbados" class="">Barbados</option>
-                        <option value="tfa_Belarus" id="tfa_Belarus" class="">Belarus</option>
-                        <option value="tfa_Belgium" id="tfa_Belgium" class="">Belgium</option>
-                        <option value="tfa_Belize" id="tfa_Belize" class="">Belize</option>
-                        <option value="tfa_Benin" id="tfa_Benin" class="">Benin</option>
-                        <option value="tfa_Bermuda" id="tfa_Bermuda" class="">Bermuda</option>
-                        <option value="tfa_Bhutan" id="tfa_Bhutan" class="">Bhutan</option>
-                        <option value="tfa_Bolivia" id="tfa_Bolivia" class="">Bolivia</option>
-                        <option value="tfa_BosniaandHerzego" id="tfa_BosniaandHerzego" class="">Bosnia and Herzegovina</option>
-                        <option value="tfa_Botswana" id="tfa_Botswana" class="">Botswana</option>
-                        <option value="tfa_BouvetIsland" id="tfa_BouvetIsland" class="">Bouvet Island</option>
-                        <option value="tfa_Brazil" id="tfa_Brazil" class="">Brazil</option>
-                        <option value="tfa_BritishIndianOce" id="tfa_BritishIndianOce" class="">British Indian Ocean Territory</option>
-                        <option value="tfa_Brunei" id="tfa_Brunei" class="">Brunei</option>
-                        <option value="tfa_Bulgaria" id="tfa_Bulgaria" class="">Bulgaria</option>
-                        <option value="tfa_BurkinaFaso" id="tfa_BurkinaFaso" class="">Burkina Faso</option>
-                        <option value="tfa_Burundi" id="tfa_Burundi" class="">Burundi</option>
-                        <option value="tfa_Cambodia" id="tfa_Cambodia" class="">Cambodia</option>
-                        <option value="tfa_Cameroon" id="tfa_Cameroon" class="">Cameroon</option>
-                        <option value="tfa_Canada" id="tfa_Canada" class="">Canada</option>
-                        <option value="tfa_CapeVerde" id="tfa_CapeVerde" class="">Cape Verde</option>
-                        <option value="tfa_CaymanIslands" id="tfa_CaymanIslands" class="">Cayman Islands</option>
-                        <option value="tfa_CentralAfricanRe" id="tfa_CentralAfricanRe" class="">Central African Republic</option>
-                        <option value="tfa_Chad" id="tfa_Chad" class="">Chad</option>
-                        <option value="tfa_Chile" id="tfa_Chile" class="">Chile</option>
-                        <option value="tfa_China" id="tfa_China" class="">China</option>
-                        <option value="tfa_ChristmasIsland" id="tfa_ChristmasIsland" class="">Christmas Island</option>
-                        <option value="tfa_CocosKeelingIsla" id="tfa_CocosKeelingIsla" class="">Cocos ( Keeling ) Islands</option>
-                        <option value="tfa_Colombia" id="tfa_Colombia" class="">Colombia</option>
-                        <option value="tfa_Comoros" id="tfa_Comoros" class="">Comoros</option>
-                        <option value="tfa_Congo" id="tfa_Congo" class="">Congo</option>
-                        <option value="tfa_CookIslands" id="tfa_CookIslands" class="">Cook Islands</option>
-                        <option value="tfa_CostaRica" id="tfa_CostaRica" class="">Costa Rica</option>
-                        <option value="tfa_CtedIvoire" id="tfa_CtedIvoire" class="">Côte d ' Ivoire</option>
-                        <option value="tfa_CroatiaHrvatska" id="tfa_CroatiaHrvatska" class="">Croatia ( Hrvatska )</option>
-                        <option value="tfa_Cuba" id="tfa_Cuba" class="">Cuba</option>
-                        <option value="tfa_Cyprus" id="tfa_Cyprus" class="">Cyprus</option>
-                        <option value="tfa_CzechRepublic" id="tfa_CzechRepublic" class="">Czech Republic</option>
-                        <option value="tfa_CongoDRC" id="tfa_CongoDRC" class="">Congo ( DRC )</option>
-                        <option value="tfa_Denmark" id="tfa_Denmark" class="">Denmark</option>
-                        <option value="tfa_Djibouti" id="tfa_Djibouti" class="">Djibouti</option>
-                        <option value="tfa_Dominica" id="tfa_Dominica" class="">Dominica</option>
-                        <option value="tfa_DominicanRepubli" id="tfa_DominicanRepubli" class="">Dominican Republic</option>
-                        <option value="tfa_EastTimor" id="tfa_EastTimor" class="">East Timor</option>
-                        <option value="tfa_Ecuador" id="tfa_Ecuador" class="">Ecuador</option>
-                        <option value="tfa_Egypt" id="tfa_Egypt" class="">Egypt</option>
-                        <option value="tfa_ElSalvador" id="tfa_ElSalvador" class="">El Salvador</option>
-                        <option value="tfa_EquatorialGuinea" id="tfa_EquatorialGuinea" class="">Equatorial Guinea</option>
-                        <option value="tfa_Eritrea" id="tfa_Eritrea" class="">Eritrea</option>
-                        <option value="tfa_Estonia" id="tfa_Estonia" class="">Estonia</option>
-                        <option value="tfa_Ethiopia" id="tfa_Ethiopia" class="">Ethiopia</option>
-                        <option value="tfa_FalklandIslandsI" id="tfa_FalklandIslandsI" class="">Falkland Islands ( Islas Malvinas )</option>
-                        <option value="tfa_FaroeIslands" id="tfa_FaroeIslands" class="">Faroe Islands</option>
-                        <option value="tfa_FijiIslands" id="tfa_FijiIslands" class="">Fiji Islands</option>
-                        <option value="tfa_Finland" id="tfa_Finland" class="">Finland</option>
-                        <option value="tfa_France" id="tfa_France" class="">France</option>
-                        <option value="tfa_FrenchGuiana" id="tfa_FrenchGuiana" class="">French Guiana</option>
-                        <option value="tfa_FrenchPolynesia" id="tfa_FrenchPolynesia" class="">French Polynesia</option>
-                        <option value="tfa_FrenchSouthernan" id="tfa_FrenchSouthernan" class="">French Southern and Antarctic Lands</option>
-                        <option value="tfa_Gabon" id="tfa_Gabon" class="">Gabon</option>
-                        <option value="tfa_Gambia" id="tfa_Gambia" class="">Gambia</option>
-                        <option value="tfa_Georgia" id="tfa_Georgia" class="">Georgia</option>
-                        <option value="tfa_Germany" id="tfa_Germany" class="">Germany</option>
-                        <option value="tfa_Ghana" id="tfa_Ghana" class="">Ghana</option>
-                        <option value="tfa_Gibraltar" id="tfa_Gibraltar" class="">Gibraltar</option>
-                        <option value="tfa_Greece" id="tfa_Greece" class="">Greece</option>
-                        <option value="tfa_Greenland" id="tfa_Greenland" class="">Greenland</option>
-                        <option value="tfa_Grenada" id="tfa_Grenada" class="">Grenada</option>
-                        <option value="tfa_Guadeloupe" id="tfa_Guadeloupe" class="">Guadeloupe</option>
-                        <option value="tfa_Guam" id="tfa_Guam" class="">Guam</option>
-                        <option value="tfa_Guatemala" id="tfa_Guatemala" class="">Guatemala</option>
-                        <option value="tfa_Guinea" id="tfa_Guinea" class="">Guinea</option>
-                        <option value="tfa_GuineaBissau" id="tfa_GuineaBissau" class="">Guinea-Bissau</option>
-                        <option value="tfa_Guyana" id="tfa_Guyana" class="">Guyana</option>
-                        <option value="tfa_Haiti" id="tfa_Haiti" class="">Haiti</option>
-                        <option value="tfa_HeardIslandandMc" id="tfa_HeardIslandandMc" class="">Heard Island and McDonald Islands</option>
-                        <option value="tfa_Honduras" id="tfa_Honduras" class="">Honduras</option>
-                        <option value="tfa_HongKongSAR" id="tfa_HongKongSAR" class="">Hong Kong SAR</option>
-                        <option value="tfa_Hungary" id="tfa_Hungary" class="">Hungary</option>
-                        <option value="tfa_Iceland" id="tfa_Iceland" class="">Iceland</option>
-                        <option value="tfa_India" id="tfa_India" class="">India</option>
-                        <option value="tfa_Indonesia" id="tfa_Indonesia" class="">Indonesia</option>
-                        <option value="tfa_Iran" id="tfa_Iran" class="">Iran</option>
-                        <option value="tfa_Iraq" id="tfa_Iraq" class="">Iraq</option>
-                        <option value="tfa_Ireland" id="tfa_Ireland" class="">Ireland</option>
-                        <option value="tfa_Israel" id="tfa_Israel" class="">Israel</option>
-                        <option value="tfa_Italy" id="tfa_Italy" class="">Italy</option>
-                        <option value="tfa_Jamaica" id="tfa_Jamaica" class="">Jamaica</option>
-                        <option value="tfa_Japan" id="tfa_Japan" class="">Japan</option>
-                        <option value="tfa_Jordan" id="tfa_Jordan" class="">Jordan</option>
-                        <option value="tfa_Kazakhstan" id="tfa_Kazakhstan" class="">Kazakhstan</option>
-                        <option value="tfa_Kenya" id="tfa_Kenya" class="">Kenya</option>
-                        <option value="tfa_Kiribati" id="tfa_Kiribati" class="">Kiribati</option>
-                        <option value="tfa_Korea" id="tfa_Korea" class="">Korea</option>
-                        <option value="tfa_Kuwait" id="tfa_Kuwait" class="">Kuwait</option>
-                        <option value="tfa_Kyrgyzstan" id="tfa_Kyrgyzstan" class="">Kyrgyzstan</option>
-                        <option value="tfa_Laos" id="tfa_Laos" class="">Laos</option>
-                        <option value="tfa_Latvia" id="tfa_Latvia" class="">Latvia</option>
-                        <option value="tfa_Lebanon" id="tfa_Lebanon" class="">Lebanon</option>
-                        <option value="tfa_Lesotho" id="tfa_Lesotho" class="">Lesotho</option>
-                        <option value="tfa_Liberia" id="tfa_Liberia" class="">Liberia</option>
-                        <option value="tfa_Libya" id="tfa_Libya" class="">Libya</option>
-                        <option value="tfa_Liechtenstein" id="tfa_Liechtenstein" class="">Liechtenstein</option>
-                        <option value="tfa_Lithuania" id="tfa_Lithuania" class="">Lithuania</option>
-                        <option value="tfa_Luxembourg" id="tfa_Luxembourg" class="">Luxembourg</option>
-                        <option value="tfa_MacaoSAR" id="tfa_MacaoSAR" class="">Macao SAR</option>
-                        <option value="tfa_MacedoniaFormerY" id="tfa_MacedoniaFormerY" class="">Macedonia, Former Yugoslav Republic of</option>
-                        <option value="tfa_Madagascar" id="tfa_Madagascar" class="">Madagascar</option>
-                        <option value="tfa_Malawi" id="tfa_Malawi" class="">Malawi</option>
-                        <option value="tfa_Malaysia" id="tfa_Malaysia" class="">Malaysia</option>
-                        <option value="tfa_Maldives" id="tfa_Maldives" class="">Maldives</option>
-                        <option value="tfa_Mali" id="tfa_Mali" class="">Mali</option>
-                        <option value="tfa_Malta" id="tfa_Malta" class="">Malta</option>
-                        <option value="tfa_MarshallIslands" id="tfa_MarshallIslands" class="">Marshall Islands</option>
-                        <option value="tfa_Martinique" id="tfa_Martinique" class="">Martinique</option>
-                        <option value="tfa_Mauritania" id="tfa_Mauritania" class="">Mauritania</option>
-                        <option value="tfa_Mauritius" id="tfa_Mauritius" class="">Mauritius</option>
-                        <option value="tfa_Mayotte" id="tfa_Mayotte" class="">Mayotte</option>
-                        <option value="tfa_Mexico" id="tfa_Mexico" class="">Mexico</option>
-                        <option value="tfa_Micronesia" id="tfa_Micronesia" class="">Micronesia</option>
-                        <option value="tfa_Moldova" id="tfa_Moldova" class="">Moldova</option>
-                        <option value="tfa_Monaco" id="tfa_Monaco" class="">Monaco</option>
-                        <option value="tfa_Mongolia" id="tfa_Mongolia" class="">Mongolia</option>
-                        <option value="tfa_Montserrat" id="tfa_Montserrat" class="">Montserrat</option>
-                        <option value="tfa_Morocco" id="tfa_Morocco" class="">Morocco</option>
-                        <option value="tfa_Mozambique" id="tfa_Mozambique" class="">Mozambique</option>
-                        <option value="tfa_Myanmar" id="tfa_Myanmar" class="">Myanmar</option>
-                        <option value="tfa_Namibia" id="tfa_Namibia" class="">Namibia</option>
-                        <option value="tfa_Nauru" id="tfa_Nauru" class="">Nauru</option>
-                        <option value="tfa_Nepal" id="tfa_Nepal" class="">Nepal</option>
-                        <option value="tfa_Netherlands" id="tfa_Netherlands" class="">Netherlands</option>
-                        <option value="tfa_NetherlandsAntil" id="tfa_NetherlandsAntil" class="">Netherlands Antilles</option>
-                        <option value="tfa_NewCaledonia" id="tfa_NewCaledonia" class="">New Caledonia</option>
-                        <option value="tfa_NewZealand" id="tfa_NewZealand" class="">New Zealand</option>
-                        <option value="tfa_Nicaragua" id="tfa_Nicaragua" class="">Nicaragua</option>
-                        <option value="tfa_Niger" id="tfa_Niger" class="">Niger</option>
-                        <option value="tfa_Nigeria" id="tfa_Nigeria" class="">Nigeria</option>
-                        <option value="tfa_Niue" id="tfa_Niue" class="">Niue</option>
-                        <option value="tfa_NorfolkIsland" id="tfa_NorfolkIsland" class="">Norfolk Island</option>
-                        <option value="tfa_NorthKorea" id="tfa_NorthKorea" class="">North Korea</option>
-                        <option value="tfa_NorthernMarianaI" id="tfa_NorthernMarianaI" class="">Northern Mariana Islands</option>
-                        <option value="tfa_Norway" id="tfa_Norway" class="">Norway</option>
-                        <option value="tfa_Oman" id="tfa_Oman" class="">Oman</option>
-                        <option value="tfa_Pakistan" id="tfa_Pakistan" class="">Pakistan</option>
-                        <option value="tfa_Palau" id="tfa_Palau" class="">Palau</option>
-                        <option value="tfa_Panama" id="tfa_Panama" class="">Panama</option>
-                        <option value="tfa_PapuaNewGuinea" id="tfa_PapuaNewGuinea" class="">Papua New Guinea</option>
-                        <option value="tfa_Paraguay" id="tfa_Paraguay" class="">Paraguay</option>
-                        <option value="tfa_Peru" id="tfa_Peru" class="">Peru</option>
-                        <option value="tfa_Philippines" id="tfa_Philippines" class="">Philippines</option>
-                        <option value="tfa_PitcairnIslands" id="tfa_PitcairnIslands" class="">Pitcairn Islands</option>
-                        <option value="tfa_Poland" id="tfa_Poland" class="">Poland</option>
-                        <option value="tfa_Portugal" id="tfa_Portugal" class="">Portugal</option>
-                        <option value="tfa_PuertoRico" id="tfa_PuertoRico" class="">Puerto Rico</option>
-                        <option value="tfa_Qatar" id="tfa_Qatar" class="">Qatar</option>
-                        <option value="tfa_Reunion" id="tfa_Reunion" class="">Reunion</option>
-                        <option value="tfa_Romania" id="tfa_Romania" class="">Romania</option>
-                        <option value="tfa_Russia" id="tfa_Russia" class="">Russia</option>
-                        <option value="tfa_Rwanda" id="tfa_Rwanda" class="">Rwanda</option>
-                        <option value="tfa_Samoa" id="tfa_Samoa" class="">Samoa</option>
-                        <option value="tfa_SanMarino" id="tfa_SanMarino" class="">San Marino</option>
-                        <option value="tfa_SoTomandPrncipe" id="tfa_SoTomandPrncipe" class="">São Tomé and Prìncipe</option>
-                        <option value="tfa_SaudiArabia" id="tfa_SaudiArabia" class="">Saudi Arabia</option>
-                        <option value="tfa_Senegal" id="tfa_Senegal" class="">Senegal</option>
-                        <option value="tfa_SerbiaandMontene" id="tfa_SerbiaandMontene" class="">Serbia and Montenegro</option>
-                        <option value="tfa_Seychelles" id="tfa_Seychelles" class="">Seychelles</option>
-                        <option value="tfa_SierraLeone" id="tfa_SierraLeone" class="">Sierra Leone</option>
-                        <option value="tfa_Singapore" id="tfa_Singapore" class="">Singapore</option>
-                        <option value="tfa_Slovakia" id="tfa_Slovakia" class="">Slovakia</option>
-                        <option value="tfa_Slovenia" id="tfa_Slovenia" class="">Slovenia</option>
-                        <option value="tfa_SolomonIslands" id="tfa_SolomonIslands" class="">Solomon Islands</option>
-                        <option value="tfa_Somalia" id="tfa_Somalia" class="">Somalia</option>
-                        <option value="tfa_SouthAfrica" id="tfa_SouthAfrica" class="">South Africa</option>
-                        <option value="tfa_SouthGeorgiaandt" id="tfa_SouthGeorgiaandt" class="">South Georgia and the South Sandwich Islands</option>
-                        <option value="tfa_Spain" id="tfa_Spain" class="">Spain</option>
-                        <option value="tfa_SriLanka" id="tfa_SriLanka" class="">Sri Lanka</option>
-                        <option value="tfa_StHelena" id="tfa_StHelena" class="">St. Helena</option>
-                        <option value="tfa_StKittsandNevis" id="tfa_StKittsandNevis" class="">St. Kitts and Nevis</option>
-                        <option value="tfa_StLucia" id="tfa_StLucia" class="">St. Lucia</option>
-                        <option value="tfa_StPierreandMique" id="tfa_StPierreandMique" class="">St. Pierre and Miquelon</option>
-                        <option value="tfa_StVincentandtheG" id="tfa_StVincentandtheG" class="">St. Vincent and the Grenadines</option>
-                        <option value="tfa_Sudan" id="tfa_Sudan" class="">Sudan</option>
-                        <option value="tfa_Suriname" id="tfa_Suriname" class="">Suriname</option>
-                        <option value="tfa_SvalbardandJanMa" id="tfa_SvalbardandJanMa" class="">Svalbard and Jan Mayen</option>
-                        <option value="tfa_Swaziland" id="tfa_Swaziland" class="">Swaziland</option>
-                        <option value="tfa_Sweden" id="tfa_Sweden" class="">Sweden</option>
-                        <option value="tfa_Switzerland" id="tfa_Switzerland" class="">Switzerland</option>
-                        <option value="tfa_Syria" id="tfa_Syria" class="">Syria</option>
-                        <option value="tfa_Taiwan" id="tfa_Taiwan" class="">Taiwan</option>
-                        <option value="tfa_Tajikistan" id="tfa_Tajikistan" class="">Tajikistan</option>
-                        <option value="tfa_Tanzania" id="tfa_Tanzania" class="">Tanzania</option>
-                        <option value="tfa_Thailand" id="tfa_Thailand" class="">Thailand</option>
-                        <option value="tfa_Togo" id="tfa_Togo" class="">Togo</option>
-                        <option value="tfa_Tokelau" id="tfa_Tokelau" class="">Tokelau</option>
-                        <option value="tfa_Tonga" id="tfa_Tonga" class="">Tonga</option>
-                        <option value="tfa_TrinidadandTobag" id="tfa_TrinidadandTobag" class="">Trinidad and Tobago</option>
-                        <option value="tfa_Tunisia" id="tfa_Tunisia" class="">Tunisia</option>
-                        <option value="tfa_Turkey" id="tfa_Turkey" class="">Turkey</option>
-                        <option value="tfa_Turkmenistan" id="tfa_Turkmenistan" class="">Turkmenistan</option>
-                        <option value="tfa_TurksandCaicosIs" id="tfa_TurksandCaicosIs" class="">Turks and Caicos Islands</option>
-                        <option value="tfa_Tuvalu" id="tfa_Tuvalu" class="">Tuvalu</option>
-                        <option value="tfa_Uganda" id="tfa_Uganda" class="">Uganda</option>
-                        <option value="tfa_Ukraine" id="tfa_Ukraine" class="">Ukraine</option>
-                        <option value="tfa_UnitedArabEmirat" id="tfa_UnitedArabEmirat" class="">United Arab Emirates</option>
-                        <option value="tfa_UnitedKingdom" id="tfa_UnitedKingdom" class="">United Kingdom</option>
-                        <option value="tfa_UnitedStates" id="tfa_UnitedStates" data-conditionals="#tfa_USState" class="">United States</option>
-                        <option value="tfa_UnitedStatesMino" id="tfa_UnitedStatesMino" class="">United States Minor Outlying Islands</option>
-                        <option value="tfa_Uruguay" id="tfa_Uruguay" class="">Uruguay</option>
-                        <option value="tfa_Uzbekistan" id="tfa_Uzbekistan" class="">Uzbekistan</option>
-                        <option value="tfa_Vanuatu" id="tfa_Vanuatu" class="">Vanuatu</option>
-                        <option value="tfa_VaticanCity" id="tfa_VaticanCity" class="">Vatican City</option>
-                        <option value="tfa_Venezuela" id="tfa_Venezuela" class="">Venezuela</option>
-                        <option value="tfa_VietNam" id="tfa_VietNam" class="">Viet Nam</option>
-                        <option value="tfa_VirginIslandsBri" id="tfa_VirginIslandsBri" class="">Virgin Islands ( British )</option>
-                        <option value="tfa_VirginIslands" id="tfa_VirginIslands" class="">Virgin Islands</option>
-                        <option value="tfa_WallisandFutuna" id="tfa_WallisandFutuna" class="">Wallis and Futuna</option>
-                        <option value="tfa_Yemen" id="tfa_Yemen" class="">Yemen</option>
-                        <option value="tfa_Zambia" id="tfa_Zambia" class="">Zambia</option>
-                        <option value="tfa_Zimbabwe" id="tfa_Zimbabwe" class="">Zimbabwe</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="oneField field-container-D    " id="tfa_USState-D">
-                    <label id="tfa_USState-L" class="label preField reqMark" for="tfa_USState">US State</label>
-                    <br>
-                    <div class="inputWrapper">
-                      <select id="tfa_USState" name="tfa_USState" data-condition="`#tfa_UnitedStates`" title="US State" aria-required="true" class="required">
-                        <option value="">Please select...</option>
-                        <option value="tfa_Alabama" id="tfa_Alabama" class="">Alabama</option>
-                        <option value="tfa_Alaska" id="tfa_Alaska" class="">Alaska</option>
-                        <option value="tfa_Arizona" id="tfa_Arizona" class="">Arizona</option>
-                        <option value="tfa_Arkansas" id="tfa_Arkansas" class="">Arkansas</option>
-                        <option value="tfa_California" id="tfa_California" class="">California</option>
-                        <option value="tfa_Colorado" id="tfa_Colorado" class="">Colorado</option>
-                        <option value="tfa_Connecticut" id="tfa_Connecticut" class="">Connecticut</option>
-                        <option value="tfa_Delaware" id="tfa_Delaware" class="">Delaware</option>
-                        <option value="tfa_Florida" id="tfa_Florida" class="">Florida</option>
-                        <option value="tfa_Georgia1" id="tfa_Georgia1" class="">Georgia</option>
-                        <option value="tfa_Hawaii" id="tfa_Hawaii" class="">Hawaii</option>
-                        <option value="tfa_Idaho" id="tfa_Idaho" class="">Idaho</option>
-                        <option value="tfa_Illinois" id="tfa_Illinois" class="">Illinois</option>
-                        <option value="tfa_Indiana" id="tfa_Indiana" class="">Indiana</option>
-                        <option value="tfa_Iowa" id="tfa_Iowa" class="">Iowa</option>
-                        <option value="tfa_Kansas" id="tfa_Kansas" class="">Kansas</option>
-                        <option value="tfa_Kentucky" id="tfa_Kentucky" class="">Kentucky</option>
-                        <option value="tfa_Louisiana" id="tfa_Louisiana" class="">Louisiana</option>
-                        <option value="tfa_Maine" id="tfa_Maine" class="">Maine</option>
-                        <option value="tfa_Maryland" id="tfa_Maryland" class="">Maryland</option>
-                        <option value="tfa_Massachusetts" id="tfa_Massachusetts" class="">Massachusetts</option>
-                        <option value="tfa_Michigan" id="tfa_Michigan" class="">Michigan</option>
-                        <option value="tfa_Minnesota" id="tfa_Minnesota" class="">Minnesota</option>
-                        <option value="tfa_Mississippi" id="tfa_Mississippi" class="">Mississippi</option>
-                        <option value="tfa_Missouri" id="tfa_Missouri" class="">Missouri</option>
-                        <option value="tfa_Montana" id="tfa_Montana" class="">Montana</option>
-                        <option value="tfa_Nebraska" id="tfa_Nebraska" class="">Nebraska</option>
-                        <option value="tfa_Nevada" id="tfa_Nevada" class="">Nevada</option>
-                        <option value="tfa_NewHampshire" id="tfa_NewHampshire" class="">New Hampshire</option>
-                        <option value="tfa_NewJersey" id="tfa_NewJersey" class="">New Jersey</option>
-                        <option value="tfa_NewMexico" id="tfa_NewMexico" class="">New Mexico</option>
-                        <option value="tfa_NewYork" id="tfa_NewYork" class="">New York</option>
-                        <option value="tfa_NorthCarolina" id="tfa_NorthCarolina" class="">North Carolina</option>
-                        <option value="tfa_NorthDakota" id="tfa_NorthDakota" class="">North Dakota</option>
-                        <option value="tfa_Ohio" id="tfa_Ohio" class="">Ohio</option>
-                        <option value="tfa_Oklahoma" id="tfa_Oklahoma" class="">Oklahoma</option>
-                        <option value="tfa_Oregon" id="tfa_Oregon" class="">Oregon</option>
-                        <option value="tfa_Pennsylvania" id="tfa_Pennsylvania" class="">Pennsylvania</option>
-                        <option value="tfa_RhodeIsland" id="tfa_RhodeIsland" class="">Rhode Island</option>
-                        <option value="tfa_SouthCarolina" id="tfa_SouthCarolina" class="">South Carolina</option>
-                        <option value="tfa_SouthDakota" id="tfa_SouthDakota" class="">South Dakota</option>
-                        <option value="tfa_Tennessee" id="tfa_Tennessee" class="">Tennessee</option>
-                        <option value="tfa_Texas" id="tfa_Texas" class="">Texas</option>
-                        <option value="tfa_Utah" id="tfa_Utah" class="">Utah</option>
-                        <option value="tfa_Vermont" id="tfa_Vermont" class="">Vermont</option>
-                        <option value="tfa_Virginia" id="tfa_Virginia" class="">Virginia</option>
-                        <option value="tfa_Washington" id="tfa_Washington" class="">Washington</option>
-                        <option value="tfa_WestVirginia" id="tfa_WestVirginia" class="">West Virginia</option>
-                        <option value="tfa_Wisconsin" id="tfa_Wisconsin" class="">Wisconsin</option>
-                        <option value="tfa_Wyoming" id="tfa_Wyoming" class="">Wyoming</option>
-                      </select>
-                    </div>
+            <fieldset id="tfa_CanonicalIndivid" class="section" data-condition="`#tfa_Iamsigningasanin1`">
+              <legend id="tfa_CanonicalIndivid-L" class="p-heading--3">Canonical Individual Contributor License Agreement</legend>
+              <div class="htmlSection" id="tmp-7480075684173"><div class="htmlContent" id="tmp-7480075684173-HTML">
+                <p class="text-body-lead-western">Thank you for your interest in contributing to software projects managed by Canonical (“We” or “Us”).</p>
+                <p class="text-body-lead-western"><span style="color: #000000;">This contributor agreement (“Agreement”) documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email <span style="color: #000000;">or electronic submission</span>, following the instructions at www.canonical.com/contributors . This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.</span></p>
+                <h2 class="western">1. Definitions</h2>
+                <p>“You” means the individual who Submits a Contribution to Us.</p>
+                <p>“Contribution” means any work of authorship that is Submitted by You to Us in which You own or assert ownership of the Copyright. If You do not own the Copyright in the entire work of authorship, please follow the instructions in www.canonical.com/contributors.</p>
+                <p>“Copyright” means all rights protecting works of authorship owned or controlled by You, including copyright, moral and neighboring rights, as appropriate, for the full term of their existence including any extensions by You.</p>
+                <p>“Material” means the work of authorship which is made available by Us to third parties. When this Agreement covers more than one software project, the Material means the work of authorship to which the Contribution was Submitted. After You Submit the Contribution, it may be included in the Material.</p>
+                <p>“Submit” means any form of electronic, verbal, or written communication sent to Us or our representatives, including but not limited to electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, Us for the purpose of discussing and improving the Material, but excluding communication that is conspicuously marked or otherwise designated in writing by You as “Not a Contribution.”</p>
+                <p>“Submission Date” means the date on which You Submit a Contribution to Us.</p>
+                <p>“Effective Date” means the date You execute this Agreement or the date You first Submit a Contribution to Us, whichever is earlier.</p>
+                <p>“Media” means any portion of a Contribution which is not software.</p>
+                <h2 class="western">2. Grant of Rights</h2>
+                <h3 class="western">2.1 Copyright License</h3>
+                <p>(a) You retain ownership of the Copyright in Your Contribution and have the same rights to use or license the Contribution which You would have had without entering into the Agreement.</p>
+                <p>(b) To the maximum extent permitted by the relevant law, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable license under the Copyright covering the Contribution, with the right to sublicense such rights through multiple tiers of sublicensees, to reproduce, modify, display, perform and distribute the Contribution as part of the Material; provided that this license is conditioned upon compliance with Section 2.3.</p>
+                <h3 class="western">2.2 Patent License</h3>
+                <p style="margin-bottom: 0cm;">For patent claims including, without limitation, method, process, and apparatus claims which You own, control or have the right to grant, now or in the future, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable patent license, with the right to sublicense these rights to multiple tiers of sublicensees, to make, have made, use, sell, offer for sale, import and otherwise transfer the Contribution and the Contribution in combination with the Material (and portions of such combination). This license is granted only to the extent that the exercise of the licensed rights infringes such patent claims; and provided that this license is conditioned upon compliance with Section 2.3.</p>
+                <h3 class="western">2.3 Outbound License</h3>
+                <p>Based on the grant of rights in Sections 2.1 and 2.2, if We include Your Contribution in a Material, We may license the Contribution under any license, including copyleft, permissive, commercial, or proprietary licenses. As a condition on the exercise of this right, We agree to also license the Contribution under the terms of the license or licenses which We are using for the Material on the Submission Date.</p>
+                <h3 class="western">2.4 Moral Rights.</h3>
+                <p>If moral rights apply to the Contribution, to the maximum extent permitted by law, You waive and agree not to assert such moral rights against Us or our successors in interest, or any of our licensees, either direct or indirect.</p>
+                <h3 class="western">2.5 Our Rights.</h3>
+                <p>You acknowledge that We are not obligated to use Your Contribution as part of the Material and may decide to include any Contribution We consider appropriate.</p>
+                <h3 class="western">2.6 Reservation of Rights.</h3>
+                <p>Any rights not expressly licensed under this section are expressly reserved by You.</p>
+                <h2 class="western">3. Agreement</h2>
+                <p>You confirm that:</p>
+                <p>(a) You have the legal authority to enter into this Agreement.</p>
+                <p>(b) You own the Copyright and patent claims covering the Contribution which are required to grant the rights under Section 2.</p>
+                <p>(c) The grant of rights under Section 2 does not violate any grant of rights which You have made to third parties, including Your employer. If You are an employee, You have had Your employer approve this Agreement or sign the Entity version of this document. If You are less than eighteen years old, please have Your parents or guardian sign the Agreement.</p>
+                <p>(d) You have followed the instructions in www.canonical.com/contributors, if You do not own the Copyright in the entire work of authorship Submitted.</p>
+                <h2 class="western">4. Disclaimer</h2>
+                <p>EXCEPT FOR THE EXPRESS WARRANTIES IN SECTION 3, THE CONTRIBUTION IS PROVIDED "AS IS". MORE PARTICULARLY, ALL EXPRESS OR IMPLIED WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXPRESSLY DISCLAIMED BY YOU TO US. TO THE EXTENT THAT ANY SUCH WARRANTIES CANNOT BE DISCLAIMED, SUCH WARRANTY IS LIMITED IN DURATION TO THE MINIMUM PERIOD PERMITTED BY LAW.</p>
+                <h2 class="western">5. Consequential Damage Waiver</h2>
+                <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL YOU BE LIABLE FOR ANY LOSS OF PROFITS, LOSS OF ANTICIPATED SAVINGS, LOSS OF DATA, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL AND EXEMPLARY DAMAGES ARISING OUT OF THIS AGREEMENT REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) UPON WHICH THE CLAIM IS BASED.</p>
+                <h2 class="western">6. Miscellaneous</h2>
+                <p>6.1 This Agreement will be governed by and construed in accordance with the laws of England excluding its conflicts of law provisions. Under certain circumstances, the governing law in this section might be superseded by the United Nations Convention on Contracts for the International Sale of Goods (“UN Convention”) and the parties intend to avoid the application of the UN Convention to this Agreement and, thus, exclude the application of the UN Convention in its entirety to this Agreement.</p>
+                <p>6.2 This Agreement sets out the entire agreement between You and Us for Your Contributions to Us and overrides all other agreements or understandings.</p>
+                <p>6.3 If You or We assign the rights or obligations received through this Agreement to a third party, as a condition of</p>
+                <p style="margin-bottom: 0cm;">the assignment, that third party must agree in writing to abide by all the rights and obligations in the Agreement.</p>
+                <p>6.4 The failure of either party to require performance by the other party of any provision of this Agreement in one situation shall not affect the right of a party to require such performance at any time in the future. A waiver of performance under a provision in one situation shall not be considered a waiver of the performance of the provision in the future or a waiver of the provision in its entirety.</p>
+                <p>6.5 If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision and which is enforceable. The terms and conditions set forth in this Agreement shall apply notwithstanding any failure of essential purpose of this Agreement or any limited remedy to the maximum extent possible under law.</p>
+                <p>To <a href="https://assets.ubuntu.com/v1/f40be191-Canonical-HA-CLA-ANY-I.pdf" target="_blank">download as a PDF</a></p>
+              </div></div>
+            </fieldset>
+            <fieldset id="tfa_CanonicalEntityC" class="section" data-condition="`#tfa_Iamsigningonbeha1`">
+              <legend id="tfa_CanonicalEntityC-L" class="p-heading--3">Canonical Entity Contributor License Agreement</legend>
+              <div class="htmlSection" id="tmp-7485358696932"><div class="htmlContent" id="tmp-7485358696932-HTML">
+                <p class="text-body-lead-western">Thank you for your interest in contributing to software projects managed by Canonical (“We” or “Us”).</p>
+                <p class="text-body-lead-western"><span style="color: #000000;">This contributor agreement (“Agreement”) documents the rights granted by contributors to Us. To make this document effective, please sign it and send it to Us by email <span style="color: #000000;">or electronic submission</span>, following the instructions at www.canonical.com/contributors. This is a legally binding document, so please read it carefully before agreeing to it. The Agreement may cover more than one software project managed by Us.</span></p>
+                <h2 class="western">1. Definitions</h2>
+                <p><span style="font-family: Ubuntu;">“You” <span style="font-family: Ubuntu;">means any Legal Entity on behalf of whom a Contribution has been received by Us. “Legal Entity” means an entity which is not a natural person. “Affiliates” means other Legal Entities that control, are controlled by, or under common control with that Legal Entity. For the purposes of this definition, “control” means (i) the power, direct or indirect, to cause the direction or management of such Legal Entity, whether by contract or otherwise, (ii) ownership of fifty percent (50%) or more of the outstanding shares or securities which vote to elect the management or other persons who direct such Legal Entity or (iii) beneficial ownership of such entity.</span></span></p>
+                <p>“Contribution” means any work of authorship that is Submitted by You to Us in which You own or assert ownership of the Copyright. If You do not own the Copyright in the entire work of authorship, please follow the instructions in www.canonical.com/contributors.</p>
+                <p>“Copyright” means all rights protecting works of authorship owned or controlled by You o<span style="font-family: Ubuntu;">r Your Affiliates</span>, including copyright, moral and neighboring rights, as appropriate, for the full term of their existence including any extensions by You.</p>
+                <p>“Material” means the work of authorship which is made available by Us to third parties. When this Agreement covers more than one software project, the Material means the work of authorship to which the Contribution was Submitted. After You Submit the Contribution, it may be included in the Material.</p>
+                <p>“Submit” means any form of electronic, verbal, or written communication sent to Us or our representatives, including but not limited to electronic mailing lists, source code control systems, and issue tracking systems that are managed by, or on behalf of, Us for the purpose of discussing and improving the Material, but excluding communication that is conspicuously marked or otherwise designated in writing by You as “Not a Contribution.”</p>
+                <p>“Submission Date” means the date on which You Submit a Contribution to Us.</p>
+                <p>“Effective Date” means the date You execute this Agreement or the date You first Submit a Contribution to Us, whichever is earlier.</p>
+                <p>“Media” means any portion of a Contribution which is not software.</p>
+                <h2 class="western">2. Grant of Rights</h2>
+                <h3 class="western">2.1 Copyright License</h3>
+                <p>(a) You retain ownership of the Copyright in Your Contribution and have the same rights to use or license the Contribution which You would have had without entering into the Agreement.</p>
+                <p>(b) To the maximum extent permitted by the relevant law, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable license under the Copyright covering the Contribution, with the right to sublicense such rights through multiple tiers of sublicensees, to reproduce, modify, display, perform and distribute the Contribution as part of the Material; provided that this license is conditioned upon compliance with Section 2.3.</p>
+                <h3 class="western">2.2 Patent License</h3>
+                <p>For patent claims including, without limitation, method, process, and apparatus claims which You or Your Affiliates own, control or have the right to grant, now or in the future, You grant to Us a perpetual, worldwide, non-exclusive, transferable, royalty-free, irrevocable patent license, with the right to sublicense these rights to multiple tiers of sublicensees, to make, have made, use, sell, offer for sale, import and otherwise transfer the Contribution and the Contribution in combination with the Material (and portions of such combination). This license is granted only to the extent that the exercise of the licensed rights infringes such patent claims; and provided that this license is conditioned upon compliance with Section 2.3.</p>
+                <h3 class="western">2.3 Outbound License</h3>
+                <p>Based on the grant of rights in Sections 2.1 and 2.2, if We include Your Contribution in a Material, We may license the Contribution under any license, including copyleft, permissive, commercial, or proprietary licenses. As a condition on the exercise of this right, We agree to also license the Contribution under the terms of the license or licenses which We are using for the Material on the Submission Date.</p>
+                <h3 class="western">2.4 Moral Rights.</h3>
+                <p>If moral rights apply to the Contribution, to the maximum extent permitted by law, You waive and agree not to assert such moral rights against Us or our successors in interest, or any of our licensees, either direct or indirect.</p>
+                <h3 class="western">2.5 Our Rights.</h3>
+                <p>You acknowledge that We are not obligated to use Your Contribution as part of the Material and may decide to include any Contribution We consider appropriate.</p>
+                <h3 class="western">2.6 Reservation of Rights.</h3>
+                <p>Any rights not expressly licensed under this section are expressly reserved by You.</p>
+                <h2 class="western">3. Agreement</h2>
+                <p>You confirm that:</p>
+                <p>(a) You have the legal authority to enter into this Agreement.</p>
+                <p>(b) You or Your Affiliates own the Copyright and patent claims covering the Contribution which are required to grant the rights under Section 2.</p>
+                <p>(c) The grant of rights under Section 2 does not violate any grant of rights which You or Your Affiliates have made to third parties.</p>
+                <p>(d) You have followed the instructions in www.canonical.com/contributors, if You do not own the Copyright in the entire work of authorship Submitted.</p>
+                <h2 class="western">4. Disclaimer</h2>
+                <p>EXCEPT FOR THE EXPRESS WARRANTIES IN SECTION 3, THE CONTRIBUTION IS PROVIDED "AS IS". MORE PARTICULARLY, ALL EXPRESS OR IMPLIED WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE EXPRESSLY DISCLAIMED BY YOU TO US. TO THE EXTENT THAT ANY SUCH WARRANTIES CANNOT BE DISCLAIMED, SUCH WARRANTY IS LIMITED IN DURATION TO THE MINIMUM PERIOD PERMITTED BY LAW.</p>
+                <h2 class="western">5. Consequential Damage Waiver</h2>
+                <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL YOU BE LIABLE FOR ANY LOSS OF PROFITS, LOSS OF ANTICIPATED SAVINGS, LOSS OF DATA, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL AND EXEMPLARY DAMAGES ARISING OUT OF THIS AGREEMENT REGARDLESS OF THE LEGAL OR EQUITABLE THEORY (CONTRACT, TORT OR OTHERWISE) UPON WHICH THE CLAIM IS BASED.</p>
+                <h2 class="western">6. Miscellaneous</h2>
+                <p>6.1 This Agreement will be governed by and construed in accordance with the laws of England excluding its conflicts of law provisions. Under certain circumstances, the governing law in this section might be superseded by the United Nations Convention on Contracts for the International Sale of Goods (“UN Convention”) and the parties intend to avoid the application of the UN Convention to this Agreement and, thus, exclude the application of the UN Convention in its entirety to this Agreement.</p>
+                <p>6.2 This Agreement sets out the entire agreement between You and Us for Your Contributions to Us and overrides all other agreements or understandings.</p>
+                <p>6.3 If You or We assign the rights or obligations received through this Agreement to a third party, as a condition of the assignment, that third party must agree in writing to abide by all the rights and obligations in the Agreement.</p>
+                <p>6.4 The failure of either party to require performance by the other party of any provision of this Agreement in one situation shall not affect the right of a party to require such performance at any time in the future. A waiver of performance under a provision in one situation shall not be considered a waiver of the performance of the provision in the future or a waiver of the provision in its entirety.</p>
+                <p>6.5 If any provision of this Agreement is found void and unenforceable, such provision will be replaced to the extent possible with a provision that comes closest to the meaning of the original provision and which is enforceable. The terms and conditions set forth in this Agreement shall apply notwithstanding any failure of essential purpose of this Agreement or any limited remedy to the maximum extent possible under law.</p>
+                <p>To <a href="https://assets.ubuntu.com/v1/466debaa-Canonical-HA-CLA-ANY-E.pdf" target="_blank">download as a PDF</a></p>
+              </div></div>
+            </fieldset>
+            <fieldset id="tfa_Yourcontactdetai1" class="section">
+              <h2>
+                <legend id="tfa_Yourcontactdetai1-L">Your contact details</legend>
+              </h2>
+              <div class="oneField field-container-D    " id="tfa_Firstname1-D">
+                <label id="tfa_Firstname1-L" class="label preField reqMark" for="tfa_Firstname1">First name</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_Firstname1" name="tfa_Firstname1" value=""  title="First name" class="required"></div>
+              </div>
+              <div class="oneField field-container-D    " id="tfa_Lastname1-D">
+                <label id="tfa_Lastname1-L" class="label preField reqMark" for="tfa_Lastname1">Last name</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_Lastname1" name="tfa_Lastname1" value=""  title="Last name" class="required"></div>
+              </div>
+              <div class="oneField field-container-D    " id="tfa_Email1-D">
+                <label id="tfa_Email1-L" class="label preField reqMark" for="tfa_Email1">Email</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_Email1" name="tfa_Email1" value=""  title="Email" class="validate-email required"></div>
+              </div>
+              <div class="oneField field-container-D    " id="tfa_Phone-D">
+                <label id="tfa_Phone-L" class="label preField reqMark" for="tfa_Phone">Phone</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_Phone" name="tfa_Phone" value=""  title="Phone" class="required"></div>
+              </div>
+              <input type="hidden" id="tfa_Openid" name="tfa_Openid" value="" class=""><div class="oneField field-container-D    " id="tfa_LPid-D">
+                <label id="tfa_LPid-L" class="label preField reqMark" for="tfa_LPid">Launchpad id (<a href="https://login.launchpad.net/" id="lp_help">Don't know your Launchpad id?</a>)</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_LPid" name="tfa_LPid" value=""  title="Launchpad ID (Don't know your Launchpad ID?)" class="required"></div>
+              </div>
+              <div class="oneField field-container-D    " id="tfa_1-D">
+                <label id="tfa_1-L" class="label preField " for="tfa_1">GitHub Username</label><br><div class="inputWrapper"><input type="text" id="tfa_1" name="tfa_1" value="" title="GitHub Username" class=""></div>
+              </div>
+              <div class="oneField field-container-D    " id="tfa_Address-D">
+                <label id="tfa_Address-L" class="label preField reqMark" for="tfa_Address">Address</label><br><div class="inputWrapper"><textarea aria-required="true" cols="40" rows="4" id="tfa_Address" name="tfa_Address" title="Address" class="required"></textarea></div>
+              </div>
+              <div class="oneField field-container-D    " id="tfa_Country-D">
+                <label id="tfa_Country-L" class="label preField reqMark" for="tfa_Country">Country</label><br><div class="inputWrapper"><select aria-required="true" id="tfa_Country" name="tfa_Country" title="Country" class="required"><option value="">Please select...</option>
+                  <option value="tfa_Afghanistan" id="tfa_Afghanistan" class="">Afghanistan</option>
+                  <option value="tfa_Albania" id="tfa_Albania" class="">Albania</option>
+                  <option value="tfa_Algeria" id="tfa_Algeria" class="">Algeria</option>
+                  <option value="tfa_AmericanSamoa" id="tfa_AmericanSamoa" class="">American Samoa</option>
+                  <option value="tfa_Andorra" id="tfa_Andorra" class="">Andorra</option>
+                  <option value="tfa_Angola" id="tfa_Angola" class="">Angola</option>
+                  <option value="tfa_Anguilla" id="tfa_Anguilla" class="">Anguilla</option>
+                  <option value="tfa_Antarctica" id="tfa_Antarctica" class="">Antarctica</option>
+                  <option value="tfa_AntiguaandBarbud" id="tfa_AntiguaandBarbud" class="">Antigua and Barbuda</option>
+                  <option value="tfa_Argentina" id="tfa_Argentina" class="">Argentina</option>
+                  <option value="tfa_Armenia" id="tfa_Armenia" class="">Armenia</option>
+                  <option value="tfa_Aruba" id="tfa_Aruba" class="">Aruba</option>
+                  <option value="tfa_Australia" id="tfa_Australia" class="">Australia</option>
+                  <option value="tfa_Austria" id="tfa_Austria" class="">Austria</option>
+                  <option value="tfa_Azerbaijan" id="tfa_Azerbaijan" class="">Azerbaijan</option>
+                  <option value="tfa_Bahamas" id="tfa_Bahamas" class="">Bahamas</option>
+                  <option value="tfa_Bahrain" id="tfa_Bahrain" class="">Bahrain</option>
+                  <option value="tfa_Bangladesh" id="tfa_Bangladesh" class="">Bangladesh</option>
+                  <option value="tfa_Barbados" id="tfa_Barbados" class="">Barbados</option>
+                  <option value="tfa_Belarus" id="tfa_Belarus" class="">Belarus</option>
+                  <option value="tfa_Belgium" id="tfa_Belgium" class="">Belgium</option>
+                  <option value="tfa_Belize" id="tfa_Belize" class="">Belize</option>
+                  <option value="tfa_Benin" id="tfa_Benin" class="">Benin</option>
+                  <option value="tfa_Bermuda" id="tfa_Bermuda" class="">Bermuda</option>
+                  <option value="tfa_Bhutan" id="tfa_Bhutan" class="">Bhutan</option>
+                  <option value="tfa_Bolivia" id="tfa_Bolivia" class="">Bolivia</option>
+                  <option value="tfa_BosniaandHerzego" id="tfa_BosniaandHerzego" class="">Bosnia and Herzegovina</option>
+                  <option value="tfa_Botswana" id="tfa_Botswana" class="">Botswana</option>
+                  <option value="tfa_BouvetIsland" id="tfa_BouvetIsland" class="">Bouvet Island</option>
+                  <option value="tfa_Brazil" id="tfa_Brazil" class="">Brazil</option>
+                  <option value="tfa_BritishIndianOce" id="tfa_BritishIndianOce" class="">British Indian Ocean Territory</option>
+                  <option value="tfa_Brunei" id="tfa_Brunei" class="">Brunei</option>
+                  <option value="tfa_Bulgaria" id="tfa_Bulgaria" class="">Bulgaria</option>
+                  <option value="tfa_BurkinaFaso" id="tfa_BurkinaFaso" class="">Burkina Faso</option>
+                  <option value="tfa_Burundi" id="tfa_Burundi" class="">Burundi</option>
+                  <option value="tfa_Cambodia" id="tfa_Cambodia" class="">Cambodia</option>
+                  <option value="tfa_Cameroon" id="tfa_Cameroon" class="">Cameroon</option>
+                  <option value="tfa_Canada" id="tfa_Canada" class="">Canada</option>
+                  <option value="tfa_CapeVerde" id="tfa_CapeVerde" class="">Cape Verde</option>
+                  <option value="tfa_CaymanIslands" id="tfa_CaymanIslands" class="">Cayman Islands</option>
+                  <option value="tfa_CentralAfricanRe" id="tfa_CentralAfricanRe" class="">Central African Republic</option>
+                  <option value="tfa_Chad" id="tfa_Chad" class="">Chad</option>
+                  <option value="tfa_Chile" id="tfa_Chile" class="">Chile</option>
+                  <option value="tfa_China" id="tfa_China" class="">China</option>
+                  <option value="tfa_ChristmasIsland" id="tfa_ChristmasIsland" class="">Christmas Island</option>
+                  <option value="tfa_CocosKeelingIsla" id="tfa_CocosKeelingIsla" class="">Cocos ( Keeling ) Islands</option>
+                  <option value="tfa_Colombia" id="tfa_Colombia" class="">Colombia</option>
+                  <option value="tfa_Comoros" id="tfa_Comoros" class="">Comoros</option>
+                  <option value="tfa_Congo" id="tfa_Congo" class="">Congo</option>
+                  <option value="tfa_CookIslands" id="tfa_CookIslands" class="">Cook Islands</option>
+                  <option value="tfa_CostaRica" id="tfa_CostaRica" class="">Costa Rica</option>
+                  <option value="tfa_CtedIvoire" id="tfa_CtedIvoire" class="">Côte d ' Ivoire</option>
+                  <option value="tfa_CroatiaHrvatska" id="tfa_CroatiaHrvatska" class="">Croatia ( Hrvatska )</option>
+                  <option value="tfa_Cuba" id="tfa_Cuba" class="">Cuba</option>
+                  <option value="tfa_Cyprus" id="tfa_Cyprus" class="">Cyprus</option>
+                  <option value="tfa_CzechRepublic" id="tfa_CzechRepublic" class="">Czech Republic</option>
+                  <option value="tfa_CongoDRC" id="tfa_CongoDRC" class="">Congo ( DRC )</option>
+                  <option value="tfa_Denmark" id="tfa_Denmark" class="">Denmark</option>
+                  <option value="tfa_Djibouti" id="tfa_Djibouti" class="">Djibouti</option>
+                  <option value="tfa_Dominica" id="tfa_Dominica" class="">Dominica</option>
+                  <option value="tfa_DominicanRepubli" id="tfa_DominicanRepubli" class="">Dominican Republic</option>
+                  <option value="tfa_EastTimor" id="tfa_EastTimor" class="">East Timor</option>
+                  <option value="tfa_Ecuador" id="tfa_Ecuador" class="">Ecuador</option>
+                  <option value="tfa_Egypt" id="tfa_Egypt" class="">Egypt</option>
+                  <option value="tfa_ElSalvador" id="tfa_ElSalvador" class="">El Salvador</option>
+                  <option value="tfa_EquatorialGuinea" id="tfa_EquatorialGuinea" class="">Equatorial Guinea</option>
+                  <option value="tfa_Eritrea" id="tfa_Eritrea" class="">Eritrea</option>
+                  <option value="tfa_Estonia" id="tfa_Estonia" class="">Estonia</option>
+                  <option value="tfa_Ethiopia" id="tfa_Ethiopia" class="">Ethiopia</option>
+                  <option value="tfa_FalklandIslandsI" id="tfa_FalklandIslandsI" class="">Falkland Islands ( Islas Malvinas )</option>
+                  <option value="tfa_FaroeIslands" id="tfa_FaroeIslands" class="">Faroe Islands</option>
+                  <option value="tfa_FijiIslands" id="tfa_FijiIslands" class="">Fiji Islands</option>
+                  <option value="tfa_Finland" id="tfa_Finland" class="">Finland</option>
+                  <option value="tfa_France" id="tfa_France" class="">France</option>
+                  <option value="tfa_FrenchGuiana" id="tfa_FrenchGuiana" class="">French Guiana</option>
+                  <option value="tfa_FrenchPolynesia" id="tfa_FrenchPolynesia" class="">French Polynesia</option>
+                  <option value="tfa_FrenchSouthernan" id="tfa_FrenchSouthernan" class="">French Southern and Antarctic Lands</option>
+                  <option value="tfa_Gabon" id="tfa_Gabon" class="">Gabon</option>
+                  <option value="tfa_Gambia" id="tfa_Gambia" class="">Gambia</option>
+                  <option value="tfa_Georgia" id="tfa_Georgia" class="">Georgia</option>
+                  <option value="tfa_Germany" id="tfa_Germany" class="">Germany</option>
+                  <option value="tfa_Ghana" id="tfa_Ghana" class="">Ghana</option>
+                  <option value="tfa_Gibraltar" id="tfa_Gibraltar" class="">Gibraltar</option>
+                  <option value="tfa_Greece" id="tfa_Greece" class="">Greece</option>
+                  <option value="tfa_Greenland" id="tfa_Greenland" class="">Greenland</option>
+                  <option value="tfa_Grenada" id="tfa_Grenada" class="">Grenada</option>
+                  <option value="tfa_Guadeloupe" id="tfa_Guadeloupe" class="">Guadeloupe</option>
+                  <option value="tfa_Guam" id="tfa_Guam" class="">Guam</option>
+                  <option value="tfa_Guatemala" id="tfa_Guatemala" class="">Guatemala</option>
+                  <option value="tfa_Guinea" id="tfa_Guinea" class="">Guinea</option>
+                  <option value="tfa_GuineaBissau" id="tfa_GuineaBissau" class="">Guinea-Bissau</option>
+                  <option value="tfa_Guyana" id="tfa_Guyana" class="">Guyana</option>
+                  <option value="tfa_Haiti" id="tfa_Haiti" class="">Haiti</option>
+                  <option value="tfa_HeardIslandandMc" id="tfa_HeardIslandandMc" class="">Heard Island and McDonald Islands</option>
+                  <option value="tfa_Honduras" id="tfa_Honduras" class="">Honduras</option>
+                  <option value="tfa_HongKongSAR" id="tfa_HongKongSAR" class="">Hong Kong SAR</option>
+                  <option value="tfa_Hungary" id="tfa_Hungary" class="">Hungary</option>
+                  <option value="tfa_Iceland" id="tfa_Iceland" class="">Iceland</option>
+                  <option value="tfa_India" id="tfa_India" class="">India</option>
+                  <option value="tfa_Indonesia" id="tfa_Indonesia" class="">Indonesia</option>
+                  <option value="tfa_Iran" id="tfa_Iran" class="">Iran</option>
+                  <option value="tfa_Iraq" id="tfa_Iraq" class="">Iraq</option>
+                  <option value="tfa_Ireland" id="tfa_Ireland" class="">Ireland</option>
+                  <option value="tfa_Israel" id="tfa_Israel" class="">Israel</option>
+                  <option value="tfa_Italy" id="tfa_Italy" class="">Italy</option>
+                  <option value="tfa_Jamaica" id="tfa_Jamaica" class="">Jamaica</option>
+                  <option value="tfa_Japan" id="tfa_Japan" class="">Japan</option>
+                  <option value="tfa_Jordan" id="tfa_Jordan" class="">Jordan</option>
+                  <option value="tfa_Kazakhstan" id="tfa_Kazakhstan" class="">Kazakhstan</option>
+                  <option value="tfa_Kenya" id="tfa_Kenya" class="">Kenya</option>
+                  <option value="tfa_Kiribati" id="tfa_Kiribati" class="">Kiribati</option>
+                  <option value="tfa_Korea" id="tfa_Korea" class="">Korea</option>
+                  <option value="tfa_Kuwait" id="tfa_Kuwait" class="">Kuwait</option>
+                  <option value="tfa_Kyrgyzstan" id="tfa_Kyrgyzstan" class="">Kyrgyzstan</option>
+                  <option value="tfa_Laos" id="tfa_Laos" class="">Laos</option>
+                  <option value="tfa_Latvia" id="tfa_Latvia" class="">Latvia</option>
+                  <option value="tfa_Lebanon" id="tfa_Lebanon" class="">Lebanon</option>
+                  <option value="tfa_Lesotho" id="tfa_Lesotho" class="">Lesotho</option>
+                  <option value="tfa_Liberia" id="tfa_Liberia" class="">Liberia</option>
+                  <option value="tfa_Libya" id="tfa_Libya" class="">Libya</option>
+                  <option value="tfa_Liechtenstein" id="tfa_Liechtenstein" class="">Liechtenstein</option>
+                  <option value="tfa_Lithuania" id="tfa_Lithuania" class="">Lithuania</option>
+                  <option value="tfa_Luxembourg" id="tfa_Luxembourg" class="">Luxembourg</option>
+                  <option value="tfa_MacaoSAR" id="tfa_MacaoSAR" class="">Macao SAR</option>
+                  <option value="tfa_MacedoniaFormerY" id="tfa_MacedoniaFormerY" class="">Macedonia, Former Yugoslav Republic of</option>
+                  <option value="tfa_Madagascar" id="tfa_Madagascar" class="">Madagascar</option>
+                  <option value="tfa_Malawi" id="tfa_Malawi" class="">Malawi</option>
+                  <option value="tfa_Malaysia" id="tfa_Malaysia" class="">Malaysia</option>
+                  <option value="tfa_Maldives" id="tfa_Maldives" class="">Maldives</option>
+                  <option value="tfa_Mali" id="tfa_Mali" class="">Mali</option>
+                  <option value="tfa_Malta" id="tfa_Malta" class="">Malta</option>
+                  <option value="tfa_MarshallIslands" id="tfa_MarshallIslands" class="">Marshall Islands</option>
+                  <option value="tfa_Martinique" id="tfa_Martinique" class="">Martinique</option>
+                  <option value="tfa_Mauritania" id="tfa_Mauritania" class="">Mauritania</option>
+                  <option value="tfa_Mauritius" id="tfa_Mauritius" class="">Mauritius</option>
+                  <option value="tfa_Mayotte" id="tfa_Mayotte" class="">Mayotte</option>
+                  <option value="tfa_Mexico" id="tfa_Mexico" class="">Mexico</option>
+                  <option value="tfa_Micronesia" id="tfa_Micronesia" class="">Micronesia</option>
+                  <option value="tfa_Moldova" id="tfa_Moldova" class="">Moldova</option>
+                  <option value="tfa_Monaco" id="tfa_Monaco" class="">Monaco</option>
+                  <option value="tfa_Mongolia" id="tfa_Mongolia" class="">Mongolia</option>
+                  <option value="tfa_Montserrat" id="tfa_Montserrat" class="">Montserrat</option>
+                  <option value="tfa_Morocco" id="tfa_Morocco" class="">Morocco</option>
+                  <option value="tfa_Mozambique" id="tfa_Mozambique" class="">Mozambique</option>
+                  <option value="tfa_Myanmar" id="tfa_Myanmar" class="">Myanmar</option>
+                  <option value="tfa_Namibia" id="tfa_Namibia" class="">Namibia</option>
+                  <option value="tfa_Nauru" id="tfa_Nauru" class="">Nauru</option>
+                  <option value="tfa_Nepal" id="tfa_Nepal" class="">Nepal</option>
+                  <option value="tfa_Netherlands" id="tfa_Netherlands" class="">Netherlands</option>
+                  <option value="tfa_NetherlandsAntil" id="tfa_NetherlandsAntil" class="">Netherlands Antilles</option>
+                  <option value="tfa_NewCaledonia" id="tfa_NewCaledonia" class="">New Caledonia</option>
+                  <option value="tfa_NewZealand" id="tfa_NewZealand" class="">New Zealand</option>
+                  <option value="tfa_Nicaragua" id="tfa_Nicaragua" class="">Nicaragua</option>
+                  <option value="tfa_Niger" id="tfa_Niger" class="">Niger</option>
+                  <option value="tfa_Nigeria" id="tfa_Nigeria" class="">Nigeria</option>
+                  <option value="tfa_Niue" id="tfa_Niue" class="">Niue</option>
+                  <option value="tfa_NorfolkIsland" id="tfa_NorfolkIsland" class="">Norfolk Island</option>
+                  <option value="tfa_NorthKorea" id="tfa_NorthKorea" class="">North Korea</option>
+                  <option value="tfa_NorthernMarianaI" id="tfa_NorthernMarianaI" class="">Northern Mariana Islands</option>
+                  <option value="tfa_Norway" id="tfa_Norway" class="">Norway</option>
+                  <option value="tfa_Oman" id="tfa_Oman" class="">Oman</option>
+                  <option value="tfa_Pakistan" id="tfa_Pakistan" class="">Pakistan</option>
+                  <option value="tfa_Palau" id="tfa_Palau" class="">Palau</option>
+                  <option value="tfa_Panama" id="tfa_Panama" class="">Panama</option>
+                  <option value="tfa_PapuaNewGuinea" id="tfa_PapuaNewGuinea" class="">Papua New Guinea</option>
+                  <option value="tfa_Paraguay" id="tfa_Paraguay" class="">Paraguay</option>
+                  <option value="tfa_Peru" id="tfa_Peru" class="">Peru</option>
+                  <option value="tfa_Philippines" id="tfa_Philippines" class="">Philippines</option>
+                  <option value="tfa_PitcairnIslands" id="tfa_PitcairnIslands" class="">Pitcairn Islands</option>
+                  <option value="tfa_Poland" id="tfa_Poland" class="">Poland</option>
+                  <option value="tfa_Portugal" id="tfa_Portugal" class="">Portugal</option>
+                  <option value="tfa_PuertoRico" id="tfa_PuertoRico" class="">Puerto Rico</option>
+                  <option value="tfa_Qatar" id="tfa_Qatar" class="">Qatar</option>
+                  <option value="tfa_Reunion" id="tfa_Reunion" class="">Reunion</option>
+                  <option value="tfa_Romania" id="tfa_Romania" class="">Romania</option>
+                  <option value="tfa_Russia" id="tfa_Russia" class="">Russia</option>
+                  <option value="tfa_Rwanda" id="tfa_Rwanda" class="">Rwanda</option>
+                  <option value="tfa_Samoa" id="tfa_Samoa" class="">Samoa</option>
+                  <option value="tfa_SanMarino" id="tfa_SanMarino" class="">San Marino</option>
+                  <option value="tfa_SoTomandPrncipe" id="tfa_SoTomandPrncipe" class="">São Tomé and Prìncipe</option>
+                  <option value="tfa_SaudiArabia" id="tfa_SaudiArabia" class="">Saudi Arabia</option>
+                  <option value="tfa_Senegal" id="tfa_Senegal" class="">Senegal</option>
+                  <option value="tfa_SerbiaandMontene" id="tfa_SerbiaandMontene" class="">Serbia and Montenegro</option>
+                  <option value="tfa_Seychelles" id="tfa_Seychelles" class="">Seychelles</option>
+                  <option value="tfa_SierraLeone" id="tfa_SierraLeone" class="">Sierra Leone</option>
+                  <option value="tfa_Singapore" id="tfa_Singapore" class="">Singapore</option>
+                  <option value="tfa_Slovakia" id="tfa_Slovakia" class="">Slovakia</option>
+                  <option value="tfa_Slovenia" id="tfa_Slovenia" class="">Slovenia</option>
+                  <option value="tfa_SolomonIslands" id="tfa_SolomonIslands" class="">Solomon Islands</option>
+                  <option value="tfa_Somalia" id="tfa_Somalia" class="">Somalia</option>
+                  <option value="tfa_SouthAfrica" id="tfa_SouthAfrica" class="">South Africa</option>
+                  <option value="tfa_SouthGeorgiaandt" id="tfa_SouthGeorgiaandt" class="">South Georgia and the South Sandwich Islands</option>
+                  <option value="tfa_Spain" id="tfa_Spain" class="">Spain</option>
+                  <option value="tfa_SriLanka" id="tfa_SriLanka" class="">Sri Lanka</option>
+                  <option value="tfa_StHelena" id="tfa_StHelena" class="">St. Helena</option>
+                  <option value="tfa_StKittsandNevis" id="tfa_StKittsandNevis" class="">St. Kitts and Nevis</option>
+                  <option value="tfa_StLucia" id="tfa_StLucia" class="">St. Lucia</option>
+                  <option value="tfa_StPierreandMique" id="tfa_StPierreandMique" class="">St. Pierre and Miquelon</option>
+                  <option value="tfa_StVincentandtheG" id="tfa_StVincentandtheG" class="">St. Vincent and the Grenadines</option>
+                  <option value="tfa_Sudan" id="tfa_Sudan" class="">Sudan</option>
+                  <option value="tfa_Suriname" id="tfa_Suriname" class="">Suriname</option>
+                  <option value="tfa_SvalbardandJanMa" id="tfa_SvalbardandJanMa" class="">Svalbard and Jan Mayen</option>
+                  <option value="tfa_Swaziland" id="tfa_Swaziland" class="">Swaziland</option>
+                  <option value="tfa_Sweden" id="tfa_Sweden" class="">Sweden</option>
+                  <option value="tfa_Switzerland" id="tfa_Switzerland" class="">Switzerland</option>
+                  <option value="tfa_Syria" id="tfa_Syria" class="">Syria</option>
+                  <option value="tfa_Taiwan" id="tfa_Taiwan" class="">Taiwan</option>
+                  <option value="tfa_Tajikistan" id="tfa_Tajikistan" class="">Tajikistan</option>
+                  <option value="tfa_Tanzania" id="tfa_Tanzania" class="">Tanzania</option>
+                  <option value="tfa_Thailand" id="tfa_Thailand" class="">Thailand</option>
+                  <option value="tfa_Togo" id="tfa_Togo" class="">Togo</option>
+                  <option value="tfa_Tokelau" id="tfa_Tokelau" class="">Tokelau</option>
+                  <option value="tfa_Tonga" id="tfa_Tonga" class="">Tonga</option>
+                  <option value="tfa_TrinidadandTobag" id="tfa_TrinidadandTobag" class="">Trinidad and Tobago</option>
+                  <option value="tfa_Tunisia" id="tfa_Tunisia" class="">Tunisia</option>
+                  <option value="tfa_Turkey" id="tfa_Turkey" class="">Turkey</option>
+                  <option value="tfa_Turkmenistan" id="tfa_Turkmenistan" class="">Turkmenistan</option>
+                  <option value="tfa_TurksandCaicosIs" id="tfa_TurksandCaicosIs" class="">Turks and Caicos Islands</option>
+                  <option value="tfa_Tuvalu" id="tfa_Tuvalu" class="">Tuvalu</option>
+                  <option value="tfa_Uganda" id="tfa_Uganda" class="">Uganda</option>
+                  <option value="tfa_Ukraine" id="tfa_Ukraine" class="">Ukraine</option>
+                  <option value="tfa_UnitedArabEmirat" id="tfa_UnitedArabEmirat" class="">United Arab Emirates</option>
+                  <option value="tfa_UnitedKingdom" id="tfa_UnitedKingdom" class="">United Kingdom</option>
+                  <option value="tfa_UnitedStates" id="tfa_UnitedStates" data-conditionals="#tfa_USState" class="">United States</option>
+                  <option value="tfa_UnitedStatesMino" id="tfa_UnitedStatesMino" class="">United States Minor Outlying Islands</option>
+                  <option value="tfa_Uruguay" id="tfa_Uruguay" class="">Uruguay</option>
+                  <option value="tfa_Uzbekistan" id="tfa_Uzbekistan" class="">Uzbekistan</option>
+                  <option value="tfa_Vanuatu" id="tfa_Vanuatu" class="">Vanuatu</option>
+                  <option value="tfa_VaticanCity" id="tfa_VaticanCity" class="">Vatican City</option>
+                  <option value="tfa_Venezuela" id="tfa_Venezuela" class="">Venezuela</option>
+                  <option value="tfa_VietNam" id="tfa_VietNam" class="">Viet Nam</option>
+                  <option value="tfa_VirginIslandsBri" id="tfa_VirginIslandsBri" class="">Virgin Islands ( British )</option>
+                  <option value="tfa_VirginIslands" id="tfa_VirginIslands" class="">Virgin Islands</option>
+                  <option value="tfa_WallisandFutuna" id="tfa_WallisandFutuna" class="">Wallis and Futuna</option>
+                  <option value="tfa_Yemen" id="tfa_Yemen" class="">Yemen</option>
+                  <option value="tfa_Zambia" id="tfa_Zambia" class="">Zambia</option>
+                  <option value="tfa_Zimbabwe" id="tfa_Zimbabwe" class="">Zimbabwe</option></select></div>
+                </div>
+                <div class="oneField field-container-D    " id="tfa_USState-D">
+                  <label id="tfa_USState-L" class="label preField reqMark" for="tfa_USState">US State</label><br><div class="inputWrapper"><select aria-required="true" id="tfa_USState" name="tfa_USState" data-condition="`#tfa_UnitedStates`" title="US State" class="required"><option value="">Please select...</option>
+                    <option value="tfa_Alabama" id="tfa_Alabama" class="">Alabama</option>
+                    <option value="tfa_Alaska" id="tfa_Alaska" class="">Alaska</option>
+                    <option value="tfa_Arizona" id="tfa_Arizona" class="">Arizona</option>
+                    <option value="tfa_Arkansas" id="tfa_Arkansas" class="">Arkansas</option>
+                    <option value="tfa_California" id="tfa_California" class="">California</option>
+                    <option value="tfa_Colorado" id="tfa_Colorado" class="">Colorado</option>
+                    <option value="tfa_Connecticut" id="tfa_Connecticut" class="">Connecticut</option>
+                    <option value="tfa_Delaware" id="tfa_Delaware" class="">Delaware</option>
+                    <option value="tfa_Florida" id="tfa_Florida" class="">Florida</option>
+                    <option value="tfa_Georgia1" id="tfa_Georgia1" class="">Georgia</option>
+                    <option value="tfa_Hawaii" id="tfa_Hawaii" class="">Hawaii</option>
+                    <option value="tfa_Idaho" id="tfa_Idaho" class="">Idaho</option>
+                    <option value="tfa_Illinois" id="tfa_Illinois" class="">Illinois</option>
+                    <option value="tfa_Indiana" id="tfa_Indiana" class="">Indiana</option>
+                    <option value="tfa_Iowa" id="tfa_Iowa" class="">Iowa</option>
+                    <option value="tfa_Kansas" id="tfa_Kansas" class="">Kansas</option>
+                    <option value="tfa_Kentucky" id="tfa_Kentucky" class="">Kentucky</option>
+                    <option value="tfa_Louisiana" id="tfa_Louisiana" class="">Louisiana</option>
+                    <option value="tfa_Maine" id="tfa_Maine" class="">Maine</option>
+                    <option value="tfa_Maryland" id="tfa_Maryland" class="">Maryland</option>
+                    <option value="tfa_Massachusetts" id="tfa_Massachusetts" class="">Massachusetts</option>
+                    <option value="tfa_Michigan" id="tfa_Michigan" class="">Michigan</option>
+                    <option value="tfa_Minnesota" id="tfa_Minnesota" class="">Minnesota</option>
+                    <option value="tfa_Mississippi" id="tfa_Mississippi" class="">Mississippi</option>
+                    <option value="tfa_Missouri" id="tfa_Missouri" class="">Missouri</option>
+                    <option value="tfa_Montana" id="tfa_Montana" class="">Montana</option>
+                    <option value="tfa_Nebraska" id="tfa_Nebraska" class="">Nebraska</option>
+                    <option value="tfa_Nevada" id="tfa_Nevada" class="">Nevada</option>
+                    <option value="tfa_NewHampshire" id="tfa_NewHampshire" class="">New Hampshire</option>
+                    <option value="tfa_NewJersey" id="tfa_NewJersey" class="">New Jersey</option>
+                    <option value="tfa_NewMexico" id="tfa_NewMexico" class="">New Mexico</option>
+                    <option value="tfa_NewYork" id="tfa_NewYork" class="">New York</option>
+                    <option value="tfa_NorthCarolina" id="tfa_NorthCarolina" class="">North Carolina</option>
+                    <option value="tfa_NorthDakota" id="tfa_NorthDakota" class="">North Dakota</option>
+                    <option value="tfa_Ohio" id="tfa_Ohio" class="">Ohio</option>
+                    <option value="tfa_Oklahoma" id="tfa_Oklahoma" class="">Oklahoma</option>
+                    <option value="tfa_Oregon" id="tfa_Oregon" class="">Oregon</option>
+                    <option value="tfa_Pennsylvania" id="tfa_Pennsylvania" class="">Pennsylvania</option>
+                    <option value="tfa_RhodeIsland" id="tfa_RhodeIsland" class="">Rhode Island</option>
+                    <option value="tfa_SouthCarolina" id="tfa_SouthCarolina" class="">South Carolina</option>
+                    <option value="tfa_SouthDakota" id="tfa_SouthDakota" class="">South Dakota</option>
+                    <option value="tfa_Tennessee" id="tfa_Tennessee" class="">Tennessee</option>
+                    <option value="tfa_Texas" id="tfa_Texas" class="">Texas</option>
+                    <option value="tfa_Utah" id="tfa_Utah" class="">Utah</option>
+                    <option value="tfa_Vermont" id="tfa_Vermont" class="">Vermont</option>
+                    <option value="tfa_Virginia" id="tfa_Virginia" class="">Virginia</option>
+                    <option value="tfa_Washington" id="tfa_Washington" class="">Washington</option>
+                    <option value="tfa_WestVirginia" id="tfa_WestVirginia" class="">West Virginia</option>
+                    <option value="tfa_Wisconsin" id="tfa_Wisconsin" class="">Wisconsin</option>
+                    <option value="tfa_Wyoming" id="tfa_Wyoming" class="">Wyoming</option></select></div>
                   </div>
                 </fieldset>
                 <div class="oneField field-container-D    " id="tfa_PleaseaddtheCano-D">
-                  <label id="tfa_PleaseaddtheCano-L" class="label preField reqMark" for="tfa_PleaseaddtheCano">Please add the Canonical Project Manager or contact</label>
-                  <br>
-                  <div class="inputWrapper">
-                    <input type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" aria-required="true" title="Please add the Canonical Project Manager or contact" class="required">
-                  </div>
+                  <label id="tfa_PleaseaddtheCano-L" class="label preField reqMark" for="tfa_PleaseaddtheCano">Please add the Canonical Project Manager or contact</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_PleaseaddtheCano" name="tfa_PleaseaddtheCano" value="" title="Please add the Canonical Project Manager or contact" class="required"></div>
                 </div>
-                <div class="htmlSection" id="tmp-0767356147928">
-                  <div class="htmlContent" id="tmp-0767356147928-HTML">
-                    <p>By clicking 'I agree' below you are confirming that you&nbsp;accept the terms detailed above.</p>
-                  </div>
-                </div>
+                <div class="htmlSection" id="tmp-0767356147928"><div class="htmlContent" id="tmp-0767356147928-HTML"><p>By clicking 'I agree' below you are confirming that you&nbsp;accept the terms detailed above.</p></div></div>
                 <div class="actions" id="237277-A">
                   <div id="google-captcha" style="display: none">
-                    <br>
-                    <div class="captcha">
+                    <br><div class="captcha">
                       <div class="oneField">
-                        <div class="g-recaptcha" id="g-recaptcha-render-div">
-                        </div>
-                        <div class="g-captcha-error">
-                        </div>
+                        <div class="g-recaptcha" id="g-recaptcha-render-div"></div>
+                        <div class="g-captcha-error"></div>
                         <br>
                       </div>
                       <div class="captchaHelp">reCAPTCHA helps prevent automated form spam.<br>
@@ -718,193 +674,55 @@ defer>
                       <div id="disabled-explanation" class="captchaHelp" style="display: none">The submit button will be disabled until you complete the CAPTCHA.</div>
                     </div>
                   </div>
-                  <input type="submit" data-label="I agree" class="primaryAction" id="submit_button" value="I agree">
+                  <input type="submit" data-label="I agree" class="p-button--positive primaryAction" id="submit_button" value="I agree">
                 </div>
-                <div style="clear:both">
-                </div>
-                <input type="hidden" value="237277" name="tfa_dbFormId" id="tfa_dbFormId">
-                <input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId">
-                <input type="hidden" value="d00afcc394fd0912b8a3895b593d43ef" name="tfa_dbControl" id="tfa_dbControl">
-                <input type="hidden" value="9" name="tfa_dbVersionId" id="tfa_dbVersionId">
-                <input type="hidden" value="" name="tfa_switchedoff" id="tfa_switchedoff">
+                <div style="clear:both"></div>
+                <input type="hidden" value="237277" name="tfa_dbFormId" id="tfa_dbFormId"><input type="hidden" value="" name="tfa_dbResponseId" id="tfa_dbResponseId"><input type="hidden" value="d00afcc394fd0912b8a3895b593d43ef" name="tfa_dbControl" id="tfa_dbControl"><input type="hidden" value="" name="tfa_dbWorkflowSessionUuid" id="tfa_dbWorkflowSessionUuid"><input type="hidden" value="10" name="tfa_dbVersionId" id="tfa_dbVersionId"><input type="hidden" value="" name="tfa_switchedoff" id="tfa_switchedoff">
               </form>
             </div>
           </div>
+          <p class="supportInfo" >
+          </p>
         </div>
-    <div class="col-4">
-      <div class="p-card">
-        <h3>Related content</h3>
-        <ul class="p-list u-no-margin--bottom">
-          <li class="p-list__item">
-            <a class="p-link--external" href="http://www.canonical.com/projects/directory">Open source software projects</a>
-          </li>
-        </ul>
-      </div>
-      <div class="p-card">
-        <h3>Additional information</h3>
-        <ul class="p-list p-list--divided u-no-margin--bottom">
-          <li class="p-list__item">
-            <a href="https://assets.ubuntu.com/v1/ff2478d1-Canonical-HA-CLA-ANY-I_v1.2.pdf">Agreement for individual contributors [PDF]&nbsp;&rsaquo;</a>
-          </li>
-          <li class="p-list__item">
-            <a href="https://assets.ubuntu.com/v1/31b14270-Canonical-HA-CLA-ANY-E_v1.2.pdf">Agreement for entities [PDF]&nbsp;&rsaquo;</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  individualContributorRadio = document.querySelector('#tfa_Iamsigningasanin1');
-  individualForm = document.querySelector('#tfa_CanonicalIndivid');
-
-  orgContributorRadio  = document.querySelector('#tfa_Iamsigningonbeha1');
-  orgForm = document.querySelector('#tfa_CanonicalEntityC');
-
-  if(individualContributorRadio) {
-    individualContributorRadio.addEventListener('click', function(e) {
-      individualForm.classList.remove('u-hide');
-      orgForm.classList.add('u-hide');
-    });
-  }
-  if(orgContributorRadio) {
-    orgContributorRadio.addEventListener('click', function(e) {
-      orgForm.classList.remove('u-hide');
-      individualForm.classList.add('u-hide');
-    });
-  }
-
-  /* Copyright 2007 Veer West LLC - http://www.formassembly.com
-  * populate a web form with querystring parameters.
-  */
-  new function(_) {
-    var populateForms = function() {
-      var params = getParameters();
-      var forms = document.getElementsByTagName('FORM');
-      for (var i = 0; i < forms.length; i++) {
-        populateForm(forms[i], params);
-      }
-    }
-    var populateForm = function(f, values) {
-      if (!f['tfa_dbFormId']) {
-        // skip non-formassembly.com forms
-        return;
-      }
-      if (wFORMS && wFORMS.getBehaviorInstance) {
-        var _bs = wFORMS.getBehaviorInstance(f, 'switch');
-        var _bc = wFORMS.getBehaviorInstance(f, 'calculation');
-      }
-      for (var fieldName in values) {
-        var fld = f.elements[fieldName];
-        if (fld) {
-          if (fld.tagName) {
-            if ((fld.tagName == 'INPUT' && (fld.type == 'text' || fld.type == 'hidden' || fld.type == 'password')) ||
-            (fld.tagName == 'TEXTAREA'));
-            fld.value = unescape(values[fieldName]);
-            if (fld.tagName == 'INPUT' && fld.type == 'checkbox') {
-              fld.checked = values[fieldName] ? true : false;
-            }
-            if (fld.tagName == 'SELECT') {
-              fld.value = values[fieldName];
-            }
-            if (_bs) { // trigger switch behavior if appropriate.
-              _bs.run(null, fld);
-            }
-            if (_bc) { // trigger calculation behavior if appropriate.
-              _bc.run(null, fld);
-            }
-          } else {
-            // radio group
-            for (i = 0; i < fld.length; i++) {
-              if (fld[i].value == values[fieldName]) {
-                fld[i].checked = true;
-                if (_bs) { // trigger switch behavior if appropriate.
-                  _bs.run(null, fld[i]);
+        
+        <script>
+          // Used in legal/contributors/submit.html
+          var lp_lookup_callback = {
+            timeout: 3000,
+            on: {
+              success: function(id, response) {
+                var messages = [];
+                try {
+                  messages = Y.JSON.parse(response.responseText);
+                } catch (e) {
+                  console.warn("JSON Parse failed!");
+                  return;
                 }
-                if (_bc) { // trigger calculation behavior if appropriate.
-                  _bc.run(null, fld[i]);
-                }
-                break;
+                document.querySelector('#lp_error').innerHTML = messages.message;
+              },
+              failure: function(id, response) {
+                console.warn("Async call failed!");
               }
             }
-          }
-        }
-      }
-    }
-    var getParameters = function() {
-      var param = Array();
-      var q = document.location.search;
-      if (q.length == 0)
-      return;
-      var v = q.split('?')[1].split('&');
-      for (var i = 0; i < v.length; i++) {
-        param[v[i].split('=')[0]] = v[i].split('=')[1];
-      }
-      return param;
-    }
-    var _addEvent = function(obj, type, fn) {
-      if (!obj) {
-        return;
-      }
-      if (obj.attachEvent) {
-        obj['e' + type + fn] = fn;
-        obj[type + fn] = function() {
-          obj['e' + type + fn](window.event);
-        }
-        obj.attachEvent('on' + type, obj[type + fn]);
-      } else if (obj.addEventListener) {
-        obj.addEventListener(type, fn, false);
-      } else {
-        var originalHandler = obj["on" + type];
-        if (originalHandler) {
-          obj["on" + type] = function(e) {
-            originalHandler(e);
-            fn(e);
           };
-        } else {
-          obj["on" + type] = fn;
-        }
-      }
-    }
-    _addEvent(window, 'load', populateForms);
-  }();
-
-  // Used in legal/contributors/submit.html
-  var lp_lookup_callback = {
-    timeout: 3000,
-    on: {
-      success: function(id, response) {
-        var messages = [];
-        try {
-          messages = Y.JSON.parse(response.responseText);
-        } catch (e) {
-          console.warn("JSON Parse failed!");
-          return;
-        }
-        document.querySelector('#lp_error').innerHTML = messages.message;
-      },
-      failure: function(id, response) {
-        console.warn("Async call failed!");
-      }
-    }
-  };
-
-  var launchpad_id_lookup = function() {
-    var tfaLPid = document.getElementById('tfa_LPid');
-    tfaLPid.addEventListener('blur', function(e) {
-      httpGetAsync("/lookup_launchpad_id/" + tfaLPid.value, lp_lookup_callback);
-    });
-  }();
-
-  function httpGetAsync(theUrl, callback) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-      callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true);
-    xmlHttp.send(null);
-  }
-</script>
-
-{% endblock content %}
+          
+          var launchpad_id_lookup = function() {
+            var tfaLPid = document.getElementById('tfa_LPid');
+            tfaLPid.addEventListener('blur', function(e) {
+              httpGetAsync("/lookup_launchpad_id/" + tfaLPid.value, lp_lookup_callback);
+            });
+          }();
+          
+          function httpGetAsync(theUrl, callback) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function() {
+              if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+              callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true);
+            xmlHttp.send(null);
+          }
+        </script>
+        
+        {% endblock content %}
+        

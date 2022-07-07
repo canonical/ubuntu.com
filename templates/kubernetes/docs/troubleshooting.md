@@ -23,32 +23,32 @@ Using `juju status` can give you some insight as to what's happening in a cluste
 Model                         Controller          Cloud/Region   Version  SLA          Timestamp
 charmed-kubernetes            aws-91c             aws/eu-west-1  2.4.5    unsupported  08:38:09+01:00
 
-App                    Version  Status  Scale  Charm                  Store       Rev  OS      Notes
-aws-integrator         1.15.71  active      1  aws-integrator         jujucharms    5  ubuntu
-easyrsa                3.0.1    active      1  easyrsa                jujucharms  117  ubuntu
-etcd                   3.2.10   active      3  etcd                   jujucharms  209  ubuntu
-flannel                0.10.0   active      5  flannel                jujucharms  146  ubuntu
-kubeapi-load-balancer  1.14.0   active      1  kubeapi-load-balancer  jujucharms  162  ubuntu  exposed
-kubernetes-master      1.12.1   active      2  kubernetes-master      jujucharms  219  ubuntu
-kubernetes-worker      1.12.1   active      3  kubernetes-worker      jujucharms  239  ubuntu  exposed
+App                           Version  Status  Scale  Charm                  Store       Rev  OS      Notes
+aws-integrator                1.15.71  active      1  aws-integrator                jujucharms    5  ubuntu
+easyrsa                       3.0.1    active      1  easyrsa                       jujucharms  117  ubuntu
+etcd                          3.2.10   active      3  etcd                          jujucharms  209  ubuntu
+flannel                       0.10.0   active      5  flannel                       jujucharms  146  ubuntu
+kubeapi-load-balancer         1.14.0   active      1  kubeapi-load-balancer         jujucharms  162  ubuntu  exposed
+kubernetes-control-plane      1.12.1   active      2  kubernetes-control-plane      jujucharms  219  ubuntu
+kubernetes-worker             1.12.1   active      3  kubernetes-worker             jujucharms  239  ubuntu  exposed
 
-Unit                      Workload  Agent  Machine  Public address  Ports           Message
-aws-integrator/0*         active    idle   0        54.171.121.229                  ready
-easyrsa/0*                active    idle   1        34.251.192.5                    Certificate Authority connected.
-etcd/0*                   active    idle   2        52.18.186.65    2379/tcp        Healthy with 3 known peers
-etcd/1                    active    idle   3        54.194.35.197   2379/tcp        Healthy with 3 known peers
-etcd/2                    active    idle   4        34.240.14.183   2379/tcp        Healthy with 3 known peers
-kubeapi-load-balancer/0*  active    idle   5        34.244.110.15   443/tcp         Loadbalancer ready.
-kubernetes-master/0*      active    idle   6        34.254.175.71   6443/tcp        Kubernetes master running.
-  flannel/0*              active    idle            34.254.175.71                   Flannel subnet 10.1.16.1/24
-kubernetes-master/1       active    idle   7        52.210.61.51    6443/tcp        Kubernetes master running.
-  flannel/3               active    idle            52.210.61.51                    Flannel subnet 10.1.38.1/24
-kubernetes-worker/0*      active    idle   8        34.246.168.241  80/tcp,443/tcp  Kubernetes worker running.
-  flannel/1               active    idle            34.246.168.241                  Flannel subnet 10.1.79.1/24
-kubernetes-worker/1       active    idle   9        54.229.236.169  80/tcp,443/tcp  Kubernetes worker running.
-  flannel/4               active    idle            54.229.236.169                  Flannel subnet 10.1.10.1/24
-kubernetes-worker/2       active    idle   10       34.253.203.147  80/tcp,443/tcp  Kubernetes worker running.
-  flannel/2               active    idle            34.253.203.147                  Flannel subnet 10.1.95.1/24
+Unit                             Workload  Agent  Machine  Public address  Ports           Message
+aws-integrator/0*                active    idle   0        54.171.121.229                  ready
+easyrsa/0*                       active    idle   1        34.251.192.5                    Certificate Authority connected.
+etcd/0*                          active    idle   2        52.18.186.65    2379/tcp        Healthy with 3 known peers
+etcd/1                           active    idle   3        54.194.35.197   2379/tcp        Healthy with 3 known peers
+etcd/2                           active    idle   4        34.240.14.183   2379/tcp        Healthy with 3 known peers
+kubeapi-load-balancer/0*         active    idle   5        34.244.110.15   443/tcp         Loadbalancer ready.
+kubernetes-control-plane/0*      active    idle   6        34.254.175.71   6443/tcp        Kubernetes master running.
+  flannel/0*                     active    idle            34.254.175.71                   Flannel subnet 10.1.16.1/24
+kubernetes-control-plane/1       active    idle   7        52.210.61.51    6443/tcp        Kubernetes master running.
+  flannel/3                      active    idle            52.210.61.51                    Flannel subnet 10.1.38.1/24
+kubernetes-worker/0*             active    idle   8        34.246.168.241  80/tcp,443/tcp  Kubernetes worker running.
+  flannel/1                      active    idle            34.246.168.241                  Flannel subnet 10.1.79.1/24
+kubernetes-worker/1              active    idle   9        54.229.236.169  80/tcp,443/tcp  Kubernetes worker running.
+  flannel/4                      active    idle            54.229.236.169                  Flannel subnet 10.1.10.1/24
+kubernetes-worker/2              active    idle   10       34.253.203.147  80/tcp,443/tcp  Kubernetes worker running.
+  flannel/2                      active    idle            34.253.203.147                  Flannel subnet 10.1.95.1/24
 
 Entity  Meter status  Message
 model   amber         user verification pending
@@ -231,28 +231,28 @@ This is caused by the API load balancer not forwarding ports in the context of t
 1.  Expose the Kubernetes Master service
 
     ```bash
-    juju expose kubernetes-master
+    juju expose kubernetes-control-plane
     ```
 
 1.  Identify the public IP address of one of your masters
 
     ```bash
-     juju status kubernetes-master
+     juju status kubernetes-control-plane
     ```
 
     ```no-highlight
     Model                         Controller          Cloud/Region   Version  SLA          Timestamp
     charmed-kubernetes            aws-91c  aws/eu-west-1  2.4.5    unsupported  08:39:23+01:00
 
-    App                Version  Status  Scale  Charm              Store       Rev  OS      Notes
-    flannel            0.10.0   active      2  flannel            jujucharms  146  ubuntu
-    kubernetes-master  1.12.1   active      2  kubernetes-master  jujucharms  219  ubuntu
+    App                       Version  Status  Scale  Charm                     Store       Rev  OS      Notes
+    flannel                   0.10.0   active      2  flannel                   jujucharms  146  ubuntu
+    kubernetes-control-plane  1.12.1   active      2  kubernetes-control-plane  jujucharms  219  ubuntu
 
-    Unit                  Workload  Agent  Machine  Public address  Ports     Message
-    kubernetes-master/0*  active    idle   6        34.254.175.71   6443/tcp  Kubernetes master running.
-      flannel/0*          active    idle            34.254.175.71             Flannel subnet 10.1.16.1/24
-    kubernetes-master/1   active    idle   7        52.210.61.51    6443/tcp  Kubernetes master running.
-      flannel/3           active    idle            52.210.61.51              Flannel subnet 10.1.38.1/24
+    Unit                         Workload  Agent  Machine  Public address  Ports     Message
+    kubernetes-control-plane/0*  active    idle   6        34.254.175.71   6443/tcp  Kubernetes master running.
+      flannel/0*                 active    idle            34.254.175.71             Flannel subnet 10.1.16.1/24
+    kubernetes-control-plane/1   active    idle   7        52.210.61.51    6443/tcp  Kubernetes master running.
+      flannel/3                  active    idle            52.210.61.51              Flannel subnet 10.1.38.1/24
 
     Entity  Meter status  Message
     model   amber         user verification pending
@@ -267,7 +267,7 @@ This is caused by the API load balancer not forwarding ports in the context of t
     If you want to access this data programmatically you can use the JSON output:
 
     ```bash
-    juju show-status kubernetes-master --format json | jq --raw-output '.applications."kubernetes-master".units | keys[]'
+    juju show-status kubernetes-control-plane --format json | jq --raw-output '.applications."kubernetes-control-plane".units | keys[]'
     54.210.100.102
     ```
 
@@ -306,8 +306,8 @@ Testing the steps is important to determine the cause of the problem.
 
 First is to verify that Keystone communication works from both your client and
 the kubernetes-worker machines. The easiest thing to do here is to copy the
-kube-keystone.sh script to the machines of interest from kubernetes-master with
-`juju scp kubernetes-master/0:kube-keystone.sh .`, edit the script to include
+kube-keystone.sh script to the machines of interest from kubernetes-control-plane with
+`juju scp kubernetes-control-plane/0:kube-keystone.sh .`, edit the script to include
 your credentials, `source kube-keystone.sh` and then run `get_keystone_token`.
 This will produce a token from the Keystone server. If that isn't working,
 check firewall settings on your Keystone server. Note that the
@@ -482,15 +482,15 @@ easiest thing to do here is to look at the log for the API server for interestin
 such as timeouts or errors with the webhook.
 
 ```bash
-juju run --unit kubernetes-master/0 -- journalctl -u snap.kube-apiserver.daemon.service
+juju run --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver.daemon.service
 ```
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/troubleshooting.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/troubleshooting.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

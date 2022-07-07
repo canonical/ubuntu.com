@@ -1,0 +1,117 @@
+<li class="p-stepped-list__item js-form-section" data-step="version">
+  <h3 class="p-stepped-list__title">What Ubuntu version are you running?</h3>
+  <div class="row">
+    <div class="col-12 subscribe-section">
+      <p>
+        Ubuntu Advantage is available for Ubuntu 14.04 and higher.<br />
+        <a id="other-version-modal-toggle" aria-controls="other-versions-modal">Are you using an older version?</a>
+      </p>
+      <div class="radio-wrapper--staggering">
+        <div class="p-card--radio--version js-radio">
+          <label class="p-radio u-align-text--center">
+            <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="version_22.04" name="version" value="22.04" />
+            <span class="p-radio__label" id="version_22.04">
+              <h4>Ubuntu 22.04 LTS</h4>
+            </span>
+          </label>
+        </div>
+
+        <div class="p-card--radio--version js-radio">
+          <label class="p-radio u-align-text--center">
+            <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="version_20.04" name="version" value="20.04" />
+            <span class="p-radio__label" id="version_20.04">
+              <h4>Ubuntu 20.04 LTS</h4>
+            </span>
+          </label>
+        </div>
+
+        <div class="p-card--radio--version js-radio is-selected">
+          <label class="p-radio u-align-text--center">
+            <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="version_18.04" name="version" value="18.04" />
+            <span class="p-radio__label" id="version_18.04">
+              <h4>Ubuntu 18.04 LTS</h4>
+            </span>
+          </label>
+        </div>
+
+        <div class="p-card--radio--version js-radio">
+          <label class="p-radio u-align-text--center">
+            <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="version_16.04" name="version" value="16.04" />
+            <span class="p-radio__label" id="version_16.04">
+              <h4>Ubuntu 16.04 LTS</h4>
+            </span>
+          </label>
+        </div>
+
+        <div class="p-card--radio--version js-radio">
+          <label class="p-radio u-align-text--center">
+            <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="version_14.04" name="version" value="14.04" />
+            <span class="p-radio__label" id="version_14.04">
+              <h4>Ubuntu 14.04 LTS</h4>
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="p-card" style="background-color: #f7f7f7">
+          <h4 class="p-card__title">
+            For Ubuntu <span id="version-number">18.04</span>, all UA plans
+            include:
+          </h4>
+          <div class="row u-equal-height">
+            <div class="col-12">
+              <ul
+                class="p-list--ticked u-no-margin--left u-no-padding--left is-split"
+                id="version-details"
+              >
+                <li class="p-list__item is-ticked">
+                  Kernel Livepatch to avoid unscheduled reboots
+                </li>
+                <li class="p-list__item is-ticked">
+                  Ubuntu systems management with Landscape
+                </li>
+                <li class="p-list__item is-ticked">Knowledge base access</li>
+                <li class="p-list__item is-ticked">
+                  Certified Windows drivers for KVM guests
+                </li>
+                <li class="p-list__item is-ticked">
+                  FIPS 140-2 Level 1 certified crypto modules
+                </li>
+                <li class="p-list__item is-ticked">
+                  CIS benchmark and automation tooling
+                </li>
+                <li class="p-list__item is-ticked">DISA STIG</li>
+                <li class="p-list__item is-ticked">
+                  Extended Security Maintenance (ESM) until 2028
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>
+
+<div class="p-modal" id="other-versions-modal" style="display: none;">
+  <div class="p-modal__dialog" role="dialog" aria-labelledby="other-versions-modal-title" aria-describedby="other-versions-modal-description">
+    <header class="p-modal__header">
+      <h2 class="p-modal__title" id="other-versions-modal-title">Other versions?</h2>
+      <button class="p-modal__close" aria-label="Close active modal" aria-controls="other-versions-modal">Close</button>
+    </header>
+    <div class="row">
+        <span>Ubuntu Advantage is available only for Ubuntu 20.04 LTS, 18.04 LTS, 16.04 LTS, and 14.04 ESM.<br /><br />You can:</span>
+        <ul style="list-style-type: disc;">
+          <li>
+            <a href="/tutorials/tutorial-upgrading-ubuntu-desktop#1-before-you-start">Upgrade to a supported version</a>
+          </li>
+          <li>
+            <a href="/support/community-support">Explore community support options</a>
+          </li>
+        </ul>
+        <div class="u-align--right">
+          <button class="p-button" aria-label="Close active modal" aria-controls="other-versions-modal">Go back</button>
+        </div>
+    </div>
+  </div>
+</div>

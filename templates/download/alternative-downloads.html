@@ -20,10 +20,9 @@
       <h2 id="network-installer">Network installer</h2>
       <p>The network installer lets you install Ubuntu over a network. It includes the minimal set of packages needed to start and the rest of the packages are downloaded over the network. Since only current packages are downloaded, there is no need to upgrade packages immediately after installation.</p>
       <p>The network installer is ideal if you have a computer that cannot run the graphical installer, for example, because it does not meet the minimum requirements for the live CD/DVD, or because the computer requires extra configuration before a graphical desktop can be used. The network installer is also useful if you want to install Ubuntu on a large number of computers at once.</p>
-      <p>For 20.04 LTS, users can use the new Ubuntu Live installer to setup and configure a network install.</p>
+      <p>For 22.04 LTS, users can use the new Ubuntu Live installer to setup and configure a network install.</p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked"><a class="p-link--external" href="https://discourse.ubuntu.com/t/netbooting-the-live-server-installer">Instructions for the {{ releases.lts.short_version }} Ubuntu Live installer</a></li>
-        <li class="p-list__item is-ticked"><a class="p-link--external" href="https://cdimage.ubuntu.com/netboot/{{ releases.previous_lts.short_version }}/">Download the network installer for {{ releases.previous_lts.short_version }} LTS</a></li>
+        <li class="p-list__item is-ticked"><a href="https://discourse.ubuntu.com/t/netbooting-the-live-server-installer">Instructions for the {{ releases.lts.short_version }} LTS Ubuntu Live installer</a></li>
       </ul>
     </div>
   </div>
@@ -40,7 +39,7 @@
   <div class="row">
     {% if releases.latest.short_version > releases.lts.short_version %}
     <div class="col-4">
-      <h3 class="p-heading--four"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
+      <h3 class="p-heading--4"><span>Ubuntu {{ releases.latest.full_version }}</span></h3>
       <ul class="p-list--divided">
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.latest.full_version }} Desktop (64-bit)</a></li>
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.latest.short_version }}/ubuntu-{{ releases.latest.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.latest.full_version }}</a></li>
@@ -48,14 +47,14 @@
     </div>
     {% endif %}
     <div class="col-4">
-      <h3 class="p-heading--four"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
+      <h3 class="p-heading--4"><span>Ubuntu {{ releases.lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
-        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version_desktop }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version_desktop }} Desktop (64-bit)</a></li>
+        <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.lts.full_version }} Desktop (64-bit)</a></li>
         <li class="p-list__item"><a class="download-torrent" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.lts.full_version }} LTS</a></li>
       </ul>
     </div>
     <div class="col-4">
-      <h3 class="p-heading--four"><span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
+      <h3 class="p-heading--4"><span>Ubuntu {{ releases.previous_lts.full_version }} <abbr title="Long-term support">LTS</abbr></span></h3>
       <ul class="p-list--divided">
         <li class="p-list__item"><a class="download-lts" href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-desktop-amd64.iso.torrent">Ubuntu {{ releases.previous_lts.full_version }} Desktop (64-bit)</a></li>
         <li class="p-list__item"><a class="download-lts" href="https://releases.ubuntu.com/{{ releases.previous_lts.short_version }}/ubuntu-{{ releases.previous_lts.full_version }}-live-server-amd64.iso.torrent">Ubuntu Server {{ releases.previous_lts.full_version }} LTS</a></li>
@@ -69,7 +68,7 @@
     <div class="col-6 p-divider__block">
       <h2 id="other-images-and-mirrors">Other images and mirrors</h2>
       <p>For the full list of available Ubuntu images, we recommend you select a mirror local to you.</p>
-      <p><a href="https://launchpad.net/ubuntu/+cdmirrors" class="p-link--external">See all Ubuntu mirrors</a></p>
+      <p><a href="https://launchpad.net/ubuntu/+cdmirrors">See all Ubuntu mirrors</a></p>
     </div>
     <div class="col-6 p-divider__block">
       <h2 id="past-releases-and-other-flavours">Past releases and other flavours</h2>
@@ -81,7 +80,7 @@
         {% endif %}
         <li class="p-list__item is-ticked"><a href="https://releases.ubuntu.com/{{ releases.previous_previous_lts.full_version }}/">Ubuntu {{ releases.previous_previous_lts.short_version }} LTS ({{ releases.previous_previous_lts.name }})</a></li>
       </ul>
-      <p><a class="p-link--external" href="https://releases.ubuntu.com/">Past releases</a></p>
+      <p><a href="https://releases.ubuntu.com/">Past releases</a></p>
     </div>
   </div>
 </div>

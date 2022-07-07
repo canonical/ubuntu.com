@@ -37,16 +37,16 @@ as soon as the installation has settled. You should use the following command to
 **.kube** directory if it was not created after kubectl installation):
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-If you have multiple clusters you will need to manage the config file rather than just
-replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
-Kubernetes documentation</a> for more information on managing multiple clusters.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">If you have multiple clusters you will need to manage the config file rather than just
+    replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
+    Kubernetes documentation</a> for more information on managing multiple clusters.</p>
+  </div>
 </div>
 
 
@@ -133,7 +133,7 @@ If you would like to disable DNS (for example, to deploy your own custom DNS
 solution), you can use:
 
 ```bash
-juju config kubernetes-master dns-provider=none
+juju config kubernetes-control-plane dns-provider=none
 ```
 
 To deploy a customised DNS configuration, first disable the charm-managed DNS
@@ -158,7 +158,7 @@ during the run of the action.
 the 'microbots' pods.
 
 - Finally, it will create an ingress resource, which points at a
-[xip.io](http://xip.io) domain to simulate a proper DNS service.
+[nip.io](http://nip.io) domain to simulate a proper DNS service.
 
 To deploy 3 replicas of the microbot web application inside the Kubernetes
 cluster run the following command:
@@ -173,7 +173,7 @@ will be different and contain the address of the cloud instance.)
 ```YAML
 id: 4d4a2245-e544-45d1-886d-b828ccf72c47
   results:
-    address: microbot.52.87.186.136.xip.io
+    address: microbot.52.87.186.136.nip.io
   status: completed
   timing:
     completed: 2019-03-22 15:00:39 +0000 UTC
@@ -223,17 +223,17 @@ kubectl get ingress
 ```
 ```
 NAME               HOSTS                           ADDRESS   PORTS   AGE
-microbot-ingress   microbot.52.87.186.136.xip.io             80      5m36s
+microbot-ingress   microbot.52.87.186.136.nip.io             80      5m36s
 ```
 
 When all the pods are listed as Running, you are ready to visit the address listed in the
 HOSTS column of the ingress listing.
 
-<div class="p-notification--positive">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-It is normal to see a 502/503 error during initial application deployment
-  </p>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">It is normal to see a 502/503 error during initial application deployment</p>
+  </div>
 </div>
 
 As you refresh the page, you will be greeted with a microbot web page, serving
@@ -284,8 +284,7 @@ things you may wish to try:
 ## Additional Resources
 
 - [Kubernetes User Guide](https://kubernetes.io/docs/user-guide/)
-- [The Charmed Distribution of Kubernetes](https://jujucharms.com/charmed-kubernetes/)
-- [Bundle source][bundle-source]
+- [The Charmed Kubernetes page on Charmhub.io](https://charmhub.io/charmed-kubernetes/)
 - [Bug tracker](https://bugs.launchpad.net/charmed-kubernetes)
 
 
@@ -298,14 +297,15 @@ things you may wish to try:
 [logging]: /kubernetes/docs/logging
 [decommission]: /kubernetes/docs/decommissioning
 [get-in-touch]:  /kubernetes/docs/get-in-touch
-[bundle-source]: https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-3/archive/bundle.yaml?channel=stable
+
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/operations.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/operations.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

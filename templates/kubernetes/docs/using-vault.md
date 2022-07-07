@@ -44,7 +44,7 @@ applications:
     charm: cs:percona-cluster
     num_units: 1
 relations:
-- - kubernetes-master:certificates
+- - kubernetes-control-plane:certificates
   - vault:certificates
 - - etcd:certificates
   - vault:certificates
@@ -64,7 +64,7 @@ juju deploy charmed-kubernetes --overlay ./vault-pki-overlay.yaml
 
 Once the deployment settles, you will notice that several applications are in a
 `blocked` state in **Juju**, with **Vault** indicating that it needs to be initialised
-and unsealed. To unseal **Vault**, you can read [the guide][vault-guide-unseal] for
+and unsealed. To unseal **Vault**, you can read the [vault charm documentation][vault-charm-unseal] for
 in-depth instructions (you may also need to [expose][] **Vault**), or you can use
 the **Vault** client already on the deployed unit with the following steps:
 
@@ -82,12 +82,9 @@ juju run-action vault/0 authorize-charm token={charm token}
 ```
 
 <div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    It is <strong><em>critical </em></strong> that you save all five unseal keys as well as the root
-    token.  If the <strong>Vault</strong> unit is ever rebooted, you will have to repeat the
-    unseal steps (but not the init step) before the CA can become functional
-    again.
-  </p>
+  <div markdown="1" class="p-notification__content">
+    <p class="p-notification__message">It is <strong><em>critical </em></strong> that you save all five unseal keys as well as the root token.  If the <strong>Vault</strong> unit is ever rebooted, you will have to repeat the unseal steps (but not the init step) before the CA can become functional again.</p>
+  </div>
 </div>
 
 ### Certificate lifespan
@@ -115,14 +112,15 @@ An existing **Charmed Kubernetes** deployment which is using EasyRSA can
 be transitioned to use **Vault** as a CA.
 
 <div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
+  <div markdown="1" class="p-notification__content">
+    <p class="p-notification__message">
     During the transition, any pods that use ServiceAccounts to talk to the
     Kubernetes API may need to be restarted. Addons that are deployed and
     managed by **Charmed Kubernetes** will be restarted automatically. If you
     have deployed anything into Kubernetes that talks to the Kubernetes API, it
     is recommended that you restart them after the transition by using the
-    `kubectl rollout restart` command.
-  </p>
+    `kubectl rollout restart` command.</p>
+  </div>
 </div>
 
 Deploy **Vault** and Percona Cluster:
@@ -147,7 +145,7 @@ and idle. Then relate **Vault** to Kubernetes:
 
 ```bash
 juju add-relation vault:certificates kubeapi-load-balancer:certificates
-juju add-relation vault:certificates kubernetes-master:certificates
+juju add-relation vault:certificates kubernetes-control-plane:certificates
 juju add-relation vault:certificates kubernetes-worker:certificates
 ```
 
@@ -165,16 +163,15 @@ You will need to re-download the `kubectl` config file,
 since it contains the certificate info for connecting to the cluster:
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-If you have multiple clusters you will need to manage the config file rather than just
-replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">
-Kubernetes documentation</a> for more information on managing multiple clusters.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">If you have multiple clusters you will need to manage the config file rather than just
+    replacing it. See the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/">Kubernetes documentation</a> for more information on managing multiple clusters.</p>
+  </div>
 </div>
 
 ## Using Vault as an intermediary CA
@@ -224,25 +221,26 @@ and the root token you generated previously.
 
 
 <!-- LINKS -->
-[vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/vault-pki-overlay.yaml
+[vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vault-pki-overlay.yaml
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io
-[expose]: https://docs.jujucharms.com/stable/en/charms-deploying#exposing-deployed-applications
-[hacluster]: https://jujucharms.com/hacluster/
+[expose]: https://juju.is/docs/olm/deploying-applications#heading--exposing-deployed-applications
+[hacluster]: https://charmhub.io/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
-[vault-guide-unseal]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-vault.html#initialize-and-unseal-vault
+[vault-charm-unseal]: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#post-deployment-tasks
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
 [leadership]: https://discourse.jujucharms.com/t/implementing-leadership/1124
-[cdk-bundle]: https://jujucharms.com/charmed-kubernetes
+[cdk-bundle]: https://charmhub.io/charmed-kubernetes
 [vault charm]: https://jaas.ai/vault/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/using-vault.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/using-vault.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -1,0 +1,29 @@
+{% extends "download/_base_download.html" %}
+
+{% block title %}Contact us | Download{% endblock %}
+
+{% block content %}
+
+{% if product == 'supported-platforms' %}
+
+{% with h1='Contact us about supported platforms',
+  intro_text="Can't find your board of choice? Fill out the form and a member of our team will be in touch",
+  formid="4126",
+  lpId="",
+  returnURL="/download/thank-you?product=supported-platforms" %}
+  {% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
+{% else %}
+
+{% with h1="Contact Canonical about downloads",
+  intro_text="",
+  formid="1257",
+  lpId="",
+  returnURL="/download/thank-you" %}
+  {% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
+{% endif %}
+
+{% endblock content %}

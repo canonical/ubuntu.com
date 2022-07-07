@@ -1,7 +1,7 @@
 {% extends "aws/base_aws.html" %}
 
 {% block title %}Ubuntu FIPS for AWS{% endblock %}
-{% block meta_description %}Ubuntu Pro FIPS for AWS is an Ubuntu Pro image with FIPS certified modules enabled by default for FedRAMP, HIPAA, PCI and ISO compliance. Ubuntu Pro FIPS images are secure and optimized for production on public cloud.{% endblock %}
+{% block meta_description %}Ubuntu Pro FIPS for AWS is an Ubuntu Pro image with FIPS certified modules enabled by default for FedRAMP, HIPAA, PCI and ISO compliance. Ubuntu Pro FIPS images are secure and optimied for production on public cloud.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1RIUejzxrQwvT-qQGG_FhRIaTVzZb07o6mZeiYkaBdqk/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -9,15 +9,16 @@
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7 col-medium-4">
-        <h1>Ubuntu Pro FIPS for AWS</h1>
-        <p class="p-heading--three">For compliance in production environments.</p>
+        <h1>Ubuntu Pro FIPS for AWS compliance</h1>
+        <p class="p-heading--3">For AWS compliance in production environments.</p>
         <p>Ubuntu Pro FIPS is the first and only FIPS 140-2 certified image for AWS. Built upon the enhanced stability and security features of <a href="/aws/pro">Ubuntu Pro</a>, Ubuntu Pro FIPS is a critical foundation for federal programs and government contractors.</p>
         <p>
-          <a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro FIPS 18.04 LTS on AWS</span></a>
-          <a href="https://aws.amazon.com/marketplace/pp/B08GCQS6D8?qid=1607612084948&sr=0-1&ref_=srh_res_product_title" class="p-button--positive"><span class="p-link--external">Launch Ubuntu Pro FIPS 16.04 LTS on AWS</span></a>
+          <a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk" class="p-button--positive"><span>Launch Ubuntu Pro FIPS 20.04 LTS on AWS</span></a>
+          <a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK" class="p-button--positive"><span>Launch Ubuntu Pro FIPS 18.04 LTS on AWS</span></a>
+          <a href="https://aws.amazon.com/marketplace/pp/B08GCQS6D8?qid=1607612084948&sr=0-1&ref_=srh_res_product_title" class="p-button--positive"><span>Launch Ubuntu Pro FIPS 16.04 LTS on AWS</span></a>
         </p>
       </div>
-      <div class="col-5 u-align--center u-vertically-center u-hide--small">
+      <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
         {{
           image(
           url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
@@ -56,9 +57,9 @@
         </li>
         <li class="p-matrix__item">
           <div class="p-matrix__content">
-            <h3 class="p-matrix__title">CIS and DISA STIG profiles</h3>
+            <h3 class="p-matrix__title">CIS and DISA STIG</h3>
             <div class="p-matrix__desc">
-              <p>For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading profiles available.</p>
+              <p>Automated auditing and remediation for the DISA STIG and CIS security benchmarks through the <a href="/security/certifications/docs/usg">Ubuntu Security Guide</a>.</p>
             </div>
           </div>
         </li>
@@ -82,7 +83,7 @@
           <div class="p-matrix__content">
             <h3 class="p-matrix__title">Common Criteria EAL2 certification</h3>
             <div class="p-matrix__desc">
-              <p>Ubuntu Pro FIPS has been evaluated to assurance level EAL2, with Common Criteria EAL2.</p>
+              <p>Ubuntu Pro FIPS has been evaluated to assurance level EAL2, with Common Criteria certification.</p>
             </div>
           </div>
         </li>
@@ -98,7 +99,7 @@
           <div class="p-matrix__content">
             <h3 class="p-matrix__title">10-year lifetime</h3>
             <div class="p-matrix__desc">
-              <p>Canonical backs Ubuntu Pro FIPS for 10 years*, ensuring security updates are available throughout, with a guaranteed upgrade path.</p>
+              <p>Canonical backs Ubuntu Pro FIPS for 10 years, ensuring security updates are available throughout, with a guaranteed upgrade path.</p>
             </div>
           </div>
         </li>
@@ -111,38 +112,42 @@
           </div>
         </li>
       </ul>
-      <p id="index-1"><small>* For 18.04 LTS onwards. The maintenance period for Ubuntu Pro FIPS 16.04 LTS is 8 years.</small></p>
       <a href="/aws/contact-us" class="p-button--positive">Let's talk Ubuntu Pro FIPS</a>
     </div>
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
       <h2>Launch Ubuntu Pro FIPS for AWS</h2>
     </div>
   </div>
   <div class="row p-divider">
-    <div class="col-6 p-divider__block">
-      <h3 class="p-heading--four">Ubuntu Pro FIPS 18.04 LTS</h3>
-      <p>Ubuntu Pro FIPS 18.04 LTS includes an aws-optimized FIPS-certified 4.15 kernel and other FIPS certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2028.</p>
-      <p><a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro FIPS 20.04 LTS</h3>
+      <p>Ubuntu Pro FIPS 20.04 LTS includes an AWS-optimised FIPS-certified 5.4 kernel and other FIPS-certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2030.</p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk" class="p-button--positive"><span>Launch now</span></a></p>
     </div>
-    <div class="col-6 p-divider__block">
-      <h3 class="p-heading--four">Ubuntu Pro FIPS 16.04 LTS</h3>
-      <p>Ubuntu Pro FIPS 16.04 LTS includes FIPS-certified 4.4 kernel and other FIPS certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2024.</p>
-      <p><a href="https://aws.amazon.com/marketplace/pp/Canonical-Ubuntu-FIPS-1604-LTS/B08GCQS6D8" class="p-button--positive"><span class="p-link--external">Launch now</span></a></p>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro FIPS 18.04 LTS</h3>
+      <p>Ubuntu Pro FIPS 18.04 LTS includes an AWS-optimised FIPS-certified 4.15 kernel and other FIPS certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2028.</p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK" class="p-button--positive"><span>Launch now</span></a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Pro FIPS 16.04 LTS</h3>
+      <p>Ubuntu Pro FIPS 16.04 LTS includes FIPS-certified 4.4 kernel and other FIPS certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides extended security maintenance through April 2026.</p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/Canonical-Ubuntu-FIPS-1604-LTS/B08GCQS6D8" class="p-button--positive"><span>Launch now</span></a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-6">
-      <h2>Compliance made easy</h2>
-      <p><strong>Ubuntu Pro for AWS: FIPS compliance made easy</strong></p>
-      <p>Ubuntu Pro FIPS is the critical foundation for state agencies administering federal programs and private sector companies with government contracts. Ubuntu Pro FIPS is built upon the power of Ubuntu Pro’s enhanced stability, compliance and security features and is maintained to provide your organisation with the strongest FIPS foundation now and in the future.</p>
+      <h2>AWS compliance made easy</h2>
+      <p><strong>Ubuntu Pro FIPS: AWS compliance made easy</strong></p>
+      <p>With AWS, US government agencies and their partners have been able to combine unparalleled flexibility, breakthrough innovation, world-class security and AWS compliance. However when it comes to running a secure and compliant enterprise Linux on AWS, IT departments are often left with expensive options that sacrifice innovation for compliance. Watch this webinar on demand to see how AWS and Canonical, the publisher of Ubuntu, have collaborated to create a new way for government agencies to consume Linux on AWS.</p>
      <p><a href="https://www.brighttalk.com/webcast/6793/449853" class="p-button--positive">Watch the webinar</a></p>
     </div>
     <div class="col-6">
@@ -160,10 +165,10 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-12">
-      <h2>FIPS certified Ubuntu components</h2>
+      <h2>FIPS-certified Ubuntu components for AWS</h2>
       <table class="p-table--mobile-card">
         <thead>
           <tr>
@@ -176,39 +181,32 @@
         </thead>
         <tbody>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">18.04</td>
-            <td aria-label="FIPS certified component">AWS Kernel</td>
-            <td aria-label="Description">Kernel optimised for use in AWS clouds</td>
-            <td class="u-align--right" aria-label="Version">4.15</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">3664</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">AWS Kernel</td>
+            <td data-heading="Description">Kernel optimised for use in AWS clouds</td>
+            <td class="u-align--right" data-heading="Version">5.4</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4132">4132</a></td>
           </tr>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">18.04</td>
-            <td aria-label="FIPS certified component">OpenSSL</td>
-            <td aria-label="Description">General purpose cryptographic library that includes TLS implementation</td>
-            <td class="u-align--right" aria-label="Version">1.1.1</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">3622</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">OpenSSL</td>
+            <td data-heading="Description">General purpose cryptographic library that includes TLS implementation</td>
+            <td class="u-align--right" data-heading="Version"></td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3966">3966</a></td>
           </tr>
           <tr>
-            <td class="u-align--right" class="u-align--right" aria-label="Ubuntu LTS">18.04</td>
-            <td aria-label="FIPS certified component">OpenSSH client</td>
-            <td aria-label="Description">SSH server application for operating systems</td>
-            <td class="u-align--right" class="u-align--right" aria-label="Version">7.9p1</td>
-            <td class="u-align--right" class="u-align--right" aria-label="CMVP Certificate">3633</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">StrongSWAN</td>
+            <td data-heading="Description">IPSec-based VPN solution library</td>
+            <td class="u-align--right" data-heading="Version"></td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4046">4046</a></td>
           </tr>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">18.04</td>
-            <td aria-label="FIPS certified component">OpenSSL server</td>
-            <td aria-label="Description">SSH client application for operating systems</td>
-            <td class="u-align--right" aria-label="Version">7.9p1</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">3632</td>
-          </tr>
-          <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">18.04</td>
-            <td aria-label="FIPS certified component">StrongSWAN</td>
-            <td aria-label="Description">IPSec based VPN solution library</td>
-            <td class="u-align--right" aria-label="Version">5.6.2</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">3648</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">Libgcrypt</td>
+            <td data-heading="Description">The GNUPG cryptographic general purpose library (provides fully certified full disk encryption)</td>
+            <td class="u-align--right" data-heading="Version"></td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3902">3902</a></td>
           </tr>
         </tbody>
       </table>
@@ -225,39 +223,95 @@
         </thead>
         <tbody>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">16.04</td>
-            <td aria-label="FIPS certified component">Linux kernel (generic)</td>
-            <td aria-label="Description">The Linux kernel cryptographic library</td>
-            <td class="u-align--right" aria-label="Version">4.4.0.1002</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">2962</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">AWS Kernel</td>
+            <td data-heading="Description">Kernel optimised for use in AWS clouds</td>
+            <td class="u-align--right" data-heading="Version">4.15</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">3664</td>
           </tr>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">16.04</td>
-            <td aria-label="FIPS certified component">OpenSSL</td>
-            <td aria-label="Description">General purpose cryptographic library that includes TLS implementation</td>
-            <td class="u-align--right" aria-label="Version">1.0.2g</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">2888</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">OpenSSL</td>
+            <td data-heading="Description">General purpose cryptographic library that includes TLS implementation</td>
+            <td class="u-align--right" data-heading="Version">1.1.1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">3622</td>
           </tr>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">16.04</td>
-            <td aria-label="FIPS certified component">OpenSSH client</td>
-            <td aria-label="Description">SSH server application for operating systems</td>
-            <td class="u-align--right" aria-label="Version">7.2p2</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">2907</td>
+            <td class="u-align--right" class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">OpenSSH client</td>
+            <td data-heading="Description">SSH server application for operating systems</td>
+            <td class="u-align--right" class="u-align--right" data-heading="Version">7.9p1</td>
+            <td class="u-align--right" class="u-align--right" data-heading="CMVP Certificate">3633</td>
           </tr>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">16.04</td>
-            <td aria-label="FIPS certified component">OpenSSL server</td>
-            <td aria-label="Description">SSH client application for operating systems</td>
-            <td class="u-align--right" aria-label="Version">7.9p2</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">2906</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">OpenSSL server</td>
+            <td data-heading="Description">SSH client application for operating systems</td>
+            <td class="u-align--right" data-heading="Version">7.9p1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">3632</td>
           </tr>
           <tr>
-            <td class="u-align--right" aria-label="Ubuntu LTS">16.04</td>
-            <td aria-label="FIPS certified component">StrongSWAN</td>
-            <td aria-label="Description">IPSec based VPN solution library</td>
-            <td class="u-align--right" aria-label="Version">5.3.5</td>
-            <td class="u-align--right" aria-label="CMVP Certificate">2978</td>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">StrongSWAN</td>
+            <td data-heading="Description">IPSec based VPN solution library</td>
+            <td class="u-align--right" data-heading="Version">5.6.2</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">3648</td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">Libgcrypt</td>
+            <td data-heading="Description">The GNUPG cryptographic general purpose library (provides fully certified full disk encryption)</td>
+            <td class="u-align--right" data-heading="Version">1.8.1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">3748</td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <table class="p-table--mobile-card">
+        <thead>
+          <tr>
+            <th class="u-align--right" style="width: 9%;">Ubuntu LTS</th>
+            <th style="width: 30%;">FIPS certified component</th>
+            <th>Description</th>
+            <th class="u-align--right" style="width: 10%;">Version</th>
+            <th class="u-align--right" style="width: 15%;">CMVP Certificate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">16.04</td>
+            <td data-heading="FIPS certified component">Linux kernel (generic)</td>
+            <td data-heading="Description">The Linux kernel cryptographic library</td>
+            <td class="u-align--right" data-heading="Version">4.4.0.1002</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">2962</td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">16.04</td>
+            <td data-heading="FIPS certified component">OpenSSL</td>
+            <td data-heading="Description">General purpose cryptographic library that includes TLS implementation</td>
+            <td class="u-align--right" data-heading="Version">1.0.2g</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">2888</td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">16.04</td>
+            <td data-heading="FIPS certified component">OpenSSH client</td>
+            <td data-heading="Description">SSH server application for operating systems</td>
+            <td class="u-align--right" data-heading="Version">7.2p2</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">2907</td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">16.04</td>
+            <td data-heading="FIPS certified component">OpenSSL server</td>
+            <td data-heading="Description">SSH client application for operating systems</td>
+            <td class="u-align--right" data-heading="Version">7.9p2</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">2906</td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">16.04</td>
+            <td data-heading="FIPS certified component">StrongSWAN</td>
+            <td data-heading="Description">IPSec based VPN solution library</td>
+            <td class="u-align--right" data-heading="Version">5.3.5</td>
+            <td class="u-align--right" data-heading="CMVP Certificate">2978</td>
           </tr>
         </tbody>
       </table>
@@ -281,55 +335,58 @@
         </thead>
         <tbody>
           <tr>
-            <td aria-label="Example instance size">t3.nano</td>
-            <td aria-label="EC2 hourly*" class="u-align--right">$0.005</td>
-            <td aria-label="Ubuntu Pro hourly" class="u-align--right">$0.001</td>
+            <td data-heading="Example instance size">t3.nano</td>
+            <td data-heading="EC2 hourly*" class="u-align--right">$0.005</td>
+            <td data-heading="Ubuntu Pro hourly" class="u-align--right">$0.001</td>
           </tr>
           <tr>
-            <td aria-label="Example instance size">t3.medium</td>
-            <td aria-label="EC2 hourly*" class="u-align--right">$0.042</td>
-            <td aria-label="Ubuntu Pro hourly" class="u-align--right">$0.009</td>
+            <td data-heading="Example instance size">t3.medium</td>
+            <td data-heading="EC2 hourly*" class="u-align--right">$0.042</td>
+            <td data-heading="Ubuntu Pro hourly" class="u-align--right">$0.009</td>
           </tr>
           <tr>
-            <td aria-label="Example instance size">c5.large</td>
-            <td aria-label="EC2 hourly*" class="u-align--right">$0.085</td>
-            <td aria-label="Ubuntu Pro hourly" class="u-align--right">$0.019</td>
+            <td data-heading="Example instance size">c5.large</td>
+            <td data-heading="EC2 hourly*" class="u-align--right">$0.085</td>
+            <td data-heading="Ubuntu Pro hourly" class="u-align--right">$0.019</td>
           </tr>
           <tr>
-            <td aria-label="Example instance size">r5.xlarge</td>
-            <td aria-label="EC2 hourly*" class="u-align--right">$0.252</td>
-            <td aria-label="Ubuntu Pro hourly" class="u-align--right">$0.046</td>
+            <td data-heading="Example instance size">r5.xlarge</td>
+            <td data-heading="EC2 hourly*" class="u-align--right">$0.252</td>
+            <td data-heading="Ubuntu Pro hourly" class="u-align--right">$0.046</td>
           </tr>
           <tr>
-            <td aria-label="Example instance size">i3.2xlarge</td>
-            <td aria-label="EC2 hourly*" class="u-align--right">$0.624</td>
-            <td aria-label="Ubuntu Pro hourly" class="u-align--right">$0.088</td>
+            <td data-heading="Example instance size">i3.2xlarge</td>
+            <td data-heading="EC2 hourly*" class="u-align--right">$0.624</td>
+            <td data-heading="Ubuntu Pro hourly" class="u-align--right">$0.088</td>
           </tr>
           <tr>
-            <td aria-label="Example instance size">r5d.4xlarge</td>
-            <td aria-label="EC2 hourly*" class="u-align--right">$1.152</td>
-            <td aria-label="Ubuntu Pro hourly" class="u-align--right">$0.127</td>
+            <td data-heading="Example instance size">r5d.4xlarge</td>
+            <td data-heading="EC2 hourly*" class="u-align--right">$1.152</td>
+            <td data-heading="Ubuntu Pro hourly" class="u-align--right">$0.127</td>
           </tr>
         </tbody>
       </table>
       <p>*The above pricing is based on the US East (Northern Virginia) region. For complete pricing, see
-        <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK">Ubuntu Pro FIPS 18.04 LTS on the AWS Marketplace</a></p>
+        <a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk">Ubuntu Pro FIPS 20.04 LTS on the AWS Marketplace</a></p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--suru is-dark">
+<section class="p-strip--suru">
   <div class="row">
     <div class="col-12">
       <h2>Get Ubuntu Pro FIPS on AWS now:</h2>
     </div>
   </div>
-  <div class="row p-divider">
+  <div class="row p-divider is-dark">
     <div class="col-3 p-divider__block">
-      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK" class="p-link--inverted">18.04 LTS</a></h3>
+      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/prodview-l2hkkatnodedk" class="p-link--inverted">20.04 LTS</a></h3>
     </div>
     <div class="col-3 p-divider__block">
-      <h3 class="p-heading--four"><a href="https://aws.amazon.com/marketplace/pp/Canonical-Ubuntu-FIPS-1604-LTS/B08GCQS6D8" class="p-link--inverted">16.04 LTS</a></h3>
+      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/B08GCSCZJK" class="p-link--inverted">18.04 LTS</a></h3>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4"><a href="https://aws.amazon.com/marketplace/pp/Canonical-Ubuntu-FIPS-1604-LTS/B08GCQS6D8" class="p-link--inverted">16.04 LTS</a></h3>
     </div>
   </div>
 </section>
@@ -337,7 +394,7 @@
 <section class="p-strip is-bordered">
   <div class="row u-vertically-center">
     <div class="col-6">
-      <h2>Compliance and the most comprehensive open source security coverage - that’s Ubuntu Pro</h2>
+      <h2>AWS compliance and the most comprehensive open-source security coverage &ndash; that’s Ubuntu Pro FIPS</h2>
       <p>Ubuntu Pro FIPS images are based on Ubuntu Pro premium images, with security coverage included for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. This makes it ideal for companies that have embraced open source for their new products and need to ensure security for production and mission-critical workloads.</p>
       <p><a href="/aws/pro">Learn more about Ubuntu Pro on AWS&nbsp;&rsaquo;</a></p>
     </div>

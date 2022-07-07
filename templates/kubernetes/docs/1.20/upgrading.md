@@ -14,42 +14,43 @@ toc: False
 ---
 
 <!-- UPGRADE VERSIONS -->
-
-<div class="p-notification--warning">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading. <br><br>
-<a class='p-button--brand' href='/kubernetes/docs/1.20/upgrading'>Upgrade to 1.20 </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.19/upgrading'>Upgrade to 1.19 </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.18/upgrading'>Upgrade to 1.18 </a>
-  </p>
+<div class="p-notification--caution">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading.</p>
+  </div>
+  <div class="p-notification__meta">
+    <div class="p-notification__actions">
+      <a class='p-notification__action' href='/kubernetes/docs/1.20/upgrading'>Upgrade to 1.20</a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.19/upgrading'>Upgrade to 1.19</a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.18/upgrading'>Upgrade to 1.18</a>
+    </div>
+  </div>
 </div>
 
 <!-- END OF UPGRADE VERSIONS-->
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-There is a known issue 
-<a href="https://bugs.launchpad.net/juju/+bug/1904619"> (https://bugs.launchpad.net/juju/+bug/1904619)</a>
-with container profiles not surviving an upgrade when deploying applications to LXD. If your 
-container-based applications fail to work properly after an upgrade, or you use the Juju `localhost` cloud,
- please see this 
-<a href="/kubernetes/docs/troubleshooting#lxd"> topic on the troubleshooting page</a>
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">There is a known issue 
+    <a href="https://bugs.launchpad.net/juju/+bug/1904619"> (https://bugs.launchpad.net/juju/+bug/1904619)</a>
+    with container profiles not surviving an upgrade when deploying applications to LXD. If your 
+    container-based applications fail to work properly after an upgrade, or you use the Juju `localhost` cloud,
+    please see this 
+    <a href="/kubernetes/docs/troubleshooting#lxd"> topic on the troubleshooting page</a></p>
+  </div>
 </div>
-
-
 
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
 
 New minor versions of **Kubernetes** are set to release once per quarter. You can check the latest release version on the [Kubernetes release page on GitHub][k8s-release]. **Charmed Kubernetes** is kept in close sync with upstream Kubernetes: updated versions will usually be released within a week of a new upstream version of **Kubernetes**.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-<strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.19.1 to 1.19.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.18.x to 1.19.x.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"><strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.19.1 to 1.19.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.18.x to 1.19.x.</p>
+  </div>
 </div>
 
 You can see which version of each application is currently deployed by running
@@ -68,10 +69,10 @@ As with all upgrades, there is a possibility that there may be unforeseen diffic
 
 You should also make sure:
 
--   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
--   Your cluster is running normally
--   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
--   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
+- The machine from which you will perform the backup has sufficient internet access to retrieve updated software
+- Your cluster is running normally
+- You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
+- You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
 
 ## Infrastructure updates
 
@@ -85,8 +86,6 @@ This includes:
 - flannel, calico or other CNI
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
-
-
 
 <a id='upgrading-containerd'> </a>
 
@@ -127,6 +126,7 @@ juju upgrade-charm docker
 ```
 
 #### Versions prior to 1.15
+
 Only the `kubernetes-master` and `kubernetes-worker` units require Docker. The charms for each
 include an action to trigger the upgrade.
 
@@ -160,9 +160,6 @@ juju run-action kubernetes-worker/0 upgrade-docker --wait
 
 As previously, wait between running the action on sucessive units to allow pods to migrate.
 
-
-
-
 ### Upgrading etcd
 
 As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of
@@ -174,6 +171,7 @@ this data before running an upgrade. This is covered in more detail in the
 ```bash
 juju run-action etcd/0 snapshot --wait
 ```
+
 You should see confirmation of the snapshot being created, and the command needed to download the snapshot  
 _from the **etcd** unit_. See the following truncated, example output:
 
@@ -194,8 +192,7 @@ juju scp etcd/40:/home/ubuntu/etcd-snapshots/etcd-snapshot-2020-11-18-21.37.11.t
 ```
 
 Substitute in your own etcd unit number and filename, or copy and paste the command from the previous
-output. Remember to add the ` .` at the end to copy to your local directory! 
-
+output. Remember to add the ` .` at the end to copy to your local directory!
 
 #### 3. Upgrade the charm
 
@@ -237,15 +234,15 @@ example, if you are using the flannel CNI:
 juju upgrade-charm flannel
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Some services may be briefly interrupted during the upgrade process. Upgrading
-your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
-<strong>easyrsa</strong> will not cause any downtime. The behaviour of other
-components you have added to your cluster may vary - check individual documentation
-for these charms for more information on upgrades.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Some services may be briefly interrupted during the upgrade process. Upgrading
+    your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
+    <strong>easyrsa</strong> will not cause any downtime. The behaviour of other
+    components you have added to your cluster may vary - check individual documentation
+    for these charms for more information on upgrades.</p>
+  </div>
 </div>
 
 ## Upgrading Kubernetes
@@ -297,13 +294,13 @@ juju config kubernetes-master channel=1.20/stable
 
 If you wanted to try a release candidate for 1.21, the channel would be `1.21/candidate`.
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Once the configuration has been changed, the charms will be put into a `blocked` state.
-You must continue the upgrade process, even if you revert the configuration to the
-currently active version of Kubernetes.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Once the configuration has been changed, the charms will be put into a `blocked` state.
+    You must continue the upgrade process, even if you revert the configuration to the
+    currently active version of Kubernetes.</p>
+  </div>
 </div>
 
 Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:
@@ -325,11 +322,11 @@ Ensure that all the master units have upgraded and are reporting normal status b
 
 ### Upgrading the **kubernetes-worker** units
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.
-</p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.</p>
+  </div>
 </div>
 
 For a running cluster, there are two different ways to proceed:
@@ -384,11 +381,11 @@ juju remove-unit kubernetes-worker/0
 
 Removing these units from the model will also release the underlying machines/instances they were running on, so no further clean up is required.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-A variation on this method is to add, pause, remove  and recycle units one at a time. This reduces the resource overhead to a single extra instance.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">A variation on this method is to add, pause, remove  and recycle units one at a time. This reduces the resource overhead to a single extra instance.</p>
+  </div>
 </div>
 
 #### In-place upgrade
@@ -437,7 +434,6 @@ juju status
 
 It is recommended that you run a [cluster validation][validation] to ensure that the cluster is fully functional.
 
-
 ## Known Issues
 
 A [current bug](https://github.com/kubernetes/kubernetes/issues/70044) in Kubernetes could prevent the upgrade from properly deleting old pods. You can see such an issue here:
@@ -458,7 +454,7 @@ kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx         
 kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running       0          17m
 ```
 
-In this case the  `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
+In this case the `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
 
 ```bash
 kubectl delete po/nginx-ingress-kubernetes-worker-controller-r8d2v --force --grace-period=0
@@ -488,7 +484,6 @@ kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx         
 kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running   0          18m
 ```
 
-
  <!--LINKS-->
 
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
@@ -502,10 +497,10 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrading.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrading.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

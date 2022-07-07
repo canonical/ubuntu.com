@@ -1,8 +1,7 @@
 {% extends "openstack/_base_openstack.html" %}
 
-
-{% block title %}Install | OpenStack | Ubuntu{% endblock %}
-{% block meta_description %}A step-by-step guide to OpenStack installation.{% endblock %}
+{% block title %}Install OpenStack yourself on Ubuntu.{% endblock %}
+{% block meta_description %}A step-by-step guide to OpenStack installation. You only need your workstation to get started.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1eQ16jzv6YRGzG_k_C-tUnhM06k6_Ic6fZM-x_ARMzuc/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -10,20 +9,20 @@
   <div class="row u-equal-height u-vertically-center ">
     <div class="col-7">
       <h1>Install OpenStack yourself</h1>
-      <p>Test OpenStack on your workstation, set up an edge cloud or deploy a production-grade cloud across hundreds of physical servers in a data centre. You will use <a href="https://microstack.run/" class="p-link--external">MicroStack</a> or <a href="https://jaas.ai/openstack" class="p-link--external">Charmed OpenStack</a> depending on the requirements.</p>
-      <p>If you run into issues, or if you want support, training or architecture design consulting, please contact Canonical &mdash; we help the world's largest OpenStack users keep their clouds running smoothly.</p>
+      <p>Try OpenStack on your workstation, set up a micro cloud or deploy a production-grade OpenStack cluster across hundreds of physical machines. You will use <a href="https://microstack.run/">MicroStack</a> or <a href="/openstack">OpenStack Charms</a> depending on the requirements.</p>
+      <p>If you run into any issues, or if you want OpenStack consulting, support or fully managed service, speak to an expert.</p>
       <p>
-        <a class="p-button--positive js-invoke-modal" href="/openstack/contact-us">
+        <a class="p-button--positive js-invoke-modal" href="/openstack/contact-us?product=openstack">
           Contact Canonical
         </a>
       </p>
       <p>
         <a href="/engage/charmed-openstack-adoption-whitepaper">
-          Read the whitepaper - "A guide to a successful OpenStack adoption and&nbsp;deployment"&nbsp;&rsaquo;
+          Read the whitepaper - "OpenStack deployment guide"&nbsp;&rsaquo;
         </a>
       </p>
     </div>
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/2b03a6b4-Install+Openstack.svg",
@@ -39,1184 +38,162 @@
 </section>
 
 <section class="p-strip--light is-bordered">
-  <div class="row">
-    <div class="col-8">
-      <h2>Single-node, multi-node or data centre cluster?</h2>
-      <p>These instructions cover three scenarios: single-node deployment; ideal for testing and development, multi-node deployment; suitable for the edge and IoT, and data centre cluster deployment; designed for large and complex architectures.</p>
+  <div class="u-fixed-width">
+    <h2>Single-node, multi-node or large-scale cluster?</h2>
+    <p><strong>Choose the OpenStack installation option that suits you best:</strong></p>
+    <div class="p-tabs">
+      <div class="p-tabs__list js-tabbed-content" role="tablist" aria-label="openstack-deployment">
+        <div class="p-tabs__item">
+          <button style="background-color: transparent;" class="p-tabs__link" role="tab" aria-selected="true" aria-controls="single-node-deployment" id="single-node-deployment-tab">Single&dash;node deployment</button>
+        </div>
+        <div class="p-tabs__item">
+          <button style="background-color: transparent;" class="p-tabs__link" role="tab" aria-selected="false" aria-controls="multi-node-deployment" id="multi-node-deployment-tab" tabindex="-1">Multi&dash;node deployment</button>
+        </div>
+        <div class="p-tabs__item">
+          <button style="background-color: transparent;" class="p-tabs__link" role="tab" aria-selected="false" aria-controls="large-scale-deployment" id="large-scale-deployment-tab" tabindex="-1">Large-scale deployment</button>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row u-equal-height">
-    <div class="col-4 p-card">
-      <h3>Single&dash;node deployment</h3>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Uses MicroStack &ndash; snap&dash;based installation</li>
-        <li class="p-list__item is-ticked">Single machine needed</li>
-        <li class="p-list__item is-ticked">16GB RAM or more</li>
-        <li class="p-list__item is-ticked">Multi-core processor</li>
-        <li class="p-list__item is-ticked">50GB of free disk space</li>
-        <li class="p-list__item is-ticked">Ubuntu 18.04 LTS or later</li>
-        <li class="p-list__item is-ticked">Includes all key OpenStack components</li>
-        <li class="p-list__item is-ticked">Fully compatible with the upstream</li>
-        <li class="p-list__item is-ticked">Supports development iteration</li>
-      </ul>
-      <p>This is the recommended approach if you want to try OpenStack on your workstation or use it for development purposes. You will be able to perform all basic operations (e.g. upload images, create networks, launch instances, etc.) on a fully functional OpenStack. It takes just a few minutes to install it.</p>
-      <p><a href="#single-node-deployment">Deploy OpenStack on a single node&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 p-card">
-      <h3>Multi&dash;node deployment</h3>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Uses MicroStack &ndash; snap&dash;based
-          installation</li>
-          <li class="p-list__item is-ticked">At least two machines needed</li>
-          <li class="p-list__item is-ticked">16GB RAM or more each</li>
-          <li class="p-list__item is-ticked">Multi-core processor each</li>
-          <li class="p-list__item is-ticked">50GB of free disk space each</li>
-          <li class="p-list__item is-ticked">Ubuntu 18.04 LTS or later</li>
-          <li class="p-list__item is-ticked">Includes all key OpenStack components</li>
-          <li class="p-list__item is-ticked">Fully compatible with the upstream</li>
-          <li class="p-list__item is-ticked">Supports development iteration</li>
-        </ul>
-        <p>If you are planning to deploy an edge cloud or looking for a solution for the IoT, this approach is the way to go. Similar to the single-node deployment instructions, this method is based on MicroStack which provides access to OpenStack base services and allows basic operations.</p>
-        <p><a href="#multi-node-deployment">Deploy OpenStack on multiple nodes&nbsp;&rsaquo;</a></p>
+  <div class="u-fixed-width">
+    <div tabindex="0" role="tabpanel" id="single-node-deployment" aria-labelledby="single-node-deployment">
+      <div class="row">
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">One physical machine needed</li>
+            <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
+            <li class="p-list__item is-ticked">Core services included</li>
+            <li class="p-list__item is-ticked">All services on a single node</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Opinionated OpenStack</li>
+            <li class="p-list__item is-ticked">Straightforward installation</li>
+            <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
+          </ul>
+        </div>
       </div>
-      <div class="col-4 p-card">
-        <h3>Data centre cluster deployment</h3>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Based on <a href="https://docs.openstack.org/charm-guide/latest/" class="p-link--external">OpenStack Charms</a></li>
-          <li class="p-list__item is-ticked">Based on bare-metal machines</li>
-          <li class="p-list__item is-ticked">At least 6 servers required, each with 8GB RAM or more, IPMI BMCs and dual NICs</li>
-          <li class="p-list__item is-ticked">Network switch and Internet gateway needed</li>
-          <li class="p-list__item is-ticked">HA architectures supported</li>
-          <li class="p-list__item is-ticked">Scalable up to hundreds of nodes</li>
-        </ul>
-        <p>This is a starting point for your production cloud designed to run in a data centre. You will step through the deployment of OpenStack services across bare&dash;metal machines in the cluster. For reference architectures, hardware recommendations, specialised telco, compliance, regulatory or HPS requirements, consulting services, support and operations insights <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a>.</p>
-        <p><a href="#cluster-deployment">Deploy OpenStack on cluster&nbsp;&rsaquo;</a></p>
+    </div>
+    <div tabindex="0" role="tabpanel" id="multi-node-deployment" aria-labelledby="multi-node-deployment" hidden="true">
+      <div class="row">
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">At least two physical machines needed</li>
+            <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
+            <li class="p-list__item is-ticked">Core services included</li>
+            <li class="p-list__item is-ticked">One control node, many compute/storage nodes</li>
+          </ul>
+        </div>
+        <div class="col-6">
+          <ul class="p-list">
+            <li class="p-list__item is-ticked">Opinionated OpenStack</li>
+            <li class="p-list__item is-ticked">Straightforward installation</li>
+            <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      <div tabindex="0" role="tabpanel" id="large-scale-deployment" aria-labelledby="large-scale-deployment" hidden="true">
+        <div class="row">
+          <div class="col-6">
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">At least six physical machines needed</li>
+              <li class="p-list__item is-ticked">Uses <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a></li>
+              <li class="p-list__item is-ticked">Core and additional services included</li>
+              <li class="p-list__item is-ticked">Architectural freedom, full HA option</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Composable OpenStack</li>
+              <li class="p-list__item is-ticked">Fully automated installation and day-2 operations</li>
+              <li class="p-list__item is-ticked">Enterprise private cloud</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
 <section class="p-strip is-bordered" id="single-node-deployment">
-  <div class="row">
-    <div class="col-8">
-      <h2>Single-node OpenStack deployment</h2>
+  <div class="u-fixed-width">
+    <h2>Single-node OpenStack deployment</h2>
+    <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack">MicroStack</a> &dash; OpenStack in a snap, MicroStack is a pure upstream OpenStack distribution designed for small scale and edge deployments, that can be installed and maintained with a minimal effort.</p>
+    <div class="p-notification is-inline">
+      <div class="p-notification__content">
+        <span class="p-notification__title">NOTE:</span>
+        <p class="p-notification__message">MicroStack is in a beta state. We encourage you to test it, give us your <a href="https://bugs.launchpad.net/microstack">feedback</a> and <a href="https://discourse.juju.is/search?q=microstack">ask questions</a>.</p>
+      </div>
     </div>
+      
+      {{single_node | safe}}
+
+    <p>To learn more about MicroStack, visit <a href="https://microstack.run">https://microstack.run</a>.</p>
   </div>
-  <div class="row">
-    <div class="col-8">
-      <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a>, an upstream single-node OpenStack deployment which can run directly on your workstation. MicroStack is OpenStack in a <a href="https://snapcraft.io/" class="p-link--external">snap</a> which means that all services and supporting libraries are together in a single package that can be easily installed, upgraded or removed. MicroStack includes all key OpenStack components: Keystone, Nova, Neutron, Glance, and is evolving extremely fast. You can use it for development, prototyping and testing, but it is also perfectly suitable for the network edge, IoT and appliances.</p>
-      <div class="p-notification">
-        <p class="p-notification__response">
-          <span class="p-notification__status">NOTE:</span> MicroStack is in a beta state. We encourage you to test it, give us your <a class="p-link--external" href="https://bugs.launchpad.net/microstack">feedback</a> and <a class="p-link--external" href="https://discourse.juju.is/search?q=microstack">ask questions</a>.
-        </p>
+</section>
+
+<section class="p-strip is-bordered" id="multi-node-deployment" hidden="true">
+  <div class="u-fixed-width">
+    <h2>Multi-node OpenStack deployment</h2>
+    <p>These instructions use <a href="https://snapcraft.io/microstack">MicroStack</a> &dash; in a snap. MicroStack is a pure upstream OpenStack distribution, designed for small scale and edge deployments, that can be installed and maintained with a minimal effort.</p>
+    <div class="p-notification is-inline">
+      <div class="p-notification__content">
+        <span class="p-notification__title">NOTE:</span>
+        <p class="p-notification__message">MicroStack is in a beta state. We encourage you to test it, give us your <a href="https://bugs.launchpad.net/microstack">feedback</a> and <a href="https://discourse.juju.is/search?q=microstack">ask questions</a>.</p>
       </div>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-8">
-    <h3>Installation instructions</h3>
-    <ol class="p-stepped-list">
-      <li class="p-stepped-list__item">
-        <h4 class="p-stepped-list__title">Minimum requirements</h4>
-        <div class="p-stepped-list__content">
-          <ul class="p-list">
-            <li class="p-list__item">Single machine with 16GB RAM and a multi-core processor, running Ubuntu 18.04 LTS or later and at least 50GB of free disk space.</li>
-          </ul>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h4 class="p-stepped-list__title">Install MicroStack</h4>
-        <div class="p-stepped-list__content">
-          <p>You can install MicroStack right away by running the following command from the terminal:</p>
-
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --beta --devmode" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-
-          <p>Once installed, you should see the following message on the terminal:</p>
-
-          <pre><code>microstack (beta) ussuri from Canonical✓ installed</code></pre>
-
-          <p>The version displayed (here, Ussuri) matches the most recent stable OpenStack release available with MicroStack.</p>
-
-          <div class="p-notification">
-            <p class="p-notification__response">
-              <span class="p-notification__status">NOTE:</span> MicroStack installed with the <code>--devmode</code> flag will not receive updates.
-            </p>
-          </div>
-
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h4 class="p-stepped-list__title">Initialise MicroStack</h4>
-        <div class="p-stepped-list__content">
-          <p>Before using your OpenStack installation, it has to be initialised, so that networks and databases get configured. In order to do so, run:</p>
-
-<pre><code>$ sudo microstack init --auto --control
-...
-2019-12-16 12:38:33,223 - microstack_init - INFO - Complete. Marked microstack as initialized!
-</code></pre>
-
-          <p>Your local OpenStack cloud is now running and is ready for use!</p>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h4 class="p-stepped-list__title">Interact with MicroStack</h4>
-        <div class="p-stepped-list__content">
-          <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
-          <p><strong>Web GUI:</strong></p>
-          <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the 'admin' user. The password is obtained in this way:</p>
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap get microstack config.credentials.keystone-password" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>Type the credentials and press the 'Sign In' button:</p>
-
-          <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png",
-              alt="OpenStack login page",
-              height="253",
-              width="456",
-              hi_def=True,
-              attrs={"class": "p-image--bordered"},
-              loading="lazy",
-              ) | safe
-            }}
-          </a>
-          <p>You should now see the OpenStack dashboard:</p>
-
-          <a href="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png",
-              alt="OpenStack dashboard",
-              height="253",
-              width="456",
-              hi_def=True,
-              attrs={"class": "p-image--bordered"},
-              loading="lazy",
-              ) | safe
-            }}
-          </a>
-
-          <p>You can start playing with your local private cloud (i.e. create additional users, launch instances, etc.).</p>
-          <p><strong>CLI:</strong></p>
-          <p>You can also interact with OpenStack via the CLI by using the <code>microstack.openstack</code> command. The MicroStack CLI syntax is identical to the client delivered by the <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">python-openstackclient</a> package.</p>
-          <p>For example, to list available OpenStack endpoints run:</p>
-
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.openstack catalog list" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-
-          <p>It should return the following list:</p>
-
-<pre><code>+-----------+-----------+-----------------------------------------+
-| Name      | Type      | Endpoints                               |
-+-----------+-----------+-----------------------------------------+
-| keystone  |  identity | &lt;none&gt;                                  |
-|           |           | public: http://10.20.20.1:5000/v3/      |
-|           |           | &lt;none&gt;                                  |
-|           |           | internal: http://10.20.20.1:5000/v3/    |
-|           |           | &lt;none&gt;                                  |
-|           |           | admin: http://10.20.20.1:5000/v3/       |
-|           |           |                                         |
-| glance    | image     | microstack                              |
-|           |           |   admin: http://10.20.20.1:9292         |
-|           |           | microstack                              |
-|           |           |   public: http://10.20.20.1:9292        |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:9292      |
-|           |           |                                         |
-| neutron   | network   | microstack                              |
-|           |           |   public: http://10.20.20.1:9696        |
-|           |           | microstack                              |
-|           |           |   admin: http://10.20.20.1:9696         |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:9696      |
-|           |           |                                         |
-| placement | placement | microstack                              |
-|           |           |   public: http://10.20.20.1:8778        |
-|           |           | microstack                              |
-|           |           |   admin: http://10.20.20.1:8778         |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:8778      |
-|           |           |                                         |
-| nova      | compute   | microstack                              |
-|           |           |   public: http://10.20.20.1:8774/v2.1   |
-|           |           | microstack                              |
-|           |           |   admin: http://10.20.20.1:8774/v2.1    |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:8774/v2.1 |
-|           |           |                                         |
-+-----------+-----------+-----------------------------------------+</code></pre>
-
-          <p>Running <code>microstack.openstack --help</code> will get you  a list of available subcommands and their required syntax.</p>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h4 class="p-stepped-list__title">Launch an instance</h4>
-        <div class="p-stepped-list__content">
-          <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
-
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="microstack launch cirros --name test" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-
-          <p>The resulting output provides the information you need to SSH to the instance:</p>
-
-<pre><code>Access it with `ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123`</code></pre>
-
-          <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the 'ssh' command from the output:</p>
-
-          <div class="p-code-copyable">
-            <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-
-          <p>You are now connected to your first instance on your OpenStack cluster. You can start playing with it by executing various commands, for example:</p>
-
-<pre><code>uptime
-14:51:42 up 4 min,  1 users,  load average: 0.00, 0.00, 0.00</code></pre>
-
-          <p>In order to disconnect from the instance type <code>exit</code>.</p>
-
-          <p>You can also view the instance from the web GUI. Go to <a href="http://10.20.20.1/">http://10.20.20.1/</a> and click on the "Instances" tab on the left:</p>
-
-          <a href="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/220820c5-openstack_instances.png",
-              alt="OpenStack instances page",
-              height="253",
-              width="456",
-              hi_def=True,
-              attrs={"class": "p-image--bordered"},
-              loading="lazy",
-              ) | safe
-            }}
-          </a>
-
-          <p>In order to perform a more advanced launch (e.g. specify the flavor, use a different image, etc.) refer to the python-openstackclient <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">documentation</a>. The syntax of the <code>microstack.openstack</code> command is the same as the syntax of the upstream client (for example <code>microstack.openstack server list</code>).</p>
-        </div>
-      </li>
-    </ol>
-    </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <p>To learn more about MicroStack, visit <a href="https://microstack.run" class="p-link--external">https://microstack.run</a></p>
-      </div>
-    </div>
-  </section>
-
-<section class="p-strip--light is-bordered" id="multi-node-deployment">
-  <div class="row">
-    <div class="col-8">
-      <h2>Multi-node OpenStack deployment</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p>These instructions use <a href="https://snapcraft.io/microstack" class="p-link--external">MicroStack</a> too. However, in this case a clustering feature is used.</p>
-      <div class="p-notification">
-        <p class="p-notification__response">
-          <span class="p-notification__status">NOTE:</span> MicroStack is in a beta state. We encourage you to test it, give us your <a class="p-link--external" href="https://bugs.launchpad.net/microstack">feedback</a> and <a class="p-link--external" href="https://discourse.juju.is/search?q=microstack">ask questions</a>.
-        </p>
-      </div>
-    </div>
-  </div>
-
-      <div class="row">
-        <div class="col-8">
-          <h3>Installation instructions</h3>
-
-          <ol class="p-stepped-list">
-            <li class="p-stepped-list__item">
-              <h4 class="p-stepped-list__title">Minimum requirements</h4>
-              <div class="p-stepped-list__content">
-                <ul class="p-list">
-                  <li class="p-list__item">At least two machines, each with 16GB RAM, a multi-core processor and at least 50GB of free disk space, connected to a network, and running Ubuntu 18.04 LTS.</li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="p-stepped-list__item">
-              <h4 class="p-stepped-list__title">Install MicroStack</h4>
-              <div class="p-stepped-list__content">
-                <p>You can install MicroStack right away by running the following command from the terminal:</p>
-
-                <div class="p-code-copyable">
-                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap install microstack --beta --devmode" readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-
-                <p>Once installed, you should see the following message on the terminal:</p>
-
-                <pre><code>microstack (beta) ussuri from Canonical✓ installed</code></pre>
-
-                <p>The version displayed (here, Ussuri) matches the most recent stable OpenStack release available with MicroStack.</p>
-
-                <p>Install MicroStack on all machines which will be used for OpenStack clustering purposes.</p>
-
-                <div class="p-notification">
-                  <p class="p-notification__response">
-                    <span class="p-notification__status">NOTE:</span> MicroStack installed with the <code>--devmode</code> flag will not receive updates.
-                  </p>
-                </div>
-
-              </div>
-            </li>
-
-            <li class="p-stepped-list__item">
-              <h4 class="p-stepped-list__title">Initialise MicroStack on the control machine</h4>
-              <div class="p-stepped-list__content">
-                <p>Run the following command on the machine you want to act as a controller.</p>
-                <div class="p-code-copyable">
-                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack init --auto --control" readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-                <p>Your OpenStack control machine is now running and is ready for adding compute machines.</p>
-              </div>
-            </li>
-
-            <li class="p-stepped-list__item">
-              <h4 class="p-stepped-list__title">Generate a compute node connection string</h4>
-              <div class="p-stepped-list__content">
-                <p>Run the following command on the control node. It will generate an encoded string that will be needed when adding a compute node in the next step:</p>
-                <div class="p-code-copyable">
-                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack add-compute" readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-              </div>
-            </li>
-
-
-            <li class="p-stepped-list__item">
-              <h4 class="p-stepped-list__title">Initialise MicroStack on compute machines</h4>
-              <div class="p-stepped-list__content">
-                <p>Run the following command on all machines you want to act as compute nodes. Each will require a unique connection string from the control node:</p>
-                <div class="p-code-copyable">
-                  <input aria-label="code snippet" class="p-code-copyable__input" value="sudo microstack init --auto --compute --join &lt;connection-string&gt;" readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-              <p>Your OpenStack cloud is now running and is ready for use!</p>
-            </div>
-          </li>
-
-          <li class="p-stepped-list__item">
-            <h4 class="p-stepped-list__title">Interact with MicroStack</h4>
-            <div class="p-stepped-list__content">
-              <p>You can interact with your OpenStack either via the web GUI or the CLI.</p>
-              <p><strong>Web GUI:</strong></p>
-              <p>To interact with your OpenStack via the web GUI visit http://10.20.20.1/ and log in with the'admin' user. The password is obtained in this way:</p>
-              <div class="p-code-copyable">
-                <input aria-label="code snippet" class="p-code-copyable__input" value="sudo snap get microstack config.credentials.keystone-password" readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
-              <p>Type the credentials and press the 'Sign In' button:</p>
-
-              <a href="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/5581e129-openstack_login_page.png",
-                  alt="OpenStack login page",
-                  height="253",
-                  width="456",
-                  hi_def=True,
-                  attrs={"class": "p-image--bordered"},
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-              <p>You should now see the OpenStack dashboard:</p>
-
-              <a href="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/27744887-openstack_landing_page.png",
-                  alt="OpenStack dashboard",
-                  height="253",
-                  width="456",
-                  hi_def=True,
-                  attrs={"class": "p-image--bordered"},
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-
-              <p>You can start playing with your local private cloud (i.e. create additional users, launch instances, etc.).</p>
-              <p><strong>CLI:</strong></p>
-              <p>You can also interact with OpenStack via the CLI by using the <code>microstack.openstack</code> command. The MicroStack CLI syntax is identical to the client delivered by the <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">python-openstackclient</a> package.</p>
-              <p>For example, to list available OpenStack endpoints run:</p>
-
-              <div class="p-code-copyable">
-                <input aria-label="code snippet" class="p-code-copyable__input" value="microstack.openstack catalog list" readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
-
-              <p>It should return the following list:</p>
-
-<pre><code>+-----------+-----------+-----------------------------------------+
-| Name      | Type      | Endpoints                               |
-+-----------+-----------+-----------------------------------------+
-| keystone  |  identity | microstack                              |
-|           |           | public: http://10.20.20.1:5000/v3/      |
-|           |           | microstack                              |
-|           |           | internal: http://10.20.20.1:5000/v3/    |
-|           |           | microstack                              |
-|           |           | admin: http://10.20.20.1:5000/v3/       |
-|           |           |                                         |
-| glance    | image     | microstack                              |
-|           |           |   admin: http://10.20.20.1:9292         |
-|           |           | microstack                              |
-|           |           |   public: http://10.20.20.1:9292        |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:9292      |
-|           |           |                                         |
-| neutron   | network   | microstack                              |
-|           |           |   public: http://10.20.20.1:9696        |
-|           |           | microstack                              |
-|           |           |   admin: http://10.20.20.1:9696         |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:9696      |
-|           |           |                                         |
-| nova      | compute   | microstack                              |
-|           |           |   public: http://10.20.20.1:8774/v2.1   |
-|           |           | microstack                              |
-|           |           |   admin: http://10.20.20.1:8774/v2.1    |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:8774/v2.1 |
-|           |           |                                         |
-| placement | placement | microstack                              |
-|           |           |   public: http://10.20.20.1:8778        |
-|           |           | microstack                              |
-|           |           |   admin: http://10.20.20.1:8778         |
-|           |           | microstack                              |
-|           |           |   internal: http://10.20.20.1:8778      |
-|           |           |                                         |
-+-----------+-----------+-----------------------------------------+</code></pre>
-
-              <p>Running <code>microstack.openstack --help</code> will get you  a list of available subcommands and their required syntax.</p>
-            </div>
-          </li>
-
-          <li class="p-stepped-list__item">
-            <h4 class="p-stepped-list__title">Launch an instance</h4>
-            <div class="p-stepped-list__content">
-              <p>The quickest way to launch your first OpenStack instance (or a VM) is to run the following command:</p>
-
-<pre><code>$ microstack launch cirros --name test --availability-zone
-nova:&lt;compute nodehostname&gt;</code></pre>
-
-              <p>For example:</p>
-
-<pre><code>$ microstack launch cirros --name test --availability-zone
-nova:ip-172-31-24-59</code></pre>
-
-              <p>The resulting output provides the information you need to SSH to the instance:</p>
-
-<pre><code>Access it with `ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123`</code></pre>
-
-              <p>Note that the IP address of the instance may be different in your environment. In order to connect to the instance run the 'ssh' command from the output:</p>
-
-              <div class="p-code-copyable">
-                <input aria-label="code snippet" class="p-code-copyable__input" value="ssh -i /home/ubuntu/snap/microstack/common/.ssh/id_microstack cirros@10.20.20.123" readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
-
-              <p>You are now connected to your first instance on your OpenStack cluster. You can start playing with it by executing various commands, for example:</p>
-
-<pre><code>uptime
-15:17:19 up 5 min, 1 users, load average: 0.00, 0.00, 0.00</code></pre>
-
-              <p>In order to disconnect from the instance type <code>exit</code>.</p>
-
-              <p>In order to perform a more advanced launch (e.g. specify the flavor, use a different image, etc.) refer to the python-openstackclient <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">documentation</a>. The syntax of the <code>microstack.openstack</code> command is the same as the syntax of the upstream client (for example <code>microstack.openstack server list</code>).</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <p>To learn more about MicroStack, visit <a href="https://microstack.run" class="p-link--external">https://microstack.run</a></p>
-      </div>
-    </div>
-  </section>
-
-<section class="p-strip is-bordered" id="cluster-deployment">
-  <div class="row">
-    <div class="col-8">
-      <h2>Data centre cluster deployment</h2>
-      <p class="u-sv3">This is the simplest Charmed OpenStack deployment process across a small cluster of bare-metal machines. It uses OpenStack charms which provide the operator functionality for OpenStack services, abstracting the entire operations complexity in a form of primitives. OpenStack charms not only simplify the entire deployment process, but also make post-deployment easier, supporting even very complex operations, such as OpenStack upgrades. Use the following instructions for your first data center cluster deployment and <a href="/openstack/contact-us" class="js-invoke-modal">contact us</a> to continue the journey.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-8">
-      <h3>Installation instructions</h3>
-      <ol class="p-stepped-list">
-        <li class="p-stepped-list__item">
-          <h4 class="p-stepped-list__title">Minimum requirements</h4>
-          <div class="p-stepped-list__content">
-            <p class="u-no-margin--bottom">6 x Intel, POWER or ARM servers each with:</p>
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">IPMI BMC</li>
-              <li class="p-list__item is-ticked">at least 8GB RAM</li>
-              <li class="p-list__item is-ticked">at least 2 Ethernet NICs</li>
-              <li class="p-list__item is-ticked">at least 2 disks</li>
-            </ul>
-            <p>All machines have to be connected with an Ethernet switch. There should be two isolated /24 subnets configured and each machine should be connected to both. We will call them provisioning and cloud, and use 172.16.7.0/24, and 172.16.8.0/24 subnets respectively. There must not be a DHCP server on the provisioning subnet. There must be access to the Internet from both subnets. We will use 172.16.7.1 and 172.16.8.1 IP addresses as gateways.</p>
-            <p><span class="p-muted-heading">Note:</span> HA clouds require 12 nodes for service isolation.</p>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h4 class="p-stepped-list__title">Bootstrap and configure the first node</h4>
-          <div class="p-stepped-list__content">
-            <p>The first node, referred to as the MAAS node in the following part of the tutorial, has to be bootstrapped and configured manually.</p>
-            <p>Download Ubuntu Server LTS from <a href="/download/server">here</a> and install it on the first node. We will call this node a MAAS node. Make sure that both NICs have IP addresses configured. We will use 172.16.7.2 and 172.16.8.2 respectively.</p>
-            <p>Then install prerequisites:</p>
-            <div class="p-code-copyable">
-              <input aria-label="code snippet" class="p-code-copyable__input"
-              value="$ sudo apt -y install snapd"
-              readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>And update the <code>PATH</code> environment variable:</p>
-
-<pre><code>$ export PATH=$PATH:/snap/bin
-$ echo "export PATH=$PATH:/snap/bin" >> .bashrc
-</code></pre>
-
-            <p>Now you can move to MAAS installation and configuration.</p>
-          </div>
-        </li>
-
-        <li class="p-stepped-list__item">
-          <h4 class="p-stepped-list__title">Install and configure MAAS</h4>
-          <div class="p-stepped-list__content">
-            <p>On the MAAS node, install MAAS by executing the following command:</p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="sudo apt -y install maas" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>This command takes a while. Once finished, initialise MAAS by running:</p>
-            <div class="p-code-copyable">
-              <input class="p-code-copyable__input" value="sudo maas init --mode all" readonly="readonly">
-              <button class="p-code-copyable__action">Copy to clipboard</button>
-            </div>
-            <p>Answer the questions accordingly to create an admin user account, set up its password. You can optionally import public SSH keys from GitHub or Launchpad. Those keys will be used to provide an access to provisioned instances, so ifyou store your public SSH keys in GitHub or Launchpad, it is a good idea to import them now:</p>
-
-<pre><code>Create first admin account:
-  Username: <strong>admin</strong>
-  Password:
-  Again:
-  Email: <strong>admin@example.com</strong>
-  Import SSH keys [] (lp:user-id or gh:user-id): <strong>lp:tkurek</strong>
-</code></pre>
-
-            <p>At this point you can access MAAS at <code>http://&lt;MAAS_IP&gt;:5240/MAAS</code>. Fill in admin user credentials and press the "Login" button:</p>
-          <p>
-            <a href="https://assets.ubuntu.com/v1/3d44ec9e-maas+login.png">
-              {{
-                image(
-                url="https://assets.ubuntu.com/v1/3d44ec9e-maas+login.png",
-                alt="",
-                height="241",
-                width="424",
-                hi_def=True,
-                loading="lazy",
-                ) | safe
-              }}
-            </a>
-          </p>
-          <p>Configure the "DNS forwarder" field to an IP address of a DNS server of your choice:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/643004c1-maas+dns+config.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/643004c1-maas+dns+config.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>Then scroll down and press the "Continue" button:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/93b154d2-maas+continue+click.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/93b154d2-maas+continue+click.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>One more time you have an opportunity to import public SSH keys from GitHub or Launchpad. Once you are done, press the "Go to dashboard" button:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/f6d2e353-maas+click+go+to+dashboard.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/f6d2e353-maas+click+go+to+dashboard.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>You should see the MAAS Machines page. Do not worry about the warning message for now:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/cafc7784-maas+warning+message.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/cafc7784-maas+warning+message.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>Unless you have imported your public SSH keys from GitHub/Launchpad in one of   the previous steps, navigate the "admin" tab in the top right corner and go to the "SSH keys" section. You can use the "Source" drop-down list to either upload or import the keys:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/a5f53d7b-maas+ssh+keys.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/a5f53d7b-maas+ssh+keys.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>For example, to upload the key, paste its value to the "Public key" field and press the "Import" button:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/ae8bcd36-maas+import+ssh+key.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/ae8bcd36-maas+import+ssh+key.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>Then navigate to the 'Subnets" tab in the top menu and press on the "untagged"  VLAN next to the "172.16.7.0/24" subnet (the <code>provisioning</code> subnet):</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/cb64996c-maas+subnets.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/cb64996c-maas+subnets.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>From the "Take action" drop-down menu on the right select "Provide DHCP":</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/baa98c38-maas+default+vlan.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/baa98c38-maas+default+vlan.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>Fill in the "Dynamic range start IP" and "Dynamic range end IP" fields and press the "Provide DHCP" button:</p>
-            <p>
-              <a href="https://assets.ubuntu.com/v1/d442bf3d-maas+dynamic+range+ip.png">
-                {{
-                  image(
-                  url="https://assets.ubuntu.com/v1/d442bf3d-maas+dynamic+range+ip.png",
-                  alt="",
-                  height="241",
-                  width="424",
-                  hi_def=True,
-                  loading="lazy",
-                  ) | safe
-                }}
-              </a>
-            </p>
-            <p>At this point, your MAAS instance is ready to provision other machines.</p>
-          </div>
-        </li>
-
-          <li class="p-stepped-list__item">
-            <h4 class="p-stepped-list__title">Bootstrap and configure other nodes</h4>
-            <div class="p-stepped-list__content">
-              <p>All other nodes should be configured to PXE boot from the provisioning subnet by default.</p>
-              <p>Once configured, power them on and wait until they show up in the "Machines" tab in MAAS:</p>
-              <p>
-                <a href="https://assets.ubuntu.com/v1/6b4c5476-maas+machines+1.png">
-                  {{
-                    image(
-                    url="https://assets.ubuntu.com/v1/6b4c5476-maas+machines+1.png",
-                    alt="",
-                    height="241",
-                    width="424",
-                    hi_def=True,
-                    loading="lazy",
-                    ) | safe
-                  }}
-                </a>
-              </p>
-              <p>Then click on each of those machines and for each of them perform the following actions:</p>
-              <ul class="p-list">
-                <li class="p-list__item is-ticked">
-                  Change their name to something more meaningful. Click on the old name, type the new one and press the "Save" button:
-                </li>
-                  <li class="p-list__item">
-                    <a href="https://assets.ubuntu.com/v1/ef687be0-maas+click+save.png">
-                      {{
-                        image(
-                        url="https://assets.ubuntu.com/v1/ef687be0-maas+click+save.png",
-                        alt="",
-                        height="241",
-                        width="424",
-                        hi_def=True,
-                        loading="lazy",
-                        ) | safe
-                      }}
-                    </a>
-                  </li>
-                  <li class="p-list__item is-ticked">
-                    Add power configuration if missing. Navigate to the "Configuration" tab in the machine menu and scroll down to the "Power configuration section". Select power type (IPMI in this case) and fill in other required fields. Once done, press the "Save changes" button:
-                  </li>
-                  <li class="p-list__item">
-                    <a href="https://assets.ubuntu.com/v1/b3cbda9d-maas+power+config+error.png">
-                      {{
-                        image(
-                        url="https://assets.ubuntu.com/v1/b3cbda9d-maas+power+config+error.png",
-                        alt="",
-                        height="241",
-                        width="424",
-                        hi_def=True,
-                        loading="lazy",
-                        ) | safe
-                      }}
-                    </a>
-                  </li>
-                </ul>
-                <p>Once all machines are configured, navigate to the "Machines" tab in the main menu, check all machines and select "Commission" from the "Take action" menu on the right:</p>
-                <p>
-                  <a href="https://assets.ubuntu.com/v1/6284c987-maas+take+action.png">
-                    {{
-                      image(
-                      url="https://assets.ubuntu.com/v1/6284c987-maas+take+action.png",
-                      alt="",
-                      height="241",
-                      width="424",
-                      hi_def=True,
-                      loading="lazy",
-                      ) | safe
-                    }}
-                  </a>
-                </p>
-                <p>Press "Commission 5 machines" button:</p>
-                <p>
-                  <a href="https://assets.ubuntu.com/v1/82090254-maas+commision+machines.png">
-                    {{
-                      image(
-                      url="https://assets.ubuntu.com/v1/82090254-maas+commision+machines.png",
-                      alt="",
-                      height="241",
-                      width="424",
-                      hi_def=True,
-                      loading="lazy",
-                      ) | safe
-                    }}
-                  </a>
-                </p>
-                <p>The nodes are going through the commissioning process. It may take a while. Once finished, you should see the following output:</p>
-                <p>
-                  <a href="https://assets.ubuntu.com/v1/848adbb4-maas+machines+2.png">
-                    {{
-                      image(
-                      url="https://assets.ubuntu.com/v1/848adbb4-maas+machines+2.png",
-                      alt="",
-                      height="241",
-                      width="424",
-                      hi_def=True,
-                      loading="lazy",
-                      ) | safe
-                    }}
-                  </a>
-                </p>
-                <p>Click on each of the machines again and for each of them go to the "Interfaces" tab in the machine menu. Make sure that both interfaces are configured as per the screenshot below. Adjust them if needed by pressing the lines under "Actions" and selecting "Edit Physical":</p>
-                <p>
-                  <a href="https://assets.ubuntu.com/v1/541cc462-maas+interfaces.png">
-                    {{
-                      image(
-                      url="https://assets.ubuntu.com/v1/541cc462-maas+interfaces.png",
-                      alt="",
-                      height="241",
-                      width="424",
-                      hi_def=True,
-                      loading="lazy",
-                      ) | safe
-                    }}
-                  </a>
-                </p>
-                <p>At this point the remaining machines are ready for being provisioned.</p>
-              </div>
-            </li>
-
-            <li class="p-stepped-list__item">
-              <h4 class="p-stepped-list__title">Bootstrap Juju controller</h4>
-              <div class="p-stepped-list__content">
-                <p>On the MAAS node, install Juju client by executing the following command:</p>
-                <div class="p-code-copyable">
-                  <input class="p-code-copyable__input" value="sudo snap install juju --classic"
-                  readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-                <p>Add MAAS cloud by running:</p>
-                <div class="p-code-copyable">
-                  <input class="p-code-copyable__input" value="juju add-cloud --local"
-                  readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-                <p>Answer the questions accordingly:</p>
-
-<pre><code>Select cloud type: <strong>maas</strong>
-  Enter a name for your maas cloud: <strong>maas</strong>
-  Enter the API endpoint url: <strong>http://172.16.7.2:5240/MAAS</strong>
-  Cloud "maas" successfully added to your local client.</code></pre>
-
-                <p>Display the MAAS API key. You will need it in the next step.</p>
-                <div class="p-code-copyable">
-                  <input class="p-code-copyable__input" value="sudo maas-region apikey --username=admin"
-                  readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-                <p>Add credentials for the MAAS cloud:</p>
-                <div class="p-code-copyable">
-                  <input class="p-code-copyable__input" value="juju add-credential maas"
-                  readonly="readonly">
-                  <button class="p-code-copyable__action">Copy to clipboard</button>
-                </div>
-                <p>And answer the questions accordingly. Use the MAAS API key in the maas-oauth line:</p>
-
-<pre><code>Do you ONLY want to add a credential to this client? (Y/n): <strong>Y</strong>
-  Enter credential name: <strong>maas</strong>
-  Regions
-  default
-  Select region [any region, credential is not region specific]: <strong>default</strong>
-  Using auth-type "oauth1".
-  Enter maas-oauth:
-  Credential "maas" added locally for cloud "maas".
-</code></pre>
-
-              <p>At this point you can bootstrap the Juju controller on the MAAS cloud:</p>
-              <div class="p-code-copyable">
-                <input class="p-code-copyable__input" value="juju bootstrap maas maas-controller"
-                readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
-              <p>This command takes a while. Once finished, add a model for your OpenStack installation:</p>
-              <div class="p-code-copyable">
-                <input class="p-code-copyable__input" value="juju add-model openstack"
-                readonly="readonly">
-                <button class="p-code-copyable__action">Copy to clipboard</button>
-              </div>
-              <p>At this point, Juju is ready to deploy OpenStack on the remaining four machines.</p>
-              </div>
-              </li>
-
-              <li class="p-stepped-list__item">
-                <h4 class="p-stepped-list__title">Deploy OpenStack</h4>
-                <div class="p-stepped-list__content">
-                  <p>In this example, we are using the <a href="https://jaas.ai/openstack-base/bundle/65" class="p-link--external">OpenStack Base</a> bundle which provides basic OpenStack services and no HA. If you need more advanced architecture, we encourage you to <a href="/openstack/contact-us" class="js-invoke-modal">contact Canonical</a>.</p>
-                  <p>Run the following command to deploy OpenStack Base bundle:</p>
-                  <div class="p-code-copyable">
-                    <input class="p-code-copyable__input" value="juju deploy cs:bundle/openstack-base"
-                    readonly="readonly">
-                    <button class="p-code-copyable__action">Copy to clipboard</button>
-                  </div>
-                  <p>This command takes a while. Once finished you should see the following output on the bottom:</p>
-                  <pre><code>Deploy of bundle completed.</code></pre>
-                  <p>But it does not mean that your OpenStack deployment is done. In fact, it hasjust started. You have to monitor the status by running juju status command.The deployment is completed once all applications, units and machines turn to the "active" state as depicted on the listing below:</p>
-
-<pre><code>$ juju status
-  Model      Controller       Cloud/Region  Version  SLA          Timestamp
-  openstack  maas-controller  maas/default  2.7.0    unsupported  12:22:38-05:00
-
-  App                    Version  Status  Scale  Charm                  Store       Rev  OS      Notes
-  ceph-mon               14.2.2   active      3  ceph-mon               jujucharms   44  ubuntu
-  ceph-osd               14.2.2   active      3  ceph-osd               jujucharms  294  ubuntu
-  ceph-radosgw           14.2.2   active      1  ceph-radosgw           jujucharms  283  ubuntu
-  cinder                 15.0.0   active      1  cinder                 jujucharms  297  ubuntu
-  cinder-ceph            15.0.0   active      1  cinder-ceph            jujucharms  251  ubuntu
-  glance                 19.0.0   active      1  glance                 jujucharms  291  ubuntu
-  keystone               16.0.0   active      1  keystone               jujucharms  309  ubuntu
-  mysql                  5.7.20   active      1  percona-cluster        jujucharms  281  ubuntu
-  neutron-api            15.0.0   active      1  neutron-api            jujucharms  282  ubuntu
-  neutron-gateway        15.0.0   active      1  neutron-gateway        jujucharms  276  ubuntu
-  neutron-openvswitch    15.0.0   active      3  neutron-openvswitch    jujucharms  269  ubuntu
-  nova-cloud-controller  20.0.0   active      1  nova-cloud-controller  jujucharms  339  ubuntu
-  nova-compute           20.0.0   active      3  nova-compute           jujucharms  309  ubuntu
-  ntp                    3.2      active      4  ntp                    jujucharms   36  ubuntu
-  openstack-dashboard    16.0.0   active      1  openstack-dashboard    jujucharms  297  ubuntu
-  placement              2.0.0    active      1  placement              jujucharms    1  ubuntu
-  rabbitmq-server        3.6.10   active      1  rabbitmq-server        jujucharms   97  ubuntu
-
-  Unit                      Workload  Agent  Machine  Public address  Ports              Message
-  ceph-mon/0                active    idle   1/lxd/0  172.16.7.164                       Unit is ready and clustered
-  ceph-mon/1                active    idle   2/lxd/1  172.16.7.163                       Unit is ready and clustered
-  ceph-mon/2*               active    idle   3/lxd/0  172.16.7.165                       Unit is ready and clustered
-  ceph-osd/0*               active    idle   1        172.16.7.160                       Unit is ready (1 OSD)
-  ceph-osd/1                active    idle   2        172.16.7.161                       Unit is ready (1 OSD)
-  ceph-osd/2                active    idle   3        172.16.7.162                       Unit is ready (1 OSD)
-  ceph-radosgw/0*           active    idle   0/lxd/0  172.16.7.166    80/tcp             Unit is ready
-  cinder/0*                 active    idle   1/lxd/2  172.16.7.168    8776/tcp           Unit is ready
-  cinder-ceph/0*          active    idle            172.16.7.168                       Unit is ready
-  glance/0*                 active    idle   2/lxd/1  172.16.7.167    9292/tcp           Unit is ready
-  keystone/0*               active    idle   3/lxd/2  172.16.7.169    5000/tcp           Unit is ready
-  mysql/0*                  active    idle   0/lxd/2  172.16.7.170    3306/tcp           Unit is ready
-  neutron-api/0*            active    idle   1/lxd/2  172.16.7.171    9696/tcp           Unit is ready
-  neutron-gateway/0*        active    idle   0        172.16.7.159                       Unit is ready
-  ntp/0*                  active    idle            172.16.7.159    123/udp            chrony: Ready
-  nova-cloud-controller/0*  active    idle   2/lxd/2  172.16.7.172    8774/tcp,8775/tcp  Unit is ready
-  nova-compute/0*           active    idle   1        172.16.7.160                       Unit is ready
-  neutron-openvswitch/2   active    idle            172.16.7.160                       Unit is ready
-  ntp/3                   active    idle            172.16.7.160    123/udp            chrony: Ready
-  nova-compute/1            active    idle   2        172.16.7.161                       Unit is ready
-  neutron-openvswitch/1   active    idle            172.16.7.161                       Unit is ready
-  ntp/2                   active    idle            172.16.7.161    123/udp            chrony: Ready
-  nova-compute/2            active    idle   3        172.16.7.162                       Unit is ready
-  neutron-openvswitch/0*  active    idle            172.16.7.162                       Unit is ready
-  ntp/1                   active    idle            172.16.7.162    123/udp            chrony: Ready
-  openstack-dashboard/0*    active    idle   3/lxd/2  172.16.7.174    80/tcp,443/tcp     Unit is ready
-  placement/0*              active    idle   2/lxd/3  172.16.7.175    8778/tcp           Unit is ready
-  rabbitmq-server/0*        active    idle   0/lxd/2  172.16.7.176    5672/tcp           Unit is ready
-
-  Machine  State    DNS           Inst id              Series  AZ       Message
-  0        started  172.16.7.159  openstack1           bionic  default  Deployed
-  0/lxd/0  started  172.16.7.166  juju-592de2-0-lxd-3  bionic  default  Container started
-  0/lxd/1  started  172.16.7.170  juju-592de2-0-lxd-4  bionic  default  Container started
-  0/lxd/2  started  172.16.7.176  juju-592de2-0-lxd-5  bionic  default  Container started
-  1        started  172.16.7.160  openstack2           bionic  default  Deployed
-  1/lxd/0  started  172.16.7.164  juju-592de2-1-lxd-3  bionic  default  Container started
-  1/lxd/1  started  172.16.7.168  juju-592de2-1-lxd-4  bionic  default  Container started
-  1/lxd/2  started  172.16.7.171  juju-592de2-1-lxd-5  bionic  default  Container started
-  2        started  172.16.7.161  openstack3           bionic  default  Deployed
-  2/lxd/0  started  172.16.7.163  juju-592de2-2-lxd-4  bionic  default  Container started
-  2/lxd/1  started  172.16.7.167  juju-592de2-2-lxd-5  bionic  default  Container started
-  2/lxd/2  started  172.16.7.172  juju-592de2-2-lxd-6  bionic  default  Container started
-  2/lxd/3  started  172.16.7.175  juju-592de2-2-lxd-7  bionic  default  Container started
-  3        started  172.16.7.162  openstack4           bionic  default  Deployed
-  3/lxd/0  started  172.16.7.165  juju-592de2-3-lxd-3  bionic  default  Container started
-  3/lxd/1  started  172.16.7.169  juju-592de2-3-lxd-4  bionic  default  Container started
-  3/lxd/2  started  172.16.7.174  juju-592de2-3-lxd-5  bionic  default  Container started
-</code></pre>
-
-<p>This is what you should be able to see in the "Machines" tab in MAAS:</p>
-<p>
-  <a
-  href="https://assets.ubuntu.com/v1/cb5e2860-MAAS+machines.png">
-  {{
-    image(
-    url="https://assets.ubuntu.com/v1/cb5e2860-MAAS+machines.png",
-    alt="",
-    height="241",
-    width="424",
-    hi_def=True,
-    loading="lazy",
-    ) | safe
-  }}
-</a>
-</p>
-<p>At this point, your OpenStack installation is ready for being tested.</p>
-</div>
-</li>
-
-<li class="p-stepped-list__item">
-  <h4 class="p-stepped-list__title">Interact with OpenStack</h4>
-  <div class="p-stepped-list__content">
-    <p>Set the admin user's password for your OpenStack cluster by executing the following command:</p>
-    <div class="p-code-copyable">
-      <input class="p-code-copyable__input"
-      value="juju config keystone admin-password=<password>" readonly="readonly">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
-      </div>
-      <p>The Horizon service is available at the IP address displayed by running:</p>
-      <div class="p-code-copyable">
-        <input class="p-code-copyable__input"
-        value="juju status | grep openstack-dashboard | tail -n 1 | awk '{print $5}'" readonly="readonly">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
-      </div>
-      <p>Go to <code>http://&lt;Horizon IP&gt;:80/horizon</code> URL. You should see the OpenStack login screen. Type your credentials and press the "Sign In" button. Use "admin_domain" in the "Domain" field:</p>
+    
+    {{multi_node | safe}}
+
+  <p>To learn more about MicroStack, visit <a href="https://microstack.run">https://microstack.run</a>.</p>
+</section>
+
+<section class="p-strip is-bordered" id="large-scale-deployment" hidden="true">
+  <div class="u-fixed-width">
+    <div tabindex="0" role="tabpanel" id="large-scale-deployment" aria-labelledby="large-scale-deployment" hidden="hidden">
+      <h2>Large-scale deployment</h2>
       <p>
-        <a href="https://assets.ubuntu.com/v1/88a77f0d-openstack+dashboard+login.png">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/88a77f0d-openstack+dashboard+login.png",
-            alt="",
-            height="241",
-            width="424",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-        </a>
+        These instructions use <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a>. OpenStack Charms are the foundation of Canonical’s <a href="https://ubuntu.com/openstack">Charmed OpenStack</a> distribution which is an enterprise private cloud, designed to run mission-critical workloads.
       </p>
-      <p>You should be able to see the OpenStack welcome screen. Click on the "admin" drop-down list in the top right corner and press "OpenStack RC File":</p>
-      <p>
-        <a href="https://assets.ubuntu.com/v1/1dd72150-openstack+admin+click.png">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/1dd72150-openstack+admin+click.png",
-            alt="",
-            height="241",
-            width="424",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-        </a>
-      </p>
-      <p>Some browsers may require that you confirm that you want to download this file. If you are using Google Chrome, press "Keep" from the menu on the bottom:</p>
-      <p>
-        <a href="https://assets.ubuntu.com/v1/87387fd1-openstack+click+keep.png">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/87387fd1-openstack+click+keep.png",
-            alt="",
-            height="241",
-            width="424",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-        </a>
-      </p>
-      <p>Place the downloaded file on a machine where you want to install the OpenStack client. Then install it by running the following command:</p>
-      <div class="p-code-copyable">
-        <input class="p-code-copyable__input"
-        value="sudo apt -y install python3-openstackclient" readonly="readonly">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
-      </div>
-      <p>Source the downloaded RC file:</p>
-      <div class="p-code-copyable">
-        <input class="p-code-copyable__input"
-        value="source admin-openrc.sh" readonly="readonly">
-        <button class="p-code-copyable__action">Copy to clipboard</button>
-      </div>
-      <p>And enter the admin user's password when asked:</p>
-      <pre><code>Please enter your OpenStack Password for project admin as user admin:</code></pre>
-      <p>At this point you can interact with your OpenStack cluster using standard commands, for example:</p>
-
-<pre><code>$ openstack catalog list
-+-----------+--------------+--------------------------------------------------------------------------+
-| Name      | Type         | Endpoints                                                                |
-+-----------+--------------+--------------------------------------------------------------------------+
-| cinderv2  | volumev2     | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.168:8776/v2/d5c39f5ee61b4d7c8a57ed26672f5bf1    |
-|           |              | RegionOne                                                                |
-|           |              |   public: http://172.16.7.168:8776/v2/d5c39f5ee61b4d7c8a57ed26672f5bf1   |
-|           |              | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.168:8776/v2/d5c39f5ee61b4d7c8a57ed26672f5bf1 |
-|           |              |                                                                          |
-| nova      | compute      | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.172:8774/v2.1                                   |
-|           |              | RegionOne                                                                |
-|           |              |   public: http://172.16.7.172:8774/v2.1                                  |
-|           |              | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.172:8774/v2.1                                |
-|           |              |                                                                          |
-| neutron   | network      | RegionOne                                                                |
-|           |              |   public: http://172.16.7.171:9696                                       |
-|           |              | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.171:9696                                     |
-|           |              | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.171:9696                                        |
-|           |              |                                                                          |
-| cinderv3  | volumev3     | RegionOne                                                                |
-|           |              |   public: http://172.16.7.168:8776/v3/d5c39f5ee61b4d7c8a57ed26672f5bf1   |
-|           |              | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.168:8776/v3/d5c39f5ee61b4d7c8a57ed26672f5bf1    |
-|           |              | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.168:8776/v3/d5c39f5ee61b4d7c8a57ed26672f5bf1 |
-|           |              |                                                                          |
-| swift     | object-store | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.166:80/swift/v1                              |
-|           |              | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.166:80/swift                                    |
-|           |              | RegionOne                                                                |
-|           |              |   public: http://172.16.7.166:80/swift/v1                                |
-|           |              |                                                                          |
-| keystone  | identity     | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.169:5000/v3                                  |
-|           |              | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.169:35357/v3                                    |
-|           |              | RegionOne                                                                |
-|           |              |   public: http://172.16.7.169:5000/v3                                    |
-|           |              |                                                                          |
-| placement | placement    | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.175:8778                                        |
-|           |              | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.175:8778                                     |
-|           |              | RegionOne                                                                |
-|           |              |   public: http://172.16.7.175:8778                                       |
-|           |              |                                                                          |
-| glance    | image        | RegionOne                                                                |
-|           |              |   public: http://172.16.7.167:9292                                       |
-|           |              | RegionOne                                                                |
-|           |              |   internal: http://172.16.7.167:9292                                     |
-|           |              | RegionOne                                                                |
-|           |              |   admin: http://172.16.7.167:9292                                        |
-|           |              |                                                                          |
-+-----------+--------------+--------------------------------------------------------------------------+</code></pre>
-
-        <p>In order to create tenants, networks, launch instances, etc., refer to the python-openstackclient <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-list.html" class="p-link--external">documentation</a>.</p>
+      <p class="u-sv3">Find the documentation for "Installation" of <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide here</a>.</p>
+      <div class="p-notification is-inline">
+        <div class="p-notification__content">
+          <span class="p-notification__title">NOTE:</span>
+          <p class="p-notification__message">In order to qualify for the <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf">Private Cloud Build (PCB)</a> service, <a href="https://assets.ubuntu.com/v1/1a8fb1b3-UA-I_datasheet_2019-Oct.pdf">Ubuntu Advantage for Infrastructure (UA-I)</a> support subscription and <a href="https://assets.ubuntu.com/v1/a797f6f9-Datasheet_Openstack_05.10.20+%281%29.pdf">Managed OpenStack</a>, at least 12 nodes are required for Charmed OpenStack. Please contact your Canonical sales representative for detailed information on minimum hardware requirements</p>
         </div>
-      </li>
-      </ol>
+      </div>
+      <p>To learn more about OpenStack Charms, visit <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a>.</p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-4 u-align--center u-hide--small u-vertically-center">
+<section class="p-strip--light is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h2>Got it working? Fill in the survey.</h2>
+      <p>2022 OpenStack User Survey provides users an opportunity to influence the community and software direction. By sharing information about your configuration and requirements, the Open Infrastructure Foundation User Committee will be able to advocate on your behalf. Take the OpenStack User Survey by Wednesday, August 31, 2022 to be included in this round of analysis.</p>
+      <p>
+        <a href="https://www.openstack.org/user-survey/survey-2022/landing" class="p-button--positive">Fill in the survey</a>
+      </p>
+    </div>
+    <div class="col-5 u-hide--small u-hide--medium u-align--center"> 
+      {{ image (
+        url="https://assets.ubuntu.com/v1/69aaa876-compliance.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
@@ -1228,21 +205,20 @@ $ echo "export PATH=$PATH:/snap/bin" >> .bashrc
         ) | safe
       }}
     </div>
-    <div class="col-6 col-start-large-6 u-vertically-center">
-      <h2>Need more help?</h2>
+    <div class="col-7 u-vertically-center">
+      <h2>Got stuck with OpenStack installation?</h2>
       <p>Let our cloud experts help you take the next step.</p>
-      <p><a class="p-button--positive js-invoke-modal" href="/openstack/contact-us?product=openstack-install-build">Contact us</a></p>
+      <p><a class="p-button--positive js-invoke-modal" href="/openstack/contact-us?product=openstack">Talk to a Canonical expert</a></p>
     </div>
   </div>
 </section>
 
-{% with first_item="_cloud_bootstack", second_item="_download_cloud_buy_landscape", third_item="_openstack_documentation" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+{% with first_item="_openstack_install", second_item="_openstack_install_newsletter", third_item="_openstack_install_documentation" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://www.ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-
-
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 
 {% endblock content %}

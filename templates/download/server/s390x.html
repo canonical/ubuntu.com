@@ -1,9 +1,8 @@
 {% extends "download/_base_download.html" %}
 
 {% block title %}Ubuntu Server LTS for IBM Z and LinuxONE{% endblock %}
-{% block meta_description %}Ubuntu for IBM LinuxONE and IBM Z brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack, KVM and LXD ecosystem to IBM's premium platform.{% endblock meta_description %}
+{% block meta_description %}Ubuntu for IBM Z and LinuxONE brings the Ubuntu Server and Ubuntu Server for cloud with the OpenStack, KVM and LXD ecosystem to IBM's premium platform.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1d85IfqqxZYYZ0orj5lBhqLWLGpLYWRLdvs75lYsplGs/edit{% endblock meta_copydoc %}
-{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
 
 {% block content %}
 <div class="p-strip--suru-topped is-bordered">
@@ -18,6 +17,7 @@
     <div class="col-6">
       <h2>Ubuntu Server</h2>
       <p>IBM Z and LinuxONE systems leverage open technology solutions to meet the demands of the new application economy. They combine the best of open source to offer IBM's enterprise customers unprecedented performance, flexibility, security and resiliency. Ubuntu Server LTS are released every two years in April and can now be downloaded by all IBM Z and LinuxONE system customers.</p>
+      <p>Starting with 20.04 LTS the minimal requirement is z13s/z13, respectively LinuxONE Rockhopper/Emperor. zBC12/zEC12 are only supported up to Ubuntu 18.04 LTS.</p>
       <p>Ubuntu Server for IBM Z and LinuxONE is priced at $19,500 per drawer per year, covering unlimited usage of Ubuntu within that drawer, 24x7 Ubuntu Advantage Advanced support services and regular security and reliability fixes from Canonical.</p>
       <p>Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p>
       <p>For questions about Ubuntu Advantage for IBM Z and LinuxONE, please call us <tel href="+442036565291">+44&nbsp;(0)&nbsp;203&nbsp;656&nbsp;5291</tel> or email us at <a href="mailto:ibm@ubuntu.com">ibm@ubuntu.com</a>.</p>
@@ -25,45 +25,45 @@
     <div class="col-5 col-start-large-8">
 
       <!-- MARKETO FORM -->
-      <form class="p-form u-no-margin--top" action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_1400">
+      <form class="p-form u-no-margin--top" action="/marketo/submit" method="post" id="mktoForm_1400">
         <fieldset style="border: 1px solid #c0c0c0;">
           <ul class="p-list u-no-margin--bottom">
-            <li class="mktFormReq mktField p-list__item">
-              <label for="FirstName" aria-label="FirstName" class="mktoLabel">First name: <span>*</span></label>
-              <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired">
+            <li class="p-list__item">
+              <label for="firstName" aria-label="FirstName">First name: <span>*</span></label>
+              <input required id="firstName" name="firstName" maxlength="255" type="text">
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="LastName" aria-label="LastName" class="mktoLabel">Last name: <span>*</span></label>
-              <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired">
+            <li class="p-list__item">
+              <label for="lastName" aria-label="LastName">Last name: <span>*</span></label>
+              <input required id="lastName" name="lastName" maxlength="255" type="text">
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Company" aria-label="Company" class="mktoLabel">Company name: <span>*</span></label>
-              <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired">
+            <li class="p-list__item">
+              <label for="company" aria-label="Company">Company name: <span>*</span></label>
+              <input required id="company" name="company" maxlength="255" type="text">
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Email" aria-label="Email" class="mktoLabel">Email address: <span>*</span></label>
-              <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired">
+            <li class="p-list__item">
+              <label for="email" aria-label="Email">Email address: <span>*</span></label>
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$">
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Phone" aria-label="Phone" class="mktoLabel">Mobile/cell phone number: <span>*</span></label>
-              <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired">
+            <li class="p-list__item">
+              <label for="phone" aria-label="phone">Mobile/cell phone number: <span>*</span></label>
+              <input required id="phone" name="phone" maxlength="255" type="tel">
             </li>
-            <li class="mktField p-list__item">
-              <label for="NumUbuntuServers__c" aria-label="NumUbuntuServers__c" class="mktoLabel">Number of drawers you are purchasing support for:</label>
-              <select id="NumUbuntuServers__c" name="NumUbuntuServers__c" class="mktoField">
+            <li class="p-list__item">
+              <label for="NumUbuntuServers__c" aria-label="NumUbuntuServers__c">Number of drawers you are purchasing support for:</label>
+              <select id="NumUbuntuServers__c" name="NumUbuntuServers__c">
                 <option value="">Select...</option>
 
                 <option value="zBC12" disabled>zBC12</option>
-                <option value="zBC12 - 1 drawer (up to 13 cores)"> - 1 drawer (up to 13 cores)</option>
+                <option value="zBC12 - 1/2 drawer (up to 13 cores)"> - 1/2 drawer (up to 13 cores)</option>
 
                 <option value="zEC12" disabled>zEC12</option>
                 <option value="zEC12 - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
                 <option value="zEC12 - 2 drawers (up to 43 cores)"> - 2 drawers (up to 43 cores)</option>
                 <option value="zEC12 - 3 drawers (up to 66 cores)"> - 3 drawers (up to 66 cores)</option>
-                <option value="zEC12 - 4 drawers (up to 10 cores)"> - 4 drawers (up to 10 cores)</option>
+                <option value="zEC12 - 4 drawers (up to 101 cores)"> - 4 drawers (up to 101 cores)</option>
 
                 <option value="z13s/Rockhopper" disabled> z13s/Rockhopper</option>
-                <option value="z13s/Rockhopper - 1 drawer (up to 20 cores)"> - 1 drawer (up to 20 cores)</option>
+                <option value="z13s/Rockhopper - 1/2 drawer (up to 20 cores)"> - 1/2 drawer (up to 20 cores)</option>
 
                 <option value="z13/Emperor" disabled>z13/Emperor</option>
                 <option value="z13/Emperor - 1 drawer (up to 30 cores)"> - 1 drawer (up to 30 cores)</option>
@@ -79,48 +79,64 @@
                 <option value="z14/Emperor II - 2 drawers (up to 69 cores)"> - 2 drawers (up to 69 cores)</option>
                 <option value="z14/Emperor II - 3 drawers (up to 105 cores)"> - 3 drawers (up to 105 cores)</option>
                 <option value="z14/Emperor II - 4 drawer (up to 170 cores)"> - 4 drawer (up to 170 cores)</option>
+                
+                <option value="z15/T02/LinuxONE III LY2" disabled>z15/T02/LinuxONE III LY2</option>
+                <option value="z15/T02/LinuxONE III LY2 - 1/2 drawer (up to 65 cores)"> - 1/2 drawer (up to 65 cores)</option>
 
-                <option value="z15/LinuxONE III" disabled>z15/LinuxONE III</option>
+                <option value="z15/LinuxONE III" disabled>z15 T01/LinuxONE III LT1</option>
                 <option value="z15/LinuxONE III - 1 drawer (up to 34 cores)"> - 1 drawer (up to 34 cores)</option>
                 <option value="z15/LinuxONE III - 2 drawers (up to 71 cores)"> - 2 drawers (up to 71 cores)</option>
                 <option value="z15/LinuxONE III - 3 drawers (up to 108 cores)"> - 3 drawers (up to 108 cores)</option>
                 <option value="z15/LinuxONE III - 4 drawers (up to 190 cores)"> - 4 drawers (up to 190 cores)</option>
+
+                <option value="z16 A01" disabled>z16 A01</option>
+                <option value="z16 A01 - 1 drawer (up to 39 cores)"> - 1 drawer (up to 39 cores)</option>
+                <option value="z16 A01 - 2 drawers (up to 82 cores)"> - 2 drawers (up to 82 cores)</option>
+                <option value="z16 A01 - 3 drawers (up to 125 cores)"> - 3 drawers (up to 125 cores)</option>
+                <option value="z16 A01 - 4 drawers (up to 200 cores)"> - 4 drawers (up to 200 cores)</option>
               </select>
             </li>
-            <li class="mktField p-list__item">
-              <label for="Comments_from_Contact__c" aria-label="Comments_from_Contact__c" class="mktoLabel">Serial number(s)</label>
-              <textarea id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="2" class="mktoField " maxlength="2000"></textarea>
+            <li class="p-list__item">
+              <label for="Comments_from_Contact__c" aria-label="Comments_from_Contact__c">Serial number(s)</label>
+              <textarea id="Comments_from_Contact__c" name="Comments_from_Contact__c" rows="2" maxlength="2000"></textarea>
             </li>
-            <li class="mktField p-list__item">
-              <label for="purchaseordernumber" aria-label="purchaseordernumber" class="mktoLabel">Purchase order number:</label>
-              <input id="purchaseordernumber" name="purchaseordernumber" maxlength="255" type="text" class="mktoField ">
+            <li class="p-list__item">
+              <label for="purchaseordernumber" aria-label="purchaseordernumber">Purchase order number:</label>
+              <input id="purchaseordernumber" name="purchaseordernumber" maxlength="255" type="text">
             </li>
-            <li class="mktField p-list__item">
-              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox"> <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</label>
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I would like to receive occasional news from Canonical by email.</span>
+              </label>
             </li>
 
-            <li class="p-list__item">
-              <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
             </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
 
             <li><p>All information provided will be handled in accordance with the Canonical <a href="/legal" target="_blank" rel="noopener noreferrer">privacy policy</a>. Your use of Ubuntu on IBM Z and LinuxONE in production constitutes <a href="/legal/short-terms">acceptance of these terms</a>.</p></li>
-            <li class="mktField p-list__item">
-              <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });" type="submit" class="mktoButton p-button--positive is-wide u-no-margin--bottom">Accept terms and download</button>
-              <input type="hidden" aria-hidden="true" name="formid" class="mktoField " value="1400">
-              <input type="hidden" aria-hidden="true" name="lpId" class="mktoField " value="2469">
-              <input type="hidden" aria-hidden="true"
-              name="subId" class="mktoField " value="30">
-              <input type="hidden" aria-hidden="true" name="munchkinId" class="mktoField " value="066-EOV-335">
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="gclid" class="mktoField" id="gclid" value="" />
-              <input type="hidden" aria-hidden="true" name="lpurl" class="mktoField " value="https://pages.ubuntu.com/download-LinuxONE.html?cr={creative}&amp;kw={keyword}">
-              <input
-              type="hidden" aria-hidden="true" name="cr" class="mktoField " value=""><input type="hidden" aria-hidden="true" name="kw" class="mktoField " value=""><input type="hidden" aria-hidden="true" name="q" class="mktoField " value="">
+            <li class="p-list__item">
+              <button onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'LinuxONE server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });" type="submit" class="p-button--positive is-wide u-no-margin--bottom">Accept terms and download</button>
+              <input type="hidden" aria-hidden="true" name="formid" value="1400">
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
             </li>
           </ul>
         </fieldset>
-        <input type="hidden" aria-hidden="true" name="return_url" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
         <input type="hidden" aria-hidden="true" name="returnURL" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
-        <input type="hidden" aria-hidden="true" name="retURL" value="https://www.ubuntu.com/download/server/thank-you-s390x" />
       </form>
       <!-- /MARKETO FORM -->
     </div>

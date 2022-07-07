@@ -13,9 +13,36 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.20+ck1 Bugfix release
+
+### February 23rd, 2021 - charmed-kubernetes-596
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.20+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.20+ck1).
+
+## Notes / Known Issues
+
+- Secret names
+
+[LP 1906732](https://bugs.launchpad.net/charm-kubernetes-master/+bug/1906732)
+highlighted an issue where `kubernetes-worker` units would overwrite existing
+secrets when deployed as different application names. This lead to some worker
+units losing the ability to authenticate with the cluster. This has be resolved
+by ensuring new secrets are uniquely named in the form: `auth-$username-$random`.
+
+- Juju and GCP
+
+[LP 1761838](https://bugs.launchpad.net/juju/+bug/1761838) describes an issue
+with Juju and Google cloud where deployments may fail due to FAN networking.
+Workaround this by disabling FAN configuration for Google cloud models:
+
+`juju model-config -m <model_name> fan-config="" container-networking-method=""`
+
 # 1.20
 
-### December 16th, 2020 - [charmed-kubernetes-559](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-559/archive/bundle.yaml)
+### December 16th, 2020 - charmed-kubernetes-559
 
 ## What's new
 
@@ -66,9 +93,7 @@ Please see [this page][rel] for release notes of earlier versions.
 
 <!--LINKS-->
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [cis-benchmark]: /kubernetes/docs/cis-compliance
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [rel]: /kubernetes/docs/release-notes
 [ipv6]: /kubernetes/docs/ipv6
 [cni-sriov]: /kubernetes/docs/cni-sriov

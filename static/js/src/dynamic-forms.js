@@ -1,14 +1,17 @@
-import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
-
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
     var formContainer = document.getElementById("contact-form-container");
     var contactButtons = document.querySelectorAll(".js-invoke-modal");
+    const contactForm = document.getElementById("contact-form-container");
+    const returnData = window.location.pathname + "#success";
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
         e.preventDefault();
+        if (window.location.pathname) {
+          contactForm.setAttribute("data-return-url", returnData);
+        }
         if (contactButton.dataset.formLocation) {
           fetchForm(contactButton.dataset, contactButton);
         } else {
@@ -44,12 +47,16 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
           formContainer.classList.remove("u-hide");
           formContainer.innerHTML = text
             .replace(/%% formid %%/g, formData.formId)
-            .replace(/%% lpId %%/g, formData.lpId)
-            .replace(/%% returnURL %%/g, formData.returnUrl)
-            .replace(/%% lpurl %%/g, formData.lpUrl);
+            .replace(/%% returnURL %%/g, formData.returnUrl);
+
+          if (formData.title) {
+            const title = document.getElementById("modal-title");
+            title.innerHTML = formData.title;
+          }
           setProductContext(contactButton);
           setUTMs();
           setGclid();
+          setFBclid();
           loadCaptchaScript();
           initialiseForm();
         })
@@ -132,15 +139,36 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
       if (utm_medium) {
         utm_medium.value = params.get("utm_medium");
       }
+
+      var utm_content = document.getElementById("utm_content");
+      if (utm_content) {
+        utm_content.value = params.get("utm_content");
+      }
+
+      var utm_term = document.getElementById("utm_term");
+      if (utm_term) {
+        utm_term.value = params.get("utm_term");
+      }
     }
 
     function setGclid() {
       if (localStorage.getItem("gclid")) {
-        var gclidField = document.getElementById("gclid");
+        var gclidField = document.getElementById("GCLID__c");
         var gclid = JSON.parse(localStorage.getItem("gclid"));
         var isGclidValid = new Date().getTime() < gclid.expiryDate;
         if (gclid && isGclidValid && gclidField) {
           gclidField.value = gclid.value;
+        }
+      }
+    }
+
+    function setFBclid() {
+      if (localStorage.getItem("fbclid")) {
+        var fbclidField = document.getElementById("Facebook_Click_ID__c");
+        var fbclid = JSON.parse(localStorage.getItem("fbclid"));
+        var fbclidIsValid = new Date().getTime() < fbclid.expiryDate;
+        if (fbclid && fbclidIsValid && fbclidField) {
+          fbclidField.value = fbclid.value;
         }
       }
     }
@@ -286,15 +314,17 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
         var formFields = contactModal.querySelectorAll(".js-formfield");
         formFields.forEach(function (formField) {
           var comma = "";
-          var fieldTitle = formField.querySelector(".p-heading--five");
+          var fieldTitle = formField.querySelector(".p-heading--5");
           var inputs = formField.querySelectorAll("input, textarea");
-          message += fieldTitle.innerText + "\r\n";
+          if (fieldTitle) {
+            message += fieldTitle.innerText + "\r\n";
+          }
 
           inputs.forEach(function (input) {
             switch (input.type) {
               case "radio":
                 if (input.checked) {
-                  message += comma + input.value;
+                  message += comma + input.value + "\r\n\r\n";
                   comma = ", ";
                 }
                 break;
@@ -309,38 +339,38 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
                   }
 
                   var label = formField.querySelector(
-                    "label[for=" + input.id + "]"
+                    "span#" + input.getAttribute("aria-labelledby")
                   );
+
                   if (label) {
                     label = subSectionText + label.innerText;
                   } else {
-                    label = input.id;
+                    label = input.getAttribute("aria-labelledby");
                   }
-                  message += comma + label;
+                  message += comma + label + "\r\n\r\n";
                   comma = ", ";
                 }
                 break;
               case "text":
-                if (
-                  !input.classList.contains("mktoField") &&
-                  input.value !== ""
-                ) {
-                  message += comma + input.value;
+                if (input.value !== "") {
+                  message += comma + input.value + "\r\n\r\n";
+                  comma = ", ";
+                }
+                break;
+              case "number":
+                if (input.value !== "") {
+                  message += comma + input.value + "\r\n\r\n";
                   comma = ", ";
                 }
                 break;
               case "textarea":
-                if (
-                  !input.classList.contains("mktoField") &&
-                  input.value !== ""
-                ) {
-                  message += comma + input.value;
+                if (input.value !== "") {
+                  message += comma + input.value + "\r\n\r\n";
                   comma = ", ";
                 }
                 break;
             }
           });
-          message += "\r\n\r\n";
         });
 
         return message;
@@ -422,8 +452,36 @@ import { assignMarketoBackgroundSubmit } from "./bg-form-submit";
 
       setCheckboxLimit();
 
-      // Assign listeners to forms added after initial DOM render
-      assignMarketoBackgroundSubmit();
+      function fireLoadedEvent() {
+        var event = new CustomEvent("contactModalLoaded");
+        document.dispatchEvent(event);
+      }
+
+      fireLoadedEvent();
+
+      comment.value = createMessage();
+
+      // Prefill user names and email address if they are logged in
+      if (window.accountJSONRes) {
+        const names = window.accountJSONRes.fullname.split(" ");
+        const firstName = names[0];
+        const lastName = names[names.length - 1];
+
+        const emailFields = document.querySelectorAll("input#email");
+        emailFields.forEach((field) => {
+          field.value = window.accountJSONRes.email;
+        });
+
+        const firstNameFields = document.querySelectorAll("input#firstName");
+        firstNameFields.forEach((field) => {
+          field.value = firstName;
+        });
+
+        const lastNameFields = document.querySelectorAll("input#lastName");
+        lastNameFields.forEach((field) => {
+          field.value = lastName;
+        });
+      }
     }
 
     // Opens the form when the initial hash matches the trigger

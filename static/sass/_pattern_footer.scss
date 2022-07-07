@@ -4,7 +4,7 @@
   line-height: 1.5;
   margin-bottom: 0;
 
-  @media only screen and (max-width: $breakpoint-medium) {
+  @media only screen and (max-width: $breakpoint-small) {
     cursor: pointer;
   }
 }
@@ -15,143 +15,177 @@
   .p-footer {
     @include vf-highlight-bar($color-brand);
 
+    background-color: $color-x-light;
     margin-bottom: 0;
     padding: 0 0 $sp-xx-large 0;
 
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       padding: $sp-xx-large 0;
     }
 
-    @media only screen and (max-width: $breakpoint-medium - 1) {
+    @media only screen and (max-width: $breakpoint-small - 1) {
       &__nav-col {
         width: 100%;
       }
     }
+  }
 
-    &__nav {
-      border-bottom: 1px solid $color-mid-light;
+  .p-footer__nav {
+    border-bottom: 1px solid $color-mid-light;
 
-      @media only screen and (max-width: $breakpoint-medium - 1) {
-        margin-top: 0 !important;
-      }
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        border: 0;
-      }
-
-      &.u-clearfix {
-        @media only screen and (max-width: $breakpoint-medium - 1) {
-          padding-bottom: 0;
-        }
-      }
-
-      &-col.col-2 {
-        @media only screen and (max-width: $breakpoint-medium - 1) {
-          margin-top: 0;
-        }
-      }
+    @media only screen and (max-width: $breakpoint-small - 1) {
+      margin-top: 0 !important;
     }
 
-    &__divider {
-      @include full-width-breakout;
+    @media only screen and (min-width: $breakpoint-small) {
       border: 0;
-      border-bottom: 1px solid $color-mid-light;
-      border-collapse: separate;
-      height: 0;
-      margin-top: 2rem;
+    }
 
-      @media only screen and (max-width: $breakpoint-medium - 1px) {
-        display: none;
+    &.u-clearfix {
+      @media only screen and (max-width: $breakpoint-small - 1) {
+        padding-bottom: 0;
       }
     }
 
-    &__links {
-      margin: 0;
+    &-col.col-2 {
+      @media only screen and (max-width: $breakpoint-small - 1) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .p-footer__divider {
+    @include full-width-breakout;
+
+    border: 0;
+    border-bottom: 1px solid $color-mid-light;
+    border-collapse: separate;
+    height: 0;
+    margin-top: 2rem;
+
+    @media only screen and (max-width: $breakpoint-small - 1px) {
+      display: none;
+    }
+  }
+
+  .p-footer__links {
+    margin: 0;
+    padding: 0;
+  }
+
+  .p-footer__item {
+    display: block;
+    margin-bottom: 0;
+
+    @media only screen and (max-width: $breakpoint-small - 1px) {
+      margin-top: 0;
+    }
+
+    + .p-footer__item {
+      @media only screen and (min-width: $breakpoint-small) {
+        margin-top: $sp-large;
+      }
+    }
+  }
+
+  .p-footer__title {
+    @include footer-title;
+
+    background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
+    background-position: calc(100% - 10px) 50%;
+    background-repeat: no-repeat;
+    background-size: 13px 13px;
+    border-top: 1px solid $color-mid-light;
+    color: $color-dark;
+    font-size: 0.8125rem;
+    margin-top: 0;
+    max-width: inherit;
+    padding: $sp-medium 0;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      background: none;
+      border: 0;
+      padding: 0 0 $sp-x-small;
+    }
+
+    @media only screen and (min-width: $breakpoint-large) {
+      font-size: 0.8125rem;
+    }
+
+    a:link,
+    a:visited {
+      color: $color-dark;
+      padding-left: $sp-x-small;
+
+      @media only screen and (min-width: $breakpoint-small) {
+        font-weight: normal;
+        padding-left: 0;
+      }
+    }
+
+    a::after {
+      content: ""; // hide the default > */
+    } /// open and close the primary/secondary navs
+  }
+
+  .p-footer__title + .second-level-nav {
+    display: none;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      display: block;
+    }
+  }
+
+  .p-footer .link-to-top {
+    @include footer-title;
+
+    background-image: url("#{$assets-path}e4a5a8c0-picto-upload-warmgrey.svg");
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    border-bottom: 1px solid $color-mid-dark;
+    display: block;
+    left: auto;
+    margin-bottom: -1px;
+    max-width: inherit;
+    padding: $sp-small 0 $sp-small $sp-x-large;
+    position: relative;
+    z-index: 2;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      display: none;
+    }
+
+    a {
+      color: $color-mid-dark;
+    }
+  }
+
+  .p-footer--secondary {
+    padding: $sp-large $sp-small 0;
+
+    @media only screen and (min-width: $breakpoint-small) {
       padding: 0;
     }
 
-    &__item {
-      display: block;
-      margin-bottom: 0;
-
-      @media only screen and (max-width: $breakpoint-medium - 1px) {
-        margin-top: 0;
-      }
-
-      + .p-footer__item {
-        @media only screen and (min-width: $breakpoint-medium) {
-          margin-top: $sp-large;
-        }
-      }
+    @media only screen and (max-width: $breakpoint-small - 1px) {
+      margin-top: 0;
     }
 
-    &__title {
-      @include footer-title;
-      background-image: url("#{$assets-path}7bd1bd7b-arrow_down_9fa097.svg");
-      background-position: calc(100% - 10px) 50%;
-      background-repeat: no-repeat;
-      background-size: 13px 13px;
-      border-top: 1px solid $color-mid-light;
-      color: $color-dark;
-      font-size: 0.8125rem;
-      margin-top: 0;
-      max-width: inherit;
-      padding: $sp-medium 0;
+    a:hover {
+      color: currentColor;
+    }
+  }
 
-      @media only screen and (min-width: $breakpoint-medium) {
-        background: none;
-        border: 0;
-        padding: 0 0 $sp-x-small;
-      }
+  .p-footer .second-level-nav {
+    margin: 0;
+    padding: 0;
 
-      @media only screen and (min-width: $breakpoint-large) {
-        font-size: 0.8125rem;
-      }
+    &.second-level-nav-small {
+      @media only screen and (max-width: $breakpoint-small) {
+        margin-left: -0.7rem;
 
-      a:link,
-      a:visited {
-        color: $color-dark;
-        padding-left: $sp-x-small;
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          font-weight: normal;
-          padding-left: 0;
-        }
-      }
-
-      a::after {
-        content: ""; // hide the default > */
-      } /// open and close the primary/secondary navs
-
-      + .second-level-nav {
-        display: none;
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          display: block;
-        }
-      }
-
-      &.active {
-        background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
-
-        @media only screen and (min-width: $breakpoint-medium) {
-          background: none;
-        }
-
-        + .second-level-nav {
-          display: block;
-        }
-      }
-
-      &.p-footer__title-text {
-        @media only screen and (min-width: $breakpoint-medium) {
-          color: $color-dark;
-          font-weight: 400;
-        }
-
-        @media only screen and (max-width: $breakpoint-medium) {
-          padding-left: $sp-x-small;
-
+        li {
           a {
             color: $color-mid-dark;
           }
@@ -159,145 +193,112 @@
       }
     }
 
-    &__container {
-      @media only screen and (max-width: $breakpoint-medium - 1px) {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
+    li {
+      margin-bottom: 0;
 
-    &__link {
-      &:hover {
+      @media only screen and (max-width: $breakpoint-small) {
+        margin-top: 0;
+      }
+
+      a {
+        border-top: 1px solid $color-mid-light;
         color: $color-dark;
+        display: block;
+        font-size: 0.8125rem;
+        padding: $sp-medium $sp-small $sp-medium;
+
+        @media only screen and (min-width: $breakpoint-small) {
+          border: 0;
+          padding: 0;
+        }
       }
     }
+  }
 
-    .link-to-top {
-      @include footer-title;
-      background-image: url("#{$assets-path}e4a5a8c0-picto-upload-warmgrey.svg");
-      background-position: 10px center;
-      background-repeat: no-repeat;
-      background-size: 14px 14px;
-      border-bottom: 1px solid $color-mid-dark;
-      display: block;
-      left: auto;
-      margin-bottom: -1px;
-      max-width: inherit;
-      padding: $sp-small 0 $sp-small $sp-x-large;
-      position: relative;
-      z-index: 2;
+  .p-footer__title.active {
+    background-image: url("#{$assets-path}43e2b367-arrow_up_9fa097.png");
 
-      @media only screen and (min-width: $breakpoint-medium) {
-        display: none;
-      }
+    @media only screen and (min-width: $breakpoint-small) {
+      background: none;
+    }
+  }
+
+  .p-footer__title.active + .second-level-nav {
+    display: block;
+  }
+
+  .p-footer__title-text {
+    @media only screen and (min-width: $breakpoint-small) {
+      color: $color-dark;
+      font-weight: 400;
+    }
+
+    @media only screen and (max-width: $breakpoint-small) {
+      padding-left: $sp-x-small;
 
       a {
         color: $color-mid-dark;
       }
     }
+  }
 
-    // second level nav - HTML for this can't be changed as it's used in the main nav also
-
-    .second-level-nav {
-      margin: 0;
-      padding: 0;
-
-      &.second-level-nav-small {
-        @media only screen and (max-width: $breakpoint-small) {
-          margin-left: -0.7rem;
-
-          li {
-            a {
-              color: $color-mid-dark;
-            }
-          }
-        }
-      }
-
-      li {
-        margin-bottom: 0;
-
-        @media only screen and (max-width: $breakpoint-medium) {
-          margin-top: 0;
-        }
-
-        a {
-          border-top: 1px solid $color-mid-light;
-          color: $color-dark;
-          display: block;
-          font-size: 0.8125rem;
-          padding: $sp-medium $sp-small $sp-medium;
-
-          @media only screen and (min-width: $breakpoint-medium) {
-            border: 0;
-            padding: 0;
-          }
-        }
-      }
+  .p-footer__container {
+    @media only screen and (max-width: $breakpoint-small - 1px) {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 
-  .p-footer--secondary {
-    padding: $sp-large $sp-small 0;
+  .p-footer__link {
+    &:hover {
+      color: $color-dark;
+    }
+  }
 
-    &__content {
-      margin-bottom: $sp-xx-small;
-      max-width: inherit;
+  .p-footer--secondary__content {
+    margin-bottom: $sp-xx-small;
+    max-width: inherit;
+  }
+
+  .p-footer--secondary .p-inline-list-icons {
+    @media (max-width: $breakpoint-small) {
+      margin-left: 0;
+      margin-top: 1rem;
+      padding-left: 0;
     }
 
-    @media only screen and (min-width: $breakpoint-medium) {
-      padding: 0;
+    @media only screen and (min-width: $breakpoint-small) {
+      float: right;
+      padding-left: 0;
     }
 
-    @media only screen and (max-width: $breakpoint-medium - 1px) {
-      margin-top: 0;
+    @media only screen and (min-width: $breakpoint-large) {
+      margin-top: $sp-x-small;
+    }
+  }
+
+  .p-footer--secondary .p-inline-list__item {
+    display: block;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      display: inline-block;
     }
 
-    a:hover {
-      color: currentColor;
-    }
-
-    // social icons in footer
-    .p-inline-list-icons {
-      @media (max-width: $breakpoint-medium) {
-        margin-left: 0;
-        margin-top: 1rem;
-        padding-left: 0;
-      }
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        float: right;
-        padding-left: 0;
-      }
-
-      @media only screen and (min-width: $breakpoint-large) {
-        margin-top: $sp-x-small;
-      }
-    }
-
-    .p-inline-list__item {
-      display: block;
-
-      @media only screen and (min-width: $breakpoint-medium) {
-        display: inline-block;
-      }
-
-      &::after {
-        @media only screen and (max-width: $breakpoint-medium - 1) {
-          display: none;
-        }
+    &::after {
+      @media only screen and (max-width: $breakpoint-small - 1) {
+        display: none;
       }
     }
   }
 
   .p-footer__item--spaced {
-    @media only screen and (min-width: $breakpoint-medium) {
+    @media only screen and (min-width: $breakpoint-small) {
       margin-bottom: $sp-large;
     }
   }
 
   .p-footer-list-single-child {
-    @media only screen and (max-width: $breakpoint-medium) {
+    @media only screen and (max-width: $breakpoint-small) {
       margin-left: $sp-small;
     }
   }

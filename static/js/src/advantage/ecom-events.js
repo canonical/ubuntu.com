@@ -24,6 +24,36 @@ export function removeFromCartEvent(product) {
   }
 }
 
+export function logSelectOptionEvent(option, value) {
+  if (dataLayer) {
+    dataLayer.push({
+      event: "selectOption",
+      ecommerce: {
+        select: {
+          option: option,
+          value: value,
+        },
+      },
+    });
+  }
+}
+
+export function logOpenModalEvent() {
+  if (dataLayer) {
+    dataLayer.push({
+      event: "openModal",
+    });
+  }
+}
+
+export function logCloseModalEvent() {
+  if (dataLayer) {
+    dataLayer.push({
+      event: "closeModal",
+    });
+  }
+}
+
 /**
  *
  * @param {Array} cartItems

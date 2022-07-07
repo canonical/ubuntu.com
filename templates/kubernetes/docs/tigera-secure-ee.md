@@ -25,23 +25,22 @@ Support for Tigera Secure EE in **Charmed Kubernetes** is provided in the form o
 
 Before you start, you will need:
 
-*  Tigera Secure EE licence key
-*  Tigera private Docker registry credentials (provided as a Docker config.json)
+* Tigera Secure EE licence key
+* Tigera private Docker registry credentials (provided as a Docker config.json)
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    Tigera Secure EE's network traffic, much like Calico's, is filtered on
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Tigera Secure EE's network traffic, much like Calico's, is filtered on
     many clouds. It will work on MAAS, and can work on AWS if you manually
-    configure instances to disable source/destination checking.
-  </p>
+    configure instances to disable source/destination checking.</p>
+  </div>
 </div>
 
-
-To start, deploy **Charmed Kubernetes** with Tigera Secure EE:
+Deploy the `charmed-kubernetes` bundle with the [tigera overlay][tigera-overlay]:
 
 ```bash
-juju deploy cs:~containers/kubernetes-tigera-secure-ee
+juju deploy charmed-kubernetes --overlay tigera-overlay.yaml
 ```
 
 Configure the `tigera-secure-ee` charm with your licence key and registry
@@ -57,11 +56,12 @@ Wait for the deployment to settle before continuing on.
 
 ## Using the built-in elasticsearch-operator
 
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-     The built-in elasticsearch-operator is only recommended for testing or demonstrative
-     purposes. For production deployments, please skip down to the next section.  </p>
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">The built-in elasticsearch-operator is only recommended for testing or demonstrative
+    purposes. For production deployments, please skip down to the next section.</p>
+  </div>
 </div>
 
 For testing and quick start purposes, the `tigera-secure-ee` charm deploys
@@ -157,7 +157,7 @@ juju run --application kubernetes-worker open-port 30003
 
 Then connect to `https://<kubernetes-worker-ip>:30003` in your web browser. Use
 the Kubernetes admin credentials to log in (you can find these in the kubeconfig
-file created on kubernetes-master units at `/home/ubuntu/config`).
+file created on kubernetes-control-plane units at `/home/ubuntu/config`).
 
 ## Accessing kibana
 
@@ -168,11 +168,12 @@ command to open port 30601 on the workers:
 juju run --application kubernetes-worker open-port 30601
 ```
 
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    Do not open this port if your kubernetes-worker units are exposed on a
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">Do not open this port if your kubernetes-worker units are exposed on a
     network you do not trust. Kibana does not require credentials to use</p>
+  </div>
 </div>
 
 Then connect to `http://<kubernetes-worker-ip>:30601` in your web browser.
@@ -223,6 +224,7 @@ juju config tigera-secure-ee registry=$REGISTRY
 
 <!-- LINKS -->
 
+[tigera-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/tigera-overlay.yaml
 [elasticsearch-operator]: https://github.com/upmc-enterprises/elasticsearch-operator
 [tigera byo-elasticsearch]: https://docs.tigera.io/v2.2/getting-started/kubernetes/installation/byo-elasticsearch
 [storage]: /kubernetes/docs/storage
@@ -230,10 +232,10 @@ juju config tigera-secure-ee registry=$REGISTRY
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/tigera-secure-ee.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/tigera-secure-ee.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

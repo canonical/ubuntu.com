@@ -68,16 +68,24 @@ def get_navigation(path):
             breadcrumbs["section"] = nav_section
             breadcrumbs["children"] = nav_section.get("children", [])
 
+        longest_match_path = 0
+        child_to_set_active = None
+
         for child in nav_section["children"]:
             if is_topic_page and child["path"] == "/blog/topics":
                 # always show "Topics" as active on child topic pages
                 child["active"] = True
                 break
             elif (
-                child["path"] == path and path.startswith(nav_section["path"])
-            ) or (child.get("persist") and path.startswith(child["path"])):
+                child["path"] == path
+                and path.startswith(nav_section["path"])
                 # If child path matches current path or has persist set to true
-                child["active"] = True
+            ) or (child.get("persist") and path.startswith(child["path"])):
+                # look for the closest patch match
+                if len(child["path"]) > longest_match_path:
+                    longest_match_path = len(child["path"])
+                    child_to_set_active = child
+
                 nav_section["active"] = True
                 breadcrumbs["section"] = nav_section
 
@@ -94,7 +102,6 @@ def get_navigation(path):
                     breadcrumbs["children"] = _remove_hidden(
                         nav_section.get("children", [])
                     )
-                break
             else:
                 for grandchild in child.get("children", []):
                     if grandchild["path"] == path:
@@ -113,6 +120,10 @@ def get_navigation(path):
                             )
                         break
 
+        # set the child most closely matching the current path as active
+        if child_to_set_active:
+            child_to_set_active["active"] = True
+
     return {"nav_sections": sections, "breadcrumbs": breadcrumbs}
 
 
@@ -130,7 +141,9 @@ def format_date(datestring):
 
 
 def modify_query(params):
-    query_params = parse_qs(flask.request.query_string.decode("utf-8"))
+    query_params = parse_qs(
+        flask.request.query_string.decode("utf-8"), keep_blank_values=True
+    )
     query_params.update(params)
 
     return urlencode(query_params, doseq=True)

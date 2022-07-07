@@ -8,8 +8,8 @@
           <th width="200" class="u-align--center">Standard</th>
           <th width="200" class="u-align--center">Advanced</th>
         </tr>
-        <tr>
-          <th colspan="4" style="background-color: #f7f7f7; padding: .75rem;"><strong>Price per year</strong></th>
+        <tr style="background: #E5E5E5;">
+          <th colspan="4" style="padding: .75rem 0 .75rem .5rem;"><strong>Price per year</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -25,16 +25,18 @@
           <td class="u-align--center">$250</td>
           <td class="u-align--center">$500</td>
         </tr>
+        {% if no_desktop != "true" %}
         <tr>
           <td>Desktop</td>
           <td class="u-align--center">$25</td>
           <td class="u-align--center">$150</td>
           <td class="u-align--center">$300</td>
         </tr>
+        {% endif %}
       </tbody>
       <thead>
-        <tr>
-          <th colspan="4" style="background-color: #f7f7f7; border-top: 1px solid rgba(0,0,0,0.1); padding: .75rem;"><strong>Service level</strong></th>
+        <tr style="background: #E5E5E5;">
+          <th colspan="4" style="border-top: 1px solid rgba(0,0,0,0.1); padding: .75rem 0 .75rem .5rem;"><strong>Service level</strong></th>
         </tr>
       </thead>
       <tbody>
@@ -70,8 +72,8 @@
         </tr>
         </tbody>
         <thead>
-          <tr>
-            <th colspan="4" style="background-color: #f7f7f7; border-top: 1px solid rgba(0,0,0,0.1); padding: .75rem;"><strong>What's included</strong></th>
+          <tr style="background: #E5E5E5;">
+            <th colspan="4" style="border-top: 1px solid rgba(0,0,0,0.1); padding: .75rem 0 .75rem 0.5rem;"><strong>What's included</strong></th>
           </tr>
         </thead>
         <tbody>
@@ -88,11 +90,17 @@
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
         </tr>
         <tr>
-          <td>Ubuntu systems management with <a href="https://landscape.canonical.com" class="p-link--external">Landscape</a></td>
+          <td>Ubuntu systems management with <a href="https://landscape.canonical.com">Landscape</a></td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
         </tr>
+        <tr>
+          <td><a href="/engage/microsoft-active-directory">Advanced Active Directory</a> policies for Ubuntu Desktop</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+        </tr>        
         <tr>
           <td>Knowledge base access</td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
@@ -106,7 +114,7 @@
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
         </tr>
         <tr>
-          <td><a href="/security/certifications#fips">FIPS 140-2 Level 1</a> certified crypto modules</td>
+          <td><a href="/security/certifications">FIPS 140-2 Level 1</a> certified crypto modules</td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
           <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
@@ -156,8 +164,8 @@
         <tr>
           <td>Ceph/Swift raw storage support included</td>
           <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">72TB</td>
-          <td class="u-align--center">72TB</td>
+          <td class="u-align--center">192TB per storage node</td>
+          <td class="u-align--center">192TB per storage node</td>
         </tr>
       </tbody>
     </table>

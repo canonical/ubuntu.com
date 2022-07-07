@@ -2,7 +2,7 @@
 
 {% block title %}Ubuntu Extended Security Maintenance | Security{% endblock %}
 
-{% block meta_description %}Extended Security Maintenance provides ongoing Linux security fixes for Ubuntu 14.04 LTS, for the Linux kernel and essential packages beyond the five-year basic maintenance window.{% endblock meta_description %}
+{% block meta_description %}Extended Security Maintenance provides ongoing Linux security fixes for Ubuntu for the Linux kernel and essential packages beyond the five-year basic maintenance window.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1RBZX3PJPvODxRlcnIS10Ii4SkIMH5Fm74EmsMQ0cnic/edit{% endblock meta_copydoc %}
 
@@ -12,68 +12,46 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <span class="u-sv3"><h1>Extended Security Maintenance</h1></span>
-      <span class="u-sv3"><p class="p-heading--four">Security updates for 14.04 LTS until 2022</p></span>
-      <p>Continue to receive security updates for the Ubuntu base OS and critical infrastructure components &ndash; Ceph, OpenStack and more &ndash; with ESM in your Ubuntu Advantage subscription.</p>
-      <p>Ubuntu Advantage for Infrastructure is available for physical servers, virtual machines, containers, and desktops. Free for personal use.</p>
-      <p><a href="/advantage" class="p-button--positive">Get started with Ubuntu Advantage</a></p>
-    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
-      {{
-        image(
+      <span class="u-sv3"><p class="p-heading--4">Security updates for Ubuntu LTS for additional 5 years</p></span>
+      <p>Continue to receive security updates for the Ubuntu base OS, critical software packages and infrastructure components with Extended Security Maintenance (ESM). ESM provides five additional years of security maintenance, enabling an organization's continuous vulnerability management.</p>
+      <p>ESM is available through an Ubuntu Advantage for Infrastructure subscription for physical servers, virtual machines, containers and desktops, and is free for personal use. ESM is also included in the Ubuntu Pro premium images that are optimised for <a href="/cloud/public-cloud">the public cloud</a>, and these also provide security maintenance for high and critical CVEs for the entire collection of software packages shipped with Ubuntu.</p>
+      <p>
+        <a href="/advantage" class="p-button--positive">Get started with Ubuntu Advantage</a>
+        <a href="/security/esm#get-in-touch" class="p-button">Contact us</a  >
+        </p>
+      </div>
+      <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+        {{
+          image(
           url="https://assets.ubuntu.com/v1/92a095cb-Shield-greentick.svg",
           alt="",
           height="226",
           width="190",
           hi_def=True,
           loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<div class="p-strip is-shallow">
-  <div class="u-fixed-width">
-    <div class="p-heading-icon--small">
-      <div class="p-heading-icon__header">
-        <h4 class="p-heading-icon__title u-no-max-width u-no-margin--bottom">Extended Security Maintenance for Ubuntu 16.04 LTS will be available April 2021 until 2024. <a href="https://ubuntu.com/blog/ubuntu-16-04-lts-esm-migration-path">Learn more&nbsp;&rsaquo;</a></h4>
+          ) | safe
+        }}
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<section class="p-strip--suru-accent is-dark">
-  <div class="row p-divider">
-    <div class="col-6 p-divider__block">
+  <div class="p-strip is-shallow">
+    <div class="u-fixed-width">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
-              alt="",
-              height="32",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img"},
-            ) | safe
-          }}
-          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">WEBINAR</p>
+          <h4 class="p-heading-icon__title u-no-max-width u-no-margin--bottom">Extended Security Maintenance for Ubuntu 16.04 LTS is available from April 2021 until 2026. <a href="/blog/ubuntu-16-04-lts-transitions-to-extended-security-maintenance-esm">Learn more&nbsp;&rsaquo;</a></h4>
         </div>
-        <h4>
-          Ubuntu 16.04 LTS moving to Extended Security Maintenance period
-        </h4>
-        <p>
-          Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
-        </p>
-        <p><a href="/engage/16-04-ESM-webinar" class="p-button--neutral">Register for the webinar</a></p>
       </div>
     </div>
-    <div class="col-6 p-divider__block">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          {{
-            image(
+  </div>
+
+  <section class="p-strip--suru-accent">
+    <div class="row p-divider is-dark">
+      <div class="col-6 p-divider__block">
+        <div class="p-heading-icon--small">
+          <div class="p-heading-icon__header">
+            {{
+              image(
               url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
               alt="",
               height="32",
@@ -81,104 +59,267 @@
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-heading-icon__img"},
+              ) | safe
+            }}
+            <p class="p-heading--4">Case study</p>
+          </div>
+          <h4>
+            Interana uses ESM while planning public cloud upgrades to 18.04
+          </h4>
+          <p>
+            Due to the large amounts of customer data that Interana handles, ensuring that security was tight was a priority. Rather than rush the upgrade from Ubuntu 14.04LTS, which would have been a major inconvenience for its customers, Interana turned to Canonical and ESM.
+          </p>
+          <p><a href="/blog/interana-uses-esm-to-maintain-system-security-while-upgrading-its-customers-to-ubuntu-18-04-lts-across-public-clouds" class="p-button">Read more in the case study</a></p>
+        </div>
+      </div>
+      <div class="col-6 p-divider__block">
+        <div class="p-heading-icon--small">
+          <div class="p-heading-icon__header">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+              alt="",
+              height="32",
+              width="32",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"},
+              ) | safe
+            }}
+            <p class="p-heading--4">Case study</p>
+          </div>
+          <h4>
+            TIM maintains system security and client confidence with ESM
+          </h4>
+          <p>
+            To ensure the ongoing security of Ubuntu 14.04 LTS machines, ESM provided TIM, the world's largest trade recommendations network, the freedom to upgrade within their own timeframe. This approach saved time and money for this finserv organisation.
+          </p>
+          <p><a href="/engage/case-study-acuris" class="p-button">Read more in the case study</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-strip is-bordered">
+    <div class="row">
+      <div class="col-8">
+        <h2>Is Ubuntu 16.04 LTS still supported beyond April 2021?</h2>
+        <p>
+          Ubuntu 16.04 LTS will still be supported beyond its free initial five-year maintenance period in April 2021, as it transitions to the extended security maintenance phase - with five additional years of security ensured.
+        </p>
+        <p>
+          <a href="/16-04">Learn more about Ubuntu 16.04 LTS moving to ESM &nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section class="p-strip is-deep is-bordered" id="get-esm">
+    <div class="row">
+      <div class="col-8">
+        <h2>Free for personal use</h2>
+        <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a>, we will gladly increase that to 50 machines.</p>
+        <a href="/advantage" class="p-button--positive u-no-margin--bottom">Get ESM now</a>
+      </div>
+    </div>
+
+    <div class="u-fixed-width">
+      <hr class="p-separator">
+    </div>
+
+    <div class="row" id="benefits">
+      <div class="col-10">
+        <h2>What is covered?</h2>
+        <p>ESM continues security updates and <a href="/security/livepatch">kernel livepatching</a> for high and critical CVEs (Common Vulnerabilities and Exposures).</p>
+      </div>
+      <div class="row">
+        <div class="col-10" style="overflow: auto;">
+          <table style="width: auto;">
+            <thead>
+              <tr>
+                <th scope="col">Released</th>
+                <th scope="col">Coverage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ubuntu 14.04 LTS (Trusty Tahr)</td>
+                <td>
+                  <ul>
+                    <li>The Ubuntu base OS and scale-out infrastructure</li>
+                    <li>Kernel livepatching</li>
+                    <li>x86-64 architecture</li>
+                  </ul>
+                  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/14.04" class="p-button">Learn more</a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="/16-04">Ubuntu 16.04 LTS (Xenial Xerus)&nbsp;&rsaquo;</a></td>
+                <td>
+                  <ul>
+                    <li>The Ubuntu base OS and scale-out infrastructure</li>
+                    <li>Kernel livepatching</li>
+                    <li>x86-64 architecture</li>
+                  </ul>
+                  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/16.04" class="p-button">Learn more</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="u-fixed-width">
+        <hr class="p-separator">
+      </div>
+
+      <div class="row">
+        <div class="col-8">
+          <h2>ESM on Azure, AWS and Google Cloud with Ubuntu Pro</h2>
+          <p>
+            If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built-in.
+          </p>
+          <p>Learn more about Ubuntu Pro 16.04 LTS on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">Google Cloud</a></p>
+        </div>
+      </div>
+      <div class="u-fixed-width">
+        <hr class="p-separator">
+      </div>
+
+      <div class="row" id="faq">
+        <div class="col-8">
+          <h2>Common questions</h2>
+
+          <h4 class="u-no-max-width">How to enable ESM?</h4>
+          <div class="row">
+            <h5 class="col-4">Attach your subscription</h5>
+            <div class="col-4">
+              <pre><code>sudo ua attach [TOKEN]</code></pre>
+              <p>Note: obtain the subscription token via the <a href="/advantage">Ubuntu Advantage portal</a>. Attaching the subscription is not necessary on Ubuntu Pro.</p>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4">If ESM is not listed as enabled after attaching your Token, the ESM entitlement can be enabled using the UA client.</h5>
+            <div class="col-4">
+              <pre><code>sudo ua enable esm-infra</code></pre>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4">If ESM is enabled manually, the status of this entitlement can be confirmed with the UA client as well.</h5>
+            <div class="col-4">
+              <pre><code>sudo ua status</code></pre>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4 u-sv3">ESM is now enabled!</h5>
+          </div>
+
+          <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
+          <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can retrieve their credentials through the <a href="/advantage">Ubuntu Advantage portal</a>.</p>
+
+          <h4 class="u-no-max-width">How can we ensure the security of our Ubuntu systems after the end of Standard Security Maintenance?</h4>
+          <p>
+            To ensure security continuity when a particular release reaches the end of its Standard Security Maintenance window, sign up for <a href="/advantage">Ubuntu Advantage</a> for free on up to 3 machines or through a paid subscription for enterprise use.
+          </p>
+          <p>
+            <a href="/about/release-cycle">Learn more about release dates and maintenance cadences &nbsp;&rsaquo;</a>
+          </p>
+          <p>
+            <a href="/advantage" class="p-button">Sign up for Ubuntu Advantage subscription</a>
+          </p>
+          <h4 id="how-long" class="u-no-max-width">How long will Ubuntu ESM be maintained?</h4>
+          <p>All Ubuntu LTS releases until further announcement have ESM updates provided for five years establishing a lifecycle of ten years.</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Release</th>
+                <th>Release date</th>
+                <th>End of Life</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ubuntu 14.04 (Trusty Tahr)</td>
+                <td>April 2014</td>
+                <td>April 2024</td>
+              </tr>
+              <tr>
+                <td>Ubuntu 16.04 (Xenial Xerus)</td>
+                <td>April 2016</td>
+                <td>April 2026</td>
+              </tr>
+              <tr>
+                <td>Ubuntu 18.04 (Bionic Beaver)</td>
+                <td>April 2018</td>
+                <td>April 2028</td>
+              </tr>
+              <tr>
+                <td>Ubuntu 20.04 (Focal Fossa)</td>
+                <td>April 2020</td>
+                <td>April 2030</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4 class="u-no-max-width">Is it possible to purchase Ubuntu ESM months down the road when needed, with or without backdating the cost, or does it need to be in place in advance?</h4>
+          <p>You can purchase Ubuntu Advantage support at any time. It does not need to be in place in advance, although we strongly recommend you eliminate the gap between when Ubuntu ESM is enabled on your system(s), to avoid exposing your systems to security vulnerabilities. Ubuntu Advantage is priced year-over-year so there is no backdating.</p>
+
+          <h4 class="u-no-max-width">We're mirroring the repository on our internal Landscape server. Can we still get Ubuntu ESM if using Landscape?</h4>
+          <p>ESM is just a regular Ubuntu archive, but authenticated and served over HTTPS. Archive mirroring is already available in Landscape and is a supported mechanism for mirroring the ESM archive.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-strip">
+      <div class="row u-equal-height">
+        <div class="col-6">
+          <h2>Ubuntu 16.04 LTS moving to Extended Security Maintenance period</h2>
+          <p>
+            Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period in April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
+          </p>
+          <p><a href="/engage/16-04-ESM-webinar" class="p-button--positive">Watch the webinar</a></p>
+        </div>
+        <div class="col-6 u-align--center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/332c020e-webinar-social-1604-to-esm.jpg",
+            alt="",
+            width="450",
+            height="250",
+            hi_def=True,
+            loading="lazy",
             ) | safe
           }}
-          <p class="p-muted-heading u-sv3" style="color: #fff; line-height: 1.5rem;">CASE STUDY</p>
         </div>
-        <h4>
-          TIM maintains system security and client confidence with ESM
-        </h4>
-        <p>
-          To ensure the ongoing security of Ubuntu 14.04 LTS machines, ESM provided TIM, the world's largest trade recommendations network, the freedom to upgrade within their own timeframe. This approach saved time and money for this finserv organisation.
-        </p>
-        <p><a href="/engage/case-study-acuris" class="p-button--neutral">Read more in the case study</a></p>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="p-strip is-deep is-bordered" id="get-esm">
-  <div class="row">
-    <div class="col-8">
-      <h2>Free for personal use</h2>
-      <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a> we will gladly increase that to 50 machines. Your personal subscription will also cover <a href="/livepatch">Livepatch</a>, FIPS and CIS hardening tools.</p>
-      <a href="/advantage" class="p-button--positive u-no-margin--bottom">Get ESM now</a>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row" id="benefits">
-    <div class="col-10">
-      <h2>What's covered?</h2>
-      <p>ESM continues security updates for:</p>
-      <ul class="u-no-margin--bottom">
-        <li>high and critical CVEs (Common Vulnerabilities and Exposures), in</li>
-        <li>the Ubuntu base OS and scale-out infrastructure (Ceph, Openstack, see <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/14.04#A14.04_Infrastructure_ESM_Packages" class="p-link--external">the complete list</a>), on</li>
-        <li>the 64-bit x86 architecture.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row" id="faq">
-    <div class="col-8">
-      <h2>Common questions</h2>
-
-      <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
-      <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can retrieve their credentials through the <a href="/advantage">Ubuntu Advantage portal</a>.</p>
-
-      <h4 class="u-no-max-width">How can we ensure the security of our Ubuntu systems after the end of Standard Security Maintenance?</h4>
-      <p>Sign up to Ubuntu Advantage now, and you will benefit from UA services immediately without having a gap in service when a particular release reaches the end of its Standard Security Maintenance window. For more details of initial release dates and maintenance cadence, see <a href="https://wiki.ubuntu.com/Releases">wiki.ubuntu.com/Releases</a>. Ubuntu Advantage is available through the <a href="/advantage">Ubuntu Advantage portal</a> and through the <a class="p-link--external" href="https://aws.amazon.com/marketplace/pp/B01MZ1LSBQ?qid=1486382973569&sr=0-1&ref_=srh_res_product_title">AWS Marketplace</a>.</p>
-
-      <h4 class="u-no-max-width">How long will Ubuntu ESM be maintained?</h4>
-      <p>This depends on the release. Ubuntu 14.04 (Trusty Tahr) and 16.04 (Xenial Xerus) will have updates provided for up to three years after the end of the Standard Security Maintenance window. Ubuntu 18.04 (Bionic Beaver) and subsequent releases until further announcement will have ESM updates provided for up to five years.</p>
-
-      <h4 class="u-no-max-width">Is it possible to purchase Ubuntu ESM months down the road when needed, with or without backdating the cost, or does it need to be in place in advance?</h4>
-      <p>You can purchase Ubuntu Advantage support at any time. It does not need to be in place in advance, although we strongly recommend you eliminate the gap between when Ubuntu ESM is enabled on your system(s), to avoid exposing your systems to security vulnerabilities. Ubuntu Advantage is priced year-over-year so there is no backdating.</p>
-
-      <h4 class="u-no-max-width">We're mirroring the repository on our internal Landscape server. Can we still get Ubuntu ESM if using Landscape?</h4>
-      <p>ESM is just a regular Ubuntu archive, but authenticated and served over HTTPS. Archive mirroring is already available in Landscape and is a supported mechanism for mirroring the ESM archive.</p>
-
-      <h4 class="u-no-max-width">Will source code for Ubuntu ESM patches be made available? If so, will that be publicly available on Launchpad or only through Ubuntu ESM?</h4>
-      <p>Both the binary updates and source code will be available to Ubuntu ESM users. We honour all licenses associated with the open-source code in Ubuntu.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-5 u-align--center u-hide--small">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="",
-          height="200",
-          width="281",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
-    </div>
-    <div class="col-7 u-vertically-center">
-      <div>
-        <h2>Secure your Ubuntu estate</h2>
-        <p class="u-no-margin--bottom">If you would like to discuss ESM or Ubuntu Advantage please <a href="/security/contact-us" class="js-invoke-modal">get in touch</a>.</p>
+    <section class="p-strip--light">
+      <div class="row u-equal-height">
+        <div class="col-5 u-hide--medium u-hide--small u-align--center">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+            alt="",
+            height="200",
+            width="281",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="col-7 u-vertically-center">
+          <div>
+            <h2>Secure your Ubuntu estate</h2>
+            <p class="u-no-margin--bottom">If you would like to discuss ESM or Ubuntu Advantage please <a href="/security/contact-us" data-testid="interactive-form-link" class="js-invoke-modal">get in touch</a>.</p>
+          </div>
+        </div>
       </div>
+    </section>
+
+    {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+    <!-- Set default Marketo information for contact form below-->
+    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/esm" data-form-id="3764" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=esm" data-lp-url="">
     </div>
-  </div>
-</section>
 
-{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/esm" data-form-id="3764" data-lp-id="" data-return-url="https://www.ubuntu.com/security/thank-you?product=esm" data-lp-url="">
-</div>
-
-{% endblock content %}
-{% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
+    {% endblock content %}
+    {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

@@ -15,24 +15,25 @@ toc: False
 
 # 1.19+ck2 Bugfix release
 
-### November 27th, 2020 - [charmed-kubernetes-545](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-545/archive/bundle.yaml)
+### November 27th, 2020 - charmed-kubernetes-545
 
 ## Fixes
+
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck2).
 
 # 1.19+ck1 Bugfix release
 
-### November 20th, 2020 - [charmed-kubernetes-541](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-541/archive/bundle.yaml)
+### November 20th, 2020 - charmed-kubernetes-541
 
 ## Fixes
+
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1).
 
-
 # 1.19
 
-### September 30th, 2020 - [charmed-kubernetes-519](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-519/archive/bundle.yaml)
+### September 30th, 2020 - charmed-kubernetes-519
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
@@ -122,17 +123,17 @@ A list of bug fixes and other minor feature updates in this release can be found
 ## Notes / Known Issues
 
 - The `insecure-bind-address` and `insecure-port` options to `kube-apiserver` have
-been removed in this release. Using `juju run` with `kubectl` to interact with the
-cluster now requires an explicit `--kubeconfig <file>` option:
+  been removed in this release. Using `juju run` with `kubectl` to interact with the
+  cluster now requires an explicit `--kubeconfig <file>` option:
 
-    ```bash
-    juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get nodes'
-    NAME              STATUS   ROLES    AGE   VERSION
-    ip-172-31-10-19   Ready    <none>   71m   v1.19.0
-    ```
+      ```bash
+      juju run --unit kubernetes-master/0 'kubectl --kubeconfig /root/.kube/config get nodes'
+      NAME              STATUS   ROLES    AGE   VERSION
+      ip-172-31-10-19   Ready    <none>   71m   v1.19.0
+      ```
 
 - The webhook authentication service included in this release runs on port 5000 of each
-kubernetes-master unit. Ensure this port is available prior to upgrading.
+  kubernetes-master unit. Ensure this port is available prior to upgrading.
 
 - Additional known issues scheduled for the first 1.19 bugfix release can be found at [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1)
 
@@ -146,10 +147,9 @@ relevant sections of the [upstream release notes](https://github.com/kubernetes/
 Please see [this page][historic] for release notes of earlier versions.
 
 <!--LINKS-->
+
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [cis-benchmark]: /kubernetes/docs/cis-compliance
-[bundle]: https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-471/archive/bundle.yaml
 [historic]: /kubernetes/docs/release-notes-historic
 [ipv6]: /kubernetes/docs/ipv6
 [cni-sriov]: /kubernetes/docs/cni-sriov
@@ -159,10 +159,10 @@ Please see [this page][historic] for release notes of earlier versions.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/release-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

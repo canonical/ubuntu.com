@@ -3,19 +3,19 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
-  title: 'Easyrsa charm '
+  title: "Easyrsa charm "
   description: Delivers EasyRSA to create a Certificate Authority (CA).
 keywords: component, charms, versions, release
 tags:
-    - reference
+  - reference
 sidebar: k8smain-sidebar
 permalink: 1.20/charm-easyrsa.html
 layout:
-    - base
-    - ubuntu-com
+  - base
+  - ubuntu-com
 toc: false
-charm_revision: '342'
-bundle_release: '1.20'
+charm_revision: "345"
+bundle_release: "1.20"
 ---
 
 This charm delivers the EasyRSA application to act as a Certificate Authority
@@ -26,9 +26,7 @@ This charm delivers the EasyRSA application to act as a Certificate Authority
 To deploy EasyRSA:
 
 ```
-juju deploy easyrsa
-juju deploy tls-client
-juju add-relation easyrsa tls-client
+juju deploy cs:~containers/easyrsa
 ```
 
 ## Using the EasyRSA charm
@@ -64,7 +62,7 @@ def store_ca(tls):
 
 The EasyRSA charm generates a client certificate after the CA certificate is
 created. If another charm needs the CA the code must react to the flag
-`certificates.client.cert.available`.  The relationship object has a method
+`certificates.client.cert.available`. The relationship object has a method
 that returns the client cert and client key called `get_client_cert`.
 
 ```python
@@ -83,7 +81,7 @@ The interface will set `certificates.available` flag on a relation. The
 reactive code should send three values on the relation to request a
 certificate. Call the `request_server_cert` method on the relationship object.
 The three values are: Common Name (CN), a list of Subject Alt Names (SANs), and
-the file name of the certificate (the unit name with the  '/' replaced with an
+the file name of the certificate (the unit name with the '/' replaced with an
 underscore). For example a client charm would send:
 
 ```python
@@ -106,7 +104,7 @@ def send_data(tls):
 
 The Easy-RSA charm generates the server certificate and key after the request
 have been made. If another charm needs the server certificate the code must
-react to the flag `{relation_name}.server.cert.available`.  The relationship
+react to the flag `{relation_name}.server.cert.available`. The relationship
 object has a method that returns the server cert and server key called
 `get_server_cert`.
 
@@ -122,15 +120,15 @@ def store_server(tls):
 
 ### Backup/Restore the PKI
 
-This charm includes actions which support creating and managing snapshots 
+This charm includes actions which support creating and managing snapshots
 of the Easy-RSA PKI. Their usage is explained in the following sections:
 
 #### Create backups
 
 Use the charm's `backup` action to capture current snapshot of the Easy-RSA PKI.
 This will generate a file in the directory `/home/ubuntu/easyrsa_backup` on the
-relevant unit. The backup file follows the naming convention: 
-`easyrsa-YYYY-MM-DD_HH-MM-SS.tar.gz`. 
+relevant unit. The backup file follows the naming convention:
+`easyrsa-YYYY-MM-DD_HH-MM-SS.tar.gz`.
 
 For example:
 
@@ -138,7 +136,7 @@ For example:
 juju run-action --wait easyrsa/0 backup
 ```
 
-For convenience, the output of the `backup` action will output the exact 
+For convenience, the output of the `backup` action will output the exact
 `juju scp` command to download the created file to your local machine.
 
 #### List backups
@@ -154,7 +152,7 @@ unit's `/home/ubuntu/easyrsa_backup/` directory.
 
 The names can be used either directly as a parameters for the
 `restore` and `delete-backup` actions or as part of a `juju scp` command to
-download the backup files. For example, to download a backup named 
+download the backup files. For example, to download a backup named
 `easyrsa-2020-12-10_16-37-54.tar.gz`, the corresponding `juju scp` command
 would be:
 
@@ -202,28 +200,28 @@ command. For example:
 juju scp easyrsa-2020-12-10_16-37-54.tar.gz easyrsa/0:/home/ubuntu/easyrsa_backup/
 ```
 
-In the case where units have been added to the Juju model since the 
+In the case where units have been added to the Juju model since the
 backup was created, Easy-RSA will issue new certificates to these
 units.
 
-<div class="p-notification--warning">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Warning:</span>
-There is a known issue thatthe `kubernetes-master` units
-need to be restarted after the certificate change. These units may settle in
-the <code>active/idle</code> state but all new pods will hang in the 
-<code>pending</code> state. . <br><br>
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Warning:</span>
+    <p class="p-notification__message">There is a known issue that the `kubernetes-master` units
+    need to be restarted after the certificate change. These units may settle in
+    the <code>active/idle</code> state but all new pods will hang in the
+    <code>pending</code> state.</p>
+  </div>
 </div>
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  <span class="p-notification__status">Note:</span>
-  The Easy-RSA charm notifies all the related units that the CA
-  and issued certificates have changed. It's up to the implementation of each
-  related charm to react to this change properly. It may take up to several
-  minutes for model to settle back into the <code>active/idle</code> state.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">The Easy-RSA charm notifies all the related units that the CA
+    and issued certificates have changed. It's up to the implementation of each
+    related charm to react to this change properly. It may take up to several
+    minutes for model to settle back into the <code>active/idle</code> state.</p>
+  </div>
 </div>
 
 ## Actions
@@ -236,6 +234,5 @@ the charm's `actions.yaml` file or consult the table below:
 <!-- NOTE: The actions table is autogenerated from the actions.yaml -->
 <!--       file. Edits to the section below will be lost!           -->
 <!-- ACTIONS STARTS -->
-
 
 <!-- ACTIONS ENDS -->

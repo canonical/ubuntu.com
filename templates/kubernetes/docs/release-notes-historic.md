@@ -12,10 +12,347 @@ permalink: release-notes-historic.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+# 1.18+ck2 Bugfix release
+
+### August 12, 2020 - charmed-kubernetes-485
+## Fixes
+
+Bug fixes included in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck2).
+
+
+# 1.18+ck1 Bugfix release
+
+### June 11, 2020 - charmed-kubernetes-464
+
+Before upgrading from 1.17 or earlier, please read the
+[upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- New options for custom TLS data in container runtime charms
+
+All container runtime subordinate charms now support a `custom-registry-ca`
+option that can be used to specify a `base64` encoded Certificate Authority
+(CA) certificate. The value set here will be installed as a system-wide
+trusted CA. See the
+[related issue](https://bugs.launchpad.net/layer-container-runtime-common/+bug/1831153)
+for more details.
+
+For users that require custom TLS configuration per registry, the `containerd`
+subordinate charm has expanded the `custom_registries` config option to
+support `ca_file`, `cert_file`, and `cert_key`. These can be set for each
+custom registry to enable TLS without altering the system-wide trusted CAs.
+See the
+[related issue](https://bugs.launchpad.net/charm-containerd/+bug/1879347)
+for more details.
+
+Both of the above options allow the container runtime located on
+`kubernetes-worker` units to pull containers from a registry that utilizes
+custom TLS certificates.
+
+- New memory constraint for `kubeapi-load-balancer`
+
+Deploying Charmed Kubernetes now requires a minimum of 4GB of RAM for the
+`kubeapi-load-balancer`. This addresses OOM errors reported in the
+[related issue](https://bugs.launchpad.net/charmed-kubernetes-bundles/+bug/1873044).
+
+- Updated profile when deploying to LXD
+
+An updated LXD profile has been included in `kubernetes-master` and
+`kubernetes-worker` charms. This resolves an
+[issue](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1876618)
+where containers would fail to start in a LXD environment.
+
+## Fixes
+
+Bug fixes included in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.18+ck1).
+
+# 1.18
+
+### April 13, 2020 - charmed-kubernetes-430
+
+Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- New SSL options for nginx-ingress-controller
+
+New configuration options on the kubernetes-worker charm,
+`ingress-default-ssl-certificate` and `ingress-default-ssl-key`, allow you to
+configure nginx-ingress-controller with your own SSL certificate for serving
+Kubernetes ingress traffic.
+
+- Multus support
+
+This release of Charmed Kubernetes introduces support for
+[Multus](https://github.com/intel/multus-cni), a CNI provider that makes it
+possible to attach multiple network interfaces to your pods.
+
+Along the way, we've also updated existing charms to make it possible for
+multiple CNI providers to be deployed together in the same cluster.
+
+For more details on Multus support in Charmed Kubernetes and how to get started,
+please refer to the [Multus documentation page](/kubernetes/docs/cni-multus).
+
+- CIS Benchmark 1.5.0
+
+The `cis-benchmark` action now supports version 1.5.0 of the CIS Kubernetes Benchmark.
+See the [CIS compliance](/kubernetes/docs/cis-compliance) page for information on
+running this action on Charmed Kubernetes components.
+
+- Containerd version hold
+
+The version of [containerd](https://containerd.io/) will now be held. This means
+that the version of [containerd](https://containerd.io/) will not be upgraded along
+with the charm. To update containerd to the latest stable, currently 1.3.3, you can
+call the `upgrade-containerd` action:
+
+```bash
+juju run-action --wait containerd/0 upgrade-containerd
+```
+
+This will perform the upgrade and return any output. If you have more than
+one unit of containerd,  you should run this on each unit. The upgrades can be
+staggered to avoid downtime.
+
+## Component Upgrades
+
+Many of the components in Charmed Kubernetes 1.18 have been upgraded. The following list
+highlights some of the more notable version changes:
+
+- containerd 1.3.3 (see above)
+- coredns 1.6.7
+- dashboard 2.0.0-rc5
+- etcd 3.3.15
+- openstack-provider 1.17
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.18](https://launchpad.net/charmed-kubernetes/+milestone/1.18).
+
+## Notes / Known Issues
+
+- Heapster, InfluxDB, Grafana addons have been removed from `cdk-addons`
+
+Heapster was initially [deprecated][heapster-deprecation] in 1.11; users
+were encouraged to move to the `metrics-server` for similar functionality.
+With 1.18, the `cluster-monitoring` addons (Heapster, InfluxDB, and Grafana)
+have been removed from the Kubernetes source tree and therefore removed from
+the `cdk-addons` snap as well. Customers relying on these addons should
+migrate to a `metrics-server` solution prior to upgrading. Note: these
+removals do not affect the Kubernetes Dashboard nor the methods described in
+[Monitoring Charmed Kubernetes](/kubernetes/docs/monitoring).
+
+- Containerd cannot pull images from a registry with TLS mutual authentication
+
+An issue with the `containerd` charm prevents pulling images from a private
+container registry when TLS mutual authentication is enabled. Where possible,
+users can workaround this issue by disabling mutual authentication on the
+registry. More details can be found in the following bug:
+
+https://bugs.launchpad.net/charm-containerd/+bug/1853653
+
+- New provisioner value for Cinder storage classes
+
+The new version of the openstack-provisioner includes an upstream change
+to the `provisioner` field for storage classes using Cinder. The `cdk-cinder`
+storage class will be automatically updated, but any manually created storage
+classes will need to be edited and the `provisioner` field changed to
+`cinder.csi.openstack.org`. Existing volumes will be unaffected, but new
+PVCs using those storage classes will hang until the storage class is updated.
+
+# 1.17+ck2 Bugfix release
+
+### March 2, 2020 - charmed-kubernetes-410
+
+## Fixes
+
+CephFS is now supported in Charmed Kubernetes. This allows for ReadWriteMany volumes
+which can be attached to multiple pods. More information can be found in the
+[storage documentation](/kubernetes/docs/storage).
+
+Additional bug fixes included in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.17+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.17+ck2).
+
+# 1.17+ck1 Bugfix release
+
+### January 15, 2020 - charmed-kubernetes-372
+
+## Fixes
+
+We fixed an issue where pod-to-pod network traffic was being unnecessarily
+masqueraded when using Flannel or Canal. More details can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.17+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.17+ck1).
+
+# 1.17
+
+### December 17, 2019 - charmed-kubernetes-335
+
+Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- CIS Benchmark
+
+The **Center for Internet Security (CIS)** maintains a [Kubernetes benchmark][cis-benchmark]
+that is helpful to ensure clusters are deployed in accordance with security best practices.
+See the [CIS Compliance](/kubernetes/docs/cis-compliance) documentation for instructions on
+how to run this compliance benchmark.
+
+- Snap Coherence
+
+Beginning with Charmed Kubernetes 1.17, updates to Kubernetes snap packages used by
+`kubernetes-master` and `kubernetes-worker` charms will be applied in a controlled fashion. Known
+as **Snap Coherence**, this feature ensures snap updates are first applied to individual master
+units, followed by workers. If an update fails, the process is aborted before affecting the entire
+cluster. This feature also allows snap revisions to be controlled by a snap store proxy. See
+[snap coherence](/kubernetes/docs/snap-coherence) documentation for details.
+
+- Nagios checks
+
+Additional Nagios checks have been added for the `kubernetes-master` and `kubernetes-worker` charms.
+These checks enhance the monitoring and reporting available via Nagios by collecting data on node
+registration and API server connectivity.
+
+- Improved metrics
+
+`kube-state-metrics` is now added by default to the cluster when monitoring is enabled. New default
+dashboards are also included to highlight these metrics with Prometheus/Grafana.
+
+- Storage Classes created by default
+
+Storage classes will now be created if the `kubernetes-master` charm is related to an
+integrator charm. These classes are for AWS, GCE, OpenStack, and Azure and are named cdk-ebs,
+cdk-gce-pd, cdk-cinder, and cdk-azure-disk, respectively.
+
+- Support for etcd 3.3 and 3.4
+
+Whilst Charmed Kubernetes 1.17 ships with etcd 3.3 by default, it also brings support for
+running etcd 3.4. To do so, you can simply run the following Juju command:
+
+```bash
+juju config etcd channel=3.4/stable
+```
+
+## Component Upgrades
+
+Many of the components in Charmed Kubernetes 1.17 have been upgraded. The following list
+highlights some of the more notable version changes:
+
+- calico 3.10.1
+- coredns 1.6.5
+- etcd 3.3
+- nfs-provisioner 3.1.0
+- nginx-ingress-controller 0.26.1
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.17](https://launchpad.net/charmed-kubernetes/+milestone/1.17).
+
+## Notes / Known Issues
+
+- The `registry` action for the `kubernetes-worker` charm has been deprecated and will be removed
+in a future release. To enable a custom container registry, please see the
+[registry](/kubernetes/docs/docker-registry) documentation.
+
+# 1.16+ck2 Bugfix release
+
+### November 22, 2019 - charmed-kubernetes-316
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.16+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.16+ck2).
+
+# 1.16+ck1 Bugfix release
+
+### October 4, 2019 - charmed-kubernetes-270
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.16+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.16+ck1).
+
+# 1.16
+
+### September 27, 2019 - charmed-kubernetes-252
+
+Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
+
+## What's new
+
+- Kata Containers support
+
+Beginning with Charmed Kubernetes 1.16, the [Kata Containers](https://katacontainers.io) runtime can be used
+with containerd to safely run insecure or untrusted pods. When enabled, Kata provides hypervisor isolation
+for pods that request it, while trusted pods can continue to run on a shared kernel via runc.
+For details on using Kata Containers with Charmed Kubernetes, consult the [documentation](/kubernetes/docs/kata).
+
+- AWS IAM support
+
+Amazon AWS IAM authentication and authorisation is now supported via a subordinate charm. See
+[AWS-IAM documentation](/kubernetes/docs/aws-iam-auth) for details on how to use AWS credentials
+to log in to your Charmed Kubernetes cluster.
+
+- SSL passthrough support
+
+A new configuration parameter was added to the kubernetes-worker charm to enable ssl passthrough.
+This allows TLS termination to happen on the workload. Refer to the
+[upstream documentation](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#ssl-passthrough)
+for more information.
+
+- Improved LXD support
+
+LXD containers used for hosting Kubernetes components require some specific profile settings. These
+profiles are now embedded in the charms themselves and applied when deployed, dramatically
+simplifying the process of installing Charmed Kubernetes on a single machine. See the
+[Local install documentation](/kubernetes/docs/install-local) for the updated instructions.
+
+- Improved Prometheus/Grafana integration
+
+The setup and configuration of Prometheus and Grafana has been significantly streamlined with
+new relations to allow the charms to manage the scraper job and dashboards. This means that
+monitoring can now be added by specifying a single overlay when deploying Charmed Kubernetes.
+Refer to the [updated documentation](/kubernetes/docs/monitoring) for more information.
+
+- Improved OpenStack integration
+
+The OpenStack Integrator charm can now replace the Kube API Load Balancer by providing a
+native OpenStack load balancer (Octavia or Neutron) to provide HA load balancing for the
+Kubernetes control plane. Refer to the [updated documentation](/kubernetes/docs/openstack-integration)
+for more information.
+
+- Docker Registry with Containerd
+
+The Docker registry charm can now be related directly to the Containerd runtime charm.
+Refer to the [documentation](/kubernetes/docs/docker-registry) for instructions on how to deploy the charm.
+
+- Renamed default container registry
+
+The Canonical container image registry has a new, firewall-friendly name:
+`image-registry.canonical.com:5000` is now `rocks.canonical.com`. The old URL
+is an alias for `rocks` and will continue to work. However, the default
+configuration for current charms has changed to the new URL.
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[https://launchpad.net/charmed-kubernetes/+milestone/1.16](https://launchpad.net/charmed-kubernetes/+milestone/1.16).
+
+Special thanks to [pierrop](https://github.com/pierrop) for contributing a fix to
+[issue 1841965](https://bugs.launchpad.net/charm-kubernetes-master/+bug/1841965)!
+
+## Known Issues
+
+The Kubernetes Dashboard shipped with Charmed Kubernetes 1.16 is version 2.0.0-beta4. While unusual to ship a beta component with a stable release, in this case it was necessary, since the latest stable dashboard (v1.10.1) does not work with Kubernetes 1.16.
 
 # 1.15+ck1 Bugfix release
 
-### August 15, 2019 - [charmed-kubernetes-209](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-209/archive/bundle.yaml)
+### August 15, 2019 - charmed-kubernetes-209
 
 ## Fixes
 
@@ -25,7 +362,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.15
 
-### June 28, 2019 -  [charmed-kubernetes-142](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-142/archive/bundle.yaml)
+### June 28, 2019 -  charmed-kubernetes-142
 
 ## What's new
 
@@ -130,7 +467,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### June 19th, 2019 - [charmed-kubernetes-124](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-124/archive/bundle.yaml)
+### June 19th, 2019 - charmed-kubernetes-124
 
 ## Fixes
 
@@ -139,7 +476,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### June 6th, 2019 - [charmed-kubernetes-96](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-96/archive/bundle.yaml)
+### June 6th, 2019 - charmed-kubernetes-96
 
 ## Fixes
 
@@ -150,7 +487,7 @@ updated.
 
 # 1.14 Bugfix release
 
-### May 23rd, 2019 - [charmed-kubernetes-74](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-74/archive/bundle.yaml)
+### May 23rd, 2019 - charmed-kubernetes-74
 
 ## Fixes
 
@@ -164,15 +501,15 @@ updated.
 
 # 1.14 Bugfix release
 
-### April 23rd, 2019 - [charmed-kubernetes-31](https://api.jujucharms.com/charmstore/v5/charmed-kubernetes-31/archive/bundle.yaml)
+### April 23rd, 2019 - charmed-kubernetes-31
 
 ## Fixes
 
- - Added automatic and manual cleanup for subnet tags ([Issue](https://github.com/juju-solutions/charm-aws-integrator/pull/36))
+ - Added automatic and manual cleanup for subnet tags (
  - Added action apply-manifest ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-master/pull/3))
  - Added label to inform Juju of cloud ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-worker/pull/3))
  - Added support for loadbalancer-ips ([Issue](https://github.com/charmed-kubernetes/charm-kubeapi-load-balancer/pull/1))
- - Fixed handling "not found" error message ([Issue](https://github.com/juju-solutions/charm-azure-integrator/pull/20))
+ - Fixed handling "not found" error message 
  - Fixed snapd_refresh smashed by subordinate charm ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/148))
  - Fixed making sure cert has proper IP as well as DNS ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/149))
  - Fixed etcd charm stuck on "Requesting tls certificates" ([Issue](https://github.com/charmed-kubernetes/layer-etcd/pull/150))
@@ -183,25 +520,25 @@ updated.
  - Fixed pause/resume actions ([Issue](https://github.com/charmed-kubernetes/charm-kubernetes-worker/pull/2))
  - Fixed ingress address selection to avoid fan IPs ([Issue](https://github.com/charmed-kubernetes/layer-kubernetes-common/pull/1))
  - Fixed snapd_refresh handler ([Issue](https://github.com/charmed-kubernetes/layer-kubernetes-master-worker-base/pull/2))
- - Fixed credentials fields to allow for fallback and override ([Issue](https://github.com/juju-solutions/charm-openstack-integrator/pull/17))
+ - Fixed credentials fields to allow for fallback and override 
 
 
 # 1.14 Bugfix release
 
-### April 4th, 2019 - [canonical-kubernetes-471][bundle]
+### April 4th, 2019 - canonical-kubernetes-471
 
 ## Fixes
 
 - Fixed Ceph PV fails to mount in pod ([Issue](https://bugs.launchpad.net/cdk-addons/+bug/1820908))
 - Fixed Problems switching from kube-dns to CoreDNS ([Issue](https://bugs.launchpad.net/charm-kubernetes-master/+bug/1822001))
-- Fixed defaultbackend-s390x image ([Issue](https://github.com/juju-solutions/kubernetes/pull/229))
-- Fixed `keystone-ssl-ca` config description ([Issue](https://github.com/juju-solutions/kubernetes/pull/230))
-- Partial fix for using custom CA with Keystone ([Issue](https://github.com/juju-solutions/cdk-addons/pull/91))
+- Fixed defaultbackend-s390x image 
+- Fixed `keystone-ssl-ca` config description 
+- Partial fix for using custom CA with Keystone
 
 
 # 1.14
 
-### March 27, 2019 - [canonical-kubernetes-466](https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-466/archive/bundle.yaml)
+### March 27, 2019 - canonical-kubernetes-466
 
 ## What's new
 
@@ -231,65 +568,65 @@ continue to use **KubeDNS** until the operator chooses to upgrade to
 
  - Docker upgrades: Docker 18.09.2 is the new default in Ubuntu. CDK now includes a charm action to simplify [upgrading Docker across a set of worker nodes][upgrading-docker].
 
-- Registry enhancements: Read-only mode, frontend support, and additional TLS configuration options have been added to the [Docker registry charm](https://jujucharms.com/u/containers/docker-registry/114).
+- Registry enhancements: Read-only mode, frontend support, and additional TLS configuration options have been added to the [Docker registry charm](https://charmhub.io/containers-docker-registry).
 
 - Cloud integrations: New configuration options have been added to the
-[vSphere](https://jujucharms.com/u/containers/vsphere-integrator/) (`folder` and `respool_path`) and
-[OpenStack]( https://jujucharms.com/u/containers/openstack-integrator/) (`ignore-volume-az`, `bs-version`, `trust-device-path`) integrator charms.
+[vSphere](https://charmhub.io/containers-vsphere-integrator/) (`folder` and `respool_path`) and
+[OpenStack]( https://charmhub.io/containers-openstack-integrator/) (`ignore-volume-az`, `bs-version`, `trust-device-path`) integrator charms.
 
 
 ## Fixes
 
- - Added an action to upgrade Docker ([Issue](https://github.com/juju-solutions/layer-docker/pull/135))
- - Added better multi-client support to EasyRSA ([Issue](https://github.com/juju-solutions/layer-easyrsa/pull/15))
- - Added block storage options for OpenStack ([Issue](https://github.com/juju-solutions/kubernetes/pull/218))
- - Added dashboard-auth config option to master ([Issue](https://github.com/juju-solutions/kubernetes/pull/222))
- - Added docker registry handling to master ([Issue](https://github.com/juju-solutions/kubernetes/pull/210))
+ - Added an action to upgrade Docker 
+ - Added better multi-client support to EasyRSA 
+ - Added block storage options for OpenStack 
+ - Added dashboard-auth config option to master 
+ - Added docker registry handling to master
  - Added more TLS options to Docker registry ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/20))
- - Added new folder/respool_path config for vSphere ([Issue](https://github.com/juju-solutions/charm-vsphere-integrator/pull/2))
+ - Added new folder/respool_path config for vSphere 
  - Added proxy support to Docker registry ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/21))
  - Added read-only mode for Docker registry ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/22))
- - Fixed `allow-privileged` not enabled when Ceph relation joins ([Issue](https://github.com/juju-solutions/kubernetes/pull/197))
- - Fixed apt install source for VaultLocker ([Issue](https://github.com/juju-solutions/layer-vaultlocker/pull/3))
- - Fixed Ceph relation join not creating necessary pools ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/631))
- - Fixed Ceph volume provisioning fails with "No such file or directory" ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/710))
- - Fixed detecting of changed AppKV values ([Issue](https://github.com/juju-solutions/layer-vault-kv/pull/6))
- - Fixed docker-ce-version config not working for non-NVIDIA configuration ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/621))
+ - Fixed `allow-privileged` not enabled when Ceph relation joins 
+ - Fixed apt install source for VaultLocker 
+ - Fixed Ceph relation join not creating necessary pools 
+ - Fixed Ceph volume provisioning fails with "No such file or directory" 
+ - Fixed detecting of changed AppKV values 
+ - Fixed docker-ce-version config not working for non-NVIDIA configuration 
  - Fixed Docker registry behavior with multiple frontends ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/26))
  - Fixed Docker registry not cleaning up old relation data ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/28))
  - Fixed Docker registry to correctly handle frontend removal ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/29))
  - Fixed Docker registry to work behind a TLS-terminating frontend ([Issue](https://github.com/CanonicalLtd/docker-registry-charm/pull/25))
- - Fixed error: snap "etcd" is not compatible with --classic ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/727))
- - Fixed file descriptor limit on api server ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/703))
- - Fixed GCP NetworkUnavailable hack when only some pods pending ([Issue](https://github.com/juju-solutions/kubernetes/pull/211))
- - Fixed handle_requests being called when no clients are related ([Issue](https://github.com/juju-solutions/charm-openstack-integrator/pull/14))
- - Fixed handling of nameless and SANless server certificates ([Issue](https://github.com/juju-solutions/layer-easyrsa/pull/16))
- - Fixed inconsistent cert flags ([Issue](https://github.com/juju-solutions/layer-easyrsa/pull/18))
- - Fixed ingress=false not allowing custom ingress to be used ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/718))
- - Fixed installing from outdated docker APT respository ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/388))
- - Fixed IPv6 disabled on kubeapi-loadbalancer machines leads to error during installation ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/623))
- - Fixed Keystone not working with multiple masters ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/681))
- - Fixed kubeconfig should contain the VIP when keepalived used with kubeapi-load-balancer ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/712))
- - Fixed metrics server for k8s 1.11 ([Issue](https://github.com/juju-solutions/cdk-addons/pull/81))
- - Fixed proxy var to apply when adding an apt-key ([Issue](https://github.com/juju-solutions/layer-docker/pull/133))
- - Fixed RBAC enabled results in error: unable to upgrade connection ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/696))
- - Fixed registry action creating configmap in the wrong namespace  ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/721))
- - Fixed rules for metrics-server ([Issue](https://github.com/juju-solutions/cdk-addons/pull/76))
- - Fixed status when writing kubeconfig file ([Issue](https://github.com/juju-solutions/kubernetes/pull/202))
- - Fixed "subnet not found" to be non-fatal ([Issue](https://github.com/juju-solutions/charm-aws-integrator/pull/34))
- - Fixed vSphere integrator charm not updating cloud-config when setting new charm defaults  ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/695))
- - Removed deprecated allow-privileged config from worker ([Issue](https://github.com/juju-solutions/kubernetes/pull/204))
- - Removed use of global / shared client certificate ([Issue](https://github.com/juju-solutions/kubernetes/pull/207))
- - Updated default nginx-ingress controller to 0.22.0 for amd64 and arm64 ([Issue](https://github.com/juju-solutions/kubernetes/pull/220))
+ - Fixed error: snap "etcd" is not compatible with --classic
+ - Fixed file descriptor limit on api server 
+ - Fixed GCP NetworkUnavailable hack when only some pods pending 
+ - Fixed handle_requests being called when no clients are related 
+ - Fixed handling of nameless and SANless server certificates 
+ - Fixed inconsistent cert flags 
+ - Fixed ingress=false not allowing custom ingress to be used
+ - Fixed installing from outdated docker APT respository
+ - Fixed IPv6 disabled on kubeapi-loadbalancer machines leads to error during installation 
+ - Fixed Keystone not working with multiple masters
+ - Fixed kubeconfig should contain the VIP when keepalived used with kubeapi-load-balancer 
+ - Fixed metrics server for k8s 1.11 
+ - Fixed proxy var to apply when adding an apt-key 
+ - Fixed RBAC enabled results in error: unable to upgrade connection 
+ - Fixed registry action creating configmap in the wrong namespace 
+ - Fixed rules for metrics-server
+ - Fixed status when writing kubeconfig file 
+ - Fixed "subnet not found" to be non-fatal
+ - Fixed vSphere integrator charm not updating cloud-config when setting new charm defaults 
+ - Removed deprecated allow-privileged config from worker
+ - Removed use of global / shared client certificate 
+ - Updated default nginx-ingress controller to 0.22.0 for amd64 and arm64
 
 # 1.13 Bugfix Release
 
-### February 21, 2019 - [canonical-kubernetes-435](https://api.jujucharms.com/charmstore/v5/canonical-kubernetes-435/archive/bundle.yaml)
+### February 21, 2019 - canonical-kubernetes-435
 
 ## Fixes
 
-- Fixed docker does not start when docker_runtime is set to nvidia ([Issue](https://bugs.launchpad.net/charm-layer-docker/+bug/1816471))
-- Fixed snapd_refresh charm option conflict ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/657))
+- Fixed docker does not start when docker_runtime is set to nvidia 
+- Fixed snapd_refresh charm option conflict 
 
 # CVE-2018-18264
 
@@ -319,7 +656,7 @@ read the [documentation][docs-ldap] for details on how to enable this.
 
 - Vault PKI support
 
-Added support for using [Vault](https://jujucharms.com/u/openstack-charmers/vault/)
+Added support for using [Vault](https://charmhub.io/vault/)
 for PKI in place of EasyRSA. Vault is more secure and robust than EasyRSA and supports
 more advanced features for certificate management. See the
 [documentation][docs-vault] for details of how to add Vault to Charmed Kubernetes and configure it as a
@@ -328,14 +665,14 @@ root or intermediary CA.
 - Encryption-at-rest support using Vault
 
 Added support for encryption-at-rest for cluster secrets, leveraging
-[Vault](https://jujucharms.com/u/openstack-charmers/vault/) for data protection. This
+[Vault](https://charmhub.io/vault/) for data protection. This
 ensures that even the keys used to encrypt the data are protected at rest, unlike many
 configurations of encryption-at-rest for Kubernetes. Please see the
 [documentation][docs-ear] for further details.
 
 - Private Docker registry support
 
-Added support for the [Docker Registry](https://jujucharms.com/u/containers/docker-registry)
+Added support for the [Docker Registry](https://charmhub.io/containers-docker-registry)
 charm to provide Docker images to cluster components without requiring access to
 public registries. Full instructions on using this feature are in the [documentation][docs-registry].
 
@@ -354,42 +691,42 @@ reside in the same namespace as the nginx deployment.
 
 ## Fixes
 
- - Added post deployment script for jaas/jujushell ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/pull/697))
- - Added support for load-balancer failover ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/453))
- - Added always restart for etcd ([Issue](https://github.com/juju-solutions/layer-etcd/pull/145))
- - Added Xenial support to Azure integrator ([Issue](https://github.com/juju-solutions/charm-azure-integrator/pull/17))
- - Added Bionic support to Openstack integrator ([Issue](https://github.com/juju-solutions/charm-openstack-integrator/pull/13))
- - Added support for ELB service-linked role ([Issue](https://github.com/juju-solutions/charm-aws-integrator/pull/29))
- - Added ability to configure Docker install source ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/621))
- - Fixed EasyRSA does not run as an LXD container on 18.04 ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/654))
- - Fixed ceph volumes cannot be attached to the pods after 1.12 ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/662))
- - Fixed ceph volumes fail to attach with "node has no NodeID annotation" ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/675))
- - Fixed ceph-xfs volumes failing to format due to "executable file not found in $PATH" ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/668))
- - Fixed ceph volumes not detaching properly ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/669))
- - Fixed ceph-csi addons not getting cleaned up properly ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/680))
- - Fixed Calico/Canal not working with kube-proxy on master ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/660))
- - Fixed issue with Canal charm not populating the kubeconfig option in 10-canal.conflist ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/671))
- - Fixed cannot access logs after enabling RBAC ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/642))
- - Fixed RBAC breaking prometheus/grafana metric collection ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/635))
- - Fixed upstream Docker charm config option using wrong package source ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/620))
- - Fixed a timing issue where ceph can appear broken when it's not ([Issue](https://github.com/juju-solutions/kubernetes/pull/173))
- - Fixed status when cni is not ready ([Issue](https://github.com/juju-solutions/kubernetes/pull/174))
- - Fixed an issue with calico-node service failures not surfacing ([Issue](https://github.com/juju-solutions/layer-calico/pull/28))
- - Fixed empty configuration due to timing issue with cni. ([Issue](https://github.com/juju-solutions/layer-canal/pull/22))
- - Fixed an issue where the calico-node service failed to start ([Issue](https://github.com/juju-solutions/layer-canal/pull/24))
- - Fixed updating policy definitions during upgrade-charm on AWS integrator ([Issue](https://github.com/juju-solutions/charm-aws-integrator/pull/30))
- - Fixed parsing credentials config value ([Issue](https://github.com/juju-solutions/charm-azure-integrator/pull/18))
+ - Added post deployment script for jaas/jujushell 
+ - Added support for load-balancer failover 
+ - Added always restart for etcd 
+ - Added Xenial support to Azure integrator 
+ - Added Bionic support to OpenStack integrator 
+ - Added support for ELB service-linked role 
+ - Added ability to configure Docker install source 
+ - Fixed EasyRSA does not run as an LXD container on 18.04 
+ - Fixed ceph volumes cannot be attached to the pods after 1.12 
+ - Fixed ceph volumes fail to attach with "node has no NodeID annotation" 
+ - Fixed ceph-xfs volumes failing to format due to "executable file not found in $PATH" 
+ - Fixed ceph volumes not detaching properly 
+ - Fixed ceph-csi addons not getting cleaned up properly 
+ - Fixed Calico/Canal not working with kube-proxy on master 
+ - Fixed issue with Canal charm not populating the kubeconfig option in 10-canal.conflist 
+ - Fixed cannot access logs after enabling RBAC 
+ - Fixed RBAC breaking prometheus/grafana metric collection
+ - Fixed upstream Docker charm config option using wrong package source 
+ - Fixed a timing issue where ceph can appear broken when it's not 
+ - Fixed status when cni is not ready 
+ - Fixed an issue with calico-node service failures not surfacing 
+ - Fixed empty configuration due to timing issue with cni. 
+ - Fixed an issue where the calico-node service failed to start 
+ - Fixed updating policy definitions during upgrade-charm on AWS integrator
+ - Fixed parsing credentials config value 
  - Fixed pvc stuck in pending (azure-integrator)
  - Fixed updating properties of the openstack integrator charm do not propagate automatically (openstack-integrator)
  - Fixed flannel error during install hook due to incorrect resource (flannel)
- - Updated master and worker to handle upstream changes from OpenStack Integrator ([Issue](https://github.com/juju-solutions/kubernetes/pull/176))
- - Updated to CNI 0.7.4 ([Issue](https://github.com/juju-solutions/kubernetes/pull/194))
- - Updated to Flannel v0.10.0 ([Issue](https://github.com/juju-solutions/charm-flannel/pull/50))
- - Updated Calico and Canal charms to Calico v2.6.12 ([Issue](https://github.com/juju-solutions/layer-calico/pull/30), [Issue](https://github.com/juju-solutions/layer-canal/pull/27))
- - Updated to latest CUDA and removed version pins of nvidia-docker stack ([Issue](https://github.com/juju-solutions/layer-docker/pull/123))
- - Updated to nginx-ingress-controller v0.21.0 ([Issue](https://github.com/juju-solutions/kubernetes/pull/195))
- - Removed portmap from Calico resource ([Issue](https://github.com/juju-solutions/layer-calico/pull/29))
- - Removed CNI bins from flannel resource ([Issue](https://github.com/juju-solutions/layer-canal/pull/25))
+ - Updated master and worker to handle upstream changes from OpenStack Integrator 
+ - Updated to CNI 0.7.4 
+ - Updated to Flannel v0.10.0 
+ - Updated Calico and Canal charms to Calico v2.6.12 
+ - Updated to latest CUDA and removed version pins of nvidia-docker stack 
+ - Updated to nginx-ingress-controller v0.21.0 
+ - Removed portmap from Calico resource 
+ - Removed CNI bins from flannel resource 
 
 ## Known issues
 
@@ -440,12 +777,11 @@ For operators who currently use the `http-proxy`, `https-proxy` and `no-proxy` J
 
 ## Fixes
 
-- Fixed kube-dns constantly restarting on 18.04 ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/655))
-- Fixed LXD machines not working on 18.04 ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/654))
-- Fixed kubernetes-worker unable to restart services after kubernetes-master leader is removed ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/627))
-- Fixed kubeapi-load-balancer default timeout might be too low ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/650))
-- Fixed unable to deploy on NVidia hardware ([Issue](https://github.com/juju-solutions/bundle-canonical-kubernetes/issues/664))
-
+- Fixed kube-dns constantly restarting on 18.04
+- Fixed LXD machines not working on 18.04 
+- Fixed kubernetes-worker unable to restart services after kubernetes-master leader is removed 
+- Fixed kubeapi-load-balancer default timeout might be too low 
+- Fixed unable to deploy on NVidia hardware 
 <!--LINKS-->
 
 [docs-ldap]: /kubernetes/docs/ldap
@@ -456,10 +792,11 @@ For operators who currently use the `http-proxy`, `https-proxy` and `no-proxy` J
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/release-notes-historic.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/release-notes-historic.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

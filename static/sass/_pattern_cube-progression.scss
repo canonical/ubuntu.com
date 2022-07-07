@@ -28,34 +28,14 @@
       width: map-get($rhombusSize, "width") * 1px;
     }
 
-    %is-faded {
-      background-color: rgba(255, 255, 255, 0.1);
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      opacity: 0.5;
-
-      &--right {
-        @extend %is-faded;
-
-        clip-path: polygon(0% 34%, 100% 0%, 100% 66.6%, 0% 100%);
-      }
-
-      &--left {
-        @extend %is-faded;
-
-        clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66.6%);
-      }
-    }
-
     &.is-architecture {
       @extend %diamond-badge;
-      @extend %is-faded;
 
       background-image: url(https://assets.ubuntu.com/v1/8b175afd-Architecture.svg);
     }
 
     &.is-bash {
       @extend %rhombus-badge;
-      @extend %is-faded--right;
 
       background: url(https://assets.ubuntu.com/v1/4b2c2de2-bash.svg);
       transform: translate(
@@ -66,7 +46,6 @@
 
     &.is-devices {
       @extend %rhombus-badge;
-      @extend %is-faded--left;
 
       background-image: url(https://assets.ubuntu.com/v1/9ba960cc-devices+and+files.svg);
       transform: translate(0, map-get($diamondSize, "height") * 0.5px);
@@ -74,7 +53,6 @@
 
     &.is-packages {
       @extend %diamond-badge;
-      @extend %is-faded;
 
       background-image: url(https://assets.ubuntu.com/v1/eb3be63d-Packages.svg);
       transform: translate(map-get($diamondSize, "width") * 1px, 0);
@@ -82,7 +60,6 @@
 
     &.is-services {
       @extend %rhombus-badge;
-      @extend %is-faded--right;
 
       background-image: url(https://assets.ubuntu.com/v1/74e5c92e-Services.svg);
       transform: translate(
@@ -93,7 +70,6 @@
 
     &.is-admin {
       @extend %rhombus-badge;
-      @extend %is-faded--left;
 
       background-image: url(https://assets.ubuntu.com/v1/0a374de7-Admin.svg);
       transform: translate(
@@ -104,7 +80,6 @@
 
     &.is-commands {
       @extend %diamond-badge;
-      @extend %is-faded;
 
       background-image: url(https://assets.ubuntu.com/v1/5e068487-Commands.svg);
       transform: translate(map-get($diamondSize, "width") * 2px, 0);
@@ -112,7 +87,6 @@
 
     &.is-security {
       @extend %rhombus-badge;
-      @extend %is-faded--right;
 
       background-image: url(https://assets.ubuntu.com/v1/d9074c81-Security.svg);
       transform: translate(
@@ -123,7 +97,6 @@
 
     &.is-networking {
       @extend %rhombus-badge;
-      @extend %is-faded--left;
 
       background-image: url(https://assets.ubuntu.com/v1/3f3f2687-Networking.svg);
       transform: translate(
@@ -134,7 +107,6 @@
 
     &.is-kernel {
       @extend %diamond-badge;
-      @extend %is-faded;
 
       background-image: url(https://assets.ubuntu.com/v1/7b4466fe-Kernel.svg);
       transform: translate(
@@ -145,7 +117,6 @@
 
     &.is-microk8s {
       @extend %rhombus-badge;
-      @extend %is-faded--right;
 
       background-image: url(https://assets.ubuntu.com/v1/c26080a5-Microk8s.svg);
       transform: translate(
@@ -157,7 +128,6 @@
 
     &.is-virtualisation {
       @extend %rhombus-badge;
-      @extend %is-faded--left;
 
       background-image: url(https://assets.ubuntu.com/v1/4f1c55a5-Virtualisation.svg);
       transform: translate(
@@ -169,7 +139,6 @@
 
     &.is-storage {
       @extend %diamond-badge;
-      @extend %is-faded;
 
       background-image: url(https://assets.ubuntu.com/v1/090ef9e2-Storage.svg);
       transform: translate(
@@ -180,7 +149,6 @@
 
     &.is-juju {
       @extend %rhombus-badge;
-      @extend %is-faded--right;
 
       background-image: url(https://assets.ubuntu.com/v1/ce96b82f-Juju.svg);
       transform: translate(
@@ -192,7 +160,6 @@
 
     &.is-maas {
       @extend %rhombus-badge;
-      @extend %is-faded--left;
 
       background: url(https://assets.ubuntu.com/v1/711b3e71-MAAS.svg);
       transform: translate(
@@ -200,6 +167,24 @@
         (map-get($rhombusSize, "height") * 1px) +
           (map-get($diamondSize, "height") * 0.5px)
       );
+    }
+  }
+
+  .is-faded {
+    background-image: rgba(255, 255, 255, 0.1);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    opacity: 0.5;
+
+    &--right {
+      @extend .is-faded;
+
+      clip-path: polygon(0% 34%, 100% 0%, 100% 66.6%, 0% 100%);
+    }
+
+    &--left {
+      @extend .is-faded;
+
+      clip-path: polygon(0% 0%, 100% 34%, 100% 100%, 0% 66.6%);
     }
   }
 }

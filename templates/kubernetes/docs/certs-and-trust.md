@@ -77,7 +77,7 @@ names (SANs)][SANs].
 
 **Charmed Kubernetes** will manage the server certificates automatically, including
 generating the certificate with the proper CN and SANs. However, the
-[kubernetes-master][] charm also supports an [`extra_sans`][] option which
+[kubernetes-control-plane][] charm also supports an [`extra_sans`][] option which
 can be used to provide additional names to be added to the SANs list.
 
 ## Client certificates
@@ -91,8 +91,8 @@ rejected by clients if presented by a service they are connecting to.
 
 # Certificate Authorities for Charmed Kubernetes
 
-**Charmed Kubernetes** can use a CA provided by any charm which [provides a tls-certificates
-endpoint][provides-tls]. The two current recommendations are
+**Charmed Kubernetes** can use a CA provided by any charm which provides a tls-certificates
+endpoint. The two current recommendations are
 **EasyRSA** and **Vault**.
 
 ## EasyRSA
@@ -122,16 +122,16 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [PKI]: https://github.com/OpenVPN/easy-rsa/blob/master/doc/Intro-To-PKI.md
 [chain of trust]: https://en.wikipedia.org/wiki/Chain_of_trust
 [CA]: https://en.wikipedia.org/wiki/Certificate_authority
-[Juju units]: https://docs.jujucharms.com/stable/en/juju-concepts#unit-and-application
-[Juju controller]: https://docs.jujucharms.com/controllers
+[Juju units]: https://juju.is/docs/olm/quick-reference
+[Juju controller]: https://juju.is/docs/olm/quick-reference
 [tls-certificates]: https://github.com/juju-solutions/interface-tls-certificates
-[interface]: https://docs.jujucharms.com/stable/en/juju-concepts#interface
+[interface]: https://juju.is/docs/olm/quick-reference
 [websockets]: https://en.wikipedia.org/wiki/WebSocket
 [cloud-init]: https://cloud-init.io/
-[relation]: https://docs.jujucharms.com/stable/en/juju-concepts#relation
-[vault-charm]: https://jujucharms.com/u/openstack-charmers/vault/
+[relation]: https://juju.is/docs/olm/quick-reference
+[vault-charm]: https://charmhub.io/vault
 [vault]: https://www.vaultproject.io
-[easyrsa-charm]: https://jujucharms.com/u/containers/easyrsa/
+[easyrsa-charm]: https://charmhub.io/containers-easyrsa
 [easy-rsa]: https://github.com/OpenVPN/easy-rsa
 [install_ca_cert]: https://charm-helpers.readthedocs.io/en/latest/api/charmhelpers.core.host.html#charmhelpers.core.host.install_ca_cert
 [Comodo]: https://en.wikipedia.org/wiki/Comodo_Group
@@ -141,19 +141,19 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [client certificate]: https://en.wikipedia.org/wiki/Public_key_certificate#TLS/SSL_client_certificate
 [CN]: https://knowledge.digicert.com/solution/SO7239.html
 [SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
-[network primitives]: https://docs.jujucharms.com/stable/en/developer-network-primitives
-[kubernetes-master]: /docs/kubernetes/charm-kubernetes-master
-[`extra_sans`]:  /docs/kubernetes/charm-kubernetes-master#extra_sans
-[provides-tls]: https://jujucharms.com/q/?provides=tls-certificates
+[network primitives]: https://juju.is/docs/olm/quick-reference
+[kubernetes-control-plane]: /kubernetes/docs/charm-kubernetes-control-plane
+[`extra_sans`]:  https://charmhub.io/kubernetes-control-plane/configure
 [HA]: https://en.wikipedia.org/wiki/High_availability
 [vault-cdk]: /kubernetes/docs/using-vault
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/certs-and-trust.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/certs-and-trust.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -1,0 +1,32 @@
+name: Security Links
+
+on:
+  schedule:
+    - cron: "20 7 * * *"
+
+jobs:
+  check-links:
+    if: github.repository == 'canonical-web-and-design/ubuntu.com'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install linkchecker
+        run: sudo pip install LinkChecker
+
+      - name: Run linkchecker
+        run: |
+          linkchecker --recursion-level=2 \
+            --check-extern --no-warnings https://ubuntu.com/security \
+            --timeout 1000 \
+            --no-follow-url '!https:\/\/ubuntu.com\/security' \
+            --ignore-url https://res.cloudinary.com \
+            --ignore-url q_auto \
+            --ignore-url fl_sanitize \
+            --ignore-url c_fill \
+            --ignore-url e_sharpen \
+            --ignore-url w_[0-9]* \
+            --ignore-url h_[0-9]*
+
+      - name: Send message on failure
+        if: failure()
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=cve--usn

@@ -4,7 +4,7 @@ markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
   title: 'Gcp-integrator charm '
-  description: "Pharm to enable GCP integrations via Juju relations.\n"
+  description: "Charm to enable GCP integrations via Juju relations.\n"
 keywords: component, charms, versions, release
 tags:
     - reference
@@ -171,7 +171,7 @@ watch kubectl get svc -o wide --selector=run=load-balancer-example
 The base64-encoded contents of an GCP credentials JSON file.
 
 This can be used from bundles with 'include-base64://' (see
-https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
+https://discourse.charmhub.io/t/bundle-reference/1158),
 or from the command-line with 'juju config gcp credentials="$(base64 /path/to/file)"'.
 
 It is strongly recommended that you use 'juju trust' instead, if available.

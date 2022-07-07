@@ -76,7 +76,7 @@ sun5
 
 **Charmed Kubernetes** applications that support peering will use **Juju**
 leadership to configure a consistent refresh interval among peers. The lead
-unit for `etcd`, `kubernetes-master`, and `kubernetes-worker` applications
+unit for `etcd`, `kubernetes-control-plane`, and `kubernetes-worker` applications
 will set an initial refresh value. Subsequent units that join as followers
 will use the leader value as their snap refresh interval. This ensures all
 units in a peer group will refresh at approximately the same time.
@@ -92,10 +92,10 @@ juju run --application etcd 'snap refresh'
 ```
 
 As another example, only refresh the `cdk-addons` snap on the
-`kubernetes-master/0` unit with:
+`kubernetes-control-plane/0` unit with:
 
 ```bash
-juju run --unit kubernetes-master/0 'snap refresh cdk-addons'
+juju run --unit kubernetes-control-plane/0 'snap refresh cdk-addons'
 ```
 
 <!-- LINKS -->
@@ -105,10 +105,10 @@ juju run --unit kubernetes-master/0 'snap refresh cdk-addons'
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/snap-refresh.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/snap-refresh.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

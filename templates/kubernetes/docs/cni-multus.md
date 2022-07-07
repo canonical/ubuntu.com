@@ -48,7 +48,7 @@ To deploy the Multus charm, you will first need a Kubernetes model in Juju.
 Make sure your local kubeconfig is pointing to the correct Kubernetes cluster:
 
 ```
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 Next, add your Kubernetes as a cloud to your Juju controller:
@@ -69,17 +69,17 @@ Once all of the requirements have been met, you can deploy Multus into a
 Kubernetes model by running:
 
 ```
-juju deploy cs:~containers/multus
+juju deploy multus
 ```
 
 ## Configuring the Default CNI
 
 Multus delegates to a single CNI network by default. If you have multiple CNI
 subordinates in your cluster then you can use the default-cni config on
-kubernetes-master to set the default:
+kubernetes-control-plane to set the default:
 
 ```
-juju config kubernetes-master default-cni=flannel
+juju config kubernetes-control-plane default-cni=flannel
 ```
 
 Multus will use this as the default network as well.
@@ -201,15 +201,16 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 [multus]: https://github.com/intel/multus-cni
 [cni-overview]: /kubernetes/docs/cni-overview
 [storage]: /kubernetes/docs/storage
-[multus-examples]: https://github.com/intel/multus-cni/blob/master/doc/how-to-use.md#create-network-attachment-definition
+[multus-examples]: https://github.com/intel/multus-cni/blob/master/docs/how-to-use.md#create-network-attachment-definition
 [troubleshooting]: /kubernetes/docs/troubleshooting
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-multus.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-multus.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -1,0 +1,67 @@
+  <div class="u-fixed-width">
+    <div style="overflow-x: auto;">
+      <table class="p-table" style="width: auto;">
+        <thead>
+          <tr>
+            <th style="width: 40%;"></th>
+            <th width="200" class="u-align--center">Essential</th>
+            <th width="200" class="u-align--center">Standard</th>
+            <th width="200" class="u-align--center">Advanced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>サポート</td>
+            <td class="u-align--center">なし</td>
+            <td class="u-align--center">24/5</td>
+            <td class="u-align--center">24/7</td>
+          </tr>
+          <tr>
+            <td>重大度1レスポンス時間</td>
+            <td class="u-align--center">なし</td>
+            <td class="u-align--center">4時間</td>
+            <td class="u-align--center">1時間</td>
+          </tr>
+          <tr>
+            <td><a href="/legal/ubuntu-advantage-assurance">Ubuntu保証プログラム</a></td>
+            <td class="u-align--center">なし</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          </tr>
+          <tr>
+            <td><a href="/esm">拡張セキュリティメンテナンス (ESM)</a></td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          </tr>
+          <tr>
+            <td><a href="/security/certifications">コンプライアンス用認証済みコンポーネント、ハードニングと監査</a></td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          </tr>
+          <tr>
+            <td><a href="/livepatch">カーネルライブパッチ </a></td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          </tr>
+          <tr>
+            <td><a href="https://landscape.canonical.com/">Landscape</a></td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          </tr>
+          <tr>
+            <td>ナレッジベース</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+            <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    {% if extra %}
+    <p><small>{{ extra|safe }}</small></p>
+    {% endif %}
+  </div>

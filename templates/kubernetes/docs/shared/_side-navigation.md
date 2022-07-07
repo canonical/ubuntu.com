@@ -3,22 +3,26 @@
 - [Overview](/kubernetes/docs/overview)
 
 ## Supported versions
-- [1.20](/kubernetes/docs/1.20/components)
-- [1.19](/kubernetes/docs/1.19/components)
-- [1.18](/kubernetes/docs/1.18/components)
+- [1.24](/kubernetes/docs/1.24/components)
+- [1.23](/kubernetes/docs/1.23/components)
+- [1.22](/kubernetes/docs/1.22/components)
 - [Version info](/kubernetes/docs/supported-versions)
 
 ## Install
 - [Quickstart](/kubernetes/docs/quickstart)
 - [Install](/kubernetes/docs/install-manual)
 - [Local install](/kubernetes/docs/install-local)
+- [Offline install](/kubernetes/docs/install-offline)
+- [NVIDIA DGX](/kubernetes/docs/nvidia-dgx)
 
 ## Cloud Integration
 - [AWS integration](/kubernetes/docs/aws-integration)
 - [Azure integration](/kubernetes/docs/azure-integration)
 - [GCP integration](/kubernetes/docs/gcp-integration)
 - [OpenStack integration](/kubernetes/docs/openstack-integration)
+- [vSphere integration](/kubernetes/docs/vsphere-integration)
 - [LXD](/kubernetes/docs/install-local)
+- [Equinix Metal](/kubernetes/docs/equinix)
 
 ## Networking
 - [CNI overview](/kubernetes/docs/cni-overview)
@@ -30,6 +34,7 @@
 - [SR-IOV](/kubernetes/docs/cni-sriov)
 - [Using multiple networks](/kubernetes/docs/multiple-networks)
 - [IPv6](/kubernetes/docs/ipv6)
+- [Ingress](/kubernetes/docs/ingress)
 
 ## Container Runtimes
 - [Containerd & Docker](/kubernetes/docs/container-runtime)
@@ -44,11 +49,14 @@
 - [Upgrading](/kubernetes/docs/upgrading)
 - [Storage](/kubernetes/docs/storage)
 - [Scaling](/kubernetes/docs/scaling)
+- [K8s Operator Charms](/kubernetes/docs/operator-charms)
+- [Cluster autoscaler](/kubernetes/docs/autoscaler)
 - [Validation](/kubernetes/docs/validation)
 - [Decommissioning](/kubernetes/docs/decommissioning)
 - [Security](/kubernetes/docs/security)
 - [Authentication with LDAP](/kubernetes/docs/ldap)
 - [Private Docker Registry](/kubernetes/docs/docker-registry)
+- [Configuring proxies](/kubernetes/docs/proxies)
 - [Using GPU workers](/kubernetes/docs/gpu-workers)
 - [Audit Logging](/kubernetes/docs/audit-logging)
 - [Troubleshooting](/kubernetes/docs/troubleshooting)
@@ -73,4 +81,5 @@
 - [Supported versions](/kubernetes/docs/supported-versions)
 - [Snap refresh settings](/kubernetes/docs/snap-refresh)
 - [Kubernetes Packages](/kubernetes/docs/packages)
+- [Inclusive naming](/kubernetes/docs/inclusive-naming)
 - [Get in touch](/kubernetes/docs/get-in-touch)

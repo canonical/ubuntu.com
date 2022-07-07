@@ -177,3 +177,48 @@ export function parseForErrorObject(data) {
 
   return errorObject;
 }
+
+export function getErrorMessage(error) {
+  if (!error) {
+    return undefined;
+  }
+
+  const { message, code } = error;
+
+  if (
+    INSUFFICIENT_FUNDS_CODES.includes(code) ||
+    message?.includes("Your card has insufficient funds")
+  ) {
+    return "That card doesn’t have enough funds to make this payment. Please contact your card issuer, or try a different card.";
+  }
+  if (INCORRECT_NUMBER_CODES.includes(code)) {
+    return "That card number is incorrect. Check the number and try again.";
+  }
+  if (INCORRECT_CVC_CODES.includes(code)) {
+    return "That CVC number is incorrect. Check the number and try again.";
+  }
+  if (INCORRECT_ZIP_CODES.includes(code)) {
+    return "That ZIP/postal code is incorrect. Check the code and try again.";
+  }
+  if (INCORRECT_EXPIRY_CODES.includes(code)) {
+    return "That expiry date is incorrect. Check the date and try again.";
+  }
+  if (INCORRECT_VAT_CODES.includes(code)) {
+    return "That VAT number is invalid. Check the number and try again.";
+  }
+  if (code === "card_not_supported") {
+    return "That card doesn’t allow this kind of payment. Please contact your card issuer, or try a different card.";
+  }
+  if (code === "currency_not_supported") {
+    return "That card doesn’t allow payments in this currency. Please contact your card issuer, or try a different card.";
+  }
+  if (code === "expired_card") {
+    return "That card has expired. Try a different card.";
+  }
+  if (code === "testmode_decline") {
+    return "Test completed.";
+  }
+  if (CARD_DECLINED_CODES.includes(code)) {
+    return "Your card has been declined. Please contact your card issuer, or try a different card.";
+  }
+}

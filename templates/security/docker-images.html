@@ -1,6 +1,6 @@
 {% extends "security/base_security.html" %}
 
-{% block title %}LTS Docker Images | Security{% endblock %}
+{% block title %}LTS Docker Images{% endblock %}
 
 {% block meta_description %}The LTS Docker Image Portfolio on Docker Hub and public cloud container registries provides compliant, secure application images, with a long term maintenance commitment by Canonical.{% endblock meta_description %}
 
@@ -11,13 +11,15 @@
 <section class="p-strip--suru-topped">
   <div class="row u-equal-height">
     <div class="col-8">
-      <span class="u-sv3"><h1>LTS Docker Images</h1></span>
-      <p class="u-sv2">Hardened container images, with up to ten years guaranteed security maintenance.</p>
+      <span class="u-sv3"><h1>Long Term Supported<br/>OCI Images</h1></span>
+      <p class="u-sv2">Hardened container images, with stable tracks from development to production. Up to ten years guaranteed security maintenance from our trusted repositories.</p>
+      <p><pre><code>$ docker pull ubuntu/<span class="typer" id="main" data-words="nginx,redis,grafana,prometheus,cassandra,cortex,apache2,mysql" data-delay="50" data-deleteDelay="2000" data-colors="#111111">nginx</span></code></pre></p>
       <p>
-        <a href="/security/contact-us?product=docker" class="p-button--positive js-invoke-modal">Contact Us</a>
-        <a href="/blog/canonical-publishes-lts-docker-image-portfolio-on-docker-hub">Read the announcement&nbsp;&rsaquo;</a>
-      </p>    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+        <a href="/security/contact-us?product=docker" data-testid="interactive-form-link" class="p-button--positive js-invoke-modal">Get commercial support</a>
+        <a href="/blog/canonical-publishes-lts-docker-image-portfolio-on-docker-hub">Read the press release&nbsp;&rsaquo;</a>
+      </p>    
+    </div>
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
@@ -28,16 +30,13 @@
           loading="auto",
         ) | safe
       }}
-    </div>
+    </div> 
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-
-  </div>
   <div class="row u-equal-height">
-        <div class="col-4 u-vertically-center u-align--center u-hide--small">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg",
@@ -50,9 +49,10 @@
       }}
     </div>
     <div class="col-8 u-vertically-center">
-      <h2 class="u-sv3">Critical CVE fixes in 24 hours</h2>
-      <p>Scanning container images for vulnerabilities is now widespread, but fixing them requires dedicated skills and infrastructure.</p>
+      <h2>Critical CVE fixes in 24 hours</h2>
+      <p>Scanning container images for vulnerabilities is now widespread, but fixing them requires dedicated skills and infrastructure. Trusted provenance is key.</p>
       <p>The LTS Docker Image Portfolio provides ready-to-use application base images, free of high and critical CVEs. Images are built on the same secure infrastructure that builds Ubuntu, and updated automatically when apps or dependencies are fixed.</p>
+      <a href="/security/cves">Explore our CVE-fixing track record&nbsp;&rsaquo;</a>
     </div>
   </div>
 </section>
@@ -65,7 +65,7 @@
       <li class="p-list__item is-ticked">Fixes for high and critical Common Vulnerabilities and Exposures (CVEs)</li>
       <li class="p-list__item is-ticked">The Ubuntu distribution base image and application layers</li>
       <li class="p-list__item is-ticked">All major architectures</li>
-      <li class="p-list__item is-ticked">Designed for layering - "<code>FROM lts/nginx</code>"</li>
+      <li class="p-list__item is-ticked">Designed for layering - "<code>FROM public.ecr.aws/lts/mysql</code>"</li>
     </ul>
     <p>
       <a href="/about/release-cycle">Learn more about the Ubuntu release cadence&nbsp;&rsaquo;</a>
@@ -83,21 +83,23 @@
     <p class="p-heading--4"><strong>Where are the images?</strong></p>
     <p>On Amazon ECR Public and Docker Hub, images are provided in three groups:</p>
     <ul>
-      <li><a class="p-link--external" href="https://hub.docker.com/u/ubuntu/">Ubuntu on Docker Hub</a> and <a class="p-link--external" href="https://gallery.ecr.aws/?searchTerm=LTS">ECR Public</a> have development releases with security updates</li>
-      <li>LTS ("Canonical") on <a class="p-link--external" href="https://gallery.ecr.aws/?searchTerm=LTS">ECR Public</a> has Free LTS images with up to five years fixes</li>
-      <li>Customer-only content with up to ten years of fixes</li>
+      <li><a href="https://hub.docker.com/u/ubuntu/">Ubuntu on Docker Hub</a> and <a href="https://gallery.ecr.aws/ubuntu">ECR Public</a> have development releases with security updates</li>
+      <li>LTS ("Canonical") on <a href="https://gallery.ecr.aws/lts">ECR Public</a> has Free LTS images with up to five years fixes</li>
+      <li>Customer-only content with up to ten years of fixes. <a href="/security/contact-us?product=docker" class="js-invoke-modal">Contact us</a>.</li>
     </ul>
     <p>All of our Docker Hub repositories are exempted from per-user rate limits.</p>
     <p class="p-heading--4"><strong>Is there a long-term commitment? How long?</strong></p>
     <p>LTS Images are security-maintained for the full ten year period of their underlying Ubuntu LTS release. Some applications will have versions on multiple Ubuntu LTS versions. In each case, the image is maintained for the full life of the underlying Ubuntu LTS.</p>
     <p class="p-heading--4"><strong>Can I use these images to build other applications?</strong></p>
-    <p>Yes. Our hardened images are optimised for the developer experience, layering, and minimality. Each image is engineered to be clean, without layering artifacts, making it an ideal foundation for enterprise continuous integration and golden images. For ISVs, Canonical offers embedded terms for redistribution.</p>
+    <p>Yes. Our hardened images are optimised for the developer experience, layering, and minimality. Each image is engineered to be clean, without layering artefacts, making it an ideal foundation for enterprise continuous integration and golden images. If you are an ISV, Canonical can offer embedded terms for redistribution and specific support. <a href="/security/contact-us?product=docker" class="js-invoke-modal">Get in touch</a>.</p>
+    <p class="p-heading--4"><strong>Can I enable FIPS mode on Ubuntu-based container images?</strong></p>
+    <p>Yes, with a valid UA subscription. Hosts or nodes running the hardened Ubuntu-based container images must be covered with UA subscriptions or be entitled Ubuntu Pro machines. You can read more about how to enable FIPS mode on container images <a href="/blog/fips-ubuntu-container-security-updates">in this blog post</a>.</p>
   </div>
 </section>
 
 <section class="p-strip">
   <div class="row u-equal-height">
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/fc2757dd-ubuntu-cloud-1.svg",
@@ -124,8 +126,7 @@
 {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://www.ubuntu.com/security/contact-us?product=docker">
-</div>
-
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/docker-images" data-form-id="3785" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=docker" data-lp-url="https://ubuntu.com/security/contact-us?product=docker"></div>
+<script src="{{ versioned_static('js/third-party/typer.js') }}" defer></script>
 {% endblock content %}
 {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}

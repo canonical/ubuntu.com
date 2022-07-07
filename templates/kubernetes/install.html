@@ -2,8 +2,7 @@
 
 {% block title %}Install Kubernetes{% endblock %}
 
-{% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{% endblock meta_description %}
-
+{% block meta_description %}A step-by-step installation guide to Kubernetes on your software defined infrastructure.{%endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1oiD6UUomf2daZitS3UOosujYBXPbiOMzPtXVZBq-ph0/edit{% endblock meta_copydoc %}
 
 {% block content %}
@@ -11,19 +10,29 @@
 <section class="p-strip--suru-image is-bordered">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7">
-      <h1>Install Kubernetes on Ubuntu</h1>
-      <p>Kubernetes on Ubuntu is free to use and always current - you get the latest innovations from the Kubernetes community within a week of upstream release.  It works on any cloud (public, private, and bare-metal). Kubernetes on Ubuntu is the productive, open source way to manage containers and microservices, automating the time-consuming tasks of installing, patching, upgrading, and carrying out cluster health checks.</p>
+      <h1>Install Kubernetes</h1>
+      <p>
+        Canonical Kubernetes is pure upstream and works on any cloud, from bare metal to public and edge. Deploy single node and multi-node clusters with Charmed Kubernetes and MicroK8s to support container orchestration, from testing to production. Both distributions bring the latest innovations from the Kubernetes community within a week of upstream release, allowing for time to learn, experiment and upskill.
+      </p>
+      <p>
+        <a class="p-button--positive" href="/kubernetes/managed">
+          Try Kubernetes as a service
+        </a>
+        <a class="p-button js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">
+          Get support for Kubernetes
+        </a>
+      </p>
     </div>
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
       {{
-        image(
-        url="https://assets.ubuntu.com/v1/0822f908-kubernetes-instal.svg",
-        alt="Install Kubernetes",
-        width="140",
-        height="188",
-        hi_def=True,
-        loading="auto",
-        ) | safe
+      image(
+      url="https://assets.ubuntu.com/v1/0822f908-kubernetes-instal.svg",
+      alt="Install Kubernetes",
+      width="140",
+      height="188",
+      hi_def=True,
+      loading="lazy",
+      ) | safe
       }}
     </div>
   </div>
@@ -32,308 +41,581 @@
 <section class="p-strip--light is-bordered">
   <div class="row">
     <div class="col-8">
-      <h2>Deploy Kubernetes cluster</h2>
-      <h4>Where do you want to deploy Kubernetes?</h4>
+      <h2>How to deploy Kubernetes</h2>
+      <p>Canonical helps you be successful with Kubernetes, starting from where you want to deploy it and how you intend
+        to use it.</p>
+      <p>Self-managed deployments give you greater control on Kubernetes infrastructure, from cloud to edge. Canonical
+        Managed Kubernetes provides a hands-off experience with great economics.</p>
     </div>
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3><a href="#single-node">Single node with MicroK8s</a></h3>
-      <hr class="u-sv1" />
-      <div class="p-card__content">
-        <p>Install MicroK8s, the Linux snap that downloads  in seconds. Microk8s is lightweight and deploys all Kubernetes services natively on Ubuntu.  Ideal for:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked"><strong>Laptops:</strong> develop microservices locally</li>
-          <li class="p-list__item is-ticked"><strong>Workstations:</strong> develop and train machine learning models locally</li>
-          <li class="p-list__item is-ticked"><strong>CI pipelines:</strong> create ephemeral Kubernetes quickly for testing microservices</li>
-          <li class="p-list__item is-ticked"><strong>IoT devices:</strong> embed upgradeable Kubernetes in your Iot devices for easy evolution</li>
-          <li class="p-list__item is-ticked"><strong>Small edge clouds:</strong> create simple Kubernetes clusters for your edge clouds</li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-6 p-card">
-      <h3><a href="#multi-node">Multi node with Charmed Kubernetes</a></h3>
-      <hr class="u-sv1" />
-      <div class="p-card__content">
-        <p>Install Charmed Kubernetes, Ubuntu's highly available, multi node Kubernetes cluster on your infrastructure of choice:</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked"><strong>Bare metal:</strong> deploying Kubernetes on bare metal is easy using Charmed Kubernetes and MAAS (Metal-as-a-Service).</li>
-          <li class="p-list__item is-ticked"><strong>Private clouds:</strong> take advantage of your on-premises clouds  to deploy one or more Kubernetes clusters (VMware vSphere, OpenStack, LXD)</li>
-          <li class="p-list__item is-ticked"><strong>Public clouds:</strong> deploy Charmed Kubernetes to AWS, GCP, Azure, IBM, and Oracle</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p>Other deployment options:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked"><strong>Hosted Kubernetes:</strong> Use Ubuntu's platform to run worker nodes on all public clouds ( AKS, EKS, and GKE)</li>
-        <li class="p-list__item is-ticked"><strong>Kubeadm install support:</strong>  let our experts set up your cluster using kubeadm, the install tool available with Kubernetes 1.4.0</li>
-        <li class="p-list__item is-ticked"><strong>Managed Kubernetes:</strong> take advantage of our cost effective, fully supported kubernetes clusters</li>
-      </ul>
-      <p>Looking for help running Kubernetes?</p>
-      <p><a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Get in touch with Canonical to talk about hosting&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip u-no-padding--bottom">
-  <div class="row">
-    <div class="col-8">
-      <h2 id="single-node">How to install Kubernetes on Ubuntu</h2>
-      <h3>Single node cluster</h3>
-      <h5>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h5>
-      <p>MicroK8s is built to run on any Linux. It's lightweight and deploys all Kubernetes services natively on Ubuntu (i.e. no virtual machines required) while packing the entire set of libraries and binaries needed. It's suited for laptops, workstations, CI pipelines, IoT devices, and small edge clouds because of its small footprint.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip is-bordered">
-  <div class="u-fixed-width">
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install latest MicroK8s</h3>
-        <div class="p-stepped-list__content">
-          <p>MicroK8s is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first. Use this command to get the latest version of MicroK8s:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="sudo snap install microk8s --classic" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install specific versions of MicroK8s</h3>
-        <div class="p-stepped-list__content">
-          <p><strong>List specific Kubernetes versions</strong></p>
-          <p>The following command will list all versions of MicroK8s that can be installed:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="snap info microk8s" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p><strong>Install specific Kubernetes version</strong></p>
-          <p>This command will install the stable 1.14 version of MicroK8s:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="sudo snap install microk8s --classic --channel=1.14/stable" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Useful tips</h3>
-        <div class="p-stepped-list__content">
-          <p>This command will install the stable 1.14 version of MicroK8s:</p>
-          <p>After installing MicroK8s, you should verify it is ready. Use this command:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.status" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>To block until MicroK8s is ready, use the following command:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.status --wait-ready" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p><strong>Accessing Kubernetes:</strong> MicroK8s embeds a kubectl and a .kubeconfig file required for accessing the installed MicroK8s. This avoids  colliding with any local versions  that might be already installed. Here is an example of how to use this:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.kubectl" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>If you would like to use the MicroK8s kubectl and .kubeconfig file locally, you can do the following:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="snap alias microk8s.kubectl kubectl" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="microk8s.kubectl config view --raw > $HOME/.kube/config" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-    </ol>
-
-    <p>The MicroK8s install instructions above are a summary of those found at <a class="p-link--external" href="https://microk8s.io/">microk8s.io</a>.</p>
-    <p><a class="p-link--external" href="https://microk8s.io/docs">Full MicroK8s documentation</a></p>
-  </div>
-</section>
-
-<section class="p-strip--light u-no-padding--bottom">
-  <div class="row">
-    <div class="col-8">
-      <h3 id="multi-node">Multi node cluster</h3>
-      <h5>A highly available, multi node Kubernetes cluster that runs wherever, whenever</h5>
-      <p>Charmed Kubernetes is Ubuntu's fully automated, model-driven approach to installing and managing Kubernetes that coordinates logging, monitoring and alerting. <a href="/kubernetes/docs/overview">Charmed Kubernetes</a> runs on any infrastructure - deploy it on bare-metal, VMware, OpenStack and public clouds like AWS, GCP, Azure and IBM.</p>
-      <p>You can use a CLI tool or a GUI tool:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked"><strong>CLI Based Installer:</strong> ideal for scripting or manually interacting with your cluster from a shell prompt, or as part of your automation toolkit.</li>
-        <li class="p-list__item is-ticked"><strong>GUI Based Installer:</strong> a complete graphical and interactive Kubernetes deployment and management tool.</li>
-      </ul>
-      <h4>How to install Kubernetes on AWS</h4>
-      <p>These instructions represent the complete set of commands you need to enter into your terminal to install Charmed Kubernetes on AWS.</p>
-      <p><a href="/kubernetes/docs/install-manual">Not using AWS, see our other guides&nbsp;&rsaquo;</a></p>
-      <p><a href="/kubernetes/docs/operations">Now find out what you can do with Charmed Kubernetes&nbsp;&rsaquo;</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light is-bordered">
-  <div class="u-fixed-width">
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Install Juju</h3>
-        <div class="p-stepped-list__content">
-          <p>Juju simplifies how you configure, scale and operate today's complex software. Juju deploys everywhere: to public or private clouds. It is packaged as a snap which requires snapd to be installed. The latest Ubuntu release comes with this already built in. For other Linux systems install snapd first:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="sudo snap install juju --classic" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Add your cloud - optional</h3>
-        <div class="p-stepped-list__content">
-          <p>This interactive step allows you to register a cloud that isn't known to Juju by default. In the summary instructions above, since AWS is used, this step isn't necessary - AWS and other public clouds have well-known IP addresses. For private clouds you need to give some details to juju. An example is a MAAS cloud, which operates your bare metal infrastructure.</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="juju add-cloud" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p>What clouds can you deploy to?</p>
-          <ul style="list-style-type: disc;">
-            <li>Amazon AWS <sup><a href="#fn1">*</a></sup></li>
-            <li>Microsoft Azure <sup><a href="#fn1">*</a></sup></li>
-            <li>Google GCE <sup><a href="#fn1">*</a></sup></li>
-            <li>Oracle <sup><a href="#fn1">*</a></sup></li>
-            <li>Rackspace <sup><a href="#fn1">*</a></sup></li>
-            <li>LXD (local) <sup><a href="#fn1">*</a></sup></li>
-            <li>LXD (remote)</li>
-            <li>VMware vSphere</li>
-            <li>OpenStack</li>
-            <li><a class="p-link--external" href="https://maas.io">MAAS</a></li>
-            <li>Manual</li>
-          </ul>
-          <p id="fn1"><sup>*</sup> Denotes clouds that are known to Juju by default. For example, Juju knows how to reach AWS, but not an OpenStack cluster that has been created.</p>
-          <p><a class="p-link--external" href="https://jaas.ai/docs/clouds">Find out more about Clouds in Juju</a></p>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Add Credentials</h3>
-        <div class="p-stepped-list__content">
-          <p>Most clouds require credentials so that the cloud knows which operations are authorised and on which account. If you choose to use AWS, for example, you would run <code>juju add-credential aws</code></p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="juju add-credential aws" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Add Controller</h3>
-        <div class="p-stepped-list__content">
-          <p>The Juju controller is used to manage the software deployed through Juju, from deployment to upgrades to day-two operations.</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="juju bootstrap aws my-cloud-controller" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Add Model</h3>
-        <div class="p-stepped-list__content">
-          <p>The model holds a specific deployment, like Kubernetes, which includes all necessary applications and the number of instances of each one. This is where the number of Kubernetes worker nodes are scaled up or down.</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="juju add-model k8s-test" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">Deploy Kubernetes</h3>
-        <div class="p-stepped-list__content">
-          <p>Add the Kubernetes bundle to the model and deploy the components, including the default number of components, like worker nodes.</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="juju deploy charmed-kubernetes" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-        </div>
-      </li>
-
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title"><span class="p-stepped-list__bullet">&#9734;</span>Useful tips</h3>
-        <div class="p-stepped-list__content">
-          <p><strong>Observe installation progress:</strong> Watch the deployment process in real-time:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="watch -c juju status --color" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p><strong>Observe log messages:</strong> To  view the last twenty log messages for the "k8s-test" model:</p>
-          <div class="p-code-copyable">
-            <input class="p-code-copyable__input" value="juju debug-log -m k8s-test -n 20" readonly="readonly">
-            <button class="p-code-copyable__action">Copy to clipboard</button>
-          </div>
-          <p><strong>Accessing Kubernetes:</strong> Juju creates a .kubeconfig file that is required  for accessing the Kubernetes cluster it created. Follow these instructions to install kubectl (if needed) and export the configuration file: (use kubectl to run commands against Kubernetes clusters)</p>
-          <pre><code>$ mkdir -p ~/.kube
-$ juju scp kubernetes-master/0:config ~/.kube/config
-$ snap install kubectl --classic
-$ kubectl cluster-info</code></pre>
-            <p><strong>Useful Links:</strong> Find out more about Charmed Kubernetes.</p>
-            <ul style="list-style-type: disc;">
-              <li><a href="/kubernetes/docs/install-manual">Manual Install&nbsp;&rsaquo;</a></li>
-              <li><a class="p-link--external" href="https://jaas.ai/docs/maas-cloud">Find out more about MAAS as a Cloud in Juju</a></li>
-              <li><a class="p-link--external" href="https://jaas.ai/docs">Full Juju documentation</a></li>
-              <li><a href="/kubernetes/docs">Full Kubernetes documentation&nbsp;&rsaquo;</a></li>
+    <table class="p-table--mobile-card" style="margin-top: 1rem;">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Infrastructure</th>
+          <th>Use case</th>
+          <th class="u-align--center">Enterprise Support</th>
+          <th class="u-align--center">Managed Kubernetes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-heading="Product"><a href="https://microk8s.io">MicroK8s</a></td>
+          <td data-heading="Infrastructure">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Laptops (Linux, Windows, macOS)</li>
+              <li class="p-list__item">Workstations</li>
+              <li class="p-list__item">Edge/Micro clouds</li>
+              <li class="p-list__item">IoT devices</li>
             </ul>
-          </div>
-        </li>
-      </ol>
+          </td>
+          <td data-heading="Use cases">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Opinionated Kubernetes</li>
+              <li class="p-list__item">Small to medium clusters</li>
+              <li class="p-list__item">CI/CD pipelines</li>
+            </ul>
+          </td>
+          <td class="u-align--center" data-heading="Enterprise Support">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+          <td class="u-align--center" data-heading="Managed Kubernetes">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+        </tr>
+        <tr>
+          <td data-heading="Product"><a href="/kubernetes">Charmed Kubernetes</a></td>
+          <td data-heading="Infrastructure">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Bare metal</li>
+              <li class="p-list__item">Private clouds</li>
+              <li class="p-list__item">Public clouds</li>
+              <li class="p-list__item">Hybrid clouds</li>
+            </ul>
+          </td>
+          <td data-heading="Use Cases">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Configurable Kubernetes</li>
+              <li class="p-list__item">Medium to large clusters</li>
+            </ul>
+          </td>
+          <td class="u-align--center" data-heading="Enterprise Support">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+          <td class="u-align--center" data-heading="Managed Kubernetes">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+        </tr>
+        <tr>
+          <td data-heading="Product">
+            Cloud Hosted <strong>(i)</strong>
+          </td>
+          <td data-heading="Infrastructure">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Public clouds</li>
+            </ul>
+          </td>
+          <td data-heading="Use cases">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Traffic peaks</li>
+            </ul>
+          </td>
+          <td class="u-align--center" data-heading="Enterprise Support">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+          <td data-heading="Managed Kubernetes">Provided by the clouds</td>
+        </tr>
+        <tr>
+          <td data-heading="Product">Kubeadm</td>
+          <td data-heading="Infrastructure">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">Bare metal</li>
+              <li class="p-list__item">Private clouds</li>
+              <li class="p-list__item">Edge/Micro clouds</li>
+            </ul>
+          </td>
+          <td data-heading="Enterprise Support">
+            <ul class="p-list u-no-padding">
+              <li class="p-list__item">DIY Kubernetes</li>
+            </ul>
+          </td>
+          <td class="u-align--center" data-heading="Use cases">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg",
+              alt="",
+              width="14",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </td>
+          <td class="u-align--center" data-heading="Managed Kubernetes">-</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><strong>(i).</strong> Use Ubuntu’s platform to run worker nodes on all public clouds (AKS, EKS, and GKE)</p>
+    <p>
+      <a class="js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Looking for help running Kubernetes? Get in touch&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <h2 id="single-node" class="u-sv2">How to install Kubernetes</h2>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>Single node Kubernetes with MicroK8s</h3>
+      <h4>MicroK8s installs a single node, CNCF-certified Kubernetes cluster in seconds</h4>
+      <p>MicroK8s is a lightweight, zero-ops Kubernetes for Linux, Windows and macOS. A single command installs all
+        upstream Kubernetes services and their dependencies. With support for x86 and ARM64, MicroK8s runs from local
+        workstations to the edge and IoT appliances.</p>
+      <p>
+        <a href="https://microk8s.io/">Learn more about Microk8s</a>
+      </p>
     </div>
-  </section>
-
-  <section class="p-strip is-bordered">
-    <div class="u-fixed-width">
-      <h2 style="max-width: none">Easy Kubernetes deployment with Juju As A Service by Canonical</h2>
-      <p>This video explains how to easily deploy a production environment of Kubernetes with JAAS.</p>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/dc735dc5-single-line-install.svg",
+      alt="",
+      width="300",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
     </div>
-    <div class="u-fixed-width">
-      <div class="u-embedded-media">
-        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube-nocookie.com/embed/0Le2A-Uzr1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-
-  {% include "kubernetes/_get_ebook.html" %}
-
-  <section class="p-strip">
-    <div class="row u-equal-height">
-      <div class="col-5 u-vertically-center u-align--center u-hide--small">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="",
-          width="280",
-          height="199",
-          hi_def=True,
-          loading="lazy",
-          ) | safe
-        }}
-      </div>
-      <div class="col-7 u-vertically-center">
-        <h2>Need more help?</h2>
-        <p>Let our cloud experts help you take the next step.</p>
-        <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact us</a></p>
-      </div>
-    </div>
-  </section>
-
-  {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubernetes" data-form-id="3230" data-lp-id="6274" data-return-url="https://www.ubuntu.com/kubernetes/thank-you?product=kubernetes-install" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
 
-  {% endblock content %}
+  <div class="row">
+    <h5>Select platform for install steps</h5>
+  </div>
+  <div class="row" role="tablist">
+    <a id="tab-linux" href="#tab-linux__content" class="col-4 p-card p-tab u-align--center u-vertically-center js-tab-single" role="tab" aria-selected="true">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/53c3be42-linuc-logo.svg",
+        alt="",
+        width="60",
+        hi_def=True,
+        attrs={"style": "margin-top: 1rem"},
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+
+    <a id="tab-windows" href="#tab-windows__content" class="col-4 p-card p-tab u-align--center u-vertically-center js-tab-single" role="tab" aria-selected="false">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/11ecbd2d-2018-logo-windows.svg",
+        alt="",
+        width="100",
+        hi_def=True,
+        attrs={"style": "margin-top: 1rem"},
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+
+    <a id="tab-mac" href="#tab-mac__content" class="col-4 p-card p-tab u-align--center u-vertically-center js-tab-single" role="tab" aria-selected="false">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/236f314d-macos.svg",
+        alt="",
+        width="100",
+        hi_def=True,
+        attrs={"style": "margin-top: 1rem"},
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-linux__content" role="tabpanel" aria-labelledby="tab-linux">
+      {% include "/kubernetes/_install-linux.html" %}
+    </div>
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-windows__content" role="tabpanel" aria-labelledby="tab-windows">
+      {% include "/kubernetes/_install-windows.html" %}
+    </div>
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-mac__content" role="tabpanel" aria-labelledby="tab-mac">
+      {% include "/kubernetes/_install-macos.html" %}
+    </div>
+  </div>
+
+  <div class="row">
+    <h3>Multi-node clusters</h3>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h4>Charmed Kubernetes installs CNCF-certified Kubernetes clusters across clouds</h4>
+      <p>Charmed Kubernetes is a fully automated, model-driven approach to installing and managing Kubernetes from
+        bare-metal to the cloud. Build your Kubernetes cloud from the ground up, integrate it with your favorite tools,
+        and create multi-cloud topologies.</p>
+      <p>
+        <a href="/kubernetes/features">Learn more about Charmed Kubernetes&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/90155bc0-Multi-node_K8s_installation-02.svg",
+      alt="",
+      width="250",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <h5>Select platform for install steps</h5>
+  </div>
+  <div class="row" role="tablist">
+    <a id="tab-lxd" href="#tab-lxd__content"
+      class="col-3 p-card p-tab u-align--center u-vertically-center js-tab-multi" role="tab" aria-selected="false">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ac9a0e00-lxd_primary.svg",
+        alt="",
+        width="100",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+
+    <a id="tab-aws" href="#tab-aws__content" class="col-3 p-card p-tab u-align--center u-vertically-center js-tab-multi" role="tab" aria-selected="false">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+        alt="",
+        width="76",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+
+    <a id="tab-azure" href="#tab-azure__content" class="col-3 p-card p-tab u-align--center u-vertically-center js-tab-multi" role="tab" aria-selected="false">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e3914def-partner-logo-azure.svg",
+        alt="",
+        width="100",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+
+    <a id="tab-google" href="#tab-google__content"
+      class="col-3 p-card p-tab u-align--center u-vertically-center js-tab-multi" role="tab"
+      aria-selected="false">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
+        alt="",
+        width="100",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </a>
+  </div>
+
+  <div class="row">
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-lxd__content" role="tabpanel" aria-labelledby="tab-lxd">
+      {% include "/kubernetes/_install-lxd.html" %}
+    </div>
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-aws__content" role="tabpanel" aria-labelledby="tab-aws">
+      {% include "/kubernetes/_install-aws.html" %}
+    </div>
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-azure__content" role="tabpanel" aria-labelledby="tab-azure">
+      {% include "/kubernetes/_install-azure.html" %}
+    </div>
+    <div class="p-card col-12 js-tab__content" style="background-color: #f7f7f7" id="tab-google__content" role="tabpanel" aria-labelledby="tab-google">
+      {% include "/kubernetes/_install-google.html" %}
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <h1 class="p-heading--4">Multi-node, highly available Kubernetes with MicroK8s</h1>
+    <p>To create a cluster out of two or more already-running MicroK8s instances, use the microk8s add-node command. As of MicroK8s 1.19, clustering of three or more nodes will automatically enable high availability.</p>
+    <p>The MicroK8s instance on which the command is run will host the Kubernetes control plane:</p>
+    <div class="p-code-snippet">
+      <pre class="p-code-snippet__block--icon"><code>microk8s add-node</code></pre>
+    </div>
+    <p>The add-node command prints a microk8s join command which should be executed on the MicroK8s instance(s) that you wish to join to the cluster (NOT THE NODE YOU RAN add-node FROM). For example:</p>
+    <div class="p-code-snippet">
+      <pre class="p-code-snippet__block--icon"><code>microk8s join ip-172-31-20-243:25000/DDOkUupkmaBezNnMheTBqFYHLWINGDbf</code></pre>
+    </div>
+    <p>Joining a node to the cluster should only take a few seconds. Afterwards  you should be able to see the node has joined:</p>
+    <div class="p-code-snippet">
+      <pre class="p-code-snippet__block--icon"><code>microk8s kubectl get no</code></pre>
+    </div>
+    <p>
+      <a href="https://microk8s.io/docs/clustering">Learn more about MicroK8s clustering</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <h2>Read the docs</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+          alt="",
+          width="32",
+          height="28",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+          <p class="p-heading-icon__title p-muted-heading">Charmed Kubernetes</p>
+        </div>
+      </div>
+      <p>If you want to know more about our enterprise multi-cloud Kubernetes read the <a
+          href="/kubernetes/docs">Charmed Kubernetes documentation&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+          alt="",
+          width="32",
+          height="28",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+          <p class="p-heading-icon__title p-muted-heading">MicroK8s</p>
+        </div>
+      </div>
+      <p>Are you a developer looking to quickly run local K8s clusters or an enterprise looking for K8s at the edge?
+        Read the <a href="https://microk8s.io/docs">MicroK8s documentation</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
+          alt="",
+          width="32",
+          height="28",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+          }}
+          <p class="p-heading-icon__title p-muted-heading">Juju</p>
+        </div>
+      </div>
+      <p>Curious to learn about our Charmed Operators and how they automate DevOps and application lifecycle tasks? Browse through the <a href="https://jaas.ai/docs">Charmed OLM documentation</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru">
+  <div class="row">
+    <h2>Kubernetes resources</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/271921af-Datasheet+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-muted-heading" style="color: #fff;">Data Sheet</p>
+        </div>
+      </div>
+      <p><a class="p-link--inverted" href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-muted-heading" style="color: #fff;">Industry Report</p>
+        </div>
+      </div>
+      <p><a class="p-link--inverted" href="https://juju.is/cloud-native-kubernetes-usage-report-2021">The Kubernetes and cloud native operations report 2021</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/4ab8ff35-Whitepaper+-+white.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-muted-heading" style="color: #fff;">Whitepaper</p>
+        </div>
+      </div>
+      <p><a class="p-link--inverted" href="/engage/kubernetes-deployment-enterprise-whitepaper">Five strategies to accelerate Kubernetes deployment in the enterprise</a></p>
+      <p><a class="p-link--inverted" href="/kubernetes/resources">Find more resources&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{
+      image(
+      url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+      alt="",
+      width="280",
+      height="199",
+      hi_def=True,
+      loading="lazy",
+      ) | safe
+      }}
+    </div>
+    <div class="col-7 u-vertically-center">
+      <h3>Need more help?</h3>
+      <p>Let our Kubernetes experts help you take the next step.</p>
+      <p><a class="p-button--positive js-invoke-modal" href="/kubernetes/contact-us?product=kubernetes-install">Contact
+          us</a></p>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_cloud_further_reading" %}{%
+include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubernetes"
+  data-form-id="3230" data-lp-id="6274"
+  data-return-url="https://ubuntu.com/kubernetes/thank-you?product=kubernetes-install"
+  data-lp-url="https://pages.ubuntu.com/things-contact-us.html"
+  data-title="Get your Kubernetes clusters running">
+</div>
+
+{% endblock content %}
+
+{% block footer_extra %}
+<script>
+function setupTabs(selector) {
+  var tabs = document.querySelectorAll(selector);
+
+  tabs.forEach((tab) => {
+    const tabSelector = tab.getAttribute("href");
+    const tabContent = document.querySelector(tabSelector);
+
+    if (tabContent) {
+      tabContent.classList.add("u-hide");
+      tab.setAttribute("aria-selected", "false");
+
+      tab.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleTab(e.currentTarget);
+      });
+    } else {
+      console.warn("Tab content does not exist");
+    }
+  });
+
+  function toggleTab(tab) {
+    var tabSelector = tab.getAttribute("href");
+    var tabContent = document.querySelector(tabSelector);
+
+    for (var i = 0; i < tabs.length; i += 1) {
+      if (tabs[i] !== tab) {
+        var otherTabSelector = tabs[i].getAttribute("href");
+        var otherTabContent = document.querySelector(otherTabSelector);
+
+        tabs[i].setAttribute("aria-selected", "false");
+        tabs[i].classList.remove("active");
+        otherTabContent.classList.add("u-hide");
+      }
+    }
+
+    tab.setAttribute("aria-selected", "true");
+    tab.classList.toggle("active");
+    tabContent.classList.toggle("u-hide");
+
+    if (tab.classList.contains("active")) {
+      var breakpoint = 620;
+      var yOffset = 200;
+      var rect = tabContent.getBoundingClientRect();
+      var inView = window.innerHeight - yOffset > rect.top;
+      var scrollTarget = window.scrollY + yOffset;
+
+      if (window.innerWidth <= breakpoint) {
+        scrollTarget = pageYOffset + rect.top - 10;
+      }
+
+      if (!inView) {
+        window.scroll({
+          behavior: "smooth",
+          top: scrollTarget,
+        });
+      }
+    }
+  }
+}
+
+setupTabs(".js-tab-single");
+setupTabs(".js-tab-multi");
+
+</script>
+{% endblock footer_extra %}

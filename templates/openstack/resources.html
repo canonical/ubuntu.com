@@ -1,0 +1,345 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}OpenStack resources{% endblock %}
+
+{% block meta_description %}OpenStack resources: A collection of useful and educational material and information. Learn more about OpenStack and private cloud from some of the industry's best.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1ySynE6LOEWKbg4Q_udqM_W3BWkMPi5AfLjiM0qcLrn4/edit#heading=h.d2yomvm8pmy4{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru">
+  <div class="u-fixed-width">
+    <h1>OpenStack resources</h1>
+    <h2>All you need in one place</h2>
+    <p>Explore a collection of useful resources that will help you understand and evaluate OpenStack.</p>
+    <p>Whitepapers, blogs, customer stories, webinars, and more are conveniently collected here. We'll guide you through what each resource is about.</p>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--bottom">
+  <div class="u-fixed-width u-sv4">
+    <h2>OpenStack whitepapers</h2>
+  </div>
+  <div class="row u-sv4">
+    <div class="col-6">
+      <h3>RedHat OpenStack Platform vs Canonical's Charmed OpenStack</h3>
+      <p>Red Hat and Canonical each offer their own production-grade OpenStack distribution, however, this has been achieved using a completely different approach towards OpenStack deployments, operations and support.</p>
+      <p>
+        <a href="/engage/redhat-openstack-comparison-whitepaper">Read the whitepaper&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c5838368-openstack-cloud.png",
+        alt="",
+        width="262",
+        height="169",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width u-sv3">
+    <h3>All OpenStack and private cloud whitepapers</h3>
+    <p class="p-heading--4 u-sv3">This is a library of all Canonical whitepapers on OpenStack and private cloud</p>
+  </div>
+  <div class="row">
+    {% for item in whitepapers_metadata%}
+      {% include "openstack/_resource-card.html" %}
+    {% endfor %}
+    <p style="padding-top: 1rem;">
+      <a href="/engage?resource=whitepaper&tag=openstack">View all OpenStack whitepapers&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr class="p-separator">
+</div>
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="u-fixed-width u-sv4">
+    <h2>OpenStack webinars</h2>
+  </div>
+  <div class="row u-sv4">
+    <div class="col-6">
+      <h3>OpenStack Yoga: what's new?</h3>
+      <p>The 25th release of OpenStack, Yoga, sets a foundation for next-generation, highly performant infrastructure, using SmartNIC cards and integrating them with the Neutron Open Virtual Network (OVN) driver.</p>
+      <p>
+        <a href="/engage/openstack-yoga">Watch the webinar&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/845e046c-partner-openstack.png",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width u-sv3">
+    <h3>All OpenStack and private cloud webinars</h3>
+    <p class="p-heading--4 u-sv3">This is a library of all Canonical webinars on OpenStack and private cloud</p>
+  </div>
+  <div class="row">
+    {% for item in webinars_metadata%}
+      {% include "openstack/_resource-card.html" %}
+    {% endfor %}
+    <p style="padding-top: 1rem;">
+      <a href="/engage?tag=openstack&resource=webinar">View all OpenStack webinars&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr class="p-separator">
+</div>
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="u-fixed-width u-sv4">
+    <h2>OpenStack case studies</h2>
+  </div>
+  <div class="row u-sv4">
+    <div class="col-6">
+      <h3>Firmus builds a supercloud with Canonical</h3>
+      <p>Cloud data centres are some of the most egregious offenders when it comes to emissions and environmental impact. With demand for cloud computing rising exponentially, overcoming climate challenges requires a fundamental change in data centre technology &ndash; and Firmus has the answer.</p>
+      <p>
+        <a href="/engage/kubernetes-openstack-case-study-firmus">Go to the case study&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--small u-hide--medium u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7281d2f3-Private+Cloud+Build.svg",
+        alt="",
+        width="206",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width u-sv3">
+    <h3>All OpenStack and private cloud webinars</h3>
+    <p class="p-heading--4 u-sv3">This is a library of all Canonical case studies on OpenStack and private cloud</p>
+  </div>
+  <div class="row">
+    {% for item in casestudies_metadata%}
+      {% include "openstack/_resource-card.html" %}
+    {% endfor %}
+    <p style="padding-top: 1rem;">
+      <a href="/engage?tag=openstack&resource=case+study">View all OpenStack case studies&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr class="p-separator">
+</div>
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <h2>OpenStack blogs and related topics</h2>
+    <p>This rich set of content covers everything from high-level product announcements to hands-on technical guides that dig into more complicated topics.</p>
+    <p>Scroll through our entire library of blogs about <a href="/blog/tag/openstack">OpenStack</a> and <a href="/blog/tag/private-cloud">private-cloud</a>.</p>
+  </div>
+</section>
+{% with section_classes='p-strip u-no-padding--bottom', heading_topic='OpenStack', tag_name='OpenStack', tag_id='1672', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
+<div class="u-fixed-width">
+  <hr class="p-separator">
+</div>
+
+<section class="p-strip u-no-padding--top">
+  <div class="u-fixed-width u-sv3">
+    <h2>More OpenStack resources</h2>
+    <p>Once you get started with OpenStack, start reading our library of resources, that includes tutorials and documentation on various topics.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h3>Tutorials</h3>
+      <p>Starting with just your workstation, learn how to use OpenStack for cloud infrastructure implementation purposes, from a single-node installation to large-scale clusters using a series of tutorials.</p>
+      <p>
+        <a href="/openstack/tutorials">Go to the tutorials&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h3>Documentation</h3>
+      <p>Deploy your own infrastructure based on Charmed OpenStack and benefit from full automation and rich lifecycle management capabilities. Charmed OpenStack is a cost-effective cloud platform designed to host mission critical applications.</p>
+      <p>
+        <a href="/openstack/docs">Go to the documentation&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2>OpenStack pricing calculator</h2>
+      <h3 class="p-heading--4">Should your workloads run in a public or private cloud?</h3>
+      <p>Depending on your requirements, overall CapEx and OpEx costs and cost-per-resource metrics, it may be more economical to run your workloads in the private cloud. Use the following private cloud pricing calculator to estimate the costs of running your instances in the Charmed OpenStack private cloud. And see how much you can save compared to the public clouds.</p>
+      <h3 class="p-heading--4">Number of instances
+        <span class="p-tooltip--top-left" aria-describedby="vm-tooltip">
+          <i class="tco-tooltip p-icon--help"></i>
+          <span class="p-tooltip__message" role="tooltip" id="vm-tooltip">A number of virtual machines that will run on the cloud.</span>
+        </span>
+      </h3>
+      <div class="p-slider__wrapper u-sv4"> 
+        <input type="range" min="0" autocomplete="off" max="10000" value="1000" step="1" id="pricing-calculator-slider" aria-label="OpenStack pricing calculator slider, range 0 to 10000">
+        <input class="p-slider__input" autocomplete="off" type="text" maxlength="5" id="pricing-calculator-slider-input" tabindex="0" aria-label="Number of instances">
+      </div>
+      <p>
+        <a class="p-button--positive" id="estimateURL" href="/openstack/pricing-calculator?instances=1000">View estimate</a>
+      </p>
+    </div>
+    <div class="col-5 u-vertically-center">
+      <div class="p-card">
+        <h3 class="p-heading--4">
+          Have non-standard requirements? 
+        </h3>
+        <p>Tell us more about your specific needs here &ndash; we will send you a detailed report and help you find the cloud architecture that best suits your requirements.</p>
+        <p>
+          <a href="/openstack/contact-us">Get in touch&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width u-sv3">
+    <h2>Beyond OpenStack</h2>
+    <p>Explore the following resources to learn more about various cloud architectures and how to effectively use Ubuntu in public cloud infrastructure.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
+        alt="",
+        width="96",
+        height="75",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">What is hybrid cloud?</p>
+      <p>
+        <a href="/cloud/hybrid-cloud">Read more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 p-divider__block">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+        alt="",
+        width="134",
+        height="76",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">What is multi-cloud?</p>
+      <p>
+        <a href="/cloud/multi-cloud">Read more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 p-divider__block">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/eaadbd1f-hero-ecosystem-cloud.png",
+        alt="",
+        width="115",
+        height="74",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">Ubuntu for public clouds</p>
+      <p>
+        <a href="/cloud/public-cloud">Read more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  var isWebkit =
+  /Chrome/i.test(navigator.userAgent) || /Safari/i.test(navigator.userAgent);
+
+  var PROGRESS_COLOUR = '#06c';
+  var EMPTY_COLOUR = '#D9D9D9';
+
+  /**
+   Renders gradient to fake progress color in webkit browsers.
+  @param {HTMLElement} slider Slider element to render background on.
+  */
+    function renderSlider(slider) {
+    if (isWebkit) {
+      var value = (slider.value - slider.min) / (slider.max - slider.min);
+      slider.style.backgroundImage = (
+        '-webkit-gradient(linear, left top, right top, color-stop('
+        + value + ', ' + PROGRESS_COLOUR + '), color-stop('
+        + value + ', ' + EMPTY_COLOUR + '))'
+      );
+    }
+  }
+
+function equaliseValues(receive, give) {
+  receive.value = give.value;
+  give.value = receive.value;
+}
+
+/**
+  Attaches change listener to sliders to update their background color.
+  @param {HTMLElement} slider Slider element to render background on.
+*/
+function initSlider(slider) {
+  var input = document.getElementById(slider.id + '-input');
+  renderSlider(slider);
+
+  if (input) {
+    // Synchronise values of input and slider
+    equaliseValues(input, slider);
+    input.addEventListener('input', function() {
+      if (!input.value) {
+        input.value = 0;
+      }
+      equaliseValues(slider, input);
+      renderSlider(slider);
+      updateCalculatorValue(input.value);
+    });
+  }
+
+  slider.addEventListener('input', function() {
+    if (input) {
+      equaliseValues(input, slider);
+      updateCalculatorValue(input.value);
+    }
+    renderSlider(slider);
+  });
+}
+
+function updateCalculatorValue(value){
+  // update cta url with value
+  const cta = document.getElementById("estimateURL");
+  const ctaHref = cta.getAttribute("href");
+  const path = ctaHref.split("?")[0]
+
+  cta.setAttribute('href', `${path}?instances=${value}#cost-calculator-section`)
+}
+
+// Setup all sliders on the page.
+var sliders = document.querySelectorAll('input[type=range]');
+
+for (var i = 0, l = sliders.length; i < l; i++) {
+  initSlider(sliders[i]);
+}
+</script>
+{% endblock %}

@@ -91,13 +91,14 @@ sudo snap set kube-apiserver args="
 "
 ```
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  Note: Any files used by the service, such as certificate files, must be
-  placed within the /root/ directory to be visible to the service. This
-  limitation allows us to run a few of the services in a strict confinement
-  mode that offers better isolation and security.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Any files used by the service, such as certificate files, must be
+    placed within the /root/ directory to be visible to the service. This
+    limitation allows us to run a few of the services in a strict confinement
+    mode that offers better isolation and security.</p>
+  </div>
 </div>
 
 
@@ -134,14 +135,16 @@ This contains the actual arguments that get passed to the service by the snap:
 --service-cluster-ip-range "10.123.123.0/24"
 ```
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  Note: While you can technically bypass <code>snap set</code> and edit the args file
-  directly, it's best not to do so. The next time the configure hook runs, it
-  will obliterate your changes. This can occur not only from a call to
-  <code>snap set</code> but also during a background refresh of the snap.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">While you can technically bypass <code>snap set</code> and edit the args file
+    directly, it's best not to do so. The next time the configure hook runs, it
+    will obliterate your changes. This can occur not only from a call to
+    <code>snap set</code> but also during a background refresh of the snap.</p>
+  </div>
 </div>
+
 
 The source code for the snaps can be found here:
 
@@ -183,12 +186,13 @@ Once the PPA is added, installing the tools can be performed with:
 sudo apt install kubeadm
 ```
 
-<div class="p-notification--information">
-  <p class="p-notification__response">
-  Note: If you install tools such as **kubectl** from both the snap
-  store and the apt archive they will be in different locations. Depending on your
-  environment the snap may be resolved before the Debian installed package.
-  </p>
+<div class="p-notification--information is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Note: If you install tools such as **kubectl** from both the snap
+    store and the apt archive they will be in different locations. Depending on your
+    environment the snap may be resolved before the Debian installed package.</p>
+  </div>
 </div>
 
 <!-- LINKS -->
@@ -201,13 +205,12 @@ sudo apt install kubeadm
 [kubefed-snap]: https://snapcraft.io/kubefed
 [kubectl-snap]: https://snapcraft.io/kubectl
 
-
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/packages.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/packages.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

@@ -2,9 +2,7 @@
 
 [![Code coverage](https://codecov.io/gh/canonical-web-and-design/ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/ubuntu.com)
 [![Cypress checks](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Cypress+checks%22)
-[![Links in master](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20in%20master/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+in+master%22)
-[![Links on live](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Links%20on%20live/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Links+on+live%22)
-[![External links](https://github.com/canonical-web-and-design/ubuntu.com/workflows/External%20links/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22External+links%22)
+[![Cypress checks / main](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20main%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/cypress-main.yaml?query=workflow%3A%22Cypress+checks%22)
 
 Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things. [Ubuntu.com](https://ubuntu.com) is the website that helps people learn about, download and get started with Ubuntu. This repo is the codebase and content for the [ubuntu.com](https://ubuntu.com) website.
 
@@ -18,10 +16,11 @@ If you have found a bug in the Ubuntu OS itself, the please file it [here](https
 
 ## Local development
 
-The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap and [`docker`](https://docs.docker.com/engine/install/ubuntu/):
+The simplest way to run the site locally is using the [`dotrun`](https://github.com/canonical-web-and-design/dotrun/) snap. Please use the installation scripts [mentioned in the README](https://github.com/canonical-web-and-design/dotrun/blob/main/README.md#installation) to install `dotrun`.
+
+Once it's installed, run the project with:
 
 ```bash
-docker-compose up -d
 dotrun
 ```
 

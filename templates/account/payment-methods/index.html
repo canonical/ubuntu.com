@@ -1,0 +1,80 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Canonical payment method{% endblock %}
+{% block meta_description %}Mange your payment method for your Canonical services.{% endblock %}
+
+{% block head_extra %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped p-strip-account-page card-management-section">
+  <div class="row">
+    <div class="col-12">
+
+      <div id="payment-success" class="p-notification--positive u-hide">
+        <div class="p-notification__content">
+          <p class="p-notification__message"></p>
+        </div>
+      </div>
+
+      <div id="payment-errors" class="p-notification--negative u-hide">
+        <div class="p-notification__content">
+          <p class="p-notification__message"></p>
+        </div>
+      </div>
+
+      <div id="payment-warnings" class="p-notification--caution u-hide">
+        <div class="p-notification__content">
+          <p class="p-notification__message">
+            You have one or more pending payments. Use your saved card to <a id="try-again-button">retry payment</a>. <i id="try-again-spinner" class="p-icon--spinner u-animation--spin is-dark u-hide"></i></p>
+        </div>
+      </div>
+
+      <h1>Payment methods</h1>
+
+      <div id="default-payment-method-section" class="row {% if not default_payment_method["id"] %}u-hide{% endif %}" style="margin-top: 2rem;">
+        <div class="col-4 current-payment-method">
+          {% with brand=default_payment_method["brand"] %}
+            {% include "account/payment-methods/_card-logo.html" %}
+          {% endwith %}
+          <p><span style="text-transform: capitalize;">{{default_payment_method["brand"]}}</span> ending in {{default_payment_method["last4"]}}</p>
+          </div>
+        <p class="col-4 u-text--muted">Default payment method</p>
+        <div class="col-4 u-align--right">
+          <button class="p-button" id="edit-payment-details">Edit</button>
+        </div>
+      </div>
+
+      {% if default_payment_method %}
+        <div id="edit-payment-method-section" class="row {% if default_payment_method["id"] %}u-hide{% endif %}" style="margin-top: 2rem;">
+          <div class="col-8">
+              <div id="card-element"></div>
+              <span id="card-errors" class="p-form-validation__message u-hide"></span>
+          </div>
+          <div class="col-4 u-align--right">
+            {% if default_payment_method["id"] %}<button class="p-button" id="cancel-payment-details">Cancel</button>{% endif %}
+            <button class="p-button--positive" id="update-payment-details" disabled>Update</button>
+          </div>
+          <div class="col-8">
+          </div>
+        </div>
+        <hr></hr>
+      {% else %}
+        <p>No card added yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+  window.accountId = "{{ account_id }}";
+  window.pendingPurchaseId = "{{ pending_purchase_id }}";
+</script>
+<script src="{{ versioned_static('js/dist/ua-payment-methods.js') }}" type="module" defer></script>
+
+{% endblock content %}

@@ -135,25 +135,13 @@ function updateSummary() {
 }
 
 /**
- * Generate a random ID including the datestamp for uniqueness
- */
-function generateRandomId() {
-  // really crude unique ID
-  let date = new Date();
-  let random = Math.floor(Math.random() * 1000);
-  return date.valueOf() + "" + random;
-}
-
-/**
  * Send form values to Google Analytics
  * Also send which header has been shown
  */
 function sendContributionFormAnalytics() {
   // preparing GA submission. step 1 _addTrans
   const inputs = document.querySelectorAll(".p-slider__input");
-  const orderId = generateRandomId();
   const total = document.querySelector(".js-total-amount").innerText;
-  let transactionProducts = [];
 
   // add the individual items
   inputs.forEach((amountElement) => {

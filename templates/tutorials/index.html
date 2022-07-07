@@ -18,7 +18,7 @@
 
 <section class="p-strip is-shallow l-tutorials__filters">
   <div class="row">
-    <div class="col-4">
+    <!-- <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-search-input">Search tutorials containing:</label>
         <form class="p-search-box u-no-margin--bottom" id="tutorials-search" action="">
@@ -27,20 +27,21 @@
           <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
         </form>
       </div>
-    </div>
+    </div> -->
     <div class="col-4">
       <div class="p-form__group">
         <label for="tutorials-topic">Topic:</label>
         <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
           <option value="">Any</option>
-          <option value="cloud">Cloud</option>
-          <option value="community">Community</option>
-          <option value="containers">Containers</option>
-          <option value="desktop">Desktop</option>
-          <option value="development">Development</option>
-          <option value="iot">IoT</option>
-          <option value="packaging">Packaging</option>
-          <option value="server">Server</option>
+          {% for item in topics_list %}
+            {% if item == "ua" %}
+              <option value="{{ item }}">Ubuntu Advantage</option>
+            {% elif item == "iot" %}
+              <option value="{{ item }}">IoT</option>
+            {% else %}
+              <option value="{{ item }}">{{item | capitalize}}</option>
+            {% endif %}
+          {% endfor %}
         </select>
       </div>
     </div>
@@ -95,7 +96,7 @@
     <h4 class="col-12">
       {{total_results}} search result{% if total_results > 1 %}s{% endif %}
     </h4>
-    {% endif %} {% for item in metadata %} {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
+    {% endif %} {% for item in tutorials %} {% if loop.index <= posts_per_page * page and loop.index >= posts_per_page * page - posts_per_page + 1 %}
     <div class="col-4 blog-p-card--post">
       <header class="blog-p-card__header--tutorial">
         <h5 class="p-muted-heading u-no-margin--bottom">
@@ -103,8 +104,10 @@
         </h5>
       </header>
       <div class="blog-p-card__content">
-        <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
-          {{ item.topic | replace("inline-onebox", "p-link--soft") | safe }}
+        <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
+          <a class="p-link--soft" href="{{ item.link }}">
+            {{ item.title | safe }}
+          </a>
         </h3>
         <p class="u-sv3">{{ item.summary | safe }}</p>
       </div>

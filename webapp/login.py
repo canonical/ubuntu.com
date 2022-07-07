@@ -1,5 +1,4 @@
-# Standard library
-from urllib.parse import quote, unquote
+import os
 
 # Packages
 import flask
@@ -15,8 +14,12 @@ from webapp.macaroons import (
 )
 
 
+CANONICAL_LOGIN_URL = "https://login.ubuntu.com"
+
 open_id = flask_openid.OpenID(
-    stateless=True, safe_roots=[], extension_responses=[MacaroonResponse]
+    store_factory=lambda: None,
+    safe_roots=[],
+    extension_responses=[MacaroonResponse],
 )
 session = talisker.requests.get_session()
 
@@ -45,16 +48,17 @@ def empty_session(user_session):
     user_session.pop("macaroon_root", None)
     user_session.pop("authentication_token", None)
     user_session.pop("openid", None)
+    user_session.pop("salesforce-campaign-id", None)
+    user_session.pop("ad_source", None)
+    user_session.pop("google-click-id", None)
+    user_session.pop("google-gbraid-id", None)
+    user_session.pop("google-wbraid-id", None)
+    user_session.pop("facebook-click-id", None)
 
 
 @open_id.loginhandler
 def login_handler():
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
+    api_url = os.getenv("CONTRACTS_API_URL", "https://contracts.canonical.com")
 
     if user_info(flask.session):
         return flask.redirect(open_id.get_next_url())
@@ -72,7 +76,7 @@ def login_handler():
             break
 
     return open_id.try_login(
-        flask.current_app.config["CANONICAL_LOGIN_URL"],
+        CANONICAL_LOGIN_URL,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
         extensions=[openid_macaroon],
@@ -81,7 +85,16 @@ def login_handler():
 
 @open_id.after_login
 def after_login(resp):
-    root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
+    try:
+        root = Macaroon.deserialize(flask.session.pop("macaroon_root"))
+    except KeyError:
+        return (
+            flask.render_template(
+                "templates/_error_login.html",
+            ),
+            400,
+        )
+
     bound = root.prepare_for_request(
         Macaroon.deserialize(resp.extensions["macaroon"].discharge)
     )
@@ -90,7 +103,7 @@ def after_login(resp):
     ).decode("utf-8")
 
     if not resp.nickname:
-        return flask.redirect(flask.current_app.config["CANONICAL_LOGIN_URL"])
+        return flask.redirect(CANONICAL_LOGIN_URL)
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
@@ -104,16 +117,12 @@ def after_login(resp):
 
 
 def logout():
-    return_to = flask.request.args.get("return_to") or flask.request.url_root
+    return_to = flask.request.args.get("return_to") or flask.request.path
 
-    # Make sure return_to is URL encoded
-    if return_to == unquote(return_to):
-        return_to = quote(return_to, safe="")
+    # Protect against redirect loop if return_to is logout
+    if return_to == "/logout":
+        return_to = "/"
 
     empty_session(flask.session)
 
-    login_url = flask.current_app.config["CANONICAL_LOGIN_URL"]
-
-    return flask.redirect(
-        f"{login_url}/+logout?return_to={return_to}&return_now=True"
-    )
+    return flask.redirect(return_to)

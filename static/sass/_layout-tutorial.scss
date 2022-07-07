@@ -1,6 +1,7 @@
 @mixin layout-tutorial {
   .l-tutorial {
     @extend .row;
+
     display: flex;
     flex-direction: column;
 
@@ -22,9 +23,14 @@
 
   .l-tutorial__nav-toggle {
     background-size: $sp-medium;
-    cursor: pointer;
+    border: 0;
     float: right;
+    margin: 0;
     padding: $sp-large;
+
+    &[aria-expanded="true"] {
+      background-color: $color-x-light;
+    }
   }
 
   .l-tutorial__nav {
@@ -92,19 +98,19 @@
     }
 
     h2 {
-      @extend .p-heading--three;
+      @extend .p-heading--3;
     }
 
     h3 {
-      @extend .p-heading--four;
+      @extend .p-heading--4;
     }
 
     h4 {
-      @extend .p-heading--five;
+      @extend .p-heading--5;
     }
 
     h5 {
-      @extend .p-heading--six;
+      @extend .p-heading--6;
     }
   }
 
@@ -154,7 +160,7 @@
   .l-tutorial__pagination-item--prev {
     @extend %l-tutorial-pagination-item;
 
-    .p-icon--contextual-menu {
+    .p-icon--chevron-down {
       transform: rotate(90deg);
     }
   }
@@ -162,9 +168,13 @@
   .l-tutorial__pagination-item--next {
     @extend %l-tutorial-pagination-item;
 
-    .p-icon--contextual-menu {
+    .p-icon--chevron-down {
       transform: rotate(-90deg);
     }
+  }
+
+  .l-tutorial__feedback-icon {
+    cursor: pointer;
   }
 
   .l-tutorial__feedback-options {
@@ -183,9 +193,5 @@
         }
       }
     }
-  }
-
-  .l-tutorial__feedback-icon {
-    cursor: pointer;
   }
 }

@@ -41,8 +41,8 @@
         </h3>
         <div class="p-stepped-list__content">
           <ul class="u-no-margin--left">
-		  <li>Download the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/ubuntu-core-20-amd64.img.xz">Ubuntu Core 20 image for amd64</a>.</li>
-            <li>You can verify the integrity of the files using the <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS">SHA256SUM</a> and <a class="p-link--external" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
+		  <li>Download the <a href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/ubuntu-core-20-amd64.img.xz">Ubuntu Core 20 image for amd64</a>.</li>
+            <li>You can verify the integrity of the files using the <a href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS">SHA256SUM</a> and <a href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/SHA256SUMS.gpg">SHA256SUM.gpg</a> files.</li>
             <li>
               <p>Uncompress the image with the following command:</p>
               <pre><code>unxz ubuntu-core-20-amd64.img.xz</code></pre>
@@ -59,7 +59,7 @@
           <ol class="u-no-margin--left">
             <li>
               <p>Install the qemu-kvm package with the following command:</p>
-              <pre><code>sudo apt install qemu-kvm</code></pre>
+              <pre><code>sudo apt install qemu-kvm ovmf</code></pre>
             </li>
             <li>
               <p>Then, run the kvm-ok command to check KVM status and your hardware:</p>
@@ -81,7 +81,7 @@ KVM acceleration can be used</code></pre>
         </h3>
         <div class="p-stepped-list__content">
           <p>You can now launch a virtual machine with KVM, using the following command:</p>
-          <pre><code>kvm -smp 2 -m 1500 -netdev user,id=mynet0,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -device virtio-net-pci,netdev=mynet0 -vga qxl -drive file=ubuntu-core-20-amd64.img,format=raw</code></pre>
+          <pre><code>qemu-system-x86_64 -smp 2 -m 2048 -net nic,model=virtio -net user,hostfwd=tcp::8022-:22,hostfwd=tcp::8090-:80 -vga qxl -drive file=/usr/share/OVMF/OVMF_CODE.fd,if=pflash,format=raw,unit=0,readonly=on -drive file=ubuntu-core-20-amd64.img,cache=none,format=raw,id=disk1,if=none -device virtio-blk-pci,drive=disk1,bootindex=1 -machine accel=kvm</code></pre>
           <p>
             Note: this command sets up port redirections:
             <ul>

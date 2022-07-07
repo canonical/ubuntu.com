@@ -49,13 +49,13 @@
       </p>{% endif %}
       {% if cta %}<br class="u-hide--medium u-hide--large" />
       <p class="u-hide--medium u-hide--large">
-        <a href="{{ url }}" class="p-button--neutral">
+        <a href="{{ url }}" class="p-button">
           {{ cta }}
         </a>
       </p>{% endif %}
       </div>
     </div>
-    {% if header_image %}<div class="col-5 u-hide--small u-align--center u-vertically-center">
+    {% if header_image %}<div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center">
 
       {% if 'http' not in header_image %}
         {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}

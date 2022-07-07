@@ -7,7 +7,7 @@
   <div class="row">
     <div class="col-12">
 	    <h1>{{ notice.id }}: {{ notice.title }}</h1>
-      <p class="p-muted-heading">{{ notice.published.strftime("%d %B %Y") }}</p>
+      <p class="p-muted-heading">{{ notice.published }}</p>
       <p>{{ notice.summary | safe }}</p>
       <h2>Releases</h2>
       <ul class="p-inline-list u-no-margin--bottom">
@@ -26,7 +26,7 @@
       <h2>Packages</h2>
       <ul class="p-list">
         {% for package_name, package_title in notice.package_descriptions.items() %}
-          <li class="p-list__item"><a href="/security/cve?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}</li>
+          <li class="p-list__item"><a href="/security/cves?package={{ package_name }}">{{ package_name }}</a> - {{ package_title }}</li>
         {% endfor %}
       </ul>
     </div>
@@ -86,7 +86,7 @@
       <ul class="p-list">
         {% if notice.cves %}
           {% for cve in notice.cves %}
-            <li class="p-list__item"><a href="https://people.canonical.com/~ubuntu-security/cve/{{ cve.id }}">{{ cve.id }}</a></li>
+            <li class="p-list__item"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></li>
           {% endfor %}
         {% endif %}
 
@@ -106,7 +106,7 @@
       <ul class="p-list">
         {% for notice in notice.related_notices %}
           <li class="p-list__item">
-            <a href="/security/notices/{{ notice.id }}">{{ notice.id }}</a>: {{ notice.package_list }}
+            <a href="/security/notices/{{ notice.id }}">{{ notice.id }}</a>: {{ notice.packages }}
           </li>
         {% endfor %}
       </ul>

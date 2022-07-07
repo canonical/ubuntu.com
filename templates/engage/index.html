@@ -14,28 +14,136 @@
 {% endblock %}
 
 {% block content %}
-
-<section class="p-strip u-no-padding--bottom">
+<section class="p-strip--suru-blog-header is-dark">
   <div class="row">
-    <h1>Ubuntu case studies, whitepapers and webinars</h1>
+    <div class="col-6">
+      <h1>Engage pages</h1>
+      <p>Ubuntu case studies, whitepapers and webinars.</p>
+    </div>
   </div>
+</section>
+
+<section class="p-strip is-shallow">
+  <form action="/">
+  <div class="row">
+    <div class="col-3">
+      <div class="p-form__group">
+        <label for="language-selector">Select language:</label>
+        <select name="language-selector" id="language-selector" class="u-no-margin--bottom">
+          <option value="all">All languages</option>
+          <option value="de">Deutsch</option>
+          <option value="en">English</option>
+          <option value="es">Espa&ntilde;ol</option>
+          <option value="fr">Fran&ccedil;ais</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Portugu&ecirc;s</option>
+          <option value="ru">Русс&#1082;&#1080;&#1081;</option>
+        </select>
+      </div>
+    </div>
+    {% if resource_types %}
+    <div class="col-3">
+      <div class="p-form__group">
+        <label for="resource-selector">Select resource type:</label>
+        <select name="resource-selector" id="resource-selector" class="u-no-margin--bottom">
+          <option value="all">All resource types</option>
+          {% for resource in resource_types %}
+            <option value="{{ resource }}">{{ resource | capitalize }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    {% endif %}
+    {% if tags %}
+    <div class="col-3">
+      <div class="p-form__group">
+        <label for="tag-selector">Select tag:</label>
+        <select name="tag-selector" id="tag-selector" class="u-no-margin--bottom">
+          <option value="all">All tags</option>
+          {% for tag in tags %}
+            <option value="{{ tag }}">{{ tag }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    {% endif %}
+    <div class="col-3" style="display: flex; align-items: flex-end; justify-content: flex-end;">
+      <div class="u-hide u-show--small" >
+        <br /><br />
+      </div>
+      <button id="clear-filters" class="u-no-margin--bottom" onclick="clearFilters()" type="reset" disabled>Clear filters</button>
+    </div>
+  </div>
+  </form>
 </section>
 
 <section class="p-strip is-shallow" id="posts-list">
+  {% if metadata | length > 0 %}
   <div class="row u-equal-height">
     {% for item in metadata %}
       {% with 
-      title=item.topic_name,
-      title_link=item.path,
-      description=item.subtitle,
-      type=item.type,
-      preview=preview,
-      active=item.active %}
+        title=item.topic_name,
+        title_link=item.path,
+        description=item.subtitle,
+        type=item.type,
+        preview=preview,
+        active=item.active,
+        tags=item.tags
+      %}
       {% include "engage/_article-card.html" %}
       {% endwith %}
     {% endfor %}
-
   </div>
-
+  {% else %}
+  <div class="u-fixed-width">
+    <h3>No results &mdash; why not try widening your search?</h3>
+    <p>You can do this by clearing and selecting new filters.</p>
+  </div>
+  {% endif %}
 </section>
+<script>
+function clearFilters() {
+  const clearFiltersButton = document.getElementById("clear-filters");
+  window.location.assign("/engage");
+}
+(function() {
+  const languageSelector = document.getElementById("language-selector");
+  const resourceSelector = document.getElementById("resource-selector");
+  const tagSelector = document.getElementById("tag-selector");
+  const clearFiltersButton = document.getElementById("clear-filters");
+  const urlObj = new URL(window.location);
+
+  if (urlObj.search !== "") {
+    clearFiltersButton.removeAttribute("disabled");
+  }
+
+  function handleFilter(key, el, url) {
+    if (!el) {
+      return;
+    }
+
+    if (url.searchParams.has(key)) {
+      el.value = url.searchParams.get(key);
+    }
+
+    el.addEventListener("change", function(e) {
+      const value = e.target.value;
+      const selectFields = document.querySelectorAll("select:checked")
+      
+      if (url.searchParams.has(key)) {
+        url.searchParams.delete(key);
+      }
+      if (value !== "all") {
+        url.searchParams.append(key, value);
+      }
+      
+      window.location = url;
+    });
+  }
+
+  handleFilter("language", languageSelector, urlObj);
+  handleFilter("resource", resourceSelector, urlObj);
+  handleFilter("tag", tagSelector, urlObj);
+})()
+</script>
 {% endblock content %}

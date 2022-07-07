@@ -1,0 +1,99 @@
+{% extends "azure/base_azure.html" %}
+
+{% block title %}Why do Cloud innovators migrate to Pro? Get the eBook.{% endblock %}
+{% block meta_description %}Learn about the security compliance and support features of the Linux based Ubuntu Pro image on Azure.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1JL_TeFBg1tSqiYIiXU0IwJTKWRDKJEXWtEgLRWFnToI/edit#{% endblock meta_copydoc %}
+
+{% block head_extra %}
+  <style>
+    h2,
+    .p-heading--2 {
+      font-weight: 300;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru-bottomed">
+  <div class="row">
+    <div class="col-7 u-vertically-center">
+      <div>
+        <h1>Why do cloud innovators migrate to Ubuntu Pro?</h1>
+
+        <p class="u-no-padding--top p-heading--4">Get our eBook to find out</p>
+
+        <p>
+          <a href="#ubuntu-pro-ebook" class="p-button--positive">Download<span class="u-off-screen"> the Why do Cloud innovators migrate to Pro? eBook by completing this form</span></a>
+        </p>
+      </div>
+    </div>
+    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/0959ce33-NEW_Ubuntu_ebook_1.png",
+        alt="",
+        width="214",
+        height="300",
+        hi_def=True,
+        loading="auto",
+        attrs={ "class": "p-image--bordered"}
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% include "azure/shared/_azure-logo-strip.html" %}
+
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2 class="p-heading--4">Ubuntu Pro for Azure is a premium image delivering the most comprehensive open source security and compliance</h2>
+
+      <hr class="p-separator u-no-margin--top" />
+
+      <p class="p-heading--4"><strong>70% of Azure virtual machines are running on Ubuntu due to reliability and ease of use</strong></p>
+
+      <p>As the publishers of Ubuntu, we went one step further and developed a premium Ubuntu Pro image in partnership with public cloud providers, to deliver a preferred open-source solution for cloud innovators.</p>
+
+      <p>Here is our latest eBook, where we share the details of how Ubuntu Pro on Azure delivers extended open-source security, enterprise compliance, 10 years of extended maintenance and more.</p>
+    </div>
+
+    <div class="col-5" id="ubuntu-pro-ebook">
+      {% with id="4393", returnURL="/azure/ebook/thank-you", cta="Get the eBook", cta_class="p-button--positive" %}
+        {% include "engage/shared/_en_engage_form.html" %}
+      {% endwith %}
+    </div>
+  </div>
+</div>
+
+<div class="p-strip">
+  {% include "azure/shared/_how-ubuntu-pro-helps-you.html" %}
+</div>
+
+<div class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h2>Level up your Ubuntu journey by activating this private Azure Marketplace offer</h2>
+
+      <p>Already running Ubuntu on Microsoft Azure, or planning a migration to the public cloud?</p>
+
+      <p>Leverage Canonical's expert service and all the features of Ubuntu Pro with this exclusive private offer.</p>
+
+      <a href="/azure/private-offer" class="p-button--positive">Learn more</a>
+    </div>
+    
+    <div class="col-5 u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/71fe6a11-private-offer-shield.svg",
+        alt="",
+        width="206",
+        height="234",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -51,12 +51,12 @@ default storage class is for the cloud (e.g., on AWS this will be EBS volumes).
 juju add-relation ceph-osd ceph-mon
 ```
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-For more on how Juju makes use of storage, please see the relevant
-<a href="https://docs.jujucharms.com/stable/en/charms-storage"> Juju documentation</a>
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">For more on how Juju makes use of storage, please see the relevant
+<a href="https://juju.is/docs/olm/defining-and-using-persistent-storage"> Juju documentation</a></p>
+  </div>
 </div>
 
 ### Relating to Charmed Kubernetes
@@ -64,13 +64,13 @@ For more on how Juju makes use of storage, please see the relevant
 Making **Charmed Kubernetes** aware of your **Ceph** cluster just requires a **Juju** relation.
 
 ```bash
-juju add-relation ceph-mon kubernetes-master
+juju add-relation ceph-mon kubernetes-control-plane
 ```
 
 Note that the **Ceph** CSI containers require privileged access:
 
 ```bash
-juju config kubernetes-master allow-privileged=true
+juju config kubernetes-control-plane allow-privileged=true
 ```
 
 And finally, you need the pools that are defined in the storage class:
@@ -152,10 +152,11 @@ here you can install any of the things that require storage out of the box.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ceph.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ceph.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

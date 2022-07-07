@@ -48,10 +48,12 @@ So, for example, to deploy three `ceph-osd` storage nodes, using the default sto
  juju deploy -n 3 ceph-osd --storage osd-devices=32G,2 --storage osd-journals=8G,1
 ```
 
-<div class="p-notification--positive"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://docs.jujucharms.com/stable/en/charms-storage">Juju documentation</a>.
-</p></div>
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">For a more detailed explanation of Juju's storage pools and options, please see the relevant <a href="https://juju.is/docs/olm/defining-and-using-persistent-storage">Juju documentation</a>.</p>
+  </div>
+</div>
 
 Note that actually deploying these charms with storage may take some time, but you can continue to run other Juju commands in the meantime.
 
@@ -72,14 +74,15 @@ juju add-relation ceph-fs ceph-mon
 **Charmed Kubernetes** will then deploy the CephFS provisioner pod
 and create a `cephfs` storage class in the cluster.
 
-<div class="p-notification--caution"><p markdown="1" class="p-notification__response">
-<span class="p-notification__status">Note:</span>
-CephFS support in Kubernetes requires at least Ubuntu 18.04LTS and OpenStack
-Train. OpenStack Ussuri or newer is recommended.
-</p></div>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">CephFS support in Kubernetes requires at least Ubuntu 18.04LTS and OpenStack Train. OpenStack Ussuri or newer is recommended.</p>
+  </div>
+</div>
 
 When deploying **Charmed Kubernetes** on Ubuntu 18.04(Bionic), you will need
-to explicitly set the `install_sources` config option on the `kubernetes-master`
+to explicitly set the `install_sources` config option on the `kubernetes-control-plane`
 charm to include `cloud:bionic-ussuri` (or whatever OpenStack release you are
 using).
 
@@ -103,16 +106,15 @@ initContainers:
 
 ### Relate to Charmed Kubernetes
 
-Making **Charmed Kubernetes** aware of your **Ceph** cluster requires 2 **Juju** relations.
+Making **Charmed Kubernetes** aware of your **Ceph** cluster requires a **Juju** relation.
 
 ```bash
-juju add-relation ceph-mon:admin kubernetes-master
-juju add-relation ceph-mon:client kubernetes-master
+juju add-relation ceph-mon:client kubernetes-control-plane
 ```
 
 ### Create storage pools
 
-By default, the `kubernetes-master` charm will create the required pools defined
+By default, the `kubernetes-control-plane` charm will create the required pools defined
 in the storage class.  To view the default options, run:
 
 ```bash
@@ -277,16 +279,16 @@ There is no requirement that these additional units should have the same amount 
 
 [kubernetes-storage-docs]: https://kubernetes.io/docs/concepts/storage/
 [ceph-home]: https://ceph.com/
-[ceph-charm]: https://jujucharms.com/ceph-osd/
-[juju-storage]: https://docs.jujucharms.com/stable/en/charms-storage
-[juju-cmr]: https://docs.jujucharms.com/stable/en/models-cmr
+[ceph-charm]: https://charmhub.io/ceph-osd
+[juju-storage]: https://juju.is/docs/olm/defining-and-using-persistent-storage
+[juju-cmr]: https://juju.is/docs/olm/cross-model-relations
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/storage.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/storage.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

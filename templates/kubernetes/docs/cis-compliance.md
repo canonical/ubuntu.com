@@ -23,15 +23,15 @@ results.
 
 ## Compliance Requirements
 
-**Charmed Kubernetes** 1.19 is compliant by default. Key configuration changes
-from previous releases include the following:
+**Charmed Kubernetes** is compliant by default. Key configuration changes
+from releases prior to 1.19 include the following:
 
-### [kubernetes-master][k8s-master]
+### [kubernetes-control-plane][kubernetes-control-plane]
 
 #### Set `authorization.mode = Node,RBAC`
 
 `kube-apiserver` must not include `AlwaysAllow` as an authorization mode.
-This is set by the `authorization-mode` config option on the `kubernetes-master`
+This is set by the `authorization-mode` config option on the `kubernetes-control-plane`
 charm (`Node,RBAC` by default).
 
 #### Set `encryption-provider-config`
@@ -87,7 +87,7 @@ the secure `port` (10250 by default).
 
 ## Run the benchmark
 
-The `kubernetes-master`, `kubernetes-worker`, and `etcd` charms used by
+The `kubernetes-control-plane`, `kubernetes-worker`, and `etcd` charms used by
 **Charmed Kubernetes** include a `cis-benchmark` action that will install,
 configure, and run the benchmark on the respective components. Run this
 action on the units you wish to test with the following:
@@ -224,15 +224,16 @@ status: completed
 [kube-bench]: https://github.com/aquasecurity/kube-bench
 [layer-cis-benchmark-config]: https://raw.githubusercontent.com/charmed-kubernetes/layer-cis-benchmark/master/actions.yaml
 [protect-kernel-defaults]: https://github.com/kubernetes/kubernetes/blob/release-1.19/pkg/util/sysctl/sysctl.go#L49-L56
-[k8s-master]: /kubernetes/docs/charm-kubernetes-master
+[kubernetes-control-plane]: https://charmhub.io/kubernetes-control-plane/docs
 [k8s-worker]: /kubernetes/docs/charm-kubernetes-worker
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cis-compliance.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cis-compliance.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

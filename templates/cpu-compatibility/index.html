@@ -1,0 +1,252 @@
+{% extends "cpu-compatibility/base_cpu-compatibility.html" %}
+
+{% block title %}CPU compatibility matrix for Ubuntu{% endblock %}
+
+{% block meta_description %}The Compatibility matrix for CPU hardware (Intel and AMD) for Ubuntu and OpenStack releases.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/16E0xMuCIrGRwGa1G0poDEil9zd_5UAWTpxFRiA8j-KU/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip is-deep u-no-padding--bottom">
+  <div class="row">
+    <div class="col-8">
+      <h1>CPU compatibility matrix for Ubuntu Server and OpenStack</h1>
+      <p>The CPU compatibility matrix for Ubuntu and related products. The matrix shows which Ubuntu LTS version introduces an initial support for a given processor or chipset. Canonical recommends running the latest LTS release to take advantage of the full capabilities of a CPU.</p>
+    </div>
+
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c4f35e06-products-hero-ubuntu.svg",
+        alt="products hero ubuntu",
+        width=160,
+        height="160",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-12">
+      <table class="p-table--mobile-card" aria-label="Table of CPU compatibility matrix for Ubuntu">
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>CPU family</th>
+            <th>Code name</th>
+            <th class="u-align--right">Initial support in Ubuntu LTS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-heading="Vendor">AMD</td>
+            <td data-heading="CPU family">EPYC 7xx3</td>
+            <td data-heading="Code name">Milan (Zen 3)</td>
+            <td data-heading="Initial support in Ubuntu LTS" class="u-align--right">18.04.5</td>
+          </tr>
+          <tr class="p-table__group">
+            <td data-heading="Vendor" class="p-table__group--hide-cell"><span>AMD</span></td>
+            <td data-heading="CPU family">EPYC 7xx2</td>
+            <td data-heading="Code name">Rome (Zen 2)</td>
+            <td data-heading="Initial support in Ubuntu LTS" class="u-align--right">16.04.5</td>
+          </tr>
+          <tr class="p-table__group">
+            <td data-heading="Vendor" class="p-table__group--hide-cell"><span>AMD</span></td>
+            <td data-heading="CPU family">EPYC 7xx1</td>
+            <td data-heading="Code name">Naples (Zen1)</td>
+            <td data-heading="Initial support in Ubuntu LTS" class="u-align--right">16.04.5</td>
+          </tr>
+          <tr>
+            <td data-heading="Vendor">Intel</td>
+            <td data-heading="CPU family">Xeon</td>
+            <td data-heading="Code name">Ice Lake (SP)</td>
+            <td data-heading="Initial support in Ubuntu LTS" class="u-align--right">18.04</td>
+          </tr>
+          <tr class="p-table__group">
+            <td data-heading="Vendor" class="p-table__group--hide-cell"><span>Intel</span></td>
+            <td data-heading="CPU family">Xeon</td>
+            <td data-heading="Code name">Cooper Lake</td>
+            <td data-heading="Initial support in Ubuntu LTS" class="u-align--right">18.04</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Supported OpenStack versions</h2>
+      <p>
+        OpenStack release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu, however, since Canonical recommends using Ubuntu LTS in production environments, new versions of OpenStack are also available on Ubuntu LTS version through the <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a>.
+      </p>
+      <p>The OpenStack support lifecycle on Ubuntu can be represented this way:</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-10">
+      <div class="u-hide--small" id="openstack-eol"></div>
+      <table class="p-table--mobile-card u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <th>Release</th>
+            <th>Tech preview</th>
+            <th>Released</th>
+            <th>End of life</th>
+            <th>Extended customer support</th>
+            <th>Extended Security Maintenance (ESM)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-heading="Release">OpenStack Y LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2022</td>
+            <td data-heading="End of life">Apr 2027</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2032</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">Ubuntu 22.04 LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2022</td>
+            <td data-heading="End of life">Apr 2027</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2032</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Y</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2022</td>
+            <td data-heading="End of life">Apr 2025</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Xena</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Oct 2021</td>
+            <td data-heading="End of life">Apr 2023</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack W</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2021</td>
+            <td data-heading="End of life">Oct 2022</td>
+            <td data-heading="Extended customer support">Apr 2024</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Victoria</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Oct 2020</td>
+            <td data-heading="End of life">Apr 2022</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Ussuri LTS</td>
+            <td data-heading="Tech preview">Apr 2020</td>
+            <td data-heading="Released">May 2020</td>
+            <td data-heading="End of life">Apr 2025</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2030</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">Ubuntu 20.04 LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2020</td>
+            <td data-heading="End of life">Apr 2025</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2030</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Ussuri</td>
+            <td data-heading="Tech preview">Apr 2020</td>
+            <td data-heading="Released">May 2020</td>
+            <td data-heading="End of life">Apr 2023</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Train</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Aug 2019</td>
+            <td data-heading="End of life">Feb 2021</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Stein</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2019</td>
+            <td data-heading="End of life">Oct 2020</td>
+            <td data-heading="Extended customer support">Apr 2022</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Rocky</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Aug 2018</td>
+            <td data-heading="End of life">Feb 2020</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Queens LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2018</td>
+            <td data-heading="End of life">Apr 2023</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2028</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">Ubuntu 18.04 LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2018</td>
+            <td data-heading="End of life">Apr 2023</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2028</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Queens</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Feb 2018</td>
+            <td data-heading="End of life">Apr 2021</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">&nbsp;</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">OpenStack Mitaka LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2016</td>
+            <td data-heading="End of life">Apr 2021</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2024</td>
+          </tr>
+          <tr>
+            <td data-heading="Release">Ubuntu 16.04 LTS</td>
+            <td data-heading="Tech preview">&nbsp;</td>
+            <td data-heading="Released">Apr 2016</td>
+            <td data-heading="End of life">Apr 2021</td>
+            <td data-heading="Extended customer support">&nbsp;</td>
+            <td data-heading="Extended Security Maintenance (ESM)">Apr 2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+
+{% endblock content %}

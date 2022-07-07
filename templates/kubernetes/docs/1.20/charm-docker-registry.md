@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '173'
+charm_revision: '174'
 bundle_release: '1.20'
 ---
 
@@ -239,7 +239,7 @@ juju run-action --wait docker-registry/0 start
 | <a id="table-storage-read-only"> </a> storage-read-only | boolean | False | Enable/disable the "readonly" storage maintenance option. False, the default, disables this option in the registry config file.  |
 | <a id="table-storage-swift-authurl"> </a> storage-swift-authurl | string |  | The URL of the keystone used to authenticate to swift.  |
 | <a id="table-storage-swift-container"> </a> storage-swift-container | string | docker-registry | The name of the swift container that will hold the images.  |
-| <a id="table-storage-swift-domain"> </a> storage-swift-domain | string |  | Openstack Identity v3 API domain.  |
+| <a id="table-storage-swift-domain"> </a> storage-swift-domain | string |  | OpenStack Identity v3 API domain.  |
 | <a id="table-storage-swift-password"> </a> storage-swift-password | string |  | The password to use to access swift.  |
 | <a id="table-storage-swift-region"> </a> storage-swift-region | string |  | The region containing the swift service.  |
 | <a id="table-storage-swift-tenant"> </a> storage-swift-tenant | string |  | The tenant containing the swift service.  |
@@ -249,7 +249,7 @@ juju run-action --wait docker-registry/0 start
 | <a id="table-tls-cert-blob"> </a> tls-cert-blob | string |  | Base64 encoded TLS certificate (overwrites tls-cert-path file).  |
 | <a id="table-tls-cert-path"> </a> tls-cert-path | string | [See notes](#tls-cert-path-default) | Path to the TLS certificate.  |
 | <a id="table-tls-key-blob"> </a> tls-key-blob | string |  | Base64 encoded TLS certificate private key (overwrites tls-key-path file).  |
-| <a id="table-tls-key-path"> </a> tls-key-path | string | [See notes](#tls-key-path-default) | Path the the TLS certificate private key.  |
+| <a id="table-tls-key-path"> </a> tls-key-path | string | [See notes](#tls-key-path-default) | Path to the TLS certificate private key.  |
 
 ---
 
@@ -547,7 +547,7 @@ juju config docker-registry \
 
 >Note: If any of the above config options are set, then they must all be set. Optional params are noted below.
 
-It is possible to configure the swift backend with an Openstack domain name for Identity v3. To enable this, set the following optional config parameter:
+It is possible to configure the swift backend with an OpenStack domain name for Identity v3. To enable this, set the following optional config parameter:
 ```
 storage-swift-domain=<val>
 ```

@@ -1,0 +1,36 @@
+{% extends "templates/one-column_no_nav.html" %}
+{% block title %}500: Server error{% endblock %}
+
+
+{% block content %}
+<div class="p-strip is-deep">
+  <div class="row u-equal-height">
+    <div class="col-6 u-vertically-center u-align--center">
+      {{
+      image(
+      url="https://assets.ubuntu.com/v1/bcdcf2c8-image-404.svg",
+      alt="",
+      height="365",
+      width="360",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+      }}
+    </div>
+    <div class="col-6 u-vertically-center">
+      <div>
+        <h1>Security API error</h1>
+        <p class="p-heading--4">The security API is down.</p>
+        {% if message %}<blockquote><code>{{ message }}</code></blockquote>{% endif %}
+        <p>
+          Try reloading the page.
+          If the error persists, please note that it may be a <a
+            href="https://github.com/canonical-websites/www.ubuntu.com/issues">known issue</a>.
+          If not, please <a
+            href="https://github.com/canonical-websites/www.ubuntu.com/issues/new">file a new issue</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} 

@@ -4,60 +4,60 @@
       margin-top: 1rem;
     }
 
+    ol {
+      counter-reset: item;
+      list-style-type: none;
+    }
+
+    ol > li::before {
+      content: counters(item, ".") ". ";
+      counter-increment: item;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    ol p {
+      max-width: inherit;
+    }
+
     div > ol {
       margin-left: 0;
       padding-left: 0;
     }
 
-    ol {
-      counter-reset: item;
-      list-style-type: none;
+    ol > li > p,
+    ol > li > ol,
+    ol > li > ul,
+    ol > li + h3,
+    ol > li > h4,
+    ol > li + h5,
+    ol > li > table {
+      margin-bottom: $spv--small;
+      margin-left: $sp-medium;
+      padding-left: $sp-medium;
+      padding-top: $spv--small;
+    }
 
-      & > li::before {
-        content: counters(item, ".") ". ";
-        counter-increment: item;
-        font-size: 1.2rem;
-        font-weight: 300;
-        line-height: 1.4;
-      }
+    ol > li > h3,
+    ol > li > h4,
+    ol > li > h5 {
+      display: inline-block;
+    }
 
-      & p {
-        max-width: inherit;
-      }
+    ol > li > h4:first-child {
+      margin-left: 0;
+      padding-left: 0;
+    }
 
-      & > li > p,
-      & > li > ol,
-      & > li > ul,
-      & > li + h3,
-      & > li > h4,
-      & > li + h5,
-      & > li > table {
-        margin-bottom: $spv-inner--x-small;
-        margin-left: $sp-medium;
-        padding-left: $sp-medium;
-        padding-top: $spv-inner--small;
-      }
+    ol > li > ol > li::before {
+      font-size: 1.2rem;
+    }
 
-      & > li > h4:first-child {
-        margin-left: 0;
-        padding-left: 0;
-      }
-
-      & > li > h3,
-      & > li > h4,
-      & > li > h5 {
-        display: inline-block;
-      }
-
-      & > li > ol > li::before {
-        font-size: 1.2rem;
-      }
-
-      & > li > h2:first-child,
-      & > li > h3:first-child,
-      & > li > h4:first-child {
-        display: inline;
-      }
+    ol > li > h2:first-child,
+    ol > li > h3:first-child,
+    ol > li > h4:first-child {
+      display: inline;
     }
   }
 }

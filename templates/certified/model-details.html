@@ -1,0 +1,273 @@
+{% extends "templates/base.html" %}
+
+{% block title %} {{ vendor }} {{ model }} certified with Ubuntu{% endblock %}
+
+{% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
+
+{% block outer_content %}
+
+<section class="p-strip--suru-topped u-no-margin--bottom">
+  <div class="row u-sv3">
+    <div class="col-7">
+      <h1>{{ vendor }} {{ name }}</h1>
+      <p class="p-heading--4"> {{ form_factor }} system certified with Ubuntu</p>
+      {% if hardware_website %}
+      <a href="{{ hardware_website }}" target="blank">Visit the website</a>
+      {% endif %}
+    </div>
+    <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {% if category == "Desktop" or category == "Laptop" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+        alt="",
+        width="132",
+        height="77",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if category == "Server" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="Server",
+        width="80",
+        height="96",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if category == "Ubuntu Core" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+        alt="Gateway",
+        width="96",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+      {% if category == "Server SoC" %}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+        alt="Chip",
+        width="84",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h2>Release{% if release_details["releases"]|length > 1 %}s{% endif %}</h2>
+      <aside class="p-accordion">
+        <ul class="p-accordion__list">
+          {% for release in release_details["releases"] %}
+          <li class="{% if release_details['releases']|length > 1 %}p-accordion__group{% endif %}">
+            {% if release_details['releases']|length > 1%}
+            <h3 class="p-accordion__heading u-no-margin--bottom">
+              <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;"id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false">{{ release.name }}</button>
+            </h3>
+            {% else %}
+            <h3>{{ release.name }}</h3>
+            {% endif %}
+            {% if release_details['releases']|length > 1 %}
+            <section class="p-accordion__panel" id="tab{{ loop.index }}-section" aria-hidden="true" aria-labelledby="tab{{ loop.index }}">
+            {% else %}
+            <section>
+            {% endif %}
+            {% if release.level == "Enabled" %}
+              <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
+            {% elif release.level == "Certified" %}
+              <p>The {{ vendor }} {{ name }} with the components described below has been awarded the status of certified for Ubuntu.</p>
+              <p class="u-no-margin--bottom">
+                {% if category == "Desktop" or category == "Laptop" %}
+                <a href="/download/desktop" class="p-button">Download</a>
+                {% endif %}
+                {% if category == "Ubuntu Core" %}
+                <a href="/download/iot" class="p-button">Download</a>
+                {% endif %}
+                {% if category == "Server" %}
+                <a href="/download/server" class="p-button">Download</a>
+                {% endif %}
+                {% if category == "Server SoC" %}
+                <a href="/download/server/arm" class="p-button">Download</a>
+                {% endif %}
+              </p>
+            {% endif %}
+            {% if release.kernel %}
+              <h4 class="u-no-margin--bottom">Kernel</h4>
+              <p>This system was tested with {{release.version}}, running the {{release.kernel}} kernel.</p>
+            {% endif %}
+            {% if release.bios %}
+              <h4 class="u-no-margin--bottom">BIOS</h4>
+              <p>{{release.bios}}</p>
+            {% endif %}
+            {% if release.notes %}
+              <h4 class="u-no-margin--bottom">Notes</h4>
+              {% for note in release.notes %}
+              <p>{{ note.comment }}</p>
+              {% endfor %}
+              {% endif %}
+              <h4>Hardware</h4>
+              <table aria-label="Hardware" class="u-no-margin--bottom">
+                <tbody>
+                {% for hardware_subtitle, values in release["components"].items() %}
+                  <tr>
+                    <th colspan="2" class="u-text--muted">{{ hardware_subtitle }}</th>
+                    <td colspan="8">{% for value in values %} 
+                      <p style="margin-bottom: 0.5rem;">{{ value.name }}{% if value.bus in ["usb", "pci"] %} {{ value.bus }} ({{ value.identifier }}{% if value.subsystem != '' %} {{ value.subsystem }}{% endif %}){% endif %}</p>
+                      {% endfor %}
+                    </td>
+                  </tr>
+                {% endfor%}
+                </tbody>
+              </table>
+              <p class="u-sv3">
+                <a href="/certified/{{ canonical_id }}/{{ release.version }}">Hardware details&nbsp;&rsaquo;</a>
+              </p>
+            </section>
+          </li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% if components %}
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="u-sv2">Components certified with this system</h2>
+    <table class="p-table--mobile-card p-table-component-devices" aria-label="Component Devices table">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th class="u-align--center">14.04 ESM</th>
+          <th class="u-align--center">16.04 LTS</th>
+          <th class="u-align--center">18.04 LTS</th>
+          <th class="u-align--center">20.04 LTS</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for component in components%}
+        <tr>
+          <th aria-label="Component"><a href="/certified/component/{{ component.id }}">{{ component.vendor_name }} {{ component.model }}</a></th>
+            {% if '14.04 ESM' in component.lts_releases %}
+              {% if component.lts_releases['14.04 ESM'][0].third_party_driver %}
+              <td aria-label="14.04 ESM">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
+                  alt="May require third-party driver",
+                  width="21",
+                  height="14",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+              </td>
+              {% elif component.lts_releases['14.04 ESM'][0].status == 'inprogress' %}
+              <td data-heading="14.04 ESM"><i class="p-icon--help">In progress</i></td>
+              {% elif component.lts_releases['14.04 ESM'][0].status == 'certified' %}
+              <td data-heading="14.04 ESM"><i class="p-icon--success">Supported</i></td>
+              {% endif %}
+            {% else %}
+             <td data-heading="14.04 ESM"></td>
+            {% endif %}
+            {% if '16.04 LTS' in component.lts_releases %}
+              {% if component.lts_releases['16.04 LTS'][0].third_party_driver %}
+              <td data-heading="16.04 LTS">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
+                  alt="May require third-party driver",
+                  width="21",
+                  height="14",
+                  hi_def=True,
+                  attrs={"style":"margin-left: 0.45rem;"},
+                  loading="lazy"
+                  ) | safe
+                }}
+              </td>
+              {% elif component.lts_releases['16.04 LTS'][0].status == 'inprogress' %}
+              <td data-heading="16.04 ESM"><i class="p-icon--help">Untested</i></td>
+              {% elif component.lts_releases['16.04 LTS'][0].status == 'certified'%}
+              <td data-heading="16.04 LTS"><i class="p-icon--success">Supported</i></td>
+              {% endif %}
+            {% else %}
+             <td data-heading="16.04 LTS"></td>
+            {% endif %}
+            {% if '18.04 LTS' in component.lts_releases %}
+              {% if component.lts_releases['18.04 LTS'][0].third_party_driver %}
+              <td data-heading="18.04 LTS">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
+                  alt="May require third-party driver",
+                  width="21",
+                  height="14",
+                  hi_def=True,
+                  attrs={"style":"margin-left: 0.45rem;"},
+                  loading="lazy"
+                  ) | safe
+                }}
+              </td>
+              {% elif component.lts_releases['18.04 LTS'][0].status == 'inprogress' %}
+              <td data-heading="18.04 ESM"><i class="p-icon--help">In progress</i></td>
+              {% elif component.lts_releases['18.04 LTS'][0].status == 'certified'%}
+              <td data-heading="18.04 LTS"><i class="p-icon--success">Supported</i></td>
+              {% endif %}
+            {% else %}
+             <td data-heading="18.04 LTS"></td>
+            {% endif %}
+            {% if '20.04 LTS' in component.lts_releases %}
+              {% if component.lts_releases['20.04 LTS'][0].third_party_driver %}
+              <td data-heading="20.04 LTS">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg",
+                  alt="May require third-party driver",
+                  width="21",
+                  height="14",
+                  hi_def=True,
+                  attrs={"style":"margin-left: 0.45rem;"},
+                  loading="lazy"
+                  ) | safe
+                }}
+              </td>
+              {% elif component.lts_releases['20.04 LTS'][0].status == 'inprogress' %}
+              <td data-heading="20.04 ESM"><i class="p-icon--help">In progress</i></td>
+              {% elif component.lts_releases['20.04 LTS'][0].status == 'certified' %}
+              <td data-heading="20.04 LTS"><i class="p-icon--success">Supported</i></td>
+              {% endif %}
+            {% else %}
+             <td data-heading="20.04 LTS"></td>
+            {% endif %}
+          <td data-heading="Comments" >{{ component.note }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <ul class="p-inline-list" style="margin-left:0.5rem;">
+      <li class="p-inline-list__item">
+        <i class="p-icon--success"></i> <small class="p-">Supported</small></li>
+      <li class="p-inline-list__item">
+          <img src="https://assets.ubuntu.com/v1/8dd0626d-3rd-party-icon.svg" alt=""> <small>May require 3rd-party driver</small>
+      </li>
+      <li class="p-inline-list__item">
+        <i class="p-icon--help"></i> <small>In progress</small>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endif %}
+<section class="p-strip is-shallow">
+  <div class="row">
+    <h5>Issues? Let us know</h5>
+    <p>If there is an issue with the information for this system, <a target="_blank" href="https://answers.launchpad.net/ubuntu-certification/+addquestion?field.title=Feedback on the {{ vendor }} {{ name }} ({{ canonical_id }})">please let us know</a>.</p>
+  </div>
+</section>
+
+{% endblock %}

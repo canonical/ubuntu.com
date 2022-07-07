@@ -10,13 +10,14 @@
 
       <section class="p-strip is-shallow u-no-padding" style="overflow-x: visible;">
         <div id="payment-errors" class="p-notification--negative u-hide">
-          <p class="p-notification__response">
-            <span class="p-notification__message"></span>
-          </p>
+          <div class="p-notification__content">
+            <p class="p-notification__message"></p>
+          </div>
         </div>
 
         <form class="p-form p-form--stacked u-sv3" id="details-form">
-          <div class="p-form__group row u-no-padding u-vertically-center">
+
+          <div class="p-form__group row u-no-padding u-vertically-center" id="credit-card-section">
             <div class="col-3">
               <label class="u-no-padding--top">Payment card:</label>
             </div>
@@ -36,7 +37,7 @@
             </div>
 
             <div class="col-9">
-              <input class="p-form-validation__input" name="email" type="email" required value="{{ user_info.email }}" />
+              <input class="p-form-validation__input" name="email" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required value="{{ user_info.email }}" />
             </div>
 
             <div class="col-9 col-start-large-4">
@@ -80,7 +81,7 @@
                     <span class="p-radio__label" id="organisation">An organisation</span>
                   </label>
                   <div class="col-9 col-start-large-4">
-                    <span id="card-errors" class="p-form-validation__message u-hide"></span>
+                    <span id="buying-for-errors" class="p-form-validation__message u-hide"></span>
                   </div>
               </div>
             </div>
@@ -257,8 +258,10 @@
         <div class="row u-no-padding">
           <div class="col-12">
             <form>
-              <input type="checkbox" id="renewal-terms" checked="" class="js-terms">
-              <label class="u-float-left" for="renewal-terms">I agree to the <a href="/legal/ubuntu-advantage-service-terms" target="_blank" rel="noopener noreferrer">Ubuntu Advantage service terms</a></label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" type="checkbox" aria-labelledby="renewal-terms" checked="" class="js-terms">
+                <span class="p-checkbox__label u-float-left" id="renewal-terms">I agree to the <a href="/legal/ubuntu-advantage-service-terms" target="_blank" rel="noopener noreferrer">Ubuntu Advantage service terms</a></span>
+              </label>
             </form>
           </div>
         </div>
@@ -273,7 +276,6 @@
       <span id="js-progress-indicator" class="p-modal__progress u-hide">
         <i class="p-icon--success u-hide"></i>
         <i class="p-icon--spinner u-animation--spin"></i>&nbsp;&nbsp;
-        <span></span>
       </span>
 
       <div class="row u-no-padding">
@@ -297,6 +299,6 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
-  window.stripePublishableKey = "{{ stripe_publishable_key }}";
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
 </script>
 <script src="{{ versioned_static('js/dist/ua-payment-modal.js') }}" type="module" defer></script>

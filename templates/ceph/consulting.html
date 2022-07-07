@@ -1,0 +1,127 @@
+{% extends "ceph/base_ceph.html" %}
+
+{% block title %}Ceph Consulting - Ceph Cluster Design and Delivery{% endblock %}
+
+{% block meta_description %}Canonical is a global leader in Ceph consulting, and provides design and implementation packages at fixed prices.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1LK8mut0O30Zk60mmbgCPFiQ2COR-BUnJnbASMMdyycU/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-bottomed">
+  <div class="row u-equal-height">
+	<div class="col-8">
+	  <h1> Ceph solution design and delivery </h1>
+	  <p> Fixed-price Ceph implementation, with consulting packages tailored to your needs. </p>
+	  <p> Right size your Ceph solution for performance, capacity and budget with help from our team of experts. </p>
+	  <p><a href="/ceph/contact-us" class="p-button--positive js-invoke-modal" >Get in touch</a></p>
+	</div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+		<div class="col-7">
+			<h2>Ceph implementation challenges</h2>
+			<p>Designing an optimised storage solution for any use case requires expert level knowledge, and many years of experience. </p>
+			<p>Common questions that arise during design and build:</p>
+			<ul class="p-list">
+				<li class="p-list__item is-ticked"> Which deployment tooling should I use? </li>
+				<li class="p-list__item is-ticked">Which version of Ceph should I install? </li>
+				<li class="p-list__item is-ticked">What CPUs, Memory, Disks, NICs should I buy?</li>
+				<li class="p-list__item is-ticked">How do I configure my network?</li>
+				<li class="p-list__item is-ticked">Which workloads are suitable for Ceph?</li>
+				<li class="p-list__item is-ticked">Can I use Ceph for traditional workloads too?</li>
+				<li class="p-list__item is-ticked">How can I secure my cluster?</li>
+				<li class="p-list__item is-ticked">How can I prepare for Disaster Recovery?</li>
+			</ul>
+			<p> Canonical's Ceph consultants can help guide you through these and many other questions related to deploying a cost-effective and fit for purpose Ceph storage system for a fixed price. </p>
+			<p><a href="/ceph/what-is-ceph">Learn more about Ceph&nbsp;&rsaquo;</a></p>
+		</div>
+		<div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+			{{ image (
+				url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+				alt="ubuntu advantage circular",
+				width="278",
+				height="300",
+				hi_def=True,
+				loading="lazy"
+			) | safe
+			}}
+		</div>
+  </div>
+</section>
+<section class="p-strip--light">
+	<div class="u-fixed-width">
+		<h2>What consulting services are available?</h2>
+		<p>Canonical offers two Ceph cluster consulting packages, Ceph Cluster Build (CCB), and Ceph Cluster Build Plus (CCB Plus). CCB is a basic package to get your Ceph cluster up and running in a simplified configuration, and CCB Plus offers more consulting time to evaluate your needs and customise the deployment architecture as required. </p>
+		<ul class="p-matrix">
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Fixed-Prices</h3>
+				<p class="p-matrix__desc">Both packages are provided as fixed price services, therefore all project costs are transparent and predictable.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Workshops</h3>
+				<p class="p-matrix__desc">Both packages include a workshop for team introductions, requirements gathering and architecture discussion and design. The workshop for CCB is provided remotely, and CCB Plus is provided on-site.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Workload assessment</h3>
+				<p class="p-matrix__desc">During the workshop, our consultant will assess your existing infrastructure (be it on-prem, hybrid, or public cloud based), to ensure that the architecture design meets the needs of your applications.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Cluster design</h3>
+				<p class="p-matrix__desc">Working jointly with your team, we design the Ceph cluster to meet your requirements. Providing guidance around hardware and configuration options.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Cluster delivery</h3>
+				<p class="p-matrix__desc">Once your hardware is stood up, we test it end-to-end, ensuring all components are functional, and the networking is correctly configured. Then we build the cluster, validate it, and finally benchmark it's performance before your data is onboarded.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Workloads migration</h3>
+				<p class="p-matrix__desc">Optionally, we can assist with data migrations from other storage systems. We partner with market-leading companies that can assist with minimally disruptive migrations.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Repeatable artifacts</h3>
+				<p class="p-matrix__desc">On conclusion of the engagement we provide a detailed deployment guide that enables repeatable re-deployments of your cluster, and perform a formal handover process to your team, or to our <a href="/ceph/managed">Managed Service</a> team.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Day-2 automation</h3>
+				<p class="p-matrix__desc">Charmed Ceph provides automation around common tasks, such as cluster scaling, integration and Ceph upgrades.</p>
+				</div>
+			</li>
+			<li class="p-matrix__item">
+				<div class="p-matrix__content">
+				<h3 class="p-matrix__title">Optional training</h3>
+				<p class="p-matrix__desc">If required we can deliver Ceph <a href="/training">training courses</a> to your team to familiarise them with Charmed Ceph.</p>
+				</div>
+			</li>
+		</ul>
+  </div>
+</section>
+<section class="p-strip">
+	<div class="u-fixed-width">
+		<h2>Ceph Cluster Build pricing</h2>
+	</div>
+		{% include "shared/pricing/_ceph-cluster-build-pricing.html" %}
+</section>
+
+<section class="p-strip--light">
+	{% include "ceph/shared/_ceph-users.html" %}
+</section>
+<section class="p-strip is-deep is-bordered">
+{% include "shared/_resources_ceph.html"%}
+</section>
+{% endblock content %}

@@ -24,7 +24,7 @@
   {% endif %}
   <div class="col-2 u-sv3">
     <a href="/appliance/{{ appliances[app].url_name}}" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">{{ appliances[app].name }}</h3>
+      <h3 class="p-heading--5 u-no-padding--top">{{ appliances[app].name }}</h3>
       <hr />
       <div class="u-align--center">
         <img src="{{ appliances[app].logo }}?h=72" alt="{{ appliances[app].name }} logo" style="max-height:72px;">
@@ -46,10 +46,10 @@
         Anyone can build their own Ubuntu Appliance, a software-defined IoT device that uses Ubuntu for security and to stay up to date. But it's really all you. See our <a href="/appliance/community">community page</a> for more information or jump right to discourse to propose your new Ubuntu Appliance and start the conversation.
       </p>
       <p>
-        <a class="p-button p-link--external" href="https://discourse.ubuntu.com/c/appliance">Propose your new appliance</a>
+        <a class="p-button" href="https://discourse.ubuntu.com/c/appliance">Propose your new appliance</a>
       </p>
     </div>
-    <div class="col-4 u-align--center u-hide--small u-vertically-center">
+    <div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
         {{
           image(
           url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",

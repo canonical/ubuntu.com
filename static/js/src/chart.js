@@ -26,7 +26,7 @@ function sortTasks(tasks) {
  *
  * Add bars to chart using supplied data
  */
-function addBarsToChart(svg, tasks, taskStatus, x, y) {
+function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
   svg
     .selectAll(".chart")
     .data(tasks, function (d) {
@@ -35,10 +35,19 @@ function addBarsToChart(svg, tasks, taskStatus, x, y) {
     .enter()
     .append("rect")
     .attr("class", function (d) {
-      if (taskStatus[d.status] == null) {
+      var className = "";
+
+      if (taskStatus[d.status] === null) {
         return "bar";
       }
-      return taskStatus[d.status];
+
+      if (highlightVersion && !d.taskName.includes(highlightVersion)) {
+        className += " chart__bar--transparent";
+      }
+
+      className += " " + taskStatus[d.status];
+
+      return className;
     })
     .attr("y", 0)
     .attr("transform", function (d) {
@@ -117,6 +126,23 @@ function emboldenLTSLabels(svg) {
 
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
+    }
+  });
+}
+
+function highlightChartRow(svg, highlightVersion) {
+  svg.selectAll(".tick text").select(function () {
+    var text = this.textContent;
+    var isNotHighlightedVersion =
+      highlightVersion && !text.includes(highlightVersion);
+    var isYearLabel = text.includes("20") && !text.includes("Ubuntu ");
+
+    if (isNotHighlightedVersion) {
+      this.classList.add("chart__label--transparent");
+    }
+
+    if (isYearLabel) {
+      this.classList.remove("chart__label--transparent");
     }
   });
 }
@@ -213,6 +239,20 @@ function formatKeyLabel(key) {
 
 /**
  *
+ * @param {Array} taskTypes
+ *
+ * Calculate the longest Y-Axis label
+ */
+function calculateYAxisWidth(YAxisLabels) {
+  var YAxisLabelsCopy = YAxisLabels.slice();
+  var longestLabel = YAxisLabelsCopy.sort(function (a, b) {
+    return b.length - a.length;
+  })[0];
+  return longestLabel.length * 7;
+}
+
+/**
+ *
  * @param {String} chartSelector
  * @param {Array} taskTypes
  * @param {Object} taskStatus
@@ -226,14 +266,15 @@ export function createChart(
   taskStatus,
   tasks,
   taskVersions,
-  removePadding
+  removePadding,
+  highlightVersion
 ) {
   var margin = {
     top: 0,
     right: 40,
     bottom: 20,
-    left: 150,
   };
+  margin.left = calculateYAxisWidth(taskTypes);
   var rowHeight = 32;
   var timeDomainStart;
   var timeDomainEnd;
@@ -247,9 +288,15 @@ export function createChart(
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
   if (containerWidth <= 0) {
-    containerWidth =
-      document.querySelector(chartSelector).closest('[class*="col-"]')
-        .clientWidth - margin.left;
+    var closestCol = document
+      .querySelector(chartSelector)
+      .closest('[class*="col-"]');
+
+    if (closestCol.clientWidth <= 0) {
+      return;
+    }
+
+    containerWidth = closestCol.clientWidth - margin.left;
   }
   var width = containerWidth - margin.right - margin.left;
 
@@ -304,7 +351,7 @@ export function createChart(
       "translate(" + chartTranslateX + ", " + margin.top + ")"
     );
 
-  addBarsToChart(svg, tasks, taskStatus, x, y);
+  addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion);
   addXAxis(svg, height, margin, xAxis);
   addYAxis(svg, yAxis);
 
@@ -319,5 +366,6 @@ export function createChart(
 
   setTimeout(function () {
     emboldenLTSLabels(svg);
+    highlightChartRow(svg, highlightVersion);
   }, 500);
 }

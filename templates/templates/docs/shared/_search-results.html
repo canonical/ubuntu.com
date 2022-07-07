@@ -1,0 +1,83 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Search results{% if query %} for "{{ query }}"{% endif %} | {{ title }} {% endblock %}
+
+{% block outer_content %}
+
+  <div class="p-strip is-shallow">
+    <div class="u-fixed-width">
+      {% if query %}
+        {% if not results.entries %}
+          <h1 class="p-heading--2">Sorry we couldn't find "{{ query }}" in {{ title }}</h1>
+        {% else %}
+          <h1 class="p-heading--2">Search results for "{{ query }}" in {{ title }}</h1>
+        {% endif %}
+      {% else %}
+        <h1 class="p-heading--2">Sorry you didn't write a query</h1>
+      {% endif %}
+    </div>
+  </div>
+
+  {% with 
+    search_action=search_action,
+    siteSearch=siteSearch,
+    placeholder=placeholder
+  %}
+    {% include "templates/docs/shared/_search-box.html" %}
+  {% endwith %}
+
+  {% if results %}
+    {% if results.entries %}
+      {% for item in results.entries %}
+        <div class="p-strip is-shallow">
+          <div class="row">
+            <div class="col-12">
+              <h5><a href="{{ item.link }}" class="title-main">{{ item.htmlTitle | safe}}</a></h5>
+              <p>
+                {{ item.htmlSnippet | safe }}
+              </p>
+              <small><a href="{{ item.link }}">{{ item.htmlFormattedUrl | safe }}</a></small>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+      <div class="p-strip">
+        <div class="row">
+          <div class="col-6 u-align--left">
+            {% if results.queries and results.queries.previousPage %}
+              <a href="{{ search_path }}?q={{ query }}&amp;start={{ results.queries.previousPage[0].startIndex }}{% if siteSearch %}&amp;siteSearch=https://ubuntu.com/server/docs{% endif %}">&#8249;&nbsp;Previous</a>
+            {% endif %}
+          </div>
+
+          <div class="col-6 u-align--right">
+            {% if results.queries and results.queries.nextPage %}
+              <a href="{{ search_path }}?q={{ query }}&amp;start={{ results.queries.nextPage[0].startIndex }}{% if siteSearch %}&amp;siteSearch=https://ubuntu.com/server/docs{% endif %}">Next&nbsp;&#8250;</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="p-strip">
+        <div class="row">
+          <div class="col-6">
+            <h3>Why not try widening your search?</h3>
+            <p>You can do this by:</p>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Adding alternative words or phrases</li>
+              <li class="p-list__item is-ticked">Using individual words instead of phrases</li>
+              <li class="p-list__item is-ticked">Trying a different spelling</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <h3>Still no luck?</h3>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked"><a href="/">Visit the Ubuntu homepage</a></li>
+              <li class="p-list__item is-ticked"><a href="{{ forum_link }}">Visit the forum</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endblock outer_content %}

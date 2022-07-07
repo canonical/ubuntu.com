@@ -13,15 +13,15 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-This documentation assumes you are using version 2.4.0 or later of
-<strong>Juju</strong>. If you are using an earlier version you should check
-the <a href="https://docs.jujucharms.com/stable/en/troubleshooting-logs">
-relevant <emphasis>Juju</emphasis> documentation</a> as some of the associated
-commands have changed.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This documentation assumes you are using version 2.4.0 or later of
+    <strong>Juju</strong>. If you are using an earlier version you should check
+    the <a href="https://juju.is/docs/olm/juju-logs">
+    relevant <emphasis>Juju</emphasis> documentation</a> as some of the associated
+    commands have changed.</p>
+  </div>
 </div>
 
 Broadly, there are two types of logs you may be interested in. On cluster or
@@ -56,11 +56,11 @@ The output is in the form:
 For example, a typical line of output might read:
 
 ```
-unit-kubernetes-master-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]
+unit-kubernetes-control-plane-0: 18:04:11 INFO juju.cmd running jujud [2.4.2 gc go1.10]
 ```
 
 The entity is the unit, machine or application the message originates from (in
-this case _kubernetes-master/0_). It can be very useful to filter the output
+this case _kubernetes-control-plane/0_). It can be very useful to filter the output
 based on the entity or log level, and the `debug-log` command has many options.
 
 For a full description, run the command `juju help debug-log` or see the
@@ -145,13 +145,12 @@ The logging level can be set like this:
 
 ...which in this case sets the logging level for all units to TRACE
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution!</span>
-    It isn't a good idea to leave the logging level at 'TRACE' for any longer than
-    you actually need to. Verbose logging not only consumes network bandwidth but
-    also fills up the database on the controller.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution!</span>
+    <p class="p-notification__message">It isn't a good idea to leave the logging level at 'TRACE' for any longer than you actually need to. Verbose logging not only consumes network bandwidth but
+    also fills up the database on the controller.</p>
+  </div>
 </div>
 
 ## Additional information
@@ -213,7 +212,7 @@ relations:
   - ["apache2:reverseproxy", "graylog:website"]
   - ["graylog:elasticsearch", "elasticsearch:client"]
   - ["graylog:mongodb", "mongodb:database"]
-  - ["filebeat:beats-host", "kubernetes-master:juju-info"]
+  - ["filebeat:beats-host", "kubernetes-control-plane:juju-info"]
   - ["filebeat:beats-host", "kubernetes-worker:juju-info"]
   - ["filebeat:logstash", "graylog:beats"]
 ```
@@ -266,12 +265,11 @@ juju run-action --wait graylog/0 show-admin-password
 Browse to `http://<your-apache2-ip>` and login with `admin` as the username
 and `<your-graylog-password>` as the password.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    If the interface is not immediately available, please wait as the reverse
-    proxy configuration may take up to 5 minutes to complete.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If the interface is not immediately available, please wait as the reverse proxy configuration may take up to 5 minutes to complete.</p>
+  </div>
 </div>
 
 Once logged in, head to the `Sources` tab to get an overview of the logs
@@ -292,18 +290,19 @@ view.
 <!--LINKS -->
 
 [quickstart]: /kubernetes/docs/quickstart
-[juju-logging]: https://docs.jujucharms.com/stable/en/troubleshooting-logs
+[juju-logging]: https://juju.is/docs/olm/juju-logs
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
-[logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/logging-egf-overlay.yaml
+[logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/logging-egf-overlay.yaml
 [graylog-vhost]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/graylog-vhost.tmpl
 [graylog-dashboards]: http://docs.graylog.org/en/3.0/pages/dashboards.html
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/logging.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/logging.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

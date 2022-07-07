@@ -11,12 +11,12 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <h1>What is ROS</h1>
-      <p class="p-heading--four">ROS is powering the future of robotics in industry, in the enterprise and for developers</p>
+      <p class="p-heading--4">ROS is powering the future of robotics in industry, in the enterprise and for developers</p>
       <p>Ubuntu has been the primary platform for ROS from the very beginning, thanks to its flexibility and user-friendliness.</p>
       <p>ROS is led by Open Robotics, similar to how Canonical supports Ubuntu; Open Robotics steers the ship but it is driven by the community.</p>
       <p>As the robotics industry grows, companies and developers continue turning to Open Robotics and Canonical to help make their vision a reality.</p>
       <p>
-        <a class="p-button--positive p-link--external" href="https://wiki.ros.org/ROS/Tutorials">
+        <a class="p-button--positive" href="https://wiki.ros.org/ROS/Tutorials">
           Get started with ROS
         </a>
       </p>
@@ -56,7 +56,7 @@
       <h2>What is ROS?</h2>
       <p>The Robot Operating System (ROS) is an open-source framework that helps researchers and developers build and reuse code between robotics applications. ROS is also a global open-source community of engineers, developers and hobbyists who contribute to making robots better, more accessible and available to everyone.</p>
     </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/11f0740f-partner-logo-ros.png",
@@ -91,7 +91,7 @@
       }}
       <h2>What is ROS 2?</h2>
       <p>ROS 2 is a complete re-design of the framework, tackling the shortcomings of the first generation, effectively bringing it to industry needs and standards. ROS 2 contains new sets of packages that can be installed alongside ROS 1 to ease migration to a more secure platform. ROS 2 takes advantage of new technologies and newly updated APIs asked for by the community.</p>
-      <p><a class="p-button--positive p-link--external" href="https://index.ros.org/doc/ros2/Tutorials/">Get started with ROS 2</a></p>
+      <p><a class="p-button--positive" href="https://index.ros.org/doc/ros2/Tutorials/">Get started with ROS 2</a></p>
   </div>
 </section>
 
@@ -104,86 +104,88 @@
       <p>These are some of the companies openly using ROS today and the list only grows and diversifies as time progresses.</p>
     </div>
     <div class="col-4 u-vertically-center">
-      <ul class="p-inline-images u-align--center">
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/06243b53-otto-logo.svg",
-              alt="OTTO Motors",
-              height="35",
-              width="90",
-              hi_def=True,
-              attrs={"class": ""},
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/255a3171-abb-logo.svg",
-              alt="ABB",
-              height="40",
-              width="80",
-              hi_def=True,
-              attrs={"class": ""},
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/0952e178-doosan-logo.svg",
-              alt="Doosan",
-              height="47",
-              width="100",
-              hi_def=True,
-              attrs={"class": ""},
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/9f8bc8e5-Fetch-2019-Horizontal-331x120.png",
-              alt="Fetch robotics",
-              height="36",
-              width="100",
-              hi_def=True,
-              attrs={"class": ""},
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/59e48f9c-irobot.png",
-              alt="iRobot",
-              height="28",
-              width="100",
-              hi_def=True,
-              attrs={"class": ""},
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{
-            image(
-              url="https://assets.ubuntu.com/v1/255f733c-robotis_logo.png",
-              alt="Robotis",
-              height="20",
-              width="100",
-              hi_def=True,
-              attrs={"class": ""},
-              loading="lazy",
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--center">
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/06243b53-otto-logo.svg",
+                alt="OTTO Motors",
+                height="35",
+                width="90",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/255a3171-abb-logo.svg",
+                alt="ABB",
+                height="40",
+                width="80",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/0952e178-doosan-logo.svg",
+                alt="Doosan",
+                height="47",
+                width="100",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/9f8bc8e5-Fetch-2019-Horizontal-331x120.png",
+                alt="Fetch robotics",
+                height="36",
+                width="100",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/59e48f9c-irobot.png",
+                alt="iRobot",
+                height="28",
+                width="100",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/255f733c-robotis_logo.png",
+                alt="Robotis",
+                height="20",
+                width="100",
+                hi_def=True,
+                attrs={"class": ""},
+                loading="lazy",
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -214,7 +216,7 @@
     <div class="col-8">
       <h2>Join the community</h2>
       <p>ROS is more than 10 years old, and in that time has grown to be the biggest robotics developer community on the planet. There are annual ROSCon events where developers and robot enthusiasts of all kinds come together to learn new things, present their projects and network with each other. There are even several official national events you can attend such as ROSCon Japan or ROSCon France.</p>
-      <p><a class="p-button--positive p-link--external" href="https://roscon.ros.org/2020/">Come to ROSCon</a></p>
+      <p><a class="p-button--positive" href="https://roscon.ros.org/2020/">Come to ROSCon</a></p>
       <p><a href="/robotics/community">Learn more about the community&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-hide--small">

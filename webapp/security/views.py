@@ -2,17 +2,19 @@
 import re
 from collections import defaultdict
 from datetime import datetime
-from math import ceil
+from math import ceil, floor
 
 # Packages
 import flask
+import dateutil
+import talisker.requests
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
 from marshmallow import EXCLUDE
 from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import asc, desc, or_, and_, func, case
+from sqlalchemy import desc, or_, and_, func, case
 from sqlalchemy.exc import IntegrityError, DataError
 from sqlalchemy.orm import contains_eager
 
@@ -21,14 +23,30 @@ from webapp.security.database import db_session
 from webapp.security.models import CVE, Notice, Package, Status, Release
 from webapp.security.schemas import CVESchema, NoticeSchema, ReleaseSchema
 from webapp.security.auth import authorization_required
+from webapp.security.api import SecurityAPI
 
 markdown_parser = Markdown(
     hard_wrap=True, parse_block_html=True, parse_inline_html=True
 )
+session = talisker.requests.get_session()
+
+security_api = SecurityAPI(
+    session=session,
+    base_url="https://ubuntu.com/security/",
+)
+
+
+def get_processed_details(notice):
+    pattern = re.compile(r"(cve|CVE-)\d{4}-\d{4,7}", re.MULTILINE)
+
+    return re.sub(
+        pattern, r'<a href="/security/\g<0>">\g<0></a>', notice["description"]
+    )
 
 
 def notice(notice_id):
-    notice = db_session.query(Notice).get(notice_id)
+
+    notice = security_api.get_notice(notice_id)
 
     if not notice:
         flask.abort(404)
@@ -38,21 +56,24 @@ def notice(notice_id):
     release_packages = SortedDict()
 
     releases = {
-        release.codename: release.version
-        for release in db_session.query(Release).all()
+        release["codename"]: release["version"]
+        for release in notice["releases"]
     }
 
-    if notice.release_packages:
-        for codename, pkgs in notice.release_packages.items():
+    if notice["release_packages"]:
+        for codename, pkgs in notice["release_packages"].items():
             release_version = releases[codename]
             release_packages[release_version] = {}
             for package in pkgs:
+                if not package.get("is_visible", True):
+                    continue
+
                 name = package["name"]
                 if not package["is_source"]:
                     release_packages[release_version][name] = package
                     continue
 
-                if notice.get_type == "LSN":
+                if notice["type"] == "LSN":
                     if name not in package_descriptions:
                         package_versions[name] = []
 
@@ -73,99 +94,86 @@ def notice(notice_id):
             for key in sorted(package_descriptions.keys())
         }
 
-    notice_cve_ids = [cve.id for cve in notice.cves]
-    related_notices = (
-        db_session.query(Notice)
-        .filter(Notice.cves.any(CVE.id.in_(notice_cve_ids)))
-        .filter(Notice.id != notice.id)
-        .all()
-    )
-
-    if notice.get_type == "LSN":
+    if notice["type"] == "LSN":
         template = "security/notices/lsn.html"
     else:
         template = "security/notices/usn.html"
 
+    if notice.get("published"):
+        notice["published"] = dateutil.parser.parse(
+            notice["published"]
+        ).strftime("%-d %B %Y")
+
     notice = {
-        "id": notice.id,
-        "title": notice.title,
-        "published": notice.published,
-        "summary": notice.summary,
-        "details": markdown_parser(notice.get_processed_details),
-        "instructions": markdown_parser(notice.instructions),
+        "id": notice["id"],
+        "title": notice["title"],
+        "published": notice["published"],
+        "summary": notice["summary"],
+        "details": markdown_parser(get_processed_details(notice)),
+        "instructions": markdown_parser(notice["instructions"]),
         "package_descriptions": package_descriptions,
         "release_packages": release_packages,
-        "releases": notice.releases,
-        "cves": notice.cves,
-        "references": notice.references,
-        "related_notices": [
-            {
-                "id": related_notice.id,
-                "package_list": ", ".join(related_notice.package_list),
-            }
-            for related_notice in related_notices
-        ],
+        "releases": notice["releases"],
+        "cves": notice["cves"],
+        "references": notice["references"],
+        "related_notices": notice["related_notices"],
     }
 
     return flask.render_template(template, notice=notice)
 
 
 def notices():
-    page = flask.request.args.get("page", default=1, type=int)
     details = flask.request.args.get("details", type=str)
     release = flask.request.args.get("release", type=str)
     order_by = flask.request.args.get("order", type=str)
+    limit = flask.request.args.get("limit", default=10, type=int)
+    offset = flask.request.args.get("offset", default=0, type=int)
 
-    releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(Release.version.isnot(None))
-        .all()
+    # call endpopint to get all releases and notices
+    all_releases = security_api.get_releases()
+
+    notices_response = security_api.get_notices(
+        limit=limit, offset=offset, details=details, release=release
     )
-    notices_query = db_session.query(Notice)
 
-    if release:
-        notices_query = notices_query.join(Release, Notice.releases).filter(
-            Release.codename == release
-        )
+    # get notices and total results from response object
+    notices = notices_response.get("notices")
+    total_results = notices_response.get("total_results")
 
-    if details:
-        notices_query = notices_query.filter(
-            or_(
-                Notice.id.like(f"%{details}%"),
-                Notice.details.like(f"%{details}%"),
-                Notice.cves.any(CVE.id.like(f"%{details}%")),
-            )
-        )
+    # filter releases for dropdown
+    releases = []
+    for single_release in all_releases:
+        if single_release["codename"] != "upstream":
+            if single_release["version"] is not None:
+                releases.append(single_release)
 
-    # Snapshot total results for search
-    page_size = 10
-    total_results = notices_query.count()
-    total_pages = ceil(total_results / page_size)
-    offset = page * page_size - page_size
+    # order notice query by publish date
+    if order_by == "oldest":
+        notices = sorted(notices, key=lambda d: d["published"])
+    else:
+        notices = sorted(notices, key=lambda d: d["published"], reverse=True)
 
-    if page < 1 or 1 < page > total_pages:
-        flask.abort(404)
+    total_pages = ceil(total_results / limit)
+    page_number = floor(offset / limit) + 1
 
-    sort = asc if order_by == "oldest" else desc
-    notices = (
-        notices_query.order_by(sort(Notice.published))
-        .offset(offset)
-        .limit(page_size)
-        .all()
-    )
+    # format date
+    for notice in notices:
+        if notice.get("published"):
+            notice["published"] = dateutil.parser.parse(
+                notice["published"]
+            ).strftime("%-d %B %Y")
 
     return flask.render_template(
         "security/notices.html",
         notices=notices,
         releases=releases,
-        pagination=dict(
-            current_page=page,
-            total_pages=total_pages,
-            total_results=total_results,
-            page_first_result=offset + 1,
-            page_last_result=offset + len(notices),
-        ),
+        current_page=page_number,
+        limit=limit,
+        total_pages=total_pages,
+        total_results=total_results,
+        page_first_result=offset + 1,
+        page_last_result=offset + len(notices),
+        offset=offset,
     )
 
 
@@ -250,50 +258,6 @@ def _update_notice_object(notice, data):
         notice.cves.append(db_session.query(CVE).get(cve_id) or CVE(id=cve_id))
 
     return notice
-
-
-def read_notice(notice_id):
-    """
-    GET method to get notice by id
-    """
-
-    notice = db_session.query(Notice).get(notice_id)
-
-    if not notice:
-        return (
-            flask.jsonify({"message": f"Notice {notice_id} does not exist"}),
-            404,
-        )
-
-    return flask.jsonify({"data": notice.as_dict()}), 200
-
-
-def read_notices():
-    """
-    GET method to get notices
-    """
-
-    limit = flask.request.args.get("limit", default=20, type=int)
-    offset = flask.request.args.get("offset", default=0, type=int)
-
-    notices = (
-        db_session.query(Notice)
-        .order_by(Notice.published)
-        .offset(offset)
-        .limit(limit)
-        .all()
-    )
-
-    return (
-        flask.jsonify(
-            {
-                "data": [notice.as_dict() for notice in notices],
-                "limit": limit,
-                "offset": offset,
-            }
-        ),
-        200,
-    )
 
 
 def single_notices_sitemap(offset):
@@ -389,7 +353,7 @@ def update_notice(notice_id):
     """
     PUT method to update a single notice
     """
-    notice = db_session.query(Notice).get(notice_id)
+    notice = db_session.query(Notice).without_default_filters().get(notice_id)
 
     if not notice:
         return (
@@ -425,7 +389,7 @@ def delete_notice(notice_id):
     """
     DELETE method to delete a single notice
     """
-    notice = db_session.query(Notice).get(notice_id)
+    notice = db_session.query(Notice).without_default_filters().get(notice_id)
 
     if not notice:
         return (
@@ -751,26 +715,73 @@ def cve(cve_id):
     Retrieve and display an individual CVE details page
     """
 
-    cve = db_session.query(CVE).get(cve_id.upper())
+    cve = security_api.get_cve(cve_id)
 
     if not cve:
-        flask.abort(404)
+        flask.abort(404, f"Cannot find a CVE with ID '{cve_id}'")
 
-    releases = (
-        db_session.query(Release)
-        .order_by(desc(Release.release_date))
-        .filter(
-            or_(
-                Release.codename == "upstream",
-                Release.support_expires > datetime.now(),
-                Release.esm_expires > datetime.now(),
-            )
+    if cve.get("published"):
+        cve["published"] = dateutil.parser.parse(cve["published"]).strftime(
+            "%-d %B %Y"
         )
-        .all()
-    )
+
+    # format patches
+    formatted_patches = []
+
+    if cve["patches"]:
+        for package_name, patches in cve["patches"].items():
+            for patch in patches:
+                prefix, suffix = patch.split(":", 1)
+                suffix = suffix.strip()
+
+                if prefix == "break-fix" and " " in suffix:
+                    introduced, fixed = suffix.split(" ", 1)
+
+                    if introduced == "-":
+                        # First commit to Linux git tree
+                        introduced = "1da177e4c3f41524e886b7f1b8a0c1fc7321cac2"
+
+                    formatted_patches.append(
+                        {
+                            "type": "break-fix",
+                            "content": {
+                                "introduced": introduced,
+                                "fixed": fixed,
+                            },
+                            "name": package_name,
+                        }
+                    )
+
+                if (
+                    "ftp://" in suffix
+                    or "http://" in suffix
+                    or "https://" in suffix
+                ):
+                    formatted_patches.append(
+                        {
+                            "type": "link",
+                            "content": {"prefix": prefix, "suffix": suffix},
+                            "name": package_name,
+                        }
+                    )
+
+                if ":" not in patch:
+                    formatted_patches.append(
+                        {"type": "text", "content": patch, "name": patch}
+                    )
+
+    # format tags
+    formatted_tags = []
+    if cve["tags"]:
+        for package_name, tags in cve["tags"].items():
+            for tag in tags:
+                formatted_tags.append({"name": package_name, "text": tag})
 
     return flask.render_template(
-        "security/cve/cve.html", cve=cve, releases=releases
+        "security/cve/cve.html",
+        cve=cve,
+        patches=formatted_patches,
+        tags=formatted_tags,
     )
 
 

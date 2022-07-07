@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '718'
+charm_revision: '726'
 bundle_release: '1.20'
 ---
 
@@ -280,7 +280,7 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 This requires configuration of both the `kubernetes-master` and
 `kubernetes-worker` charms. Please see the configuration section on
-the [kubernetes-master page](../charm-kubernetes-master#config-ipvs).
+the [kubernetes-master page](/kubernetes/docs/charm-kubernetes-master#config-ipvs).
 
 ### Configuring kubelet
 
@@ -343,11 +343,11 @@ update the configuration for the workers:
             hugepages-2Mi: 100Mi
             memory: 100Mi
           requests:
-            memory: 100Mi      
+            memory: 100Mi
       volumes:
       - name: hugepage
         emptyDir:
-          medium: HugePages  
+          medium: HugePages
     ```
     Huge page usage in a namespace can be managed with ResourceQuota,
     similar to other compute resources.
@@ -372,7 +372,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       cis-benchmark
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Run the CIS Kubernetes Benchmark against snap-based components.
     </p>
@@ -380,7 +380,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -415,7 +415,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Collect debug data
     </p>
@@ -428,7 +428,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       microbot
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Launch microbot containers
     </p>
@@ -436,7 +436,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -464,7 +464,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       pause
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Mark the node as unschedulable to prevent new pods from arriving, and evict existing pods.
     </p>
@@ -472,7 +472,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -500,7 +500,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       registry
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Create a private Docker registry. DEPRECATED: See https://ubuntu.com/kubernetes/docs/docker-registry
     </p>
@@ -508,7 +508,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -571,7 +571,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       resume
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Mark node as schedulable.
     </p>
@@ -584,7 +584,7 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
       upgrade
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Upgrade the kubernetes snaps
     </p>
@@ -597,5 +597,5 @@ juju run-action kubernetes-worker ACTION [parameters] [--wait]
 
 
 <!-- LINKS -->
-[charm-kubernetes-master]: /charm-kubernetes-master
+[charm-kubernetes-master]: /kubernetes/docs/charm-kubernetes-master
 [kubelet-docs]: https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/

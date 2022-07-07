@@ -1,0 +1,69 @@
+@mixin ubuntu-p-certification-results {
+  .p-certification-filter {
+    > label {
+      margin-bottom: 0;
+    }
+  }
+
+  .p-certification-results {
+    th {
+      padding-top: 0.6rem;
+    }
+    th,
+    td {
+      &:nth-child(1) {
+        width: 20%;
+      }
+
+      &:nth-child(2) {
+        width: 35%;
+      }
+
+      &:nth-child(3) {
+        width: 10%;
+        @media only screen and (max-width: $breakpoint-small) {
+          width: 20%;
+        }
+      }
+    }
+  }
+
+  .p-update-results {
+    margin-left: 1rem;
+    width: fit-content;
+  }
+
+  //hide <hr> after each group - moved to after each tab title
+  .p-accordion__group--certified {
+    &::after {
+      display: none;
+    }
+  }
+
+  .p-results-per-page {
+    max-width: 5.3rem;
+    min-width: 5.3rem;
+  }
+
+  .p-round-chip {
+    @extend .p-chip;
+
+    float: right;
+    margin-top: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .p-accordion__tab {
+    &:hover {
+      .p-round-chip {
+        $base-background-opacity-amount: 0.1;
+        $color-background-base: adjust-color(
+          $color-x-dark,
+          $lightness: 100% * (1 - $base-background-opacity-amount)
+        );
+
+        background-color: $color-background-base;
+      }
+    }
+  }
+}

@@ -21,7 +21,7 @@ on which type of load balancing solution you wish to configure:
     `kubeapi-load-balancer` charm.
 
  -  If a full load balancing solution is in place such as an F5 appliance, remove the
-     `kubeapi-load-balancer` and use the settings on the `kubernetes-master` charm to
+     `kubeapi-load-balancer` and use the settings on the `kubernetes-control-plane` charm to
       configure the load balancer. This is also the appropriate step if you want to use
       a load balancer integrated with a particular cloud (e.g **OctaviaLB** for
       OpenStack). See the relevant entry in the "Cloud Integration" section of the
@@ -42,10 +42,10 @@ juju config kubeapi-load-balancer loadbalancer-ips="10.0.0.1 10.0.0.2"
 Multiple IP addresses should be given as a space-separated list.
 
 
-# Custom load balancer in front of kubernetes-master charm
+# Custom load balancer in front of kubernetes-control-plane charm
 
 If you have a full load balancer such as an F5 appliance or OpenStack's Neutron,
-use the configuration options on the `kubernetes-master` charm and forgo
+use the configuration options on the `kubernetes-control-plane` charm and forgo
 `kubeapi-load-balancer`  entirely.
 
 Remove the `kubeapi-load-balancer` application if it exists:
@@ -55,20 +55,21 @@ juju remove-application kubeapi-load-balancer
 ```
 
 Then configure the IP addresses provided by the load balancing solution with the
-`kubernetes-master` charm.
+`kubernetes-control-plane` charm.
 
 ```bash
-juju config kubernetes-master loadbalancer-ips="192.168.1.1 192.168.2.1"
+juju config kubernetes-control-plane loadbalancer-ips="192.168.1.1 192.168.2.1"
 ```
 
 Multiple IP addresses should be given as a space-separated list.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/custom-loadbalancer.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/custom-loadbalancer.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -1,0 +1,126 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://certification.canonical.com/api/v1/certifiedmodeldetails/?format=json&canonical_id=201807-26311
+  response:
+    body:
+      string: '{"meta": {"limit": 20, "next": null, "offset": 0, "previous": null,
+        "total_count": 2}, "objects": [{"architecture": "amd64", "bios": "", "canonical_id":
+        "201807-26311", "category": "Server", "certified_release": "18.04 LTS", "completed":
+        "2019-09-30T23:08:43.828005", "form_factor": "Server", "hardware_website":
+        "http://e.huawei.com/en/products/cloud-computing-dc/servers", "id": 11209,
+        "kernel_version": "4.15.0-46-generic", "level": "Certified", "make": "Huawei
+        Technologies Co., Ltd.", "model": "2288 V5", "name": "1903-11209", "network":
+        [{"bus": "pci", "category": "NETWORK", "identifier": "8086:37d0", "make":
+        "Intel Corp.", "name": "Ethernet Connection X722 for 10GbE SFP+", "subproduct_name":
+        "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}, {"bus": "pci",
+        "category": "NETWORK", "identifier": "8086:37d1", "make": "Intel Corp.", "name":
+        "Ethernet Connection X722 for 1GbE", "subproduct_name": "", "subsystem": "",
+        "subvendor_id": "", "vendor_id": 4103}], "notes": [], "processor": [{"bus":
+        "dmi", "category": "PROCESSOR", "identifier": "dmi:Intel(R)Xeon(R)Gold6152CPU@2.10GHz",
+        "make": "Intel Corp.", "name": "Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "dmi", "category": "PROCESSOR", "identifier": "dmi:Intel(R)Xeon(R)Platinum8153CPU@2.00GHz",
+        "make": "Intel Corp.", "name": "Intel(R) Xeon(R) Platinum 8153 CPU @ 2.00GHz",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}],
+        "resource_uri": "/api/v1/certifiedmodeldetails/11209/", "video": [{"bus":
+        "pci", "category": "VIDEO", "identifier": "19e5:1711", "make": "Huawei Technologies
+        Co., Ltd.", "name": "Hi1710 [iBMC Intelligent Management system chip w/VGA
+        support] Note: huawei claims to use an SM750 VGA controller integrated in
+        this chip.", "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id":
+        3654}], "wireless": []}, {"architecture": "amd64", "bios": "", "canonical_id":
+        "201807-26311", "category": "Server", "certified_release": "16.04 LTS", "completed":
+        "2018-08-10T02:07:05.532869", "form_factor": "Server", "hardware_website":
+        "http://e.huawei.com/en/products/cloud-computing-dc/servers", "id": 10879,
+        "kernel_version": "4.13.0-45-generic", "level": "Certified", "make": "Huawei
+        Technologies Co., Ltd.", "model": "2288 V5", "name": "1807-10879", "network":
+        [{"bus": "pci", "category": "NETWORK", "identifier": "8086:37d0", "make":
+        "Intel Corp.", "name": "Ethernet Connection X722 for 10GbE SFP+", "subproduct_name":
+        "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}, {"bus": "pci",
+        "category": "NETWORK", "identifier": "8086:37d1", "make": "Intel Corp.", "name":
+        "Ethernet Connection X722 for 1GbE", "subproduct_name": "", "subsystem": "",
+        "subvendor_id": "", "vendor_id": 4103}], "notes": [], "processor": [{"bus":
+        "dmi", "category": "PROCESSOR", "identifier": "dmi:Intel(R)Xeon(R)Gold6152CPU@2.10GHz",
+        "make": "Intel Corp.", "name": "Intel(R) Xeon(R) Gold 6152 CPU @ 2.10GHz",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103},
+        {"bus": "dmi", "category": "PROCESSOR", "identifier": "dmi:Intel(R)Xeon(R)Platinum8153CPU@2.00GHz",
+        "make": "Intel Corp.", "name": "Intel(R) Xeon(R) Platinum 8153 CPU @ 2.00GHz",
+        "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id": 4103}],
+        "resource_uri": "/api/v1/certifiedmodeldetails/10879/", "video": [{"bus":
+        "pci", "category": "VIDEO", "identifier": "19e5:1711", "make": "Huawei Technologies
+        Co., Ltd.", "name": "Hi1710 [iBMC Intelligent Management system chip w/VGA
+        support] Note: huawei claims to use an SM750 VGA controller integrated in
+        this chip.", "subproduct_name": "", "subsystem": "", "subvendor_id": "", "vendor_id":
+        3654}], "wireless": []}]}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '3767'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 24 May 2021 15:00:30 GMT
+      Keep-Alive:
+      - timeout=5, max=100
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.25.1
+    method: GET
+    uri: https://certification.canonical.com/api/v1/componentsummaries/?format=json&canonical_id=201807-26311
+  response:
+    body:
+      string: '{"meta": {"limit": 20, "next": null, "offset": 0, "previous": null,
+        "total_count": 0}, "objects": []}'
+    headers:
+      Cache-Control:
+      - no-cache
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '101'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 24 May 2021 15:00:31 GMT
+      Keep-Alive:
+      - timeout=5, max=99
+      Server:
+      - gunicorn/19.9.0
+      Strict-Transport-Security:
+      - max-age=2592000
+      Vary:
+      - Accept,Cookie
+    status:
+      code: 200
+      message: OK
+version: 1

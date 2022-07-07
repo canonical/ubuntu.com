@@ -34,7 +34,6 @@
 
   <meta name="description" content="{% block meta_description %}Ubuntu is an open source software operating system that runs from the desktop, to the cloud, to all your internet connected things.{% endblock %}">
 
-  <meta name="theme-color" content="#E95420">
   <meta name="facebook-domain-verification" content="zxp9j79g1gy2xenbu9ll964pttk5hu">
   <meta name="twitter:account_id" content="4503599627481511">
   <meta name="twitter:site" content="@ubuntu">
@@ -43,8 +42,6 @@
   <meta property="og:site_name" content="Ubuntu">
   <meta name="copydoc" content="{% block meta_copydoc %}https://drive.google.com/drive/folders/0B4s80tIYQW4BMjNiMGFmNzQtNDkxZC00YmQ0LWJiZWUtNTk2YThlY2MzZmJh{% endblock %}">
   <meta name="google-site-verification" content="ddh2iq7ZuKf1LpkL_gtM_T7DkKDVD7ibq6Ceue4a_3M">
-
-  {% if is_test_backend %}<meta name="robots" content="noindex" />{% endif %}
 
   {% if self.title() %}
   <meta name="twitter:title" content="{{ self.title() }} | Ubuntu">
@@ -84,6 +81,15 @@
   {% endif %}
 
   <div class="wrapper u-no-margin--top">
+    <div id="success" class="p-strip u-no-padding--top">
+      <div class="u-fixed-width">
+        <div class="p-notification--positive u-no-margin--bottom">
+          <div class="p-notification__content">
+            <p class="p-notification__message">Your submission was sent successfully! <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="main-content" class="inner-wrapper">
       {% block content_head %}{% endblock %}
       {% block content_container %}

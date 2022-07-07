@@ -2,18 +2,18 @@
   <div class="row">
     <div class="col-7">
       <h2>{% if heading %}{{ heading }}{% else %}SoC, board and device enablement{% endif %}</h2>
-      <p class="p-heading--four">Give your SoC, board or device a custom kernel that's proven compatible with the public Ubuntu LTS kernel, for wide application compatibility and developer productivity.</p>
+      <p class="p-heading--4">Give your SoC, board or device a custom kernel that's proven compatible with the public Ubuntu LTS kernel, for wide application compatibility and developer productivity.</p>
     </div>
   </div>
 
   <div class="row p-divider" style="padding-top: 1.9rem;">
     <div class="col-6 p-divider__block">
-      <h3 class="p-heading--five">Beyond BSPs</h3>
+      <h3 class="p-heading--5">Beyond BSPs</h3>
       <p>Ubuntu applications depend on a wide range of kernel features such as security modules, filesystems and container primitives. Ensure that your device kernel meets Ubuntu application expectations with a Canonical built custom kernel. Enablement fees vary from $25k to $200k as a one-time charge, depending on the particular board or chipset. Canonical delivers a custom kernel matching a standard Ubuntu LTS release, or interim release with a path to the next LTS.</p>
     </div>
 
     <div class="col-6 p-divider__block">
-      <h3 class="p-heading--five">Ongoing testing and security updates</h3>
+      <h3 class="p-heading--5">Ongoing testing and security updates</h3>
 
       <p>For an annual charge of $25k, Canonical will perform continuous security maintenance and testing on your board. When a security issue is fixed in Ubuntu, the fix will be tested on your board. These security updates will be published to the snap store for use on your device. Update Control can be used to require additional testing and validation by your team before these updates are automatically applied to your devices. Testing will cover kernel and base system debs and snaps, along with any board-specific and app-specific tests you specify.</p>
     </div>
@@ -24,18 +24,18 @@
   <div class="row u-vertically-center">
     <div class="col-8">
       <h2>Certification of boards and devices</h2>
-      <p class="p-heading--four">Guarantee long-term security, application compatibility, support and operational consistency with the Ubuntu Certified logo for enterprise-grade devices.</p>
+      <p class="p-heading--4">Guarantee long-term security, application compatibility, support and operational consistency with the Ubuntu certified logo for enterprise-grade devices.</p>
       <p>Long-term automated Canonical testing of every update and security patch ensures devices perform reliably over the full lifetime of the certified Ubuntu LTS release. Certified devices must run a Canonical kernel. We require four units of every certified board or device for continuous testing. In the case of devices built with existing certified boards, running their standard certified kernel, we reduce this requirement to two devices.</p>
 
       <p>Certification for devices that include pre-installed snaps can include validation of the integrity of those snaps.</p>
     </div>
 
 
-    <div class="col-2 col-start-large-10 u-hide--small">
+    <div class="col-2 col-start-large-10 u-hide--small u-hide--medium">
       {{
         image(
         url="https://assets.ubuntu.com/v1/706b259a-ubuntu_certified_hex.svg",
-        alt="Ubuntu Certified",
+        alt="Ubuntu certified",
         width="127",
         height="159",
         hi_def=True,
@@ -47,6 +47,10 @@
 
   </div>
   <div class="u-fixed-width">
-    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get your board or device certified</a>
+    <p>
+      <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get your board or device certified</a>
+      <a href="/pricing" class="p-button js-invoke-modal">Check additional support packages</a>
+
+    </p>
   </div>
 </section>

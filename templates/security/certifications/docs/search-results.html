@@ -1,0 +1,12 @@
+{% with
+  title="Ubuntu Security Certifications Docs",
+  query=query,
+  results=results,
+  search_action="/security/certifications/docs/search",
+  siteSearch="https://ubuntu.com/security/certifications/docs",
+  placeholder="Search on Security Certifications Docs",
+  search_path="/security/certifications/docs/search",
+  forum_link="https://discourse.ubuntu.com/c/security-certs/docs/87"
+%}
+  {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}

@@ -134,7 +134,7 @@ Many cloud providers use ephemeral storage. When using cloud provider
 infrastructures is recommended to place any data-stores on persistent volumes
 that exist outside of the ephemeral storage on the unit.
 
-Juju abstracts this with the [storage provider](https://jujucharms.com/docs/stable/charms-storage).
+Juju abstracts this with the [storage provider](https://juju.is/docs/olm/defining-and-using-persistent-storage).
 
 
 To add a unit of storage we'll first need to discover what storage types the

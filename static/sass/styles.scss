@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+// allow use of math.div
+@use "sass:math";
+
 //settings
 @import "global-settings";
 @import "settings_colors";
@@ -10,26 +13,16 @@
 // import cookie policy
 @import "@canonical/cookie-policy/build/css/cookie-policy";
 
-// Font display Vanilla override
-@font-face {
-  font-display: optional;
-  font-family: "UbtuOverride";
-  font-style: normal;
-  font-weight: 300;
-  src: url("https://assets.ubuntu.com/v1/e8c07df6-Ubuntu-L_W.woff2")
-      format("woff2"),
-    url("https://assets.ubuntu.com/v1/8619add2-Ubuntu-L_W.woff") format("woff");
-}
-
 // import vanilla-framework
-@import "vanilla-framework/scss/build";
+@import "vanilla-framework";
+@include vanilla;
+
 @import "vanilla-placeholders";
 
-// Vanilla framework overrides
-$font-base-family: '"UbtuOverride", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif' !default;
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
+@import "pattern_accordion";
 @import "pattern_active-reveal";
 @import "pattern_blog-featured";
 @import "pattern_blog-list";
@@ -40,7 +33,10 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_buttons";
 @import "pattern_calculator";
 @import "pattern_card";
+@import "pattern_certification-results";
 @import "pattern_chart";
+@import "pattern_component-details-table";
+@import "pattern_component-table";
 @import "pattern_contact-modal";
 @import "pattern_contextual-footer";
 @import "pattern_cube-animation";
@@ -49,13 +45,13 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_cube-table";
 @import "pattern_cve";
 @import "pattern_desktop-statistics";
-@import "pattern_divider";
 @import "pattern_gaming";
 @import "pattern_grid";
 @import "pattern_footer";
+@import "pattern_hardware-details-table";
 @import "pattern_heading-icon";
 @import "pattern_icons";
-@import "pattern_inline-images";
+@import "pattern_inline-list-midline";
 @import "pattern_lightbox";
 @import "pattern_lists";
 @import "pattern_matrix";
@@ -63,15 +59,17 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_pie_chart";
 @import "pattern_ratings";
 @import "pattern_renewal-modal";
-@import "pattern_separator";
+@import "pattern_security-certs-table";
 @import "pattern_shop-cart";
 @import "pattern_strip";
 @import "pattern_strip-photos";
+@import "pattern_subscriptions";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
 @import "pattern_table-of-contents";
 @import "pattern_table";
+@import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
 @import "takeovers/financial-services";
 @import "utility_animations";
@@ -79,31 +77,31 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "utility_vertically-center";
 
 @include blog-p-card;
-@include blog-u-crop;
 @include blog-p-featured;
 @include blog-p-icons;
 @include blog-p-list;
 @include blog-p-post;
 @include blog-p-strips-suru;
-@include blog-u-crop;
 @include blog-p-topic;
+@include blog-u-crop;
+@include ubuntu-p-accordion;
 @include ubuntu-p-active-reveal;
 @include ubuntu-p-buttons;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
+@include ubuntu-p-certification-results;
 @include ubuntu-p-contact-modal;
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-cube-animation;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
 @include ubuntu-p-desktop-statistics;
-@include ubuntu-p-divider;
 @include ubuntu-p-floating-image;
 @include ubuntu-p-footer;
 @include ubuntu-p-gaming;
 @include ubuntu-p-grid;
 @include ubuntu-p-heading-icon;
-@include ubuntu-inline-images;
+@include ubuntu-p-inline-list-midline;
 @include ubuntu-p-attention-icon;
 @include ubuntu-p-lightbox;
 @include ubuntu-p-lists;
@@ -113,12 +111,15 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-ua-shop-cart;
-@include ubuntu-p-separator;
+@include ubuntu-p-ua-subscriptions;
 @include ubuntu-p-strip-photos;
+@include ubuntu-p-table-compliance-profiles;
 @include ubuntu-p-table-of-contents;
+@include ubuntu-p-table-security-certifications;
 @include ubuntu-p-tables;
 @include ubuntu-p-takeunders;
 @include ubuntu-p-takeovers;
+@include ubuntu-p-tco-calculator;
 @include ubuntu-p-engage-banner;
 @include ubuntu-p-ubuntu-intro;
 @include ubuntu-p-tabs;
@@ -162,14 +163,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
   padding-bottom: $sp-xx-large;
 }
 
-// overflow tables
-.table__wrapper {
-  margin: $sp-xx-large 0;
-  overflow-x: auto;
-  overflow-y: hidden;
-  width: 100;
-}
-
 /// XXX fix nested bullets to use default styles
 .p-list .p-list {
   list-style-type: circle;
@@ -177,20 +170,6 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
   .p-list {
     list-style-type: disc;
   }
-}
-
-/// XXX Override for p-strip--image to hide the background at small viewports
-.u-no-background--small {
-  @media (max-width: $breakpoint-medium) {
-    background-image: none !important;
-  }
-}
-
-// XXX Karl: 19.10.17
-// VF 1.6.0 is missing this
-.p-link--external::after {
-  -webkit-mask-size: cover;
-  mask-size: cover;
 }
 
 // XXX Caleb: 15.01.18 Autoprefixer issue
@@ -206,22 +185,6 @@ select {
   display: inline-block;
   height: 2rem;
   margin-bottom: 1.25rem;
-}
-
-.p-strip--security {
-  @extend %vf-strip;
-
-  @media only screen and (min-width: $breakpoint-medium) {
-    background-image: url("#{$assets-path}8717cb84-padlock-chain-icon-angular.png");
-    background-position: left 70% top;
-    background-repeat: no-repeat;
-    background-size: contain;
-  }
-}
-
-// XXX Caleb: 26.02.18 Fix middot list wrapping issue
-.p-inline-list--middot > .p-inline-list__item {
-  white-space: nowrap;
 }
 
 // XXX Steve: 21.06.18
@@ -248,13 +211,8 @@ fieldset:last-child {
   border-bottom-width: 1px !important;
 }
 
-// error to mirror vanilla for g-recaptcha
-.recaptcha-is-error {
-  border: 1px solid $color-negative;
-}
-
 // XXX Steve: Overriding default Vanilla style :(
-.p-heading--six {
+.p-heading--6 {
   font-style: normal;
 }
 
@@ -264,10 +222,6 @@ fieldset:last-child {
   .p-pull-quote__quote:first-of-type::before,
   .p-pull-quote__quote:last-of-type::after {
     color: $color-brand;
-  }
-
-  .p-pull-quote__quote:last-of-type::after {
-    bottom: auto;
   }
 }
 
@@ -281,29 +235,9 @@ p.u-align--center {
   max-width: none;
 }
 
-/// XXX Caleb: abbr hotfix - to be fixed in Vanilla
-// https://github.com/vanilla-framework/vanilla-framework/issues/1962
-abbr[title] {
-  border-bottom: 0.1em dotted;
-  cursor: help;
-  text-decoration: none;
-}
-
-// Hack to change the global navigation styling to match the local header
-.global-nav .global-nav__header-logo-anchor {
-  padding: 0.6875rem 1rem !important;
-}
-
-// XXX Ant: is-bordered hotfix - to be removed when the following is resolved:
-// https://github.com/vanilla-framework/vanilla-framework/issues/2045
-[class^="p-strip"].is-bordered {
-  margin-bottom: 0;
-}
-
 // Override for wordpress use of <figure>
 .blog-article figure {
-  @extend %max-width--p;
-
+  max-width: $text-max-width;
   text-align: center;
 }
 
@@ -313,7 +247,7 @@ summary {
 }
 
 .desktop-hero {
-  background-image: url("#{$assets-path}2a202263-hero-banner.jpg");
+  background-image: url("#{$assets-path}def23aa4-desktop-22.04-hero.jpg?w=2000");
   background-position: right bottom;
   background-size: 1000px auto;
 
@@ -331,7 +265,7 @@ summary {
 }
 
 .organisations-hero {
-  background-image: url("#{$assets-path}32d95e39-hero-laptop-org.jpg?w=1000");
+  background-image: url("#{$assets-path}64e12f4b-desktop-22.04-Laptop-Map.jpg?w=2000");
   background-position: right bottom;
   background-size: 1100px auto;
 
@@ -347,32 +281,68 @@ summary {
   }
 }
 
-.p-table-expanding__panel {
-  @extend %vf-card;
-  @extend %vf-is-bordered;
-  @extend %vf-has-round-corners;
+.u-inline--child {
+  display: inline;
 
-  background-color: $color-light;
-
-  border-left: none;
-  border-right: none;
-  border-top-color: $color-mid-x-light;
-
-  margin-bottom: 0;
-  padding: 1.5rem !important;
+  > * {
+    display: inline;
+  }
 }
 
-// Advantage section
-.p-table--advantage-contract {
-  margin: 0 auto;
-  width: auto;
-
-  td {
-    display: table-cell;
+.advantage-table-section {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
   }
 
-  tr {
-    display: table-row;
+  @media only screen and (min-width: $breakpoint-medium) {
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.advantage-table-instruction {
+  display: grid;
+  grid-column-gap: 2rem;
+  grid-row-gap: 0.5rem;
+  grid-template-columns: 1fr 2fr;
+  margin: 1rem 0;
+
+  > span {
+    color: $color-mid-dark;
+    grid-column: 1;
+  }
+
+  > code,
+  > a,
+  > p {
+    align-self: flex-start;
+    grid-column: 2;
+    padding-left: 0;
+  }
+
+  > p {
+    margin: 0;
+    padding: 0;
+  }
+
+  > hr {
+    display: none;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    grid-template-columns: auto 2fr;
+    margin: 1.5rem 0;
+
+    > hr {
+      display: block;
+      grid-column: span 2;
+      margin: 0;
+    }
   }
 }
 
@@ -387,218 +357,31 @@ summary {
     td,
     th {
       &:nth-child(1) {
-        width: 50%;
+        width: 40%;
       }
 
       &:nth-child(2) {
-        width: 20%;
+        width: 15%;
       }
 
       &:nth-child(3) {
-        width: 20%;
+        width: 15%;
       }
 
       &:nth-child(4) {
-        width: 20%;
+        width: 15%;
+      }
+
+      &:nth-child(5) {
+        width: 15%;
       }
     }
   }
 }
 
-.u-rotate {
-  transform: rotate(180deg);
-}
-
-.p-table--advantage-contact {
-  th,
-  td {
-    flex: 1 !important;
-  }
-}
-
-.p-table--advantage {
-  margin-bottom: 2rem;
-  overflow: visible;
-
-  th,
-  td {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .p-table__row {
-    position: relative;
-
-    > th:nth-child(1),
-    > td:nth-child(1) {
-      flex: 4;
-    }
-
-    > .spacer {
-      flex: 0.5;
-
-      @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-        display: none;
-      }
-    }
-
-    > .plan,
-    > .machines,
-    > .esm,
-    > .livepatch,
-    > .certifications {
-      flex: 1;
-      > button {
-        padding-left: 0;
-        padding-right: 0;
-      }
-    }
-
-    > .livepatch {
-      flex: 0.8;
-    }
-
-    > .certifications {
-      flex: 1.2;
-    }
-
-    .p-icon--contextual-menu {
-      margin-left: 0.5rem;
-    }
-
-    &:not(:last-of-type) {
-      .p-table-expanding__panel {
-        border-bottom: 0;
-      }
-    }
-  }
-
-  code {
-    background-color: transparent;
-    box-shadow: none;
-    margin: 0;
-  }
-
-  .p-table-title {
-    @media only screen and (min-width: $breakpoint-medium) and (max-width: $breakpoint-large) {
-      &::after {
-        display: block;
-        content: "";
-        align-self: center;
-        border-right: 1px solid $color-mid-light;
-        height: calc(100% - (2 * 0.5rem));
-      }
-    }
-  }
-
-  .p-table--open {
-    background-color: $color-light;
-    box-shadow: -1px 0 0 0 $color-mid-x-light, 1px 0 0 0 $color-mid-x-light,
-      0 1px 0 0 $color-light;
-    z-index: 5;
-
-    &:first-child {
-      box-shadow: 1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
-    }
-
-    &.certifications {
-      box-shadow: -1px 0 0 0 $color-mid-x-light, 0 1px 0 0 $color-light;
-    }
-
-    &::after {
-      display: none;
-    }
-  }
-
-  .u-toggle {
-    background: transparent;
-    border: 0;
-    margin-bottom: 0;
-
-    &--full-width {
-      height: 100%;
-      overflow: hidden;
-      padding: 0.5rem 2.5rem 0.5rem 0.5rem;
-      padding-right: 2rem;
-      position: relative;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      width: 100%;
-
-      .p-icon--contextual-menu {
-        position: absolute;
-        right: 0.5rem;
-        top: 1rem;
-      }
-    }
-
-    &[aria-expanded="true"] .u-toggle__supplemental {
-      display: none;
-    }
-  }
-}
-
-.p-contextual-menu--advantage {
-  .p-table--advantage {
-    margin: 0 auto;
-  }
-
-  .p-contextual-menu__toggle {
-    margin-bottom: -1px;
-
-    &[aria-expanded="true"] {
-      border-bottom-color: $color-x-light;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      border-left-color: $color-mid-light;
-      border-right-color: $color-mid-light;
-      border-top-color: $color-mid-light;
-      position: relative;
-      z-index: 11;
-
-      .p-icon--contextual-menu {
-        transform: rotate(180deg);
-      }
-    }
-  }
-
-  .p-contextual-menu__dropdown {
-    box-shadow: none;
-  }
-}
-
-.u-arrow-up {
-  overflow: visible;
-  position: relative;
-  z-index: 20;
-
-  @media only screen and (min-width: $breakpoint-small) {
-    &::after {
-      background: $color-light;
-      box-shadow: -1px -1px 0 1px rgba(17, 17, 17, 0.1);
-      content: "";
-      height: 1rem;
-      pointer-events: none;
-      position: absolute;
-      right: 2.1rem;
-      top: -1.2rem;
-      transform: rotate(45deg);
-      width: 1rem;
-      z-index: 5;
-    }
-  }
-
-  @media only screen and (min-width: $breakpoint-large) {
-    &::after {
-      top: -2rem;
-    }
-  }
-}
-
-.u-padding-top--small {
-  @media only screen and (max-width: $breakpoint-small) {
-    margin-left: 0 !important;
-    margin-top: 1rem !important;
+.subscribe-section {
+  @media (min-width: $breakpoint-medium) {
+    margin-left: 4rem !important;
   }
 }
 
@@ -655,35 +438,6 @@ summary {
   }
 }
 
-.is-ticked__cross {
-  background-image: url("https://assets.ubuntu.com/v1/9cdb5b1e-cross-darkaubergine.svg");
-  background-position-y: 0.65rem;
-  background-repeat: no-repeat;
-  background-size: 0.875rem;
-  padding-left: 2rem;
-}
-
-// This is a custom style for a crossed list item
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3403
-// https://github.com/canonical-web-and-design/vanilla-framework/issues/3405
-.is-crossed {
-  @extend .is-ticked;
-
-  background-image: url("#{$assets-path}9cdb5b1e-cross-darkaubergine.svg");
-}
-
-.u-inline {
-  display: inline;
-}
-
-.u-inline--child {
-  display: inline;
-
-  > * {
-    display: inline;
-  }
-}
-
 // XXX Steve: workaround for image template wrapping image in `div`
 // Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
 .p-heading-icon__header {
@@ -705,49 +459,13 @@ summary {
   pointer-events: none;
 }
 
-.u-number-circle {
-  background: $color-mid-x-light;
-  border-radius: 50%;
-  margin-right: 1rem;
-  padding: 0.25rem 0.85rem;
-}
-
-// Keep font weight 300 for copyable code snippets
-// Bug https://github.com/canonical-web-and-design/vanilla-framework/issues/3564
-
-.p-code-copyable__input {
-  font-weight: 300;
-}
-
-// XXX: Align accordion icons top instead of center
-// Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/2926
-.p-accordion__tab {
-  background-position: top $spv-inner--medium left $sph-inner;
+td.p-accordion {
+  padding-top: 0;
 }
 
 // Local override for custom table
 .p-accordion.is-compact .p-accordion__panel {
-  padding-left: $sph-inner--small;
-}
-
-// XXX: 14.05.2020 remove when this is fixed: https://github.com/canonical-web-and-design/vanilla-framework/issues/3066
-h4.p-stepped-list__title + .p-stepped-list__content {
-  @media (min-width: $breakpoint-large) {
-    margin-left: 0;
-  }
-}
-
-// XXX: Muted text patterm - will be added to Vanilla
-// Bug: https://github.com/canonical-web-and-design/vanilla-framework/issues/3063
-.p-muted-text {
-  color: $color-mid-dark;
-}
-
-// XXX: 14.05.2020 remove when this is fixed https://github.com/canonical-web-and-design/vanilla-framework/issues/3066
-@media (min-width: $breakpoint-large) {
-  h4.p-stepped-list__title + .p-stepped-list__content {
-    margin-left: 0;
-  }
+  padding-left: $sph--small;
 }
 
 .is-bordered--top {
@@ -923,11 +641,113 @@ body {
   }
 }
 
-.u-disabled {
-  cursor: not-allowed;
-  opacity: 0.33;
+.p-strip-account-page {
+  min-height: 600px;
+
+  @media (max-width: $breakpoint-small) {
+    height: auto;
+  }
+}
+
+.card-management-section {
+  @media (max-width: $breakpoint-small) {
+    #card-element {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .current-payment-method {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1.1rem;
+
+    > p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .payment-card-logo {
+    background-color: $color-x-light;
+    border: 1px solid $color-mid-light;
+    border-radius: 2px;
+    height: 1.7rem;
+    margin-right: 0.5rem;
+  }
+
+  #card-element {
+    margin: 0.5rem 0;
+  }
+}
+
+#payment-modal-form {
+  > .row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #card-element {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.56);
+    border-radius: 0;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 12%);
+    padding: calc(0.4rem - 1px) 0.5rem;
+
+    &.StripeElement--focus {
+      outline: 0.1875rem solid #2e96ff;
+      outline-offset: -0.1875rem;
+
+      &.StripeElement--invalid {
+        outline-color: $color-negative;
+      }
+    }
+
+    &.StripeElement--invalid {
+      background-image: url("#{$assets-path}4b0cd7fc-icon-error.svg");
+      background-position: calc(100% - 0.5rem) 50%;
+      background-repeat: no-repeat;
+      border-color: $color-negative;
+    }
+  }
+}
+
+// Styling to display a success message when forms are successfully submitted.
+#success {
+  display: none;
+  position: absolute;
+}
+
+#success:target {
+  display: block;
+  z-index: 10;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+.support-cart-summary {
+  text-align: center;
+
+  .support-cart-total {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: $breakpoint-small) {
+    text-align: left;
+  }
+
+  @media (min-width: $breakpoint-medium) {
+    text-align: right;
+
+    .support-cart-total {
+      display: inline;
+      margin-bottom: 0;
+    }
+
+    button {
+      margin-left: 1rem;
+    }
+  }
 }

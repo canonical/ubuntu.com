@@ -1,5 +1,6 @@
 function toggleMenu(element, show) {
-  const dropdown = element.getAttribute("aria-controls");
+  const dropdownControl = element.getAttribute("aria-controls");
+  const dropdown = document.querySelector(dropdownControl);
 
   element.setAttribute("aria-expanded", show);
   dropdown.setAttribute("aria-hidden", !show);
@@ -65,13 +66,14 @@ function setupContextualMenuListeners(contextualMenuToggleSelector) {
   document.addEventListener("click", (e) => {
     toggles.forEach((toggle) => {
       const contextualMenu = document.querySelector(".p-contextual-menu");
+      if (contextualMenu) {
+        const clickOutside = !(
+          toggle.contains(e.target) || contextualMenu.contains(e.target)
+        );
 
-      const clickOutside = !(
-        toggle.contains(e.target) || contextualMenu.contains(e.target)
-      );
-
-      if (clickOutside) {
-        toggleMenu(toggle, false);
+        if (clickOutside) {
+          toggleMenu(toggle, false);
+        }
       }
     });
   });

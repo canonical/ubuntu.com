@@ -1,0 +1,128 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage for Blender{% endblock %}
+{% block meta_description %}The support offering will include Blender LTS releases across Linux distributions, Microsoft Windows, and macOS. Canonical's engineers will engage directly with customers to provide comprehensive technical support to users by understanding, diagnosing and resolving issues as swiftly as possible. Canonical will manage the entire support process including integration with Blender’s support infrastructure.{% endblock %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="u-fixed-width">
+    {{
+      image(
+        url="https://assets.ubuntu.com/v1/0e26dbb5-blender_logo.svg",
+        alt="",
+        height="60",
+        width="222",
+        hi_def=True,
+        loading="auto",
+      ) | safe
+    }}
+    <h1>Subscribe to Blender support</h1>
+    {% if not user_info %}
+      <p>If you have existing subscriptions or sales offers, <a href="/login">sign in</a> to access them.</p>
+    {% endif %}
+  </div>
+</section>
+
+<form>
+  <section class="p-strip u-no-padding--top">
+    <div class="u-fixed-width">
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">Choose your tech support</h3>
+          <div class="p-stepped-list__content">
+            {% include "/advantage/subscribe/blender/_tech_support.html" %}
+            <p><a href="/legal/solution-support">Details of our coverage and response times&nbsp;&rsaquo;</a></p>
+          </div>
+        </li>
+        <li class="p-stepped-list__item">
+          <h3 class="p-stepped-list__title">How many users?</h3>
+          <div class="p-stepped-list__content">
+            <input
+              autocomplete="off"
+              id="quantity-input"
+              type="number"
+              name="quantity"
+              placeholder="0"
+              min="1"
+              max="1000"
+              step="1"
+              pattern="\d+"
+              value="1"
+              style="max-width: 160px;"
+            />
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="p-strip--light is-shallow p-shop-cart p-shop-cart--hidden">
+    <div class="u-fixed-width">
+      <h3>Your chosen plan</h3>
+    </div>
+    <div class="row u-sv3">
+      <div class="col-4">
+        <p class="u-no-padding--top">
+          <span data-prop="user-count">1</span> &times;
+          <span data-prop="selected-package">Blender Support Standard</span>
+        </p>
+      </div>
+      <div class="col-4">
+        <select class="u-hide" name="billing-period" id="billing-period" data-prop="billing">
+          <option value="yearly">Annual billing</option>
+          <option value="monthly">Monthly billing</option>
+        </select>
+      </div>
+      <div class="col-4 support-cart-summary">
+        <strong class="support-cart-total">
+          <span data-prop="total-cost"></span> / <span data-prop="period">year</span>
+        </strong>
+        <button class="p-button--positive" id="buy-now-button">Buy now</button>
+      </div>
+    </div>
+  </section>
+</form>
+
+<div class="p-modal p-modal--ua-payment is-details-mode u-hide" id="purchase-modal">
+  <div id="react-root" class="p-modal__dialog" role="dialog" aria-labelledby="modal-title">
+  </div>
+</div>
+
+<script>
+  window.productList = {
+    {% for listing_id, listing in product_listings.items() %}
+      "{{ listing.id }}": {
+        id: "{{ listing.id }}",
+        name: "{{ listing.product.name }}",
+        price: {
+          value: {{ listing.price }},
+          currency: "{{ listing.currency }}"
+        },
+        period: "{{ listing.period }}",
+        productID: "{{ listing.product.id }}",
+        canBeTrialled: false,
+        private: false,
+        marketplace: "blender",
+      },
+    {% endfor %}
+  };
+
+  window.accountId = "{% if account %}{{ account.id }}{% endif %}";
+  window.isGuest = {% if account %}false{% else %}true{% endif %};
+  window.isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
+  window.isTrialling = false;
+  window.accountName = "{% if account %}{{ account.name }}{% endif %}";
+  window.previousPurchaseIds = {
+    {% for period, id in previous_purchase_ids.items() %}
+      "{{ period }}": "{{ id }}",
+    {% endfor %}
+  }
+
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+</script>
+
+<script src="{{ versioned_static('js/dist/blenderStore.js') }}"></script>
+<script src="{{ versioned_static('js/dist/blenderStoreModal.js') }}"></script>
+
+{% endblock content %}

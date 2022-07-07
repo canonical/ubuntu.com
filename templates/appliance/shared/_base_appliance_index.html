@@ -13,7 +13,7 @@
       <div class="p-media-object u-no-margin--bottom">
         <img src="{{ logo }}?w=90" alt="" class="p-media-object__image is-round" height="90" width="90">
         <div class="p-media-object__details">
-          <h1 class="p-heading--three u-no-margin--bottom">
+          <h1 class="p-heading--3 u-no-margin--bottom">
             {{ appliance_name }}
           </h1>
           <p class="p-muted-heading">Ubuntu Appliance</p>
@@ -29,7 +29,7 @@
         {% if downloads.raspberrypi %}
         <div class="col-2">
           <a href="/appliance/{{ short_name }}/raspberry-pi">
-            <h3 class="p-heading--five u-no-padding--top">
+            <h3 class="p-heading--5 u-no-padding--top">
               {% if pi.3 or pi.4 %}
               Raspberry Pi {% if pi.3 %}3{% endif %}{% if pi.3 and pi.4%} &amp; {% endif %}{% if pi.4 %}4{% endif %}
               {% else %}
@@ -46,7 +46,7 @@
         {% if downloads.intelnuc %}
         <div class="col-2">
           <a href="/appliance/{{ short_name }}/intel-nuc">
-            <h3 class="p-heading--five u-no-padding--top">
+            <h3 class="p-heading--5 u-no-padding--top">
               Intel NUC
             </h3>
             <hr>
@@ -59,7 +59,7 @@
         {% if downloads.pc %}
         <div class="col-2">
           <a href="/appliance/{{ short_name }}/vm">
-            <h3 class="p-heading--five u-no-padding--top">
+            <h3 class="p-heading--5 u-no-padding--top">
               VM
             </h3>
             <hr>
@@ -140,7 +140,7 @@
 <section class="p-strip u-no-padding--top">
   <div class="row">
     <div class="col-10">
-      <h2 class="p-heading--four">Snaps in the image</h2>
+      <h2 class="p-heading--4">Snaps in the image</h2>
       <table>
         <thead>
           <tr>
@@ -158,7 +158,7 @@
                 <img src="{{ snap.icon }}?w=50" alt="" class="p-media-object__image is-round" height="50" width="50">
                 <div class="p-media-object__details">
                   <p>
-                    <a href="{{ snap.link }}" class="p-link--external">{{ snap.name }}</a>
+                    <a href="{{ snap.link }}">{{ snap.name }}</a>
                   </p>
                 </div>
               </div>

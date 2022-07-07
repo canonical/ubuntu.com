@@ -1,0 +1,12 @@
+{% with
+    title="Ubuntu Server Docs",
+    query=query,
+    results=results,
+    search_action="/server/docs/search",
+    siteSearch="https://ubuntu.com/server/docs",
+    placeholder="Search on Server Docs",
+    search_path="/server/docs/search",
+    forum_link="https://discourse.ubuntu.com/c/server/17"
+  %}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}

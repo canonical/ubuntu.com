@@ -188,7 +188,7 @@ in the following:
 
 
 This can be used from bundles with 'include-base64://' (see
-https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
+https://discourse.charmhub.io/t/bundle-reference/1158),
 or from the command-line with 'juju config aws credentials="$(base64 /path/to/file)"'.
 
 This option will take precedence over the individual config options, if set.
@@ -280,6 +280,6 @@ List of extra apt sources, per charm-helpers standard format (a yaml list of str
 
 
 
-[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml
+[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-azure-integration
 [api-doc]: https://github.com/juju-solutions/interface-azure-integration/blob/master/docs/requires.md

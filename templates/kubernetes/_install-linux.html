@@ -1,0 +1,95 @@
+<ol class="p-stepped-list">
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Install MicroK8s on Linux
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet is-dark">
+        <pre class="p-code-snippet__block--icon is-dark"><code>sudo snap install microk8s --classic</code></pre>
+      </div>
+      <p>Don’t have the snap command? <a href="https://docs.snapcraft.io/installing-snapd">Get set for snaps</a></p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Add your user to the microk8s admin group
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>MicroK8s creates a group to enable seamless usage of commands which require admin privilege. Use the
+        following commands to join the group:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>sudo usermod -a -G microk8s $USER</code></pre>
+      </div>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>sudo chown -f -R $USER ~/.kube</code></pre>
+      </div>
+      <p>You will also need to re-enter the session for the group update to take place:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>su - $USER</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Check the status while Kubernetes starts
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s status --wait-ready</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Turn on the services you want
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s enable dashboard dns ingress</code></pre>
+      </div>
+      <p>Try <code>microk8s enable --help</code> for a list of available services and optional features. <code>microk8s disable &lsaquo;name&rsaquo;</code> turns off a service.</p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Start using Kubernetes
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s kubectl get all --all-namespaces</code></pre>
+      </div>
+      <p>
+        If you mainly use MicroK8s you can make our kubectl the default one on your command-line with <code>alias mkctl=”microk8s kubectl”</code>. Since it is a standard upstream kubectl, you can also drive other Kubernetes clusters with it by pointing to the respective kubeconfig file via the “--kubeconfig” argument.
+      </p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Access the Kubernetes dashboard
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s dashboard-proxy</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Start and stop Kubernetes to save battery
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>
+        Kubernetes is a collection of system services that talk to each other all the time. If you don’t need them running in the background then you will save battery by stopping them. <code>microk8s start</code> and <code>microk8s stop</code> will do the work for you
+      </p>
+      <p>
+        <a href="https://microk8s.io/docs">Read the docs to learn more</a>
+      </p>
+    </div>
+  </li>
+</ol>

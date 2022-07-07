@@ -17,14 +17,20 @@ toc: False
 [Flannel][] is a simple, lightweight layer 3 fabric for Kubernetes. Flannel manages an
 IPv4 network between multiple nodes in a cluster. It does not control how containers
 are networked to the host, only how the traffic is transported between hosts. For
-more complicated scenarios, see also [Calico][] and [Canal][]
+more complicated scenarios, see also [Calico][] and [Canal][].
 
 
-## Deploying **Charmed Kubernetes** with flannel
+## Deploying Charmed Kubernetes with Flannel
 
-Flannel is the default choice for networking with **Charmed Kubernetes**. If you
-[deploy the bundle][quickstart] without changing the default settings,
-flannel will be used for CNI.
+To deploy a cluster with Flannel, deploy the `charmed-kubernetes` bundle with the
+[flannel overlay][flannel-overlay]:
+
+```bash
+juju deploy charmed-kubernetes --overlay flannel-overlay.yaml
+```
+
+You can apply any additional customisation overlays that would apply to
+`charmed-kubernetes` to this deployment as well.
 
 ## Flannel options
 
@@ -68,6 +74,7 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 <!-- LINKS -->
 
 [Flannel]: https://github.com/coreos/flannel
+[flannel-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/flannel-overlay.yaml
 [troubleshooting]: /kubernetes/docs/troubleshooting
 [quickstart]:  /kubernetes/docs/quickstart
 [install-manual]:  /kubernetes/docs/install-manual
@@ -76,10 +83,11 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-flannel.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-flannel.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

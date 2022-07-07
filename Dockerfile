@@ -5,6 +5,7 @@
 FROM ubuntu:focal AS python-dependencies
 RUN apt-get update && apt-get install --no-install-recommends --yes python3-pip python3-setuptools python3-wheel build-essential git ca-certificates
 ADD requirements.txt /tmp/requirements.txt
+RUN pip3 config set global.disable-pip-version-check true
 RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement /tmp/requirements.txt
 
 
@@ -13,17 +14,15 @@ RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement
 FROM node:12 AS yarn-dependencies
 WORKDIR /srv
 ADD package.json yarn.lock .
-RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install
+RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install --production
 
 
 # Build stage: Run "yarn run build-js"
 # ===
 FROM yarn-dependencies AS build-js
 ADD static/js static/js
-ADD webpack.config.js .
-ADD webpack.config.entry.js .
-ADD webpack.config.rules.js .
-ADD .babelrc .
+ADD build.js build.js
+ADD babel.config.js .
 RUN yarn run build-js
 
 
@@ -50,7 +49,7 @@ WORKDIR /srv
 
 # Import code, build assets and mirror list
 ADD . .
-RUN rm -rf package.json yarn.lock .babelrc webpack.config.js
+RUN rm -rf package.json yarn.lock babel.config.js webpack.config.js
 COPY --from=build-js /srv/static/js static/js
 COPY --from=build-css /srv/static/css static/css
 ADD http://launchpad.net/ubuntu/+cdmirrors-rss etc/ubuntu-mirrors-rss.xml

@@ -51,35 +51,14 @@ documentation for instructions.
 
 ## Deploying Charmed Kubernetes with Calico
 
-To deploy Charmed Kubernetes with Calico, deploy the kubernetes-calico bundle:
-
-```bash
-juju deploy cs:~containers/kubernetes-calico
-```
-
-The Calico bundle is identical to the standard `charmed-kubernetes` bundle with the
-exception of replacing Flannel with Calico. You can apply any customisation overlays
-that would apply to `charmed-kubernetes` to this bundle also.
+Calico became the default choice for networking with **Charmed Kubernetes** 1.24.
+If you [deploy the bundle][quickstart] without changing the default settings,
+calico will be the CNI.
 
 ## Calico configuration options
 
-| Name                |  Type  |  Default value                           | Description                                                    |
-|---------------------|--------|------------------------------------------|----------------------------------------------------------------|
-| calico-node-image   | string | docker.io/calico/node:v3.6.1             | The image id to use for calico/node                            |
-| calico-policy-image | string | docker.io/calico/kube-controllers:v3.6.1 | The image id to use for calico/kube-controllers                |
-| cidr                | string | 192.168.0.0/16                           | Network CIDR assigned to Calico. This is applied to the default Calico pool, and is also communicated to the Kubernetes charms for use in kube-proxy configuration. |
-| global-as-number    | int    | 64512                                    | Global AS number.
-| global-bgp-peers    | string | []                                       | List of global BGP peers. Each BGP peer is specified with an address and an as-number. |
-| ipip                | string | Never                                    | IPIP encapsulation mode. Must be one of "Always", "CrossSubnet", or "Never". This is incompatible with VXLAN encapsulation. If VXLAN encapsulation is enabled, then this must be set to "Never". |
-| manage-pools        | bool   | True                                     | If true, a default pool is created using the cidr and ipip charm configuration values. Warning: When manage-pools is enabled, the charm will delete any pools that are unrecognized. |
-| nat-outgoing        | bool   | True                                     | Enable NAT on outgoing traffic                                 |
-| node-to-node-mesh   | bool   | True                                     | When enabled, each Calico node will peer with every other Calico node in the cluster. |
-| route-reflector-cluster-ids | string | {}                               | Mapping of unit IDs to route reflector cluster IDs. Assigning a route reflector cluster ID allows the node to function as a route reflector. |
-| subnet-as-numbers   | string | {}                                       | Mapping of subnets to AS numbers, specified as YAML. Each Calico node will be assigned an AS number based on the entries in this mapping. |
-| subnet-bgp-peers    | string | {}                                       | Mapping of subnets to lists of BGP peers. Each BGP peer is specified with an address and an as-number. |
-| unit-as-numbers     | string | {}                                       | Mapping of unit IDs to AS numbers, specified as YAML. Each Calico node will be assigned an AS number based on the entries in this mapping. |
-| unit-bgp-peers      | string | {}                                       | Mapping of unit IDs to lists of BGP peers. Each BGP peer is specified with an address and an as-number. |
-| vxlan               | string | Never                                    | VXLAN encapsulation mode. Must be one of "Always", "CrossSubnet", or "Never". This is incompatible with IPIP encapsulation. If IPIP encapsulation is enabled, then this must be set to "Never". |
+A full list of Calico configuration options and their descriptions can be found
+in the [Calico charm] page.
 
 ### Checking the current configuration
 
@@ -318,6 +297,22 @@ You will also need to configure the top of rack switches to peer with the
 Calico route reflectors. Instructions for doing this should be provided in the
 documentation for the specific model of switch you are using.
 
+### Service IP advertisement
+
+Calico supports advertising Kubernetes service IPs to external routers over BGP.
+You can enable this in the charm by setting the bgp-service-cluster-ips config:
+
+```
+SERVICE_CIDR="$(juju config kubernetes-control-plane service-cidr)"
+juju config calico bgp-service-cluster-ips="$SERVICE_CIDR"
+```
+
+Once the above config has been set, Calico will advertise Kubernetes service
+routes to any external routers that the charm has been configured to peer with.
+
+For more information, see the bgp-service-cluster-ips and
+bgp-service-external-ips config descriptions in the [Calico charm] page.
+
 ## Configuring multiple Calico pools
 
 The Calico charm creates a single IPPool. If multiple IPPools pools are desired,
@@ -385,7 +380,7 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 
 [calico-learn]: https://www.projectcalico.org/learn/
 [NetworkPolicy]: https://kubernetes.io/docs/concepts/services-networking/network-policies/
-[Creating an AWS VPC]: https://docs.jujucharms.com/2.5/en/charms-fan-aws-vpc
+[Creating an AWS VPC]: https://old-docs.jujucharms.com/2.5/en/charms-fan-aws-vpc
 [Disabling Source/Destination Checks]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck
 [private docker registry]: /kubernetes/docs/docker-registry
 [bgp]: https://docs.projectcalico.org/v3.7/networking/service-advertisement#about-advertising-kubernetes-services-over-bgp
@@ -395,14 +390,15 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 [install-manual]:  /kubernetes/docs/install-manual
 [bgp-multiple-subnets-bird-example]: https://gist.github.com/Cynerva/46712dd1e9b75d42cb38fb966abfa932
 [route reflection]: https://tools.ietf.org/html/rfc4456
-[AS Per Rack model]: https://docs.projectcalico.org/v3.6/networking/design/l3-interconnect-fabric#the-as-per-rack-model
+[AS Per Rack model]: https://docs.projectcalico.org/reference/architecture/design/l3-interconnect-fabric
+[Calico charm]: /kubernetes/docs/charm-calico
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-calico.md" class="p-notification__action">edit this page</a> 
-    or 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-calico.md" >edit this page</a>
+    or
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

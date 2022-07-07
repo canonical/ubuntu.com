@@ -1,48 +1,73 @@
 @mixin ubuntu-p-ua-shop-cart {
   .p-shop-cart {
-    button {
-      min-width: 107px;
-      text-transform: capitalize;
+    bottom: 0;
+    position: sticky;
+    transition: 0.5s ease-out transform;
+
+    &--hidden {
+      transform: translateY(100%);
     }
 
-    &__icon {
-      @media only screen and (max-width: $breakpoint-medium - 1) {
-        justify-content: flex-end;
+    .p-shop-cart__selected-product {
+      display: flex;
+      flex-wrap: wrap;
+
+      .p-shop-cart__label {
+        align-items: center;
+        display: flex;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      @media (min-width: $breakpoint-x-small) {
+        flex-wrap: nowrap;
+        > div {
+          margin-left: 2.5rem;
+        }
+
+        .p-shop-cart__label {
+          align-items: flex-start;
+          display: flex;
+          margin-left: 1rem;
+          margin-top: calc(0.4rem - 1px);
+        }
+      }
+
+      > img {
+        height: 35px;
+        margin: 0 1rem;
+      }
+
+      > span,
+      > img {
+        padding-top: calc(0.4rem - 1px);
       }
     }
 
-    &__block {
-      @media only screen and (max-width: $breakpoint-medium - 1) {
-        margin-bottom: 1rem;
+    .p-shop-cart__buy {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      margin-top: 1rem;
+
+      @media (min-width: $breakpoint-x-small) {
+        align-items: flex-start;
+        flex-direction: row;
       }
-    }
+      @media (min-width: $breakpoint-medium) {
+        flex-wrap: wrap;
+        margin-top: 0;
 
-    .p-list--divided {
-      position: relative;
-
-      &::after,
-      &::before {
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        right: 0;
-      }
-
-      &::after {
-        border-bottom: 1px solid $color-mid-light;
-        top: 0;
+        > button {
+          margin-right: 0;
+        }
       }
 
-      &::before {
-        border-top: 1px solid $color-mid-light;
-        bottom: 0;
+      > span {
+        margin-right: 0.5rem;
+        padding-top: calc(0.4rem - 1px);
       }
-    }
-
-    .p-list__item {
-      padding-bottom: 1rem;
-      padding-top: 1rem;
     }
   }
 }

@@ -11,6 +11,10 @@
 
   {% with thanks_context="about LTS Docker Images" %}{% include "shared/_thank_you.html" %}{% endwith %}
 
+{% elif product == 'fips' %}
+
+  {% with thanks_context="your interest in FIPS 140-3 and Ubuntu", thanks_message="Thank you for registering your interest in the OpenJDK for FIPS beta programme. If selected as a participant, you will receive an email from Canonical with more details on getting started." %}{% include "shared/_thank_you.html" %}{% endwith %}
+
 {% elif product == 'esm' %}
 
   {% with thanks_context="about Extended Security Maintenance" %}{% include "shared/_thank_you.html" %}{% endwith %}

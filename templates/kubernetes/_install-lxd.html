@@ -1,0 +1,117 @@
+<p>These instructions represent the complete set of commands you need to enter into your terminal to install Charmed Kubernetes on your local machine with LXD. Be advised that the full installation of Charmed Kubernetes is only recommended for a machine with 32GB RAM and 250GB of SSD storage.</p>
+<p class="u-sv2"><a href="/kubernetes/docs/install-manual">Not what you’re looking for? See our other guides&nbsp;&rsaquo;</a></p>
+
+<ol class="p-stepped-list">
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Install LXD
+    </h4>
+    <div class="p-stepped-list__content">
+      <p><a href="https://linuxcontainers.org/">LXD</a> is a system container and VM hypervisor that allows you to create a local cloud. It can be installed via a snap package.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>sudo snap install lxd --classic</code></pre>
+      </div>
+      <p>Don’t have the snap command? <a href="https://docs.snapcraft.io/installing-snapd">Get set for snaps</a></p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Initialise LXD
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>LXD provides an interactive dialogue to configure your local cloud during the initialisation procedure:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>lxd init</code></pre>
+      </div>
+      <p>The init script itself may vary depending on the version of LXD. You can use most default options in the dialogue. The important configuration options for Charmed Kubernetes are:</p>
+      <ul class="p-list--ticked">
+        <li class="p-list__item">Networking: Do <strong>NOT</strong> enable ipv6 networking on the bridge interface</li>
+        <li class="p-list__item">Storage Pool: Use the ‘dir’ storage type</li>
+      </ul>
+      <p><a href="/kubernetes/docs/install-local#troubleshooting">Facing issues? Read the troubleshooting guide&nbsp;&rsaquo;</a></p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Install Juju
+    </h4>
+    <div class="p-stepped-list__content">
+      <p><a href="https://jaas.ai">Juju</a> is a tool for deploying, configuring and operating complex software on public or private clouds. It can be installed with a snap:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Add juju controller
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>The Juju controller is used to manage the software deployed through Juju, from deployment to upgrades to day-two operations. One Juju controller can manage multiple projects or workspaces, which in Juju are known as ‘models’.</p>
+      <p>Juju comes preconfigured to work with LXD. A cloud created by using LXD containers on the local machine is known as localhost to Juju. To begin, you need to create a Juju controller for this cloud:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju bootstrap localhost</code></pre>
+      </div>
+      <p>
+        <a href="https://jaas.ai/docs/clouds">Find out more about Clouds in Juju</a>
+      </p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Add a Kubernetes model
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>The model holds a specific deployment. It is a good idea to create a new one specifically for each deployment.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju add-model k8s</code></pre>
+      </div>
+      <p>Remember that you can have multiple models on each controller, so you can deploy multiple Kubernetes clusters or other applications.</p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Deploy Kubernetes
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Deploy the Kubernetes bundle to the model. This will add instances to the model and deploy the required applications. This can take up to 20 minutes depending on your machine.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju deploy charmed-kubernetes</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Monitor the deployment
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Juju is now busy creating instances, installing software and connecting the different parts of the cluster together, which can take several minutes. You can monitor what’s going on by running:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>watch -c juju status --color</code></pre>
+      </div>
+      <p>To view the last twenty log messages for the “k8s” model:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju debug-log -m k8s -n 20</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Start using your cluster!
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Congratulations! You have a Kubernetes cluster up and running - now let’s use it! The link below takes you to the operations guide, detailing some of the common things you’ll want to do next:</p>
+      <p>
+        <a href="/kubernetes/docs/operations">Get started with your new cluster&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </li>
+
+</ol>

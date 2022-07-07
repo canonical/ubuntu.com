@@ -1,0 +1,11 @@
+{% with
+  title="Charmed OpenStack Docs",
+  query=query,
+  results=results,
+  search_action="/openstack/docs/search",
+  siteSearch="https://ubuntu.com/openstack/docs",
+  placeholder="Search on Charmed OpenStack Docs",
+  forum_link="https://discourse.ubuntu.com/c/openstack/73"
+%}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}

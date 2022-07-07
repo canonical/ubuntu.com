@@ -6,39 +6,78 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <div class="js-formfield">
-        <h3 class="p-heading--five">Where would you like to go faster?</h3>
+        <h3 class="p-heading--5">Where would you like to go faster?</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-would-you-like-infrastructure">
-            <label for="where-would-you-like-infrastructure">Infrastructure</label>
-            <input type="checkbox" id="where-would-you-like-applications">
-            <label for="where-would-you-like-applications">Applications</label>
-            <input type="checkbox" id="where-would-you-like-development">
-            <label for="where-would-you-like-development">Development</label>
-            <input type="checkbox" id="where-would-you-like-operations">
-            <label for="where-would-you-like-operations">Operations</label>
-            <input type="checkbox" id="where-would-you-like-managed-services">
-            <label for="where-would-you-like-managed-services">Managed services</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-infrastructure" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-infrastructure">Infrastructure</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-applications" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-applications">Applications</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-development" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-development">Development</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-operations" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-operations">Operations</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-managed-services" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-managed-services">Managed services</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-would-you-like-multi-cloud">
-            <label for="where-would-you-like-multi-cloud">Multi cloud</label>
-            <input type="checkbox" id="where-would-you-like-on-premises">
-            <label for="where-would-you-like-on-premises">On premises</label>
-            <input type="checkbox" id="where-would-you-like-edge">
-            <label for="where-would-you-like-edge">Edge</label>
-            <input type="checkbox" id="where-would-you-like-hpc">
-            <label for="where-would-you-like-hpc">HPC</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-multi-cloud" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-multi-cloud">Multi cloud</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-on-premises" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-on-premises">On premises</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-edge" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-edge">Edge</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-hpc" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-hpc">HPC</span>
+            </label>
+            
           </div>
           <div class="col-4 u-sv3">
-            <input type="checkbox" id="where-would-you-like-servers">
-            <label for="where-would-you-like-servers">Servers</label>
-            <input type="checkbox" id="where-would-you-like-virtual-machines">
-            <label for="where-would-you-like-virtual-machines">Virtual machines</label>
-            <input type="checkbox" id="where-would-you-like-desktops">
-            <label for="where-would-you-like-desktops">Desktops</label>
-            <input type="checkbox" id="where-would-you-like-appliances">
-            <label for="where-would-you-like-appliances">Appliances</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-servers" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-servers">Servers</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-virtual-machines" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-virtual-machines">Virtual machines</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-desktops" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-desktops">Desktops</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="where-would-you-like-appliances" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="where-would-you-like-appliances">Appliances</span>
+            </label>
+            
           </div>
         </div>
       </div>
@@ -46,182 +85,294 @@
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--2 u-hide">
       <div class="js-formfield">
-        <h3 class="p-heading--five">Should we bring a particular expert to the discussion?</h3>
+        <h3 class="p-heading--5">Should we bring a particular expert to the discussion?</h3>
         <div class="row u-no-padding">
           <div class="col-3 u-sv3">
-            <input type="checkbox" id="expert-to-the-discussion-Kubernetes">
-            <label for="expert-to-the-discussion-Kubernetes">Kubernetes</label>
-            <input type="checkbox" id="expert-to-the-discussion-Openstack">
-            <label for="expert-to-the-discussion-Openstack">Openstack</label>
-            <input type="checkbox" id="expert-to-the-discussion-Kernel">
-            <label for="expert-to-the-discussion-Kernel">Kernel</label>
-            <input type="checkbox" id="expert-to-the-discussion-DevSecOps">
-            <label for="expert-to-the-discussion-DevSecOps">DevSecOps</label>
-            <input type="checkbox" id="expert-to-the-discussion-High-availability">
-            <label for="expert-to-the-discussion-High-availability">High availability</label>
-            <input type="checkbox" id="expert-to-the-discussion-Service-catalog">
-            <label for="expert-to-the-discussion-Service-catalog">Service catalog</label>
-            <input type="checkbox" id="expert-to-the-discussion-Scale">
-            <label for="expert-to-the-discussion-Scale">Scale</label>
-            <input type="checkbox" id="expert-to-the-discussion-Performance">
-            <label for="expert-to-the-discussion-Performance">Performance</label>
-            <input type="checkbox" id="expert-to-the-discussion-VMware">
-            <label for="expert-to-the-discussion-VMware">VMware</label>
-            <input type="checkbox" id="expert-to-the-discussion-Docker">
-            <label for="expert-to-the-discussion-Docker">Docker</label>
-            <input type="checkbox" id="expert-to-the-discussion-Snaps">
-            <label for="expert-to-the-discussion-Snaps">Snaps</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Kubernetes" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Kubernetes">Kubernetes</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Openstack" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Openstack">Openstack</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Kernel" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Kernel">Kernel</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-DevSecOps" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-DevSecOps">DevSecOps</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-High-availability" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-High-availability">High availability</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Service-catalog" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Service-catalog">Service catalog</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Scale" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Scale">Scale</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Performance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Performance">Performance</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-VMware" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-VMware">VMware</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Docker" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Docker">Docker</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Snaps" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Snaps">Snaps</span>
+            </label>
+            
           </div>
           <div class="col-3 u-sv3">
-            <input type="checkbox" id="expert-to-the-discussion-Storage">
-            <label for="expert-to-the-discussion-Storage">Storage</label>
-            <input type="checkbox" id="expert-to-the-discussion-Networking">
-            <label for="expert-to-the-discussion-Networking">Networking</label>
-            <input type="checkbox" id="expert-to-the-discussion-Databases">
-            <label for="expert-to-the-discussion-Databases">Databases</label>
-            <input type="checkbox" id="expert-to-the-discussion-Message-queues">
-            <label for="expert-to-the-discussion-Message-queues">Message queues</label>
-            <input type="checkbox" id="expert-to-the-discussion-Web-applications">
-            <label for="expert-to-the-discussion-Web-applications">Web applications</label>
-            <input type="checkbox" id="expert-to-the-discussion-Big-data">
-            <label for="expert-to-the-discussion-Big-data">Big data</label>
-            <input type="checkbox" id="expert-to-the-discussion-Event-streams">
-            <label for="expert-to-the-discussion-Event-streams">Event streams</label>
-            <input type="checkbox" id="expert-to-the-discussion-Logging">
-            <label for="expert-to-the-discussion-Logging">Logging</label>
-            <input type="checkbox" id="expert-to-the-discussion-Monitoring">
-            <label for="expert-to-the-discussion-Monitoring">Monitoring</label>
-            <input type="checkbox" id="expert-to-the-discussion-Alerting">
-            <label for="expert-to-the-discussion-Alerting">Alerting</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Storage" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Storage">Storage</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Networking" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Networking">Networking</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Databases" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Databases">Databases</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Message-queues" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Message-queues">Message queues</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Web-applications" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Web-applications">Web applications</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Big-data" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Big-data">Big data</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Event-streams" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Event-streams">Event streams</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Logging" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Logging">Logging</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Monitoring" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Monitoring">Monitoring</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Alerting" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Alerting">Alerting</span>
+            </label>
+            
           </div>
           <div class="col-3 u-sv3">
-            <input type="checkbox" id="expert-to-the-discussion-AI-ML">
-            <label for="expert-to-the-discussion-AI-ML">AI / ML</label>
-            <input type="checkbox" id="expert-to-the-discussion-Tensorflow">
-            <label for="expert-to-the-discussion-Tensorflow">Tensorflow</label>
-            <input type="checkbox" id="expert-to-the-discussion-Kubeflow">
-            <label for="expert-to-the-discussion-Kubeflow">Kubeflow</label>
-            <input type="checkbox" id="expert-to-the-discussion-PyTorch">
-            <label for="expert-to-the-discussion-PyTorch">PyTorch</label>
-            <input type="checkbox" id="expert-to-the-discussion-NumPy">
-            <label for="expert-to-the-discussion-NumPy">NumPy</label>
-            <input type="checkbox" id="expert-to-the-discussion-ElasticSearch">
-            <label for="expert-to-the-discussion-ElasticSearch">ElasticSearch</label>
-            <input type="checkbox" id="expert-to-the-discussion-Kafka">
-            <label for="expert-to-the-discussion-Kafka">Kafka</label>
-            <input type="checkbox" id="expert-to-the-discussion-Graylog">
-            <label for="expert-to-the-discussion-Graylog">Graylog</label>
-            <input type="checkbox" id="expert-to-the-discussion-Ceph">
-            <label for="expert-to-the-discussion-Ceph">Ceph</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-AI-ML" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-AI-ML">AI / ML</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Tensorflow" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Tensorflow">Tensorflow</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Kubeflow" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Kubeflow">Kubeflow</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-PyTorch" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-PyTorch">PyTorch</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-NumPy" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-NumPy">NumPy</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-ElasticSearch" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-ElasticSearch">ElasticSearch</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Kafka" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Kafka">Kafka</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Graylog" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Graylog">Graylog</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Ceph" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Ceph">Ceph</span>
+            </label>
+            
           </div>
           <div class="col-3 u-sv3">
-            <input type="checkbox" id="expert-to-the-discussion-Compliance">
-            <label for="expert-to-the-discussion-Compliance">Compliance</label>
-            <input type="checkbox" id="expert-to-the-discussion-Licensing">
-            <label for="expert-to-the-discussion-Licensing">Licensing</label>
-            <input type="checkbox" id="expert-to-the-discussion-PCI-DSS">
-            <label for="expert-to-the-discussion-PCI-DSS">PCI-DSS</label>
-            <input type="checkbox" id="expert-to-the-discussion-Outsourcing">
-            <label for="expert-to-the-discussion-Outsourcing">Outsourcing</label>
-            <input type="checkbox" id="expert-to-the-discussion-Orchestration">
-            <label for="expert-to-the-discussion-Orchestration">Orchestration</label>
-            <input type="checkbox" id="expert-to-the-discussion-Integration">
-            <label for="expert-to-the-discussion-Integration">Integration</label>
-            <input type="checkbox" id="expert-to-the-discussion-Packaging">
-            <label for="expert-to-the-discussion-Packaging">Packaging</label>
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Compliance" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Compliance">Compliance</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Licensing" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Licensing">Licensing</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-PCI-DSS" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-PCI-DSS">PCI-DSS</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Outsourcing" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Outsourcing">Outsourcing</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Orchestration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Orchestration">Orchestration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Integration" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Integration">Integration</span>
+            </label>
+            
+            <label class="p-checkbox">
+              <input type="checkbox" aria-labelledby="expert-to-the-discussion-Packaging" class="p-checkbox__input">
+              <span class="p-checkbox__label" id="expert-to-the-discussion-Packaging">Packaging</span>
+            </label>
+            
           </div>
         </div>
       </div>
       <div class="u-sv3 js-formfield">
-        <h3 class="p-heading--five">Tell us about your project or interest</h3>
+        <h3 class="p-heading--5">Tell us about your project or interest</h3>
         <textarea id="about-your-project-or-interest" name="sector-specific-requirements" aria-label="Tell us about your project or interest" rows="3"></textarea>
       </div>
       <div class="pagination">
-        <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
+        <a class="pagination__link--previous p-button" href="">Previous</a>
         <a class="p-button--positive pagination__link--next" href="">Next</a>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--3 u-hide">
-      <h3 class="p-heading--five">How should we get in touch?</h3>
+      <h3 class="p-heading--5">How should we get in touch?</h3>
       <div class="row u-no-padding">
         <div class="col-6">
-          <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_%% formid %%" class="modal-form marketo-form">
+          <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
             <ul class="p-list">
-              <li class="mktFormReq mktField p-list__item">
-                <label for="FirstName" class="mktoLabel">First name:</label>
-                <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              <li class="p-list__item">
+                <label for="firstName">First name:</label>
+                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
               </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="LastName" class="mktoLabel">Last name:</label>
-                <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" required="required" />
+              <li class="p-list__item">
+                <label for="lastName">Last name:</label>
+                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
               </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="Email" class="mktoLabel">Work email:</label>
-                <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" required="required" />
+              <li class="p-list__item">
+                <label for="email">Work email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
-              <li class="mktFormReq mktField p-list__item">
-                <label for="Phone" class="mktoLabel ">Mobile/cell phone number:</label>
-                <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" required="required" />
+              <li class="p-list__item">
+                <label for="phone">Mobile/cell phone number:</label>
+                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
-              <li class="mktField p-list__item">
-                <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</label>
+              <li class="p-list__item">
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                  <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              <li class="p-list__item">
-                <div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}" style="margin: 2rem 0;"></div>
+              {# These are honey pot fields to catch bots #}
+              <li class="u-off-screen">
+                <label class="website" for="website">Website:</label>
+                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
               </li>
+              <li class="u-off-screen">
+                <label class="name" for="name">Name:</label>
+                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+              </li>
+              {# End of honey pots #}
             </ul>
-
+            
             <div class="u-hide">
               <h3>Your comments</h3>
               <ul class="p-list">
-                <li class="mktFormReq mktField p-list__item">
-                  <label for="Comments_from_lead__c" class="mktoLabel">What would you like to talk to us about?</label>
-                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" class="mktoField" maxlength="2000"></textarea>
+                <li class="p-list__item">
+                  <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                  <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
                 </li>
               </ul>
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formValidation" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" class="mktoField" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formVid" class="mktoField" value="%% formid %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpId" class="mktoField" value="%% lpId %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="subId" class="mktoField" value="30" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="munchkinId" class="mktoField" value="066-EOV-335" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="lpurl" class="mktoField" value="%% lpurl %%?cr={creative}&amp;kw={keyword}" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="cr" class="mktoField" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="kw" class="mktoField" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="q" class="mktoField" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="retURL" value="%% returnURL %%" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" class="mktoField" id="utm_campaign" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" class="mktoField" id="utm_medium" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" class="mktoField" id="utm_source" value="" />
-              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="gclid" class="mktoField" id="gclid" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+              <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
             </div>
-
+            
             <div class="pagination">
-              <a class="pagination__link--previous p-button--neutral" href="">Previous</a>
-              <button type="submit" class="pagination__link--next p-button--positive mktoButton" aria-label="Submit">Let's discuss</button>
+              <a class="pagination__link--previous p-button" href="">Previous</a>
+              <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
             </div>
           </form>
         </div>
       </div>
     </div>
-
+    
     <div class="js-pagination js-pagination--4 u-hide">
       <div class="row u-no-padding">
         <div class="u-equal-height">
           <div class="col-7">
-            <h3 class="p-heading--two">Thank you for enquiring about Ubuntu Advantage</h3>
-            <p class="p-heading--four">A member of our team will be in touch within one working day.</p>
+            <h3 class="p-heading--2">Thank you for enquiring about Ubuntu Advantage</h3>
+            <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
           </div>
-          <div class="col-5 u-vertically-center u-align--center u-hide--small">
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
             {{
               image(
               url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
@@ -235,7 +386,7 @@
           </div>
         </div>
       </div>
-      <a class="js-close p-button--neutral" href="">Close</a>
+      <a class="js-close p-button" href="">Close</a>
     </div>
   </div>
 </div>

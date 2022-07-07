@@ -1,0 +1,108 @@
+<p>These instructions represent the complete set of commands you need to enter into your terminal to install Charmed Kubernetes on AWS.</p>
+<p class="u-sv2"><a href="/kubernetes/docs/install-manual">Not using AWS? See our other guides&nbsp;&rsaquo;</a></p>
+
+<ol class="p-stepped-list">
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Install Juju
+    </h4>
+    <div class="p-stepped-list__content">
+      <p><a href="https://jaas.ai">Juju</a> is a tool for deploying, configuring and operating complex software on public or private clouds. It can be installed with a snap:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Find your cloud
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Juju has baked-in knowledge of many public clouds such as AWS, Azure and Google. You can see which ones are ready to use by running this command:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju clouds</code></pre>
+      </div>
+      <p><a href="https://jaas.ai/docs/clouds">Find out more about Clouds in Juju</a></p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Add cloud credentials
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Most clouds require credentials so that the cloud knows which operations are authorised, so you will need to supply these for Juju. The command `add-credentials` offers a simple step-by-step wizard to connect Juju to your cloud. Other options are available <a href="https://juju.is/docs/aws-cloud">here</a>.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju add-credential aws</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Add juju controller
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>The Juju controller is used to manage the software deployed through Juju, from deployment to upgrades to day-two operations. One Juju controller can manage multiple projects or workspaces, which in Juju are known as ‘models’.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju bootstrap aws my-controller</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Add a Kubernetes model
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>The model holds a specific deployment. It is a good idea to create a new one specifically for each deployment.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju add-model k8s</code></pre>
+      </div>
+      <p>Remember that you can have multiple models on each controller, so you can deploy multiple Kubernetes clusters or other applications.</p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Deploy Kubernetes
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Deploy the Kubernetes bundle to the model. This will add instances to the model and deploy the required applications. This can take up to 20 minutes depending on your machine.</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju deploy charmed-kubernetes</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Monitor the deployment
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Juju is now busy creating instances, installing software and connecting the different parts of the cluster together, which can take several minutes. You can monitor what’s going on by running:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>watch -c juju status --color</code></pre>
+      </div>
+      <p>To view the last twenty log messages for the “k8s” model:</p>
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>juju debug-log -m k8s -n 20</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Start using your cluster!
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Congratulations! You have a Kubernetes cluster up and running - now let’s use it! The link below takes you to the operations guide, detailing some of the common things you’ll want to do next:</p>
+      <p>
+        <a href="/kubernetes/docs/operations">Get started with your new cluster&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </li>
+
+</ol>

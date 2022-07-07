@@ -1,0 +1,48 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Certified desktops{% endblock %}
+{% block meta_description %}Ubuntu certifies thousands of desktops to guarantee they work well with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1OWoADcvZ-KQX-BzsCS--pvs9_pY3E-Lb8Ba6a-T-AZ8/edit{% endblock %}
+
+{% block outer_content %}
+
+<section class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width">
+    <a href="/certified?q=">&lsaquo; Certified hardware</a>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu certified desktops</h1>
+      <p>Many of the world’s biggest PC manufacturers certify their desktops for Ubuntu.</p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+        alt="",
+        width="126",
+        height="82",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% with
+  title="All certified desktops",
+  query=query,
+  placeholder="Search in certified desktops",
+  total_results=total_results,
+  total_pages=total_pages,
+  offset=offset,
+  limit=limit,
+  vendor_filters=vendor_filters,
+  release_filters=release_filters,
+  results=results
+%}
+  {% include "certified/shared/category-search-results.html" %}
+{% endwith %}
+
+{% endblock %}

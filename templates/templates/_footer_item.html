@@ -1,7 +1,3 @@
-{% if section.children|length < 3 %}
-<li class="p-footer-list--margin p-footer-list-single-child">
-  <a class="p-link--soft" href="{{ section.path }}">{{ section.title }}</a>
-{% else %}
 <li class="p-footer__item">
   <h2 class="p-footer__title">
     <a class="p-link--soft" href="{{ section.path }}">{{ section.title }}</a>
@@ -11,10 +7,9 @@
     {% for child in section.children %}
       {% if child.title != 'Overview' %}
       {% if not child.hidden %}
-        <li class="p-footer-list--margin"><a href="{{ child.path }}">{{ child.title }}</a></li>
+        <li><a href="{{ child.path }}">{{ child.title }}</a></li>
       {% endif %}
       {% endif %}
     {% endfor %}
   </ul>
-  {% endif %}
 </li>

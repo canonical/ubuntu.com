@@ -7,9 +7,14 @@
 {% block meta_description %}{{document['metadata']['subtitle']}}{% endblock %}
 {% block meta_image %}{{document['metadata']['meta_image']}}{% endblock %}
 
-{% block head_extra%}
+{% block head_extra %}
   {% if 'active' in document['metadata'] and document['metadata']['active'] == "false" %}
     <meta name="robots" content="nofollow" />
+  {% endif %}
+
+  {# This is a hack to indicate to crawls to not index this page #}
+  {% if document['metadata']['path'] == "/engage/ShellOnboarding" %}
+    <meta name="robots" content="noindex, nofollow" />
   {% endif %}
 {% endblock %}
 
@@ -17,6 +22,7 @@
 
 {% block content %}
 
+<span id="publish_date" class="u-hide">{{document["metadata"]["publish_date"]}}</span>
 <section class="p-strip p-engage-banner--{{document['metadata']['banner_class']}}">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">
@@ -48,9 +54,9 @@
   </div>
   <div class="row">
     <div class="col-7 u-vertically-center">
-      <h1>{{document["title"]}}</h1>
-      <p class="u-no-padding--top p-heading--four">
-        {{document['metadata']['subtitle']}}
+      <h1>{{ document["title"] }}</h1>
+      <p class="u-no-padding--top p-heading--4">
+        {{ document['metadata']['subtitle'] }}
       </p>
       {% if ("primary_cta" in document["metadata"]) and (document["metadata"]["primary_cta"] != "") %}
       <p class="{% if 'secondary_cta' not in document['metadata'] %}u-hide--large{% endif %}">
@@ -58,7 +64,7 @@
             {{ document["metadata"]["primary_cta"] }}
           </a>
         {% if ("secondary_cta" in document['metadata']) and (document["metadata"]["primary_cta"] != "") %}
-          <a href="{{ document['metadata']['secondary_link'] }}" class="p-button--neutral">
+          <a href="{{ document['metadata']['secondary_link'] }}" class="p-button">
             {{document['metadata']['secondary_cta']}}
           </a>
         {% endif %}
@@ -77,9 +83,9 @@
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
-    <div class="{% if document['metadata']['form_id'] != '' %}col-7{% else %}col-8{% endif %}">
+    <div class="{% if 'form_id' in document['metadata'] and document['metadata']['form_id'] != '' %}col-7{% else %}col-12{% endif %}">
       {% for text in document["body_html"] %}
-      {{ text | safe }}
+        {{ text | safe }}
       {% endfor %}
     </div>
     {% if "form_id" in document["metadata"] and document["metadata"]["form_id"] != "" %}
@@ -109,13 +115,12 @@
       {% endif %}
 
     </div>
-    <script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer></script>
     {% endif %}
   </div>
 
 </section>
 
-{% if document["metadata"]["webinar_code"] != "" %}
+{% if document["metadata"]["webinar_code"] is defined %}
 {% if "channel_id" in document["metadata"] %}
   {% set channel_id = document["metadata"]["channel_id"] %}
 {% else %}
@@ -137,6 +142,15 @@
 <section class="p-strip is-shallow" id="youtube-section">
   <div class="row" id="webinar">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ document['metadata']['youtube_id'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+</section>
+{% endif %}
+
+{% if "vimeo_id" in document["metadata"] %}
+<!-- Vimeo webinars -->
+<section class="p-strip is-shallow" id="vimeo-section">
+  <div class="row" id="webinar">
+    <iframe src="https://player.vimeo.com/video/{{ document['metadata']['vimeo_id'] }}" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}

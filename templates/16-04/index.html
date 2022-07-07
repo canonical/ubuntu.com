@@ -1,0 +1,320 @@
+{% extends "16-04/base_16-04.html" %}
+
+{% block title %}Ubuntu 16.04 LTS (Xenial Xerus) {% endblock %}
+{% block meta_description %}Ubuntu 16.04 LTS (Xenial Xerus) entered the Extended Security Maintenance (ESM) period on 30 April 2021. ESM provides Ubuntu 16.04 LTS continued support and coverage beyond EOL with security patches for an additional five years.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1wclofqY9b3v_M9igpkYn6or5uXx0B_Xb_nVVzGBbOLY/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h1>Ubuntu 16.04 LTS <br class="u-hide--small">(Xenial Xerus)</h1>
+      <p>Ubuntu 16.04 LTS (Xenial Xerus) was released on 21 April 2016 and introduced us to snaps, a more secure app format, with faster and simpler updates, as well as LXD, the pure-container hypervisor and OpenStack Mitaka. </p>
+      <h2 class="p-heading--4">Is Ubuntu 16.04 LTS still supported?</h2>
+      <p class="u-sv2">Yes, Ubuntu 16.04 LTS is supported until 2026 through Canonical’s Extended Security Maintenance (ESM) product. Xenial entered the ESM period in April 2021, with security patches for five additional years, beyond the five years of standard support.</p>
+      <p>
+        <a href="/advantage" class="p-button--positive">Get started with ESM for Ubuntu 16.04 LTS</a>
+      </p>
+      <p>
+        <a href="#esm-public-cloud">Learn more about ESM on public clouds&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/41cb88c9-xerus_orange_hex.svg",
+        alt="",
+        width="200",
+        height="203",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+      <div style="margin: auto; width: 70%;">
+        <hr class="p-separator u-no-margin--bottom"/>
+        <p class="p-muted-heading hero-muted-heading">out of standard support, <br> upgrade to esm support</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
+  {% include "16-04/_release-chart-1604.html" %}
+</section>
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-12">
+      <h2>Ubuntu 16.04 LTS security updates</h2>
+      <p>The Ubuntu Security Team continues its dedication to providing security updates for Ubuntu 16.04 LTS beyond the five-year standard support with Extended Security Maintenance (ESM).</p>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 1rem">
+    <div class="col-4 u-sv3">
+      <span style="font-size: 3rem; line-height: 4rem">{{ notices_since_esm }}</span>
+      <hr>
+      <span class="p-muted-heading">USNS ISSUED<sup><a href="#os-footnote">*</a></sup></span>
+    </div>
+    <div class="col-4">
+      <!-- Hardcoded for now until this issue is fixed https://github.com/canonical-web-and-design/ubuntu-com-security-api/issues/56 -->
+      <span style="font-size: 3rem; line-height: 4rem">343</span>
+      <hr>
+      <span class="p-muted-heading">CVES ADDRESSED<sup><a href="#os-footnote">*</a></sup></span>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p id="os-footnote"><small>* Since the start of the ESM phase</small></p>
+  </div>
+  <div class="row" id="notice-feed" style="margin-top: 3rem">
+    {% for notice in latest_notices %}
+    <hr>
+    <div class="col-6">
+      <strong><span><a href="/security/notices/{{ notice.id }}">{{ notice.title }}</a></span></strong><br>
+      <span class="p-muted-heading">{{ notice.date }}</span><br><br>
+    </div>
+    <div class="col-6">
+      <p>{{ notice.summary }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="row" style="margin-top: 2rem">
+    <a href="/security/notices?release=xenial">View the full list&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-6">
+      <h2>Ubuntu 16.04 LTS Extended Security Maintenance (ESM)</h2>
+      <h3>What is Ubuntu ESM?</h3>
+      <p><a href="/security/esm">Extended Security Maintenance</a> (ESM) provides extended Linux kernel and open-source security updates for the Ubuntu base OS, key infrastructure components, like Ceph, OpenStack and Kubernetes, as well as open-source applications, like PostgreSQL and NGINX.</p>
+      <p>ESM is available for free on up to three machines and for broader enterprise use through an Ubuntu Advantage subscription. The subscription includes additional services such as FIPS-compliant modules and the Ubuntu Livepatch Service to apply critical kernel patches without unplanned downtime.</p>
+      <p>
+        <a href="/security/livepatch">Learn more about Ubuntu Livepatch&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/69d31769-updates-security-maintenance.svg",
+        alt="",
+        width="190",
+        height="190",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator"/>
+  </div>
+
+  <div class="row">
+    <div class="col-8">
+      <h3>
+        What is covered by Ubuntu 16.04 ESM?
+      </h3>
+      <p>
+        Standard Security Maintenance of an Ubuntu LTS release covers binary packages that reside in the 'main' Ubuntu repository for a period of five years. For continued security beyond the standard five-year maintenance period, Canonical provides security maintenance to a wide range of binary packages that are commonly used in cloud and server workloads on 64-bit x86 AMD/Intel architectures for a period of five years beyond the normal end of life.
+      </p>
+      <h4>
+        Supported kernels
+      </h4>
+      <p>
+        For continued Linux kernel security, ESM for Ubuntu 16.04 LTS includes support for amd64 (AMD/Intel kernels).
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h4>
+        Application packages
+      </h4>
+      <p>
+        Canonical provides application extended security maintenance to the binary packages that reside in main. A few commonly-used packages include:
+      </p>
+
+      <table class="p-table--mobile-card" aria-label="Application packages table">
+        <thead>
+          <tr>
+            <th>Application</th>
+            <th class="u-align--right">16.04 LTS version</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-heading="Application">MySQL</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">5.7</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">Python</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">2.7</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">PostgreSQL</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">9.5</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">Ruby</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">2.3</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">nodejs</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">4.2.6</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">Elasticsearch</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">1.7</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">PHP</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">7.0</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">NGINX</td>
+            <td data-heading="16.04 LTS version" class="u-align--right">1.10</td>
+          </tr>
+          <tr>
+            <td data-heading="Application">ROS</td>
+            <td data-heading="ROS version" class="u-align--right">Kinetic</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>
+        Infrastructure packages
+      </h4>
+      <p>
+        For Ubuntu 16.04 LTS, where technically feasible, Canonical provides extended security maintenance to all binary packages that reside in the Ubuntu Main Repository.
+      </p>
+      <p>
+        OpenStack Mitaka packages are supported in Ubuntu 16.04 ESM for those with an Ubuntu Advantage for Infrastructure subscription.
+      </p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+
+  <div id="esm-public-cloud" class="row">
+    <div class="col-4">
+      <h3 class="p-heading--4">How can I get ESM for Ubuntu 16.04 LTS on a Public Cloud?</h3>
+      <p>ESM for Ubuntu 16.04 LTS is available for free for personal use on up to three machines, or through paid subscriptions on the public cloud with Ubuntu Pro premium images.</p>
+      <p>
+        Ubuntu Pro on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">GCP</a>
+      </p>
+    </div>
+    <div class="col-4">
+      <h3 class="p-heading--4">How can I get ESM for Ubuntu 16.04 LTS on-premises?</h3>
+      <p>ESM for Ubuntu 16.04 LTS is available,  free for personal use (you need to set up an UbuntuOne account) on up to three machines or through an <a href="/advantage">Ubuntu Advantage subscription</a>.</p>
+    </div>
+    <div class="col-4">
+      <h3 class="p-heading--4">I have a UA subscription, how do I activate ESM?</h3>
+      <p>If you have an Ubuntu Advantage subscription, log into <a href="https://ubuntu.com/advantage">ubuntu.com/advantage</a> to get your activation token and activate ESM on your machines directly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru-accent">
+  <div class="u-fixed-width">
+    <h2>Download Ubuntu 16.04 LTS</h2>
+    <p>Download options:</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <p class="p-heading--4"><a href="https://cloud-images.ubuntu.com/locator/" class="p-link--inverted">Ubuntu cloud image finder</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <p class="p-heading--4"><a href="https://releases.ubuntu.com/xenial/" class="p-link--inverted">releases.ubuntu</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <p class="p-heading--4"><a href="#" class="p-link--inverted">Install journeys</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h3 class="p-heading--4">Upgrading to Ubuntu 18.04 LTS, Ubuntu 20.04 LTS</h3>
+      <p>You might want to consider upgrading to a new LTS release, you can either upgrade to Ubuntu 18.04 LTS or freshly install Ubuntu 20.04 LTS.  There is no direct upgrade path from 16.04 LTS to Ubuntu 20.04 LTS, so you can either move to Ubuntu 18.04 LTS and then to Ubuntu 20.04 LTS, or directly install Ubuntu 20.04 LTS.</p>
+      <p><a href="/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a></p>
+      <p><a href="/tutorials/upgrading-ubuntu-desktop#1-before-you-start">Ubuntu Desktop upgrade guide&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--4">Upgrading Ubuntu 16.04 LTS on Azure, AWS</h3>
+      <p>If you are looking to upgrade your Ubuntu 16.04 LTS public cloud instance, it is recommended to launch new, Ubuntu Pro images. Ubuntu Pro for <a href="/azure/pro">Azure</a> and <a href="/aws/pro">AWS</a> are premium images with security and compliance features built-in, and optimised for the public cloud.</p>
+      <p>Ubuntu Pro includes security coverage for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. Ideal for companies that have embraced open source for their new products.</p>
+      <p><a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps/canonical.0001-com-ubuntu-pro-xenial">Launch Ubuntu Pro 16.04 LTS on Azure</a></p>
+      <p><a href="https://aws.amazon.com/marketplace/pp/B0821WW873">Launch Ubuntu Pro 16.04 LTS on AWS</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>Watch the 20.04 migration webinar</h2>
+      <p>This webinar explores all of the factors that should be taken into account to deliver successful migration at the right pace, covering the most popular infrastructure components such as OpenStack, Kubernetes and Ceph.</p>
+      <p>
+        <a href="/engage/migrating-to-20.04" class="p-button--positive">Watch the webinar</a>
+      </p>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5dd8cd3b-migrating-infrastructure-ubuntu-20.png",
+        alt="",
+        width="1275",
+        height="569",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>Ubuntu 16.04 LTS kernel lifecycle and enablement stack</h2>
+      <p>The Ubuntu LTS enablement, or Hardware Enablement (HWE), stacks provide the newer kernel and X.Org support for existing Ubuntu LTS releases. These stacks can be installed manually, but are also installed with an Ubuntu LTS point release.</p>
+      <p>The 16.04.2 and newer point releases ship with an updated kernel and X.Org stack by default for the desktop. Server installations default to the General Availability (GA) kernel and provide the enablement kernel as optional.</p>
+      <p>Ubuntu 16.04 ESM includes support for v4.4 and v4.15 based generic, low-latency, hwe-16.04, aws and azure Linux kernel flavours.</p>
+    </div>
+    <div class="col-6 u-vertically-center">
+      <div class="p-code-snippet">
+        <h3 class="p-heading--5">Installing the Ubuntu 16.04 LTS HWE stack:</h3>
+        <div class="p-code-snippet__header">
+          <h5 class="p-code-snippet__title">Desktop:</h5>
+        </div>
+
+        <pre class="p-code-snippet__block"><code>sudo apt-get install --install-recommends linux-generic-
+          hwe-16.04 xserver-xorg-hwe-16.04</code></pre>
+
+          <div class="p-code-snippet__header">
+            <h5 class="p-code-snippet__title">Server:</h5>
+          </div>
+
+          <pre class="p-code-snippet__block"><code>sudo apt-get install --install-recommends linux-generic-
+            hwe-16.04</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {% with section_classes='p-strip is-bordered', heading_topic='Ubuntu 16.04 LTS', tag_name='ubuntu-16-04', tag_id='2563', limit='4' %}
+    {% include "shared/_latest_news_strip.html" %}
+    {% endwith %}
+
+    <style>
+      .hero-muted-heading {
+        line-height: 1.5;
+        padding-top: 0.5rem;
+        text-align: left;
+      }
+    </style>
+
+    {% endblock content %}

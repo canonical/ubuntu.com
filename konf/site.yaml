@@ -18,6 +18,16 @@ env:
       key: google-custom-search-key
       name: google-api
 
+  - name: DISCOURSE_API_KEY
+    secretKeyRef:
+      key: ubuntu-api-key
+      name: discourse-api
+
+  - name: DISCOURSE_API_USERNAME
+    secretKeyRef:
+      key: ubuntu-api-username
+      name: discourse-api
+
   - name: LAUNCHPAD_IMAGE_BUILD_USER
     secretKeyRef:
       key: user
@@ -37,6 +47,19 @@ env:
     secretKeyRef:
       key: auth-consumer
       name: launchpad-imagebuild
+
+  - name: MARKETO_API_CLIENT
+    secretKeyRef:
+      key: api_client
+      name: marketo
+
+  - name: MARKETO_API_SECRET
+    secretKeyRef:
+      key: api_secret
+      name: marketo
+
+  - name: SENTRY_DSN
+    value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
   - name: BADGR_URL
     value: https://api.eu.badgr.io
@@ -64,8 +87,17 @@ env:
       key: client-secret
       name: cube-edx
 
-  - name: SENTRY_DSN
-    value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+  - name: BADGR_ISSUER
+    value: eTedPNzMTuqy1SMWJ05UbA
+
+  - name: CERTIFIED_BADGE
+    value: hs8gVorCRgyO2mNUfeXaLw
+
+  - name: CONTRACTS_API_URL
+    value: https://contracts.canonical.com/
+
+  - name: STRIPE_PUBLISHABLE_KEY
+    value: pk_live_68aXqowUeX574aGsVck8eiIE
 
 memoryLimit: 512Mi
 
@@ -87,10 +119,13 @@ extraHosts:
   - domain: developer.ubuntu.com
   - domain: buy.ubuntu.com
   - domain: core.docs.ubuntu.com
+  - domain: certification.ubuntu.com
+  - domain: security-certs.docs.ubuntu.com
+  - domain: usn.ubuntu.com
 
 # Overrides for production
 production:
-  replicas: 5
+  replicas: 9
 
   routes:
     - paths: [/blog]
@@ -159,6 +194,18 @@ production:
             key: client-secret
             name: cube-edx
 
+        - name: BADGR_ISSUER
+          value: eTedPNzMTuqy1SMWJ05UbA
+
+        - name: CERTIFIED_BADGE
+          value: hs8gVorCRgyO2mNUfeXaLw
+
+        - name: CONTRACTS_API_URL
+          value: https://contracts.canonical.com/
+
+        - name: STRIPE_PUBLISHABLE_KEY
+          value: pk_live_68aXqowUeX574aGsVck8eiIE
+
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
@@ -176,11 +223,117 @@ production:
             key: google-custom-search-key
             name: google-api
 
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/api/.*]
+    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
+      name: ubuntu-com-discourse
+      app_name: ubuntu.com-discourse
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 5
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
+
+    - paths: [/security]
+      name: ubuntu-com-security
+      app_name: ubuntu.com-security
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 3
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
+
+    - paths: [/advantage, /account]
+      name: ubuntu-com-advantage
+      app_name: ubuntu.com-advantage
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 3
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
+
+        - name: CONTRACTS_API_URL
+          value: https://contracts.canonical.com/
+
+        - name: STRIPE_PUBLISHABLE_KEY
+          value: pk_live_68aXqowUeX574aGsVck8eiIE
 
   nginxConfigurationSnippet: |
     if ($host = 'apps.ubuntu.com' ) {
@@ -222,8 +375,17 @@ production:
     if ($host = 'ubuntuserver.org' ) {
       rewrite ^ https://ubuntu.com/server$request_uri? permanent;
     }
+    if ($host = 'certification.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/certified$request_uri? permanent;
+    }
+    if ($host = 'usn.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/security/notices$request_uri? permanent;
+    }
     if ($host = 'core.docs.ubuntu.com' ) {
       rewrite ^(\/en)?(\/.*)$ https://ubuntu.com/core/docs$2? permanent;
+    }
+    if ($host = 'security-certs.docs.ubuntu.com' ) {
+      rewrite ^(\/en)?(\/.*)$ https://ubuntu.com/security/certifications/docs$2? permanent;
     }
     if ($host != 'ubuntu.com' ) {
       rewrite ^ https://ubuntu.com$request_uri? permanent;
@@ -231,6 +393,7 @@ production:
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
     }
+
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
@@ -240,10 +403,110 @@ production:
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
+    location ^~ /usn-db/ {
+      proxy_pass https://people.canonical.com/%7Eubuntu-security/usn/;
+    }
 
 # Overrides for staging
 staging:
   replicas: 3
+
+  env:
+    - name: STORE_MAINTENANCE
+      configMapKeyRef:
+        key: maintenance
+        name: ubuntu-com
+
+    - name: DATABASE_URL
+      secretKeyRef:
+        key: database_url
+        name: usn-db-url
+
+    - name: SEARCH_API_KEY
+      secretKeyRef:
+        key: google-custom-search-key
+        name: google-api
+
+    - name: DISCOURSE_API_KEY
+      secretKeyRef:
+        key: ubuntu-api-key
+        name: discourse-api
+
+    - name: DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: ubuntu-api-username
+        name: discourse-api
+
+    - name: LAUNCHPAD_IMAGE_BUILD_USER
+      secretKeyRef:
+        key: user
+        name: launchpad-imagebuild
+
+    - name: LAUNCHPAD_IMAGE_BUILD_TOKEN
+      secretKeyRef:
+        key: token
+        name: launchpad-imagebuild
+
+    - name: LAUNCHPAD_IMAGE_BUILD_SECRET
+      secretKeyRef:
+        key: secret
+        name: launchpad-imagebuild
+
+    - name: LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER
+      secretKeyRef:
+        key: auth-consumer
+        name: launchpad-imagebuild
+
+    - name: MARKETO_API_CLIENT
+      secretKeyRef:
+        key: api_client
+        name: marketo
+
+    - name: MARKETO_API_SECRET
+      secretKeyRef:
+        key: api_secret
+        name: marketo
+
+    - name: SENTRY_DSN
+      value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - name: BADGR_URL
+      value: https://api.test.badgr.com
+
+    - name: BAGDR_USER
+      secretKeyRef:
+        key: user
+        name: badgr
+
+    - name: BADGR_PASSWORD
+      secretKeyRef:
+        key: qa-password
+        name: badgr
+
+    - name: CUBE_EDX_URL
+      value: https://qa.cube.ubuntu.com
+
+    - name: CUBE_EDX_CLIENT_ID
+      secretKeyRef:
+        key: qa-client-id
+        name: cube-edx
+
+    - name: CUBE_EDX_CLIENT_SECRET
+      secretKeyRef:
+        key: qa-client-secret
+        name: cube-edx
+
+    - name: BADGR_ISSUER
+      value: 36ZEJnXdTjqobw93BJElog
+
+    - name: CERTIFIED_BADGE
+      value: x9kzmcNhSSyqYhZcQGz0qg
+
+    - name: CONTRACTS_API_URL
+      value: https://contracts.staging.canonical.com/
+
+    - name: STRIPE_PUBLISHABLE_KEY
+      value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
   routes:
     - paths: [/blog]
@@ -287,7 +550,7 @@ staging:
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
         - name: BADGR_URL
-          value: https://api.eu.badgr.io
+          value: https://api.test.badgr.com
 
         - name: BAGDR_USER
           secretKeyRef:
@@ -296,21 +559,38 @@ staging:
 
         - name: BADGR_PASSWORD
           secretKeyRef:
-            key: password
+            key: qa-password
             name: badgr
 
         - name: CUBE_EDX_URL
-          value: https://cube.ubuntu.com
+          value: https://qa.cube.ubuntu.com
+
+        - name: 
+          secretKeyRef:
+            key: qa-client-secret
+            name: cube-edx
 
         - name: CUBE_EDX_CLIENT_ID
           secretKeyRef:
-            key: client-id
+            key: qa-client-id
             name: cube-edx
 
         - name: CUBE_EDX_CLIENT_SECRET
           secretKeyRef:
-            key: client-secret
+            key: qa-client-secret
             name: cube-edx
+
+        - name: BADGR_ISSUER
+          value: 36ZEJnXdTjqobw93BJElog
+
+        - name: CERTIFIED_BADGE
+          value: x9kzmcNhSSyqYhZcQGz0qg
+
+        - name: CONTRACTS_API_URL
+          value: https://contracts.staging.canonical.com/
+
+        - name: STRIPE_PUBLISHABLE_KEY
+          value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -329,11 +609,117 @@ staging:
             key: google-custom-search-key
             name: google-api
 
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/api/.*]
+    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
+      name: ubuntu-com-discourse
+      app_name: ubuntu.com-discourse
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 3
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
       service_name: ubuntu-com-security-api
+
+    - paths: [/security]
+      name: ubuntu-com-security
+      app_name: ubuntu.com-security
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 2
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
+
+    - paths: [/advantage, /account]
+      name: ubuntu-com-advantage
+      app_name: ubuntu.com-advantage
+      image: prod-comms.docker-registry.canonical.com/ubuntu.com
+      replicas: 2
+      memoryLimit: 512Mi
+      env:
+        - name: DATABASE_URL
+          secretKeyRef:
+            key: database_url
+            name: usn-db-url
+
+        - name: SEARCH_API_KEY
+          secretKeyRef:
+            key: google-custom-search-key
+            name: google-api
+
+        - name: DISCOURSE_API_KEY
+          secretKeyRef:
+            key: ubuntu-api-key
+            name: discourse-api
+
+        - name: DISCOURSE_API_USERNAME
+          secretKeyRef:
+            key: ubuntu-api-username
+            name: discourse-api
+
+        - name: SENTRY_DSN
+          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
+
+        - name: CONTRACTS_API_URL
+          value: https://contracts.staging.canonical.com/
+
+        - name: STRIPE_PUBLISHABLE_KEY
+          value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
   nginxConfigurationSnippet: |
     if ($host = 'staging.cloud.ubuntu.com' ) {
@@ -348,8 +734,14 @@ staging:
     if ($host = 'insights.staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com/blog$request_uri? permanent;
     }
+    if ($host = 'certification.staging.ubuntu.com' ) {
+      rewrite ^ https://staging.ubuntu.com/certified$request_uri? permanent;
+    }
     if ($host = 'core.docs.staging.ubuntu.com' ) {
       rewrite ^(\/en)?(\/.*)$ https://staging.ubuntu.com/core/docs$2? permanent;
+    }
+    if ($host = 'security-certs.docs.staging.ubuntu.com' ) {
+      rewrite ^(\/en)?(\/.*)$ https://staging.ubuntu.com/security/certifications/docs$2? permanent;
     }
     if ($host != 'staging.ubuntu.com' ) {
       rewrite ^ https://staging.ubuntu.com$request_uri? permanent;
@@ -367,3 +759,101 @@ staging:
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
     }
+
+demo:
+  env:
+    - name: STORE_MAINTENANCE
+      configMapKeyRef:
+        key: maintenance
+        name: ubuntu-com
+
+    - name: DATABASE_URL
+      secretKeyRef:
+        key: database_url
+        name: usn-db-url
+
+    - name: SEARCH_API_KEY
+      secretKeyRef:
+        key: google-custom-search-key
+        name: google-api
+
+    - name: DISCOURSE_API_KEY
+      secretKeyRef:
+        key: ubuntu-api-key
+        name: discourse-api
+
+    - name: DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: ubuntu-api-username
+        name: discourse-api
+
+    - name: LAUNCHPAD_IMAGE_BUILD_USER
+      secretKeyRef:
+        key: user
+        name: launchpad-imagebuild
+
+    - name: LAUNCHPAD_IMAGE_BUILD_TOKEN
+      secretKeyRef:
+        key: token
+        name: launchpad-imagebuild
+
+    - name: LAUNCHPAD_IMAGE_BUILD_SECRET
+      secretKeyRef:
+        key: secret
+        name: launchpad-imagebuild
+
+    - name: LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER
+      secretKeyRef:
+        key: auth-consumer
+        name: launchpad-imagebuild
+
+    - name: MARKETO_API_CLIENT
+      secretKeyRef:
+        key: api_client
+        name: marketo
+
+    - name: MARKETO_API_SECRET
+      secretKeyRef:
+        key: api_secret
+        name: marketo
+
+    - name: SENTRY_DSN
+      value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+
+    - name: BADGR_URL
+      value: https://api.test.badgr.com
+
+    - name: BAGDR_USER
+      secretKeyRef:
+        key: user
+        name: badgr
+
+    - name: BADGR_PASSWORD
+      secretKeyRef:
+        key: qa-password
+        name: badgr
+
+    - name: CUBE_EDX_URL
+      value: https://qa.cube.ubuntu.com
+
+    - name: CUBE_EDX_CLIENT_ID
+      secretKeyRef:
+        key: qa-client-id
+        name: cube-edx
+
+    - name: CUBE_EDX_CLIENT_SECRET
+      secretKeyRef:
+        key: qa-client-secret
+        name: cube-edx
+
+    - name: BADGR_ISSUER
+      value: 36ZEJnXdTjqobw93BJElog
+
+    - name: CERTIFIED_BADGE
+      value: x9kzmcNhSSyqYhZcQGz0qg
+
+    - name: CONTRACTS_API_URL
+      value: https://contracts.staging.canonical.com/
+
+    - name: STRIPE_PUBLISHABLE_KEY
+      value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46

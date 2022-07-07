@@ -139,3 +139,9 @@ CUBE_CONTENT = yaml.load(
     Path("webapp/cube/content/cube-qa.yaml").read_text(), Loader=yaml.Loader
 )
 ```
+
+### JavaScript
+
+Parts of this site use [React Query](https://react-query.tanstack.com/overview) to manage data from the API.
+
+To enable the React Query devtools you need to add `NODE_ENV="development"` to your `.env.local` file or run: `dotrun -e NODE_ENV="development"`.

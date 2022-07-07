@@ -19,11 +19,11 @@ For **Charmed Kubernetes**, these tests are encapsulated in an additional
 **Juju** charm which can be added to your cluster. Actual testing is then run
 through the charm's actions.
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-Your cluster will need to have at least two running worker units for the `e2e` test to run properly.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">Your cluster will need to have at least two running worker units for the `e2e` test to run properly.</div>
+  </div>
 </div>
 
 ## Deploying the kubernetes-e2e charm
@@ -31,7 +31,7 @@ Your cluster will need to have at least two running worker units for the `e2e` t
 Add the charm to your cluster:
 
 ```bash
-juju deploy cs:~containers/kubernetes-e2e --constraints mem=4G --channel edge
+juju deploy kubernetes-e2e --constraints mem=4G
 ```
 
 We also need to configure the charm to select the appropriate version of tests.
@@ -39,24 +39,23 @@ This relates to the installed version of Kubernetes. You can check which
 version your cluster is set to by running:
 
 ```bash
-juju config kubernetes-master channel
+juju config kubernetes-control-plane channel
 ```
 
-The output will be in the form of 'version.number/risk', e.g '1.12/stable'. You should set
+The output will be in the form of `version.number/risk`, e.g `1.24/stable`. You should set
 the `kubernetes-e2e` channel to the same value.
 
 ```
-juju config kubernetes-e2e channel=1.12/stable
+juju config kubernetes-e2e channel=1.24/stable
 ```
 
-Finally we relate the charm to `easyrsa` and `kubernetes-master`:
+Finally we relate the charm to `easyrsa` and `kubernetes-control-plane`:
 
 ```bash
-juju config kubernetes-master allow-privileged=true
-juju config kubernetes-worker allow-privileged=true
+juju config kubernetes-control-plane allow-privileged=true
 juju add-relation kubernetes-e2e easyrsa
-juju add-relation kubernetes-e2e:kubernetes-master kubernetes-master:kube-api-endpoint
-juju add-relation kubernetes-e2e:kube-control kubernetes-master:kube-control
+juju add-relation kubernetes-e2e:kubernetes-control-plane kubernetes-control-plane:kube-api-endpoint
+juju add-relation kubernetes-e2e:kube-control kubernetes-control-plane:kube-control
 ```
 
 It may take some moments for these relations to establish. Once the connections are made, the charm will update its status to "Ready to test."
@@ -156,11 +155,11 @@ fn=<your log file name>
 echo -ne $(cat $fn | sed  's/$/\\n/' | sed 's/\x1B\[[0-9]*\w//g')
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-If you are running regular tests in this way, it is advisable to remove the generated logs from the test unit. The uncompressed logs in particular can be very large and quickly fill up storage.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">If you are running regular tests in this way, it is advisable to remove the generated logs from the test unit. The uncompressed logs in particular can be very large and quickly fill up storage.</p>
+  </div>
 </div>
 
 ## Upgrading the e2e tests
@@ -177,10 +176,10 @@ juju upgrade-charm kubernetes-e2e
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/validation.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/validation.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

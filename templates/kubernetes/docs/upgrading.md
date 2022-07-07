@@ -15,14 +15,18 @@ toc: False
 
 <!-- UPGRADE VERSIONS -->
 
-<div class="p-notification--warning">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading. <br><br>
-<a class='p-button--brand' href='/kubernetes/docs/1.20/upgrading'>Upgrade to 1.20 </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.19/upgrading'>Upgrade to 1.19 </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.18/upgrading'>Upgrade to 1.18 </a>
-  </p>
+<div class="p-notification--caution">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">This page describes the general upgrade process. It is important to follow the specific upgrade pages for each release, as these may include additional steps and workarounds for safely upgrading.</p>
+  </div>
+  <div class="p-notification__meta">
+    <div class="p-notification__actions">
+      <a class='p-notification__action' href='/kubernetes/docs/1.24/upgrading'>Upgrade to 1.24 </a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.23/upgrading'>Upgrade to 1.23 </a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.22/upgrading'>Upgrade to 1.22 </a>
+    </div>
+  </div>
 </div>
 
 <!-- END OF UPGRADE VERSIONS-->
@@ -33,11 +37,11 @@ It is recommended that you keep your **Kubernetes** deployment updated to the la
 
 New minor versions of **Kubernetes** are set to release once per quarter. You can check the latest release version on the [Kubernetes release page on GitHub][k8s-release]. **Charmed Kubernetes** is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of **Kubernetes**.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-<strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.19.1 to 1.19.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.18.x to 1.19.x.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"><strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.23.1 to 1.23.2. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.22.x to 1.23.x.</p>
+  </div>
 </div>
 
 You can see which version of each application is currently deployed by running
@@ -60,7 +64,7 @@ You should also make sure:
 -   Your cluster is running normally
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
--   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.19 which may impact your workloads.
+-   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.24.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.24 which may impact your workloads.
 
 It is also important to understand that **Charmed Kubernetes** will only upgrade
 and if necessary migrate, components relating specifically to elements of
@@ -75,89 +79,35 @@ The applications which run alongside the core Kubernetes components can be upgra
 
 This includes:
 
-- Docker
+- containerd
 - easyrsa
 - etcd
-- flannel, calico or other CNI
+- calico, flannel or other CNI charms
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
-
 
 
 <a id='upgrading-containerd'> </a>
 
 ### Upgrading Containerd
 
-By default, Versions 1.15 and later use Containerd as the container
+By default, **Charmed Kubernetes** 1.15 and later use Containerd as the container
 runtime. This subordinate charm can be upgraded with the command:
 
 ```bash
-juju upgrade-charm containerd
+juju upgrade-charm containerd --channel=1.24/stable
 ```
 
 <a id='upgrading-docker'> </a>
 
-### Upgrading Docker (if used)
+### Migrating to Containerd
 
-By default, versions of Charmed Kubernetes since 1.15 use the Containerd
-runtime. You will only need to upgrade the Docker runtime if you have
-explicitly set that to be the container runtime. If this is not the case, you
-should skip this section.
+Upstream support for the Docker container runtime was removed in the 1.24 release. Thus, the
+`docker` subordinate charm will no longer function from **Charmed Kubernetes** 1.24 onwards.
 
-**Charmed Kubernetes** will use the latest stable version of Docker when it is
-deployed. Since upgrading Docker can cause service disruption, there will be no
-automatic upgrades and instead this process must be triggered by the operator.
-
-Note that this upgrade step only applies to deployments which actually use the
-Docker container runtime. Versions 1.15 and later use containerd by default,
-and you should instead follow the [instructions above](#upgrading-containerd).
-
-#### Version 1.15 and later
-
-The `kubernetes-master` and `kubernetes-worker` are related to the docker subordinate
-charm where present. Whether you are running Docker on its own, or mixed with Containerd,
-the upgrade process is the same:
-
-```bash
-juju upgrade-charm docker
-```
-
-#### Versions prior to 1.15
-Only the `kubernetes-master` and `kubernetes-worker` units require Docker. The charms for each
-include an action to trigger the upgrade.
-
-Before the upgrade, it is useful to list all the units effected:
-
-```bash
-juju status kubernetes-* --format=short
-```
-
-...will return a list of the current `kubernetes-master` and `kubernetes-worker` units.
-
-Start with the `kubernetes-master` units and run the upgrade action on one unit at a time:
-
-```bash
-juju run-action kubernetes-master/0 upgrade-docker --wait
-```
-
-As Docker is restarted on the unit, pods will be terminated. Wait for them to respawn before
-moving on to the next unit:
-
-```bash
-juju run-action kubernetes-master/1 upgrade-docker --wait
-```
-
-Once all the `kubernetes-master` units have been upgraded and the pods have respawned, the
-same procedure can then be applied to the `kubernetes-worker` units.
-
-```bash
-juju run-action kubernetes-worker/0 upgrade-docker --wait
-```
-
-As previously, wait between running the action on sucessive units to allow pods to migrate.
-
-
-
+If you are upgrading from a version of **Charmed Kubernetes** that uses the `docker`
+subordinate charm for the container runtime, transition to `containerd` by following
+the steps outlined in [this section of the upgrade notes][docker2containerd].
 
 ### Upgrading etcd
 
@@ -198,7 +148,7 @@ output. Remember to add the ` .` at the end to copy to your local directory!
 You can now upgrade the **etcd** charm:
 
 ```bash
-juju upgrade-charm etcd
+juju upgrade-charm etcd --channel=1.24/stable
 ```
 
 #### 4. Upgrade etcd
@@ -217,31 +167,32 @@ Once you know the correct channel, set the **etcd** charm's channel config:
 juju config etcd channel=3.4/stable
 ```
 
+
 ### Upgrading additional components
 
 The other infrastructure applications can be upgraded by running the `upgrade-charm`
 command:
 
 ```bash
-juju upgrade-charm easyrsa
+juju upgrade-charm easyrsa --channel=1.24/stable
 ```
 
 Any other infrastructure charms should be upgraded in a similar way. For
 example, if you are using the flannel CNI:
 
 ```bash
-juju upgrade-charm flannel
+juju upgrade-charm flannel --channel=1.24/stable
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Some services may be briefly interrupted during the upgrade process. Upgrading
-your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
-<strong>easyrsa</strong> will not cause any downtime. The behaviour of other
-components you have added to your cluster may vary - check individual documentation
-for these charms for more information on upgrades.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Some services may be briefly interrupted during the upgrade process. Upgrading
+    your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
+    <strong>easyrsa</strong> will not cause any downtime. The behaviour of other
+    components you have added to your cluster may vary - check individual documentation
+    for these charms for more information on upgrades.</p>
+  </div>
 </div>
 
 ## Upgrading Kubernetes
@@ -266,66 +217,83 @@ For most use cases, it is strongly recommended to use the 'stable' version of ch
 ### Upgrading the **kube-api-loadbalancer**
 
 A core part of **Charmed Kubernetes** is the kubeapi-load-balancer component. To ensure API service
-continuity this upgrade should precede any upgrades to the **Kubernetes** master and
+continuity this upgrade should precede any upgrades to the **Kubernetes** control-plane and
 worker units.
 
 ```bash
-juju upgrade-charm kubeapi-load-balancer
+juju upgrade-charm kubeapi-load-balancer --channel=1.24/stable
 ```
 
 The load balancer itself is based on NGINX, and the version reported by `juju status` is
 that of NGINX rather than Kubernetes. Unlike the other Kubernetes components, there
 is no need to set a specific channel or version for this charm.
 
-### Upgrading the **kubernetes-master** units
+### Upgrading the **kubernetes-control-plane** units
 
-To start upgrading the Kubernetes master units, first upgrade the charm:
+To start upgrading the Kubernetes control plane units, first upgrade the charm.  
 
-```bash
-juju upgrade-charm kubernetes-master
-```
 
-Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.19 version of **Kubernetes**, you would enter:
-
-```bash
-juju config kubernetes-master channel=1.19/stable
-```
-
-If you wanted to try a release candidate for 1.20, the channel would be `1.20/candidate`.
-
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Once the configuration has been changed, the charms will be put into a `blocked` state.
-You must continue the upgrade process, even if you revert the configuration to the
-currently active version of Kubernetes.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"> In the event the current deployment was made with a bundle prior to the 1.23 release, 
+    the application will be named `kubernetes-master` instead of `kubernetes-control-plane`.
+    The same instructions below apply, however instead use the name `kubernetes-master`. See 
+    <a href= "/kubernetes/docs/inclusive-naming"> inclusive-naming</a> for more information.</p>
+  </div>
 </div>
 
-Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:
-
+Switch to the new charm name
 ```bash
-juju run-action kubernetes-master/0 upgrade
-juju run-action kubernetes-master/1 upgrade
+juju upgrade-charm kubernetes-master --switch kubernetes-control-plane --channel=1.24/stable
 ```
 
-If you have more master units in your cluster, you should continue and run this process on every one of them.
+To upgrade the current application
+```bash
+juju upgrade-charm kubernetes-control-plane --channel=1.24/stable
+```
+
+Once the charm has been upgraded, it can be configured to select the desired **Kubernetes** channel, which takes the form `Major.Minor/risk-level`. This is then passed as a configuration option to the charm. So, for example, to select the stable 1.24 version of **Kubernetes**, you would enter:
+
+```bash
+juju config kubernetes-control-plane channel=1.24/stable
+```
+
+If you wanted to try a release candidate for 1.24, the channel would be `1.24/candidate`.
+
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Once the configuration has been changed, the charms will be put into a `blocked` state.
+    You must continue the upgrade process, even if you revert the configuration to the
+    currently active version of Kubernetes.</p>
+  </div>
+</div>
+
+Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each control-plane unit in the cluster:
+
+```bash
+juju run-action kubernetes-control-plane/0 upgrade
+juju run-action kubernetes-control-plane/1 upgrade
+```
+
+If you have more control-plane units in your cluster, you should continue and run this process on every one of them.
 
 You can check the progress of the upgrade by running:
 
 ```bash
-juju status | grep master
+juju status | grep control-plane
 ```
 
-Ensure that all the master units have upgraded and are reporting normal status before continuing to upgrade the worker units.
+Ensure that all the control-plane units have upgraded and are reporting normal status before continuing to upgrade the worker units.
 
 ### Upgrading the **kubernetes-worker** units
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.
-</p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.</p>
+  </div>
 </div>
 
 For a running cluster, there are two different ways to proceed:
@@ -340,13 +308,13 @@ Both methods are outlined below. The blue-green method is recommended for produc
 To begin, upgrade the kubernetes-worker charm itself:
 
 ```bash
-juju upgrade-charm kubernetes-worker
+juju upgrade-charm kubernetes-worker --channel=1.24/stable
 ```
 
-Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the master units). For example:
+Next, run the command to configure the workers for the version of Kubernetes you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.19/stable
+juju config kubernetes-worker channel=1.24/stable
 ```
 
 Now add additional units of the kubernetes-worker. You should add as many units as you are replacing. For example, to add three additional units:
@@ -380,11 +348,11 @@ juju remove-unit kubernetes-worker/0
 
 Removing these units from the model will also release the underlying machines/instances they were running on, so no further clean up is required.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-A variation on this method is to add, pause, remove  and recycle units one at a time. This reduces the resource overhead to a single extra instance.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">A variation on this method is to add, pause, remove  and recycle units one at a time. This reduces the resource overhead to a single extra instance.</p>
+  </div>
 </div>
 
 #### In-place upgrade
@@ -392,13 +360,13 @@ A variation on this method is to add, pause, remove  and recycle units one at a 
 To proceed with an in-place upgrade, first upgrade the charm itself:
 
 ```bash
-juju upgrade-charm kubernetes-worker
+juju upgrade-charm kubernetes-worker --channel=1.24/stable
 ```
 
-Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the master units). For example:
+Next, run the command to configure the workers for the version of **Kubernetes** you wish to run (as you did previously for the control-plane units). For example:
 
 ```bash
-juju config kubernetes-worker channel=1.12/stable
+juju config kubernetes-worker channel=1.24/stable
 ```
 
 All the units can now be upgraded by running the `upgrade` action on each one:
@@ -495,13 +463,15 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
 [validation]: /kubernetes/docs/validation
 [supported-versions]: /kubernetes/docs/supported-versions
+[inclusive-naming]: /kubernetes/docs/inclusive-naming
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrading.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrading.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

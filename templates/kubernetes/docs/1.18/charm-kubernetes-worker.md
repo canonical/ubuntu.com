@@ -281,7 +281,7 @@ the setting of conntrack-max-per-core vs nf_conntrack_max.
 
 This requires configuration of both the `kubernetes-master` and
 `kubernetes-worker` charms. Please see the configuration section on
-the [kubernetes-master page](../charm-kubernetes-master#config-ipvs).
+the [kubernetes-master page](/kubernetes/docs/charm-kubernetes-master#config-ipvs).
 
 ### Configuring kubelet
 
@@ -344,11 +344,11 @@ update the configuration for the workers:
             hugepages-2Mi: 100Mi
             memory: 100Mi
           requests:
-            memory: 100Mi
+            memory: 100Mi      
       volumes:
       - name: hugepage
         emptyDir:
-          medium: HugePages
+          medium: HugePages  
     ```
     Huge page usage in a namespace can be managed with ResourceQuota,
     similar to other compute resources.

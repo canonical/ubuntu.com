@@ -26,13 +26,13 @@ a better option.
 
  We start with the two basic components of a **Charmed Kubernetes** cluster:
 
- - your control plane, the `kubernetes-master` charm
+ - your control plane, the `kubernetes-control-plane` charm
  - the worker units, the `kubernetes-worker` charm
 
 ## Control Plane
 
 An initial plan to make the control plane more resilient might be to simply add more
-master nodes with  `juju add-unit kubernetes-master`:
+master nodes with  `juju add-unit kubernetes-control-plane`:
 
 ![multi-master worker image][img-multi-master]
 
@@ -121,10 +121,11 @@ software to enable HA
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/high-availability.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/high-availability.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -34,27 +34,41 @@ See the [quickstart guide][quickstart] for more details on installing **Charmed 
 You can install **Charmed Kubernetes** with monitoring using the Juju bundle
 along with the following overlay file ([download it here][monitoring-pgt-overlay]):
 
+NOTE: Make sure the series is the same as the rest of your kubernetes bundle. Eg: all of series focal.
+
 ```yaml
 applications:
   prometheus:
-    series: bionic
-    charm: cs:prometheus2-11
+    series: focal
+    charm: prometheus2
     constraints: "mem=4G root-disk=16G"
     num_units: 1
   grafana:
-    charm: cs:grafana-37
+    charm: grafana
     expose: true
     num_units: 1
   telegraf:
-    charm: cs:telegraf-36
+    charm: telegraf
 relations:
   - [prometheus:grafana-source, grafana:grafana-source]
   - [telegraf:prometheus-client, prometheus:target]
-  - [kubernetes-master:juju-info, telegraf:juju-info]
+  - [kubernetes-control-plane:juju-info, telegraf:juju-info]
+  - [kubernetes-control-plane:prometheus, prometheus:manual-jobs]
+  - [kubernetes-control-plane:grafana, grafana:dashboards]
+  - [prometheus:certificates, easyrsa:client]
   - [kubernetes-worker:juju-info, telegraf:juju-info]
-  - [kubernetes-master:prometheus, prometheus:manual-jobs]
-  - [kubernetes-master:grafana, grafana:dashboards]
+  - [kubernetes-worker:scrape, prometheus:juju-info]
+  - [etcd:grafana, grafana:dashboards]
+  - [etcd:prometheus, prometheus:scrape]
 ```
+
+<div class="p-notification--information">
+  <p markdown="1" class="p-notification__response">
+    <span class="p-notification__status">Note:</span>
+If you are using Vault instead of EasyRSA you will need to change the
+<code>easyrsa:client</code> relation to:<br />
+<code>[prometheus:certificates, vault:certificates]</code></p>
+</div>
 
 To use this overlay with the **Charmed Kubernetes** bundle, specify it
 during deploy like this:
@@ -122,11 +136,11 @@ endpoint for scraping, and then setting up Grafana to use this data.
 Starting with Charmed Kubernetes 1.17,
 [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics)
 are added, automatically, when `enable-metrics` is set to  `true ` on the
-`kubernetes-master` charm.  This is enabled by default.  Enable
+`kubernetes-control-plane` charm.  This is enabled by default.  Enable
 with the following command.
 
 ```bash
-juju config kubernetes-master enable-metrics=true
+juju config kubernetes-control-plane enable-metrics=true
 ```
 
 #### Viewing kube-state-metrics
@@ -158,11 +172,11 @@ juju add-relation nagios nrpe
 ```
 
 Now add relations to NRPE for all the applications you wish to monitor, for
-example kubernetes-master, kubernetes-worker, etcd, easyrsa, and
+example kubernetes-control-plane, kubernetes-worker, etcd, easyrsa, and
 kubeapi-load-balancer.
 
 ```bash
-juju add-relation nrpe kubernetes-master
+juju add-relation nrpe kubernetes-control-plane
 juju add-relation nrpe kubernetes-worker
 juju add-relation nrpe etcd
 juju add-relation nrpe easyrsa
@@ -182,7 +196,7 @@ install time, and can be retrieved by running:
 juju ssh nagios/0 sudo cat /var/lib/juju/nagios.passwd
 ```
 
-![nagios dashboard image][https://assets.ubuntu.com/v1/4b109895-CDK-nagios.png]
+![nagios dashboard image](https://assets.ubuntu.com/v1/4b109895-CDK-nagios.png)
 
 ### Using an existing Nagios service
 
@@ -198,17 +212,18 @@ See the [External Nagios][external-nagios] section of the NRPE charm readme for 
 
 <!-- LINKS -->
 
-[monitoring-pgt-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/monitoring-pgt-overlay.yaml
+[monitoring-pgt-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/monitoring-pgt-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [nagios]: https://www.nagios.org/
-[external-nagios]: https://jujucharms.com/nrpe/
+[external-nagios]: https://charmhub.io/nrpe/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/monitoring.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/monitoring.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

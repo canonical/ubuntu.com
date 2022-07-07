@@ -15,8 +15,8 @@
       <h4>The best data science and MLops tools across your infra</h4>
       <p>Develop AI models on high-end Ubuntu workstations. Train on racks of bare-metal or public clouds with hardware acceleration. Deploy to cloud, edge and IoT. All on Ubuntu.</p>
       <p>
-        <a href="https://charmed-kubeflow.io/docs/install" class="p-button--positive p-link--external">Install Kubeflow</a>
-        <a href="/ai/services" class="p-button--neutral">Discover our AI services</a>
+        <a href="https://charmed-kubeflow.io/docs/install" class="p-button--positive">Install Kubeflow</a>
+        <a href="/ai/services" class="p-button">Discover our AI services</a>
       </p>
     </div>
     <div class="col-6 u-vertically-center u-align--center">
@@ -26,7 +26,7 @@
         width="304",
         height="263",
         hi_def=True,
-        loading="auto|lazy"
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -34,66 +34,68 @@
 </section>
 
 <section class="p-strip is-bordered">
-  <p class="p-muted-heading u-align--center">LEADERS IN ARTIFICIAL INTELLIGENCE CHOOSE UBUNTU</p>
   <div class="row">
-    <ul class="p-inline-images--small u-no-margin--bottom">
-      <li class="p-inline-images__item">
-        {{ image(
-          url="https://assets.ubuntu.com/v1/ae0456eb-Netflix_logo.svg",
-          alt="Netflix",
-          width="130",
-          height="36",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "p-inline-images__logo"},
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/1095d3bc-Tesla_logo_silver.png",
-          alt="Tesla",
-          width="130",
-          height="17",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-          }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-          alt="Nvidia",
-          width="130",
-          height="25",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/26eb00dd-fb.png",
-          alt="Facebook",
-          width="130",
-          height="25",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c346c103-openai.png",
-            alt="OpenAI",
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align--center">Leaders in artificial intelligence choose Ubuntu</p>
+      <div class="p-logo-section__items u-no-margin--bottom">
+        <div class="p-logo-section__item">
+          {{ image(
+            url="https://assets.ubuntu.com/v1/ae0456eb-Netflix_logo.svg",
+            alt="Netflix",
             width="130",
-            height="90",
+            height="36",
             hi_def=True,
-            loading="auto|lazy"
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
             ) | safe
           }}
-      </li>
-    </ul>
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1095d3bc-Tesla_logo_silver.png",
+            alt="Tesla",
+            width="130",
+            height="17",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+            }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+            alt="Nvidia",
+            width="130",
+            height="25",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/26eb00dd-fb.png",
+            alt="Facebook",
+            width="130",
+            height="25",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c346c103-openai.png",
+              alt="OpenAI",
+              width="130",
+              height="90",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -103,65 +105,66 @@
       <h2>Develop</h2>
       <h4>Best of breed data science tools.</h4>
       <p>The most productive tools for AI / ML development, with guides and resources available.</p>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/8ee86883-jupyter-logo.png",
-            alt="Jupyter",
-            width="55",
-            height="64",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/d6a20f43-keras.png",
-            alt="Keras",
-            width="110",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/f4ffa06e-scikit-learn-logo.png",
-            alt="Scikit Learn",
-            width="98",
-            height="48",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/8b1f29ef-tensor_2.png",
-            alt="TensorFlow",
-            width="177",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/f3dd556d-Pytorch_logo.png",
-            alt="PyTorch",
-            width="122",
-            height="30",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+      
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--left">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8ee86883-jupyter-logo.png",
+              alt="Jupyter",
+              width="55",
+              height="64",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/d6a20f43-keras.png",
+              alt="Keras",
+              width="110",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f4ffa06e-scikit-learn-logo.png",
+              alt="Scikit Learn",
+              width="98",
+              height="48",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8b1f29ef-tensor_2.png",
+              alt="TensorFlow",
+              width="177",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f3dd556d-Pytorch_logo.png",
+              alt="PyTorch",
+              width="122",
+              height="30",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-6">
       <div class="u-fixed-width u-show--small u-hide--large u-hide--medium">
@@ -170,65 +173,65 @@
       <h2>Deploy</h2>
       <h4>Multi-framework model serving.</h4>
       <p>Effective model deployment across devices mesh. Low-latency inference serving.</p>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/3224ee3e-seldon.png",
-            alt="Seldon",
-            width="139",
-            height="35",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5e6a97ad-kfserving.png",
-            alt="KFServing",
-            width="141",
-            height="28",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/653daa8b-onnx-logo.png",
-            alt="Onnx",
-            width="117",
-            height="30",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/8f97d534-tensor_rt.png",
-            alt="TensorRt",
-            width="106",
-            height="48",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/2af7ca99-xgboost-logo.png",
-            alt="XGBoost",
-            width="69",
-            height="20",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--left">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/3224ee3e-seldon.png",
+              alt="Seldon",
+              width="139",
+              height="35",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/5e6a97ad-kfserving.png",
+              alt="KFServing",
+              width="141",
+              height="28",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/653daa8b-onnx-logo.png",
+              alt="Onnx",
+              width="117",
+              height="30",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8f97d534-tensor_rt.png",
+              alt="TensorRt",
+              width="106",
+              height="48",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/2af7ca99-xgboost-logo.png",
+              alt="XGBoost",
+              width="69",
+              height="20",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>  
     </div>
   </div>
   <div class="row u-equal-height">
@@ -239,54 +242,54 @@
       <h2>ML operations</h2>
       <h4>Infrastructure for production data science.</h4>
       <p>Centralised or multi-cloud training infrastructure for better resource allocation and data governance.</p>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
-            alt="Kubeflow",
-            width="138",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/da0946e1-mlflow.png",
-            alt="ML-Flow",
-            width="104",
-            height="40",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/6577232a-pachyderm-logo.svg",
-            alt="Pachyderm",
-            width="177",
-            height="38",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/3d65e5fe-juju_black-orange_hex.svg",
-            alt="Juju",
-            width="89",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--left">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
+              alt="Kubeflow",
+              width="138",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/da0946e1-mlflow.png",
+              alt="ML-Flow",
+              width="104",
+              height="40",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/6577232a-pachyderm-logo.svg",
+              alt="Pachyderm",
+              width="177",
+              height="38",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/3d65e5fe-juju_black-orange_hex.svg",
+              alt="Juju",
+              width="89",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-6">
       <div class="u-fixed-width">
@@ -295,65 +298,65 @@
       <h2>Data lake</h2>
       <h4>Analyse epic amounts of data, wherever it is.</h4>
       <p>Build large-scale data lakes optimised for machine learning on bare metal, virtual or cloud infrastructure with open source.</p>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/34b3ddce-Apache_Spark.png",
-            alt="",
-            width="61",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c2a4ebd4-Kafka.svg",
-            alt="Kafka",
-            width="78",
-            height="36",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/853e440f-Cassandra.svg",
-            alt="Cassandra",
-            width="96",
-            height="64",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/93da3292-Elastic_logo.png",
-            alt="Elastic",
-            width="117",
-            height="40",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/2aae3674-Hadoop.svg",
-            alt="Hadoop",
-            width="165",
-            height="40",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--left">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/34b3ddce-Apache_Spark.png",
+              alt="",
+              width="61",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c2a4ebd4-Kafka.svg",
+              alt="Kafka",
+              width="78",
+              height="36",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/853e440f-Cassandra.svg",
+              alt="Cassandra",
+              width="96",
+              height="64",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/93da3292-Elastic_logo.png",
+              alt="Elastic",
+              width="117",
+              height="40",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/2aae3674-Hadoop.svg",
+              alt="Hadoop",
+              width="165",
+              height="40",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -364,54 +367,54 @@
       <h2>Hardware control</h2>
       <h4>Drivers, storage, networking, CPU, GPU, DPU.</h4>
       <p>Enjoy full control over your firmware, in a safe environment, tested by millions.</p>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-            alt="Nvidia",
-            width="167",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/7b141b13-partner-logo-amd.svg",
-            alt="AMD",
-            width="123",
-            height="30",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
-            alt="Intel",
-            width="72",
-            height="28",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
-            alt="ARM",
-            width="78",
-            height="24",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--left">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+              alt="Nvidia",
+              width="167",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/7b141b13-partner-logo-amd.svg",
+              alt="AMD",
+              width="123",
+              height="30",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
+              alt="Intel",
+              width="72",
+              height="28",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
+              alt="ARM",
+              width="78",
+              height="24",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-6">
       <div class="u-fixed-width">
@@ -420,65 +423,65 @@
       <h2>Portable to scale</h2>
       <h4>Give your workloads consistency everywhere.</h4>
       <p>Portable from desktop to vast multi-clouds. Fast-deploy on every major public cloud with GPU acceleration.</p>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg",
-            alt="Server brand",
-            width="45",
-            height="48",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/7ecbaf72-OpenStack_openstack-logo.svg",
-            alt="Openstack",
-            width="49",
-            height="48",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-            alt="AWS",
-            width="67",
-            height="40",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images--small u-no-margin--bottom u-align-text--left">
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/e5f6bd10-Google_Cloud_Platform-Logo.png",
-            alt="Google Cloud",
-            width="179",
-            height="28",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item u-no-margin--left u-no-margin--bottom">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
-            alt="Microsoft Azure",
-            width="112",
-            height="32",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-align--left">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg",
+              alt="Server brand",
+              width="45",
+              height="48",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/7ecbaf72-OpenStack_openstack-logo.svg",
+              alt="Openstack",
+              width="49",
+              height="48",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+              alt="AWS",
+              width="67",
+              height="40",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/e5f6bd10-Google_Cloud_Platform-Logo.png",
+              alt="Google Cloud",
+              width="179",
+              height="28",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+              alt="Microsoft Azure",
+              width="112",
+              height="32",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -486,16 +489,15 @@
 <section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2>Every Kubeflow operator you need</h2>
-      <h4>Lifecycle management of your data stack on Kubernetes</h4>
+      <h2>Kubeflow AI and MLOps at any scale</h2>
+      <h4>Enterprise-ready Charmed Kubeflow, the fully supported MLOps platform for any cloud</h4>
       <ul>
-        <li>Make use of open source lifecycle management code and compound the benefit of
-          <a href="http://charmhub.io">200+ charm operators</a>.</li>
-        <li>Composable operators for data scientists to stand up and integrate the applications they need, on a laptop, workstation or cluster.</li>
-        <li>Install, configure, upgrade, remove.</li>
+        <li>A complete solution for sophisticated data science labs. Upgrades and security updates - all supported in the free, open source distribution.</li>
+        <li>Get up and running fast with Charmed Kubeflow on MicroK8s, from lab to large scale. Highly available with 3+ nodes.</li>
+        <li>Or deploy on Azure, Amazon AWS and Google cloud Kubernetes services with full support available from Canonical - the experts behind Charmed Kubeflow.</li>
       </ul>
       <p>
-        <a href="http://charmed-kubeflow.io" class="p-button--positive p-link--external">Kubeflow operators</a>
+        <a href="http://charmed-kubeflow.io" class="p-button--positive">Charmed Kubeflow</a>
         <a href="https://charmed-kubeflow.io/#get-in-touch">Contact us&nbsp;&rsaquo;</a>
       </p>
     </div>
@@ -506,7 +508,7 @@
         width="400",
         height="353",
         hi_def=True,
-        loading="auto|lazy"
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -522,7 +524,7 @@
         width="300",
         height="324",
         hi_def=True,
-        loading="auto|lazy"
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -554,7 +556,7 @@
           href="http://microk8s.io">MicroK8s</a> for zero-ops K8s with high-availability, Kubeflow for inference and distributed training.</li>
       </ul>
       <p>
-        <a href="/iot" class="p-button--positive p-link--external">Ubuntu for IoT</a>
+        <a href="/iot" class="p-button--positive">Ubuntu for IoT</a>
         <a href="/blog/deploying-kubeflow-everywhere">Kubeflow at the edge&nbsp;&rsaquo;</a>
       </p>
     </div>
@@ -565,7 +567,7 @@
         width="300",
         height="293",
         hi_def=True,
-        loading="auto|lazy"
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -574,7 +576,7 @@
 
 <section class="p-strip p-strip--light">
   <div class="u-fixed-width">
-    <h2>Learn more about AI/ML and Kubeflow</h2>
+    <h2>Learn more about AI/ML and Charmed Kubeflow</h2>
     <div class="p-divider row">
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
@@ -585,7 +587,7 @@
               width="32",
               height="28",
               hi_def=True,
-              loading="auto|lazy",
+              loading="lazy",
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
@@ -608,7 +610,7 @@
               width="32",
               height="28",
               hi_def=True,
-              loading="auto|lazy",
+              loading="lazy",
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
@@ -628,7 +630,7 @@
               width="32",
               height="28",
               hi_def=True,
-              loading="auto|lazy",
+              loading="lazy",
               attrs={"class": "p-heading-icon__img p-heading-icon__img--small"},
               ) | safe
             }}
@@ -667,7 +669,7 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <h2>Get started with AI and Machine learning today.</h2>
-      <p><a href="http://charmed-kubeflow.io/docs/install" class="p-button--positive p-link--external">Test drive Kubeflow now</a></p>
+      <p><a href="http://charmed-kubeflow.io/docs/install" class="p-button--positive">Test drive Charmed Kubeflow now</a></p>
       <p>Or <a href="/ai/contact-us?product=ai-index">contact our experts</a> to get started with consulting, training or outsourced operations.</p>
     </div>
     <div class="col-6 u-vertically-center u-align--center">
@@ -677,7 +679,7 @@
       width="281",
       height="200",
       hi_def=True,
-      loading="auto|lazy"
+      loading="lazy"
       ) | safe
       }}
     </div>

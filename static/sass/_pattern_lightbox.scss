@@ -24,6 +24,7 @@ $color-modal-controls: rgba($color-x-dark, 0.2);
           repeat: no-repeat;
           size: 50%;
         }
+
         bottom: 15px;
         box-shadow: 0 5px 10px 0 $color-modal-controls;
         content: "";
@@ -65,8 +66,8 @@ $color-modal-controls: rgba($color-x-dark, 0.2);
   .vbox-preloader {
     height: 2rem;
     left: 50%;
-    margin-left: -$sph-inner--small;
-    margin-top: -$sph-inner--small;
+    margin-left: -$sph--small;
+    margin-top: -$sph--small;
     overflow: hidden;
     position: fixed;
     text-indent: -100px;
@@ -113,6 +114,7 @@ $color-modal-controls: rgba($color-x-dark, 0.2);
       repeat: no-repeat;
       size: 0.25rem;
     }
+
     border-radius: 3rem;
     box-sizing: content-box;
     cursor: pointer;
@@ -126,11 +128,6 @@ $color-modal-controls: rgba($color-x-dark, 0.2);
     width: 3rem;
   }
 
-  .vbox-next:disabled,
-  .vbox-prev:disabled {
-    display: none;
-  }
-
   .vbox-prev {
     background-image: url("#{$assets-path}e8d2e45f-chevron-left.svg");
     left: 1rem;
@@ -141,6 +138,11 @@ $color-modal-controls: rgba($color-x-dark, 0.2);
     // Overrides a rule in vanilla that adds margin to the right of buttons
     margin-right: 0 !important;
     right: 1rem;
+  }
+
+  .vbox-next:disabled,
+  .vbox-prev:disabled {
+    display: none;
   }
 
   .vbox-title {

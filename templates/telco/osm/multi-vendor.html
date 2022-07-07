@@ -1,0 +1,139 @@
+{% extends "telco/base_telco.html" %}
+
+{% block title %}Multi-vendor orchestration{% endblock %}
+
+{% block meta_description %}Multi vendor orchestration with Canonical Open Source MANO.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1T9Z6UhQUpsb1rkIJGzvR4N3O0S5UxJ-I-3qyNGuq1D4/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped  is-bordered">
+  <div class="row">
+    <div class="col-7">
+      <h1>Multi-vendor orchestration</h1>
+      <p>ETSI <a href="https://osm.etsi.org/">Open Source MANO</a>, provides an open-source solution based on published information and data models that addresses network functions from multiple vendors for carrier-grade NFV orchestration. It made possible the multi-vendor networks by integrating proprietary and open source network functions on top of commoditized hardware.</p>
+      <a class="p-button--positive" href="https://osm.etsi.org/wikipub/index.php/VNFs">Find Supported VNFs</a>  
+    </div>
+  </div>
+  <div class="u-fixed-width u-hide--medium u-hide--small u-align--center">
+  {{ image (
+    url="https://assets.ubuntu.com/v1/fb9a3f0c-Multi-vendor-OSM1.svg",
+    alt="Multi-vendor orchestration illustration",
+    width="1470",
+    height="672",
+    hi_def=True,
+    loading="auto"
+    ) | safe
+  }}
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2>Juju &ndash; Generic virtual network function manager</h2>
+    <p><a href="https://juju.is/docs/sdk">Juju</a> is the component responsible for multi-vendors VNFs in OSM support. It provides the Day 1 and Day 2  configurations following the <a href="https://osm.etsi.org/wikipub/index.php/OSM_Scope_and_Functionality">ETSI data models</a> which allow the instantiation and operations of vendor-neutral workloads. OSM  has full support for Day 1 and Day 2 configuration of NFs from different vendors while presenting a single common abstracted interface for the configuration to the wider OSS through the OSM NBI.</p>
+  </div>
+  <div class="u-fixed-width u-hide--medium u-hide--small u-align--center">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/7d8849de-Multi-vendor-OSM2.svg",
+      alt="Juju illustration",
+      width="1485",
+      height="285",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+    }}
+  </div>
+  <div class="u-fixed-width">
+    <p>OSM uses Juju to manage the VNF configuration through charms, i.e. charms that expose actions that can be executed on demand. OSM exploits the actions to perform Day 1 and Day 2 configurations on a VNF. The charms are effectively a form of script (typically written in Python) with actions that can be common, abstracted and vendor-independent, and translate these actions into the vendor-specific commands for each vendor's NF.</p>
+    <p><a href="/telco/osm/onboarding-network-functions">Learn more&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2>Multi-vendor charmed 5G testbed</h2>
+    <p>TATA Elxsi deployed the 5G testbed by charmed OSM. The functional ability of Juju’s controller and Charmed OSM made possible the deployment of 5G Kubernetes network functions (KNFs) from multiple open source solutions on <a href="https://microk8s.io/">MicroK8s infrastructure</a>. All the components, i.e. Radio Access Network (RAN) and 5G Core, are based on a model-driven operator framework that can be reused, upgraded, and integrated according to the current demands.</p>
+  </div>
+  <div class="u-fixed-width u-hide--medium u-hide--small u-align--center u-sv3">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/84f3e3d2-Multi-vendor-OSM3.svg",
+      alt="OSM Multi-vendor illustration",
+      width="1248",
+      height="849",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+    }}
+  </div>
+  <div class="row">
+    <table class="col-6">
+      <thead>
+        <tr>
+          <th>Component</th>
+          <th>Solution details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>5G Core</th>
+          <td>Free5GC</td>
+        </tr>
+        <tr>
+          <th>IMS</th>
+          <td>Kamilio</td>
+        </tr>
+        <tr>
+          <th>5G RAN Emulator</th>
+          <td>Free5GC</td>
+        </tr>
+        <tr>
+          <th>Grafana visualization tool</th>
+          <td>Grafana Labs</td>
+        </tr>
+        <tr>
+          <th>Web client</th>
+          <td>Jmeter</td>
+        </tr>
+        <tr>
+          <th>SIP Client</th>
+          <td>PJSIP</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>How to migrate your multi-vendor workloads?</h2>
+    <p>Canonical can help you with onboarding your multi-vendors networks through Charmed OSM. Tell us about your network functions to get started.</p>
+    <p><a class="p-button--positive js-invoke-modal" href="/telco/osm/contact-us">Start now</a></p>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <p class="p-heading--3">Charmed OSM deployment support</p>
+      <ul>
+        <li>Supported with <a href="/advantage">Ubuntu Advantage</a></li>
+        <li>Availability of managed and professional services</li>
+        <li>ESM &ndash; Security updates for Ubuntu LTS for an additional year</li>
+      </ul>
+      <p><a href="https://charmed-osm.com/">Visit our Charmed OSM site to learn more</a></p>
+    </div>
+    <div class="col-6">
+      <p class="p-heading--3">Network function onboarding support</p>
+      <ul>
+        <li>Support for the developments of charms for day1 and day2 operations</li>
+        <li>Support for the integration capabilities</li>
+        <li>Onboarding it to Charmed OSM</li>
+      </ul>
+      <p><a href="/telco/osm/onboarding-network-functions">Onboarding network functions&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/osm-contact-us" data-form-id="3471" data-lp-id="" data-return-url="https://ubuntu.com/telco/osm/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+
+{% endblock content %}

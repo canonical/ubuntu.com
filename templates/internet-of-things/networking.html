@@ -10,14 +10,14 @@
   <div class="row u-equal-height">
     <div class="col-7 col-medium-4">
       <h1>Software-Defined Networking with SmartNICs</h1>
-      <h2 class="p-heading--four">Build secure SmartNICs and operate them at scale on Ubuntu.</h2>
+      <h2 class="p-heading--4">Build secure SmartNICs and operate them at scale on Ubuntu.</h2>
       <p>SmartNICs allow to free up CPU capacity in data centers by offloading workloads from servers to network. Innovative data center architectures that leverage SmartNICs benefit from enhanced security at the edge of the server. Containerisation and efficient bare-metal operations are key to integrate SmartNICs in the data center. Snaps enable SDN and NFV, thereby ushering the way to accelerated switching and packet processing, as well as distributed storage across data center networks. MAAS makes bare-metal operations programmable. Canonical offers distinctive technologies to empower the smart networking pioniers.</p>
 
       <p>
-        <a class="p-button--positive" href="/internet-of-things/contact-us?product=networking" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Networking - Top CTA' });" class="p-button--neutral js-invoke-modal"> Tell us more about your project</a>
+        <a class="p-button--positive" href="/internet-of-things/contact-us?product=networking" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us', 'eventLabel' : 'Networking - Top CTA' });" class="p-button js-invoke-modal"> Tell us more about your project</a>
       </p>
     </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/af90be04-SmartNICs.png",
@@ -52,7 +52,7 @@
   </div>
 
   <div class="u-fixed-width">
-    <a class="p-link--external" href="https://www.brighttalk.com/webcast/6793/356125/why-ubuntu-core-is-the-most-secure-choice-for-iot">Find out more about security</a>
+    <a href="https://www.brighttalk.com/webcast/6793/356125/why-ubuntu-core-is-the-most-secure-choice-for-iot">Find out more about security</a>
   </div>
 </section>
 
@@ -63,11 +63,11 @@
       <p>Operating SmartNICs at scale in a complex data center architecture can be tedious. However, MAAS automatises zero-touch provisioning and remote operations of bare-metal. With MAAS your innovative SmartNIC-enhanced data center architecture will be managed by code.</p>
 
       <p>
-        <a href="https://maas.io/" class="p-link--external">Learn more about MAAS</a>
+        <a href="https://maas.io/">Learn more about MAAS</a>
       </p>
     </div>
 
-    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/ab9dcc58-maas_black-orange.svg",
@@ -112,11 +112,11 @@
       <p>Snaps package network functions with runtime and dependencies into application containers. As a consequence, single network functions become modular, easy to reuse, and portable across various SmarNICs. Runtime isolation makes it possible to use a broad range of programming languages to develop smart networking applications, with a positive impact on development costs and time to market.</p>
 
       <p>
-        <a href="https://snapcraft.io/" class="p-link--external">Learn more about snaps</a>
+        <a href="https://snapcraft.io/">Learn more about snaps</a>
       </p>
     </div>
 
-    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/3db02edd-enterprise+management+.svg",
@@ -137,11 +137,11 @@
       <p>The snap store provides a platform for cloud service providers, telecommunication companies, ISVs and SmartNIC vendors to build an ecosystem for intelligent networking. </p>
 
       <p>
-        <a href="https://snapcraft.io/store" class="p-link--external">Learn more about the snap store</a>
+        <a href="https://snapcraft.io/store">Learn more about the snap store</a>
       </p>
     </div>
 
-    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/bd695c08-app+store.svg",
@@ -213,11 +213,11 @@
       <p>Let us know what you are creating, we can help.</p>
 
       <p>
-        <a href="/internet-of-things/contact-us?product=networking" class="p-button--positive js-invoke-modal">Get in touch</a>
+        <a href="/internet-of-things/contact-us?product=networking" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Get in touch</a>
       </p>
     </div>
 
-    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
@@ -230,6 +230,10 @@
     </div>
   </div>
 </section>
+
+{% with current="networking", strip_class="p-strip--light" %}
+  {% include "internet-of-things/shared/_links.html" %}
+{% endwith %}
 
 {% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 

@@ -1,0 +1,16 @@
+{% extends "observability/base_observability.html" %}
+
+{% block title %}Contact us | Observability{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1i8PeYVXFbSZXnFqrHTDs7kyjwDPPfD97zXnkZKdlaDk/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% with h1="Contact us about Observability",
+  intro_text="Fill in your details below and a member of our training team will be in touch.",
+  formid="4072",
+  lpId="",
+  returnURL="/observability/thank-you" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+{% endblock content %}

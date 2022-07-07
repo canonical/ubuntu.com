@@ -10,10 +10,10 @@
     <div class="u-fixed-width">
       {% if query %}
         {% if estimatedTotal == 0 %}
-          <h1 class="p-heading--two">Sorry we couldn't find "{{ query }}"</h1>
+          <h1 class="p-heading--2">Sorry we couldn't find "{{ query }}"</h1>
           {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
         {% else %}
-          <h1 class="p-heading--two">Search results for "{{ query }}"</h1>
+          <h1 class="p-heading--2">Search results for "{{ query }}"</h1>
           {% if siteSearch %}<h3>on <a href="https://{{ siteSearch }}">{{ siteSearch }}</a></h3>{% endif %}
         {% endif %}
       {% else %}
@@ -23,17 +23,15 @@
   </div>
 
   {# search form #}
-  <div class="p-strip--light is-shallow">
-    <div class="u-fixed-width">
-      <form class="p-search-box" action="/search">
-        <label for="search-input" class="u-off-screen">Search</label>
-        <input class="p-search-box__input" name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" />
-        {% if siteSearch %}
-          <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
-        {% endif %}
-        <button type="submit" alt="search" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
-      </form>
-    </div>
+  <div class="u-fixed-width">
+    <form class="p-search-box" action="/search">
+      <label for="search-input" class="u-off-screen">Search</label>
+      <input class="p-search-box__input" name="q" id="search-input" type="search" {% if query %}value="{{ query }}"{% endif %} placeholder="e.g. juju" />
+      {% if siteSearch %}
+        <input name="siteSearch" type="hidden" value="{{ siteSearch }}" />
+      {% endif %}
+      <button type="submit" alt="search" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
+    </form>
   </div>
 
   {% if results %}

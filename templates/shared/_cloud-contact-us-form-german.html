@@ -3,89 +3,94 @@
     <div class="col-8">
       <div>
         <h1>Sprechen Sie uns zu allen Cloud-Fragen an!</h1>
-        <p class="p-heading--four">Nennen Sie uns Ihre Kontaktdaten und wir melden uns bei Ihnen.</p>
+        <p class="p-heading--4">Nennen Sie uns Ihre Kontaktdaten und wir melden uns bei Ihnen.</p>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-8">
-      <form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_{{formid}}">
+      <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
         <fieldset class="u-no-margin--bottom">
           <h3>Über Sie</h3>
           <ul class="p-list">
-            <li class="mktFormReq mktField p-list__item">
-              <label for="FirstName" class="mktoLabel">Vorname:</label>
-              <input required id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            <li class="p-list__item">
+              <label for="firstName">Vorname:</label>
+              <input required id="firstName" name="firstName" maxlength="255" type="text" />
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="LastName" class="mktoLabel">Nachname:</label>
-              <input required id="LastName" name="LastName" maxlength="255" type="text" class="mktoField mktoRequired" />
+            <li class="p-list__item">
+              <label for="lastName">Nachname:</label>
+              <input required id="lastName" name="lastName" maxlength="255" type="text" />
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Email" class="mktoLabel">Email-Adresse:</label>
-              <input required id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField mktoRequired" />
+            <li class="p-list__item">
+              <label for="email">Email-Adresse:</label>
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Phone" class="mktoLabel">Handynummer:</label>
-              <input required id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField mktoRequired" />
+            <li class="p-list__item">
+              <label for="phone">Handynummer:</label>
+              <input required id="phone" name="phone" maxlength="255" type="tel" />
             </li>
             <!-- country -->
             {% with country='Land' %}{% include "shared/forms/_country.html" %}{% endwith %}
-            <!-- state/province -->
-            {% include "shared/forms/_state.html" %}
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
           <h3>Über Ihr Unternehmen</h3>
           <ul class="p-list">
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Company" class="mktoLabel">Name des Unternehmens:</label>
-              <input required id="Company" name="Company" maxlength="255" type="text" class="mktoField mktoRequired" />
+            <li class="p-list__item">
+              <label for="company">Name des Unternehmens:</label>
+              <input required id="company" name="company" maxlength="255" type="text" />
             </li>
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Title" class="mktoLabel">Ihre Position/Verantwortungsbereich:</label>
-              <input required id="Title" name="Title" maxlength="255" type="text" class="mktoField mktoRequired" />
+            <li class="p-list__item">
+              <label for="title">Ihre Position/Verantwortungsbereich:</label>
+              <input required id="title" name="title" maxlength="255" type="text" />
             </li>
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
           <h3>Anmerkungen</h3>
           <ul class="p-list">
-            <li class="mktFormReq mktField p-list__item">
-              <label for="Comments_from_lead__c" class="mktoLabel">Worüber möchten Sie mit uns sprechen?</label>
-              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" class="mktoField mktoRequired" maxlength="2000"></textarea>
+            <li class="p-list__item">
+              <label for="Comments_from_lead__c">Worüber möchten Sie mit uns sprechen?</label>
+              <textarea required id="Comments_from_lead__c" name="Comments_from_lead__c" rows="4" maxlength="2000"></textarea>
             </li>
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
           <ul class="p-list">
-            <li class="mktField p-list__item">
-              <input class="mktoField" value="yes" id="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-              <label class="mktoLabel mktoHasWidth" for="canonicalUpdatesOptIn">Ich stimme zu, Informationen über Produkte und Services von Canonical zu erhalten.</label>
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">Ich stimme zu, Informationen über Produkte und Services von Canonical zu erhalten.</span>
+              </label>
             </li>
             <li class="p-list__item">
               Mit der Absendung dieses Formulars bestätige ich, dass ich <a href="/legal/data-privacy/contact">Canonicals Datenschutzerklärung</a> und <a href="/legal/data-privacy">richtlinie zur Kenntnis</a> genommen habe.
             </li>
-            <li class="p-list__item"><div class="g-recaptcha" data-sitekey="{{ CAPTCHA_TESTING_API_KEY }}"></div></li>
-            <li class="mktField p-list__item">
-              <button style="margin: 1rem 0 0 0" type="submit" class="mktoButton p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Absenden</button>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+            <li class="p-list__item">
+              <button style="margin: 1rem 0 0 0" type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Absenden</button>
             </li>
           </ul>
           <!-- hidden fields -->
-          <input type="hidden" aria-hidden="true" name="formid" class="mktoField" value="{{formid}}" aria-label="formid" />
-          <input type="hidden" aria-hidden="true" name="formVid" class="mktoField" value="{{formid}}" aria-label="formid" />
-          <input type="hidden" aria-hidden="true" name="lpId" class="mktoField" value="{{lpId}}" aria-label="lpId" />
-          <input type="hidden" aria-hidden="true" name="subId" class="mktoField" value="30" aria-label="subId" />
-          <input type="hidden" aria-hidden="true" name="munchkinId" class="mktoField" value="066-EOV-335" aria-label="munchkinId" />
-          <input type="hidden" aria-hidden="true" name="lpurl" class="mktoField" value="https://pages.ubuntu.com/Cloud-contact-us.html?cr={creative}&amp;kw={keyword}" aria-label="lpurl" />
-          <input type="hidden" aria-hidden="true" name="cr" class="mktoField" value="" aria-label="cr" />
-          <input type="hidden" aria-hidden="true" name="kw" class="mktoField" value="" aria-label="kw" />
-          <input type="hidden" aria-hidden="true" name="q" class="mktoField" value="" aria-label="q" />
+          <input type="hidden" aria-hidden="true" name="formid" value="{{formid}}" aria-label="formid" />
           <input type="hidden" aria-hidden="true" name="returnURL" value="{{returnURL}}" aria-label="returnURL" />
-          <input type="hidden" aria-hidden="true" name="retURL" value="{{returnURL}}" aria-label="retURL" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="return_url" value="{{returnURL}}" />
           <input type="hidden" aria-hidden="true" name="Consent_to_Processing__c" value="yes" aria-label="Consent_to_Processing__c" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="gclid" class="mktoField" id="gclid" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
         </fieldset>
       </form>
     </div>
@@ -99,11 +104,10 @@
         <h3 class="p-card__title">Need help with Ubuntu?</h3>
         <p>If you are just looking for some free support for yourself, you can try:</p>
         <ul class="p-list--divided">
-          <li class="p-list__item"><a class="p-link--external" href="http://askubuntu.com/">Ask Ubuntu</a></li>
-          <li class="p-list__item"><a class="p-link--external" href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
-          <li class="p-list__item"><a class="p-link--external" href="https://help.ubuntu.com/">Help docs</a></li>
+          <li class="p-list__item"><a href="http://askubuntu.com/">Ask Ubuntu</a></li>
+          <li class="p-list__item"><a href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
+          <li class="p-list__item"><a href="https://help.ubuntu.com/">Help docs</a></li>
         </ul>
       </div>
     </div>
   </section>
-<script src="https://www.google.com/recaptcha/api.js?onload=CaptchaCallback&render=explicit" defer>

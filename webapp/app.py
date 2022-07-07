@@ -8,6 +8,7 @@ import talisker.requests
 import flask
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
+
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
@@ -22,6 +23,13 @@ from canonicalwebteam.discourse import (
 )
 
 # Local
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPIError,
+    UAContractsAPIErrorView,
+    UnauthorizedError,
+    UnauthorizedErrorView,
+)
+from webapp.security.api import SecurityAPIError
 from webapp.context import (
     current_year,
     descending_years,
@@ -34,42 +42,87 @@ from webapp.context import (
     releases,
 )
 
-from webapp.cube.views import cube_home, cube_microcerts
+from webapp.shop.flaskparser import UAContractsValidationError
+from webapp.shop.cube.views import (
+    cube_home,
+    cube_microcerts,
+    cube_study_labs_button,
+    get_microcerts,
+    post_microcerts_purchase,
+)
 
 from webapp.views import (
-    accept_renewal,
-    advantage_view,
-    advantage_shop_view,
-    advantage_thanks_view,
     BlogCustomGroup,
     BlogCustomTopic,
     BlogPressCentre,
     BlogSitemapIndex,
     BlogSitemapPage,
-    build,
     build_tutorials_index,
     download_server_steps,
     download_thank_you,
     appliance_install,
     appliance_portfolio,
-    ensure_purchase_account,
-    get_customer_info,
-    get_purchase,
-    get_renewal,
-    post_advantage_subscriptions,
-    post_anonymised_customer_info,
-    post_customer_info,
-    post_stripe_invoice_id,
-    post_build,
     releasenotes_redirect,
-    search_snaps,
     show_template,
-    notify_build,
     build_engage_index,
     engage_thank_you,
+    unlisted_engage_page,
     sitemap_index,
+    account_query,
+    sixteen_zero_four,
+    openstack_install,
+    marketo_submit,
+    thank_you,
+    mirrors_query,
+    build_tutorials_query,
+    openstack_engage,
 )
-from webapp.login import login_handler, logout, user_info
+
+from webapp.shop.views import (
+    account_view,
+    invoices_view,
+    download_invoice,
+    payment_methods_view,
+    post_payment_methods,
+    ensure_purchase_account,
+    get_customer_info,
+    post_customer_info,
+    post_anonymised_customer_info,
+    get_purchase,
+    get_purchase_v2,
+    post_stripe_invoice_id,
+    get_last_purchase_ids,
+    post_purchase_calculate,
+    support,
+)
+
+from webapp.shop.advantage.views import (
+    accept_renewal,
+    advantage_view,
+    advantage_account_users_view,
+    advantage_shop_view,
+    advantage_thanks_view,
+    get_renewal,
+    post_advantage_subscriptions,
+    post_auto_renewal_settings,
+    cancel_advantage_subscriptions,
+    get_account_offers,
+    get_user_subscriptions,
+    get_contract_token,
+    cancel_trial,
+    get_account_users,
+    delete_account_user_role,
+    post_account_user_role,
+    put_account_user_role,
+    put_contract_entitlements,
+    blender_thanks_view,
+    blender_shop_view,
+    post_offer,
+    get_advantage_offers,
+    post_advantage_purchase,
+)
+
+from webapp.login import login_handler, logout, user_info, empty_session
 from webapp.security.database import db_session
 from webapp.security.views import (
     create_notice,
@@ -77,8 +130,6 @@ from webapp.security.views import (
     create_release,
     delete_release,
     notice,
-    read_notice,
-    read_notices,
     notices,
     notices_feed,
     update_notice,
@@ -93,10 +144,26 @@ from webapp.security.views import (
 )
 from webapp.metaimage import share_meta_image
 
+from webapp.certified.views import (
+    certified_home,
+    certified_model_details,
+    certified_hardware_details,
+    certified_component_details,
+    certified_vendors,
+    certified_desktops,
+    certified_laptops,
+    certified_servers,
+    certified_devices,
+    certified_socs,
+    certified_why,
+)
+
 
 CAPTCHA_TESTING_API_KEY = os.getenv(
     "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
 )
+DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
+DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
 # Set up application
 # ===
@@ -110,31 +177,98 @@ app = FlaskBase(
     static_folder="../static",
 )
 
-# Settings
-app.config["CONTRACTS_LIVE_API_URL"] = os.getenv(
-    "CONTRACTS_LIVE_API_URL", "https://contracts.canonical.com"
-).rstrip("/")
-app.config["CONTRACTS_TEST_API_URL"] = os.getenv(
-    "CONTRACTS_TEST_API_URL", "https://contracts.staging.canonical.com"
-).rstrip("/")
-app.config["CANONICAL_LOGIN_URL"] = os.getenv(
-    "CANONICAL_LOGIN_URL", "https://login.ubuntu.com"
-)
+sentry = app.extensions["sentry"]
+
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
-    base_url="https://discourse.ubuntu.com/", session=session
+    base_url="https://discourse.ubuntu.com/",
+    session=session,
+    api_key=DISCOURSE_API_KEY,
+    api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
 )
+
+# Web tribe websites custom search ID
+search_engine_id = "adb2397a224a1fe55"
 
 
 # Error pages
 @app.errorhandler(400)
 def bad_request_error(error):
-    return flask.render_template("400.html"), 400
+    return flask.render_template("400.html", message=error.description), 400
 
 
 @app.errorhandler(410)
 def deleted_error(error):
-    return flask.render_template("410.html"), 410
+    return flask.render_template("410.html", message=error.description), 410
+
+
+@app.errorhandler(SecurityAPIError)
+def security_api_error(error):
+    return (
+        flask.render_template(
+            "security-error-500.html",
+            message=error.response.json().get("message"),
+        ),
+        500,
+    )
+
+
+@app.errorhandler(UAContractsValidationError)
+def ua_contracts_validation_error(error):
+    sentry.captureException(
+        extra={
+            "user_info": user_info(flask.session),
+            "request_url": error.request.url,
+            "request_body": error.request.json,
+            "response_body": error.response.messages,
+        }
+    )
+
+    return flask.jsonify({"errors": error.response.messages}), 422
+
+
+@app.errorhandler(UAContractsAPIError)
+@app.errorhandler(UnauthorizedError)
+def ua_contracts_api_error(error):
+    sentry.captureException(
+        extra={
+            "user_info": user_info(flask.session),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+        }
+    )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
+
+    return (
+        flask.jsonify({"errors": error.response.json()["message"]}),
+        error.response.status_code or 500,
+    )
+
+
+@app.errorhandler(UAContractsAPIErrorView)
+@app.errorhandler(UnauthorizedErrorView)
+def ua_contracts_api_error_view(error):
+    sentry.captureException(
+        extra={
+            "user_info": user_info(flask.session),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+        }
+    )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
+
+        return flask.redirect(flask.request.url)
+
+    return flask.render_template("500.html"), 500
 
 
 # Template context
@@ -149,11 +283,16 @@ def context():
         "month_name": month_name,
         "months_list": months_list,
         "get_navigation": get_navigation,
+        "get_stripe_publishable_key": os.getenv(
+            "STRIPE_PUBLISHABLE_KEY",
+            "pk_live_68aXqowUeX574aGsVck8eiIE",
+        ),
         "product": flask.request.args.get("product", ""),
         "request": flask.request,
         "releases": releases(),
         "user_info": user_info(flask.session),
         "utm_campaign": flask.request.args.get("utm_campaign", ""),
+        "utm_content": flask.request.args.get("utm_content", ""),
         "utm_medium": flask.request.args.get("utm_medium", ""),
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
@@ -171,8 +310,36 @@ def utility_processor():
 
 # Simple routes
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
+app.add_url_rule("/account.json", view_func=account_query)
+app.add_url_rule("/mirrors.json", view_func=mirrors_query)
+app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
+app.add_url_rule("/thank-you", view_func=thank_you)
 app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule(
+    "/advantage/user-subscriptions", view_func=get_user_subscriptions
+)
+app.add_url_rule(
+    "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
+)
+app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
+app.add_url_rule("/advantage/account-users", view_func=get_account_users)
+app.add_url_rule(
+    "/advantage/accounts/<account_id>/user",
+    view_func=post_account_user_role,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/advantage/accounts/<account_id>/user",
+    view_func=put_account_user_role,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    "/advantage/accounts/<account_id>/user",
+    view_func=delete_account_user_role,
+    methods=["DELETE"],
+)
 app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
+app.add_url_rule("/advantage/subscribe/blender", view_func=blender_shop_view)
 app.add_url_rule(
     "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
 )
@@ -183,42 +350,29 @@ app.add_url_rule(
     defaults={"preview": False},
 )
 app.add_url_rule(
+    "/advantage/subscribe",
+    view_func=cancel_advantage_subscriptions,
+    methods=["DELETE"],
+)
+app.add_url_rule(
     "/advantage/subscribe/preview",
     view_func=post_advantage_subscriptions,
     methods=["POST"],
     defaults={"preview": True},
 )
+app.add_url_rule("/advantage/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
-    "/advantage/customer-info", view_func=post_customer_info, methods=["POST"]
-)
-app.add_url_rule(
-    "/advantage/customer-info-anon",
-    view_func=post_anonymised_customer_info,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/advantage/<tx_type>/<tx_id>/invoices/<invoice_id>",
-    view_func=post_stripe_invoice_id,
-    methods=["POST"],
-)
-app.add_url_rule(
-    "/advantage/purchases/<purchase_id>",
-    view_func=get_purchase,
-    methods=["GET"],
-)
-app.add_url_rule(
-    "/advantage/purchase-account",
-    view_func=ensure_purchase_account,
+    "/advantage/set-auto-renewal",
+    view_func=post_auto_renewal_settings,
     methods=["POST"],
 )
 app.add_url_rule(
     "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
-
 app.add_url_rule(
-    "/advantage/customer-info/<account_id>",
-    view_func=get_customer_info,
-    methods=["GET"],
+    "/advantage/trial/<account_id>",
+    view_func=cancel_trial,
+    methods=["DELETE"],
 )
 
 app.add_url_rule(
@@ -226,6 +380,111 @@ app.add_url_rule(
     view_func=accept_renewal,
     methods=["POST"],
 )
+
+app.add_url_rule(
+    "/advantage/contracts/<contract_id>/entitlements",
+    view_func=put_contract_entitlements,
+    methods=["PUT"],
+)
+
+app.add_url_rule(
+    "/advantage/subscribe/blender/thank-you",
+    view_func=blender_thanks_view,
+)
+
+app.add_url_rule(
+    "/advantage/offers",
+    view_func=get_advantage_offers,
+    methods=["GET"],
+)
+
+app.add_url_rule(
+    "/advantage/offers.json",
+    view_func=get_account_offers,
+    methods=["GET"],
+)
+
+# shop
+app.add_url_rule(
+    "/account",
+    view_func=account_view,
+)
+app.add_url_rule(
+    "/account/invoices",
+    view_func=invoices_view,
+)
+app.add_url_rule(
+    "/account/invoices/download/<purchase_id>",
+    view_func=download_invoice,
+)
+app.add_url_rule(
+    "/account/payment-methods",
+    view_func=payment_methods_view,
+)
+app.add_url_rule(
+    "/account/payment-methods",
+    view_func=post_payment_methods,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/purchase-account",
+    view_func=ensure_purchase_account,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/customer-info/<account_id>",
+    view_func=get_customer_info,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/account/customer-info",
+    view_func=post_customer_info,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/customer-info-anon",
+    view_func=post_anonymised_customer_info,
+    methods=["POST"],
+)
+app.add_url_rule(
+    "/account/purchases/<purchase_id>",
+    view_func=get_purchase,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/account/purchases_v2/<purchase_id>",
+    view_func=get_purchase_v2,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/account/<tx_type>/<tx_id>/invoices/<invoice_id>",
+    view_func=post_stripe_invoice_id,
+    methods=["POST"],
+)
+app.add_url_rule("/support", view_func=support)
+app.add_url_rule(
+    "/account/last-purchase-ids/<account_id>",
+    view_func=get_last_purchase_ids,
+)
+app.add_url_rule(
+    "/advantage/purchase",
+    view_func=post_advantage_purchase,
+    methods=["POST"],
+    defaults={"preview": False},
+)
+app.add_url_rule(
+    "/advantage/purchase/preview",
+    view_func=post_advantage_purchase,
+    methods=["POST"],
+    defaults={"preview": True},
+)
+app.add_url_rule(
+    "/account/<marketplace>/purchase/calculate",
+    view_func=post_purchase_calculate,
+    methods=["POST"],
+)
+# end of shop
+
 app.add_url_rule(
     (
         "/download"
@@ -245,7 +504,11 @@ app.add_url_rule("/getubuntu/releasenotes", view_func=releasenotes_redirect)
 app.add_url_rule(
     "/search",
     "search",
-    build_search_view(session=session, template_path="search.html"),
+    build_search_view(
+        session=session,
+        template_path="search.html",
+        search_engine_id=search_engine_id,
+    ),
 )
 app.add_url_rule(
     (
@@ -268,6 +531,7 @@ blog_views = BlogViews(
     api=BlogAPI(session=session),
     excluded_tags=[3184, 3265, 3408, 3960],
     per_page=11,
+    blog_title="Ubuntu blog",
 )
 app.add_url_rule(
     "/blog/topics/<regex('maas|design|juju|robotics|snapcraft'):slug>",
@@ -292,23 +556,22 @@ app.add_url_rule(
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
-app.add_url_rule(
-    "/security/api/notices/<notice_id>", view_func=read_notice,
-)
-app.add_url_rule(
-    "/security/api/notices", view_func=read_notices,
-)
 app.add_url_rule("/security/notices", view_func=notices)
 app.add_url_rule(
     "/security/notices", view_func=create_notice, methods=["POST"]
 )
 
-app.add_url_rule("/security/notices/<notice_id>", view_func=notice)
 app.add_url_rule(
-    "/security/notices/<notice_id>", view_func=update_notice, methods=["PUT"]
+    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
+    view_func=notice,
 )
 app.add_url_rule(
-    "/security/notices/<notice_id>",
+    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
+    view_func=update_notice,
+    methods=["PUT"],
+)
+app.add_url_rule(
+    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
     view_func=delete_notice,
     methods=["DELETE"],
 )
@@ -323,11 +586,11 @@ app.add_url_rule(
 app.add_url_rule("/security/notices/sitemap.xml", view_func=notices_sitemap)
 
 app.add_url_rule(
-    "/security/cve/sitemap-<regex('[0-9]*'):offset>.xml",
+    "/security/cves/sitemap-<regex('[0-9]*'):offset>.xml",
     view_func=single_cves_sitemap,
 )
 
-app.add_url_rule("/security/cve/sitemap.xml", view_func=cves_sitemap)
+app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 
 app.add_url_rule(
     "/security/releases", view_func=create_release, methods=["POST"]
@@ -339,8 +602,8 @@ app.add_url_rule(
 )
 
 # cve section
-app.add_url_rule("/security/cve", view_func=cve_index)
-app.add_url_rule("/security/cve", view_func=bulk_upsert_cve, methods=["PUT"])
+app.add_url_rule("/security/cves", view_func=cve_index)
+app.add_url_rule("/security/cves", view_func=bulk_upsert_cve, methods=["PUT"])
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
@@ -358,13 +621,30 @@ app.add_url_rule("/logout", view_func=logout)
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
 
+takeovers_path = "/takeovers"
+discourse_takeovers = EngagePages(
+    parser=EngageParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
+        ),
+        index_topic_id=17229,
+        url_prefix=takeovers_path,
+    ),
+    # Takeovers doesn't need a base template
+    # But it is a required arg
+    document_template="/base.html",
+    url_prefix=takeovers_path,
+    blueprint_name="takeovers",
+)
+
 engage_path = "/engage"
 engage_pages = EngagePages(
     parser=EngageParser(
         api=DiscourseAPI(
             base_url="https://discourse.ubuntu.com/", session=session,
         ),
-        index_topic_id=17229,
+        index_topic_id=18033,
         url_prefix=engage_path,
     ),
     document_template="/engage/base.html",
@@ -372,21 +652,38 @@ engage_pages = EngagePages(
     blueprint_name="engage-pages",
 )
 
+app.add_url_rule(
+    "/openstack/resources", view_func=openstack_engage(engage_pages)
+)
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+app.add_url_rule(
+    "/engage/<page>/thank-you",
+    defaults={"language": None},
+    view_func=engage_thank_you(engage_pages),
+)
+app.add_url_rule(
+    "/engage/<language>/<page>/thank-you",
+    endpoint="alternative_thank-you",
+    view_func=engage_thank_you(engage_pages),
+)
+app.add_url_rule(
+    "/engage/unlisted/<slug>",
+    view_func=unlisted_engage_page,
+)
 
 
 def get_takeovers():
     takeovers = {}
 
-    engage_pages.parser.parse()
+    discourse_takeovers.parser.parse()
     takeovers["sorted"] = sorted(
-        engage_pages.parser.takeovers,
+        discourse_takeovers.parser.takeovers,
         key=lambda takeover: takeover["publish_date"],
         reverse=True,
     )
     takeovers["active"] = [
         takeover
-        for takeover in engage_pages.parser.takeovers
+        for takeover in discourse_takeovers.parser.takeovers
         if takeover["active"] == "true"
     ]
 
@@ -397,10 +694,6 @@ def takeovers_json():
     takeovers = get_takeovers()
     response = flask.jsonify(takeovers["active"])
     response.cache_control.max_age = "300"
-    response.cache_control._set_cache_value(
-        "stale-while-revalidate", "360", int
-    )
-    response.cache_control._set_cache_value("stale-if-error", "600", int)
 
     return response
 
@@ -411,20 +704,42 @@ def takeovers_index():
     return flask.render_template("takeovers/index.html", takeovers=takeovers,)
 
 
+app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
 engage_pages.init_app(app)
+
+
+core_services_guide_url = "/core/services/guide"
+core_services_guide = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=27473,
+        url_prefix=core_services_guide_url,
+    ),
+    document_template="core/services/guide/document.html",
+    url_prefix=core_services_guide_url,
+    blueprint_name="core-services-guide",
+)
+
+app.add_url_rule(
+    "/core/services/guide/search",
+    "core-services-guide-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/core/services/guide",
+        template_path="core/services/guide/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+core_services_guide.init_app(app)
+
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
 template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
-app.add_url_rule("/snaps", view_func=search_snaps)
-app.add_url_rule("/core/build", view_func=build)
-app.add_url_rule("/core/build", view_func=post_build, methods=["POST"])
-app.add_url_rule(
-    "/core/build/notify", view_func=notify_build, methods=["POST"]
-)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
 url_prefix = "/server/docs"
@@ -432,9 +747,22 @@ server_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=11322, url_prefix=url_prefix,
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/server/docs/document.html",
     url_prefix=url_prefix,
 )
+
+# Server docs search
+# app.add_url_rule(
+#     "/server/docs/search",
+#     "server-docs-search",
+#     build_search_view(
+#         session=session,
+#         site="ubuntu.com/server/docs",
+#         template_path="/server/docs/search-results.html",
+#         search_engine_id=search_engine_id,
+#     ),
+# )
+
 server_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
@@ -446,7 +774,6 @@ tutorials_path = "/tutorials"
 tutorials_docs = Tutorials(
     parser=TutorialParser(
         api=discourse_api,
-        category_id=34,
         index_topic_id=13611,
         url_prefix=tutorials_path,
     ),
@@ -455,30 +782,36 @@ tutorials_docs = Tutorials(
     blueprint_name="tutorials",
 )
 app.add_url_rule(
-    tutorials_path, view_func=build_tutorials_index(session, tutorials_docs)
+    tutorials_path,
+    view_func=build_tutorials_index(session, tutorials_docs),
 )
 tutorials_docs.init_app(app)
+
+app.add_url_rule(
+    "/tutorials.json", view_func=build_tutorials_query(tutorials_docs)
+)
 
 # Ceph docs
 ceph_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=17250, url_prefix="/ceph/docs"
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/ceph/docs/document.html",
     url_prefix="/ceph/docs",
     blueprint_name="ceph",
 )
 ceph_docs.init_app(app)
 
+# Ceph docs search
 app.add_url_rule(
-    "/engage/<page>/thank-you",
-    defaults={"language": None},
-    view_func=engage_thank_you(engage_pages),
-)
-app.add_url_rule(
-    "/engage/<language>/<page>/thank-you",
-    endpoint="alternative_thank-you",
-    view_func=engage_thank_you(engage_pages),
+    "/ceph/docs/search",
+    "ceph-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/ceph/docs",
+        template_path="ceph/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
 )
 
 # Core docs
@@ -486,11 +819,23 @@ core_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=19764, url_prefix="/core/docs"
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs",
     blueprint_name="core",
 )
+# Core docs search
+app.add_url_rule(
+    "/core/docs/search",
+    "core-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/core/docs",
+        template_path="/core/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 core_docs.init_app(app)
+
 # Core docs - Modem Manager
 core_modem_manager_docs = Docs(
     parser=DocParser(
@@ -498,7 +843,7 @@ core_modem_manager_docs = Docs(
         index_topic_id=19901,
         url_prefix="/core/docs/modem-manager",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/modem-manager",
     blueprint_name="modem-manager",
 )
@@ -509,7 +854,7 @@ core_bluetooth_docs = Docs(
     parser=DocParser(
         api=discourse_api, index_topic_id=19971, url_prefix="/core/docs/bluez"
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/bluez",
     blueprint_name="bluez",
 )
@@ -522,7 +867,7 @@ core_network_manager_docs = Docs(
         index_topic_id=19917,
         url_prefix="/core/docs/networkmanager",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/networkmanager",
     blueprint_name="networkmanager",
 )
@@ -535,7 +880,7 @@ core_wpa_supplicant_docs = Docs(
         index_topic_id=19943,
         url_prefix="/core/docs/wpa-supplicant",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/wpa-supplicant",
     blueprint_name="wpa-supplicant",
 )
@@ -548,7 +893,7 @@ core_easy_openvpn_docs = Docs(
         index_topic_id=19950,
         url_prefix="/core/docs/easy-openvpn",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/easy-openvpn",
     blueprint_name="easy-openvpn",
 )
@@ -561,7 +906,7 @@ core_wifi_ap_docs = Docs(
         index_topic_id=19959,
         url_prefix="/core/docs/wifi-ap",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/wifi-ap",
     blueprint_name="wifi-ap",
 )
@@ -574,25 +919,156 @@ core_als_autils_docs = Docs(
         index_topic_id=19995,
         url_prefix="/core/docs/alsa-utils",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="/core/docs/document.html",
     url_prefix="/core/docs/alsa-utils",
     blueprint_name="alsa-utils",
 )
 core_als_autils_docs.init_app(app)
 
 # Cube docs
-app.add_url_rule("/cube", view_func=cube_home)
+app.add_url_rule("/credentialing", view_func=cube_home)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
+app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
+app.add_url_rule(
+    "/cube/microcerts/purchase.json",
+    view_func=post_microcerts_purchase,
+    methods=["POST"],
+)
+app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 
+# Charmed OpenStack docs
 openstack_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=20990, url_prefix="/openstack/docs",
+        api=discourse_api,
+        index_topic_id=20991,
+        url_prefix="/openstack/docs",
     ),
-    document_template="/templates/docs/discourse.html",
+    document_template="openstack/docs/document.html",
     url_prefix="/openstack/docs",
     blueprint_name="openstack-docs",
 )
+
+# Charmed OpenStack docs search
+app.add_url_rule(
+    "/openstack/docs/search",
+    "openstack-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/openstack/docs",
+        template_path="openstack/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
 openstack_docs.init_app(app)
+
+# Security Livepatch docs
+security_livepatch_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=22723,
+        url_prefix="/security/livepatch/docs",
+    ),
+    document_template="/security/livepatch/docs/document.html",
+    url_prefix="/security/livepatch/docs",
+    blueprint_name="security-livepatch-docs",
+)
+
+# Security Livepatch search
+app.add_url_rule(
+    "/security/livepatch/docs/search",
+    "security-livepatch-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/livepatch/docs",
+        template_path="/security/livepatch/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+security_livepatch_docs.init_app(app)
+
+# Security Certifications docs
+security_certs_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=22810,
+        url_prefix="/security/certifications/docs",
+    ),
+    document_template="/security/certifications/docs/document.html",
+    url_prefix="/security/certifications/docs",
+    blueprint_name="security-certs-docs",
+)
+
+# Security Certifications search
+app.add_url_rule(
+    "/security/certifications/docs/search",
+    "security-certs-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/security/certifications/docs",
+        template_path="/security/certifications/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+security_certs_docs.init_app(app)
+
+app.add_url_rule("/certified", view_func=certified_home)
+app.add_url_rule(
+    "/certified/<canonical_id>",
+    view_func=certified_model_details,
+)
+app.add_url_rule(
+    "/certified/<canonical_id>/<release>",
+    view_func=certified_hardware_details,
+)
+app.add_url_rule(
+    "/certified/component/<component_id>",
+    view_func=certified_component_details,
+)
+app.add_url_rule(
+    "/certified/vendors/<vendor>",
+    view_func=certified_vendors,
+)
+app.add_url_rule(
+    "/certified/desktops",
+    view_func=certified_desktops,
+)
+app.add_url_rule(
+    "/certified/laptops",
+    view_func=certified_laptops,
+)
+app.add_url_rule(
+    "/certified/servers",
+    view_func=certified_servers,
+)
+app.add_url_rule(
+    "/certified/devices",
+    view_func=certified_devices,
+)
+app.add_url_rule(
+    "/certified/socs",
+    view_func=certified_socs,
+)
+app.add_url_rule(
+    "/certified/why-certified",
+    view_func=certified_why,
+)
+
+# Override openstack/install
+app.add_url_rule(
+    "/openstack/install",
+    view_func=openstack_install,
+)
+
+
+@app.before_request
+def cube_require_login_cube_study():
+    if flask.request.path.startswith("/cube/study"):
+        user = user_info(flask.session)
+        if not user:
+            return flask.redirect("/login?next=" + flask.request.path)
 
 
 @app.after_request
@@ -601,27 +1077,16 @@ def cache_headers(response):
     Set cache expiry to 60 seconds for homepage and blog page
     """
 
-    if flask.request.path in ["/core/build"]:
-        response.cache_control.private = True
+    disable_cache_on = (
+        "/account",
+        "/advantage",
+        "/cube",
+        "/core/build",
+        "/account.json",
+    )
 
-    if flask.request.path.startswith("/advantage"):
-        response.cache_control.private = True
-        response.headers[
-            "Cache-Control"
-        ] = "no-cache, no-store, must-revalidate"
-        response.headers["Pragma"] = "no-cache"
-
-    if flask.request.path in ["/", "/blog"]:
-        response.headers[
-            "Cache-Control"
-        ] = "max-age=61, stale-while-revalidate=90"
-
-    if flask.request.path.startswith("/cube"):
-        response.cache_control.private = True
-        response.headers[
-            "Cache-Control"
-        ] = "no-cache, no-store, must-revalidate"
-        response.headers["Pragma"] = "no-cache"
+    if flask.request.path.startswith(disable_cache_on):
+        response.cache_control.no_store = True
 
     return response
 

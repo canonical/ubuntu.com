@@ -28,6 +28,7 @@
 
   .blog-p-card--post {
     @extend %p-card--highlighted;
+
     display: flex !important;
     flex-direction: column;
     padding: 0;
@@ -63,32 +64,6 @@
     }
   }
 
-  .blog-p-card--muted {
-    @extend .p-card;
-    background-color: $color-light;
-    box-shadow: 0 1px 2px 0 transparentize($color-dark, 0.8);
-    padding: 0;
-
-    > .blog-p-card__header {
-      border-bottom: 0;
-      border-top: 3px solid $color-light;
-      margin-bottom: 0;
-    }
-
-    > .blog-p-card__content {
-      border-top: 1px dotted $color-mid-light;
-      margin: 0 $sp-small $sp-small;
-      padding: $sp-medium $sp-small $sp-small;
-    }
-  }
-
-  // a fallback to catch any instances where a post.group exists,
-  // but we haven't yet defined a BEM variant to match
-  [class*="blog-p-card__header"] {
-    @extend %post-card-header;
-    border-top: 3px solid $color-mid-dark;
-  }
-
   .blog-p-card__header {
     &--canonical-announcements {
       border-color: #ff8936;
@@ -119,8 +94,37 @@
     }
   }
 
+  .blog-p-card--muted {
+    @extend .p-card;
+
+    background-color: $color-light;
+    box-shadow: 0 1px 2px 0 transparentize($color-dark, 0.8);
+    padding: 0;
+
+    > .blog-p-card__header {
+      border-bottom: 0;
+      border-top: 3px solid $color-light;
+      margin-bottom: 0;
+    }
+
+    > .blog-p-card__content {
+      border-top: 1px dotted $color-mid-light;
+      margin: 0 $sp-small $sp-small;
+      padding: $sp-medium $sp-small $sp-small;
+    }
+  }
+
+  // a fallback to catch any instances where a post.group exists,
+  // but we haven't yet defined a BEM variant to match
+  [class*="blog-p-card__header"] {
+    @extend %post-card-header;
+
+    border-top: 3px solid $color-mid-dark;
+  }
+
   .blog-p-card__date {
     @extend .p-media-object__meta-list;
+
     display: flex;
     margin-top: auto;
     padding-top: $sp-medium;

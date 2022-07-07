@@ -147,7 +147,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
 </tr>
 <tr>
   <td> gcp-integrator </td>
-  <td> Pharm to enable GCP integrations via Juju relations. </td>
+  <td> Charm to enable GCP integrations via Juju relations. </td>
   <td> <a href="/kubernetes/docs/1.16/charm-gcp-integrator">docs</a> </td> <td> <a href="https://github.com/juju-solutions/charm-gcp-integrator"> source </a> </td>
   <td> <a href="https://bugs.launchpad.net/charmed-kubernetes"> bugs</a> </td>
   <td> 20 </td>
@@ -326,7 +326,9 @@ These charms are frequently used with Charmed Kubernetes.
 
 ## Images
 
-These are the container images used by this release:
+
+The [addons][] installed alongside Kubernetes make use of additional container
+images. These are the ones used by this release:
 
 <!-- GENERATED CONTAINER IMAGES -->
 
@@ -431,6 +433,7 @@ The following snaps are used by this release of Charmed Kubernetes:
 
 
 <!-- LINKS -->
+[addons]: /kubernetes/docs/cdk-addons
 [documentation]: /kubernetes/docs/
 [release notes]: /kubernetes/docs/release-notes#1.16
 [upgrade notes]: /kubernetes/docs/

@@ -29,8 +29,10 @@
 
 <div class="l-tutorial">
   <aside class="l-tutorial__sidebar">
-    <i class="l-tutorial__nav-toggle p-icon--menu u-hide u-show--small"></i>
-    <ol class="l-tutorial__nav p-stepped-list u-hide--small">
+    <button type="button" class="l-tutorial__nav-toggle p-icon--menu u-hide u-show--small" aria-controls="menu-tutorial" aria-expanded="false">
+      Toggle tutorial menu
+    </button>
+    <ol class="l-tutorial__nav p-stepped-list u-hide--small" id="menu-tutorial" aria-hidden="true">
       {% for section in document.sections %}
         <li class="p-stepped-list__item l-tutorial__nav-item">
           <p class="p-stepped-list__title l-tutorial__nav-title u-no-margin--bottom">
@@ -45,7 +47,7 @@
   <div class="l-tutorial__content">
     {% for section in document.sections %}
     <section class="l-tutorial-section" id="{{ loop.index }}-{{ section['slug']}}">
-      <h2 class="p-heading--three">{{ loop.index }}. {{ section["title"]}}</h2>
+      <h2 class="p-heading--3">{{ loop.index }}. {{ section["title"]}}</h2>
 
       <article class="l-tutorial-section__content">
         {{ section.content | safe }}
@@ -137,7 +139,9 @@
       </div>
 
       <div class="l-tutorial__feedback-result p-notification--positive u-hide">
-        <p class="p-notification__response">Thank you for your feedback.</p>
+        <div class="p-notification__content">
+          <p class="p-notification__message">Thank you for your feedback.</p>
+        </div>
       </div>
       {% endif %}
 
@@ -162,22 +166,22 @@
           </div>
           <div class="l-tutorial__pagination">
             {% if loop.first %}
-              <button class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" disabled style="margin-right: 1rem;">
-                <i class="p-icon--contextual-menu">Previous step</i>
+              <button class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom" disabled style="margin-right: 1rem;">
+                <i class="p-icon--chevron-down">Previous step</i>
               </button>
             {% else %}
-              <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}" class="l-tutorial__pagination-item--prev p-button--neutral has-icon u-no-margin--bottom" style="margin-right: 1rem;">
-                <i class="p-icon--contextual-menu">Previous step</i>
+              <a href="#{{ loop.index - 1 }}-{{ loop.previtem['slug'] }}" class="l-tutorial__pagination-item--prev p-button has-icon u-no-margin--bottom" style="margin-right: 1rem;">
+                <i class="p-icon--chevron-down">Previous step</i>
               </a>
             {% endif %}
 
             {% if loop.last %}
-              <button class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom" disabled>
-                <i class="p-icon--contextual-menu">Next step</i>
+              <button class="l-tutorial__pagination-item--next p-button has-icon u-no-margin--bottom" disabled>
+                <i class="p-icon--chevron-down">Next step</i>
               </button>
             {% else %}
-              <a href="#{{ loop.index + 1 }}-{{ loop.nextitem['slug'] }}" class="l-tutorial__pagination-item--next p-button--neutral has-icon u-no-margin--bottom">
-                <i class="p-icon--contextual-menu">Next step</i>
+              <a href="#{{ loop.index + 1 }}-{{ loop.nextitem['slug'] }}" class="l-tutorial__pagination-item--next p-button has-icon u-no-margin--bottom">
+                <i class="p-icon--chevron-down">Next step</i>
               </a>
             {% endif %}
           </div>

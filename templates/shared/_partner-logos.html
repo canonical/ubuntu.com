@@ -1,16 +1,22 @@
 {% set partners=get_json_feed(json_feed_url, limit=feed_item_limit) %}
 
 {% if partners == false %}
-  <div class="p-notification--negative">
-    <p class="p-notification__response"><span class="p-notification__status">Error:</span>Our partner logos failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new" class="p-link--external">report this bug</a> and our team will fix the problem as soon as possible.</p>
+  <div class="p-notification--negative is-inline">
+    <div class="p-notification__content">
+      <span class="p-notification__title">Error:</span>
+      <p class="p-notification__message"></p>Our partner logos failed to load. Please <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new">report this bug</a> and our team will fix the problem as soon as possible.</p>
+    </div>
   </div>
 {% else %}
-  {% if title %}<h2 class="p-muted-heading u-align--center">{{title}}</h2>{% endif %}
-  <ul id="cloud-partners" class="p-inline-images">
-    {% for partner in partners %}
-      <li class="p-inline-images__item">
-        {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-inline-images__logo" src="{{ partner.logo }}" style="max-width: 144px;" width="144" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+  <div class="p-logo-section">
+    {% if title %}<h2 class="p-logo-section__title u-align--center">{{title}}</h2>{% endif %}
+  
+    <div id="cloud-partners" class="p-logo-section__items">
+      {% for partner in partners %}
+        <div class="p-logo-section__item">
+          {% if partner.partner_website %}<a href="{{ partner.partner_website }}">{% endif %}<img class="p-logo-section__logo" src="{{ partner.logo }}" style="max-width: 144px;" width="144" alt="{{ partner.name }}" />{% if partner.partner_website %}</a>{% endif %}
+        </div>
+      {% endfor %}
+      </div>
+  </div>
 {% endif %}

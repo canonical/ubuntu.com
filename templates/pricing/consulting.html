@@ -6,46 +6,50 @@
 
 {% block content %}
 
-  <section class="p-strip--suru-topped">
-    <div class="row">
-      <div class="col-8">
-        <h1>Open Infrastructure consulting &amp; training</h1>
-      </div>
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-8">
+      <h1>Open Infrastructure consulting services</h1>
     </div>
-  </section>
-
-  <section class="p-strip--light">
-    <div class="u-fixed-width">
-      <h2 id="openstack">OpenStack</h2>
-    </div>
-
-    <div class="row u-equal-height">
-      {% with columns=2 %}{% include "shared/pricing/_openstack-packages.html" %}{% endwith %}
-    </div>
-    <div class="u-fixed-width">
-      <a href="/support/contact-us?product=openstack" data-form-location="/shared/forms/interactive/support-openstack" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html" class="js-invoke-modal p-button--positive">Get in touch</a>
-    </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2 id="kubernetes">Kubernetes</h2>
-    </div>
-    {% include 'shared/pricing/_kubernetes-consulting.html' %}
-  </section>
-
-  <section class="p-strip--light">
-    <div class="u-fixed-width">
-      <h2 id="kubeflow">Kubeflow Machine Learning Starter</h2>
-    </div>
-    {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
-  </section>
-
-  {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-  <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1240" data-lp-id="2065" data-return-url="https://www.ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 id="openstack">OpenStack</h2>
+  </div>
+
+  {% include "shared/pricing/_openstack-packages.html" %}
+
+  <div class="u-fixed-width">
+    <p>
+      <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-button">
+        Download the datasheet
+      </a>
+      <a data-testid="interactive-form-link" href="/support/contact-us?product=openstack" data-form-location="/shared/forms/interactive/support-openstack" data-form-id="1240" data-lp-id="2065" data-return-url="/pricing/consulting#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html" class="js-invoke-modal p-button--positive"> Get in touch</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 id="kubernetes">Kubernetes</h2>
+  </div>
+  {% include 'shared/pricing/_kubernetes-consulting.html' %}
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 id="kubeflow">Kubeflow Deployment Service</h2>
+  </div>
+  {% include "shared/pricing/_kubernetes-consulting-add-ons.html" %}
+</section>
+
+{% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/support" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/support/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
 
 
 

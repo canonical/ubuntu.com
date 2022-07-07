@@ -1,0 +1,88 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Workstations journey to AI{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1qFj7Q1lAQpVCKOFjlJz0S6VKy9ElJ-sy2aS3xPF_e04/edit{% endblock meta_copydoc %}
+{% block meta_description %}{% endblock %}
+
+{% block outer_content %}
+<section class="p-strip--suru-half-and-half-reversed is-dark">
+    <div class="row u-vertically-center">
+        <div class="col-6">
+            <h1>Data Science Workstations</h1>
+            <h4>Take a deep dive into how workstations enable the AI journey in this four-part webinar series</h4>
+        </div>
+        <div class="col-6 u-align--right u-hide--small">
+            {{
+                image(
+                  url="https://assets.ubuntu.com/v1/14ab54c1-DELL+canonical.svg",
+                  alt="Dell and Canonical",
+                  width="350",
+                  hi_def=True,
+                ) | safe
+            }}
+        </div>
+    </div>
+</section>
+<section class="p-strip is-bordered">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="p-muted-heading">Part 1 - On demand</h4>
+            <h2>Data Pipelines</h2>
+            <p>Explore the best open source platforms and tools that help to work on large and varying datasets</p>
+            <p>While new AI algorithms and training methods get all the hype, most analysts agree that data scientists spend up to 80% of their time on data: exploration, acquisition, ingestion, transformation and cleansing. This webinar will explore best open source platforms and tools that help to work on large and varying datasets, which is the first step of a four piece series on the AI Journey.</p>
+
+            <strong>In this session we will talk about:</strong>
+            <ul class="p-list">
+                <li class="p-list__item is-ticked">Data cleaning</li>
+                <li class="p-list__item is-ticked">ETL</li>
+                <li class="p-list__item is-ticked">Data governance</li>
+                <li class="p-list__item is-ticked">Data ingestion</li>
+                <li class="p-list__item is-ticked">Data types</li>
+                <li class="p-list__item is-ticked">Locality impacts on performance and security</li>
+            </ul>
+            <strong>Speakers:</strong>
+            <ul class="p-list">
+                <li class="p-list__item">Maciej Mazur - Product Manager at Canonical</li>
+                <li class="p-list__item">Kyle Harper - Director of AI Strategy at Dell</li>
+                <li class="p-list__item">Michael Boros - AI Strategy at Dell</li>
+            </ul>
+
+            <a class="p-button--positive" href="https://www.brighttalk.com/webcast/6793/480302?utm_source=Canonical&utm_medium=brighttalk&utm_campaign=480302">Watch the webinar</a>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip is-bordered">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="p-muted-heading">Part 2 - June 8th | 11AM ET & 4PM BST</h4>
+            <h2>Choosing your algorithm</h2>
+            <p>In this session we will talk about statistical computer vision, NLP, predictions, segmentation</p>
+            <a href="https://www.brighttalk.com/webcast/6793/480482" class="p-button--positive">Register</a>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip is-bordered">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="p-muted-heading">Part 3 - August 10th | 11AM ET & 4PM BST</h4>
+            <h2>Training on the workstation</h2>
+            <p>In this session we will talk about, workstation vs server vs cloud, ephemeral environments, and GPU/acceleration</p>
+            <a href="https://www.brighttalk.com/webcast/6793/480563" class="p-button--positive">Register</a>
+        </div>
+    </div>
+</section>
+
+<section class="p-strip is-bordered">
+    <div class="row">
+        <div class="col-6">
+            <h4 class="p-muted-heading">Part 4 - Oct 12th | 11AM CT & 4PM BST</h4>
+            <h2>Deployment anywhere</h2>
+            <p>In this session we will talk about Inference engines deployment</p>
+            <a href="https://www.brighttalk.com/webcast/6793/480564" class="p-button--positive">Register</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

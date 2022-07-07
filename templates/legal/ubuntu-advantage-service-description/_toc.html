@@ -1,28 +1,160 @@
-<div class="p-table-of-contents__section">
-  <h4 class="p-table-of-contents__header">Contents</h4>
-  <nav class="p-table-of-contents__nav">
-    <ul class="p-list u-no-margin--bottom">
-      <li><a href="#uasd-ua-infrastructure">Ubuntu Advantage for Infrastructure (UA-I)</a></li>
-      <li><a href="#uasd-subscription">Subscriptions</a></li>
-      <li><a href="#uasd-support-levels">Support Levels</a></li>
-      <li><a href="#uasd-managed-services">Managed Services</a></li>
-      <li><a href="#uasd-virtual-machines">Virtual Machines and Cloud Instances</a></li>
-      <li><a href="#uasd-desktop-support">Desktop support</a></li>
-      <li><a href="#uasd-add-ons">Add-Ons</a></li>
-      <li><a href="#uasd-maas-support">MAAS Support</a></li>
-      <li><a href="#uasd-software">Software</a></li>
-      <li><a href="#uasd-professional-support">Professional Support Services</a></li>
-      <li><a href="#uasd-ua-support-services">Ubuntu Advantage Support Services Process</a></li>
-      <li><a href="#uasd-definitions">Definitions</a></li>
-    </ul>
-  </nav>
-</div>
+<div class="p-side-navigation is-sticky" id="drawer">
+  <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
+    Toggle table of contents
+  </a>
+  <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+  <nav class="p-side-navigation__drawer" aria-label="Table of content">
+    <div class="p-side-navigation__drawer-header">
+      <button class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+        Toggle table of contents
+      </button>
+    </div>
 
-<div class="p-table-of-contents__section">
-  <h4 class="p-table-of-contents__header">Japanese translation</h4>
-  <nav class="p-table-of-contents__nav">
-    <ul class="p-list u-no-margin--bottom">
-      <li class="p-list__item"><a href="/legal/ubuntu-advantage-service-description/ja">UA サービス範囲&nbsp;&rsaquo;</a></li>
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title">
+        <a class="p-side-navigation__link" href="#ubuntu-advantage-service-description">Introduction</a>
+      </li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title">
+        <a class="p-side-navigation__link" href="#uasd-essential">Essential</a>
+      </li>
+      <li class="p-side-navigation__item">
+        <ul class="p-side-navigation__list">
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-esm">Extended Security Maintenance (ESM)</a></li>
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#other-security-fixes">Other security fixes</a></li>
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-certified">Certified components for compliance, hardening and audit</a></li>
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-landscape">Landscape and knowledge base access</a></li>
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-livepatch">Kernel Livepatch</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title">
+        <a class="p-side-navigation__link"  href="#uasd-standard-and-advanced">Standard and Advanced</a>
+      </li>
+      <li class="p-side-navigation__item">
+        <ul class="p-side-navigation__list">
+          <li class="p-side-navigation__item">
+            <a class="p-side-navigation__link" href="#uasd-support-levels">Support levels</a>
+          </li>
+          <li class="p-side-navigation__item">
+            <a class="p-side-navigation__link" href="#uasd-infra-and-apps">Support - UA Infra and UA Apps</a>
+          </li>
+          <li class="p-side-navigation__item">
+            <ul class="p-side-navigation__list">
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-ubuntu-releases">Ubuntu releases</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-certified-hardware">Certified Hardware</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-packages-and-kernels">Packages, kernels and Landscape support scope</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-kubernetes">Kubernetes</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <ul class="p-side-navigation__list">
+                  <li class="p-side-navigation__item">
+                    <a class="p-side-navigation__link" href="#uasd-kubernetes-cluster">Kubernetes cluster Full-Stack support requirements</a>
+                  </li>
+                  <li class="p-side-navigation__item">
+                    <a class="p-side-navigation__link" href="#uasd-kubernetes-support">Limited Kubernetes support</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="p-side-navigation__item">
+            <a class="p-side-navigation__link" href="#uasd-infra-only">Support - UA Infra only</a>
+          </li>
+          <li class="p-side-navigation__item">
+            <ul class="p-side-navigation__list">
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-openstack">OpenStack</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <ul class="p-side-navigation__list">
+                  <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-full-openstack-support">Full OpenStack support</a></li>
+                  <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-limited-openstack-support">Limited OpenStack support</a></li>
+                  <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-exclusions">Exclusions</a></li>
+                </ul>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-charms-support">Charms support</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-storage-support">Storage support</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-maas-support">MAAS support</a>
+              </li>
+              <li class="p-side-navigation__item">
+                <ul class="p-side-navigation__list">
+                  <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-maas-support-scope">MAAS support scope</a></li>
+                  <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-out-of-scope">Out of scope</a></li>
+                </ul>
+              </li>
+              <li class="p-side-navigation__item">
+                <a class="p-side-navigation__link" href="#uasd-ubuntu-assurance-program">Ubuntu assurance program</a>
+              </li>
+            </ul>
+          </li>
+          <li class="p-side-navigation__item">
+            <a class="p-side-navigation__link"  href="#uasd-apps-only">Support - UA Apps only</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title">
+        <a class="p-side-navigation__link" href="#uasd-support-exclusions">Support exclusions</a>
+      </li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title">
+        <a class="p-side-navigation__link" href="#uasd-add-ons">Add Ons</a>
+      </li>
+      <li class="p-side-navigation__item">
+        <ul class="p-side-navigation__list">
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-managed-services">Managed Services</a></li>
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="#uasd-support-services">Professional Support Services</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title"><a class="p-side-navigation__link" href="#uasd-support-services-process">UA Support Services Process</a></li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title"><a class="p-side-navigation__link" href="#embedded-services">Embedded Services</a></li>
+    </ul>    
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title"><a class="p-side-navigation__link" href="#uasd-definitions">Definitions</a></li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title">
+        <span class="p-side-navigation__text">Specialist service</span>
+      </li>
+      <li class="p-side-navigation__item">
+        <ul class="p-side-navigation__list">
+          <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="/legal/ubuntu-advantage-service-description/ros-esm-service-description ">ROS ESM Service Description</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="p-side-navigation__list">
+      <li class="p-side-navigation__item--title"><span class="p-side-navigation__text">Japanese translation</span></li>
+      <li class="p-side-navigation__item"><a class="p-side-navigation__link" href="/legal/ubuntu-advantage-service-description/ja">UA サービス範囲&nbsp;&rsaquo;</a></li>
     </ul>
   </nav>
 </div>

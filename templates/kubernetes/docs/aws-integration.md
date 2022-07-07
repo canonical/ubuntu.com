@@ -38,11 +38,11 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/aws-integrator
+    charm: aws-integrator
     num_units: 1
     trust: true
 relations:
-  - ['aws-integrator', 'kubernetes-master']
+  - ['aws-integrator', 'kubernetes-control-plane']
   - ['aws-integrator', 'kubernetes-worker']
   ```
 
@@ -55,7 +55,7 @@ juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the integrator uses,
@@ -161,12 +161,11 @@ spec:
 EOY
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-If you create EBS volumes and subsequently tear down the cluster, check
-with the AWS console to make sure all the associated resources have also been released.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you create EBS volumes and subsequently tear down the cluster, check with the AWS console to make sure all the associated resources have also been released.</p>
+  </div>
 </div>
 
 ### Using ELB Loadbalancers
@@ -237,12 +236,11 @@ curl  http://ad5fc7750350611e99768068a686bb67-239702253.eu-west-1.elb.amazonaws.
 Hello Kubernetes!
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-If you create ELBs and subsequently tear down the cluster, check with the AWS console
-to make sure all the associated resources have also been released.
-  </p>
+<div class="p-notification--caution is-inline">
+  <siv markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you create ELBs and subsequently tear down the cluster, check with the AWS console to make sure all the associated resources have also been released.</p>
+  </div>
 </div>
 
 ### Upgrading the integrator-charm
@@ -277,22 +275,22 @@ If you are an AWS user, you may also be interested in how to
 
 <!-- LINKS -->
 
-[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/aws-overlay.yaml
+[asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/
 [cloudtrail]: https://console.aws.amazon.com/cloudtrail/
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
-[aws-integrator-readme]: https://jujucharms.com/u/containers/aws-integrator/
+[aws-integrator-readme]: https://charmhub.io/containers-aws-integrator
 [aws-iam]: /kubernetes/docs/aws-iam-auth
 [install]: /kubernetes/docs/install-manual
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/aws-integration.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+      <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/aws-integration.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

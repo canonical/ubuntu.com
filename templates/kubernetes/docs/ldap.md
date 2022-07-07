@@ -47,11 +47,11 @@ Deploy the bundle with the following command:
 juju deploy ./keystone.yaml
 ```
 
-You should now add a relation for the kubernetes-master nodes to accept Keystone
+You should now add a relation for the kubernetes-control-plane nodes to accept Keystone
 credentials:
 
 ```bash
-juju add-relation keystone:identity-credentials kubernetes-master:keystone-credentials
+juju add-relation keystone:identity-credentials kubernetes-control-plane:keystone-credentials
 ```
 
 You can check that the new applications have deployed and are running with:
@@ -84,7 +84,7 @@ it is possible to re-use it for authenticating and authorising users in Kubernet
 To do so, first deploy the [openstack-integrator charm][openstack-integrator]
 
 ```bash
-juju deploy cs:~containers/openstack-integrator
+juju deploy openstack-integrator
 ```
 
 Use 'juju trust' to grant openstack-integrator a permission to access the OpenStack model,
@@ -94,10 +94,10 @@ or configure the credentials config parameter manually
 juju trust openstack-integrator
 ```
 
-Finally add a relation between `kubernetes-master` and `openstack-integrator`
+Finally add a relation between `kubernetes-control-plane` and `openstack-integrator`
 
 ```bash
-juju add-relation kubernetes-master:keystone-credentials openstack-integrator:keystone-credentials
+juju add-relation kubernetes-control-plane:keystone-credentials openstack-integrator:credentials
 ```
 
 ## Fetch the Keystone script
@@ -107,7 +107,7 @@ the Kubernetes master application will generate a utility script.
 This should be copied to the local client with:
 
 ```bash
-juju scp kubernetes-master/0:kube-keystone.sh ~/kube-keystone.sh
+juju scp kubernetes-control-plane/0:kube-keystone.sh ~/kube-keystone.sh
 ```
 
 The file will need to be edited to replace the value for `OS_AUTH_URL`, which should
@@ -162,13 +162,13 @@ Create an appropriate role for Kubernetes:
 ![dashboard image](https://assets.ubuntu.com/v1/f65d9f1f-ldap3.png)
 
 Repeat the process for `k8s-viewers` and `k8s-users` if desired. These values
-match with the `keystone-policy` configuration option on the kubernetes-master
+match with the `keystone-policy` configuration option on the kubernetes-control-plane
 charm.
 
 ### Create a project for Kubernetes
 
 As with the roles, the project name must match the value in the
-`keystone-policy` configuration option on the kubernetes-master charm.
+`keystone-policy` configuration option on the kubernetes-control-plane charm.
 
 ![dashboard image](https://assets.ubuntu.com/v1/442f2a24-ldap4.png)
 
@@ -269,20 +269,20 @@ In order to enable authorization feature in **Charmed Kubernetes** one should ch
 of the charm and switch to **RBAC** authorization mode as follows:
 
 ```bash
-juju config kubernetes-master authorization-mode="Node,RBAC"
+juju config kubernetes-control-plane authorization-mode="Node,RBAC"
 ```
 
 **Charmed Kubernetes** can  also use Keystone for authorisation as follows:
 
 ```bash
-juju config kubernetes-master enable-keystone-authorization=true
+juju config kubernetes-control-plane enable-keystone-authorization=true
 ```
 
  When authorisation is enabled, the [default policy defined in the configuration][policy] will be used.
  Optionally, A custom policy can be applied by running:
 
 ```bash
-juju config kubernetes-master keystone-policy="$(cat policy.yaml)"
+juju config kubernetes-control-plane keystone-policy="$(cat policy.yaml)"
 ```
 
 
@@ -297,10 +297,10 @@ required.
 sudo cp custom_ca.crt /usr/local/share/ca-certificates
 sudo update-ca-certificates
 ```
- * Add CA to the kubernetes-master configuration
+ * Add CA to the kubernetes-control-plane configuration
 
 ```bash
-juju config kubernetes-master keystone-ssl-ca="$(base64 custom_ca.crt)"
+juju config kubernetes-control-plane keystone-ssl-ca="$(base64 custom_ca.crt)"
 ```
 
 ## Troubleshooting
@@ -315,17 +315,17 @@ configuring Keystone/LDAP.
 [install]: /kubernetes/docs/quickstart
 [policy]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/policy.yaml
 [keystone-bundle]: https://raw.githubusercontent.com/juju-solutions/kubernetes-docs/master/assets/keystone.yaml
-[docs-ldap-keystone]: https://jujucharms.com/keystone-ldap
+[docs-ldap-keystone]: https://charmhub.io/keystone-ldap
 [trouble]: /kubernetes/docs/troubleshooting/#troubleshooting-keystoneldap-issues
 [openstack-integrator]: /kubernetes/docs/openstack-integration
 
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/ldap.md" class="p-notification__action">edit this page</a> 
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/ldap.md" >edit this page</a> 
     or 
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

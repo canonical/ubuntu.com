@@ -1,0 +1,391 @@
+{% extends "observability/base_observability.html" %}
+
+{% block title %}Open source observability for enterprises{% endblock %}
+
+{% block meta_description %}Enterprise-class open source observability with long-term support for Prometheus, Alertmanager, Grafana and more.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1NxJdT3BD6EWnpsu-eathNyranQVImnDGhuCjzsIWh4s/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row">
+      <div class="col-7">
+        <h1>Open source observability for enterprises</h1>
+        <h2>Monitoring tools and dashboards, secured and supported</h2>
+        <p>Metrics, distributed tracing, logs, dashboards, alerts. Always know how well your applications are running in the Cloud, in containers, on virtual machines or bare metal.</p>
+        <p>Canonical offers security and support for the best in class open source monitoring tools and dashboards, and can also run these tools for you on private and public clouds.</p>
+        <a href="/observability/contact-us" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Contact Us</a>
+        <a href="/observability/what-is-observability">What is Observability?</a>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
+          alt="",
+          width="403",
+          height="230",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width">
+  <hr />
+</div>
+
+
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width u-sv3">
+    <h2>Reliable monitoring tools you can count on</h2>
+    <p>Future-proof your open source observability with Ubuntu Advantage: a single, per-node package of the most comprehensive enterprise security and support for open source infrastructure and applications, including a variety of best-in-class monitoring tools and monitoring dashboards.</p>
+    <a href="/advantage/subscribe" class="p-button--positive">Buy Ubuntu Advantage</a>
+    <a href="/support">What is Ubuntu Advantage?</a>
+  </div>
+  <div class="row p-divider">
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4">Metrics</h3>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
+            alt="",
+            width="1200",
+            height="1190",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Prometheus</p>
+        </div>
+      </div>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/14681911-telegraf-app-icon.png",
+            alt="",
+            width="589",
+            height="589",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">InfluxDB</p>
+        </div>
+      </div>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/14681911-telegraf-app-icon.png",
+            alt="",
+            width="589",
+            height="589",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Telegraf</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4">Distributed Tracing</h3>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e01066c4-Jaeger_Logo_Final_PANTONE.svg",
+            alt="",
+            width="887",
+            height="1013",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Jaeger</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4">Logs</h3>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/01becb3c-elastic-search-logo-color-64px.svg",
+            alt="",
+            width="64",
+            height="64",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Elasticsearch</p>
+        </div>
+      </div>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c1d16634-graylog-app-icon.png",
+            alt="",
+            width="400",
+            height="400",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Graylog</p>
+        </div>
+      </div>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/cbc7da88-beats-logo-color-64px.svg",
+            alt="",
+            width="64",
+            height="64",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Filebeat</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 p-divider__block">
+      <h3 class="p-heading--4">Dashboards and Alerting</h3>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/54ac468e-grafana_logo_swirl-events.svg",
+            alt="",
+            width="250",
+            height="250",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Grafana</p>
+        </div>
+      </div>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/55f658f0-kibana-seeklogo.com.svg",
+            alt="",
+            width="256",
+            height="342",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Kibana</p>
+        </div>
+      </div>
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/826d5be3-1200px-Prometheus_software_logo.svg.png",
+            alt="",
+            width="1200",
+            height="1190",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--5">Alertmanager</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip is-bordered u-hide-small">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align--center">Trusted by</p>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/bafeea04-logo-tele2.svg",
+            alt="tele 2 logo",
+            width="144",
+            height="144",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/caf603f5-Deutsche+Telekom.png",
+            alt="deutche telekom logo",
+            width="292",
+            height="290",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5b20f1f1-2018-logo-PCCW.svg",
+            alt="pccw logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/bb4ee6fb-2018-logo-bnp-paribas.svg",
+            alt="bnp paribas",
+            width="146",
+            height="146",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c2220484-logo-BT.svg",
+            alt="bt logo",
+            width="144",
+            height="144",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/cb930e58-2018-logo-cogeco.svg",
+            alt="cogeco logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a2e4ca92-logo-rabobank.svg",
+            alt="radobank logo",
+            width="144",
+            height="144",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/52df407b-2018-logo-fibernet.svg",
+            alt="fibernet direct logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/99d78ec1-2018-logo-biznet-giocloud.svg",
+            alt="biznet giocloud logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3e7e40cd-2018-logo-mimedia.svg",
+            alt="mimedia logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/8fe23d60-2018-logo-voidbridge.svg",
+            alt="voidbridge logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f853c09b-2018-logo-uct.svg",
+            alt="uct logo",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% with section_classes='p-strip', heading_topic='Observability', tag_name='observability', tag_id='4125', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e68fd355-1+discovery_AW.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7">
+      <h3>You focus on your business, we run the monitoring tools for you</h3>
+      <p>Your monitoring tools and monitoring dashboards, run reliably and efficiently by Canonical, wherever your applications are.</p>
+      <p>
+        <a class="p-button--positive" href="/observability/managed">
+          Learn more
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/observability-contact-us" data-form-id="4072" data-lp-id="" data-return-url="https://www.ubuntu.com/observability/thank-you.html" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock content%}

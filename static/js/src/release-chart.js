@@ -45,11 +45,24 @@ function buildCharts() {
     );
   }
   if (document.querySelector("#server-desktop-eol")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
     createChart(
       "#server-desktop-eol",
       desktopServerReleaseNames,
       desktopServerStatus,
       serverAndDesktopReleases
+    );
+  }
+  if (document.querySelector("#eol-1604")) {
+    delete desktopServerStatus.MAINTENANCE_UPDATES;
+    createChart(
+      "#eol-1604",
+      desktopServerReleaseNames,
+      desktopServerStatus,
+      serverAndDesktopReleases,
+      false,
+      [],
+      "16.04"
     );
   }
   if (document.querySelector("#kernel-eol")) {
@@ -138,41 +151,57 @@ function buildCharts() {
 }
 
 function clearCharts() {
-  if (document.querySelector("#small-eol")) {
-    document.querySelector("#small-eol").innerHTML = "";
+  const smallEol = document.querySelector("#small-eol");
+  if (smallEol) {
+    smallEol.innerHTML = "";
   }
-  if (document.querySelector("#server-desktop-eol")) {
-    document.querySelector("#server-desktop-eol").innerHTML = "";
+  const serverDesktopEol = document.querySelector("#server-desktop-eol");
+  if (serverDesktopEol) {
+    serverDesktopEol.innerHTML = "";
   }
-  if (document.querySelector("#kernel-eol")) {
-    document.querySelector("#kernel-eol").innerHTML = "";
+  const eol1604 = document.querySelector("#eol-1604");
+  if (eol1604) {
+    eol1604.innerHTML = "";
   }
-  if (document.querySelector("#kernel2004")) {
-    document.querySelector("#kernel2004").innerHTML = "";
+  const kernelEol = document.querySelector("#kernel-eol");
+  if (kernelEol) {
+    kernelEol.innerHTML = "";
   }
-  if (document.querySelector("#kernel1804")) {
-    document.querySelector("#kernel1804").innerHTML = "";
+  const kernel2004 = document.querySelector("#kernel2004");
+  if (kernel2004) {
+    kernel2004.innerHTML = "";
   }
-  if (document.querySelector("#kernel1604")) {
-    document.querySelector("#kernel1604").innerHTML = "";
+  const kernel1804 = document.querySelector("#kernel1804");
+  if (kernel1804) {
+    kernel1804.innerHTML = "";
   }
-  if (document.querySelector("#kernel1404")) {
-    document.querySelector("#kernel1404").innerHTML = "";
+  const kernel1604 = document.querySelector("#kernel1604");
+  if (kernel1604) {
+    kernel1604.innerHTML = "";
   }
-  if (document.querySelector("#kernellts")) {
-    document.querySelector("#kernellts").innerHTML = "";
+  const kernel1404 = document.querySelector("#kernel1404");
+  if (kernel1404) {
+    kernel1404.innerHTML = "";
   }
-  if (document.querySelector("#kernelall")) {
-    document.querySelector("#kernelall").innerHTML = "";
+  const kernellts = document.querySelector("#kernellts");
+  if (kernellts) {
+    kernellts.innerHTML = "";
   }
-  if (document.querySelector("#openstack-eol")) {
-    document.querySelector("#openstack-eol").innerHTML = "";
+  const kernelall = document.querySelector("#kernelall");
+  if (kernelall) {
+    kernelall.innerHTML = "";
   }
-  if (document.querySelector("#kubernetes-eol")) {
-    document.querySelector("#kubernetes-eol").innerHTML = "";
+  const openstackEol = document.querySelector("#openstack-eol");
+  if (openstackEol) {
+    openstackEol.innerHTML = "";
   }
-  if (document.querySelector("#kernel-schedule")) {
-    document.querySelector("#kernel-schedule").innerHTML = "";
+  const kubernetesEol = document.querySelector("#kubernetes-eol");
+  if (kubernetesEol) {
+    kubernetesEol.innerHTML = "";
+  }
+  const kernelSchedule = document.querySelector("#kernel-schedule");
+  if (kernelSchedule) {
+    kernelSchedule.innerHTML = "";
   }
 }
 

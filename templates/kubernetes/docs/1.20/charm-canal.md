@@ -14,13 +14,13 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '748'
+charm_revision: '755'
 bundle_release: '1.20'
 ---
 
 Canal is a community-driven initiative that aims to allow users to easily
 deploy Calico and flannel networking together as a unified networking
-solution - combining Calico’s industry-leading network policy enforcement with
+solution - combining Calico's industry-leading network policy enforcement with
 the rich superset of Calico and flannel overlay and non-overlay network
 connectivity options.
 
@@ -35,7 +35,8 @@ interface.
 The canal charm is a [subordinate][]. This charm will require a principal charm
 that implements the `kubernetes-cni` interface in order to properly deploy.
 
-[subordinate]: https://docs.jujucharms.com/2.4/en/authors-subordinate-applications
+[subordinate]: https://juju.is/docs/sdk#heading--subordinate-charms
+
 ```
 juju deploy cs:~containers/canal
 juju deploy cs:~containers/etcd

@@ -25,7 +25,7 @@ those nodes, failing over when one goes down.
 ## Usage
 
 The Keepalived charm is a
-[subordinate](https://jujucharms.com/docs/stable/authors-subordinate-applications).
+[subordinate](https://juju.is/docs/sdk#heading--subordinate-charms).
 
 Allocating a VIP and ensuring that it can route to all of the instances is a
 manual process which depends on your infrastructure.  It does require that the
@@ -37,7 +37,7 @@ cloud-provided load balancer with health checks, such as Octavia or ELB.
 
 [openstack-vip]: https://medium.com/jexia/virtual-ip-with-openstack-neutron-dd9378a48bdf
 
-### Using with Kubernetes ([Charmed Kubernetes](https://jujucharms.com/canonical-kubernetes))
+### Using with Kubernetes ([Charmed Kubernetes](https://charmhub.io/charmed-kubernetes))
 
 Use keepalived with Charmed Kubernetes to ensure kubeapi-load-balancer is not a single
 point of failure.
@@ -47,7 +47,7 @@ point of failure.
 # juju deploy charmed-kubernetes
 
 # deploy the keepalived charm
-juju deploy keepalived
+juju deploy cs:~containers/keepalived
 
 # add new keepalived relations
 juju relate keepalived:juju-info kubeapi-load-balancer:juju-info
@@ -81,7 +81,7 @@ This changes kubelet and kubectl to use the VIP to reach the Kubernetes API serv
 
 ### Using with HA Proxy
 ```
-juju deploy keepalived
+juju deploy cs:~containers/keepalived
 juju add-relation haproxy keepalived
 
 ```

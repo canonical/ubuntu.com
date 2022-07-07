@@ -10,7 +10,7 @@
   intro_text="Fill in your details below and a member of our training team will be in touch.",
   formid="1263",
   lpId="2163",
-  returnURL="https://www.ubuntu.com/training/thank-you?product=openstack-training" %}
+  returnURL="/training/thank-you?product=openstack-training" %}
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -20,7 +20,7 @@
   intro_text="If you are interested in the Ubuntu OpenStack training, please fill out the form below and we'll get back to you with available dates and locations.",
   formid="1261",
   lpId="2161",
-  returnURL="https://www.ubuntu.com/training/thank-you?product=openstack-training-classroom" %}
+  returnURL="/training/thank-you?product=openstack-training-classroom" %}
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -30,7 +30,7 @@
   intro_text="Fill in your details below and a member of our training team will be in touch.",
   formid="1223",
   lpId="1973",
-  returnURL="https://www.ubuntu.com/training/thank-you?product=openstack-training-onsite" %}
+  returnURL="/training/thank-you?product=openstack-training-onsite" %}
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -40,7 +40,7 @@
   intro_text="Fill in your details below and a member of our training team will be in touch.",
   formid="1448",
   lpId="2661",
-  returnURL="https://www.ubuntu.com/training/thank-you?product=openstack-training-server-admin" %}
+  returnURL="/training/thank-you?product=openstack-training-server-admin" %}
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -50,7 +50,7 @@
 intro_text="Fill in your details below and a member of our training team will be in touch.",
 formid="1448",
 lpId="2661",
-returnURL="https://www.ubuntu.com/training/thank-you?product=kubeflow-training-onsite" %}
+returnURL="/training/thank-you?product=kubeflow-training-onsite" %}
 {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -60,7 +60,7 @@ returnURL="https://www.ubuntu.com/training/thank-you?product=kubeflow-training-o
 intro_text="Fill in your details below and a member of our training team will be in touch.",
 formid="1448",
 lpId="2661",
-returnURL="https://www.ubuntu.com/training/thank-you?product=maas-training-onsite" %}
+returnURL="/training/thank-you?product=maas-training-onsite" %}
 {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -70,7 +70,27 @@ returnURL="https://www.ubuntu.com/training/thank-you?product=maas-training-onsit
 intro_text="Fill in your details below and a member of our training team will be in touch.",
 formid="1448",
 lpId="2661",
-returnURL="https://www.ubuntu.com/training/thank-you?product=landscape-training-onsite" %}
+returnURL="/training/thank-you?product=landscape-training-onsite" %}
+{% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
+{% elif product == 'juju-administrator-training-onsite' %}
+
+{% with h1="Contact us about our Juju Administrator training",
+intro_text="Fill in your details below and a member of our training team will be in touch.",
+formid="1448",
+lpId="2661",
+returnURL="/training/thank-you?product=juju-administrator-training-onsite" %}
+{% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
+{% elif product == 'charm-developer-training-onsite' %}
+
+{% with h1="Contact us about our Charm Developer training",
+intro_text="Fill in your details below and a member of our training team will be in touch.",
+formid="1448",
+lpId="2661",
+returnURL="/training/thank-you?product=juju-administrator-training-onsite" %}
 {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
@@ -81,7 +101,7 @@ returnURL="https://www.ubuntu.com/training/thank-you?product=landscape-training-
   intro_text="Fill in your details below and a member of our cloud sales team will be in touch.",
   formid="1251",
   lpId="2086",
-  returnURL="https://www.ubuntu.com/training/thank-you" %}
+  returnURL="/training/thank-you" %}
   {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 

@@ -4,6 +4,7 @@
   .l-whitepapers {
     .p-strip--hero {
       @extend %vf-strip;
+
       background-position: bottom;
       background-repeat: no-repeat;
       background-size: cover;
@@ -17,6 +18,30 @@
 
       &.u-reveal {
         opacity: 1;
+      }
+    }
+
+    .u-obfuscate {
+      p,
+      li,
+      h2,
+      h3,
+      h4,
+      cite,
+      figcaption {
+        color: transparent;
+        text-shadow: 0 0 5px $color-shadow;
+        user-select: none;
+      }
+
+      .p-pull-quote p::before,
+      .p-pull-quote p::after {
+        color: $color-mid-light;
+        opacity: 0.5;
+      }
+
+      img {
+        filter: blur(8px);
       }
     }
 
@@ -71,30 +96,6 @@
     .p-caption {
       font-style: italic;
       margin-bottom: 1.2rem;
-    }
-
-    .u-obfuscate {
-      p,
-      li,
-      h2,
-      h3,
-      h4,
-      cite,
-      figcaption {
-        color: transparent;
-        text-shadow: 0 0 5px $color-shadow;
-        user-select: none;
-      }
-
-      .p-pull-quote p::before,
-      .p-pull-quote p::after {
-        color: $color-mid-light;
-        opacity: 0.5;
-      }
-
-      img {
-        filter: blur(8px);
-      }
     }
   }
 }

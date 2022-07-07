@@ -1,0 +1,213 @@
+<li class="p-stepped-list__item js-form-section" data-step="type">
+  <h3 class="p-stepped-list__title">What are you setting up?</h3>
+  <div class="row">
+    <div class="col-12 subscribe-section radio-wrapper--staggering">
+      <div class="p-card--radio js-radio">
+        <div class="image-wrapper">        
+          {{ 
+            image(
+              url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+              alt="",
+              height="48",
+              width="40",
+              hi_def=True,
+              loading="auto",
+            ) | safe 
+          }}
+        </div>
+        <label class="p-radio u-align-text--center">
+          <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="type_server" name="type" value="physical" />
+          <span class="p-radio__label" id="type_server">Physical servers</span>
+        </label>
+      </div>
+
+      <div class="p-card--radio js-radio">
+        <div class="image-wrapper">        
+          {{ 
+            image(
+              url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+              alt="",
+              height="180",
+              width="302",
+              hi_def=True,
+              loading="auto",
+            ) | safe
+          }}
+        </div>
+        <label class="p-radio u-align-text--center">
+          <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="type_aws" name="type" value="aws" />
+          <span class="p-radio__label" id="type_aws"> AWS<br> instances </span>
+        </label>
+      </div>
+
+      <div class="p-card--radio js-radio">
+        <div class="image-wrapper">        
+          {{ 
+            image(
+              url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+              alt="",
+              height="183",
+              width="640",
+              hi_def=True,
+              loading="auto",
+            ) | safe
+          }}
+        </div>
+        <label class="p-radio u-align-text--center">
+          <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="type_azure" name="type" value="azure" />
+          <span class="p-radio__label" id="type_azure"> Azure instances </span>
+        </label>
+      </div>
+
+      <div class="p-card--radio js-radio">
+        <div class="image-wrapper">        
+          {{ 
+            image(
+              url="https://assets.ubuntu.com/v1/216e5289-google-cloud.svg",
+              alt="",
+              height="206",
+              width="256",
+              hi_def=True,
+              loading="auto",
+            ) | safe
+          }}
+        </div>
+        <label class="p-radio u-align-text--center">
+          <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="type_gcp" name="type" value="gcp" />
+          <span class="p-radio__label" id="type_gcp"> Google Cloud instances </span>
+        </label>
+      </div>
+
+      <div class="p-card--radio js-radio">
+        <div class="image-wrapper">        
+          {{ 
+            image(
+              url="https://assets.ubuntu.com/v1/9ed50294-Virtual+machine.svg",
+              alt="",
+              height="48",
+              width="59",
+              hi_def=True,
+              loading="auto", 
+            ) | safe 
+          }}
+        </div>
+        <label class="p-radio u-align-text--center">
+          <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="type_other" name="type" value="virtual" />
+          <span class="p-radio__label" id="type_other"> Other VMs </span>
+        </label>
+      </div>
+
+      <div class="p-card--radio js-radio">
+        <div class="image-wrapper">        
+          {{ 
+            image(
+              url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+              alt="",
+              height="48",
+              width="83",
+              hi_def=True,
+              loading="auto",
+            ) | safe 
+          }}
+        </div>
+        <label class="p-radio u-align-text--center">
+          <input class="p-radio__input" autocomplete="off" type="radio" aria-labelledby="type_desktop" name="type" value="desktop" />
+          <span class="p-radio__label" id="type_desktop"> Desktops </span>
+        </label>
+      </div>
+    </div>
+
+    <div
+      id="aws-public-cloud"
+      class="col-12 subscribe-section u-hide"
+      style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem"
+    >
+      <span>
+        <strong>
+          You can buy
+          <a
+            href="https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro"
+           
+          >
+            Ubuntu Pro on the AWS Marketplace
+          </a>
+          at an hourly, per-machine rate, with all UA software features included.
+        </strong>
+        If you need tech support as well, <a href="/support/contact-us">contact us</a>.
+      </span>
+      <br />
+      <br />
+      <span>
+        <strong>
+          Looking to extend security maintenance on an existing virtual machine running Ubuntu 16.04 (Xenial)?
+        </strong>
+        <br />
+        Choose the "<a class="js-cloud-other-VM">Other VMs</a>" option to
+        purchase a subscription you can attach to your existing VM.
+      </span>
+    </div>
+
+    <div
+      id="azure-public-cloud"
+      class="col-12 subscribe-section u-hide"
+      style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem"
+    >
+      <span>
+        <strong>
+          You can buy
+          <a
+            href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1"
+           
+          >
+            Ubuntu Pro on the Azure Marketplace
+          </a>
+          at an hourly, per-machine rate, with all UA software features
+          included.
+        </strong>
+        If you need tech support as well, <a href="/support/contact-us">contact us</a>.
+      </span>
+      <br />
+      <br />
+      <span>
+        <strong>
+          Looking to extend security maintenance on an existing virtual machine running Ubuntu
+          16.04 (Xenial)?
+        </strong>
+        <br />
+        Choose the "<a class="js-cloud-other-VM">Other VMs</a>" option to
+        purchase a subscription you can attach to your existing VM.
+      </span>
+    </div>
+    <div
+      id="gcp-public-cloud"
+      class="col-12 subscribe-section u-hide"
+      style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem"
+    >
+      <span>
+        <strong>
+          You can buy
+          <a
+            href="https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20canonical"
+           
+          >
+            Ubuntu Pro on the Google Cloud Console
+          </a>
+          at an hourly, per-machine rate, with all UA software features
+          included.
+        </strong>
+        If you need tech support as well, <a href="/support/contact-us">contact us</a>.
+      </span>
+      <br />
+      <br />
+      <span>
+        <strong>
+          Looking to extend security maintenance on an existing virtual machine running Ubuntu
+          16.04 (Xenial)?
+        </strong>
+        <br />
+        Choose the "<a class="js-cloud-other-VM">Other VMs</a>" option to
+        purchase a subscription you can attach to your existing VM.
+      </span>
+    </div>
+  </div>
+</li>

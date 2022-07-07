@@ -134,32 +134,32 @@ watch kubectl get svc hello -o wide
 
 | name | type   | Default      | Description                               |
 |------|--------|--------------|-------------------------------------------|
-| <a id="table-auth-url"> </a> auth-url | string |  | The URL of the keystone API used to authenticate. On OpenStack control panels, this can be found at Access and Security > API Access > Credentials.  |
-| <a id="table-bs-version"> </a> bs-version | string | None | [See notes](#bs-version-description)  |
-| <a id="table-credentials"> </a> credentials | string |  | [See notes](#credentials-description)  |
-| <a id="table-endpoint-tls-ca"> </a> endpoint-tls-ca | string |  | [See notes](#endpoint-tls-ca-description)  |
-| <a id="table-floating-network-id"> </a> floating-network-id | string |  | [See notes](#floating-network-id-description)  |
-| <a id="table-ignore-volume-az"> </a> ignore-volume-az | boolean | None | [See notes](#ignore-volume-az-description)  |
-| <a id="table-lb-floating-network"> </a> lb-floating-network | string |  | If set, this charm will assign a floating IP in this network (name or ID) for load balancers created for other charms related on the loadbalancer endpoint.  |
-| <a id="table-lb-method"> </a> lb-method | string | ROUND_ROBIN | [See notes](#lb-method-description)  |
-| <a id="table-lb-port"> </a> lb-port | int | 443 | Port to use for load balancers created by this charm for other charms related on the loadbalancer endpoint.  |
-| <a id="table-lb-subnet"> </a> lb-subnet | string |  | [See notes](#lb-subnet-description)  |
-| <a id="table-manage-security-groups"> </a> manage-security-groups | boolean | False | [See notes](#manage-security-groups-description)  |
-| <a id="table-password"> </a> password | string |  | Password of a valid user set in keystone.  |
-| <a id="table-project-domain-name"> </a> project-domain-name | string |  | Name of the project domain where you want to create your resources.  |
-| <a id="table-project-name"> </a> project-name | string |  | Name of project where you want to create your resources.  |
-| <a id="table-region"> </a> region | string |  | Name of the region where you want to create your resources.  |
-| <a id="table-snap_proxy"> </a> snap_proxy | string |  | DEPRECATED. Use snap-http-proxy and snap-https-proxy model configuration settings. HTTP/HTTPS web proxy for Snappy to use when accessing the snap store.  |
-| <a id="table-snap_proxy_url"> </a> snap_proxy_url | string |  | DEPRECATED. Use snap-store-proxy model configuration setting. The address of a Snap Store Proxy to use for snaps e.g. http://snap-proxy.example.com  |
-| <a id="table-snapd_refresh"> </a> snapd_refresh | string |  | [See notes](#snapd_refresh-description)  |
-| <a id="table-subnet-id"> </a> subnet-id | string |  | [See notes](#subnet-id-description)  |
-| <a id="table-trust-device-path"> </a> trust-device-path | boolean | None | [See notes](#trust-device-path-description)  |
-| <a id="table-user-domain-name"> </a> user-domain-name | string |  | Name of the user domain where you want to create your resources.  |
-| <a id="table-username"> </a> username | string |  | Username of a valid user set in keystone.  |
+| <a id="table-auth-url"> </a> auth-url | string |  | The URL of the keystone API used to authenticate. On OpenStack control panels, this can be found at Access and Security > API Access > Credentials. |
+| <a id="table-bs-version"> </a> bs-version | string | None | [See notes](#bs-version-description) |
+| <a id="table-credentials"> </a> credentials | string |  | [See notes](#credentials-description) |
+| <a id="table-endpoint-tls-ca"> </a> endpoint-tls-ca | string |  | [See notes](#endpoint-tls-ca-description) |
+| <a id="table-floating-network-id"> </a> floating-network-id | string |  | [See notes](#floating-network-id-description) |
+| <a id="table-ignore-volume-az"> </a> ignore-volume-az | boolean | None | [See notes](#ignore-volume-az-description) |
+| <a id="table-lb-floating-network"> </a> lb-floating-network | string |  | If set, this charm will assign a floating IP in this network (name or ID) for load balancers created for other charms related on the loadbalancer endpoint. |
+| <a id="table-lb-method"> </a> lb-method | string | ROUND_ROBIN | [See notes](#lb-method-description) |
+| <a id="table-lb-port"> </a> lb-port | int | 443 | Port to use for load balancers created by this charm for other charms related on the loadbalancer endpoint. |
+| <a id="table-lb-subnet"> </a> lb-subnet | string |  | [See notes](#lb-subnet-description) |
+| <a id="table-manage-security-groups"> </a> manage-security-groups | boolean | False | [See notes](#manage-security-groups-description) |
+| <a id="table-password"> </a> password | string |  | Password of a valid user set in keystone. |
+| <a id="table-project-domain-name"> </a> project-domain-name | string |  | Name of the project domain where you want to create your resources. |
+| <a id="table-project-name"> </a> project-name | string |  | Name of project where you want to create your resources. |
+| <a id="table-region"> </a> region | string |  | Name of the region where you want to create your resources. |
+| <a id="table-snapd_refresh"> </a> snapd_refresh | string |  | [See notes](#snapd_refresh-description) |
+| <a id="table-subnet-id"> </a> subnet-id | string |  | [See notes](#subnet-id-description) |
+| <a id="table-trust-device-path"> </a> trust-device-path | boolean | None | [See notes](#trust-device-path-description) |
+| <a id="table-user-domain-name"> </a> user-domain-name | string |  | Name of the user domain where you want to create your resources. |
+| <a id="table-username"> </a> username | string |  | Username of a valid user set in keystone. |
 
 ---
 
+
 ### bs-version
+
 
 
 <a id="bs-version-description"> </a>
@@ -173,7 +173,10 @@ underlying OpenStack cloud. If not set, will use the upstream default.
 [Back to table](#table-bs-version)
 
 
+
+
 ### credentials
+
 
 
 <a id="credentials-description"> </a>
@@ -181,21 +184,24 @@ underlying OpenStack cloud. If not set, will use the upstream default.
 
 The base64-encoded contents of a JSON file containing OpenStack credentials.
 
-The credentials must contain the following keys: auth-url, username, password,
-project-name, user-domain-name, and project-domain-name.
+The credentials must contain the following keys: auth-url, region, username,
+password, project-name, user-domain-name, and project-domain-name.
 
 It could also contain a base64-encoded CA certificate in endpoint-tls-ca key value.
 
 This can be used from bundles with 'include-base64://' (see
-https://jujucharms.com/docs/stable/charms-bundles#setting-charm-configurations-options-in-a-bundle),
-or from the command-line with 'juju config openstack credentials="$(base64 /path/to/file)"'.
+https://juju.is/docs/sdk/bundles),
+or from the command-line with 'juju config openstack-integrator credentials="$(base64 /path/to/file)"'.
 
 It is strongly recommended that you use 'juju trust' instead, if available.
 
 [Back to table](#table-credentials)
 
 
+
+
 ### endpoint-tls-ca
+
 
 
 <a id="endpoint-tls-ca-description"> </a>
@@ -209,7 +215,10 @@ as a config option in a Juju CLI invocation.
 [Back to table](#table-endpoint-tls-ca)
 
 
+
+
 ### floating-network-id
+
 
 
 <a id="floating-network-id-description"> </a>
@@ -224,7 +233,10 @@ in the cluster.
 [Back to table](#table-floating-network-id)
 
 
+
+
 ### ignore-volume-az
+
 
 
 <a id="ignore-volume-az-description"> </a>
@@ -239,7 +251,10 @@ will use the upstream default.
 [Back to table](#table-ignore-volume-az)
 
 
+
+
 ### lb-method
+
 
 
 <a id="lb-method-description"> </a>
@@ -254,7 +269,10 @@ workloads, such as Kubernetes.
 [Back to table](#table-lb-method)
 
 
+
+
 ### lb-subnet
+
 
 
 <a id="lb-subnet-description"> </a>
@@ -268,7 +286,10 @@ used.
 [Back to table](#table-lb-subnet)
 
 
+
+
 ### manage-security-groups
+
 
 
 <a id="manage-security-groups-description"> </a>
@@ -283,7 +304,10 @@ balancers managed by integrated workloads, such as Kubernetes.
 [Back to table](#table-manage-security-groups)
 
 
+
+
 ### snapd_refresh
+
 
 
 <a id="snapd_refresh-description"> </a>
@@ -295,7 +319,10 @@ How often snapd handles updates for installed snaps. The default (an empty strin
 [Back to table](#table-snapd_refresh)
 
 
+
+
 ### subnet-id
+
 
 
 <a id="subnet-id-description"> </a>
@@ -309,7 +336,10 @@ cluster.
 [Back to table](#table-subnet-id)
 
 
+
+
 ### trust-device-path
+
 
 
 <a id="trust-device-path-description"> </a>
@@ -325,13 +355,12 @@ recommended approach.  If not set, will use the upstream default.
 [Back to table](#table-trust-device-path)
 
 
-
 <!-- CONFIG ENDS -->
 
 <!-- ACTIONS STARTS -->
 
 <!-- ACTIONS ENDS -->
 
-[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/openstack-overlay.yaml
+[asset-openstack-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/openstack-overlay.yaml
 [interface]: https://github.com/juju-solutions/interface-openstack-integration
 [Charmed Kubernetes]: https://jaas.ai/charmed-kubernetes

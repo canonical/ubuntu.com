@@ -22,7 +22,7 @@
           <a class="breadcrumbs__link p-link--soft" href="/security/notices">Notices</a>
         </li>
         <li class="breadcrumbs__item">
-          <a class="breadcrumbs__link p-link--active" href="/security/cve">CVEs</a>
+          <a class="breadcrumbs__link p-link--active" href="/security/cves">CVEs</a>
         </li>
       </ul>
     </div>
@@ -40,7 +40,7 @@
         <h1>{{ cve.id }}</h1>
 
         {% if cve.published %}
-        <p>Published: <strong>{{ cve.published.strftime("%d %B %Y") }}</strong></p>
+        <p>Published: <strong>{{ cve.published }}</strong></p>
         {% endif %}
 
         {% if cve.status == 'not-in-ubuntu' %}
@@ -106,7 +106,7 @@
 
         {% if cve.status == 'rejected' %}
         <div class="cve-status-box--highlight">
-          <div class="p-heading--four u-no-margin--bottom">
+          <div class="p-heading--4 u-no-margin--bottom">
             Rejected
           </div>
         </div>
@@ -114,7 +114,7 @@
 
         {% if cve.status == 'not-in-ubuntu' %}
         <div class="cve-status-box--highlight">
-          <div class="p-heading--four u-no-margin--bottom">
+          <div class="p-heading--4 u-no-margin--bottom">
             Not in Ubuntu
           </div>
         </div>
@@ -136,66 +136,62 @@
             </tr>
           </thead>
           <tbody>
-            {% for package_name, statuses in cve.packages.items() %}
-              {% for release in releases %}
+            {% for package in cve.packages %}
+              {% for status in package.statuses %}
                 <tr>
-                  {% if release.codename in statuses %}
+                  {% if status.release_codename %}
                     {% if loop.index == 1 %}
-                      <td rowspan="{{ releases | length }}">
-                        <a href="/security/cve?q=&package={{ package_name }}">{{ package_name }}</a><br>
+                      <td rowspan="{{ package.statuses | length }}">
+                        <a href="/security/cves?q=&package={{ package["name"] }}">{{ package["name"] }}</a><br>
                         <small>
-                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package_name }}">Launchpad</a>,
-                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package_name }}">Ubuntu</a>,
-                        <a href="https://tracker.debian.org/{{ package_name }}">Debian</a>
+                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package["name"] }}">Launchpad</a>,
+                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package["name"] }}">Ubuntu</a>,
+                        <a href="https://tracker.debian.org/{{ package["name"] }}">Debian</a>
                         </small>
                       </td>
                     {% endif %}
                     <td>
-                      {% if release.name == "Upstream" %}
-                        {{ release.name }}
-                      {% else %}
-                        Ubuntu {{ release.version }} {{ release.support_tag }} ({{ release.name }})
-                      {% endif %}
+                      {{ status.release_codename }}
                     </td>
-                    {% if statuses[release.codename].status == "DNE" or statuses[release.codename].status == "not-affected" %}
+                    {% if status.status == "DNE" or status.status == "not-affected" %}
                       <td class="cve-table-cell--muted">
                     {% else %}
                       <td class="cve-table-cell">
                     {% endif %}
-                    {% if statuses[release.codename].status == "DNE" %}
+                    {% if status.status == "DNE" %}
                       Does not exist
                       <div class="cve-color-strip--dne"></div>
-                    {% elif statuses[release.codename].status == "needs-triage" %}
+                    {% elif status.status == "needs-triage" %}
                       Needs triage
                       <div class="cve-color-strip--needs-triage"></div>
-                    {% elif statuses[release.codename].status == "not-affected" %}
+                    {% elif status.status == "not-affected" %}
                       Not vulnerable
                       <div class="cve-color-strip--not-affected"></div>
-                    {% elif statuses[release.codename].status == "needed" %}
+                    {% elif status.status == "needed" %}
                       Needed
                       <div class="cve-color-strip--needed"></div>
-                    {% elif statuses[release.codename].status == "deferred" %}
+                    {% elif status.status == "deferred" %}
                       Deferred
                       <div class="cve-color-strip--deferred"></div>
-                    {% elif statuses[release.codename].status == "ignored" %}
+                    {% elif status.status == "ignored" %}
                       Ignored
                       <div class="cve-color-strip--ignored"></div>
-                    {% elif statuses[release.codename].status == "pending" %}
+                    {% elif status.status == "pending" %}
                       Pending
                       <div class="cve-color-strip--pending"></div>
-                    {% elif statuses[release.codename].status == "released" %}
+                    {% elif status.status == "released" %}
                       <div class="cve-color-strip--released"></div>
                       Released
                     {% endif %}
-                    {% if statuses[release.codename].description %}
-                      ({{ statuses[release.codename].description }})
+                    {% if status.description %}
+                      ({{ status.description }})
                     {% endif %}
                     <br>
                     <small>
-                      {% if statuses[release.codename].pocket == "esm-infra" %}
+                      {% if status.pocket == "esm-infra" %}
                         Requires <a href="/advantage">Available with UA Infra or UA Apps</a>
                       {% endif %}
-                      {% if statuses[release.codename].pocket == "esm-apps" %}
+                      {% if status.pocket == "esm-apps" %}
                         Requires <a href="/advantage">Available with UA Apps</a>
                       {% endif %}
                     </small>
@@ -203,26 +199,29 @@
                   {% endif %}
                 </tr>
               {% endfor %}
-              {% if cve.patches[package_name]|length > 0  %}
+              {% if package["name"] in patches|map(attribute="name")%}
                 <tr>
                   <td style="border-top: 0px"></td>
                   <td colspan="2" style="border-top: 5px double #cdcdcd">
                     Patches: <br>
                     <small>
-                      {% for patch in cve.formatted_patches[package_name] %}
-                        {% if patch.type == "text" %}
-                          {{ patch.content }}
-                        {% elif patch.type == "break-fix" %}
-                          Introduced by
-                          <a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a><br>
-                          Fixed by
-                          <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
-                        {% elif patch.type == "link" %}
-                          {{ patch.content.prefix }}:
-                          {% if cve._clean_url(patch.content.suffix) %}
-                            <a href="{{ cve._clean_url(patch.content.suffix) }}">{{ patch.content.suffix }}</a>
-                          {% else %}
-                            {{ patch.content.suffix }}
+                      {% for patch in patches %}
+                        {% if patch.name == package["name"]%}
+                          {% if patch.type == "text" %}
+                            {{ patch.content }}
+                          {% elif patch.type == "break-fix" %}
+                            Introduced by
+                            <p><a href="https://git.kernel.org/linus/{{ patch.content.introduced }}">{{ patch.content.introduced }}</a><br>
+                            </p>
+                              Fixed by
+                            <a href="https://git.kernel.org/linus/{{ patch.content.fixed }}">{{ patch.content.fixed }}</a>
+                          {% elif patch.type == "link" %}
+                            {{ patch.content.prefix }}:
+                            {% if patch.content.suffix %}
+                              <a href="{{ patch.content.suffix }}">{{ patch.content.suffix }}</a>
+                            {% else %}
+                              {{ patch.content.suffix }}
+                            {% endif %}
                           {% endif %}
                         {% endif %}
                         <br>
@@ -230,40 +229,42 @@
                     </small>
                   </td>
                 </tr>
-              {% endif %}
-              {% if cve.tags[package_name]|length > 0  %}
+              {% endif%}
+              {% if package["name"] in tags|map(attribute="name") %}
                 <tr>
                   <td style="border-top: 0px"></td>
                   <td colspan="2" style="border-top: 5px double #cdcdcd">
                     <small>
-                      {% for tag in cve.tags[package_name] %}
-                        {% if tag == "not-ue" %}
-                          This package is not directly supported by the Ubuntu Security Team
-                        {% elif tag == "universe-binary" %}
-                          Binaries built from this source package are in <a class=".p-link--external" href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support">Universe</a> and so are supported by the community.
-                        {% elif tag == "apparmor" %}
-                          This vulnerability is mitigated in part by an <a href="https://wiki.ubuntu.com/Security/Features#apparmor">AppArmor</a> profile.
-                        {% elif tag == "stack-protector" %}
-                          This vulnerability is mitigated in part by the use of gcc's <a href="https://wiki.ubuntu.com/Security/Features#stack-protector">stack protector</a> in Ubuntu.
-                        {% elif tag == "fortify-source" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#fortify-source">-D_FORTIFY_SOURCE=2</a> in Ubuntu.
-                        {% elif tag == "symlink-restriction" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#symlink">symlink</a> restrictions in Ubuntu.
-                        {% elif tag == "hardlink-restriction" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#hardlink">hardlink</a> restrictions in Ubuntu.
-                        {% elif tag == "heap-protector" %}
-                          This vulnerability is mitigated in part by the use of GNU C Library <a href="https://wiki.ubuntu.com/Security/Features#heap-protector">heap protector</a> in Ubuntu.
-                        {% elif tag == "pie" %}
-                          This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
-                        {% else %}
-                          {{ tag }}
-                        {% endif %}
-                      {% endfor %}
+                        {% for tag in tags %}
+                          {% if tag.name == package["name"] %}
+                            {% if tag.text == "not-ue" %}
+                              This package is not directly supported by the Ubuntu Security Team
+                            {% elif tag.text == "universe-binary" %}
+                              Binaries built from this source package are in <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Official_Support">Universe</a> and so are supported by the community.
+                            {% elif tag.text == "apparmor" %}
+                              This vulnerability is mitigated in part by an <a href="https://wiki.ubuntu.com/Security/Features#apparmor">AppArmor</a> profile.
+                            {% elif tag.text == "stack-protector" %}
+                              This vulnerability is mitigated in part by the use of gcc's <a href="https://wiki.ubuntu.com/Security/Features#stack-protector">stack protector</a> in Ubuntu.
+                            {% elif tag.text == "fortify-source" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#fortify-source">-D_FORTIFY_SOURCE=2</a> in Ubuntu.
+                            {% elif tag.text == "symlink-restriction" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#symlink">symlink</a> restrictions in Ubuntu.
+                            {% elif tag.text == "hardlink-restriction" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#hardlink">hardlink</a> restrictions in Ubuntu.
+                            {% elif tag.text == "heap-protector" %}
+                              This vulnerability is mitigated in part by the use of GNU C Library <a href="https://wiki.ubuntu.com/Security/Features#heap-protector">heap protector</a> in Ubuntu.
+                            {% elif tag.text == "pie" %}
+                              This vulnerability is mitigated in part by the use of <a href="https://wiki.ubuntu.com/Security/Features#pie">Position Independent Executables</a> in Ubuntu.
+                            {% else %}
+                              {{ tag.text }}
+                            {% endif %}
+                          {% endif %}
+                        {% endfor %}
                     </small>
                   </td>
                 </tr>
               {% endif %}
-            {% endfor %}
+              {% endfor %}
           </tbody>
         </table>
       </div>
@@ -289,9 +290,9 @@
         <ul>
           {% if cve.references %}
             {% for reference in cve.references %}
-              {% if cve._clean_url(reference) %}
-                <li><a href="{{ cve._clean_url(reference) }}">{{ reference }}</a></li>
-              {% endif %}
+              
+                <li><a href="{{ reference }}">{{ reference }}</a></li>
+    
             {% endfor %}
           {% else %}
             <li>
@@ -315,12 +316,12 @@
           </li>
         </ul>
 
-        {% if cve.bugs %}
+        {% if cve.bugs and cve.bugs|length > 1 %}
           <h2>Bugs</h2>
           <ul>
             {% for bug in cve.bugs %}
-              {% if cve._clean_url(bug) %}
-                <li><a href="{{ cve._clean_url(bug) }}">{{ bug }}</a></li>
+              {% if 'http' in bug %}
+                <li><a href="{{ bug }}">{{ bug }}</a></li>
               {% endif %}
             {% endfor %}
           </ul>

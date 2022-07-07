@@ -5,76 +5,76 @@
   </div>
   {% endif %}
   <div class="col-2">
-    <a href="/appliance/openhab" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">OpenHAB</h3>
-      <hr />
-      <div class="u-align--center">
+    <a href="/appliance/openhab">
+      <p class="u-no-padding--top" style="margin-bottom: .5rem;">OpenHAB</p>
+      <hr>
+      <div class="u-hide--small">
         {{
           image(
             url="https://assets.ubuntu.com/v1/fa5dd451-OpenHAB.png",
             alt="",
             height="32",
-            width="146",
+            width="148",
             hi_def=True,
             loading="lazy",
-            attrs={"style": "margin-top: 2rem;"}
+            attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
           ) | safe
         }}
       </div>
     </a>
   </div>
   <div class="col-2">
-    <a href="/appliance/plex" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">Plex<span class="u-hide--medium"> Media Server</span></h3>
-      <hr />
-      <div class="u-align--center">
+    <a href="/appliance/plex">
+      <p class="u-no-padding--top" style="margin-bottom: .5rem;">Plex<span class="u-hide--medium"> Media Server</span></p>
+      <hr>
+      <div class="u-hide--small">
         {{
           image(
             url="https://assets.ubuntu.com/v1/3cd85693-Plex.png",
             alt="",
+            height="27",
+            width="84",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
+          ) | safe
+        }}
+      </div>
+    </a>
+  </div>
+  <div class="col-2">
+    <a href="/appliance/nextcloud">
+      <p class="u-no-padding--top" style="margin-bottom: .5rem;">Nextcloud</p>
+      <hr>
+      <div class="u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/99a0b969-Nextcloud_Logo.svg",
+            alt="",
+            height="48",
+            width="73",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
+          ) | safe
+        }}
+      </div>
+    </a>
+  </div>
+  <div class="col-2">
+    <a href="/appliance/adguard">
+      <p class="u-no-padding--top" style="margin-bottom: .5rem;">AdGuard</p>
+      <hr>
+      <div class="u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/b430a72e-adguard_logo.svg",
+            alt="",
             height="32",
-            width="99",
+            width="145",
             hi_def=True,
             loading="lazy",
-            attrs={"style": "margin-top: 2rem;"}
-          ) | safe
-        }}
-      </div>
-    </a>
-  </div>
-  <div class="col-2">
-    <a href="/appliance/nextcloud" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">Nextcloud</h3>
-      <hr />
-      <div class="u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/d3a211c9-Nextcloud.png",
-            alt="",
-            height="62",
-            width="87",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style": "margin-top: 1.25rem;"}
-          ) | safe
-        }}
-      </div>
-    </a>
-  </div>
-  <div class="col-2">
-    <a href="/appliance/adguard" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">AdGuard</h3>
-      <hr />
-      <div class="u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/1ec45573-AdGuard.png",
-            alt="",
-            height="62",
-            width="62",
-            hi_def=True,
-            loading="lazy",
-            attrs={"style": "margin-top: 1.25rem;"}
+            attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
           ) | safe
         }}
       </div>
@@ -82,19 +82,19 @@
   </div>
   {% if request.path == "/appliance/vm" %}
   <div class="col-2">
-    <a href="/appliance/mosquitto" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">Mosquitto</h3>
-      <hr />
-      <div class="u-align--center">
+    <a href="/appliance/mosquitto">
+      <p class="u-no-padding--top" style="margin-bottom: .5rem;">Mosquitto</p>
+      <hr>
+      <div class="u-hide--small">
         {{
           image(
             url="https://assets.ubuntu.com/v1/c2c39a7a-mosquitto-logo.png",
             alt="",
-            height="72",
-            width="72",
+            height="48",
+            width="48",
             hi_def=True,
             loading="lazy",
-            attrs={"style": "margin-top: 1rem;"}
+            attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
           ) | safe
         }}
       </div>
@@ -102,19 +102,19 @@
   </div>
   {% else %}
   <div class="col-2">
-    <a href="/appliance/lxd" class="p-link--soft">
-      <h3 class="p-heading--five u-no-padding--top">LXD</h3>
-      <hr />
-      <div class="u-align--center">
+    <a href="/appliance/lxd">
+      <p class="u-no-padding--top" style="margin-bottom: .5rem;">LXD</p>
+      <hr>
+      <div class="u-hide--small">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/3a24a2f9-lxd.png",
+            url="https://assets.ubuntu.com/v1/ac9a0e00-lxd_primary.svg",
             alt="",
-            height="72",
-            width="72",
+            height="32",
+            width="97",
             hi_def=True,
             loading="lazy",
-            attrs={"style": "margin-top: 1rem;"}
+            attrs={"class": "u-align--left", "style": "margin-top: 1rem;"},
           ) | safe
         }}
       </div>

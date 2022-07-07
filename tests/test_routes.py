@@ -1,5 +1,6 @@
 # Standard library
 import unittest
+import logging
 
 # Packages
 from bs4 import BeautifulSoup
@@ -9,13 +10,25 @@ from vcr_unittest import VCRTestCase
 from webapp.app import app
 
 
+# Suppress talisker warnings, that get annoying
+logging.getLogger("talisker.context").disabled = True
+
+
 class TestRoutes(VCRTestCase):
     def _get_vcr_kwargs(self):
         """
         This removes the authorization header
         from VCR so we don't record auth parameters
         """
-        return {"filter_headers": ["Authorization", "Cookie"]}
+        return {
+            "filter_headers": [
+                "Authorization",
+                "Cookie",
+                "Api-Key",
+                "Api-Username",
+            ],
+            "filter_query_parameters": ["key"],
+        }
 
     def setUp(self):
         """
@@ -33,6 +46,14 @@ class TestRoutes(VCRTestCase):
         """
 
         self.assertEqual(self.client.get("/").status_code, 200)
+
+    def test_mirrors(self):
+        """
+        When given the mirrors.json endpoint URL,
+        we should return a 200 status code
+        """
+
+        self.assertEqual(self.client.get("/mirrors.json").status_code, 200)
 
     def test_blog(self):
         """
@@ -62,7 +83,7 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/server/docs").status_code, 200)
 
-    def test_tutorials(self):
+    def test_tutorials_homepage(self):
         """
         Check the tutorials homepage loads
         """
@@ -77,6 +98,16 @@ class TestRoutes(VCRTestCase):
             ).status_code,
             200,
         )
+
+    # def test_tutorials_search(self):
+    #     """
+    #     Check the tutorials search works
+    #     """
+
+    #     search_response = self.client.get("/tutorials?q=ubuntu")
+
+    #     self.assertEqual(search_response.status_code, 200)
+    #     self.assertIn(b"search results", search_response.data)
 
     def test_download(self):
         """
@@ -114,15 +145,6 @@ class TestRoutes(VCRTestCase):
 
         self.assertEqual(self.client.get("/advantage").status_code, 200)
 
-        with self.client.session_transaction() as s:
-            s["openid"] = {
-                "fullname": "Joe Bloggs",
-                "email": "hello@example.com",
-            }
-            s["authentication_token"] = "test_token"
-
-        self.assertEqual(self.client.get("/advantage").status_code, 200)
-
     def test_ceph(self):
         """
         When given the ceph docs URL,
@@ -155,32 +177,9 @@ class TestRoutes(VCRTestCase):
         response = self.client.get("/engage")
         self.assertEqual(response.status_code, 200)
 
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNone(
-            soup.find("a", {"href": "/engage/it/deployment-azienda-manuale"})
-        )
-        self.assertIsNone(
-            soup.find("meta", {"name": "robots", "content": "noindex"})
-        )
-        self.assertIsNotNone(
-            soup.find(
-                "a", {"href": "/engage/it/redhat-openstack-confronto-manuale"}
-            )
-        )
-
     def test_engage_index_with_preview_flag_sees_inactive_pages(self):
         response = self.client.get("/engage?preview")
         self.assertEqual(response.status_code, 200)
-
-        soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNotNone(
-            soup.find(
-                "a", {"href": "/engage/it/deployment-azienda-manuale?preview"}
-            )
-        )
-        self.assertIsNotNone(
-            soup.find("meta", {"name": "robots", "content": "noindex"})
-        )
 
     def test_active_page_returns_200(self):
         response = self.client.get("/engage/micro-clouds")
@@ -196,20 +195,16 @@ class TestRoutes(VCRTestCase):
         soup = BeautifulSoup(response.data, "html.parser")
         self.assertIsNone(soup.find("meta", {"name": "robots"}))
 
-    def test_inactive_page_returns_302(self):
-        response = self.client.get("/engage/it/deployment-azienda-manuale")
-        self.assertEqual(response.status_code, 302)
-
-    def test_inactive_page_returns_page_with_preview_flag(self):
-        response = self.client.get(
-            "/engage/it/deployment-azienda-manuale?preview"
-        )
+    def test_security_certs_docs(self):
+        """
+        When given the Security certs docs URL,
+        we should return a 200 status code
+        """
+        response = self.client.get("/security/certifications/docs")
         self.assertEqual(response.status_code, 200)
 
         soup = BeautifulSoup(response.data, "html.parser")
-        self.assertIsNotNone(
-            soup.find("meta", {"name": "robots", "content": "nofollow"})
-        )
+        self.assertIsNotNone(soup.find("meta", {"name": "description"}))
 
 
 if __name__ == "__main__":

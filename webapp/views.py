@@ -1,43 +1,49 @@
 # Standard library
-from collections import namedtuple
-from datetime import datetime, timedelta, timezone
-import hashlib
-import hmac
-import json
 import math
 import os
 import re
+import html
 
 # Packages
-import dateutil.parser
+import dateutil
 import feedparser
 import flask
-import gnupg
-import pytz
 import talisker.requests
 import yaml
 import jinja2
 from ubuntu_release_info.data import Data
-from canonicalwebteam.store_api.stores.snapstore import SnapStore
-from canonicalwebteam.launchpad import Launchpad
 from geolite2 import geolite2
+from requests import Session
 from requests.exceptions import HTTPError
-from canonicalwebteam.search.models import get_search_results
-from canonicalwebteam.search.views import NoAPIKeyError
 
+# from canonicalwebteam.search.models import get_search_results
+from canonicalwebteam.search.views import NoAPIKeyError
+from bs4 import BeautifulSoup
+from werkzeug.exceptions import BadRequest
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    Docs,
+    DocParser,
+)
 
 # Local
-from webapp.login import empty_session, user_info
-from webapp.advantage import AdvantageContracts, UnauthorizedError
-from webapp.decorators import store_maintenance
-
+from webapp.login import user_info
+from webapp.marketo import MarketoAPI
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
-store_api = SnapStore(session=talisker.requests.get_session())
+
+marketo_session = Session()
+talisker.requests.configure(marketo_session)
+marketo_api = MarketoAPI(
+    "https://066-EOV-335.mktorest.com",
+    os.getenv("MARKETO_API_CLIENT"),
+    os.getenv("MARKETO_API_SECRET"),
+    marketo_session,
+)
 
 
-def _build_mirror_list():
+def _build_mirror_list(local=False):
     # Build mirror list
     mirrors = []
     mirror_list = []
@@ -48,18 +54,30 @@ def _build_mirror_list():
     except IOError:
         pass
 
-    country_code = "NO_COUNTRY_CODE"
     ip_location = ip_reader.get(
         flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
     )
 
+    # get all mirrors
+    if not local:
+        for mirror in mirrors:
+            mirror_list.append(
+                {
+                    "link": mirror["link"],
+                    "bandwidth": mirror["mirror_bandwidth"],
+                }
+            )
+        return mirror_list
+
+    # get local mirrors based on IP location
     if ip_location and "country" in ip_location:
         country_code = ip_location["country"]["iso_code"]
 
         for mirror in mirrors:
-            if mirror["mirror_countrycode"] == country_code and mirror[
-                "link"
-            ].startswith("https"):
+            is_local_mirror = mirror["mirror_countrycode"] == country_code
+            is_https = mirror["link"].startswith("https")
+
+            if is_local_mirror and is_https:
                 mirror_list.append(
                     {
                         "link": mirror["link"],
@@ -68,6 +86,44 @@ def _build_mirror_list():
                 )
 
     return mirror_list
+
+
+def sixteen_zero_four():
+    total_notices_issued = "0"
+    latest_notices = []
+
+    try:
+        response = session.request(
+            method="GET",
+            url=(
+                "https://ubuntu.com/security/"
+                "notices.json?release=xenial&limit=5"
+            ),
+        )
+
+        total_notices_issued = response.json().get("total_results")
+        latest_notices = [
+            {
+                "id": notice.get("id"),
+                "title": notice.get("title"),
+                "date": dateutil.parser.parse(
+                    notice.get("published")
+                ).strftime("%d %B %Y"),
+                "summary": notice.get("summary"),
+            }
+            for notice in response.json().get("notices")
+        ]
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    # Can only assume there were 1477 notices before ESM
+    notices_since_esm = total_notices_issued - 1477
+    context = {
+        "latest_notices": latest_notices,
+        "notices_since_esm": notices_since_esm,
+    }
+
+    return flask.render_template("16-04/index.html", **context)
 
 
 def show_template(filename):
@@ -101,7 +157,7 @@ def download_server_steps():
         if not version:
             flask.abort(400)
 
-        context = {"version": version, "mirror_list": _build_mirror_list()}
+        context = {"version": version}
 
     return flask.render_template(templates[step], **context)
 
@@ -118,7 +174,6 @@ def download_thank_you(category):
             f"download/{category}/thank-you.html",
             version=version,
             architecture=architecture,
-            mirror_list=_build_mirror_list(),
         ),
         {"Cache-Control": "no-cache"},
     )
@@ -170,958 +225,33 @@ def releasenotes_redirect():
     return flask.redirect("https://wiki.ubuntu.com/Releases")
 
 
-def build():
+def account_query():
     """
-    Show build page
+    A JSON endpoint to request login status
     """
-
-    return flask.render_template(
-        "core/build/index.html",
-        board_architectures=json.dumps(Launchpad.board_architectures),
-    )
-
-
-def post_build():
-    """
-    Once they submit the build form on /core/build,
-    kick off the build with Launchpad
-    """
-
-    opt_in = flask.request.values.get("canonicalUpdatesOptIn")
-    full_name = flask.request.values.get("FullName")
-    names = full_name.split(" ")
-    email = flask.request.values.get("Email")
-    board = flask.request.values.get("board")
-    system = flask.request.values.get("system")
-    snaps = flask.request.values.get("snaps", "").split(",")
-    arch = flask.request.values.get("arch")
-
-    if not user_info(flask.session):
-        flask.abort(401)
-
-    launchpad = Launchpad(
-        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
-        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
-        session=session,
-        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
-    )
-
-    context = {}
-
-    # Submit user to marketo
-    session.post(
-        "https://pages.ubuntu.com/index.php/leadCapture/save",
-        data={
-            "canonicalUpdatesOptIn": opt_in,
-            "FirstName": " ".join(names[:-1]),
-            "LastName": names[-1] if len(names) > 1 else "",
-            "Email": email,
-            "formid": "3546",
-            "lpId": "2154",
-            "subId": "30",
-            "munchkinId": "066-EOV-335",
-            "imageBuilderStatus": "NULL",
-        },
-    )
-
-    # Ensure webhook is created
-    if flask.request.host == "ubuntu.com":
-        launchpad.create_update_system_build_webhook(
-            system=system,
-            delivery_url="https://ubuntu.com/core/build/notify",
-            secret=flask.current_app.config["SECRET_KEY"],
-        )
-
-    # Kick off image build
-    try:
-        response = launchpad.build_image(
-            board=board,
-            system=system,
-            snaps=snaps,
-            author_info={"name": full_name, "email": email, "board": board},
-            gpg_passphrase=flask.current_app.config["SECRET_KEY"],
-            arch=arch,
-        )
-        context["build_info"] = launchpad.session.get(
-            response.headers["Location"]
-        ).json()
-    except HTTPError as http_error:
-        if http_error.response.status_code == 400:
-            return (
-                flask.render_template(
-                    "core/build/error.html",
-                    build_error=http_error.response.content.decode(),
-                ),
-                400,
-            )
-        else:
-            raise http_error
-
-    return flask.render_template("core/build/index.html", **context)
-
-
-def notify_build():
-    """
-    An endpoint to trigger an update about a build event to be sent.
-    This will usually be triggered by a webhook from Launchpad
-    """
-
-    # Verify contents
-    signature = hmac.new(
-        flask.current_app.config["SECRET_KEY"].encode("utf-8"),
-        flask.request.data,
-        hashlib.sha1,
-    ).hexdigest()
-
-    if "X-Hub-Signature" not in flask.request.headers:
-        return "No X-Hub-Signature provided\n", 403
-
-    if not hmac.compare_digest(
-        signature, flask.request.headers["X-Hub-Signature"].split("=")[1]
-    ):
-        try:
-            raise HTTPError(400)
-        except HTTPError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={
-                    "request_headers": str(flask.request.headers.keys()),
-                    "message": "x-hub-signature did not match",
-                    "expected_signature": signature,
-                    "header_contents": flask.request.headers[
-                        "X-Hub-Signature"
-                    ],
-                    "extracted_signature": flask.request.headers[
-                        "X-Hub-Signature"
-                    ].split("=")[1],
-                }
-            )
-
-        return "X-Hub-Signature does not match\n", 400
-
-    event_content = flask.request.json
-    status = event_content["status"]
-    build_url = (
-        "https://api.launchpad.net/devel" + event_content["livefs_build"]
-    )
-
-    launchpad = Launchpad(
-        username=os.environ["LAUNCHPAD_IMAGE_BUILD_USER"],
-        token=os.environ["LAUNCHPAD_IMAGE_BUILD_TOKEN"],
-        secret=os.environ["LAUNCHPAD_IMAGE_BUILD_SECRET"],
-        session=session,
-        auth_consumer=os.environ["LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER"],
-    )
-
-    build = launchpad.request(build_url).json()
-    author_json = (
-        gnupg.GPG()
-        .decrypt(
-            build["metadata_override"]["_author_data"],
-            passphrase=flask.current_app.config["SECRET_KEY"],
-        )
-        .data
-    )
-
-    if author_json:
-        author = json.loads(author_json)
-    else:
-        return "_author_data could not be decoded\n", 400
-
-    email = author["email"]
-    names = author["name"].split(" ")
-    board = author["board"]
-    snaps = ", ".join(build["metadata_override"]["extra_snaps"])
-    codename = build["distro_series_link"].split("/")[-1]
-    version = Data().by_codename(codename).version
-    arch = build["distro_arch_series_link"].split("/")[-1]
-    build_link = build["web_link"]
-    build_id = build_link.split("/")[-1]
-
-    download_url = None
-
-    if status == "Successfully built":
-        download_url = launchpad.request(
-            f"{build_url}?ws.op=getFileUrls"
-        ).json()[0]
-
-    session.post(
-        "https://pages.ubuntu.com/index.php/leadCapture/save",
-        data={
-            "FirstName": " ".join(names[:-1]),
-            "LastName": names[-1] if len(names) > 1 else "",
-            "Email": email,
-            "formid": "3546",
-            "lpId": "2154",
-            "subId": "30",
-            "munchkinId": "066-EOV-335",
-            "imageBuilderVersion": version,
-            "imageBuilderArchitecture": arch,
-            "imageBuilderBoard": board,
-            "imageBuilderSnaps": snaps,
-            "imageBuilderID": build_id,
-            "imageBuilderBuildlink": build_link,
-            "imageBuilderStatus": status,
-            "imageBuilderDownloadlink": download_url,
-        },
-    )
-
-    return "Submitted\n", 202
-
-
-def search_snaps():
-    """
-    A JSON endpoint to search the snap store API
-    """
-
-    query = flask.request.args.get("q", "")
-    architecture = flask.request.args.get("architecture", "wide")
-    board = flask.request.args.get("board")
-    system = flask.request.args.get("system")
-    size = flask.request.args.get("size", "100")
-    page = flask.request.args.get("page", "1")
-
-    if board and system:
-        architecture = Launchpad.board_architectures[board][system]["arch"]
-
-    if not query:
-        return flask.jsonify({"error": "Query parameter 'q' empty"}), 400
-
-    search_response = store_api.search(
-        query, size=size, page=page, arch=architecture
-    )
 
     return flask.jsonify(
         {
-            "results": search_response.get("_embedded", {}).get(
-                "clickindex:package", {}
-            ),
-            "architecture": architecture,
+            "account": user_info(flask.session),
         }
     )
 
 
-@store_maintenance
-def advantage_view():
-    accounts = None
-    personal_account = None
-    enterprise_contracts = {}
-    entitlements = {}
-    new_subscription_start_date = None
-    new_subscription_id = None
-    open_subscription = flask.request.args.get("subscription", None)
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    stripe_publishable_key = os.getenv(
-        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
-    )
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        stripe_publishable_key = os.getenv(
-            "STRIPE_TEST_PUBLISHABLE_KEY",
-            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
-        )
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session):
-        advantage = AdvantageContracts(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
-
-        try:
-            accounts = advantage.get_accounts()
-        except HTTPError as http_error:
-            if http_error.response.status_code == 401:
-                # We got an unauthorized request, so we likely
-                # need to re-login to refresh the macaroon
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={
-                        "session_keys": flask.session.keys(),
-                        "request_url": http_error.request.url,
-                        "request_headers": http_error.request.headers,
-                        "response_headers": http_error.response.headers,
-                        "response_body": http_error.response.json(),
-                        "response_code": http_error.response.json()["code"],
-                        "response_message": http_error.response.json()[
-                            "message"
-                        ],
-                    }
-                )
-
-                empty_session(flask.session)
-
-                return flask.render_template("advantage/index.html")
-
-            raise http_error
-
-        for account in accounts:
-            account["contracts"] = advantage.get_account_contracts(account)
-
-            for contract in account["contracts"]:
-                contract["token"] = advantage.get_contract_token(contract)
-                contract["machineCount"] = get_machine_usage(
-                    advantage, contract
-                )
-
-                if contract["contractInfo"].get("origin", "") == "free":
-                    personal_account = account
-                    personal_account["free_token"] = contract["token"]
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm-infra"] = True
-                        elif entitlement["type"] == "esm-apps":
-                            entitlements["esm-apps"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                    personal_account["entitlements"] = entitlements
-                else:
-                    entitlements = {}
-                    for entitlement in contract["contractInfo"][
-                        "resourceEntitlements"
-                    ]:
-                        contract["supportLevel"] = "-"
-                        if entitlement["type"] == "esm-infra":
-                            entitlements["esm-infra"] = True
-                        elif entitlement["type"] == "esm-apps":
-                            entitlements["esm-apps"] = True
-                        elif entitlement["type"] == "livepatch":
-                            entitlements["livepatch"] = True
-                        elif entitlement["type"] == "fips":
-                            entitlements["fips"] = True
-                        elif entitlement["type"] == "cc-eal":
-                            entitlements["cc-eal"] = True
-                        elif entitlement["type"] == "support":
-                            contract["supportLevel"] = entitlement[
-                                "affordances"
-                            ]["supportLevel"]
-                    contract["entitlements"] = entitlements
-                    created_at = dateutil.parser.parse(
-                        contract["contractInfo"]["createdAt"]
-                    )
-                    contract["contractInfo"][
-                        "createdAtFormatted"
-                    ] = created_at.strftime("%d %B %Y")
-                    contract["contractInfo"]["status"] = "active"
-
-                    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
-
-                    # TODO(frankban): what is the logic below about?
-                    # Why do we do the same thing in both branches of the
-                    # condition?
-                    if not contract["machineCount"].attached:
-                        if not new_subscription_start_date:
-                            new_subscription_start_date = created_at
-                            new_subscription_id = contract["contractInfo"][
-                                "id"
-                            ]
-                        elif created_at > new_subscription_start_date:
-                            new_subscription_start_date = created_at
-                            new_subscription_id = contract["contractInfo"][
-                                "id"
-                            ]
-
-                    if "effectiveTo" in contract["contractInfo"]:
-                        effective_to = dateutil.parser.parse(
-                            contract["contractInfo"]["effectiveTo"]
-                        )
-                        contract["contractInfo"][
-                            "effectiveToFormatted"
-                        ] = effective_to.strftime("%d %B %Y")
-
-                        if effective_to < time_now:
-                            contract["contractInfo"]["status"] = "expired"
-                            contract["contractInfo"][
-                                "expired_restart_date"
-                            ] = time_now - timedelta(days=1)
-
-                        date_difference = effective_to - time_now
-                        contract["expiring"] = date_difference.days <= 30
-                        contract["contractInfo"][
-                            "daysTillExpiry"
-                        ] = date_difference.days
-
-                    try:
-                        contract["renewal"] = make_renewal(
-                            advantage, contract["contractInfo"]
-                        )
-                    except KeyError:
-                        flask.current_app.extensions[
-                            "sentry"
-                        ].captureException()
-                        contract["renewal"] = None
-
-                    enterprise_contract = enterprise_contracts.setdefault(
-                        contract["accountInfo"]["name"], []
-                    )
-                    # If a subscription id is present and this contract
-                    # matches add it to the start of the list
-                    if contract["contractInfo"]["id"] == open_subscription:
-                        enterprise_contract.insert(0, contract)
-                    elif contract["contractInfo"]["id"] == new_subscription_id:
-                        enterprise_contract.insert(0, contract)
-                    else:
-                        enterprise_contract.append(contract)
-
-    return flask.render_template(
-        "advantage/index.html",
-        accounts=accounts,
-        enterprise_contracts=enterprise_contracts,
-        personal_account=personal_account,
-        open_subscription=open_subscription,
-        new_subscription_id=new_subscription_id,
-        stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
-    )
-
-
-def get_machine_usage(advantage, contract):
-    """Return machine usage for the given contract as a MachineUsage object."""
-    allowances = contract.get("contractInfo", {}).get("allowances", [])
-    allowed = sum(a["value"] for a in allowances)
-    attached_machines = advantage.get_contract_machines(contract).get(
-        "machines", []
-    )
-    attached = len(attached_machines)
-    return MachineUsage(attached=attached, allowed=allowed)
-
-
-class MachineUsage(namedtuple("MachineUsage", ["attached", "allowed"])):
-    """Store attached and allowed machine count in a tuple."""
-
-    __slots__ = ()
-
-    def __str__(self):
-        if self.allowed:
-            return f"{self.attached}/{self.allowed}"
-        return str(self.attached)
-
-
-def post_advantage_subscriptions(preview):
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-
-    if user_info(flask.session) or guest_token:
-        advantage = AdvantageContracts(
-            session,
-            user_token or guest_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-    payload = flask.request.json
-    if not payload:
-        return flask.jsonify({}), 400
-
-    account_id = payload.get("account_id")
-    previous_purchase_id = payload.get("previous_purchase_id")
-    last_subscription = {}
-
-    if not guest_token:
-        try:
-            subscriptions = (
-                advantage.get_account_subscriptions_for_marketplace(
-                    account_id=account_id, marketplace="canonical-ua"
-                )
-            )
-        except HTTPError:
-            flask.current_app.extensions["sentry"].captureException(
-                extra={"payload": payload}
-            )
-            return (
-                flask.jsonify(
-                    {"error": "could not retrieve account subscriptions"}
-                ),
-                500,
-            )
-
-        if subscriptions:
-            last_subscription = subscriptions["subscriptions"][0]
-
-    # If there is a subscription we get the current metric
-    # value for each product listing so we can generate a
-    # purchase request with updated quantities later.
-    subscribed_quantities = {}
-    if "purchasedProductListings" in last_subscription:
-        for item in last_subscription["purchasedProductListings"]:
-            product_listing_id = item["productListing"]["id"]
-            subscribed_quantities[product_listing_id] = item["value"]
-
-    purchase_items = []
-    for product in payload.get("products"):
-        product_listing_id = product["product_listing_id"]
-        metric_value = product["quantity"] + subscribed_quantities.get(
-            product_listing_id, 0
-        )
-
-        purchase_items.append(
-            {
-                "productListingID": product_listing_id,
-                "metric": "active-machines",
-                "value": metric_value,
-            }
-        )
-
-    purchase_request = {
-        "accountID": account_id,
-        "purchaseItems": purchase_items,
-        "previousPurchaseID": previous_purchase_id,
-    }
-
-    try:
-        if not preview:
-            purchase = advantage.purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
-            )
-        else:
-            purchase = advantage.preview_purchase_from_marketplace(
-                marketplace="canonical-ua", purchase_request=purchase_request
-            )
-    except HTTPError as http_error:
-        flask.current_app.extensions["sentry"].captureException(
-            extra={
-                "purchase_request": purchase_request,
-                "api_response": http_error.response.json(),
-            }
-        )
-        return (
-            flask.jsonify({"error": "could not complete this purchase"}),
-            500,
-        )
-
-    return flask.jsonify(purchase), 200
-
-
-@store_maintenance
-def advantage_shop_view():
-    account = previous_purchase_id = None
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    stripe_publishable_key = os.getenv(
-        "STRIPE_LIVE_PUBLISHABLE_KEY", "pk_live_68aXqowUeX574aGsVck8eiIE"
-    )
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        stripe_publishable_key = os.getenv(
-            "STRIPE_TEST_PUBLISHABLE_KEY",
-            "pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46",
-        )
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session):
-        advantage = AdvantageContracts(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
-        if flask.session.get("guest_authentication_token"):
-            flask.session.pop("guest_authentication_token")
-
-        try:
-            account = advantage.get_purchase_account()
-        except HTTPError as err:
-            code = err.response.status_code
-            if code == 401:
-                # We got an unauthorized request, so we likely
-                # need to re-login to refresh the macaroon
-                flask.current_app.extensions["sentry"].captureException(
-                    extra={
-                        "session_keys": flask.session.keys(),
-                        "request_url": err.request.url,
-                        "request_headers": err.request.headers,
-                        "response_headers": err.response.headers,
-                        "response_body": err.response.json(),
-                        "response_code": err.response.json()["code"],
-                        "response_message": err.response.json()["message"],
-                    }
-                )
-
-                empty_session(flask.session)
-
-                return flask.render_template(
-                    "advantage/subscribe/index.html",
-                    account=None,
-                    previous_purchase_id=None,
-                    product_listings=[],
-                    stripe_publishable_key=stripe_publishable_key,
-                    is_test_backend=is_test_backend,
-                )
-            if code != 404:
-                raise
-            # There is no purchase account yet for this user.
-            # One will need to be created later, but this is an expected
-            # condition.
-    else:
-        advantage = AdvantageContracts(session, None, api_url=api_url)
-
-    if account is not None:
-        resp = advantage.get_account_subscriptions_for_marketplace(
-            account["id"], "canonical-ua"
-        )
-        subs = resp.get("subscriptions")
-        if subs:
-            previous_purchase_id = subs[0].get("lastPurchaseID")
-
-    listings_response = advantage.get_marketplace_product_listings(
-        "canonical-ua"
-    )
-    product_listings = listings_response.get("productListings")
-    if not product_listings:
-        # For the time being, no product listings means the shop has not been
-        # activated, so fallback to shopify. This should become an error later.
-        return flask.redirect("https://buy.ubuntu.com/")
-
-    products = {pr["id"]: pr for pr in listings_response["products"]}
-    listings = []
-    for listing in product_listings:
-        if "price" not in listing:
-            continue
-        listing["product"] = products[listing["productID"]]
-        listings.append(listing)
-
-    return flask.render_template(
-        "advantage/subscribe/index.html",
-        account=account,
-        previous_purchase_id=previous_purchase_id,
-        product_listings=listings,
-        stripe_publishable_key=stripe_publishable_key,
-        is_test_backend=is_test_backend,
-    )
-
-
-@store_maintenance
-def advantage_thanks_view():
-    email = flask.request.args.get("email")
-
-    if user_info(flask.session):
-        return flask.redirect("/advantage")
-    else:
-        return flask.render_template(
-            "advantage/subscribe/thank-you.html",
-            email=email,
-        )
-
-
-def make_renewal(advantage, contract_info):
-    """Return the renewal as present in the given info, or None."""
-    renewals = contract_info.get("renewals")
-    if not renewals:
-        return None
-
-    sorted_renewals = sorted(
-        (r for r in renewals if r["status"] != "closed"),
-        key=lambda renewal: dateutil.parser.parse(renewal["start"]),
-    )
-
-    if len(sorted_renewals) == 0:
-        return None
-
-    renewal = sorted_renewals[0]
-
-    # If the renewal is processing, we need to find out
-    # whether payment failed and requires user action,
-    # which is information only available in the fuller
-    # renewal object get_renewal gives us.
-    if renewal["status"] == "processing":
-        renewal = advantage.get_renewal(renewal["id"])
-
-    renewal["renewable"] = False
-
-    if renewal["status"] == "done":
-        try:
-            renewal_modified_date = dateutil.parser.parse(
-                renewal["lastModified"]
-            )
-            oneHourAgo = datetime.now(timezone.utc) - timedelta(hours=1)
-
-            renewal["recently_renewed"] = oneHourAgo < renewal_modified_date
-        except KeyError:
-            renewal["recently_renewed"] = False
-
-    # Only actionable renewals are renewable.
-    # If "actionable" isn't set, it's not actionable
-    # If "actionable" IS set, but not true, it's not actionable
-    if "actionable" not in renewal:
-        renewal["actionable"] = False
-        return renewal
-    elif not renewal["actionable"]:
-        return renewal
-
-    # The renewal is renewable only during its time window.
-    start = dateutil.parser.parse(renewal["start"])
-    end = dateutil.parser.parse(renewal["end"])
-    if not (start <= datetime.now(timezone.utc) <= end):
-        return renewal
-
-    # Pending renewals are renewable.
-    if renewal["status"] == "pending":
-        renewal["renewable"] = True
-        return renewal
-
-    # Renewals not pending or processing are never renewable.
-    if renewal["status"] != "processing":
-        return renewal
-
-    invoices = renewal.get("stripeInvoices")
-    if invoices:
-        invoice = invoices[-1]
-        renewal["renewable"] = (
-            invoice["pi_status"] == "requires_payment_method"
-            or invoice["pi_status"] == "requires_action"
-        ) and invoice["subscription_status"] == "incomplete"
-
-    return renewal
-
-
-def post_anonymised_customer_info():
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session) or guest_token:
-        advantage = AdvantageContracts(
-            session,
-            user_token or guest_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-
-        if not flask.request.is_json:
-            return flask.jsonify({"error": "JSON required"}), 400
-
-        account_id = flask.request.json.get("account_id")
-        if not account_id:
-            return flask.jsonify({"error": "account_id required"}), 400
-
-        address = flask.request.json.get("address")
-        if not address:
-            return flask.jsonify({"error": "address required"}), 400
-
-        tax_id = flask.request.json.get("tax_id")
-
-        return advantage.put_anonymous_customer_info(
-            account_id, address, tax_id
-        )
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-
-def post_customer_info():
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session) or guest_token:
-        advantage = AdvantageContracts(
-            session,
-            user_token or guest_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-
-        if not flask.request.is_json:
-            return flask.jsonify({"error": "JSON required"}), 400
-
-        payment_method_id = flask.request.json.get("payment_method_id")
-        if not payment_method_id:
-            return flask.jsonify({"error": "payment_method_id required"}), 400
-
-        account_id = flask.request.json.get("account_id")
-        if not account_id:
-            return flask.jsonify({"error": "account_id required"}), 400
-
-        address = flask.request.json.get("address")
-        name = flask.request.json.get("name")
-        tax_id = flask.request.json.get("tax_id")
-
-        return advantage.put_customer_info(
-            account_id, payment_method_id, address, name, tax_id
-        )
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-
-def post_stripe_invoice_id(tx_type, tx_id, invoice_id):
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session) or guest_token:
-        advantage = AdvantageContracts(
-            session,
-            user_token or guest_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-
-        return advantage.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-
-def get_purchase(purchase_id):
-    user_token = flask.session.get("authentication_token")
-    guest_token = flask.session.get("guest_authentication_token")
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session) or guest_token:
-        advantage = AdvantageContracts(
-            session,
-            user_token or guest_token,
-            token_type=("Macaroon" if user_token else "Bearer"),
-            api_url=api_url,
-        )
-
-        return advantage.get_purchase(purchase_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-
-def ensure_purchase_account():
+def mirrors_query():
     """
-    Returns an object with the ID of an account a user can make
-    purchases on. If the user is not logged in, the object also
-    contains an auth token required for subsequent calls to the
-    contract API.
+    A JSON endpoint to request list of Ubuntu mirrors
     """
-    is_test_backend = flask.request.args.get("test_backend", False)
+    local = flask.request.args.get("local", default=False)
 
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
+    if not local or local.lower() != "true":
+        local = False
+    else:
+        local = True
 
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if not flask.request.is_json:
-        return flask.jsonify({"error": "JSON required"}), 400
-
-    auth_token = None
-    if user_info(flask.session):
-        auth_token = flask.session["authentication_token"]
-    advantage = AdvantageContracts(
-        session,
-        auth_token,
-        api_url=api_url,
+    return (
+        flask.jsonify(_build_mirror_list(local)),
+        {"Cache-Control": "private"},
     )
-
-    request = flask.request.json
-    try:
-        account = advantage.ensure_purchase_account(
-            email=request.get("email"),
-            account_name=request.get("account_name"),
-            payment_method_id=request.get("payment_method_id"),
-        )
-    except UnauthorizedError as err:
-        # This kind of errors are handled js side.
-        return err.asdict(), 200
-    except HTTPError as err:
-        flask.current_app.extensions["sentry"].captureException()
-        return err.response.content, 500
-
-    # The guest authentication token is included in the response only when the
-    # user is not logged in.
-    token = account.get("token")
-    if token:
-        flask.session["guest_authentication_token"] = token
-    return flask.jsonify(account), 200
-
-
-def get_renewal(renewal_id):
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session):
-        advantage = AdvantageContracts(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
-
-        return advantage.get_renewal(renewal_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-
-def get_customer_info(account_id):
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session):
-        advantage = AdvantageContracts(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
-
-        return advantage.get_customer_info(account_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
-
-
-def accept_renewal(renewal_id):
-    is_test_backend = flask.request.args.get("test_backend", False)
-
-    api_url = flask.current_app.config["CONTRACTS_LIVE_API_URL"]
-
-    if is_test_backend:
-        api_url = flask.current_app.config["CONTRACTS_TEST_API_URL"]
-
-    if user_info(flask.session):
-        advantage = AdvantageContracts(
-            session,
-            flask.session["authentication_token"],
-            api_url=api_url,
-        )
-
-        return advantage.accept_renewal(renewal_id)
-    else:
-        return flask.jsonify({"error": "authentication required"}), 401
 
 
 def build_tutorials_index(session, tutorials_docs):
@@ -1136,8 +266,8 @@ def build_tutorials_index(session, tutorials_docs):
         Get search results from Google Custom Search
         """
 
-        # The webteam's default custom search ID
-        search_engine_id = "009048213575199080868:i3zoqdwqk8o"
+        # Web tribe websites custom search ID
+        # search_engine_id = "adb2397a224a1fe55"
 
         # API key should always be provided as an environment variable
         search_api_key = os.getenv("SEARCH_API_KEY")
@@ -1145,60 +275,71 @@ def build_tutorials_index(session, tutorials_docs):
         if query and not search_api_key:
             raise NoAPIKeyError("Unable to search: No API key provided")
 
-        results = None
+        # results = None
 
-        if query:
-            results = get_search_results(
-                session=session,
-                api_key=search_api_key,
-                search_engine_id=search_engine_id,
-                siteSearch="ubuntu.com/tutorials",
-                query=query,
-            )
+        # if query:
+        #     results = get_search_results(
+        #         session=session,
+        #         api_key=search_api_key,
+        #         search_engine_id=search_engine_id,
+        #         siteSearch="ubuntu.com/tutorials",
+        #         query=query,
+        #         site_restricted_search=False,
+        #     )
 
         tutorials_docs.parser.parse()
+        tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
+
         if not topic:
-            metadata = tutorials_docs.parser.metadata
+            tutorials = tutorials_docs.parser.tutorials
         else:
-            metadata = [
+            tutorials = [
                 doc
-                for doc in tutorials_docs.parser.metadata
+                for doc in tutorials_docs.parser.tutorials
                 if topic in doc["categories"]
             ]
 
-        if query:
-            temp_metadata = []
-            if results.get("entries"):
-                for result in results["entries"]:
-                    start = result["link"].find("tutorials/")
-                    end = len(result["link"])
-                    identifier = result["link"][start:end]
-                    if start != -1:
-                        for doc in metadata:
-                            if identifier in doc["topic"]:
-                                temp_metadata.append(doc)
-            metadata = temp_metadata
+        # Create list of topics
+        topics_list = set()
+        for item in tutorials_docs.parser.tutorials:
+            if "categories" in item and item["categories"] not in topics_list:
+                topics_list = topics_list | set(
+                    item["categories"].replace(" ", "").lower().split(",")
+                )
+
+        # if query:
+        #     temp_metadata = []
+        #     if results.get("entries"):
+        #         for result in results["entries"]:
+        #             start = result["link"].find("tutorials/")
+        #             end = len(result["link"])
+        #             identifier = result["link"][start:end]
+        #             if start != -1:
+        #                 for doc in tutorials:
+        #                     if identifier in doc["link"]:
+        #                         temp_metadata.append(doc)
+        #     tutorials = temp_metadata
 
         if sort == "difficulty-desc":
-            metadata = sorted(
-                metadata, key=lambda k: k["difficulty"], reverse=True
+            tutorials = sorted(
+                tutorials, key=lambda k: k["difficulty"], reverse=True
             )
 
         if sort == "difficulty-asc" or not sort:
-            metadata = sorted(
-                metadata, key=lambda k: k["difficulty"], reverse=False
+            tutorials = sorted(
+                tutorials, key=lambda k: k["difficulty"], reverse=False
             )
 
-        total_results = len(metadata)
+        total_results = len(tutorials)
         total_pages = math.ceil(total_results / posts_per_page)
 
         return flask.render_template(
             "tutorials/index.html",
-            navigation=tutorials_docs.parser.navigation,
             forum_url=tutorials_docs.parser.api.base_url,
-            metadata=metadata,
+            tutorials=tutorials,
             page=page,
             topic=topic,
+            topics_list=sorted(list(topics_list)),
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,
@@ -1212,18 +353,59 @@ def build_tutorials_index(session, tutorials_docs):
 def build_engage_index(engage_docs):
     def engage_index():
         page = flask.request.args.get("page", default=1, type=int)
-        topic = flask.request.args.get("topic", default=None, type=str)
-        sort = flask.request.args.get("sort", default=None, type=str)
         preview = flask.request.args.get("preview")
+        language = flask.request.args.get("language", default=None, type=str)
+        resource = flask.request.args.get("resource", default=None, type=str)
+        tag = flask.request.args.get("tag", default=None, type=str)
         posts_per_page = 15
         engage_docs.parser.parse()
         metadata = engage_docs.parser.metadata
+
+        resource_types = []
+        tags_list = set()
+        for item in metadata:
+            if "type" in item and item["type"] not in resource_types:
+                resource_types.append(item["type"])
+            if "tags" in item and item["tags"] != "":
+                # Join 2 lists of tags without duplicates
+                tags_list = tags_list | set(
+                    item["tags"].replace(" ", "").split(",")
+                )
+
+        tags_list = sorted(list(tags_list))
 
         if preview is None:
             metadata = [
                 item
                 for item in metadata
                 if "active" in item and item["active"] == "true"
+            ]
+
+        if language:
+            new_metadata = []
+            for item in metadata:
+                if "language" in item:
+                    if item["language"] == language:
+                        new_metadata.append(item)
+                    elif language == "en" and item["language"] == "":
+                        new_metadata.append(item)
+                else:
+                    break
+            metadata = new_metadata
+
+        if resource:
+            metadata = [
+                item
+                for item in metadata
+                if "type" in item and item["type"] == resource
+            ]
+
+        if tag:
+            metadata = [
+                element
+                for element in metadata
+                if "tags" in element
+                and tag in element["tags"].replace(" ", "").split(",")
             ]
 
         total_pages = math.ceil(len(metadata) / posts_per_page)
@@ -1233,9 +415,11 @@ def build_engage_index(engage_docs):
             forum_url=engage_docs.parser.api.base_url,
             metadata=metadata,
             page=page,
-            topic=topic,
-            sort=sort,
             preview=preview,
+            language=language,
+            resource=resource,
+            resource_types=sorted(resource_types),
+            tags=tags_list,
             posts_per_page=posts_per_page,
             total_pages=total_pages,
         )
@@ -1294,6 +478,135 @@ def engage_thank_you(engage_pages):
             return flask.abort(404)
 
     return render_template
+
+
+def unlisted_engage_page(slug):
+    """
+    Renders an engage page that is separate from the
+    discourse implementation
+    """
+    return flask.render_template(f"engage/unlisted/{slug}.html")
+
+
+def openstack_install():
+    """
+    OpenStack install docs
+    Instructions for OpenStack installation pulled from Discourse
+    """
+    discourse_api = DiscourseAPI(
+        base_url="https://discourse.ubuntu.com/", session=session
+    )
+    openstack_install_parser = DocParser(
+        api=discourse_api,
+        index_topic_id=23346,
+        url_prefix="/openstack/install",
+    )
+    openstack_install_docs = Docs(
+        parser=openstack_install_parser,
+        document_template="/openstack/install.html",
+        url_prefix="/openstack/install",
+        blueprint_name="openstack-install-docs",
+    )
+
+    singlenode_topic = openstack_install_docs.parser.api.get_topic(21427)
+    singlenode_topic_soup = BeautifulSoup(
+        singlenode_topic["post_stream"]["posts"][0]["cooked"],
+        features="html.parser",
+    )
+    singlenode_content = openstack_install_parser._process_topic_soup(
+        singlenode_topic_soup
+    )
+    openstack_install_docs.parser._replace_lightbox(singlenode_topic_soup)
+
+    multinode_topic = openstack_install_docs.parser.api.get_topic(18259)
+    multinode_topic_soup = BeautifulSoup(
+        multinode_topic["post_stream"]["posts"][0]["cooked"],
+        features="html.parser",
+    )
+    multinode_content = openstack_install_docs.parser._process_topic_soup(
+        multinode_topic_soup
+    )
+    openstack_install_docs.parser._replace_lightbox(multinode_topic_soup)
+
+    return flask.render_template(
+        "openstack/install.html",
+        single_node=str(singlenode_content),
+        multi_node=str(multinode_content),
+    )
+
+
+def openstack_engage(engage_docs):
+    def openstack_resource_data():
+        engage_docs.parser.parse()
+        metadata = engage_docs.parser.metadata
+
+        resource_tags = [
+            "openstack",
+            "OpenStack",
+            "Openstack",
+            "charmedopenstack",
+            "privatecloud",
+        ]
+
+        # filter for language, tags, publish_date
+        filtered_metadata = []
+        for item in metadata:
+            if (
+                any(tag in item["tags"] for tag in resource_tags)
+                and "en" in item["language"]
+                and item["publish_date"] != ""
+            ):
+                filtered_metadata.append(item)
+
+        # filter and seperate by type
+        whitepapers_metadata = []
+        webinars_metadata = []
+        casestudies_metadata = []
+
+        for item in filtered_metadata:
+            if "whitepaper" in item["type"]:
+                whitepapers_metadata.append(item)
+            elif "webinar" in item["type"]:
+                webinars_metadata.append(item)
+            elif "case study" in item["type"]:
+                casestudies_metadata.append(item)
+
+        # only show the latest three
+        whitepapers_metadata = whitepapers_metadata[:3]
+        webinars_metadata = webinars_metadata[:3]
+        casestudies_metadata = casestudies_metadata[:3]
+
+        return flask.render_template(
+            "openstack/resources.html",
+            metadata=metadata,
+            whitepapers_metadata=whitepapers_metadata,
+            webinars_metadata=webinars_metadata,
+            casestudies_metadata=casestudies_metadata,
+        )
+
+    return openstack_resource_data
+
+
+def build_tutorials_query(tutorials_docs):
+    def tutorials_query():
+        topic = flask.request.args.get("topic", default="", type=str)
+
+        tutorials_docs.parser.parse()
+        tutorials_docs.parser.parse_topic(tutorials_docs.parser.index_topic)
+
+        tutorials = [
+            doc
+            for doc in tutorials_docs.parser.tutorials
+            if topic in doc["categories"]
+        ]
+
+        tutorials = sorted(
+            tutorials, key=lambda k: k["difficulty"], reverse=True
+        )
+
+        return flask.jsonify(tutorials)
+
+    return tutorials_query
 
 
 # Blog
@@ -1375,3 +688,132 @@ def sitemap_index():
 
     response.headers["Content-Type"] = "application/xml"
     return response
+
+
+def marketo_submit():
+    form_fields = {}
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
+        if value:
+            form_fields[key] = value
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+
+    # There is logically difference between None and empty string here.
+    # 1. The first if check, we are working with a form that contains honeypots
+    # or the legacy ones using recaptcha.
+    # 2. The second that checks for empty string is actually testing if the
+    # honeypots have been triggered
+
+    if honeypots["name"] is not None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+    return_url = form_fields.pop("returnURL", None)
+
+    if "Comments_from_lead__c" in form_fields:
+        encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
+        form_fields["Comments_from_lead__c"] = encoded_comment
+
+    visitor_data = {
+        "userAgentString": flask.request.headers.get("User-Agent"),
+    }
+    referrer = flask.request.referrer
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+
+    if client_ip and ":" not in client_ip:
+        visitor_data["leadClientIpAddress"] = client_ip
+
+    payload = {
+        "formId": form_fields.pop("formid"),
+        "input": [
+            {"leadFormFields": form_fields, "visitorData": visitor_data}
+        ],
+    }
+
+    enrichment_fields = None
+
+    if "email" in form_fields:
+        # Enrichment data for global enrichment form (id:4198)
+        enrichment_fields = {
+            "email": form_fields["email"],
+            "acquisition_url": referrer,
+        }
+
+    try:
+        ip_location = ip_reader.get(client_ip)
+        if ip_location and "country" in ip_location:
+            enrichment_fields["country"] = ip_location["country"]["iso_code"]
+    except Exception:
+        pass
+
+    enriched_payload = {
+        "formId": "4198",
+        "input": [{"leadFormFields": enrichment_fields}],
+    }
+
+    try:
+        # Send form data
+        data = marketo_api.submit_form(payload).json()
+
+        if "result" not in data:
+            flask.current_app.extensions["sentry"].captureMessage(
+                "Marketo form API Issue",
+                extra={"payload": payload, "response": data},
+            )
+
+            return (
+                flask.jsonify(
+                    {"error": "There was an issue submitting the form."}
+                ),
+                400,
+            )
+
+        if data["result"][0]["status"] == "skipped":
+            flask.current_app.extensions["sentry"].captureMessage(
+                f"Marketo form {payload['formId']} failed to submit",
+                extra={"payload": payload, "response": data},
+            )
+
+    except Exception:
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"payload": payload}
+        )
+
+        return (
+            flask.jsonify(
+                {"error": "There was an issue submitting the form."}
+            ),
+            400,
+        )
+
+    # Send enrichment data
+    try:
+        marketo_api.submit_form(enriched_payload).json()
+    except Exception:
+        pass
+
+    if return_url:
+        return flask.redirect(return_url)
+
+    if referrer:
+        return flask.redirect(f"/thank-you?referrer={referrer}")
+    else:
+        return flask.redirect("/thank-you")
+
+
+def thank_you():
+    return flask.render_template(
+        "thank-you.html", referrer=flask.request.args.get("referrer")
+    )

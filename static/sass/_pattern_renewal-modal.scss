@@ -125,6 +125,11 @@
         text-align: right;
       }
     }
+    .col-4 {
+      @media (min-width: $breakpoint-medium) {
+        text-align: right;
+      }
+    }
 
     #card-element {
       background: $color-x-light;
@@ -143,7 +148,7 @@
       }
 
       &.StripeElement--invalid {
-        background-image: url("#{$assets-path}/v1/4b0cd7fc-icon-error.svg");
+        background-image: url("#{$assets-path}/4b0cd7fc-icon-error.svg");
         background-position: calc(100% - 0.5rem) 50%;
         background-repeat: no-repeat;
         border-color: $color-negative;
@@ -178,12 +183,6 @@
       }
     }
 
-    input,
-    select,
-    textarea {
-      margin-bottom: 0;
-    }
-
     img {
       display: block;
     }
@@ -196,7 +195,8 @@
       &.p-radio--inline {
         float: none;
         &:not(:first-child) {
-          margin-left: $sph-inner--large;
+          // TODO: this should be "expressed as a sum of other variables"
+          margin-left: 1.5rem;
         }
       }
     }

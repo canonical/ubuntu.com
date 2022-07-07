@@ -38,12 +38,12 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/azure-integrator
+    charm: azure-integrator
     num_units: 1
     trust: true
 relations:
-  - ['azure-integrator', 'kubernetes-master']
-  - ['azure-integrator', 'kubernetes-worker']
+  - ['azure-integrator', 'kubernetes-control-plane:azure']
+  - ['azure-integrator', 'kubernetes-worker:azure']
   ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
@@ -56,33 +56,26 @@ juju deploy charmed-kubernetes --overlay azure-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    A standard install of Charmed Kubernetes will use more resources than the
-    current quotas allocated to a new Azure account. If you see error messages
-    saying allocating machines would exceed your quota, you will need to log a
-
-    <a href="https://docs.microsoft.com/en-us/azure/azure-portal/supportability/regional-quota-requests" class="p-notification__action">support request with Azure</a> to increase the quota accordingly.
-
-  </p>
+  <div class="p-notification__content">
+    <p class="p-notification__message">A standard install of Charmed Kubernetes will use more resources than the current quotas allocated to a new Azure account. If you see error messages saying allocating machines would exceed your quota, you will need to log a <a href="https://docs.microsoft.com/en-us/azure/azure-portal/supportability/regional-quota-requests">support request with Azure</a> to increase the quota accordingly.</p>
+  </div>
 </div>
 
-
-
-<div class="p-notification--caution">
-  <p class="p-notification__response">
-    <span class="p-notification__status">Resource usage:</span>
-    By relating to this charm, other charms can directly allocate resources, such
+<div class="p-notification--caution is-inline">
+  <div class="p-notification__content">
+    <span class="p-notification__title">Resource usage:</span>
+    <p class="p-notification__message">By relating to this charm, other charms can directly allocate resources, such
     as managed disks and load balancers, which could lead to cloud charges and
     count against quotas. Because these resources are not managed by Juju, they
     will not be automatically deleted when the models or applications are
     destroyed, nor will they show up in Juju's status or GUI. It is therefore up
     to the operator to manually delete these resources when they are no longer
-    needed, using the Azure management website or API.
-  </p>
+    needed, using the Azure management website or API.</p>
+  </div>
 </div>
 
 ## Storage
@@ -156,7 +149,7 @@ EOY
 Charmed Kubernetes can make use of additional types of storage - for more
 information see the [storage documentation][storage].
 
-## Azure load-balancers
+## Azure load-balancers for services
 
 The following commands start the 'hello-world' pod behind an Azure-backed
 load-balancer.
@@ -185,9 +178,20 @@ You can then verify this works by loading the described IP address (on port
 For more configuration options and details of the permissions which the integrator uses,
 please see the [azure charm page][azure-integrator].
 
+## Azure load-balancers for the control plane
+
+With revision 1015 and later of the `kubernetes-control-plane` charm, Charmed
+Kubernetes can also use Azure native load balancers in front of the control
+plane, replacing the need to deploy the `kubeapi-load-balancer` charm. The
+`kubernetes-control-plane` charm supports two relation endpoints, `loadbalancer-external`
+for a publicly accessible load balancer which can be used by external clients as
+well as the control plane, and `loadbalancer-internal` for a non-public load
+balancer which can only be used by the rest of the control plane but not by
+external clients.
+
 <!-- LINKS -->
 
-[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/azure-overlay.yaml
+[asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
 
 [storage]: /kubernetes/docs/storage
 [azure-integrator]: /kubernetes/docs/charm-azure-integrator
@@ -196,10 +200,11 @@ please see the [azure charm page][azure-integrator].
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/azure-integration.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/azure-integration.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

@@ -24,19 +24,6 @@
     @extend %p-card--highlighted;
     @include vf-highlight-bar(#ff8936);
   }
-
-  .p-card.is-selected {
-    background-color: $color-mid-x-light;
-    border-color: $color-mid-dark;
-  }
-
-  .p-card.has-limited-height {
-    height: 20rem;
-  }
-
-  .p-card.has-limited-height--large {
-    height: 23.5rem;
-  }
 }
 
 @mixin ubuntu-card-layout {
@@ -53,7 +40,7 @@
     }
 
     .p-card__main {
-      padding-top: calc(#{$spv-inner--large} - 1px);
+      padding-top: calc(#{$spv--large} - 1px);
     }
 
     .p-card__footer {
@@ -63,9 +50,60 @@
 }
 
 @mixin ubuntu-card-radio {
-  .row--5-col {
+  .radio-wrapper--staggering {
+    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      display: flex;
+
+      > div {
+        display: flex;
+        flex-basis: 0;
+        flex-direction: column;
+        flex-grow: 1;
+
+        > .image-wrapper {
+          height: 48px;
+          margin-bottom: 2.4rem;
+        }
+      }
+    }
+  }
+
+  .radio-wrapper--stacking {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    @media only screen and (min-width: $breakpoint-medium) {
+      column-gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .p-card--radio--support {
+    @extend .p-card--radio;
+
+    > label {
+      font-weight: 400;
+
+      > small {
+        font-weight: normal;
+      }
+    }
+
+    > img {
+      height: 60px;
+      margin: 0 auto;
+      max-height: none;
+      width: 60px;
+    }
+
+    > p {
+      text-align: center;
+    }
   }
 
   .p-card--radio {
@@ -82,65 +120,115 @@
       background-color: $color-light;
     }
 
-    .row--5-col & {
-      flex: 1 1 18%;
-      margin-right: 2.5%;
-
-      @media only screen and (max-width: $breakpoint-medium - 1) {
-        flex: 0 0 49%;
-        margin-right: 2%;
-
-        &:nth-child(even) {
-          margin-right: 0;
-        }
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
+    .p-card__title {
+      align-items: baseline;
+      display: flex;
+      justify-content: space-between;
     }
 
     img {
       display: block;
-      margin: 1.2rem auto 2.4rem;
+      margin: 1.2rem auto 0;
       max-height: 48px;
       max-width: 100%;
       pointer-events: none;
       width: auto;
     }
 
-    [type="radio"] {
-      left: 0;
+    .p-radio {
+      margin: 0;
+      max-width: none;
+      padding: 0;
+      position: initial;
+      text-indent: 0;
+      width: 100%;
 
-      & + label {
-        background-color: transparent;
-        margin: 0.5rem auto;
-        padding: 0;
-        position: initial;
-        text-align: center;
-        width: 100%;
-      }
-
-      & + label::after {
-        display: none;
-      }
-
-      & + label::before {
-        background: none;
-        border: none;
-        border-radius: 0;
+      &::before {
         bottom: 0;
-        height: 100%;
+        content: "";
         left: 0;
         position: absolute;
         right: 0;
         top: 0;
-        width: 100%;
       }
 
-      &:focus + label::before {
-        border: 0.1875rem solid #2e96ff;
+      &__label {
+        padding: 0;
+
+        &::after,
+        &::before {
+          content: none;
+        }
       }
+
+      small {
+        display: block;
+      }
+    }
+
+    &.is-selected .p-radio::before {
+      border: 0.1875rem solid #2e96ff;
+      outline: none;
+    }
+  }
+
+  .p-card--radio--version {
+    @extend .p-card--radio;
+
+    padding: 3rem 1rem;
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  .p-card--radio--feature {
+    @extend .p-card--radio;
+
+    span {
+      margin-top: auto;
+      padding-left: 2rem;
+      position: relative;
+
+      &::before,
+      &::after {
+        background: white;
+        border-radius: 50%;
+        content: "";
+        position: absolute;
+        transition-duration: 0.333s;
+        transition-property: background-color, border-color;
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      &::before {
+        border: solid 1px #0000008f;
+        border-radius: 50%;
+        height: 1rem;
+        left: 0;
+        margin-right: 1rem;
+        outline-offset: 1px;
+        top: 0.2rem;
+        width: 1rem;
+      }
+      &::after {
+        height: 0.375rem;
+        left: 0.3125rem;
+        top: 0.5rem;
+        width: 0.375rem;
+      }
+    }
+
+    .p-radio {
+      span {
+        height: 100%;
+        text-align: left;
+      }
+    }
+
+    &.is-selected span::before {
+      background-color: #06c;
+      border-color: #06c;
     }
   }
 }

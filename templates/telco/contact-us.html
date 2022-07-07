@@ -1,0 +1,16 @@
+{% extends "telco/base_telco.html" %}
+
+{% block title %}Contact us | Telco{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/10lo3O2TKiR-cc48CqhH3Ghak0xZQaP2n4YthDtdIXpo/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% with h1="Contact us about Telco",
+  intro_text="Fill in your details below and a member of our training team will be in touch.",
+  formid="4048",
+  lpId="",
+  returnURL="/telco/thank-you" %}
+  {% include "shared/_telco-contact-us.html" %}
+{% endwith %}
+
+{% endblock content %}

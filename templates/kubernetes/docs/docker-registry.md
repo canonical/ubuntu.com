@@ -41,7 +41,7 @@ If needed, consult the [quickstart guide][quickstart] to install
 follows.
 
 ```bash
-juju deploy cs:~containers/docker-registry
+juju deploy docker-registry
 juju add-relation docker-registry easyrsa:client
 juju config docker-registry \
   auth-basic-user='admin' \
@@ -68,15 +68,14 @@ multiple `docker-registry` units to be deployed behind a proxy. In this case,
 the network information of the proxy will be shared with the container runtime
 units when the registry is related.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-SSL pass-thru is supported between 'docker-registry' and 'haproxy', though
-manual configuration is required. The recommended approach for a proxied
-registry is to disable SSL on 'docker-registry' prior to relating it to
-'haproxy'. Consult the 'docker-registry' charm readme if SSL is required in a
-proxied environment.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">SSL pass-thru is supported between 'docker-registry' and 'haproxy', though manual configuration is required. The recommended approach for a proxied
+    registry is to disable SSL on 'docker-registry' prior to relating it to
+    'haproxy'. Consult the 'docker-registry' charm readme if SSL is required in a
+    proxied environment.</p>
+  </div>
 </div>
 
 The environment described in the `Deploy` section above can be adjusted to
@@ -89,14 +88,13 @@ juju remove-relation docker-registry easyrsa:client
 juju add-relation docker-registry haproxy:reverseproxy
 ```
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-With multiple registry units deployed, the proxy relation allows for a
-highly available deployment. Load balancing across multiple registry units is
-not supported.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">With multiple registry units deployed, the proxy relation allows for a highly available deployment. Load balancing across multiple registry units is not supported.</p>
+  </div>
 </div>
+
 
 ## Verify
 
@@ -122,7 +120,8 @@ Login Succeeded
 
 Relate the deployed registry to the appropriate
 [container runtime][container-runtime] for your cluster. This configures
-the runtime with authentication, proxy, and/or TLS data from the registry.
+the runtime with authentication, proxy, and/or TLS data from the registry,
+and allows your registry to be used by the cluster to pull images for pods.
 
 ### Containerd
 
@@ -144,8 +143,8 @@ comprehensive list sorted by release; not all images are required for all
 deployments. Take note of the images required by your deployment that will
 need to be hosted in your private registry. A list of images required by
 a specific release is also included on the 'components' page in the 
-documentation, for example, the list for the 1.20 release is located on the
-[1.20 components page][1.20]
+documentation, for example, the list for the 1.24 release is located on the
+[1.24 components page][1.24]
 
 ## Hosting images
 
@@ -169,31 +168,32 @@ juju run-action docker-registry/0 \
 
 The above procedure should be repeated for all required images.
 
-## Using hosted images
+## Using the registry for cluster components
 
-The image registry used by **Charmed Kubernetes** is controlled by a
-`kubernetes-master` config option. Configure `kubernetes-master` to use your
-private registry as follows:
+The image registry used by **Charmed Kubernetes** for images used in managing
+or supporting components of the cluster itself is controlled by a `kubernetes-control-plane`
+config option. Configure `kubernetes-control-plane` to use your private registry as follows:
 
 ```bash
-juju config kubernetes-master image-registry=$REGISTRY
+juju config kubernetes-control-plane image-registry=$REGISTRY
 ```
 
 <!-- LINKS -->
 
-[registry-charm]: http://jujucharms.com/u/containers/docker-registry
+[registry-charm]: https://charmhub.io/docker-registry
 [upstream-registry]: https://docs.docker.com/registry/
 [quickstart]: /kubernetes/docs/quickstart
 [container-runtime]: /kubernetes/docs/container-runtime
 [container-images-txt]: https://github.com/charmed-kubernetes/bundle/blob/master/container-images.txt
-[1.20]: /kubernetes/docs/1.20/components#images
+[1.24]: /kubernetes/docs/1.24/components#images
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/docker-registry.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/docker-registry.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

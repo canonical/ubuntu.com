@@ -13,16 +13,16 @@
         <h1>
           Dell EMC and Ubuntu
         </h1>
-        <p class="p-heading--fouer">
+        <p class="p-heading--4">
           From desktop to the edge, from the data centre to multi-cloud environments &mdash; Dell EMC and Canonical bring you open&nbsp;source solutions that work out-of-the-box.
         </p>
         <p>
-          <a class="p-button--positive js-invoke-modal u-no-margin--bottom" href="/dell/contact-us">
+          <a class="p-button--positive js-invoke-modal u-no-margin--bottom" href="/dell/contact-us" data-testid="interactive-form-link">
             Get in touch
           </a>
         </p>
       </div>
-      <div class="col-6 u-hide--small u-align--center u-vertically-center">
+      <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
         {{
           image(
             url="https://assets.ubuntu.com/v1/82db81d1-DELL+EMC+++Ubuntu.svg",
@@ -48,11 +48,11 @@
         Dell servers provisioning with MAAS
       </h3>
       <p>
-        At the heart of the data centre and a key component to building a hybrid strategy, Dell PowerEdge servers come certified with Ubuntu as the operating system.  Offering the performance and versatility to get the most from your infrastructure, Dell's flexible designs offer a range of options for price, functionality and scalability to meet your workload needs. Those servers can be provisioned with <a href="https://maas.io" class="p-link--external">MAAS</a> for a cloud-like experience and enhanced automation.
+        At the heart of the data centre and a key component to building a hybrid strategy, Dell PowerEdge servers come certified with Ubuntu as the operating system.  Offering the performance and versatility to get the most from your infrastructure, Dell's flexible designs offer a range of options for price, functionality and scalability to meet your workload needs. Those servers can be provisioned with <a href="https://maas.io">MAAS</a> for a cloud-like experience and enhanced automation.
       </p>
       <p>
-        <a class="p-button" href="https://certification.ubuntu.com/server/models/?vendors=Dell%20EMC">
-          <span class="p-link--external">
+        <a class="p-button" href="/certified?category=Server&vendor=Dell&vendor_page=True">
+          <span>
             View Dell's certified server options
           </span>
         </a>
@@ -63,7 +63,7 @@
         </a>
       </p>
     </div>
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/40d4f11a-servers.svg",
@@ -82,7 +82,7 @@
   </div>
 
   <div class="row">
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/96d35aa4-certified-kubernetes-logo.svg",
@@ -119,7 +119,7 @@
         Enterprise clouds with OpenStack
       </h3>
       <p>
-        Over 50% of all Openstack deployments use Ubuntu and Dell is the most-used hardware for deploying Openstack. Together we have designed, built, tested and certified a private cloud offering so you can move quickly, cost-effectively and reliably from pure virtualisation solution to a production-grade cloud platform like OpenStack.  Whether you are experienced and want to operate your OpenStack on your own, or need a fully managed option, you can choose the OpenStack package that best fits your needs.
+        Over 50% of all OpenStack deployments use Ubuntu and Dell is the most-used hardware for deploying OpenStack. Together we have designed, built, tested and certified a private cloud offering so you can move quickly, cost-effectively and reliably from pure virtualisation solution to a production-grade cloud platform like OpenStack.  Whether you are experienced and want to operate your OpenStack on your own, or need a fully managed option, you can choose the OpenStack package that best fits your needs.
       </p>
       <p>
         <a class="p-button" href="/engage/dell-openstack-reference-architecture">
@@ -132,7 +132,7 @@
         </a>
       </p>
     </div>
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
       <div class="row u-align--center">
         <div class="col-start-large-2 col-3">
           {% include "openstack/shared/_openstack-pie-chart.html" %}
@@ -155,21 +155,28 @@
         Edge computing is transforming all sectors from robotics to 5G infrastructure. Ubuntu is the standard for <a href="/internet-of-things">Linux for edge deployments</a>, bringing efficiencies with regular updates, robust security, and enhanced controls. Combine this with Dell Edge Gateways, that are engineered for the extreme environment and can withstand even the harshest of conditions, making them a premium gateway option.
       </p>
       <p>
-        <a class="p-button" href="https://www.dell.com/en-us/work/shop/gateways-embedded-computing/sf/edge-gateway">
-          <span class="p-link--external">
+        <a class="p-button" href="/certified?vendor=Dell&q=edge+gateway">
+          <span>
+            Ubuntu certified Dell Edge Gateways
+          </span>
+        </a>
+      </p>
+      <p>
+        <a href="https://www.dell.com/en-us/work/shop/gateways-embedded-computing/sf/edge-gateway">
+          <span>
             Learn more about Edge Gateways
           </span>
         </a>
       </p>
       <p>
         <a href="https://www.brighttalk.com/webcast/6793/362197">
-          <span class="p-link--external">
-            Watch our "A guide to edge computing" webinars
+          <span>
+            Webinar: A guide to edge computing
           </span>
         </a>
       </p>
     </div>
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/c00eea7b-2C-Enterprise+management.svg",
@@ -197,20 +204,19 @@
         Dell Linux desktops, laptops and workstations are built with the developer in mind. Powered by Ubuntu they include the tools and libraries needed for a productive cloud, AI and IOT development experience. Over 160 Dell laptop, desktop and workstation models ship with Ubuntu preinstalled for an optimised, secure and constantly updated platform. Ranging from value-priced to premium systems, all options are certified and ship with Ubuntu.
       </p>
       <p>
-        <a class="p-link--external" href="https://certification.ubuntu.com/desktop/models?vendors=Dell">
-          See all Ubuntu certified Dell desktops
+        <a href="/certification?category=Desktop&vendor=Dell&vendor_page=True">
+          See all Ubuntu certified Dell desktops&nbsp;&rsaquo;
         </a>
       </p>
     </div>
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/2fc45f60-laptop.png?w=900",
-          alt="",
-          width="450",
-          height="267",
-          hi_def=True,
-          loading="lazy"
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fa57dc30-desktop-22.04-laptop.png",
+        alt="",
+        width="1000",
+        height="578",
+        hi_def=True,
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -221,7 +227,7 @@
   </div>
 
   <div class="row">
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/0ba3e83b-machine-learning-family.png?w=345",
@@ -241,7 +247,7 @@
         With Ubuntu 18.04 LTS factory installed, Dell Precision workstations deliver the power to deploy and manage cognitive technology platforms, including machine learning, artificial intelligence and deep learning. Featuring extensive memory and outstanding processors and graphics, Dell AI-ready workstations are both flexible and affordable. They're ready out-of-the-box in a certified platform with accelerated hardware so that you can work at full speed on your AI ambitions without risk and with peace of mind.
       </p>
       <p>
-        <a class="p-link--external" href="https://www.dellemc.com/en-gb/ai-technologies/index.htm">
+        <a href="https://www.dellemc.com/en-gb/ai-technologies/index.htm">
           Discover Dell's AI workstations
         </a>
       </p>
@@ -255,7 +261,7 @@
       <h2>
         The building blocks for your digital transformation
       </h2>
-      <p class="p-heading--four">
+      <p class="p-heading--4">
         Dell and Ubuntu can provide you with everything you need to transform your enterprise's IT.
       </p>
       <p style="margin-top: 2rem;">
@@ -264,7 +270,7 @@
         </a>
       </p>
     </div>
-    <div class="col-6 u-hide--small u-align--center u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",

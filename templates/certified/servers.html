@@ -1,0 +1,49 @@
+{% extends "templates/base.html" %}
+
+{% block title %}Certified servers{% endblock %}
+{% block meta_description %}Servers that have been certified for use with Ubuntu.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1TN2UKhUSB6-kXbLyDM4al2ufB4cgx-W6BsIUOBLP8vU/edit{% endblock meta_copydoc %}
+
+{% block outer_content %}
+
+<section class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width">
+    <a href="/certified?q=">&lsaquo; Certified hardware</a>
+  </div>
+  <br />
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu certified servers</h1>
+      <p>Using Ubuntu Server speeds up the ability to deploy physical infrastructure on bare metal as it is in the cloud.</p>
+      <p>Deploying on certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data-center environments.</p>
+    </div>
+    <div class="col-4 u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+        alt="",
+        width="136",
+        height="153",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% with
+  title="All certified servers",
+  query=query,
+  placeholder="Search in certified servers",
+  total_results=total_results,
+  total_pages=total_pages,
+  offset=offset,
+  limit=limit,
+  vendor_filters=vendor_filters,
+  release_filters=release_filters,
+  results=results
+%}
+  {% include "certified/shared/category-search-results.html" %}
+{% endwith %}
+
+{% endblock %}

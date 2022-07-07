@@ -13,12 +13,12 @@
       <h1>Ubuntu kernels from Canonical</h1>
       <p>At the core of the Ubuntu operating system is the Linux kernel, which manages and controls the hardware resources like I/O (networking, storage, graphics and various user interface devices, etc.), memory and CPU for your device or computer. It is one of the first software programs a booting device loads and runs on the central processing unit (CPU). The Linux kernel manages the system's hardware environment so other programs like the operating system's user space programs and application software programs can run well without modification on a variety of different platforms and without needing to know very much about that underlying system.</p>
       <p>
-        <a class="p-link--external p-link--inverted" href="https://www.brighttalk.com/webcast/6793/398353/ubuntu-20-04-lts-whats-new-in-server">
+        <a class="p-link--inverted" href="https://www.brighttalk.com/webcast/6793/398353/ubuntu-20-04-lts-whats-new-in-server">
           Watch the webinar - "Ubuntu 20.04 LTS: What's new in server?"
         </a>
       </p>
     </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--small">
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/3b5dc41b-Kernel_white.svg",
@@ -86,7 +86,7 @@
 <section class="p-strip--light is-bordered">
   <div class="u-fixed-width">
     <h2 id="kernel-security">Kernel security</h2>
-    <p>The Canonical Kernel Team's primary focus is the careful maintenance of kernels and their variants for regular delivery via the <a href="https://wiki.ubuntu.com/StableReleaseUpdates">Ubuntu SRU process</a>. This includes rigorous management of all Linux kernel Common Vulnerabilities and Exposures (CVE) lists (with a focus on patching  all <a href="https://git.launchpad.net/ubuntu-cve-tracker/tree/README#n199">high and critical</a> CVEs) review and application of all relevant patches for all critical and serious kernel defects in the mailing lists and then rigorously testing newly updated kernels end-to-end each SRU cycle.</p>
+    <p>The Canonical Kernel Team's primary focus is the careful maintenance of kernels and their variants for regular delivery via the <a href="https://wiki.ubuntu.com/StableReleaseUpdates">Ubuntu SRU process</a> and the Canonical <a href="/security/livepatch">livepatch service</a>. This includes rigorous management of all Linux kernel Common Vulnerabilities and Exposures (CVE) lists (with a focus on patching  all <a href="https://git.launchpad.net/ubuntu-cve-tracker/tree/README#n199">high and critical</a> CVEs) review and application of all relevant patches for all critical and serious kernel defects in the mailing lists and then rigorously testing newly updated kernels end-to-end each SRU cycle.</p>
   </div>
 </section>
 
@@ -102,8 +102,8 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
-    <h2 id="custom-kernels">Custom kernels</h2>
-    <p>Canonical advocates for customers to use the GA kernel shipped with Ubuntu as the best and most cost-effective option in their business environment. We also offer the option for customers to customize their own Ubuntu kernels. Several of our enterprise, Telco and cloud provider customers have systems and workload needs, which justify both the time investment to optimise their kernels and the pay to develop and maintain those custom kernels over time.</p>
+    <h2 id="custom-kernels">Optimised kernels</h2>
+    <p>Canonical advocates for customers to use the GA kernel shipped with Ubuntu as the best and most cost-effective option in their business environment. We also offer the option for customers to customize their own Ubuntu kernels. Several of our enterprise, Telco and cloud provider customers have systems and workload needs, which justify both the time investment to optimise their kernels and the pay to develop and maintain those optimised kernels over time.</p>
   </div>
 </section>
 {% endblock %}

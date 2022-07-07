@@ -1,16 +1,17 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% block title %}OpenStack distro comparison{% endblock %}
-{% block meta_description %}This page provides a detailed comparison of Canonical's Charmed OpenStack, Red Hat OpenStack Platform and Mirantis Cloud Platform.{% endblock%}
+{% block title %}OpenStack distributions comparison{% endblock %}
+{% block meta_description %}A detailed comparison of various OpenStack platforms including both business and technical aspects of each.{% endblock%}
 {% block meta_copydoc %}https://docs.google.com/document/d/1ibpATi-e0rKP3GaLgvzwO_XyFU9ZTsUaCHMwrg96MZM/edit{% endblock %}
 
 {% block content %}
 <section class="p-strip--suru-topped is-deep is-bordered">
   <div class="row">
     <div class="col-8">
-      <h1>OpenStack distro comparison</h1>
-      <p>Looking for a detailed OpenStack distro comparison? Have a look at the table below and see how Canonical's Charmed OpenStack differs from other distributions. Discover more by clicking on each Charmed OpenStack cell. Use our <a href="/openstack/tco-calculator">calculator</a> to estimate the cost of your private cloud infrastructure with Canonical.</p>
-      <p><a href="/engage/redhat-openstack-comparison-whitepaper">Read the whitepaper &mdash; "Comparing Red Hat OpenStack Platform and Canonical's Charmed OpenStack"&nbsp;&rsaquo;</a></p>
+      <h1>OpenStack distributions: <br class="u-hide--small">a comparison</h1>
+      <p>Looking for a detailed OpenStack distributions comparison? Have a look at the table below and see how Canonical's Charmed OpenStack differs from other distributions. Discover more by clicking on each Charmed OpenStack cell.</p>
+      <p><a href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Move to Charmed OpenStack</a></p>
+      <p><a href="/engage/vmware-to-charmed-openstack">Read the whitepaper &mdash; "From VMware to Charmed OpenStack"&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4">
       {{
@@ -46,7 +47,7 @@
                 loading="lazy",
               ) | safe
             }}
-            <div>Charmed OpenStack</div>
+            <div>Canonical’s Charmed OpenStack</div>
           </th>
           <th>
             {{
@@ -80,183 +81,234 @@
       </thead>
       <tbody>
         <tr>
-          <th>No mandatory subscription required</th>
+          <th>Pricing</th>
           <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-subscription" role="tab" aria-controls="content-subscription" aria-expanded="false">True</button>
-            <div class="p-accordion__panel" aria-hidden="true" id="content-subscription">
-              <p>There is no mandatory subscription required for Charmed OpenStack. It can be used free of charge. For enterprise customers, Canonical offers commercial services including consulting, support and a fully managed offering.</p>
+            <button class="p-accordion__tab" id="tab-pricing" role="tab" aria-controls="content-pricing" aria-expanded="false">$</button>
+            <div class="p-accordion__panel" aria-hidden="true" id="content-pricing">
+              <p><a href="/openstack/consulting">Design and delivery</a><br>starting at $75,000.</p>
+              <p><a href="/advantage">Commercial support</a> at<br>$1,500 per host per year.</p>
+              <p><a href="/openstack/managed">Fully managed service</a> at<br> $5,475 per host per year.</p>
             </div>
           </td>
-          <td>False</td>
-          <td>True</td>
+          <td>$$$$$</td>
+          <td>$$$</td>
+        </tr>
+
+        <tr>
+          <th>Fixed-price delivery</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-price-delivery" role="tab" aria-controls="content-price-delivery" aria-expanded="false"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></button>
+            <div class="p-accordion__panel" aria-hidden="true" id="content-price-delivery">
+              <p> Canonical offers consulting services for Charmed OpenStack including design and delivery at a fixed price which makes deployment costs fully transparent.</p>
+            </div>
+          </td>
+          <td>-</td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <th>Managed OpenStack</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-managed-openstack" role="tab" aria-controls="content-managed-openstack" aria-expanded="false"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></button>
+            <div class="p-accordion__panel" aria-hidden="true" id="content-managed-openstack">
+              <p>Managed OpenStack is a more economical option up to 200 nodes. Canonical provides fully managed services for OpenStack in order to fully offload customers’ operations teams.</p>
+            </div>
+          </td>
+          <td>-</td>
+          <td><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></td>
         </tr>
 
         <tr>
           <th>Support pricing</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-support-pricing" role="tab" aria-controls="content-support-pricing" aria-expanded="false">Per host</button>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-support-pricing" role="tab" aria-controls="content-support-pricing" aria-expanded="false">Per host</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-support-pricing">
-              <p>Per socket-pair pricing does not scale and can very quickly result in an inflated TCO (total cost of ownership). Canonical applies per host pricing to support and manage services to make operational costs more predictable.</p>
+              <p>Per socket-pair pricing does not scale and can very quickly result in an inflated total cost of ownership (TCO). Canonical applies per host pricing to support and manage services to make operational costs fully transparent and enable predictable budgeting.</p>
             </div>
           </td>
-          <td>Per socket-pair</td>
-          <td>Per host + base price for the control plane</td>
+          <td>
+            Per socket-pair
+          </td>
+          <td>
+            Per host + base price for the control plane
+          </td>
         </tr>
 
         <tr>
           <th>Release cadence</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-cadence" role="tab" aria-controls="content-cadence" aria-expanded="false">6 months with an LTS every 2 years</button>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-cadence" role="tab" aria-controls="content-cadence" aria-expanded="false">6 months with a LTS every 2 years</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-cadence">
-              <p>Charmed OpenStack is released every 6 months with an LTS (long-term support) release every 2 years. Upgrades between each consecutive releases are fully supported.</p>
+              <p>Charmed OpenStack is released every 6 months with a long-term support (LTS) release every 2 years. Upgrades between each consecutive releases are fully supported and automated.</p>
             </div>
           </td>
-          <td>6 months with an LTS every 18 months</td>
-          <td>No predictable release cadence</td>
+          <td>
+            6 months with a LTS every 18 months
+          </td>
+          <td>
+            No predictable release cadence
+          </td>
         </tr>
 
         <tr>
           <th>Maximum support timeline</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-support-timeline" role="tab" aria-controls="content-support-timeline" aria-expanded="false">10 years</button>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-support-timeline" role="tab" aria-controls="content-support-timeline" aria-expanded="false">10 years</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-support-timeline">
               <p>Canonical provides up to 10 years of security updates for each LTS release of Charmed OpenStack. After that period, users can easily upgrade to the newer version to extend the support.</p>
             </div>
           </td>
-          <td>5 years</td>
-          <td>3 years</td>
-        </tr>
-
-        <tr>
-          <th>Availability of consulting services</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-consulting" role="tab" aria-controls="content-consulting" aria-expanded="false">Yes</button>
-            <div class="p-accordion__panel" aria-hidden="true" id="content-consulting">
-              <p>Canonical offers <a href="/openstack/consulting">consulting services for OpenStack</a> including design and delivery at a fixed price which helps to make deployment costs and timing more predictable.</p>
-            </div>
+          <td>
+            5 years
           </td>
-          <td>Yes</td>
-          <td>Yes</td>
-        </tr>
-
-        <tr>
-          <th>Availability of managed services</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-managed" role="tab" aria-controls="content-managed" aria-expanded="false">Yes</button>
-            <div class="p-accordion__panel" aria-hidden="true" id="content-managed">
-              <p>OpenStack operations may be challenging, especially for an inexperienced team. Canonical provides <a href="/openstack/managed">fully managed services for OpenStack</a> allowing to offload the risk associated with OpenStack operations.</p>
-            </div>
+          <td>
+            3 years
           </td>
-          <td>No</td>
-          <td>Yes</td>
         </tr>
 
         <tr>
           <th>OpenStack deployment mechanism</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-deployment-mechanism" role="tab" aria-controls="content-deployment-mechanism" aria-expanded="false">Juju (model-driven deployments and operations)</button>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-deployment-mechanism" role="tab" aria-controls="content-deployment-mechanism" aria-expanded="false">OpenStack Charms</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-deployment-mechanism">
-              <p>Juju allows to model the entire deployment in the form of a single YAML file and execute even very complex operational tasks by running a single command.</p>
+              <p><a href="https://charmhub.io/?q=openstack">OpenStack Charms</a> encapsulate the entire logic required to install and operate OpenStack post-deployment inside of composable software packages.</p>
             </div>
           </td>
-          <td>Red Hat OpenStack Platform Director (based on TripleO)</td>
-          <td>DriveTrain (based on Git, Gerrit, Jenkins and SaltStack)</td>
-        </tr>
-
-        <tr>
-          <th>OpenStack upgrades</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-openstack-upgrades" role="tab" aria-controls="content-openstack-upgrades" aria-expanded="false">Fully automated</button>
-            <div class="p-accordion__panel" aria-hidden="true" id="content-openstack-upgrades">
-              <p>In Charmed OpenStack upgrades are fully automated, providing the ability to upgrade from an older OpenStack version to a newer one even in production environments.</p>
-            </div>
+          <td>
+            Red Hat OpenStack Platform Director (based on TripleO)
           </td>
-          <td>Very complex manual procedure</td>
-          <td>Fully automated</td>
+          <td>
+            DriveTrain (based on Git, Gerrit, Jenkins and SaltStack)
+          </td>
         </tr>
 
         <tr>
           <th>Bare-metal provisioning tool</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-bare-metal-tool" role="tab" aria-controls="content-bare-metal-tool" aria-expanded="false">MAAS</button>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-bare-metal-tool" role="tab" aria-controls="content-bare-metal-tool" aria-expanded="false">MAAS</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-bare-metal-tool">
-              <p><a href="https://maas.io">MAAS</a> is a bare-metal provisioning tool developed and maintained by Canonical. It is used by Charmed OpenStack, Mirantis Cloud Platform and in the OpenStack Airship project.</p>
+              <p><a href="https://maas.io">MAAS</a> is a bare-metal provisioning tool that turns a data centre into a true bare metal cloud.</p>
             </div>
           </td>
-          <td>Ironic</td>
-          <td>MAAS</td>
+          <td>
+            OpenStack Ironic
+          </td>
+          <td>
+            MAAS
+          </td>
         </tr>
 
         <tr>
           <th>Operating System management tool</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-os-management-tool" role="tab" aria-controls="content-os-management-tool" aria-expanded="false">Landscape</button>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-os-management-tool" role="tab" aria-controls="content-os-management-tool" aria-expanded="false">Landscape</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-os-management-tool">
               <p><a href="https://landscape.canonical.com/">Landscape</a> is the leading management tool to deploy, monitor and manage Ubuntu servers.</p>
             </div>
           </td>
-          <td>Red Hat Satellite</td>
-          <td>Not provided</td>
-        </tr>
-
-        <tr>
-          <th>Control plane</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-control-plane" role="tab" aria-controls="content-control-plane" aria-expanded="false">Containerised</button>
-            <div class="p-accordion__panel" aria-hidden="true" id="content-control-plane">
-              <p>Containers bring a lot of advantages over traditional virtual machines such as better density and management capabilities. The control plane of Charmed OpenStack is fully containerised using <a href="https://linuxcontainers.org/lxd/introduction/">LXD</a> containers.</p>
-            </div>
+          <td>
+            Red Hat Satellite
           </td>
-          <td>Containerised</td>
-          <td>Virtualised</td>
+          <td>
+            Not provided
+          </td>
         </tr>
 
         <tr>
-          <th>Supported hypervisors</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-hypervisors" role="tab" aria-controls="content-hypervisors" aria-expanded="false">KVM</button>
+          <th>Hypervisors</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-hypervisors" role="tab" aria-controls="content-hypervisors" aria-expanded="false">KVM</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-hypervisors">
-              <p>Charmed OpenStack provides support for KVM hypervisors. Other hypervisor out of the box are available through the consulting services.</p>
+              <p>Charmed OpenStack provides support for KVM hypervisor out of the box. Other hypervisors are available through the consulting services.</p>
             </div>
           </td>
-          <td>KVM</td>
-          <td>KVM, Xen</td>
+          <td>
+            KVM
+          </td>
+          <td>
+            KVM
+          </td>
         </tr>
 
         <tr>
-          <th>Supported SDN platforms</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-sdn" role="tab" aria-controls="content-sdn" aria-expanded="false">OVN, OVS, Juniper Contrail, Cisco ACI</button>
+          <th>Networking</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-sdn" role="tab" aria-controls="content-sdn" aria-expanded="false">OVN, OVS, Juniper Contrail, Cisco ACI</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-sdn">
               <p>Charmed OpenStack provides support for various SDN platforms, including OVN, OVS, Juniper Contrail and Cisco ACI. Other SDN platforms are available through the consulting services.</p>
             </div>
           </td>
-          <td>OVN, OVS, Juniper Contrail, Cisco ACI, OpenDaylight</td>
-          <td>OVS, Tungsten Fabric, Calico</td>
+          <td>
+            OVN, OVS, Juniper Contrail, Cisco ACI
+          </td>
+          <td>
+            OVS, Tungsten Fabric, Calico
+          </td>
         </tr>
 
         <tr>
-          <th>Supported storage platforms</th>
-          <td class="p-accordion is-compact">
-            <button class="p-accordion__tab" id="tab-storage-platforms" role="tab" aria-controls="content-storage-platforms" aria-expanded="false">Ceph, iSCSI</button>
+          <th>Storage</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-storage-platforms" role="tab" aria-controls="content-storage-platforms" aria-expanded="false">Ceph, iSCSI</button>
             <div class="p-accordion__panel" aria-hidden="true" id="content-storage-platforms">
               <p>Charmed OpenStack provides support for Ceph and iSCSI. Other storage platforms are available through the consulting services.</p>
             </div>
           </td>
-          <td>Ceph, NFS</td>
-          <td>Ceph</td>
+          <td>
+            Ceph, NFS
+          </td>
+          <td>
+            Ceph
+          </td>
+        </tr>
+
+        <tr>
+          <th>Containerised control plane</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-control-plane" role="tab" aria-controls="content-control-plane" aria-expanded="false"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></button>
+            <div class="p-accordion__panel" aria-hidden="true" id="content-control-plane">
+              <p>Containers bring a lot of advantages over traditional virtual machines such as better density and management capabilities. The control plane of Charmed OpenStack is fully containerised using <a href="/lxd">LXD</a> containers.
+              </p>
+            </div>
+          </td>
+          <td>
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
+          <td>-</td>
+        </tr>
+
+        <tr>
+          <th>Fully automated upgrades</th>
+          <td class="p-accordion is-compact ">
+            <button class="p-accordion__tab " id="tab-automated-upgrades" role="tab" aria-controls="content-automated-upgrades" aria-expanded="false"><img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes"></button>
+            <div class="p-accordion__panel" aria-hidden="true" id="content-automated-upgrades">
+              <p>In Charmed OpenStack upgrades are fully automated, allowing users to benefit from new features and bug fixes without additional operational overhead.</p>
+            </div>
+          </td>
+          <td>-</td>
+          <td>
+            <img src="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg" alt="Yes">
+          </td>
         </tr>
       </tbody>
     </table>
+    <p>Not sure what is OpenStack? <a href="/openstack/what-is-openstack" class="js-invoke-modal">Find more more here</a>.</p>
   </div>
 </section>
-
-<section class="p-strip--light">
+<section class="p-strip--suru">
+  <div class="row">
+  <blockquote class="p-pull-quote--large">
+    <p class="p-pull-quote__quote">Canonical’s solution was a third of the price of the other proposals we’d received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
+    <cite class="p-pull-quote__citation">Georgi Georgiev, CIO at SBI BITS</cite>
+  </blockquote>
+  </div>
+</section>
+<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h2>Cheaper than Red Hat OpenStack Platform</h2>
-      <p>By applying a per host pricing model, Canonical's support services for OpenStack are cheaper than those offered by Red Hat. A per host model is much more predictable than the per socket-pair model as organisations only have to pay for the number of servers being used, regardless of the number of CPU units inside them. Moreover, no license is required to get started with Charmed OpenStack. This means that organisations only have to pay for the environments that require enterprise support, such as the production environment, while they can run their testing and development environments free of charge.</p>
-      <p><a href="/engage/redhat-openstack-comparison-whitepaper">Read the whitepaper &mdash; "Comparing Red Hat OpenStack Platform and Canonical's Charmed OpenStack"&nbsp;&rsaquo;</a></p>
+      <h2>More economical than Red Hat OpenStack Platform</h2>
+      <p>By applying a per host pricing model to the subscription structure and offering design and delivery at a fixed price, Canonical's Charmed OpenStack is cheaper than Red Hat OpenStack Platform. Moreover, no license is required to get started with Charmed OpenStack. This means that organisations only have to pay for the environments that require enterprise support, such as the production environment, while they can run their testing and development environments free of charge.</p>
+      <p><a href="/engage/redhat-openstack-comparison-whitepaper">Read a Red Hat OpenStack comparison whitepaper&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-vertically-center">
       {{
@@ -274,7 +326,7 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-4 u-vertically-center">
       {{
@@ -290,18 +342,23 @@
       }}
     </div>
     <div class="col-8">
-      <h2>Simpler than Mirantis Cloud Platform</h2>
-      <p>Instead of relying on various interconnected tools, Canonical uses <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a> for OpenStack deployments, operations and upgrades while providing the same value. OpenStack Charms are orchestrated by Juju which abstracts the entire OpenStack complexity, enables an IaC (infrastructure as code) approach and provides a SaaS (software as a service) experience. This results in a simpler OpenStack platform, fewer resources required to maintain it and reduced operational costs.</p>
+      <h2>More straightforward than Mirantis Cloud Platform</h2>
+      <p>Instead of relying on random interconnected tools, Canonical leverages the concept of operators for OpenStack deployments, operations and upgrades. <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a> enable model-driven architecture and abstract the entire OpenStack complexity. This results in a simpler OpenStack platform, fewer resources required to maintain it and reduced operational costs.</p>
+      <p>
+        <a href="https://assets.ubuntu.com/v1/a08e868a-Charmed+OpenStack_15.03.21.pdf">
+          Learn more in our datasheet&nbsp;&rsaquo;
+        </a>
+      </p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h2>Open source, unlike VMware</h2>
-      <p>Charmed OpenStack is fully open source which allows it to benefit from a broader community, faster development process and broader selection of technology choices than those available in VMware's vRealize platform. Choosing an open source platform avoids vendor lock-in. Charmed OpenStack is also much cheaper than VMware vRealize. Under certain circumstances, migrating from VMware to Charmed OpenStack can reduce costs by 88%.</p>
-      <p><a href="/engage/vmware-to-charmed-openstack">Read the whitepaper &mdash; "From VMware to Charmed OpenStack"&nbsp;&rsaquo;</a></p>
+      <h2>Open source unlike VMware</h2>
+      <p>Canonical's Charmed OpenStack is fully open source which allows it to benefit from a broader community, faster development process and wider selection of technology choices than those available in VMware's platform. Choosing an open source platform avoids vendor lock-in and significantly reduces infrastructure costs.</p>
+      <p><a href="/engage/vmware-to-charmed-openstack">Explore VMware to OpenStack migration options&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-4 u-vertically-center">
       {{
@@ -319,6 +376,61 @@
   </div>
 </section>
 
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+        alt="",
+        width="221",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>More cost-efficient than public clouds</h2>
+      <p>Public clouds are expensive when running workloads in the long-term and at scale. Although they are a more economical solution at the beginning of the cloud transformation process, their costs keep growing over time. Canonical's Charmed OpenStack is a cost-efficient extension to public cloud infrastructure, ensuring lower TCO per VM and enabling businesses to run their workloads where it makes the most sense from an economical point of view.</p>
+      <p><a href="/tco-calculator">Estimate cost savings&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
 
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/0e5f4269-questions.svg",
+        alt="Contact us",
+        width="180",
+        height="180",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Contact us</h2>
+      <p>Let our expert cloud team help with:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Project evaluation</li>
+        <li class="p-list__item is-ticked">Requirements and feature parity</li>
+        <li class="p-list__item is-ticked">Pricing and TCO assessment</li>
+      </ul>
+      <p>
+        <a href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+      <p>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_private_cloud_contact_us", second_item="_openstack_documentation", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="1251" data-lp-id="2086" data-return-url="https://ubuntu.com/openstack/thank-you?product=foundation-cloud" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
 
 {% endblock %}

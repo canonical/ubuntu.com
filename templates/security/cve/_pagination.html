@@ -6,15 +6,15 @@
 
 {% if total_results > limit %}
 <div class="u-fixed-width">
-  <ol class="p-pagination u-align--center">
+  <ol class="p-pagination {% if align %}align{% else %}u-align--center{% endif %}">
     <li class="p-pagination__item">
       {% if current_page > 1 %}
       <a class="p-pagination__link--previous" href="?{{ modify_query({'offset': offset - limit}) }}" title="Previous page">
-        <i class="p-icon--contextual-menu">Previous page</i>
+        <i class="p-icon--chevron-down">Previous page</i>
       </a>
       {% else %}
       <span class="p-pagination__link--previous is-disabled">
-        <i class="p-icon--contextual-menu">Previous page</i>
+        <i class="p-icon--chevron-down">Previous page</i>
       </span>
       {% endif %}
     </li>
@@ -67,26 +67,32 @@
       </li>
     {% endif %}
 
-    {% if current_page < total_pages - 2 and current_page <= 2 %}
+    {% if current_page < total_pages - 2 and current_page == 1 %}
       <li class="p-pagination__item">
         <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
       </li>
     {% endif %}
 
-    {% if current_page < total_pages - 6 and current_page <= 3 %}
+    {% if current_page < total_pages - 3 and current_page == 1 %}
       <li class="p-pagination__item">
         <a href="?{{ modify_query({'offset': (current_page + 3) * limit}) }}" class="p-pagination__link">{{ current_page + 4 }}</a>
+      </li>
+    {% endif %}
+
+    {% if current_page <= total_pages - 3 and current_page == 2 %}
+      <li class="p-pagination__item">
+        <a href="?{{ modify_query({'offset': (current_page + 2) * limit}) }}" class="p-pagination__link">{{ current_page + 3 }}</a>
       </li>
     {% endif %}
 
     <li class="p-pagination__item">
       {% if current_page != total_pages %}
       <a class="p-pagination__link--next" href="?{{ modify_query({'offset': offset + limit}) }}" title="Next page">
-        <i class="p-icon--contextual-menu">Next page</i>
+        <i class="p-icon--chevron-down">Next page</i>
       </a>
       {% else %}
       <span class="p-pagination__link--next is-disabled">
-        <i class="p-icon--contextual-menu">Next page</i>
+        <i class="p-icon--chevron-down">Next page</i>
       </span>
       {% endif %}
     </li>

@@ -17,21 +17,20 @@
         USB or DVD image based physical install
       </p>
       <ul class="p-list">
-        <li class="p-list__item is-ticked">OS security guaranteed until April 2025</li>
-        <li class="p-list__item is-ticked">Extended security maintenance until April 2030</li>
+        <li class="p-list__item is-ticked">OS security guaranteed until April 2027</li>
+        <li class="p-list__item is-ticked">Extended security maintenance until April 2032</li>
         <li class="p-list__item is-ticked">Commercial support for enterprise customers</li>
       </ul>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
-      <div class="u-hide--small u-align--center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/28e0ebb7-Focal-Fossa-gradient-outline.svg",
-            alt="",
-            height="1500",
-            width="1922",
-            hi_def=True,
-            loading="lazy"
+    <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
+      <div class="u-hide--medium u-hide--small u-align--center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
+          alt="",
+          width="260",
+          height="150",
+          hi_def=True,
+          loading="auto"
           ) | safe
         }}
       </div>
@@ -39,19 +38,23 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <ul class="p-inline-list">
+      <ul class="p-inline-list u-no-margin--bottom">
         <li class="p-inline-list__item">
           <form action="/download/server" method="post" class="p-inline-list__item" style="display: inline">
             <input type="hidden" name="version" value="{{ releases.lts.full_version }}">
             <input type="hidden" name="architecture" value="amd64">
             <input type="hidden" name="next-step" value="download">
             <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.lts.full_version }} LTS</button>
-          </form>
+        </form>
         </li>
-        <li class="p-inline-list__item"><a href="#releases">Alternative releases&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="#downloads">Alternative downloads&nbsp;&rsaquo;</a></li>
         <li class="p-inline-list__item"><a href="#architectures">Alternative architectures&nbsp;&rsaquo;</a></li>
       </ul>
+      <p class="u-sv3">
+        <a href="{{ releases.lts.release_notes_url }}">
+          Read the Ubuntu Server {{ releases.lts.short_version }} LTS release notes
+        </a>
+      </p>
     </div>
 
   </div>
@@ -59,16 +62,16 @@
     <div class="col-12">
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="step1">
-        <button type="submit" class="p-button--neutral" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
           Option 1 - Instant Ubuntu VMs
         </button>
       </form>
-      <button disabled class="p-button--neutral u-no-margin--top is-inline">
+      <button disabled class="p-button u-no-margin--top is-inline">
         Option 2 - Manual server installation
       </button>
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="choose">
-        <button type="submit" class="p-button--neutral is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
           Option 3 - Automated server provisioning
         </button>
       </form>
@@ -95,30 +98,22 @@
         <input type="hidden" name="next-step" value="download">
         <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Select option', 'eventLabel' : 'Manual install - latest', 'eventValue' : undefined });">Download Ubuntu Server {{ releases.latest.full_version }}</button>
       </form>
-
       <p>
-        <a href="https://www.brighttalk.com/webcast/6793/448578?utm_source=brighttalk-portal&utm_medium=web&utm_content=ubuntu%2020.10&utm_campaign=webcasts-search-results-feed" class="p-link--external">
-          Watch the webinar - "What's new in Ubuntu 20.10?"
-        </a>
-      </p>
-
-      <p>
-        <a href="https://wiki.ubuntu.com/{{ releases.latest.slug }}/ReleaseNotes" class="p-link--external">
-          Download Ubuntu Server {{ releases.latest.short_version }} release notes
+        <a href="{{ releases.latest.release_notes_url }}">
+          Read the Ubuntu Server {{ releases.latest.short_version }} release notes&nbsp;&rsaquo;
         </a>
       </p>
     </div>
-    <div class="col-4 col-start-large-8 u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/fe951eda-20.10_Groovy+Gorilla_RPi_Sketch.svg",
+    <div class="col-4 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c9a911d5-II-grad-mascot.svg",
           alt="",
-          height="237",
-          width="153",
+          width="263",
+          height="150",
           hi_def=True,
           loading="lazy"
-        ) | safe
-      }}
+          ) | safe
+        }}
     </div>
   </div>
   {% endif %}

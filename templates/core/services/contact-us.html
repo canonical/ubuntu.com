@@ -1,0 +1,15 @@
+{% extends "core/base_core.html" %}
+
+{% block title %}Contact us | SMART START{% endblock %}
+
+{% block content %}
+
+{% with h1="Let's get your IoT product to market faster!",
+  intro_text="Canonical partners with silicon companies, board manufacturers and ODMs to help innovators bring smart devices and software capabilities to market faster. Tell us about your project so we can bring the right Canonical team members to the conversation to help you.",
+  formid="3591",
+  lpId="",
+  returnURL="/core/services/thank-you" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+{% endblock content %}

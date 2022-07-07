@@ -33,6 +33,16 @@
       <div class="p-strip is-shallow" style="overflow: visible;">
         {{ content | safe }}
       </div>
+      {% if auto_paginate %}
+      <div class="p-article-pagination">
+        <a class="p-article-pagination__link--previous js-previous" href="#previous">
+          <span class="p-article-pagination__label">Previous</span>
+        </a>
+        <a class="p-article-pagination__link--next js-next" href="#next">
+          <span class="p-article-pagination__label">Next</span>
+        </a>
+      </div>
+      {% endif %}
     </main>
   </div>
 </div>
@@ -41,7 +51,10 @@
   var links = [].slice.call(document.querySelectorAll('.p-side-navigation--raw-html li > a'));
   var currentPath = window.location.pathname;
 
-  links.forEach(function (link) {
+  var previousLink = document.querySelector(".js-previous");
+  var nextLink = document.querySelector(".js-next");
+
+  links.forEach(function (link, index) {
     link.addEventListener('click', function () {
       links.forEach(function (link) {
         link.removeAttribute('aria-current');
@@ -52,6 +65,20 @@
 
     if (link.getAttribute('href') === currentPath) {
       link.setAttribute('aria-current', 'page');
+      if (previousLink !== null) {
+        if (index > 0) {
+          previousLink.href = links[index-1].getAttribute('href');
+        } else {
+          previousLink.remove()
+        }
+      }
+      if (nextLink !== null) {
+        if (index !== links.length -1) {
+          nextLink.href = links[index+1].getAttribute('href');
+        } else {
+          nextLink.remove()
+        }
+      }
     }
   });
 
@@ -111,6 +138,6 @@
 <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/prism.css') }}" />
 <script src="{{ versioned_static('js/third-party/prism.js') }}" async></script>
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/smart-start" data-form-id="3591" data-lp-id="" data-return-url="/core/smartstart/thank-you" data-lp-url="/core/smartstart/contact-us">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/smart-start" data-form-id="3591" data-lp-id="" data-return-url="/core/services/thank-you" data-lp-url="/core/services/contact-us">
 </div>
 {% endblock footer_extra %}

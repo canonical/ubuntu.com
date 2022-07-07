@@ -1,0 +1,106 @@
+<ol class="p-stepped-list">
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Download the installer for Windows
+    </h4>
+    <div class="p-stepped-list__content">
+      <p><a href="https://github.com/ubuntu/microk8s/releases/download/installer-v2.0.0/microk8s-installer.exe">Download MicroK8s for Windows</a></p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Run the installer
+    </h4>
+    <div class="p-stepped-list__content">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/40617546-win2.png",
+      alt="",
+      width="499",
+      height="388",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Open a command line
+    </h4>
+    <div class="p-stepped-list__content">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/a2f7ab2a-win1.png",
+      alt="",
+      width="880",
+      height="624",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+      }}
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Check the status while Kubernetes starts
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s status --wait-ready</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Turn on the services you want
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s enable dashboard dns registry istio</code></pre>
+      </div>
+      <p>Try <code>microk8s enable --help</code> for a list of available services and optional features. <code>microk8s disable &lsaquo;name&rsaquo;</code> turns off a service.</p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Start using Kubernetes
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s kubectl get all --all-namespaces</code></pre>
+      </div>
+      <p>If you mainly use MicroK8s you can run the native Windows version of kubectl on your command-line.</p>
+      <p>
+        <a href="https://microk8s.io/docs/working-with-kubectl#heading--kubectl-windows">Learn how&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Access the Kubernetes dashboard
+    </h4>
+    <div class="p-stepped-list__content">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block--icon"><code>microk8s dashboard-proxy</code></pre>
+      </div>
+    </div>
+  </li>
+
+  <li class="p-stepped-list__item">
+    <h4 class="p-stepped-list__title">
+      Start and stop Kubernetes to save battery
+    </h4>
+    <div class="p-stepped-list__content">
+      <p>Kubernetes is a collection of system services that talk to each other all the time. If you don’t need them running in the background then you will save battery by stopping them. microk8s start and microk8s stop will do the work for you.</p>
+      <p>
+        <a href="https://microk8s.io/docs">Read the docs to learn more</a>
+      </p>
+    </div>
+  </li>
+
+</ol>

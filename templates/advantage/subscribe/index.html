@@ -1,223 +1,165 @@
-{% extends "advantage/base_advantage.html" %}
+{% extends "advantage/base_advantage.html" %} 
 
 {% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
-{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.vlvlt0gikzjy{% endblock meta_copydoc %}
 
-{% block head_extra %}<meta name="robots" content="noindex" />{% endblock %}
+{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-strip--suru-topped-light js-shop-step--cart p-shop-cart u-hide" style="margin-bottom: 2rem;">
-  </section>
 
-  <section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
+<section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
+  <div class="row">
+    <div class="col-12 u-sv3">
+      {% if not user_info %}
+        <h1>Subscribe to Ubuntu Advantage</h1>
+        <p>
+          If you have existing subscriptions or sales offers,
+          <a
+            href="/login"
+            onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });" 
+          >
+            sign in
+          </a>
+          to see them. 
+        </p>
+      {% else %}
+        <h1>Add machines to your subscription</h1>
+      {% endif %}
+        <h2 class="p-heading--3 js-free-trial-header u-hide">Evaluate Ubuntu Advantage with your first month free on all subscriptions</h2>
+    </div>
+  </div>
+</section>
+
+<form class="js-shop-form" style="padding-top: 4rem">
+  <div class="row">
+    <ol class="p-stepped-list col-12">
+
+      {% include "advantage/subscribe/form/_type_select.html" %}
+
+      {% include "advantage/subscribe/form/_ubuntu_version_select.html" %}
+
+      {% include "advantage/subscribe/form/_feature_coverage.html" %}
+
+      {% include "advantage/subscribe/form/_tech_support.html" %}
+
+      <li class="p-stepped-list__item js-form-section" data-step="quantity">
+        <h3 class="p-stepped-list__title">How many?</h3>
+        <div class="row">
+          <div class="col-2 subscribe-section">
+            <input
+              autocomplete="off"
+              id="quantity-input"
+              type="number"
+              name="quantity"
+              placeholder="0"
+              min="1"
+              max="1000"
+              step="1"
+              data-stage="form"
+              onwheel="this.blur()"
+              pattern="\d+"
+              style="scroll-margin-bottom: 2rem"
+            />
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <section class="p-strip--light is-shallow p-shop-cart" id="summary-section">
     <div class="row">
-      <div class="col-12 u-sv3">
-        {% if not user_info %}
-          <h1>Subscribe to Ubuntu Advantage</h1>
-          <p>If you have existing subscriptions or sales offers, <a href="{% if is_test_backend %}/login?test_backend=true{% else %}/login{% endif %}" onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });">sign in</a> to see them.
-        {% else %}
-          <h1>Add machines to your subscription</h1>
-        {% endif %}
+      <div class="col-12">
+        <h3>Your chosen plan</h3>
       </div>
     </div>
+    <div class="row u-sv3">
+      <div class="col-8 p-shop-cart__selected-product">
+        <span id="summary-plan-quantity">1x</span>
+        <img id="summary-plan-image" src="${imageURL}" />
+        <span id="summary-plan-name"></span>
+        <div class="js-summary-billing">
+          <select
+            name="billing-period"
+            id="billing-period"
+            class="u-no-margin--bottom"
+            style="width: auto"
+          >
+          </select>
+          <p
+            id="summary-save-with-annual"
+            class="p-text--small"
+          >
+            <strong>Switch to annual billing and save over 15%</strong>
+          </p>
+        </div>
+        <div id="summary-free-trial-label" class="p-shop-cart__label">
+          <div class="p-label">1 month free trial</div>
+        </div>
+      </div>
+      <div class="col-4 p-shop-cart__buy">
+        <span>
+          <strong class="js-summary-cost">${cost} /year</strong>
+        </span>
+        <button
+          class="p-button--positive u-no-margin--bottom u-float-right"
+          id="buy-now-button"
+          aria-controls="purchase-modal"
+        >
+          Buy now
+        </button>
+        <p class="p-text--small">
+          Any applicable taxes are calculated before payment
+        </p>
+      </div>
+      <div class="col-8 col-start-large-4 js-trial-unavailable">
+        <p>Free Trial is not available for this account. <a href="/contact-us">Contact us</a> for further information.</p>
+      </div>
+      {% if is_trialling %}
+        <div class="col-8 col-start-large-4">
+          <p>You cannot purchase a new subscription while a Free Trial is active.</p>
+        </div>
+      {% endif %}
+    </div>
   </section>
+</form>
 
-  <form class="js-shop-form">
-    <section class="p-strip is-shallow js-shop-step--type">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="p-heading--three u-no-margin--bottom u-sv2 js-shop--form-heading">What are you setting up?</h2>
-        </div>
+<script
+  src="{{ versioned_static('js/dist/uaSubscribe.js') }}"
+  type="module"
+  defer
+></script>
 
-        <div class="col-12 row--5-col">
-          <div class="p-card--radio">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
-                alt="",
-                height="48",
-                width="40",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "js-image-physical"}
-              ) | safe
-            }}
-            <input autocomplete="off" class="js-product-input" type="radio" id="type_server" name="type" value="physical" data-unit-price="100000" data-product-name="server">
-            <label for="type_server">
-              Servers
-            </label>
-          </div>
+{% include '/advantage/subscribe/_purchase-modal.html' %}
 
-          <div class="p-card--radio">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-                alt="",
-                height="180",
-                width="302",
-                hi_def=True,
-                loading="auto",
-              ) | safe
-            }}
-            <input autocomplete="off" class="js-product-input" type="radio" id="type_aws" name="type" value="aws">
-            <label for="type_aws">
-              AWS instances
-            </label>
-
-          </div>
-
-          <div class="p-card--radio">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
-                alt="",
-                height="183",
-                width="640",
-                hi_def=True,
-                loading="auto",
-              ) | safe
-            }}
-            <input autocomplete="off" class="js-product-input" type="radio" id="type_azure" name="type" value="azure">
-            <label for="type_azure">
-              Azure instances
-            </label>
-          </div>
-
-          <div class="p-card--radio">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/9ed50294-Virtual+machine.svg",
-                alt="",
-                height="48",
-                width="59",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "js-image-virtual"}
-              ) | safe
-            }}
-            <input autocomplete="off" class="js-product-input" type="radio" id="type_other" name="type" value="virtual" data-unit-price="150000" data-product-name="virtual machine">
-            <label for="type_other">
-              Other VMs
-            </label>
-          </div>
-
-          <div class="p-card--radio">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
-                alt="",
-                height="48",
-                width="83",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "js-image-desktop"}
-              ) | safe
-            }}
-            <input autocomplete="off" class="js-product-input" type="radio" id="type_desktop" name="type" value="desktop" data-unit-price="50000" data-product-name="desktop">
-            <label for="type_desktop">
-              Desktops
-            </label>
-          </div>
-        </div>
-
-        <div id="aws" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem">
-          <span>You can buy <a href="https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro" class="p-link--external">Ubuntu Pro on the AWS Marketplace</a> at an hourly, per-machine rate, with all UA software features included. If you need tech support as well, <a href="/support/contact-us">contact us</a>.</span>
-        </div>
-
-        <div id="azure" class="col-12 u-hide js-public-cloud-info" style="background-color: #f7f7f7; margin-bottom: 1.5rem; padding: 1.5rem">
-          <span>You can buy <a href="https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1" class="p-link--external">Ubuntu Pro on the Azure Marketplace</a> at an hourly, per-machine rate, with all UA software features included. If you need tech support as well, <a href="/support/contact-us">contact us</a>.</span>
-        </div>
-
-        <div class="col-12 js-shop-step--quantity">
-          <p>If you have more than one kind, you can add the others later.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-strip is-shallow js-shop-step--quantity">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="p-heading--three u-no-margin--bottom u-sv2 js-type-name">How many?</h2>
-        </div>
-
-        <div class="col-2">
-          <input autocomplete="off" class="js-product-input js-product-quantity shop-quantity-field" type="number" name="quantity" placeholder="0" min="1" max="1000" step="1" data-stage="form" onwheel="this.blur()" pattern="\d+" style="scroll-margin-bottom: 2rem;" />
-        </div>
-      </div>
-    </section>
-
-    {% include "advantage/_ubuntu_version_select.html" %}
-
-    <section class="p-strip is-shallow js-shop-step--support">
-      <div class="row">
-        <div class="col-12">
-          <h2 class="p-heading--three u-no-margin--bottom u-sv2">Do you also want tech support?</h2>
-        </div>
-
-        <div class="col-4 p-card--radio u-no-padding--top u-no-padding--bottom">
-          <input autocomplete="off" class="js-product-input" type="radio" id="support_one" name="support" value="essential">
-          <label for="support_one">
-            No thanks<br />
-            <small class="u-text-light">Software and security updates only</small>
-          </label>
-        </div>
-
-        <div class="col-4 p-card--radio u-no-padding--top u-no-padding--bottom">
-          <input autocomplete="off" class="js-product-input" type="radio" id="support_two" name="support" value="standard">
-          <label for="support_two">
-            24 hours, 5 days a week<br />
-            <small class="u-text-light">Phone and ticket support</small>
-          </label>
-        </div>
-
-        <div class="col-4 p-card--radio u-no-padding--top u-no-padding--bottom">
-          <input autocomplete="off" class="js-product-input" type="radio" id="support_three" name="support" value="advanced">
-          <label for="support_three">
-            24 hours, 7 days a week<br />
-            <small class="u-text-light">Phone and ticket support</small>
-          </label>
-        </div>
-
-        <div class="col-12">
-          <p><a href="/legal/ubuntu-advantage-service-description" target="_blank" rel="noopener noreferrer">Get details on our tech support response times&nbsp;&rsaquo;</a></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-strip--light is-shallow js-shop-step--add p-shop-cart">
-      <div class="row">
-        <div class="col-12">
-          <h3>Your chosen plan</h3>
-        </div>
-
-        <div class="col-12">
-          &mldr;
-        </div>
-      </div>
-    </section>
-  </form>
-
-  {% with type="purchase" %}
-    {% include 'advantage/_stripe-modal.html' %}
-  {% endwith %}
-
-  <script src="{{ versioned_static('js/src/ua-product-selector.js') }}" type="module" defer></script>
-  <script defer>
-    var productList = {
-      {% for listing in product_listings %}
+<script src="/static/js/dist/productSelector.js" type="module"></script>
+<script defer>
+  var productList = {
+    {% for listing_id, listing in product_listings.items() %}
       "{{ listing.id }}": {
         name: "{{ listing.product.name }}",
-        price: {{ listing.price|tojson }},
-        productID: "{{ listing.product.id}}",
-        private: "{{ listing.privateForAccount }}"
+        price: {
+          value: "{{ listing.price }}",
+          currency: "{{ listing.currency }}"
+        },
+        period: "{{ listing.period }}",
+        productID: "{{ listing.product.id }}",
+        canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
+        private: false,
       },
-      {% endfor %}
-    };
+    {% endfor %}
+  };
 
-    var accountId = "{% if account %}{{ account.id }}{% endif %}";
-    var accountName = "{% if account %}{{ account.name }}{% endif %}";
-    var previousPurchaseId = "{{ previous_purchase_id or ''}}"
-  </script>
+  var accountId = "{% if account %}{{ account.id }}{% endif %}";
+  var isGuest = {% if account %}false{% else %}true{% endif %};
+  var isLoggedIn = {% if user_info %}true{% else %}false{% endif %};
+  var isTrialling = {% if is_trialling %}true{% else %}false{% endif %};
+  var accountName = "{% if account %}{{ account.name }}{% endif %}";
+  var previousPurchaseIds = {
+    {% for period, id in previous_purchase_ids.items() %}
+      "{{ period }}": "{{ id }}",
+    {% endfor %}
+  }
+
+  window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+</script>
 
 {% endblock %}

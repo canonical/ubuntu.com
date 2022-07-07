@@ -3,7 +3,7 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading"
+  title: "Upgrading to 1.16"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
@@ -13,15 +13,19 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+<!-- UPGRADE VERSIONS -->
+
+<!-- END OF UPGRADE VERSIONS-->
+
 It is recommended that you keep your **Kubernetes** deployment updated to the latest available stable version. You should also update the other applications which make up the **Charmed Kubernetes**. Keeping up to date ensures you have the latest bug-fixes and security patches for smooth operation of your cluster.
 
 New minor versions of **Kubernetes** are set to release once per quarter. You can check the latest release version on the [Kubernetes release page on GitHub][k8s-release]. **Charmed Kubernetes** is kept in close sync with upstream Kubernetes: updated versions will be released within a week of a new upstream version of **Kubernetes**.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-<strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.10.7 to 1.10.8. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.9.x to 1.10.x.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"><strong>Kubernetes</strong> will automatically handle patch releases. This means that the cluster will perform an unattended automatic upgrade between patch versions, e.g. 1.10.7 to 1.10.8. Attended upgrades are only required when you wish to upgrade a minor version, e.g. 1.9.x to 1.10.x.</p>
+  </div>
 </div>
 
 You can see which version of each application is currently deployed by running
@@ -40,10 +44,10 @@ As with all upgrades, there is a possibility that there may be unforeseen diffic
 
 You should also make sure:
 
--   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
--   Your cluster is running normally
--   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
--   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
+- The machine from which you will perform the backup has sufficient internet access to retrieve updated software
+- Your cluster is running normally
+- You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
+- You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
 
 ## Infrastructure updates
 
@@ -57,8 +61,6 @@ This includes:
 - flannel, calico or other CNI
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
-
-
 
 <a id='upgrading-containerd'> </a>
 
@@ -108,7 +110,6 @@ After upgrading, see the
 [docker registry instructions](/kubernetes/docs/docker-registry) for details
 of how to configure a registry.
 
-
 ### Upgrading etcd
 
 As **etcd** manages critical data for the cluster, it is advisable to create a snapshot of
@@ -120,6 +121,7 @@ this data before running an upgrade. This is covered in more detail in the
 ```bash
 juju run-action etcd/0 snapshot --wait
 ```
+
 You should see confirmation of the snapshot being created, and the location of the file
 _on the **etcd** unit_
 
@@ -153,15 +155,14 @@ example, if you are using the flannel CNI:
 juju upgrade-charm flannel
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Some services may be briefly interrupted during the upgrade process. Upgrading
-your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
-<strong>easyrsa</strong> will not cause any downtime. The behaviour of other
-components you have added to your cluster may vary - check individual documentation
-for these charms for more information on upgrades.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Some services may be briefly interrupted during the upgrade process. Upgrading your CNI (e.g. flannel) will cause a small amount of network downtime. Upgrading
+    <strong>easyrsa</strong> will not cause any downtime. The behaviour of other
+    components you have added to your cluster may vary - check individual documentation
+    for these charms for more information on upgrades.</p>
+  </div>
 </div>
 
 ## Upgrading Kubernetes
@@ -213,13 +214,13 @@ juju config kubernetes-master channel=1.10/stable
 
 If you wanted to try a release candidate for 1.12, the channel would be `1.12/candidate`.
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-Once the configuration has been changed, the charms will be put into a `blocked` state.
-You must continue the upgrade process, even if you revert the configuration to the
-currently active version of Kubernetes.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <div class="p-notification__message">Once the configuration has been changed, the charms will be put into a `blocked` state.</div>
+    You must continue the upgrade process, even if you revert the configuration to the
+    currently active version of Kubernetes.</p>
+  </div>
 </div>
 
 Once the desired version has been configured, the upgrades should be performed. This is done by running the `upgrade` action on each master unit in the cluster:
@@ -241,11 +242,11 @@ Ensure that all the master units have upgraded and are reporting normal status b
 
 ### Upgrading the **kubernetes-worker** units
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.
-</p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.</p>
+  </div>
 </div>
 
 For a running cluster, there are two different ways to proceed:
@@ -300,11 +301,11 @@ juju remove-unit kubernetes-worker/0
 
 Removing these units from the model will also release the underlying machines/instances they were running on, so no further clean up is required.
 
-<div class="p-notification--information">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-A variation on this method is to add, pause, remove  and recycle units one at a time. This reduces the resource overhead to a single extra instance.
-  </p>
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">A variation on this method is to add, pause, remove  and recycle units one at a time. This reduces the resource overhead to a single extra instance.</p>
+  </div>
 </div>
 
 #### In-place upgrade
@@ -348,7 +349,7 @@ non-default admission control plugins is specified has changed. The old
 parameter was `--admission-control`; the new parameter is
 `--enable-admission-plugins`.
 
-For example, prior to 1.16, The 'PodSecurityPolicy' admission plugin could be
+For example, prior to 1.16, The ‘PodSecurityPolicy’ admission plugin could be
 applied like this:
 
 ```bash
@@ -382,7 +383,7 @@ kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx         
 kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running       0          17m
 ```
 
-In this case the  `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
+In this case the `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
 
 ```bash
 kubectl delete po/nginx-ingress-kubernetes-worker-controller-r8d2v --force --grace-period=0
@@ -412,7 +413,6 @@ kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx         
 kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running   0          18m
 ```
 
-
  <!--LINKS-->
 
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
@@ -425,10 +425,10 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrading.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrading.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

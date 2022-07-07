@@ -14,7 +14,7 @@
         <p>Develop and test using over 50,000 software packages and runtimes &mdash; including Go, Java, Javascript, PHP, Python and Ruby &mdash; and deploy at scale using our complete scale-out management suite including MAAS and Juju. Ubuntu delivers server-grade performance on ARM, while fully retaining the reliable and familiar Ubuntu experience.</p>
       </div>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
@@ -44,7 +44,7 @@
         </p>
         {% if releases.latest.short_version > releases.lts.short_version %}
         <p>
-          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button--neutral is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          <a href="https://cdimage.ubuntu.com/releases/{{ releases.latest.short_version }}/release/ubuntu-{{ releases.latest.full_version }}-live-server-arm64.iso" class="p-button is-wide" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'ARM server download', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
             Download Ubuntu {{ releases.latest.full_version }}
           </a>
         </p>
@@ -67,7 +67,7 @@
         <li class="p-list__item is-ticked">A wide collection of Web technologies, from HTTP servers to frameworks including Apache, Django, memcached, nginx, Wordpress and varnish</li>
       </ul>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/5eebb138-Servers.svg",
@@ -84,7 +84,7 @@
 
 <section class="p-strip--light is-deep">
   <div class="row u-equal-height">
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",

@@ -22,7 +22,37 @@ any of the intervening steps.
 ## Upgrades to all versions deployed to Juju's `localhost` LXD based cloud
 
 There is a known issue ([https://bugs.launchpad.net/juju/+bug/1904619](https://bugs.launchpad.net/juju/+bug/1904619))
-with container profiles not surviving an upgrade in clouds running on LXD. If your container-based applications fail to work properly after an upgrade, please see this [topic on the troubleshooting page](/kubernetes/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot).
+with container profiles not surviving an upgrade in clouds running on LXD. If your container-based applications fail to work properly after an upgrade, please see this [topic on the troubleshooting page](/kubernetes/docs/troubleshooting#charms-deployed-to-lxd-containers-fail-after-upgradereboot)
+
+<a  id="1.24"> </a>
+
+## Upgrading to 1.24
+
+There are several important changes to 1.24 that will effect all users:
+
+ - Charms have migrated to the [Charmhub.io](https://charmhub.io) store.
+ - Control-plane units will switch to a new charm named
+   `kubernetes-control-plane`.The application in the juju model and all
+   relations to it will remain under the same name `kubernetes-master`, only the
+   charm supporting the application will switch. See [inclusive-naming] for an
+   explanation about this.
+
+Due to these and other changes, it is recommended to follow the specific upgrade
+procedure described in the <a class='p-button--brand' href='/kubernetes/docs/1.24/upgrading'>Upgrade to 1.24 </a> docs.
+
+### ceph-storage relation deprecated
+
+The `kubernetes-control-plane:ceph-storage` relation has been deprecated. After
+upgrading the kubernetes-control-plane charm, the charm may enter `blocked`
+status with the message:
+`ceph-storage relation deprecated, use ceph-client instead`.
+
+If you see this message, you can resolve it by removing the ceph-storage
+relation:
+
+```
+juju remove-relation kubernetes-control-plane:ceph-storage ceph-mon
+```
 
 <a  id="1.19"> </a>
 
@@ -122,7 +152,7 @@ To upgrade whilst retaining Docker as the runtime, you need to additionally depl
 and add relations to the master and worker components:
 
 ```bash
-juju deploy cs:~containers/docker
+juju deploy docker
 juju add-relation docker kubernetes-master
 juju add-relation docker kubernetes-worker
 ```
@@ -141,7 +171,7 @@ in some cluster down time. Adding temporary additional workers provides a place 
 CURRENT_WORKER_REV=$(juju status | grep '^kubernetes-worker\s' | awk '{print $7}')
 CURRENT_WORKER_COUNT=$(juju status | grep '^kubernetes-worker/' | wc -l | sed -e 's/^[ \t]*//')
 
-juju deploy cs:~containers/kubernetes-worker-$CURRENT_WORKER_REV  kubernetes-worker-temp -n $CURRENT_WORKER_COUNT
+juju deploy kubernetes-worker-$CURRENT_WORKER_REV  kubernetes-worker-temp -n $CURRENT_WORKER_COUNT
 ```
 
 #### Add necessary relations
@@ -166,7 +196,7 @@ the Docker subordinate includes clean-up code to uninstall Docker when the
 Docker charm is replaced with the containerd charm.
 
 ```bash
-juju deploy cs:~containers/docker
+juju deploy docker
 juju add-relation docker kubernetes-master
 juju add-relation docker kubernetes-worker
 ```
@@ -204,7 +234,7 @@ juju remove-application docker
 #### Deploy Containerd
 
 ```bash
-juju deploy cs:~containers/containerd
+juju deploy containerd
 juju add-relation containerd kubernetes-master
 juju add-relation containerd kubernetes-worker
 ```
@@ -247,8 +277,8 @@ Once you have a Containerd backed Charmed Kubernetes running, you can add Docker
 workers like so:
 
 ```bash
-juju deploy cs:~containers/kubernetes-worker kubernetes-worker-docker
-juju deploy cs:~containers/docker
+juju deploy kubernetes-worker kubernetes-worker-docker
+juju deploy docker
 juju relate docker kubernetes-worker-docker
 ```
 
@@ -294,11 +324,11 @@ For more information on the new `dns-provider config`, see the
 This upgrade includes a transistion between major versions of **etcd**, from 2.3 to 3.x. Between these releases, **etcd** changed the way it accesses storage, so it is necessary to reconfigure this. There is more detailed information on the change and the upgrade proceedure in the [upstream **etcd** documentation][etcd-upgrade].
 
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    This upgrade <strong>must</strong> be completed before attempting to upgrade the running cluster.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Caution:</span>
+    <p class="p-notification__message">This upgrade <strong>must</strong> be completed before attempting to upgrade the running cluster.</p>
+  </div>
 </div>
 
 To make this upgrade more convenient for users of **Charmed Kubernetes**, a script has been prepared to manage the transition. The script can be [examined here][script].
@@ -347,17 +377,18 @@ You can now proceed with the rest of the upgrade.
 
 <!--LINKS-->
 
-[etcd-upgrade]: https://github.com/etcd-io/etcd/blob/master/Documentation/upgrades/upgrade_3_0.md
+[etcd-upgrade]: https://etcd.io/docs/v3.5/upgrades/upgrade_3_0/
 [script]: https://raw.githubusercontent.com/juju-solutions/cdk-etcd-2to3/master/migrate
 [dns-provider-config]: https://github.com/juju-solutions/kubernetes/blob/5f4868af82705a0636680a38d7f3ea760d35dadb/cluster/juju/layers/kubernetes-master/config.yaml#L58-L67
 [docker-page]: https://jaas.ai/u/containers/docker#configuration
+[inclusive-naming]: /kubernetes/docs/inclusive-naming
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/upgrade-notes.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/upgrade-notes.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>

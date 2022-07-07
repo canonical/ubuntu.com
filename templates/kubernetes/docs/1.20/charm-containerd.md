@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '100'
+charm_revision: '102'
 bundle_release: '1.20'
 ---
 
@@ -84,7 +84,7 @@ Registry credentials. Setting this config allows Kubelet to pull images from
 registries where auth is required.
 
 The value for this config must be a JSON array of credential objects, like this:
-  [{"url": "https://my.registry:port", "username": "user", "password": "pass"}]
+  `[{"url": "https://my.registry:port", "username": "user", "password": "pass"}]`
 
 [Back to table](#table-custom_registries)
 
@@ -122,7 +122,7 @@ juju run-action containerd ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Collect debug data
     </p>
@@ -135,7 +135,7 @@ juju run-action containerd ACTION [parameters] [--wait]
       upgrade-containerd
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Force upgrades Containerd to latest repository version
     </p>

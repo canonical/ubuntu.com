@@ -1,0 +1,237 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}Onboarding Network Functions{% endblock %}
+
+{% block meta_description %}Onboarding network functions with Canonical Open Source MANO.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1_35nO3riTFlSFSp2B7FFdl60cjZe7Owwv0bcjY1s8Kg/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped is-deep is-bordered">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1>Onboarding Network Functions</h1>
+      <p><a href="https://osm.etsi.org/">Open Source MANO</a> provides a platform to easily migrate your traditional telco functions to virtualized and cloud-native environments. It supports onboarding of all types of network functions:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Virtualized Network Functions (VNF)</li>
+        <li class="p-list__item is-ticked">Cloud-native Network Functions (CNF)</li>
+        <li class="p-list__item is-ticked">Physical Network Functions (PNF)</li>
+      </ul>
+      <p>
+        <a class="p-button--positive" href="#tell-us">
+          Start onboarding
+        </a>
+      </p>
+      <p>
+        <a href="/engage/telco-network-functions-whitepaper">
+          Learn more on onboarding network functions&nbsp;&rsaquo;
+        </a>
+      </p>
+    </div>
+    <div class="col-5 u-vertically-center u-align-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/78a94857-Onboarding+1.svg",
+        alt="",
+        width="350",
+        height="280",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>3 easy steps to onboard your network function</h2>
+      <p>Onboarding is all about configuring the day 0, day 1, and day 2 operations. All the life cycle stages can be achieved by defining these operations properly in the OSM packages for the network functions. The <a href="https://osm.etsi.org/docs/vnf-onboarding-guidelines/">process</a> includes:</p>
+    </div>
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Day 0</h2>
+    </div>
+    <div class="col-6">
+      <ul>
+        <li>Create the network function descriptors as templates to instantiate/terminate the service.</li>
+        <li>Create packages for network services i.e. templates for images and configurations of the virtualized infrastructure using Enhanced Platform Awareness provided by OSM.</li>
+        <li>Integrate the  cloud-init scripts in the descriptors for primary configurations like OS boot, SSH and user management.</li>
+      </ul>
+    </div>
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Day 1</h2>
+    </div>
+    <div class="col-6">
+      <ul>
+        <li><a href="https://juju.is/docs/sdk/hello-world">Create a charm</a> (proxy or native) as an operator for the network function.</li>
+        <li>Define the primitives/actions in charms that need to be performed right after the instantiation of service.</li>
+        <li>Integrate the configured charm in the OSM descriptors.</li>
+      </ul>
+    </div>
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Day 2</h2>
+    </div>
+    <div class="col-6">
+      <ul>
+        <li>Reconfigure when needed after the service is running</li>
+        <li>Monitor the specific metrics for the infrastructure</li>
+        <li>Scale on the basis of monitoring analysis</li>
+        <li>Operate to enable closed-loop automation</li>
+      </ul>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-12 u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e8f2394f-Onboarding+2.svg",
+        alt="",
+        width="1000",
+        height="180",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-12">
+      <h2>Lifecycle management</h2>
+      <p>The goal of onboarding is to create a package that can fulfill the stages to manage the lifecycle of network services. The package should include network function instantiation, scaling in/out, healing or recovery, updating, operating and termination.</p>
+    </div>
+		<hr class="p-separator" />
+		<div class="col-12 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/68971b5f-Onboarding+3.svg",
+        alt="",
+        width="1000",
+        height="500",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Network function VNF onboarding in OSM Hackfests</h2>
+      <h3 class="p-heading--4"><a href="https://osm.etsi.org/wikipub/index.php/OSM-MR10_Hackfest">Hackfest MR-10</a></h3>
+      <p>Canonical regularly participates in the <a href="https://osm.etsi.org/wikipub/index.php/Past_OSM_Hackfests">events organized by the OSM community</a> and ETSI’s Centre for Testing and Interoperability. For events like Hackfests and NFV Plugtests Canonical also offers a partner cloud where multiple VNF vendors can deploy and test the interoperability of their Telco network functions. It is also available if VNF vendors want to test their network functions individually before migrating to production environments.</p>
+      <h3 lcass="p-heading--4">52 Participants, More than 100 Network Functions onboarded</h3>
+    </div>
+    <div class="col-12">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a1afcfd0-V.jpg",
+        alt="",
+        width="681",
+        height="409",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "p-image--bordered"},
+        ) | safe
+      }}
+    </div>
+    <hr class="p-separator" />
+    <div class="col-12">
+      <h3 class="p-heading--4"><a href="https://osm.etsi.org/wikipub/index.php/OSM11_Hackfest">Hackfest 11</a></h3>
+      <p>The OSM#11 Hackfest was fully dedicated to Network Function onboarding to OSM release NINE and TEN bringing a new challenge to OSM users. Canonical members participated as mentors and helped the participants to deploy and onboard their network functions throughout the week (31st May - 4th June 2021). The hackfest challenged the participants and VNF vendors to build a package using NFV standardized descriptors, instantiation and Day-1, Day-2 operations. The following list of VNFs and CNFs were successfully onboarded:
+      <ul>
+        <li>Asterisk</li>
+        <li>CoreDNS VNF</li>
+        <li>FreeRadiusCNF</li>
+        <li>FreeRadiusVNF</li>
+        <li>NetNumber VNF</li>
+        <li>OPC UA</li>
+        <li>PowerDNS CNF</li>
+        <li>VyOS</li>
+        <li>NTNU</li>
+      </ul>
+      </p>
+    </div>
+    <hr class="p-separator" />
+    <div class="col-12">
+      <h3 class="p-heading--4"><a href="https://osm.etsi.org/wikipub/index.php/OSM-MR11_Hackfest">Hackfest MR 11</a></h3>
+      <p>For <a href="https://osm.etsi.org/wikipub/index.php/OSM-MR11_Hackfest">OSM-MR11 Hackfest</a> (13th–17th September 2021), <a href="https://osm.etsi.org/">ETSI OSM </a> and <a href="https://openairinterface.org/">OPENAIRINTERFACE (OAI)</a> collaborated to show the interoperability between open source 5G workload and OSM. Participants received their onboarding challenges, and the Canonical team served as mentors to help onboard  the following network functions of OAI workload to OSM:</p>
+      <ul>
+        <li>Access and Mobility Management Function (<a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-amf/-/wikis/home">AMF</a>)</li>
+        <li>Session Management Function (<a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-smf/-/wikis/home">SMF</a>)</li>
+        <li>User Plane Function (<a href="https://github.com/OPENAIRINTERFACE/openair-spgwu-tiny/tree/nrf_fqdn">UPF</a>)</li>
+        <li>Network Repository Function (<a href="https://gitlab.eurecom.fr/oai/cn5g/oai-cn5g-nrf/-/wikis/home">NRF</a>)</li>
+      </ul>
+    </div>
+    <hr class="p-separator" />
+    <div class="col-12">
+      <h3 class="p-heading--4">OSM in KubeCon 2021, LA</h3>
+      <p>Watch our <a href="https://www.youtube.com/watch?v=uVzna-a9lNw">demo</a> to understand how OSM managed the Day 1 and Day 2 operations for the OPENAIRINTERFACE 5G core, and how to write model-driven operations that are reusable and flexible</p>
+      <p>
+        Follow this <a href="https://charmed-osm.com/osm-hackfests">link</a> to discover our contributions in the previous hackfests.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--suru-accent is-dark">
+  <div class="row">
+    <div class="col-12">
+      <div class="p-heading-icon--small">
+        <h3 class="p-heading--4" id="tell-us">Tell us about your network function</h3>
+        <p>Canonical can help you automate your network function onboarding to Charmed OSM. Please choose the relevant options for your network functions to see how it can work for you.</p>
+        <p><a href="https://charmed-osm.com/#tell-us" class="p-button--positive">Start now</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Let us help you with onboarding</h2>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6 p-card">
+      <h3 class="p-heading--4"><a href="https://charmed-osm.com/">Charmed OSM</a> deployment support</h3>
+			<hr />
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Supported with <a href="/ua">Ubuntu Advantage</a></li>
+        <li class="p-list__item is-ticked">Availability of managed and professional services</li>
+        <li class="p-list__item is-ticked">Security updates for 2 years</li>
+      </ul>
+    </div>
+    <div class="col-6 p-card">
+      <h3 class="p-heading--4">Network function onboarding support</h3>
+			<hr />
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Support for automation of the network function</li>
+        <li class="p-list__item is-ticked">Onboarding it to Charmed OSM</li>
+      </ul>
+    </div>
+    <p><a href="https://charmed-osm.com/#tell-us">Visit our charmed OSM site to learn more</a></p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6">
+      <h2>Learn onboarding from scratch</h2>
+    </div>
+    <div class="col-6 u-embedded-media">
+      <iframe title="Getting started with ROS" class="u-embedded-media__element" src="https://www.youtube.com/embed/hZzwwy9wNRE" allowfullscreen=""></iframe>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

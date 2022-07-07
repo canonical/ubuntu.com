@@ -10,80 +10,88 @@
 
 <section class="p-strip--suru-bottomed">
   <div class="row">
-    <div class="col-8">
-      <p class="p-heading--3">Adapt. Innovate. Transform.</p>
+    <div class="col-6">
+      <p class="p-heading--3 u-no-margin--bottom">Adapt. Innovate. Transform.</p>
       <h1>Finserv open source solutions</h1>
       <p>9 out of the top 10 US and EU financial institutions use Ubuntu</p>
       <p>
         <a class="p-button--positive" href="/engage/ubuntu-finance-sector-whitepaper">Download whitepaper</a>
-        <a class="p-button--neutral js-invoke-modal" href="#get-in-touch">Contact Canonical</a>
+        <a class="p-button js-invoke-modal" href="#get-in-touch" data-testid="interactive-form-link">Contact Canonical</a>
       </p>
+    </div>
+    <div class="col-6 u-embedded-media">
+      <iframe title="Finserv open source solutions from Canonical" class="u-embedded-media__element" src="https://player.vimeo.com/video/537171111?title=0&amp;byline=0&amp;portrait=0&amp;speed=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"  allowfullscreen="" frameborder="0"></iframe>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="row">
-    <h2 class="p-muted-heading u-align--center">innovating on ubuntu with canonical</h2>
-    <ul class="p-inline-images u-no-margin">
-      <li class="p-inline-images__item">
+    <div class="p-logo-section u-no-margin">
+      <h2 class="p-logo-section__title u-align--center">innovating on ubuntu with canonical</h2>
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c26cade5-1024px-BNP_Paribas.svg1_.png",
+              alt="BNP Paribas",
+              width="167",
+              height="37",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+        </div>
+        <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/c26cade5-1024px-BNP_Paribas.svg1_.png",
-            alt="BNP Paribas",
-            width="167",
-            height="37",
+            url="https://assets.ubuntu.com/v1/af1a572f-barclays_logo.svg",
+            alt="Barclays",
+            width="130",
+            height="23",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/af1a572f-barclays_logo.svg",
-          alt="Barclays",
-          width="130",
-          height="23",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/80d895b6-Rabobank.png",
-          alt="Robobank",
-          width="65",
-          height="78",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg",
-            alt="Bloomberg",
-            width="167",
-            height="32",
+        </div>
+        <div class="p-logo-section__item u-align--center">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/80d895b6-Rabobank.png",
+            alt="Robobank",
+            width="65",
+            height="78",
             hi_def=True,
-            attrs={"class": "p-inline-images__logo"},
             loading="lazy",
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/b41ec3f5-SBI-Bits_logo.png",
-          alt="SBI Bits",
-          width="160",
-          height="49",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </li>
-    </ul>
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg",
+              alt="Bloomberg",
+              width="167",
+              height="32",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/b41ec3f5-SBI-Bits_logo.png",
+            alt="SBI Bits",
+            width="160",
+            height="49",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -92,45 +100,50 @@
     <div class="col-8">
       <h2>Drive business agility</h2>
       <p class="p-heading--4">A better multi-cloud strategy</p>
-      <p>Financial institutions need hybrid multi-cloud strategy - two public clouds and an efficient private cloud to increase business agility, manage risk, reduce total cost of ownership and keep up with the pace of digital transformation. Ubuntu is optimised on AWS, Azure, Google, IBM and Oracle cloud providing seamless portability. For on-premise Infrastructure-as-a-Service (IaaS), the <a href="/engage/cloud-economics">451 Research Cloud Price Index</a> shows Canonical delivers the best value.</p>
+      <p>Financial institutions need hybrid <a href="/cloud/multi-cloud">multi-cloud</a> strategy - two public clouds and an efficient private cloud to increase business agility, manage risk, reduce total cost of ownership and keep up with the pace of digital transformation. Ubuntu is optimised on AWS, Azure, Google, IBM and Oracle cloud providing seamless portability. For on-premise Infrastructure-as-a-Service (IaaS), the <a href="/engage/cloud-economics">451 Research Cloud Price Index</a> shows Canonical delivers the best value.</p>
       <p>
-        <a href="/public-cloud">Public cloud&nbsp;&rsaquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/openstack">Private cloud&nbsp;&rsaquo;</a>
+        <a href="/cloud/public-cloud">Public cloud&nbsp;&rsaquo;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/openstack">Private cloud&nbsp;&rsaquo;</a>
       </p>
-      <ul class="p-inline-images is-flex u-align--left u-hide--small">
-        <li class="p-inline-images__item u-no-margin--left">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/c26cade5-1024px-BNP_Paribas.svg1_.png",
-          alt="BNP Paribas",
-          width="184",
-          height="41",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-          url="https://assets.ubuntu.com/v1/b41ec3f5-SBI-Bits_logo.png",
-          alt="SBI Bits",
-          width="117",
-          height="35",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ee5d503f-rabobank-4.svg",
-            alt="Rabobank",
-            width="157",
-            height="28",
+      <div class="p-logo-section is-flex u-hide--medium u-hide--small u-align--left">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item u-no-margin--left">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/c26cade5-1024px-BNP_Paribas.svg1_.png",
+            alt="BNP Paribas",
+            width="184",
+            height="41",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
-          }}
-        </li>
-      </ul>
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/b41ec3f5-SBI-Bits_logo.png",
+            alt="SBI Bits",
+            width="117",
+            height="35",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/80d895b6-Rabobank.png",
+              alt="",
+              width="65",
+              height="78",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-4">
       <div class="p-card">
@@ -149,7 +162,7 @@
         </div>
         <p class="p-card__content u-sv1 p-heading--4">Find out why 60% of financial services turn to multi-cloud</p>
         <p class="p-card__content">
-          <a class="p-button--neutral" href="/engage/finserv-multi-cloud">Download the whitepaper</a>
+          <a class="p-button" href="/engage/finserv-multi-cloud">Download the whitepaper</a>
         </p>
       </div>
     </div>
@@ -165,9 +178,9 @@
       <p class="p-heading--4">Second-source Linux with Ubuntu</p>
       <p>Ubuntu is the leading cloud and container platform, and the best platform for devsecops, AI/ML and blockchain, with <a href="/support">enterprise support</a> and <a href="/esm">extended security maintenance</a> by Canonical.</p>
       <p>Financial institutions choose Ubuntu to scale innovation and drive down open source operating costs.</p>
-      <p><a class="p-button--neutral" href="/contact-us">Contact Canonical</a></p>
+      <p><a class="p-button" href="/contact-us">Contact Canonical</a></p>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
         {{ image (
           url="https://assets.ubuntu.com/v1/73232a96-Innovation+in+banking.png",
           alt="",
@@ -192,7 +205,7 @@
       <p>Read our whitepaper on five strategies to accelerate Kubernetes deployment in the enterprise.</p>
       <p><a href="/engage/kubernetes-deployment-enterprise-whitepaper">Download the whitepaper</a></p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/91154a9f-Managed+Kubernetes.svg",
@@ -214,11 +227,11 @@
     <div class="col-8">
       <h2>Reduce IT operations cost</h2>
       <p class="p-heading--4">Model driven operators</p>
-      <p>Canonical leads multi-cloud application management with the <a class="p-link--external"
+      <p>Canonical leads multi-cloud application management with the <a
         href="https://juju.is/mission">universal operator pattern</a> to speed up operations and drive down the cost of integration.</p>
       <p>The legacy application estate is an enormous cost burden for financial institutions. In addition, the need to containerize and move to the cloud creates a new wave of complexity for IT. Choose Canonical  to address both, and transform the quality, cost and speed of software operations.</p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/d399db60-save-money.svg",
@@ -231,11 +244,75 @@
       }}
     </div>
   </div>
+</section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator"/>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Finserv open source infrastructure powers hybrid cloud strategy</h2>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-6">
+      <p>Financial institutions are embracing digital transformation initiatives at pace and scale. To stay relevant and create a technology foundation that enables them to quickly bounce back from future contingencies, financial institutions will need to leverage the right mix of cloud services – a hybrid cloud strategy with a cost effective open source private cloud infrastructure at the core to maximise application performance while on-boarding innovative new capabilities.</p>
+      <p>Watch the webinar for an overview of Charmed OpenStack - an enterprise grade OpenStack distribution from Canonical that leverages MAAS, Juju, and the OpenStack charmed operators to simplify the deployment and management of an OpenStack cloud.</p>
+    </div>
+    <div class="col-6 u-embedded-media u-vertically-center">
+      <iframe title="Charmed OpenStack" class="u-embedded-media__element" src="https://player.vimeo.com/video/649943487?title=0&amp;byline=0&amp;portrait=0&amp;speed=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allowfullscreen=""></iframe>
+    </div>
+  </div>
+</section>
 
+<section class="p-strip--suru">
+  <div class="row">
+    <div class="col-6">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+            alt="",
+            width="32",
+            height="32",
+            hi_def=True,
+            attrs={"class":"p-heading-icon__img p-heading-icon__img--small"},
+            loading="lazy"
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--4" style=" color: #FFF; line-height: 1.5rem;">Case study</p>
+        </div>
+      </div>
+      <p class="p-heading--4">SBI reduced infrastructure costs with Charmed OpenStack</p>
+      <blockquote class="p-pull-quote--small">
+        <p class="p-pull-quote__quote">Canonical's solution was a third of the price of the other proposals we'd received. The solution is also proving to be highly cost-effective, both from CAPEX and OPEX perspectives.</p>
+        <cite class="p-pull-quote__citation">Georgi Georgiev, CIO at SBI BITS</cite>
+      </blockquote>
+      <p>Charmed OpenStack helped SBI Group reduce OpEx costs and optimise CapEx.</p>
+      <a href="/engage/sbi-casestudy" class="p-button">Read more in the case study</a>
+    </div>
+    <div class="col-6">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+            alt="",
+            width="32",
+            height="32",
+            hi_def=True,
+            attrs={"class":"p-heading-icon__img p-heading-icon__img--small"},
+            loading="lazy"
+            ) | safe
+          }}
+          <p class="p-heading-icon__title p-heading--4" style=" color: #FFF; line-height: 1.5rem;">Case study</p>
+        </div>
+      </div>
+      <p class="p-heading--4">TIM maintains system security and client confidence with ESM</p>
+      <p>To ensure the ongoing security of Ubuntu 14.04 LTS machines, ESM provided TIM, the world's largest trade recommendations network, the freedom to upgrade within their own timeframe. This approach saved time and money for this finserv organisation.</p>
+      <a href="/engage/case-study-acuris" class="p-button">Read more in the case study</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row u-equal-height u-vertically-center">
     <div class="col-8">
       <h2>Secure and compliant</h2>
@@ -244,44 +321,47 @@
         <a href="/security/certifications">FIPS certified and CIS compliant</a>, with 10 years
         <a href="/security">security</a> maintenance and <a href="/support">support</a>. Ubuntu ranks first for speed and quality of security fixes across the widest range of open source applications and infrastructure.</p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
-      <ul class="p-inline-images u-no-margin">
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ff9e7377-disa-logo.svg",
-            alt="Disa",
-            width="130",
-            height="48",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
-      <ul class="p-inline-images u-no-margin">
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/905104b8-csec-logo.jpg",
-            alt="CSEC",
-            width="80",
-            height="91",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/1acf78b2-cis-logo.jpg",
-            alt="CIS",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
+      <div class="p-logo-section u-no-margin">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/ff9e7377-disa-logo.svg",
+              alt="Disa",
+              width="130",
+              height="48",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/905104b8-csec-logo.jpg",
+              alt="CSEC",
+              width="80",
+              height="91",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/1acf78b2-cis-logo.jpg",
+              alt="CIS",
+              width="100",
+              height="100",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -297,14 +377,14 @@
         <a href="/kubernetes/features">Kubernetes on Ubuntu</a> gives you perfect portability across all infrastructures, from the data centre to the public cloud. Focus on your business while Canonical
         <a href="/kubernetes/managed">builds and manages your Kubernetes clusters</a>.</p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
         {{ image (
           url="https://assets.ubuntu.com/v1/6e444e74-ACI.png",
           alt="ACI",
           width="300",
           height="192",
           hi_def=True,
-          loading="auto|lazy"
+          loading="lazy"
           ) | safe
         }}
     </div>
@@ -317,134 +397,147 @@
   <div class="row u-equal-height">
     <h2>Regain focus on business priorities</h2>
     <p class="p-heading--4">Managed apps, simplified</p>
-    <p>Canonical offers <a href="/managed">fully managed open source</a> with a disruptive business model - priced per host or VM, not by the hour or per application. Maintain business focus and reduce costs, and offload the complexity of deploying and managing open source components to our specialist team.</p>
+    <p>Canonical offers <a href="/managed/apps">fully managed open source</a> with a disruptive business model - priced per host or VM, not by the hour or per application. Maintain business focus and reduce costs, and offload the complexity of deploying and managing open source components to our specialist team.</p>
   </div>
-  <div class="row u-align--center u-vertically-center u-hide--small">
-    <ul class="p-inline-images u-no-margin">
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/82e5d34c-MySQL.png",
-          alt="MySQL",
-          width="90",
-          height="47",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/382e801d-postgresql-logo.png",
-          alt="Postgresql",
-          width="90",
-          height="67",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/c530ca79-Cassandra_logo.svg",
-          alt="Cassandra",
-          width="90",
-          height="60",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/5ee6eb7b-influxdb.svg",
-          alt="Influx",
-          width="130",
-          height="30",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/0f2d8f49-prometheus-logo.png",
-          alt="Prometheus",
-          width="130",
-          height="33",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/0a3ecbb7-elasticsearch.png",
-          alt="Elasticsearch",
-          width="130",
-          height="23",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/ec2d171f-grafanahero.jpg",
-          alt="Grafana",
-          width="130",
-          height="35",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/bd33839a-graylog.svg",
-          alt="Graylog",
-          width="130",
-          height="37",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/b0541732-2018-logo-open-source-mano.png",
-          alt="Source mano",
-          width="120",
-          height="45",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/c2a4ebd4-Kafka.svg",
-          alt="Kafka",
-          width="120",
-          height="55",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-      <li class="p-inline-images__item">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
-          alt="Kubeflow",
-          width="130",
-          height="30",
-          hi_def=True,
-          loading="auto|lazy"
-          ) | safe
-        }}
-      </li>
-    </ul>
+  <div class="u-fixed-width u-hide--small">
+    <div class="p-logo-section u-no-margin">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/82e5d34c-MySQL.png",
+            alt="MySQL",
+            width="90",
+            height="47",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/382e801d-postgresql-logo.png",
+            alt="Postgresql",
+            width="90",
+            height="67",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c530ca79-Cassandra_logo.svg",
+            alt="Cassandra",
+            width="90",
+            height="60",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5ee6eb7b-influxdb.svg",
+            alt="Influx",
+            width="130",
+            height="30",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/0f2d8f49-prometheus-logo.png",
+            alt="Prometheus",
+            width="130",
+            height="33",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/0a3ecbb7-elasticsearch.png",
+            alt="Elasticsearch",
+            width="130",
+            height="23",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ec2d171f-grafanahero.jpg",
+            alt="Grafana",
+            width="130",
+            height="35",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/bd33839a-graylog.svg",
+            alt="Graylog",
+            width="130",
+            height="37",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/b0541732-2018-logo-open-source-mano.png",
+            alt="Source mano",
+            width="120",
+            height="45",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c2a4ebd4-Kafka.svg",
+            alt="Kafka",
+            width="120",
+            height="55",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
+            alt="Kubeflow",
+            width="130",
+            height="30",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
   </div>
-    
+
   <div class="u-fixed-width">
     <hr class="p-separator"/>
   </div>
@@ -453,23 +546,23 @@
     <div class="col-8">
       <h2>Enhance business resilience</h2>
       <p class="p-heading--4">Data centre of the future</p>
-      <p>Future-proof your data centres for hybrid cloud and cloud-native applications.
+      <p>Future-proof your data centres for <a href="/cloud/hybrid-cloud">hybrid cloud</a> and cloud-native applications.
         <a href="/server">Ubuntu server</a> brings economic and technical scalability to your data centre. Turn your data centre into a bare metal cloud with
-        <a class="p-link--external" href="https://maas.io/">MAAS</a>, an automated and optimised provisioning system for your production hardware.</p>
+        <a href="https://maas.io/">MAAS</a>, an automated and optimised provisioning system for your production hardware.</p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/af1a572f-barclays_logo.svg",
         alt="Barclays",
         width="260",
         height="46",
         hi_def=True,
-        loading="auto|lazy"
+        loading="lazy"
         ) | safe
       }}
     </div>
   </div>
-    
+
   <div class="u-fixed-width">
     <hr class="p-separator"/>
   </div>
@@ -481,31 +574,35 @@
       <p>Combat financial crime with the leading AI/ ML tools, powered by Ubuntu on-prem or on cloud. Radically reshape customer experience. Create industrial-scale
         <a href="/kubeflow">machine learning processes with Kubeflow</a>. With  Ubuntu, you benefit from perfect multi-cloud portability of AI/ML workloads.</p>
     </div>
-    <div class="col-4 u-align--center u-hide--small">
-      <ul class="p-inline-images u-no-margin">
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
-            alt="Nvidia",
-            width="90",
-            height="66",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-        <li class="p-inline-images__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c346c103-openai.png",
-            alt="OpenAI",
-            width="90",
-            height="62",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
-        </li>
-      </ul>
+    <div class="col-4 u-hide--medium u-hide--small u-align--center">
+      <div class="p-logo-section u-no-margin">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/cb6924a9-Nvidia_image_logo.svg",
+              alt="Nvidia",
+              width="90",
+              height="66",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c346c103-openai.png",
+              alt="OpenAI",
+              width="90",
+              height="62",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -517,13 +614,13 @@
     <div class="col-8">
       <h2>Increase developer productivity</h2>
       <p class="p-heading--4">Ubuntu workstations for engineering</p>
-      <p>An <a href="/desktop">Ubuntu workstation</a> is the <a class="p-link--external" href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">professional developer’s preference</a>. Highly secure, reliable and with low cost of ownership, Ubuntu workstations are widely adopted by application engineering teams at financial institutions.</p>
-      <p>Canonical provides 24x7 support and <a class="p-link--external" href="https://landscape.canonical.com/">management tools</a> for monitoring, managing, patching and compliance reporting on all your Ubuntu workstations.</p>
+      <p>An <a href="/desktop">Ubuntu workstation</a> is the <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">professional developer’s preference</a>. Highly secure, reliable and with low cost of ownership, Ubuntu workstations are widely adopted by application engineering teams at financial institutions.</p>
+      <p>Canonical provides 24x7 support and <a href="https://landscape.canonical.com/">management tools</a> for monitoring, managing, patching and compliance reporting on all your Ubuntu workstations.</p>
       <p>
-        <a class="p-link--external" href="https://buy.ubuntu.com/?_ga=2.170240736.1542483846.1604916464-1912709568.1604434903">Learn about Ubuntu Advantage</a>
+        <a href="https://buy.ubuntu.com/" >Learn about Ubuntu Advantage</a>
       </p>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
         url="https://assets.ubuntu.com/v1/b7693339-logo-bloomberg.svg",
@@ -553,11 +650,11 @@
           width="324",
           height="150",
           hi_def=True,
-          loading="auto",
+          loading="lazy",
           ) | safe
         }}
       </div>
-      <p>The <a class="p-link--external" href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">best developers choose Ubuntu</a>.</p>
+      <p>The <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">best developers choose Ubuntu</a>.</p>
       <p>The biggest pool of open source talent. The broadest range of tools. The community that counts.</p>
       <p>One company stands behind it all - Canonical.</p>
     </div>
@@ -570,7 +667,7 @@
           width="324",
           height="150",
           hi_def=True,
-          loading="auto"
+          loading="lazy"
           ) | safe
         }}
       </div>
@@ -581,13 +678,68 @@
   </div>
 </section>
 
+{% with section_classes='p-strip', heading_topic='Financial Services', tag_name='financial-services', tag_id='3955', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Innovate at lower cost with Canonical</h2>
+    <p class="u-sv3">The experts in finserv open source operations, from cloud to devices are waiting to help you on your digital transformation journey.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f22f6ded-get-in-touch_chat.svg",
+          alt="",
+          width="80",
+          height="80",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4">Get an immediate answer to your questions through LiveChat</p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
+          alt="",
+          width="112",
+          height="80",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="#get-in-touch">Tell us your story&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="u-sv2">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg",
+          alt="",
+          width="80",
+          height="80",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <p class="p-heading--4"><a href="#get-in-touch">Schedule a call with a finserv expert&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
 <style>
-  .p-inline-images.is-flex {
+  .p-logo-section.is-flex {
     align-items: baseline;
     display: flex;
   }
 
-  .p-inline-images.is-flex>.p-inline-images__item {
+  .p-logo-section.is-flex>.p-logo-section__item {
     margin-block-end: 0;
     margin-block-start: 0;
   }

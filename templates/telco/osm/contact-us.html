@@ -1,0 +1,16 @@
+{% extends "telco/base_telco.html" %}
+
+{% block title %}Contact us | OSM{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1rfPs584eXGh2BHwhm-y9VfB_OTsIOZdRKXtQLofqTuQ/edit#heading=h.11mrrnqu2xb6{% endblock meta_copydoc %}
+
+{% block content %}
+
+{% with h1="Contact us about OSM",
+  intro_text="Fill in your details below and a member of our training team will be in touch.",
+  formid="3471",
+  lpId="",
+  returnURL="/telco/osm/thank-you" %}
+  {% include "shared/_client-contact-us-form.html" %}
+{% endwith %}
+
+{% endblock content %}

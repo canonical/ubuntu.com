@@ -7,7 +7,32 @@
 {# Change canonical URL for "snapcraft.io" articles (2996 is the ID of the "snapcraft.io" tag) #}
 
 {% block body_class %}blog-article{% endblock %}
-{% block canonical_url %}{% if 2996 in article.tags %}https://snapcraft.io/blog/{{ article.slug }}{% else %}{{ super() }}{% endif %}{% endblock canonical_url %}
+{% block canonical_url %}{% if 2996 in article.tags %}https://snapcraft.io/blog/{{ article.slug }}{% elif 4059 in article.tags %}https://juju.is/blog/{{ article.slug }}{% elif 1304 in article.tags or 3681 in article.tags -%}https://maas.io/blog/{{ article.slug }}{% else %}{{ super() }}{% endif %}{% endblock canonical_url %}
+
+{% block extra_metatags %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@id": "https://ubuntu.com/#article",
+    "@type": "Article",
+    "name": "{{ article.title.renderered|safe }}",
+    "headline": "{{ article.excerpt.raw }}",
+    "author": {
+       "@type": "Person",
+       "name": "{{ article.author.name }}"
+    },
+    "datePublished": "{{ article.date_gmt }}",
+    {% if article.image and article.image.source_url %}
+      "image": "{{ article.image.source_url }}",
+    {% endif %}
+    "url": "{{ request.url }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ubuntu"
+    }
+  }
+  </script>
+{% endblock %}
 
 {% block content %}
 <article>
@@ -85,14 +110,14 @@
           {{ article.content.rendered|safe }}
         </div>
       </div>
-
-      <div class="col-4">
-        {% include 'blog/product-cards.html' %}
-
-        <div>
-          {% include 'blog/newsletter-form.html' %}
+      {% if article.slug != 'canonical-standing-with-ukraine' %}
+        <div class="col-4">
+            {% include 'blog/product-cards.html' %}
+          <div>
+            {% include 'blog/newsletter-form.html' %}
+          </div>
         </div>
-      </div>
+      {% endif %}
     </div>
   </section>
 </article>
@@ -112,7 +137,7 @@
           </p>
         </div>
 
-        <div class="col-4 u-align--center u-vertically-center u-hide--small">
+        <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
           {{
             image(
               url="https://assets.ubuntu.com/v1/39ebd977-robot.svg",

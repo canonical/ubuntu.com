@@ -1,0 +1,25 @@
+codecov:
+  require_ci_to_pass: true
+  branch: main
+  allow_coverage_offsets: true
+
+comment:
+  layout: "diff, files"
+  behavior: default
+  require_changes: false
+  require_base: true
+  require_head: true
+
+coverage:
+  status:
+    project:
+      javascript:
+        target: auto
+        threshold: 0%
+        flags:
+          - javascript
+      python:
+        target: auto
+        threshold: 0%
+        flags:
+          - python

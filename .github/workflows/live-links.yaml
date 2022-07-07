@@ -10,15 +10,43 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout master
-        uses: actions/checkout@v2
-
       - name: Install linkchecker
-        run: sudo apt update && sudo apt install linkchecker
+        run: sudo pip install LinkChecker
+
+      - name: Write linkchecker config file
+        run: |
+          mkdir -p ~/.linkchecker
+          cat > ~/.linkchecker/linkcheckerrc <<EOF
+          [checking]
+          maxrequestspersecond=5
+          recursionlevel=2
+          timeout=1000
+          sslverify=0
+
+          [filtering]
+          checkextern=1
+          ignore=
+            https://res.cloudinary.com
+            q_auto
+            fl_sanitize
+            c_fill
+            e_sharpen
+            w_[0-9]*
+            h_[0-9]*
+            https://ubuntu.com/blog
+            https://ubuntu.com/security
+            http://www.brendangregg.com
+            http://www.adlinktech.com/en/index
+
+          [output]
+          status=0
+          warnings=0
+          EOF
 
       - name: Run linkchecker
-        run: linkchecker --threads 0 --ignore-url '.*&start=.*' --ignore-url /q_auto --ignore-url /fl_sanitize --ignore-url /w_* --ignore-url /h_* --ignore-url /blog --no-warnings https://ubuntu.com
+        run: |
+          linkchecker https://ubuntu.com
 
       - name: Send message on failure
         if: failure()
-        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=%23web-team
+        run: curl -X POST -F "workflow=${GITHUB_WORKFLOW}" -F "repo_name=${GITHUB_REPOSITORY}" -F "action_id=${GITHUB_RUN_ID}" ${{ secrets.BOT_URL }}?room=web--design

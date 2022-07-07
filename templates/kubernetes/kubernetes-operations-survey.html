@@ -1,0 +1,34 @@
+{% extends "kubernetes/base_kubernetes.html" %}
+
+{% block title %}Kubernetes & Cloud Native Operations Survey{% endblock %}
+
+{% block meta_description %}Kubernetes & Cloud Native Operations Survey{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1MLNVczyhDYNnZT-4Ddq0D4D5YU5JcgRdt7hR4x7IOnQ/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+        <h1>Kubernetes &amp; cloud native operations survey</h1>
+        <p>The Cloud Native space is rapidly expanding and everyone wants to know what everyone else is doing. Where are we succeeding? Where are we hitting walls? The answers to all are right here &mdash; click start &mdash; contribute and get early access to the community report.</p>
+        <p><a class="p-button--positive typeform-share button" href="https://form.typeform.com/to/SbeMKJK4?typeform-medium=embed-snippet" data-mode="popup" data-size="100" target="_blank">Take the survey</a></p>
+        <p>In submitting the survey, I confirm I have read and agreed to Canonical's <a href="/legal/data-privacy">Privacy Policy</a> and <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/Kubernetes%20&%20CloudNative%20Survey%20-%20_Privacy%20Notice%20%E2%80%93%20Survey_.pdf">Privacy Notice</a>. Should you enter the raffle to win a T-shirt through this survey, you agree to the <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/US%20Operator%20Day%20Raffle%202021%20-%20Terms%20and%20Conditions%20%20%281%29.pdf">Competition Terms &amp; Conditions</a>.</p>
+    </div>
+    <div class="col-6 u-align--center">
+        {{ image (
+            url="https://assets.ubuntu.com/v1/d1cf05bd-Kubernetes_survey.svg",
+            alt="",
+            width="276",
+            height="210",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+        }}
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+{% block footer_extra %}
+<script>(function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm_share", b="https://embed.typeform.com/"; if(!gi.call(d,id)){ js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })()</script>
+{% endblock %}

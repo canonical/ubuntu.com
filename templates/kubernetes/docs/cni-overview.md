@@ -20,7 +20,7 @@ simple specification makes it easy for Kubernetes to interact with a wide range
 of CNI-based software solutions.
 
 With **Charmed Kubernetes**, these networking 'plug-ins' are deployed as
-subordinate charms with each  node running as a `kubernetes-master` or
+subordinate charms with each  node running as a `kubernetes-control-plane` or
 `kubernetes-worker`, and ensure the smooth running of the cluster. It is
 possible to choose one of several different CNI providers for **Charmed
 Kubernetes**, which are listed below:
@@ -29,12 +29,12 @@ Kubernetes**, which are listed below:
 
 The currently supported base CNI solutions for **Charmed Kubernetes** are:
 
- -   [Flannel][flannel]
  -   [Calico][calico]
  -   [Canal][canal]
+ -   [Flannel][flannel]
  -   [Tigera Secure EE][tigera]
 
-By default, **Charmed Kubernetes** will deploy the cluster using flannel. To chose a different CNI provider, see the individual links above.
+By default, **Charmed Kubernetes** will deploy the cluster using calico. To chose a different CNI provider, see the individual links above.
 
 The following CNI addons are also available:
  -   [Multus][multus]
@@ -49,9 +49,9 @@ Kubernetes, such a migration should be manageable with no downtime.
 
 <!-- LINKS -->
 
-[flannel]: /kubernetes/docs/cni-flannel
 [calico]: /kubernetes/docs/cni-calico
 [canal]: /kubernetes/docs/cni-canal
+[flannel]: /kubernetes/docs/cni-flannel
 [tigera]: /kubernetes/docs/tigera-secure-ee
 [multus]: /kubernetes/docs/cni-multus
 [sr-iov]: /kubernetes/docs/cni-sriov
@@ -60,10 +60,11 @@ Kubernetes, such a migration should be manageable with no downtime.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/cni-overview.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/cni-overview.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

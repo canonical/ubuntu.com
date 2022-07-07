@@ -25,14 +25,14 @@ configured as follows:
 
 1. Deploy the `keepalived` charm:
     ```bash
-    juju deploy cs:~containers/keepalived
+    juju deploy keepalived
     ```
 
 1. Add the required relations:
     ```bash
     juju add-relation keepalived:juju-info kubeapi-load-balancer:juju-info
     juju add-relation keepalived:lb-sink kubeapi-load-balancer:website
-    juju add-relation keepalived:loadbalancer kubernetes-master:loadbalancer
+    juju add-relation keepalived:loadbalancer kubernetes-control-plane:loadbalancer
     juju add-relation keepalived:website kubernetes-worker:kube-api-endpoint
     ```
     This redirects both the Kubernetes master and worker units to point at the keepalived
@@ -59,7 +59,7 @@ configured as follows:
     additional [SANs][]:
     ```bash
     juju config kubeapi-load-balancer extra_sans="$VIP $VIP_HOSTNAME"
-    juju config kubernetes-master extra_sans="$VIP $VIP_HOSTNAME"
+    juju config kubernetes-control-plane extra_sans="$VIP $VIP_HOSTNAME"
     ```
 
 1. Wait for the new service to settle. You can check the status of the `keepalived`
@@ -72,7 +72,7 @@ configured as follows:
 1. Remove unneeded relations:
     ```bash
     juju remove-relation kubernetes-worker:kube-api-endpoint kubeapi-load-balancer:website
-    juju remove-relation kubernetes-master:loadbalancer kubeapi-load-balancer:loadbalancer
+    juju remove-relation kubernetes-control-plane:loadbalancer kubeapi-load-balancer:loadbalancer
     ```
 
 1. Scale up the `kubeapi-load-balancer`. You can specify as many units as your situation requires.
@@ -98,15 +98,16 @@ balancer.
 [keepalived-home]: http://www.keepalived.org/
 [SANs]: https://www.openssl.org/docs/manmaster/man5/x509v3_config.html#Subject-Alternative-Name
 [logging-doc]: /kubernetes/docs/logging
-[subordinate-charm]: https://docs.jujucharms.com/stable/en/authors-subordinate-applications
+[subordinate-charm]: https://juju.is/docs/sdk#heading--subordinate-charms
 [openstack-vip]: https://medium.com/jexia/virtual-ip-with-openstack-neutron-dd9378a48bdf
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/keepalived.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/keepalived.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

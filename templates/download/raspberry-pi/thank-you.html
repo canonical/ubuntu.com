@@ -13,7 +13,9 @@
 {% block content %}
 
 {% if version %}
-<meta http-equiv="refresh" content="3;url=https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">
+  <meta http-equiv="refresh" content="3;url={% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">
+
+
 {% endif %}
 
 <section class="p-strip--suru-topped" style="overflow: visible;">
@@ -21,9 +23,9 @@
     <div class="col-7">
       {% if version %}
       <h1>Thank you for downloading<br />
-        Ubuntu {{ version }}<br />
+        Ubuntu {% if version==releases.latest.core_version %}Core {% endif %}{{ version }}<br />
         for Raspberry Pi</h1>
-        <p>Your download should start automatically. If it doesn't, <a href="https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz">download now</a>.</p>
+        <p>Your download should start automatically. If it doesn't, <a href="{% if version==releases.latest.core_version %}https://cdimage.ubuntu.com/ubuntu-core/{{ version }}/stable/current/ubuntu-{{ architecture }}.img.xz{% else %}https://cdimage.ubuntu.com/releases/{{ version }}/release/ubuntu-{{ version }}-preinstalled-{{ architecture }}.img.xz{% endif %}">download now</a>.</p>
         {% with version=version, system=architecture, architecture=architecture %}
         {% include "download/shared/_verify-checksums.html" %}
         {% endwith %}
@@ -33,7 +35,7 @@
         <p>Go to the <a href="/download/raspberry-pi">download page</a> to select an image.</p>
         {% endif %}
       </div>
-      <div class="col-5 u-hide--small u-align--center">
+      <div class="col-5 u-hide--medium u-hide--small u-align--center">
         {{
           image(
           url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
@@ -52,26 +54,45 @@
     <div class="row">
       <div class="col-8">
         <h2>Installation instructions</h2>
-        <p>Follow one of the following tutorials to help you install Ubuntu on your Raspberry pi.</p>
+        <p>The simplest way to install Ubuntu is to use the <a href="https://www.raspberrypi.com/software/">Raspberry Pi Imager</a> which enables you to select an Ubuntu image during installation. Follow our tutorials below to learn how.</p>
       </div>
     </div>
     <div class="row p-divider">
+      {% if version == releases.latest.core_version %}
       <div class="col-4 blog-p-card--post">
         <header class="blog-p-card__header--tutorial">
-          <h5 class="p-muted-heading u-no-margin--bottom">
-            iot, desktop
-          </h5>
+          <p class="p-muted-heading u-no-margin--bottom">
+            core, UC20
+          </p>
         </header>
         <div class="blog-p-card__content">
-          <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
+            <a class="p-link--soft" href="/core/docs/uc20/install-raspberry-pi">Installing Ubuntu Core 20 on a Raspberry Pi</a>
+          </h3>
+          <p class="u-sv3">A complete guide to installing Ubuntu Core on a Raspberry Pi 4 (4GB or 8GB).</p>
+        </div>
+        <footer class="blog-p-card__footer">
+          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--2">2 out of 5</span>
+        </footer>
+      </div>
+      {% else %}
+      <div class="col-4 blog-p-card--post">
+        <header class="blog-p-card__header--tutorial">
+          <p class="p-muted-heading u-no-margin--bottom">
+            iot, desktop
+          </p>
+        </header>
+        <div class="blog-p-card__content">
+          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
             <a class="p-link--soft" href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a>
           </h3>
-          <p class="u-sv3">A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (4GB or 8GB).</p>
+          <p class="u-sv3">A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
         </div>
         <footer class="blog-p-card__footer">
           Difficulty: <span class="l-tutorials-meter l-tutorials-meter--1">1 out of 5</span>
         </footer>
       </div>
+      {% endif %}
       <div class="col-4 blog-p-card--post p-divider__block">
         <header class="blog-p-card__header--tutorial">
           <h5 class="p-muted-heading u-no-margin--bottom">
@@ -79,54 +100,120 @@
           </h5>
         </header>
         <div class="blog-p-card__content">
-          <h3 class="p-heading--three u-no-margin--top u-no-margin--bottom">
+          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
             <a class="p-link--soft" href="/tutorials/how-to-install-ubuntu-on-your-raspberry-pi">How to install Ubuntu Server on your Raspberry Pi</a>
           </h3>
-          <p class="u-sv3">A complete guide to installing Ubuntu Server on your Raspberry Pi 4, 3 or 2 in a couple minutes. In an headless setup or with a screen and with a Wi-Fi or ethernet connection.</p>
+          <p class="u-sv3">A complete guide to installing Ubuntu Server on your Raspberry Pi 4, 3 or 2 in a couple minutes. In a headless setup or with a screen and with a Wi-Fi or ethernet connection.</p>
         </div>
         <footer class="blog-p-card__footer">
           Difficulty: <span class="l-tutorials-meter l-tutorials-meter--2">2 out of 5</span>
         </footer>
       </div>
-      <div class="col-4 p-divider__block">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/39a8dac8-Ubuntu_Server_CLI_pro_tips_2020-04.jpg",
-          alt="",
-          width="440",
-          height="331",
-          hi_def=True,
-          loading="eager",
-          ) | safe
-        }}
-        <h2 class="p-heading--three">Get Ubuntu Server pro tips</h2>
-        <p>Get the "Ubuntu Server CLI pro tips 2020" and learn how to use the command line efficiently and get started with everything from basic file management to deploying complex applications.</p>
-        <p><a href="#" class="p-button--positive" aria-controls="modal">Download the pro tips</a></p>
+      <div class="col-4 blog-p-card--post p-divider__block">
+        <header class="blog-p-card__header--tutorial">
+          <h5 class="p-muted-heading u-no-margin--bottom">
+            iot, core
+          </h5>
+        </header>
+        <div class="blog-p-card__content">
+          <h3 class="p-heading--3 u-no-margin--top u-no-margin--bottom">
+            <a class="p-link--soft" href="/download/raspberry-pi-core">Install Ubuntu Core on a Raspberry Pi</a>
+          </h3>
+          <p class="u-sv3">Walk through the steps of flashing Ubuntu Core on a Raspberry Pi 2, 3, 4 or CM4. At the end of this process, you will have a board ready for production or testing snaps.</p>
+        </div>
+        <footer class="blog-p-card__footer">
+          Difficulty: <span class="l-tutorials-meter l-tutorials-meter--3">3 out of 5</span>
+        </footer>
       </div>
-      {% include "download/shared/_server_weekly_news.html" %}
     </div>
   </section>
+
   <section class="p-strip">
-    <div class="row">
-      <div class="col-7">
-        <h2>Get started with snaps</h2>
-        <p>Your {{ board or "board" }} is now ready to have snaps installed, it's time to use the snap command to install your first snap.</p>
-        <p>The <a href="https://snapcraft.io/store" class="p-link--external">Snap Store</a> is where you can find the best Linux apps packaged as snaps to install on your Ubuntu device and get started with your secure IoT journey.</p>
-      </div>
-      <div class="col-5 u-align--center u-hide--small">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
-          alt="",
-          height="227",
-          width="350",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
+  <div class="u-fixed-width">
+    <h2>Make something great today</h2>
+    <p>Check out these project ideas to help you get started.</p>
+  </div>
+  <div class="row p-divider">
+    <div class="col-3 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+            alt="",
+            width="231",
+            height="150",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+        <h3 class="p-heading--4"><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft
+            server on Ubuntu Desktop</a></h3>
       </div>
     </div>
-  </section>
+    <div class="col-3 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+            alt="",
+            width="231",
+            height="150",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+        <h3 class="p-heading--4"><a href="/blog/common-sense-using-the-raspberry-pi-sense-hat-on-ubuntu-impish-indri">Common Sense &mdash; using the Raspberry
+            Pi Sense HAT on Ubuntu Impish Indri</a></h3>
+      </div>
+    </div>
+    <div class="col-3 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+            alt="",
+            width="231",
+            height="150",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+        <h3 class="p-heading--4"><a href="/blog/homelab-clusters-lxd-micro-cloud-on-raspberry-pi">Homelab clusters: LXD micro cloud on Raspberry Pi</a></h3>
+      </div>
+    </div>
+    <div class="col-3 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+            alt="",
+            width="231",
+            height="150",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Tutorial</h4>
+        </div>
+        <h3 class="p-heading--4"><a href="https://maas.io/tutorials/build-your-own-bare-metal-cloud-using-a-raspberry-pi-cluster-with-maas#1-overview">Build
+            your own bare metal cloud using a Raspberry Pi cluster with MAAS</a></h3>
+      </div>
+    </div>
+  </div>
+</section> 
 
+{% with section_classes='p-strip--light is-bordered', heading_topic='Raspberry Pi', tag_name='raspberry-pi', tag_id='1672', limit='4' %} 
+  {% include "shared/_latest_news_strip.html" %} 
+{% endwith %}
 
-  {% endblock %}
+{% endblock %}

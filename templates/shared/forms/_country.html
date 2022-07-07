@@ -1,12 +1,11 @@
 {% if raw != "true" %}
-<li class="mktFormReq mktField p-list_">
-  <label for="Country" class="mktoLabel">{{ country or 'Country' }}:</label>
+<li class="p-list_">
+  <label for="country">{{ country or 'Country' }}:</label>
   {% endif %}
   <select
     required
-    id="Country"
-    name="Country"
-    class="mktoField mktoRequired mktoValid"
+    id="country"
+    name="country"
   >
     <option value="">Select...</option
     ><option value="FR">France</option

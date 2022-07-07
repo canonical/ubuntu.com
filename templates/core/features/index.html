@@ -1,93 +1,42 @@
 {% extends "core/base_core.html" %}
 
 {% block title %}Features | Ubuntu Core{% endblock %}
-{% block meta_description %}Case studies and customer stories of products launched with Ubuntu Core, a secure, fully containerised Ubuntu for embedded devices that is optimised for reliable updates.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/10S6FGVRA1R1qi9v859CnFrl8rS25Za2SjEmSpPVQkzY/edit#heading=h.2rlj58ccsw9y{% endblock meta_copydoc %}
+{% block meta_description %}Ubuntu Core is an operating system for embedded devices and IoT. Learn about Ubuntu core and speed up time to market for your device. Learn about the features of this OS for embedded Linux IoT.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/10S6FGVRA1R1qi9v859CnFrl8rS25Za2SjEmSpPVQkzY/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
 <section class="p-strip--suru-topped">
   <div class="row">
     <h1>Ubuntu Core features</h1>
-    <p class="p-heading--4">What’s under the hood</p>
+    <p class="p-heading--4">An OS that's optimised for IoT and embedded systems</p>
   </div>
 </section>
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h2>Snaps</h2>
-      <p>Ubuntu Core is built from snaps, a secure, confined, dependency-free, cross-platform Linux packaging format. Snaps are entirely self-contained, even to the point of encapsulating their own file system. This means they include everything they need to run in any environment. They're used by Ubuntu Core to both compose the image that's run on a device, and to deliver consistent and reliable software updates, even to low-powered, inaccessible and remotely administered embedded and IoT systems.</p>
+      <h2>Agile containerization </h2>
+      <p>Ubuntu Core architecture is built on a worldwide used and edge developed container; snaps. Through this containerization, there is a clean separation between the kernel, OS image and applications. Develops has never been so easy:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Secure, immutable and strictly confined containerization</li>
+        <li class="p-list__item is-ticked">Consistent, independent, and reliable software updates</li>
+        <li class="p-list__item is-ticked">Architectural flexibility with both Arm and x86 architectures supported</li>
+      </ul>
       <p>
-        <a href="/core/docs/snaps-in-ubuntu-core">Learn more about snaps&nbsp;&rsaquo;</a>
+        <a href="https://snapcraft.io/docs">Learn more about Ubuntu Core containers&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
       {{ image (
-        url="https://assets.ubuntu.com/v1/a41bcb2f-UC20_Snapcraft_2.svg",
-        alt="Snap logo",
-        width="220",
-        height="191",
+        url="https://assets.ubuntu.com/v1/4563fd30-UC20_advanced_security_features_2.svg",
+        alt="",
+        width="177",
+        height="150",
         hi_def=True,
-        loading="auto|lazy"
+        loading="auto"
         ) | safe
       }}
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Snapd</h2>
-      <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and management functions, snapd:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Provides an API used to install and remove snaps and interact with snaps</li>
-        <li class="p-list__item is-ticked">Implements confinement policies that isolate snaps from the base system and from other snaps</li>
-        <li class="p-list__item is-ticked">Governs the interfaces that allow snaps to access specific system resources outside of their container</li>
-      </ul>
-      <p>
-        <a class="p-link--external" href="https://github.com/snapcore/snapd">Learn more about snapd</a>
-      </p>
-    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/c5cb0f8e-picto-ubuntu.svg",
-          alt="Ubuntu logo",
-          width="120",
-          height="120",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-    </div>
-  </div>
-  <div class="u-fixed-width">
-    <hr class="p-separator" />
-  </div>
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Snapcraft</h2>
-      <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Build and then publish your snaps to your IoT app store</li>
-        <li class="p-list__item is-ticked">Fine version  control of updates and releases</li>
-        <li class="p-list__item is-ticked">Build and debug snaps within a confined environment</li>
-        <li class="p-list__item is-ticked">Update and iterate over new builds without rebuilding the environment</li>
-        <li class="p-list__item is-ticked">Test and share your snaps locally</li>
-      </ul>
-      <p><a class="p-link--external" href="https://snapcraft.io/docs/snapcraft-overview">Learn more about Snapcraft</a></p>
-    </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/146d23a2-snapcraft-logo-bird.svg",
-          alt="Snapcraft",
-          width="120",
-          height="114",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
     </div>
   </div>
   <div class="u-fixed-width">
@@ -99,21 +48,21 @@
       <p>Over the air updates for Linux done right </p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Transactional updates for reliability</li>
-        <li class="p-list__item is-ticked">Diffs only to minimize network traffic</li>
+        <li class="p-list__item is-ticked">Diffs only to minimise network traffic</li>
         <li class="p-list__item is-ticked">Digital signatures to guarantee integrity and provenance</li>
       </ul>
       <p>
         <a href="/core/features/ota-updates">Learn more about OTA updates&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-4 u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
         {{ image (
-          url="https://assets.ubuntu.com/v1/a46ea917-3+-+Leverage+snaps+to+build+a+lean+custom+production+image.svg",
-          alt="Leverage snaps",
-          width="280",
-          height="180",
+          url="https://assets.ubuntu.com/v1/a84416b2-IoT-gateways-on-ubuntu.svg",
+          alt="",
+          width="263",
+          height="150",
           hi_def=True,
-          loading="lazy"
+          loading="auto"
           ) | safe
         }}
     </div>
@@ -135,10 +84,10 @@
         <a href="/core/features/secure-boot">Learn more about secure boot&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
         {{ image (
           url="https://assets.ubuntu.com/v1/6ed19d21-UC20_Secure_boot.svg",
-          alt="Secure boot",
+          alt="",
           width="160",
           height="160",
           hi_def=True,
@@ -163,10 +112,10 @@
         <a href="/core/features/full-disk-encryption">Learn more about full disk encryption&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
         {{ image (
           url="https://assets.ubuntu.com/v1/1fbe51df-UC20_Full-disc-encryption.svg",
-          alt="Full disc encryption",
+          alt="",
           width="160",
           height="160",
           hi_def=True,
@@ -190,7 +139,7 @@
         <a href="/core/features/recovery">Learn more about recovery&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--small">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
         {{ image (
           url="https://assets.ubuntu.com/v1/3bbf268f-UC20_Device_Recovery.svg",
           alt="",
@@ -202,11 +151,170 @@
         }}
     </div>
   </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Validation sets</h2>
+      <p>Straightforward installation logic. With validations sets developers can guarantee the installation of specific applications that are either required to be installed together or are permitted to be installed together on a device or system. Unlock:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Updated consistently and simultaneously towards well defined and predictable revisions</li>
+        <li class="p-list__item is-ticked">Increases the compatibility and consistency between applications</li>
+        <li class="p-list__item is-ticked">Improve out-of-the-box experience for end-user</li>
+      </ul>
+      <p>
+        <a href="">Learn more about validation sets&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f887a7db-deploy+fast.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Remodelling</h2>
+      <p>For those working with resellers or system integrators, Ubuntu Core remodelling feature allows changing any of the elements of your <a href="https://ubuntu.com/core/docs/reference/assertions/model">device model assertion</a>. Brand, model, IoT App Store ID or version are some of the contexts that can be changed:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Enable resellers to rebrand devices</li>
+        <li class="p-list__item is-ticked">Easy migration path between UC20 and UC22</li>
+      </ul>
+      <p>
+        <a href="">Learn more about remodelling&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/25c42877-simplified-software-management-2.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
 </section>
 
 <section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>What's under the hood</h2>
+    <p class="u-sv3">Ubuntu Core is ideal for embedded devices because it manages itself.  Snaps, Snapd and Snapcraft bring security and robustness. Applications are easy to install, easy to maintain, and easy to upgrade.</p>
+  </div>
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="p-tabs">
+        <div class="p-tabs__list js-tabbed-content" role="tablist" aria-label="What's under the hood">
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="snaps-tab" id="snaps-tab-cta">Snaps</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="snapd-tab" id="snapd-tab-cta" tabindex="-1">Snapd</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="snapcraft-tab" id="snapcraft-tab-cta" tabindex="-1">Snapcraft</button>
+          </div>
+        </div>
+
+        <div tabindex="0" role="tabpanel" id="snaps-tab" aria-labelledby="snaps-tab-cta">
+          <div class="row u-equal-height">
+            <div class="col-8">
+              <h3>Snaps</h3>
+              <p>Ubuntu Core is built from snaps, a secure, confined, dependency-free, cross-platform Linux packaging format. Snaps are entirely self-contained, even to the point of encapsulating their own file system. This means they include everything they need to run in any environment. They're used by Ubuntu Core to both compose the image that's run on a device, and to deliver consistent and reliable software updates, even to low-powered, inaccessible and remotely administered embedded and IoT systems.</p>
+              <p>
+                <a href="/core/docs/snaps-in-ubuntu-core">Learn more about snaps&nbsp;&rsaquo;</a>
+              </p>
+            </div>
+            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center"> 
+              {{ image (
+                url="https://assets.ubuntu.com/v1/7de21966-snapshot.svg",
+                alt="",
+                width="150",
+                height="150",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+          </div>
+        </div>
+
+        <div tabindex="0" role="tabpanel" id="snapd-tab" aria-labelledby="snapd-tab-cta" hidden="hidden">
+          <div class="row u-equal-height">
+            <div class="col-8">
+            <h3>Snapd</h3>
+            <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and management functions, snapd:</p>
+            <ul class="p-list">
+              <li class="p-list__item is-ticked">Provides an API used to install and remove snaps and interact with snaps</li>
+              <li class="p-list__item is-ticked">Implements confinement policies that isolate snaps from the base system and from other snaps</li>
+              <li class="p-list__item is-ticked">Governs the interfaces that allow snaps to access specific system resources outside of their container</li>
+            </ul>
+            <p>
+              <a href="https://github.com/snapcore/snapd">Learn more about snapd&nbsp;&rsaquo;</a>
+            </p>
+            </div>
+            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/c5cb0f8e-picto-ubuntu.svg",
+                  alt="",
+                  width="120",
+                  height="120",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+            </div>
+          </div>
+        </div>
+
+        <div tabindex="0" role="tabpanel" id="snapcraft-tab" aria-labelledby="snapcraft-tab-cta" hidden="hidden">
+          <div class="row u-equal-height">
+            <div class="col-8">
+              <h3>Snapcraft</h3>
+              <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
+              <ul class="p-list">
+                <li class="p-list__item is-ticked">Build and then publish your snaps to your IoT app store</li>
+                <li class="p-list__item is-ticked">Fine version control of updates and releases</li>
+                <li class="p-list__item is-ticked">Build and debug snaps within a confined environment</li>
+                <li class="p-list__item is-ticked">Update and iterate over new builds without rebuilding the environment</li>
+                <li class="p-list__item is-ticked">Test and share your snaps locally</li>
+              </ul>
+              <p><a href="https://snapcraft.io/docs/snapcraft-overview">Learn more about Snapcraft&nbsp;&rsaquo;</a></p>
+            </div>
+            <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+                {{ image (
+                  url="https://assets.ubuntu.com/v1/146d23a2-snapcraft-logo-bird.svg",
+                  alt="",
+                  width="120",
+                  height="114",
+                  hi_def=True,
+                  loading="lazy"
+                  ) | safe
+                }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
   <div class="row u-equal-height">
-    <div class="col-5 u-align--center u-hide--small">
+    <div class="col-5 u-hide--medium u-hide--small u-align--center">
           {{ image (
             url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
             alt="",
@@ -228,8 +336,8 @@
 </section>
 
   <!-- Set default Marketo information for contact form below-->
-  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://www.ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/internet-of-things" data-form-id="1266" data-lp-id="2166" data-return-url="https://ubuntu.com/core/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
 
-
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
 {% endblock content %}

@@ -151,15 +151,6 @@
 }
 
 @mixin ubuntu-p-stepped-list {
-  // XXX Ant - 11 July 2018
-  // This block can be removed when the following issue is resolved:
-  // https://github.com/vanilla-framework/vanilla-framework/issues/1917
-  .p-stepped-list--detailed .p-stepped-list {
-    &__item {
-      margin-top: 1rem;
-    }
-  }
-
   // XXX Scott - 19 August 2019
   // This block can be removed when the following issues are resolved:
   // https://github.com/canonical-web-and-design/vanilla-framework/issues/2489
@@ -194,11 +185,6 @@
 }
 
 @mixin ubuntu-p-ordered-legal-list {
-  div > .p-list--ordered-legal {
-    margin-left: 0;
-    padding-left: 0;
-  }
-
   .p-list--ordered-legal {
     counter-reset: item;
     list-style-type: none;
@@ -226,15 +212,16 @@
       padding-left: $sp-medium;
     }
 
+    & > .p-list__item > h3,
+    & > .p-list__item > h4,
+    & > .p-list__item > h5,
+    & > .p-list__item > h6 {
+      display: inline-block;
+    }
+
     & > .p-list__item > h4:first-child {
       margin-left: 0;
       padding-left: 0;
-    }
-
-    & > .p-list__item > h3,
-    & > .p-list__item > h4,
-    & > .p-list__item > h5 {
-      display: inline-block;
     }
 
     & > li > ol > .p-list__item::before {
@@ -247,12 +234,26 @@
       display: inline-block;
     }
   }
+
+  div > .p-list--ordered-legal {
+    margin-left: 0;
+    padding-left: 0;
+  }
 }
 
 // small text has bigger padding top, so requires this to be factored into
 // the dot position top
 @mixin ubuntu-p-inline-list-middot {
   .p-inline-list--middot {
+    .p-inline-list__item {
+      &::after {
+        bottom: 0;
+        height: 0;
+        right: -0.85em;
+        top: 0;
+      }
+    }
+
     &.is-x-dense {
       margin-bottom: $sp-unit - $nudge--small;
 
@@ -260,19 +261,8 @@
         &::after {
           bottom: 0.5rem;
           right: -0.75rem;
-          top: 1rem;
+          top: 0.4rem;
         }
-      }
-    }
-
-    .p-inline-list__item {
-      &::after {
-        bottom: 0;
-        height: 0;
-        margin-bottom: auto;
-        margin-top: auto;
-        right: -0.65em;
-        top: 0;
       }
     }
   }
@@ -281,7 +271,8 @@
 @mixin ubuntu-p-list-small {
   .p-text-list--small {
     @extend %small-text-fixed;
-    margin-bottom: $spv-outer--scaleable - $nudge--small + 1 * $sp-unit;
+
+    margin-bottom: $spv--x-large - $nudge--small + 1 * $sp-unit;
     margin-left: 0;
     padding-left: 0;
 
@@ -290,7 +281,7 @@
     }
 
     &.is-dense {
-      margin-bottom: $spv-outer--scaleable - $nudge--small;
+      margin-bottom: $spv--x-large - $nudge--small;
     }
 
     & .p-list__item {
@@ -307,11 +298,9 @@
         margin-bottom: 0.25rem;
 
         &:not(:last-child) {
-          padding-bottom: 0.25rem;
-        }
-
-        &:not(:last-child) {
           @extend %vf-pseudo-border--bottom;
+
+          padding-bottom: 0.25rem;
 
           &::after {
             background-color: transparentize($color-mid-light, 0.5);

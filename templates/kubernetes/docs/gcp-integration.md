@@ -58,11 +58,11 @@ applications:
     annotations:
       gui-x: "600"
       gui-y: "300"
-    charm: cs:~containers/gcp-integrator
+    charm: gcp-integrator
     num_units: 1
     trust: true
 relations:
-  - ['gcp-integrator', 'kubernetes-master']
+  - ['gcp-integrator', 'kubernetes-control-plane']
   - ['gcp-integrator', 'kubernetes-worker']
   ```
 
@@ -76,7 +76,7 @@ juju deploy charmed-kubernetes --overlay ~/path/gcp-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-master/0:config ~/.kube/config
+juju scp kubernetes-control-plane/0:config ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the
@@ -200,12 +200,11 @@ To set this type of storage as the default, you can use the command:
 kubectl patch storageclass gcp-standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-If you create persistent disks and subsequently tear down the cluster, check
-with the GCP console to make sure all the associated resources have also been released.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">If you create persistent disks and subsequently tear down the cluster, check with the GCP console to make sure all the associated resources have also been released.</p>
+  </div>
 </div>
 
 ### Using GCP Loadbalancers
@@ -313,20 +312,21 @@ juju debug-log --replay --include gcp-integrator/0
 [quickstart]: /kubernetes/docs/quickstart
 [owner]: https://console.cloud.google.com/iam-admin/iam
 [iam-roles]: https://cloud.google.com/compute/docs/access/iam
-[asset-gcp-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/master/overlays/gcp-overlay.yaml
+[asset-gcp-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/gcp-overlay.yaml
 [operations]: https://console.cloud.google.com/compute/operations
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
-[gcp-integrator-readme]: https://jujucharms.com/u/containers/gcp-integrator/
+[gcp-integrator-readme]: https://charmhub.io/containers-gcp-integrator/
 [target-pool]: https://cloud.google.com/load-balancing/docs/target-pools
 [install]: /kubernetes/docs/install-manual
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/gcp-integration.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/gcp-integration.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
+  </div>
 </div>
+

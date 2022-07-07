@@ -25,26 +25,26 @@ methodology behind audit logging in Kubernetes, see the
 ## Viewing the log
 
 By default, **Charmed Kubernetes** enables audit logging to files on the
-`kubernetes-master` units. The log file is located at
+`kubernetes-control-plane` units. The log file is located at
 `/root/cdk/audit/audit.log` and is owned by the nominal `root` user. You can
 view the log directly by using Juju's credentials to make an SSH connection:
 
 ```bash
-juju ssh kubernetes-master/0 sudo cat /root/cdk/audit/audit.log
+juju ssh kubernetes-control-plane/0 sudo cat /root/cdk/audit/audit.log
 ```
 
-Note that this log is replicated on all kubernetes-master units.
+Note that this log is replicated on all kubernetes-control-plane units.
 
 ## Audit policy configuration
 
 Audit policy defines rules about what events should be recorded and what data
-they should include.  For **Charmed Kubernetes** this is configurable on the kubernetes-master charm
+they should include.  For **Charmed Kubernetes** this is configurable on the kubernetes-control-plane charm
 using the `audit-policy` setting.
 
 To view the current policy:
 
 ```bash
-juju config kubernetes-master audit-policy
+juju config kubernetes-control-plane audit-policy
 ```
 
 To set a new audit policy, it is easiest to write the policy to a file. Assuming you have a file
@@ -61,7 +61,7 @@ rules:
 You can set the new audit policy like so:
 
 ```bash
-juju config kubernetes-master audit-policy="$(cat audit-policy.yaml)"
+juju config kubernetes-control-plane audit-policy="$(cat audit-policy.yaml)"
 ```
 
 For more information about audit policy definitions, please refer to the
@@ -71,7 +71,7 @@ upstream [Kubernetes Audit Policy documentation][k8s-audit-policy].
 
 The audit log backend writes audit events to a file in JSON format. It is
 configurable in **Charmed Kubernetes**  through the use of the `api-extra-args`
-config on kubernetes-master.
+config on kubernetes-control-plane.
 
 By default, the log backend is enabled in Charmed Kubernetes with the following
 configuration:
@@ -85,17 +85,14 @@ configuration:
 You can override the defaults by using `api-extra-args`. For example:
 
 ```bash
-juju config kubernetes-master api-extra-args="audit-log-path=/root/cdk/my-audit-location audit-log-maxage=30 audit-log-maxsize=200 audit-log-maxbackup=5"
+juju config kubernetes-control-plane api-extra-args="audit-log-path=/root/cdk/my-audit-location audit-log-maxage=30 audit-log-maxsize=200 audit-log-maxbackup=5"
 ```
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Note:</span>
-    The <code>audit-log-path</code> must be a directory that is writeable by the
-     kube-apiserver snap.
-     Any non-hidden folders in <code>/root</code>, <code>/var/snap/kube-apiserver/current</code>, or
-     <code>/var/snap/kube-apiserver/common</code> should work.
-  </p>
+<div class="p-notification--caution is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"The <code>audit-log-path</code> must be a directory that is writeable by the kube-apiserver snap. Any non-hidden folders in <code>/root</code>, <code>/var/snap/kube-apiserver/current</code>, or <code>/var/snap/kube-apiserver/common</code> should work.</p>
+  </div>
 </div>
 
 
@@ -107,13 +104,13 @@ for more information about the available options.
 
 The audit webhook backend sends audit events to a remote API, which is assumed
 to be the same API that the kube-apiserver exposes. This backend is disabled by
-default in **Charmed Kubernetes**, and is configurable on the kubernetes-master
+default in **Charmed Kubernetes**, and is configurable on the kubernetes-control-plane
 charm via the `audit-webhook-config` option.
 
 To view the current audit webhook configuration:
 
 ```bash
-juju config kubernetes-master audit-webhook-config
+juju config kubernetes-control-plane audit-webhook-config
 ```
 
 To set a new audit webhook config, it is easiest to write the config to a file.
@@ -144,14 +141,14 @@ current-context: example-context
 You can set the new audit webhook config with:
 
 ```bash
-juju config kubernetes-master audit-webhook-config="$(cat audit-webhook-config.yaml)"
+juju config kubernetes-control-plane audit-webhook-config="$(cat audit-webhook-config.yaml)"
 ```
 
 Additional options for the webhook backend can be set by using `api-extra-args`.
 For example:
 
 ```bash
-juju config kubernetes-master api-extra-args="audit-webhook-initial-backoff=20s"
+juju config kubernetes-control-plane api-extra-args="audit-webhook-initial-backoff=20s"
 ```
 
 Please refer to the upstream
@@ -166,10 +163,11 @@ information about the audit webhook config format and related options.
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
-  <p class="p-notification__response">
-    We appreciate your feedback on the documentation. You can
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/master/pages/k8s/audit-logging.md" class="p-notification__action">edit this page</a>
+  <div class="p-notification__content">
+    <p class="p-notification__message">We appreciate your feedback on the documentation. You can
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/edit/main/pages/k8s/audit-logging.md" >edit this page</a>
     or
-    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" class="p-notification__action">file a bug here</a>.
-  </p>
+    <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.
+    </p>
+  </div>
 </div>

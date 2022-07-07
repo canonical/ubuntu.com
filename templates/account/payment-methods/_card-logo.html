@@ -1,0 +1,52 @@
+{% if brand == "visa" %}
+  <div class="payment-card-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
+        alt="",
+        width="38",
+        height="24",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+  </div>
+{% endif %}
+{% if brand == "mastercard" %}
+  <div class="payment-card-logo">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/f42c6739-mc_symbol.svg",
+      alt="",
+      width="36",
+      height="24",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+{% endif %}
+{% if brand == "amex" %}
+  <div class="payment-card-logo">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/5f4f3f7b-Amex_logo_color.svg",
+      alt="",
+      width="24",
+      height="24",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+{% endif %}
+{% if brand == "discover" %}
+  <div class="payment-card-logo">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/f5e8abde-discover_logo.jpg",
+      alt="",
+      width="38",
+      height="24",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
+  </div>
+{% endif %}

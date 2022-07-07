@@ -14,7 +14,7 @@ layout:
     - base
     - ubuntu-com
 toc: false
-charm_revision: '926'
+charm_revision: '955'
 bundle_release: '1.20'
 ---
 
@@ -41,7 +41,7 @@ examples of complete models of Kubernetes clusters.
 
 # Resources
 
-The kubernetes-master charm takes advantage of the [Juju Resources](https://jaas.ai/docs/juju-resources)
+The kubernetes-master charm takes advantage of the [Juju Resources](https://juju.is/docs/sdk/resources)
 feature to deliver the Kubernetes software.
 
 In deployments on public clouds the Charm Store provides the resource to the
@@ -674,7 +674,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       apply-manifest
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Apply JSON formatted Kubernetes manifest to cluster
     </p>
@@ -682,7 +682,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -703,7 +703,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       cis-benchmark
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Run the CIS Kubernetes Benchmark against snap-based components.
     </p>
@@ -711,7 +711,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -746,7 +746,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       create-rbd-pv
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Create RADOS Block Device (RDB) volume in Ceph and creates PersistentVolume. Note this is deprecated on Kubernetes &gt;= 1.10 in favor of CSI, where PersistentVolumes are created dynamically to back PersistentVolumeClaims.
     </p>
@@ -754,7 +754,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -803,7 +803,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       debug
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Collect debug data
     </p>
@@ -816,7 +816,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       get-kubeconfig
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Retrieve Kubernetes cluster config, including credentials
     </p>
@@ -829,7 +829,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       namespace-create
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Create new namespace
     </p>
@@ -837,7 +837,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -858,7 +858,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       namespace-delete
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Delete namespace
     </p>
@@ -866,7 +866,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>
@@ -887,7 +887,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       namespace-list
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       List existing k8s namespaces
     </p>
@@ -900,7 +900,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       restart
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Restart the Kubernetes master services on demand.
     </p>
@@ -913,7 +913,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
       upgrade
     </h5>
   </div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       Upgrade the kubernetes snaps
     </p>
@@ -921,7 +921,7 @@ juju run-action kubernetes-master ACTION [parameters] [--wait]
 </div>
 <div class="row">
   <div class="col-2"></div>
-  <div class="col-7">
+  <div class="col-5">
     <p>
       This action has the following parameters:
     </p>

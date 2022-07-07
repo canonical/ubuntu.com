@@ -1,5 +1,7 @@
 {% extends "base_index.html" %}
 
+{% block meta_image %}https://assets.ubuntu.com/v1/df4cb5d8-Social+media+banner.jpg{% endblock meta_image %}
+
 {% block head_extra %}
 {% endblock %}
 
@@ -45,7 +47,7 @@
     %}
     {% include "takeovers/_template.html" %}
     {% endwith %}
-  {% endfor %}  
+  {% endfor %}
 {% endblock takeover_content %}
 
 {#
@@ -70,6 +72,9 @@
     {% include "shared/_notice_default.html" %}
   {% endwith %}
   {% with lang="zh", text="嗨！你知道我们有中文站吗？立即带我去！", url="https://cn.ubuntu.com", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
+    {% include "shared/_notice_default.html" %}
+  {% endwith %}
+  {% with lang="es", text="Join us at Cloud Expo Europe Madrid", url="/blog/canonical-cloud-expo-europe-madrid-2021", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
     {% include "shared/_notice_default.html" %}
   {% endwith %}
 {% endblock notices_content %}
