@@ -1,7 +1,5 @@
 <div class="col-4 blog-p-card--post">
-  <header class="blog-p-card__header highlight-{{ article.group.slug }}">
-    <h5 class="p-muted-heading u-no-margin--bottom">{% if article.group.name %}{{ article.group.name }}{% else %}Ubuntu{% endif %}</h5>
-  </header>
+  {% include "blog/blog-card-header.html" %}
 
   <div class="blog-p-card__content">
 
