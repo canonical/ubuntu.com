@@ -1,4 +1,4 @@
-import { Button, List, Modal, Row } from "@canonical/react-components";
+import { Button, List, Modal } from "@canonical/react-components";
 import React from "react";
 import usePortal from "react-useportal";
 
