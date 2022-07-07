@@ -540,7 +540,7 @@ def cve_index():
         if release["codename"] != "upstream":
             all_releases.append(release)
 
-    releases = []
+    selected_releases = []
 
     for release in all_releases:
         # format dates
@@ -550,12 +550,25 @@ def cve_index():
         esm_date = datetime.strptime(
             release["esm_expires"], "%Y-%m-%dT%H:%M:%S"
         )
+
         # filter releases
-        if support_date > datetime.now() or esm_date > datetime.now():
-            releases.append(release)
+        if versions:
+            for version in versions:
+                if version == release["codename"]: 
+                    selected_releases.append(
+                            release
+                        )
+        elif version:
+            if version == release["codename"]: 
+                selected_releases.append(
+                        release
+                    )
+        elif support_date > datetime.now() or esm_date > datetime.now():
+            selected_releases.append(release)
 
-    releases = sorted(releases, key=lambda d: d["version"])
-
+    
+    selected_releases = sorted(selected_releases, key=lambda d: d["version"])
+   
     friendly_names = {
         "DNE": "Does not exist",
         "needs-triage": "Needs triage",
@@ -576,33 +589,11 @@ def cve_index():
                     "name": friendly_names[status["status"]],
                     "pocket": status["pocket"],
                 }
+                print(cve_package["release_statuses"][status["release_codename"]])
 
-    version_releases = []
-    if versions:
-        for release in all_releases:
-            for version in versions:
-                if version == release["codename"]:
-                    version_releases.append(
-                        {
-                            "version": release["version"],
-                            "support_tag": release["support_tag"],
-                            "codename": release["codename"],
-                        }
-                    )
-    elif version:
-        for release in all_releases:
-            if version == release["codename"]:
-                version_releases.append(
-                    {
-                        "version": release["version"],
-                        "support_tag": release["support_tag"],
-                        "codename": release["codename"],
-                    }
-                )
 
     return flask.render_template(
         "security/cve/index.html",
-        releases=releases,
         all_releases=all_releases,
         cves=cves,
         total_results=total_results,
@@ -615,7 +606,7 @@ def cve_index():
         component=component,
         versions=versions,
         statuses=statuses,
-        version_releases=version_releases,
+        selected_releases=selected_releases,
     )
 
 
