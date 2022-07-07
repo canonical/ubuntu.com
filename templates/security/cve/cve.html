@@ -56,6 +56,19 @@
         <p>{{ cve.ubuntu_description }}</p>
         {% endif %}
 
+        {% if cve.status == 'active' and cve.notes %}
+          <h2>Notes</h2>
+          <table>
+            <tr><th style="width: 10em;">Author</th><th>Note</th></tr>
+            {% for note in cve.notes %}
+            <tr>
+              <td><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></td>
+              <td><pre>{{ note.note }}</pre></td>
+            </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+
         {%if cve.mitigation %}
         <h2>Mitigation</h2>
         <pre>{{ cve.mitigation }}</pre>
@@ -273,19 +286,6 @@
 
     <div class="row">
       <div class="col-9">
-        {% if cve.status == 'active' and cve.notes %}
-          <h2>Notes</h2>
-          <table>
-            <tr><th style="width: 10em;">Author</th><th>Note</th></tr>
-            {% for note in cve.notes %}
-            <tr>
-              <td><a href="https://launchpad.net/~{{ note.author }}">{{ note.author }}</a></td>
-              <td><pre>{{ note.note }}</pre></td>
-            </tr>
-            {% endfor %}
-          </table>
-        {% endif %}
-
         <h2>References</h2>
         <ul>
           {% if cve.references %}
