@@ -148,7 +148,11 @@ const Version = () => {
       <Row>
         <Col size={12}>
           <Card
-            title={`For Ubuntu ${version}, all UA plans include:`}
+            title={
+              <h3 className="p-heading--4 p-card__title">
+                For Ubuntu {version}, all UA plans include:
+              </h3>
+            }
             className="version-features-section"
           >
             <Row>
