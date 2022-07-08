@@ -579,9 +579,6 @@ def cve_index():
                     "name": friendly_names[status["status"]],
                     "pocket": status["pocket"],
                 }
-                print(
-                    cve_package["release_statuses"][status["release_codename"]]
-                )
 
     return flask.render_template(
         "security/cve/index.html",
