@@ -142,7 +142,7 @@ from webapp.security.views import (
     single_cves_sitemap,
     cves_sitemap,
 )
-from webapp.metaimage import share_meta_image
+from webapp.metaimage import generate_meta_image
 
 from webapp.certified.views import (
     certified_home,
@@ -518,11 +518,12 @@ app.add_url_rule(
     view_func=appliance_install,
 )
 app.add_url_rule(
-    "/appliance/portfolio", view_func=appliance_portfolio,
+    "/appliance/portfolio",
+    view_func=appliance_portfolio,
 )
 
 app.add_url_rule(
-    "/static/files/meta_image.png", view_func=share_meta_image, methods=["GET"]
+    "/generate-meta-image", view_func=generate_meta_image, methods=["GET"]
 )
 
 # blog section
@@ -642,7 +643,8 @@ engage_path = "/engage"
 engage_pages = EngagePages(
     parser=EngageParser(
         api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/", session=session,
+            base_url="https://discourse.ubuntu.com/",
+            session=session,
         ),
         index_topic_id=18033,
         url_prefix=engage_path,
@@ -701,7 +703,10 @@ def takeovers_json():
 def takeovers_index():
     takeovers = get_takeovers()
 
-    return flask.render_template("takeovers/index.html", takeovers=takeovers,)
+    return flask.render_template(
+        "takeovers/index.html",
+        takeovers=takeovers,
+    )
 
 
 app.add_url_rule("/16-04", view_func=sixteen_zero_four)
@@ -745,7 +750,9 @@ app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
-        api=discourse_api, index_topic_id=11322, url_prefix=url_prefix,
+        api=discourse_api,
+        index_topic_id=11322,
+        url_prefix=url_prefix,
     ),
     document_template="/server/docs/document.html",
     url_prefix=url_prefix,
@@ -767,7 +774,9 @@ server_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
-    "/templates/<filename>", "templates", view_func=show_template,
+    "/templates/<filename>",
+    "templates",
+    view_func=show_template,
 )
 
 tutorials_path = "/tutorials"

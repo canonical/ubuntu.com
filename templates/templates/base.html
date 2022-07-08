@@ -59,9 +59,10 @@
   <meta name="twitter:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
   <meta property="og:image" content="{% if 'http' not in self.meta_image() %}https://assets.ubuntu.com/v1/{% endif %}{{ self.meta_image() }}">
   {% else %}
+  {% set image_content_url = request.host_url + "generate-meta-image?title=" + (self.title() | urlencode) %}
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="/static/files/meta_image.png?title={{ self.title() | urlencode }}">
-  <meta property="og:image" content="/static/files/meta_image.png?title={{ self.title() | urlencode }}">
+  <meta name="twitter:image" content="{{ image_content_url }}">
+  <meta property="og:image" content="{{ image_content_url }}">
   {% endif %}
 
   {% block extra_metatags %}{% endblock %}
