@@ -24,6 +24,7 @@
 {% endmacro %}
 
 {% block outer_content %}
+{% if siteSearch != "https://ubuntu.com/server/docs" %}
 {% with
   search_action=search_action,
   siteSearch=siteSearch,
@@ -31,6 +32,8 @@
 %}
   {% include "templates/docs/shared/_search-box.html" %}
 {% endwith %}
+{% endif %}
+
 <div class="p-strip is-shallow">
   <div class="row">
     <aside class="col-3">

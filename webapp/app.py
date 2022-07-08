@@ -759,16 +759,16 @@ server_docs = Docs(
 )
 
 # Server docs search
-app.add_url_rule(
-    "/server/docs/search",
-    "server-docs-search",
-    build_search_view(
-        session=session,
-        site="ubuntu.com/server/docs",
-        template_path="/server/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
+# app.add_url_rule(
+#     "/server/docs/search",
+#     "server-docs-search",
+#     build_search_view(
+#         session=session,
+#         site="ubuntu.com/server/docs",
+#         template_path="/server/docs/search-results.html",
+#         search_engine_id=search_engine_id,
+#     ),
+# )
 
 server_docs.init_app(app)
 
