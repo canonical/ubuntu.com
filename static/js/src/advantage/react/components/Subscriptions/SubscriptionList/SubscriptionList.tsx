@@ -87,49 +87,47 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   );
 
   return (
-    <div className="p-subscriptions__list">
-      <div className="p-subscriptions__list-scroll">
-        {sortedUASubscriptions.length ? (
-          <ListGroup
-            data-test="ua-subscriptions-group"
-            title="Ubuntu Advantage"
-            marketplace={UserSubscriptionMarketplace.CanonicalUA}
-          >
-            {uaSubscriptions}
-          </ListGroup>
-        ) : null}
+    <div className="p-subscriptions__list p-card">
+      {sortedUASubscriptions.length ? (
+        <ListGroup
+          data-test="ua-subscriptions-group"
+          title="Ubuntu Advantage"
+          marketplace={UserSubscriptionMarketplace.CanonicalUA}
+        >
+          {uaSubscriptions}
+        </ListGroup>
+      ) : null}
 
-        {sortedBlenderSubscriptions.length ? (
-          <ListGroup
-            data-test="blender-subscriptions-group"
-            title="Blender"
-            marketplace={UserSubscriptionMarketplace.Blender}
-          >
-            {blenderSubscriptions}
-          </ListGroup>
-        ) : null}
+      {sortedBlenderSubscriptions.length ? (
+        <ListGroup
+          data-test="blender-subscriptions-group"
+          title="Blender"
+          marketplace={UserSubscriptionMarketplace.Blender}
+        >
+          {blenderSubscriptions}
+        </ListGroup>
+      ) : null}
 
-        {freeSubscription ? (
-          <ListGroup
-            title="Free personal token"
-            marketplace={UserSubscriptionMarketplace.Free}
-          >
-            <ListCard
-              data-test="free-subscription"
-              isSelected={selectedId === freeSubscription.id}
-              onClick={() => {
-                onSetActive(freeSubscription.id);
-                sendAnalyticsEvent({
-                  eventCategory: "Advantage",
-                  eventAction: "subscription-change",
-                  eventLabel: "free subscription clicked",
-                });
-              }}
-              subscription={freeSubscription}
-            />
-          </ListGroup>
-        ) : null}
-      </div>
+      {freeSubscription ? (
+        <ListGroup
+          title="Free personal token"
+          marketplace={UserSubscriptionMarketplace.Free}
+        >
+          <ListCard
+            data-test="free-subscription"
+            isSelected={selectedId === freeSubscription.id}
+            onClick={() => {
+              onSetActive(freeSubscription.id);
+              sendAnalyticsEvent({
+                eventCategory: "Advantage",
+                eventAction: "subscription-change",
+                eventLabel: "free subscription clicked",
+              });
+            }}
+            subscription={freeSubscription}
+          />
+        </ListGroup>
+      ) : null}
     </div>
   );
 };
