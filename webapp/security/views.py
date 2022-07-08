@@ -503,8 +503,6 @@ def cve_index():
     limit = flask.request.args.get("limit", default=20, type=int)
     offset = flask.request.args.get("offset", default=0, type=int)
     component = flask.request.args.get("component")
-    version = flask.request.args.get("version", default="", type=str)
-    status = flask.request.args.get("status", default="", type=str)
     versions = flask.request.args.getlist("version")
     statuses = flask.request.args.getlist("status")
 
@@ -516,8 +514,8 @@ def cve_index():
         limit=limit,
         offset=offset,
         component=component,
-        version=version,
-        status=status,
+        versions=versions,
+        statuses=statuses,
     )
 
     cves = cves_response.get("cves")
@@ -552,23 +550,15 @@ def cve_index():
         )
 
         # filter releases
-        if versions:
+        if versions and versions != [""]:
             for version in versions:
-                if version == release["codename"]: 
-                    selected_releases.append(
-                            release
-                        )
-        elif version:
-            if version == release["codename"]: 
-                selected_releases.append(
-                        release
-                    )
+                if version == release["codename"]:
+                    selected_releases.append(release)
         elif support_date > datetime.now() or esm_date > datetime.now():
             selected_releases.append(release)
 
-    
     selected_releases = sorted(selected_releases, key=lambda d: d["version"])
-   
+
     friendly_names = {
         "DNE": "Does not exist",
         "needs-triage": "Needs triage",
@@ -589,8 +579,9 @@ def cve_index():
                     "name": friendly_names[status["status"]],
                     "pocket": status["pocket"],
                 }
-                print(cve_package["release_statuses"][status["release_codename"]])
-
+                print(
+                    cve_package["release_statuses"][status["release_codename"]]
+                )
 
     return flask.render_template(
         "security/cve/index.html",

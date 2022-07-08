@@ -119,10 +119,9 @@ class SecurityAPI:
         limit: int,
         offset: int,
         component: str,
-        version: str,
-        status: str,
+        versions: list,
+        statuses: list,
     ):
-
         parameters = {
             "q": query,
             "priority": priority,
@@ -130,23 +129,20 @@ class SecurityAPI:
             "limit": limit,
             "offset": offset,
             "component": component,
-            "version": version,
-            "status": status,
+            "version": versions,
+            "status": statuses,
         }
 
         # Remove falsey items from dictionary
-        filtered_parameters = {k: v for k, v in parameters.items() if v}
+        filtered_parameters = {}
+        for key, value in parameters.items():
+            if value:
+                filtered_parameters[key] = value
 
-        if parameters["status"] == "":
-            filtered_parameters.update({"status": ""})
-
-        if parameters["version"] == "":
-            filtered_parameters.update({"version": ""})
-
-        filtered_parameters = urlencode(filtered_parameters)
+        query_string = urlencode(filtered_parameters, doseq=True)
 
         try:
-            cves_response = self._get(f"cves.json?{filtered_parameters}")
+            cves_response = self._get(f"cves.json?{query_string}")
         except HTTPError as error:
             if error.response.status_code == 404:
                 return None
