@@ -17,6 +17,7 @@ import { SelectedId } from "./types";
 const Content = () => {
   const [modalActive, setModalActive] = useState(false);
   const [selectedId, setSelectedId] = useState<SelectedId>(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [scrollTargetRef, scrollIntoView] = useScrollIntoView<HTMLDivElement>(
     20
   );
@@ -25,13 +26,26 @@ const Content = () => {
     (token: SelectedId) => {
       // Only set the token if it has changed to another token. The selected
       // token is always needed for large screens.
-      if (token) {
+      if (hasUnsavedChanges) {
+        if (
+          window.confirm(
+            "You have unsaved changes. Are you sure you want to leave?"
+          )
+        ) {
+          // User asked to leave the page
+          if (token) {
+            setSelectedId(token);
+            scrollIntoView();
+          }
+        }
+      }
+      if (token && !hasUnsavedChanges) {
         setSelectedId(token);
         scrollIntoView();
       }
       setModalActive(!!token);
     },
-    [setSelectedId]
+    [setSelectedId, hasUnsavedChanges]
   );
 
   // Select a token on the first load.
@@ -88,6 +102,7 @@ const Content = () => {
         }}
         ref={scrollTargetRef}
         selectedId={selectedId}
+        setHasUnsavedChanges={setHasUnsavedChanges}
       />
     </Card>
   );

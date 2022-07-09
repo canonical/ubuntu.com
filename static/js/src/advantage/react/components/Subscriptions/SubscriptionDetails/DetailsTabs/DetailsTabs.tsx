@@ -23,6 +23,7 @@ enum ActiveTab {
 type Props = {
   subscription: UserSubscription;
   token?: ContractToken;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 } & HTMLProps<HTMLDivElement>;
 
 type DocsLink = {
@@ -138,7 +139,12 @@ const generateDocLinks = (
     []
   );
 
-const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
+const DetailsTabs = ({
+  subscription,
+  token,
+  setHasUnsavedChanges,
+  ...wrapperProps
+}: Props) => {
   const featuresDisplay = filterAndFormatEntitlements(
     subscription.entitlements
   );
@@ -214,7 +220,12 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       break;
     case ActiveTab.FEATURES:
     default:
-      content = <FeaturesTab subscription={subscription} />;
+      content = (
+        <FeaturesTab
+          subscription={subscription}
+          setHasUnsavedChanges={setHasUnsavedChanges}
+        />
+      );
       break;
   }
   return (

@@ -29,10 +29,14 @@ type Props = {
   modalActive?: boolean;
   onCloseModal: () => void;
   selectedId?: SelectedId;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
-  ({ modalActive, onCloseModal, selectedId }: Props, ref) => {
+  (
+    { modalActive, onCloseModal, selectedId, setHasUnsavedChanges }: Props,
+    ref
+  ) => {
     const { openPortal, closePortal, isOpen, Portal } = usePortal();
     const showPortal = useCallback((show: boolean) => {
       // Programatically opening portals currently has an unresolved issue so we
@@ -241,7 +245,10 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               setShowingCancel={setShowingCancel}
             />
           ) : (
-            <DetailsContent selectedId={selectedId} />
+            <DetailsContent
+              selectedId={selectedId}
+              setHasUnsavedChanges={setHasUnsavedChanges}
+            />
           )}
         </section>
         {showingRenewalModal ? (
