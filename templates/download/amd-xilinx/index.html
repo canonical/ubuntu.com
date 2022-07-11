@@ -214,12 +214,15 @@
             <h2>Download Ubuntu Desktop</h2>
             <h3 class="p-heading--4">Ubuntu Desktop 22.04 LTS</h3>
             <p class="u-sv1">The version of Ubuntu with up to 10 years of long term support, until April 2032.</p>
-            <div class="p-notification--information">
+            <div class="p-notification--information is-inline">
               <div class="p-notification__content">
                 <h5 class="p-notification__title">Note:</h5>
-                <p>This Zynq UltraSCale+ MPSoC Ubuntu image will be available in Q3 2022.</p>
+                <p class="p-notification__message">This is a pre-production release for Xilinx Zynq UltraScale+ (<a href="https://support.xilinx.com/s/question/0D52E00007BslVuSAJ/ubuntu-2204-lts-beta-for-kria?language=en_USMPSAY/certified-ubuntu-2004-lts-for-xilinx-devices?language=en_US">see this forum post for details</a>); please check back for a full production release image in Q3 2022.</p>
               </div>
             </div>
+            
+            <p><a class="p-button--positive" href="https://people.canonical.com/~platform/images/xilinx/zcu-ubuntu-22.04/iot-limerick-zcu-classic-desktop-2204-x04-20220618-1.img.xz">Download 64-bit</a></p>
+
             <p>Works on:</p>
             <ul class="p-list">
               <li class="p-list__item is-ticked">Xilinx ZCU102</li>
@@ -243,7 +246,48 @@
         <div class="u-fixed-width">
           <h4>First time installing Ubuntu on Xilinx?</h4>
           <p>Please see the <a href="https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2037317633/Getting+Started+with+Certified+Ubuntu+20.04+LTS+for+Xilinx+Devices?utm_source=canonical&utm_medium=referral&utm_campaign=ubuntu&utm_content=download&utm_term=desktop_image">Xilinx Getting Started Guide for Ubuntu 22.04</a> for more information.</p>
+
+          <p><strong>Xilinx Ubuntu Software Development Kit</strong></p>
+          <p>Ubuntu developers targeting the Zynq UltraScale+ MPSoC Development Boards may also want to download the following files:</p>
         </div>
+
+        <div class="u-fixed-width">
+          <table aria-label="Xilinx Ubuntu Software Development Kit table">
+            <thead>
+              <tr>
+                <th>Image name</th>
+                <th colspan="2">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><a
+                     href="https://people.canonical.com/~platform/images/xilinx/zcu-ubuntu-22.04/iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-sysroot.tar.xz">iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-sysroot.tar.xz</a>
+                </th>
+                <td colspan="2">Sysroot for cross-compilation</td>
+              </tr>
+              <tr>
+                <th><a
+                     href="https://people.canonical.com/~platform/images/xilinx/zcu-ubuntu-22.04/iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-rootfs.ext4.xz">iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-rootfs.ext4.xz</a>
+                </th>
+                <td colspan="2">EXT4 formatted partition containing entire raw rootfs</td>
+              </tr>
+              <tr>
+                <th><a
+                     href="https://people.canonical.com/~platform/images/xilinx/zcu-ubuntu-22.04/iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-rootfs.tar.gz">iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-rootfs.tar.gz</a>
+                </th>
+                <td colspan="2">Raw Root filesystem</td>
+              </tr>
+              <tr>
+                <th><a
+                     href="https://people.canonical.com/~platform/images/xilinx/zcu-ubuntu-22.04/iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-system-boot.tar.gz">iot-limerick-zcu-classic-desktop-2204-x04-20220618-1-system-boot.tar.gz</a>
+                </th>
+                <td colspan="2">FAT Partition Contents</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div class="u-fixed-width u-sv3">
           <hr class="u-sv3"/>
         </div>
