@@ -17,6 +17,10 @@ const UserSearch = ({
     handleSearch(searchInputValue);
   }, [searchInputValue]);
 
+  const resetSearchInput: React.MouseEventHandler<HTMLButtonElement> = () => {
+    setSearchInputValue("");
+  };
+
   return (
     <form
       className="p-search-box"
@@ -40,7 +44,7 @@ const UserSearch = ({
           type="reset"
           aria-label="clear"
           className="p-search-box__reset"
-          onClick={() => setSearchInputValue("")}
+          onClick={resetSearchInput}
         >
           <i className="p-icon--close"></i>
         </button>
