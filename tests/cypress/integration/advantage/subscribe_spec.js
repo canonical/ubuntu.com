@@ -33,8 +33,8 @@ const fillInCardDetails = () => {
 };
 
 const fillInUserDetails = (email) => {
-  cy.findByLabelText("Email my receipt to:").type(email);
-  cy.findByLabelText("Name:").type("Test Name");
+  cy.findByLabelText("Email my receipt to:").type(email, { force: true });
+  cy.findByLabelText("Name:").type("Test Name", { force: true });
   cy.findByLabelText("Organisation:").type("Abbey Road Studios");
   cy.findByLabelText("Address:").type("Abbey Road");
   cy.findByLabelText("Postal code:").type("NW8 9AY");
