@@ -197,6 +197,11 @@ def bad_request_error(error):
     return flask.render_template("400.html", message=error.description), 400
 
 
+@app.errorhandler(403)
+def forbidden_error(error):
+    return flask.render_template("403.html", message=error.description), 403
+
+
 @app.errorhandler(410)
 def deleted_error(error):
     return flask.render_template("410.html", message=error.description), 410
@@ -754,16 +759,16 @@ server_docs = Docs(
 )
 
 # Server docs search
-# app.add_url_rule(
-#     "/server/docs/search",
-#     "server-docs-search",
-#     build_search_view(
-#         session=session,
-#         site="ubuntu.com/server/docs",
-#         template_path="/server/docs/search-results.html",
-#         search_engine_id=search_engine_id,
-#     ),
-# )
+app.add_url_rule(
+    "/server/docs/search",
+    "server-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/server/docs",
+        template_path="/server/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
 
 server_docs.init_app(app)
 
