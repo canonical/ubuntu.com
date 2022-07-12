@@ -103,6 +103,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
           "is-active": modalActive && !showingCancel,
         })}
         ref={ref}
+        style={{ position: "sticky", top: 0, alignSelf: "start" }}
       >
         <section className="p-modal__dialog">
           <div className="u-sv1">

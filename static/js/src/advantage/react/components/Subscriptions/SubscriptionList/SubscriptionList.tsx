@@ -87,7 +87,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
   );
 
   return (
-    <div className="p-subscriptions__list p-card">
+    <div className="p-subscriptions__list p-card" style={{ overflow: "unset" }}>
       {sortedUASubscriptions.length ? (
         <ListGroup
           data-test="ua-subscriptions-group"
