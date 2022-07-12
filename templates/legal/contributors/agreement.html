@@ -27,7 +27,7 @@
   // initialize our variables
   var captchaReady = 0;
   var wFORMSReady = 0;
-  
+
   // when wForms is loaded call this
   var wformsReadyCallback = function () {
     // using this var to denote if wForms is loaded
@@ -47,10 +47,10 @@
     // wFORMSReady = 1 and captchaReady = 1
     onloadCallback();
   };
-  
+
   // add event listener to fire when wForms is fully loaded
   document.addEventListener("wFORMSLoaded", wformsReadyCallback);
-  
+
   var enableSubmitButton = function() {
     var submitButton = document.getElementById('submit_button');
     var explanation = document.getElementById('disabled-explanation');
@@ -71,7 +71,7 @@
       }
     }
   };
-  
+
   // call this on both captcha async complete and wforms fully
   // initialized since we can't be sure which will complete first
   // and we need both done for this to function just check that they are
@@ -94,13 +94,13 @@
         standardCaptcha = standardCaptcha.parentNode.parentNode.parentNode;
         standardCaptcha.parentNode.removeChild(standardCaptcha);
       }
-      
+
       if (!wFORMS.instances['paging']) {
         document.getElementById("g-recaptcha-render-div").parentNode.parentNode.parentNode.style.display = "block";
         //document.getElementById("g-recaptcha-render-div").parentNode.parentNode.parentNode.removeAttribute("hidden");
       }
       document.getElementById("g-recaptcha-render-div").getAttributeNode('id').value = 'tfa_captcha_text';
-      
+
       var captchaError = '';
       if (captchaError == '1') {
         var errMsgText = 'The CAPTCHA was not completed successfully.';
@@ -110,7 +110,7 @@
         errMsgDiv.innerText = errMsgText;
         var loc = document.querySelector('.g-captcha-error');
         loc.insertBefore(errMsgDiv, loc.childNodes[0]);
-        
+
         /* See wFORMS.behaviors.paging.applyTo for origin of this code */
         if (wFORMS.instances['paging']) {
           var b = wFORMS.instances['paging'][0];
@@ -187,6 +187,23 @@ defer></script>
   });
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var indTarget = document.querySelector('#tfa_Iamsigningasanin1');
+    var orgTarget = document.querySelector('#tfa_Iamsigningonbeha1');
+    var input = document.querySelector('#tfa_2-D');
+
+    if (indTarget && orgTarget && input) {
+      indTarget.addEventListener('click', function() {
+        input.classList.add('u-hide');
+      });
+      orgTarget.addEventListener('click', function() {
+        input.classList.remove('u-hide');
+      });
+    }
+  });
+</script>
+
 <link href="https://www.tfaforms.com/dist/form-builder/5.0.0/wforms-layout.css?v=1630596505" rel="stylesheet" type="text/css" />
 
 <link href="https://www.tfaforms.com/wForms/3.4/css/nicerblank/wforms.css" rel="stylesheet" type="text/css" />
@@ -232,7 +249,7 @@ defer></script>
                       </span>
                     </label>
                   </span>
-                  
+
                   <span class="oneChoice">
                     <label class="p-radio">
                       <input type="radio" value="tfa_Iamsigningonbeha1" class="p-radio__input" id="tfa_Iamsigningonbeha1" name="tfa_Agreementtype1" aria-required="true" data-conditionals="#tfa_CanonicalEntityC" aria-labelledby="tfa_Iamsigningonbeha1-L" data-tfa-labelledby="tfa_Agreementtype1-L tfa_Iamsigningonbeha1-L">
@@ -351,6 +368,9 @@ defer></script>
               <div class="oneField field-container-D    " id="tfa_Email1-D">
                 <label id="tfa_Email1-L" class="label preField reqMark" for="tfa_Email1">Email</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_Email1" name="tfa_Email1" value=""  title="Email" class="validate-email required"></div>
               </div>
+              <div class="oneField field-container-D" id="tfa_2-D">
+                <label id="tfa_2-L" class="label preField reqMark" for="tfa_2">Organisation name</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_2" name="tfa_2" value="" data-condition="`#tfa_Iamsigningonbeha1`" title="Organisation Name" class="required"></div>
+                </div>
               <div class="oneField field-container-D    " id="tfa_Phone-D">
                 <label id="tfa_Phone-L" class="label preField reqMark" for="tfa_Phone">Phone</label><br><div class="inputWrapper"><input aria-required="true" type="text" id="tfa_Phone" name="tfa_Phone" value=""  title="Phone" class="required"></div>
               </div>
@@ -684,7 +704,7 @@ defer></script>
           <p class="supportInfo" >
           </p>
         </div>
-        
+
         <script>
           // Used in legal/contributors/submit.html
           var lp_lookup_callback = {
@@ -705,14 +725,14 @@ defer></script>
               }
             }
           };
-          
+
           var launchpad_id_lookup = function() {
             var tfaLPid = document.getElementById('tfa_LPid');
             tfaLPid.addEventListener('blur', function(e) {
               httpGetAsync("/lookup_launchpad_id/" + tfaLPid.value, lp_lookup_callback);
             });
           }();
-          
+
           function httpGetAsync(theUrl, callback) {
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange = function() {
@@ -723,6 +743,5 @@ defer></script>
             xmlHttp.send(null);
           }
         </script>
-        
+
         {% endblock content %}
-        
