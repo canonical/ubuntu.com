@@ -88,7 +88,10 @@ const Content = () => {
   }
 
   return (
-    <Card className="u-no-margin--bottom u-no-padding p-subscriptions__card">
+    <Card
+      className="u-no-margin--bottom u-no-padding p-subscriptions__card"
+      style={{ overflow: "unset" }}
+    >
       <SubscriptionList selectedId={selectedId} onSetActive={onSetActive} />
       <SubscriptionDetails
         // Give the component a key so that the internal state gets reset when
