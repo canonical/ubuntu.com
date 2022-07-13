@@ -97,12 +97,14 @@
     background-size: 13px 13px;
     border-top: 1px solid $color-mid-light;
     color: $color-dark;
-    font-size: 0.8125rem;
+    font-size: 1.2rem;
     margin-top: 0;
     max-width: inherit;
     padding: $sp-medium 0;
+    padding-inline: 1rem;
 
     @media only screen and (min-width: $breakpoint-small) {
+      font-size: 0.8125rem;
       background: none;
       border: 0;
       padding: 0 0 $sp-x-small;
@@ -204,10 +206,11 @@
         border-top: 1px solid $color-mid-light;
         color: $color-dark;
         display: block;
-        font-size: 0.8125rem;
+        font-size: 1.2rem;
         padding: $sp-medium $sp-small $sp-medium;
 
         @media only screen and (min-width: $breakpoint-small) {
+          font-size: 0.8125rem;
           border: 0;
           padding: 0;
         }
