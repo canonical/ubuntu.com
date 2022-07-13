@@ -86,6 +86,7 @@ class SecurityAPI:
         offset: int,
         details: str,
         release: str,
+        order: str,
     ):
         """
         Makes request for all releases with ongoing support,
@@ -97,6 +98,7 @@ class SecurityAPI:
             "offset": offset,
             "details": details,
             "release": release,
+            "order": order
         }
 
         # Remove falsey items from dictionary
