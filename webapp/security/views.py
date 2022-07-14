@@ -236,7 +236,7 @@ def single_notices_sitemap(offset):
 
         if notice.get("published"):
             notice["published"] = dateutil.parser.parse(
-                cve["published"]
+                notice["published"]
             ).strftime("%-d %B %Y")
 
         links.append(
@@ -526,7 +526,7 @@ def cves_sitemap():
 
     cves_count = cves_response.get("total_results")
 
-    base_url = "https://ubuntu.com/security/cve"
+    base_url = "https://ubuntu.com/security/cves"
 
     xml_sitemap = flask.render_template(
         "sitemap_index_template.xml",
