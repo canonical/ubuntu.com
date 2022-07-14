@@ -526,7 +526,7 @@ def cve_index():
     is_cve_id = re.match(r"^CVE-\d{4}-\d{4,7}$", query.upper())
 
     # get cve with specific id
-    if is_cve_id and cves.get(query.upper()):
+    if is_cve_id and cves_response.get(query.upper()):
         return flask.redirect(f"/security/{query.lower()}")
 
     # releases in desc order
