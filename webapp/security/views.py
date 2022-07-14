@@ -123,7 +123,11 @@ def notices():
     all_releases = security_api.get_releases()
 
     notices_response = security_api.get_notices(
-        limit=limit, offset=offset, details=details, release=release, order=order,
+        limit=limit,
+        offset=offset,
+        details=details,
+        release=release,
+        order=order,
     )
 
     # get notices and total results from response object
@@ -188,7 +192,9 @@ def notices_feed(feed_type):
         title = f"{_id}: {notice_title}"
         description = notice["description"]
         published = notice["published"]
-        notice_path = flask.url_for(".notice", notice_id=notice["id"]).lstrip("/")
+        notice_path = flask.url_for(".notice", notice_id=notice["id"]).lstrip(
+            "/"
+        )
         link = f"{url_root}{notice_path}"
 
         entry = FeedEntry()
@@ -201,7 +207,7 @@ def notices_feed(feed_type):
 
         return entry
 
-    notices =  security_api.get_notices(
+    notices = security_api.get_notices(
         limit=10, offset="", details="", release="", order=""
     ).get("notices")
 
@@ -217,27 +223,32 @@ def notices_feed(feed_type):
 def single_notices_sitemap(offset):
     # max limit is 100
     notices = security_api.get_notices(
-        limit="100", offset=offset, details="", release="", order="",
+        limit="100",
+        offset=offset,
+        details="",
+        release="",
+        order="",
     ).get("notices")
-    
-    links= []
+
+    links = []
     for notice in notices:
-        notice_id =notice["id"]
+        notice_id = notice["id"]
 
         if notice.get("published"):
-            notice["published"] = dateutil.parser.parse(cve["published"]).strftime(
-                "%-d %B %Y"
-            )
+            notice["published"] = dateutil.parser.parse(
+                cve["published"]
+            ).strftime("%-d %B %Y")
 
-        links.append({
-            "url": f"https://ubuntu.com/security/notices/{notice_id}",
-            "last_updated": notice["published"] if notice["published"] else ""
-        })
+        links.append(
+            {
+                "url": f"https://ubuntu.com/security/notices/{notice_id}",
+                "last_updated": notice["published"]
+                if notice["published"]
+                else "",
+            }
+        )
 
-    xml_sitemap = flask.render_template(
-        "sitemap.xml",
-        links=links
-    )
+    xml_sitemap = flask.render_template("sitemap.xml", links=links)
 
     response = flask.make_response(xml_sitemap)
     response.headers["Content-Type"] = "application/xml"
@@ -251,7 +262,7 @@ def notices_sitemap():
         limit="", offset="", details="", release="", order=""
     )
 
-    notices_count =notices_response.get("total_results")
+    notices_count = notices_response.get("total_results")
 
     base_url = "https://ubuntu.com/security/notices"
 
@@ -260,9 +271,9 @@ def notices_sitemap():
         base_url=base_url,
         links=[
             {
-                "url": f"{base_url}/sitemap-{link * 10000}.xml",
+                "url": f"{base_url}/sitemap-{link * 100}.xml",
             }
-            for link in range(ceil(notices_count / 10000))
+            for link in range(ceil(notices_count / 100))
         ],
     )
 
@@ -481,21 +492,18 @@ def single_cves_sitemap(offset):
         cve_id = cve["id"]
 
         if cve.get("published"):
-            cve["published"] = dateutil.parser.parse(cve["published"]).strftime(
-                "%-d %B %Y"
-            )
+            cve["published"] = dateutil.parser.parse(
+                cve["published"]
+            ).strftime("%-d %B %Y")
 
-        links.append({
-            "url": f"https://ubuntu.com/security/{cve_id}",
-            "last_updated": (
-               cve["published"] if cve["published"] else ""
-            ),
-        })
-    
-    xml_sitemap = flask.render_template(
-        "sitemap.xml",
-        links=links
-    )
+        links.append(
+            {
+                "url": f"https://ubuntu.com/security/{cve_id}",
+                "last_updated": (cve["published"] if cve["published"] else ""),
+            }
+        )
+
+    xml_sitemap = flask.render_template("sitemap.xml", links=links)
 
     response = flask.make_response(xml_sitemap)
     response.headers["Content-Type"] = "application/xml"
@@ -515,7 +523,7 @@ def cves_sitemap():
         versions="",
         statuses="",
     )
-    
+
     cves_count = cves_response.get("total_results")
 
     base_url = "https://ubuntu.com/security/cve"
@@ -525,9 +533,9 @@ def cves_sitemap():
         base_url=base_url,
         links=[
             {
-                "url": f"{base_url}/sitemap-{link * 10000}.xml",
+                "url": f"{base_url}/sitemap-{link * 100}.xml",
             }
-            for link in range(ceil(cves_count / 10000))
+            for link in range(ceil(cves_count / 100))
         ],
     )
 

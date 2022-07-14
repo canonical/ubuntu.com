@@ -98,7 +98,7 @@ class SecurityAPI:
             "offset": offset,
             "details": details,
             "release": release,
-            "order": order
+            "order": order,
         }
 
         # Remove falsey items from dictionary
