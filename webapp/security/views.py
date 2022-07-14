@@ -1,6 +1,5 @@
 # Standard library
 import re
-from collections import defaultdict
 from datetime import datetime
 from math import ceil, floor
 
@@ -10,12 +9,8 @@ import dateutil
 import talisker.requests
 from feedgen.entry import FeedEntry
 from feedgen.feed import FeedGenerator
-from marshmallow import EXCLUDE
-from marshmallow.exceptions import ValidationError
 from mistune import Markdown
 from sortedcontainers import SortedDict
-from sqlalchemy import desc
-from sqlalchemy.exc import IntegrityError, DataError
 
 # Local
 from webapp.security.api import SecurityAPI
