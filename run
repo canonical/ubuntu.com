@@ -164,6 +164,39 @@ while [[ -n "${1:-}" ]] && [[ "${1:0:1}" == "-" ]]; do
     shift
 done
 
+start_django_db () {
+    # Run the database if necessary
+    if grep -q django.db.backends.postgresql_psycopg2 */settings.py 2> /dev/null; then
+        # Create isolated network
+        if ! docker network inspect ${network_name} &> /dev/null; then
+            docker network create ${network_name}
+        fi
+
+        # Start the database
+        trap "kill_container ${db_container}" EXIT;
+        if ! docker inspect -f {{.State.Running}} ${db_container} &>/dev/null; then
+            docker run \
+                --name ${db_container}       `# Name the container`  \
+                --rm                         `# Remove the container once it's finished`  \
+                --volume "${db_volume}":/var/lib/postgresql/data  `# Store dependencies in a docker volume`  \
+                ${http_proxy}                `# Include HTTP proxy if needed`  \
+                --network ${network_name}    `# Use an isolated network`  \
+                --network-alias db           `# Call this container "db" on the network so it can be found`  \
+                --detach                     `# Run in the background` \
+                postgres                     `# Use the image for node version 7`
+        fi
+
+        # Wait for it
+        wait_time=0
+        until docker exec ${db_container} pg_isready || [ $wait_time -eq 4 ]; do
+            sleep $(( wait_time++ ))
+        done
+
+        # Provision database
+        run_as_user "${network}" python3 manage.py migrate
+    fi
+}
+
 kill_container () {
     container_name="${1}"
 
