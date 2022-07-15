@@ -33,8 +33,8 @@ const fillInCardDetails = () => {
 };
 
 const fillInUserDetails = (email) => {
-  cy.findByLabelText("Email my receipt to:").type(email);
-  cy.findByLabelText("Name:").type("Test Name");
+  cy.findByLabelText("Email my receipt to:").type(email, { force: true });
+  cy.findByLabelText("Name:").type("Test Name", { force: true });
   cy.findByLabelText("Organisation:").type("Abbey Road Studios");
   cy.findByLabelText("Address:").type("Abbey Road");
   cy.findByLabelText("Postal code:").type("NW8 9AY");
@@ -55,12 +55,7 @@ context("/advantage/subscribe", () => {
     cy.findByText("Accept all and visit site").click();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      // Need to use { force: true } because the actual input element (radio button)
-      // that the label is for is invisible (we use our own styles)
-      // and cypress complains (it would usually indicate an issue, in our case it's intentional).
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
     cy.findByText("Cancel").click();
@@ -74,9 +69,7 @@ context("/advantage/subscribe", () => {
 
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
 
@@ -136,9 +129,7 @@ context("/advantage/subscribe", () => {
     cy.acceptCookiePolicy();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
 
@@ -205,9 +196,7 @@ context("/advantage/subscribe", () => {
     cy.acceptCookiePolicy();
 
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
 

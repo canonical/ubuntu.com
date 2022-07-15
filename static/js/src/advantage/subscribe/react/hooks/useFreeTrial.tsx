@@ -1,10 +1,10 @@
+import { useContext } from "react";
 import { useMutation } from "react-query";
 import { postFreeTrial } from "../../../api/contracts";
-import useProduct from "./useProduct";
+import { FormContext } from "../utils/FormContext";
 
 const useFreeTrial = () => {
-  const { product, quantity } = useProduct();
-
+  const { quantity, product } = useContext(FormContext);
   const mutation = useMutation(async () => {
     if (!product) {
       throw new Error("Product missing");
@@ -17,7 +17,7 @@ const useFreeTrial = () => {
           name: product.name,
           period: product.period,
           price: product.price.value,
-          product_listing_id: product.id,
+          product_listing_id: product.longId,
           quantity: quantity,
         },
       ],

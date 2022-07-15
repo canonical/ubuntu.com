@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
-import useProduct from "../../hooks/useProduct";
 import usePurchase from "../../hooks/usePurchase";
 import useFreeTrial from "../../hooks/useFreeTrial";
 import usePendingPurchase from "../../hooks/usePendingPurchase";
@@ -11,6 +10,7 @@ import { BuyButtonProps } from "../../utils/utils";
 import { getErrorMessage } from "../../../../error-handler";
 
 import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
+import { FormContext } from "../../utils/FormContext";
 
 const BuyButton = ({
   areTermsChecked,
@@ -40,8 +40,10 @@ const BuyButton = ({
   }, []);
 
   const { data: userInfo } = useStripeCustomerInfo();
+  const { quantity, product } = useContext(FormContext);
 
-  const purchaseMutation = usePurchase();
+  const purchaseMutation = usePurchase({ quantity, product });
+
   const freeTrialMutation = useFreeTrial();
 
   const {
@@ -50,11 +52,10 @@ const BuyButton = ({
     error: purchaseError,
   } = usePendingPurchase();
 
-  const { product, quantity } = useProduct();
   const GAFriendlyProduct = {
     id: product?.id,
     name: product?.name,
-    price: product?.price?.value / 100,
+    price: (product?.price?.value ?? 0) / 100,
     quantity: quantity,
   };
 

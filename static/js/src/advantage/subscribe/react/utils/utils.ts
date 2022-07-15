@@ -1,3 +1,4 @@
+import { marketplace } from "./../../../../PurchaseModal/utils/utils";
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 
 interface DefaultPaymentMethod {
@@ -99,3 +100,81 @@ export type BuyButtonProps = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 };
+
+export enum ProductTypes {
+  physical = "physical",
+  virtual = "virtual",
+  desktop = "desktop",
+  aws = "aws",
+  azure = "azure",
+  gcp = "gcp",
+}
+
+export enum LTSVersions {
+  jammy = "22.04",
+  focal = "20.04",
+  bionic = "18.04",
+  xenial = "16.04",
+  trusty = "14.04",
+}
+
+export enum Support {
+  unset = "unset",
+  essential = "essential",
+  standard = "standard",
+  advanced = "advanced",
+}
+
+export enum Features {
+  infra = "uai",
+  apps = "uaa",
+  pro = "uaia",
+}
+
+export enum Periods {
+  monthly = "monthly",
+  yearly = "yearly",
+}
+
+export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
+
+export type Product = {
+  canBeTrialled: boolean;
+  longId: string;
+  name: string;
+  period: Periods;
+  price: {
+    value: number;
+    currency: string;
+  };
+  private: boolean;
+  id: ProductIDs;
+  productID: string;
+  marketplace: marketplace;
+};
+
+export type ProductListings = {
+  [key in ProductIDs]?: Product;
+};
+
+export const isMonthlyAvailable = (product: Product | null) => {
+  if (!product || !product.id) return false;
+
+  const monthlyID = product.id.replace(Periods.yearly, Periods.monthly);
+  return !!window.productList[monthlyID as ProductIDs];
+};
+
+export const isPublicCloud = (type: ProductTypes) =>
+  type === ProductTypes.aws ||
+  type === ProductTypes.azure ||
+  type === ProductTypes.gcp;
+
+export const shouldShowApps = () =>
+  !!window.productList[
+    `${Features.pro}-${Support.essential}-${ProductTypes.physical}-${Periods.yearly}`
+  ];
+
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});

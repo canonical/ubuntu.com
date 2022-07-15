@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
-import { formatter } from "../../../renderers/form-renderer";
 import usePreview from "../../hooks/usePreview";
-import useProduct from "../../hooks/useProduct";
+import { FormContext } from "../../utils/FormContext";
+import { formatter } from "../../utils/utils";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
-  const { product, quantity } = useProduct();
-  const { data: preview } = usePreview();
-
+  const { quantity, product } = useContext(FormContext);
+  const { data: preview } = usePreview({ quantity, product });
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
         <div className="u-text-light">Subtotal:</div>
       </Col>
       <Col size={8}>
-        <div data-test="subtotal">
-          {formatter.format((product?.price?.value * quantity) / 100)}
+        <div data-testid="subtotal">
+          {formatter.format(((product?.price?.value ?? 0) * quantity) / 100)}
         </div>
       </Col>
     </Row>
@@ -33,7 +32,7 @@ function Summary() {
               <div className="u-text-light">For this period:</div>
             </Col>
             <Col size={8}>
-              <div data-test="for-this-period">
+              <div data-testid="for-this-period">
                 {formatter.format((preview?.total - preview?.taxAmount) / 100)}
               </div>
             </Col>
@@ -44,7 +43,7 @@ function Summary() {
             <div className="u-text-light">Tax:</div>
           </Col>
           <Col size={8}>
-            <div data-test="tax">
+            <div data-testid="tax">
               {formatter.format(preview?.taxAmount / 100)}
             </div>
           </Col>
@@ -54,7 +53,7 @@ function Summary() {
             <div className="u-text-light">Total</div>
           </Col>
           <Col size={8}>
-            <div data-test="total">
+            <div data-testid="total">
               <b>{formatter.format(preview?.total / 100)}</b>
             </div>
           </Col>
@@ -90,7 +89,7 @@ function Summary() {
         </Col>
         <Col size={8}>
           <div
-            data-test="name"
+            data-testid="name"
             dangerouslySetInnerHTML={{ __html: product?.name ?? "" }}
           />
         </Col>
@@ -100,8 +99,8 @@ function Summary() {
           <div className="u-text-light">Machines:</div>
         </Col>
         <Col size={8}>
-          <div data-test="machines">
-            {quantity} x {formatter.format(product?.price?.value / 100)}
+          <div data-testid="machines">
+            {quantity} x {formatter.format((product?.price?.value ?? 0) / 100)}
           </div>
         </Col>
       </Row>
@@ -110,7 +109,7 @@ function Summary() {
           <div className="u-text-light">Starts:</div>
         </Col>
         <Col size={8}>
-          <div data-test="start-date">{format(new Date(), DATE_FORMAT)}</div>
+          <div data-testid="start-date">{format(new Date(), DATE_FORMAT)}</div>
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">
@@ -120,7 +119,7 @@ function Summary() {
 
         {preview?.subscriptionEndOfCycle ? (
           <Col size={8}>
-            <div data-test="end-date">
+            <div data-testid="end-date">
               {format(new Date(preview?.subscriptionEndOfCycle), DATE_FORMAT)}
             </div>
             <br />
@@ -128,7 +127,7 @@ function Summary() {
           </Col>
         ) : (
           <Col size={8}>
-            <div data-test="end-date">
+            <div data-testid="end-date">
               {format(
                 add(new Date(), {
                   months: product?.period === "monthly" ? 1 : 12,

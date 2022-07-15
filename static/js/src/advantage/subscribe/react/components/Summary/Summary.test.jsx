@@ -1,34 +1,52 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render, screen } from "@testing-library/react";
 import { add, format } from "date-fns";
 import Summary from "./Summary";
-import * as useProduct from "../../hooks/useProduct";
 import * as usePreview from "../../hooks/usePreview";
+import * as utils from "../../utils/utils";
 
 import { product, preview } from "../../utils/test/Mocks";
+import { Features, Periods, Support } from "../../utils/utils";
+import { FormProvider } from "../../utils/FormContext";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 describe("Summary", () => {
-  it("renders correctly with no preview", () => {
-    jest.spyOn(useProduct, "default").mockImplementation(() => {
-      return { product: { ...product, price: { value: 10000 } }, quantity: 3 };
+  beforeAll(() => {
+    Object.defineProperty(window, "productList", {
+      value: {
+        "uai-essential-physical-yearly": {
+          ...product,
+          price: { value: 10000 },
+        },
+        "uai-essential-physical-monthly": {
+          ...product,
+          id: "uai-essential-physical-monthly",
+          period: "monthly",
+        },
+      },
     });
+  });
+
+  it("renders correctly with no preview", () => {
     jest.spyOn(usePreview, "default").mockImplementation(() => {
       return { data: null };
     });
-    const wrapper = shallow(<Summary />);
 
-    expect(wrapper.find("[data-test='name']").render().text()).toEqual(
-      "UA Infrastructure - Essential (Physical)"
+    render(
+      <FormProvider initialSupport={Support.essential} initialQuantity={3}>
+        <Summary />
+      </FormProvider>
     );
-    expect(wrapper.find("[data-test='machines']").text()).toEqual(
-      "3 x $100.00"
-    );
-    expect(wrapper.find("[data-test='start-date']").text()).toEqual(
+
+    expect(
+      screen.getByText("UA Infrastructure - Essential (Physical)")
+    ).toBeInTheDocument();
+    expect(screen.getByText("3 x $100.00")).toBeInTheDocument();
+    expect(screen.getByTestId("start-date")).toHaveTextContent(
       format(new Date(), DATE_FORMAT)
     );
-    expect(wrapper.find("[data-test='end-date']").text()).toEqual(
+    expect(screen.getByTestId("end-date")).toHaveTextContent(
       format(
         add(new Date(), {
           years: 1,
@@ -36,22 +54,36 @@ describe("Summary", () => {
         DATE_FORMAT
       )
     );
-    expect(wrapper.find("[data-test='subtotal']").text()).toEqual("$300.00");
+
+    expect(screen.getByTestId("subtotal")).toHaveTextContent("$300.00");
   });
 
   it("renders correctly with no preview and a monthly product", () => {
-    jest.spyOn(useProduct, "default").mockImplementation(() => {
-      return { product: { ...product, period: "monthly" }, quantity: 1 };
-    });
     jest.spyOn(usePreview, "default").mockImplementation(() => {
       return { data: null };
     });
-    const wrapper = shallow(<Summary />);
+    jest.spyOn(utils, "isMonthlyAvailable").mockImplementation(() => {
+      return true;
+    });
 
-    expect(wrapper.find("[data-test='start-date']").text()).toEqual(
+    render(
+      <FormProvider
+        initialSupport={Support.essential}
+        initialQuantity={3}
+        initialPeriod={Periods.monthly}
+      >
+        <Summary />
+      </FormProvider>
+    );
+
+    expect(
+      screen.getByText("UA Infrastructure - Essential (Physical)")
+    ).toBeInTheDocument();
+
+    expect(screen.getByTestId("start-date")).toHaveTextContent(
       format(new Date(), DATE_FORMAT)
     );
-    expect(wrapper.find("[data-test='end-date']").text()).toEqual(
+    expect(screen.getByTestId("end-date")).toHaveTextContent(
       format(
         add(new Date(), {
           months: 1,
@@ -62,9 +94,6 @@ describe("Summary", () => {
   });
 
   it("renders correctly with a preview with tax amount", () => {
-    jest.spyOn(useProduct, "default").mockImplementation(() => {
-      return { product: product, quantity: 1 };
-    });
     jest.spyOn(usePreview, "default").mockImplementation(() => {
       return {
         data: {
@@ -75,16 +104,17 @@ describe("Summary", () => {
         },
       };
     });
-    const wrapper = shallow(<Summary />);
+    render(
+      <FormProvider initialSupport={Support.essential}>
+        <Summary />
+      </FormProvider>
+    );
 
-    expect(wrapper.find("[data-test='tax']").text()).toEqual("$999.99");
-    expect(wrapper.find("[data-test='total']").text()).toEqual("$123.45");
+    expect(screen.getByTestId("tax")).toHaveTextContent("$999.99");
+    expect(screen.getByTestId("total")).toHaveTextContent("$123.45");
   });
 
   it("renders correctly with a preview with a different end of cycle", () => {
-    jest.spyOn(useProduct, "default").mockImplementation(() => {
-      return { product: product, quantity: 1 };
-    });
     jest.spyOn(usePreview, "default").mockImplementation(() => {
       return {
         data: {
@@ -95,12 +125,14 @@ describe("Summary", () => {
         },
       };
     });
-    const wrapper = shallow(<Summary />);
-
-    expect(wrapper.find("[data-test='for-this-period']").text()).toEqual(
-      "$200.00"
+    render(
+      <FormProvider initialSupport={Support.essential}>
+        <Summary />
+      </FormProvider>
     );
-    expect(wrapper.find("[data-test='end-date']").text()).toEqual(
+
+    expect(screen.getByTestId("for-this-period")).toHaveTextContent("$200.00");
+    expect(screen.getByTestId("end-date")).toHaveTextContent(
       "03 February 2042"
     );
   });

@@ -55,19 +55,23 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+    .image-wrapper {
+      height: 48px;
+      margin-bottom: 2.4rem;
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       display: flex;
 
       > div {
+        flex: 1 1 0;
+      }
+
+      span.p-radio__label {
         display: flex;
         flex-basis: 0;
         flex-direction: column;
         flex-grow: 1;
-
-        > .image-wrapper {
-          height: 48px;
-          margin-bottom: 2.4rem;
-        }
       }
     }
   }
@@ -135,7 +139,7 @@
       width: auto;
     }
 
-    .p-radio {
+    > .p-radio {
       margin: 0;
       max-width: none;
       padding: 0;
@@ -152,9 +156,8 @@
         top: 0;
       }
 
-      &__label {
+      > .p-radio__label {
         padding: 0;
-
         &::after,
         &::before {
           content: none;

@@ -1,15 +1,24 @@
 import { useQuery } from "react-query";
 import { postPurchasePreviewData } from "../../../api/contracts";
-import useProduct from "./useProduct";
 import useStripeCustomerInfo from "../../../../PurchaseModal/hooks/useStripeCustomerInfo";
+import { Product as UAProduct } from "../utils/utils";
+import { Product as BlenderProduct } from "advantage/subscribe/blender/utils/utils";
 
-const usePreview = () => {
-  const { product, quantity } = useProduct();
+type Props = {
+  quantity: number;
+  product: UAProduct | BlenderProduct | null;
+};
+
+const usePreview = ({ quantity, product }: Props) => {
   const { isError: isUserInfoError } = useStripeCustomerInfo();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["preview", product],
     async () => {
+      if (!product) {
+        throw new Error("Product missing");
+      }
+
       const res = await postPurchasePreviewData(
         window.accountId,
         [
@@ -17,12 +26,12 @@ const usePreview = () => {
             name: product.name,
             period: product.period,
             price: product.price.value,
-            product_listing_id: product.id,
+            product_listing_id: product.longId,
             quantity: quantity,
           },
         ],
         window.previousPurchaseIds?.[product.period],
-        window.STATE?.product?.marketplace
+        product?.marketplace
       );
 
       if (res.errors) {

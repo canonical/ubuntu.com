@@ -2,10 +2,10 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { add, format } from "date-fns";
-import { formatter } from "../../../advantage/subscribe/renderers/form-renderer";
 import { preview } from "../../utils/test/Mocks";
 
 import FreeTrialRadio from "./FreeTrialRadio";
+import { formatter } from "advantage/subscribe/react/utils/utils";
 
 const total = 123456;
 
