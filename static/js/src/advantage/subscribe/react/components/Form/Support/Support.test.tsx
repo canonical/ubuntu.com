@@ -62,7 +62,7 @@ test("Standard and advanced support are disabled destkop and Apps are selected",
 
 test("The section is disabled if a public cloud is selected", () => {
   render(
-    <FormProvider initialType={ProductTypes.aws}>
+    <FormProvider initialType={ProductTypes.publicCloud}>
       <Support />
     </FormProvider>
   );
