@@ -75,7 +75,7 @@ const ProductType = () => {
             <>
               <div className="image-wrapper">
                 <img
-                  src="https://assets.ubuntu.com/v1/a33638f0-public-cloud.svg"
+                  src="https://manager.assets.ubuntu.com/update?file-path=ca1ea583-icon-intro-cloud.svg"
                   alt=""
                 />
               </div>
