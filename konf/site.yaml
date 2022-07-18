@@ -8,11 +8,6 @@ env:
       key: maintenance
       name: ubuntu-com
 
-  - name: DATABASE_URL
-    secretKeyRef:
-      key: database_url
-      name: usn-db-url
-
   - name: SEARCH_API_KEY
     secretKeyRef:
       key: google-custom-search-key
@@ -135,11 +130,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -155,11 +145,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -213,11 +198,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -243,11 +223,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -276,11 +251,6 @@ production:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -306,11 +276,6 @@ production:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -417,11 +382,6 @@ staging:
         key: maintenance
         name: ubuntu-com
 
-    - name: DATABASE_URL
-      secretKeyRef:
-        key: database_url
-        name: usn-db-url
-
     - name: SEARCH_API_KEY
       secretKeyRef:
         key: google-custom-search-key
@@ -516,11 +476,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -536,11 +491,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -599,11 +549,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -629,11 +574,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -662,11 +602,6 @@ staging:
       replicas: 2
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -692,11 +627,6 @@ staging:
       replicas: 2
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -766,11 +696,6 @@ demo:
       configMapKeyRef:
         key: maintenance
         name: ubuntu-com
-
-    - name: DATABASE_URL
-      secretKeyRef:
-        key: database_url
-        name: usn-db-url
 
     - name: SEARCH_API_KEY
       secretKeyRef:

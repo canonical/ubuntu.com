@@ -26,8 +26,6 @@ dotrun
 
 Once the server has started, you can visit <http://127.0.0.1:8001> in your browser.
 
-After you close the server with `<ctrl>+c`, then you should run `docker-compose down` to stop the database.
-
 # Deploy
 
 You can find the deployment config in the deploy folder.

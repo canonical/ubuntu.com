@@ -123,20 +123,12 @@ from webapp.shop.advantage.views import (
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
-from webapp.security.database import db_session
 from webapp.security.views import (
-    create_notice,
-    delete_notice,
-    create_release,
-    delete_release,
     notice,
     notices,
     notices_feed,
-    update_notice,
     cve_index,
     cve,
-    delete_cve,
-    bulk_upsert_cve,
     single_notices_sitemap,
     notices_sitemap,
     single_cves_sitemap,
@@ -558,23 +550,10 @@ app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
-app.add_url_rule(
-    "/security/notices", view_func=create_notice, methods=["POST"]
-)
 
 app.add_url_rule(
     r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
     view_func=notice,
-)
-app.add_url_rule(
-    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
-    view_func=update_notice,
-    methods=["PUT"],
-)
-app.add_url_rule(
-    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
-    view_func=delete_notice,
-    methods=["DELETE"],
 )
 
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
@@ -593,26 +572,11 @@ app.add_url_rule(
 
 app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 
-app.add_url_rule(
-    "/security/releases", view_func=create_release, methods=["POST"]
-)
-app.add_url_rule(
-    "/security/releases/<codename>",
-    view_func=delete_release,
-    methods=["DELETE"],
-)
-
 # cve section
 app.add_url_rule("/security/cves", view_func=cve_index)
-app.add_url_rule("/security/cves", view_func=bulk_upsert_cve, methods=["PUT"])
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
-)
-app.add_url_rule(
-    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>",
-    view_func=delete_cve,
-    methods=["DELETE"],
 )
 
 # Login
@@ -1097,10 +1061,4 @@ def cache_headers(response):
     if flask.request.path.startswith(disable_cache_on):
         response.cache_control.no_store = True
 
-    return response
-
-
-@app.teardown_appcontext
-def remove_db_session(response):
-    db_session.remove()
     return response
