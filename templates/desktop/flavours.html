@@ -14,7 +14,7 @@
       <p class="p-heading--3">What are Ubuntu flavours?</p>
       <p>Ubuntu flavours offer a unique way to experience Ubuntu, each with their own choice of default applications and settings. Ubuntu flavours are owned and developed by members of our global community and backed by the full Ubuntu archive for packages and updates.</p>
     </div>
-      <div class="col-6 p-logo-section">
+      <div class="col-6 p-logo-section u-hide--small u-hide--medium">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
             {{
@@ -123,18 +123,18 @@
         <p><a href="https://www.kubuntuforums.net/forum">Join the Kubuntu community&nbsp;&rsaquo;</a>
         <p><a href="https://twitter.com/kubuntu">Follow Kubuntu&nbsp;&rsaquo;</a></p>
       </div>
-  </div>
-  <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/f193dc55-Kubuntu.png",
-      alt="",
-      width="1030",
-      height="777",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
-  </div>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f193dc55-Kubuntu.png",
+        alt="",
+        width="1030",
+        height="777",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
 </section>
 
 <section class="p-strip">
@@ -218,8 +218,19 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1d7a53b1-UbuntuMATE-screenshot.png",
+        alt="",
+        width="1664",
+        height="936",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
     <div class="col-6">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
@@ -244,33 +255,11 @@
         </div>
       </div>
     </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/1d7a53b1-UbuntuMATE-screenshot.png",
-        alt="",
-        width="1664",
-        height="936",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="row">
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/777dd5d3-UbuntuStudio.png",
-        alt="",
-        width="1920",
-        height="1080",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
     <div class="col-6">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
@@ -295,10 +284,21 @@
         </div>
       </div>
     </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/777dd5d3-UbuntuStudio.png",
+        alt="",
+        width="1920",
+        height="1080",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-6">
       <div class="p-heading-icon">
@@ -341,14 +341,14 @@
 <section class="p-strip--suru is-dark">
   <div class="row u-vertically-center">
     <div class="col-6">
-      <h3>Ubuntu-based variants</h3>
-      <p>In addition to the officially recognised flavours, dozens of other Linux distributions take Ubuntu as a base for their own distinctive ideas and approaches.</p>
-      <p>A complete list of known flavours, editions and customizations is maintained on the <a class="p-link--inverted" href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6">
       <h3>Looking for Ubuntu?</h3>
       <p>Download the latest release of Ubuntu desktop, the open source operating system that powers millions of PCs and laptops around the world. It's easy to install on Windows or macOS, or run Ubuntu alongside them!</p>
       <p><a href="/download/desktop" class="p-button">Download now</a></p>
+    </div>
+    <div class="col-6">
+      <h3>Ubuntu-based variants</h3>
+      <p>In addition to the officially recognised flavours, dozens of other Linux distributions take Ubuntu as a base for their own distinctive ideas and approaches.</p>
+      <p>A complete list of known flavours, editions and customizations is maintained on the <a class="p-link--inverted" href="https://wiki.ubuntu.com/UbuntuFlavors">Ubuntu Wiki's UbuntuFlavors page&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
