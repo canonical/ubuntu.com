@@ -5,11 +5,6 @@ set -e
 RUN_COMMAND="talisker.gunicorn.gevent webapp.app:app --bind $1 --worker-class gevent --name talisker-`hostname`"
 
 if [ "${FLASK_DEBUG}" = true ] || [ "${FLASK_DEBUG}" = 1 ]; then
-    {
-        if grep -q docker /proc/1/cgroup 2>/dev/null; then
-            echo "Don't use DB inside ./run script"
-        fi
-    } 
     ${RUN_COMMAND} --reload --log-level debug --timeout 9999
 else
     ${RUN_COMMAND}
