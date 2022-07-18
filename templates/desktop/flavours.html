@@ -300,6 +300,17 @@
 
 <section class="p-strip">
   <div class="row">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/909faa35-Xubuntu.png",
+        alt="",
+        width="1440",
+        height="900",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
     <div class="col-6">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
@@ -323,17 +334,6 @@
           <p><a href="https://twitter.com/xubuntu">Follow Xubuntu&nbsp;&rsaquo;</a></p>
         </div>
       </div>
-    </div>
-    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/909faa35-Xubuntu.png",
-        alt="",
-        width="1440",
-        height="900",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
     </div>
   </div>
 </section>
