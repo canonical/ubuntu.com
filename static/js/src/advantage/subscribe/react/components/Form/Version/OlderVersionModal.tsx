@@ -8,11 +8,15 @@ const OlderVersionModal = () => {
   return (
     <>
       <a onClick={openPortal} aria-controls="other-versions-modal">
-        Are you using an older version?
+        What if I use more than one version or if my version is not listed?
       </a>
       {isOpen ? (
         <Portal>
           <Modal title="Other versions?" close={closePortal}>
+            <p>
+              The features described here are for information only. You can
+              support multiple Ubuntu LTS versions with the same subscription.
+            </p>
             <span>
               Ubuntu Advantage is available only for Ubuntu 20.04 LTS, 18.04
               LTS, 16.04 LTS, and 14.04 ESM.

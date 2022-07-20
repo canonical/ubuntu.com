@@ -92,8 +92,6 @@ const Version = () => {
       data-testid="wrapper"
     >
       <p>
-        Ubuntu Advantage is available for Ubuntu 14.04 and higher.
-        <br />
         <OlderVersionModal />
       </p>
       <Row>
