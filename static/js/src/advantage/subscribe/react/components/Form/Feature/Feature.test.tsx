@@ -37,7 +37,7 @@ test("Feature sections disables Infra + Apps if destkop is selected", () => {
 
 test("The section is disabled if a public cloud is selected", () => {
   render(
-    <FormProvider initialType={ProductTypes.aws}>
+    <FormProvider initialType={ProductTypes.publicCloud}>
       <Feature />
     </FormProvider>
   );

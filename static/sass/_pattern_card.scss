@@ -60,6 +60,11 @@
       margin-bottom: 2.4rem;
     }
 
+    + .radio-wrapper--staggering {
+      border-top: solid 1px #d9d9d9;
+      padding-top: 1.5rem;
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       display: flex;
 
@@ -72,6 +77,11 @@
         flex-basis: 0;
         flex-direction: column;
         flex-grow: 1;
+      }
+
+      + .radio-wrapper--staggering {
+        border-top: unset;
+        padding-top: unset;
       }
     }
   }

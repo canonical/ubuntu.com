@@ -10,9 +10,7 @@ const imgUrl = {
   [ProductTypes.virtual]:
     "https://assets.ubuntu.com/v1/9ed50294-Virtual+machine.svg",
   [ProductTypes.desktop]: "https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
-  [ProductTypes.aws]: "",
-  [ProductTypes.azure]: "",
-  [ProductTypes.gcp]: "",
+  [ProductTypes.publicCloud]: "",
 };
 
 const ProductSummary = () => {

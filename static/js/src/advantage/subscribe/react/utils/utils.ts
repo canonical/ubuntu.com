@@ -105,6 +105,10 @@ export enum ProductTypes {
   physical = "physical",
   virtual = "virtual",
   desktop = "desktop",
+  publicCloud = "publicCloud",
+}
+
+export enum PublicClouds {
   aws = "aws",
   azure = "azure",
   gcp = "gcp",
@@ -165,9 +169,7 @@ export const isMonthlyAvailable = (product: Product | null) => {
 };
 
 export const isPublicCloud = (type: ProductTypes) =>
-  type === ProductTypes.aws ||
-  type === ProductTypes.azure ||
-  type === ProductTypes.gcp;
+  type === ProductTypes.publicCloud;
 
 export const shouldShowApps = () =>
   !!window.productList[

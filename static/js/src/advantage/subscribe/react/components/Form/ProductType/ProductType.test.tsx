@@ -28,11 +28,9 @@ test("Type selector displays the public cloud section if a public cloud is selec
     </FormProvider>
   );
 
-  await userEvent.click(screen.getByText("AWS instances"));
+  await userEvent.click(screen.getByText("Public Cloud instances"));
 
-  expect(
-    screen.getByText(/^Ubuntu Pro on the AWS Marketplace/)
-  ).toHaveAttribute(
+  expect(screen.getByText(/^Visit AWS Marketplace/)).toHaveAttribute(
     "href",
     "https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro"
   );

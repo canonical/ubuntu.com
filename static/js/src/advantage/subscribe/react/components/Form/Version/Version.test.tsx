@@ -39,7 +39,7 @@ test("It opens the modal if 'other versions' is clicked", async () => {
 
 test("The section is disabled if a public cloud is selected", () => {
   render(
-    <FormProvider initialType={ProductTypes.aws}>
+    <FormProvider initialType={ProductTypes.publicCloud}>
       <Version />
     </FormProvider>
   );
