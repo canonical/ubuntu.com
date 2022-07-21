@@ -64,6 +64,14 @@
     }
   }
 
+  // a fallback to catch any instances where a post.group exists,
+  // but we haven't yet defined a BEM variant to match
+  [class*="blog-p-card__header"] {
+    @extend %post-card-header;
+
+    border-top: 3px solid $color-mid-dark;
+  }
+
   .blog-p-card__header {
     border-radius: 2px;
     border-top: 3px solid $color-mid-dark;
