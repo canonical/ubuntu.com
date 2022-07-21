@@ -491,7 +491,7 @@
 
   <section class="p-strip is-bordered u-hide--medium u-hide--small">
     <div class="u-fixed-width">
-      <h2 class="u-sv3">The preferred OS for developers and organisations</h2>
+      <h2 class="u-sv3">Developers love Ubuntu, organisations trust it</h2>
     </div>
     <div class="row">
       <div class="col-6">
@@ -515,10 +515,10 @@
         <p>Source: <a href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The 2022 State of Open Source Report &ndash; OpenLogic</a></p>
         <div class="u-align--center">
           {{ image (
-            url="https://assets.ubuntu.com/v1/a944ac74-Screenshot+2022-07-11+at+8.43.20+am.png",
+            url="https://assets.ubuntu.com/v1/00bd15f1-opensourcereport.png",
             alt="",
-            width="1033",
-            height="660",
+            width="855",
+            height="616",
             hi_def=True,
             loading="lazy"
             ) | safe
@@ -528,41 +528,35 @@
     </div>
   </section>
   <section class="p-strip is-bordered">
-    <div class="row">
+    <div class="row u-vertically-center">
       <div class="col-7">
         <h2>Trusted manageability with Ubuntu Pro Desktop</h2>
-        <p>Ubuntu Pro Desktop is a premium service subscription delivering comprehensive enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to three machines.</p>
+        <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to three machines.</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a></li>
+          <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration</li>
+          <li class="p-list__item is-ticked">Estate <a href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
+          <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
+          <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
+          <li class="p-list__item is-ticked">Optional 24x5 or 24x7 support tiers</li>
+        </ul>
+        <p>For more information, download our whitepaper:</p>
+        <p><a class="p-button">Secure Linux adoption for enterprise developers</a></p>
+        <p><a href="/desktop/organisations">Ubuntu for organisations&nbsp;&rsaquo;</a></p>
+        <p><a href="/pro">Register today&nbsp;&rsaquo;</a></p>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
-          alt="",
-          width="139",
-          height="150",
-          hi_def=True,
-          loading="lazy"
+      <div class="col-5 u-align--center u-hide--medium u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+            alt="",
+            height="350",
+            width="350",
+            hi_def=True,
+            loading="lazy"
           ) | safe
         }}
       </div>
-      <div class="col-6">
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Security updates for the full open source stack</li>
-          <li class="p-list__item is-ticked">Active Directory and LDAP integration</li>
-          <li class="p-list__item is-ticked">Estate monitoring and management</li>
-          <li class="p-list__item is-ticked">FIPS 140-2 certified modules and CIS hardening</li>
-          <li class="p-list__item is-ticked">Minimise rolling reboots with Kernel Livepatch</li>
-          <li class="p-list__item is-ticked">Optional 24x5 or 24x7 support tiers</li>
-        </ul>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <p>For more information, download our whitepaper:</p>
-      <p><a class="p-button">Secure Linux adoption for enterprise developers</a></p>
-      <p><a href="/desktop/organisations">Ubuntu for organisations&nbsp;&rsaquo;</a></p>
-      <p><a href="/pro">Register today&nbsp;&rsaquo;</a></p>
-
     </div>
   </section>
 
@@ -570,37 +564,41 @@
     <div class="row">
       <div class="col-8">
         <h2>What's new in Ubuntu {{ releases.lts.short_version }}</h2>
-        <ul>
-          <li>Linux 5.15 kernel</li>
-          <li>New Ubuntu theme with accent colors, improved integration for snaps and system-wide dark style preference support</li>
-          <li>GNOME Shell and most GNOME libraries updated to the 42 release
-            <ul>
-              <li>Streamlined user interface and workspace transitions</li>
-              <li>Compact and modern on-screen display notifications</li>
-              <li>New screenshot/screen recording interface</li>
-              <li>New power profile selection</li>
-              <li>mproved multi-monitor support</li>
-            </ul>
-          </li>
-          <li>GNOME desktop performance improvements
-            <ul>
-              <li>Up to 2x improvement in frame rates with Intel and Raspberry Pi graphics drivers</li>
-              <li>Significant improvements for AMD and NVIDIA</li>
-            </ul>
-          </li>
-          <li>Wayland ais the default display server for most systems whilst X11 remains the default for those with an NVIDIA discrete GPU</li>
-          <li>Latest PulseAudio support for LDAC and AptX bluetooth codecs, HFP bluetooth profiles and bluetooth device battery level reporting</li>
-          <li>Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.0, Perl 5.34, Go 1.18, GCC 11.2, Rust 1.58</li>
-          <li>Core productivity apps LibreOffice 7.3.2, Thunderbird 91.8, and Firefox 99 which is now included as a snap
-          </li>
-          <li>Active Directory integration with the Ubuntu installer</li>
-          <li>Policy-based administration using Microsoft Active Directory Group Policy (GPO) and advanced policy support for Ubuntu Pro Desktop users</li>
-          <li>Raspberry Pi 4 2GB Desktop support as a result of various performance improvements</li>
-          <li>Better power management for NVIDIA dGPUs</li>
-          <li>Wifi 6E support</li>
-        </ul>
-        <p><a href="{{ releases.lts.release_notes_url }}">Read more in the release notes&nbsp;&rsaquo;</a></p>
       </div>
+    </div>
+    <div class="u-fixed-width">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Linux 5.15 kernel</liclass="p-list__item is-ticked">
+        <li class="p-list__item is-ticked">New Ubuntu theme with accent colors, improved integration for snaps and system-wide dark style preference support</li>
+        <li class="p-list__item is-ticked">GNOME Shell and most GNOME libraries updated to the 42 release
+          <ul>
+            <li>Streamlined user interface and workspace transitions</li>
+            <li>Compact and modern on-screen display notifications</li>
+            <li>New screenshot/screen recording interface</li>
+            <li>New power profile selection</li>
+            <li>mproved multi-monitor support</li>
+          </ul>
+        </li>
+        <li class="p-list__item is-ticked">GNOME desktop performance improvements
+          <ul>
+            <li>Up to 2x improvement in frame rates with Intel and Raspberry Pi graphics drivers</li>
+            <li>Significant improvements for AMD and NVIDIA</li>
+          </ul>
+        </li>
+        <li class="p-list__item is-ticked">Wayland ais the default display server for most systems whilst X11 remains the default for those with an NVIDIA discrete GPU</li>
+        <li class="p-list__item is-ticked">Latest PulseAudio support for LDAC and AptX bluetooth codecs, HFP bluetooth profiles and bluetooth device battery level reporting</li>
+        <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.0, Perl 5.34, Go 1.18, GCC 11.2, Rust 1.58</li>
+        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.3.2, Thunderbird 91.8, and Firefox 99 which is now included as a snap
+        </li>
+        <li class="p-list__item is-ticked">Active Directory integration with the Ubuntu installer</li>
+        <li class="p-list__item is-ticked">Policy-based administration using Microsoft Active Directory Group Policy (GPO) and advanced policy support for Ubuntu Pro Desktop users</li>
+        <li class="p-list__item is-ticked">Raspberry Pi 4 2GB Desktop support as a result of various performance improvements</li>
+        <li class="p-list__item is-ticked">Better power management for NVIDIA dGPUs</li>
+        <li class="p-list__item is-ticked">Wifi 6E support</li>
+      </ul>
+    </div>
+    <div class="u-fixed-width">
+      <p><a href="{{ releases.lts.release_notes_url }}">Read more in the release notes&nbsp;&rsaquo;</a></p>
     </div>
   </section>
   <section class="p-strip is-bordered">
@@ -608,25 +606,27 @@
       <h2>Get started today</h2>
     </div>
     <div class="row">
-     <div class="col-4">
-      <h3>Download and install</h3>
-      <p>Download Ubuntu desktop and replace your current operating system. It’s easy to install on Windows or macOS, or run Ubuntu alongside it.</p>
-      <p><a href="/download/desktop">Download now</a></p>
+      <div class="col-4">
+       <h3>Download and install</h3>
+       <p>Download Ubuntu desktop and replace your current operating system. It’s easy to install on Windows or macOS, or run Ubuntu alongside it.</p>
+       <p><a href="/download/desktop">Download now</a></p>
+      </div>
+      <div class="col-4">
+       <h3>Buy it pre-installed</h3>
+       <p>Ubuntu is available on a huge range of devices from the world’s largest hardware manufacturers including Dell, HP, and Lenovo.</p>
+       <p><a href="https://partners.ubuntu.com/programmes/retail">Find out more about our retail partners</a></p>
+      </div>
+      <div class="col-4">
+       <h3>Join our community</h3>
+       <p>Share ideas, write code, and get advice and help from our large, active community of IT professionals.</p>
+       <ul class="p-list is-split">
+        <li class="p-list__item"><a href="https://discourse.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu Discourse', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Ubuntu Discourse</a></li>
+        <li class="p-list__item"><a href="https://askubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'askubuntu', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Ask Ubuntu</a></li>
+        <li class="p-list__item"><a href="https://lists.ubuntu.com" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'mailing lists', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Mailing lists</a></li>
+        <li class="p-list__item"><a href="https://answers.launchpad.net/ubuntu" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Launchpad Answers', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Launchpad Answers</a></li>
+      </ul>
+      </div>
      </div>
-     <div class="col-4">
-      <h3>Buy it pre-installed</h3>
-      <p>Ubuntu is available on a huge range of devices from the world’s largest hardware manufacturers including Dell, HP, and Lenovo.</p>
-      <p><a href="https://partners.ubuntu.com/programmes/retail">Find out more about our retail partners</a></p>
-     </div>
-     <div class="col-4">
-      <h3>Join our community</h3>
-      <p>Share ideas, write code, and get advice and help from our large, active community of IT professionals.</p>
-      <p><a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a></p>
-      <p>Ask Ubuntu</p>
-      <p>Mailing lists</p>
-      <p><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a></p>
-     </div>
-    </div>
   </section>
 
   <section class="p-strip">
