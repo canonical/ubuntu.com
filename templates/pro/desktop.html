@@ -1,0 +1,196 @@
+{% extends "raspberry-pi/_base_raspberry-pi.html" %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/14WEwUuwaKGMaR5FlsJJZttkAn0iCqUuXhRQLMWurpQ4/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-7">
+      <h1>Empower your developers with Ubuntu Pro Desktop</h1>
+      <p>Ubuntu Pro Desktop is a comprehensive subscription for secure enterprise Linux adoption. It provides security, management tooling and support for your Ubuntu Desktop fleet.</p>
+      <p>
+        <a href="">Read our whitepaper&nbsp;&rsaquo;</a>
+      </p>
+      <p>
+        <a href="">Download the datasheet&nbsp;&rsaquo;</a>
+      </p>
+      <a class="p-button" href="/pro/subscribe">Buy today</a> <a class="p-button--positive" href="/desktop/contact-us">Contact us</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Trusted manageability and security</h2>
+  </div>
+  <div class="row">
+    <div class="col-4 u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ceb481d1-10+years.svg",
+        alt="",
+        width="100",
+        height="100",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
+      <h3>Enterprise-grade security</h3>
+      <p>Receive 10 years of security patches and updates for Ubuntu LTS releases with Extended Security Maintenance (<a href="/security/esm">ESM</a>). Minimise downtime with Kernel <a href="/security/livepatch">Livepatch</a>.</p>
+    </div>
+    <div class="col-4 u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ef8dddf4-menu-icon--product-landscape.svg",
+        alt="",
+        width="100",
+        height="100",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
+      <h3>Landscape Fleet Management</h3>
+      <p>Software updates, configuration management, policy compliance, and permission control for your entire physical and virtual fleet. Landscape is easy to use and smoothly integrates with any other tooling through a robust API.</p>
+    </div>
+    <div class="col-4 u-sv3">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e7bcb9fa-4b9bad4c100c73cc2c1c839f3eb5ec03_active-directory-logo.png",
+        alt="",
+        width="243",
+        height="60",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small u-hide--medium", "style": "padding-top:40px"}
+        ) | safe
+      }}    
+      <h3>Advanced Active Directory Policies</h3>
+      <p>Increase your management capabilities with support for remote script execution and privilege management.</p>
+    </div>        
+  </div>
+  <div class="row">
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ec3f53f7-extended-security-maintenance.svg",
+        alt="",
+        width="100",
+        height="100",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
+      <h3>Compliance, certification and hardening</h3>
+      <p><a href="/security/certifications#fips">FIPS 140-2 certified modules</a>, <a href="/security/certifications#cis">CIS hardening</a> and <a href="/security/certifications#common-criteria">Common Criteria EAL2</a> certification available.</p>
+    </div>
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7cafcb2c-Managed-apps.svg",
+        alt="",
+        width="177",
+        height="90",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small u-hide--medium", "style": "padding-top:10px"}
+        ) | safe
+      }}   
+      <h3>Desktop apps support</h3>
+      <p>Full-stack support for desktop specific open source apps including MySQL, Apache, NodeJS and MongoDB.</p>
+    </div>
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg",
+        alt="",
+        width="100",
+        height="100",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "u-hide--small u-hide--medium"}
+        ) | safe
+      }}
+      <h3>24/7 Support</h3>
+      <p>Direct 24/7 access to our world-class enterprise open source support team through our web portal, knowledge base or via phone.</p>
+    </div>        
+  </div>  
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Details and pricing</h2>
+    <table class="u-sv3">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="u-align--center">Ubuntu Pro Desktop</th>
+          <th class="u-align--center">Ubuntu Pro Desktop Standard Support</th>
+          <th class="u-align--center">Ubuntu Pro Desktop Advanced Support</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Cost per seat per year</th>
+          <th class="u-align--center">$25 / Free for personal use</th>
+          <th class="u-align--center">$150</th>
+          <th class="u-align--center">$300</th>
+        </tr>
+        <tr>
+          <th><a href="/support">Phone and ticket support</a></th>
+          <th></th>
+          <th class="u-align--center">24x5</th>
+          <th class="u-align--center">24x7</th>
+        </tr>
+        <tr>
+          <th>Fleet monitoring, management, and automation via <a href="/landscape">Landscape</a></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+        <tr>
+          <th>Advanced Active Directory Policies (including remote script execution and privilege management</th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+        <tr>
+          <th>10 years of security patching</th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+        <tr>
+          <th>Kernel <a href="/security/livepatch">Livepatch</a> to minimise downtime</th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+        <tr>
+          <th><a href="/security/certifications#fips">FIPS 140-2 Level 1</a> certified crypto modules</th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+        <tr>
+          <th><a href="/security/certifications#cis">CIS Benchmark</a></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+        <tr>
+          <th><a href="/security/certifications#common-criteria">Common Criteria /EAL2</a></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+          <th class="u-align--center"><i class="p-icon--success"></i></th>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Ready to get started?</h3>
+    <p class="p-button" href="/pro/subscribe">Buy Ubuntu Pro Desktop</p>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<!-- <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/_client-contact-us-form.html" data-form-id="1253" data-lp-id="1409" data-return-url="https://ubuntu.com/desktop/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div> -->
+
+{% endblock content %}
