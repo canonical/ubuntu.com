@@ -5,7 +5,6 @@
   @include ubuntu-p-inline-definition-list;
   @include ubuntu-p-stepped-list;
   @include ubuntu-p-ordered-legal-list;
-  @include ubuntu-p-inline-list-middot;
   @include ubuntu-p-list-small;
   @include ubuntu-p-form-list-ticked;
 }
@@ -238,33 +237,6 @@
   div > .p-list--ordered-legal {
     margin-left: 0;
     padding-left: 0;
-  }
-}
-
-// small text has bigger padding top, so requires this to be factored into
-// the dot position top
-@mixin ubuntu-p-inline-list-middot {
-  .p-inline-list--middot {
-    .p-inline-list__item {
-      &::after {
-        bottom: 0;
-        height: 0;
-        right: -0.85em;
-        top: 0;
-      }
-    }
-
-    &.is-x-dense {
-      margin-bottom: $sp-unit - $nudge--small;
-
-      .p-inline-list__item {
-        &::after {
-          bottom: 0.5rem;
-          right: -0.75rem;
-          top: 0.4rem;
-        }
-      }
-    }
   }
 }
 
