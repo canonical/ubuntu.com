@@ -21,4 +21,4 @@ Fixes #
 
 ## Help
 
-[QA steps](https://canonical-web-and-design.github.io/practices/workflow/qa-steps.html) - [Commit guidelines](https://canonical-web-and-design.github.io/practices/workflow/commit-messages.html)
+[QA steps](https://discourse.canonical.com/t/qa-steps/152) - [Commit guidelines](https://discourse.canonical.com/t/commit-guidelines/148)
