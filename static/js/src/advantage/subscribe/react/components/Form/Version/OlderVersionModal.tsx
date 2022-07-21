@@ -7,9 +7,14 @@ const OlderVersionModal = () => {
 
   return (
     <>
-      <a onClick={openPortal} aria-controls="other-versions-modal">
+      <Button
+        appearance="link"
+        type="button"
+        onClick={openPortal}
+        aria-controls="other-versions-modal"
+      >
         What if I use more than one version or if my version is not listed?
-      </a>
+      </Button>
       {isOpen ? (
         <Portal>
           <Modal title="Other versions?" close={closePortal}>
