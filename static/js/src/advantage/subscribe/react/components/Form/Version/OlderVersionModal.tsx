@@ -24,7 +24,7 @@ const OlderVersionModal = () => {
             </p>
             <span>
               Ubuntu Advantage is available only for Ubuntu 20.04 LTS, 18.04
-              LTS, 16.04 LTS, and 14.04 ESM.
+              LTS, 16.04 ESM, and 14.04 ESM.
               <br />
               <br />
               You can:
