@@ -100,7 +100,6 @@
     font-size: 1.2rem;
     margin-top: 0;
     max-width: inherit;
-    padding: $sp-medium;
 
     @media only screen and (min-width: $breakpoint-small) {
       font-size: 0.8125rem;
@@ -113,20 +112,40 @@
       font-size: 0.8125rem;
     }
 
-    a:link,
-    a:visited {
-      color: $color-dark;
-      padding-left: $sp-x-small;
+    a,
+    span {
+      display: block;
+      padding: $sp-medium;
 
       @media only screen and (min-width: $breakpoint-small) {
-        font-weight: normal;
-        padding-left: 0;
+        padding: 0 0 $sp-x-small;
       }
     }
 
-    a::after {
-      content: ""; // hide the default > */
-    } /// open and close the primary/secondary navs
+    a:link,
+    a:visited {
+      color: $color-dark;
+
+      @media only screen and (min-width: $breakpoint-small) {
+        font-weight: normal;
+      }
+    }
+
+    a {
+      &:hover {
+        text-decoration: none;
+
+        @media only screen and (min-width: $breakpoint-small) {
+          text-decoration: underline;
+        }
+      }
+
+      &::after {
+        content: ""; // hide the default > */
+      }
+    
+      /// open and close the primary/secondary navs 
+    }
   }
 
   .p-footer__title + .second-level-nav {
@@ -206,7 +225,7 @@
         color: $color-dark;
         display: block;
         font-size: 1.2rem;
-        padding: $sp-medium $sp-small $sp-medium;
+        padding: $sp-medium;
 
         @media only screen and (min-width: $breakpoint-small) {
           font-size: 0.8125rem;
@@ -236,8 +255,6 @@
     }
 
     @media only screen and (max-width: $breakpoint-small) {
-      padding-left: $sp-x-small;
-
       a {
         color: $color-mid-dark;
       }

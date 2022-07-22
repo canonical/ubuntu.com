@@ -84,9 +84,9 @@
           {% endwith %}
           <li class="p-footer__item p-footer__item--spaced">
             <h2 class="p-footer__title p-footer__title-text">
-              <span>Sectors</span>
+              <span class="js-footer-accordion-cta" aria-controls="sectors-footer-nav">Sectors</span>
             </h2>
-            <ul class="second-level-nav">
+            <ul class="second-level-nav" id="sectors-footer-nav">
               <li><a href="/industrial">Industrial</a></li>
               <li><a href="/gov">Government</a></li>
               <li><a href="/telco">Telco</a></li>
@@ -104,9 +104,15 @@
               {% with section=nav_sections.ubuntu1604 %}
               {% include 'templates/_footer_item_small.html' %}
               {% endwith %}
-              <li class="p-footer__item p-footer__item--spaced">
+              <li class="p-footer-list-single-child">
                 <a href="/model-driven-operations">Model-driven operations</a>
+              </li>
+
+              <li class="p-footer-list-single-child">
                 <a href="/landscape">Landscape</a>
+              </li>
+
+              <li class="p-footer-list-single-child">
                 <a href="/embedding">Canonical Embedding Programme</a>
               </li>
             </ul>
