@@ -1,9 +1,10 @@
 <li class="p-footer__item">
   <h2 class="p-footer__title">
-    <a class="p-link--soft" href="{{ section.path }}">{{ section.title }}</a>
+    <a class="p-link--soft u-hide--small" href="{{ section.path }}">{{ section.title }}</a>
+    <a class="p-link--soft u-hide--medium u-hide--large js-footer-accordion-cta" href="#" aria-controls="{{ section.path }}-footer-nav">{{ section.title }}</a>
   </h2>
 
-  <ul class="second-level-nav">
+  <ul class="second-level-nav" id="{{ section.path }}-footer-nav">
     {% for child in section.children %}
       {% if child.title != 'Overview' %}
       {% if not child.hidden %}
