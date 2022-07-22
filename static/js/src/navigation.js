@@ -80,9 +80,8 @@ if (window.location.hash) {
 
 var origin = window.location.href;
 
-addGANavEvents("#canonical-products", "www.ubuntu.com-nav-0-products");
+addGANavEvents("#canonical-global-nav", "www.ubuntu.com-nav-global");
 addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
-addGANavEvents("#navigation", "www.ubuntu.com-nav-1");
 addGANavEvents("#enterprise-content", "www.ubuntu.com-nav-1-enterprise");
 addGANavEvents("#developer-content", "www.ubuntu.com-nav-1-developer");
 addGANavEvents("#community-content", "www.ubuntu.com-nav-1-community");
@@ -97,7 +96,8 @@ function addGANavEvents(target, category) {
   var t = document.querySelector(target);
   if (t) {
     [].slice.call(t.querySelectorAll("a")).forEach(function (a) {
-      a.addEventListener("click", function () {
+      a.addEventListener("click", function (e) {
+        e.stopPropagation();
         dataLayer.push({
           event: "GAEvent",
           eventCategory: category,
