@@ -109,12 +109,12 @@ function updateEquivalentItem(item) {
 }
 
 function toggleSubmit(total) {
-  const submit = document.querySelector(".js-contribute-submit");
+  const submitButton = document.querySelector(".js-contribute-submit");
 
-  if (total == 0) {
-    submit.disabled.disabled = true;
+  if (total <= 0) {
+    submitButton.disabled = true;
   } else {
-    submit.classList.disabled = false;
+    submitButton.disabled = false;
   }
 }
 
