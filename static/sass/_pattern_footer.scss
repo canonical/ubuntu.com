@@ -102,9 +102,9 @@
     max-width: inherit;
 
     @media only screen and (min-width: $breakpoint-small) {
-      font-size: 0.8125rem;
       background: none;
       border: 0;
+      font-size: 0.8125rem;
       padding: 0 0 $sp-x-small;
     }
 
@@ -122,15 +122,6 @@
       }
     }
 
-    a:link,
-    a:visited {
-      color: $color-dark;
-
-      @media only screen and (min-width: $breakpoint-small) {
-        font-weight: normal;
-      }
-    }
-
     a {
       &:hover {
         text-decoration: none;
@@ -140,11 +131,20 @@
         }
       }
 
+      &:link,
+      &:visited {
+        color: $color-dark;
+
+        @media only screen and (min-width: $breakpoint-small) {
+          font-weight: normal;
+        }
+      }
+
       &::after {
         content: ""; // hide the default > */
       }
-    
-      /// open and close the primary/secondary navs 
+
+      /// open and close the primary/secondary navs
     }
   }
 
@@ -228,8 +228,8 @@
         padding: $sp-medium;
 
         @media only screen and (min-width: $breakpoint-small) {
-          font-size: 0.8125rem;
           border: 0;
+          font-size: 0.8125rem;
           padding: 0;
         }
       }
