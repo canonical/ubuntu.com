@@ -2,10 +2,14 @@
 
 set -e
 
-RUN_COMMAND="talisker.gunicorn.gevent webapp.app:app --bind $1 --worker-class gevent --name talisker-`hostname`"
+EXTRA_ARGS=""
 
+# Extra arguments for debug mode
 if [ "${FLASK_DEBUG}" = true ] || [ "${FLASK_DEBUG}" = 1 ]; then
-    ${RUN_COMMAND} --reload --log-level debug --timeout 9999
-else
-    ${RUN_COMMAND}
+    EXTRA_ARGS="--reload --log-level debug --timeout 9999"
 fi
+
+# Start server
+# ===
+talisker.gunicorn.gevent webapp.app:app --bind $1 --workers 2 --worker-class gevent --name talisker-`hostname` ${EXTRA_ARGS}
+
