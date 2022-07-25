@@ -97,7 +97,6 @@ function addGANavEvents(target, category) {
   if (t) {
     [].slice.call(t.querySelectorAll("a")).forEach(function (a) {
       a.addEventListener("click", function (e) {
-        e.stopPropagation();
         dataLayer.push({
           event: "GAEvent",
           eventCategory: category,
