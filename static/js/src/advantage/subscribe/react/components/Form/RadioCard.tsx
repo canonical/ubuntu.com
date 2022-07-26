@@ -26,12 +26,22 @@ const RadioCard = <T extends string>({
   children,
 }: Props<T>) => {
   const checked = selectedValue === value;
+  const [isFocused, setIsFocused] = React.useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
 
   return (
     <div
       className={classNames(className, {
         "p-card--radio": !className,
         "is-selected": checked,
+        "is-focused": isFocused,
         "u-disable": disabled,
       })}
       data-testid={dataTestid}
@@ -46,6 +56,8 @@ const RadioCard = <T extends string>({
           value={value}
           checked={checked}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
         <span className="p-radio__label" id={`${name}-label`}>
           {children}

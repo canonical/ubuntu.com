@@ -119,7 +119,7 @@ const ProductType = () => {
           <>
             <Col size={12} className="radio-wrapper--staggering">
               <RadioCard
-                name="type"
+                name="publicCloud"
                 value={PublicClouds.aws}
                 selectedValue={publicCloud}
                 handleChange={handlePublicCloudChange}
@@ -135,7 +135,7 @@ const ProductType = () => {
                 </>
               </RadioCard>
               <RadioCard
-                name="type"
+                name="publicCloud"
                 value={PublicClouds.azure}
                 selectedValue={publicCloud}
                 handleChange={handlePublicCloudChange}
@@ -151,7 +151,7 @@ const ProductType = () => {
                 </>
               </RadioCard>
               <RadioCard
-                name="type"
+                name="publicCloud"
                 value={PublicClouds.gcp}
                 selectedValue={publicCloud}
                 handleChange={handlePublicCloudChange}
