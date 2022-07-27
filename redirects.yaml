@@ -859,7 +859,8 @@ blog/category/(?P<category>[^/]+)/?: /blog/archives?category={category}
 blog/category/(?P<category>[^/]+)/year/(?P<year>[0-9]{4})/?: /blog/archives?category={category}&year={year}
 
 # Group archive pages
-blog/canonical-announcements/?: /blog/press-centre
+blog/canonical-announcements/?: https://canonical.com/press-centre
+blog/press-centre/?: https://canonical.com/press-centre
 blog/people-and-culture/?: /blog/archives?group=people-and-culture
 blog/phone-and-tablet/?: /blog/archives?group=phone-and-tablet
 blog/page/(?P<page>[0-9]+)/(?P<group>[^/]+)/?: /blog/archives?group={group}&page={page}
@@ -886,7 +887,7 @@ resources/?: "/blog"
 # Redirects from the soon-to-be-retired Apache+Squid frontend
 # From https://pastebin.canonical.com/p/3TXyyNkWkg/
 search/google-appliance/(?P<query>.*)/?: /search?q={query}
-news/pressreleasearchive/?: /blog/press-centre
+news/pressreleasearchive/?: https://canonical.com/press-centre
 legal/ubuntu-advantage/service-description/?: /legal/ubuntu-advantage-service-description
 download/desktop/questions/?: /download/desktop/thank-you
 

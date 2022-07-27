@@ -67,9 +67,6 @@ class TestRoutes(VCRTestCase):
             self.client.get("/blog/topics/design").status_code, 200
         )
         self.assertEqual(
-            self.client.get("/blog/press-centre").status_code, 200
-        )
-        self.assertEqual(
             self.client.get("/blog/internet-of-things").status_code, 200
         )
         self.assertEqual(

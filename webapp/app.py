@@ -54,7 +54,7 @@ from webapp.shop.cube.views import (
 from webapp.views import (
     BlogCustomGroup,
     BlogCustomTopic,
-    BlogPressCentre,
+    BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
     build_tutorials_index,
@@ -535,16 +535,16 @@ app.add_url_rule(
     view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
-    "/blog/press-centre",
-    view_func=BlogPressCentre.as_view("press_centre", blog_views=blog_views),
-)
-app.add_url_rule(
     "/blog/sitemap.xml",
     view_func=BlogSitemapIndex.as_view("sitemap", blog_views=blog_views),
 )
 app.add_url_rule(
     "/blog/sitemap/<regex('.+'):slug>.xml",
     view_func=BlogSitemapPage.as_view("sitemap_page", blog_views=blog_views),
+)
+app.add_url_rule(
+    "/blog/<slug>",
+    view_func=BlogRedirects.as_view("blog_redirects", blog_views=blog_views),
 )
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
