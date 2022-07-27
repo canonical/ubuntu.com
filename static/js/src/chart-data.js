@@ -1278,19 +1278,19 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2021-08-01T00:00:00"),
-    endDate: new Date("2022-08-01T00:00:00"),
+    endDate: new Date("2022-10-28T00:00:00"),
     taskName: "Kubernetes 1.22",
     status: "CANONICAL_KUBERNETES_SUPPORT",
   },
   {
     startDate: new Date("2021-12-07T00:00:00"),
-    endDate: new Date("2022-12-07T00:00:00"),
+    endDate: new Date("2023-02-28T00:00:00"),
     taskName: "Kubernetes 1.23",
     status: "CANONICAL_KUBERNETES_SUPPORT",
   },
   {
     startDate: new Date("2022-05-06T00:00:00"),
-    endDate: new Date("2023-05-06T00:00:00"),
+    endDate: new Date("2023-07-28T00:00:00"),
     taskName: "Kubernetes 1.24",
     status: "CANONICAL_KUBERNETES_CURRENT_VERSION",
   },
