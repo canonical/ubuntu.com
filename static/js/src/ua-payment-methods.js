@@ -49,7 +49,6 @@ if (cardElement) {
       cardErrorElement.classList.remove("u-hide");
     } else if (event.complete) {
       updateButton.disabled = false;
-      updateButton.focus();
       cardErrorElement.classList.add("u-hide");
       paymentErrorElement.classList.add("u-hide");
       paymentErrorElement.querySelector(".p-notification__message").innerHTML =
