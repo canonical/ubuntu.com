@@ -623,7 +623,8 @@ class BlogRedirects(BlogView):
         )
 
         # Redirect canonical annoucements
-        if article["group"]["id"] == 2100:
+        group = article.get("group")
+        if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
 
         return flask.render_template("blog/article.html", article=article)
