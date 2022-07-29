@@ -125,9 +125,9 @@
       <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
         {% for server_vendor in server_vendors %}
-          {% if server_vendor.vendor in ['Dell', 'Lenovo', 'HPE'] %}
+          {% if server_vendor.make in ['Dell Technologies', 'Lenovo', 'HPE'] %}
             <li class="p-inline-list__item">
-              <a href="/certified/servers?vendor={{ server_vendor.vendor }}">{{ server_vendor.vendor }}&nbsp;({{ server_vendor.total }})</a>
+              <a href="/certified/servers?vendor={{ server_vendor.make }}">{{ server_vendor.make }}&nbsp;({{ server_vendor.total }})</a>
             </li>
           {% endif %}
         {% endfor %}
@@ -135,9 +135,9 @@
 
       <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
       <ul class="p-inline-list--midline">
-        {% for server_release, total in server_releases.items() %}
+        {% for server_release in server_releases %}
         <li class="p-inline-list__item">
-          <a href="/certified/servers?release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certified/servers?release={{ server_release.release }}">{{ server_release.release }}&nbsp;({{ server_release.servers }})</a>
         </li>
         {% endfor %}
       </ul>
