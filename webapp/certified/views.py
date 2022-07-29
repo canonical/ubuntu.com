@@ -214,6 +214,10 @@ def certified_home():
     iot_releases = []
     iot_vendors = []
 
+    # Server section
+    server_releases = []
+    server_vendors = []
+
     # Search results filters
     all_releases = []
     release_filters = []
@@ -243,6 +247,9 @@ def certified_home():
         if int(release["soc"] > 1):
             soc_releases.append(release)
 
+        if int(release["servers"] > 1):
+            server_releases.append(release)
+
     for vendor in certified_makes:
         make = vendor["make"]
 
@@ -266,16 +273,8 @@ def certified_home():
         if int(vendor["soc"] > 1):
             soc_vendors.append(vendor)
 
-    # Server section
-    server_releases = {}
-    server_vendors = api.vendor_summaries_server()["vendors"]
-
-    for vendor in server_vendors:
-        for release in vendor["releases"]:
-            if release in server_releases:
-                server_releases[release] += vendor[release]
-            else:
-                server_releases[release] = vendor[release]
+        if int(vendor["servers"] > 1):
+            server_vendors.append(vendor)
 
     if "q" in request.args:
         query = request.args["q"]
