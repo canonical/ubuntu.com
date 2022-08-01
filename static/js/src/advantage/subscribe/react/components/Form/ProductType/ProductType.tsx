@@ -42,10 +42,6 @@ const ProductType = () => {
     setPublicCloud(event.target.value as PublicClouds);
   };
 
-  const switchToVirtual = () => {
-    setProductType(ProductTypes.virtual);
-  };
-
   return (
     <>
       <Row>
@@ -183,9 +179,7 @@ const ProductType = () => {
                 <Col size={12} className="u-align--right">
                   <Button
                     appearance="positive"
-                    classn
                     element="a"
-                    onClick={switchToVirtual}
                     href={PublicCloudInfo[publicCloud]?.link}
                   >
                     Visit {PublicCloudInfo[publicCloud]?.name}

@@ -33,7 +33,11 @@ test("It opens the modal if 'other versions' is clicked", async () => {
       <Version />
     </FormProvider>
   );
-  await userEvent.click(screen.getByText("Are you using an older version?"));
+  await userEvent.click(
+    screen.getByText(
+      "What if I use more than one version or if my version is not listed?"
+    )
+  );
   expect(screen.getByText(/^Other versions?/)).toBeInTheDocument();
 });
 
