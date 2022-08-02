@@ -1,6 +1,6 @@
 @mixin ubuntu-p-gaming {
   .p-gaming {
-    background-image: url("#{$assets-path}126ebaea-borderlands.jpg");
+    background-image: url("#{$assets-path}1d582338-dota2.jpg");
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,20 +15,6 @@
         position: relative;
         z-index: 3;
       }
-    }
-
-    &__flash {
-      animation: flash-sign 10s infinite;
-      background-image: url("#{$assets-path}30d55ce9-borderlands-flash.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 100%;
-      left: 0;
-      margin-top: 0;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 2;
     }
   }
 }
