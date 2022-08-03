@@ -17,6 +17,7 @@ import StepTwo from "./components/ModalSteps/StepTwo";
 import { BuyButtonProps } from "./utils/utils";
 import { Col, List, Row } from "@canonical/react-components";
 import Taxes from "./components/Taxes";
+import SignIn from "./components/SignIn";
 
 type Props = {
   accountId?: string;
@@ -72,6 +73,8 @@ const PurchaseModal = ({
       setStep(2);
     }
   }, [userInfo]);
+
+  const isGuest = !userInfo?.customerInfo?.email;
 
   const GAFriendlyProduct = {
     id: product?.id,
@@ -161,10 +164,14 @@ const PurchaseModal = ({
                   title: "Your purchase",
                   content: <Summary />,
                 },
-                {
-                  title: "Sign in",
-                  content: <Component />,
-                },
+                ...(isGuest
+                  ? [
+                      {
+                        title: "Sign in",
+                        content: <SignIn />,
+                      },
+                    ]
+                  : []),
                 {
                   title: "Your information",
                   content: <Component />,
