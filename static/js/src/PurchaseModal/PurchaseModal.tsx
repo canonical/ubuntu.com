@@ -159,7 +159,7 @@ const PurchaseModal = ({
                 { title: "Region and taxes", content: <Taxes /> },
                 {
                   title: "Your purchase",
-                  content: <Component />,
+                  content: <Summary />,
                 },
                 {
                   title: "Sign in",
