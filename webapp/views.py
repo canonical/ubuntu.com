@@ -485,7 +485,10 @@ def unlisted_engage_page(slug):
     Renders an engage page that is separate from the
     discourse implementation
     """
-    return flask.render_template(f"engage/unlisted/{slug}.html")
+    try:
+        return flask.render_template(f"engage/unlisted/{slug}.html")
+    except jinja2.exceptions.TemplateNotFound:
+        return flask.abort(404)
 
 
 def openstack_install():
