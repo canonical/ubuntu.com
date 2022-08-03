@@ -15,6 +15,8 @@ import {
 import StepOne from "./components/ModalSteps/StepOne";
 import StepTwo from "./components/ModalSteps/StepTwo";
 import { BuyButtonProps } from "./utils/utils";
+import { Col, List, Row } from "@canonical/react-components";
+import Taxes from "./components/Taxes";
 
 type Props = {
   accountId?: string;
@@ -29,6 +31,12 @@ type Props = {
   modalTitle?: string;
   isFreeTrialApplicable?: boolean;
   marketplace: marketplace;
+};
+
+const Component = () => {
+  return (
+    <div style={{ height: "300px", width: "300px", background: "hotpink" }} />
+  );
 };
 
 const PurchaseModal = ({
@@ -132,32 +140,62 @@ const PurchaseModal = ({
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      enableReinitialize={true}
-      onSubmit={onSubmit}
-    >
-      <>
-        {step === 1 ? (
-          <StepOne error={error} closeModal={closeModal} />
-        ) : (
-          <StepTwo
-            termsLabel={termsLabel}
-            marketingLabel={marketingLabel}
-            setStep={setStep}
-            error={error}
-            setError={setError}
-            Summary={Summary}
-            closeModal={closeModal}
-            product={product}
-            preview={preview}
-            BuyButton={BuyButton}
-            modalTitle={modalTitle}
-            isFreeTrialApplicable={isFreeTrialApplicable}
-          />
-        )}
-      </>
-    </Formik>
+    <div className="checkout-container">
+      <Row>
+        <h1>Your {marketplace} purchase</h1>
+        <Formik
+          onSubmit={onSubmit}
+          initialValues={initialValues}
+          enableReinitialize={true}
+        >
+          <>
+            <Col emptyLarge={7} size={6}>
+              <p>* indicates a mandatory field</p>
+            </Col>
+            <List
+              stepped
+              detailed
+              items={[
+                { title: "Region and taxes", content: <Taxes /> },
+                {
+                  title: "Your purchase",
+                  content: <Component />,
+                },
+                {
+                  title: "Sign in",
+                  content: <Component />,
+                },
+                {
+                  title: "Your information",
+                  content: <Component />,
+                },
+                { title: "Confirm and buy", content: <Component /> },
+              ]}
+            />
+          </>
+          {/* <>
+          {step === 1 ? (
+            <StepOne error={error} closeModal={closeModal} />
+          ) : (
+            <StepTwo
+              termsLabel={termsLabel}
+              marketingLabel={marketingLabel}
+              setStep={setStep}
+              error={error}
+              setError={setError}
+              Summary={Summary}
+              closeModal={closeModal}
+              product={product}
+              preview={preview}
+              BuyButton={BuyButton}
+              modalTitle={modalTitle}
+              isFreeTrialApplicable={isFreeTrialApplicable}
+            />
+          )}
+        </> */}
+        </Formik>
+      </Row>
+    </div>
   );
 };
 
