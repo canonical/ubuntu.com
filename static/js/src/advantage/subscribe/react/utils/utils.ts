@@ -240,3 +240,10 @@ export const getProduct = (
       return "no-product";
   }
 };
+
+export const getLabel = (
+  toFind: string,
+  array: { label: string; value: string }[]
+) => {
+  return array.find((element) => element.value === toFind)?.label;
+};
