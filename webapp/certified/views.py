@@ -9,6 +9,8 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
+from webapp.certified.helpers import get_download_url
+
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
@@ -142,6 +144,7 @@ def certified_model_details(canonical_id):
             "level": model_release["level"],
             "notes": model_release["notes"],
             "version": ubuntu_version,
+            "download_url": get_download_url(model_release),
             "components": {},
         }
 
