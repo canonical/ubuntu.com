@@ -6,6 +6,7 @@ A Flask application for ubuntu.com
 import os
 import talisker.requests
 import flask
+from datetime import datetime, timedelta
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 
@@ -1062,3 +1063,15 @@ def cache_headers(response):
         response.cache_control.no_store = True
 
     return response
+
+
+def date_has_passed(date_str):
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+        present = datetime.now()
+        return present > date
+    except ValueError:
+        return False
+
+
+app.add_template_filter(date_has_passed)
