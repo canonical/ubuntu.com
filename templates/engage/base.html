@@ -79,7 +79,11 @@
   </div>
 </section>
 
-
+{% if document["metadata"]["webinar_date"] is defined %}
+  {% if document["metadata"]["webinar_date"] | date_has_passed %}
+    {% include "engage/shared/_webinar-embed.html" %}
+  {% endif %}
+{% endif %}
 
 <section class="p-strip is-shallow is-bordered">
   <div class="row">
@@ -120,22 +124,14 @@
 
 </section>
 
-{% if document["metadata"]["webinar_code"] is defined %}
-{% if "channel_id" in document["metadata"] %}
-  {% set channel_id = document["metadata"]["channel_id"] %}
+{% if document["metadata"]["webinar_date"] is defined %}
+  {% if not document["metadata"]["webinar_date"] | date_has_passed %}
+    {% include "engage/shared/_webinar-embed.html" %}
+  {% endif %}
 {% else %}
-  {% set channel_id = 6793 %}
+  {% include "engage/shared/_webinar-embed.html" %}
 {% endif %}
-<!-- webinar -->
-<section class="p-strip is-shallow" id="register-section">
-  <div class="row" id="webinar">
-    <div class="jsBrightTALKEmbedWrapper" style="width:100%; height:100%; position:relative;background: #ffffff;">
-      <script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : {{channel_id}}, "language": "en-US", "commId" : {{ document["metadata"]["webinar_code"] }}, "displayMode" : "standalone", "height" : "auto" }</script>
-      <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
-    </div>
-  </div>
-</section>
-{% endif %}
+
 
 {% if "youtube_id" in document["metadata"] %}
 <!-- Youtube webinars -->

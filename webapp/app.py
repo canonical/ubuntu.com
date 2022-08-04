@@ -6,7 +6,7 @@ A Flask application for ubuntu.com
 import os
 import talisker.requests
 import flask
-from datetime import datetime, timedelta
+from datetime import datetime
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 
