@@ -18,7 +18,7 @@ import {
   vatCountries,
 } from "advantage/countries-and-states";
 
-const Taxes = () => {
+const SignIn = () => {
   const {
     errors,
     touched,
@@ -82,4 +82,4 @@ const Taxes = () => {
   );
 };
 
-export default Taxes;
+export default SignIn;

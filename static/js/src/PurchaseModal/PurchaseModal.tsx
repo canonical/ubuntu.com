@@ -18,6 +18,7 @@ import { BuyButtonProps } from "./utils/utils";
 import { Col, List, Row } from "@canonical/react-components";
 import Taxes from "./components/Taxes";
 import SignIn from "./components/SignIn";
+import UserInfoForm from "./components/UserInfoForm";
 
 type Props = {
   accountId?: string;
@@ -59,6 +60,8 @@ const PurchaseModal = ({
   const [step, setStep] = useState(
     userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
   );
+
+  const [isCardValid, setCardValid] = useState(false);
 
   window.accountId = accountId ?? window.accountId;
 
@@ -174,7 +177,7 @@ const PurchaseModal = ({
                   : []),
                 {
                   title: "Your information",
-                  content: <Component />,
+                  content: <UserInfoForm setCardValid={setCardValid} />,
                 },
                 { title: "Confirm and buy", content: <Component /> },
               ]}

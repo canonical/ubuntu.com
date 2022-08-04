@@ -1,6 +1,6 @@
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 
-interface DefaultPaymentMethod {
+export interface DefaultPaymentMethod {
   brand: PaymentMethod.Card["brand"];
   last4: PaymentMethod.Card["last4"];
   expMonth: PaymentMethod.Card["exp_month"];
