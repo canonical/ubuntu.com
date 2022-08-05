@@ -41,7 +41,7 @@ inclusive-naming changes, and take care to make non-breaking adjustments.
 Ending with the charms release 1.23, Charmed Kubernetes is replacing the charm
 `kubernetes-master` with `kubernetes-control-plane`. This charm has always
 hosted applications such as the api-server, controller-manager, proxy, and
-scheduler. Aside from [`etcd`][etcd], which is provided by a separate charm,
+scheduler. Aside from [`etcd`](etcd), which is provided by a separate charm,
 these services are considered the central kubernetes control plane services and
 are better represented under this charm name.
 
@@ -62,8 +62,9 @@ transition the names of the default branches to `main`.
 
 <!-- LINKS -->
 
+[LXD-image]: https://linuxcontainers.org/lxd/docs/master/image-handling
 [kubernetes-control-plane]: https://charmhub.io/kubernetes-control-plane/docs
-[etcd]: https://charmhub.io/etcd
+[etcd]: /kubernetes/docs/charm-etcd
 [upgrading]: /kubernetes/docs/upgrading
 
 <!-- FEEDBACK -->

@@ -175,7 +175,6 @@ No additional issues with IPv6 on MAAS are known at this time.
 
 [dual-stack]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/
 [ip-families]: https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services
-[asset-calico-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/calico-overlay.yaml
 [asset-ipv4-ipv6-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/ipv4-ipv6-overlay.yaml
 [asset-nginx-dual-stack]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/specs/nginx-dual-stack.yaml
 

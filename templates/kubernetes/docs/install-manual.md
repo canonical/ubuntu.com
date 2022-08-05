@@ -181,10 +181,10 @@ each category!
 
 You can use multiple overlays (of different types) if required.  Note that all
 the 'integrator' charms require the use of the `--trust` option. For example,
-to deploy with Calico networking and AWS integration:
+to deploy with Canal networking and AWS integration:
 
 ```bash
-juju deploy charmed-kubernetes --overlay aws-overlay.yaml --trust --overlay calico-overlay.yaml
+juju deploy charmed-kubernetes --overlay aws-overlay.yaml --trust --overlay canal-overlay.yaml
 ```
 
 For more detail on overlays and how they work, see the section [below](#overlay).
@@ -201,11 +201,11 @@ juju deploy charmed-kubernetes
 ```
 
 It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.23
+revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.24
 release, you could run:
 
 ```bash
-juju deploy cs:charmed-kubernetes-862
+juju deploy cs:charmed-kubernetes-1154
 ```
 
 The revision numbers for bundles are generated automatically when the bundle is
@@ -217,6 +217,7 @@ versions of the **Charmed Kubernetes** bundle are shown in the table below:
 
 | Kubernetes version | Charmed Kubernetes bundle                                                                                              |
 | --- |------------------------------------------------------------------------------------------------------------------------------|
+| 1.24.x    | [charmed-kubernetes-1154]((https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.24/bundle.yaml)) |
 | 1.23.x    | [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml) |
 | 1.22.x    | [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.22/bundle.yaml) |
 | 1.21.x    | [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.21/bundle.yaml) |
@@ -350,7 +351,7 @@ values:
 
 ```bash
 juju config containerd https_proxy=https://proxy.example.com
-juju config kubernetes-worker snap_proxy:=https://snap-proxy.example.com
+juju config kubernetes-worker snap_proxy=https://snap-proxy.example.com
 ```
 ... we can instead use the following YAML fragment as an overlay:
 

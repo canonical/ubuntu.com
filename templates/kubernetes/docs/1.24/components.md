@@ -131,7 +131,7 @@ These are the container images used by this release:
 -  kubernetesui/dashboard:v2.5.1
 -  kubernetesui/metrics-scraper:v1.0.7
 -  metrics-server/metrics-server:v0.5.2
--  nvidia/k8s-device-plugin:v0.11.0
+-  nvidia/k8s-device-plugin:v0.12.2
 -  pause:3.6
 -  sig-storage/csi-attacher:v3.3.0
 -  sig-storage/csi-attacher:v3.4.0

@@ -3,7 +3,7 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "CDK add-ons"
+  title: "Charmed Kubernetes addons"
   description: Explaining how to make use of the pre-installed additions to Kubernetes provided by Charmed Kubernetes.
 keywords: operating, add-ons, addons, config
 tags: [operating]
@@ -15,10 +15,19 @@ toc: False
 
 In addition to the components strictly required to create a Kubernetes cluster,
 **Charmed Kubernetes** installs and configures some components for convenience
-and/or to add support for specific features.
+and/or to add support for specific features. These 'addons' have historically 
+been 'baked in' with the default install of Charmed Kubernetes, but as these
+components are no longer going to be updated upstream, these are being replaced by 
+specific **Operator Charms**. Such charms are deployed by Juju into Kubernetes
+itself and require some additional steps. 
 
-This page details these components, their purpose and how they may be
-enabled/disabled where applicable.
+<div class="p-notification--positive is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message">Please see the <./operator-charms"> Operator Charms</a> page for 
+    information on how to set-up Juju prior to deploying the addon charms into Charmed Kubernetes.</p>
+  </div>
+</div>
 
 
 ## CephCSI
@@ -34,28 +43,18 @@ with **Charmed Kubernetes**.
 Sourced from: <https://github.com/coredns/deployment.git>
 
 CoreDNS has been the default DNS provider for Charmed Kubernetes clusters
-since 1.14.
+since 1.14. It will be installed and configured as part of the install
+process of Charmed Kubernetes.
 
-For additional control over CoreDNS, you can also deploy it into the cluster
-using the [CoreDNS Kubernetes operator charm][coredns-charm]. To do so, set
-the `dns-provider` [kubernetes-control-plane configuration][] option to `none` and
-deploy the charm into a Kubernetes model on your cluster. You'll also need
-to cross-model relate it to kubernetes-control-plane:
+If you use the operator charm to deploy CoreDNS to your cluster instead, 
+there is additional flexibility for configuring:
+-  the cluster domain
+-  forwarding rules for unhandled addresses
+-  additional DNS servers
 
-```bash
-juju config -m cluster-model kubernetes-control-plane dns-provider=none
-juju add-k8s k8s-cloud --controller mycontroller
-juju add-model k8s-model k8s-cloud
-juju deploy coredns --channel=latest/stable --trust
-juju offer coredns:dns-provider
-juju consume -m cluster-model k8s-model.coredns
-juju relate -m cluster-model coredns kubernetes-control-plane
-```
+For a step-by-step guide to installing the Operator Charm version of CoreDNS, 
+please refer to the [How to guide][howto].
 
-Once everything settles out, new or restarted pods will use the CoreDNS
-charm as their DNS provider. The CoreDNS charm config allows you to change
-the cluster domain, the IP address or config file to forward unhandled
-queries to, add additional DNS servers, or even override the Corefile entirely.
 
 ## Kubernetes Dashboard
 Sourced from: <https://github.com/kubernetes/dashboard.git>
@@ -82,17 +81,8 @@ juju config kubernetes-control-plane enable-dashboard-addons=true
 
 For additional control over the Kubernetes Dashboard, you can also deploy it into
 the cluster using the [Kubernetes Dashboard operator charm][kubernetes-dashboard-charm].
-To do so, set the `enable-dashboard-addons` [kubernetes-control-plane configuration][]
-option to `false` and deploy the charm into a Kubernetes model on your cluster:
-
-```bash
-juju config -m cluster-model kubernetes-control-plane enable-dashboard-addons=false
-juju add-k8s k8s-cloud --controller mycontroller
-juju add-model k8s-model k8s-cloud
-juju deploy kubernetes-dashboard --channel=latest/stable --trust
-```
-
-For accessing the Dashboard use the same instructions in the [Operations page][].
+For a step-by-step guide to installing the Operator Charm version of the dashboard, 
+please refer to the [How to guide][howto].
 
 ## Nvidia plugin
 Sourced from: <https://github.com/NVIDIA/k8s-device-plugin.git>
@@ -126,14 +116,16 @@ this feature.
 
 
 ## Metrics
-**Charmed Kubernetes** provides multiple means of installing services `kube-state-metrics` and `metrics-server` for monitoring some health aspects of the kubernetes cluster.
+**Charmed Kubernetes** provides the `kube-state-metrics` and `metrics-server` 
+services for monitoring some health aspects of the cluster.
 
-### Built-in Addons
-For each **Charmed Kubernetes** release, baked into the snap which the charm deploys into the `kubernetes-control-plane` charm, are two metrics services.  
+For each **Charmed Kubernetes** release, the `kubernetes-control-plane` charm
+includes two metrics services.  
+
 * `kube-state-metrics` - a fixed commit aligned with the latest-at-the-time release
 * `metrics-server` - a set of kubernetes components defined by kubernetes as an in-tree addon
 
-Both `kube-state-metrics` and `metrics-server` applications can be disabled with:
+Both of the built-in applications can be disabled with:
 
 ```bash
 juju config kubernetes-control-plane enable-metrics=false
@@ -144,74 +136,12 @@ juju config kubernetes-control-plane enable-metrics=false
 juju config kubernetes-control-plane enable-metrics=true
 ```
 
-### Kube-State Metrics
-Sourced from: <https://github.com/kubernetes/kube-state-metrics.git>
-
-Kube-State-Metrics is described by upstream docs: 
-> kube-state-metrics (KSM) is a simple service that listens to the Kubernetes API server and generates metrics about the state of the objects. ... It is not focused on the health of the individual Kubernetes components, but rather on the health of the various objects inside, such as deployments, nodes and pods.
-
-You may follow the installation instructions from [kube-state-metrics example][]
-
-#### Juju Deployment
-`kube-state-metrics` can also be deployed as a juju charm.
-
-One only needs to [add a k8s cloud][] so that juju exposes a means of installing Kubernetes operators into the kubernetes-cluster.
-
-Deploy the [kube-state-metrics-operator][] charm into this kubernetes model with:
-
-```bash
-juju deploy kube-state-metrics --trust
-juju relate kube-state-metrics prometheus  # if a prometheus application is deployed in the same model
-```
-
-
-### Kubernetes Metrics Server
-The Kubernetes Metrics server is described by the upstream docs:
-
-*** "Metrics Server is a scalable, efficient source of container resource metrics for Kubernetes built-in autoscaling pipelines.
- Metrics Server collects resource metrics from Kubelets and exposes them in Kubernetes apiserver through Metrics API for use by Horizontal Pod Autoscaler and Vertical Pod Autoscaler. Metrics API can also be accessed by `kubectl top`, making it easier to debug autoscaling pipelines."***
-
-* In-Tree addon - <https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/metrics-server>
-* Out-of-Tree - <https://github.com/kubernetes-sigs/metrics-server.git>
-
-Since version 1.24, the `metrics-server` can be deployed into the cluster just like any other kubernetes application.
-
-In order to deploy a different version of the metrics-server, first you must disable the built-in service while ensuring the kubernetes-api service still allows the [aggregation-extentions][].
-
-```bash
-juju config kubernetes-control-plane enable-metrics=false
-juju config kubernetes-control-plane api-aggregation-extension=true
-```
-
-After which, one may follow the upstream deployment instructions from [metrics-server releases][]
-
-#### Juju Deployment
-The `metrics-server` can also be deployed as a juju charm.
-
-One only needs to [add a k8s cloud][] so that juju exposes a means of installing Kubernetes operators into the kubernetes-cluster.
-
-Deploy the [kubernetes-metrics-server][] charm into this kubernetes model with:
-
-```bash
-juju deploy kubernetes-metrics-server
-```
-
-This charm offers the following options 
-* upgrade the release of the `metrics-server` via config
-  ```bash
-  juju config kubernetes-metrics-server release="v0.6.0"
-  ```
-* adjust the base image registry if the cluster demands a private registry
-  ```bash
-  juju config kubernetes-metrics-server image-registry="my.registry.server:5000"
-  ```
-* adjust the arguments of the running service
-  ```bash
-  juju config kubernetes-metrics-server extra-args="--kubelet-insecure-tls"
-  ```
-
+Both of these services are also available as Operator Charms, to be deployed by Juju
+into the cluster. For a step-by-step guide to installing the metrics services, 
+please refer to the [How to guide][howto].
 
 <!-- LINKS -->
+[howto]: /kubernetes/docs/how-to-addons
 [Operations page]: /kubernetes/docs/operations
 [kubernetes-control-plane configuration]: https://charmhub.io/kubernetes-control-plane/configure
 [Storage documentation]: /kubernetes/docs/storage
