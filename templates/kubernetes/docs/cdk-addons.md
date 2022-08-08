@@ -24,7 +24,7 @@ itself and require some additional steps.
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">Please see the <./operator-charms"> Operator Charms</a> page for 
+    <p class="p-notification__message">Please see the <a href="/kubernetes/docs/operator-charms"> Operator Charms</a> page for 
     information on how to set-up Juju prior to deploying the addon charms into Charmed Kubernetes.</p>
   </div>
 </div>
