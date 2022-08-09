@@ -23,9 +23,7 @@ const MagicAttachDropdown = ({ selectedId, magicAttachCode }: Props) => {
       value: subscription.contract_id,
     };
   });
-  if (isLoadingUA) {
-    return <Spinner />;
-  }
+
   console.log(selectedId);
   console.log(defaultSelectedSubscription);
   console.log(magicAttachCode);
@@ -36,7 +34,9 @@ const MagicAttachDropdown = ({ selectedId, magicAttachCode }: Props) => {
   const submitAttachRequest = async () => {
     await confirmMagicAttach(magicAttachCode, selectedSubscription);
   };
-
+  if (isLoadingUA) {
+    return <Spinner />;
+  }
   return (
     <>
       <Select
@@ -49,9 +49,12 @@ const MagicAttachDropdown = ({ selectedId, magicAttachCode }: Props) => {
         label="Choose a subscription to attach"
         name="selectSusbcription"
         options={uaSubscriptionsOptions}
+        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+          updateSelectedSubscription(event?.target.value);
+        }}
         stacked
       />
-      <Button onClick={submitAttachRequest} />
+      <Button onClick={submitAttachRequest}>Submit</Button>
     </>
   );
 };
