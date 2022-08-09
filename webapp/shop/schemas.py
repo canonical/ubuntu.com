@@ -1,3 +1,4 @@
+from re import L
 from marshmallow import Schema, validate
 
 from webargs.fields import (
@@ -59,6 +60,9 @@ class PurchaseTotalSchema(Schema):
     tax = Int()
     total = Int(required=True)
 
+class MagicAttachTokenSchema(Schema):
+    contractID = String(required=True)
+    userCode = String(required=True)
 
 account_purhcase = {
     "account_id": String(),

@@ -1,4 +1,5 @@
 # Packages
+from math import perm
 import flask
 from requests.exceptions import HTTPError
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
@@ -17,6 +18,7 @@ from webapp.shop.api.ua_contracts.helpers import (
     to_dict,
 )
 from webapp.shop.schemas import (
+    MagicAttachTokenSchema,
     PurchaseTotalSchema,
     post_anonymised_customer_info,
     post_customer_info,

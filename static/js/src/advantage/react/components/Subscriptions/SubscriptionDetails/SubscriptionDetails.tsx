@@ -139,16 +139,31 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             {isFree ? null : (
               <>
                 {subscription.statuses.has_access_to_support ? (
-                  <Button
-                    appearance="positive"
-                    className="p-subscriptions__details-action"
-                    data-test="support-button"
-                    disabled={editing}
-                    element="a"
-                    href="https://portal.support.canonical.com/"
-                  >
-                    Support portal
-                  </Button>
+                  <>
+                    <Button
+                      appearance="positive"
+                      className="p-subscriptions__details-action"
+                      data-test="support-button"
+                      disabled={editing}
+                      element="a"
+                      href={
+                        "/advantage/magic-attach?subscription=" +
+                        subscription.id
+                      }
+                    >
+                      Attach a machine
+                    </Button>
+                    <Button
+                      appearance="positive"
+                      className="p-subscriptions__details-action"
+                      data-test="support-button"
+                      disabled={editing}
+                      element="a"
+                      href="https://portal.support.canonical.com/"
+                    >
+                      Support portal
+                    </Button>
+                  </>
                 ) : null}
                 {subscription.statuses.is_renewable ? (
                   <Button
