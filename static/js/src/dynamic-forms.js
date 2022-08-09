@@ -244,15 +244,25 @@
               window.location.pathname
             );
           } else {
-            index = index + 1;
-            setState(index);
-            ga(
-              "send",
-              "event",
-              "interactive-forms",
-              "goto:" + index,
-              window.location.pathname
-            );
+            var valid = true;
+
+            if (button.classList.contains("js-validate-form")) {
+              var form = button.closest("form");
+
+              valid = validateForm(form);
+            }
+
+            if (valid) {
+              index = index + 1;
+              setState(index);
+              ga(
+                "send",
+                "event",
+                "interactive-forms",
+                "goto:" + index,
+                window.location.pathname
+              );
+            }
           }
         });
       });
@@ -272,6 +282,49 @@
           }
         });
       });
+
+      // Checks additional required fields to see whether a value has been set
+      function validateForm(form) {
+        var fields = form.querySelectorAll("[required]");
+        var validStates = [];
+
+        fields.forEach((field) => {
+          var fieldName = field.getAttribute("name");
+          var inputs = form.querySelectorAll(`[name="${fieldName}"]`);
+          var validationMessage = document.querySelector(
+            `.js-validation-${fieldName}`
+          );
+          var inputValid = false;
+
+          inputs.forEach((input) => {
+            if (input.type === "checkbox" && input.checked) {
+              inputValid = true;
+            }
+
+            if (input.type === "radio" && input.checked) {
+              inputValid = true;
+            }
+
+            if (input.type === "text" && input.value) {
+              inputValid = true;
+            }
+
+            if (input.type === "textarea" && input.value) {
+              inputValid = true;
+            }
+          });
+
+          if (!inputValid) {
+            validationMessage.classList.remove("u-hide");
+          } else {
+            validationMessage.classList.add("u-hide");
+          }
+
+          validStates.push(inputValid);
+        });
+
+        return !validStates.includes(false);
+      }
 
       // Updates the index and renders the changes
       function setState(index) {
