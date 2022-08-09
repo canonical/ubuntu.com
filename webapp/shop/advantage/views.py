@@ -1,4 +1,5 @@
 # Packages
+import string
 from typing import List
 
 import flask
@@ -625,3 +626,8 @@ def blender_thanks_view(**kwargs):
         "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),
     )
+
+@shop_decorator(area="advantage",permission="user",response="json")
+@use_kwargs({"contractID":String(),"userCode":String()},location="json")
+def activate_magic_attach(ua_contracts_api, *kwargs):
+    return ua_contracts_api.post_magic_attach({"contractID":kwargs.get("contractID"),"userCode":kwargs.get("userCode")})

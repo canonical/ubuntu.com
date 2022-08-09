@@ -465,3 +465,22 @@ export async function endTrial(accountID) {
   let data = await response.json();
   return data;
 }
+
+export async function confirmMagicAttach(magicAttachCode, contractId) {
+  let response = await fetch("/advantage/magic-attach", {
+    method: "POST",
+    cache: "no-store",
+    credentials: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      "userCode": magicAttachCode,
+      "contractID": contractId
+    }),
+  });
+
+  let data = await response.json();
+  return data;
+}
