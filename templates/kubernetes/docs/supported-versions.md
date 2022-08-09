@@ -178,7 +178,7 @@ channels:
   1.5/candidate:    1.5.5          2017-05-17    (3) 17MB -
   1.5/beta:         1.5.5          2017-05-17    (3) 17MB -
   1.5/edge:         1.5.5          2017-05-17    (3) 17MB -
-
+```
 
 In the above output, the stable release is identified as 1.24, and so 1.23 and
 1.22 are also currently supported.
