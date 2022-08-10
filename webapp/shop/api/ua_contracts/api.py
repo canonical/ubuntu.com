@@ -320,13 +320,13 @@ class UAContractsAPI:
         ).json()
     
     def post_magic_attach(self, request_body:dict)->dict:
-        print(request_body)
-        return self._request(
+        self._request(
             method="post",
             path=f"v1/magic-attach/activate",
             json=request_body,
             error_rules=["default"]
-        ).json()
+        )
+        return {}
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:

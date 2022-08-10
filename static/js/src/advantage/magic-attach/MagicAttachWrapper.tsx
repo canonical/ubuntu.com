@@ -1,4 +1,4 @@
-import { Row, Strip } from "@canonical/react-components";
+import { Strip } from "@canonical/react-components";
 import React, { useState } from "react";
 import MagicAttachCode from "./components/MagicAttachCode";
 import MagicAttachDropdown from "./components/MagicAttachDropdown";
@@ -12,20 +12,18 @@ const MagicAttachWrapper = () => {
   console.log(isCode);
   return (
     <Strip className="p-strip--suru-topped">
-      <Row className="u-vertically-center">
-        {isCode ? null : (
-          <MagicAttachCode
-            setCodeStatus={setCodeStatus}
-            setMagicAttachCode={setMagicAttachCode}
-          />
-        )}
-        {isCode ? (
-          <MagicAttachDropdown
-            selectedId={selectedSubscription ? selectedSubscription : ""}
-            magicAttachCode={magicAttachCode}
-          />
-        ) : null}
-      </Row>
+      {isCode ? null : (
+        <MagicAttachCode
+          setCodeStatus={setCodeStatus}
+          setMagicAttachCode={setMagicAttachCode}
+        />
+      )}
+      {isCode ? (
+        <MagicAttachDropdown
+          selectedId={selectedSubscription ? selectedSubscription : ""}
+          magicAttachCode={magicAttachCode}
+        />
+      ) : null}
     </Strip>
   );
 };

@@ -631,3 +631,4 @@ def blender_thanks_view(**kwargs):
 @use_kwargs({"contractID":String(),"userCode":String()},location="json")
 def activate_magic_attach(advantage_mapper,**kwargs):
     return advantage_mapper.activate_magic_attach(contractID=kwargs.get("contractID"),userCode=kwargs.get("userCode"))
+    
