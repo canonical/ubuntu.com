@@ -479,7 +479,7 @@ def engage_thank_you(engage_pages):
         all_engage_pages = engage_pages.get_index()
         if not metadata:
             flask.abort(404)
-        
+
         # Stop potential spamming of /engage/<engage-page>/thank-you
         if "resource_url" not in metadata or metadata["resource_url"] == "":
             return flask.abort(404)

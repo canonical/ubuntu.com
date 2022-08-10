@@ -1,6 +1,6 @@
 <section {% if lang %}lang="{{ lang }}"{% endif %} class="{% if active == 'true' %}is-active {% endif %}{% if class %}{{ class }}{% else %}p-takeover--grad{% endif %} js-takeover" {% if lang_skip %}lang-skip="{{ lang_skip }}"{% endif %} >
   <div class="row u-equal-height">
-    <div class="{% if equal_cols %}col-6{% else %}col-7{% endif %} u-vertically-center">
+    <div class="{% if equal_cols == 'false' %}col-7{% else %}col-6{% endif %} u-vertically-center">
       {% if stacked_image %}
         <div class="u-hide u-show--small p-heading-icon--large">
           <div class="p-heading-icon__header is-stacked">
@@ -22,6 +22,7 @@
             </a>
           </p>
         {% endif %}
+
         {% if secondary_url %}
           <p>
             <a href="{{ secondary_url }}" class="p-link--inverted">
@@ -32,28 +33,17 @@
       </div>
     </div>
     {% if header_image %}
-      <div class="{% if equal_cols == 'false' %}col-12{% else %}col-5{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
-        {% if image_width and image_height %}
-          {% if 'http' not in header_image %}
-            {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
-          {% else %}
-            {% set image_url = header_image %}
-          {% endif %}
-
-          {{
-            image(
-              url=image_url,
-              alt="",
-              height=image_height,
-              width=image_width,
-              hi_def=True,
-              loading="auto",
-              attrs={"style": image_style}
-            ) | safe
-          }}
+      <div class="{% if equal_cols == 'false' %}col-5{% else %}col-6{% endif %} {% if image_hide_small is sameas true %}u-hide--small{% endif %} u-vertically-center u-align--center u-align--left-medium {% if stacked_image %}u-hide--small{% endif %}">
+        {% if 'http' not in header_image %}
+          {% set image_url = "https://assets.ubuntu.com/v1/" + header_image %}
         {% else %}
-          <img src="{% if 'http' not in header_image %}https://assets.ubuntu.com/v1/{% endif %}{{ header_image }}" alt="" width="{{ image_height }}" height="{{ image_width }}">
+          {% set image_url = header_image %}
         {% endif %}
+        {#
+          To make it look as close as possible to homepage takeover we can't use image-template
+          the homepage takeover uses JS to populate the HTML attributes 
+        #}
+        <img src="{{ header_image }}" alt="" width="{{ image_width }}" height="{{ image_height }}">
       </div>
     {% endif %}
     <div class="u-hide--medium u-hide--large">
