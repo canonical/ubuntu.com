@@ -342,6 +342,5 @@ class AdvantageMapper:
         return PurchaseSchema().load(purchase)
     
     def activate_magic_attach(self, userCode:str, contractID:str):
-        print(userCode,contractID)
         return self.ua_contracts_api.post_magic_attach(request_body={"userCode":userCode,"contractID":contractID})
         

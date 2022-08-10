@@ -1,4 +1,4 @@
-import { Button, Input } from "@canonical/react-components";
+import { Button, Col, Row, Input } from "@canonical/react-components";
 import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 type Props = {
@@ -7,23 +7,26 @@ type Props = {
 };
 const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
   return (
-    <>
-      <Input
-        type="text"
-        id="exampleTextInput3"
-        label="magicAttachCode"
-        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          setMagicAttachCode(event.target.value);
-        }}
-      />
-      <Button
-        onClick={() => {
-          setCodeStatus(true);
-        }}
-      >
-        Submit
-      </Button>
-    </>
+    <Row>
+      <Col size={6} className="inside col-12 col-start-large-4 u-align--center">
+        <Input
+          type="text"
+          id="exampleTextInput3"
+          label="Enter the code displayed in your installation"
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            setMagicAttachCode(event.target.value);
+          }}
+        />
+        <Button
+          appearance="positive"
+          onClick={() => {
+            setCodeStatus(true);
+          }}
+        >
+          Submit
+        </Button>
+      </Col>
+    </Row>
   );
 };
 
