@@ -11,13 +11,18 @@
 {# 0 -180px #}
 
 <section class="p-strip--image is-dark is-deep u-no-padding--top u-no-padding--bottom desktop-hero">
-  <div class="p-strip--suru-background">
+  <div class="p-strip--suru">
     <div class="row">
       <div class="col-6">
         <h1>Ubuntu for desktops</h1>
         <p class="desktop-hero--subtext">The open source Ubuntu desktop operating system powers millions of PCs and laptops around the world.</p>
         <p><a href="/download/desktop" class="p-button--positive">Download Ubuntu</a></p>
         <p><a href="/desktop/features" class="p-link--inverted">Take a look&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-6 u-vertically-center">
+        <div class="u-embedded-media">
+          <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/REdxblQpsDE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -91,7 +96,7 @@
 <section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>
-      Available on the largest range of&nbsp;hardware,&nbsp;ever
+      Get Linux on the largest range of&nbsp;hardware
     </h2>
   </div>
   <div class="row">
@@ -106,10 +111,10 @@
     </div>
     <div class="col-5 col-start-large-8 u-vertically-center u-hide--medium u-hide--small">
       {{ image (
-        url="https://assets.ubuntu.com/v1/fa57dc30-desktop-22.04-laptop.png",
+        url="https://assets.ubuntu.com/v1/a8e96807-desktop-xps13-small.png",
         alt="Laptop running Ubuntu",
-        width="1000",
-        height="578",
+        width="1088",
+        height="630",
         hi_def=True,
         loading="lazy"
         ) | safe
