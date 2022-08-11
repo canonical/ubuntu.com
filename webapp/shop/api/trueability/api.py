@@ -63,6 +63,9 @@ class TrueAbilityAPI:
             uri,
         ).json()
 
+    def update_ability_screen(self):
+        pass
+
     def get_assessment_reservations(self):
         uri = "/api/v1/assessment_reservations"
         return self.make_request(
@@ -167,7 +170,7 @@ if __name__ == "__main__":
     print()
 
     print("# Candidate invitations")
-    print(json.dumps(api.get_candidate_invitations(2548), indent=4))
+    print(json.dumps(api.get_candidate_invitations(4190), indent=4))
     print()
 
     print("# Invite candidate")
@@ -177,7 +180,7 @@ if __name__ == "__main__":
     print(
         json.dumps(
             api.post_candidate_invitation(
-                2548, email, first_name, last_name, expires_at
+                4190, email, first_name, last_name, expires_at
             ),
             indent=4,
         )
@@ -185,7 +188,7 @@ if __name__ == "__main__":
     print()
 
     print("# Webhooks")
-    print(json.dumps(api.get_webhooks(2548), indent=4))
+    print(json.dumps(api.get_webhooks(4190), indent=4))
     print()
 
     print("# System status")
