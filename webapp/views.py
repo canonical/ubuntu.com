@@ -427,8 +427,11 @@ def build_engage_index(engage_docs):
 
 
 def build_engage_page(engage_pages):
-    def engage_page(page):
-        path = f"/engage/{page}"
+    def engage_page(language, page):
+        if language:
+            path = f"/engage/{language}/{page}"
+        else:
+            path = f"/engage/{page}"
         metadata = engage_pages.get_engage_page(path)
         if not metadata:
             flask.abort(404)

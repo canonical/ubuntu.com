@@ -613,7 +613,16 @@ app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
 )
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
-app.add_url_rule("/engage/<page>", view_func=build_engage_page(engage_pages))
+app.add_url_rule(
+    "/engage/<page>",
+    defaults={"language": None},
+    view_func=build_engage_page(engage_pages),
+)
+app.add_url_rule(
+    "/engage/<language>/<page>",
+    endpoint="language-engage-page",
+    view_func=build_engage_page(engage_pages),
+)
 app.add_url_rule(
     "/engage/<page>/thank-you",
     defaults={"language": None},
