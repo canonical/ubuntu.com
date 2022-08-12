@@ -140,13 +140,14 @@ def show_template(filename):
 
 def download_server_steps():
     templates = {
-        "step1": "download/server/step1.html",
-        "step2": "download/server/step2.html",
+        "server": "download/server/manual.html",
+        "multipass": "download/server/multipass.html",
         "choose": "download/server/choose.html",
         "download": "download/server/download.html",
     }
     context = {}
-    step = flask.request.form.get("next-step") or "step1"
+    step = flask.request.form.get("next-step") or "server"
+    print(step)
 
     if step not in templates:
         flask.abort(400)

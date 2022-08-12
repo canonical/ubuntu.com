@@ -35,15 +35,15 @@
   <div class="row">
     <div class="col-12">
       <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="next-step" value="step1">
+        <input type="hidden" name="next-step" value="server">
         <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
-          Option 1 - Instant Ubuntu VMs
+          Option 1 - Manual server installation
         </button>
       </form>
       <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="next-step" value="step2">
+        <input type="hidden" name="next-step" value="multipass">
         <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
-          Option 2 - Manual server installation
+          Option 2 - Instant Ubuntu VMs
         </button>
       </form>
       <button disabled class="p-button u-no-margin--top is-inline">
