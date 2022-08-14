@@ -22,6 +22,7 @@ const MagicAttachWrapper = () => {
         <MagicAttachDropdown
           selectedId={selectedSubscription ? selectedSubscription : ""}
           magicAttachCode={magicAttachCode}
+          setCodeStatus={setCodeStatus}
         />
       ) : null}
     </Strip>
