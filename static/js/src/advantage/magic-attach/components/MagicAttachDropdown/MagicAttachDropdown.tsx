@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
@@ -14,8 +14,13 @@ import { confirmMagicAttach } from "advantage/api/contracts";
 type Props = {
   selectedId: string;
   magicAttachCode: string;
+  setCodeStatus: Dispatch<SetStateAction<string>>;
 };
-const MagicAttachDropdown = ({ selectedId, magicAttachCode }: Props) => {
+const MagicAttachDropdown = ({
+  selectedId,
+  magicAttachCode,
+  setCodeStatus,
+}: Props) => {
   const {
     data: uaSubscriptionsData = [],
     isLoading: isLoadingUA,
@@ -95,6 +100,13 @@ const MagicAttachDropdown = ({ selectedId, magicAttachCode }: Props) => {
       />
       <Row className="u-align--right">
         <Col size={3} className="col-start-large-10">
+          <Button
+            onClick={() => {
+              setCodeStatus(false);
+            }}
+          >
+            Cancel
+          </Button>
           <Button onClick={submitAttachRequest}>Submit</Button>
         </Col>
       </Row>
