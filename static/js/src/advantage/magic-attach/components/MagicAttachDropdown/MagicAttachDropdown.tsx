@@ -14,7 +14,7 @@ import { confirmMagicAttach } from "advantage/api/contracts";
 type Props = {
   selectedId: string;
   magicAttachCode: string;
-  setCodeStatus: Dispatch<SetStateAction<string>>;
+  setCodeStatus: Dispatch<SetStateAction<boolean>>;
 };
 const MagicAttachDropdown = ({
   selectedId,
