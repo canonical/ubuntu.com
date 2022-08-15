@@ -675,6 +675,9 @@ class BlogRedirects(BlogView):
         if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
 
+        if not article:
+            return flask.abort(404)
+
         return flask.render_template("blog/article.html", article=article)
 
 
