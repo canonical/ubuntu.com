@@ -51,12 +51,10 @@
 
   <section class="p-strip">
     <div class="row">
-      <div class="col-8">
+      <div class="col-2 col-medium-4">
         <h3>Supported platforms</h3>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{
           image(
             url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
@@ -71,7 +69,7 @@
           <a href="/download/intel-nuc-desktop">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{
           image(
             url="https://assets.ubuntu.com/v1/88444b11-logo-up2.svg",
@@ -86,10 +84,10 @@
           <a href="/download/up-squared-iot-grove-server">Install Ubuntu Server&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{ image (
           url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
-          alt="",
+          alt="AMD XILINX",
           width="72",
           height="45",
           hi_def=True,
@@ -100,10 +98,10 @@
           <a href="/download/amd-xilinx">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{ image (
           url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
-          alt="",
+          alt="Intel",
           width="75",
           height="42",
           hi_def=True,
@@ -114,12 +112,33 @@
           <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
+      <div class="col-2 col-medium-3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
+          alt="RISC-V",
+          width="147",
+          height="23",
+          hi_def=True,
+          loading="auto",
+	  attrs={"style": "margin: 0.5rem 0 0.75rem; max-width: 147px;"}
+          ) | safe
+        }}
+        <p>
+          <a href="/download/iot/risc-v">Install Ubuntu Server&nbsp;&rsaquo;</a>
+        </p>
+      </div>
     </div>
     <br />
     <div class="row">
       <div class="col-8">
-        <a class="p-button--positive" href="/certified">The ultimate Ubuntu Experience: Get Certified Hardware</a>
-        <p>Ubuntu works along with silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.</p>
+		<h3>The ultimate Ubuntu Experience</h3>
+		</div>
+      </div>
+    <div class="row">
+      <div class="col-8">
+	<p>Ubuntu works along with silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.</p>
+
+	<a class="p-button--positive" href="/certified">Get Certified Hardware</a>
       </div>
       <div class="col-4 u-align--center u-hide--medium u-hide--small">
         {{
