@@ -8,6 +8,9 @@
 
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="p-strip--suru-topped">
+    {% if not ("2022-09-06" | date_has_passed) %}
+      {% include "shared/_charmed-kubeflow-beta-banner.html" %}
+    {% endif %}
     <div class="row u-equal-height">
       <div class="col-6">
         <h1 class="u-sv2">What is Kubeflow?</h1>
