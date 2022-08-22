@@ -643,3 +643,9 @@ def blender_thanks_view(**kwargs):
 def activate_magic_attach(advantage_mapper,**kwargs):
     return advantage_mapper.activate_magic_attach(contractID=kwargs.get("contractID"),userCode=kwargs.get("userCode"))
     
+@shop_decorator(area="advantage", permission="user", response="html")
+def magic_attach_view(**kwargs):
+    return flask.render_template(
+        "advantage/magic-attach/index.html",
+    )
+

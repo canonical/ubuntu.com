@@ -104,6 +104,7 @@ from webapp.shop.advantage.views import (
     advantage_shop_view,
     advantage_thanks_view,
     get_renewal,
+    magic_attach_view,
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     cancel_advantage_subscriptions,
@@ -320,6 +321,7 @@ app.add_url_rule(
 )
 app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
 app.add_url_rule("/advantage/magic-attach", view_func=activate_magic_attach,methods=["POST"])
+app.add_url_rule("/advantage/magic-attach", view_func=magic_attach_view,methods=["GET"])
 app.add_url_rule("/advantage/account-users", view_func=get_account_users)
 app.add_url_rule(
     "/advantage/accounts/<account_id>/user",
