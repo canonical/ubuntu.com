@@ -15,6 +15,7 @@ from ubuntu_release_info.data import Data
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
+from urllib.parse import quote
 
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
@@ -666,6 +667,8 @@ class BlogView(flask.views.View):
 
 class BlogRedirects(BlogView):
     def dispatch_request(self, slug):
+
+        slug = quote(slug, safe="/:?&")
         article = self.blog_views.api.get_article(
             slug, self.blog_views.tag_ids, self.blog_views.excluded_tags
         )
