@@ -109,6 +109,7 @@ from webapp.shop.advantage.views import (
     advantage_shop_view,
     advantage_thanks_view,
     get_renewal,
+    magic_attach_view,
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     cancel_advantage_subscriptions,
