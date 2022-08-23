@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import os
 import flask
 import json
@@ -393,6 +394,97 @@ def cred_self_study(
     **kwargs,
 ):
     return flask.render_template("credentials/self-study.html")
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_schedule(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    trueability_api,
+    badge_certification,
+    **kwargs,
+):
+    error = None
+
+    if flask.request.method == "POST":
+        data = flask.request.form
+        sso_user = user_info(flask.session)
+        print(data)
+        print(sso_user)
+        date_and_time = f"{data['date']}T{data['time']}"
+
+        ability_screen_id = 4190
+        email = sso_user["email"]
+        first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+        starts_at = datetime.strptime(date_and_time, "%Y-%m-%dT%H:%M")
+        timezone = data["timezone"]
+        print(starts_at)
+        response = trueability_api.post_assessment_reservation(
+            ability_screen_id,
+            starts_at.isoformat(),
+            email,
+            first_name,
+            last_name,
+            timezone,
+        )
+        print(json.dumps(response, indent=4))
+
+        if "error" in response:
+            error = response["message"]
+        else:
+            return flask.redirect("/credentialing/scheduled")
+
+    return flask.render_template("credentialing/schedule.html", error=error)
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_scheduled(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    trueability_api,
+    badge_certification,
+    **kwargs,
+):
+    ability_screen_id = 4190
+    response = trueability_api.get_assessment_reservations(ability_screen_id)
+
+    exams = []
+    user_email = user_info(flask.session)["email"]
+    for r in response["assessment_reservations"]:
+        if r["user"]["email"] != user_email:
+            continue
+
+        name = r["ability_screen"]["display_name"]
+        starts_at = datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+        timezone = r["user"]["time_zone"]
+        exams.append(
+            {
+                "name": name,
+                "date": starts_at.strftime("%d %b %Y"),
+                "time": starts_at.strftime("%H:%M"),
+                "timezone": timezone,
+                "state": r["state"],
+            }
+        )
+
+    return flask.render_template("credentialing/scheduled.html", exams=exams)
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_exam(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    trueability_api,
+    badge_certification,
+    **kwargs,
+):
+    return flask.render_template("credentialing/exam.html")
 
 
 @shop_decorator(area="cube", permission="user", response="json")

@@ -9,6 +9,7 @@ from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
 from webapp.shop.api.edx.api import EdxAPI
+from webapp.shop.api.trueability.api import TrueAbilityAPI
 from requests import Session
 
 
@@ -62,6 +63,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     session = talisker.requests.get_session()
     badgr_session = init_badgr_session(area)
     edx_session = init_edx_session(area)
+    trueability_session = init_trueability_session(area)
 
     def decorator(func):
         @wraps(func)
@@ -125,6 +127,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 advantage_mapper=advantage_mapper,
                 badgr_api=get_badgr_api_instance(area, badgr_session),
                 edx_api=get_edx_api_instance(area, edx_session),
+                trueability_api=get_trueability_api_instance(area, trueability_session),
                 *args,
                 **kwargs,
             )
@@ -164,6 +167,16 @@ def init_edx_session(area) -> Session:
     return edx_session
 
 
+def init_trueability_session(area) -> Session:
+    if area != "cube":
+        return None
+
+    trueability_session = Session()
+    talisker.requests.configure(trueability_session)
+
+    return trueability_session
+
+
 def get_redirect_default(area) -> str:
     redirect_path = "/account"
     if area == "advantage":
@@ -195,6 +208,17 @@ def get_edx_api_instance(area, edx_session) -> EdxAPI:
         os.getenv("CUBE_EDX_CLIENT_ID"),
         os.getenv("CUBE_EDX_CLIENT_SECRET"),
         edx_session,
+    )
+
+
+def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
+    if area != "cube":
+        return None
+
+    return TrueAbilityAPI(
+        os.getenv("TRUEABILITY_URL", "https://app.trueability.com"),
+        os.getenv("TRUEABILITY_API_KEY", ""),
+        trueability_session,
     )
 
 
