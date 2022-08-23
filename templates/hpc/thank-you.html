@@ -1,0 +1,51 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}Thank you for your interest in HPC{% endblock %}
+{% block canonical_url %}https://ubuntu.com/cloud/contact-us{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1-dWhd0ydDWlYg16rEybPPmkQ6cdxsBmiFOuUz0ApCBM/edit{% endblock meta_copydoc %}
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+
+  <div class="p-strip is-bordered is-deep">
+    <div class="row u-equal-height">
+      <div class="col-7">
+        <h1>Thank you for your interest in HPC</h1>
+        <p class="p-heading--4">A member of our team will follow up with you soon.</p>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+        {{
+          image(
+              url="https://assets.ubuntu.com/v1/52d53696-picto-thankyou-midaubergine.svg",
+              alt="Smile",
+              width="200",
+              height="200",
+              hi_def=True,
+              loading="auto",
+            ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block footer_extra %}
+  <!-- Google Code for Services Canonical &mdash; contact us Conversion Page -->
+  <script>
+    /* <![CDATA[ */
+    var google_conversion_id = 1012391776;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "-mBBCIC5vwMQ4L7f4gM";
+    var google_conversion_value = 0;
+    /* ]]> */
+  </script>
+  <script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js"></script>
+  <noscript>
+    <div style="display:inline;">
+      <img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1012391776/?value=0&amp;label=-mBBCIC5vwMQ4L7f4gM&amp;guid=ON&amp;script=0"/>
+    </div>
+  </noscript>
+  {{ marketo }}
+{% endblock footer_extra %}
