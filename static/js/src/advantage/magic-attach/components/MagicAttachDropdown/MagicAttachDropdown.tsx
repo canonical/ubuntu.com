@@ -46,16 +46,14 @@ const MagicAttachDropdown = () => {
   // 200 to 500 standard HTTP request codes
 
   const submitAttachRequest = async () => {
-    console.log(selectedSubscription);
     updateSubmitStatus({ error: "", status: "1" });
     confirmMagicAttach(magicAttachCode, selectedSubscription)
       .then((response) => {
-        console.log(response);
         updateSubmitStatus({
           error: response.errors,
           status: "2",
         });
-        console.log(submitStatus);
+        window.localStorage.removeItem("magicAttachCode");
       })
       .catch((error) => {
         console.log(error);
@@ -96,34 +94,39 @@ const MagicAttachDropdown = () => {
               onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                 updateSelectedSubscription(event.target.value);
               }}
-              defaultValue={defaultSelectedSubscription.contract_id}
+              defaultValue={
+                defaultSelectedSubscription == undefined
+                  ? ""
+                  : defaultSelectedSubscription.contract_id
+              }
               value={selectedSubscription}
             >
               <option value="" disabled>
                 Select an option
               </option>
-              {uaSubscriptionsData.map((subscription) => {
-                if (subscription.id == defaultSelectedSubscription?.id) {
-                  return (
-                    <option
-                      value={subscription.contract_id}
-                      key={subscription.contract_id}
-                      selected
-                    >
-                      {subscription.product_name}
-                    </option>
-                  );
-                } else {
-                  return (
-                    <option
-                      value={subscription.contract_id}
-                      key={subscription.contract_id}
-                    >
-                      {subscription.product_name}
-                    </option>
-                  );
-                }
-              })}
+              {uaSubscriptionsData &&
+                uaSubscriptionsData.map((subscription) => {
+                  if (subscription.id == defaultSelectedSubscription?.id) {
+                    return (
+                      <option
+                        value={subscription.contract_id}
+                        key={subscription.contract_id}
+                        selected
+                      >
+                        {subscription.product_name}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option
+                        value={subscription.contract_id}
+                        key={subscription.contract_id}
+                      >
+                        {subscription.product_name}
+                      </option>
+                    );
+                  }
+                })}
             </select>
           </div>
         </div>
