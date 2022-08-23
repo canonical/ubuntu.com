@@ -45,6 +45,7 @@ from webapp.context import (
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cube.views import (
     cube_home,
+    cred_schedule,
     cube_microcerts,
     cube_study_labs_button,
     get_microcerts,
@@ -896,8 +897,13 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 
-# Cube docs
+# Credentialing
 app.add_url_rule("/credentialing", view_func=cube_home)
+app.add_url_rule(
+    "/credentialing/schedule",
+    view_func=cred_schedule,
+    methods=["GET", "POST"],
+)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(

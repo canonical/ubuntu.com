@@ -67,6 +67,39 @@ class TrueAbilityAPI:
         uri = "/api/v1/assessment_reservations" + (f"/{uuid}" if uuid else "")
         return self.make_request("GET", uri).json()
 
+    def post_assessment_reservation(
+        self,
+        ability_screen_id: int,
+        email: str,
+        first_name: str,
+        last_name: str,
+        starts_at: str,
+    ):
+        uri = "/api/v1/assessment_reservations"
+        # headers = {"Content-Type": "application/json"}
+        body = {
+            "assessment_reservation": {
+                "ability_screen_id": ability_screen_id,
+                "starts_at": starts_at,
+                "additional_time_minutes": 20,
+                "address_attributes": {
+                    "city": "San Antonio",
+                    "country_code": "US",
+                    "street_address": "1234 Pecan",
+                    "street_address2": "Suite 300",
+                    "state": "Texas",
+                    "time_zone": "America/Chicago",
+                    "zipcode": "78201"
+                },
+            },
+            "user": {
+                "email": email,
+                "first_name": first_name,
+                "last_name": last_name,
+            }
+        }
+        return self.make_request("POST", uri, json=body).json()
+
     def get_assessments(self, uuid: str = None):
         uri = "/api/v1/assessments" + (f"/{uuid}?uuid=true" if uuid else "")
         return self.make_request("GET", uri).json()

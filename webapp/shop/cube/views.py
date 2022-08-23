@@ -1,3 +1,4 @@
+import datetime
 import os
 import flask
 import json
@@ -381,6 +382,33 @@ def cube_home(
     **kwargs,
 ):
     return flask.render_template("credentialing/index.html")
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_schedule(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    trueability_api,
+    badge_certification,
+    **kwargs,
+):
+    if flask.request.method == "POST":
+        data = flask.request.form
+        sso_user = user_info(flask.session)
+        print(data)
+        print(sso_user)
+
+        ability_screen_id = 4190
+        email = sso_user['email']
+        first_name, last_name = sso_user['fullname'].rsplit(' ', maxsplit=1)
+        starts_at = datetime.datetime.utcnow() + datetime.timedelta(days=2)
+        response = trueability_api.post_assessment_reservation(ability_screen_id, email, first_name, last_name, starts_at.isoformat())
+        print(json.dumps(response, indent=4))
+
+        return flask.render_template("credentialing/schedule.html")
+    else:
+        return flask.render_template("credentialing/schedule.html")
 
 
 @shop_decorator(area="cube", permission="user", response="json")
