@@ -1,29 +1,18 @@
 import { Strip } from "@canonical/react-components";
-import React, { useState } from "react";
+import React from "react";
 import MagicAttachCode from "./components/MagicAttachCode";
 import MagicAttachDropdown from "./components/MagicAttachDropdown";
 
-const queryParams = new URLSearchParams(window.location.search);
-const selectedSubscription = queryParams.get("subscription");
-
 const MagicAttachWrapper = () => {
-  const [isCode, setCodeStatus] = useState(false);
-  const [magicAttachCode, setMagicAttachCode] = useState<string>("");
-  console.log(isCode);
+  const magicAttachCode = window.localStorage.getItem("magicAttachCode");
+  const isLoggedIn = window.localStorage.getItem("isLoggedIn");
   return (
     <Strip className="p-strip--suru-topped">
-      {isCode ? null : (
-        <MagicAttachCode
-          setCodeStatus={setCodeStatus}
-          setMagicAttachCode={setMagicAttachCode}
-        />
-      )}
-      {isCode ? (
-        <MagicAttachDropdown
-          selectedId={selectedSubscription ? selectedSubscription : ""}
-          magicAttachCode={magicAttachCode}
-          setCodeStatus={setCodeStatus}
-        />
+      {magicAttachCode == null || isLoggedIn == "false" ? (
+        <MagicAttachCode />
+      ) : null}
+      {magicAttachCode != null && isLoggedIn == "true" ? (
+        <MagicAttachDropdown />
       ) : null}
     </Strip>
   );

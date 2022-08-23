@@ -19,4 +19,9 @@
   defer
 ></script>
 
+<script>
+  window.localStorage.setItem("isLoggedIn",{% if user_info %}true{% else %}false{% endif %});
+</script>
+
+
 {% endblock content %}

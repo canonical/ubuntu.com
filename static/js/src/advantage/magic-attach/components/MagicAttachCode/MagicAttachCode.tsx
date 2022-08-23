@@ -1,11 +1,14 @@
 import { Button, Col, Row, Input } from "@canonical/react-components";
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent } from "react";
 
-type Props = {
-  setCodeStatus: Dispatch<SetStateAction<boolean>>;
-  setMagicAttachCode: Dispatch<SetStateAction<string>>;
+const onCodeSubmit = () => {
+  if (window.localStorage.getItem("isLoggedIn") == "false") {
+    window.location.href = "/login?next=/advantage/magic-attach";
+  } else {
+    window.location.reload();
+  }
 };
-const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
+const MagicAttachCode = () => {
   return (
     <Row>
       <Col size={6} className="inside col-12 col-start-large-4 u-align--center">
@@ -14,15 +17,10 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
           id="exampleTextInput3"
           label="Enter the code displayed in your installation"
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
-            setMagicAttachCode(event.target.value);
+            window.localStorage.setItem("magicAttachCode", event.target.value);
           }}
         />
-        <Button
-          appearance="positive"
-          onClick={() => {
-            setCodeStatus(true);
-          }}
-        >
+        <Button appearance="positive" onClick={onCodeSubmit}>
           Submit
         </Button>
       </Col>

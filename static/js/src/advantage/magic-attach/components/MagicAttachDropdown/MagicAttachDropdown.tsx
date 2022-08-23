@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
@@ -6,39 +6,37 @@ import {
   Col,
   Notification,
   Row,
-  Select,
   Spinner,
 } from "@canonical/react-components";
 import { confirmMagicAttach } from "advantage/api/contracts";
 
-type Props = {
-  selectedId: string;
-  magicAttachCode: string;
-  setCodeStatus: Dispatch<SetStateAction<boolean>>;
-};
-const MagicAttachDropdown = ({
-  selectedId,
-  magicAttachCode,
-  setCodeStatus,
-}: Props) => {
+const MagicAttachDropdown = () => {
   const {
     data: uaSubscriptionsData = [],
     isLoading: isLoadingUA,
   } = useUserSubscriptions();
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const selectedId = queryParams.get("subscription");
+
   const { data: defaultSelectedSubscription } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
-
-  const uaSubscriptionsOptions = uaSubscriptionsData.map((subscription) => {
-    return {
-      label: subscription.product_name,
-      value: subscription.contract_id,
-    };
-  });
+  // const uaSubscriptionsOptions = uaSubscriptionsData.map((subscription) => {
+  //   return {
+  //     label: subscription.product_name,
+  //     value: subscription.contract_id,
+  //   };
+  // });
+  const magicAttachCode = window.localStorage.getItem("magicAttachCode");
 
   const [selectedSubscription, updateSelectedSubscription] = useState(
     defaultSelectedSubscription?.contract_id
   );
+
+  console.log(defaultSelectedSubscription);
+  console.log(selectedSubscription);
+
   const [submitStatus, updateSubmitStatus] = useState({
     error: "",
     status: "0",
@@ -48,6 +46,7 @@ const MagicAttachDropdown = ({
   // 200 to 500 standard HTTP request codes
 
   const submitAttachRequest = async () => {
+    console.log(selectedSubscription);
     updateSubmitStatus({ error: "", status: "1" });
     confirmMagicAttach(magicAttachCode, selectedSubscription)
       .then((response) => {
@@ -82,27 +81,59 @@ const MagicAttachDropdown = ({
     );
   }
   return (
-    <>
-      <Select
-        defaultValue={
-          defaultSelectedSubscription?.product_name
-            ? defaultSelectedSubscription.product_name
-            : ""
-        }
-        id="selectSubscription"
-        label="Choose a subscription to attach"
-        name="selectSusbcription"
-        options={uaSubscriptionsOptions}
-        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-          updateSelectedSubscription(event?.target.value);
-        }}
-        stacked
-      />
+    <form className="p-form p-form--stacked">
+      <div className="p-form__group row">
+        <div className="col-4">
+          <label htmlFor="selectSubscription" className="p-form__label">
+            Choose a subscription to attach
+          </label>
+        </div>
+        <div className="col-8">
+          <div className="p-form__control">
+            <select
+              name="selectSubscription"
+              id="selectSubscription"
+              onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                updateSelectedSubscription(event.target.value);
+              }}
+              defaultValue={defaultSelectedSubscription.contract_id}
+              value={selectedSubscription}
+            >
+              <option value="" disabled>
+                Select an option
+              </option>
+              {uaSubscriptionsData.map((subscription) => {
+                if (subscription.id == defaultSelectedSubscription?.id) {
+                  return (
+                    <option
+                      value={subscription.contract_id}
+                      key={subscription.contract_id}
+                      selected
+                    >
+                      {subscription.product_name}
+                    </option>
+                  );
+                } else {
+                  return (
+                    <option
+                      value={subscription.contract_id}
+                      key={subscription.contract_id}
+                    >
+                      {subscription.product_name}
+                    </option>
+                  );
+                }
+              })}
+            </select>
+          </div>
+        </div>
+      </div>
       <Row className="u-align--right">
         <Col size={3} className="col-start-large-10">
           <Button
             onClick={() => {
-              setCodeStatus(false);
+              window.localStorage.removeItem("magicAttachCode");
+              window.location.reload();
             }}
           >
             Cancel
@@ -110,7 +141,7 @@ const MagicAttachDropdown = ({
           <Button onClick={submitAttachRequest}>Submit</Button>
         </Col>
       </Row>
-    </>
+    </form>
   );
 };
 export default MagicAttachDropdown;
