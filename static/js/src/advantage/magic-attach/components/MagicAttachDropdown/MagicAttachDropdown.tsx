@@ -6,7 +6,6 @@ import {
   Col,
   Notification,
   Row,
-  Select,
   Spinner,
 } from "@canonical/react-components";
 import { confirmMagicAttach } from "advantage/api/contracts";
@@ -25,15 +24,9 @@ const MagicAttachDropdown = ({
     data: uaSubscriptionsData = [],
     isLoading: isLoadingUA,
   } = useUserSubscriptions();
+
   const { data: defaultSelectedSubscription } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
-  });
-
-  const uaSubscriptionsOptions = uaSubscriptionsData.map((subscription) => {
-    return {
-      label: subscription.product_name,
-      value: subscription.contract_id,
-    };
   });
 
   const [selectedSubscription, updateSelectedSubscription] = useState(
@@ -51,7 +44,6 @@ const MagicAttachDropdown = ({
     updateSubmitStatus({ error: "", status: "1" });
     confirmMagicAttach(magicAttachCode, selectedSubscription)
       .then((response) => {
-        console.log(response);
         updateSubmitStatus({
           error: response.errors,
           status: "2",
@@ -82,22 +74,53 @@ const MagicAttachDropdown = ({
     );
   }
   return (
-    <>
-      <Select
-        defaultValue={
-          defaultSelectedSubscription?.product_name
-            ? defaultSelectedSubscription.product_name
-            : ""
-        }
-        id="selectSubscription"
-        label="Choose a subscription to attach"
-        name="selectSusbcription"
-        options={uaSubscriptionsOptions}
-        onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-          updateSelectedSubscription(event?.target.value);
-        }}
-        stacked
-      />
+    <form className="p-form p-form--stacked">
+      <div className="p-form__group row">
+        <div className="col-4">
+          <label htmlFor="selectSubscription" className="p-form__label">
+            Choose a subscription to attach
+          </label>
+        </div>
+        <div className="col-8">
+          <div className="p-form__control">
+            <select
+              name="selectSubscription"
+              id="selectSubscription"
+              onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                updateSelectedSubscription(event.target.value);
+              }}
+              defaultValue={defaultSelectedSubscription.contract_id}
+              value={selectedSubscription}
+            >
+              <option value="" disabled>
+                Select an option
+              </option>
+              {uaSubscriptionsData.map((subscription) => {
+                if (subscription.id == defaultSelectedSubscription?.id) {
+                  return (
+                    <option
+                      value={subscription.contract_id}
+                      key={subscription.contract_id}
+                      selected
+                    >
+                      {subscription.product_name}
+                    </option>
+                  );
+                } else {
+                  return (
+                    <option
+                      value={subscription.contract_id}
+                      key={subscription.contract_id}
+                    >
+                      {subscription.product_name}
+                    </option>
+                  );
+                }
+              })}
+            </select>
+          </div>
+        </div>
+      </div>
       <Row className="u-align--right">
         <Col size={3} className="col-start-large-10">
           <Button
@@ -110,7 +133,7 @@ const MagicAttachDropdown = ({
           <Button onClick={submitAttachRequest}>Submit</Button>
         </Col>
       </Row>
-    </>
+    </form>
   );
 };
 export default MagicAttachDropdown;
