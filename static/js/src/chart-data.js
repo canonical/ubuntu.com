@@ -538,13 +538,13 @@ export var kernelReleases1404 = [
   {
     startDate: new Date("2016-08-21T00:00:00"),
     endDate: new Date("2019-04-20T00:00:00"),
-    taskName: "Ubuntu 14.04.5 LTS (v3.13)",
+    taskName: "Ubuntu 14.04.5 LTS (v4.4)",
     status: "LTS",
   },
   {
     startDate: new Date("2019-04-20T00:00:00"),
     endDate: new Date("2024-04-19T00:00:00"),
-    taskName: "Ubuntu 14.04.5 LTS (v3.13)",
+    taskName: "Ubuntu 14.04.5 LTS (v4.4)",
     status: "ESM",
   },
   {
@@ -649,13 +649,13 @@ export var kernelReleasesALL = [
   {
     startDate: new Date("2016-05-01T00:00:00"),
     endDate: new Date("2016-08-21T00:00:00"),
-    taskName: "Ubuntu 14.04.5 LTS (v3.13)",
+    taskName: "Ubuntu 14.04.5 LTS (v4.4)",
     status: "EARLY",
   },
   {
     startDate: new Date("2016-08-21T00:00:00"),
     endDate: new Date("2019-04-20T00:00:00"),
-    taskName: "Ubuntu 14.04.5 LTS (v3.13)",
+    taskName: "Ubuntu 14.04.5 LTS (v4.4)",
     status: "LTS",
   },
   {
@@ -874,13 +874,13 @@ export var kernelReleasesLTS = [
   {
     startDate: new Date("2016-08-21T00:00:00"),
     endDate: new Date("2018-04-01T00:00:00"),
-    taskName: "Ubuntu 14.04.5 LTS (v3.13)",
+    taskName: "Ubuntu 14.04.5 LTS (v4.4)",
     status: "LTS",
   },
   {
     startDate: new Date("2018-04-01T00:00:00"),
     endDate: new Date("2019-04-20T00:00:00"),
-    taskName: "Ubuntu 14.04.5 LTS (v3.13)",
+    taskName: "Ubuntu 14.04.5 LTS (v4.4)",
     status: "CVE",
   },
   {
@@ -1409,7 +1409,7 @@ export var kernelReleaseNames2004 = [
   "Ubuntu 20.04.2 LTS (v5.8)",
   "Ubuntu 20.04.3 LTS (v5.11)",
   "Ubuntu 20.04.4 LTS (v5.13)",
-  "Ubuntu 20.04.5 LTS",
+  "Ubuntu 20.04.5 LTS (v5.15)",
 ];
 
 export var kernelReleaseNames1804 = [
@@ -1436,7 +1436,7 @@ export var kernelReleaseNames1404 = [
   "Ubuntu 14.04.2 LTS (v3.16)",
   "Ubuntu 14.04.3 LTS (v3.19)",
   "Ubuntu 14.04.4 LTS (v4.2)",
-  "Ubuntu 14.04.5 LTS (v3.13)",
+  "Ubuntu 14.04.5 LTS (v4.4)",
 ];
 
 export var kernelReleaseNamesALL = [
@@ -1446,7 +1446,7 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 14.04.3 LTS (v3.19)",
   "Ubuntu 14.04.4 LTS (v4.2)",
   "Ubuntu 16.04.0 LTS (v4.4)",
-  "Ubuntu 14.04.5 LTS (v3.13)",
+  "Ubuntu 14.04.5 LTS (v4.4)",
   "Ubuntu 16.04.1 LTS (v4.4)",
   "Ubuntu 16.04.2 LTS (v4.8)",
   "Ubuntu 16.04.3 LTS (v4.10)",
@@ -1463,7 +1463,7 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 20.04.2 LTS (v5.8)",
   "Ubuntu 20.04.3 LTS (v5.11)",
   "Ubuntu 20.04.4 LTS (v5.13)",
-  "Ubuntu 20.04.5 LTS",
+  "Ubuntu 20.04.5 LTS (v5.15)",
 ];
 
 export var kernelReleaseNamesLTS = [
@@ -1473,7 +1473,7 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 14.04.3 LTS (v3.19)",
   "Ubuntu 14.04.4 LTS (v4.2)",
   "Ubuntu 16.04.0 LTS (v4.4)",
-  "Ubuntu 14.04.5 LTS (v3.13)",
+  "Ubuntu 14.04.5 LTS (v4.4)",
   "Ubuntu 16.04.1 LTS (v4.4)",
   "Ubuntu 16.04.2 LTS (v4.8)",
   "Ubuntu 16.04.3 LTS (v4.10)",
@@ -1490,7 +1490,7 @@ export var kernelReleaseNamesLTS = [
   "Ubuntu 20.04.2 LTS (v5.8)",
   "Ubuntu 20.04.3 LTS (v5.11)",
   "Ubuntu 20.04.4 LTS (v5.13)",
-  "Ubuntu 20.04.5 LTS",
+  "Ubuntu 20.04.5 LTS (v5.15)",
 ];
 
 export var openStackReleaseNames = [
