@@ -31,7 +31,9 @@ const MagicAttachDropdown = () => {
   const magicAttachCode = window.localStorage.getItem("magicAttachCode");
 
   const [selectedSubscription, updateSelectedSubscription] = useState(
-    defaultSelectedSubscription?.contract_id
+    defaultSelectedSubscription == undefined
+      ? ""
+      : defaultSelectedSubscription.contract_id
   );
 
   console.log(defaultSelectedSubscription);
