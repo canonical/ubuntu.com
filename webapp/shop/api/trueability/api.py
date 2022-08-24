@@ -63,17 +63,18 @@ class TrueAbilityAPI:
     def update_ability_screen(self):
         pass
 
-    def get_assessment_reservations(self, uuid: str = None):
-        uri = "/api/v1/assessment_reservations" + (f"/{uuid}" if uuid else "")
+    def get_assessment_reservations(self, ability_screen_id: int = None):
+        uri = "/api/v1/assessment_reservations" + (f"?{ability_screen_id}" if ability_screen_id else "")
         return self.make_request("GET", uri).json()
 
     def post_assessment_reservation(
         self,
         ability_screen_id: int,
+        starts_at: str,
         email: str,
         first_name: str,
         last_name: str,
-        starts_at: str,
+        timezone: str,
     ):
         uri = "/api/v1/assessment_reservations"
         # headers = {"Content-Type": "application/json"}
@@ -96,6 +97,7 @@ class TrueAbilityAPI:
                 "email": email,
                 "first_name": first_name,
                 "last_name": last_name,
+                "time_zone": timezone
             }
         }
         return self.make_request("POST", uri, json=body).json()
