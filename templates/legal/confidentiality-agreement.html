@@ -6,7 +6,6 @@
 {% block head_extra %}
 <script type="text/javascript" src="https://www.tfaforms.com/wForms/3.7/js/wforms.js"></script>
 <script type="text/javascript" src="https://www.tfaforms.com/wForms/3.7/js/localization-en_GB.js"></script>
-
 <link href="https://www.tfaforms.com/css/form.css" rel="stylesheet" type="text/css" />
 <script>
   wFORMS.behaviors.prefill.skip = false;
@@ -106,6 +105,23 @@
     var regexp = /^(\d-?){12,12}$/;
     return this.isEmpty(value) || regexp.test(value);
   };
+</script>
+<script>
+  // hides US State selection field unless country is US
+  document.addEventListener("DOMContentLoaded", function() {
+    var countryInput = document.querySelector("#tfa_Country");
+    var USStateCont = document.querySelector("#tfa_USState-D");
+    var USStateSelect = USStateCont.querySelector("select");
+
+    countryInput.addEventListener("change", function(e) {
+      if (e.target.value === "tfa_UnitedStates") {
+        USStateCont.classList.remove("offstate-b");
+      } else if (e.target.value !== "tfa_UnitedStates") {
+        USStateCont.classList.add("offstate-b");
+        USStateSelect.selectedIndex = 0;
+      }
+    })
+  });
 </script>
 {% endblock %}
 
@@ -415,11 +431,11 @@
                       </div>
                     </li>
                     <li class="p-list__item">
-                      <div id="tfa_USState-D" class="oneField  offstate-b   offstate">
+                      <div id="tfa_USState-D" class="oneField field-container-D offstate-b">
                         <label id="tfa_USState-L" for="tfa_USState" class="label preField reqMark">US State <span>*</span></label>
 
                         <div class="inputWrapper">
-                          <select id="tfa_USState" name="tfa_USState" data-condition="`#tfa_UnitedStates`" class="required" disabled="">
+                          <select aria-required="true" id="tfa_USState" name="tfa_USState" data-condition="`#tfa_UnitedStates`" title="US State" class="required">
                                             <option value="">Please select...</option>
                                             <option value="tfa_Alabama" id="tfa_Alabama" >Alabama</option>
                                             <option value="tfa_Alaska" id="tfa_Alaska" >Alaska</option>
