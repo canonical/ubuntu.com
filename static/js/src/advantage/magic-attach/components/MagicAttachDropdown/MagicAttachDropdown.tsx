@@ -30,7 +30,9 @@ const MagicAttachDropdown = ({
   });
 
   const [selectedSubscription, updateSelectedSubscription] = useState(
-    defaultSelectedSubscription?.contract_id
+    defaultSelectedSubscription == undefined
+      ? ""
+      : defaultSelectedSubscription.contract_id
   );
   const [submitStatus, updateSubmitStatus] = useState({
     error: "",
