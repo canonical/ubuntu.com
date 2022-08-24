@@ -39,7 +39,6 @@ def releases():
         return yaml.load(releases, Loader=yaml.FullLoader)
 
 
-
 def get_navigation(path):
     """
     Set "nav_sections" and "breadcrumbs" dictionaries
@@ -56,8 +55,7 @@ def get_navigation(path):
 
         for child in nav_section["children"]:
             if (
-                child["path"] == path
-                and path.startswith(nav_section["path"])
+                child["path"] == path and path.startswith(nav_section["path"])
             ) or (path.startswith(child["path"])):
                 # look for the closest patch match
                 if len(child["path"]) > longest_match_path:
