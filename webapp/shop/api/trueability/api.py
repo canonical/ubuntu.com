@@ -36,12 +36,18 @@ class TrueAbilityAPI:
         data: dict = {},
         json: dict = {},
         retry: bool = True,
+        allow_redirects: bool = True,
     ):
         uri = f"{self.base_url}{path}"
         headers["X-API_KEY"] = f"{self.api_key}"
 
         response = self.session.request(
-            method, uri, headers=headers, data=data, json=json
+            method,
+            uri,
+            headers=headers,
+            data=data,
+            json=json,
+            allow_redirects=allow_redirects,
         )
 
         if retry and response.status_code == 401:
@@ -64,7 +70,9 @@ class TrueAbilityAPI:
         pass
 
     def get_assessment_reservations(self, ability_screen_id: int = None):
-        uri = "/api/v1/assessment_reservations" + (f"?{ability_screen_id}" if ability_screen_id else "")
+        uri = "/api/v1/assessment_reservations" + (
+            f"?{ability_screen_id}" if ability_screen_id else ""
+        )
         return self.make_request("GET", uri).json()
 
     def post_assessment_reservation(
@@ -90,21 +98,40 @@ class TrueAbilityAPI:
                     "street_address2": "Suite 300",
                     "state": "Texas",
                     "time_zone": "America/Chicago",
-                    "zipcode": "78201"
+                    "zipcode": "78201",
                 },
             },
             "user": {
                 "email": email,
                 "first_name": first_name,
                 "last_name": last_name,
-                "time_zone": timezone
-            }
+                "time_zone": timezone,
+            },
         }
         return self.make_request("POST", uri, json=body).json()
 
-    def get_assessments(self, uuid: str = None):
-        uri = "/api/v1/assessments" + (f"/{uuid}?uuid=true" if uuid else "")
+    def get_assessments(self, ability_screen_id: int = None, uuid: str = None):
+        uri = (
+            "/api/v1/assessments"
+            + (f"/{uuid}?uuid=true" if uuid else "")
+            + (
+                f"?ability_screen_id={ability_screen_id}"
+                if ability_screen_id
+                else ""
+            )
+        )
         return self.make_request("GET", uri).json()
+
+    def get_assessment_redirect(self, id: str):
+        uri = "/api/v1/assessments/redirect_to_environment" + (
+            f"?id={id}" if id else ""
+        )
+        response = self.make_request("GET", uri, allow_redirects=False)
+
+        if response.status_code == 302 and "Location" in response.headers:
+            return response.headers["Location"]
+
+        return None
 
     def get_results(self, id: int = None):
         uri = "/api/v1/results" + (f"/{id}" if id else "")
@@ -178,14 +205,21 @@ if __name__ == "__main__":
 
     #  print("# Assessment reservations")
     #  #  uuid = None
-    #  uuid = "228c490b-2742-41f4-b227-47de6e447018"
-    #  print(json.dumps(api.get_assessment_reservations(uuid), indent=4))
+    #  #  uuid = "228c490b-2742-41f4-b227-47de6e447018"
+    #  ability_screen_id = 4190
+    #  print(json.dumps(api.get_assessment_reservations(ability_screen_id), indent=4))
     #  print()
 
     #  print("# Assessments")
-    #  #  uuid = None
-    #  uuid = "ee0e7712-13ea-11ed-8035-0af7ea428473"
-    #  print(json.dumps(api.get_assessments(uuid), indent=4))
+    #  ability_screen_id = 4190
+    #  print(json.dumps(api.get_assessments(ability_screen_id), indent=4))
+    #  print()
+
+    #  print("# Assessment redirect")
+    #  id = "113159"
+    #  #  print(json.dumps(api.get_assessment_redirect(id), indent=4))
+    #  redirect_url = api.get_assessment_redirect(id)
+    #  print(redirect_url)
     #  print()
 
     #  print("# Results")

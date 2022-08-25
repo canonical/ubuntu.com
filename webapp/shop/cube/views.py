@@ -475,6 +475,42 @@ def cred_scheduled(
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+def cred_assessments(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    trueability_api,
+    badge_certification,
+    **kwargs,
+):
+    user_email = user_info(flask.session)["email"]
+    ability_screen_id = 4190
+    response = trueability_api.get_assessments(ability_screen_id)
+
+    exams = []
+    for r in response["assessments"]:
+        if r["user"]["email"] != user_email:
+            continue
+
+        name = r["ability_screen"]["name"]
+        started_at = datetime.strptime(r["started_at"], "%Y-%m-%dT%H:%M:%S%fZ") if r["started_at"] else None
+        timezone = r["user"]["time_zone"]
+        exams.append(
+            {
+                "name": name,
+                "date": started_at.strftime("%d %b %Y") if started_at else "N/A",
+                "time": started_at.strftime("%H:%M") if started_at else "N/A",
+                "timezone": timezone,
+                "state": r["state"],
+                "id": r["id"]
+            }
+        )
+
+    return flask.render_template("credentialing/assessments.html", exams=exams)
+
+
+@shop_decorator(area="cube", permission="user", response="html")
 def cred_exam(
     ua_contracts_api,
     badgr_issuer,
@@ -484,7 +520,10 @@ def cred_exam(
     badge_certification,
     **kwargs,
 ):
-    return flask.render_template("credentialing/exam.html")
+
+    assessment_id = flask.request.args.get("id")
+    url = trueability_api.get_assessment_redirect(assessment_id)
+    return flask.render_template("credentialing/exam.html", url=url)
 
 
 @shop_decorator(area="cube", permission="user", response="json")
