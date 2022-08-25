@@ -5,13 +5,13 @@ import {
   Input,
   Accordion,
 } from "@canonical/react-components";
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 
 type Props = {
   setCodeStatus: Dispatch<SetStateAction<boolean>>;
   setMagicAttachCode: Dispatch<SetStateAction<string>>;
 };
-const MagicAttachCode = () => {
+const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
   const [tab, changeTab] = useState(0);
   return (
     <>

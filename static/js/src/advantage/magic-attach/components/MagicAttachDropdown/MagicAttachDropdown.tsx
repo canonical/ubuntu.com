@@ -91,7 +91,11 @@ const MagicAttachDropdown = ({
               onChange={(event: ChangeEvent<HTMLSelectElement>) => {
                 updateSelectedSubscription(event.target.value);
               }}
-              defaultValue={defaultSelectedSubscription.contract_id}
+              defaultValue={
+                defaultSelectedSubscription == undefined
+                  ? ""
+                  : defaultSelectedSubscription.contract_id
+              }
               value={selectedSubscription}
             >
               <option value="" disabled>
