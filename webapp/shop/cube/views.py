@@ -4,7 +4,7 @@ import flask
 import json
 
 from urllib.parse import quote_plus
-from webapp.shop.decorators import shop_decorator
+from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.shop.api.ua_contracts.api import UAContractsUserHasNoAccount
 from webapp.login import user_info
 
@@ -385,6 +385,7 @@ def cube_home(
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
 def cred_schedule(
     ua_contracts_api,
     badgr_issuer,
@@ -428,6 +429,7 @@ def cred_schedule(
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
 def cred_scheduled(
     ua_contracts_api,
     badgr_issuer,
@@ -463,6 +465,7 @@ def cred_scheduled(
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
 def cred_assessments(
     ua_contracts_api,
     badgr_issuer,
@@ -499,6 +502,7 @@ def cred_assessments(
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
 def cred_exam(
     ua_contracts_api,
     badgr_issuer,
