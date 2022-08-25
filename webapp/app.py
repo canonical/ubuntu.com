@@ -47,6 +47,7 @@ from webapp.shop.cube.views import (
     cube_home,
     cred_schedule,
     cred_scheduled,
+    cred_assessments,
     cred_exam,
     cube_microcerts,
     cube_study_labs_button,
@@ -907,6 +908,7 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 app.add_url_rule("/credentialing/scheduled", view_func=cred_scheduled)
+app.add_url_rule("/credentialing/assessments", view_func=cred_assessments)
 app.add_url_rule("/credentialing/exam", view_func=cred_exam)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
