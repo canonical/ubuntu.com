@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
 from webapp.shop.api.edx.api import EdxAPI
 from webapp.shop.api.trueability.api import TrueAbilityAPI
+from webapp.login import user_info
 from requests import Session
 
 
@@ -127,10 +128,30 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 advantage_mapper=advantage_mapper,
                 badgr_api=get_badgr_api_instance(area, badgr_session),
                 edx_api=get_edx_api_instance(area, edx_session),
-                trueability_api=get_trueability_api_instance(area, trueability_session),
+                trueability_api=get_trueability_api_instance(
+                    area, trueability_session
+                ),
                 *args,
                 **kwargs,
             )
+
+        return decorated_function
+
+    return decorator
+
+
+def canonical_staff():
+    def decorator(func):
+        @wraps(func)
+        def decorated_function(*args, **kwargs):
+            sso_user = user_info(flask.session)
+            if sso_user and sso_user.get("email", "").endswith(
+                "@canonical.com"
+            ):
+                return func(*args, **kwargs)
+
+            message = {"error": "unauthorized"}
+            return flask.jsonify(message), 403
 
         return decorated_function
 
