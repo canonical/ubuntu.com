@@ -435,7 +435,14 @@ def cred_schedule(
         if "error" in response:
             error = response["message"]
         else:
-            return flask.redirect("/credentialing/scheduled")
+            exam = {
+                "name": "Linux Essentials",
+                "date": starts_at.strftime("%d %b %Y"),
+                "time": starts_at.strftime("%H:%M"),
+            }
+            return flask.render_template(
+                "/credentialing/schedule-confirm.html", exam=exam
+            )
 
     return flask.render_template("credentialing/schedule.html", error=error)
 
@@ -451,29 +458,46 @@ def cred_scheduled(
     badge_certification,
     **kwargs,
 ):
-    ability_screen_id = 4190
-    response = trueability_api.get_assessment_reservations(ability_screen_id)
-
     exams = []
-    user_email = user_info(flask.session)["email"]
-    for r in response["assessment_reservations"]:
-        if r["user"]["email"] != user_email:
-            continue
-
-        name = r["ability_screen"]["display_name"]
-        starts_at = datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-        timezone = r["user"]["time_zone"]
-        exams.append(
-            {
-                "name": name,
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%H:%M"),
-                "timezone": timezone,
-                "state": r["state"],
-            }
+    tb = ""
+    try:
+        ability_screen_id = 4190
+        response = trueability_api.get_assessment_reservations(
+            ability_screen_id
         )
+        user_email = user_info(flask.session)["email"]
+        for r in response["assessment_reservations"]:
+            if r["user"]["email"] != user_email:
+                continue
 
-    return flask.render_template("credentialing/scheduled.html", exams=exams)
+            name = r["ability_screen"]["display_name"]
+            starts_at = datetime.strptime(
+                r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
+            )
+            timezone = r["user"]["time_zone"]
+            exams.append(
+                {
+                    "name": name,
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%H:%M"),
+                    "timezone": timezone,
+                    "state": r["state"],
+                }
+            )
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
+
+    url = os.getenv("TRUEABILITY_URL", "")
+    key_len = len(os.getenv("TRUEABILITY_API_KEY", ""))
+
+    return flask.render_template(
+        "credentialing/scheduled.html",
+        exams=exams,
+        url=url,
+        key_len=key_len,
+        tb=tb,
+    )
 
 
 @shop_decorator(area="cube", permission="user", response="html")
@@ -497,16 +521,22 @@ def cred_assessments(
             continue
 
         name = r["ability_screen"]["name"]
-        started_at = datetime.strptime(r["started_at"], "%Y-%m-%dT%H:%M:%S%fZ") if r["started_at"] else None
+        started_at = (
+            datetime.strptime(r["started_at"], "%Y-%m-%dT%H:%M:%S%fZ")
+            if r["started_at"]
+            else None
+        )
         timezone = r["user"]["time_zone"]
         exams.append(
             {
                 "name": name,
-                "date": started_at.strftime("%d %b %Y") if started_at else "N/A",
+                "date": started_at.strftime("%d %b %Y")
+                if started_at
+                else "N/A",
                 "time": started_at.strftime("%H:%M") if started_at else "N/A",
                 "timezone": timezone,
                 "state": r["state"],
-                "id": r["id"]
+                "id": r["id"],
             }
         )
 
