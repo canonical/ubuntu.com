@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./hooks/useStripeCustomerInfo";
 import registerPaymentMethod from "./hooks/registerPaymentMethod";
-import { Formik, FormikHelpers } from "formik";
+import { Formik, FormikHelpers, useFormikContext } from "formik";
 import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../advantage/error-handler";
 import { checkoutEvent } from "../advantage/ecom-events";
@@ -12,13 +12,15 @@ import {
   FormValues,
   marketplace,
 } from "./utils/utils";
-import StepOne from "./components/ModalSteps/StepOne";
-import StepTwo from "./components/ModalSteps/StepTwo";
+
 import { BuyButtonProps } from "./utils/utils";
 import { Col, List, Row } from "@canonical/react-components";
 import Taxes from "./components/Taxes";
 import SignIn from "./components/SignIn";
 import UserInfoForm from "./components/UserInfoForm";
+import ConfirmAndBuy from "./components/ConfirmAndBuy";
+import ModalFooter from "./components/ModalParts/ModalFooter";
+import BuyButton from "./components/BuyButton";
 
 type Props = {
   accountId?: string;
@@ -29,16 +31,9 @@ type Props = {
   quantity?: number;
   closeModal: () => void;
   Summary: React.ComponentType;
-  BuyButton: React.ComponentType<BuyButtonProps>;
   modalTitle?: string;
   isFreeTrialApplicable?: boolean;
   marketplace: marketplace;
-};
-
-const Component = () => {
-  return (
-    <div style={{ height: "300px", width: "300px", background: "hotpink" }} />
-  );
 };
 
 const PurchaseModal = ({
@@ -50,16 +45,18 @@ const PurchaseModal = ({
   quantity,
   closeModal,
   Summary,
-  BuyButton,
   modalTitle,
   isFreeTrialApplicable,
   marketplace,
 }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
-  const [step, setStep] = useState(
-    userInfo?.customerInfo?.defaultPaymentMethod ? 2 : 1
-  );
+
+  const setErrorWithSideEffect = (error: React.ReactNode) => {
+    setFieldValue("TermsAndConditions", false);
+    setFieldValue("MarketingOptIn", false);
+    setError(error);
+  };
 
   const [isCardValid, setCardValid] = useState(false);
 
@@ -70,12 +67,6 @@ const PurchaseModal = ({
   const paymentMethodMutation = registerPaymentMethod();
 
   const initialValues = getInitialFormValues(userInfo, window.accountId);
-
-  useEffect(() => {
-    if (userInfo?.customerInfo?.defaultPaymentMethod) {
-      setStep(2);
-    }
-  }, [userInfo]);
 
   const isGuest = !userInfo?.customerInfo?.email;
 
@@ -94,7 +85,6 @@ const PurchaseModal = ({
       {
         onSuccess: (data, variables) => {
           window.accountId = data.accountId;
-          setStep(2);
           queryClient.setQueryData(
             "paymentModalUserInfo",
             getUserInfoFromVariables(data, variables.formData)
@@ -179,7 +169,10 @@ const PurchaseModal = ({
                   title: "Your information",
                   content: <UserInfoForm setCardValid={setCardValid} />,
                 },
-                { title: "Confirm and buy", content: <Component /> },
+                {
+                  title: "Confirm and buy",
+                  content: <ConfirmAndBuy termsLabel={termsLabel} />,
+                },
               ]}
             />
           </>
@@ -203,6 +196,15 @@ const PurchaseModal = ({
             />
           )}
         </> */}
+
+          <ModalFooter closeModal={closeModal}>
+            <BuyButton
+              setError={setError}
+              userInfo={userInfo}
+              product={product}
+              quantity={quantity ?? 0}
+            ></BuyButton>
+          </ModalFooter>
         </Formik>
       </Row>
     </div>

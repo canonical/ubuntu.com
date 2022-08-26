@@ -37,6 +37,8 @@ export interface FormValues {
   caProvince?: string;
   VATNumber?: string;
   captchaValue: string | null;
+  TermsAndConditions: boolean;
+  MarketingOptIn: boolean;
 }
 
 function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
@@ -84,6 +86,8 @@ function getInitialFormValues(
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
     VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
     captchaValue: null,
+    TermsAndConditions: false,
+    MarketingOptIn: false,
   };
 }
 

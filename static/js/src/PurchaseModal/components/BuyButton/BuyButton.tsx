@@ -1,44 +1,44 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
-import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
-import usePurchase from "../../hooks/usePurchase";
-import useFreeTrial from "../../hooks/useFreeTrial";
-import usePendingPurchase from "../../hooks/usePendingPurchase";
-import { getSessionData } from "../../../../../utils/getSessionData";
-import { BuyButtonProps } from "../../utils/utils";
-import { getErrorMessage } from "../../../../error-handler";
+import usePurchase from "advantage/subscribe/react/hooks/usePurchase";
+import useFreeTrial from "advantage/subscribe/react/hooks/useFreeTrial";
+import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
+import { getSessionData } from "utils/getSessionData";
+import { FormValues } from "../../utils/utils";
+import { getErrorMessage } from "advantage/error-handler";
 
-import { checkoutEvent, purchaseEvent } from "../../../../ecom-events";
-import { FormContext } from "../../utils/FormContext";
+import { checkoutEvent, purchaseEvent } from "advantage/ecom-events";
+import { UseMutationResult } from "react-query";
+import { useFormikContext } from "formik";
+
+type Props = {
+  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  userInfo: any;
+  quantity: number;
+  product: any;
+  mutation?: UseMutationResult<any, unknown, void, unknown>;
+};
 
 const BuyButton = ({
-  areTermsChecked,
-  isUsingFreeTrial,
-  isMarketingOptInChecked,
-  setTermsChecked,
-  setIsMarketingOptInChecked,
   setError,
-  setStep,
-}: BuyButtonProps) => {
+  userInfo,
+  quantity,
+  product,
+  mutation,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const [sessionData, setSessionData] = useState({
+  const { values, setFieldValue } = useFormikContext<FormValues>();
+
+  const sessionData = {
     gclid: getSessionData("gclid"),
     utm_campaign: getSessionData("utm_campaign"),
     utm_source: getSessionData("utm_source"),
     utm_medium: getSessionData("utm_medium"),
-  });
+  };
 
-  const { data: userInfo } = useStripeCustomerInfo(); // not needed
-  const { quantity, product } = useContext(FormContext); // not needed
-
-  const SanitisedQuantity = Number(quantity) ?? 0;
-
-  const purchaseMutation = usePurchase({
-    quantity: SanitisedQuantity,
-    product,
-  });
+  const purchaseMutation = mutation || usePurchase({ quantity, product });
 
   const freeTrialMutation = useFreeTrial(); //ignore for now
 
@@ -52,7 +52,7 @@ const BuyButton = ({
     id: product?.id,
     name: product?.name,
     price: (product?.price?.value ?? 0) / 100,
-    quantity: SanitisedQuantity,
+    quantity: quantity,
   };
 
   const handleOnPurchaseBegin = () => {
@@ -66,11 +66,11 @@ const BuyButton = ({
 
   const handleOnAfterPurchaseSuccess = () => {
     if (window.isGuest && !window.isLoggedIn) {
-      location.href = `/pro/subscribe/thank-you?email=${encodeURIComponent(
-        userInfo?.customerInfo?.email
-      )}`;
+      location.href = `${
+        location.pathname
+      }/thank-you?email=${encodeURIComponent(userInfo?.customerInfo?.email)}`;
     } else {
-      location.pathname = "/pro";
+      location.pathname = "/advantage";
     }
   };
 
@@ -173,9 +173,8 @@ const BuyButton = ({
           setError(knownError);
         }
       }
-      setTermsChecked(false);
-      setIsMarketingOptInChecked(false);
-      setStep(1);
+      setFieldValue("MarketingOptIn", false);
+      setFieldValue("TermsAndConditions", false);
     }
   }, [purchaseError]);
 
@@ -207,7 +206,7 @@ const BuyButton = ({
       formData.append("store_name__c", "ua");
       formData.append(
         "canonicalUpdatesOptIn",
-        isMarketingOptInChecked ? "yes" : "no"
+        values.MarketingOptIn ? "yes" : "no"
       );
 
       request.open("POST", "/marketo/submit");
@@ -227,11 +226,11 @@ const BuyButton = ({
       appearance="positive"
       aria-label="Buy"
       style={{ textAlign: "center" }}
-      disabled={!areTermsChecked || isLoading}
-      onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
+      disabled={!values.TermsAndConditions || isLoading}
+      onClick={onPayClick}
       loading={isLoading}
     >
-      Buy
+      Buy now
     </ActionButton>
   );
 };
