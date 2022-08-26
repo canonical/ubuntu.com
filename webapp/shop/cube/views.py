@@ -439,29 +439,34 @@ def cred_scheduled(
     badge_certification,
     **kwargs,
 ):
-    ability_screen_id = 4190
-    response = trueability_api.get_assessment_reservations(ability_screen_id)
-
     exams = []
-    user_email = user_info(flask.session)["email"]
-    for r in response["assessment_reservations"]:
-        if r["user"]["email"] != user_email:
-            continue
+    try:
+        ability_screen_id = 4190
+        response = trueability_api.get_assessment_reservations(ability_screen_id)
+        user_email = user_info(flask.session)["email"]
+        for r in response["assessment_reservations"]:
+            if r["user"]["email"] != user_email:
+                continue
 
-        name = r["ability_screen"]["display_name"]
-        starts_at = datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-        timezone = r["user"]["time_zone"]
-        exams.append(
-            {
-                "name": name,
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%H:%M"),
-                "timezone": timezone,
-                "state": r["state"],
-            }
-        )
+            name = r["ability_screen"]["display_name"]
+            starts_at = datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+            timezone = r["user"]["time_zone"]
+            exams.append(
+                {
+                    "name": name,
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%H:%M"),
+                    "timezone": timezone,
+                    "state": r["state"],
+                }
+            )
+    except:
+        pass
 
-    return flask.render_template("credentialing/scheduled.html", exams=exams)
+    url = os.getenv("TRUEABILITY_URL", "")
+    key_len = len(os.getenv("TRUEABILITY_API_KEY", ""))
+
+    return flask.render_template("credentialing/scheduled.html", exams=exams, url=url, key_len=key_len)
 
 
 @shop_decorator(area="cube", permission="user", response="html")
