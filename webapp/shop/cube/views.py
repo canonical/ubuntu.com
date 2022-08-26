@@ -440,6 +440,7 @@ def cred_scheduled(
     **kwargs,
 ):
     exams = []
+    tb = ""
     try:
         ability_screen_id = 4190
         response = trueability_api.get_assessment_reservations(ability_screen_id)
@@ -460,13 +461,14 @@ def cred_scheduled(
                     "state": r["state"],
                 }
             )
-    except:
-        pass
+    except Exception as e:
+        import traceback
+        tb = traceback.format_exc()
 
     url = os.getenv("TRUEABILITY_URL", "")
     key_len = len(os.getenv("TRUEABILITY_API_KEY", ""))
 
-    return flask.render_template("credentialing/scheduled.html", exams=exams, url=url, key_len=key_len)
+    return flask.render_template("credentialing/scheduled.html", exams=exams, url=url, key_len=key_len, tb=tb)
 
 
 @shop_decorator(area="cube", permission="user", response="html")
