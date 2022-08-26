@@ -9,6 +9,9 @@
 {% block content %}
 
 <section class="p-strip--suru-topped is-dark is-bordered">
+  {% if not ("2022-09-06" | date_has_passed) %}
+    {% include "shared/_charmed-kubeflow-beta-banner.html" %}
+  {% endif %}
   <div class="row u-equal-height">
     <div class="col-6">
       <h1>AI on Ubuntu: the path<br>to production</h1>

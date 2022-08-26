@@ -34,26 +34,39 @@ The following overlay file ([download][vault-pki-yaml]) alters
 ```yaml
 applications:
   easyrsa: null
+  mysql-innodb-cluster:
+    channel: 8.0/stable
+    charm: mysql-innodb-cluster
+    constraints: cores=2 mem=8G root-disk=64G
+    num_units: 3
+    options:
+      enable-binlogs: true
+      innodb-buffer-pool-size: 256M
+      max-connections: 2000
+      wait-timeout: 3600
   vault:
-    charm: cs:vault
+    channel: 1.7/stable
+    charm: vault
     num_units: 1
     options:
       # this makes Vault act as a self-signed root CA
       auto-generate-root-ca-cert: true
-  percona-cluster:
-    charm: cs:percona-cluster
-    num_units: 1
+  vault-mysql-router:
+    channel: 8.0/stable
+    charm: mysql-router
 relations:
-- - kubernetes-control-plane:certificates
-  - vault:certificates
 - - etcd:certificates
-  - vault:certificates
-- - kubernetes-worker:certificates
   - vault:certificates
 - - kubeapi-load-balancer:certificates
   - vault:certificates
-- - vault:shared-db
-  - percona-cluster:shared-db
+- - kubernetes-control-plane:certificates
+  - vault:certificates
+- - kubernetes-worker:certificates
+  - vault:certificates
+- - mysql-innodb-cluster:db-router
+  - vault-mysql-router:db-router
+- - vault-mysql-router:shared-db
+  - vault:shared-db
 ```
 
 Save this to a file named `vault-pki-overlay.yaml` and deploy with:
@@ -72,13 +85,13 @@ the **Vault** client already on the deployed unit with the following steps:
 juju ssh vault/0
 export HISTCONTROL=ignorespace  # enable leading space to suppress command history
 export VAULT_ADDR='http://localhost:8200'
-vault operator init -key-shares=5 -key-threshold=3  # this will give you 5 keys and a root token
-  vault operator unseal {key1}
-  vault operator unseal {key2}
-  vault operator unseal {key3}
-  VAULT_TOKEN={root token} vault token create -ttl 10m  # this will give you a token to auth the charm
+vault operator init -key-shares=5 -key-threshold=3  # outputs 5 keys and a root token
+ vault operator unseal {key1}
+ vault operator unseal {key2}
+ vault operator unseal {key3}
+ VAULT_TOKEN={root token} vault token create -ttl 10m  # outputs a {charm token} to auth the charm
 exit
-juju run-action vault/0 authorize-charm token={charm token}
+juju run-action vault/0 authorize-charm token={charm token} --wait
 ```
 
 <div class="p-notification--information">
@@ -123,13 +136,15 @@ be transitioned to use **Vault** as a CA.
   </div>
 </div>
 
-Deploy **Vault** and Percona Cluster:
+Deploy **Vault** with the recommended database backend:
 
 ```bash
-juju deploy cs:percona-cluster
-juju deploy cs:vault
+juju deploy -n 3 mysql-innodb-cluster
+juju deploy mysql-router vault-mysql-router
+juju deploy vault
 juju config vault auto-generate-root-ca-cert=true
-juju add-relation vault:shared-db percona-cluster:shared-db
+juju add-relation mysql-innodb-cluster:db-router vault-mysql-router:db-router
+juju add-relation vault-mysql-router:shared-db vault:shared-db
 ```
 
 Unseal **Vault** as described earlier in this document.
@@ -163,7 +178,7 @@ You will need to re-download the `kubectl` config file,
 since it contains the certificate info for connecting to the cluster:
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju scp kubernetes-control-plane/leader:config ~/.kube/config
 ```
 
 <div class="p-notification--caution is-inline">
@@ -200,8 +215,8 @@ to the `options` section of `vault` in the overlay above:
 ## Using Vault with HA
 
 To enable HA for **Vault**, you will need to first bring up the deployment with
-**Vault** in non-HA mode using the instructions above, waiting for everything
-to settle, and then transitioning **Vault** to HA mode. This is necessary
+**Vault** in non-HA mode using the instructions above, wait for everything
+to settle, and then transition **Vault** to HA mode. This is necessary
 because **Vault** requires **etcd** to be running to enter HA mode, but
 **etcd** requires PKI certificates to get up and running, leading to a
 chicken-and-egg conflict.
@@ -211,28 +226,64 @@ with **Vault** unsealed and everything functioning, you can then transition
 **Vault** to HA mode with the following commands:
 
 ```bash
-juju add-relation vault:etcd etcd
+juju add-relation vault:etcd etcd:db
 juju add-unit vault
 ```
 
-Once the second unit of **Vault** is up, you will also need to unseal it
+Once the second unit of **Vault** is up, you will need to unseal it
 using the same instructions above with any three of the five unseal keys
-and the root token you generated previously.
+and the root token you generated previously. For example, assuming
+`vault/1` is the new **Vault** unit, run the following:
 
+```bash
+juju ssh vault/1
+export HISTCONTROL=ignorespace  # enable leading space to suppress command history
+export VAULT_ADDR='http://localhost:8200'
+ vault operator unseal {key1}
+ vault operator unseal {key2}
+ vault operator unseal {key3}
+ VAULT_TOKEN={root token} vault token create -ttl 10m  # outputs a new {charm token} to auth the charm
+exit
+juju run-action vault/1 authorize-charm token={charm token} --wait
+```
+
+At this point, `vault/1` will be running in HA mode with configuration data
+from `etcd`. The `vault/0` unit will need to be restarted and unsealed again
+to pick up this new configuration:
+
+```bash
+juju run-action vault/0 restart --wait
+juju ssh vault/0
+export HISTCONTROL=ignorespace  # enable leading space to suppress command history
+export VAULT_ADDR='http://localhost:8200'
+ vault operator unseal {key1}
+ vault operator unseal {key2}
+ vault operator unseal {key3}
+exit
+```
+
+After unsealing, it may take up to 5 minutes for `vault/0` to return to active status.
+Once it does, verify **Vault** is in HA mode with one active unit and one standby unit:
+
+```bash
+juju status vault
+  vault/0* ... Unit is ready (active: false, mlock: enabled)
+  vault/1 ... Unit is ready (active: true, mlock: enabled)
+```
 
 <!-- LINKS -->
 [vault-pki-yaml]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vault-pki-overlay.yaml
 [certs-doc]: /kubernetes/docs/certs-and-trust
 [encryption-doc]: /kubernetes/docs/encryption-at-rest
 [vault]: https://www.vaultproject.io
-[expose]: https://juju.is/docs/olm/deploying-applications#heading--exposing-deployed-applications
+[expose]: https://juju.is/docs/olm/expose-a-deployed-application
 [hacluster]: https://charmhub.io/hacluster/
 [vault-guide-csr]: https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/app-certificate-management.html
 [vault-charm-unseal]: https://opendev.org/openstack/charm-vault/src/branch/master/src/README.md#post-deployment-tasks
 [csr]: https://en.wikipedia.org/wiki/Certificate_signing_request
 [leadership]: https://discourse.jujucharms.com/t/implementing-leadership/1124
 [cdk-bundle]: https://charmhub.io/charmed-kubernetes
-[vault charm]: https://jaas.ai/vault/
+[vault charm]: https://charmhub.io/vault
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

@@ -9,7 +9,7 @@
   <div class="row u-equal-height">
     <div class="col-6">
       <h1>Get Ubuntu Server</h1>
-      <h2 class="js-download-option">Option 1: Instant Ubuntu VMs</h2>
+      <h2 class="js-download-option">Option 2: Instant Ubuntu VMs</h2>
       <p>Try Multipass, a mini cloud on Mac, Windows and Linux</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Always up-to-date with security fixes</li>
@@ -37,18 +37,18 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <button disabled class="p-button u-no-margin--left">
-        Option 1 - Instant Ubuntu VMs
-      </button>
       <form action="/download/server" method="post" style="display: inline">
-        <input type="hidden" name="next-step" value="step2">
-        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
-          Option 2 - Manual server installation
+        <input type="hidden" name="next-step" value="server">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 1', 'eventValue' : undefined });">
+          Option 1 - Manual server installation
         </button>
       </form>
+      <button disabled class="p-button u-no-margin--top is-inline">
+        Option 2 - Instant Ubuntu VMs
+      </button>
       <form action="/download/server" method="post" style="display: inline">
         <input type="hidden" name="next-step" value="choose">
-        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
+        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Previous option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
           Option 3 - Automated server provisioning
         </button>
       </form>

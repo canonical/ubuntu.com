@@ -15,6 +15,7 @@ from ubuntu_release_info.data import Data
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
+from urllib.parse import quote
 
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
@@ -140,13 +141,14 @@ def show_template(filename):
 
 def download_server_steps():
     templates = {
-        "step1": "download/server/step1.html",
-        "step2": "download/server/step2.html",
+        "server": "download/server/manual.html",
+        "multipass": "download/server/multipass.html",
         "choose": "download/server/choose.html",
         "download": "download/server/download.html",
     }
     context = {}
-    step = flask.request.form.get("next-step") or "step1"
+    step = flask.request.form.get("next-step") or "server"
+    print(step)
 
     if step not in templates:
         flask.abort(400)
@@ -358,8 +360,7 @@ def build_engage_index(engage_docs):
         resource = flask.request.args.get("resource", default=None, type=str)
         tag = flask.request.args.get("tag", default=None, type=str)
         posts_per_page = 15
-        engage_docs.parser.parse()
-        metadata = engage_docs.parser.metadata
+        metadata = engage_docs.get_index()
 
         resource_types = []
         tags_list = set()
@@ -412,7 +413,7 @@ def build_engage_index(engage_docs):
 
         return flask.render_template(
             "engage/index.html",
-            forum_url=engage_docs.parser.api.base_url,
+            forum_url=engage_docs.api.base_url,
             metadata=metadata,
             page=page,
             preview=preview,
@@ -425,6 +426,38 @@ def build_engage_index(engage_docs):
         )
 
     return engage_index
+
+
+def build_engage_page(engage_pages):
+    def engage_page(language, page):
+        if language:
+            path = f"/engage/{language}/{page}"
+        else:
+            path = f"/engage/{page}"
+        metadata = engage_pages.get_engage_page(path)
+        if not metadata:
+            flask.abort(404)
+        else:
+            return flask.render_template(
+                "engage/base.html",
+                forum_url=engage_pages.api.base_url,
+                metadata=metadata,
+                language=metadata["language"],
+                resource=metadata["type"],
+            )
+
+    return engage_page
+
+
+def match_tags(tags_1, tags_2):
+    for tag_1 in tags_1:
+        for tag_2 in tags_2:
+            if tag_1.strip().lower() == tag_2.strip().lower():
+                return True
+            else:
+                continue
+
+    return False
 
 
 def engage_thank_you(engage_pages):
@@ -441,41 +474,54 @@ def engage_thank_you(engage_pages):
     """
 
     def render_template(language, page):
-        engage_pages.parser.parse()
-        page_url = f"/engage/{page}"
+
         if language:
-            page_url = f"/engage/{language}/{page}"
-        index_topic_data = next(
-            (x for x in engage_pages.parser.metadata if x["path"] == page_url),
-            None,
-        )
-
-        if index_topic_data:
-            topic_id = engage_pages.parser.url_map[page_url]
-            engage_page_data = engage_pages.parser.get_topic(topic_id)
-            request_url = flask.request.referrer
-            resource_name = index_topic_data["type"]
-            resource_url = engage_page_data["metadata"]["resource_url"]
-            language = index_topic_data["language"]
-            # Filter related engage pages by language
-            related = [
-                item
-                for item in engage_page_data["related"]
-                if item["language"] == language
-            ]
-            template_language = "engage/thank-you.html"
-            if language and language != "en":
-                template_language = f"engage/shared/_{language}_thank-you.html"
-
-            return flask.render_template(
-                template_language,
-                request_url=request_url,
-                resource_name=resource_name,
-                resource_url=resource_url,
-                related=related,
-            )
+            path = f"/engage/{language}/{page}"
         else:
+            path = f"/engage/{page}"
+
+        metadata = engage_pages.get_engage_page(path)
+        all_engage_pages = engage_pages.get_index()
+        if not metadata:
+            flask.abort(404)
+
+        # Stop potential spamming of /engage/<engage-page>/thank-you
+        if "resource_url" not in metadata or metadata["resource_url"] == "":
             return flask.abort(404)
+
+        language = metadata["language"]
+        # Filter engage pages by language and tags
+        total_num_related = 3
+        related = []
+        for item in all_engage_pages:
+            # Skip related engage page
+            # missing metadata
+            if "language" not in item:
+                continue
+
+            check_match = match_tags(
+                item["tags"].split(","), metadata["tags"].split(",")
+            )
+
+            # Match language and match tags
+            if item["language"] == language and check_match:
+                related.append(item)
+            if len(related) > total_num_related:
+                # we can only fit 3 related posts, no need to finish the loop
+                break
+
+        if language and language != "en":
+            template_language = f"engage/shared/_{language}_thank-you.html"
+        else:
+            template_language = "engage/thank-you.html"
+
+        return flask.render_template(
+            template_language,
+            request_url=flask.request.referrer,
+            resource_name=metadata["type"],
+            resource_url=metadata["resource_url"],
+            related=related,
+        )
 
     return render_template
 
@@ -538,10 +584,9 @@ def openstack_install():
     )
 
 
-def openstack_engage(engage_docs):
+def openstack_engage(engage_pages):
     def openstack_resource_data():
-        engage_docs.parser.parse()
-        metadata = engage_docs.parser.metadata
+        metadata = engage_pages.get_index()
 
         resource_tags = [
             "openstack",
@@ -555,7 +600,8 @@ def openstack_engage(engage_docs):
         filtered_metadata = []
         for item in metadata:
             if (
-                any(tag in item["tags"] for tag in resource_tags)
+                "tags" in item
+                and any(tag in item["tags"] for tag in resource_tags)
                 and "en" in item["language"]
                 and item["publish_date"] != ""
             ):
@@ -621,6 +667,8 @@ class BlogView(flask.views.View):
 
 class BlogRedirects(BlogView):
     def dispatch_request(self, slug):
+
+        slug = quote(slug, safe="/:?&")
         article = self.blog_views.api.get_article(
             slug, self.blog_views.tag_ids, self.blog_views.excluded_tags
         )
@@ -629,6 +677,9 @@ class BlogRedirects(BlogView):
         group = article.get("group")
         if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
+
+        if not article:
+            return flask.abort(404)
 
         return flask.render_template("blog/article.html", article=article)
 

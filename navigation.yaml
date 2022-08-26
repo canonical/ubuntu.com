@@ -11,12 +11,6 @@ azure:
       path: /azure/fips
     - title: SQL
       path: /azure/sql
-    - title: Contact us
-      path: /azure/contact-us
-      hidden: True
-    - title: Thank you
-      path: /azure/thank-you
-      hidden: True
 
 appliance:
   title: Appliance
@@ -35,81 +29,6 @@ appliance:
       path: /appliance/hardware
     - title: Virtual machines
       path: /appliance/vm
-    - title: Contact us
-      path: /appliance/contact-us
-      hidden: True
-      children:
-        - title: Thank you
-          path: /appliance/thank-you
-          hidden: True
-    - title: Plex
-      path: /appliance/plex
-      hidden: True
-      children:
-        - title: Raspberry Pi 2
-          path: /appliance/plex/raspberry-pi2
-        - title: Raspberry Pi 3 & 4
-          path: /appliance/plex/raspberry-pi
-        - title: Intel NUC
-          path: /appliance/plex/intel-nuc
-        - title: VM
-          path: /appliance/plex/vm
-    - title: AdGuard
-      path: /appliance/adguard
-      hidden: True
-      children:
-        - title: Raspberry Pi 2
-          path: /appliance/adguard/raspberry-pi2
-        - title: Raspberry Pi 3 & 4
-          path: /appliance/adguard/raspberry-pi
-        - title: Intel NUC
-          path: /appliance/adguard/intel-nuc
-        - title: VM
-          path: /appliance/adguard/vm
-    - title: OpenHAB
-      path: /appliance/openhab
-      hidden: True
-      children:
-        - title: Raspberry Pi 2
-          path: /appliance/openhab/raspberry-pi2
-        - title: Raspberry Pi 3 & 4
-          path: /appliance/openhab/raspberry-pi
-        - title: Intel NUC
-          path: /appliance/openhab/intel-nuc
-        - title: VM
-          path: /appliance/openhab/vm
-    - title: Nextcloud
-      path: /appliance/nextcloud
-      hidden: True
-      children:
-        - title: Raspberry Pi 2
-          path: /appliance/nextcloud/raspberry-pi2
-        - title: Raspberry Pi 3 & 4
-          path: /appliance/nextcloud/raspberry-pi
-        - title: Intel NUC
-          path: /appliance/nextcloud/intel-nuc
-        - title: VM
-          path: /appliance/nextcloud/vm
-    - title: LXD
-      path: /appliance/lxd
-      hidden: True
-      children:
-        - title: Raspberry Pi 4
-          path: /appliance/lxd/raspberry-pi
-        - title: Intel NUC
-          path: /appliance/lxd/intel-nuc
-    - title: Mosquitto
-      path: /appliance/mosquitto
-      hidden: True
-      children:
-        - title: Raspberry Pi 2
-          path: /appliance/mosquitto/raspberry-pi2
-        - title: Raspberry Pi 3 & 4
-          path: /appliance/mosquitto/raspberry-pi
-        - title: Intel NUC
-          path: /appliance/mosquitto/intel-nuc
-        - title: VM
-          path: /appliance/mosquitto/vm
 aws:
   title: AWS
   path: /aws
@@ -123,12 +42,6 @@ aws:
       path: /aws/outposts
     - title: FIPS
       path: /aws/fips
-    - title: Contact us
-      path: /aws/contact-us
-      hidden: True
-    - title: Thank you
-      path: /aws/thank-you
-      hidden: True
 
 managedapps:
   title: Managed
@@ -143,16 +56,8 @@ managedapps:
       path: /kubernetes/managed
     - title: Ceph
       path: /ceph/managed
-    - title: Contact us
-      path: /managed/contact-us
-      hidden: True
     - title: Apps
       path: /managed/apps
-      children:
-        - title: Kafka
-          path: /managed/apps/kafka
-        - title: Cassandra
-          path: /managed/apps/cassandra
     - title: Observability
       path: /observability/managed
 
@@ -167,33 +72,14 @@ openstack:
       path: /openstack/what-is-openstack
     - title: Features
       path: /openstack/features
-    - title: Consulting
-      path: /openstack/consulting
     - title: Managed
       path: /openstack/managed
-    - title: Support
-      path: /openstack/support
-      persist: True
-    - title: Compare
-      path: /openstack/compare
+    - title: Consulting
+      path: /openstack/consulting
     - title: Install
       path: /openstack/install
-    - title: Resources
-      path: /openstack/resources
-    - title: OpenStack cheat sheet
-      path: /openstack/openstack-cheat-sheet
-      hidden: True
-    - title: Thank you
-      path: /openstack/newsletter-thank-you
-      hidden: True
-    - title: Contact us
-      path: /openstack/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /openstack/thank-you
-          hidden: True
+    - title: Support
+      path: /openstack/support
 
 raspberrypi:
   title: Raspberry Pi
@@ -210,21 +96,13 @@ raspberrypi:
 financial-services:
   title: Finance
   path: /financial-services
-  persit: True
 
   children:
     - title: Overview
       path: /financial-services
     - title: Resources
       path: /financial-services/resources
-    - title: Contact us
-      path: /financial-services/contact-us
-      hidden: True
 
-      children:
-        - title: Thank you
-          path: /financial-services/thank-you
-          hidden: True
 ceph:
   title: Ceph
   path: /ceph
@@ -240,7 +118,6 @@ ceph:
       path: /ceph/consulting
     - title: Docs
       path: /ceph/docs
-      persist: True
     - title: Install
       path: /ceph/install
 
@@ -271,15 +148,6 @@ server:
       path: /server/hyperscale
     - title: Docs
       path: /server/docs
-      persist: True
-    - title: Contact us
-      path: /server/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /server/thank-you
-          hidden: True
 
 tutorials:
   title: Tutorials
@@ -308,14 +176,6 @@ containers:
       path: /containers
     - title: What are containers
       path: /containers/what-are-containers
-    - title: Contact us
-      path: /containers/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /containers/thank-you
-          hidden: True
 
 ai:
   title: AI / ML
@@ -329,15 +189,6 @@ ai:
     - title: Services
       path: /ai/services
 
-    - title: Contact us
-      path: /ai/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /ai/thank-you
-          hidden: True
-
 kubernetes:
   title: Kubernetes
   path: /kubernetes
@@ -349,8 +200,6 @@ kubernetes:
       path: /kubernetes/what-is-kubernetes
     - title: Charmed Kubernetes
       path: /kubernetes/charmed-k8s
-    - title: Compare
-      path: /kubernetes/compare
     - title: Managed
       path: /kubernetes/managed
     - title: Install
@@ -360,773 +209,9 @@ kubernetes:
     - title: Resources
       path: /kubernetes/resources
 
-      children:
-        - title: Home
-          path: /kubernetes/docs
-          hidden: True
-        - title: Overview
-          path: /kubernetes/docs/overview
-          hidden: True
-        - title: Quickstart
-          path: /kubernetes/docs/quickstart
-          hidden: True
-        - title: Local install
-          path: /kubernetes/docs/install-local
-          hidden: True
-        - title: Install
-          path: /kubernetes/docs/install-manual
-          hidden: True
-        - title: Install Offline
-          path: /kubernetes/docs/install-offline
-          hidden: True
-        - title: NVIDIA DGX
-          path: /kubernetes/docs/nvidia-dgx
-          hidden: True
-        - title: AWS integration
-          path: /kubernetes/docs/aws-integration
-          hidden: True
-        - title: Equinix Metal
-          path: /kubernetes/docs/equinix
-          hidden: True
-        - title: GCP integration
-          path: /kubernetes/docs/gcp-integration
-          hidden: True
-        - title: OpenStack integration
-          path: /kubernetes/docs/openstack-integration
-          hidden: True
-        - title: Azure integration
-          path: /kubernetes/docs/azure-integration
-          hidden: True
-        - title: vSphere integration
-          path: /kubernetes/docs/vsphere-integration
-          hidden: True
-        - title: CNI overview
-          path: /kubernetes/docs/cni-overview
-          hidden: True
-        - title: Flannel
-          path: /kubernetes/docs/cni-flannel
-          hidden: True
-        - title: Calico
-          path: /kubernetes/docs/cni-calico
-          hidden: True
-        - title: Canal
-          path: /kubernetes/docs/cni-canal
-          hidden: True
-        - title: Multus
-          path: /kubernetes/docs/cni-multus
-          hidden: True
-        - title: SRIOV
-          path: /kubernetes/docs/cni-sriov
-          hidden: True
-        - title: Using Tigera Secure EE
-          path: /kubernetes/docs/tigera-secure-ee
-          hidden: True
-        - title: Using multiple newtworks
-          path: /kubernetes/docs/multiple-networks
-          hidden: True
-        - title: IPv6
-          path: /kubernetes/docs/ipv6
-          hidden: True
-        - title: Ingress
-          path: /kubernetes/docs/ingress
-          hidden: True
-        - title: Containerd and Docker
-          path: /kubernetes/docs/container-runtime
-          hidden: True
-        - title: Kata containers
-          path: /kubernetes/docs/kata
-          hidden: True
-        - title: Basic Operations
-          path: /kubernetes/docs/operations
-          hidden: True
-        - title: CDK Addons
-          path: /kubernetes/docs/cdk-addons
-          hidden: True
-        - title: Logging
-          path: /kubernetes/docs/logging
-          hidden: True
-        - title: Monitoring
-          path: /kubernetes/docs/monitoring
-          hidden: True
-        - title: Security
-          path: /kubernetes/docs/security
-          hidden: True
-        - title: Backups
-          path: /kubernetes/docs/backups
-          hidden: True
-        - title: Upgrading
-          path: /kubernetes/docs/upgrading
-          hidden: True
-        - title: Storage
-          path: /kubernetes/docs/storage
-          hidden: True
-        - title: Scaling
-          path: /kubernetes/docs/scaling
-          hidden: True
-        - title: Validation
-          path: /kubernetes/docs/validation
-          hidden: True
-        - title: Decommissioning
-          path: /kubernetes/docs/decommissioning
-          hidden: True
-        - title: Authorisation and authentication
-          path: /kubernetes/docs/auth
-          hidden: True
-        - title: Authentication with LDAP
-          path: /kubernetes/docs/ldap
-          hidden: True
-        - title: Using Vault as a CA
-          path: /kubernetes/docs/using-vault
-          hidden: True
-        - title: Encryption at rest
-          path: /kubernetes/docs/encryption-at-rest
-          hidden: True
-        - title: Private Docker Registry
-          path: /kubernetes/docs/docker-registry
-          hidden: True
-        - title: Configuring proxies
-          path: /kubernetes/docs/proxies
-          hidden: True
-        - title: Using GPU workers
-          path: /kubernetes/docs/gpu-workers
-          hidden: True
-        - title: Audit Logging
-          path: /kubernetes/docs/audit-logging
-          hidden: True
-        - title: Troubleshooting
-          path: /kubernetes/docs/troubleshooting
-          hidden: True
-        - title: Overview
-          path: /kubernetes/docs/high-availability
-          hidden: True
-        - title: keepalived
-          path: /kubernetes/docs/keepalived
-          hidden: True
-        - title: HAcluster
-          path: /kubernetes/docs/hacluster
-          hidden: True
-        - title: MetalLB
-          path: /kubernetes/docs/metallb
-          hidden: True
-        - title: Custom loadbalancer
-          path: /kubernetes/docs/custom-loadbalancer
-          hidden: True
-        - title: Release notes
-          path: /kubernetes/docs/release-notes
-          hidden: True
-        - title: Upgrade notes
-          path: /kubernetes/docs/upgrade-notes
-          hidden: True
-        - title: CIS compliance
-          path: /kubernetes/docs/cis-compliance
-          hidden: True
-        - title: Certificates and trust
-          path: /kubernetes/docs/certs-and-trust
-          hidden: True
-        - title: Snap refresh
-          path: /kubernetes/docs/snap-refresh
-          hidden: True
-        - title: Kubernetes Operator Charms
-          path: /kubernetes/docs/operator-charms
-          hidden: True
-        - title: Cluster autoscaler
-          path: /kubernetes/docs/autoscaler
-          hidden: True
-        - title: Kubernetes Packages
-          path: /kubernetes/docs/packages
-          hidden: True
-        - title: AWS IAM auth
-          path: /kubernetes/docs/aws-iam-auth
-          hidden: True
-        - title: Inclusive naming
-          path: /kubernetes/docs/inclusive-naming
-          hidden: True
-        - title: Get in touch
-          path: /kubernetes/docs/get-in-touch
-          hidden: True
-        - title: Charm reference page
-          path: /kubernetes/docs/charm-reference/
-          hidden: True
-        - title: Supported versions
-          path: /kubernetes/docs/supported-versions
-          hidden: True
-
-          children:
-            - title: 1.16 Charm canal
-              path: /kubernetes/docs/1.16/charm-canal/
-              hidden: True
-            - title: 1.16 Charm openstack-integrator
-              path: /kubernetes/docs/1.16/charm-openstack-integrator/
-              hidden: True
-            - title: 1.16 Charm keepalived
-              path: /kubernetes/docs/1.16/charm-keepalived/
-              hidden: True
-            - title: 1.16 Charm easyrsa
-              path: /kubernetes/docs/1.16/charm-easyrsa/
-              hidden: True
-            - title: 1.16 release-notes
-              path: /kubernetes/docs/1.16/release-notes/
-              hidden: True
-            - title: 1.16 Charm gcp-integrator
-              path: /kubernetes/docs/1.16/charm-gcp-integrator/
-              hidden: True
-            - title: 1.16 Upgrading
-              path: /kubernetes/docs/1.16/upgrading/
-              hidden: True
-            - title: 1.16 Charm docker
-              path: /kubernetes/docs/1.16/charm-docker/
-              hidden: True
-            - title: 1.16 Charm docker-registry
-              path: /kubernetes/docs/1.16/charm-docker-registry/
-              hidden: True
-            - title: 1.16 Charm kubernetes-master
-              path: /kubernetes/docs/1.16/charm-kubernetes-master/
-              hidden: True
-            - title: 1.16 Charm etcd
-              path: /kubernetes/docs/1.16/charm-etcd/
-              hidden: True
-            - title: 1.16 Charm flannel
-              path: /kubernetes/docs/1.16/charm-flannel/
-              hidden: True
-            - title: 1.16 Charm kata
-              path: /kubernetes/docs/1.16/charm-kata/
-              hidden: True
-            - title: 1.16 Components
-              path: /kubernetes/docs/1.16/components/
-              hidden: True
-            - title: 1.16 Charm containerd
-              path: /kubernetes/docs/1.16/charm-containerd/
-              hidden: True
-            - title: 1.16 Charm kubernetes-worker
-              path: /kubernetes/docs/1.16/charm-kubernetes-worker/
-              hidden: True
-            - title: 1.16 Charm tigera-secure-ee
-              path: /kubernetes/docs/1.16/charm-tigera-secure-ee/
-              hidden: True
-            - title: 1.16 Charm aws-iam
-              path: /kubernetes/docs/1.16/charm-aws-iam/
-              hidden: True
-            - title: 1.16 Charm kubeapi-load-balancer
-              path: /kubernetes/docs/1.16/charm-kubeapi-load-balancer/
-              hidden: True
-            - title: 1.16 Charm calico
-              path: /kubernetes/docs/1.16/charm-calico/
-              hidden: True
-            - title: 1.16 Charm azure-integrator
-              path: /kubernetes/docs/1.16/charm-azure-integrator/
-              hidden: True
-            - title: 1.16 Charm vsphere-integrator
-              path: /kubernetes/docs/1.16/charm-vsphere-integrator/
-              hidden: True
-            - title: 1.16 Charm aws-integrator
-              path: /kubernetes/docs/1.16/charm-aws-integrator/
-              hidden: True
-            - title: 1.17 Charm canal
-              path: /kubernetes/docs/1.17/charm-canal/
-              hidden: True
-            - title: 1.17 Charm openstack-integrator
-              path: /kubernetes/docs/1.17/charm-openstack-integrator/
-              hidden: True
-            - title: 1.17 Charm keepalived
-              path: /kubernetes/docs/1.17/charm-keepalived/
-              hidden: True
-            - title: 1.17 Charm easyrsa
-              path: /kubernetes/docs/1.17/charm-easyrsa/
-              hidden: True
-            - title: 1.17 Release notes
-              path: /kubernetes/docs/1.17/release-notes/
-              hidden: True
-            - title: 1.17 Charm gcp-integrator
-              path: /kubernetes/docs/1.17/charm-gcp-integrator/
-              hidden: True
-            - title: 1.17 Upgrading
-              path: /kubernetes/docs/1.17/upgrading/
-              hidden: True
-            - title: 1.17 Charm docker
-              path: /kubernetes/docs/1.17/charm-docker/
-              hidden: True
-            - title: 1.17 Charm docker-registry
-              path: /kubernetes/docs/1.17/charm-docker-registry/
-              hidden: True
-            - title: 1.17 Charm kubernetes-master
-              path: /kubernetes/docs/1.17/charm-kubernetes-master/
-              hidden: True
-            - title: 1.17 Charm etcd
-              path: /kubernetes/docs/1.17/charm-etcd/
-              hidden: True
-            - title: 1.17 Charm flannel
-              path: /kubernetes/docs/1.17/charm-flannel/
-              hidden: True
-            - title: 1.17 Charm kata
-              path: /kubernetes/docs/1.17/charm-kata/
-              hidden: True
-            - title: 1.17 Components
-              path: /kubernetes/docs/1.17/components/
-              hidden: True
-            - title: 1.17 Charm containerd
-              path: /kubernetes/docs/1.17/charm-containerd/
-              hidden: True
-            - title: 1.17 Charm kubernetes-worker
-              path: /kubernetes/docs/1.17/charm-kubernetes-worker/
-              hidden: True
-            - title: 1.17 Charm tigera-secure-ee
-              path: /kubernetes/docs/1.17/charm-tigera-secure-ee/
-              hidden: True
-            - title: 1.17 Charm aws-iam
-              path: /kubernetes/docs/1.17/charm-aws-iam/
-              hidden: True
-            - title: 1.17 Charm kubeapi-load-balancer
-              path: /kubernetes/docs/1.17/charm-kubeapi-load-balancer/
-              hidden: True
-            - title: 1.17 Charm calico
-              path: /kubernetes/docs/1.17/charm-calico/
-              hidden: True
-            - title: 1.17 Charm azure-integrator
-              path: /kubernetes/docs/1.17/charm-azure-integrator/
-              hidden: True
-            - title: 1.17 Charm vsphere-integrator
-              path: /kubernetes/docs/1.17/charm-vsphere-integrator/
-              hidden: True
-            - title: 1.17 Charm aws-integrator
-              path: /kubernetes/docs/1.17/charm-aws-integrator/
-              hidden: True
-            - title: 1.18 Charm canal
-              path: /kubernetes/docs/1.18/charm-canal/
-              hidden: True
-            - title: 1.18 Charm openstack-integrator
-              path: /kubernetes/docs/1.18/charm-openstack-integrator/
-              hidden: True
-            - title: 1.18 Charm keepalived
-              path: /kubernetes/docs/1.18/charm-keepalived/
-              hidden: True
-            - title: 1.18 Charm easyrsa
-              path: /kubernetes/docs/1.18/charm-easyrsa/
-              hidden: True
-            - title: 1.18 Release notes
-              path: /kubernetes/docs/1.18/release-notes/
-              hidden: True
-            - title: 1.18 Charm gcp-integrator
-              path: /kubernetes/docs/1.18/charm-gcp-integrator/
-              hidden: True
-            - title: 1.18 upgrading
-              path: /kubernetes/docs/1.18/upgrading/
-              hidden: True
-            - title: 1.18 Charm docker
-              path: /kubernetes/docs/1.18/charm-docker/
-              hidden: True
-            - title: 1.18 Charm docker-registry
-              path: /kubernetes/docs/1.18/charm-docker-registry/
-              hidden: True
-            - title: 1.18 Charm kubernetes-master
-              path: /kubernetes/docs/1.18/charm-kubernetes-master/
-              hidden: True
-            - title: 1.18 Charm etcd
-              path: /kubernetes/docs/1.18/charm-etcd/
-              hidden: True
-            - title: 1.18 Charm flannel
-              path: /kubernetes/docs/1.18/charm-flannel/
-              hidden: True
-            - title: 1.18 Charm kata
-              path: /kubernetes/docs/1.18/charm-kata/
-              hidden: True
-            - title: 1.18 Components
-              path: /kubernetes/docs/1.18/components/
-              hidden: True
-            - title: 1.18 Charm containerd
-              path: /kubernetes/docs/1.18/charm-containerd/
-              hidden: True
-            - title: 1.18 Charm kubernetes-worker
-              path: /kubernetes/docs/1.18/charm-kubernetes-worker/
-              hidden: True
-            - title: 1.18 Charm tigera-secure-ee
-              path: /kubernetes/docs/1.18/charm-tigera-secure-ee/
-              hidden: True
-            - title: 1.18 Charm aws-iam
-              path: /kubernetes/docs/1.18/charm-aws-iam/
-              hidden: True
-            - title: 1.18 Charm kubeapi-load-balancer
-              path: /kubernetes/docs/1.18/charm-kubeapi-load-balancer/
-              hidden: True
-            - title: 1.18 Charm calico
-              path: /kubernetes/docs/1.18/charm-calico/
-              hidden: True
-            - title: 1.18 Charm azure-integrator
-              path: /kubernetes/docs/1.18/charm-azure-integrator/
-              hidden: True
-            - title: 1.18 Charm vsphere-integrator
-              path: /kubernetes/docs/1.18/charm-vsphere-integrator/
-              hidden: True
-            - title: 1.18 Charm aws-integrator
-              path: /kubernetes/docs/1.18/charm-aws-integrator/
-              hidden: True
-            - title: 1.19 AWS IAM
-              path: /kubernetes/docs/1.19/charm-aws-iam
-              hidden: True
-            - title: 1.19 Canal
-              path: /kubernetes/docs/1.18/charm-canal
-              hidden: True
-            - title: 1.19 EasyRSA
-              path: /kubernetes/docs/1.19/charm-easyrsa
-              hidden: True
-            - title: 1.19 Kata
-              path: /kubernetes/docs/1.19/charm-kata
-              hidden: True
-            - title: 1.19 kubernetes-worker
-              path: /kubernetes/docs/1.19/charm-kubernetes-worker
-              hidden: True
-            - title: 1.19 Components
-              path: /kubernetes/docs/1.19/components
-              hidden: True
-            - title: 1.19 AWS integrator
-              path: /kubernetes/docs/1.19/charm-aws-integrator
-              hidden: True
-            - title: 1.19 Containerd
-              path: /kubernetes/docs/1.19/charm-containerd
-              hidden: True
-            - title: 1.19 etcd
-              path: /kubernetes/docs/1.19/charm-etcd
-              hidden: True
-            - title: 1.19 keeplived
-              path: /kubernetes/docs/1.19/charm-keepalived
-              hidden: True
-            - title: 1.19 OpenStack integrator
-              path: /kubernetes/docs/1.19/charm-openstack-integrator
-              hidden: True
-            - title: 1.19 Release notes
-              path: /kubernetes/docs/1.19/release-notes
-              hidden: True
-            - title: 1.19 Azure integrator
-              path: /kubernetes/docs/1.19/charm-azure-integrator
-              hidden: True
-            - title: 1.19 Docker
-              path: /kubernetes/docs/1.19/charm-docker
-              hidden: True
-            - title: 1.19 Flannel
-              path: /kubernetes/docs/1.19/charm-flannel
-              hidden: True
-            - title: 1.19 kubeapi-load-balancer
-              path: /kubernetes/docs/1.19/charm-kubeapi-load-balancer
-              hidden: True
-            - title: 1.19 Tigera Secure EE
-              path: /kubernetes/docs/1.19/charm-tigera-secure-ee
-              hidden: True
-            - title: 1.19 Upgrading
-              path: /kubernetes/docs/1.19/upgrading
-              hidden: True
-            - title: 1.19 Calico
-              path: /kubernetes/docs/1.19/charm-calico
-              hidden: True
-            - title: 1.19 Docker registry
-              path: /kubernetes/docs/1.19/charm-docker-registry
-              hidden: True
-            - title: 1.19 GCP integrator
-              path: /kubernetes/docs/1.19/charm-gcp-integrator
-              hidden: True
-            - title: 1.19 Kubernetes-master
-              path: /kubernetes/docs/1.19/charm-kubernetes-master
-              hidden: True
-            - title: 1.19 vSphere integrator
-              path: /kubernetes/docs/1.19/charm-vsphere-integrator
-              hidden: True
-            - title: 1.20 AWS IAM
-              path: /kubernetes/docs/1.20/charm-aws-iam
-              hidden: True
-            - title: 1.20 Canal
-              path: /kubernetes/docs/1.20/charm-canal
-              hidden: True
-            - title: 1.20 EasyRSA
-              path: /kubernetes/docs/1.20/charm-easyrsa
-              hidden: True
-            - title: 1.20 Kata
-              path: /kubernetes/docs/1.20/charm-kata
-              hidden: True
-            - title: 1.20 kubernetes-worker
-              path: /kubernetes/docs/1.20/charm-kubernetes-worker
-              hidden: True
-            - title: 1.20 Components
-              path: /kubernetes/docs/1.20/components
-              hidden: True
-            - title: 1.20 AWS integrator
-              path: /kubernetes/docs/1.20/charm-aws-integrator
-              hidden: True
-            - title: 1.20 Containerd
-              path: /kubernetes/docs/1.20/charm-containerd
-              hidden: True
-            - title: 1.20 etcd
-              path: /kubernetes/docs/1.20/charm-etcd
-              hidden: True
-            - title: 1.20 keeplived
-              path: /kubernetes/docs/1.20/charm-keepalived
-              hidden: True
-            - title: 1.20 OpenStack integrator
-              path: /kubernetes/docs/1.20/charm-openstack-integrator
-              hidden: True
-            - title: 1.20 Release notes
-              path: /kubernetes/docs/1.20/release-notes
-              hidden: True
-            - title: 1.20 Azure integrator
-              path: /kubernetes/docs/1.20/charm-azure-integrator
-              hidden: True
-            - title: 1.20 Docker
-              path: /kubernetes/docs/1.20/charm-docker
-              hidden: True
-            - title: 1.20 Flannel
-              path: /kubernetes/docs/1.20/charm-flannel
-              hidden: True
-            - title: 1.20 kubeapi-load-balancer
-              path: /kubernetes/docs/1.20/charm-kubeapi-load-balancer
-              hidden: True
-            - title: 1.20 Tigera Secure EE
-              path: /kubernetes/docs/1.20/charm-tigera-secure-ee
-              hidden: True
-            - title: 1.20 Upgrading
-              path: /kubernetes/docs/1.20/upgrading
-              hidden: True
-            - title: 1.20 Calico
-              path: /kubernetes/docs/1.20/charm-calico
-              hidden: True
-            - title: 1.20 Docker registry
-              path: /kubernetes/docs/1.20/charm-docker-registry
-              hidden: True
-            - title: 1.20 GCP integrator
-              path: /kubernetes/docs/1.20/charm-gcp-integrator
-              hidden: True
-            - title: 1.20 Kubernetes-master
-              path: /kubernetes/docs/1.20/charm-kubernetes-master
-              hidden: True
-            - title: 1.20 vSphere integrator
-              path: /kubernetes/docs/1.20/charm-vsphere-integrator
-              hidden: True
-            - title: 1.21 AWS IAM
-              path: /kubernetes/docs/1.21/charm-aws-iam
-              hidden: True
-            - title: 1.21 Canal
-              path: /kubernetes/docs/1.21/charm-canal
-              hidden: True
-            - title: 1.21 EasyRSA
-              path: /kubernetes/docs/1.21/charm-easyrsa
-              hidden: True
-            - title: 1.21 Kata
-              path: /kubernetes/docs/1.21/charm-kata
-              hidden: True
-            - title: 1.21 kubernetes-worker
-              path: /kubernetes/docs/1.21/charm-kubernetes-worker
-              hidden: True
-            - title: 1.21 Components
-              path: /kubernetes/docs/1.21/components
-              hidden: True
-            - title: 1.21 AWS integrator
-              path: /kubernetes/docs/1.21/charm-aws-integrator
-              hidden: True
-            - title: 1.21 Containerd
-              path: /kubernetes/docs/1.21/charm-containerd
-              hidden: True
-            - title: 1.21 etcd
-              path: /kubernetes/docs/1.21/charm-etcd
-              hidden: True
-            - title: 1.21 keeplived
-              path: /kubernetes/docs/1.21/charm-keepalived
-              hidden: True
-            - title: 1.21 OpenStack integrator
-              path: /kubernetes/docs/1.21/charm-openstack-integrator
-              hidden: True
-            - title: 1.21 Release notes
-              path: /kubernetes/docs/1.21/release-notes
-              hidden: True
-            - title: 1.21 Azure integrator
-              path: /kubernetes/docs/1.21/charm-azure-integrator
-              hidden: True
-            - title: 1.21 Docker
-              path: /kubernetes/docs/1.21/charm-docker
-              hidden: True
-            - title: 1.21 Flannel
-              path: /kubernetes/docs/1.21/charm-flannel
-              hidden: True
-            - title: 1.21 kubeapi-load-balancer
-              path: /kubernetes/docs/1.21/charm-kubeapi-load-balancer
-              hidden: True
-            - title: 1.21 Tigera Secure EE
-              path: /kubernetes/docs/1.21/charm-tigera-secure-ee
-              hidden: True
-            - title: 1.21 Upgrading
-              path: /kubernetes/docs/1.21/upgrading
-              hidden: True
-            - title: 1.21 Calico
-              path: /kubernetes/docs/1.21/charm-calico
-              hidden: True
-            - title: 1.21 Docker registry
-              path: /kubernetes/docs/1.21/charm-docker-registry
-              hidden: True
-            - title: 1.21 GCP integrator
-              path: /kubernetes/docs/1.21/charm-gcp-integrator
-              hidden: True
-            - title: 1.21 Kubernetes-master
-              path: /kubernetes/docs/1.21/charm-kubernetes-master
-              hidden: True
-            - title: 1.21 vSphere integrator
-              path: /kubernetes/docs/1.21/charm-vsphere-integrator
-              hidden: True
-            - title: 1.22 AWS IAM
-              path: /kubernetes/docs/1.22/charm-aws-iam
-              hidden: True
-            - title: 1.22 Canal
-              path: /kubernetes/docs/1.22/charm-canal
-              hidden: True
-            - title: 1.22 EasyRSA
-              path: /kubernetes/docs/1.22/charm-easyrsa
-              hidden: True
-            - title: 1.22 Kata
-              path: /kubernetes/docs/1.22/charm-kata
-              hidden: True
-            - title: 1.22 kubernetes-worker
-              path: /kubernetes/docs/1.22/charm-kubernetes-worker
-              hidden: True
-            - title: 1.22 Components
-              path: /kubernetes/docs/1.22/components
-              hidden: True
-            - title: 1.22 AWS integrator
-              path: /kubernetes/docs/1.22/charm-aws-integrator
-              hidden: True
-            - title: 1.22 Containerd
-              path: /kubernetes/docs/1.22/charm-containerd
-              hidden: True
-            - title: 1.22 etcd
-              path: /kubernetes/docs/1.22/charm-etcd
-              hidden: True
-            - title: 1.22 keeplived
-              path: /kubernetes/docs/1.22/charm-keepalived
-              hidden: True
-            - title: 1.22 OpenStack integrator
-              path: /kubernetes/docs/1.22/charm-openstack-integrator
-              hidden: True
-            - title: 1.22 Release notes
-              path: /kubernetes/docs/1.22/release-notes
-              hidden: True
-            - title: 1.22 Azure integrator
-              path: /kubernetes/docs/1.22/charm-azure-integrator
-              hidden: True
-            - title: 1.22 Docker
-              path: /kubernetes/docs/1.22/charm-docker
-              hidden: True
-            - title: 1.22 Flannel
-              path: /kubernetes/docs/1.22/charm-flannel
-              hidden: True
-            - title: 1.22 kubeapi-load-balancer
-              path: /kubernetes/docs/1.22/charm-kubeapi-load-balancer
-              hidden: True
-            - title: 1.22 Tigera Secure EE
-              path: /kubernetes/docs/1.22/charm-tigera-secure-ee
-              hidden: True
-            - title: 1.22 Upgrading
-              path: /kubernetes/docs/1.22/upgrading
-              hidden: True
-            - title: 1.22 Calico
-              path: /kubernetes/docs/1.22/charm-calico
-              hidden: True
-            - title: 1.22 Docker registry
-              path: /kubernetes/docs/1.22/charm-docker-registry
-              hidden: True
-            - title: 1.22 GCP integrator
-              path: /kubernetes/docs/1.22/charm-gcp-integrator
-              hidden: True
-            - title: 1.22 Kubernetes-master
-              path: /kubernetes/docs/1.22/charm-kubernetes-master
-              hidden: True
-            - title: 1.22 vSphere integrator
-              path: /kubernetes/docs/1.22/charm-vsphere-integrator
-              hidden: True
-            - title: 1.23 AWS IAM
-              path: /kubernetes/docs/1.23/charm-aws-iam
-              hidden: True
-            - title: 1.23 Canal
-              path: /kubernetes/docs/1.23/charm-canal
-              hidden: True
-            - title: 1.23 EasyRSA
-              path: /kubernetes/docs/1.23/charm-easyrsa
-              hidden: True
-            - title: 1.23 Kata
-              path: /kubernetes/docs/1.23/charm-kata
-              hidden: True
-            - title: 1.23 kubernetes-worker
-              path: /kubernetes/docs/1.23/charm-kubernetes-worker
-              hidden: True
-            - title: 1.23 Components
-              path: /kubernetes/docs/1.23/components
-              hidden: True
-            - title: 1.23 AWS integrator
-              path: /kubernetes/docs/1.23/charm-aws-integrator
-              hidden: True
-            - title: 1.23 Containerd
-              path: /kubernetes/docs/1.23/charm-containerd
-              hidden: True
-            - title: 1.23 etcd
-              path: /kubernetes/docs/1.23/charm-etcd
-              hidden: True
-            - title: 1.23 keeplived
-              path: /kubernetes/docs/1.23/charm-keepalived
-              hidden: True
-            - title: 1.23 OpenStack integrator
-              path: /kubernetes/docs/1.23/charm-openstack-integrator
-              hidden: True
-            - title: 1.23 Release notes
-              path: /kubernetes/docs/1.23/release-notes
-              hidden: True
-            - title: 1.23 Azure integrator
-              path: /kubernetes/docs/1.23/charm-azure-integrator
-              hidden: True
-            - title: 1.23 Docker
-              path: /kubernetes/docs/1.23/charm-docker
-              hidden: True
-            - title: 1.23 Flannel
-              path: /kubernetes/docs/1.23/charm-flannel
-              hidden: True
-            - title: 1.23 kubeapi-load-balancer
-              path: /kubernetes/docs/1.23/charm-kubeapi-load-balancer
-              hidden: True
-            - title: 1.23 Tigera Secure EE
-              path: /kubernetes/docs/1.23/charm-tigera-secure-ee
-              hidden: True
-            - title: 1.23 Upgrading
-              path: /kubernetes/docs/1.23/upgrading
-              hidden: True
-            - title: 1.23 Calico
-              path: /kubernetes/docs/1.23/charm-calico
-              hidden: True
-            - title: 1.23 Docker registry
-              path: /kubernetes/docs/1.23/charm-docker-registry
-              hidden: True
-            - title: 1.23 GCP integrator
-              path: /kubernetes/docs/1.23/charm-gcp-integrator
-              hidden: True
-            - title: 1.23 Kubernetes-master
-              path: /kubernetes/docs/1.23/charm-kubernetes-master
-              hidden: True
-            - title: 1.23 vSphere integrator
-              path: /kubernetes/docs/1.23/charm-vsphere-integrator
-              hidden: True
-            - title: 1.24 Release notes
-              path: /kubernetes/docs/1.24/release-notes
-              hidden: True
-            - title: 1.24 Components
-              path: /kubernetes/docs/1.24/components
-              hidden: True
-            - title: 1.24 Upgrading
-              path: /kubernetes/docs/1.24/upgrading
-              hidden: True
-
-    - title: Contact us
-      path: /kubernetes/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /kubernetes/thank-you
-          hidden: True
-
 blog:
   title: Blog
   path: /blog
-  persist: True
 
   children:
     - title: Overview
@@ -1137,23 +222,10 @@ blog:
       path: /blog/desktop
     - title: Cloud and Server
       path: /blog/cloud-and-server
-    - title: Topics
-      path: /blog/topics
-
-      children:
-        - title: Design
-          path: /blog/topics/design
-        - title: Juju
-          path: /blog/topics/juju
-        - title: MAAS
-          path: /blog/topics/maas
-        - title: Robotics
-          path: /blog/topics/robotics
-        - title: Snapcraft
-          path: /blog/topics/snapcraft
-
-    - title: Press centre
-      path: /blog/press-centre
+    - title: Design
+      path: /blog/topics/design
+    - title: Robotics
+      path: /blog/topics/robotics
     - title: Archives
       path: /blog/archives
     - title: Upcoming
@@ -1172,19 +244,10 @@ desktop:
       path: /desktop/organisations
     - title: Developers
       path: /desktop/developers
-    - title: Flavours
-      path: /desktop/flavours
     - title: Partners
       path: /desktop/partners
-
-    - title: Contact us
-      path: /desktop/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /desktop/thank-you
-          hidden: True
+    - title: Statistics
+      path: /desktop/statistics
 
 core:
   title: Core
@@ -1199,20 +262,10 @@ core:
       path: /core/stories
     - title: Features
       path: /core/features
-    - title: Secure boot
-      path: /core/features/secure-boot
     - title: Tutorials
       path: /tutorials?q=core
     - title: Docs
       path: /core/docs
-    - title: Contact us
-      path: /core/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /core/thank-you
-          hidden: True
 
 iot:
   title: IoT
@@ -1221,40 +274,14 @@ iot:
   children:
     - title: Overview
       path: /internet-of-things
-    - title: Smart displays
-      path: /internet-of-things/smart-displays
-    - title: Gateways
-      path: /internet-of-things/gateways
     - title: App store
       path: /internet-of-things/appstore
     - title: Embedded Linux
       path: /embedded
-      persist: True
-    - title: Automotive
-      path: /automotive
-      persist: True
     - title: EdgeX
       path: /internet-of-things/edgex
-    - title: Networking
-      path: /internet-of-things/networking
-    - title: Smart city
-      path: /internet-of-things/smart-city
-    - title: Smart home
-      path: /internet-of-things/smart-home
     - title: Management
       path: /internet-of-things/management
-
-    - title: Thank you
-      path: /internet-of-things/newsletter-thank-you
-      hidden: True
-    - title: Contact us
-      path: /internet-of-things/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /internet-of-things/thank-you
-          hidden: True
 
 support:
   title: Support
@@ -1265,26 +292,11 @@ support:
       path: /support
     - title: Your subscriptions
       path: /advantage
-      persist: True
     - title: Account users
       path: /advantage/users
-      persist: True
 
     - title: Community support
       path: /support/community-support
-
-    - title: Your offers
-      path: /advantage/offers
-      hidden: True
-
-    - title: Contact us
-      path: /support/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /support/thank-you
-          hidden: True
 
 account:
   title: Account
@@ -1313,103 +325,22 @@ download:
   children:
     - title: Overview
       path: /download
-    - title: Cloud
-      path: /download/cloud
-    - title: IoT
-      path: /download/iot
-
-      children:
-        - title: Intel IoT
-          path: /download/iot/intel-iotg
-        - title: Intel IEI TANK 870
-          path: /download/intel-iei-tank-870
-          hidden: True
-        - title: Raspberry Pi 2, 3 or 4
-          path: /download/raspberry-pi
-          hidden: True
-        - title: Raspberry Pi with Ubuntu Core
-          path: /download/raspberry-pi-core
-          hidden: True
-        - title: Raspberry Pi Compute Module 3
-          path: /download/raspberry-pi-compute-module-3
-          hidden: True
-        - title: Qualcomm Dragonboard 410c
-          path: /download/qualcomm-dragonboard-410c
-          hidden: True
-        - title: Intel NUC
-          path: /download/intel-nuc
-          hidden: True
-        - title: Intel NUC Desktop
-          path: /download/intel-nuc-desktop
-          hidden: True
-        - title: KVM
-          path: /download/kvm
-          hidden: True
-        - title: UP Squared IoT Grove
-          path: /download/up-squared-iot-grove-server
-          hidden: True
-        - title: Installation media
-          path: /download/iot/installation-media
-          hidden: True
-
-    - title: Raspberry Pi
-      path: /download/raspberry-pi
-
-      children:
-        - title: Thank you
-          path: /download/raspberry-pi/thank-you
-          hidden: True
-
-    - title: Server
-      path: /download/server
-
-      children:
-        - title: ARM
-          path: /download/server/arm
-        - title: POWER
-          path: /download/server/power
-        - title: s390x
-          path: /download/server/s390x
-        - title: Provisioning
-          path: /download/server/provisioning
-
-        - title: Thank you
-          path: /download/server/thank-you
-          hidden: True
-        - title: Thank you
-          path: /download/server/thank-you-s360x
-          hidden: True
-
     - title: Desktop
       path: /download/desktop
-
-      children:
-        - title: Thank you
-          path: /download/desktop/thank-you
-          hidden: True
-
-    - title: AMD-Xilinx
-      path: /download/amd-xilinx
-    - title: Alternative downloads
-      path: /download/alternative-downloads
+    - title: Server
+      path: /download/server
+    - title: IoT
+      path: /download/iot
+    - title: Cloud
+      path: /download/cloud
 
 contact-us:
   title: Contact us
   path: /contact-us
 
   children:
-    - title: Contact us
+    - title: Overview
       path: /contact-us
-      hidden: True
-
-    - title: Contact us
-      path: /contact-us/form
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /contact-us/form/thank-you
-          hidden: True
 
 legal:
   title: Legal
@@ -1420,174 +351,14 @@ legal:
       path: /legal
     - title: Terms and policies
       path: /legal/terms-and-policies
-
-      children:
-        - title: Terms and conditions
-          path: /legal/terms
-          hidden: True
-        - title: Intellectual property
-          path: /legal/intellectual-property-policy
-          hidden: True
-        - title: Intellectual property - 14th May 2013
-          path: /legal/intellectual-property-policy/2013-05-14
-          hidden: True
-        - title: Online accounts
-          path: /legal/online-account-terms
-          hidden: True
-        - title: U1
-          path: /legal/terms-of-service
-          hidden: True
-        - title: Confidentiality agreement
-          path: /legal/confidentiality-agreement
-          hidden: True
-        - title: Developers
-          path: /legal/developer-terms-and-conditions
-          hidden: True
-        - title: Launchpad
-          path: /legal/launchpad-terms-of-service
-          hidden: True
-        - title: Livepatch
-          path: /legal/livepatch-terms-of-service
-          hidden: True
-        - title: JAAS
-          path: /legal/jaas-beta-terms-of-service
-          hidden: True
-        - title: System Information
-          path: /legal/systems-information-notice
-          hidden: True
-        - title: Partner Portal
-          path: /legal/partner-portal-terms
-          hidden: True
-        - title: MOTD
-          path: /legal/motd
-          hidden: True
-        - title: Ubuntu font
-          path: /legal/font-licence
-          hidden: True
-
-          children:
-            - title: FAQ
-              path: /legal/font-licence/faq
-              hidden: True
-            - title: Differences
-              path: /legal/font-licence/differences
-              hidden: True
-
     - title: Data privacy
       path: /legal/data-privacy
-
-      children:
-        - title: Data protection enquiry
-          path: /legal/data-privacy/enquiry
-        - title: Recruitment
-          path: /legal/data-privacy/recruitment
-          hidden: True
-        - title: Newsletter
-          path: /legal/data-privacy/newsletter
-          hidden: True
-        - title: Webinar
-          path: /legal/data-privacy/webinar
-          hidden: True
-        - title: ESXi
-          path: /legal/data-privacy/esxi
-          hidden: True
-        - title: Online purchase
-          path: /legal/data-privacy/online-purchase
-          hidden: True
-        - title: User surveys
-          path: /legal/data-privacy/user-survey
-          hidden: True
-        - title: Snap store
-          path: /legal/data-privacy/snap-store
-          hidden: True
-        - title: Snapcraft NPS
-          path: /legal/data-privacy/snapcraft-nps
-          hidden: True
-        - title: Partner Portal
-          path: /legal/data-privacy/partner-portal
-          hidden: True
-        - title: SSO
-          path: /legal/data-privacy/sso
-          hidden: True
-        - title: Contact us & enquiries
-          path: /legal/data-privacy/contact
-          hidden: True
-        - title: Survey
-          path: /legal/data-privacy/survey
-          hidden: True
-        - title: Events
-          path: /legal/data-privacy/events
-          hidden: True
-
     - title: Trademarks
       path: /legal/trademarks
     - title: Ubuntu Advantage
       path: /legal/ubuntu-advantage
-
-      children:
-        - title: Service description
-          path: /legal/ubuntu-advantage-service-description
-        - title: ROS ESM Service Description
-          path: /legal/ubuntu-advantage-service-description/ros-esm-service-description
-          hidden: True
-        - title: サービス範囲
-          path: /legal/ubuntu-advantage-service-description/ja
-          hidden: True
-        - title: Ubuntu Assurance
-          path: /legal/ubuntu-advantage-assurance
-        - title: UA terms
-          path: /legal/ubuntu-advantage/ua-terms
-        - title: UA-I Personal terms
-          path: /legal/ubuntu-advantage/personal
-
     - title: Contributors
       path: /legal/contributors
-
-      children:
-        - title: FAQ
-          path: /legal/contributors/faq
-        - title: Agreement
-          path: /legal/contributors/agreement
-
-        - title: Thank you
-          path: /legal/contributors/thank-you
-          hidden: True
-
-    - title: Service terms
-      path: /legal/ubuntu-advantage-service-terms
-
-      children:
-        - title: JA
-          path: /legal/ubuntu-advantage-service-terms/ja
-          hidden: True
-        - title: 2016-06-24
-          path: /legal/ubuntu-advantage-service-terms/2016-06-24
-          hidden: True
-        - title: 2016-05-20
-          path: /legal/ubuntu-advantage-service-terms/2016-05-20
-          hidden: True
-        - title: 2015-09-09
-          path: /legal/ubuntu-advantage-service-terms/2015-09-09
-          hidden: True
-        - title: 2015-06-24
-          path: /legal/ubuntu-advantage-service-terms/2015-06-24
-          hidden: True
-
-    - title: Contact us
-      path: /legal/terms-and-policies/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /legal/terms-and-policies/thank-you
-          hidden: True
-
-    - title: Solution support
-      path: /legal/solution-support
-
-    - title: Equal employment opportunity commitment
-      path: /legal/equal-employment-opportunity-commitment
-      hidden: True
 
 lxd:
   title: LXD
@@ -1606,12 +377,6 @@ observability:
       path: /observability
     - title: What is observability
       path: /observability/what-is-observability
-    - title: Contact us
-      path: /observability/contact-us
-      hidden: True
-    - title: Thank you
-      path: /observability/thank-you
-      hidden: True
     - title: Managed
       path: /observability/managed
 
@@ -1626,43 +391,14 @@ security:
       path: /security/esm
     - title: Livepatch
       path: /security/livepatch
-      persist: True
-
-      children:
-        - title: Docs
-          path: /security/livepatch/docs
-
     - title: Certifications & Hardening
       path: /security/certifications
-      persist: True
-
-      children:
-        - title: FIPS
-          path: /security/fips
-        - title: Common Criteria
-          path: /security/cc
-        - title: DISA-STIG
-          path: /security/disa-stig
-        - title: CIS
-          path: /security/cis
-        - title: Docs
-          path: /security/certifications/docs
-
     - title: CVEs
       path: /security/cves
     - title: Notices
       path: /security/notices
-      persist: True
-    - title: OVAL
-      path: /security/oval
     - title: Docker Images
       path: /security/docker-images
-    - title: Contact us
-      path: /security/contact-us
-      hidden: True
-    - title: Thank you
-      path: /security/thank-you
-      hidden: True
 
 community:
   title: Community
@@ -1689,10 +425,8 @@ engage:
   path: /engage
 
   children:
-    - title: VMWare to OpenStack
-      path: /engage/vmware-to-openstack
-    - title: Deutsche Version
-      path: /engage/de/vmware-to-openstack
+    - title: Overview
+      path: /engage
 
 about:
   title: About
@@ -1771,18 +505,8 @@ credentialing:
   children:
     - title: Overview
       path: /credentialing
-
     - title: FAQ
       path: /credentialing/faq
-
-    - title: Contact us
-      path: /credentialing/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /credentialing/thank-you
-          hidden: True
 
 gcp:
   title: GCP
@@ -1791,18 +515,8 @@ gcp:
   children:
     - title: Overview
       path: /gcp
-
     - title: Pro
       path: /gcp/pro
-
-    - title: Contact us
-      path: /gcp/contact-us
-      hidden: True
-
-      children:
-        - title: Thank you
-          path: /gcp/thank-you
-          hidden: True
 
 ubuntu1604:
   title: 16-04
@@ -1832,18 +546,9 @@ telco:
     - title: OSM
       path: /telco/osm
 
-      children:
-        - title: Onboarding Network Functions
-          path: /telco/osm/onboarding-network-functions
-        - title: Multi-Cloud
-          path: /telco/osm/multi-cloud
-        - title: Multi-vendor
-          path: /telco/osm/multi-vendor
-
 certification:
   title: Hardware
   path: /certified
-  persist: True
 
   children:
     - title: Overview
@@ -1864,7 +569,6 @@ certification:
 edge-computing:
   title: Micro cloud
   path: /edge-computing
-  persist: True
 
   children:
     - title: Overview
@@ -1873,7 +577,6 @@ edge-computing:
 landscape:
   title: Landscape
   path: /landscape
-  persist: True
 
   children:
     - title: Overview
@@ -1888,3 +591,11 @@ landscape:
       path: https://docs.ubuntu.com/landscape/en/
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
+
+wsl:
+  title: WSL
+  path: /wsl
+
+  children:
+    - title: Overview
+      path: /wsl

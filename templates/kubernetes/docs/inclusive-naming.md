@@ -62,8 +62,9 @@ transition the names of the default branches to `main`.
 
 <!-- LINKS -->
 
+[LXD-image]: https://linuxcontainers.org/lxd/docs/master/image-handling
 [kubernetes-control-plane]: https://charmhub.io/kubernetes-control-plane/docs
-[etcd]: https://charmhub.io/etcd
+[etcd]: /kubernetes/docs/charm-etcd
 [upgrading]: /kubernetes/docs/upgrading
 
 <!-- FEEDBACK -->
