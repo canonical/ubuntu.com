@@ -262,6 +262,8 @@ def get_user_subscription_statuses(
 
     if type == "yearly":
         statuses["is_upsizeable"] = statuses["is_subscription_active"]
+        statuses["is_downsizeable"] = statuses["is_subscription_active"]
+
         statuses["should_present_auto_renewal"] = (
             statuses["is_subscription_active"] and statuses["is_expiring"]
         )

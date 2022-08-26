@@ -610,7 +610,7 @@ class TestHelpers(unittest.TestCase):
                 },
                 "expectations": {
                     "is_upsizeable": True,
-                    "is_downsizeable": False,
+                    "is_downsizeable": True,
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": False,
@@ -642,7 +642,7 @@ class TestHelpers(unittest.TestCase):
                 },
                 "expectations": {
                     "is_upsizeable": True,
-                    "is_downsizeable": False,
+                    "is_downsizeable": True,
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": True,
@@ -677,7 +677,7 @@ class TestHelpers(unittest.TestCase):
                 },
                 "expectations": {
                     "is_upsizeable": True,
-                    "is_downsizeable": False,
+                    "is_downsizeable": True,
                     "is_cancellable": False,
                     "is_cancelled": False,
                     "is_expiring": False,
