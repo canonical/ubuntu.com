@@ -23,7 +23,7 @@
   {% endif %}
   <div class="row">
     <div class="col-6">
-      <form method="post">
+      <form {% if uuid %} method="patch" {% else %} method="post" {%endif%}>
         <label class="p-heading--4" for="exam-name">Select your exam</label>
         <select id="exam-name" name="name" required>
           <option value="linux-essentials">Linux Essentials</option>
@@ -32,9 +32,10 @@
         <select id="exam-timezone" name="timezone" required>
         </select>
         <label class="p-heading--4" for="exam-date">Select your preferred day</label>
-        <input type="date" id="exam-date" name="date" required />
+        <input type="date" id="exam-date" name="date" value="{{date}}" required />
         <label class="p-heading--4" for="exam-time">Select your preferred time</label>
-        <input type="time" id="exam-time" name="time" required />
+        <input type="time" id="exam-time" name="time" value="{{time}}" required />
+        {% if uuid %} <input type="text" id="exam-uuid" name="uuid" value="{{uuid}}" hidden> {% endif %}
         <button class="p-button--positive" type="submit" name="submit">Submit</button>
       </form>
     </div>
@@ -45,9 +46,12 @@
 </section>
 
 <script>
+  {% if time_zone %}
+  const timezone = "{{ time_zone }}"
+  {% else %}
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  {% endif %}
   const timezoneInput = document.querySelector("#exam-timezone");
-  timezoneInput.value = timezone;
   const allTimezones =  Intl.supportedValuesOf('timeZone');
   allTimezones.map((tz)=>{
     optionElement = document.createElement("option");
