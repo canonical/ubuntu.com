@@ -68,6 +68,10 @@ class TrueAbilityAPI:
 
     def update_ability_screen(self):
         pass
+    
+    def get_assessment_reservation(self, uuid: str = ""):
+        uri = f"/api/v1//assessment_reservations/{uuid}"
+        return self.make_request("GET",uri).json()
 
     def get_assessment_reservations(self, ability_screen_id: int = None):
         uri = "/api/v1/assessment_reservations" + (
@@ -97,7 +101,7 @@ class TrueAbilityAPI:
                     "street_address": "1234 Pecan",
                     "street_address2": "Suite 300",
                     "state": "Texas",
-                    "time_zone": "America/Chicago",
+                    "time_zone": timezone,
                     "zipcode": "78201",
                 },
             },
@@ -109,6 +113,21 @@ class TrueAbilityAPI:
             },
         }
         return self.make_request("POST", uri, json=body).json()
+
+    def patch_assessment_reservation(self,starts_at:str,timezone: str, uuid:str):
+        uri = f"/api/v1/assessment_reservations/{uuid}"
+        body = {
+            "assessment_reservation": {
+                "starts_at":starts_at,
+                "address_attributes":{
+                    "time_zone":timezone
+                },
+                "user":{
+                    "time_zone": timezone
+                }
+            }
+        }
+        return self.make_request("PATCH",uri, json=body).json()
 
     def get_assessments(self, ability_screen_id: int = None, uuid: str = None):
         uri = (
