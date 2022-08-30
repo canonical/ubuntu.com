@@ -46,11 +46,7 @@
 </section>
 
 <script>
-  {% if time_zone %}
-  const timezone = "{{ time_zone }}"
-  {% else %}
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  {% endif %}
   const timezoneInput = document.querySelector("#exam-timezone");
   const allTimezones =  Intl.supportedValuesOf('timeZone');
   allTimezones.map((tz)=>{
