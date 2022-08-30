@@ -496,10 +496,9 @@ def cred_scheduled(
                 continue
 
             name = r["ability_screen"]["display_name"]
-            starts_at = datetime.strptime(
-                r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ"
-            )
             timezone = r["user"]["time_zone"]
+            tz_info = pytz.timezone(timezone)
+            starts_at = datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=pytz.timezone("UTC")).astimezone(tz_info)
             exams.append(
                 {
                     "name": name,
