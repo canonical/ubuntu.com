@@ -14,8 +14,8 @@ toc: False
 ---
 
 **Charmed Kubernetes** will run seamlessly on Microsoft Azure <sup>&reg;</sup>.
-With the  addition of the `azure-integrator`, your cluster will also be able
-to directly  use Azure native features.
+With the addition of the `azure-integrator`, your cluster will also be able
+to directly use Azure native features.
 
 
 ## Azure integrator
@@ -25,10 +25,53 @@ Azure. Using the credentials provided to **Juju**, it acts as a proxy between
 Charmed Kubernetes and the underlying cloud, granting permissions to
 dynamically create, for example, storage.
 
-### Installing
+### Installing using the Out-of-Tree Providers
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install],
-you can add the azure-integrator at the same time by using the following
+you can add the azure-cloud-provider at the same time by using the following
+overlay file ([download it here][asset-azure-cloud-overlay]):
+
+```yaml
+description: Charmed Kubernetes overlay to add native Azure support.
+applications:
+  kubernetes-control-plane:
+    options:
+      register-with-taints: ""
+      allow-privileged: "true"
+  azure-integrator:
+    charm: azure-integrator
+    num_units: 1
+    trust: true
+  azure-cloud-provider:
+    charm: azure-cloud-provider
+
+relations:
+- - azure-cloud-provider:certificates
+  - easyrsa:client   # or whichever application supplies cluster certs
+- - azure-cloud-provider:kube-control
+  - kubernetes-control-plane:kube-control
+- - azure-cloud-provider:external-cloud-provider
+  - kubernetes-control-plane:external-cloud-provider
+- - azure-cloud-provider:azure-integration
+  - azure-integrator:clients
+```
+
+To use this overlay with the **Charmed Kubernetes** bundle, it is specified
+during deploy like this:
+
+```bash
+juju deploy charmed-kubernetes --overlay azure-cloud-overlay.yaml --trust
+```
+
+### Installing using In-Tree Providers
+
+The Kubernetes binaries have in-tree providers for common cloud platforms, 
+and Azure is no different. The in-tree providers are less flexible, deprecated,
+and will eventually cease to operate.  It's recommended to use the out-of-tree 
+providers because of this.
+
+If you install **Charmed Kubernetes** [using the Juju bundle][install],
+you can add the azure-integrator alone at the same time by using the following
 overlay file ([download it here][asset-azure-overlay]):
 
 ```yaml
@@ -53,7 +96,9 @@ during deploy like this:
 juju deploy charmed-kubernetes --overlay azure-overlay.yaml --trust
 ```
 
-... and remember to fetch the configuration file!
+### Installation Notes
+
+After installation, remember to fetch the configuration file!
 
 ```bash
 juju scp kubernetes-control-plane/0:config ~/.kube/config
@@ -81,24 +126,29 @@ juju scp kubernetes-control-plane/0:config ~/.kube/config
 ## Storage
 
 This section describes creating a busybox pod with a persistent volume claim
-backed by
-Azure's Disk Storage.
+backed by Azure's Disk Storage. Differenced between the In-tree and Out-of-Tree 
+storage will be noted in each step.
 
-### 1. Create a storage class using the `kubernetes.io/azure-disk` provisioner:
+### 1. Create a storage class:
+* Out-of-Tree uses the `azuredisk-csi-provisioner` provisioner and a
+  storage class is already prepared.
 
-
-```bash
-kubectl create -f - <<EOY
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: azure-standard
-provisioner: kubernetes.io/azure-disk
-parameters:
-  storageaccounttype: Standard_LRS
-  kind: managed
-EOY
-```
+  ```bash
+  kubectl describe sc csi-azure-default
+  ```
+* In-Tree uses the `kubernetes.io/azure-disk` provisioner
+  ```bash
+  kubectl create -f - <<EOY
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: csi-azure-default
+  provisioner: kubernetes.io/azure-disk
+  parameters:
+    storageaccounttype: Standard_LRS
+    kind: managed
+  EOY
+  ```
 
 ### 2. Create a persistent volume claim using that storage class:
 
@@ -114,7 +164,7 @@ spec:
   resources:
     requests:
       storage: 100Mi
-  storageClassName: azure-standard
+  storageClassName: csi-azure-default
 EOY
 ```
 
@@ -158,7 +208,7 @@ Here are the commands for Kubernetes 1.18+ and above as the kubectl run command 
 
 ```bash
 # Kubernetes 1.18+
-kubectl create deployment hello-world --image=gcr.io/google-samples/node-hello:1.0  --port=8080
+kubectl create deployment hello-world --image=gcr.io/google-samples/node-hello:1.0 --port=8080
 kubectl expose deployment hello-world --type=LoadBalancer --name=hello
 watch kubectl get svc -o wide --selector=app=hello-world
 ```
@@ -176,7 +226,8 @@ You can then verify this works by loading the described IP address (on port
 8080!) in a browser.
 
 For more configuration options and details of the permissions which the integrator uses,
-please see the [azure charm page][azure-integrator].
+please see the [azure-integrator charm page][azure-integrator] and 
+[azure-cloud-provider charm page][azure-cloud-provider].
 
 ## Azure load-balancers for the control plane
 
@@ -192,9 +243,11 @@ external clients.
 <!-- LINKS -->
 
 [asset-azure-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-overlay.yaml
+[asset-azure-cloud-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/azure-cloud-overlay.yaml
 
 [storage]: /kubernetes/docs/storage
-[azure-integrator]: /kubernetes/docs/charm-azure-integrator
+[azure-cloud-provider]: https://charmhub.io/azure-cloud-provider/docs
+[azure-integrator]: https://charmhub.io/azure-integrator/docs
 
 [install]: /kubernetes/docs/install-manual
 
