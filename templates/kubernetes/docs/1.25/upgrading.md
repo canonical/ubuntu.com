@@ -74,7 +74,7 @@ Elasticsearch, Prometheus, Nagios, Helm, etc.
 
 <a id='upgrading-containerd'> </a>
 
-### Upgrading Containerd
+### Upgrading Containerd 
 
 By default, Versions 1.15 and later use Containerd as the container
 runtime. This subordinate charm can be upgraded with the command:
@@ -417,7 +417,7 @@ kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvc
 
 [k8s-release]: https://github.com/kubernetes/kubernetes/releases
 [backups]: /kubernetes/docs/backups
-[release-notes]: /kubernetes/docs/release-notes
+[release-notes]: /kubernetes/docs/1.25/release-notes
 [notes]: /kubernetes/docs/upgrade-notes
 [snap-channels]: https://docs.snapcraft.io/reference/channels
 [blue-green]: https://martinfowler.com/bliki/BlueGreenDeployment.html
