@@ -21,8 +21,8 @@
           <th>Exam</th>
           <th>Date</th>
           <th>Time</th>
-          <th>Timezone</th>
           <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -31,8 +31,8 @@
           <td>{{ exam["name"] }}</td>
           <td>{{ exam["date"] }}</td>
           <td>{{ exam["time"] }}</td>
-          <td>{{ exam["timezone"] }}</td>
           <td>{{ exam["state"] }}</td>
+          <td><a href="/credentialing/schedule?uuid={{ exam["uuid"] }}">Reschedule</a></td>
         </tr>
         {% endfor %}
       </tbody>
