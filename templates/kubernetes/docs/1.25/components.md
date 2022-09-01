@@ -37,7 +37,7 @@ Other information about this release can be found on the following pages:
 ## What's new
 
 For a list of new features, changes, deprecations, and bug fixes in this
-release, please see the [Release notes](release-notes).
+release, please see the [release notes](release-notes).
 
 ## Core charms
 
@@ -57,7 +57,7 @@ release. These charms are maintained by the Charmed Kubernetes team.
 
 
 ## CNI charms
-These are the CNI charms also supported by Charmed Kubernetes ( calico is the default CNI and is included in the core charms above)
+These are the CNI charms also supported by Charmed Kubernetes (calico is the default CNI and is included in the core charms above)
 
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|

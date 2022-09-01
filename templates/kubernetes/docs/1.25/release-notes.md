@@ -13,7 +13,6 @@ permalink: 1.25/release-notes.html
 layout: [base, ubuntu-com]
 toc: False
 ---
-## 1.25
 
 #### September 1, 2022 - `charmed-kubernetes --channel 1.25/stable` 
 
