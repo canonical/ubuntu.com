@@ -40,16 +40,21 @@ const MagicAttachDropdown = ({
   });
   // 0 for not yet submitted
   // 1 for has submitted, pending response
-  // 200 to 500 standard HTTP request codes
+  // 2 for error
+  // 3 for success
 
   const submitAttachRequest = async () => {
     updateSubmitStatus({ error: "", status: "1" });
     confirmMagicAttach(magicAttachCode, selectedSubscription)
       .then((response) => {
-        updateSubmitStatus({
-          error: response.errors,
-          status: "2",
-        });
+        if (response["success"]) {
+          updateSubmitStatus({ error: "", status: "3" });
+        } else {
+          updateSubmitStatus({
+            error: response.errors,
+            status: "2",
+          });
+        }
         console.log(submitStatus);
       })
       .catch((error) => {
@@ -59,7 +64,7 @@ const MagicAttachDropdown = ({
   if (isLoadingUA || submitStatus.status === "1") {
     return <Spinner />;
   }
-  if (submitStatus.error === "" && submitStatus.status === "2") {
+  if (submitStatus.status === "3") {
     console.log("success");
     return (
       <Notification severity="positive" title="Success">
@@ -67,7 +72,7 @@ const MagicAttachDropdown = ({
       </Notification>
     );
   }
-  if (submitStatus.status === "2" && submitStatus.error != "") {
+  if (submitStatus.status === "2") {
     console.log("fail");
     return (
       <Notification severity="negative" title="Error">

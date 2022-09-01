@@ -5,7 +5,13 @@ import {
   Input,
   Accordion,
 } from "@canonical/react-components";
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useState,
+  useRef,
+} from "react";
 
 type Props = {
   setCodeStatus: Dispatch<SetStateAction<boolean>>;
@@ -13,6 +19,12 @@ type Props = {
 };
 const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
   const [tab, changeTab] = useState(0);
+  const tabs = document.getElementsByClassName("p-segmented-control__button");
+  const ref = useRef(null);
+  const switchTab = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    changeTab((tab + 1) % 2);
+    tabs[tab].focus();
+  };
   return (
     <>
       <Row>
@@ -55,7 +67,11 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                       aria-selected={tab == 0}
                       aria-controls="desktop-tab"
                       id="desktop"
+                      ref={ref}
                       onClick={() => {
+                        changeTab(0);
+                      }}
+                      onKeyUp={() => {
                         changeTab((tab + 1) % 2);
                       }}
                     >
@@ -66,10 +82,14 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                       role="tab"
                       aria-selected={tab == 1}
                       aria-controls="server-tab"
+                      ref={ref}
                       id="server"
                       tabIndex={-1}
                       onClick={() => {
-                        changeTab((tab + 1) % 2);
+                        changeTab(1);
+                      }}
+                      onKeyUp={(event) => {
+                        switchTab(event);
                       }}
                     >
                       Server

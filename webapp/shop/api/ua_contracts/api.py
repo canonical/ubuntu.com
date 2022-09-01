@@ -326,7 +326,7 @@ class UAContractsAPI:
             json=request_body,
             error_rules=["default"]
         )
-        return {}
+        return {"success":"true"}
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:
