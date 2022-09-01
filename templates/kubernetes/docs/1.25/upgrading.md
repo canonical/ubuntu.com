@@ -71,9 +71,6 @@ This includes:
 Note that this may include other applications which you may have installed, such as
 Elasticsearch, Prometheus, Nagios, Helm, etc.
 
-
-<a id='upgrading-containerd'> </a>
-
 ### Upgrading Containerd 
 
 By default, Versions 1.15 and later use Containerd as the container
@@ -338,8 +335,6 @@ juju run-action kubernetes-worker/1 upgrade
 ...
 ```
 
-<a id='upgrading-series'> </a>
-
 ## Upgrading the Machine's Series
 
 All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/upgrading-series).
@@ -347,8 +342,6 @@ As each machine is upgraded, the applications on that machine will be stopped an
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed
 from the pool until the upgrade is complete.
-
-<a id='verify-upgrade'> </a>
 
 ## Verify an Upgrade
 
