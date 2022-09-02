@@ -10,8 +10,16 @@
 
 {% block content %}
 
-<div class="l-tutorial">
-  <aside class="l-tutorial__sidebar">
+<div class="p-strip">
+  <div class="row">
+    <div class="col-7 col-start-large-5">
+      <h1 class="p-heading--2">{{ document.title }}</h1>
+    </div>
+  </div>
+</div>
+
+<div class="l-tutorial row">
+  <aside class="l-tutorial__sidebar col-4">
     <button type="button" class="l-tutorial__nav-toggle p-icon--menu u-hide u-show--small" aria-controls="menu-tutorial" aria-expanded="false">
       Toggle tutorial menu
     </button>
@@ -27,7 +35,7 @@
       {% endfor %}
     </ol>
   </aside>
-  <div class="l-tutorial__content">
+  <div class="l-tutorial__content col-8">
     {% for section in document.sections %}
     <section class="l-tutorial-section" id="{{ loop.index }}-{{ section['slug']}}">
       <h2 class="p-heading--3">{{ loop.index }}. {{ section["title"]}}</h2>
