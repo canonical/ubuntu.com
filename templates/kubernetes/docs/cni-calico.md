@@ -70,7 +70,7 @@ juju config calico
 
 ### Setting a config option
 
-To set an option, simply run the config command with and additional `<key>=<value>` argument. For example, to disable NAT on outgoing traffic:
+To set an option, simply run the config command with an additional `<key>=<value>` argument. For example, to disable NAT on outgoing traffic:
 
 ```bash
 juju config calico nat-outgoing=False

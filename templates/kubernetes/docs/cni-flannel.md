@@ -52,7 +52,7 @@ juju config flannel
 
 ### Setting a config option
 
-To set an option, simply run the config command with and additional `<key>=<value>` argument. For example, to set a specific network CIDR:
+To set an option, simply run the config command with an additional `<key>=<value>` argument. For example, to set a specific network CIDR:
 
 ```bash
 juju config flannel cidr="10.5.0.0/16"
