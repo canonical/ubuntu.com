@@ -596,3 +596,10 @@ def cube_study_labs_button(edx_api, **kwargs):
         )
 
     return flask.jsonify({"text": text, "redirect_url": redirect_url})
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_syllabus_data(**kawrgs):
+    exam_name = flask.request.args.get("exam")
+    syllabus_file = open("webapp/shop/cube/syllabus.json","r")
+    syllabus_data = json.load(syllabus_file)
+    return flask.render_template("credentialing/syllabus.html", syllabus_data=syllabus_data, exam_name=exam_name)
