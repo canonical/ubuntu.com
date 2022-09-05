@@ -20,10 +20,10 @@
       {% for exam in syllabus_data %}
       <div tabindex="0" role="tabpanel" id="{{exam['exam_name']}}-tab" aria-labelledby="{{exam['exam_name']}}" {% if (exam_name and exam_name!=exam["exam_name"]) or (not exam_name and loop.index!=1) %}hidden="hidden"{% endif %}>
         <p>{{exam['exam_description']}}</p>
-        <ol class="p-list--nested-counter">
+        <ol class="p-stepped-list">
           {% for chapter in exam["syllabus"] %}
-          <li><strong>{{chapter['chapter_title']}}</strong>
-            <ol>
+          <li class="p-stepped-list__item"><h3 class="p-stepped-list__title">{{chapter['chapter_title']}}</h3>
+            <ol class="p-stepped-list__content">
               {% for section in chapter['chapter_sections'] %}
               <li>{{section}}</li>
               {% endfor %}
