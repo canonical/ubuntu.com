@@ -338,22 +338,11 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs(cancel_advantage_subscriptions, location="json")
-def cancel_advantage_subscriptions(
-    advantage_mapper, ua_contracts_api, **kwargs
-):
+def cancel_advantage_subscriptions(ua_contracts_api, **kwargs):
     account_id = kwargs.get("account_id")
     previous_purchase_id = kwargs.get("previous_purchase_id")
     product_listing_id = kwargs.get("product_listing_id")
     marketplace = kwargs.get("marketplace")
-
-    monthly_subscriptions = advantage_mapper.get_account_subscriptions(
-        account_id=account_id,
-        marketplace=marketplace,
-        filters={"status": "active", "period": "monthly"},
-    )
-
-    if not monthly_subscriptions:
-        return flask.jsonify({"errors": "no monthly subscriptions found"}), 400
 
     purchase_request = {
         "accountID": account_id,

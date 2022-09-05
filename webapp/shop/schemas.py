@@ -1,12 +1,5 @@
 from marshmallow import Schema, validate
-
-from webargs.fields import (
-    String,
-    List,
-    Nested,
-    Int,
-    Boolean,
-)
+from webargs.fields import Boolean, Int, List, Nested, String
 
 
 class EntitlementSchema(Schema):

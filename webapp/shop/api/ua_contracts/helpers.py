@@ -1,16 +1,16 @@
 from datetime import datetime
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
 
 import pytz
 from dateutil.parser import parse
 
-from webapp.shop.api.ua_contracts.models import Listing, Entitlement
+from webapp.shop.api.ua_contracts.models import Entitlement, Listing
 from webapp.shop.api.ua_contracts.primitives import (
-    Subscription,
-    ContractItem,
-    Renewal,
     Account,
     Contract,
+    ContractItem,
+    Renewal,
+    Subscription,
 )
 
 
@@ -260,21 +260,6 @@ def get_user_subscription_statuses(
             subscriptions, subscription_id
         )
 
-    if type == "yearly":
-        statuses["is_upsizeable"] = statuses["is_subscription_active"]
-        statuses["is_downsizeable"] = statuses["is_subscription_active"]
-
-        statuses["should_present_auto_renewal"] = (
-            statuses["is_subscription_active"] and statuses["is_expiring"]
-        )
-
-        if (
-            not statuses["is_subscription_active"]
-            or statuses["is_subscription_auto_renewing"]
-        ):
-            statuses["is_expiring"] = False
-
-    if type == "monthly":
         is_cancelled = True if not current_number_of_machines else False
         statuses["is_cancelled"] = is_cancelled
         statuses["should_present_auto_renewal"] = (
