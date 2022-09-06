@@ -29,7 +29,7 @@ const SubscriptionCancelFields = ({ setIsValid, isTrial }: Props) => {
       <ul>
         <li>No additional charge will be incurred.</li>
         <li>
-          The <strong>10 machines</strong> will stop receiving updates and
+          All machines under this subscription will stop receiving updates and
           services at the end of the billing period.
         </li>
         <li>
