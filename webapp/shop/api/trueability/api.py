@@ -130,6 +130,10 @@ class TrueAbilityAPI:
         }
         return self.make_request("PATCH", uri, json=body).json()
 
+    def delete_assessment_reservation(self, uuid: str):
+        uri = f"/api/v1/assessment_reservations/{uuid}"
+        return self.make_request("DELETE", uri).json()
+
     def get_assessments(self, ability_screen_id: int = None, uuid: str = None):
         uri = (
             "/api/v1/assessments"

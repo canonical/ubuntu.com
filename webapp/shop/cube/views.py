@@ -455,7 +455,7 @@ def cred_schedule(
                 "name": "Linux Essentials",
                 "date": starts_at.strftime("%d %b %Y"),
                 "time": starts_at.strftime("%H:%M %Z"),
-                "uuid": data["uuid"] if "uuid" in data  else ""
+                "uuid": data["uuid"] if "uuid" in data else "",
             }
             return flask.render_template(
                 "/credentialing/schedule-confirm.html", exam=exam
@@ -531,19 +531,27 @@ def cred_your_exams(
             end = starts_at + timedelta(hours=6)
 
             if assessment_id and now > starts_at and now < end:
-                actions.append(
-                    {
-                        "text": "Take exam",
-                        "href": f"/credentialing/exam?id={ assessment_id }",
-                    }
+                actions.extend(
+                    [
+                        {
+                            "text": "Take exam",
+                            "href": f"/credentialing/exam?id={ assessment_id }",
+                        }
+                    ]
                 )
 
             if r["state"] == "scheduled":
-                actions.append(
-                    {
-                        "text": "Reschedule",
-                        "href": f"/credentialing/schedule?uuid={ r['uuid'] }",
-                    }
+                actions.extend(
+                    [
+                        {
+                            "text": "Reschedule",
+                            "href": f"/credentialing/schedule?uuid={ r['uuid'] }",
+                        },
+                        {
+                            "text": "Cancel",
+                            "href": f"/credentialing/cancel-exam?uuid={ r['uuid'] }",
+                        },
+                    ]
                 )
             exams.append(
                 {
@@ -572,6 +580,22 @@ def cred_your_exams(
         #  key_len=key_len,
         #  tb=tb,
     )
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_cancel_exam(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    trueability_api,
+    badge_certification,
+    **kwargs,
+):
+    uuid = flask.request.args.get("uuid")
+    response = trueability_api.delete_assessment_reservation(uuid)
+    return flask.redirect("/credentialing/your-exams")
 
 
 @shop_decorator(area="cube", permission="user", response="html")
