@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
@@ -29,11 +29,9 @@ const MagicAttachDropdown = ({
     select: selectSubscriptionById(selectedId),
   });
 
-  const [selectedSubscription, updateSelectedSubscription] = useState(
-    defaultSelectedSubscription == undefined
-      ? ""
-      : defaultSelectedSubscription.contract_id
-  );
+  const [selectedSubscription, updateSelectedSubscription] = useState("");
+  console.log(defaultSelectedSubscription?.contract_id);
+  console.log(selectedSubscription);
   const [submitStatus, updateSubmitStatus] = useState({
     error: "",
     status: "0",
@@ -42,7 +40,11 @@ const MagicAttachDropdown = ({
   // 1 for has submitted, pending response
   // 2 for error
   // 3 for success
-
+  useEffect(()=>{
+    if(defaultSelectedSubscription!=undefined){
+      updateSelectedSubscription(defaultSelectedSubscription?.contract_id);
+    }
+  },[defaultSelectedSubscription]);
   const submitAttachRequest = async () => {
     updateSubmitStatus({ error: "", status: "1" });
     confirmMagicAttach(magicAttachCode, selectedSubscription)
@@ -101,7 +103,6 @@ const MagicAttachDropdown = ({
                   ? ""
                   : defaultSelectedSubscription.contract_id
               }
-              value={selectedSubscription}
             >
               <option value="" disabled>
                 Select an option
@@ -112,7 +113,7 @@ const MagicAttachDropdown = ({
                     <option
                       value={subscription.contract_id}
                       key={subscription.contract_id}
-                      selected
+                      selected={true}
                     >
                       {subscription.product_name}
                     </option>
