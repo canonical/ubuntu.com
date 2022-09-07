@@ -318,15 +318,15 @@ class UAContractsAPI:
             json=request_body,
             error_rules=["default"],
         ).json()
-    
-    def post_magic_attach(self, request_body:dict)->dict:
+
+    def post_magic_attach(self, request_body: dict) -> dict:
         self._request(
             method="post",
             path=f"v1/magic-attach/activate",
             json=request_body,
-            error_rules=["default"]
+            error_rules=["default"],
         )
-        return {"success":"true"}
+        return {"success": "true"}
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:

@@ -19,8 +19,11 @@ type Props = {
 };
 const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
   const [tab, changeTab] = useState(0);
-  const inputRefs = useRef<HTMLButtonElement[]|null[]>([]);
-  const switchTab = (event: React.KeyboardEvent<HTMLButtonElement>,index:number) => {
+  const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
+  const switchTab = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    index: number
+  ) => {
     event.preventDefault();
     changeTab(index);
     console.log(inputRefs.current[index]);
@@ -72,7 +75,9 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                       onClick={() => {
                         changeTab(0);
                       }}
-                      onKeyUp={(e)=>{switchTab(e,1)}}
+                      onKeyUp={(e) => {
+                        switchTab(e, 1);
+                      }}
                       ref={(ref) => (inputRefs.current[0] = ref)}
                     >
                       Desktop
@@ -87,7 +92,9 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                       onClick={() => {
                         changeTab(1);
                       }}
-                      onKeyUp={(e)=>{switchTab(e,0)}}
+                      onKeyUp={(e) => {
+                        switchTab(e, 0);
+                      }}
                       ref={(ref) => (inputRefs.current[1] = ref)}
                     >
                       Server

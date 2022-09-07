@@ -1,4 +1,10 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
@@ -40,11 +46,11 @@ const MagicAttachDropdown = ({
   // 1 for has submitted, pending response
   // 2 for error
   // 3 for success
-  useEffect(()=>{
-    if(defaultSelectedSubscription!=undefined){
+  useEffect(() => {
+    if (defaultSelectedSubscription != undefined) {
       updateSelectedSubscription(defaultSelectedSubscription?.contract_id);
     }
-  },[defaultSelectedSubscription]);
+  }, [defaultSelectedSubscription]);
   const submitAttachRequest = async () => {
     updateSubmitStatus({ error: "", status: "1" });
     confirmMagicAttach(magicAttachCode, selectedSubscription)

@@ -476,8 +476,8 @@ export async function confirmMagicAttach(magicAttachCode, contractId) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "userCode": magicAttachCode,
-      "contractID": contractId
+      userCode: magicAttachCode,
+      contractID: contractId,
     }),
   });
 
