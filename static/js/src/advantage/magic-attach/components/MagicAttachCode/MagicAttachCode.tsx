@@ -19,11 +19,13 @@ type Props = {
 };
 const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
   const [tab, changeTab] = useState(0);
-  const tabs = document.getElementsByClassName("p-segmented-control__button");
-  const ref = useRef(null);
-  const switchTab = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    changeTab((tab + 1) % 2);
-    tabs[tab].focus();
+  const inputRefs = useRef<HTMLButtonElement[]|null[]>([]);
+  const switchTab = (event: React.KeyboardEvent<HTMLButtonElement>,index:number) => {
+    event.preventDefault();
+    changeTab(index);
+    console.log(inputRefs.current[index]);
+    console.log(inputRefs.current);
+    inputRefs.current[index].focus();
   };
   return (
     <>
@@ -67,13 +69,11 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                       aria-selected={tab == 0}
                       aria-controls="desktop-tab"
                       id="desktop"
-                      ref={ref}
                       onClick={() => {
                         changeTab(0);
                       }}
-                      onKeyUp={() => {
-                        changeTab((tab + 1) % 2);
-                      }}
+                      onKeyUp={(e)=>{switchTab(e,1)}}
+                      ref={(ref) => (inputRefs.current[0] = ref)}
                     >
                       Desktop
                     </button>
@@ -82,15 +82,13 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                       role="tab"
                       aria-selected={tab == 1}
                       aria-controls="server-tab"
-                      ref={ref}
                       id="server"
                       tabIndex={-1}
                       onClick={() => {
                         changeTab(1);
                       }}
-                      onKeyUp={(event) => {
-                        switchTab(event);
-                      }}
+                      onKeyUp={(e)=>{switchTab(e,0)}}
+                      ref={(ref) => (inputRefs.current[1] = ref)}
                     >
                       Server
                     </button>
