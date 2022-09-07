@@ -422,8 +422,8 @@ def cred_schedule(
         sso_user = user_info(flask.session)
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
-        date_and_time = f"{data['date']}T{data['time']}{datetime.now(tz_info).strftime('%z')}"
-        starts_at = datetime.strptime(date_and_time, "%Y-%m-%dT%H:%M%z")
+        scheduled_time = f"{data['date']}T{data['time']}"
+        starts_at = tz_info.localize(datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M"))
         ability_screen_id = 4190
         email = sso_user["email"]
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
@@ -454,7 +454,7 @@ def cred_schedule(
             exam = {
                 "name": "Linux Essentials",
                 "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%H:%M %Z"),
+                "time": starts_at.strftime("%I:%M %p %Z"),
                 "uuid": data["uuid"] if "uuid" in data else "",
             }
             return flask.render_template(
@@ -557,7 +557,7 @@ def cred_your_exams(
                 {
                     "name": name,
                     "date": starts_at.strftime("%d %b %Y"),
-                    "time": starts_at.strftime("%H:%M %Z"),
+                    "time": starts_at.strftime("%I:%M %p %Z"),
                     "timezone": timezone,
                     "state": r["state"],
                     "uuid": r["uuid"],
