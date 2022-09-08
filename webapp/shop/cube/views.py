@@ -657,8 +657,18 @@ def cred_exam(
     badge_certification,
     **kwargs,
 ):
-
     assessment_id = flask.request.args.get("id")
+    assessment = trueability_api.get_assessment(assessment_id)
+
+    if assessment.get("error"):
+        return flask.abort(404)
+
+    assessment_user = assessment["assessment"]["user"]["email"]
+    sso_user = user_info(flask.session)["email"]
+
+    if assessment_user != sso_user:
+        return flask.abort(403)
+
     url = trueability_api.get_assessment_redirect(assessment_id)
     return flask.render_template("credentialing/exam.html", url=url)
 

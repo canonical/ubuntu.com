@@ -146,6 +146,10 @@ class TrueAbilityAPI:
         )
         return self.make_request("GET", uri).json()
 
+    def get_assessment(self, id: str):
+        uri = f"/api/v1/assessments/{id}"
+        return self.make_request("GET", uri).json()
+
     def get_assessment_redirect(self, id: str):
         uri = "/api/v1/assessments/redirect_to_environment" + (
             f"?id={id}" if id else ""
@@ -257,18 +261,23 @@ if __name__ == "__main__":
     #  print(json.dumps(response, indent=4))
     #  print()
 
-    print("# Change assessment reservation")
-    response = api.patch_assessment_reservation(
-        starts_at="2022-09-08T06:00",
-        timezone="Europe/Berlin",
-        uuid="e5dca5fc-82ae-4d1f-bc3e-c0a9988128b2",
-    )
-    print(json.dumps(response, indent=4))
-    print()
+    #  print("# Change assessment reservation")
+    #  response = api.patch_assessment_reservation(
+    #      starts_at="2022-09-08T06:00",
+    #      timezone="Europe/Berlin",
+    #      uuid="e5dca5fc-82ae-4d1f-bc3e-c0a9988128b2",
+    #  )
+    #  print(json.dumps(response, indent=4))
+    #  print()
 
     #  print("# Assessments")
     #  ability_screen_id = 4190
     #  print(json.dumps(api.get_assessments(ability_screen_id), indent=4))
+    #  print()
+
+    #  print("# Assessment by ID")
+    #  assessment_id = "113586"
+    #  print(json.dumps(api.get_assessment(assessment_id), indent=4))
     #  print()
 
     #  print("# Assessment redirect")
