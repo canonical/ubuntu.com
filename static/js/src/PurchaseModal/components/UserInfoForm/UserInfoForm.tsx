@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
-import { Field, Form, FormikHelpers, useFormikContext } from "formik";
+import { Field, useFormikContext } from "formik";
 import {
   Row,
   Col,
@@ -9,13 +8,8 @@ import {
   ActionButton,
   RadioInput,
 } from "@canonical/react-components";
-import { FormValues, getLabel } from "advantage/subscribe/react/utils/utils";
-import {
-  caProvinces,
-  countries,
-  USStates,
-  vatCountries,
-} from "advantage/countries-and-states";
+import { FormValues } from "advantage/subscribe/react/utils/utils";
+import { countries } from "advantage/countries-and-states";
 import { getErrorMessage } from "advantage/error-handler";
 import FormRow from "../FormRow";
 import { CardElement } from "@stripe/react-stripe-js";
@@ -38,6 +32,7 @@ const UserInfoForm = ({ setCardValid }: Props) => {
     values,
     submitForm,
     isValid,
+    isSubmitting,
   } = useFormikContext<FormValues>();
 
   const [isEditing, setIsEditing] = useState(!values.city);
@@ -51,6 +46,12 @@ const UserInfoForm = ({ setCardValid }: Props) => {
       setIsEditing(true);
     }
   };
+
+  useEffect(() => {
+    if (!isSubmitting && isValid) {
+      setIsEditing(false);
+    }
+  }, [isSubmitting]);
 
   const validateRequired = (value: string) => {
     let errorMessage;
@@ -253,7 +254,7 @@ const UserInfoForm = ({ setCardValid }: Props) => {
     <Row>
       {isEditing ? editMode : displayMode}
       <div className="u-align--right">
-        <ActionButton onClick={toggleEditing}>
+        <ActionButton onClick={toggleEditing} loading={isSubmitting}>
           {isEditing ? "Save" : "Edit"}
         </ActionButton>
       </div>

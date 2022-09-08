@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
-import { Field, Form, useFormikContext } from "formik";
-import {
-  Row,
-  Col,
-  Select,
-  Input,
-  ActionButton,
-  Link,
-  Button,
-} from "@canonical/react-components";
-import { FormValues, getLabel } from "advantage/subscribe/react/utils/utils";
-import {
-  caProvinces,
-  countries,
-  USStates,
-  vatCountries,
-} from "advantage/countries-and-states";
+import React from "react";
+import { Field, useFormikContext } from "formik";
+import { Row, Col, Input, Button } from "@canonical/react-components";
+import { FormValues } from "advantage/subscribe/react/utils/utils";
 
 const SignIn = () => {
-  const {
-    errors,
-    touched,
-    values,
-    setFieldValue,
-  } = useFormikContext<FormValues>();
+  const { errors, touched } = useFormikContext<FormValues>();
 
   const validateEmail = (value: string) => {
     let errorMessage;
@@ -36,18 +16,6 @@ const SignIn = () => {
     }
     return errorMessage;
   };
-
-  useEffect(() => {
-    if (!vatCountries.includes(values.country ?? "")) {
-      setFieldValue("VATNumber", "");
-    }
-    if (values.country !== "US") {
-      setFieldValue("usState", "");
-    }
-    if (values.country !== "CA") {
-      setFieldValue("caProvince", "");
-    }
-  }, [values.country]);
 
   return (
     <Row>

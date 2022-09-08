@@ -1,18 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Row, Col, Button } from "@canonical/react-components";
+import { Row, Col } from "@canonical/react-components";
 import useStripeCustomerInfo from "../../../hooks/useStripeCustomerInfo";
-import { DefaultPaymentMethod } from "PurchaseModal/utils/utils";
 
 export const cardImageMap = {
   visa: "https://assets.ubuntu.com/v1/2060e728-VBM_COF.png",
   mastercard: "https://assets.ubuntu.com/v1/f42c6739-mc_symbol.svg",
   amex: "https://assets.ubuntu.com/v1/5f4f3f7b-Amex_logo_color.svg",
   discover: "https://assets.ubuntu.com/v1/f5e8abde-discover_logo.jpg",
-};
-
-type Props = {
-  defaultPaymentMethod: DefaultPaymentMethod;
 };
 
 function PaymentMethodSummary() {

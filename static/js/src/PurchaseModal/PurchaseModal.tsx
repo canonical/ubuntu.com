@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./hooks/useStripeCustomerInfo";
 import registerPaymentMethod from "./hooks/registerPaymentMethod";
-import { Formik, FormikHelpers, useFormikContext } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import { UseMutationResult, useQueryClient } from "react-query";
 import { getErrorMessage } from "../advantage/error-handler";
 import usePurchase from "advantage/subscribe/react/hooks/usePurchase";
@@ -15,7 +15,6 @@ import {
   marketplaceDisplayName,
 } from "./utils/utils";
 
-import { BuyButtonProps } from "./utils/utils";
 import { Col, List, Notification, Row } from "@canonical/react-components";
 import Taxes from "./components/Taxes";
 import SignIn from "./components/SignIn";

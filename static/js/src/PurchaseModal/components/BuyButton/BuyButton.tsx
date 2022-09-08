@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
 import useFreeTrial from "advantage/subscribe/react/hooks/useFreeTrial";
@@ -46,7 +46,7 @@ const BuyButton = ({
     data: pendingPurchase,
     setPendingPurchaseID,
     error: purchaseError,
-  } = usePendingPurchase(); //the same everywhere
+  } = usePendingPurchase();
 
   const GAFriendlyProduct = {
     id: product?.id,
@@ -56,7 +56,6 @@ const BuyButton = ({
   };
 
   const handleOnPurchaseBegin = () => {
-    // if marketplace is ua then do this
     // empty the product selector state persisted in the local storage
     // after the user chooses to make a purchase
     // to prevent page refreshes from causing accidental double purchasing

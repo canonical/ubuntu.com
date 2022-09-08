@@ -96,16 +96,6 @@ export { getUserInfoFromVariables, getInitialFormValues };
 export const getIsFreeTrialEnabled = () =>
   process.env.NODE_ENV === "development";
 
-export type BuyButtonProps = {
-  areTermsChecked: boolean;
-  isUsingFreeTrial: boolean;
-  isMarketingOptInChecked: boolean;
-  setTermsChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsMarketingOptInChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-};
-
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
 
 export const marketplaceDisplayName = {

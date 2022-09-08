@@ -1,16 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Field, Form, useFormikContext } from "formik";
-import {
-  Row,
-  Col,
-  Select,
-  Input,
-  ActionButton,
-  Link,
-  Button,
-  CheckboxInput,
-} from "@canonical/react-components";
-import { FormValues, getLabel } from "advantage/subscribe/react/utils/utils";
+import React from "react";
+import { Field } from "formik";
+import { Row, Col, CheckboxInput } from "@canonical/react-components";
 
 type Props = {
   termsLabel: React.ReactNode;
