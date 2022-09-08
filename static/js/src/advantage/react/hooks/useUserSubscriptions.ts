@@ -77,10 +77,10 @@ export const selectBlenderSubscriptions = (subscriptions: UserSubscription[]) =>
 export const selectAutoRenewableSubscriptionsByMarketplace = (
   targetMarketplace: UserSubscription["marketplace"]
 ) => (subscriptions: UserSubscription[]) =>
-    subscriptions.filter(
-      ({ statuses, marketplace }) =>
-        statuses.should_present_auto_renewal && marketplace === targetMarketplace
-    );
+  subscriptions.filter(
+    ({ statuses, marketplace }) =>
+      statuses.should_present_auto_renewal && marketplace === targetMarketplace
+  );
 
 /**
  * Find the subscriptions with for period.
@@ -88,7 +88,7 @@ export const selectAutoRenewableSubscriptionsByMarketplace = (
 export const selectSubscriptionsForPeriod = (
   period: UserSubscriptionPeriod
 ) => (subscriptions: UserSubscription[]) =>
-    subscriptions.filter((subscription) => subscription.period === period);
+  subscriptions.filter((subscription) => subscription.period === period);
 
 export const useUserSubscriptions = <D = UserSubscription[]>(
   options?: UseQueryOptions<UserSubscription[], unknown, D, "userSubscriptions">
