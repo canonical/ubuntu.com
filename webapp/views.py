@@ -677,7 +677,7 @@ class BlogRedirects(BlogView):
         slug = quote(slug, safe="/:?&")
         context = self.blog_views.get_article(slug)
 
-        if not context["article"]:
+        if "article" not in context:
             return flask.abort(404)
 
         # Redirect canonical annoucements
