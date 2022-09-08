@@ -80,7 +80,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         if (
           subscription?.current_number_of_machines &&
           (subscription?.current_number_of_machines ?? 0) <
-          (subscription?.number_of_machines ?? 0)
+            (subscription?.number_of_machines ?? 0)
         ) {
           setNotification({
             severity: "caution",
@@ -147,7 +147,8 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                       )}
                     </>
                   ) : null}
-                  {subscription.type == "monthly" || subscription.type == "yearly" ? (
+                  {subscription.type == "monthly" ||
+                  subscription.type == "yearly" ? (
                     <>
                       {subscription.statuses.is_renewed ? (
                         <button className="p-chip--positive">
@@ -155,7 +156,9 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                         </button>
                       ) : (
                         <button className="p-chip--caution">
-                          <span className="p-chip__value">Auto-renewal off</span>
+                          <span className="p-chip__value">
+                            Auto-renewal off
+                          </span>
                         </button>
                       )}
                     </>
