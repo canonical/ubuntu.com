@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
-import usePurchase from "advantage/subscribe/react/hooks/usePurchase";
 import useFreeTrial from "advantage/subscribe/react/hooks/useFreeTrial";
 import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { getSessionData } from "utils/getSessionData";
@@ -17,7 +16,7 @@ type Props = {
   userInfo: any;
   quantity: number;
   product: any;
-  mutation?: UseMutationResult<any, unknown, void, unknown>;
+  purchaseMutation: UseMutationResult<any, unknown, void, unknown>;
 };
 
 const BuyButton = ({
@@ -25,11 +24,14 @@ const BuyButton = ({
   userInfo,
   quantity,
   product,
-  mutation,
+  purchaseMutation,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { values, setFieldValue } = useFormikContext<FormValues>();
+
+  const isButtonDisabled =
+    !values.captchaValue || !values.TermsAndConditions || isLoading;
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -37,8 +39,6 @@ const BuyButton = ({
     utm_source: getSessionData("utm_source"),
     utm_medium: getSessionData("utm_medium"),
   };
-
-  const purchaseMutation = mutation || usePurchase({ quantity, product });
 
   const freeTrialMutation = useFreeTrial(); //ignore for now
 
@@ -226,7 +226,7 @@ const BuyButton = ({
       appearance="positive"
       aria-label="Buy"
       style={{ textAlign: "center" }}
-      disabled={!values.TermsAndConditions || isLoading}
+      disabled={isButtonDisabled}
       onClick={onPayClick}
       loading={isLoading}
     >

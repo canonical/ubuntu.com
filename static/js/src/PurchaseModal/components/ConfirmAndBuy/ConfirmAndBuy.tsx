@@ -14,9 +14,10 @@ import { FormValues, getLabel } from "advantage/subscribe/react/utils/utils";
 
 type Props = {
   termsLabel: React.ReactNode;
+  marketingLabel: React.ReactNode;
 };
 
-const ConfirmAndBuy = ({ termsLabel }: Props) => {
+const ConfirmAndBuy = ({ termsLabel, marketingLabel }: Props) => {
   return (
     <Row>
       <Col size={12}>
@@ -31,7 +32,7 @@ const ConfirmAndBuy = ({ termsLabel }: Props) => {
         <Field
           as={CheckboxInput}
           name="MarketingOptIn"
-          label="I agree to receive information about Canonical's products and services."
+          label={marketingLabel}
           defaultChecked={false}
         />
       </Col>

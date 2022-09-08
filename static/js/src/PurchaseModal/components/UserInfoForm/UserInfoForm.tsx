@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Field, Form, useFormikContext } from "formik";
+import { Field, Form, FormikHelpers, useFormikContext } from "formik";
 import {
   Row,
   Col,
@@ -36,15 +36,20 @@ const UserInfoForm = ({ setCardValid }: Props) => {
     errors,
     touched,
     values,
-    setFieldValue,
+    submitForm,
+    isValid,
   } = useFormikContext<FormValues>();
 
-  const [isEditing, setIsEditing] = useState(!values.country);
+  const [isEditing, setIsEditing] = useState(!values.city);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
 
   const toggleEditing = () => {
-    setIsEditing(!isEditing);
+    if (isEditing) {
+      submitForm();
+    } else {
+      setIsEditing(true);
+    }
   };
 
   const validateRequired = (value: string) => {

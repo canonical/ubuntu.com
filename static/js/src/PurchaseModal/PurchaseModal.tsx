@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./hooks/useStripeCustomerInfo";
 import registerPaymentMethod from "./hooks/registerPaymentMethod";
 import { Formik, FormikHelpers, useFormikContext } from "formik";
-import { useQueryClient } from "react-query";
+import { UseMutationResult, useQueryClient } from "react-query";
 import { getErrorMessage } from "../advantage/error-handler";
+import usePurchase from "advantage/subscribe/react/hooks/usePurchase";
 import { checkoutEvent } from "../advantage/ecom-events";
 import {
   getUserInfoFromVariables,
   getInitialFormValues,
   FormValues,
   marketplace,
+  marketplaceDisplayName,
 } from "./utils/utils";
 
 import { BuyButtonProps } from "./utils/utils";
-import { Col, List, Row } from "@canonical/react-components";
+import { Col, List, Notification, Row } from "@canonical/react-components";
 import Taxes from "./components/Taxes";
 import SignIn from "./components/SignIn";
 import UserInfoForm from "./components/UserInfoForm";
@@ -33,6 +35,7 @@ type Props = {
   Summary: React.ComponentType;
   modalTitle?: string;
   isFreeTrialApplicable?: boolean;
+  mutation: UseMutationResult<any, unknown, void, unknown>;
   marketplace: marketplace;
 };
 
@@ -45,22 +48,23 @@ const PurchaseModal = ({
   quantity,
   closeModal,
   Summary,
-  modalTitle,
   isFreeTrialApplicable,
+  mutation,
   marketplace,
 }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
 
-  const setErrorWithSideEffect = (error: React.ReactNode) => {
-    setFieldValue("TermsAndConditions", false);
-    setFieldValue("MarketingOptIn", false);
-    setError(error);
-  };
+  const sanitisedQuantity = quantity ?? 1;
+
+  const purchaseMutation =
+    mutation || usePurchase({ quantity: sanitisedQuantity, product });
 
   const [isCardValid, setCardValid] = useState(false);
 
   window.accountId = accountId ?? window.accountId;
+
+  const titleRef = useRef<null | HTMLDivElement>(null);
 
   const queryClient = useQueryClient();
 
@@ -74,7 +78,10 @@ const PurchaseModal = ({
     id: product?.id,
     name: product?.name,
     price: product?.price?.value / 100,
-    quantity: quantity ?? 1,
+    quantity: sanitisedQuantity,
+  };
+  const scrollToTop = () => {
+    titleRef?.current?.scrollIntoView();
   };
 
   const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
@@ -96,6 +103,7 @@ const PurchaseModal = ({
         onError: (error) => {
           if (error instanceof Error)
             if (error.message === "email_already_exists") {
+              scrollToTop();
               setError(
                 <>
                   An Ubuntu One account with this email address exists. Please{" "}
@@ -115,9 +123,11 @@ const PurchaseModal = ({
 
               // Tries to match the error with a known error code and defaults to a generic error if it fails
               if (knownErrorMessage) {
+                scrollToTop();
                 setError(knownErrorMessage);
               } else {
                 Sentry.captureException(error);
+                scrollToTop();
                 setError(
                   <>
                     Sorry, there was an unknown error with your credit card.
@@ -138,7 +148,14 @@ const PurchaseModal = ({
   return (
     <div className="checkout-container">
       <Row>
-        <h1>Your {marketplace} purchase</h1>
+        <h1 ref={titleRef}>
+          Your {marketplaceDisplayName[marketplace]} purchase
+        </h1>
+        {error ? (
+          <Notification severity="negative" title="error">
+            {error}
+          </Notification>
+        ) : null}
         <Formik
           onSubmit={onSubmit}
           initialValues={initialValues}
@@ -171,40 +188,25 @@ const PurchaseModal = ({
                 },
                 {
                   title: "Confirm and buy",
-                  content: <ConfirmAndBuy termsLabel={termsLabel} />,
+                  content: (
+                    <ConfirmAndBuy
+                      termsLabel={termsLabel}
+                      marketingLabel={marketingLabel}
+                    />
+                  ),
                 },
               ]}
             />
+            <ModalFooter closeModal={closeModal}>
+              <BuyButton
+                setError={setError}
+                userInfo={userInfo}
+                product={product}
+                quantity={sanitisedQuantity}
+                purchaseMutation={purchaseMutation}
+              ></BuyButton>
+            </ModalFooter>
           </>
-          {/* <>
-          {step === 1 ? (
-            <StepOne error={error} closeModal={closeModal} />
-          ) : (
-            <StepTwo
-              termsLabel={termsLabel}
-              marketingLabel={marketingLabel}
-              setStep={setStep}
-              error={error}
-              setError={setError}
-              Summary={Summary}
-              closeModal={closeModal}
-              product={product}
-              preview={preview}
-              BuyButton={BuyButton}
-              modalTitle={modalTitle}
-              isFreeTrialApplicable={isFreeTrialApplicable}
-            />
-          )}
-        </> */}
-
-          <ModalFooter closeModal={closeModal}>
-            <BuyButton
-              setError={setError}
-              userInfo={userInfo}
-              product={product}
-              quantity={quantity ?? 0}
-            ></BuyButton>
-          </ModalFooter>
         </Formik>
       </Row>
     </div>

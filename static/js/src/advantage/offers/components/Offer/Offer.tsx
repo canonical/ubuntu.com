@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  ActionButton,
-  Card,
-  Row,
-  Col,
-  Modal,
-} from "@canonical/react-components";
+import { ActionButton, Card, Row, Col } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import PurchaseModal from "../../../../PurchaseModal";
-import { BuyButtonProps } from "../../../subscribe/react/utils/utils";
 import { Offer as OfferType, Item } from "../../types";
-import BuyButton from "../BuyButton";
 import Summary from "../Summary";
+import usePurchaseOffer from "advantage/offers/hooks/usePurchaseOffer";
+import usePortal from "react-useportal";
 
 type Props = {
   offer: OfferType;
@@ -37,40 +31,17 @@ const marketingLabel =
 
 const Offer = ({ offer }: Props) => {
   const { items, marketplace, total, account_id } = offer;
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { openPortal, closePortal, isOpen, Portal } = usePortal();
+
+  const purchaseMutation = usePurchaseOffer({
+    offerId: offer.id,
+    marketplace: offer.marketplace,
+    accountId: offer.account_id,
+  });
 
   const OfferSummary = () => {
     return <Summary offer={offer} />;
-  };
-
-  const BuyOfferButton = ({
-    areTermsChecked,
-    isMarketingOptInChecked,
-    setTermsChecked,
-    setIsMarketingOptInChecked,
-    setError,
-    setStep,
-    isUsingFreeTrial,
-  }: BuyButtonProps) => {
-    return (
-      <BuyButton
-        offer={offer}
-        areTermsChecked={areTermsChecked}
-        isMarketingOptInChecked={isMarketingOptInChecked}
-        setTermsChecked={setTermsChecked}
-        setIsMarketingOptInChecked={setIsMarketingOptInChecked}
-        setError={setError}
-        setStep={setStep}
-        isUsingFreeTrial={isUsingFreeTrial}
-      />
-    );
   };
 
   return (
@@ -126,24 +97,24 @@ const Offer = ({ offer }: Props) => {
           <ActionButton
             appearance="positive"
             className="u-no-margin--bottom"
-            onClick={openModal}
+            onClick={openPortal}
           >
             Purchase
           </ActionButton>
         </Col>
       </Row>
-      {isModalOpen ? (
-        <Modal>
+      {isOpen ? (
+        <Portal>
           <PurchaseModal
             accountId={account_id}
             termsLabel={termsLabel}
             marketingLabel={marketingLabel}
             Summary={OfferSummary}
-            closeModal={closeModal}
-            BuyButton={BuyOfferButton}
+            closeModal={closePortal}
+            mutation={purchaseMutation}
             marketplace={marketplace}
           />
-        </Modal>
+        </Portal>
       ) : null}
     </Card>
   );

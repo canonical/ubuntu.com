@@ -18,7 +18,7 @@ type Props = {
 function PaymentMethodSummary() {
   const { data: userInfo } = useStripeCustomerInfo();
 
-  const defaultPaymentMethod = userInfo.customerInfo.defaultPaymentMethod;
+  const defaultPaymentMethod = userInfo?.customerInfo?.defaultPaymentMethod;
 
   return (
     <>

@@ -107,3 +107,9 @@ export type BuyButtonProps = {
 };
 
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
+
+export const marketplaceDisplayName = {
+  "canonical-ua": "Ubuntu Advantage",
+  "canonical-cube": "CUE",
+  blender: "Blender",
+};
