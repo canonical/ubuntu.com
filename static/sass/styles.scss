@@ -13,6 +13,9 @@
 // import cookie policy
 @import "@canonical/cookie-policy/build/css/cookie-policy";
 
+// import dial-code dropdown
+@import "intl-tel-input/build/css/intlTelInput";
+
 // import vanilla-framework
 @import "vanilla-framework";
 @include vanilla;
@@ -145,6 +148,21 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "layout-whitepapers";
 
 @include layout-whitepapers;
+
+// Overide the path to flags for dial codes
+.iti__flag {
+  background-image: url("#{$assets-path}21572c97-flags.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("#{$assets-path}d6f84371-flags%402x.png");
+  }
+}
+
+.iti {
+  width: 100%;
+}
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream

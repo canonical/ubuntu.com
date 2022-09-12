@@ -1,3 +1,5 @@
+import intlTelInput from "intl-tel-input";
+
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
@@ -185,6 +187,7 @@
       var submitButton = contactModal.querySelector(".mktoButton");
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
+      var phoneInput = document.querySelector("#phone");
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -504,6 +507,24 @@
       }
 
       setCheckboxLimit();
+
+      // Setup dial code dropdown options (intlTelInput)
+      function setupIntlTelInput() {
+        const utilsScript =
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.js";
+
+        // remove name from original input so only the hidden input is submitted
+        const inputName = phoneInput.name;
+        phoneInput.removeAttribute("name");
+
+        intlTelInput(phoneInput, {
+          utilsScript,
+          separateDialCode: true,
+          hiddenInput: inputName,
+        });
+      }
+
+      setupIntlTelInput();
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
