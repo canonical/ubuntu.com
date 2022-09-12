@@ -43,6 +43,8 @@ linked below for specific usage and configuration.
 
 [keepalived](https://charmhub.io/keepalived)
 
+[kube-ovn](https://charmhub.io/kube-ovn)
+
 [kubeapi-load-balancer](https://charmhub.io/kubeapi-load-balancer)
 
 [kubernetes-control-plane](https://charmhub.io/kubernetes-control-plane)

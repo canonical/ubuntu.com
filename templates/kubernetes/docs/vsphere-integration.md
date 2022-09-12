@@ -194,7 +194,7 @@ please see the [vSphere integrator charm page][vsphere-integrator].
 [asset-vsphere-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/vsphere-overlay.yaml
 
 [storage]: /kubernetes/docs/storage
-[vsphere-integrator]: /kubernetes/docs/charm-vsphere-integrator
+[vsphere-integrator]: https://charmhub.io/vsphere-integrator/docs
 [vsphere-juju]: https://juju.is/docs/olm/vmware-vsphere
 [install]: /kubernetes/docs/install-manual
 [vmware documentation]: https://vmware.github.io/vsphere-storage-for-kubernetes/documentation/existing.html

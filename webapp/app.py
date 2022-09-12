@@ -527,7 +527,7 @@ app.add_url_rule(
 # blog section
 
 blog_views = BlogViews(
-    api=BlogAPI(session=session),
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
     excluded_tags=[3184, 3265, 3408, 3960],
     per_page=11,
     blog_title="Ubuntu blog",

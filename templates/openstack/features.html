@@ -1,8 +1,8 @@
 {% extends "openstack/_base_openstack.html" %}
 
-{% block title %}Enterprise private cloud - Canonical's Charmed OpenStack{% endblock %}
+{% block title %}Enterprise private cloud - Ubuntu{% endblock %}
 
-{% block meta_description %}Canonical's Charmed OpenStack is an enterprise private cloud that provides total automation, architectural freedom, enterprise dashboard and stability, and security above all.{% endblock meta_description %}
+{% block meta_description %}Build an enterprise private cloud on Ubuntu and benefit from total automation, ten years of security, enterprise support and fully-managed services.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1odFXuFtN1GjuZvgd8tW48HB4J9PjZJtP3w6wY0xlmog/edit{% endblock meta_copydoc %}
 
@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-8">
       <h1>Enterprise private cloud</h1>
-      <h2 class="p-heading--3">Total automation. Architectural freedom. <br class="u-hide--small">Enterprise dashboards. Stability and security above all.</h2>
+      <h2 class="p-heading--3">Total automation. Flexible technology choices. <br class="u-hide--small">Enterprise features. Stability and security above all.</h2>
       <p>Everything you need for your mission&ndash;critical workloads.</p>
       <p><a href="/openstack/contact-us" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Internal Link', 'eventAction' : 'Contact us for enterprise private cloud', 'eventLabel' : 'Get an enterprise private cloud - Top CTA', 'eventValue' : undefined });" class="p-button--positive js-invoke-modal">Get an enterprise private cloud</a></p>
       <p>
@@ -93,8 +93,8 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <h2>Better private cloud platform</h2>
-        <p>No two private cloud platforms are the same. Have a look at the table below to see how Canonical&rsquo;s Charmed OpenStack differs from other enterprise private cloud platforms.</p>
+      <h2>Better enterprise private cloud platform</h2>
+        <p>No two cloud platforms are the same. Have a look at the table below to see how Canonical&rsquo;s Charmed OpenStack differs from other enterprise private cloud platforms.</p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -271,8 +271,8 @@
   <div class="row u-equal-height">
     <div class="col-8">
       <div>
-        <h2>Move to OpenStack</h2>
-        <h3 class="p-heading--4">Wherever you are coming from, Canonical offers hussle&ndash;free migration to OpenStack</h3>
+        <h2>Move to Charmed OpenStack</h2>
+        <h3 class="p-heading--4">Wherever you are coming from, Canonical offers hussle&ndash;free migration</h3>
       </div>
       <p>The main driver for most OpenStack deployments is the cost benefit of using a leaner and more open IaaS. Canonical's Charmed OpenStack also offers a range of cloud services, and compatibility with hybrid cloud and multi-cloud operations tools. While legacy virtualisation continues to be important, the future is cloud APIs and container-based operations, which Charmed OpenStack delivers.</p>
       <p>Canonical provides workload analysis and migration services from VMware and other cloud types. Not every workload is best run on a cloud, but 80-90% of enterprise workloads can move to OpenStack easily, and are much more cost-efficient to run there.</p>
@@ -693,9 +693,39 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered">
+<section class="p-strip">
   <div class="u-fixed-width">
-    <h2 class="u-sv2">Logging, monitoring and alerting</h2>
+    <h2 class="u-sv2">NVIDIA vGPU technology</h2>
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <p>GPU devices serve as a foundation for modern compute-intensive workloads, including data analytics, data visualisation and high performance computing (HPC). However, dedicating the entire device to a single workload may lead to sub-optimal resource consumption.</p>
+      <p>NVIDIA vGPU software democratises those contstraints, making highly performant GPU resources available on demand for all OpenStack users.</p>
+      <p>What's included:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Native host and guest drivers for NVIDIA vGPU Software</li>
+        <li class="p-list__item is-ticked">Automated deployment and operations of Charmed OpenStack with NVIDIA vGPU technology</li>
+        <li class="p-list__item is-ticked">Joint commercial support by Canonical and NVIDIA</li>
+      </ul>
+      <a href="/engage/nvidia-vgpu">Build open infrastructure for data science&nbsp;&rsaquo;</a>
+    </div>
+    <div class="col-6 u-align-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5422668b-vgpu-aem-web-vgpu-ecosystem-diagram-r8_407X315-2.png",
+        alt="NVidia vGPU diagram",
+        width="640",
+        height="495",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="u-sv2">Observability stack</h2>
   </div>
   <div class="row u-vertically-center">
     <div class="col-6">

@@ -79,7 +79,7 @@ juju config containerd
 
 ### Setting a config option
 
-To set an option, simply run the config command with and additional `<key>=<value>` argument. For example, to explicitly turn off the nvidia driver:
+To set an option, simply run the config command with an additional `<key>=<value>` argument. For example, to explicitly turn off the nvidia driver:
 
 ```bash
 juju config containerd gpu_driver=none

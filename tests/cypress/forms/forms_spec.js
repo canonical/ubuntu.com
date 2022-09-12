@@ -199,6 +199,7 @@ context("Interactive marketo forms", () => {
       cy.visit("/download/iot/intel-iotg");
       cy.acceptCookiePolicy();
       cy.findByTestId("interactive-form-link").click();
+      cy.findByLabelText(/Tell us more about your project/).type("Test");
       cy.findByRole("link", { name: /Next/ }).click();
       cy.findByLabelText(/First name/).type("Test");
       cy.findByLabelText(/Last name:/).type("Test");

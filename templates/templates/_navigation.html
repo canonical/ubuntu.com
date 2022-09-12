@@ -59,7 +59,7 @@
       <div class="p-navigation__search u-show--small u-hide" style="z-index: 39;">
         <form action="/search" class="p-search-box" id="ubuntu-global-search-form">
           <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
-          <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
+          <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
           <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
         </form>
       </div>
@@ -75,7 +75,7 @@
   <div class="u-hide" id="download-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
-{% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
+{% if breadcrumbs and breadcrumbs.children %}
 <nav class="p-navigation--secondary">
   <div class="row">
     <div class="col-12 u-equal-height">
@@ -87,33 +87,24 @@
       {% if breadcrumbs.children %}
       <ul class="breadcrumbs--secondary">
         {% for child in breadcrumbs.children %}
-          {% if child.path == '/blog/topics' %}
-          <li class="breadcrumbs__item p-contextual-menu u-hide--small">
-            <a aria-controls="#topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+          {% if child.title != "Overview" %}
+            {% if child.path == '/blog/topics' %}
+            <li class="breadcrumbs__item p-contextual-menu u-hide--small">
+              <a aria-controls="#topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
 
-            <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
-              <span class="p-contextual-menu__group">
-                {% for item in child.children %}
-                <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
-                {% endfor %}
+              <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
+                <span class="p-contextual-menu__group">
+                  {% for item in child.children %}
+                  <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
+                  {% endfor %}
+                </span>
               </span>
-            </span>
-          </li>
-          {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
-          <li class="breadcrumbs__item">
-            <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
-          </li>
-          {% endif %}
-
-          {% if breadcrumbs.grandchildren %}
-          <li class="breadcrumbs__item"><span class="breadcrumbs__chevron u-hide--small">&rsaquo;</span><span class="u-show--small">&nbsp;</span></li>
-            {% for grandchild in breadcrumbs.grandchildren %}
-            <li class="breadcrumbs__item">
-              <a class="breadcrumbs__link {% if grandchild.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ grandchild.path }}">
-                {{ grandchild.title }}
-              </a>
             </li>
-            {% endfor %}
+            {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link {% if child.active %}p-link--active{% else %}p-link--soft{% endif %}" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
+            </li>
+            {% endif %}
           {% endif %}
         {% endfor %}
 

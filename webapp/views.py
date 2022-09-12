@@ -486,7 +486,12 @@ def engage_thank_you(engage_pages):
             flask.abort(404)
 
         # Stop potential spamming of /engage/<engage-page>/thank-you
-        if "resource_url" not in metadata or metadata["resource_url"] == "":
+        if (
+            "resource_url" not in metadata or metadata["resource_url"] == ""
+        ) and (
+            "contact_form_only" not in metadata
+            or metadata["contact_form_only"] == "true"
+        ):
             return flask.abort(404)
 
         language = metadata["language"]
@@ -518,6 +523,7 @@ def engage_thank_you(engage_pages):
         return flask.render_template(
             template_language,
             request_url=flask.request.referrer,
+            metadata=metadata,
             resource_name=metadata["type"],
             resource_url=metadata["resource_url"],
             related=related,
@@ -669,19 +675,17 @@ class BlogRedirects(BlogView):
     def dispatch_request(self, slug):
 
         slug = quote(slug, safe="/:?&")
-        article = self.blog_views.api.get_article(
-            slug, self.blog_views.tag_ids, self.blog_views.excluded_tags
-        )
+        context = self.blog_views.get_article(slug)
+
+        if "article" not in context:
+            return flask.abort(404)
 
         # Redirect canonical annoucements
-        group = article.get("group")
+        group = context["article"].get("group")
         if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
 
-        if not article:
-            return flask.abort(404)
-
-        return flask.render_template("blog/article.html", article=article)
+        return flask.render_template("blog/article.html", **context)
 
 
 class BlogCustomTopic(BlogView):
