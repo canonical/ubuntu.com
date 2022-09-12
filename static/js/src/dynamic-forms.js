@@ -1,8 +1,11 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
-    var triggeringHash = "#get-in-touch";
-    var formContainer = document.getElementById("contact-form-container");
-    var contactButtons = document.querySelectorAll(".js-invoke-modal");
+    const triggeringHash = "#get-in-touch";
+    const triggeringClassNameBtn = "js-invoke-modal";
+    const formContainer = document.getElementById("contact-form-container");
+    const contactButtons = document.querySelectorAll(
+      `.${triggeringClassNameBtn}`
+    );
     const contactForm = document.getElementById("contact-form-container");
     const returnData = window.location.pathname + "#success";
 
@@ -335,6 +338,14 @@
       // Close the modal and set the index back to the first stage
       function close() {
         setState(1);
+        resetNodesFocus();
+        // restore focus the button when modal is closed
+        if (
+          lastActiveElement &&
+          lastActiveElement.classList.contains(triggeringClassNameBtn)
+        ) {
+          lastActiveElement.focus();
+        }
         formContainer.classList.add("u-hide");
         formContainer.removeChild(contactModal);
         updateHash("");
@@ -534,6 +545,110 @@
         lastNameFields.forEach((field) => {
           field.value = lastName;
         });
+      }
+
+      // accessibility
+      const cookieDialogClassName = "cookie-policy";
+      const cookieContainer = document.querySelector(
+        `.${cookieDialogClassName}`
+      );
+      const focusableNodesSelector =
+        "button, [href], input, select, textarea, [tabindex]";
+      const lastActiveElement = document.activeElement;
+
+      function setA11yCookie() {
+        // observe when cookie dialog is closed
+        const observeCookieDialog = (mutationList) => {
+          for (const mutation of mutationList) {
+            const removedNode = mutation.removedNodes[0];
+            if (
+              mutation.type === "childList" &&
+              removedNode?.classList?.contains(cookieDialogClassName)
+            ) {
+              observer.disconnect();
+              resetNodesFocus();
+              setA11yContactDialog();
+            }
+          }
+        };
+        const observer = new MutationObserver(observeCookieDialog);
+        observer.observe(document.body, { childList: true });
+
+        const focusableCookieNodes = [
+          ...cookieContainer.querySelectorAll(focusableNodesSelector),
+        ];
+        setNodesUnfocusable(focusableCookieNodes);
+      }
+
+      function setA11yContactDialog() {
+        const dialogFocusableNodes = [
+          ...formContainer.querySelectorAll(focusableNodesSelector),
+        ];
+        const firstFocusableNode = dialogFocusableNodes[0];
+        const lastFocusableNode =
+          dialogFocusableNodes[dialogFocusableNodes.length - 1];
+
+        setNodesUnfocusable(dialogFocusableNodes);
+
+        const handleKeyDown = function (e) {
+          let isTabPressed = e.key === "Tab" || e.keyCode === 9;
+
+          if (!isTabPressed) {
+            return;
+          }
+          if (e.shiftKey) {
+            // for shift + tab combination
+            if (document.activeElement === firstFocusableNode) {
+              lastFocusableNode.focus(); // add focus for the last focusable element
+              e.preventDefault();
+            }
+          } else {
+            // if tab key is pressed
+            if (document.activeElement === lastFocusableNode) {
+              // focus first focusable element when we reach the last one
+              firstFocusableNode.focus(); // add focus for the first focusable element
+              e.preventDefault();
+            }
+          }
+        };
+        document.addEventListener("keydown", handleKeyDown);
+        firstFocusableNode.focus();
+      }
+
+      function setNodesUnfocusable(excludedNodes) {
+        const nodes = [...document.querySelectorAll(focusableNodesSelector)];
+        nodes.forEach((node) => {
+          if (!excludedNodes.includes(node)) {
+            node.setAttribute(
+              "data-prev-tab-index",
+              node.getAttribute("tabindex")
+            );
+            node.setAttribute("tabindex", "-1");
+          }
+        });
+      }
+
+      function resetNodesFocus() {
+        const nodes = [...document.querySelectorAll(focusableNodesSelector)];
+        nodes.forEach((node) => {
+          if (node.hasAttribute("data-prev-tab-index")) {
+            const prevTabIndex = JSON.parse(
+              node.getAttribute("data-prev-tab-index")
+            );
+            if (prevTabIndex || prevTabIndex === -1) {
+              node.setAttribute("tabindex", prevTabIndex);
+            } else {
+              node.removeAttribute("tabindex");
+            }
+            node.removeAttribute("data-prev-tab-index");
+          }
+        });
+      }
+
+      if (cookieContainer) {
+        setA11yCookie();
+      } else {
+        setA11yContactDialog();
       }
     }
 
