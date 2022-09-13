@@ -640,6 +640,7 @@ def cred_assessments(
                 "timezone": timezone,
                 "state": r["state"],
                 "id": r["id"],
+                "uuid": r["uuid"],
             }
         )
 
