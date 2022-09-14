@@ -4,6 +4,7 @@ import { mount } from "enzyme";
 import ExpiryNotification, {
   ExpiryNotificationSize,
 } from "./ExpiryNotification";
+import { UserSubscriptionType } from "advantage/api/enum";
 import { userSubscriptionStatusesFactory } from "advantage/tests/factories/api";
 import { Notification } from "@canonical/react-components";
 
@@ -132,5 +133,115 @@ describe("ExpiryNotification", () => {
       />
     );
     expect(wrapper.find(Notification).prop("onDismiss")).toBe(onDismiss);
+  });
+
+  it("is expiring shows default message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expiring: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Monthly}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription is about to expire."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "Enable auto-renewals via the renewal settings menu to ensure service continuity."
+    );
+  });
+
+  it("is expiring shows default message for non-defined cases", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expiring: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Free}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription is about to expire."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity."
+    );
+  });
+
+  it("is expiring shows legacy message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expiring: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Legacy}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription is about to expire."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "Click on Renew subscription to to ensure service continuity."
+    );
+  });
+
+  it("is in grace period shows default message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_in_grace_period: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Legacy}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription has expired."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity."
+    );
+  });
+
+  it("is expired shows default message", () => {
+    const statuses = userSubscriptionStatusesFactory.build({
+      is_expired: true,
+    });
+    const onDismiss = jest.fn();
+    const wrapper = mount(
+      <ExpiryNotification
+        size={ExpiryNotificationSize.Large}
+        subscriptionType={UserSubscriptionType.Legacy}
+        statuses={statuses}
+        onDismiss={onDismiss}
+      />
+    );
+    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find(Notification).prop("title")).toBe(
+      "Your subscription has expired."
+    );
+    expect(wrapper.find(Notification).prop("children")).toBe(
+      "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity."
+    );
   });
 });
