@@ -4,12 +4,18 @@ import { add, format } from "date-fns";
 import usePreview from "advantage/subscribe/react/hooks/usePreview";
 import { FormContext } from "../../utils/FormContext";
 import { currencyFormatter } from "advantage/react/utils";
+import useGetTaxAmount from "PurchaseModal/hooks/useGetTaxAmount";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
   const { quantity, product } = useContext(FormContext);
   const { data: preview } = usePreview({ quantity, product });
+  const { data: taxes } = useGetTaxAmount();
+
+  const taxAmount = (preview?.taxAmount || taxes?.tax) / 100;
+  const total = (preview?.total || taxes?.total) / 100;
+
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
@@ -25,7 +31,7 @@ function Summary() {
     </Row>
   );
 
-  if (preview?.taxAmount) {
+  if (taxAmount && total) {
     totalSection = (
       <>
         {preview?.subscriptionEndOfCycle && (
@@ -35,9 +41,7 @@ function Summary() {
             </Col>
             <Col size={8}>
               <div data-testid="for-this-period">
-                {currencyFormatter.format(
-                  (preview?.total - preview?.taxAmount) / 100
-                )}
+                {currencyFormatter.format(total - taxAmount)}
               </div>
             </Col>
           </Row>
@@ -47,9 +51,7 @@ function Summary() {
             <div className="u-text-light">Tax:</div>
           </Col>
           <Col size={8}>
-            <div data-testid="tax">
-              {currencyFormatter.format(preview?.taxAmount / 100)}
-            </div>
+            <div data-testid="tax">{currencyFormatter.format(taxAmount)}</div>
           </Col>
         </Row>
         <Row className="u-no-padding u-sv1">
@@ -58,7 +60,7 @@ function Summary() {
           </Col>
           <Col size={8}>
             <div data-testid="total">
-              <b>{currencyFormatter.format(preview?.total / 100)}</b>
+              <b>{currencyFormatter.format(total)}</b>
             </div>
           </Col>
         </Row>
@@ -75,7 +77,7 @@ function Summary() {
         </Col>
         <Col size={8}>
           <div>
-            <b>{currencyFormatter.format(preview?.total / 100)}</b>
+            <b>{currencyFormatter.format(total)}</b>
           </div>
         </Col>
       </Row>

@@ -168,7 +168,12 @@ const PurchaseModal = ({
               stepped
               detailed
               items={[
-                { title: "Region and taxes", content: <Taxes /> },
+                {
+                  title: "Region and taxes",
+                  content: (
+                    <Taxes product={product} quantity={sanitisedQuantity} />
+                  ),
+                },
                 {
                   title: "Your purchase",
                   content: <Summary />,

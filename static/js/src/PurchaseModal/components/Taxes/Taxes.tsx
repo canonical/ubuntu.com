@@ -15,8 +15,14 @@ import {
   USStates,
   vatCountries,
 } from "advantage/countries-and-states";
+import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
 
-const Taxes = () => {
+type TaxesProps = {
+  product: any;
+  quantity: number;
+};
+
+const Taxes = ({ product, quantity }: TaxesProps) => {
   const {
     errors,
     touched,
@@ -26,8 +32,20 @@ const Taxes = () => {
 
   const [isEditing, setIsEditing] = useState(!values.country);
 
-  const toggleEditing = () => {
-    setIsEditing(!isEditing);
+  const taxMutation = useCalculateTaxes({
+    country: values.country,
+    productListing: product.longId,
+    quantity,
+    VATNumber: values.VATNumber,
+  });
+
+  const onSaveClick = () => {
+    setIsEditing(false);
+    taxMutation.mutate();
+  };
+
+  const onEditClick = () => {
+    setIsEditing(true);
   };
 
   const validateRequired = (value: string) => {
@@ -173,9 +191,11 @@ const Taxes = () => {
     <Row>
       {isEditing ? editMode : displayMode}
       <div className="u-align--right">
-        <ActionButton onClick={toggleEditing}>
-          {isEditing ? "Save" : "Edit"}
-        </ActionButton>
+        {isEditing ? (
+          <ActionButton onClick={onSaveClick}>Save</ActionButton>
+        ) : (
+          <ActionButton onClick={onEditClick}>Edit</ActionButton>
+        )}
       </div>
       <ReCAPTCHA
         sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
