@@ -5,6 +5,7 @@
     var contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
     const returnData = window.location.pathname + "#success";
+    const contactModalSelector = "contact-modal";
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
@@ -175,7 +176,7 @@
 
     function initialiseForm() {
       var contactIndex = 1;
-      var contactModal = document.getElementById("contact-modal");
+      const contactModal = document.getElementById(contactModalSelector);
       var closeModal = document.querySelector(".p-modal__close");
       var closeModalButton = document.querySelector(".js-close");
       var modalPaginationButtons = contactModal.querySelectorAll(
@@ -220,8 +221,12 @@
       }
 
       if (contactModal) {
-        contactModal.addEventListener("click", function (e) {
-          if (e.target.id == "contact-modal") {
+        let isClickStartedInside = false;
+        contactModal.addEventListener("mousedown", function (e) {
+          isClickStartedInside = e.target.id !== contactModalSelector;
+        });
+        contactModal.addEventListener("mouseup", function (e) {
+          if (!isClickStartedInside && e.target.id === contactModalSelector) {
             e.preventDefault();
             close();
           }
