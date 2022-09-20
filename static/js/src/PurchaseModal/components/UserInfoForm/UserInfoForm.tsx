@@ -48,7 +48,7 @@ const UserInfoForm = ({ setCardValid }: Props) => {
   };
 
   useEffect(() => {
-    if (!isSubmitting && isValid) {
+    if (!isSubmitting && isValid && !!values.city) {
       setIsEditing(false);
     }
   }, [isSubmitting]);
