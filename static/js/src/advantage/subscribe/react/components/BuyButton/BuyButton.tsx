@@ -69,11 +69,11 @@ const BuyButton = ({
 
   const handleOnAfterPurchaseSuccess = () => {
     if (window.isGuest && !window.isLoggedIn) {
-      location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+      location.href = `/pro/subscribe/thank-you?email=${encodeURIComponent(
         userInfo?.customerInfo?.email
       )}`;
     } else {
-      location.pathname = "/advantage";
+      location.pathname = "/pro";
     }
   };
 

@@ -135,8 +135,8 @@ context("Interactive marketo forms", () => {
     }
   );
 
-  it("should check interactive contact modal on /advantage", () => {
-    cy.visit("/advantage");
+  it("should check interactive contact modal on /pro", () => {
+    cy.visit("/pro");
     cy.acceptCookiePolicy();
     cy.findByRole("link", {
       name: /Join our free beta programme for Ubuntu Pro on prem/,
@@ -211,7 +211,7 @@ context("Interactive marketo forms", () => {
       cy.url().should("include", "#success");
     }
   );
-  
+
   it(
     "should check interactive contact modal on /kubernetes/managed",
     { scrollBehavior: "center" },

@@ -65,11 +65,11 @@ const BuyButton = ({
 
   const handleOnAfterPurchaseSuccess = () => {
     if (window.isGuest && !window.isLoggedIn) {
-      location.href = `/advantage/subscribe/blender/thank-you?email=${encodeURIComponent(
+      location.href = `/pro/subscribe/blender/thank-you?email=${encodeURIComponent(
         userInfo?.customerInfo?.email
       )}`;
     } else {
-      location.pathname = "/advantage";
+      location.pathname = "/pro";
     }
   };
 

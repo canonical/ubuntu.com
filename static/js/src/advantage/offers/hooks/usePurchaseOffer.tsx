@@ -11,7 +11,7 @@ const usePurchaseOffer = () => {
   const mutation = useMutation(
     async ({ marketplace, offerId, accountId }: usePurchaseOfferProps) => {
       const response = await fetch(
-        `/advantage/offer${window.location.search}`,
+        `/pro/offer${window.location.search}`,
         {
           method: "POST",
           cache: "no-store",
