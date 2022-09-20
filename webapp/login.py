@@ -14,7 +14,7 @@ from webapp.macaroons import (
 )
 
 
-CANONICAL_LOGIN_URL = "https://login.ubuntu.com"
+login_url = os.getenv("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
 
 open_id = flask_openid.OpenID(
     store_factory=lambda: None,
@@ -76,7 +76,7 @@ def login_handler():
             break
 
     return open_id.try_login(
-        CANONICAL_LOGIN_URL,
+        login_url,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
         extensions=[openid_macaroon],
@@ -103,7 +103,7 @@ def after_login(resp):
     ).decode("utf-8")
 
     if not resp.nickname:
-        return flask.redirect(CANONICAL_LOGIN_URL)
+        return flask.redirect(login_url)
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,

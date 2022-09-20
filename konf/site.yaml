@@ -152,7 +152,7 @@ production:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
-   
+
         - name: BADGR_URL
           value: https://api.eu.badgr.io
 
@@ -216,7 +216,17 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
+    - paths:
+        [
+          /server/docs,
+          /ceph/docs,
+          /core/docs,
+          /openstack/docs,
+          /engage,
+          /takeovers\.json,
+          /security/livepatch/docs,
+          /security/certifications/docs,
+        ]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -241,7 +251,16 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
+    - paths:
+        [
+          /security/cves\.json,
+          /security/cves/.*\.json,
+          /security/notices\.json,
+          /security/notices/.*\.json,
+          /security/releases\.json,
+          /security/releases/.*\.json,
+          /security/api/.*,
+        ]
       service_name: ubuntu-com-security-api
 
     - paths: [/security]
@@ -468,6 +487,9 @@ staging:
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
+    - name: CANONICAL_LOGIN_URL
+      value: https://login.staging.ubuntu.com/
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -515,7 +537,7 @@ staging:
         - name: CUBE_EDX_URL
           value: https://qa.cube.ubuntu.com
 
-        - name: 
+        - name:
           secretKeyRef:
             key: qa-client-secret
             name: cube-edx
@@ -567,7 +589,17 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
+    - paths:
+        [
+          /server/docs,
+          /ceph/docs,
+          /core/docs,
+          /openstack/docs,
+          /engage,
+          /takeovers\.json,
+          /security/livepatch/docs,
+          /security/certifications/docs,
+        ]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -592,7 +624,16 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json, /security/api/.*]
+    - paths:
+        [
+          /security/cves\.json,
+          /security/cves/.*\.json,
+          /security/notices\.json,
+          /security/notices/.*\.json,
+          /security/releases\.json,
+          /security/releases/.*\.json,
+          /security/api/.*,
+        ]
       service_name: ubuntu-com-security-api
 
     - paths: [/security]
