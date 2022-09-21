@@ -1,4 +1,3 @@
-import intlTelInput from "intl-tel-input";
 import setupIntlTelInput from "./intlTelInput.js";
 
 (function () {
