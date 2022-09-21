@@ -140,47 +140,47 @@
       <div class="col-6 u-vertically-center">
         <div class="p-logo-section">
           <div class="p-logo-section__items">
-            <div class="p-logo-section__item u-align--center">
+            <div class="p-logo-section__item u-align--center" style="padding:25px">
               {{ image (
                 url="https://assets.ubuntu.com/v1/1d1d6362-AI_sml.svg",
                 alt="",
-                width="68",
-                height="64",
+                width="288",
+                height="288",
+                hi_def=True,
+                loading="lazy",
+                ) | safe
+              }}
+            </div>
+            <div class="p-logo-section__item ">
+              {{ image (
+                url="https://assets.ubuntu.com/v1/1bc694f0-nvidia-cuda-logo.png",
+                alt="",
+                width="288",
+                height="288",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-logo-section__logo"}
                 ) | safe
               }}
             </div>
-            <div class="p-logo-section__item u-align--center">
+            <div class="p-logo-section__item "> 
               {{ image (
-                url="https://assets.ubuntu.com/v1/4d44805a-Nvidia_CUDA_Logo.jpg",
+                url="https://assets.ubuntu.com/v1/eea32cc5-jupyter-logo.png",
                 alt="",
-                width="100",
-                height="61",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item u-align--center"> 
-              {{ image (
-                url="https://assets.ubuntu.com/v1/8ee86883-jupyter-logo.png",
-                alt="",
-                width="75",
-                height="75",
+                width="288",
+                height="288",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-logo-section__logo"}
                 ) | safe
               }}
             </div>
-            <div class="p-logo-section__item u-align--center">
+            <div class="p-logo-section__item ">
               {{ image (
-                url="https://assets.ubuntu.com/v1/d6a20f43-keras.png",
+                url="https://assets.ubuntu.com/v1/462ef9f5-keras-logo.png",
                 alt="",
-                width="600",
-                height="174",
+                width="288",
+                height="288",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-logo-section__logo"}
@@ -189,10 +189,10 @@
             </div>
             <div class="p-logo-section__item">   
               {{ image (
-                url="https://assets.ubuntu.com/v1/0428a1ce-scikit-learn_logo.svg",
+                url="https://assets.ubuntu.com/v1/c1fd7abe-scikit-learn-logo.png",
                 alt="",
-                width="145",
-                height="145",
+                width="288",
+                height="288",
                 hi_def=True,
                 loading="lazy",
                 attrs={"class": "p-logo-section__logo"}
@@ -242,7 +242,7 @@
       <hr class="p-separator" />
     </div>
     <div class="row">
-      <div class="col-6">
+      <div class="col-8">
         <h3>A rich ecosystem</h3>
         <ul class="p-list">
           <li class="p-list__item is-ticked">With a <a href="https://snapcraft.io/store">Snap Store</a> of over 7,000 applications in addition to the Ubuntu archive, it's easy to tailor Ubuntu desktop to your needs.</li>
@@ -254,132 +254,132 @@
          <a href="https://snapcraft.io">Learn more about Snapcraft&nbsp;&rsaquo;</a>
        </p>
       </div>
-      <div class="col-6">
-        <div class="p-logo-section">
-      <div class="p-logo-section__items">
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5672e723-Slack_Mark.svg",
-            alt="",
-            width="100",
-            height="100",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center"> 
-          {{ image (
-            url="https://assets.ubuntu.com/v1/6e5fe7ef-logo-dropbox.svg",
-            alt="",
-            width="50",
-            height="48",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/be731535-Logo-libreoffice.svg",
-            alt="",
-            width="32",
-            height="40",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ceca3817-zoom-app.svg",
-            alt="",
-            width="50",
-            height="50",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div> 
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/35761fb9-Google_Chrome-Logo.wine.svg",
-            alt="",
-            width="100",
-            height="70",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/aadb53b3-unity-seeklogo.com.svg",
-            alt="",
-            width="50",
-            height="50",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/83ee03ee-intellij-idea.svg",
-            alt="",
-            width="70",
-            height="70",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/822c49e2-Visual+Studio+Code+logo.svg",
-            alt="",
-            width="50",
-            height="50",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/92843d88-blender.svg",
-            alt="",
-            width="55",
-            height="48",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/aaf8c8fe-microsoft-teams.svg",
-            alt="",
-            width="65",
-            height="65",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-      </div>
     </div>
-      </div>
+    <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/a8d0ab5b-slack-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item "> 
+            {{ image (
+              url="https://assets.ubuntu.com/v1/e850e108-dropbox-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/df56b8a5-libreoffice-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/c7dae67a-zoom-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div> 
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/2abedabb-google-chrome-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/60c97798-unity-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/b8c1f574-intellij-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/3294f6e8-vs-code-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/982a200a-blender-notext-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/aa55fac4-microsoft-teams-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+     </div>
     </div>
     <div class="u-fixed-width">
       <hr class="p-separator" />
