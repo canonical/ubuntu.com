@@ -14,11 +14,45 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+
+## 1.25+ck1 Bugfix release 
+
+#### September 19, 2022 - `charmed-kubernetes --channel 1.25/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
+
+### Fixes
+
+Notable fixes in this release include:
+
+- Metallb-Operators [LP#1988410](https://bugs.launchpad.net/bugs/1988410)
+
+    With the [removal of PodSecurityPolicy](https://kubernetes.io/docs/concepts/security/pod-security-policy/)
+    in Kubernetes 1.25, the metallb operators (speaker and controller) no longer include PSP-related podspec
+    rules if the API endpoint does not support PSP. Existing PSP rules from deployments < 1.25 will be removed
+    upon upgrade to 1.25+.
+
+- Kubernetes-Control-Plane / Vault relation [LP#1988448](https://bugs.launchpad.net/bugs/1988448)
+
+    Fixes a race condition which can occur when a Vault unit loses connectivity with a related database.
+    Vault will now retry the connection until the database becomes available again.
+
+- Kubernetes-Control-Plane / Google Cloud Platform [LP#1988867](https://bugs.launchpad.net/bugs/1988867)
+
+    Fixes a race condition which can occur when applying configuration changes in Google Cloud Platform
+    deployments when the `NetworkUnavailable` index cannot be found in a node's status conditions.
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.25+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.25+ck1).
+
+
+## 1.25
+
 #### September 1, 2022 - `charmed-kubernetes --channel 1.25/stable` 
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
 
-## What's new
+### What's new
 
 - Telco-ready CNI
 
@@ -49,9 +83,9 @@ This provides a range of benefits, from individual build processes to versioning
 
 All the components of Charmed Kubernetes can now run on the newest Ubuntu release for the very latest kernel features and security enhancements.
 
-## Component Versions
+### Component Versions
 
-### Charm/Addons pinned versions
+#### Charm/Addons pinned versions
 - kube-ovn 1.10.4
 - calico 3.21.4
 - cephcsi 3.5.1
@@ -63,14 +97,14 @@ All the components of Charmed Kubernetes can now run on the newest Ubuntu releas
 - kubernetes-dashboard 2.5.1
 - openstack-cloud-controller-manager 1.23.0
 
-### Charm default versions
+#### Charm default versions
 - cloud-provider-vsphere 1.24
 - vsphere-csi-driver v2.6.0
 - cloud-provider-azure v1.24.0
 - azuredisk-csi-driver v1.21.0
 
 
-## Fixes
+### Fixes
 
 Notable fixes in this release include:
 
@@ -88,7 +122,7 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
 - [1.25 milestone](https://launchpad.net/charmed-kubernetes/+milestone/1.25)
 
 
-## Notes and Known Issues
+### Notes and Known Issues
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
@@ -108,7 +142,7 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
   PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster. 
   Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
 
-## Deprecations and API changes
+### Deprecations and API changes
 
 - CSIMigration
 The CSIMigration feature is generally available, and its feature flag was locked to enable.

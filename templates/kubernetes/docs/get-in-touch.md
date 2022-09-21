@@ -17,13 +17,9 @@ The team behind the **Charmed Kubernetes** are
 keen to help and listen to your feedback. There are a variety of ways to get
 in touch with suggestions, problems or just to get involved.
 
-## IRC
-
-Join us on freenode.net in **#cdk8s**.
-
 ## Slack
 
-Find us in **#cdk** on the [Kubernetes slack][slack].
+Find us in **#canonical-kubernetes** on [Kubernetes Slack][slack].
 
 ## Bugs
 
@@ -38,7 +34,6 @@ Visit the [documentation repository][docs] for issues or comments about this doc
 The source for the bundles and all the core charms for Charmed Kubernetes is
 [available on GitHub][source].
 
-
 ## Professional support
 
 If you are looking for additional support, find out about [Ubuntu Advantage][support].
@@ -51,7 +46,7 @@ Canonical can also provide [managed solutions][managed] for Kubernetes.
 [lp]: https://bugs.launchpad.net/charmed-kubernetes
 [support]: /support
 [managed]: /kubernetes/managed
-[slack]: http://slack.kubernetes.io/
+[slack]: https://communityinviter.com/apps/kubernetes/community
 [source]: https://github.com/charmed-kubernetes
 
 <!-- FEEDBACK -->
