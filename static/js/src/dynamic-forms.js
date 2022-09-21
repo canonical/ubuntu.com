@@ -1,4 +1,5 @@
 import intlTelInput from "intl-tel-input";
+import setupIntlTelInput from "./intlTelInput.js";
 
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
@@ -508,22 +509,8 @@ import intlTelInput from "intl-tel-input";
 
       setCheckboxLimit();
 
-      // Setup dial code dropdown options (intlTelInput)
-      function setupIntlTelInput() {
-        const utilsScript = "./static/js/dist/utils.js";
-        
-        // remove name from original input so only the hidden input is submitted
-        const inputName = phoneInput.name;
-        phoneInput.removeAttribute("name");
-
-        intlTelInput(phoneInput, {
-          utilsScript,
-          separateDialCode: true,
-          hiddenInput: inputName,
-        });
-      }
-
-      setupIntlTelInput();
+      // Setup dial code dropdown options (intlTelInput.js)
+      setupIntlTelInput(phoneInput);
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
