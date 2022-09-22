@@ -49,7 +49,7 @@ anti-affinity to prevent Kubernetes pods from stacking on a single node.
 
 The best way to deploy MetalLB in layer 2 mode on Charmed Kubernetes is with
 the Kubernetes operator charms for both the
-controller and speaker components.  See notes concerning [RBAC](#note-using-rbac)
+controller and speaker components.  See notes concerning [RBAC](#rbac-note)
 
 To deploy the operators, you will first need a Kubernetes model in Juju.
 Add your Kubernetes as a cloud to your Juju controller:
@@ -85,6 +85,7 @@ juju config metallb-controller iprange="192.168.1.240/28, 10.0.0.0/28"
 ```
 
 ### Note: Using RBAC
+<a name="rbac-note"> </a>
 
 If RBAC is enabled in the Kubernetes cluster, an extra deployment step is
 required: before deploying MetalLB, you must apply the [RBAC permissions
