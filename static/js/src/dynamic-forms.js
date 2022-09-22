@@ -1,3 +1,5 @@
+import setupIntlTelInput from "./intlTelInput.js";
+
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
@@ -186,6 +188,7 @@
       var submitButton = contactModal.querySelector(".mktoButton");
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
+      var phoneInput = document.querySelector("#phone");
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -509,6 +512,9 @@
       }
 
       setCheckboxLimit();
+
+      // Setup dial code dropdown options (intlTelInput.js)
+      setupIntlTelInput(phoneInput);
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
