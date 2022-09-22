@@ -8,8 +8,3 @@
 %}
   {% include "templates/docs/shared/_docs.html" %}
 {% endwith %}
-
-{% block outer_content %}
-  <script src="{{ versioned_static('js/dist/side-navigation.js') }}" defer></script>
-  {% block content %}{% endblock %}
-{% endblock %}
