@@ -5,6 +5,19 @@
   {% block meta_copydoc %}https://docs.google.com/document/d/1VJ3xT2ViC-CvL0UmsAUzpYFmvpuqUP4AbpnlPm8tqOA{% endblock meta_copydoc %}
 
   {% block content %}
+  <style>          
+    .axis {
+      font-size: 13px;
+    }
+    .axis path,
+    .axis line {
+      fill: none;
+      display: none;
+    }
+    .label {
+      font-size: 13px;
+    }
+  </style>
   <section class="u-image-position p-strip--suru-topped is-bordered">
     <div class="row u-vertically-center">
       <div class="col-6">
@@ -538,31 +551,15 @@
         <h3 class="u-sv2 p-heading--4">Operating systems developers prefer</h3>
         <p>Multiple choice poll<p>
         <p>Source: <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020 HackerEarth Developer Survey</a></p>
-        <div class="u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/94ffcc09-Image+Pasted+at+2022-4-21+14-18.png",
-            alt="",
-            width="1297",
-            height="660",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+        <div>
+          <figure id="hackerearth-chart" class="hackerearth-chart"></figure>
         </div>
       </div>
       <div class="col-6">
         <h3 class="p-heading--4">Which of these open source technologies does your organisation use today to support your software infrastructure?</h3>
         <p>Source: <a href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The 2022 State of Open Source Report &ndash; OpenLogic</a></p>
-        <div class="u-align--center">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/00bd15f1-opensourcereport.png",
-            alt="",
-            width="855",
-            height="616",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
+        <div>
+          <figure id="opensource-chart" class="opensource-chart"></figure>
         </div>
       </div>
     </div>
@@ -654,5 +651,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
   <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+  <script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
+  <script src="{{ versioned_static('js/dist/developer-chart.js')}}"></script>
   
   {% endblock content %}
