@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1QG0zxy9u_oGhXJUBsm3mNQy0l5dLwWOlDrheB_-BPH8/edit{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip p-engage-banner--k8s">
+<section class="p-strip p-engage-banner--dark">
   <div class="u-fixed-width navigation-logo-engage">
     <a href="/">
       {{
@@ -40,215 +40,164 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-7">
-      <h2 class="p-heading--3">Why Ubuntu Pro?</h2>
-      <p>This private offer allows AT&T's Azure and AWS subscription owners to receive security updates, security certifications, and support Ubuntu with custom pricing and SLAed support from Canonical.</p>
-      <p>Ubuntu Pro for Azure is a premium image designed by Canonical for AT&T that provides additional coverage for AT&T production workloads running in Azure. Ubuntu Pro includes security and compliance services, enabled to you by default and suitable for linux enterprise operations, with metered, pay-as-you-go billing on your existing Azure invoice.</p>
-      <p>Ubuntu Pro is a production-focused custom image which includes a 10 year commitment from Canonical to provide the broadest security coverage in the industry plus certified components for compliance and hardening, and Kernel Livepatch.</p>
+      <h2>Have specific project requirements?</h2>
+      <p>To speak about a specific project requirement, or have any questions, please contact us:</p>
+      <ul>
+        <li><strong>Rick Hawk</strong> (AT&T Account Director) &ndash; <a href="">rick.hawk@canonical.com</a></li>
+        <li><strong>Canonical Support</strong> &ndash; <a href="">support@canonical.com</a></li>
+        <li><strong>Canonical's Customer Success Team</strong> &ndash; <a href="">customersuccess@canonical.com</a></li>
+      </ul>
+    </div>
+    <div class="col-5 u-hide--medium u-hide--small u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{
+      image(
+      url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+      alt="",
+      height="171",
+      width="240",
+      hi_def=True,
+      loading="lazy",
+      ) | safe
+      }}
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Why an Ubuntu Pro Private Offer for Azure?</h2>
+  </div>
+  <div class="row" style="padding-top: 60px; padding-bottom: 60px;">
+    <div class="col-3">
+      <h3>Security and  SLA Support</h3>
+    </div>
+    <div class="col-9">
+      <p class="p-heading--5">Imagine a world where each of your Ubuntu workloads in the public cloud is secure and supported. AT&T's Private Offer for Ubuntu Pro on Azure includes security updates and compliance services for your development and production workloads.  AT&T's Private Offer Ubuntu Pro is enabled by default with  24x7 live Canonical Support aligned with AT&T SLAs.</p>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-7">
-      <h2 class="p-heading--3">AT&T Pricing</h2>
-      <p>The Ubuntu Pro private offer includes custom pricing. AT&T can add Ubuntu Pro using the custom SKU in Azure for only $0.004 (less than half a penny) per core per hour.</p>
+    <div class="col-3 col-medium-3">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header is-stacked">
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/a0f23d1b-Savings.svg" alt="">
+          <h4 class="p-heading-icon__title p-heading--5">AT&T Special Pricing</h4>
+        </div>
+        <p>AT&T can add Ubuntu Pro using the custom SKU in Azure. The AT&T price for Ubuntu Pro is $0.004 per core per hour.</p>
+      </div>
+    </div>
+    <div class="col-3 col-medium-3">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header is-stacked">
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg" alt="">
+          <h4 class="p-heading-icon__title p-heading--5">24/7 SLAed Support</h4>
+        </div>
+        <p>Enterprise-grade support is included with AT&T's Private Offer for Ubuntu Pro instances on Azure.</p>
+      </div>
+    </div>
+    <div class="col-3 col-medium-3">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header is-stacked">
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/d3aa493c-Build-your-first-snap.svg" alt="">
+          <h4 class="p-heading-icon__title p-heading--5">Launched through existing Azure account</h4>
+        </div>
+        <p>The Ubuntu Pro Private Offer can be accessed through the Azure portal when selecting your desired image.</p>
+      </div>
+    </div>
+    <div class="col-3 col-medium-3">
+      <div class="p-heading-icon">
+        <div class="p-heading-icon__header is-stacked">
+          <img class="p-heading-icon__img" src="https://assets.ubuntu.com/v1/7953a068-security-1.svg" alt="">
+          <h4 class="p-heading-icon__title p-heading--5">Broadest open source security coverage</h4>
+        </div>
+        <p>Premium custom image that includes a 10 year support commitment from Canonical plus certified components for extended security, compliance, hardening, and Live Kernel patching.</p>
+        <p><a href="/certified">Read more&nbsp;&rsaquo;</a></p>
+      </div>
     </div>
   </div>
 </section>
 
-
-<section class="p-strip is-shalow">
-  <div class="row">
-    <div class="col-7  u-sv4">
-      <h3>Key Features</h3>
-      <p>Live kernel patching, which provides instant security and longer uptimes, broad security patching of major open source workloads for production use, and certified components for FedRAMP, HIPAA, PCI and ISO use cases. Ubuntu Pro is backed by a 10-year maintenance commitment by Canonical.</p>
-      <p>Like Ubuntu LTS, it features an optimised Azure kernel, with improved boot speed, outstanding runtime performance and advanced device support to match features present in every Azure VM instance type. Canonical publishes images on a daily basis, ensuring security is built-in from the moment an instance launches, and provides content mirrors in every region to avoid the need to go across regions or out to the Internet for updates.</p>
-    </div>
-  </div>
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
-    <h3 class="u-sv3">Feature Matrix</h3>
-    <table class="p-table">
+    <h2>AT&T's Advanced 24/7 SLAed Support</h2>
+    <p>The table below shows the methods for reporting cases, the level of response from Canonical to the case report and the effort period that will be used to resolve the case.</p>
+    <table aria-label="AT&T's advanced 24/7 SLAed support table">
       <thead>
         <tr>
-          <th>Support Feature</th>
-          <th class="u-align--center">AT&T Private Offer Ubuntu Pro w/ Advanced Support</th>
-          <th class="u-align--center">AT&T Private Offer Ubuntu Advantage w/ Advanced Support</th>
+          <th>Severity Level</th>
+          <th>Effort Period</th>
+          <th>Response Method</th>
+          <th>Initial Response Time</th>
+          <th>Subsequent Response Time</th>        
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Phone and ticket support availability</td>
-          <td class="u-align--center">24/7</td>
-          <td class="u-align--center">24/7</td>
+          <th>Level 1</th>
+          <td>365 days, 24 x 7</td>
+          <td>Online Ticketing and Phone Support</td>
+          <td>45 minutes</td>
+          <td>2 hours</td>           
         </tr>
         <tr>
-          <td>Response time AT&T SLA - Sev 1</td>
-          <td class="u-align--center">45 minutes</td>
-          <td class="u-align--center">30 minutes</td>
+          <th>Level 2</th>
+          <td>9am-7pm US Central Time Excluding weekends and US Federal Holidays</td>
+          <td>Online Ticketing and Phone Support</td>
+          <td>2 hours</td>
+          <td>6 hours</td>        
         </tr>
         <tr>
-          <td>Response time AT&T SLA - Sev 2</td>
-          <td class="u-align--center">2 hours</td>
-          <td class="u-align--center">1 hour</td>
+          <th>Level 3</th>
+          <td>9am-7pm US Central Time Excluding weekends and US Federal Holidays</td>
+          <td>Online Ticketing and Phone Support</td>
+          <td>6 hours</td>
+          <td>18 hours</td>        
         </tr>
         <tr>
-          <td>Response time AT&T SLA - Sev 3</td>
-          <td class="u-align--center">6 hours</td>
-          <td class="u-align--center">2 hours</td>
-        </tr>
-        <tr>
-          <td>Response time AT&T SLA - Sev 4</td>
-          <td class="u-align--center">9 hours</td>
-          <td class="u-align--center">4 business days</td>
-        </tr>
-        <tr>
-          <td><a href="/esm">Extended Security Maintenance</a> (ESM)</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td><a href="/livepatch">Kernel live patch</a> service to avoid reboots</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td><a href="/landscape">Landscape</a> on prem</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--error"></i></td>
-        </tr>
-        <tr>
-          <td>Hosted Landscape</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td>Knowledge base access</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td>Certified Windows drivers for KVM guests</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td><a href="/security/certifications#fips">FIPS 140-2 Level 1</a> certified crypto modules</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--error"></i></td>
-        </tr>
-        <tr>
-          <td><a href="/security/certifications#common-criteria">Common Criteria EAL2</a></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td>OpenStack</td>
-          <td class="u-align--center">Updates + support</td>
-          <td class="u-align--center"><i class="p-icon--error"></i></td>
-        </tr>
-        <tr>
-          <td>Kubernetes</td>
-          <td class="u-align--center">Updates + support</td>
-          <td class="u-align--center"><i class="p-icon--error"></i></td>
-        </tr>
-        <tr>
-          <td>KVM/LXD</td>
-          <td class="u-align--center">Updates + support</td>
-          <td class="u-align--center"><i class="p-icon--error"></i></td>
-        </tr>
-        <tr>
-          <td>Legal assurance program</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
+          <th>Level 4</th>
+          <td>9am-7pm US Central Time Excluding weekends and US Federal Holidays</td>
+          <td>Online Ticketing and Phone Support</td>
+          <td>9 hours</td>
+          <td>When progress has been made</td>        
+        </tr>      
       </tbody>
-     </table>
+    </table>
+    <p>Upon receipt of a case report, a Canonical support engineer will commence efforts to verify the case and confirm the severity level (initially set by AT&T). Canonical will work with AT&T to assess the urgency of a case and to confirm the appropriate severity level. Canonical support engineers will respond within the response time for the applicable severity level listed above . Canonical's support engineers will work on diagnosing and resolving the case during the effort period for the applicable severity level. Please refer to the table above for more information on Support Severity Levels and response definitions.</p>
+  </div>    
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>All-inclusive Security Patching</h2>
+    <p>Over 30,000 supported packages are available in Ubuntu - including thousands of open-source applications - and securely patched with Ubuntu Pro.  Some of these key open-source apps that receive security patches include Apache, Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js.</p>
+  </div>
+
+  {% include "shared/_security-patching-logo-cloud.html" %}
+
+  <div class="u-fixed-width">
+    {{ image (
+      url="https://assets.ubuntu.com/v1/e184ca69-AT%26TUbuntuProOnboardingEngage.png",
+      alt="",
+      width="1542",
+      height="560",
+      hi_def=True,
+      loading="lazy"
+      ) | safe
+    }}
   </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="row">
-    <div class="col-7 u-sv4">
-      <h3>Key Benefits</h3>
-      <h4>Advanced (24x7) Support with SLAs</h4>
-      <p>Upon receipt of a case report, a Canonical support engineer will commence efforts to verify the case and confirm the severity level (initially set by AT&T). Canonical will work with AT&T to assess the urgency of a case and to confirm the appropriate severity level. Canonical support engineers will respond within the response time for the applicable severity level listed below. Canonical's support engineer will work on diagnosing and resolving the case during the effort period for the applicable severity level. Please refer to the table above for more information on Support Severity Levels and response definitions.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-sv4">
-    <hr>
-  </div>
-
-  <div class="row">
-    <div class="col-7 u-sv4">
-      <h4>All-inclusive Security Patching</h4>
-      <p>Over 30,000 supported packages are available in Ubuntu - including thousands of open-source applications &ndash; and securely patched with Ubuntu Pro.  Some of these key open-source apps that receive security patches include Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js.</p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-sv4">
-    <hr>
-  </div>
-
-  <div class="row">
-    <div class="col-5 u-sv3">
-      <h4>Security & Compliance Focus</h4>
-    </div>
-  </div>
-  <div class="row u-sv4">
-    <div class="col-6">
-      <p>Critical patches delivered automatically for up to 10 years. Key security updates, including Kernel Livepatch, seamlessly applied to increase uptime and avoid the need for unscheduled reboots. FIPS 140-2 and CC-EAL certifications and systems management at scale to ensure continued security and compliance.</p>
-    </div>
-    <div class="col-6 u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/e184ca69-AT%26TUbuntuProOnboardingEngage.png",
-        alt="",
-        width="494",
-        height="179",
-        hi_def=True,
-        loading="lazy",
-        ) | safe
-      }}
-    </div>
-  </div>
-  
-  <div class="u-fixed-width u-sv4">
-    <hr>
-  </div>
-
-  <div class="row">
-    <div class="col-7">
-      <h4>Flexibility & upstream access</h4>
-      <p>Up-to-date access to open source with the flexibility to fit your infrastructure, with consumption-based managed service options.</p>     
-    </div>
+  <div class="u-fixed-width">
+    <h2>Security & compliance focus</h2>
+    <p>Critical patches delivered automatically for up to 10 years. Key security updates, including Kernel Livepatch, seamlessly applied to increase uptime and avoid the need for unscheduled reboots. FIPS 140-2 and CC-EAL certifications and systems management at scale to ensure continued security and compliance.</p>
   </div>
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-7">
-      <h2 class="p-headinng--3">Have specific project requirements?</h2>
-      <p>If you would like to speak about a specific project requirement, or have any questions, please contact us:</p>
-      <ul>
-        <li><strong>Rick Hawk</strong> (AT&T Account Manager) &ndash; rick.hawk@canonical.com</li>
-        <li><strong>Canonical Support</strong> &ndash; support@canonical.com</li>
-        <li><strong>Canonical's Customer Success Team</strong> &ndash; customersuccess@canonical.com</li>
-      </ul>
-    </div>
-    <div class="col-5 u-align--center u-vertically-center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-        alt="",
-        width="211",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
+  <div class="u-fixed-width">
+    <h2>Flexibility & upstream access</h2>
+    <p>Up-to-date access to open source with the flexibility to fit your infrastructure, with consumption-based managed service options.</p>
   </div>
 </section>
-
 
 {% endblock content %}
