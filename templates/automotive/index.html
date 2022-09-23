@@ -5,44 +5,66 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1PVliB92h4ZqexaZV9F5MIcX7aRG6yBAGH1hG7x8UZTw/edit{% endblock meta_copydoc %}
 
 {% block content %}
-
-<style>
-  .p-logo-header {
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 2.4rem;
-    padding-right: 2rem;
-    padding-top: 3rem;
-  }
-</style>
-
 <section class="p-strip--suru-bottomed">
-  <div class="row u-equal-height">
-    <div class="col-4">
-      <h1>The future is <br />beyond electric. <br />It's electrifying.</h1>
-      <p>Smarter autopilots, infotainment, factories and business models.</p>
+  <div class="row">
+    <div class="col-7">
+      <h1>Powering the future of automotive with open source</h1>
+      <p class="p-heading--4">Build smarter vehicles, factories and business models.</p>
+      <p>Trusted by major automotive companies, Canonical delivers a full suite of open-source solutions and services that help you deliver security, safety and innovation for digital transformation in automotive.</p>
       <p><a class="js-invoke-modal p-button--positive" href="/internet-of-things/contact-us?product=automotive" data-testid="interactive-form-link">Contact Canonical</a></p>
     </div>
-    <div class="col-8 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/86148922-Automotive-in-car-cockpit-cropped.svg",
+  </div>
+</section>
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--5">Build in-vehicle solutions</h2>
+    <p>Ideal for software-defined vehicles</p>
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h3 class="p-heading--2">The best operating system for all your needs</h3>
+      <p>Remove complexity and improve compatibility with a secure OS that speeds up deployment and management.
+      </p>
+      <p><a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ce518a18-CoF-2022_solid+O.svg",
         alt="",
-        width="605",
-        height="380",
+        width="208",
+        height="200",
         hi_def=True,
-        loading="auto",
+        loading="lazy"
         ) | safe
       }}
     </div>
   </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row u-vertically-center u-sv3">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/2bd31151-Automotive-in-car-cockpit-sized.svg",
+        alt="",
+        height="250",
+        width="429",
+        hi_def=True,
+        loading=lazy,
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--2">Next level experience</h3>
+      <p>Consumer expectations are relentless. Give them an ever-fresh experience with built-in security and reliability.</p>
+      <p><a href="/engage/software-defined-vehicles-whitepaper">Download our white paper&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
 </section>
-
-<section class="p-strip">
+<section class="p-strip--light">
   <div class="u-fixed-width">
     <div class="p-logo-section">
-      <h2 class="p-logo-section__title u-align--center">Accelerating on Ubuntu</h2>
       <div class="p-logo-section__items u-no-margin--bottom">
         <div class="p-logo-section__item">
           {{ image (
@@ -82,8 +104,104 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
+            url="https://assets.ubuntu.com/v1/aff445c4-daimler-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4c44ed82-skoda-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
             url="https://assets.ubuntu.com/v1/3263fb35-ford-logo.png",
-            alt="Ford",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7ad0aaca-general-motors-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/ff1a0c71-audi-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/c934c5ab-jaguar-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/48a12f22-land-rover-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/0a06b7dc-nio-logo.png",
+            alt="",
             width="288",
             height="288",
             hi_def=True,
@@ -104,10 +222,10 @@
             ) | safe
           }}
         </div>
-        <div class="p-logo-section__item">
+        <div class="p-logo-section__item u-align--center">
           {{ image (
-            url="https://assets.ubuntu.com/v1/466c2690-bosch-logo.png",
-            alt="Bosch",
+            url="https://assets.ubuntu.com/v1/e24027db-volvo-logo.png",
+            alt="",
             width="288",
             height="288",
             hi_def=True,
@@ -118,32 +236,8 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/7e3ec23a-continetal-logo.png",
-            alt="Continental",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/6889bfcb-uber-logo.png",
-            alt="Uber",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/dea8779e-eurotech-group-logo.png",
-            alt="Eurotech",
+            url="https://assets.ubuntu.com/v1/0334b4ed-man-logo.png",
+            alt="",
             width="288",
             height="288",
             hi_def=True,
@@ -156,160 +250,147 @@
     </div>
   </div>
 </section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2 class="p-heading--5">Software-defined industry</h2>
-      <p class="p-heading--2">Not just the car. The whole business of automotive.</p>
-      <p>Software shapes success in automotive today.</p>
-      <p>It's how you sim and virtually test.</p>
-      <p>It's how you automate factories.</p>
-      <p>It's how you operate online services.</p>
-      <p>It's how you turn metal into experience.</p>
-      <p><a class="js-invoke-modal" href="/internet-of-things/contact-us?product=automotive">Let's talk open source&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/cef9fb09-automotive-business-software.svg",
-        alt="",
-        height="320",
-        width="420",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
 <section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h3 class="p-heading--2">Support for autonomous cars</h3>
+      <p>Every leading team in the self-driving race runs <a href="/blog/taking-ubuntu-for-a-spin-literally-autonomous-vehicles">Ubuntu</a>.
+        Give your developers a fast track to prototype, test and deliver the software for autonomous cars.</p>
+      <p>Crunch data. Develop algorithms. In-car, on-premises and on-cloud.</p>
+      <p>Run AI/ML computations for digital twin simulations with Ubuntu on your HPC cluster.</p>
+      <p>Deploy clusters for rapid digital design, validation, crash testing, and aerodynamics.</p>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
         url="https://assets.ubuntu.com/v1/af98e3d6-automotive_car-network.svg",
         alt="",
         height="210",
         width="360",
         hi_def=True,
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h2 class="p-heading--5">ADAS development</h2>
-      <p class="p-heading--2">Win the race for autonomy</p>
-      <p>Every leading team in the self-driving race runs Ubuntu.</p>
-      <p>Google. Uber. Bosch. VW. Argo.</p>
-      <p>Crunch data. Develop algorithms. In-car, on-premises and on-cloud. Ubuntu delivers the highest multi-cloud performance for AI/ML.</p>
-      <p>ROS and ISAAC security maintenance for long term operations. On NVIDIA Xavier, Drive PX2, and other silicon.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2 class="p-heading--5">Industry 4.0</h2>
-      <p class="p-heading--2">Faster factories, smarter robots</p>
-      <p>Digital transformation and continuous improvement with app-centric factory automation.</p>
-      <p>Monitor inventories. Spot defects. Manage warehouses. Optimise supply lines.</p>
-      <p>Run simulations for robot training and deploy new insights automatically in a snap. No downtime.</p>
-    </div>
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
-        alt="",
-        height="200",
-        width="350",
-        hi_def=True,
+        loading="lazy"
         ) | safe
       }}
     </div>
   </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/0631c9dc-FinancialServicesPage-GetStarted-AI_2020.svg",
-        alt="",
-        height="230",
-        width="252",
-        hi_def=True,
-        ) | safe
-      }}
-    </div>
-    <div class="col-6">
-      <h2 class="p-heading--5">Deep learning</h2>
-      <p class="p-heading--2">Accelerate data science &ndash; car, cluster and cloud</p>
-      <p>From self-driving to diagnostics and route planning, Ubuntu is at the heart of the biggest automotive analytics operations.</p>
-      <p>More frameworks, languages, libraries and solutions, from the widest range of companies and clouds.</p>
-      <p>On <a href="https://maas.io/">bare metal</a> or <a href="/cloud">public cloud</a>. From Spark and Hadoop to <a href="/kubeflow">Kubeflow</a>. Better ML. Faster results.</p>
-    </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
   </div>
-</section>
-
-<section class="p-strip--light">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2 class="p-heading--5">Scania presents</h2>
-      <p class="p-heading--2">Fast track CAD/CAM/CAE with dynamic HPC</p>
-      <p>Scania deploys agile HPC clusters for rapid digital design, validation, crash testing, and aerodynamics.</p>
-      <p>Supercomputers on-demand for CAD, CAM and CAE. Tame SLURM and get more from your cluster.</p>
-      <p><a href="https://www.brighttalk.com/webcast/6793/416900/mastering-multicloud-with-slurm-and-juju">Watch the video</a></p>
-    </div>
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      <a href="https://www.brighttalk.com/webcast/6793/416900/mastering-multicloud-with-slurm-and-juju">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/d1b5ac75-Automotive-Masters-vid-screen.png",
-          alt="",
-          height="229",
-          width="400",
-          hi_def=True,
-          ) | safe
-        }}
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/2bd31151-Automotive-in-car-cockpit-sized.svg",
+  <div class="row u-vertically-center u-sv3">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9c4d4439-Automotive-car-chassi-new.svg",
         alt="",
+        width="408",
         height="250",
-        width="429",
         hi_def=True,
+        loading="lazy"
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2 class="p-heading--5">In-cabin digital</h2>
-      <p class="p-heading--2">Next level infotainment</p>
-      <p>Consumer expectations are relentless.</p>
-      <p>New insights. New apps. New content. New experiences. Personalised. Contextual.</p>
-      <p>The ever-fresh experience needs secure, reliable, over-the-air updates and <a href="https://snapcraft.io/store">app stores</a>.</p>
-      <p>A new car feeling, every drive.</p>
+      <h3 class="p-heading--2">Safety-critical & Mixed-criticality ECUs</h3>
+      <p>Canonical is part of the SOAFEE consortium, which is at the forefront of defining the reference architecture for mixed-criticality and safety.</p>
+      <p>Vehicles need to have the fastest response time to guarantee functional safety. With Real-time Ubuntu, our Linux kernel integrates PREEMPT_RT and guarantees low-latency response time.</p>
+      <p><a href="/blog/real-time-ubuntu-released">Read more about Real-time Ubuntu&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h3 class="p-heading--2">Top rated security. Best-in-class isolation</h3>
+      <p>Secure boot, full disk encryption and signed software packages guarantee system integrity.</p>
+      <p>Ten year security maintenance for Common Vulnerabilities and Exposures (CVEs), efficient container confinement and kernel livepatch for rapid rollouts in critical situations.</p>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
+        alt="",
+        width="350",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row u-vertically-center u-sv3">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items u-no-margin--bottom">
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/711be910-arm-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/627f7bed-intel-old-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
+              alt="",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--2">Compatible with all major architectures</h3>
+      <p>We optimise Ubuntu for all major silicon architectures, so you can choose the ECU platform that fits best.</p>
+      <p>Develop on Ubuntu today and pick your platform later.</p>
     </div>
   </div>
 </section>
-
 <section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--5">Handle devices and updates remotely</h2>
+    <p>Fully over-the-air device management</p>
+  </div>
   <div class="row u-equal-height">
     <div class="col-6">
-      <h2 class="p-heading--5">Over-the-air updates</h2>
-      <p class="p-heading--2">OTA? Compressed. Transactional. Signed. Simple.</p>
+      <h3 class="p-heading--2">Compressed, transactional, signed and simple OTA</h3>
       <p>Update any system, any device, any day. Future-proof your fleet.</p>
-      <p>Full OS containerisation means transactional, atomic updates. Data snapshot backup and restore. Signed software integrity. <a href="/engage/snap-deltas">Compressed delta updates</a>.</p>
-      <p><a href="/engage/snapd-whitepaper">Complete control</a>. No delayed patches, no partial updates, no unauthorised ECU software.</p>
+      <p>Full OS containerisation means transactional, atomic updates. Data snapshot backup and restore. Signed software integrity. Compressed delta updates.</p>
+      <p>Complete control. No delayed patches, no partial updates, no unauthorised ECU software.</p>
     </div>
     <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
       {{
@@ -323,236 +404,314 @@
       }}
     </div>
   </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/0be66895-Automotive-car-sensor.svg",
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fc1abe71-Snapcraft-logo-RGB-2022.png",
         alt="",
-        height="260",
-        width="455",
+        width="407",
+        height="120",
         hi_def=True,
+        loading="lazy"
         ) | safe
       }}
     </div>
     <div class="col-6">
-      <h2 class="p-heading--5">V2X communication</h2>
-      <p class="p-heading--2">Cruise control for private cloud</p>
-      <p>Orchestrate <a href="/telco">V2X and NFV on carrier-grade</a> clouds.</p>
-      <p>Own the edge with <a href="https://maas.io">Metal as a Service</a>.</p>
-      <p>Connect and containerise with <a href="/kubernetes">Kubernetes</a> from vehicle to edge.</p>
-      <p>Crisp, economical, robust and scalable.</p>
+      <h3 class="p-heading--2">Snaps and App Store</h3>
+      <p>Snaps are app packages that are easy to install, secure, cross-platform and dependency-free. </p>
+      <p>Snaps include all required dependencies, so that your apps and processes work flawlessly on all platforms without any required modifications.</p>
+      <p>With Snapd, app maintenance is seamless and automatic.</p>
+      <p>You can build, publish, deploy and update easily on any ECU running Linux.</p>
+      <p><a href="https://snapcraft.io/snapd">Learn more about snapd&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>
-
-<section class="p-strip--square-suru u-image-position" style="overflow: visible;">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2 class="p-heading--5">Mixed-criticality ECUs</h2>
-      <p class="p-heading--2">RTOS safety, Ubuntu agility</p>
-      <p>Isolate safety-critical software, and run consumer-friendly workloads on Ubuntu.</p>
-      <p>Ubuntu delivers <a href="/engage/451-automotive" class="p-link--inverted">software-defined differentiation</a>. Run AUTOSAR Adaptive. Gather telemetry. Manage batteries. Connect customers.</p>
-      <p>Now available as <a href="https://projectacrn.github.io/latest/getting-started/rt_industry_ubuntu.html" class="p-link--inverted">open source ACRN</a>.</p>
-      <p>Crisp, economical, robust and scalable.</p>
-    </div>
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {% include "automotive/_chassis_animation.html" %}
-    </div>
-  </div>
+<div class="u-fixed-width">
+  <hr class="p-separator u-no-margin--bottom u-no-margin--top">
 </div>
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items u-no-margin--bottom">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/466c2690-bosch-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7e3ec23a-continetal-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/bfd6083f-tomtom-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/2e652eec-rhode-schwarz-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/38950ca8-cerence-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/08a30f5b-ibeo-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--5">Industry 4.0: deliver solutions beyond vehicles</h2>
+    <p>Optimise factories and dealerships in automotive with open source software</p>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h3 class="p-heading--2">Automated factories, smarter robots</h2>
+      <p>We offer a complete portfolio of enablers, so you can drive digital transformation and continuous improvement with app-centric factory automation.</p>
+      <p>Monitor inventories. Spot defects. Manage warehouses. Optimise supply lines. Anticipate downtime and improve your overall process using optimised workflows.</p>
+      <p>Thanks to MicroK8s and Kubernetes, you can benefit from the most flexible solutions throughout the value chain.</p>
+    </div>
+    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/22007291-DevOps.svg",
+        alt="",
+        height="200",
+        width="350",
+        hi_def=True,
+        loading=lazy
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+  <div class="row u-vertically-center u-sv3">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/cef9fb09-automotive-business-software.svg",
+        alt="",
+        width="420",
+        height="320",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--2">Build the dealerships of the future</h3>
+      <p>Our offering allows you to handle more data, wherever it comes from.</p>
+      <p>Whether you want your data on the cloud or locally, we guarantee safety and quality detection with <a href="/internet-of-things#beta-signup">real-time</a> edge computing when needed.</p>
+    </div>
+  </div>
+</section>
+<div class="u-fixed-width">
+  <hr class="p-separator u-no-margin--bottom u-no-margin--top">
+</div>
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <p class="p-logo-section__title u-align--center">Accelerating on Ubuntu</p>
+      <div class="p-logo-section__items u-no-margin--bottom">
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/1f9d6318-lyft-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/5eaf9fae-cruise-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e2608cee-zoox-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/eadcdf0b-outrider-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Preferred by developers</h2>
+    <p>Ubuntu is the <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">preferred OS for developers</a>, at 66% of working professionals &ndash; and growing.</p>
+    <p>Empower your team and attract the best talent.</p>
+    <p><a href="/automotive/developers">Read more about the Ubuntu developer experience&nbsp;&rsaquo;</a></p>
+  </div>
 </section>
 
 <section class="p-strip">
-  <div class="row u-sv2">
-    <div class="col-6">
-      <div class="p-logo-header u-hide--small">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/f6a59799-partner-logo-arm.svg",
-          alt="ARM",
-          height="17",
-          width="56",
-          hi_def=True,
-          ) | safe
-        }}    
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
-          alt="Nvidia",
-          height="26",
-          width="136",
-          hi_def=True,
-          ) | safe
-        }}        
-        {{ image (
-          url="https://assets.ubuntu.com/v1/ab843223-Intel.svg",
-          alt="Intel",
-          width="50",
-          height="33",
-          hi_def=True,
-          ) | safe
-        }}   
-        {{ image (
-          url="https://assets.ubuntu.com/v1/22011fee-Xilinx_logo.svg.png",
-          alt="Xilinx",
-          width="102",
-          height="21",
-          hi_def=True,
-          ) | safe
-        }}
+  <div class="u-fixed-width">
+    <h2 class="u-sv2">Learn more about Automotive@Canonical</h2>
+  </div>
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
+            alt="whitepaper",
+            width="171",
+            height="150",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Whitepaper</h4>
+        </div>
       </div>
-      <h2 class="p-heading--5">ARM and X86</h2>
-      <p class="p-heading--2">The right silicon for every subsystem</p>
-      <p>We optimise Ubuntu for major silicon architectures, so you can choose the best ECU platform anywhere.</p>
-      <p>Develop on Ubuntu today and pick your platform later.</p>
+      <p>Software-defined vehicles: what's the future?</p>
+      <p>Learn how open-source automotive options can boost the industry's shift towards SDV.</p>
+      <p><a href="/engage/software-defined-vehicles-whitepaper">Read here&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/b2b4d912-community-support-thin.svg",
-        alt="",
-        height="120",
-        width="96",
-        hi_def=True,
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Open source 2.0</h2>
-      <p class="p-heading--2">Better tools. Bigger ecosystem. Broader talent pool.</p>
-      <p>Leaders choose Ubuntu because <a href="https://medium.com/@olley_io/what-software-do-autonomous-vehicle-engineers-use-part-1-2-275631071199">autonomous vehicle engineers are more productive with it</a>. From cloud to edge.</p>
-      <p>Develop on Ubuntu today and pick your platform later.</p>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/3769b4a7-webinar-icon.svg",
+            alt="",
+            width="88",
+            height="72",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Videos</h4>
+        </div>
+      </div>
+      <p>Watch Ubuntu Masters at Scania discuss HPC clusters deployment</p>
+      <p><a href="https://www.brighttalk.com/webcast/6793/416900/mastering-multicloud-with-slurm-and-juju">Watch the video&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--small">
+        <div class="p-heading-icon__header">
+          {{ 
+            image (
+            url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
+            alt="",
+            width="32",
+            height="28",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
+            ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Blogs</h4>
+        </div>
+      </div>
+      <p>Learn more about SDV shift challenges</p>
+      <p><a href="/blog/unravelling-complexity-in-a-software-defined-vehicles-industry">Read here&nbsp;&rsaquo;</a></p>
+    </div>        
   </div>
-  <div class="row u-sv2">
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/c53664cd-Security_updates.svg",
-        alt="",
-        height="120",
-        width="201",
-        hi_def=True,
-        attrs={"class": "u-hide--small"}
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Safety first</h2>
-      <p class="p-heading--2">Top rated security. Best-in-class isolation.</p>
-      <p>We power innovation. And production.</p>
-      <p><a href="/esm">Ten year CVE security maintenance</a>, the most comprehensive <a href="/embedded"></a>container confinement and kernel livepatch</a> for rapid rollouts in critical situations.</p>
-      <p>Because safety depends on the ability to evolve, resist and respond to new threats.</p>
-    </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-        alt="",
-        height="120",
-        width="120",
-        hi_def=True,
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Long term support</h2>
-      <p class="p-heading--2">Extended security, extended opportunity</p>
-      <p>You innovate. We maintain.</p>
-      <p>Extend ECU life and lifetime value with platform upgrades for new services and solutions.</p>
-      <p>Count on Canonical security coverage. Regular updates. Automated testing. Continuous deployment. Progressive releases.</p>
-      <p>A new world of constant car improvement.</p>
-    </div>
-  </div>
-  <div class="row u-sv2">
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/1d5f293c-compliance.svg",
-        alt="",
-        height="120",
-        width="198",
-        hi_def=True,
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Open source licensing</h2>
-      <p class="p-heading--2">Straightforward compliance</p>
-      <p>Confidently integrate open source components into your proprietary solutions.</p>
-      <p>Source identification for all software components, all the time.</p>
-      <p>Simplify compliance. Streamline certification. Protect innovation.</p>
-    </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/338124d1-shields-security.svg",
-        alt="",
-        height="120",
-        width="210",
-        hi_def=True,
-        attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Connected car security</h2>
-      <p class="p-heading--2">Hardened apps. Hardened OS.</p>
-      <p>Your customers want apps. Your business needs security. Get both on Ubuntu.</p>
-      <p>Secure boot, <a href="/engage/iot-disk-encryption">full disk encryption</a> and <a href="https://snapcraft.io/docs/assertions">signed software packages</a> guarantee system integrity.</p>
-      <p><a href="https://snapcraft.io/docs/snap-confinement">Snap confinement</a> limits blast radius, keeps your apps apart, and controls access to hardware.</p>
-      <p>Curate your app store from global suppliers, with constant app security scanning and updates.</p>
-    </div>
+  <div class="u-fixed-width">
+    <p><a class="js-invoke-modal p-button--positive" href="/internet-of-things/contact-us?product=automotive">Contact Canonical</a></p>
   </div>
 </section>
 
-<section class="p-strip--light">
-  <div class="row">
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/8dd99b80-ubuntu-logo14.png",
-        alt="",
-        height="100",
-        width="223",
-        hi_def=True,
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Software strategy acceleration</h2>
-      <p class="p-heading--2">Trusted by executives. Loved by gearheads.</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">The <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">best developers choose Ubuntu</a>.</li>
-        <li class="p-list__item is-ticked">The biggest pool of talent. The broadest range of tools.  The community that counts.</li>
-        <li class="p-list__item is-ticked">One company stands behind it all &mdash; Canonical.</li>
-      </ul>
-    </div>
-    <div class="col-6">
-      {{
-        image(
-        url="https://assets.ubuntu.com/v1/7de55930-canonical-logo1.png",
-        alt="",
-        height="100",
-        width="223",
-        hi_def=True,
-        ) | safe
-      }}
-      <h2 class="p-heading--5">Domain experts</h2>
-      <p class="p-heading--2">Innovate in automotive with Canonical</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">The experts in open source operations, from cloud to desktop to device. The publishers of Ubuntu.</li>
-        <li class="p-list__item is-ticked">Get to market faster.</li>
-        <li class="p-list__item is-ticked">Drive down infra costs.</li>
-        <li class="p-list__item is-ticked">Accelerate innovation.</li>
-        <p>
-          <a class="js-invoke-modal" href="/internet-of-things/contact-us?product=automotive">
-            Get in touch&nbsp;&rsaquo;
-          </a>
-        </p>
-      </div>
-    </div>
-  </section>
 
-{% with current="automotive", strip_class="p-strip" %}
-  {% include "internet-of-things/shared/_links.html" %}
-{% endwith %}
-  
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/automotive" data-form-id="4477" data-lp-id="2551" data-return-url="https://ubuntu.com/internet-of-things/thank-you?product=automotive" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
