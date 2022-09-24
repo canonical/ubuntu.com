@@ -1,11 +1,13 @@
 import React, { useState, createContext, useEffect } from "react";
 import {
+  getProduct,
   ProductTypes,
   LTSVersions,
   Support,
   Product,
   Features,
   Periods,
+  SLA,
   isMonthlyAvailable,
   shouldShowApps,
 } from "./utils";
@@ -18,6 +20,8 @@ interface FormContext {
   feature: Features;
   setFeature: React.Dispatch<React.SetStateAction<Features>>;
   support: Support;
+  setSLA: React.Dispatch<React.SetStateAction<SLA>>;
+  sla: SLA;
   setSupport: React.Dispatch<React.SetStateAction<Support>>;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
@@ -29,11 +33,13 @@ interface FormContext {
 export const defaultValues: FormContext = {
   productType: ProductTypes.physical,
   setProductType: () => {},
-  version: LTSVersions.focal,
+  version: LTSVersions.jammy,
   setVersion: () => {},
-  feature: Features.infra,
+  feature: Features.pro,
   setFeature: () => {},
-  support: Support.unset,
+  sla: SLA.none,
+  setSLA: () => {},
+  support: Support.none,
   setSupport: () => {},
   quantity: 1,
   setQuantity: () => {},
@@ -48,6 +54,7 @@ interface FormProviderProps {
   initialType?: ProductTypes;
   initialVersion?: LTSVersions;
   initialFeature?: Features;
+  initialSLA?: SLA;
   initialSupport?: Support;
   initialQuantity?: number;
   initialPeriod?: Periods;
@@ -58,6 +65,7 @@ export const FormProvider = ({
   initialType = defaultValues.productType,
   initialVersion = defaultValues.version,
   initialFeature = defaultValues.feature,
+  initialSLA = defaultValues.sla,
   initialSupport = defaultValues.support,
   initialQuantity = defaultValues.quantity,
   initialPeriod = defaultValues.period,
@@ -66,47 +74,38 @@ export const FormProvider = ({
   const [productType, setProductType] = useState<ProductTypes>(initialType);
   const [version, setVersion] = useState<LTSVersions>(initialVersion);
   const [feature, setFeature] = useState<Features>(initialFeature);
+  const [sla, setSLA] = useState<SLA>(initialSLA);
   const [support, setSupport] = useState<Support>(initialSupport);
   const [quantity, setQuantity] = useState(initialQuantity);
   const [period, setPeriod] = useState<Periods>(initialPeriod);
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
+    if (support === Support.none) {
+      setSLA(SLA.none);
+    }
+    if (support !== Support.none && sla === SLA.none) {
+      setSLA(SLA.weekday);
+    }
+  }, [support, sla]);
+
+  useEffect(() => {
     if (version === LTSVersions.trusty || version === LTSVersions.xenial) {
-      if (support !== Support.unset) {
-        setSupport(Support.essential);
+      if (support !== Support.none) {
+        setSupport(Support.infra);
       }
     }
   }, [version, support]);
 
   useEffect(() => {
-    if (productType === ProductTypes.desktop && feature === Features.apps) {
-      setSupport(Support.essential);
-    }
-
-    if (productType === ProductTypes.desktop && feature === Features.pro) {
-      setFeature(defaultValues.feature);
-    }
-  }, [productType, feature]);
-
-  useEffect(() => {
-    if (feature === Features.apps && productType === ProductTypes.physical) {
-      // @ts-expect-error The product ID for apps products is missing the type if it's physical ¯\_(ツ)_/¯
-      setProduct(window.productList[`${feature}-${support}-${period}`] ?? null);
-    } else {
-      setProduct(
-        window.productList[`${feature}-${support}-${productType}-${period}`] ??
-          null
-      );
-    }
-  }, [feature, productType, support, period]);
+    let product = getProduct(productType, feature, support, sla, period);
+    console.log(product);
+    setProduct(window.productList[product]);
+  }, [feature, productType, sla, support, period]);
 
   useEffect(() => {
     if (!isMonthlyAvailable(product)) {
       setPeriod(Periods.yearly);
-    }
-    if (!shouldShowApps()) {
-      setFeature(Features.infra);
     }
   }, [product]);
 
@@ -119,6 +118,8 @@ export const FormProvider = ({
         setVersion,
         feature,
         setFeature,
+        sla,
+        setSLA,
         support,
         setSupport,
         quantity,

@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { Card, Col, List, Row } from "@canonical/react-components";
 import classNames from "classnames";
-import RadioCard from "../RadioCard";
 import {
   isPublicCloud,
   LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
-import OlderVersionModal from "./OlderVersionModal";
 import {
   defaultValues,
   FormContext,
@@ -26,7 +24,7 @@ const ESMEndDate = "Extended Security Maintenance (ESM) until ";
 const MicrosoftActiveDirectory =
   "Advanced Group Policy Object support for Microsoft Active Directory on Ubuntu Desktops";
 
-const versionDetails = {
+const versionDetails: { [key: LTSVersions]: Array<string> } = {
   22.04: [
     `${ESMEndDate} 2032`,
     livepatch,
@@ -80,89 +78,51 @@ const versionDetails = {
 const Version = () => {
   const { version, setVersion, productType } = useContext(FormContext);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setVersion(event.target.value as LTSVersions);
-  };
+  const versionsSegmentedControl = (
+    <div className="p-segmented-control">
+      <div
+        className="p-segmented-control__list"
+        role="tablist"
+        aria-label="LTS version options"
+      >
+        {Object.keys(versionDetails).map((key) => {
+          return (
+            <button
+              className="p-segmented-control__button"
+              role="tab"
+              aria-selected={version === key}
+              aria-controls={key}
+              id={key}
+              onClick={(e) => {
+                e.preventDefault();
+                setVersion(key as LTSVersions);
+              }}
+            >
+              {key}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 
   return (
     <div
-      className={classNames({
-        "u-disable": isPublicCloud(productType),
-      })}
+      className={classNames({ "u-disable": isPublicCloud(productType) })}
       data-testid="wrapper"
     >
-      <p>
-        <OlderVersionModal />
-      </p>
       <Row>
-        <Col size={12} className="radio-wrapper--staggering">
-          <RadioCard
-            name="version"
-            value={LTSVersions.jammy}
-            selectedValue={version}
-            handleChange={handleChange}
-            className="p-card--radio--version"
-          >
-            <h4>Ubuntu 22.04 LTS</h4>
-          </RadioCard>
-          <RadioCard
-            name="version"
-            value={LTSVersions.focal}
-            selectedValue={version}
-            handleChange={handleChange}
-            className="p-card--radio--version"
-          >
-            <h4>Ubuntu 20.04 LTS</h4>
-          </RadioCard>
-          <RadioCard
-            name="version"
-            value={LTSVersions.bionic}
-            selectedValue={version}
-            handleChange={handleChange}
-            className="p-card--radio--version"
-          >
-            <h4>Ubuntu 18.04 LTS</h4>
-          </RadioCard>
-          <RadioCard
-            name="version"
-            value={LTSVersions.xenial}
-            selectedValue={version}
-            handleChange={handleChange}
-            className="p-card--radio--version"
-          >
-            <h4>Ubuntu 16.04 LTS</h4>
-          </RadioCard>
-          <RadioCard
-            name="version"
-            value={LTSVersions.trusty}
-            selectedValue={version}
-            handleChange={handleChange}
-            className="p-card--radio--version"
-          >
-            <h4>Ubuntu 14.04 LTS</h4>
-          </RadioCard>
-        </Col>
+        <Col size={12}>{versionsSegmentedControl}</Col>
       </Row>
       <Row>
         <Col size={12}>
-          <Card
-            title={
-              <h3 className="p-heading--4 p-card__title">
-                For Ubuntu {version}, all UA plans include:
-              </h3>
-            }
-            className="version-features-section"
-          >
-            <Row>
-              <Col size={12}>
-                <List
-                  items={versionDetails[version ?? defaultValues.version]}
-                  split
-                  ticked
-                />
-              </Col>
-            </Row>
-          </Card>
+          <h4 className="p-heading--5">
+            All subscriptions for Ubuntu Pro {version} include:
+          </h4>
+          <List
+            items={versionDetails[version ?? defaultValues.version]}
+            divided
+          />
         </Col>
       </Row>
     </div>

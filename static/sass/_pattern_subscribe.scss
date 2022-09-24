@@ -1,16 +1,66 @@
 @mixin ubuntu-p-ua-subscribe {
-  .subscribe-form {
-    padding-top: 4rem;
+  .product-selector {
+    counter-reset: headings;
+  }
 
-    p {
-      max-width: unset;
+  .product-selector h3 {
+    counter-increment: headings;
+  }
+
+  .product-selector h3::before {
+    border: 1px solid;
+    border-radius: 100%;
+    content: counter(headings);
+    margin-right: 0.5rem;
+    padding: 2px 10px 2px 10px;
+  }
+
+  .product-selector .p-card--radio.is-selected {
+    border: 0.1875rem solid #2e96ff;
+  }
+
+  .product-selector .p-card--radio i {
+    margin-right: 0.7rem;
+  }
+
+  .product-selector .p-card--radio .p-radio__label {
+    font-weight: bold;
+  }
+
+  .p-table--selectable th {
+    position: relative;
+    overflow: visible;
+    text-transform: none;
+    font-size: large;
+  }
+
+  .p-table--selectable td {
+    vertical-align: middle;
+  }
+  
+  .p-table--selectable th:has(input[type="radio"]) {
+    text-align: center;
+    &.selected {
+      border-color: #757575;
+      border-style: solid;
+      border-width: 1px 1px 0px 1px;
     }
   }
 
-  .public-cloud-section {
-    background-color: #f7f7f7;
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
+  .p-table--selectable td.selected {
+    border-color: #757575;
+    border-style: solid;
+    border-width: 0px 1px 0px 1px;
+
+    &:last-child {
+      border-bottom: 1px;
+    }
+  }
+
+  .p-table--selectable tr:last-child td.selected {
+    border-bottom: 1px;
+    border-color: #757575;
+    border-style: solid;
   }
 
   .version-features-section {

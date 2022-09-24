@@ -112,6 +112,7 @@ export enum PublicClouds {
   aws = "aws",
   azure = "azure",
   gcp = "gcp",
+  oracle = "oracle",
 }
 
 export enum LTSVersions {
@@ -123,10 +124,16 @@ export enum LTSVersions {
 }
 
 export enum Support {
-  unset = "unset",
-  essential = "essential",
-  standard = "standard",
-  advanced = "advanced",
+  none = "none",
+  infra = "essential",
+  apps = "standard",
+  full = "advanced",
+}
+
+export enum SLA {
+  none = "none",
+  weekday = "weekday",
+  everyday = "everyday",
 }
 
 export enum Features {
@@ -173,10 +180,56 @@ export const isPublicCloud = (type: ProductTypes) =>
 
 export const shouldShowApps = () =>
   !!window.productList[
-    `${Features.pro}-${Support.essential}-${ProductTypes.physical}-${Periods.yearly}`
+    `${Features.pro}-${Support.infra}-${ProductTypes.physical}-${Periods.yearly}`
   ];
 
 export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+
+export const getProduct = (
+  productType: ProductTypes,
+  feature: Features,
+  support: Support,
+  sla: SLA,
+  period: Periods
+) => {
+  let productKey = `${productType}-${feature}-${support}-${sla}-${period}`;
+  switch (productKey) {
+    case `${ProductTypes.physical}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uai-essential-physical-yearly";
+    case `${ProductTypes.physical}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uai-essential-physical-monthly";
+    case `${ProductTypes.physical}-${Features.infra}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
+      return "uai-standard-physical-yearly";
+    case `${ProductTypes.physical}-${Features.infra}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
+      return "uai-advanced-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uaa-essential-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uaa-essential-monthly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
+      return "uii-standard-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
+      return "uii-advanced-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.apps}-${SLA.weekday}-${Periods.yearly}`:
+      return "uaa-standard-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.apps}-${SLA.everyday}-${Periods.yearly}`:
+      return "uaa-advanced-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.weekday}-${Periods.yearly}`:
+      return "uaia-standard-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
+      return "uaia-advanced-physical-yearly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uai-essential-desktop-yearly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uai-essential-desktop-monthly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.full}-${SLA.weekday}-${Periods.yearly}`:
+      return "uai-standard-desktop-yearly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
+      return "uai-advanced-desktop-yearly";
+    default:
+      return "no-product";
+  }
+};

@@ -1,147 +1,432 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
-import { Col, Row } from "@canonical/react-components";
-import RadioCard from "../RadioCard";
+import { Col, RadioInput } from "@canonical/react-components";
 import {
-  Features,
   isPublicCloud,
-  LTSVersions,
-  ProductIDs,
+  Features,
   ProductTypes,
+  SLA,
   Support as SupportEnum,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
-import { currencyFormatter } from "advantage/react/utils";
 
 const Support = () => {
-  const { support, setSupport, version, productType, feature } = useContext(
+  const { feature, sla, setSLA, support, setSupport, productType } = useContext(
     FormContext
   );
-
-  const isWeirdAppsID =
-    feature === Features.apps && productType === ProductTypes.physical;
-
-  const essentialID = isWeirdAppsID
-    ? `${feature}-essential-yearly`
-    : `${feature}-essential-${productType}-yearly`;
-
-  const standardID = isWeirdAppsID
-    ? `${feature}-standard-yearly`
-    : `${feature}-standard-${productType}-yearly`;
-
-  const advancedID = isWeirdAppsID
-    ? `${feature}-advanced-yearly`
-    : `${feature}-advanced-${productType}-yearly`;
-
-  const supportPrices = {
-    standard:
-      ((window.productList[standardID as ProductIDs]?.price.value ?? 0) -
-        (window.productList[essentialID as ProductIDs]?.price.value ?? 0)) /
-      100,
-    advanced:
-      ((window.productList[advancedID as ProductIDs]?.price.value ?? 0) -
-        (window.productList[essentialID as ProductIDs]?.price.value ?? 0)) /
-      100,
-  };
-
-  const onlyEssential =
-    version === LTSVersions.xenial ||
-    version === LTSVersions.trusty ||
-    (productType === ProductTypes.desktop && feature === Features.apps);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
   };
 
+  const infraOnlySupportDisabled = (ProductTypes.desktop === productType);
+  const appsOnlySupportDisabled = (ProductTypes.desktop === productType) ||(Features.infra === feature);
+  const fullSupportDisabled = (Features.infra === feature)
+
   return (
     <div
-      className={classNames({
-        "u-disable": isPublicCloud(productType),
-      })}
+      className={classNames({"row": true, "u-disable": isPublicCloud(productType)})}
       data-testid="wrapper"
     >
-      <Row>
-        <Col size={12} className="radio-wrapper--stacking">
-          <RadioCard
-            name="support"
-            value={SupportEnum.essential}
-            selectedValue={support}
-            handleChange={handleChange}
-            dataTestid="essential"
-          >
-            <div className="u-align-items--center">
-              <span>
-                <strong>No, thanks</strong>
-                <br />
-                <small className="u-text-light">
-                  Software and security updates only
-                </small>
-              </span>
-              <img src="https://assets.ubuntu.com/v1/437efe31-UA_Software-security-Updates.svg" />
-              <p id="essential-support-costs">No additional costs</p>
-            </div>
-          </RadioCard>
-          <RadioCard
-            name="support"
-            value={SupportEnum.standard}
-            selectedValue={support}
-            handleChange={handleChange}
-            disabled={onlyEssential}
-            dataTestid="standard"
-          >
-            <div className="u-align-items--center">
-              <span>
-                <strong>24 hours, 5 days a week</strong>
-                <br />
-                <small className="u-text-light">Phone and ticket support</small>
-              </span>
-              <img src="https://assets.ubuntu.com/v1/86f3a312-UA_24-5_Support.svg" />
-              {supportPrices.standard ? (
-                <p id="essential-support-costs">
-                  +{currencyFormatter.format(supportPrices.standard)} per
-                  machine per year
-                </p>
-              ) : null}
-            </div>
-          </RadioCard>
-          <RadioCard
-            name="support"
-            value={SupportEnum.advanced}
-            selectedValue={support}
-            handleChange={handleChange}
-            disabled={onlyEssential}
-            dataTestid="advanced"
-          >
-            <div className="u-align-items--center">
-              <span>
-                <strong>24 hours, 7 days a week</strong>
-                <br />
-                <small className="u-text-light">Phone and ticket support</small>
-              </span>
-              <img src="https://assets.ubuntu.com/v1/b0af9ede-UA_24-7_Support.svg" />
-              {supportPrices.advanced ? (
-                <p id="essential-support-costs">
-                  +{currencyFormatter.format(supportPrices.advanced)} per
-                  machine per year
-                </p>
-              ) : null}
-            </div>
-          </RadioCard>
+        <Col className="u-hide--small" size={12}>
+          <table className="p-table--selectable">
+            <thead>
+              <tr>
+                <th>What's included?</th>
+                <th
+                  className={classNames({
+                    selected: support === SupportEnum.none,
+                  })}
+                >
+                  <RadioInput
+                    inline
+                    label="No, thank you"
+                    value={SupportEnum.none}
+                    checked={support === SupportEnum.none}
+                    onChange={handleChange}
+                  />
+                </th>
+                <th
+                  className={classNames({
+                    selected: support === SupportEnum.infra,
+                  })}
+                >
+                  <RadioInput
+                    inline
+                    label="Infra only"
+                    value={SupportEnum.infra}
+                    checked={support === SupportEnum.infra}
+                    onChange={handleChange}
+                    disabled={infraOnlySupportDisabled}
+                  />
+                </th>
+                <th
+                  className={classNames({
+                    selected: support === SupportEnum.apps,
+                  })}
+                >
+                  <RadioInput
+                    inline
+                    label="Apps only"
+                    value={SupportEnum.apps}
+                    checked={support === SupportEnum.apps}
+                    onChange={handleChange}
+                    disabled={appsOnlySupportDisabled}
+                  />
+                </th>
+                <th
+                  className={classNames({
+                    selected: support === SupportEnum.full,
+                  })}
+                >
+                  <RadioInput
+                    inline
+                    label="Infra &amp; Apps"
+                    value={SupportEnum.full}
+                    checked={support === SupportEnum.full}
+                    onChange={handleChange}
+                    disabled={fullSupportDisabled}
+                  />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Open Source Apps</td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.none,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.infra,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.apps,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.full,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+              </tr>
+              <tr>
+                <td>Ubuntu Base OS</td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.none,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.infra,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.apps,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.full,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+              </tr>
+              <tr>
+                <td>Kubernetes, LXD, Charms</td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.none,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.infra,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.apps,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.full,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+              </tr>
+              <tr>
+                <td>OpenStack, MAAS</td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.none,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.infra,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.apps,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.full,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+              </tr>
+              <tr>
+                <td>Ceph and Swift storage</td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.none,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.infra,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.apps,
+                  })}
+                >
+                  —
+                </td>
+                <td
+                  className={classNames({
+                    "u-align--center": true,
+                    selected: support === SupportEnum.full,
+                  })}
+                >
+                  <i className="p-icon--success"></i> Included
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </Col>
-      </Row>
-      <Row>
-        <Col size={12}>
-          <p>
-            <a
-              href="/legal/ubuntu-advantage-service-description"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Details of our coverage and response times&nbsp;&rsaquo;
-            </a>
-          </p>
+        <Col className="u-hide u-show--small" size={12}>
+          <div
+            className={classNames({
+              "p-card--radio": true,
+              "is-selected": SupportEnum.none === support,
+              "u-disable": false,
+            })}
+            onClick={() => setSupport(SupportEnum.none)}
+          >
+            <RadioInput
+              inline
+              label="No, thank you"
+              value={SupportEnum.none}
+              checked={support === SupportEnum.none}
+            />
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Open Source Applications</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Ubuntu Base OS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Kubernetes, LXD, Charms</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Openstack, MAAS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Ceph and Swift storage</span>
+          </div>
         </Col>
-      </Row>
+        <Col className="u-hide u-show--small" size={12}>
+        <div
+            className={classNames({
+              "p-card--radio": true,
+              "is-selected": SupportEnum.infra === support,
+              "u-disable": infraOnlySupportDisabled,
+            })}
+            onClick={() => setSupport(SupportEnum.infra)}
+          >
+            <RadioInput
+              inline
+              label="Infra only"
+              value={SupportEnum.infra}
+              checked={support === SupportEnum.infra}
+            />
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Open Source Applications</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Ubuntu Base OS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Kubernetes, LXD, Charms</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Openstack, MAAS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Ceph and Swift storage</span>
+          </div>
+        </Col>
+        <Col className="u-hide u-show--small" size={12}>
+        <div
+            className={classNames({
+              "p-card--radio": true,
+              "is-selected": SupportEnum.apps === support,
+              "u-disable": appsOnlySupportDisabled,
+            })}
+            onClick={() => setSupport(SupportEnum.apps)}
+          >
+            <RadioInput
+              inline
+              label="Apps only"
+              value={SupportEnum.apps}
+              checked={support === SupportEnum.apps}
+            />
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Open Source Applications</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Ubuntu Base OS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Kubernetes, LXD, Charms</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Openstack, MAAS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--error"></i> Ceph and Swift storage</span>
+          </div>
+        </Col>
+        <Col className="u-hide u-show--small" size={12}>
+        <div
+            className={classNames({
+              "p-card--radio": true,
+              "is-selected": SupportEnum.full === support,
+              "u-disable": fullSupportDisabled,
+            })}
+            onClick={() => setSupport(SupportEnum.full)}
+          >
+            <RadioInput
+              inline
+              label="Infra &amp; Apps"
+              value={SupportEnum.full}
+              checked={support === SupportEnum.full}
+            />
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Open Source Applications</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Ubuntu Base OS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Kubernetes, LXD, Charms</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Openstack, MAAS</span>
+            <hr className="u-sv1" />
+            <span><i className="p-icon--success"></i> Ceph and Swift storage</span>
+          </div>
+        </Col>
+      {support !== SupportEnum.none ? (
+        <>
+          <Col size={12}>
+            <hr className="u-sv2" />
+          </Col>
+          <Col size={3}>
+            <p className="p-heading--5">Response Time</p>
+          </Col>
+          <Col size={9}>
+            <div className="p-segmented-control">
+              <div
+                className="p-segmented-control__list"
+                role="tablist"
+                aria-label="LTS version options"
+              >
+                <button
+                  className="p-segmented-control__button"
+                  role="tab"
+                  aria-selected={SLA.weekday === sla}
+                  aria-controls="Weekday"
+                  id="Weekday"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSLA(SLA.weekday);
+                  }}
+                  style={{textAlign: "justify"}}
+                >
+                  <span>Weekday</span>
+                  <p className="p-text--small u-no-margin--bottom">Up to 4h response time</p>
+                </button>
+                <button
+                  className="p-segmented-control__button"
+                  role="tab"
+                  aria-selected={SLA.everyday === sla}
+                  aria-controls="24/7"
+                  id="24/7"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setSLA(SLA.everyday);
+                  }}
+                  style={{textAlign: "justify"}}
+                >
+                  <span>24/7</span>
+                  <p className="p-text--small u-no-margin--bottom">Up to 1h response time</p>
+                </button>
+              </div>
+            </div>
+          </Col>
+        </>
+      ) : null}
     </div>
   );
 };
