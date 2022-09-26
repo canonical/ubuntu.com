@@ -520,6 +520,12 @@ def engage_thank_you(engage_pages):
         else:
             template_language = "engage/thank-you.html"
 
+        try:
+            form_details = flask.session["form_details"]
+        except KeyError:
+            # Forbid direct access to thank-you page
+            return flask.abort(403)
+
         return flask.render_template(
             template_language,
             request_url=flask.request.referrer,
@@ -527,6 +533,7 @@ def engage_thank_you(engage_pages):
             resource_name=metadata["type"],
             resource_url=metadata["resource_url"],
             related=related,
+            form_details=form_details,
         )
 
     return render_template
@@ -864,6 +871,11 @@ def marketo_submit():
         pass
 
     if return_url:
+        # Personalize thank-you page
+        flask.session["form_details"] = {
+            "name": flask.request.form.get("firstName"),
+            "email": flask.request.form.get("email"),
+        }
         return flask.redirect(return_url)
 
     if referrer:
