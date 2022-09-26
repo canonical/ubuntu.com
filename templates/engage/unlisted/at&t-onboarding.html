@@ -172,24 +172,25 @@
   </div>
 
   {% include "shared/_security-patching-logo-cloud.html" %}
-
-  <div class="u-fixed-width">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/e184ca69-AT%26TUbuntuProOnboardingEngage.png",
-      alt="",
-      width="1542",
-      height="560",
-      hi_def=True,
-      loading="lazy"
-      ) | safe
-    }}
-  </div>
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Security & compliance focus</h2>
-    <p>Critical patches delivered automatically for up to 10 years. Key security updates, including Kernel Livepatch, seamlessly applied to increase uptime and avoid the need for unscheduled reboots. FIPS 140-2 and CC-EAL certifications and systems management at scale to ensure continued security and compliance.</p>
+  <div class="row">
+    <div class="col-6">
+      <h2>Security & compliance focus</h2>
+      <p>Critical patches delivered automatically for up to 10 years. Key security updates, including Kernel Livepatch, seamlessly applied to increase uptime and avoid the need for unscheduled reboots. FIPS 140-2 and CC-EAL certifications and systems management at scale to ensure continued security and compliance.</p>
+    </div>
+    <div class="col-6 u-vertically-center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e184ca69-AT%26TUbuntuProOnboardingEngage.png",
+        alt="",
+        width="1542",
+        height="560",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
   </div>
 </section>
 
