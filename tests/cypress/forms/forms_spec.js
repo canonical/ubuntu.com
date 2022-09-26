@@ -135,23 +135,6 @@ context("Interactive marketo forms", () => {
     }
   );
 
-  it("should check interactive contact modal on /advantage", () => {
-    cy.visit("/advantage");
-    cy.acceptCookiePolicy();
-    cy.findByRole("link", {
-      name: /Join our free beta programme for Ubuntu Pro on prem/,
-    }).click();
-    cy.findByRole("link", { name: /Next/ }).click();
-    cy.findByLabelText(/First name:/).type("Test");
-    cy.findByLabelText(/Last name:/).type("Test");
-    cy.findByLabelText(/Work email:/).type("test@test.com");
-    cy.findByLabelText(/I agree to receive information/).click({
-      force: true,
-    });
-    cy.findByText(/Let's discuss/).click();
-    cy.findByRole("heading", { name: /Thank you/ });
-  });
-
   // wrote separate test for /robotics page as cypress couldn't find the job title input field by label text
   it(
     "should check interactive contact modal on /robotics",
@@ -211,7 +194,7 @@ context("Interactive marketo forms", () => {
       cy.url().should("include", "#success");
     }
   );
-  
+
   it(
     "should check interactive contact modal on /kubernetes/managed",
     { scrollBehavior: "center" },
@@ -250,20 +233,17 @@ context("Interactive marketo forms", () => {
   );
 
   // wrote separate test for /automotive page as it is an interactive single-paged form
-  it(
-    "should check interactive contact modal on /automotive",
-    () => {
-      cy.visit("/automotive");
-      cy.acceptCookiePolicy();
-      cy.findByTestId("interactive-form-link").click();
-      cy.findByLabelText(/First name/).type("Test");
-      cy.findByLabelText(/Last name:/).type("Test");
-      cy.findByLabelText(/Email address:/).type("test@gmail.com");
-      cy.findByLabelText(/Phone number:/).type("07777777777");
-      cy.findByText(/Let's discuss/).click();
-      cy.url().should("include", "#success");
-    }
-  );
+  it("should check interactive contact modal on /automotive", () => {
+    cy.visit("/automotive");
+    cy.acceptCookiePolicy();
+    cy.findByTestId("interactive-form-link").click();
+    cy.findByLabelText(/First name/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Email address:/).type("test@gmail.com");
+    cy.findByLabelText(/Phone number:/).type("07777777777");
+    cy.findByText(/Let's discuss/).click();
+    cy.url().should("include", "#success");
+  });
 });
 
 context("engage forms", () => {
