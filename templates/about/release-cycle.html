@@ -567,11 +567,13 @@
 <section class="p-tabs__content" id="canonical-kubernetes-release-cycle" role="tabpanel" aria-labelledby="canonical-kubernetes-release-cycle-tab">
   <div class="p-strip is-shallow">
     <div class="u-fixed-width">
-      <h2>Canonical Kubernetes release cycle</h2>
+      <h2>Charmed Kubernetes release cycle</h2>
 
-      <p>The release cycles of Canonical Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported, giving an effective support period of twelve months, subject to changes in the upstream release cycle. Canonical also provides security maintenance for N-4 Kubernetes releases in the stable release channel.</p>
-
-      <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
+      <p>The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides extended security maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.</p>
+      
+      <p>For <a href="/support">Ubuntu Advantage</a> support, users must upgrade to remain in the N-2 support window. ESM support includes fixes to high and critical CVEs related to Kubernetes charms, limited to the LTS Ubuntu releases in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and Microk8s.</p>
+      
+      <p>The Charmed Kubernetes support lifecycle can be represented this way:</p>
     </div>
 
     <div class="row">
@@ -582,74 +584,82 @@
             <tr>
               <th>Release</th>
               <th>Released</th>
-              <th>End of life</th>
+              <th>End of N-2 Support</th>
+              <th>End of N-4 ESM Support</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td><strong>1.25.x</strong></td>
-              <td align='right'>Sep 2022</td>
-              <td align='right'>Oct 2023</td>
+              <td align='right'>Aug 2022</td>
+              <td align='right'>Aug 2023</td>
+              <td align='right'>May 2024</td>
             </tr>
             <tr>
               <td><strong>1.24.x</strong></td>
               <td align='right'>May 2022</td>
-              <td align='right'>Jul 2023</td>
+              <td align='right'>May 2023</td>
+              <td align='right'>Dec 2023</td>
             </tr>
             <tr>
               <td><strong>1.23.x</strong></td>
               <td align='right'>Dec 2021</td>
-              <td align='right'>Feb 2023</td>
+              <td align='right'>Dec 2022</td>
+              <td align='right'>Aug 2023</td>
             </tr>
             <tr>
               <td><strong>1.22.x</strong></td>
               <td align='right'>Aug 2021</td>
-              <td align='right'>Oct 2022</td>
+              <td align='right'>Aug 2022</td>
+              <td align='right'>May 2023</td>
             </tr>
             <tr>
               <td><strong>1.21.x</strong></td>
               <td align='right'>Apr 2021</td>
-              <td align='right'>Apr 2022</td>
+              <td align='right'>May 2022</td>
+              <td align='right'>Dec 2022</td>
             </tr>
             <tr>
               <td><strong>1.20.x</strong></td>
               <td align='right'>Dec 2020</td>
               <td align='right'>Dec 2021</td>
+              <td align='right'>Aug 2022</td>
             </tr>
             <tr>
               <td><strong>1.19.x</strong></td>
               <td align='right'>Aug 2020</td>
               <td align='right'>Aug 2021</td>
+              <td align='right'>May 2022</td>
             </tr>
             <tr>
               <td><strong>1.18.x</strong></td>
               <td align='right'>Mar 2020</td>
               <td align='right'>Apr 2021</td>
+              <td align='right'>Dec 2021</td>
             </tr>
             <tr>
               <td><strong>1.17.x</strong></td>
-              <td align='right'>Jan 2020</td>
+              <td align='right'>Dec 2019</td>
               <td align='right'>Dec 2020</td>
+              <td align='right'>Aug 2021</td>
             </tr>
             <tr>
               <td><strong>1.16.x</strong></td>
               <td align='right'>Oct 2019</td>
-              <td align='right'>Jul 2020</td>
+              <td align='right'>Aug 2020</td>
+              <td align='right'>Apr 2021</td>
             </tr>
             <tr>
               <td><strong>1.15.x</strong></td>
-              <td>Sep 2019</td>
-              <td>Jun 2020</td>
+              <td>Jun 2019</td>
+              <td>Mar 2020</td>
+              <td>Dec 2020</td>
             </tr>
             <tr>
               <td><strong>1.14.x</strong></td>
-              <td>Jun 2019</td>
-              <td>Mar 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.13.x</strong></td>
               <td>Mar 2019</td>
               <td>Dec 2019</td>
+              <td>Aug 2020</td>
             </tr>
           </tbody>
         </table>
@@ -657,7 +667,7 @@
     </div>
 
     <div class="u-fixed-width">
-      <p>For more information on previous and current releases, please see the <a href="/kubernetes/docs/release-notes">Canonical Kubernetes</a> release notes or the <a href="https://microk8s.io/docs/release-notes">MicroK8s release notes.</a></p>
+      <p>For more information on previous and current releases, please see the <a href="/kubernetes/docs/release-notes">Charmed Kubernetes</a> release notes or the <a href="https://microk8s.io/docs/release-notes">MicroK8s release notes.</a></p>
     </div>
   </div>
 </section>
