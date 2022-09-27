@@ -1,4 +1,4 @@
-{% extends "credentialing/base_cube.html" %}
+{% extends "credentialling/base_cube.html" %}
 
 {% block title %}Canonical Certification{% endblock %}
 
@@ -66,7 +66,7 @@
               style="display: none;"
               >Start</a
             >
-            <a href="/credentialing/syllabus?exam=Linux%20Essentials" class="p-button">Syllabus</a>
+            <a href="/credentialling/syllabus?exam=Linux%20Essentials" class="p-button">Syllabus</a>
           </div>
         </div>
       </li>
@@ -92,7 +92,7 @@
               style="display: none;"
               >Start</a
             >
-            <a href="/credentialing/syllabus?exam=Desktop%20Essentials" class="p-button">Syllabus</a>
+            <a href="/credentialling/syllabus?exam=Desktop%20Essentials" class="p-button">Syllabus</a>
           </div>
         </div>
       </li>
@@ -118,46 +118,11 @@
               style="display: none;"
               >Start</a
             >
-            <a href="/credentialing/syllabus?exam=Server%20Essentials" class="p-button">Syllabus</a>
+            <a href="/credentialling/syllabus?exam=Server%20Essentials" class="p-button">Syllabus</a>
           </div>
         </div>
       </li>
     </ul>
-  </div>
-</section>
-
-<section class="p-strip--suru-half-and-half">
-  <div class="row">
-    <div class="col-8 col-medium-4">
-      <h2>Or take a single exam covering all three microcertifications</h2>
-      <ul class="p-matrix">
-        <li class="p-matrix__item" style="border: 0;">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/7bf909cc-Admin.svg",
-            alt="Canonical Ubuntu Essentials badge",
-            width="32",
-            height="38",
-            hi_def=True,
-            loading="auto",
-            attrs={"class": "p-matrix__img"}
-            ) | safe
-          }}
-          <div class="p-matrix__content">
-            <h3 class="p-matrix__title">Canonical Ubuntu Essentials single exam</h3>
-            <div class="p-matrix__desc">
-              <p> </p>
-              <a
-                href="https://cube.ubuntu.com/auth/login/tpa-saml/?auth_entry=login&idp=ubuntuone&next=/courses/course-v1:Canonical%2bcue%2b2022/courseware/2022/start/"
-                class="p-button--positive"
-                style="display: none;"
-                >Start
-              </a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
   </div>
 </section>
 
