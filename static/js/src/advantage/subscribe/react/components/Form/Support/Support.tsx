@@ -192,9 +192,7 @@ const Support = () => {
                   <i className="p-icon--success"></i>Included
                 </div>
                 <hr />
-                <div className="support-row">
-                  <i className="p-icon--success"></i>Included
-                </div>
+                <div className="support-row not-supported">—</div>
                 <hr />
                 <div className="support-row not-supported">—</div>
               </span>
@@ -404,10 +402,10 @@ const Support = () => {
           <Col size={12}>
             <hr className="u-sv2" />
           </Col>
-          <Col size={3}>
+          <Col size={6}>
             <p className="p-heading--5">Response Time</p>
           </Col>
-          <Col size={9}>
+          <Col size={6}>
             <div className="p-segmented-control">
               <div
                 className="p-segmented-control__list"
