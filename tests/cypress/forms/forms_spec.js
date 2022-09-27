@@ -61,8 +61,8 @@ context("Static marketo forms", () => {
     cy.findByRole("heading", { name: /Thank you/ });
   });
 
-  it("should check contact form on /credentialing/contact-us", () => {
-    cy.visit("/credentialing/contact-us");
+  it("should check contact form on /credentialling/contact-us", () => {
+    cy.visit("/credentialling/contact-us");
     cy.acceptCookiePolicy();
     cy.findByLabelText(/First name:/).type("Test");
     cy.findByLabelText(/Last name:/).type("Test");
