@@ -25,7 +25,7 @@ const MicrosoftActiveDirectory =
   "Advanced Group Policy Object support for Microsoft Active Directory on Ubuntu Desktops";
 
 const versionDetails: { [key: LTSVersions]: Array<string> } = {
-  22.04: [
+  [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
     KVMDrivers,
@@ -34,7 +34,7 @@ const versionDetails: { [key: LTSVersions]: Array<string> } = {
     knowledgeBase,
     MicrosoftActiveDirectory,
   ],
-  20.04: [
+  [LTSVersions.focal]: [
     `${ESMEndDate} 2030`,
     livepatch,
     KVMDrivers,
@@ -44,7 +44,7 @@ const versionDetails: { [key: LTSVersions]: Array<string> } = {
     knowledgeBase,
     MicrosoftActiveDirectory,
   ],
-  18.04: [
+  [LTSVersions.bionic]: [
     `${ESMEndDate} 2028`,
     livepatch,
     landscape,
@@ -54,7 +54,7 @@ const versionDetails: { [key: LTSVersions]: Array<string> } = {
     CISBenchmarkAndAutomation,
     DISA,
   ],
-  16.04: [
+  [LTSVersions.xenial]: [
     `${ESMEndDate} 2026`,
     livepatch,
     landscape,
@@ -65,7 +65,7 @@ const versionDetails: { [key: LTSVersions]: Array<string> } = {
     CISBenchmarkAndAutomation,
     DISA,
   ],
-  14.04: [
+  [LTSVersions.trusty]: [
     `${ESMEndDate} 2024`,
     livepatch,
     landscape,
@@ -88,6 +88,7 @@ const Version = () => {
         {Object.keys(versionDetails).map((key) => {
           return (
             <button
+              key={key}
               className="p-segmented-control__button"
               role="tab"
               aria-selected={version === key}
