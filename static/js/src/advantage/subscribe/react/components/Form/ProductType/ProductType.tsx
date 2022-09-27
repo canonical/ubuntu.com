@@ -87,19 +87,6 @@ const ProductType = () => {
           >
             {PublicCloudInfo[PublicClouds.gcp].name}
           </button>
-          <button
-            className="p-segmented-control__button"
-            role="tab"
-            aria-selected={publicCloud === PublicClouds.oracle}
-            aria-controls={PublicClouds.oracle}
-            id={PublicClouds.oracle}
-            onClick={(e) => {
-              e.preventDefault();
-              setPublicCloud(PublicClouds.oracle);
-            }}
-          >
-            {PublicCloudInfo[PublicClouds.oracle].name}
-          </button>
         </div>
       </div>
 
