@@ -39,33 +39,27 @@ const Support = () => {
           </div>
           <hr />
           <div className="support-row">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              Open source applications
+            <a href="/support">Open source applications</a>
+          </div>
+          <hr />
+          <div className="support-row">
+            <a href="/server">Ubuntu base OS</a>
+          </div>
+          <hr />
+          <div className="support-row">
+            <a href="/kubernetes">Kubernetes</a>, <a href="/lxd">LXD</a>,{" "}
+            <a href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html">
+              Charms
             </a>
           </div>
           <hr />
           <div className="support-row">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              Ubuntu base OS
-            </a>
+            <a href="/openstack">OpenStack</a>,{" "}
+            <a href="https://maas.io/">MAAS</a>
           </div>
           <hr />
           <div className="support-row">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              Kubernetes, LXD, Charms
-            </a>
-          </div>
-          <hr />
-          <div className="support-row">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              OpenStack, MAAS
-            </a>
-          </div>
-          <hr />
-          <div className="support-row">
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-              Ceph and Swift storage
-            </a>
+            <a href="/ceph">Ceph and Swift storage</a>
           </div>
         </Col>
         <Col size={2}>
