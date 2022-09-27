@@ -16,9 +16,7 @@
   }
 
   .product-selector .p-card--radio--column.is-selected {
-    border-color:#757575;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05), 0px 2px 16px rgba(0, 0, 0, 0.05), 0px 0px 24px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 5%), 0px 2px 16px rgb(0 0 0 / 5%), 0px 0px 24px rgb(0 0 0 / 10%), 0px 0px 0px 1px #757575;
   }
 
   .included {
@@ -38,13 +36,41 @@
     height: 100px;
     padding-top: 1.5rem;
   }
+
+  >.support-heading{
+    padding: 1rem 0 13px 0;
+  }
+
+  hr{
+    margin-top: -1px;
+  }
 }
 
 .heading, .main, .universe {
   padding-right: 1rem;
-  margin-bottom: 0.6rem;
+  padding-top: 0.5px;
+  margin-bottom: 10px;
  }
 
+.support-row{
+  height: 30.2px;
+  text-align: left;
+  margin: 0 0.5rem;
+
+  > i {
+    margin-right: .7rem;
+  }
+
+  &.not-supported{
+    text-align: center;
+  }
+}
+
+.inner-support-label{
+  margin: .5rem 0 15px .5rem;
+  font-weight: 500;
+}
+ 
  .logos-wrapper{
   display: flex;
   justify-content: space-between;
