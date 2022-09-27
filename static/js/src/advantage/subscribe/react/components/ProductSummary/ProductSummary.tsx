@@ -5,11 +5,8 @@ import { isMonthlyAvailable, Periods } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
 import PaymentModal from "../PaymentModal";
 
-
 const ProductSummary = () => {
-  const { quantity, period, setPeriod, product } = useContext(
-    FormContext
-  );
+  const { quantity, period, setPeriod, product } = useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
   };
@@ -47,7 +44,7 @@ const ProductSummary = () => {
                         defaultValue={period}
                         options={[
                           {
-                            label: "Billed Annualy",
+                            label: "Billed Annually",
                             value: Periods.yearly,
                           },
                           {
@@ -58,7 +55,9 @@ const ProductSummary = () => {
                         onChange={handlePeriodChange}
                       />
                     </>
-                    ) : "Billed Yearly"}
+                  ) : (
+                    "Billed Yearly"
+                  )}
                 </td>
                 <td data-heading="Total" className="u-align--right">
                   <strong>
@@ -66,7 +65,9 @@ const ProductSummary = () => {
                       ((product?.price.value ?? 0) / 100) * quantity
                     )}{" "}
                   </strong>
-                  <p className="p-text--small">per {period === Periods.yearly ? "year" : "month"}</p>
+                  <p className="p-text--small">
+                    per {period === Periods.yearly ? "year" : "month"}
+                  </p>
                   <p className="p-text--small">
                     Any applicable taxes are calculated at checkout
                   </p>
