@@ -114,6 +114,12 @@ export const FormProvider = ({
   }, [productType, support]);
 
   useEffect(() => {
+    if (productType === ProductTypes.desktop) {
+      setFeature(Features.pro);
+    }
+  }, [productType, feature]);
+
+  useEffect(() => {
     const product = getProduct(productType, feature, support, sla, period);
     console.log(product);
     setProduct(window.productList[product]);
