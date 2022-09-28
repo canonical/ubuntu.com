@@ -41,6 +41,8 @@
     {% endfor %}
   };
 
+  console.table(productList);
+
   var accountId = "{% if account %}{{ account.id }}{% endif %}";
   var isGuest = {% if account %}false{% else %}true{% endif %};
   var isLoggedIn = {% if user_info %}true{% else %}false{% endif %};

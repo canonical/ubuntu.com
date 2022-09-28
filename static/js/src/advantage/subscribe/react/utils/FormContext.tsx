@@ -98,7 +98,23 @@ export const FormProvider = ({
   }, [version, support]);
 
   useEffect(() => {
-    let product = getProduct(productType, feature, support, sla, period);
+    if (feature === Features.infra) {
+      if (support === Support.apps || support === Support.full) {
+        setSupport(Support.none);
+      }
+    }
+  }, [feature, support]);
+
+  useEffect(() => {
+    if (productType === ProductTypes.desktop) {
+      if (support === Support.apps || support === Support.infra) {
+        setSupport(Support.none);
+      }
+    }
+  }, [productType, support]);
+
+  useEffect(() => {
+    const product = getProduct(productType, feature, support, sla, period);
     console.log(product);
     setProduct(window.productList[product]);
   }, [feature, productType, sla, support, period]);

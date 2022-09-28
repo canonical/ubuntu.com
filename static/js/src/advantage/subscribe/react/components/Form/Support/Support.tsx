@@ -7,13 +7,20 @@ import {
   ProductTypes,
   SLA,
   Support as SupportEnum,
+  LTSVersions,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Support = () => {
-  const { feature, sla, setSLA, support, setSupport, productType } = useContext(
-    FormContext
-  );
+  const {
+    feature,
+    sla,
+    setSLA,
+    support,
+    setSupport,
+    productType,
+    version,
+  } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
@@ -23,6 +30,17 @@ const Support = () => {
   const appsOnlySupportDisabled =
     ProductTypes.desktop === productType || Features.infra === feature;
   const fullSupportDisabled = Features.infra === feature;
+
+  const isAppsSupportDisabled =
+    feature === Features.infra ||
+    productType === ProductTypes.desktop ||
+    version === LTSVersions.trusty ||
+    version === LTSVersions.xenial;
+
+  const isFullSupportDisabled =
+    feature === Features.infra ||
+    version === LTSVersions.trusty ||
+    version === LTSVersions.xenial;
 
   return (
     <div
@@ -106,6 +124,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.infra,
+              "u-disable": productType === ProductTypes.desktop,
             })}
           >
             <label className="p-radio u-align-text--center">
@@ -153,6 +172,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.apps,
+              "u-disable": isAppsSupportDisabled,
             })}
           >
             <label className="p-radio u-align-text--center">
@@ -198,6 +218,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.full,
+              "u-disable": isFullSupportDisabled,
             })}
           >
             <label className="p-radio u-align-text--center">
