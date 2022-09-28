@@ -8,6 +8,7 @@ let entries = {
   "side-navigation": "./static/js/src/side-navigation.js",
   "image-download": "./static/js/src/image-download.js",
   main: "./static/js/src/main.js",
+  "developer-chart":"./static/js/src/developer-chart.js",
   "release-chart": "./static/js/src/release-chart.js",
   tabotronic: "./static/js/src/tabotronic.js",
   appliance: "./static/js/src/appliance.js",
