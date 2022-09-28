@@ -147,7 +147,31 @@ export enum Periods {
   yearly = "yearly",
 }
 
-export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
+// export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
+export type ProductIDs = `${ProductTypes}-${Features}-${Support}-${SLA}-${Periods}`;
+
+export type ValidProducts =
+  | "uai-essential-physical-yearly"
+  | "uai-essential-physical-monthly"
+  | "uai-standard-physical-yearly"
+  | "uai-advanced-physical-yearly"
+  | "uaa-essential-yearly"
+  | "uaa-essential-monthly"
+  | "uii-standard-physical-yearly"
+  | "uii-advanced-physical-yearly"
+  | "uaa-standard-yearly"
+  | "uaa-advanced-yearly"
+  | "uaia-standard-physical-yearly"
+  | "uaia-advanced-physical-yearly"
+  | "uai-essential-desktop-yearly"
+  | "uai-essential-desktop-monthly"
+  | "uai-standard-desktop-yearly"
+  | "uai-advanced-desktop-yearly"
+  | "no-product";
+
+export type ProductListings = {
+  [key in ValidProducts]?: Product;
+};
 
 export type Product = {
   canBeTrialled: boolean;
@@ -164,10 +188,6 @@ export type Product = {
   marketplace: marketplace;
 };
 
-export type ProductListings = {
-  [key in ProductIDs]?: Product;
-};
-
 export const isMonthlyAvailable = (product: Product | null) => {
   if (!product || !product.id) return false;
 
@@ -177,11 +197,6 @@ export const isMonthlyAvailable = (product: Product | null) => {
 
 export const isPublicCloud = (type: ProductTypes) =>
   type === ProductTypes.publicCloud;
-
-export const shouldShowApps = () =>
-  !!window.productList[
-    `${Features.pro}-${Support.infra}-${ProductTypes.physical}-${Periods.yearly}`
-  ];
 
 export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -194,8 +209,8 @@ export const getProduct = (
   support: Support,
   sla: SLA,
   period: Periods
-) => {
-  let productKey = `${productType}-${feature}-${support}-${sla}-${period}`;
+): ValidProducts => {
+  const productKey = `${productType}-${feature}-${support}-${sla}-${period}`;
   switch (productKey) {
     case `${ProductTypes.physical}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.yearly}`:
       return "uai-essential-physical-yearly";

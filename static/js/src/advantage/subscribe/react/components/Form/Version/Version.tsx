@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Card, Col, List, Row } from "@canonical/react-components";
+import { Col, List, Row } from "@canonical/react-components";
 import classNames from "classnames";
 import {
   isPublicCloud,
@@ -24,7 +24,7 @@ const ESMEndDate = "Extended Security Maintenance (ESM) until ";
 const MicrosoftActiveDirectory =
   "Advanced Group Policy Object support for Microsoft Active Directory on Ubuntu Desktops";
 
-const versionDetails: { [key: LTSVersions]: Array<string> } = {
+const versionDetails: { [key in LTSVersions]: Array<string> } = {
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,

@@ -18,7 +18,7 @@ beforeAll(() => {
 
 test("Support section displays the correct price for physical product", () => {
   render(
-    <FormProvider initialSupport={SupportEnum.essential}>
+    <FormProvider initialSupport={SupportEnum.none}>
       <Support />
     </FormProvider>
   );
@@ -28,7 +28,7 @@ test("Support section displays the correct price for physical product", () => {
 test("Support section displays the correct price for virtual product", () => {
   render(
     <FormProvider
-      initialSupport={SupportEnum.essential}
+      initialSupport={SupportEnum.none}
       initialType={ProductTypes.virtual}
     >
       <Support />
