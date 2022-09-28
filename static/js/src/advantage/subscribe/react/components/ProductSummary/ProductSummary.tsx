@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Col, Row, Select } from "@canonical/react-components";
+import { Chip, Col, Row, Select } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import { isMonthlyAvailable, Periods } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
@@ -76,7 +76,10 @@ const ProductSummary = () => {
             </tbody>
           </table>
         </Col>
-        <Col className={"u-align--right"} size={3} emptyLarge={10}>
+        <Col className={"u-align--right"} size={4} emptyLarge={9}>
+          {product?.canBeTrialled ? (
+            <Chip appearance="positive" value="Free trial available" />
+          ) : null}
           <PaymentModal isHidden={isHidden} />
         </Col>
       </Row>
