@@ -10,23 +10,20 @@ type usePurchaseOfferProps = {
 const usePurchaseOffer = () => {
   const mutation = useMutation(
     async ({ marketplace, offerId, accountId }: usePurchaseOfferProps) => {
-      const response = await fetch(
-        `/pro/offer${window.location.search}`,
-        {
-          method: "POST",
-          cache: "no-store",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            marketplace: marketplace,
-            offer_id: offerId,
-            account_id: accountId,
-          }),
-        }
-      );
+      const response = await fetch(`/pro/offer${window.location.search}`, {
+        method: "POST",
+        cache: "no-store",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          marketplace: marketplace,
+          offer_id: offerId,
+          account_id: accountId,
+        }),
+      });
 
       const res = await response.json();
 
