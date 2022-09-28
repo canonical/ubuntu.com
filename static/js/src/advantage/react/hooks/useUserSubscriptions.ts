@@ -61,6 +61,7 @@ export const selectStatusesSummary = (
   ),
   has_access_to_support: hasStatus(subscriptions, "has_access_to_support"),
   has_access_to_token: hasStatus(subscriptions, "has_access_to_token"),
+  is_renewed: hasStatus(subscriptions, "is_renewed"),
 });
 
 export const selectUASubscriptions = (subscriptions: UserSubscription[]) =>
