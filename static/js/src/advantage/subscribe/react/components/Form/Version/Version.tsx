@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Col, List, Row } from "@canonical/react-components";
+import { Chip, Col, List, Row } from "@canonical/react-components";
 import classNames from "classnames";
 import {
   isPublicCloud,
@@ -18,17 +18,25 @@ const CISBenchmark = "CIS benchmark";
 const CISBenchmarkAndAutomation = "CIS benchmark and automation tooling";
 const FIPS =
   "Certified compliance with FIPS 140-2 Level 1 certified crypto modules validated by NIST";
+const FIPSComingSoon = (
+  <>
+    Certified compliance with FIPS 140-2 Level 1 certified crypto modules
+    validated by NIST{" "}
+    <Chip value="Coming soon" appearance="positive" className="is-dense" />
+  </>
+);
 const DISA = "DISA STIG";
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate = "Extended Security Maintenance (ESM) until ";
 const MicrosoftActiveDirectory =
   "Advanced Group Policy Object support for Microsoft Active Directory on Ubuntu Desktops";
 
-const versionDetails: { [key in LTSVersions]: Array<string> } = {
+const versionDetails: { [key in LTSVersions]: Array<React.ReactNode> } = {
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
     KVMDrivers,
+    FIPSComingSoon,
     CISBenchmarkAndAutomation,
     landscape,
     knowledgeBase,
