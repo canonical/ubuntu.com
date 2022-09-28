@@ -12,6 +12,7 @@ import { UserSubscription } from "advantage/api/types";
 import SubscriptionEdit from "../SubscriptionEdit";
 import { Notification } from "@canonical/react-components";
 import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 describe("SubscriptionDetails", () => {
   let queryClient: QueryClient;
@@ -276,5 +277,138 @@ describe("SubscriptionDetails", () => {
     expect(
       wrapper.find("Button[data-test='cancel-trial-button']").exists()
     ).toBe(true);
+  });
+
+  it("it does display the expired label", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_expired: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Expired");
+  });
+
+  it("it does display the not renewed label for legacy not renewed", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: false,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Not renewed");
+  });
+
+  it("it does display the renewed label for legacy renewed", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Renewed");
+  });
+
+  it("it doesn't display a label for legacy without renewal", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      renewal_id: null,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").exists()).toBe(false);
+  });
+
+  it("it does display the auto-renewed label for shop purchases", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Monthly,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal on");
+  });
+
+  it("it does display the auto-renewed off label for shop purchases", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Monthly,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: false,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal off");
   });
 });

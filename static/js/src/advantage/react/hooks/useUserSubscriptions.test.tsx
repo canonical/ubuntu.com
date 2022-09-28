@@ -100,6 +100,7 @@ describe("useUserSubscriptions", () => {
       should_present_auto_renewal: false,
       has_access_to_support: true,
       has_access_to_token: true,
+      is_renewed: true,
     });
   });
 

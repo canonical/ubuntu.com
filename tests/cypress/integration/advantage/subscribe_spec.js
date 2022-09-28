@@ -49,9 +49,9 @@ const completeFirstStep = (email = Cypress.env("UBUNTU_USERNAME")) => {
   cy.findByRole("button", { name: "Next step" }).click();
 };
 
-context("/advantage/subscribe", () => {
+context("/pro/subscribe", () => {
   it("should display the modal when pressing 'Buy now'", () => {
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.findByText("Accept all and visit site").click();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
@@ -64,7 +64,7 @@ context("/advantage/subscribe", () => {
   it("should be able to start a free trial", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
 
     cy.findByRole("dialog").should("not.exist");
@@ -79,7 +79,7 @@ context("/advantage/subscribe", () => {
     // wait for request to be sent
     cy.intercept("POST", "/account/purchase-account*").as("purchaseAccount");
     cy.intercept("POST", "/account/customer-info*").as("customerInfo");
-    cy.intercept("POST", "/advantage/subscribe/preview*").as("preview");
+    cy.intercept("POST", "/pro/subscribe/preview*").as("preview");
 
     // assert that a matching request has been made
     cy.wait("@purchaseAccount");
@@ -97,7 +97,7 @@ context("/advantage/subscribe", () => {
       force: true,
     });
 
-    cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as("trial");
+    cy.intercept("POST", "/pro/subscribe*", slowDownResponse).as("trial");
 
     cy.findByRole("button", { name: "Buy" })
       .should(() => {
@@ -125,7 +125,7 @@ context("/advantage/subscribe", () => {
   it("should be able to buy a subscription", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
@@ -139,7 +139,7 @@ context("/advantage/subscribe", () => {
     // wait for request to be sent
     cy.intercept("POST", "/account/purchase-account*").as("purchaseAccount");
     cy.intercept("POST", "/account/customer-info*").as("customerInfo");
-    cy.intercept("POST", "/advantage/subscribe/preview*").as("preview");
+    cy.intercept("POST", "/pro/subscribe/preview*").as("preview");
 
     // assert that a matching request has been made
     cy.wait("@purchaseAccount");
@@ -157,7 +157,7 @@ context("/advantage/subscribe", () => {
       force: true,
     });
 
-    cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as(
+    cy.intercept("POST", "/pro/subscribe*", slowDownResponse).as(
       "purchase"
     );
     cy.intercept("GET", "/account/purchases/*").as("pendingPurchase");
@@ -187,12 +187,12 @@ context("/advantage/subscribe", () => {
     cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
   });
 
-  it.skip("redirects logged-in user to /advantage on after successful purchase", () => {
-    cy.intercept("POST", "/advantage/subscribe*").as("purchase");
-    cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
+  it.skip("redirects logged-in user to /pro on after successful purchase", () => {
+    cy.intercept("POST", "/pro/subscribe*").as("purchase");
+    cy.intercept("GET", "/pro/purchases/*").as("pendingPurchase");
 
     cy.login();
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
 
     cy.scrollTo("bottom");
@@ -208,6 +208,6 @@ context("/advantage/subscribe", () => {
     cy.wait("@purchase");
     cy.wait("@pendingPurchase");
 
-    cy.url().should("include", "/advantage");
+    cy.url().should("include", "/pro");
   });
 });
