@@ -29,12 +29,12 @@ function createChart(dataset, id) {
 
   var margin = {
     top: 15,
-    right: 60,
-    bottom: 15,
-    left: 100,
+    right: 0,
+    bottom: 0,
+    left: 0,
   };
 
-  var width = 500 - margin.left - margin.right,
+  var width = 300 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
   var svg = d3
@@ -65,12 +65,10 @@ function createChart(dataset, id) {
     );
 
   var xAxis = d3.svg.axis().scale(x).ticks(5).orient("top");
-  var yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
 
   var gx = svg.append("g").attr("class", "x axis").attr( "transform",
-    "translate(45, " + (5) + ")"
+    "translate(10, " + (5) + ")"
   ).transition().call(xAxis);
-  var gy = svg.append("g").attr("class", "y axis").call(yAxis);
 
   var bars = svg.selectAll(".bar").data(data).enter().append("g");
 
@@ -81,7 +79,7 @@ function createChart(dataset, id) {
       return y(d.label);
     })
     .attr("height", y.rangeBand())
-    .attr("x", 45)
+    .attr("x", 8)
     .attr("width", function (d) {
       return x(d.count);
     })
@@ -91,16 +89,6 @@ function createChart(dataset, id) {
       } else {
         return "#AEA79F";
       }
-    });
-
-  bars
-    .append("text")
-    .attr("class", "label")
-    .attr("y", function (d) {
-      return y(d.label) + y.rangeBand() / 2 + 4;
-    })
-    .text(function (d) {
-      return `${d.count}%`;
     });
 }
 
