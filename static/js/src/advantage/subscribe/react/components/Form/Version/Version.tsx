@@ -21,7 +21,7 @@ const FIPS =
 const FIPSComingSoon = (
   <>
     Certified compliance with FIPS 140-2 Level 1 certified crypto modules
-    validated by NIST{" "}
+    validated by NIST
     <Chip value="Coming soon" appearance="positive" className="is-dense" />
   </>
 );
@@ -129,6 +129,7 @@ const Version = () => {
             All subscriptions for Ubuntu Pro {version} include:
           </h4>
           <List
+            className="versions-features"
             items={versionDetails[version ?? defaultValues.version]}
             divided
           />

@@ -55,27 +55,22 @@ const Support = () => {
           <div className="support-heading">
             <strong>What&apos;s included?</strong>
           </div>
-          <hr />
           <div className="support-row">
             <a href="/support">Open source applications</a>
           </div>
-          <hr />
           <div className="support-row">
             <a href="/server">Ubuntu base OS</a>
           </div>
-          <hr />
           <div className="support-row">
             <a href="/kubernetes">Kubernetes</a>, <a href="/lxd">LXD</a>,{" "}
             <a href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html">
               Charms
             </a>
           </div>
-          <hr />
           <div className="support-row">
             <a href="/openstack">OpenStack</a>,{" "}
             <a href="https://maas.io/">MAAS</a>
           </div>
-          <hr />
           <div className="support-row">
             <a href="/ceph">Ceph and Swift storage</a>
           </div>
@@ -105,15 +100,10 @@ const Support = () => {
                   value={SupportEnum.none}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="support-row not-supported">—</div>
-                <hr />
                 <div className="support-row not-supported">—</div>
-                <hr />
                 <div className="support-row not-supported">—</div>
-                <hr />
                 <div className="support-row not-supported">—</div>
-                <hr />
                 <div className="support-row not-supported">—</div>
               </span>
             </label>
@@ -145,21 +135,16 @@ const Support = () => {
                   value={SupportEnum.infra}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="support-row not-supported">—</div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
@@ -193,21 +178,16 @@ const Support = () => {
                   value={SupportEnum.apps}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row not-supported">—</div>
-                <hr />
                 <div className="support-row not-supported">—</div>
               </span>
             </label>
@@ -239,23 +219,18 @@ const Support = () => {
                   value={SupportEnum.full}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
@@ -279,23 +254,18 @@ const Support = () => {
             value={SupportEnum.none}
             checked={support === SupportEnum.none}
           />
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Ubuntu Base OS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Kubernetes, LXD, Charms
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Openstack, MAAS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Ceph and Swift storage
           </span>
@@ -316,23 +286,18 @@ const Support = () => {
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
           />
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Ubuntu Base OS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Kubernetes, LXD, Charms
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Openstack, MAAS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Ceph and Swift storage
           </span>
@@ -353,23 +318,18 @@ const Support = () => {
             value={SupportEnum.apps}
             checked={support === SupportEnum.apps}
           />
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Ubuntu Base OS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Kubernetes, LXD, Charms
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Openstack, MAAS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--error"></i> Ceph and Swift storage
           </span>
@@ -390,23 +350,18 @@ const Support = () => {
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
           />
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Ubuntu Base OS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Kubernetes, LXD, Charms
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Openstack, MAAS
           </span>
-          <hr className="u-sv1" />
           <span>
             <i className="p-icon--success"></i> Ceph and Swift storage
           </span>

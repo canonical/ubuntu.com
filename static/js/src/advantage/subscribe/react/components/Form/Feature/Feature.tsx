@@ -31,7 +31,6 @@ const Feature = () => {
           <div className="heading">
             <strong>CVE Security patching coverage until 2030 for:</strong>
           </div>
-          <hr />
           <div className="main">
             <p>
               Over 2,300 open source deb packages in Ubuntu Main repository
@@ -68,10 +67,9 @@ const Feature = () => {
               />
             </div>
           </div>
-          <hr />
           <div className="universe">
             <p>
-              Over 2,300 open source deb packages in Ubuntu Main repository
+              Over 2,300 open source deb packages in Ubuntu Universe repository
               until 2030 (extended from 2025), including:
             </p>
             <div className="logos-wrapper">
@@ -131,11 +129,9 @@ const Feature = () => {
                   value={Features.pro}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="included">
                   <i className="p-icon--success"></i> Included
                 </div>
@@ -169,11 +165,9 @@ const Feature = () => {
                   value={Features.infra}
                   onChange={handleChange}
                 />
-                <hr />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
                 </div>
-                <hr />
                 <div className="included">
                   <i className="p-icon--error"></i> Not included
                 </div>
