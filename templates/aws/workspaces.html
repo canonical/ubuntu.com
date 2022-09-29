@@ -1,0 +1,83 @@
+{% extends "aws/base_aws.html" %}
+
+{% block title %}Ubuntu WorkSpaces{% endblock %}
+{% block meta_description %}Ubuntu WorkSpaces offer developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code &mdash; spinning up and tearing down instances as required. IT organisations benefit from rapid deployment, configuration and scalability whilst their applications and data remain secured in the AWS cloud.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1qC22TM6KZTlxK3CScf-RQ4RUiMUhIBcjSWGur-dbYVA/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped is-bordered">
+    <div class="row u-equal-height">
+      <div class="col-7 col-medium-4">
+        <h1>Ubuntu WorkSpaces</h1>
+        <p class="p-heading--3">Virtual desktops, powered by AWS. Develop remotely, securely and cost-effectively.</p>
+        <p>Ubuntu Desktop on Amazon WorkSpaces offers developers an optimised Ubuntu Desktop environment to rapidly build, test and deploy code &mdash; spinning up and tearing down instances as required.</p>
+        <p>IT organisations benefit from rapid deployment, configuration and scalability for their managed Ubuntu Desktops whilst their applications and data remain secured in the AWS cloud, even when their developers are working remotely.</p>
+        <a href="https://aws.amazon.com/workspaces/pricing/?nc=sn&loc=3" class="p-button--positive">Launch Today</a>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/55bb92be-aws_workspaces.png",
+            alt="",
+            height="215",
+            width="603",
+            hi_def=True,
+            loading="auto"
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <div class="p-strip is-shallow u-no-padding--top">
+      <h2>What are Ubuntu WorkSpaces?</h2>
+    </div>
+  </div>
+
+  <div class="row p-divider">
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Desktop 22.04 LTS</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">A common OS for development, testing and deployment</li>
+        <li class="p-list__item is-ticked">Linux 5.15 kernel alongside the latest toolchains for Python, PGP, Rust and Go</li>
+        <li class="p-list__item is-ticked">Target platform for cutting edge applications in fields like Data Science, AI/ML, Cloud and IoT</li>
+        <li class="p-list__item is-ticked">Active Directory integration</li>
+      </ul>
+
+      <p>Read more about <a href="/desktop/developers">Ubuntu Desktop for developers</a></p>
+    </div>
+
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Remote onboarding for developers</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Easily onboard remote workers and contractors and get them up and running quickly</li>
+        <li class="p-list__item is-ticked">Portable desktops for any device accessed via web browser or native client applications</li>
+        <li class="p-list__item is-ticked">Pay as you go without the need to procure high-end hardware</li>
+      </ul>
+
+      <p>Read more about <a href="https://aws.amazon.com/workspaces/">Amazon WorkSpaces</a></p>
+    </div>
+
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Security and management at scale</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Your organisations' applications and data remain in the AWS cloud at all times</li>
+        <li class="p-list__item is-ticked">Configure custom images and scale your WorkSpaces on the fly</li>
+        <li class="p-list__item is-ticked">Integrate Ubuntu WorkSpaces with your on-prem Active Directory</li>
+        <li class="p-list__item is-ticked">Benefit from expanded security patching with Ubuntu Pro</li>
+      </ul>
+
+      <p>Read more about <a href="/desktop/organisations">Ubuntu Desktop for organisations</a></p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <p><a class="p-button--positive" href="https://aws.amazon.com/workspaces/pricing/?nc=sn&loc=3">Ubuntu Desktop on Amazon WorkSpaces pricing</a></p>
+  </div>
+</section>
+
+{% endblock content %}
