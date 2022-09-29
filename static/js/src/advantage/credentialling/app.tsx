@@ -5,10 +5,10 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-  } from "react-router-dom";
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 import CredManage from "./components/CredManage";
 import CredShop from "./components/CredShop";
 
@@ -39,11 +39,11 @@ function App() {
   return (
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Router basename="/credentialing/shop">
-            <Routes>
-                <Route path="/" element={<CredShop/>}/>
-                <Route path="/cred-manage" element={<CredManage/>}/>
-            </Routes>
+        <Router basename="/credentialling/shop">
+          <Routes>
+            <Route path="/" element={<CredShop />} />
+            <Route path="/cred-manage" element={<CredManage />} />
+          </Routes>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
