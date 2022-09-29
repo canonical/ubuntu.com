@@ -1,0 +1,21 @@
+{% extends "credentialling/base_cube.html" %}
+
+{% block title %}Canonical Certification{% endblock %}
+
+{% block meta_description %}The Canonical Ubuntu Essentials exams certify knowledge and verify skills in general Linux, Ubuntu Desktop, and Ubuntu Server topics.{% endblock meta_description %}
+
+{% block content %}
+<div id="react-root">
+  <section class="p-strip u-no-padding--top u-align--center">
+    <div class="row">
+      <div class="col-12 u-no-margin--bottom p-card"><i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;</div>
+    </div>
+  </section>
+</div>
+
+<script
+  src="{{ versioned_static('js/dist/credEnterprisePurchasing.js') }}"
+  type="module"
+  defer
+></script>
+{% endblock %}

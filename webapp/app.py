@@ -49,6 +49,7 @@ from webapp.shop.cube.views import (
     cred_syllabus_data,
     cred_home,
     cube_microcerts,
+    cube_shop,
     cube_study_labs_button,
     get_microcerts,
     post_microcerts_purchase,

@@ -430,3 +430,7 @@ def cred_syllabus_data(**kawrgs):
         syllabus_data=syllabus_data,
         exam_name=exam_name,
     )
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cube_shop(**kwargs):
+    return flask.render_template("credentialling/shop/index.html")
