@@ -38,10 +38,34 @@ const Feature = () => {
               until 2030 (extended from 2025), including:
             </p>
             <div className="logos-wrapper">
-              <img src="https://placekitten.com/91/40" alt="" />
-              <img src="https://placekitten.com/91/40" alt="" />
-              <img src="https://placekitten.com/91/40" alt="" />
-              <img src="https://placekitten.com/91/40" alt="" />
+              <img
+                src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
+                alt=""
+              />
             </div>
           </div>
           <hr />
@@ -51,10 +75,34 @@ const Feature = () => {
               until 2030 (extended from 2025), including:
             </p>
             <div className="logos-wrapper">
-              <img src="https://placekitten.com/91/40" alt="" />
-              <img src="https://placekitten.com/91/40" alt="" />
-              <img src="https://placekitten.com/91/40" alt="" />
-              <img src="https://placekitten.com/91/40" alt="" />
+              <img
+                src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
+                alt=""
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
+                alt=""
+              />
             </div>
           </div>
         </Col>
