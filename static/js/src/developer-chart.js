@@ -64,8 +64,12 @@ function createChart(dataset, id) {
       })
     );
 
+  var xAxis = d3.svg.axis().scale(x).ticks(5).orient("top");
   var yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
 
+  var gx = svg.append("g").attr("class", "x axis").attr( "transform",
+    "translate(45, " + (5) + ")"
+  ).transition().call(xAxis);
   var gy = svg.append("g").attr("class", "y axis").call(yAxis);
 
   var bars = svg.selectAll(".bar").data(data).enter().append("g");
@@ -77,7 +81,7 @@ function createChart(dataset, id) {
       return y(d.label);
     })
     .attr("height", y.rangeBand())
-    .attr("x", 8)
+    .attr("x", 45)
     .attr("width", function (d) {
       return x(d.count);
     })
@@ -94,9 +98,6 @@ function createChart(dataset, id) {
     .attr("class", "label")
     .attr("y", function (d) {
       return y(d.label) + y.rangeBand() / 2 + 4;
-    })
-    .attr("x", function (d) {
-      return x(d.count) + 17;
     })
     .text(function (d) {
       return `${d.count}%`;
