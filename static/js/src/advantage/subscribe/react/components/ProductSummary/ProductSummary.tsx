@@ -33,8 +33,12 @@ const ProductSummary = () => {
             </thead>
             <tbody>
               <tr>
-                <td data-heading="Subscription">{product?.name}</td>
-                <td data-heading="Quantity">{quantity}</td>
+                <td className="p-heading--2" data-heading="Subscription">
+                  {product?.name}
+                </td>
+                <td className="p-heading--2" data-heading="Quantity">
+                  {quantity}
+                </td>
                 <td data-heading="Billing">
                   {isMonthlyAvailable(product) ? (
                     <>
@@ -59,12 +63,13 @@ const ProductSummary = () => {
                     "Billed Yearly"
                   )}
                 </td>
-                <td data-heading="Total" className="u-align--right">
-                  <strong>
-                    {currencyFormatter.format(
-                      ((product?.price.value ?? 0) / 100) * quantity
-                    )}{" "}
-                  </strong>
+                <td
+                  data-heading="Total"
+                  className="u-align--right p-heading--2"
+                >
+                  {currencyFormatter.format(
+                    ((product?.price.value ?? 0) / 100) * (quantity ?? 0)
+                  )}{" "}
                   <p className="p-text--small">
                     per {period === Periods.yearly ? "year" : "month"}
                   </p>
