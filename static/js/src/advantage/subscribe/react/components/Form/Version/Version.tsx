@@ -4,6 +4,7 @@ import classNames from "classnames";
 import {
   isPublicCloud,
   LTSVersions,
+  ProductTypes,
 } from "advantage/subscribe/react/utils/utils";
 import {
   defaultValues,
@@ -36,8 +37,12 @@ const CISComingSoon = (
 );
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate = "Extended Security Maintenance (ESM) until ";
+const AAD =
+  "Advanced Active Directory integration including native GPO policy support, custom script execution and privilege management";
 
-const versionDetails: { [key in LTSVersions]: Array<React.ReactNode> } = {
+const PhysicalServerVersionDetails: {
+  [key in LTSVersions]: Array<React.ReactNode>;
+} = {
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
@@ -85,8 +90,65 @@ const versionDetails: { [key in LTSVersions]: Array<React.ReactNode> } = {
   ],
 };
 
+const DesktopVersionDetails: {
+  [key in LTSVersions]: Array<React.ReactNode>;
+} = {
+  [LTSVersions.jammy]: [
+    `${ESMEndDate} 2032`,
+    AAD,
+    livepatch,
+    FIPSComingSoon,
+    CISComingSoon,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+  ],
+  [LTSVersions.focal]: [
+    `${ESMEndDate} 2030`,
+    AAD,
+    livepatch,
+    FIPS,
+    CISBenchmarkAndAutomation,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+  ],
+  [LTSVersions.bionic]: [
+    `${ESMEndDate} 2028`,
+    livepatch,
+    FIPS,
+    CISBenchmark,
+    CommonCriteria,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+  ],
+  [LTSVersions.xenial]: [
+    `${ESMEndDate} 2026`,
+    livepatch,
+    FIPS,
+    CISBenchmark,
+    CommonCriteria,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+  ],
+  [LTSVersions.trusty]: [
+    `${ESMEndDate} 2024`,
+    livepatch,
+    KVMDrivers,
+    landscape,
+    knowledgeBase,
+  ],
+};
+
 const Version = () => {
   const { version, setVersion, productType } = useContext(FormContext);
+
+  const versionDetails =
+    productType === ProductTypes.desktop
+      ? DesktopVersionDetails
+      : PhysicalServerVersionDetails;
 
   const versionsSegmentedControl = (
     <div className="p-segmented-control">
