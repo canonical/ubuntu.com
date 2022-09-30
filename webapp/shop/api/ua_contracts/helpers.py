@@ -1,5 +1,7 @@
 from datetime import datetime
 from typing import Dict, List, Optional
+import os
+from distutils.util import strtobool
 
 import pytz
 from dateutil.parser import parse
@@ -225,7 +227,7 @@ def get_user_subscription_statuses(
         statuses["has_access_to_support"] = True
         statuses["has_access_to_token"] = True
 
-    if type == "free":
+    if type == "free" or strtobool(os.getenv("STORE_MAINTENANCE", "false")):
         return statuses
 
     if renewal is None or (renewal and renewal.status != "closed"):
