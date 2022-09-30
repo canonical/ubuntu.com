@@ -51,17 +51,19 @@
             <a href="{{ request_url }}">Или попробуйте отправить повторно</a>
           </p>
 
-      {% else %}
-        {% if "thank_you_text" in metadata %}
-          <p>{{ metadata["thank_you_text"] }}</p>
         {% else %}
-        <p>
-          {{ resource_name }} готов к загрузке.
-        </p>
-        {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
-        <p>
-          <a class="p-button--positive" href="{{ resource_url }}">Загрузить</a>
-        </p>
+          {% if "thank_you_text" in metadata %}
+            <p>{{ metadata["thank_you_text"] }}</p>
+          {% else %}
+          <p>
+            {{ resource_name }} готов к загрузке.
+          </p>
+          {% endif %}
+          {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+          <p>
+            <a class="p-button--positive" href="{{ resource_url }}">Загрузить</a>
+          </p>
+          {% endif %}
         {% endif %}
       {% else %}
         <p>

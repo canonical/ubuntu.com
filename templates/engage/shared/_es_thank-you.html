@@ -58,10 +58,12 @@
           <p>
             El {{ resource_name }} est&aacute; listo para descargar.
           </p>
+        {% endif %}
         {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
           <p>
             <a class="p-button--positive" href="{{ resource_url }}">Descargar</a>
           </p>
+        {% endif %}
       {% endif %}
     {% else %}
       <p>

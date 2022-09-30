@@ -250,20 +250,17 @@ context("Interactive marketo forms", () => {
   );
 
   // wrote separate test for /automotive page as it is an interactive single-paged form
-  it(
-    "should check interactive contact modal on /automotive",
-    () => {
-      cy.visit("/automotive");
-      cy.acceptCookiePolicy();
-      cy.findByTestId("interactive-form-link").click();
-      cy.findByLabelText(/First name/).type("Test");
-      cy.findByLabelText(/Last name:/).type("Test");
-      cy.findByLabelText(/Email address:/).type("test@gmail.com");
-      cy.findByLabelText(/Phone number:/).type("07777777777");
-      cy.findByText(/Let's discuss/).click();
-      cy.url().should("include", "#success");
-    }
-  );
+  it("should check interactive contact modal on /automotive", () => {
+    cy.visit("/automotive");
+    cy.acceptCookiePolicy();
+    cy.findByTestId("interactive-form-link").click();
+    cy.findByLabelText(/First name/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Email address:/).type("test@gmail.com");
+    cy.findByLabelText(/Phone number:/).type("07777777777");
+    cy.findByText(/Let's discuss/).click();
+    cy.url().should("include", "#success");
+  });
 });
 
 context("engage forms", () => {
