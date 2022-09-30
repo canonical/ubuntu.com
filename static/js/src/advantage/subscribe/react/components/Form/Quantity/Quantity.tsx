@@ -8,7 +8,11 @@ const Quantity = () => {
   const { quantity, setQuantity, productType } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setQuantity(Number(event.target.value));
+    if (Number(event.target.value) > 0) {
+      setQuantity(Number(event.target.value));
+    } else {
+      setQuantity(null);
+    }
   };
 
   return (

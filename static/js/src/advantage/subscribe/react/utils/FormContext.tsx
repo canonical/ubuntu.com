@@ -22,8 +22,8 @@ interface FormContext {
   setSLA: React.Dispatch<React.SetStateAction<SLA>>;
   sla: SLA;
   setSupport: React.Dispatch<React.SetStateAction<Support>>;
-  quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
+  quantity: number | null;
+  setQuantity: React.Dispatch<React.SetStateAction<number | null>>;
   product: Product | null;
   period: Periods;
   setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
