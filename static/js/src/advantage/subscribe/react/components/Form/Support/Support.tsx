@@ -130,7 +130,7 @@ const Support = () => {
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
                   labelClassName="inner-support-label"
-                  label={"Infra only"}
+                  label={"Infra Support"}
                   checked={support === SupportEnum.infra}
                   value={SupportEnum.infra}
                   onChange={handleChange}
@@ -173,7 +173,7 @@ const Support = () => {
               <span className="p-radio__label" id={`apps-label`}>
                 <RadioInput
                   labelClassName="inner-support-label"
-                  label={"Apps only"}
+                  label={"Apps Support"}
                   checked={support === SupportEnum.apps}
                   value={SupportEnum.apps}
                   onChange={handleChange}
@@ -214,7 +214,7 @@ const Support = () => {
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
                   labelClassName="inner-support-label"
-                  label={"Infra & Apps"}
+                  label={"Support"}
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
                   onChange={handleChange}
@@ -282,7 +282,7 @@ const Support = () => {
         >
           <RadioInput
             inline
-            label="Infra only"
+            label="Infra Support"
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
           />
@@ -314,7 +314,7 @@ const Support = () => {
         >
           <RadioInput
             inline
-            label="Apps only"
+            label="Apps Support"
             value={SupportEnum.apps}
             checked={support === SupportEnum.apps}
           />
@@ -346,7 +346,7 @@ const Support = () => {
         >
           <RadioInput
             inline
-            label="Infra &amp; Apps"
+            label="Support"
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
           />

@@ -10,22 +10,30 @@ import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
-    name: "AWS",
+    title: "AWS",
+    name: "AWS Marketplace",
+    CTAName: "AWS marketplace",
     link:
       "https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro",
   },
   [PublicClouds.azure]: {
-    name: "Azure",
+    title: "Azure",
+    name: "Azure Marketplace",
+    CTAName: "Azure marketplace",
     link:
       "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1",
   },
   [PublicClouds.gcp]: {
-    name: "Google Cloud",
+    title: "GCP",
+    name: "Google Compute Engine",
+    CTAName: "GCE marketplace",
     link:
       "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20canonical",
   },
   [PublicClouds.oracle]: {
+    title: "Oracle",
     name: "Oracle",
+    CTAName: "Oracle marketplace",
     link: "",
   },
 };
@@ -59,7 +67,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.aws);
             }}
           >
-            {PublicCloudInfo[PublicClouds.aws].name}
+            {PublicCloudInfo[PublicClouds.aws].title}
           </button>
           <button
             className="p-segmented-control__button"
@@ -72,7 +80,7 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.azure);
             }}
           >
-            {PublicCloudInfo[PublicClouds.azure].name}
+            {PublicCloudInfo[PublicClouds.azure].title}
           </button>
           <button
             className="p-segmented-control__button"
@@ -85,20 +93,21 @@ const ProductType = () => {
               setPublicCloud(PublicClouds.gcp);
             }}
           >
-            {PublicCloudInfo[PublicClouds.gcp].name}
+            {PublicCloudInfo[PublicClouds.gcp].title}
           </button>
         </div>
       </div>
 
       <p>
-        <strong>{PublicCloudInfo[publicCloud]?.name}</strong>
+        <strong>{PublicCloudInfo[publicCloud]?.title}</strong>
       </p>
       <p>
         You can buy Ubuntu Pro on the {PublicCloudInfo[publicCloud]?.name} at an
-        hourly, per-machine rate, with all UA software features included.
+        hourly, per-machine rate. If you need tech support as well,{" "}
+        <a href="/support/contact-us">contact us</a>.
       </p>
       <Button element="a" href={PublicCloudInfo[publicCloud]?.link}>
-        Visit {PublicCloudInfo[publicCloud]?.name}
+        Visit {PublicCloudInfo[publicCloud]?.CTAName}
       </Button>
     </>
   );

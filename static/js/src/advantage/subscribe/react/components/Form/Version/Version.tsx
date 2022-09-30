@@ -10,76 +10,78 @@ import {
   FormContext,
 } from "advantage/subscribe/react/utils/FormContext";
 
-const livepatch = "Kernel Livepatch to avoid unscheduled reboots";
+const livepatch =
+  "Kernel Livepatch  to apply kernel patches at run time without the need for an immediate reboot";
 const landscape = "Ubuntu systems management with Landscape";
-const knowledgeBase = "Knowledge base access";
-const KVMDrivers = "Certified Windows drivers for KVM guests";
-const CISBenchmark = "CIS benchmark";
-const CISBenchmarkAndAutomation = "CIS benchmark and automation tooling";
+const knowledgeBase = "Access to the Knowledge base";
+const KVMDrivers = "Certified Windows Drivers for KVM guests";
+const CISBenchmark =
+  "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG configuration guide";
+const CISBenchmarkAndAutomation =
+  "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG tooling & automation";
 const FIPS =
-  "Certified compliance with FIPS 140-2 Level 1 certified crypto modules validated by NIST";
+  "FIPS 140-2 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS compliance";
 const FIPSComingSoon = (
   <>
-    Certified compliance with FIPS 140-2 Level 1 certified crypto modules
-    validated by NIST
+    FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS
+    compliance
     <Chip value="Coming soon" appearance="positive" className="is-dense" />
   </>
 );
-const DISA = "DISA STIG";
+const CISComingSoon = (
+  <>
+    Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
+    <Chip value="Coming soon" appearance="positive" className="is-dense" />
+  </>
+);
 const CommonCriteria = "Common Criteria EAL2";
 const ESMEndDate = "Extended Security Maintenance (ESM) until ";
-const MicrosoftActiveDirectory =
-  "Advanced Group Policy Object support for Microsoft Active Directory on Ubuntu Desktops";
 
 const versionDetails: { [key in LTSVersions]: Array<React.ReactNode> } = {
   [LTSVersions.jammy]: [
     `${ESMEndDate} 2032`,
     livepatch,
-    KVMDrivers,
     FIPSComingSoon,
-    CISBenchmarkAndAutomation,
+    CISComingSoon,
+    KVMDrivers,
     landscape,
     knowledgeBase,
-    MicrosoftActiveDirectory,
   ],
   [LTSVersions.focal]: [
     `${ESMEndDate} 2030`,
     livepatch,
-    KVMDrivers,
     FIPS,
     CISBenchmarkAndAutomation,
+    KVMDrivers,
     landscape,
     knowledgeBase,
-    MicrosoftActiveDirectory,
   ],
   [LTSVersions.bionic]: [
     `${ESMEndDate} 2028`,
     livepatch,
+    FIPS,
+    CISBenchmark,
+    CommonCriteria,
+    KVMDrivers,
     landscape,
     knowledgeBase,
-    KVMDrivers,
-    FIPS,
-    CISBenchmarkAndAutomation,
-    DISA,
   ],
   [LTSVersions.xenial]: [
     `${ESMEndDate} 2026`,
     livepatch,
+    FIPS,
+    CISBenchmark,
+    CommonCriteria,
+    KVMDrivers,
     landscape,
     knowledgeBase,
-    KVMDrivers,
-    FIPS,
-    CommonCriteria,
-    CISBenchmarkAndAutomation,
-    DISA,
   ],
   [LTSVersions.trusty]: [
     `${ESMEndDate} 2024`,
     livepatch,
+    KVMDrivers,
     landscape,
     knowledgeBase,
-    KVMDrivers,
-    CISBenchmark,
   ],
 };
 
@@ -107,7 +109,7 @@ const Version = () => {
                 setVersion(key as LTSVersions);
               }}
             >
-              {key}
+              {key} LTS
             </button>
           );
         })}
@@ -126,7 +128,7 @@ const Version = () => {
       <Row>
         <Col size={12}>
           <h4 className="p-heading--5">
-            All subscriptions for Ubuntu Pro {version} include:
+            All subscriptions for Ubuntu Pro {version} LTS include:
           </h4>
           <List
             className="versions-features"

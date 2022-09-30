@@ -24,7 +24,7 @@ export default function PaymentModal({ isHidden }: Props) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Ubuntu Advantage service terms
+        Ubuntu Pro service terms
       </a>
     </>
   );
