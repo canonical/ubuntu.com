@@ -180,11 +180,15 @@
   function renderTableRows(packages) {
     let rows = "";
     packages.forEach(function(package) {
+      let licence = ''
+      if (package.copyright_url && package.licenses) {
+        licence = `<td data-heading="Licenses"><a href="${package.copyright_url}">${package.licenses}</a></td>`;
+      }
       rows += `<tr>
         <td data-heading="Name">${package.name}</td>
         <td data-heading="Version">${package.version}</td>
         <td data-heading="Architecture">${package.component}</td>
-        <td data-heading="Licenses"><a href="${package.copyright_url}">${package.licenses}</a></td>
+        ${licence}
       </tr>`;
     });
     return rows;
