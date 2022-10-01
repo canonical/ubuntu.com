@@ -15,6 +15,7 @@
   @include ubuntu-p-strip-suru-square-darksuru;
   @include ubuntu-p-strip-suru-square-lightsuru;
   @include ubuntu-p-strip-suru-square-suru;
+  @include ubuntu-p-strip-x-deep;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -986,5 +987,16 @@
     > div .cube-access {
       position: relative;
     }
+  }
+}
+
+@mixin ubuntu-p-strip-x-deep {
+  .p-strip.is-x-deep {
+    $spv--strip-x-deep: ($spv--strip-deep + $spv--x-large*1);
+    padding: $spv--strip-x-deep * 0.5 0 $spv--strip-x-deep * 0.5;
+
+    @media (min-width: $breakpoint-large) {
+      padding: $spv--strip-x-deep 0;
+    } 
   }
 }
