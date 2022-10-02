@@ -776,3 +776,76 @@ html {
     }
   }
 }
+
+.p-testimonial {
+  @extend %fixed-width-container;
+
+  padding-bottom: $sph--x-large;
+  position: relative;
+
+  @supports (display: grid) {
+    display: grid;
+    grid-gap: 0 map-get($grid-gutter-widths, small);
+    grid-template-columns: repeat($grid-columns-small, minmax(0, 1fr));
+    // grid-template-rows: auto;
+    grid-auto-rows: minmax(min-content, max-content);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $grid-max-width;
+
+    // set static gutter width per breakpoint
+    @media (min-width: $threshold-4-6-col) {
+      grid-gap: 0 map-get($grid-gutter-widths, default);
+      grid-template-columns: repeat($grid-columns-medium, minmax(0, 1fr));
+    }
+
+    @media (min-width: $threshold-6-12-col) {
+      grid-gap: 0 map-get($grid-gutter-widths, default);
+      grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+    }
+  }
+
+  .p-testimonial__logo {
+    @media (max-width: $threshold-4-6-col - 1) {
+      grid-column: 1/span 2;
+      grid-row: 2/span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: $threshold-6-12-col - 1) {
+      grid-column: 1/span 2;
+      // grid-row: 1/span 1;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 1/span 2;
+    }
+  }
+
+  .p-testimonial__author {
+    @media (max-width: $threshold-4-6-col - 1) {
+      grid-column: 3/span 2;
+      grid-row: 2/span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: $threshold-6-12-col - 1) {
+      grid-column: 3/span 1;
+      // grid-row: 1/span 1;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 3/span 3;
+      // grid-row: 1/span 1;
+    }
+  }
+
+  .p-testimonial__quote {
+    @media (max-width: $threshold-4-6-col - 1) {
+      grid-column: 1/span 4;
+      grid-row: 1/span 1; 
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: $threshold-6-12-col - 1) {
+      grid-column: 4/span 3;
+      // grid-row: 2/span 1;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 7/span 6;
+      // grid-row: 1/span 1;
+    }
+  }
+}
