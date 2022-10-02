@@ -992,11 +992,11 @@
 
 @mixin ubuntu-p-strip-x-deep {
   .p-strip.is-x-deep {
-    $spv--strip-x-deep: ($spv--strip-deep + $spv--x-large*1);
+    $spv--strip-x-deep: ($spv--strip-deep + $spv--x-large);
     padding: $spv--strip-x-deep * 0.5 0 $spv--strip-x-deep * 0.5;
 
     @media (min-width: $breakpoint-large) {
       padding: $spv--strip-x-deep 0;
-    } 
+    }
   }
 }
