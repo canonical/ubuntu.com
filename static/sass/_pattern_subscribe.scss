@@ -1,6 +1,6 @@
 @mixin ubuntu-p-ua-subscribe {
   .product-selector {
-    padding-top: 2rem;
+    padding-top: 6rem;
 
     counter-reset: headings;
 
@@ -18,16 +18,25 @@
   .product-selector h2 {
     counter-increment: headings;
     margin-bottom: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.2rem;
+
+    &::before {
+      @extend .p-heading--3;
+      content: counter(headings);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      height: 2.5rem;
+      width: 2.5rem;
+      border: 1px solid;
+      border-radius: 100%;
+      margin-top: 4px;
+    }
   }
 
-  .product-selector h2::before {
-    @extend .p-heading--3;
-    border: 1px solid;
-    border-radius: 100%;
-    content: counter(headings);
-    margin-right: 1.2rem;
-    padding: 2px 10px 2px 10px;
-  }
 
   .product-selector .p-card--radio--column.is-selected {
     box-shadow: 0px 4px 4px rgb(0 0 0 / 5%), 0px 2px 16px rgb(0 0 0 / 5%),
@@ -60,12 +69,12 @@
     padding-left: 3.6rem;
 
     > .heading {
-      height: 110px;
+      height: 125px;
       padding-top: 1.5rem;
     }
 
     > .support-heading {
-      padding: 1rem 0 13px 0;
+      padding: 1rem 0 12px 0;
     }
 
     > .support-row {
@@ -90,7 +99,7 @@
     &.col-4 {
       > *:not(:last-child)::before {
         width: calc(3.6rem + 300% + 3.6rem);
-        top: 1.8rem;
+        top: 2.3rem;
       }
     }
   }
@@ -105,9 +114,10 @@
   }
 
   .support-row {
-    height: 2rem;
+    height: 3rem;
     text-align: left;
     margin: 0 1rem;
+    padding-top: 1rem;
 
     > i {
       margin-right: 1rem;
@@ -138,42 +148,6 @@
 
   .product-selector .p-card--radio .p-radio__label {
     font-weight: bold;
-  }
-
-  .p-table--selectable th {
-    position: relative;
-    overflow: visible;
-    text-transform: none;
-    font-size: large;
-  }
-
-  .p-table--selectable td {
-    vertical-align: middle;
-  }
-
-  .p-table--selectable th:has(input[type="radio"]) {
-    text-align: center;
-    &.selected {
-      border-color: #757575;
-      border-style: solid;
-      border-width: 1px 1px 0px 1px;
-    }
-  }
-
-  .p-table--selectable td.selected {
-    border-color: #757575;
-    border-style: solid;
-    border-width: 0px 1px 0px 1px;
-
-    &:last-child {
-      border-bottom: 1px;
-    }
-  }
-
-  .p-table--selectable tr:last-child td.selected {
-    border-bottom: 1px;
-    border-color: #757575;
-    border-style: solid;
   }
 
   .version-features-section {

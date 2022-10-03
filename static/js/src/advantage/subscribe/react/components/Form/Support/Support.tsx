@@ -373,9 +373,14 @@ const Support = () => {
             <hr className="u-sv2" />
           </Col>
           <Col size={6}>
-            <p className="p-heading--5">Response Time</p>
+            <p className="p-heading--5" style={{ paddingLeft: "3.6rem" }}>
+              Response Time
+            </p>
           </Col>
-          <Col size={6}>
+          <Col
+            size={4}
+            style={{ marginLeft: "-1rem", width: "calc(100% + 1.4rem)" }}
+          >
             <div className="p-segmented-control">
               <div
                 className="p-segmented-control__list"
