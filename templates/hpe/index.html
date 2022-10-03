@@ -1,0 +1,43 @@
+{% extends "hpe/_base_hpe.html" %}
+
+{% block title %}{% endblock title %}
+
+{% block meta_description %}{% endblock meta_description %}
+
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1A2__NxIU6jFKprs5thPNtIPfOc7E9VhZEoPFu01lT_8/edit{% endblock meta_copydoc %}
+{% block content %}
+
+<section class="p-strip--suru-bottomed">
+  <div class="row">
+    <div class="col-7">
+      <h1>HPE and Canonical</h1>
+      <p class="p-heading--4">We are powering HPE edge-to-cloud infrastructure with Canonical proven, innovative and competitive open source software services.</p>
+      <p>Canonical provides HPE the capacity to support everything open source.</p>
+      <p>HPE and Canonical have a long-standing relationship, certifying Ubuntu on HPE hardware. Now, you can go beyond the operating system and engage with us on hybrid cloud, AI/ML, and open source support projects.</p>
+      <p>
+        <a href="#contact-us" class="p-button--positive">Get in touch</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/81564112-Hewlett_Packard_Enterprise_logo.svg",
+        alt="",
+        width="400",
+        height="167",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section id="contact-us" class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Contacts</h2>
+    <p>Do you want more information about the Canonical and HPE partnership or how to purchase our joint solutions? Contact us!</p>
+    <p><a href="" class="p-button">Send us a message</a></p>
+  </div>
+</section>
+{% endblock content %}
