@@ -240,7 +240,6 @@ fieldset:last-child {
 // XXX Steve: Pull quote colour override
 .p-pull-quote,
 .p-pull-quote--large {
-
   .p-pull-quote__quote:first-of-type::before,
   .p-pull-quote__quote:last-of-type::after {
     color: $color-brand;
@@ -376,8 +375,7 @@ summary {
   }
 
   @media only screen and (min-width: $breakpoint-small) {
-
-    td, 
+    td,
     th {
       &:nth-child(1) {
         width: 40%;
@@ -454,8 +452,7 @@ summary {
 
 .p-list--no-borders {
   .p-list__item {
-
-    &::after, 
+    &::after,
     &:last-of-type {
       border-bottom: 0 !important;
     }
@@ -644,21 +641,21 @@ body {
 }
 
 .p-takeover-animation {
-  animation: FadeIn map-get($animation-duration, "snap") map-get($animation-easing, "in");
+  animation: FadeIn map-get($animation-duration, "snap")
+    map-get($animation-easing, "in");
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
-
   &.is-loaded {
     animation-delay: 0s !important;
 
     .col-7 {
       animation: SlideInFromLeft map-get($animation-duration, "fast")
-       map-get($animation-easing, "out");
+        map-get($animation-easing, "out");
     }
 
     .col-5 {
       animation: SlideInFromRight map-get($animation-duration, "fast")
-       map-get($animation-easing, "out");
+        map-get($animation-easing, "out");
     }
   }
 
