@@ -59,9 +59,9 @@
             <p>{{ resource_name }} ist jetzt zum Download bereit.</p>
           {% endif %}
           {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
-            <p>
-              <a class="p-button--positive" href="{{ resource_url }}">Herunterladen</a>
-            </p>
+          <p>
+            <a class="p-button--positive" href="{{ resource_url }}">Herunterladen</a>
+          </p>
           {% endif %}
         {% endif %}
       {% else %}
