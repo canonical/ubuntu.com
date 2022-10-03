@@ -22,11 +22,11 @@ Each subscription can be purchased at one of three support levels - **no support
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-essential">Security and compliance</h2>
+<h2 id="uprosd-security-and-compliance">Security and compliance</h2>
 
 As an Ubuntu Pro or Ubuntu Pro (Infra-only) customer, with or without support, you are entitled to the following:
 
-1. <span id="uasd-esm">Expanded Security Maintenance (ESM)<span>
+1. <span id="uprosd-esm">Expanded Security Maintenance (ESM)<span>
     1. ESM provides available critical, high, and selected medium CVE fixes for a number of packages, as specified below
     2. All Ubuntu Pro subscriptions cover packages in the Ubuntu Main repository between [End of Standard Support and End of Life](https://wiki.ubuntu.com/Releases)
     3. Full Ubuntu Pro subscriptions also cover packages in the Ubuntu Universe repository between the [Release date and End of Life](https://wiki.ubuntu.com/Releases). This coverage is not included in Ubuntu Pro (Infra-only) subcriptions, with or without support.
@@ -38,16 +38,16 @@ As an Ubuntu Pro or Ubuntu Pro (Infra-only) customer, with or without support, y
 2. <span id="other-security-fixes">Other security fixes</span>
     5. Security fixes for OpenStack, Ceph, MAAS
     6. The scope of security fixes for each of those products is described in their respective sections below
-3. <a id="uasd-certified" href="/security/certifications">Certified components for compliance, hardening and audit</a>
+3. <a id="uprosd-certified" href="/security/certifications">Certified components for compliance, hardening and audit</a>
     7. FIPS 140-2 Level 1 certified modules for Ubuntu 20.04 LTS, 18.04 LTS and 16.04 LTS
     8. FIPS 140-3 Level 1 certified modules for Ubuntu 22.04 LTS (coming soon)
     9. Common Criteria EAL2 for Ubuntu 18.04 LTS and 16.04 LTS
     10. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 18.04 LTS and 16.04 LTS 
     11. Ubuntu Security Guide (USG) for Ubuntu 20.04 LTS which includes certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
     12. Ubuntu Security Guide (USG) Ubuntu 22.04 LTS (coming soon) which will include certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
-4. <a id="uasd-landscape" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
+4. <a id="uprosd-landscape" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
     13. Access to Canonical's Landscape systems management and the knowledge base
-5. <a id="uasd-livepatch" href="/livepatch">Kernel Livepatch</a>
+5. <a id="uprosd-livepatch" href="/livepatch">Kernel Livepatch</a>
     14. Access to Canonical's kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
     15. Kernel Livepatch may provide non-security bug fixes as kernel livepatches
     16. Only the [default LTS kernel](https://ubuntu.com/about/release-cycle) is available for livepatching. This includes its backport as the last HWE kernel to the previous LTS release
@@ -55,21 +55,21 @@ As an Ubuntu Pro or Ubuntu Pro (Infra-only) customer, with or without support, y
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-standard-and-advanced">Weekday or 24/7 support</h2>
+<h2 id="uprosd-standard-and-advanced">Weekday or 24/7 support</h2>
 
 As a weekday or 24/7 support customer, you are entitled to all of the benefits of the Ubuntu Pro or Ubuntu Pro (Infra-only) customer, as set out in the security and compliance section above, plus:
 
-1. <span id="uasd-support-levels">Support scope and levels</span>:
+1. <span id="uprosd-support-levels">Support scope and levels</span>:
     1. Infra support: weekday or 24/7
     2. Apps support: weekday or 24/7 
     3. Full (Infra + Apps) support: weekday or 24/7
-2. <span id="uasd-infra-and-apps">Included in all support levels</span>:
-    4. <span id="uasd-ubuntu-releases">Ubuntu releases</span>
+2. <span id="uprosd-infra-and-apps">Included in all support levels</span>:
+    4. <span id="uprosd-ubuntu-releases">Ubuntu releases</span>
         1. Break-fix support for standard installation, configuration, maintenance, and troubleshooting and usage of any Ubuntu LTS release when installed using official sources and within [Ubuntu lifecycle](https://www.ubuntu.com/about/release-cycle). Bug-fix support is not offered after the [End of Standard Support](https://wiki.ubuntu.com/Releases)
-    5. <span id="uasd-certified-hardware">Certified hardware</span>
+    5. <span id="uprosd-certified-hardware">Certified hardware</span>
         2. Ubuntu Certified hardware has passed Canonical's extensive testing and review process. More information about the Ubuntu certification process and a list of certified hardware can be found on the Ubuntu Certification page: [http://www.ubuntu.com/certification](http://www.ubuntu.com/certification)
         3. Full support applies only with respect to customer's hardware that has been certified. In the event a customer requests the services with respect to hardware, which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description
-    6. <span id="uasd-packages-and-kernels">Supported services</span>
+    6. <span id="uprosd-packages-and-kernels">Supported services</span>
         4. The following packages, kernels and services are within the scope of support:
             1. Canonical maintained packages in Ubuntu Main repository including the "proposed" and "backports" repository pockets
             2. Packages in the Ubuntu Cloud Archive
@@ -78,8 +78,8 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
             5. Landscape
             6. Kernel Livepatch
         5. Support is not provided for any packages that have been modified
-    7. <span id="uasd-kubernetes">Kubernetes</span>
-        6. <span id="uasd-kubernetes-cluster">Kubernetes cluster Full-Stack Support requirements</span>:
+    7. <span id="uprosd-kubernetes">Kubernetes</span>
+        6. <span id="uprosd-kubernetes-cluster">Kubernetes cluster Full-Stack Support requirements</span>:
             7. Kubernetes installations deployed via:
                 1. Charmed Kubernetes in at least the minimum deployment configuration
                 2. A kubeadm-deployed cluster of unmodified upstream Kubernetes binaries as published by the CNCF deployed on Ubuntu as base OS validated by Canonical
@@ -90,18 +90,18 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
                 4. Weekday or 24/7 Support for N-2 (the latest and previous two) releases in the stable release channel
                 5. ESM security patching for N-4 (the latest and previous four) releases in the stable release channel
             11. For any deployment of Charmed Kubernetes carried out by Canonical while under contract for a deployment, which results in the customisation of any Charms, the customisation will be supported for 90 days after completion of the deployment
-        7. <span id="uasd-kubernetes-support">Limited Kubernetes Support</span>
+        7. <span id="uprosd-kubernetes-support">Limited Kubernetes Support</span>
             12. Unless the Full-Stack Support requirements set out above are met, support is limited to Bug-fix Support for:
                 6. The software packages and Charms necessary for running Charmed Kubernetes
                 7. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io
-3. <span id="uasd-infra-only">Support &mdash; included in Infra and Full support, but not included in Apps support</span>:
-    8. <span id="uasd-openstack">OpenStack</span>
+3. <span id="uprosd-infra-only">Support &mdash; included in Infra and Full support, but not included in Apps support</span>:
+    8. <span id="uprosd-openstack">OpenStack</span>
         8. OpenStack software support depends on the Ubuntu release deployed on the underlying Nodes:
             13. The [version of OpenStack provided initially in the release of a LTS version of Ubuntu ](https://www.ubuntu.com/about/release-cycle )is supported for the entire lifecycle of that Ubuntu version
             14. Releases of OpenStack after an LTS version of Ubuntu are available in the Ubuntu Cloud Archive. Each OpenStack release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable OpenStack version
         9. OpenStack support requires all Nodes that participate in the OpenStack Cloud to be covered under an active support agreement
         10. OpenStack support includes access to use available Canonical provided Microsoft-certified drivers in Windows Guest instances
-        11. <span id="uasd-full-openstack-support">Full OpenStack support</span>
+        11. <span id="uprosd-full-openstack-support">Full OpenStack support</span>
             15. Requirements:
                 8. In addition to the requirements set out above, hardware must meet the [minimum criteria](https://assets.ubuntu.com/v1/193373c7-canonical-foundation-cloud-requirements-2018-07-18.pdf) for Charmed OpenStack
                 9. The OpenStack Cloud was deployed via a Private Cloud Build or was validated through a Cloud Validation engagement
@@ -112,40 +112,40 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
                 13. Upgrades of OpenStack components as part of the regular Ubuntu LTS maintenance cycle
                 14. Upgrades between versions of OpenStack or LTS versions of Ubuntu, Juju and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Private Cloud Build or Cloud Validation Package
                 15. Addition of new cloud Nodes and replacement of existing Nodes with new Nodes of equivalent capacity are both supported
-        12. <span id="uasd-limited-openstack-support">Limited OpenStack support</span>
+        12. <span id="uprosd-limited-openstack-support">Limited OpenStack support</span>
             17. OpenStack clouds not deployed through a [Private Cloud Build](https://ubuntu.com/pricing/consulting) or validated using the Cloud Validation Package are limited to Bug-fix Support
             18. OpenStack support does not include support beyond Bug-fix Support during the deployment or configuration of an OpenStack cloud
-        13. <span id="uasd-exclusions">Exclusions</span>
+        13. <span id="uprosd-exclusions">Exclusions</span>
             19. Full Stack Support excludes customisations which are not considered Valid Customisations
             20. Support for workloads other than those required to run an OpenStack deployment
             21. Support for Guest Instances other than Cloud Guests
-    9. <span id="uasd-charms-support">Charms support</span>
+    9. <span id="uprosd-charms-support">Charms support</span>
         14. Each Charm version is supported for one year from the release date
         15. Canonical will not provide support for any Charms that have been modified from the [supported version](https://docs.openstack.org/charm-guide/latest/reference/openstack-charms.html)
-    10. <span id="uasd-storage-support">Storage support</span>
+    10. <span id="uprosd-storage-support">Storage support</span>
         16. Canonical will provide support for 192TB of raw storage per storage node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 192TB free tier of raw storage per node
         17. If the Node allowance is exceeded, [additional Storage Support](https://ubuntu.com/pricing/infra) needs to be acquired
         18. Customers who have purchased Storage Support for an unlimited amount of storage are limited to support in a single Ceph Cluster or Swift Cluster
-    11. <span id="uasd-maas-support">MAAS support</span>
+    11. <span id="uprosd-maas-support">MAAS support</span>
         19. In order to be eligible for MAAS support, all machines connected to a MAAS need to be covered under a MAAS support agreement or Ubuntu Pro
         20. To be eligible for MAAS support, MAAS support must be purchased for all machines not covered by Ubuntu Pro
         21. Versions of MAAS are supported on a corresponding LTS version of Ubuntu for a period of two years from the date that the MAAS version is released
-        22. <span id="uasd-maas-support-scope">MAAS support scope</span>:
+        22. <span id="uprosd-maas-support-scope">MAAS support scope</span>:
             22. Support for the ability to boot machines using operating system images provided by Canonical
             23. Support for the tooling required to convert certified operating system images not provided by Canonical into MAAS images
-        23. <span id="uasd-out-of-scope">Out of scope</span>. MAAS support does not provide:
+        23. <span id="uprosd-out-of-scope">Out of scope</span>. MAAS support does not provide:
             24. Support for workloads, packages and service components other than those required to run a MAAS deployment
             25. Support for the servers that the MAAS service runs on
             26. Support for the Nodes deployed using MAAS but not covered under Ubuntu Pro
             27. Support for design and implementation details of a MAAS deployment
             28. Access to Landscape and Canonical Livepatch Service for machines deployed with MAAS
-    12. <span id="uasd-ubuntu-assurance-program">Ubuntu Assurance Program</span>
+    12. <span id="uprosd-ubuntu-assurance-program">Ubuntu Assurance Program</span>
         24. Ubuntu Pro + support customers are entitled to the [Ubuntu Assurance Programme](http://www.ubuntu.com/legal/ubuntu-advantage/assurance). Canonical may update the Assurance Programme and its terms periodically
-4. <span id="uasd-apps-only">Support &mdash; included in Apps support and Full support, but not included in Infra support</span>
+4. <span id="uprosd-apps-only">Support &mdash; included in Apps support and Full support, but not included in Infra support</span>
     13. Canonical will provide phone and ticket support to the Applications installed from Ubuntu Repositories. The list of supported applications is at: https://ubuntu.com/support
 
 
-<h2 id="uasd-support-exclusions">Support exclusions</h2>
+<h2 id="uprosd-support-exclusions">Support exclusions</h2>
 
 1. Apps only support does not include support for Hypervisor, OpenStack, MAAS, Ceph or Swift storage. It does not include providing native images for a chosen hypervisor
 2. Ubuntu Pro Desktop support does not provide:
@@ -156,9 +156,9 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-add-ons">Add Ons</h2>
+<h2 id="uprosd-add-ons">Add Ons</h2>
 
-<h3 id="uasd-managed-services">Managed Services</h3>
+<h3 id="uprosd-managed-services">Managed Services</h3>
 
 1. Managed Services are an add-on to Ubuntu Pro + 24/7 support (for Infra support, Apps support and Full support). When added on, Canonical will manage the Environment as described below. Guests Instance running in the Environment receive the Ubuntu Advantage subscriptions and support
 2. Following Canonical's building and initialising of the Environment (subject to separate service engagement), the Managed Service will re-deploy the Environment to reset credentials and validate the deployment process. The Managed Service will also provide documentation providing further detail on the working relationship with Canonical. Additional services can be offered subject to purchasing Professional Support Services (as listed in the section below)
@@ -231,7 +231,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
         13. Network for instances
     32. Downtime must be directly attributable to Canonical in order for it to count against the service level and is measured across a 12 month period. Planned maintenance windows and any requests by the customer are not taken into account when calculating uptime. Planned maintenance is carried out as required by Canonical, Monday to Friday during Canonical working days
 
-<h3 id="uasd-support-services">Professional Support Services</h3>
+<h3 id="uprosd-support-services">Professional Support Services</h3>
 
 1. Technical Account Manager (TAM) is an add-on service to enhance support
     1. Canonical will provide a TAM, who will perform the following services for up to 10 hours per week during local Business Hours during the term of service:
@@ -266,7 +266,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-support-services-process">Support Services Process</h2>
+<h2 id="uprosd-support-services-process">Support Services Process</h2>
 
 1. Service initiation
     1. Upon commencement of the services, Canonical will provide access for a single technical representative to Landscape, the support portal, and the online knowledge base
@@ -346,7 +346,7 @@ Where services are denoted to be “Embedded” the following applies:
 
 <div class="p-top"><a href="#" class="p-top__link">Back to top</a></div>
 
-<h2 id="uasd-definitions">Definitions</h2>
+<h2 id="uprosd-definitions">Definitions</h2>
 
 **Applications:** Applications Supported or Managed by Canonical (Managed Applications as described in the Add-ons section, under Managed Services, and at [https://ubuntu.com/managed](https://ubuntu.com/managed))
 
