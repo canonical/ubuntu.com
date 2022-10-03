@@ -22,8 +22,8 @@ interface FormContext {
   setSLA: React.Dispatch<React.SetStateAction<SLA>>;
   sla: SLA;
   setSupport: React.Dispatch<React.SetStateAction<Support>>;
-  quantity: number | null;
-  setQuantity: React.Dispatch<React.SetStateAction<number | null>>;
+  quantity: number | string;
+  setQuantity: React.Dispatch<React.SetStateAction<number | string>>;
   product: Product | null;
   period: Periods;
   setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
@@ -55,7 +55,7 @@ interface FormProviderProps {
   initialFeature?: Features;
   initialSLA?: SLA;
   initialSupport?: Support;
-  initialQuantity?: number;
+  initialQuantity?: number | string;
   initialPeriod?: Periods;
   children: React.ReactNode;
 }
