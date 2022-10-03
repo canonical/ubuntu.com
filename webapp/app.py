@@ -71,6 +71,7 @@ from webapp.views import (
     unlisted_engage_page,
     sitemap_index,
     account_query,
+    json_asset_query,
     sixteen_zero_four,
     openstack_install,
     marketo_submit,
@@ -307,6 +308,7 @@ def utility_processor():
 # ===
 
 # Simple routes
+app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
