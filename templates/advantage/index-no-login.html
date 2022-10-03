@@ -630,42 +630,45 @@
   </div>
 </section>
 <section class="p-strip is-x-deep u-no-padding--top">
-  <div class="u-fixed-width">
+  <div class="row">
     <h2>What's the difference?</h2>
+    <hr class="u-no-margin--bottom">
+    <div class="p-strip is-shallow u-no-padding--top">
+      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Security patching">
+        <thead>
+          <tr>
+            <th class="u-no-padding--left" style="width: 50%;">
+              Security patching
+              <p class="p-text--small u-text--muted u-no-margin--bottom" style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br/> and selected medium CVEs)</p>
+            </th>
 
-    <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Security patching">
-      <thead>
-        <tr>
-          <th class="u-no-padding--left" style="width: 50%;">
-            Security patching
-            <p class="p-text--small u-text--muted u-no-margin--bottom" style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br/> and selected medium CVEs)</p>
-          </th>
+            <th style="width: 15%;">Ubuntu LTS</th>
+            <th style="width: 20%;">
+              Ubuntu Pro (Infra-only)<br/>
+              <p class="p-text--small u-text--muted u-no-margin--bottom" style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for Infrastructure")</p>
+            </th>
+            <th style="width: 15%;">Ubuntu Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main repository</td>
+            <td data-heading="Ubuntu LTS">5 years</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">10 years</td>
+            <td data-heading="Ubuntu Pro">10 years</td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe repository</td>
+            <td data-heading="Ubuntu LTS">Best effort</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
+            <td data-heading="Ubuntu Pro">10 years</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
 
-          <th style="width: 15%;">Ubuntu LTS</th>
-          <th style="width: 20%;">
-            Ubuntu Pro (Infra-only)<br/>
-            <p class="p-text--small u-text--muted u-no-margin--bottom" style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for Infrastructure")</p>
-          </th>
-          <th style="width: 15%;">Ubuntu Pro</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main repository</td>
-          <td data-heading="Ubuntu LTS">5 years</td>
-          <td data-heading="Ubuntu Pro (Infra-only)">10-year</td>
-          <td data-heading="Ubuntu Pro">10-year</td>
-        </tr>
-        <tr>
-          <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe repository</td>
-          <td data-heading="Ubuntu LTS">Best effort</td>
-          <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
-          <td data-heading="Ubuntu Pro"10-year</td>
-        </tr>
-    </tbody>
-    </table>
-
-    <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Compliance and hardening">
+    <div class="p-strip is-shallow u-no-padding--top">
+      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Compliance and hardening">
       <thead>
         <tr>
           <th class="u-no-padding--left" style="width: 50%;"><a href="https://ubuntu.com/security/certifications">Compliance and hardening</a></th>
@@ -694,9 +697,11 @@
           <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
         </tr>
       </tbody>
-    </table>
+      </table>
+    </div>
 
-    <table class="p-table--mobile-card" class="u-no-margin--bottom" aria-label="Pro vs Advantage - Other features">
+    <div class="p-strip is-shallow u-no-padding--top">
+      <table class="p-table--mobile-card" class="u-no-margin--bottom" aria-label="Pro vs Advantage - Other features">
       <thead>
         <tr>
           <th class="u-no-padding--left" style="width: 50%;">Other features</th>
@@ -725,9 +730,10 @@
           <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
         </tr>
       </tbody>
-    </table>
-  </div>
+      </table>
+    </div>
 </section>
+
 <section class="p-strip is-x-deep u-no-padding--top">
   <div class="u-fixed-width">
     <h2>Experience Ubuntu Pro in action:<br>
@@ -736,6 +742,7 @@
     </h2>
   </div>
 </section>
+
 <section class="p-strip is-x-deep u-no-padding--top">
   <div class="row">
     <!-- <div class="p-strip is-shallow u-no-padding--top"> -->
@@ -768,7 +775,7 @@
           FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements.
         </p>
         <p>
-          With enterprise-grade Ubuntu Pro support backed by Canonical's 10-year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands.
+          With enterprise-grade Ubuntu Pro support backed by Canonical's 10 year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands.
           &rdquo;
         </p>
       </i>
