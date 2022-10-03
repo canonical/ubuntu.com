@@ -1,10 +1,10 @@
 ---
-wrapper_template: "legal/ubuntu-advantage-service-description/_base_legal_markdown.html"
+wrapper_template: "legal/ubuntu-pro-description/_base_legal_markdown.html"
 context:
   title: "Ubuntu Pro description"
-  description: "Detailed description and explanation of the benefits and services you receive as an Ubuntu Advantage customer."
+  description: "Detailed description and explanation of the benefits and services you receive as an Ubuntu Pro customer."
 markdown_includes:
-  pricing_table: "shared/_ubuntu-advantage-service-description.html"
+  pricing_table: "shared/_ubuntu-pro-description.html"
 ---
 
 # Ubuntu Pro description
