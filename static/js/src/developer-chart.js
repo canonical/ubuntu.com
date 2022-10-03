@@ -21,22 +21,18 @@ const OpenSourcedata = [
   { count: 7.5, label: "Rocky Linux" },
   { count: 4.8, label: "NavyLinux" },
 ];
-
 function createChart(dataset, id) {
   const data = dataset.sort(function (a, b) {
     return d3.ascending(a.count, b.count);
   });
-
   var margin = {
     top: 15,
-    right: 0,
-    bottom: 0,
-    left: 0,
+    right: 60,
+    bottom: 15,
+    left: 100,
   };
-
-  var width = 300 - margin.left - margin.right,
+  var width = 500 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
-
   var svg = d3
     .select(`#${id}`)
     .append("svg")
@@ -44,7 +40,6 @@ function createChart(dataset, id) {
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
   var x = d3.scale
     .linear()
     .range([0, width])
@@ -54,7 +49,6 @@ function createChart(dataset, id) {
         return d.count;
       }),
     ]);
-
   var y = d3.scale
     .ordinal()
     .rangeRoundBands([height, 0], 0.1)
@@ -65,13 +59,14 @@ function createChart(dataset, id) {
     );
 
   var xAxis = d3.svg.axis().scale(x).ticks(5).orient("top");
+  var yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
 
   var gx = svg.append("g").attr("class", "x axis").attr( "transform",
-    "translate(10, " + (5) + ")"
+    "translate(52 " + (5) + ")"
   ).transition().call(xAxis);
+  var gy = svg.append("g").attr("class", "y axis").call(yAxis);
 
   var bars = svg.selectAll(".bar").data(data).enter().append("g");
-
   bars
     .append("rect")
     .attr("class", "bar")
@@ -79,7 +74,7 @@ function createChart(dataset, id) {
       return y(d.label);
     })
     .attr("height", y.rangeBand())
-    .attr("x", 8)
+    .attr("x", 52)
     .attr("width", function (d) {
       return x(d.count);
     })
@@ -90,7 +85,18 @@ function createChart(dataset, id) {
         return "#AEA79F";
       }
     });
-}
+  bars
+    .append("text")
+    .attr("y", function (d) {
+      return y(d.label) + y.rangeBand() / 2 + 4;
+    })
+    .attr("transform", "translate(42," + 0 + ")")
+    .text(function (d) {
+      return `${d.count}%`;
+    })
+    .attr("text-anchor", "end")
+    .style({"font-size":"14px"});
+  }
 
 createChart(hackerEarthData, "hackerearth-chart");
 createChart(OpenSourcedata, "opensource-chart");
