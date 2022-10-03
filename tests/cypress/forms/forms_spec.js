@@ -135,6 +135,23 @@ context("Interactive marketo forms", () => {
     }
   );
 
+  it("should check interactive contact modal on /pro", () => {
+    cy.visit("/pro");
+    cy.acceptCookiePolicy();
+    cy.findByRole("link", {
+      name: /Join our free beta programme for Ubuntu Pro on prem/,
+    }).click();
+    cy.findByRole("link", { name: /Next/ }).click();
+    cy.findByLabelText(/First name:/).type("Test");
+    cy.findByLabelText(/Last name:/).type("Test");
+    cy.findByLabelText(/Work email:/).type("test@test.com");
+    cy.findByLabelText(/I agree to receive information/).click({
+      force: true,
+    });
+    cy.findByText(/Let's discuss/).click();
+    cy.findByRole("heading", { name: /Thank you/ });
+  });
+
   // wrote separate test for /robotics page as cypress couldn't find the job title input field by label text
   it(
     "should check interactive contact modal on /robotics",

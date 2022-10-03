@@ -149,7 +149,7 @@ def get_user_subscription_statuses(
 ) -> dict:
     # The explanations below use two concepts:
     # - user subscription: these maps 1:1 with ua-contracts' contract items,
-    #   and these are the cards we present in /advantage.
+    #   and these are the cards we present in /pro.
     # - billing subscription: a bundle of products as billed periodically in
     #   Stripe. These may lead to the creation of one or more user
     #   subscriptions over time.
@@ -189,7 +189,7 @@ def get_user_subscription_statuses(
         "is_renewable": False,
         # is_renewal_actionable describes whether a user subscription that
         # is_renewable belongs to a renewal that can be acted on by the user
-        # via /advantage. If this is False, it means the customer should
+        # via /pro. If this is False, it means the customer should
         # contact support to renew (because it's a special old-style renewal).
         "is_renewal_actionable": False,
         # has_pending_purchases describes whether this user subscription

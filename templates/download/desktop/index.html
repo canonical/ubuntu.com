@@ -19,28 +19,38 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
-    <div class="row u-equal-height p-divider u-no-padding--left u-no-padding--right">
-      <div class="col-8 p-divider__block">
-        <p class="u-no-padding--top">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years, until {{ releases.lts.eol }}, of free security and maintenance updates, guaranteed.</p>
-        <p><a href="{{ releases.lts.release_notes_url }}">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
-        <p>Recommended system requirements:</p>
-        <ul class="p-list is-split">
-          <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
-          <li class="p-list__item is-ticked">4 GB system memory</li>
-          <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
-          <li class="p-list__item is-ticked">Internet access is helpful</li>
-          <li class="p-list__item is-ticked">Either a DVD drive or a USB port for the installer media</li>
-        </ul>
+  <div class="row">
+
+    <div class="col-8 p-divider__block">
+      <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
+      <p class="u-no-padding--top">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed until {{ releases.lts.eol }}.</p>
+      <p><a href="{{ releases.lts.release_notes_url }}">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
+      <p>Recommended system requirements:</p>
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">2 GHz dual-core processor or better</li>
+        <li class="p-list__item is-ticked">4 GB system memory</li>
+        <li class="p-list__item is-ticked">25 GB of free hard drive space</li>
+        <li class="p-list__item is-ticked">Internet access is helpful</li>
+        <li class="p-list__item is-ticked">Either a DVD drive or a USB port for the installer media</li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <div class="u-align--center u-sv4">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
+          alt="",
+          width="260",
+          height="150",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
       </div>
-      <div class="col-4">
-        <p>
-          <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
-          <script>performance.mark("Download (Desktop) button rendered")</script>
-        </p>
-        <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors, and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
-      </div>
+      <p>
+        <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
+        <script>performance.mark("Download (Desktop) button rendered")</script>
+      </p>
+      <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
     </div>
   </div>
 </section>
@@ -51,20 +61,20 @@
   </div>
   <div class="row p-divider">
     <div class="col-3 p-divider__block">
-      <h3 class="p-heading--4"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu desktop</a></h3>
-      <p>Follow this tutorial to find out how to install Ubuntu Desktop on your laptop or PC.</p>
+      <h3 class="p-heading--4"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu Desktop</a></h3>
+      <p>Follow this tutorial to install Ubuntu Desktop on your laptop or PC.</p>
       <p>You can also run Ubuntu from a USB to try it without installing it on your machine.</p>
     </div>
     <div class="col-3 p-divider__block">
       <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop on a virtual machine using VirtualBox</a></h3>
-      <p>Learn how to run Ubuntu Desktop on any operating system using VirtualBox to set up a virtual machine with this quick start guide.</p>
+      <p>Learn how to run Ubuntu Desktop on any operating system using VirtualBox. Set up a virtual machine with this quick start guide.</p>
     </div>
     <div class="col-3 p-divider__block">
       <h3 class="p-heading--4"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
       <p>Read the complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
     </div>
     <div class="col-3 p-divider__block">
-      <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu desktop</a></h3>
+      <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu Desktop</a></h3>
       <p>If you're already running Ubuntu, you can upgrade in a few clicks from the Software Updater.</p>
       <p>Discover how with this quick tutorial.</p>
     </div>            
@@ -72,15 +82,28 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Certified on hundreds of devices</h2>
+  <div class="row">
+    <div class="col-1 u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
+        alt="",
+        width="102",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-7 u-align--bottom">
+      <h2 style="margin-bottom: 0;">Certified on hundreds of devices</h2>
+    </div>
   </div>
   <div class="row">
-    <div class="col-7">
-      <p>Many of the world's biggest PC manufacturers certify their laptops and desktops for Ubuntu, from ultra portable laptops to high end workstations. Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out of the box. In addition, our partners offer select devices preloaded with optimised Ubuntu images.</p>
+    <div class="col-8">
+      <p>Many of the world's biggest PC manufacturers certify their laptops and desktops for Ubuntu, from ultra-portable laptops to high-end workstations. Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out-of-the-box. Our partners also offer select devices preloaded with optimised Ubuntu images.</p>
       <p><a href="/certified">Read more&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-5 u-vertically-center  u-hide--small u-hide--medium">
+    <div class="col-4 u-vertically-center  u-hide--small u-hide--medium">
       <div class="row">
         <div class="col-small-1 col-medium-1 col-1">
           {{
@@ -125,12 +148,45 @@
 
 <section class="p-strip">
   <div class="u-fixed-width">
+    <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
+    <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a> (beta)</li>
+        <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration</li>
+        <li class="p-list__item is-ticked">Estate <a href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
+        <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
+        <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
+        <li class="p-list__item is-ticked">Optional weekday or 24x7 support tiers</li>
+      </ul>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+        alt="",
+        width="185",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p><a class="p-button--positive" href="/pro">Register today</a></p>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
     <h2>Ubuntu VMs on Linux, Mac or Windows</h2>
   </div>
   <div class="row">
     <div class="col-8">
       <h3>Mini-clouds on desktops with Multipass</h3>
-      <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with latest updates preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
+      <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with the latest updates preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
       <p><a href="https://multipass.run/#install" class="p-button--positive">Download for (macOS|Windows|Linux)</a></p>
       <p><a href="https://multipass.run">Learn more about Multipass&nbsp;&rsaquo;</a></p>
     </div>
@@ -202,7 +258,7 @@
   </div>    
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip is-bordered">
   <div class="u-fixed-width">
     <h2>Help is always at hand</h2>
     <p>Join our global community for support and tips on how to get started with Ubuntu.</p>
@@ -223,28 +279,8 @@
   </div>
 </section>
 
-<section class="p-strip">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop:</h2>
-  </div>
-  <div class="row p-divider">
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/planning-phased-ubuntu-22-04-enterprise-desktop-upgrades-with-landscape">Planning phased Ubuntu 22.04 Enterprise Desktop upgrades with Landscape</a></p>
-      <p><em>by <a href="/blog/author/rajanpatel927">Rajan Patel</a> on 8 February 2022</em></p>
-    </div>
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/get-started-with-linux-game-development-on-ubuntu">Linux game development on Ubuntu: Godot and Unity</a></p>
-      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 24 January 2022</em></p>
-    </div>
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/how-low-can-you-go-running-ubuntu-desktop-on-a-2gb-raspberry-pi-4">How low can you go? Running Ubuntu Desktop on a 2GB Raspberry Pi 4</a></p>
-      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 11 January 2022</em></p>
-    </div>
-    <div class="col-3 p-divider__block">
-      <p><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a></p>
-      <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 9 December 2021</em></p>
-    </div>            
-  </div>
-</section>
+{% with section_classes='p-strip', heading_topic='Ubuntu Desktop', tag_name='desktop', tag_id='1920', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
 
 {% endblock content %}
