@@ -411,7 +411,7 @@ summary {
   margin-top: -2.2rem;
   padding-bottom: 1.75rem;
 
-  @media screen and (max-width: $breakpoint-large - 1px) {
+  @media screen and (max-width: ($breakpoint-large - 1px)) {
     padding-top: 2rem;
   }
 
@@ -427,7 +427,7 @@ summary {
     margin-bottom: 0;
   }
 
-  @media only screen and (min-width: $breakpoint-medium + 1) {
+  @media only screen and (min-width: ($breakpoint-medium + 1)) {
     &:nth-child(3) {
       margin-bottom: 0;
     }
@@ -802,11 +802,11 @@ html {
   }
 
   .p-testimonial__logo {
-    @media (max-width: $threshold-4-6-col - 1) {
+    @media (max-width: ($threshold-4-6-col - 1)) {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
-    @media (min-width: $threshold-4-6-col) and (max-width: $threshold-6-12-col - 1) {
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
       grid-column: 1 / span 2;
     }
     @media (min-width: $threshold-6-12-col) {
@@ -815,11 +815,11 @@ html {
   }
 
   .p-testimonial__author {
-    @media (max-width: $threshold-4-6-col - 1) {
+    @media (max-width: ($threshold-4-6-col - 1)) {
       grid-column: 3 / span 2;
       grid-row: 2 / span 1;
     }
-    @media (min-width: $threshold-4-6-col) and (max-width: $threshold-6-12-col - 1) {
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
       grid-column: 3 / span 1;
     }
     @media (min-width: $threshold-6-12-col) {
@@ -828,11 +828,11 @@ html {
   }
 
   .p-testimonial__quote {
-    @media (max-width: $threshold-4-6-col - 1) {
+    @media (max-width: ($threshold-4-6-col - 1)) {
       grid-column: 1 / span 4;
       grid-row: 1 / span 1;
     }
-    @media (min-width: $threshold-4-6-col) and (max-width: $threshold-6-12-col - 1) {
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
       grid-column: 4 / span 3;
     }
     @media (min-width: $threshold-6-12-col) {
