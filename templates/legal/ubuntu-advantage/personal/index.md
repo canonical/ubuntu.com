@@ -1,20 +1,20 @@
 ---
 wrapper_template: "legal/ubuntu-advantage/personal/_markdown.html"
 context:
-  title: "UA-I Essential (Personal) Terms of Service"
-  description: "The terms of service of our UA-I Essential (Personal) service which provides users of Ubuntu with a subscription to use UA-I Essential (Personal) on up to three physical or virtual Ubuntu systems for the eligible 14.04 LTS release, and up to 50 machines for official Ubuntu Community members."
+  title: "Ubuntu Pro - personal. Terms of Service"
+  description: "The terms of service of our Ubuntu Pro - personal service which provides users of Ubuntu Pro with no support on up to five physical or virtual Ubuntu systems for the eligible LTS release. And up to 50 machines for official Ubuntu Community members."
   copydoc: https://docs.google.com/document/d/1b2TSeqGfBsmZMepXGEGkEWyTDo0M5aHmyqaQIzEZfPs/edit
 ---
 
-# UA-I Essential (Personal) Terms of Service
+# Ubuntu Pro, Terms of Service
 
 ## 1. Introduction
 
-These Terms of Service cover the provision of Canonical's **UA-I Essential (Personal)** Service (the "<dfn>Service</dfn>") by Canonical Group Limited ("<dfn>Canonical</dfn>", "<dfn>us</dfn>", "<dfn>our</dfn>" or "<dfn>we</dfn>") to you ("<dfn>you</dfn>" or "<dfn>your</dfn>") subject to and in accordance with these Terms of Service. Please read these Terms of Service carefully before you use the Service. By using the Service, you agree to become bound by these Terms of Service.
+These Terms of Service cover the provision of Canonical's **Ubuntu Pro - personal - no support** Service (the "<dfn>Service</dfn>") by Canonical Group Limited ("<dfn>Canonical</dfn>", "<dfn>us</dfn>", "<dfn>our</dfn>" or "<dfn>we</dfn>") to you ("<dfn>you</dfn>" or "<dfn>your</dfn>") subject to and in accordance with these Terms of Service. Please read these Terms of Service carefully before you use the Service. By using the Service, you agree to become bound by these Terms of Service.
 
 If you have an executed agreement with a Canonical group company which includes a licence to the software your use of the software may be governed by that agreement. Otherwise, these Terms of Service will apply.
 
-If you are entering into these Terms of Service on behalf of a company or legal entity, you represent that you have authority to bind such company or legal entity, its officers, employees and agents and all users who access the Service through the account, to these Terms of Service. "You" and "your" shall refer to the company or legal entity and such users. If you do not have such authority do not accept these Terms of Service.    
+If you are entering into these Terms of Service on behalf of a company or legal entity, you must identify the company or legal entity when registering for the Service and use your company or legal entity contact information in order to register. You represent that you have authority to bind such company or legal entity, its officers, employees and agents and all users who access the Service through the account, to these Terms of Service. "You" and "your" shall refer to the company or legal entity and such users. If you do not have such authority do not accept these Terms of Service. The Service offering is limited to one account per company or legal entity.    
 
 You must be at least 13 years old to use the Service. If you are between age 13 and 18, you confirm that you have your parent's or legal guardian's consent to use the Services and that they have read and agreed to these Terms of Service.
 
@@ -22,9 +22,9 @@ Canonical may update these Terms of Service from time to time in its discretion.
 
 ## 2. Service
 
-The Service provides users of Ubuntu with a free subscription to use Ubuntu Advantage - Essential services on up to three physical or virtual Ubuntu systems for the eligible Ubuntu LTS versions as designated by Canonical.
+The Service provides users of Ubuntu with a free subscription to use the services on up to five physical or virtual Ubuntu systems for the eligible Ubuntu LTS versions as designated by Canonical.
 
-Details about the Service can be found here:  https://ubuntu.com/legal/ubuntu-advantage-service-description
+Details about the Service can be found here:  https://ubuntu.com/legal/ubuntu-pro-description
 
 For recognised Ubuntu Community Members (as designated by Canonical) the Services can be used on up to fifty physical or virtual Ubuntu systems for the eligible Ubuntu LTS versions as designated by Canonical. 
 
@@ -35,6 +35,10 @@ You will need a Single Sign On Ubuntu One account to access and use the Service.
 We reserve the right to reject your request for an account or to immediately cancel or suspend your account and your use of the Services at any time if you do not comply with the following requirements. You must not attempt to create an account or use the Service if doing so would violate these Terms of Service. You must not:            
 
 - use the software made available through the Service for more than the entitled number of physical or virtual Ubuntu systems except as otherwise agreed, nor resell or attempt to resell the Services.
+
+- use the Service for a company or legal entity without identifying the company or legal entity when registering for the Service and using your company or legal entity contact information in order to register.
+
+- use the Services for more than five physical or virtual Ubuntu systems for the eligible Ubuntu LTS versions as designated by Canonical per company or legal entity.
 
 - use the Service for illegal or unauthorised purposes (or encourage or permit illegal or unauthorised purposes), in infringement of a third party's rights or otherwise cause an adverse impact to the Services.
 
@@ -60,9 +64,9 @@ Use of Canonical intellectual property is subject to [Canonical's intellectual p
 
 ## 6. Personal data
 
-So that we can provide the Service to you, you will be required to provide information about yourself such as your name and email address. Any such information you provide to Canonical must always be accurate, correct and up to date.    
+So that we can provide the Service to you, you will be required to provide information about yourself such as your name and email address. Any such information you provide to Canonical must always be accurate, correct and up to date and in compliance with these Terms of Service.    
 
-Our [Single Sign On Privacy Notice](/legal/data-privacy/sso) and [Privacy Policy](/legal/terms-and-policies/privacy-policy) explain how we treat your personal data and protect your privacy when using these Services. In addition, if you use the Service for more than the entitled number of physical or virtual Ubuntu systems Canonical may contact you directly, using the SSO account details provided, to discuss ongoing support requirements.
+Our [Single Sign On Privacy Notice](/legal/data-privacy/sso) and [Privacy Policy](/legal/terms-and-policies/privacy-policy) explain how we treat your personal data and protect your privacy when using these Services. In addition, if you use the Service for more than the entitled number of physical or virtual Ubuntu systems Canonical may contact you directly, using the SSO account details provided, to discuss ongoing maintenance and support requirements.
 
 We may also collect certain non-personally-identifiable information, which is located on your computer. The information collected may include statistics relating to how often data is transferred, and performance metrics in relation to software and configuration. You agree this information may be retained and used by Canonical.    
 
