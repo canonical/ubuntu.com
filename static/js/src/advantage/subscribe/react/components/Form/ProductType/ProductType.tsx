@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Button, Col, Row } from "@canonical/react-components";
-import RadioCard from "../RadioCard";
+import { RadioInput } from "@canonical/react-components";
 import {
   isPublicCloud,
   ProductTypes,
@@ -10,19 +10,31 @@ import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
+    title: "AWS",
     name: "AWS Marketplace",
+    CTAName: "AWS marketplace",
     link:
       "https://aws.amazon.com/marketplace/search/results?page=1&filters=VendorId&VendorId=e6a5002c-6dd0-4d1e-8196-0a1d1857229b&searchTerms=ubuntu+pro",
   },
   [PublicClouds.azure]: {
+    title: "Azure",
     name: "Azure Marketplace",
+    CTAName: "Azure marketplace",
     link:
       "https://azuremarketplace.microsoft.com/en-us/marketplace/apps?search=Ubuntu%20Pro&page=1",
   },
   [PublicClouds.gcp]: {
-    name: "Google Cloud Console",
+    title: "GCP",
+    name: "Google Compute Engine",
+    CTAName: "GCE marketplace",
     link:
       "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20canonical",
+  },
+  [PublicClouds.oracle]: {
+    title: "Oracle",
+    name: "Oracle",
+    CTAName: "Oracle marketplace",
+    link: "",
   },
 };
 
@@ -36,159 +48,103 @@ const ProductType = () => {
     setProductType(event.target.value as ProductTypes);
   };
 
-  const handlePublicCloudChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setPublicCloud(event.target.value as PublicClouds);
-  };
+  const publicCloudsSelector = (
+    <>
+      <div className="p-segmented-control">
+        <div
+          className="p-segmented-control__list"
+          role="tablist"
+          aria-label="Public cloud options"
+        >
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.aws}
+            aria-controls={PublicClouds.aws}
+            id={PublicClouds.aws}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.aws);
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.aws].title}
+          </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.azure}
+            aria-controls={PublicClouds.azure}
+            id={PublicClouds.azure}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.azure);
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.azure].title}
+          </button>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={publicCloud === PublicClouds.gcp}
+            aria-controls={PublicClouds.gcp}
+            id={PublicClouds.gcp}
+            onClick={(e) => {
+              e.preventDefault();
+              setPublicCloud(PublicClouds.gcp);
+            }}
+          >
+            {PublicCloudInfo[PublicClouds.gcp].title}
+          </button>
+        </div>
+      </div>
+
+      <p>
+        <strong>{PublicCloudInfo[publicCloud]?.title}</strong>
+      </p>
+      <p>
+        You can buy Ubuntu Pro on the {PublicCloudInfo[publicCloud]?.name} at an
+        hourly, per-machine rate. If you need tech support as well,{" "}
+        <a href="/support/contact-us">contact us</a>.
+      </p>
+      <Button element="a" href={PublicCloudInfo[publicCloud]?.link}>
+        Visit {PublicCloudInfo[publicCloud]?.CTAName}
+      </Button>
+    </>
+  );
 
   return (
     <>
       <Row>
-        <Col size={12} className="radio-wrapper--staggering">
-          <RadioCard
+        <Col size={12}>
+          <RadioInput
+            label="Physical servers"
             name="type"
             value={ProductTypes.physical}
-            selectedValue={productType}
-            handleChange={handleProductTypeChange}
-          >
-            <>
-              <div className="image-wrapper">
-                <img
-                  src="https://assets.ubuntu.com/v1/fdf83d49-Server.svg"
-                  alt=""
-                />
-              </div>
-              <span>Physical servers</span>
-            </>
-          </RadioCard>
-          <RadioCard
+            onChange={handleProductTypeChange}
+            checked={productType === ProductTypes.physical}
+          />
+        </Col>
+        <Col size={12}>
+          <RadioInput
+            label="Public cloud instances"
             name="type"
             value={ProductTypes.publicCloud}
-            selectedValue={productType}
-            handleChange={handleProductTypeChange}
-          >
-            <>
-              <div className="image-wrapper">
-                <img
-                  src="https://assets.ubuntu.com/v1/75a8a35a-cloud_orange.svg"
-                  alt=""
-                />
-              </div>
-              <span>Public Cloud instances</span>
-            </>
-          </RadioCard>
-          <RadioCard
-            name="type"
-            value={ProductTypes.virtual}
-            selectedValue={productType}
-            handleChange={handleProductTypeChange}
-          >
-            <>
-              <div className="image-wrapper">
-                <img
-                  src="https://assets.ubuntu.com/v1/9ed50294-Virtual+machine.svg"
-                  alt=""
-                />
-              </div>
-              <span>Other VMs</span>
-            </>
-          </RadioCard>
-          <RadioCard
+            onChange={handleProductTypeChange}
+            checked={productType == ProductTypes.publicCloud}
+          />
+        </Col>
+        <Col size={12} style={{ marginLeft: "35px" }}>
+          {isPublicCloud(productType) ? publicCloudsSelector : null}
+        </Col>
+        <Col size={12}>
+          <RadioInput
+            label="Desktops"
             name="type"
             value={ProductTypes.desktop}
-            selectedValue={productType}
-            handleChange={handleProductTypeChange}
-          >
-            <>
-              <div className="image-wrapper">
-                <img
-                  src="https://assets.ubuntu.com/v1/4b732966-Laptop.svg"
-                  alt=""
-                />
-              </div>
-              <span>Desktops</span>
-            </>
-          </RadioCard>
+            onChange={handleProductTypeChange}
+            checked={productType === ProductTypes.desktop}
+          />
         </Col>
-        {isPublicCloud(productType) ? (
-          <>
-            <Col size={12} className="radio-wrapper--staggering">
-              <RadioCard
-                name="type"
-                value={PublicClouds.aws}
-                selectedValue={publicCloud}
-                handleChange={handlePublicCloudChange}
-              >
-                <>
-                  <div className="image-wrapper">
-                    <img
-                      src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg"
-                      alt=""
-                    />
-                  </div>
-                  <span>AWS instances</span>
-                </>
-              </RadioCard>
-              <RadioCard
-                name="type"
-                value={PublicClouds.azure}
-                selectedValue={publicCloud}
-                handleChange={handlePublicCloudChange}
-              >
-                <>
-                  <div className="image-wrapper">
-                    <img
-                      src="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png"
-                      alt=""
-                    />
-                  </div>
-                  <span>Azure instances</span>
-                </>
-              </RadioCard>
-              <RadioCard
-                name="type"
-                value={PublicClouds.gcp}
-                selectedValue={publicCloud}
-                handleChange={handlePublicCloudChange}
-              >
-                <>
-                  <div className="image-wrapper">
-                    <img
-                      src="https://assets.ubuntu.com/v1/216e5289-google-cloud.svg"
-                      alt=""
-                    />
-                  </div>
-                  <span>Google Cloud instances</span>
-                </>
-              </RadioCard>
-            </Col>
-
-            <Col size={12} className="public-cloud-section">
-              <p>
-                <strong>
-                  You can buy Ubuntu Pro on the{" "}
-                  {PublicCloudInfo[publicCloud]?.name} at an hourly, per-machine
-                  rate, with all UA software features included.
-                </strong>
-                <br />
-                If you need tech support as well,{" "}
-                <a href="/support/contact-us">contact us</a>.
-              </p>
-              <Row>
-                <Col size={12} className="u-align--right">
-                  <Button
-                    appearance="positive"
-                    element="a"
-                    href={PublicCloudInfo[publicCloud]?.link}
-                  >
-                    Visit {PublicCloudInfo[publicCloud]?.name}
-                  </Button>
-                </Col>
-              </Row>
-            </Col>
-          </>
-        ) : null}
       </Row>
     </>
   );

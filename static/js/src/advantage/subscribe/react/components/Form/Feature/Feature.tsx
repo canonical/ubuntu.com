@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
-import { Col, List, Row } from "@canonical/react-components";
-import RadioCard from "../RadioCard";
+import { Col, RadioInput, Row } from "@canonical/react-components";
 import {
   Features,
   isPublicCloud,
@@ -16,114 +15,203 @@ const Feature = () => {
     setFeature(event.target.value as Features);
   };
 
+  const infraOnlyDisabled = ProductTypes.desktop === productType;
+
   return (
     <div
       className={classNames({
+        row: true,
+        "p-divider": true,
         "u-disable": isPublicCloud(productType),
       })}
       data-testid="wrapper"
     >
-      <Row>
-        <p>
-          Essential features are already included in your subscription.
-          <br />
-          <a href="/support">
-            See what is included with Applications coverage.
-          </a>
-        </p>
-        <Col size={12} className="radio-wrapper--stacking">
-          <RadioCard
-            name="feature"
-            value={Features.infra}
-            selectedValue={feature}
-            handleChange={handleChange}
-            radioLabel="Select Infra only"
+      <Row style={{ gap: "0" }} className="u-hide--small">
+        <Col size={6} className="description-column">
+          <div className="heading">
+            <strong>
+              Security coverage for critical, high and selected medium CVEs for:
+            </strong>
+          </div>
+          <div className="main">
+            <p>
+              Over 2,300 open source deb packages in Ubuntu Main repository for
+              10 years, including:
+            </p>
+            <div className="logos-wrapper">
+              <img
+                src="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png"
+                alt="Systemd"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/3cf0ba5d-rabbitmq-logo.png"
+                alt="RabbitMQ"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/9259b689-openssl-logo.png"
+                alt="OpenSSL"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/a0dac4a0-ruby-logo.png"
+                alt="Ruby"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/9cdee338-php-logo.png"
+                alt="PHP"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/8b409e96-nginex+logo.png"
+                alt="NGINX"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/24058ec5-mysql+logo.png"
+                alt="MySQL"
+              />
+            </div>
+          </div>
+          <div className="universe">
+            <p>
+              Over 23,000 open source deb packages in Ubuntu Universe repository
+              including:
+            </p>
+            <div className="logos-wrapper">
+              <img
+                src="https://assets.ubuntu.com/v1/6b709d7b-apache+tomcat+logo.png"
+                alt="Apache Tomcat"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/bb10115e-nagios+logo.png"
+                alt="Agios"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/0d264437-nagios+logo-1.png"
+                alt="NodeJS"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/60a15fa2-puppet-logo.png"
+                alt="Puppet"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/38530c4f-redis-logo.png"
+                alt="Redis"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/e60387dd-rust-logo.png"
+                alt="Rust"
+              />
+              <img
+                src="https://assets.ubuntu.com/v1/842e6353-wordpress-logo.png"
+                alt="Wordpress"
+              />
+            </div>
+          </div>
+        </Col>
+        <Col size={3}>
+          <div
+            className={classNames({
+              "p-card--radio--column": true,
+              "is-selected": feature === Features.pro,
+            })}
           >
-            <h4 className="p-card__title">Infra</h4>
-            <hr className="u-sv1" />
-            <List
-              className="u-align-text--left"
-              items={[
-                <>
-                  Security coverage for high and critical CVEs with extended
-                  security maintenance for over 2,000 packages including:
-                  <h5>OpenStack, Ceph raw storage, MAAS, KVM.</h5>
-                </>,
-                <>
-                  Optional tech support for Ubuntu OS and the underlying
-                  infrastructure as specified above
-                </>,
-              ]}
-              ticked
-            />
-          </RadioCard>
-          <RadioCard
-            name="feature"
-            value={Features.apps}
-            selectedValue={feature}
-            handleChange={handleChange}
-            radioLabel="Select Apps only"
+            <label className="p-radio u-align-text--center">
+              <input
+                className="p-radio__input"
+                autoComplete="off"
+                type="radio"
+                aria-labelledby={`pro-label`}
+                value={Features.pro}
+                checked={feature === Features.pro}
+                onChange={handleChange}
+              />
+              <span className="p-radio__label" id={`pro-label`}>
+                <RadioInput
+                  labelClassName="inner-label"
+                  label={"Ubuntu Pro"}
+                  checked={feature === Features.pro}
+                  value={Features.pro}
+                  onChange={handleChange}
+                />
+                <div className="included">
+                  <i className="p-icon--success"></i>Included
+                </div>
+                <div className="included">
+                  <i className="p-icon--success"></i> Included
+                </div>
+              </span>
+            </label>
+          </div>
+        </Col>
+        <Col size={3}>
+          <div
+            className={classNames({
+              "p-card--radio--column": true,
+              "is-selected": feature === Features.infra,
+              "u-disable": infraOnlyDisabled,
+            })}
           >
-            <h4 className="p-card__title">Apps</h4>
-            <hr className="u-sv1" />
-            <List
-              className="u-align-text--left"
-              items={[
-                <>
-                  Security coverage for high and critical CVEs with extended
-                  security maintenance for over 28,000 packages including:
-                  <h5> NodeJS, Django, NGINX, Redis, Kafka, ROS.</h5>
-                </>,
-                <>
-                  Optional tech support for Ubuntu OS and selected open source
-                  applications
-                </>,
-              ]}
-              ticked
-            />
-          </RadioCard>
-          <RadioCard
-            name="feature"
-            value={Features.pro}
-            selectedValue={feature}
-            handleChange={handleChange}
-            radioLabel="Select Infra + Apps"
-            disabled={productType === ProductTypes.desktop}
-            dataTestid="pro-feature"
-          >
-            <h4 className="p-card__title">Infra + Apps</h4>
-            <hr className="u-sv1" />
-            <List
-              className="u-align-text--left"
-              items={[
-                <>
-                  Security coverage for high and critical CVEs with extended
-                  security maintenance for over 30,000 packages including:
-                  <h5>Infrastructure, Applications.</h5>
-                </>,
-                <>
-                  Optional tech support for Ubuntu OS, the underlying
-                  infrastructure and selected open source applications
-                </>,
-              ]}
-              ticked
-            />
-          </RadioCard>
+            <label className="p-radio u-align-text--center">
+              <input
+                className="p-radio__input"
+                autoComplete="off"
+                type="radio"
+                aria-labelledby={`infra-label`}
+                value={Features.infra}
+                checked={feature === Features.infra}
+                onChange={handleChange}
+              />
+              <span className="p-radio__label" id={`infra-label`}>
+                <RadioInput
+                  labelClassName="inner-label"
+                  label={"Ubuntu Pro (Infra-only)"}
+                  checked={feature === Features.infra}
+                  value={Features.infra}
+                  onChange={handleChange}
+                />
+                <div className="included">
+                  <i className="p-icon--success"></i>Included
+                </div>
+                <div className="included">
+                  <i className="p-icon--error"></i> Not included
+                </div>
+              </span>
+            </label>
+          </div>
         </Col>
       </Row>
-      <Row>
-        <Col size={12}>
-          <p>
-            <a
-              href="/legal/ubuntu-advantage-service-description"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Details of our coverage and response times&nbsp;&rsaquo;
-            </a>
-          </p>
-        </Col>
-      </Row>
+      <Col className="u-hide u-show--small" size={12} small={4}>
+        <RadioInput
+          label="Ubuntu Pro"
+          value={Features.pro}
+          checked={feature === Features.pro}
+          onChange={handleChange}
+        />
+        <RadioInput
+          label="Ubuntu Pro (Infra-only)"
+          value={Features.infra}
+          checked={feature === Features.infra}
+          onChange={handleChange}
+          disabled={infraOnlyDisabled}
+        />
+      </Col>
+      <Col
+        className="p-divider__block u-align--center u-hide u-show--small"
+        size={6}
+        small={2}
+      >
+        <h4>2,300+</h4>
+        <p>packages in Ubuntu main, including:</p>
+      </Col>
+      <Col
+        className={classNames({
+          "p-divider__block u-align--center u-hide u-show--small": true,
+          "u-disable": Features.infra === feature,
+        })}
+        size={6}
+        small={2}
+      >
+        <h4>23,000+</h4>
+        <p>packages in Ubuntu universe, including:</p>
+      </Col>
     </div>
   );
 };
