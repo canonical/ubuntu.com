@@ -1,16 +1,16 @@
 ---
 wrapper_template: "legal/ubuntu-advantage/personal/_markdown.html"
 context:
-  title: "Ubuntu Pro - personal. Terms of Service"
+  title: "Ubuntu Pro - personal, Terms of Service"
   description: "The terms of service of our Ubuntu Pro - personal service which provides users of Ubuntu Pro with no support on up to five physical or virtual Ubuntu systems for the eligible LTS release. And up to 50 machines for official Ubuntu Community members."
   copydoc: https://docs.google.com/document/d/1b2TSeqGfBsmZMepXGEGkEWyTDo0M5aHmyqaQIzEZfPs/edit
 ---
 
-# Ubuntu Pro, Terms of Service
+# Ubuntu Pro - personal, Terms of Service
 
 ## 1. Introduction
 
-These Terms of Service cover the provision of Canonical's **Ubuntu Pro - personal - no support** Service (the "<dfn>Service</dfn>") by Canonical Group Limited ("<dfn>Canonical</dfn>", "<dfn>us</dfn>", "<dfn>our</dfn>" or "<dfn>we</dfn>") to you ("<dfn>you</dfn>" or "<dfn>your</dfn>") subject to and in accordance with these Terms of Service. Please read these Terms of Service carefully before you use the Service. By using the Service, you agree to become bound by these Terms of Service.
+These Terms of Service cover the provision of Canonical's **Ubuntu Pro - personal (no support)** Service (the "<dfn>Service</dfn>") by Canonical Group Limited ("<dfn>Canonical</dfn>", "<dfn>us</dfn>", "<dfn>our</dfn>" or "<dfn>we</dfn>") to you ("<dfn>you</dfn>" or "<dfn>your</dfn>") subject to and in accordance with these Terms of Service. Please read these Terms of Service carefully before you use the Service. By using the Service, you agree to become bound by these Terms of Service.
 
 If you have an executed agreement with a Canonical group company which includes a licence to the software your use of the software may be governed by that agreement. Otherwise, these Terms of Service will apply.
 
@@ -22,7 +22,7 @@ Canonical may update these Terms of Service from time to time in its discretion.
 
 ## 2. Service
 
-The Service provides users of Ubuntu with a free subscription to use the services on up to five physical or virtual Ubuntu systems for the eligible Ubuntu LTS versions as designated by Canonical.
+The Service provides users of Ubuntu with a free subscription to use the Service on up to five physical or virtual Ubuntu systems for the eligible Ubuntu LTS versions as designated by Canonical.
 
 Details about the Service can be found here:  https://ubuntu.com/legal/ubuntu-pro-description
 
