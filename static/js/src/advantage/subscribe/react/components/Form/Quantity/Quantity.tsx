@@ -36,6 +36,7 @@ const Quantity = () => {
             onChange={handleChange}
             value={quantity}
             pattern="\d+"
+            style={{ minWidth: "unset", width: "4rem" }}
           />
         </Col>
       </Row>

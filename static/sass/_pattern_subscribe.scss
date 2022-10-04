@@ -1,14 +1,19 @@
 @mixin ubuntu-p-ua-subscribe {
   .product-selector {
     counter-reset: headings;
-    padding-top: 6rem;
+  }
 
-    > .p-strip {
-      padding-top: 0.5rem;
+  @media screen and (min-width: $breakpoint-large) {
+    .product-selector {
+      padding-top: 6rem;
 
-      > .row {
-        > .col-6:nth-child(2) {
-          padding-top: 1rem;
+      > .p-strip {
+        padding-top: 0.5rem;
+
+        > .row {
+          > .col-6:nth-child(2) {
+            padding-top: 1rem;
+          }
         }
       }
     }
@@ -33,6 +38,7 @@
       height: 2.5rem;
       justify-content: center;
       margin-top: 4px;
+      padding-top: 0;
       width: 2.5rem;
     }
   }
@@ -84,7 +90,7 @@
       border: none;
       font-style: oblique;
       margin-left: 0.5rem;
-      top: -0.5rem;
+      top: -0.4rem;
     }
   }
 
@@ -155,5 +161,18 @@
 
   .version-features-section {
     background-color: #f7f7f7;
+  }
+
+  .response-time-heading {
+    @media screen and (min-width: $breakpoint-large) {
+      padding-left: 3.6rem;
+    }
+  }
+
+  .response-time-toggle {
+    @media screen and (min-width: $breakpoint-large) {
+      margin-left: -1rem;
+      width: calc(100% + 1.4rem);
+    }
   }
 }
