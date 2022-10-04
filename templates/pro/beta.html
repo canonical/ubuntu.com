@@ -120,7 +120,7 @@ Learn more at https://ubuntu.com/pro</pre>
           </li>
           <li class="p-list__item">
             <span class="u-max-width">
-              281 packages are from Ubuntu Universe/ Multiverse repository and they come with no security assurance with Ubuntu LTS. They would be covered by Ubuntu Pro and there might be beta security updates available for them today. Let’s find out if that is the case.
+              281 packages are from Ubuntu Universe/ Multiverse repository and they come with no security assurance with Ubuntu LTS. They would be covered by Ubuntu Pro and there might be beta security updates available for them today. Let's find out if that is the case.
             </span>
           </li>
         </ul>
@@ -194,7 +194,7 @@ Learn more at https://ubuntu.com/pro</pre>
               </h5>
               <div class="p-strip is-shallow u-no-padding--top">
                 <p>You will be automatically redirected to your Ubuntu Pro dashboard (ubuntu.com/pro); an additional google captcha confirmation step might be required.
-                  Your Ubuntu Pro token will be listed under ‘Free Personal Token’ 
+                  Your Ubuntu Pro token will be listed under ‘Free Personal Token' 
                 </p>
               </div>
               <img class="has-shadow" src="https://assets.ubuntu.com/v1/3b5ebbf2-UA+scr+3.jpg" alt="" style="width: 100%; max-width: 81rem">
@@ -285,6 +285,167 @@ See https://ubuntu.com/pro
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-deep u-no-padding--top">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">
+          5
+        </p>
+      </div>
+      <div class="col-9">
+        <h2>Find out if any additional security patches are available for you</h2>
+        
+        <ol class="p-list--divided has-bullets">
+          <li class="p-list__item">
+            <div class="u-max-width p-strip is-shallow u-no-padding--top">
+              <h5 class="u-sv-1 u-no-margin--bottom">
+                Check if any additional security updates for the packages from the Ubuntu Universe repository are available for you
+              </h5>
+              <p>Run <code>apt list --upgradable | grep apps-security</code> to find out which packages can be upgraded. Ubuntu Pro: esm-apps packages will be listed under release-apps-security</p>
+
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ apt list --upgradable | grep apps-security
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+redis-server/focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 amd64 [upgradable from: 5:5.0.7-2ubuntu0.1]
+redis-tools/focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 amd64 [upgradable from: 5:5.0.7-2ubuntu0.1]
+redis/focal-apps-security,focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 all [upgradable from: 5:5.0.7-2ubuntu0.1]
+</pre>
+              </div>
+
+
+              <p>Ok, I can see that there are 3 packages related to Redis that have beta security updates from Ubuntu Pro available. Let's get them upgraded.</p>
+
+              <p>Identify which CVEs are affecting you:</p>
+
+              <ol>
+                <li>
+                  First, let's add the deb-src lines into the existing esm-apps source file. This will allow us to download the source packages directly which contain the CVE information (Notice that we are adding to deb-src, one for esm-apps security packages and for esm-apps updates packages):
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block">echo "deb-src https://esm.ubuntu.com/apps/ubuntu $(lsb_release -s -c)-apps-security main"  | sudo tee /etc/apt/sources.list.d/esm-apps-sources.list'</pre>
+                  </div>
+                </li>
+                <li>Now, let's make sure that apt is aware of those source packages by running:
+                  <div class="p-code-snippet"><pre class="p-code-snippet__block">apt-get update</pre></div>
+                </li>
+                <li>Now, let's download a source package for a package present on esm-apps, like ansible. (This command will download the package on the same folder where the user runs the command):
+                  <div class="p-code-snippet"><pre class="p-code-snippet__block">sudo apt-get source ansible</pre></div>
+                  </li>
+                  <li>Let's now find a file that starts with the package name we downloaded and ends with debian.tar.xz. We can do that by running the following ls command:
+                  <div class="p-code-snippet"><pre class="p-code-snippet__block">ls PACKAGE_NAME*.debian.tar.xz</pre></div>
+                  For example, for ansible we should run:
+                  <div class="p-code-snippet"><pre class="p-code-snippet__block">ls ansible*.debian.tar.xz</pre></div>
+                </li>
+                <li>We can now use this name to show the latest changelog entry:
+                  <div class="p-code-snippet"><pre class="p-code-snippet__block">tar -xOf PACKAGE_NAME.debian.tar.xz debian/changelog | sed '/--/q'</pre></div>
+                  For example, for ansible we should run:
+                  <div class="p-code-snippet"><pre class="p-code-snippet__block">tar -xOf ansible_2.9.6+dfsg-1ubuntu0.1~esm1.debian.tar.xz debian/changelog | sed '/--/q'</pre></div></li>
+            </ol>
+
+            <p>PS: You can delete the “/etc/apt/sources.list.d/esm-apps-sources.list” file after looking at the changelog.</p>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <h5 class="u-sv-1 u-no-margin--bottom">
+              Upgrade packages to a patched version 
+            </h5>
+
+            <p>Now that we have identified which packages and CVEs are affecting you, let's get them fixed.</p>
+
+            <div class="p-code-snippet">
+              <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo apt upgrade
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  redis redis-server redis-tools
+3 to upgrade, 0 to newly install, 0 to remove and 0 not to upgrade.
+3 esm-apps security updates
+Need to get 532 kB of archives.
+After this operation, 0 B of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 https://esm.ubuntu.com/apps/ubuntu focal-apps-security/main amd64 redis-server amd64 5:5.0.7-2ubuntu0.1+esm1 [37.4 kB]
+Get:2 https://esm.ubuntu.com/apps/ubuntu focal-apps-security/main amd64 redis-tools amd64 5:5.0.7-2ubuntu0.1+esm1 [491 kB]
+Get:3 https://esm.ubuntu.com/apps/ubuntu focal-apps-security/main amd64 redis all 5:5.0.7-2ubuntu0.1+esm1 [3,072 B]
+Fetched 532 kB in 1s (393 kB/s)   
+(Reading database ... 281498 files and directories currently installed.)
+Preparing to unpack .../redis-server_5%3a5.0.7-2ubuntu0.1+esm1_amd64.deb ...
+Unpacking redis-server (5:5.0.7-2ubuntu0.1+esm1) over (5:5.0.7-2ubuntu0.1) ...
+Preparing to unpack .../redis-tools_5%3a5.0.7-2ubuntu0.1+esm1_amd64.deb ...
+Unpacking redis-tools (5:5.0.7-2ubuntu0.1+esm1) over (5:5.0.7-2ubuntu0.1) ...
+Preparing to unpack .../redis_5%3a5.0.7-2ubuntu0.1+esm1_all.deb ...
+Unpacking redis (5:5.0.7-2ubuntu0.1+esm1) over (5:5.0.7-2ubuntu0.1) ...
+Setting up redis-tools (5:5.0.7-2ubuntu0.1+esm1) ...
+Setting up redis-server (5:5.0.7-2ubuntu0.1+esm1) ...
+Setting up redis (5:5.0.7-2ubuntu0.1+esm1) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for ureadahead (0.100.0-21) ...
+Processing triggers for systemd (245.4-4ubuntu3.18) ...</pre></div>
+          </li>
+        </ol>        
+      </div>
+    </div>
+  </section>
+  
+  <section class="p-strip is-deep u-no-padding--top">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">
+          6
+        </p>
+      </div>
+      <div class="col-9">
+        <h2>Find out how many esm-apps fixes have been installed overall</h2>
+        
+        <div class="p-code-snippet">
+          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ pro security-status
+2190 packages installed:
+     1870 packages from Ubuntu Main/Restricted repository
+     281 packages from Ubuntu Universe/Multiverse repository
+     10 packages from third parties
+     29 packages no longer available for download
+
+
+To get more information about the packages, run
+    pro security-status --help
+for a list of available options.
+
+Main/Restricted packages receive updates with LTS until 2025.
+
+Universe/Multiverse packages are receiving security updates from
+Ubuntu Pro with 'esm-apps' enabled until 2030. You have received 3 security
+updates.</pre>
+        </div>
+
+        <p>We can see that this machine has 577 packages from the Ubuntu Main repository and 10 packages from the Ubuntu Universe repository.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-deep u-no-padding--top">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">
+          7
+        </p>
+      </div>
+      <div class="col-9">
+        <h2>That's all, folks</h2>
+
+        <p>Good job, you made it! You should now know how to access and use Ubuntu Pro, as well as understand all the great benefits Ubuntu Pro has to offer.</p>
+
+        <h3 class="p-heading--5">Next steps:</h3>
+
+        <p>Still hungry to learn more about Ubuntu Pro? Head on over to <a href="https://discourse.ubuntu.com/c/ubuntu-pro/">Ubuntu Pro Discourse</a>.</p>
       </div>
     </div>
   </section>
