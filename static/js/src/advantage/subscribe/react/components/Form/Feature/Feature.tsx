@@ -148,6 +148,7 @@ const Feature = () => {
               "is-selected": feature === Features.infra,
               "u-disable": infraOnlyDisabled,
             })}
+            data-testid="infra-only"
           >
             <label className="p-radio u-align-text--center">
               <input
