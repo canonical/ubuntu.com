@@ -120,7 +120,6 @@ export const FormProvider = ({
 
   useEffect(() => {
     const product = getProduct(productType, feature, support, sla, period);
-    console.log(product);
     setProduct(window.productList[product] ?? null);
   }, [feature, productType, sla, support, period]);
 

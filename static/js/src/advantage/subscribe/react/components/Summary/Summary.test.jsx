@@ -6,7 +6,7 @@ import * as usePreview from "../../hooks/usePreview";
 import * as utils from "../../utils/utils";
 
 import { product, preview } from "../../utils/test/Mocks";
-import { Features, Periods, Support } from "../../utils/utils";
+import { Periods, Support } from "../../utils/utils";
 import { FormProvider } from "../../utils/FormContext";
 
 const DATE_FORMAT = "dd MMMM yyyy";
