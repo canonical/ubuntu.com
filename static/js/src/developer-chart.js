@@ -61,9 +61,12 @@ function createChart(dataset, id) {
   var xAxis = d3.svg.axis().scale(x).ticks(5).orient("top");
   var yAxis = d3.svg.axis().scale(y).tickSize(0).orient("left");
 
-  var gx = svg.append("g").attr("class", "x axis").attr( "transform",
-    "translate(52 " + (5) + ")"
-  ).transition().call(xAxis);
+  var gx = svg
+    .append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(52 " + 5 + ")")
+    .transition()
+    .call(xAxis);
   var gy = svg.append("g").attr("class", "y axis").call(yAxis);
 
   var bars = svg.selectAll(".bar").data(data).enter().append("g");
@@ -95,8 +98,8 @@ function createChart(dataset, id) {
       return `${d.count}%`;
     })
     .attr("text-anchor", "end")
-    .style({"font-size":"14px"});
-  }
+    .style({ "font-size": "14px" });
+}
 
 createChart(hackerEarthData, "hackerearth-chart");
 createChart(OpenSourcedata, "opensource-chart");
