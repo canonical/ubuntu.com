@@ -26,17 +26,7 @@ const Support = () => {
     setSupport(event.target.value as SupportEnum);
   };
 
-  const infraOnlySupportDisabled = ProductTypes.desktop === productType;
-  const appsOnlySupportDisabled =
-    ProductTypes.desktop === productType || Features.infra === feature;
-  const fullSupportDisabled = Features.infra === feature;
-
-  const isAppsSupportDisabled =
-    feature === Features.infra ||
-    productType === ProductTypes.desktop ||
-    version === LTSVersions.trusty ||
-    version === LTSVersions.xenial;
-
+  const isInfraOnlyDisabled = productType === ProductTypes.desktop;
   const isFullSupportDisabled =
     feature === Features.infra ||
     version === LTSVersions.trusty ||
@@ -51,7 +41,7 @@ const Support = () => {
       data-testid="wrapper"
     >
       <Row style={{ gap: "0" }} className="u-hide--small">
-        <Col size={4} className="description-column">
+        <Col size={6} className="description-column">
           <div className="support-heading">
             <strong>What&apos;s included?</strong>
           </div>
@@ -114,7 +104,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.infra,
-              "u-disable": productType === ProductTypes.desktop,
+              "u-disable": isInfraOnlyDisabled,
             })}
           >
             <label className="p-radio u-align-text--center">
@@ -148,47 +138,6 @@ const Support = () => {
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
                 </div>
-              </span>
-            </label>
-          </div>
-        </Col>
-        <Col size={2}>
-          <div
-            className={classNames({
-              "p-card--radio--column": true,
-              "is-selected": support === SupportEnum.apps,
-              "u-disable": isAppsSupportDisabled,
-            })}
-          >
-            <label className="p-radio u-align-text--center">
-              <input
-                className="p-radio__input"
-                autoComplete="off"
-                type="radio"
-                aria-labelledby={`apps-label`}
-                value={SupportEnum.apps}
-                checked={support === SupportEnum.apps}
-                onChange={handleChange}
-              />
-              <span className="p-radio__label" id={`apps-label`}>
-                <RadioInput
-                  labelClassName="inner-support-label"
-                  label={"Apps Support"}
-                  checked={support === SupportEnum.apps}
-                  value={SupportEnum.apps}
-                  onChange={handleChange}
-                />
-                <div className="support-row">
-                  <i className="p-icon--success"></i>Included
-                </div>
-                <div className="support-row">
-                  <i className="p-icon--success"></i>Included
-                </div>
-                <div className="support-row">
-                  <i className="p-icon--success"></i>Included
-                </div>
-                <div className="support-row not-supported">—</div>
-                <div className="support-row not-supported">—</div>
               </span>
             </label>
           </div>
@@ -276,7 +225,7 @@ const Support = () => {
           className={classNames({
             "p-card--radio": true,
             "is-selected": SupportEnum.infra === support,
-            "u-disable": infraOnlySupportDisabled,
+            "u-disable": isInfraOnlyDisabled,
           })}
           onClick={() => setSupport(SupportEnum.infra)}
         >
@@ -307,40 +256,8 @@ const Support = () => {
         <div
           className={classNames({
             "p-card--radio": true,
-            "is-selected": SupportEnum.apps === support,
-            "u-disable": appsOnlySupportDisabled,
-          })}
-          onClick={() => setSupport(SupportEnum.apps)}
-        >
-          <RadioInput
-            inline
-            label="Apps Support"
-            value={SupportEnum.apps}
-            checked={support === SupportEnum.apps}
-          />
-          <span>
-            <i className="p-icon--success"></i> Open Source Applications
-          </span>
-          <span>
-            <i className="p-icon--success"></i> Ubuntu Base OS
-          </span>
-          <span>
-            <i className="p-icon--success"></i> Kubernetes, LXD, Charms
-          </span>
-          <span>
-            <i className="p-icon--success"></i> Openstack, MAAS
-          </span>
-          <span>
-            <i className="p-icon--error"></i> Ceph and Swift storage
-          </span>
-        </div>
-      </Col>
-      <Col className="u-hide u-show--small" size={12}>
-        <div
-          className={classNames({
-            "p-card--radio": true,
             "is-selected": SupportEnum.full === support,
-            "u-disable": fullSupportDisabled,
+            "u-disable": isFullSupportDisabled,
           })}
           onClick={() => setSupport(SupportEnum.full)}
         >

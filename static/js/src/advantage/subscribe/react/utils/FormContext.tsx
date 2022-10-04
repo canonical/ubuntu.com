@@ -98,7 +98,7 @@ export const FormProvider = ({
 
   useEffect(() => {
     if (feature === Features.infra) {
-      if (support === Support.apps || support === Support.full) {
+      if (support === Support.full) {
         setSupport(Support.none);
       }
     }
@@ -106,7 +106,7 @@ export const FormProvider = ({
 
   useEffect(() => {
     if (productType === ProductTypes.desktop) {
-      if (support === Support.apps || support === Support.infra) {
+      if (support === Support.infra) {
         setSupport(Support.none);
       }
     }

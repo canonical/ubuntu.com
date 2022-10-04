@@ -126,7 +126,6 @@ export enum LTSVersions {
 export enum Support {
   none = "none",
   infra = "essential",
-  apps = "standard",
   full = "advanced",
 }
 
@@ -138,7 +137,6 @@ export enum SLA {
 
 export enum Features {
   infra = "uai",
-  apps = "uaa",
   pro = "uaia",
 }
 
@@ -155,12 +153,10 @@ export type ValidProducts =
   | "uai-essential-physical-monthly"
   | "uai-standard-physical-yearly"
   | "uai-advanced-physical-yearly"
-  | "uaa-essential-yearly"
-  | "uaa-essential-monthly"
-  | "uii-standard-physical-yearly"
-  | "uii-advanced-physical-yearly"
-  | "uaa-standard-yearly"
-  | "uaa-advanced-yearly"
+  | "uaia-essential-physical-yearly"
+  | "uaia-essential-physical-monthly"
+  | "uio-standard-physical-yearly"
+  | "uio-advanced-physical-yearly"
   | "uaia-standard-physical-yearly"
   | "uaia-advanced-physical-yearly"
   | "uai-essential-desktop-yearly"
@@ -221,17 +217,13 @@ export const getProduct = (
     case `${ProductTypes.physical}-${Features.infra}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
       return "uai-advanced-physical-yearly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
-      return "uaa-essential-yearly";
+      return "uaia-essential-physical-yearly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
-      return "uaa-essential-monthly";
+      return "uaia-essential-physical-monthly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
-      return "uii-standard-physical-yearly";
+      return "uio-standard-physical-yearly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
-      return "uii-advanced-physical-yearly";
-    case `${ProductTypes.physical}-${Features.pro}-${Support.apps}-${SLA.weekday}-${Periods.yearly}`:
-      return "uaa-standard-yearly";
-    case `${ProductTypes.physical}-${Features.pro}-${Support.apps}-${SLA.everyday}-${Periods.yearly}`:
-      return "uaa-advanced-yearly";
+      return "uio-advanced-physical-yearly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.weekday}-${Periods.yearly}`:
       return "uaia-standard-physical-yearly";
     case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
