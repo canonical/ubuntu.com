@@ -1,0 +1,366 @@
+{% extends "credentialling/base_cube.html" %}
+
+{% block title %}Canonical credentialling -- Self-study resources{% endblock %}
+
+{% block meta_description %}The Canonical Ubuntu Essentials exams certify knowledge and verify skills in general Linux, Ubuntu Desktop, and Ubuntu Server topics.{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1T1K7jyUa32-OURET6AjN2CD_c80TaUmj9EncYT70PNw/edit?usp=sharing{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row u-equal-height">
+    <div class="col-3">
+      <div class="p-side-navigation is-sticky" id="drawer">
+        <a href="#drawer" class="p-side-navigation__toggle js-drawer-toggle" aria-controls="drawer">
+          Toggle side navigation
+        </a>
+      
+        <div class="p-side-navigation__overlay js-drawer-toggle" aria-controls="drawer"></div>
+      
+        <nav class="p-side-navigation__drawer" aria-label="Example side">
+          <div class="p-side-navigation__drawer-header">
+            <a href="#" class="p-side-navigation__toggle--in-drawer js-drawer-toggle" aria-controls="drawer">
+              Toggle side navigation
+            </a>
+          </div>
+      
+          <h3 class="p-side-navigation__heading">Self Study Resources</h3>
+          <ul class="p-side-navigation__list">
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#general-resources">General Resources</a>
+            </li>
+          </ul>
+          <h3 class="p-side-navigation__heading">Linux Essentials resources</h3>
+          <ul class="p-side-navigation__list">
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#le-tutorials">Tutorials</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#le-documentation">Documentation</a>
+            </li>
+          </ul>
+          <h3 class="p-side-navigation__heading">Desktop Essentials resources</h3>
+          <ul class="p-side-navigation__list">
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#de-tutorials">Tutorials</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#de-documentation">Documentation</a>
+            </li>
+          </ul>
+          <h3 class="p-side-navigation__heading">Server Essentials resources</h3>
+          <ul class="p-side-navigation__list">
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#se-tutorials">Tutorials</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#se-documentation">Documentation</a>
+            </li>
+            <li class="p-side-navigation__item">
+              <a class="p-side-navigation__link" href="#se-webinar">Webinars</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="col-9">
+      <h1>Self-study resources</h1>
+      <p>The links on this page lead to documentation and tutorials about topics relevant to Canonical certification.</p>
+      <p>Although they do not constitute an exhaustive list of the subjects covered by Canonical certifications, they provide a good starting point for your studies. Use them to familiarise yourself with key concepts, or to refresh your existing knowledge.</p>
+      <h2 id="general-resources">General resources</h2>
+      <p>There are a number of instructional resources available, both community- and Canonical-made, that contain a wealth of useful information. The following links lead to Canonical’s official educational resources.</p>
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/tutorials">Tutorials</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/">Ubuntu documentation</a>
+          <ul>
+            <li>
+              <a href="https://help.ubuntu.com/lts/ubuntu-help/index.html">Desktop</a>
+            </li>
+            <li>
+              <a href="https://ubuntu.com/server/docs">Server</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="https://docs.ubuntu.com/">Canonical product documentation</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/CommunityHelpWiki">Community Help Wiki</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/blog/tag/webinar">Canonical webinars</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/blog/tag/conference">Canonical conference materials</a>
+        </li>
+      </ul>
+      <h2>Linux Essentials resources</h2>
+      <p>Before embarking on the Linux Essentials exam, it would be helpful to be familiar with the topics covered by the following resources.</p>
+      <h3 id="le-tutorials">Tutorials</h3>
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/tutorials/command-line-for-beginners#1-overview">The Linux command line for beginners</a>
+        </li>
+      </ul>
+      <h3 id="le-documentation">Documentation</h3>
+      <ul>
+        <li>
+          <a href="https://help.ubuntu.com/community/CommonQuestions">Common questions</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/UsingTheTerminal">Using the terminal</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/DrivesAndPartitions">Drives and partitions</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/InputDevices">Input devices</a>
+        </li>
+      </ul>
+
+      <h2>Desktop Essentials resources</h2>
+      <p>The following resources may prove useful when studying for the Desktop Essentials exam.</p>
+      <h3 id="de-tutorials">Tutorials</h3>
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/tutorials/how-to-verify-ubuntu">How to verify your Ubuntu download</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/install-ubuntu-desktop">Install Ubuntu desktop</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu desktop</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/use-the-concept-of-domains-roles-users-and-groups-to-manage-identities">Use the concept of domains, roles, users and groups to manage identities</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu">Create a bootable USB stick on Ubuntu</a>
+        </li>
+      </ul>
+      <h3 id="de-documentation">Documentation</h3>
+      <ul>
+        <li>
+          <a href="https://help.ubuntu.com/lts/ubuntu-help/hardware.html.en">Hardware and drivers</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/lts/ubuntu-help/disk.html.en">Disks and storage</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/lts/ubuntu-help/bluetooth.html.en">Bluetooth</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/lts/ubuntu-help/hardware-problems-graphics.html.en">Screen problems</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/Sound">Sound</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/Video">Video</a></li>
+        <li>
+          <a href="https://help.ubuntu.com/community/Printers">Printers</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/Scanners">Scanners</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/NetworkDevices">Network/wireless/internet devices</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/CorporateUbuntu">Corporate Ubuntu</a>
+        </li>
+      </ul>
+      <h2>Server Essentials resources</h2>
+      <p>The following resources are recommended for prospective Server Essentials candidates.</p>
+      <h3 id="se-tutorials">Tutorials</h3>
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/tutorials/install-ubuntu-server">Install Ubuntu Server</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/viewing-and-monitoring-log-filesa">Viewing and monitoring log files</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/enable-the-livepatch-service">Apply kernel patches without rebooting</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/tutorials/setup-zfs-storage-pool">Set up a ZFS storage tool</a>
+        </li>
+      </ul>
+      <h3 id="se-documentation">Documentation</h3>
+      <p>The <a href="https://ubuntu.com/server/docs">Server documentation</a> covers a wide array of relevant topics. They are worth reading in their entirety, but the following sections may prove especially useful:</p>
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/server/docs/installation">Basic install</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/install/autoinstall">Automated install</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/cloud-images/introduction">Cloud images</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/rock-images/introduction">Software containers</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/network-introduction">Networking</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/device-mapper-multipathing-introduction">Networked storage</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/security-introduction">Security</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/virtualization-introduction">Virtualisation</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/ubuntu-ha-introduction">High availability</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/logging-monitoring-alerting">Monitoring</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/databases-introduction">Databases</a></li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/backups-introduction">Backups</a></li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/mail-introduction">Mail servers</a>
+        </li>
+        <li>
+          <a href="https://ubuntu.com/server/docs/web-servers-introduction">Web servers</a>
+        </li>
+      </ul>
+      <p>Additional resources can be found on the <a href="https://help.ubuntu.com/community/CommunityHelpWiki">Community Wiki</a>. We recommend looking at <a href="https://help.ubuntu.com/community/SystemAdministration">System Administration</a>, in particular:</p>
+      <ul>
+        <li>
+          <a href="https://help.ubuntu.com/community/LinuxLogFiles">Linux Log Files</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/AddUsersHowto">Add Users How-To</a>
+        </li>
+        <li>
+          <a href="https://help.ubuntu.com/community/CronHowto">Cron How-To</a>
+        </li>
+      </ul>
+      <h3 id="se-webinar">Webinars</h3>
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/blog/ubuntu-security-compliance">Ubuntu, security &amp; compliance</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<script>
+  /**
+  Toggles the expanded/collapsed classed on side navigation element.
+
+  @param {HTMLElement} sideNavigation The side navigation element.
+  @param {Boolean} show Whether to show or hide the drawer.
+*/
+function toggleDrawer(sideNavigation, show) {
+  const toggleButtonOutsideDrawer = sideNavigation.querySelector('.p-side-navigation__toggle');
+  const toggleButtonInsideDrawer = sideNavigation.querySelector('.p-side-navigation__toggle--in-drawer');
+
+  if (sideNavigation) {
+    if (show) {
+      sideNavigation.classList.remove('is-drawer-collapsed');
+      sideNavigation.classList.add('is-drawer-expanded');
+
+      toggleButtonInsideDrawer.focus();
+      toggleButtonOutsideDrawer.setAttribute('aria-expanded', true);
+      toggleButtonInsideDrawer.setAttribute('aria-expanded', true);
+    } else {
+      sideNavigation.classList.remove('is-drawer-expanded');
+      sideNavigation.classList.add('is-drawer-collapsed');
+
+      toggleButtonOutsideDrawer.focus();
+      toggleButtonOutsideDrawer.setAttribute('aria-expanded', false);
+      toggleButtonInsideDrawer.setAttribute('aria-expanded', false);
+    }
+  }
+}
+
+// throttle util (for window resize event)
+var throttle = function (fn, delay) {
+  var timer = null;
+  return function () {
+    var context = this,
+      args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  };
+};
+
+/**
+  Attaches event listeners for the side navigation toggles
+  @param {HTMLElement} sideNavigation The side navigation element.
+*/
+function setupSideNavigation(sideNavigation) {
+  var toggles = [].slice.call(sideNavigation.querySelectorAll('.js-drawer-toggle'));
+  var drawerEl = sideNavigation.querySelector('.p-side-navigation__drawer');
+
+  // hide navigation drawer on small screens
+  sideNavigation.classList.add('is-drawer-hidden');
+
+  // setup drawer element
+  drawerEl.addEventListener('animationend', () => {
+    if (!sideNavigation.classList.contains('is-drawer-expanded')) {
+      sideNavigation.classList.add('is-drawer-hidden');
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      toggleDrawer(sideNavigation, false);
+    }
+  });
+
+  // setup toggle buttons
+  toggles.forEach(function (toggle) {
+    toggle.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      if (sideNavigation) {
+        sideNavigation.classList.remove('is-drawer-hidden');
+        toggleDrawer(sideNavigation, !sideNavigation.classList.contains('is-drawer-expanded'));
+      }
+    });
+  });
+
+  // hide side navigation drawer when screen is resized
+  window.addEventListener(
+    'resize',
+    throttle(function () {
+      toggles.forEach((toggle) => {
+        return toggle.setAttribute('aria-expanded', false);
+      });
+      // remove expanded/collapsed class names to avoid unexpected animations
+      sideNavigation.classList.remove('is-drawer-expanded');
+      sideNavigation.classList.remove('is-drawer-collapsed');
+      sideNavigation.classList.add('is-drawer-hidden');
+    }, 10)
+  );
+}
+
+/**
+  Attaches event listeners for all the side navigations in the document.
+  @param {String} sideNavigationSelector The CSS selector matching side navigation elements.
+*/
+function setupSideNavigations(sideNavigationSelector) {
+  // Setup all side navigations on the page.
+  var sideNavigations = [].slice.call(document.querySelectorAll(sideNavigationSelector));
+
+  sideNavigations.forEach(setupSideNavigation);
+}
+
+setupSideNavigations('.p-side-navigation, [class*="p-side-navigation--"]');
+
+
+</script>
+{% endblock %}
