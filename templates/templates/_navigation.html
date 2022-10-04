@@ -90,7 +90,7 @@
           {% if child.title != "Overview" %}
             {% if child.path == '/blog/topics' %}
             <li class="breadcrumbs__item p-contextual-menu u-hide--small">
-              <a aria-controls="#topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+              <a aria-controls="topics" data-trigger="hover" class="breadcrumbs__link u-no-margin--bottom {% if child.active %}p-link--active{% else %}p-link--soft{% endif %} p-contextual-menu__toggle" href="#">{{ child.title }}</a>
 
               <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="left: 1rem; font-size: .875rem;">
                 <span class="p-contextual-menu__group">
