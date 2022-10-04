@@ -4,7 +4,9 @@ image: prod-comms.docker-registry.canonical.com/ubuntu.com
 
 env:
   - name: STORE_MAINTENANCE
-    value: true
+    configMapKeyRef:
+      key: maintenance
+      name: ubuntu-com
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -395,7 +397,9 @@ staging:
 
   env:
     - name: STORE_MAINTENANCE
-      value: true
+      configMapKeyRef:
+        key: maintenance
+        name: ubuntu-com
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -730,7 +734,9 @@ staging:
 demo:
   env:
     - name: STORE_MAINTENANCE
-      value: true
+      configMapKeyRef:
+        key: maintenance
+        name: ubuntu-com
 
     - name: SEARCH_API_KEY
       secretKeyRef:
