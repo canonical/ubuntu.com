@@ -1,8 +1,7 @@
 @mixin ubuntu-p-ua-subscribe {
   .product-selector {
-    padding-top: 6rem;
-
     counter-reset: headings;
+    padding-top: 6rem;
 
     > .p-strip {
       padding-top: 0.5rem;
@@ -17,39 +16,63 @@
 
   .product-selector h2 {
     counter-increment: headings;
-    margin-bottom: 2rem;
     display: flex;
     flex-direction: row;
     gap: 1.2rem;
+    margin-bottom: 2rem;
 
     &::before {
       @extend .p-heading--3;
-      content: counter(headings);
-      display: inline-flex;
+
       align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      height: 2.5rem;
-      width: 2.5rem;
       border: 1px solid;
       border-radius: 100%;
+      content: counter(headings);
+      display: inline-flex;
+      flex-shrink: 0;
+      height: 2.5rem;
+      justify-content: center;
       margin-top: 4px;
+      width: 2.5rem;
     }
   }
 
-
   .product-selector .p-card--radio--column.is-selected {
-    box-shadow: 0px 4px 4px rgb(0 0 0 / 5%), 0px 2px 16px rgb(0 0 0 / 5%),
-      0px 0px 24px rgb(0 0 0 / 10%), 0px 0px 0px 1px #757575;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 5%), 0 2px 16px rgb(0 0 0 / 5%),
+      0 0 24px rgb(0 0 0 / 10%), 0 0 0 1px #757575;
   }
 
   .included {
-    display: flex;
-    justify-content: flex-start;
     align-items: center;
-    height: 122px;
-    margin-left: 1rem;
+    display: flex;
     gap: 1rem;
+    height: 122px;
+    justify-content: flex-start;
+    margin-left: 1rem;
+  }
+
+  .heading,
+  .main,
+  .universe {
+    height: 7rem;
+    margin-bottom: 10px;
+    padding-right: 3rem;
+    padding-top: 0.5px;
+  }
+
+  .support-row {
+    height: 3rem;
+    margin: 0 1rem;
+    padding-top: 1rem;
+    text-align: left;
+
+    > i {
+      margin-right: 1rem;
+    }
+
+    &.not-supported {
+      margin-left: 3rem;
+    }
   }
 
   .versions-features {
@@ -59,9 +82,9 @@
 
     button.p-chip--positive {
       border: none;
-      top: -0.5rem;
-      margin-left: 0.5rem;
       font-style: oblique;
+      margin-left: 0.5rem;
+      top: -0.5rem;
     }
   }
 
@@ -73,7 +96,6 @@
       padding-top: 1.5rem;
     }
 
-    
     > .support-row {
       margin: 0;
     }
@@ -83,56 +105,35 @@
     }
 
     > *:not(:last-child)::before {
-      content: "";
-      position: relative;
-      width: calc(3.6rem + 200% + 6rem);
-      top: 100%;
-      height: 1px;
-      z-index: 10;
-      display: block;
       background: rgba(0, 0, 0, 0.15);
+      content: "";
+      display: block;
+      height: 1px;
+      position: relative;
+      top: 100%;
+      width: calc(3.6rem + 200% + 6rem);
+      z-index: 10;
     }
 
     > .support-heading {
       padding: 1rem 0 12px 0;
+
       &::before {
         top: 2.3rem;
       }
     }
-    > .support-heading, > .support-row {
+
+    > .support-heading,
+    > .support-row {
       &::before {
         width: calc(3.6rem + 200%);
       }
     }
   }
 
-  .heading,
-  .main,
-  .universe {
-    padding-right: 3rem;
-    padding-top: 0.5px;
-    margin-bottom: 10px;
-    height: 7rem;
-  }
-
-  .support-row {
-    height: 3rem;
-    text-align: left;
-    margin: 0 1rem;
-    padding-top: 1rem;
-
-    > i {
-      margin-right: 1rem;
-    }
-
-    &.not-supported {
-      margin-left: 3rem;
-    }
-  }
-
   .inner-support-label {
-    margin: 0.5rem 0 15px 1rem;
     font-weight: 500;
+    margin: 0.5rem 0 15px 1rem;
   }
 
   .logos-wrapper {
