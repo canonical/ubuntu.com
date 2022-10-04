@@ -163,7 +163,7 @@ const Support = () => {
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
                   labelClassName="inner-support-label"
-                  label={"Support"}
+                  label={"Full Support"}
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
                   onChange={handleChange}
@@ -271,7 +271,7 @@ const Support = () => {
         >
           <RadioInput
             inline
-            label="Support"
+            label="Full Support"
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
           />

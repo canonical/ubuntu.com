@@ -72,7 +72,7 @@ const Feature = () => {
           <div className="universe">
             <p>
               Over 23,000 open source deb packages in Ubuntu Universe repository
-              including:
+              for 10 years, including:
             </p>
             <div className="logos-wrapper">
               <img
