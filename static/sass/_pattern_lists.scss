@@ -7,6 +7,8 @@
   @include ubuntu-p-ordered-legal-list;
   @include ubuntu-p-list-small;
   @include ubuntu-p-form-list-ticked;
+  @include ubuntu-p-list-divided-with-bullets;
+  @include ubuntu-p-step-counter;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -288,5 +290,45 @@
     .p-list__item.is-ticked {
       background-position-y: 0.43rem;
     }
+  }
+}
+
+@mixin ubuntu-p-list-divided-with-bullets {
+  .p-list--divided.has-bullets {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    width: 100%;
+
+    .p-list__item {
+      margin-left: -1rem;
+      padding-left: 1rem;
+    }
+  }
+  
+  ol.p-list--divided.has-bullets {
+    list-style: decimal;
+  }
+
+  ul.p-list--divided.has-bullets {
+    list-style: disc;
+  }
+
+  .p-list--divided .p-list__item::after {
+    left: $sph--large;
+  }
+}
+
+@mixin ubuntu-p-step-counter {
+  .p-step-counter {
+    $disk-padding: $spv-nudge * 0.5;
+
+    border: 1px solid $colors--light-theme--border-high-contrast;
+    display: inline-block;
+    border-radius: 100%;
+    height: auto;
+    margin-top: 0.5 * (map-get($line-heights, h2) - map-get($line-heights, default-text));
+    padding: $disk-padding;
+    text-align: center;
+    width: calc(#{map-get($line-heights, default-text)} + #{2 * $disk-padding});
   }
 }

@@ -13,11 +13,85 @@
       </div>
     </div>
   </section>
+  <section class="p-strip is-deep u-no-padding--top">
+      <hr class="is-fixed-width u-no-margin--bottom">
+      <div class="row">
+        <div class="col-3">
+          <h2 class="p-text--x-small-capitalised u-align-text--x-small-to-default">Overview</h2>
+        </div>
+        <div class="col-9">
+          <p>New to Ubuntu Pro? This how-to guide will help you to understand how to activate your Ubuntu Pro subscription and choose which services to enable. 
+          </p>
+          <p>
+            We will start by getting an Ubuntu Pro personal subscription. We will then attach this subscription to your existing Ubuntu LTS machine and enable the Expanded Security Maintenance for Applications (ESM Apps) service to find out if any additional security fixes are available for you.
+          </p>
+          <p>
+            Including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and many more...
+          </p>
+          <p>
+            <a href="https://ubuntu.com/pro">Want to learn more about the benefits of Ubuntu Pro?</a>
+          </p>
 
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <div class="p-code-snippet">
-        <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ pro security-status
+          <h2>What you’ll learn</h2>
+          <ol class="p-list--divided has-bullets">
+            <li class="p-list__item">
+              <span class="u-max-width">
+                What is Ubuntu Pro and how to use it
+              </span>
+            </li>
+            <li class="p-list__item">
+              <span class="u-max-width">
+                How to check which of the Ubuntu repositories your installed packages are provided by, Ubuntu Main or Ubuntu Universe
+              </span>
+            </li>
+            <li class="p-list__item">
+              <span class="u-max-width">
+                How to attach an Ubuntu Pro subscription to your existing Ubuntu LTS machine
+              </span>
+            </li>
+            <li class="p-list__item">
+              <span class="u-max-width">
+                How to check for and apply security updates on your Ubuntu machine, including security updates for Ubuntu Universe packages which are only available with Ubuntu Pro
+              </span>
+            </li>
+          </ol>
+
+          <h2>What you’ll need</h2>
+          <ol class="p-list--divided has-bullets">
+            <li class="p-list__item">
+              <span class="u-max-width">
+                An Ubuntu machine running 16.04 LTS, 18.04 LTS, 20.04 LTS or 22.04 LTS
+              </span>
+            </li>
+            <li class="p-list__item">
+              <span class="u-max-width">
+                Sudo access
+              </span>
+            </li>
+            <li class="p-list__item">
+              <span class="u-max-width">
+                An email adreess
+              </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+  </section>
+  <section class="p-strip is-deep u-no-padding--top">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="row">
+      <div class="col-3">
+        <p class="p-step-counter">
+          1
+        </p>
+      </div>
+      <div class="col-9">
+        <div class="p-strip is-shallow u-no-padding--top">
+          <h2>Do you know where your deb packages are installed from?</h2>
+          <p>First, let's find out how many deb packages are installed on your machine and from which source:</p>
+        </div> 
+        <div class="p-code-snippet">
+          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ pro security-status
 2190 packages installed:
     1870 packages from Ubuntu Main/Restricted repository
     281 packages from Ubuntu Universe/Multiverse repository
@@ -34,6 +108,22 @@ Main/Restricted packages receive updates with LTS until 2025.
 
 Try Ubuntu Pro beta with a free personal subscription on up to 5 machines.
 Learn more at https://ubuntu.com/pro</pre>
+        </div>
+        <p>
+          OK, so there are 2190 deb packages installed on your machine. 
+        </p>
+        <ul class="p-list--divided has-bullets">
+          <li class="p-list__item">
+            <span class="u-max-width">
+              1870 packages are from Ubuntu Main/ Restricted repository which means that they receive Ubuntu LTS updates until 2025. This is covered without any subscription but can be expanded with Ubuntu Pro for an additional 5 years, until 2030.
+            </span>
+          </li>
+          <li class="p-list__item">
+            <span class="u-max-width">
+              281 packages are from Ubuntu Universe/ Multiverse repository and they come with no security assurance with Ubuntu LTS. They would be covered by Ubuntu Pro and there might be beta security updates available for them today. Let’s find out if that is the case.
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
