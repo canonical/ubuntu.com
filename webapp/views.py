@@ -539,8 +539,7 @@ def engage_thank_you(engage_pages):
         try:
             form_details = flask.session["form_details"]
         except KeyError:
-            # Forbid direct access to thank-you page
-            return flask.abort(403)
+            form_details = None
 
         return flask.render_template(
             template_language,
