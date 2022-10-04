@@ -304,7 +304,7 @@
       padding-left: 1rem;
     }
   }
-  
+
   ol.p-list--divided.has-bullets {
     list-style: decimal;
   }
@@ -323,10 +323,11 @@
     $disk-padding: $spv-nudge * 0.5;
 
     border: 1px solid $colors--light-theme--border-high-contrast;
-    display: inline-block;
     border-radius: 100%;
+    display: inline-block;
     height: auto;
-    margin-top: 0.5 * (map-get($line-heights, h2) - map-get($line-heights, default-text));
+    margin-top: 0.5 *
+      (map-get($line-heights, h2) - map-get($line-heights, default-text));
     padding: $disk-padding;
     text-align: center;
     width: calc(#{map-get($line-heights, default-text)} + #{2 * $disk-padding});
