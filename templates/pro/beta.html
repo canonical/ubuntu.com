@@ -130,77 +130,121 @@ Learn more at https://ubuntu.com/pro</pre>
   <section class="p-strip is-deep u-no-padding--top">
     <hr class="is-fixed-width u-no-margin--bottom">
     <div class="row">
-      <div class="col-3">
+      <div class="col-3 col-medium-1">
         <p class="p-step-counter">
           2
         </p>
       </div>
-      <div class="col-9">
-        <div class="p-strip is-shallow u-no-padding--top">
-          <h2>Get your free Ubuntu Pro subscription</h2>
-          <h3 class="p-heading--5">Create an Ubuntu One account</h3>
-          <p>If you do not already have an Ubuntu One account, <a href="/login">create one</a> - Ubuntu One is the single account you use to log in to all services and sites related to Ubuntu, including Ubuntu Pro which is free of charge for personal use on up to 5 machines.</p>
-
-          <!-- ADD IMAGE -->
-
-          <h3 class="p-heading--5">Confirm the email address</h3>
-          <p>Simply click the link provided in the email.</p>
-
-          <!-- ADD IMAGE -->
-
-          <h3 class="p-heading--5">Retrieve the token</h3>
-
-          <p>You will be automatically redirected to <a href="/pro">your Ubuntu Pro dashboard</a>; an additional Google captcha confirmation step might be required.</p>
-
-          <p>Your Ubuntu Pro token will be listed under 'Free Personal Token'.</p>
-        </div>
+      <div class="col-9 col-medium-5">
+        <h2>Get your free Ubuntu Pro subscription</h2>
+        <ol class="p-list--divided has-bullets">
+          <li class="p-list__item">
+            <span class="u-max-width">
+              <h5 class="u-sv-1 u-no-margin--bottom">
+                Create an Ubuntu One account
+              </h5>
+              <p>
+                If you do not already have an Ubuntu One account, create one - Ubuntu One is the single account you use to log in to all services and sites related to Ubuntu, including the Ubuntu Pro which is free of charge for personal use on up to 5 machines.
+              </p>
+              <img class="has-shadow" src="https://assets.ubuntu.com/v1/3acd405b-login.ubuntu.com_+login+%281%29.jpg" alt="" style="width: 100%; max-width: 35rem">
+              
+            </span>
+          </li>
+          <li class="p-list__item">
+            <h5 class="u-sv-1 u-no-margin--bottom">
+              Confirm the email address
+            </h5>
+            <p>
+              Simply click the link provided in the email:
+            </p>
+            <div class="p-card">
+              <p class="u-max-width">
+                Hello
+                <br>
+                Welcome to your new Ubuntu One account.
+                <br>
+                You can log in right away and start using your new account.
+                <br>
+                Please take a moment to confirm your email address with us.
+                <br>
+                To confirm your email address, please click on the link below:
+                <br>
+                <a href="#">https://login.ubuntu.com/Luz1w0n37tidpgi6/token/{YOUR_TOKEN_HERE}/+newemail/{YOUR_EMAIL_HERE}</a>
+                <br>
+                Thank you,
+                <br>
+                The Ubuntu One team
+                https://login.ubuntu.com
+                <br>
+  
+                If you don't know what this is about, then someone has probably entered your email address by mistake. Sorry about that.
+                Use the following link only if you wish to report this email being incorrectly used:
+                <br>
+                <a href="#">https://login.ubuntu.com/invalidate-email/{YOUR_TOKEN_HERE}/{YOUR_EMAIL_HERE}</a>
+                <br>
+                You can also seek further assistance on:
+                <br>
+                https://help.ubuntu.com/community/SSO/FAQs
+              </p>
+            </div>
+          </li>
+          <li class="p-list__item">
+            <div class="p-strip is-shallow u-no-padding--top">
+              <h5 class="u-sv-1 u-no-margin--bottom">
+                Retrieve the token:
+              </h5>
+              <p>You will be automatically redirected to your Ubuntu Pro dashboard (ubuntu.com/pro); an additional google captcha confirmation step might be required.
+                Your Ubuntu Pro token will be listed under ‘Free Personal Token’ 
+                </p>
+            </div>
+            <img  class="has-shadow" src="https://assets.ubuntu.com/v1/7b78a295-UA+scr+3.jpg" alt="" style="width: 100%; max-width: 81rem">
+          </li>
+        </ol>
       </div>
     </div>
   </section>
-
   <section class="p-strip is-deep u-no-padding--top">
     <hr class="is-fixed-width u-no-margin--bottom">
     <div class="row">
-      <div class="col-3">
+      <div class="col-3 col-medium-1">
         <p class="p-step-counter">
           3
         </p>
       </div>
-      <div class="col-9">
+      <div class="col-9 col-medium-5">
         <div class="p-strip is-shallow u-no-padding--top">
           <h2>Attach your Ubuntu LTS machine to an Ubuntu Pro subscription using the token</h2>
           <p>Now that we have our Ubuntu Pro token, we can attach it to our Ubuntu instance. Open the terminal on your Ubuntu LTS, and type the following command:</p>
-
-          <pre><code>$ sudo pro attach YOUR_TOKEN</code></pre>
-
-          <p>You should see some of the Ubuntu Pro services - Expanded Security Maintenance for Infrastructure (esm-infra), and Livepatch - automatically enabling, while others will remain disabled until you switch them on:</p>
-
-          <div class="p-code-snippet">
-            <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo pro attach C13WneAjHwtNARZgRgRqZzsiLfBQD6
+        </div> 
+        <div class="p-code-snippet">
+          <pre class="p-code-snippet__block--icon"><code>sudo pro attach YOUR_TOKEN</code></pre>
+        </div>
+        <p>
+          You should see some of the Ubuntu Pro services - Expanded Security Maintenance for Infrastructure (esm-infra), and Livepatch - automatically enabling, while others will remain disabled until you switch them on:
+        </p>
+        <div class="p-code-snippet">
+          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo pro attach {YOUR_TOKEN_HERE}
 Enabling default service esm-infra
 Updating package lists
 Ubuntu Pro: ESM Infra enabled
 Enabling default service livepatch
 Canonical livepatch enabled.
 Unable to determine current instance-id
-This machine is now attached to 'lech.sandecki@canonical.com'
+This machine is now attached to '{YOUR_EMAIL_HERE}'
 
 SERVICE          ENTITLED  STATUS    DESCRIPTION
 esm-infra        <span class="token string">yes</span>       <span class="token string">enabled</span>   Expanded Security Maintenance for Infrastructure
-fips             <span class="token string">yes</span>       <span class="token function">disabled</span>  NIST-certified core packages
-fips-updates     <span class="token string">yes</span>       <span class="token function">disabled</span>  NIST-certified core packages with priority security updates
+fips             <span class="token string">yes</span>       <span class="token string">disabled</span>  NIST-certified core packages
+fips-updates     <span class="token string">yes</span>       <span class="token string">disabled</span>  NIST-certified core packages with priority security updates
 livepatch        <span class="token string">yes</span>       <span class="token string">enabled</span>   Canonical Livepatch service
-usg              <span class="token string">yes</span>       <span class="token function">disabled</span>  Security compliance and audit tools
+usg              <span class="token string">yes</span>       <span class="token string">disabled</span>  Security compliance and audit tools
 
 NOTICES
 Operation in progress: pro attach
 
 Enable services with: pro enable &lt;service&gt;
-
-     Account: lech.sandecki@canonical.com
-Subscription: Ubuntu Pro - free personal subscription
-
-</pre>
+     Account: {YOUR_EMAIL_HERE}
+Subscription: Ubuntu Pro - free personal subscription</pre>
           </div>
         </div>
       </div>
@@ -239,6 +283,7 @@ See https://ubuntu.com/pro
 </pre>
           </div>
         </div>
+
       </div>
     </div>
   </section>
