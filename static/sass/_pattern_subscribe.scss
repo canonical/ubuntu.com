@@ -92,11 +92,16 @@
       display: block;
       background: rgba(0, 0, 0, 0.15);
     }
-    
+
     > .support-heading {
       padding: 1rem 0 12px 0;
       &::before {
         top: 2.3rem;
+      }
+    }
+    > .support-heading, > .support-row {
+      &::before {
+        width: calc(3.6rem + 200%);
       }
     }
   }
