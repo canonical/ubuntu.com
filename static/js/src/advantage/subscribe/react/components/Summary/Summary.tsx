@@ -9,7 +9,9 @@ const DATE_FORMAT = "dd MMMM yyyy";
 
 function Summary() {
   const { quantity, product } = useContext(FormContext);
-  const { data: preview } = usePreview({ quantity, product });
+  const sanitisedQuanity = Number(quantity) ?? 0;
+  const { data: preview } = usePreview({ quantity: sanitisedQuanity, product });
+
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
@@ -17,7 +19,9 @@ function Summary() {
       </Col>
       <Col size={8}>
         <div data-testid="subtotal">
-          {formatter.format(((product?.price?.value ?? 0) * quantity) / 100)}
+          {formatter.format(
+            ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
+          )}
         </div>
       </Col>
     </Row>

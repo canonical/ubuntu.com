@@ -188,7 +188,7 @@ export const isMonthlyAvailable = (product: Product | null) => {
   if (!product || !product.id) return false;
 
   const monthlyID = product.id.replace(Periods.yearly, Periods.monthly);
-  return !!window.productList[monthlyID as ProductIDs];
+  return !!window.productList[monthlyID as ValidProducts];
 };
 
 export const isPublicCloud = (type: ProductTypes) =>

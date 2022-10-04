@@ -42,7 +42,7 @@ const BuyButton = ({
   const { data: userInfo } = useStripeCustomerInfo();
   const { quantity, product } = useContext(FormContext);
 
-  const SanitisedQuantity = quantity ?? 0;
+  const SanitisedQuantity = Number(quantity) ?? 0;
 
   const purchaseMutation = usePurchase({
     quantity: SanitisedQuantity,
