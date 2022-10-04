@@ -62,7 +62,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
 1. <span id="uprosd-support-levels">Support scope and levels</span>:
     1. Infra support: weekday or 24/7
     2. Apps support: weekday or 24/7 
-    3. Full (Infra + Apps) support: weekday or 24/7
+    3. Full Stack Support (Infra & Apps): weekday or 24/7
 2. <span id="uprosd-infra-and-apps">Included in all support levels</span>:
     4. <span id="uprosd-ubuntu-releases">Ubuntu releases</span>
         1. Break-fix support for standard installation, configuration, maintenance, and troubleshooting and usage of any Ubuntu LTS release when installed using official sources and within [Ubuntu lifecycle](https://www.ubuntu.com/about/release-cycle). Bug-fix support is not offered after the [End of Standard Support](https://wiki.ubuntu.com/Releases)
@@ -71,7 +71,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
         3. Full support applies only with respect to customer's hardware that has been certified. In the event a customer requests the services with respect to hardware, which is not certified, Canonical will use reasonable efforts to provide support services, but may not adhere to the obligations described in this service description
     6. <span id="uprosd-packages-and-kernels">Supported services</span>
         4. The following packages, kernels and services are within the scope of support:
-            1. Canonical maintained packages in Ubuntu Main repository including the "proposed" and "backports" repository pockets
+            1. Canonical maintained packages in Ubuntu Main repository
             2. Packages in the Ubuntu Cloud Archive
             3. Canonical maintained Snap packages, Charms and OCI images
             4. [Supported Kernels](https://ubuntu.com/about/release-cycle#Ubuntu%20kernel%20release%20cycle)
@@ -94,7 +94,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
             12. Unless the Full-Stack Support requirements set out above are met, support is limited to Bug-fix Support for:
                 6. The software packages and Charms necessary for running Charmed Kubernetes
                 7. Kubernetes clusters deployed using kubeadm utilising the software packages available from apt.kubernetes.io
-3. <span id="uprosd-infra-only">Support &mdash; included in Infra and Full support, but not included in Apps support</span>:
+3. <span id="uprosd-infra-only">Support &mdash; included in Infra and Full Stack support, but not included in Apps support</span>:
     8. <span id="uprosd-openstack">OpenStack</span>
         8. OpenStack software support depends on the Ubuntu release deployed on the underlying Nodes:
             13. The [version of OpenStack provided initially in the release of a LTS version of Ubuntu ](https://www.ubuntu.com/about/release-cycle )is supported for the entire lifecycle of that Ubuntu version
@@ -141,7 +141,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
             28. Access to Landscape and Canonical Livepatch Service for machines deployed with MAAS
     12. <span id="uprosd-ubuntu-assurance-program">Ubuntu Assurance Program</span>
         24. Ubuntu Pro + support customers are entitled to the [Ubuntu Assurance Programme](http://www.ubuntu.com/legal/ubuntu-advantage/assurance). Canonical may update the Assurance Programme and its terms periodically
-4. <span id="uprosd-apps-only">Support &mdash; included in Apps support and Full support, but not included in Infra support</span>
+4. <span id="uprosd-apps-only">Support &mdash; included in Apps support and Full Stack support, but not included in Infra support</span>
     13. Canonical will provide phone and ticket support to the Applications installed from Ubuntu Repositories. The list of supported applications is at: https://ubuntu.com/support
 
 
@@ -160,7 +160,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
 
 <h3 id="uprosd-managed-services">Managed Services</h3>
 
-1. Managed Services are an add-on to Ubuntu Pro + 24/7 support (for Infra support, Apps support and Full support). When added on, Canonical will manage the Environment as described below. Guests Instance running in the Environment receive the Ubuntu Advantage subscriptions and support
+1. Managed Services are an add-on to Ubuntu Pro + Infra Support (24/7), or Ubuntu Pro + Apps support (24/7) or Ubuntu Pro +  Full Stack support (24/7). When added on, Canonical will manage the Environment as described below. Guests Instance running in the Environment receive the Ubuntu Advantage subscriptions and support
 2. Following Canonical's building and initialising of the Environment (subject to separate service engagement), the Managed Service will re-deploy the Environment to reset credentials and validate the deployment process. The Managed Service will also provide documentation providing further detail on the working relationship with Canonical. Additional services can be offered subject to purchasing Professional Support Services (as listed in the section below)
 3. The Managed Service will remotely operate, monitor, and manage the Environment. Concrete examples include:
     1. backing up and restoring of the management infrastructure suite
