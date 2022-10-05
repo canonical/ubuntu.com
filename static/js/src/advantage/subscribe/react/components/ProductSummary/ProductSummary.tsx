@@ -136,6 +136,9 @@ const ProductSummary = () => {
                 ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
               )}
             </p>
+            <a href="/legal/ubuntu-pro-description">
+              See full service description
+            </a>
           </Col>
           <Col size={1} small={2}>
             <p>per {period === Periods.yearly ? "year" : "month"}</p>
