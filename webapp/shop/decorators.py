@@ -1,5 +1,4 @@
 import os
-from distutils.util import strtobool
 from functools import wraps
 
 import flask

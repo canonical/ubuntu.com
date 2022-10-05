@@ -1,7 +1,5 @@
 from datetime import datetime
 from typing import Dict, List, Optional
-import os
-from distutils.util import strtobool
 
 import pytz
 from dateutil.parser import parse
