@@ -3,6 +3,7 @@ A Flask application for ubuntu.com
 """
 
 # Packages
+from distutils.util import strtobool
 import os
 import talisker.requests
 import flask
@@ -297,7 +298,7 @@ def context():
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
-        "is_maintenance": True,
+        "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
     }
 
 
