@@ -14,6 +14,40 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+## 1.25+ck2 Bugfix release 
+
+#### September 30, 2022 - `charmed-kubernetes --channel 1.25/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
+
+### Fixes
+
+Notable fixes in this release include:
+
+- AzureDisk in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1990687](https://bugs.launchpad.net/bugs/1990687)
+
+  With the pinning of [CSIMigrationAzureDisk=True](https://github.com/kubernetes/kubernetes/pull/110491) in 
+  Kubernetes 1.25, the charm must not allow these to be set `False`.  This means that in-tree storage
+  provided by AzureDisk is only supported in 1.25 and beyond with an [out-of-tree deployment](https://github.com/kubernetes-sigs/azuredisk-csi-driver).
+
+- IPv6DualStack in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1990455](https://bugs.launchpad.net/bugs/1990455)
+
+  The feature gate [`IPv6DualStack=true`](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#other-cleanup-or-flake)
+  is the default since `1.21`, and GA since `1.23`, so this flag was removed in `1.25` in the upstream source.
+  As this charm release supports 1.22 through 1.25, there's no need for this flag anymore and it is being removed.
+
+- GCP snap in GCP-Integrator [LP#1988865](https://bugs.launchpad.net/bugs/1988865)
+
+  The snap installed by the gcp-integrator charm to manage gcp resources collided with the snap
+  automatically installed on new installations. The gcp-integrator charm will automatically
+  remove the old snap (`google-cloud-sdk`) and install the correct one (`google-cloud-cli`) on upgrades.
+
+  Bug is marked resolved in 1.25+ck2, but was available in the gcp-integrator charm at time of 1.25+ck1 release.
+
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.25+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.25+ck2).
+
 
 ## 1.25+ck1 Bugfix release 
 
