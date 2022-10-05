@@ -91,7 +91,7 @@ const SubscriptionList = ({ selectedId, onSetActive }: Props) => {
       {sortedUASubscriptions.length ? (
         <ListGroup
           data-test="ua-subscriptions-group"
-          title="Ubuntu Advantage"
+          title="Ubuntu Pro"
           marketplace={UserSubscriptionMarketplace.CanonicalUA}
         >
           {uaSubscriptions}
