@@ -15,7 +15,7 @@ export default function Heading() {
             <h1>Add machines to your subscription</h1>
           ) : (
             <>
-              <h1>Subscribe to Ubuntu Advantage</h1>
+              <h1>Subscribe to Ubuntu Pro</h1>
               <p>
                 If you have existing subscriptions or sales offers,{" "}
                 <a href="/login" onClick={onLoginClick}>
@@ -27,7 +27,7 @@ export default function Heading() {
           )}
           {freeTrial ? (
             <h2 className="p-heading--3">
-              Evaluate Ubuntu Advantage with your first month free on all
+              Evaluate Ubuntu Pro with your first month free on all
               subscriptions
             </h2>
           ) : null}
