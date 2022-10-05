@@ -8,6 +8,19 @@
 
 {% if user_info %}
   <section class="p-strip--suru-topped u-no-padding--bottom">
+    {% if is_maintenance %}
+    <div class="row">
+      <div class="col-12">
+        <div class="p-notification--caution">
+          <div class="p-notification__content">
+            <h5 class="p-notification__title">Ubuntu Pro store is in maintenance</h5>
+            <p class="p-notification__message">Subscriptions cannot be edited online until maintenance completes. Please retry shortly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     <script>
       dataLayer.push({
         'event' : 'GAEvent',

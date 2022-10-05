@@ -4,6 +4,7 @@ A Flask application for ubuntu.com
 
 # Packages
 import os
+from distutils.util import strtobool
 import talisker.requests
 import flask
 from datetime import datetime
@@ -297,6 +298,7 @@ def context():
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
+        "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
     }
 
 
