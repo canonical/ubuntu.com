@@ -21,24 +21,14 @@ test("Version section displays the matching features to the selected version", a
       <Version />
     </FormProvider>
   );
-  expect(screen.getByText(/^For Ubuntu 22.04, all UA plans include/));
-
-  await userEvent.click(screen.getByText("Ubuntu 16.04 LTS"));
-  expect(screen.getByText(/^For Ubuntu 16.04, all UA plans include/));
-});
-
-test("It opens the modal if 'other versions' is clicked", async () => {
-  render(
-    <FormProvider>
-      <Version />
-    </FormProvider>
+  expect(
+    screen.getByText(/^All subscriptions for Ubuntu Pro 22.04 LTS include:/)
   );
-  await userEvent.click(
-    screen.getByText(
-      "What if I use more than one version or if my version is not listed?"
-    )
+
+  await userEvent.click(screen.getByText("16.04 LTS"));
+  expect(
+    screen.getByText(/^All subscriptions for Ubuntu Pro 16.04 LTS include:/)
   );
-  expect(screen.getByText(/^Other versions?/)).toBeInTheDocument();
 });
 
 test("The section is disabled if a public cloud is selected", () => {

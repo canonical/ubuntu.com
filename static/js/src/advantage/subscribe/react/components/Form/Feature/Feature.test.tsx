@@ -20,9 +20,8 @@ test("Feature section renders correctly", () => {
     </FormProvider>
   );
 
-  screen.getByText("Select Infra only");
-  screen.getByText("Select Apps only");
-  screen.getByText("Select Infra + Apps");
+  screen.getAllByText("Ubuntu Pro");
+  screen.getAllByText("Ubuntu Pro (Infra-only)");
 });
 
 test("Feature sections disables Infra + Apps if destkop is selected", () => {
@@ -32,7 +31,7 @@ test("Feature sections disables Infra + Apps if destkop is selected", () => {
     </FormProvider>
   );
 
-  expect(screen.getByTestId("pro-feature")).toHaveClass("u-disable");
+  expect(screen.getByTestId("infra-only")).toHaveClass("u-disable");
 });
 
 test("The section is disabled if a public cloud is selected", () => {

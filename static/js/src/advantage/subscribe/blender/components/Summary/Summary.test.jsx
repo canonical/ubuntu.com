@@ -5,7 +5,7 @@ import Summary from "./Summary";
 import * as usePreview from "advantage/subscribe/react/hooks/usePreview";
 
 import { product, preview } from "advantage/subscribe/react/utils/test/Mocks";
-import { Periods, Support } from "advantage/subscribe/react/utils/utils";
+import { Periods, Support } from "advantage/subscribe/blender/utils/utils";
 import { FormProvider } from "../../utils/FormContext";
 
 const DATE_FORMAT = "dd MMMM yyyy";
@@ -14,12 +14,12 @@ describe("Summary", () => {
   beforeAll(() => {
     Object.defineProperty(window, "blenderProductList", {
       value: {
-        "blender-support-essential-yearly": {
+        "blender-support-standard-yearly": {
           ...product,
-          name: "Blender Support - Essential",
+          name: "Blender Support - Standard",
           price: { value: 10000 },
         },
-        "blender-support-essential-monthly": {
+        "blender-support-standard-monthly": {
           ...product,
           period: "monthly",
         },
@@ -33,12 +33,12 @@ describe("Summary", () => {
     });
 
     render(
-      <FormProvider initialSupport={Support.essential} initialQuantity={3}>
+      <FormProvider initialSupport={Support.standard} initialQuantity={3}>
         <Summary />
       </FormProvider>
     );
 
-    expect(screen.getByText("Blender Support - Essential")).toBeInTheDocument();
+    expect(screen.getByText("Blender Support - Standard")).toBeInTheDocument();
     expect(screen.getByText("3 x $100.00")).toBeInTheDocument();
     expect(screen.getByTestId("start-date")).toHaveTextContent(
       format(new Date(), DATE_FORMAT)
@@ -61,7 +61,7 @@ describe("Summary", () => {
     });
     render(
       <FormProvider
-        initialSupport={Support.essential}
+        initialSupport={Support.standard}
         initialPeriod={Periods.monthly}
       >
         <Summary />

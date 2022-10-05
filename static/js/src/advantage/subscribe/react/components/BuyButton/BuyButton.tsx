@@ -42,7 +42,12 @@ const BuyButton = ({
   const { data: userInfo } = useStripeCustomerInfo();
   const { quantity, product } = useContext(FormContext);
 
-  const purchaseMutation = usePurchase({ quantity, product });
+  const SanitisedQuantity = Number(quantity) ?? 0;
+
+  const purchaseMutation = usePurchase({
+    quantity: SanitisedQuantity,
+    product,
+  });
 
   const freeTrialMutation = useFreeTrial();
 
@@ -56,7 +61,7 @@ const BuyButton = ({
     id: product?.id,
     name: product?.name,
     price: (product?.price?.value ?? 0) / 100,
-    quantity: quantity,
+    quantity: SanitisedQuantity,
   };
 
   const handleOnPurchaseBegin = () => {

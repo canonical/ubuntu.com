@@ -1,21 +1,13 @@
 export const product = {
-  name: "UA Infrastructure - Essential (Physical)",
-  price: {
-    currency: "USD",
-    value: 22500,
-  },
-  period: "yearly",
-  productID: "uai-essential-physical",
-  private: "",
   canBeTrialled: true,
-  id: "uai-essential-physical-yearly",
-  longId: "lANPPiYnezoP7Iwi2NOYjnYOnaXf8J-HLhGror9C_ACQ",
-  ok: true,
-  supportPriceRange: {
-    essential: 22500,
-    standard: 52500,
-    advanced: 127500,
-  },
+  id: "uaia-essential-physical-yearly",
+  longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
+  marketplace: "canonical-ua",
+  name: "Ubuntu Pro",
+  period: "yearly",
+  price: { value: 50000, currency: "USD" },
+  private: false,
+  productID: "uaia-essential-physical",
 };
 
 export const preview = {
