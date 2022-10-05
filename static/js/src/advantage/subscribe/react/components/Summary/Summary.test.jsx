@@ -6,7 +6,7 @@ import * as usePreview from "../../hooks/usePreview";
 import * as utils from "../../utils/utils";
 
 import { product, preview } from "../../utils/test/Mocks";
-import { Features, Periods, Support } from "../../utils/utils";
+import { Periods, Support } from "../../utils/utils";
 import { FormProvider } from "../../utils/FormContext";
 
 const DATE_FORMAT = "dd MMMM yyyy";
@@ -15,13 +15,13 @@ describe("Summary", () => {
   beforeAll(() => {
     Object.defineProperty(window, "productList", {
       value: {
-        "uai-essential-physical-yearly": {
+        "uaia-essential-physical-yearly": {
           ...product,
           price: { value: 10000 },
         },
-        "uai-essential-physical-monthly": {
+        "uaia-essential-physical-monthly": {
           ...product,
-          id: "uai-essential-physical-monthly",
+          id: "uaia-essential-physical-monthly",
           period: "monthly",
         },
       },
@@ -34,14 +34,12 @@ describe("Summary", () => {
     });
 
     render(
-      <FormProvider initialSupport={Support.essential} initialQuantity={3}>
+      <FormProvider initialSupport={Support.none} initialQuantity={3}>
         <Summary />
       </FormProvider>
     );
 
-    expect(
-      screen.getByText("UA Infrastructure - Essential (Physical)")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Ubuntu Pro")).toBeInTheDocument();
     expect(screen.getByText("3 x $100.00")).toBeInTheDocument();
     expect(screen.getByTestId("start-date")).toHaveTextContent(
       format(new Date(), DATE_FORMAT)
@@ -76,9 +74,7 @@ describe("Summary", () => {
       </FormProvider>
     );
 
-    expect(
-      screen.getByText("UA Infrastructure - Essential (Physical)")
-    ).toBeInTheDocument();
+    expect(screen.getByText("Ubuntu Pro")).toBeInTheDocument();
 
     expect(screen.getByTestId("start-date")).toHaveTextContent(
       format(new Date(), DATE_FORMAT)

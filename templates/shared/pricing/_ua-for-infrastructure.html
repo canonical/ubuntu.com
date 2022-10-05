@@ -1,171 +1,88 @@
 <div class="u-fixed-width">
   <div style="overflow-x: auto;">
-    <table class="p-table" style="width: auto;">
+    <table class="p-table">
       <thead>
         <tr>
-          <th style="width: 40%;"><strong>Ubuntu Advantage for Infrastructure</strong></th>
-          <th width="200" class="u-align--center">Essential</th>
-          <th width="200" class="u-align--center">Standard</th>
-          <th width="200" class="u-align--center">Advanced</th>
-        </tr>
-        <tr style="background: #E5E5E5;">
-          <th colspan="4" style="padding: .75rem 0 .75rem .5rem;"><strong>Price per year</strong></th>
+          <th style="width: 50%;"></th>
+          <th class="u-align--right">Ubuntu Pro</th>
+          <th class="u-align--right">Ubuntu Pro (Infra-only)</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Physical server</td>
-          <td class="u-align--center">$225</td>
-          <td class="u-align--center">$750</td>
-          <td class="u-align--center">$1,500</td>
-        </tr>
-        <tr>
-          <td>Virtual server</td>
-          <td class="u-align--center">$75</td>
-          <td class="u-align--center">$250</td>
-          <td class="u-align--center">$500</td>
+          <td class="u-align--right">$500</td>
+          <td class="u-align--right">$225</td>
+          <td></td>
         </tr>
         {% if no_desktop != "true" %}
         <tr>
           <td>Desktop</td>
-          <td class="u-align--center">$25</td>
-          <td class="u-align--center">$150</td>
-          <td class="u-align--center">$300</td>
+          <td class="u-align--right">$25</td>
+          <td class="u-align--right">n/a</td>
+          <td></td>
         </tr>
         {% endif %}
-      </tbody>
-      <thead>
-        <tr style="background: #E5E5E5;">
-          <th colspan="4" style="border-top: 1px solid rgba(0,0,0,0.1); padding: .75rem 0 .75rem .5rem;"><strong>Service level</strong></th>
-        </tr>
-      </thead>
-      <tbody>
         <tr>
-          <td>Phone and ticket support</td>
-          <td class="u-align--center">No</td>
-          <td class="u-align--center">24x5</td>
-          <td class="u-align--center">24x7</td>
+          <td><a href="/esm">Expanded Security Maintenance</a> for Infrastructure (esm-infra)</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
-          <td>Initial response time SLA - Sev 1</td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">4 hours</td>
-          <td class="u-align--center">1 hour</td>
-        </tr>
-        <tr>
-          <td>Initial response time SLA - Sev 2</td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">8 business hours</td>
-          <td class="u-align--center">2 hours</td>
-        </tr>
-        <tr>
-          <td>Initial response time SLA - Sev 3</td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">12 business hours</td>
-          <td class="u-align--center">6 hours</td>
-        </tr>
-        <tr>
-          <td>Initial response time SLA - Sev 4</td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">24 business hours</td>
-          <td class="u-align--center">12 hours</td>
-        </tr>
-        </tbody>
-        <thead>
-          <tr style="background: #E5E5E5;">
-            <th colspan="4" style="border-top: 1px solid rgba(0,0,0,0.1); padding: .75rem 0 .75rem 0.5rem;"><strong>What's included</strong></th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td><a href="/esm">Extended Security Maintenance</a> (ESM)</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td><a href="/esm">Expanded Security Maintenance</a> for Application (esm-apps) &mdash; in beta</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Not included</td>
+          <td></td>
         </tr>
         <tr>
           <td><a href="/livepatch">Kernel Livepatch</a> service to avoid reboots</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
           <td>Ubuntu systems management with <a href="https://landscape.canonical.com">Landscape</a></td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
           <td><a href="/engage/microsoft-active-directory">Advanced Active Directory</a> policies for Ubuntu Desktop</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Not included</td>
+          <td></td>
         </tr>        
         <tr>
           <td>Knowledge base access</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
           <td>Certified Windows drivers for KVM guests</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
-          <td><a href="/security/certifications">FIPS 140-2 Level 1</a> certified crypto modules</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td><a href="/security/certifications">FIPS 140</a> certified crypto modules</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
-          <td><a href="/security/certifications#common-criteria">Common Criteria EAL2</a></td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
+          <td><a href="/security/certifications#common-criteria">Common Criteria EAL2 certified</a></td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
         <tr>
-          <td><a href="/security/certifications#cis">CIS Benchmark</a></td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-        </tr>
-        <tr>
-          <td>OpenStack</td>
-          <td class="u-align--center">Security patches</td>
-          <td class="u-align--center">Security patches + support</td>
-          <td class="u-align--center">Security patches + support</td>
-        </tr>
-        <tr>
-          <td>Kubernetes</td>
-          <td class="u-align--center">Security patches</td>
-          <td class="u-align--center">Security patches + support</td>
-          <td class="u-align--center">Security patches + support</td>
-        </tr>
-        <tr>
-          <td>KVM/LXD</td>
-          <td class="u-align--center">Security patches</td>
-          <td class="u-align--center">Security patches + support</td>
-          <td class="u-align--center">Security patches + support</td>
-        </tr>
-        <tr>
-          <td>MAAS</td>
-          <td class="u-align--center">Security patches</td>
-          <td class="u-align--center">Security patches + support</td>
-          <td class="u-align--center">Security patches + support</td>
-        </tr>
-        <tr>
-          <td>Legal assurance program</td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-          <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/f1a7515d-tick-darkaubergine.svg", alt="Yes", width="16", height="16", hi_def=True, loading="lazy",) | safe }}</td>
-        </tr>
-        <tr>
-          <td>Ceph/Swift raw storage support included</td>
-          <td class="u-align--center">&ndash;</td>
-          <td class="u-align--center">192TB per storage node</td>
-          <td class="u-align--center">192TB per storage node</td>
+          <td>Ubuntu Security Guide (USG) with <a href="/security/certifications#cis">CIS Benchmark</a> and DISA-STIG profiles</td>
+          <td class="u-align--right">Included</td>
+          <td class="u-align--right">Included</td>
+          <td></td>
         </tr>
       </tbody>
     </table>

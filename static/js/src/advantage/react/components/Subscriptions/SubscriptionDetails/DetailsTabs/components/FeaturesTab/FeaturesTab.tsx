@@ -78,7 +78,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
   }, [subscription]);
 
   useEffect(() => {
-    console.log(entitlementsToUpdate);
     if (entitlementsToUpdate.length <= 0) {
       setHasUnsavedChanges(false);
       window.removeEventListener("beforeunload", alertUser);
@@ -92,7 +91,6 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
   }, [entitlementsToUpdate]);
 
   const alertUser = async (e: Event) => {
-    console.log(entitlementsToUpdate.length);
     e.preventDefault();
     e.returnValue = false;
   };

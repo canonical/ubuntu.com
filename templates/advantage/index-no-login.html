@@ -1,76 +1,847 @@
 {% extends "advantage/base_advantage.html" %}
 
-{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
-{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1K65n3NpZCh7EWDXKLhG31seGJ2jKbW6lqw3BwV2mlnU/edit#heading=h.nleu1cdig11l{% endblock meta_copydoc %}
+{% block title %}Ubuntu Pro{% endblock %}
+{% block meta_description %}Canonical provides Ubuntu Pro with 10 years of enhanced CVE patching, FIPS compliance, CIS and DISA-STIG profiles and enterprise-grade open source software support with a single subscription for open source supply chain provenance.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/edit?usp=sharing{% endblock meta_copydoc %}
 
 {% block content %}
-  <section class="p-strip--suru-topped" style="padding-bottom: 32px">
 
+<section class="p-strip--image is-dark is-x-deep" style="background-position: 100% 0; background-size: 150vw; background-image:url('https://assets.ubuntu.com/v1/78c0cbe3-05_suru2_dark_2K.jpg')">
+  <div class="u-fixed-width p-strip is-shallow">
+    <h1>
+      <img src="https://assets.ubuntu.com/v1/cf49340a-Ubuntu+Pro+hero+typography.svg" style="min-width: 100%;" alt="Ubuntu Pro" />
+    </h1>
+    <p class="p-heading--2">Same great OS.<br>More security updates.</p>
+  </div>
+</section>
+<section class="p-strip is-x-deep">
+  <div class="p-strip is-shallow u-no-padding--top">
+    <hr class="is-fixed-width u-no-margin--bottom">
     <div class="row">
-      <div class="col-12">
-        <h1>Ubuntu Advantage for&nbsp;Infrastructure</h1>
-        <p>Ubuntu Advantage for Infrastructure is the most comprehensive Linux enterprise subscription, covering all aspects of open infrastructure.</p>
-        <h5>
-          <a href="/login" class="p-link"
-             onclick="dataLayer.push({
-                'event' : 'GAEvent',
-                'eventCategory' : 'Advantage',
-                'eventAction' : 'Authentication',
-                'eventLabel' : 'Sign in',
-                'eventValue' : undefined
-              });">Sign in</a> to edit existing or add new subscriptions.
-        </h5>
+      <div class="col-6 col-medium-3">
+        <h2>10 year security coverage</h2>
       </div>
-    </div>
-  </section>
-
-  <section class="p-strip--light is-shallow">
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h3>Per-machine enterprise subscriptions</h3>
-        <p>Enterprises choose Ubuntu Advantage for extended security, certified compliance and <a href="/support">24x7 support</a>.</p>
+      <div class="col-6 col-medium-3">
+        <p>Ubuntu Pro (currently in public beta) expands our famous ten-year security coverage to an additional 23,000 packages beyond the main operating system.
+        </p>
         <p>
-          <a 
-            href="/advantage/subscribe"
-            class="p-button--positive"   
-            onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'go-to-shop',
-              'eventLabel' : 'Add new subscription',
-              'eventValue' : 5
-            });">
-              Buy
-          </a>
-          <span>an enterprise subscription</span>
-        </p>
-        <p class="u-no-margin--bottom">See the table below to find the plan that's right for you.</p>
-      </div>
-      <div class="col-6">
-        <h3>Free for personal use</h3>
-        <p>Anyone can use UA-I Essential for free on up to 3 machines, or 50 if you are an <a href="https://wiki.ubuntu.com/Membership">official Ubuntu Community member</a>.</p>
-        <p class="u-no-margin--bottom">
-          <a href="/login" class="p-button--positive" onclick="dataLayer.push({
-              'event' : 'GAEvent',
-              'eventCategory' : 'Advantage',
-              'eventAction' : 'Authentication',
-              'eventLabel' : 'Register',
-              'eventValue' : undefined
-            });">
-              Register
-            </a> 
-          <span>for your free subscription.</span>
+          Including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and many more...
         </p>
       </div>
     </div>
-  </section>
-
-  <section class="p-strip is-shallow is-bordered">
-    <div class="row">
-      <h2>Ubuntu Advantage Plans</h2>
-      {% include "advantage/_table.html" %}
+  </div>
+  <div class="row">
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/23697815-ansible+logo.png",
+        alt="Ansible",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
     </div>
-  </section>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/4655fcbb-apache+tomcat+logo.png",
+        alt="Apache Tomcat",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/b470ac47-docker+logo.png",
+        alt="Docker",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d1727051-drupal+logo.png",
+        alt="Drupal",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6e46c91a-etcd+logo.png",
+        alt="E T C D",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ebff661c-glusterfs+logo.png",
+        alt="Gluster",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9e493fed-go+logo.png",
+        alt="Gloang",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ba7d0c15-kafka+logo.png",
+        alt="Kafka",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e135dd81-nagios+logo.png",
+        alt="Nagios",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6c6234f0-nginex+logo.png",
+        alt="nginex",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/06550033-node-logo.png",
+        alt="Node J S",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/caa2cd98-openjdk+logo.png",
+        alt="Open J D K",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/75328b01-perl+logo.png",
+        alt="Perl",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a61f2f07-pg-bouncer+logo.png",
+        alt="P G Bouncecr",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/247a8141-php+logo.png",
+        alt="P H P",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e846b0b0-powerdns+logo.png",
+        alt="Power D N S",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5f89e433-puppet+logo.png",
+        alt="Puppet",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/64254f61-python+logo.png",
+        alt="Python",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/11a31e9e-redis+logo.png",
+        alt="Redis",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/eb1bcbf2-ruby-rails+logo.png",
+        alt="Ruby on Rails",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e009ff2f-rust+logo.png",
+        alt="Rust",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/10657f8c-vagrant+logo.png",
+        alt="Vagrant",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/020f08d9-wordpress+logo.png",
+        alt="Wordpress",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/bf0817ec-zookeeper+logo.png",
+        alt="Apache Zookeper",
+        attrs={"class":"p-logo-section__logo"},
+        width="75",
+        height="75",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2>Ready to try Ubuntu Pro beta today?</h2>
+    <a class="p-heading--2" href="https://ubuntu.com/pro/beta">Discover the step-by-step tutorial</a>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top">
+  <div class="row">
+    <!-- <div class="p-strip is-shallow u-no-padding--top"> -->
+      <h2>Recommended by professionals</h2>
+      <hr class="u-no-margin--bottom">
+    <!-- </div> -->
+  </div>
+  <div class="p-testimonial">
+    <div class="p-testimonial__logo u-pad-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3d55a536-nvidia+logo+158x40logo.png",
+        alt="",
+        width="158",
+        height="40",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="p-testimonial__author">
+      <p>
+        <span>Justin Boitano</span>
+        <br><span class="u-text--muted">Vice President of Enterprise Computing</span>
+      </p>
+    </div>
+    <div class="p-testimonial__quote">
+      <i>
+        <p>
+          &ldquo;Transformative innovations such as AI and deep learning have vastly expanded the volume of data that enterprises must secure against anomalies and threats.
+        </p>
+        <p>
+          NVIDIA's collaboration with Canonical equips enterprises with the reliability and long-term security assurance needed to achieve breakthroughs that benefit society.&rdquo;
+        </p>
+      </i>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="p-testimonial">
+    <div class="p-testimonial__logo u-pad-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/75919905-vmware-logo+158x40.png",
+        alt="",
+        width="158",
+        height="40",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="p-testimonial__author">
+      <p>
+        <span>Ajay Patel</span>
+        <br><span class="u-text--muted">GM and SVP</span>
+        <br><span class="u-text--muted">Modern Apps &amp; Cloud Management Business</span>
+      </p>
+    </div>
+    <div class="p-testimonial__quote">
+      <i>
+        <p>
+          “Enterprises need modular, cloud-native application platforms that accelerate how they build, run, and manage their applications without compromising on their compliance, security, or support requirements.
+        </p>
+        <p>
+          VMware is thrilled to partner with Canonical with their field-proven expertise in securing and supporting open-source. By offering Ubuntu Pro with VMware Tanzu, we can provide customers with a hardened, better secure, and enterprise-grade application environment that is as friendly to their developers as it is to their CISO.”
+        </p>
+      </i>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="p-testimonial">
+    <div class="p-testimonial__logo u-pad-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f34edb1f-Google+Cloud+logo+158x40.png",
+        alt="",
+        width="158",
+        height="40",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="p-testimonial__author">
+      <p>
+        <span>Derry Cheng</span>
+        <br><span class="u-text--muted">Product Manager for Compute Engine</span>
+      </p>
+    </div>
+    <div class="p-testimonial__quote">
+      <i>
+        <p>
+          &ldquo;For the last decade, Google has partnered with Canonical to promote the adoption of open-source software.
+        </p>
+        <p>
+          By offering Ubuntu Pro on Google Compute Engine, together we help customers enhance the security and compliance for their production workloads.&rdquo;
+        </p>
+      </i>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-6 col-medium-6">
+      <div class="p-strip is-shallow u-no-padding--top">
+        <h2>Available everywhere</h2>
+        <p>Enterprise-grade security and compliance delivered on every cloud, <br>data centre, and desktop.</p>
+        <p><a href="#" class="js-invoke-modal">Let's talk</a></p>
+      </div>
+    </div>
+    <div class="col-6 col-medium-6">
+      <div class="p-strip u-no-padding--top">
+        <div class="row">
+          <div class="col-2 col-medium-3">
+            <p class="p-text--x-small-capitalised u-align-text--x-small-to-default">Public Clouds</p>
+          </div>
+          <div class="col-4 col-medium-3">
+            <p>
+              <strong>Optimised, performant, secure and compliant.</strong>
+              <br>
+                Discover Ubuntu Pro available today across major public cloud marketplaces.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8ae663f9-Azure+logo++158x40.png",
+              alt="",
+              width="158",
+              height="40",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <p><a href="https://ubuntu.com/azure/pro">
+              Learn more about Ubuntu Pro on Azure
+            </a></p>
+          </div>
+        </div>
+        <hr class="u-no-margin--bottom">
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            {{
+              image(
+                url="https://assets.ubuntu.com/v1/327f9207-aws-logo.png",
+                alt="A W S",
+                width="158",
+                height="40",
+                hi_def=True,
+                loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-4 col-medium-3 col-small-2">
+            <p><a href="https://ubuntu.com/aws/pro">
+              Learn more about Ubuntu Pro on AWS
+            </a></p>
+          </div>
+        </div>
+        <hr class="u-no-margin--bottom">
+        <div class="row">
+          <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f34edb1f-Google+Cloud+logo+158x40.png",
+              alt="Google Cloud logo",
+              width="158",
+              height="40",
+              hi_def=True,
+              loading="auto|lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-4 col-medium-3">
+            <p><a href="https://ubuntu.com/gcp/pro">
+              Learn more about Ubuntu Pro on Google Cloud
+            </a></p>
+          </div>
+        </div>
+      </div>
+      <hr class="u-no-margin--bottom">
+      <div class="row">
+        <div class="col-2 col-medium-3">
+          <p class="p-text--x-small-capitalised u-align-text--x-small-to-default">Desktop</p>
+        </div>
+        <div class="col-4 col-medium-3">
+          <p>
+            <strong>Power to developers. Peace of mind for IT.</strong>
+            <br>
+            Get security, management tooling and support for your Ubuntu Desktop fleet.
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2 col-medium-3 col-small-2 u-pad-logo">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d649019e-u+pro+logo+158x40.png",
+            alt="",
+            width="158",
+            height="40",
+            hi_def=True,
+            loading="auto|lazy"
+            ) | safe
+          }}
+        </div>
+        <div class="col-4 col-medium-3">
+          <p><a href="http://ubuntu.com/desktop/organisations">
+            Learn more about Ubuntu Pro Desktop
+          </a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-6 col-medium-3">
+      <h2>The most comprehensive subscription for open-source software security</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <div class="p-strip is-shallow u-no-padding--top">
+        <p>
+          <strong>Non-stop security for CVEs</strong><br>
+          Coverage for critical, high, and selected medium Common Vulnerabilities and Exposures (CVEs)</p>
+        <hr class="u-no-margin--bottom">
+        <p>
+          <strong>23,000 more packages secured</strong><br>
+          Expanded coverage for over 10x more open-source packages, now including the Ubuntu Universe repository (in beta)</p>
+        <hr class="u-no-margin--bottom">
+        <p>
+          <strong>10 years of Expanded Security Maintenance </strong><br>
+          Gain API stability thanks to patches backporting for all Ubuntu debs for ten years on <a href="https://ubuntu.com/about/release-cycle#ubuntu">every Ubuntu LTS</a></p>
+        <hr class="u-no-margin--bottom">
+        <p>
+          <strong>Zero-Day Vulnerabilities covered</strong><br>
+          Many zero-day vulnerabilities addressed under embargo, with critical CVEs patched in less than 24h on average </p>
+        <hr class="u-no-margin--bottom">
+        <p>
+          <strong>FedRAMP and HIPAA-compliant</strong><br>
+          Ubuntu powers mission-critical workloads, with <a href="https://ubuntu.com/security/certifications#fips">FIPS 140-2 certified crypto modules</a></p>
+        <hr class="u-no-margin--bottom">
+        <p>
+          <strong>Certified hardening for Ubuntu</strong><br>
+          Ubuntu Security Guide (USG) enables CIS Server and Workstation Level 1 and 2 scripts, certified audit tooling, and DISA-STIG profiles</p>
+      </div>
+      <hr class="u-no-margin--bottom">
+      <p><a href="#">Read the press release</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2 class="p-text--x-small-capitalised">Upgrade to Ubuntu Pro beta today</h2>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-6 col-medium-3">
+      <h3 class="p-heading--2">Free for personal use</h3>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Anyone can use Ubuntu Pro for free on up to 5 machines, or 50 if you are <a href="https://wiki.ubuntu.com/Membership">an official Ubuntu Community member.</a></p>
+      <a href="/login" class="p-button--positive">Register</a>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-6 col-medium-3">
+      <h3 class="p-heading--2">Become a customer</h3>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>For enterprises to cover their Ubuntu estate - <br class="u-hide--medium u-hide--small">servers and workstations.</p>
+      <a href="/pro/subscribe" class="p-button">Buy</a>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-6 col-medium-3">
+      <h3 class="p-heading--2">Trial at no extra cost for existing Ubuntu Advantage customers</h3>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>
+        Ubuntu Advantage for Infrastructure is now rebranded to Ubuntu Pro (Infra-only). The features and price have not changed.
+      </p>
+      <p>
+        Ubuntu Pro (Infra-only) customers can register for the beta to try the full Ubuntu Pro subscription, including  security coverage for an additional 23,000 packages for 10 years.
+      </p>
+      <p>
+        If you were an active customer before October 4th, 2022, this trial lasts for up to 1 year - until the end of your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain as an Ubuntu Pro (Infra-only) customer at your current price.
+      </p>
+      <p class="u-sv-1">
+        <a href="#" class="js-invoke-modal">Request beta access at no extra cost</a>
+      </p>
+      <hr class="u-no-margin--bottom">
+      <p>
+        <a href="https://ubuntu.com/pricing/pro">Ubuntu Pro pricing</a>
+      </p>
+    </div>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top">
+  <div class="row">
+    <h2>What's the difference?</h2>
+    <hr class="u-no-margin--bottom">
+    <div class="p-strip is-shallow u-no-padding--top">
+      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Security patching">
+        <thead>
+          <tr>
+            <th class="u-no-padding--left" style="width: 50%;">
+              Security patching
+              <p class="p-text--small u-text--muted u-no-margin--bottom" style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br/> and selected medium CVEs)</p>
+            </th>
 
+            <th style="width: 15%;">Ubuntu LTS</th>
+            <th style="width: 20%;">
+              Ubuntu Pro (Infra-only)<br/>
+              <p class="p-text--small u-text--muted u-no-margin--bottom" style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for Infrastructure")</p>
+            </th>
+            <th style="width: 15%;">Ubuntu Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main repository</td>
+            <td data-heading="Ubuntu LTS">5 years</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">10 years</td>
+            <td data-heading="Ubuntu Pro">10 years</td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe repository</td>
+            <td data-heading="Ubuntu LTS">Best effort</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
+            <td data-heading="Ubuntu Pro">10 years</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div class="p-strip is-shallow u-no-padding--top">
+      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Compliance and hardening">
+      <thead>
+        <tr>
+          <th class="u-no-padding--left" style="width: 50%;"><a href="https://ubuntu.com/security/certifications">Compliance and hardening</a></th>
+          <th style="width: 15%;">Ubuntu LTS</th>
+          <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
+          <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Compliance and hardening">NIST-certified FIPS crypto-modules</td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Compliance and hardening">USG hardening with CIS and DISA-STIG profiles</td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Compliance and hardening">Common Criteria EAL2</td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <table class="p-table--mobile-card u-no-margin--bottom" aria-label="Pro vs Advantage - Other features">
+    <thead>
+      <tr>
+        <th class="u-no-padding--left" style="width: 50%;">Other features</th>
+        <th style="width: 15%;">Ubuntu LTS</th>
+        <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
+        <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="u-no-padding--left" data-heading="Other features"><a href="https://ubuntu.com/security/livepatch">Kernel Livepatch</a></td>
+        <td data-heading="Ubuntu LTS">No</td>
+        <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+        <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+      </tr>
+      <tr>
+        <td class="u-no-padding--left" data-heading="Other features"><a href="https://ubuntu.com/landscape">Systems management at scale with Landscape</a></td>
+        <td data-heading="Ubuntu LTS">No</td>
+        <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+        <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+      </tr>
+      <tr>
+        <td class="u-no-padding--left" data-heading="Other features">Optional Support</td>
+        <td data-heading="Ubuntu LTS">No</td>
+        <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+        <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+      </tr>
+    </tbody>
+    </table>
+</section>
+
+<section class="p-strip is-x-deep u-no-padding--top">
+  <div class="u-fixed-width">
+    <h2>Experience Ubuntu Pro in action:</h2>
+    <a class="p-heading--2" href="https://ubuntu.com/engage/introduction-to-ubuntu-pro">Webinar&nbsp;&rsaquo;</a>
+    &nbsp;&nbsp;
+    <a class="p-heading--2" href="#">Tutorials&nbsp;&rsaquo;</a>
+  </div>
+</section>
+
+<section class="p-strip is-x-deep u-no-padding--top">
+  <div class="row">
+    <!-- <div class="p-strip is-shallow u-no-padding--top"> -->
+      <h2>Used by professionals</h2>
+      <hr class="u-no-margin--bottom">
+    <!-- </div> -->
+  </div>
+  <div class="p-testimonial">
+    <div class="p-testimonial__logo u-pad-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d45ff954-LaunchDarkly.png",
+        alt="",
+        width="158",
+        height="40",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="p-testimonial__author">
+      <p>
+        <span>Patrick Kaeding</span>
+        <br><span class="u-text--muted">Security Engineer</span>
+      </p>
+    </div>
+    <div class="p-testimonial__quote">
+      <i>
+        <p>
+          &ldquo;
+          FIPS 140-2 certified Ubuntu images on AWS fulfil our FedRAMP compliance requirements.
+        </p>
+        <p>
+          With enterprise-grade Ubuntu Pro support backed by Canonical's 10 year security maintenance commitment, we provide critical development infrastructure for some of the world’s most famous brands.
+          &rdquo;
+        </p>
+      </i>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="p-testimonial">
+    <div class="p-testimonial__logo u-pad-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9257d79e-tenable+logo+158x40.png",
+        alt="",
+        width="158",
+        height="40",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="p-testimonial__author">
+      <p>
+        <span>Robert Huber</span>
+        <br><span class="u-text--muted">Chief Security Officer</span>
+      </p>
+    </div>
+    <div class="p-testimonial__quote">
+      <i>
+        <p>
+          &ldquo;
+          Tenable and Canonical collaborate to provide timely, accurate and actionable vulnerability alerts.
+        </p>
+        <p>
+          Ubuntu Pro offers security patch assurance for a broad spectrum of open-source software. Together, we give customers a foundation for the trustworthy open source.
+          &rdquo;
+        </p>
+      </i>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="p-testimonial">
+    <div class="p-testimonial__logo u-pad-logo">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d4bdfa0e-Acquia.png",
+        alt="",
+        width="158",
+        height="40",
+        hi_def=True,
+        loading="auto|lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="p-testimonial__author">
+      <p>
+        <span>Robert Former</span>
+        <br><span class="u-text--muted">Chief Information Security Officer</span>
+      </p>
+    </div>
+    <div class="p-testimonial__quote">
+      <i>
+        <p>
+          &ldquo;
+          Ubuntu Pro enables our engineering teams to focus on delivering industry-leading products and services to Acquia customers.
+        </p>
+        <p>
+          Canonical's transparency and patching expedience give me peace of mind that we are providing the most secure and compelling solutions to power innovative digital experiences
+          &rdquo;
+        </p>
+      </i>
+    </div>
+  </div>
+</section>
 {% endblock content %}
