@@ -73,7 +73,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            if flask.request.path == "/advantage/subscribe":
+            if flask.request.path == "/pro/subscribe":
                 return flask.render_template("advantage/maintenance.html")
 
             # if logged in, get rid of guest token
