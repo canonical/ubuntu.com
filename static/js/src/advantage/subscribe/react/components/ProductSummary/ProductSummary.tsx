@@ -35,8 +35,11 @@ const ProductSummary = () => {
             Total
           </Col>
           <hr />
-          <Col size={6} className="p-heading--2">
-            {product?.name}
+          <Col size={6}>
+            <p className="p-heading--2">{product?.name}</p>
+            <a href="/legal/ubuntu-pro-description">
+              See full service description
+            </a>
           </Col>
           <Col size={2} className="u-align--right p-heading--2">
             {quantity}
@@ -136,6 +139,9 @@ const ProductSummary = () => {
                 ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
               )}
             </p>
+            <a href="/legal/ubuntu-pro-description">
+              See full service description
+            </a>
           </Col>
           <Col size={1} small={2}>
             <p>per {period === Periods.yearly ? "year" : "month"}</p>
