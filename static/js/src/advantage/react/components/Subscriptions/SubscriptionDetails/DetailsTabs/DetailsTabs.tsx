@@ -188,7 +188,7 @@ const DetailsTabs = ({
                     <>
                       To attach a machine:{" "}
                       <code data-test="contract-token">
-                        sudo ua attach {token?.contract_token}
+                        sudo pro attach {token?.contract_token}
                       </code>
                     </>
                   ),
