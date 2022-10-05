@@ -188,10 +188,14 @@ const Support = () => {
           </div>
         </Col>
       </Row>
-      <Col className="u-hide u-show--small" size={12}>
+      <Col
+        className="u-hide u-show--small"
+        size={12}
+        style={{ marginBottom: "2rem" }}
+      >
         <div
           className={classNames({
-            "p-card--radio": true,
+            "p-card--radio--column": true,
             "is-selected": SupportEnum.none === support,
             "u-disable": false,
           })}
@@ -220,10 +224,14 @@ const Support = () => {
           </span>
         </div>
       </Col>
-      <Col className="u-hide u-show--small" size={12}>
+      <Col
+        className="u-hide u-show--small"
+        size={12}
+        style={{ marginBottom: "2rem" }}
+      >
         <div
           className={classNames({
-            "p-card--radio": true,
+            "p-card--radio--column": true,
             "is-selected": SupportEnum.infra === support,
             "u-disable": isInfraOnlyDisabled,
           })}
@@ -255,7 +263,7 @@ const Support = () => {
       <Col className="u-hide u-show--small" size={12}>
         <div
           className={classNames({
-            "p-card--radio": true,
+            "p-card--radio--column": true,
             "is-selected": SupportEnum.full === support,
             "u-disable": isFullSupportDisabled,
           })}
@@ -290,14 +298,9 @@ const Support = () => {
             <hr className="u-sv2" />
           </Col>
           <Col size={6}>
-            <p className="p-heading--5" style={{ paddingLeft: "3.6rem" }}>
-              Response Time
-            </p>
+            <p className="p-heading--5 response-time-heading">Response Time</p>
           </Col>
-          <Col
-            size={4}
-            style={{ marginLeft: "-1rem", width: "calc(100% + 1.4rem)" }}
-          >
+          <Col size={4} className="response-time-toggle">
             <div className="p-segmented-control">
               <div
                 className="p-segmented-control__list"
