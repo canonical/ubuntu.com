@@ -383,6 +383,18 @@ def cube_home(
     return flask.render_template("credentialling/index.html")
 
 
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_self_study(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    badge_certification,
+    **kwargs,
+):
+    return flask.render_template("credentialling/self-study.html")
+
+
 @shop_decorator(area="cube", permission="user", response="json")
 def cube_study_labs_button(edx_api, **kwargs):
     sso_user = user_info(flask.session)
