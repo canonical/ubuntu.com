@@ -1,3 +1,4 @@
+from distutils.util import strtobool
 import os
 from functools import wraps
 
@@ -73,7 +74,9 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            if flask.request.path == "/pro/subscribe":
+            if flask.request.path == "/pro/subscribe" and strtobool(
+                os.getenv("STORE_MAINTENANCE", "false")
+            ):
                 return flask.render_template("advantage/maintenance.html")
 
             # if logged in, get rid of guest token
