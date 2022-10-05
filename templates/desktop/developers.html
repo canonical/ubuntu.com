@@ -624,36 +624,11 @@
       </div>
      </div>
   </section>
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2 class="p-heading--4"><a href="/blog/desktop">Follow our blog</a> for the latest on Ubuntu Desktop&nbsp;&rsaquo;</h2>
-    </div>
-      <div class="row" id="latest-articles">
-      </div>
-    </div>
-    <template style="display:none" id="article-template">
-      <div class="col-3">
-        <p class="u-no-margin--bottom p-muted-heading">
-          <time datetime="" class="article-time"></time>
-        </p>
-        <h3 class="p-heading--5">
-          <a class="article-link article-title"></a>
-        </h3>
-      </div>
-    </template>
-  </section>
 
+{% with section_classes='p-strip', heading_topic='Ubuntu Desktop', tag_name='ubuntu-desktop', tag_id='1920', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
+{% endwith %}
 
-
-  <script src="{{ versioned_static('js/dist/latest-news.js') }}" ></script>
-  <script>
-    canonicalLatestNews.fetchLatestNews({
-      articlesContainerSelector: "#latest-articles",
-      articleTemplateSelector: "#article-template",
-      limit: "4",
-      tagId: "1920",
-    })
-  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
   <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
   <script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
