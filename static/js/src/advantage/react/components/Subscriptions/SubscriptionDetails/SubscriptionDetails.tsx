@@ -24,6 +24,7 @@ import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification
 import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import RenewalModal from "../RenewalModal";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   modalActive?: boolean;
@@ -175,7 +176,8 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             {notification ? <Notification {...notification} /> : null}
             {isFree ? null : (
               <>
-                {subscription.statuses.has_access_to_support ? (
+                {subscription.statuses.has_access_to_support &&
+                subscription.type !== UserSubscriptionType.Trial ? (
                   <Button
                     appearance="positive"
                     className="p-subscriptions__details-action"
