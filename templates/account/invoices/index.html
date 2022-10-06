@@ -20,7 +20,7 @@
       <select name="marketplace" id="marketplace-dropdown">
         <option value="">All invoices</option>
         <option value="blender" {% if marketplace == 'blender' %}selected{% endif %}>Blender Support</option>
-        <option value="canonical-ua" {% if marketplace == 'canonical-ua' %}selected{% endif %}>Canonical UA</option>
+        <option value="canonical-ua" {% if marketplace == 'canonical-ua' %}selected{% endif %}>Ubuntu Pro</option>
       </select>
     </div>
   </div>
@@ -40,7 +40,7 @@
               <tr>
                 <td aria-label="Service">
                   {% if invoice.marketplace == "canonical-ua"%}
-                    Canonical UA
+                    Ubuntu Pro
                   {% elif invoice.marketplace == "blender" %}
                     Blender Support
                   {% elif invoice.marketplace == "canonical-cube" %}
