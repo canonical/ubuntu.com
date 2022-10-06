@@ -222,9 +222,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         </Col>
       </Row>
       <p>
-        <a href="/legal/ubuntu-advantage-service-description">
-          Service description &rsaquo;
-        </a>
+        <a href="/legal/ubuntu-pro-description">Service description &rsaquo;</a>
       </p>
       <div className="row"></div>
       {isError ? (
