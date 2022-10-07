@@ -39,7 +39,7 @@ describe("ExpiryNotification", () => {
     expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("borderless")).toBe(false);
     expect(wrapper.find(Notification).prop("title")).toBe(
-      "This subscription has expired."
+      "Your subscription has expired."
     );
   });
 
@@ -214,7 +214,7 @@ describe("ExpiryNotification", () => {
         onDismiss={onDismiss}
       />
     );
-    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find("[data-test='is_in_grace_period-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
       "Your subscription has expired."
     );
@@ -236,7 +236,7 @@ describe("ExpiryNotification", () => {
         onDismiss={onDismiss}
       />
     );
-    expect(wrapper.find("[data-test='is_expiring-large']").exists()).toBe(true);
+    expect(wrapper.find("[data-test='is_expired-large']").exists()).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
       "Your subscription has expired."
     );
