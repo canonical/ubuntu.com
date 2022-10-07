@@ -62,6 +62,7 @@ import setupIntlTelInput from "./intlTelInput.js";
           setFBclid();
           loadCaptchaScript();
           initialiseForm();
+          setFocus();
         })
         .catch(function (error) {
           console.log("Request failed", error);
@@ -189,6 +190,7 @@ import setupIntlTelInput from "./intlTelInput.js";
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
       var phoneInput = document.querySelector("#phone");
+      var modalTrigger = document.activeElement || document.body;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -345,6 +347,7 @@ import setupIntlTelInput from "./intlTelInput.js";
         setState(1);
         formContainer.classList.add("u-hide");
         formContainer.removeChild(contactModal);
+        modalTrigger.focus();
         updateHash("");
         ga(
           "send",
@@ -546,6 +549,42 @@ import setupIntlTelInput from "./intlTelInput.js";
           field.value = lastName;
         });
       }
+    }
+
+    // Sets the focus inside the modal and trap it
+    function setFocus() {
+      var modalTrigger = document.activeElement || document.body;
+      var modal = document.querySelector(".p-modal");
+      var firstFocusableEle = modal.querySelector(
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+      );
+
+      // set initial focus inside the modal
+      firstFocusableEle.focus();
+
+      // trap focus
+      firstFocusableEle.addEventListener("keydown", function (e) {
+        if (e.shiftKey && e.key === "Tab") {
+          e.preventDefault();
+          var targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
+          var targetEle = targetPage.querySelector(".pagination__link--next");
+          targetEle.focus();
+        }
+      });
+
+      var modalPages = modal.querySelectorAll(".js-pagination");
+
+      modalPages.forEach(function (page, index) {
+        var lastFocusEle = page.querySelector(".pagination__link--next");
+        if (lastFocusEle) {
+          lastFocusEle.addEventListener("keydown", function (e) {
+            if (!e.shiftKey && e.key === "Tab") {
+              e.preventDefault();
+              firstFocusableEle.focus();
+            }
+          });
+        }
+      });
     }
 
     // Opens the form when the initial hash matches the trigger
