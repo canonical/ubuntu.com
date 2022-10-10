@@ -5,7 +5,7 @@ const useGetOffersList = () => {
     ["Offers"],
     async () => {
       const response = await fetch(
-        `/advantage/offers.json${window.location.search}`,
+        `/pro/offers.json${window.location.search}`,
         {
           cache: "no-store",
         }

@@ -49,8 +49,7 @@ const Notifications = () => {
         >
           You need to{" "}
           <a href={urls.account.paymentMethods}>update your payment methods</a>{" "}
-          to ensure there is no interruption to your Ubuntu Advantage
-          subscriptions
+          to ensure there is no interruption to your Ubuntu Pro subscriptions
         </Notification>
       ) : null}
       {isAccountUsersSuccess && isShowingOnboardingNotification ? (
@@ -89,7 +88,7 @@ const Notifications = () => {
             },
           ]}
         >
-          You have one or more Ubuntu Advantage offers to view.
+          You have one or more Ubuntu Pro offers to view.
         </Notification>
       ) : null}
       {statusesSummary ? (

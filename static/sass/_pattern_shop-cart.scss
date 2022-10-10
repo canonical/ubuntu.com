@@ -1,8 +1,9 @@
 @mixin ubuntu-p-ua-shop-cart {
   .p-shop-cart {
-    bottom: 0;
+    bottom: -11.5rem;
     position: sticky;
     transition: 0.5s ease-out transform;
+    z-index: 20;
 
     &--hidden {
       transform: translateY(100%);
@@ -21,6 +22,7 @@
 
       @media (min-width: $breakpoint-x-small) {
         flex-wrap: nowrap;
+
         > div {
           margin-left: 2.5rem;
         }
@@ -68,6 +70,17 @@
         margin-right: 0.5rem;
         padding-top: calc(0.4rem - 1px);
       }
+    }
+  }
+
+  .p-shop-cart--small {
+    > div {
+      background-color: #f7f7f7;
+      padding-top: 2rem;
+    }
+
+    button {
+      width: 100%;
     }
   }
 }

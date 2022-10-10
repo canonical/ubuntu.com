@@ -52,6 +52,8 @@ aws:
       path: /aws/outposts
     - title: FIPS
       path: /aws/fips
+    - title: WorkSpaces
+      path: /aws/workspaces
 
 managedapps:
   title: Managed
@@ -301,10 +303,22 @@ support:
     - title: Overview
       path: /support
     - title: Your subscriptions
-      path: /advantage
+      path: /pro
     - title: Account users
-      path: /advantage/users
+      path: /pro/users
 
+    - title: Community support
+      path: /support/community-support
+
+pro:
+  title: Pro
+  path: /pro
+
+  children:
+    - title: Your subscriptions
+      path: /pro
+    - title: Account users
+      path: /pro/users
     - title: Community support
       path: /support/community-support
 
@@ -461,6 +475,8 @@ pricing:
       path: /pricing/infra
     - title: Consulting
       path: /pricing/consulting
+    - title: Desktops
+      path: /pricing/desktops
     - title: Devices
       path: /pricing/devices
 
@@ -515,8 +531,10 @@ credentialling:
   children:
     - title: Overview
       path: /credentialling
-    - title: FAQ
-      path: /credentialling/faq
+    - title: Syllabus
+      path: /credentialling/syllabus
+    - title: Study guide
+      path: /credentialling/self-study
 
 gcp:
   title: GCP

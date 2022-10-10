@@ -3,6 +3,7 @@ A Flask application for ubuntu.com
 """
 
 # Packages
+from distutils.util import strtobool
 import os
 import talisker.requests
 import flask
@@ -44,6 +45,7 @@ from webapp.context import (
 
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cube.views import (
+    cred_self_study,
     cred_syllabus_data,
     cube_home,
     cube_microcerts,
@@ -72,6 +74,7 @@ from webapp.views import (
     unlisted_engage_page,
     sitemap_index,
     account_query,
+    json_asset_query,
     sixteen_zero_four,
     openstack_install,
     marketo_submit,
@@ -296,6 +299,7 @@ def context():
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
+        "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
     }
 
 
@@ -308,97 +312,94 @@ def utility_processor():
 # ===
 
 # Simple routes
+app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
-app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule("/pro", view_func=advantage_view)
+app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
-    "/advantage/user-subscriptions", view_func=get_user_subscriptions
+    "/pro/contracts/<contract_id>/token", view_func=get_contract_token
 )
+app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
+app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
-    "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
-)
-app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
-app.add_url_rule("/advantage/account-users", view_func=get_account_users)
-app.add_url_rule(
-    "/advantage/accounts/<account_id>/user",
+    "/pro/accounts/<account_id>/user",
     view_func=post_account_user_role,
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/accounts/<account_id>/user",
+    "/pro/accounts/<account_id>/user",
     view_func=put_account_user_role,
     methods=["PUT"],
 )
 app.add_url_rule(
-    "/advantage/accounts/<account_id>/user",
+    "/pro/accounts/<account_id>/user",
     view_func=delete_account_user_role,
     methods=["DELETE"],
 )
-app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
-app.add_url_rule("/advantage/subscribe/blender", view_func=blender_shop_view)
+app.add_url_rule("/pro/subscribe", view_func=advantage_shop_view)
+app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
+app.add_url_rule("/pro/subscribe/thank-you", view_func=advantage_thanks_view)
 app.add_url_rule(
-    "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
-)
-app.add_url_rule(
-    "/advantage/subscribe",
+    "/pro/subscribe",
     view_func=post_advantage_subscriptions,
     methods=["POST"],
     defaults={"preview": False},
 )
 app.add_url_rule(
-    "/advantage/subscribe",
+    "/pro/subscribe",
     view_func=cancel_advantage_subscriptions,
     methods=["DELETE"],
 )
 app.add_url_rule(
-    "/advantage/subscribe/preview",
+    "/pro/subscribe/preview",
     view_func=post_advantage_subscriptions,
     methods=["POST"],
     defaults={"preview": True},
 )
-app.add_url_rule("/advantage/offer", view_func=post_offer, methods=["POST"])
+app.add_url_rule("/pro/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
-    "/advantage/set-auto-renewal",
+    "/pro/set-auto-renewal",
     view_func=post_auto_renewal_settings,
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
+    "/pro/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
 app.add_url_rule(
-    "/advantage/trial/<account_id>",
+    "/pro/trial/<account_id>",
     view_func=cancel_trial,
     methods=["DELETE"],
 )
 
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>/process-payment",
+    "/pro/renewals/<renewal_id>/process-payment",
     view_func=accept_renewal,
     methods=["POST"],
 )
 
 app.add_url_rule(
-    "/advantage/contracts/<contract_id>/entitlements",
+    "/pro/contracts/<contract_id>/entitlements",
     view_func=put_contract_entitlements,
     methods=["PUT"],
 )
 
 app.add_url_rule(
-    "/advantage/subscribe/blender/thank-you",
+    "/pro/subscribe/blender/thank-you",
     view_func=blender_thanks_view,
 )
 
 app.add_url_rule(
-    "/advantage/offers",
+    "/pro/offers",
     view_func=get_advantage_offers,
     methods=["GET"],
 )
 
 app.add_url_rule(
-    "/advantage/offers.json",
+    "/pro/offers.json",
     view_func=get_account_offers,
     methods=["GET"],
 )
@@ -466,13 +467,13 @@ app.add_url_rule(
     view_func=get_last_purchase_ids,
 )
 app.add_url_rule(
-    "/advantage/purchase",
+    "/pro/purchase",
     view_func=post_advantage_purchase,
     methods=["POST"],
     defaults={"preview": False},
 )
 app.add_url_rule(
-    "/advantage/purchase/preview",
+    "/pro/purchase/preview",
     view_func=post_advantage_purchase,
     methods=["POST"],
     defaults={"preview": True},
@@ -900,6 +901,7 @@ core_als_autils_docs.init_app(app)
 
 # Cube docs
 app.add_url_rule("/credentialling", view_func=cube_home)
+app.add_url_rule("/credentialling/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentialling/syllabus", view_func=cred_syllabus_data)
 app.add_url_rule("/credentialling/shop/<p>", view_func=cube_shop)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
@@ -1055,6 +1057,7 @@ def cache_headers(response):
     disable_cache_on = (
         "/account",
         "/advantage",
+        "/pro",
         "/cube",
         "/core/build",
         "/account.json",

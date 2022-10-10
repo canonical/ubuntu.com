@@ -14,7 +14,11 @@ type Props = {
 export default function PaymentModal({ isHidden }: Props) {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
   const { quantity, product } = useContext(FormContext);
-  const { data: preview } = usePreview({ quantity, product });
+  const sanitisedQuantity = Number(quantity) ?? 0;
+  const { data: preview } = usePreview({
+    quantity: sanitisedQuantity,
+    product,
+  });
 
   const termsLabel = (
     <>
@@ -24,7 +28,7 @@ export default function PaymentModal({ isHidden }: Props) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Ubuntu Advantage service terms
+        Ubuntu Pro service terms
       </a>
     </>
   );
@@ -45,7 +49,7 @@ export default function PaymentModal({ isHidden }: Props) {
               marketingLabel={marketingLabel}
               product={product}
               preview={preview}
-              quantity={quantity}
+              quantity={sanitisedQuantity}
               closeModal={closePortal}
               Summary={Summary}
               BuyButton={BuyButton}

@@ -21,7 +21,7 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Ubuntu Advantage service terms
+        Ubuntu Pro service terms
       </a>
     </>
   );

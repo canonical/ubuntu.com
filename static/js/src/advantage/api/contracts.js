@@ -40,7 +40,7 @@ export async function ensurePurchaseAccount({
 export async function getRenewal(renewalID) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
-  let response = await fetch(`/advantage/renewals/${renewalID}${queryString}`, {
+  let response = await fetch(`/pro/renewals/${renewalID}${queryString}`, {
     cache: "no-store",
   });
 
@@ -64,7 +64,7 @@ export async function getCustomerInfo(accountId) {
 
 export async function getUserInfo() {
   const queryString = window.location.search; // Pass arguments to the flask backend
-  const response = await fetch(`/advantage/user-info${queryString}`, {
+  const response = await fetch(`/pro/user-info${queryString}`, {
     cache: "no-store",
   });
   return await response.json();
@@ -72,7 +72,7 @@ export async function getUserInfo() {
 
 export async function getUserSubscriptions() {
   const queryString = window.location.search; // Pass arguments to the flask backend
-  const response = await fetch(`/advantage/user-subscriptions${queryString}`, {
+  const response = await fetch(`/pro/user-subscriptions${queryString}`, {
     cache: "no-store",
   });
   return await response.json();
@@ -81,7 +81,7 @@ export async function getUserSubscriptions() {
 export async function getContractToken(contractId) {
   const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(
-    `/advantage/contracts/${contractId}/token${queryString}`,
+    `/pro/contracts/${contractId}/token${queryString}`,
     {
       cache: "no-store",
     }
@@ -92,7 +92,7 @@ export async function getContractToken(contractId) {
 export async function putContractEntitlements(contractId, entitlements) {
   const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(
-    `/advantage/contracts/${contractId}/entitlements${queryString}`,
+    `/pro/contracts/${contractId}/entitlements${queryString}`,
     {
       cache: "no-store",
       credentials: "include",
@@ -141,7 +141,7 @@ export async function postRenewalIDToProcessPayment(renewalID) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(
-    `/advantage/renewals/${renewalID}/process-payment${queryString}`,
+    `/pro/renewals/${renewalID}/process-payment${queryString}`,
     {
       cache: "no-store",
       credentials: "include",
@@ -172,7 +172,7 @@ export async function postPurchaseData(
     purchaseData.marketplace = marketplace;
   }
 
-  let response = await fetch(`/advantage/subscribe${queryString}`, {
+  let response = await fetch(`/pro/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -195,7 +195,7 @@ export async function cancelContract(
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
-  let response = await fetch(`/advantage/subscribe${queryString}`, {
+  let response = await fetch(`/pro/subscribe${queryString}`, {
     method: "DELETE",
     cache: "no-store",
     credentials: "include",
@@ -224,7 +224,7 @@ export async function resizeContract(
   marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
-  let response = await fetch(`/advantage/subscribe${queryString}`, {
+  let response = await fetch(`/pro/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -259,7 +259,7 @@ export async function previewResizeContract(
   marketplace
 ) {
   const queryString = window.location.search; // Pass arguments to the flask backend
-  let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
+  let response = await fetch(`/pro/subscribe/preview${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -305,7 +305,7 @@ export async function postPurchasePreviewData(
     previewData.marketplace = marketplace;
   }
 
-  let response = await fetch(`/advantage/subscribe/preview${queryString}`, {
+  let response = await fetch(`/pro/subscribe/preview${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -406,7 +406,7 @@ export async function setAutoRenewal(value) {
   Object.entries(value).forEach(([subscription_id, should_auto_renew]) =>
     subscriptions.push({ subscription_id, should_auto_renew })
   );
-  let response = await fetch(`/advantage/set-auto-renewal${queryString}`, {
+  let response = await fetch(`/pro/set-auto-renewal${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -428,7 +428,7 @@ export async function postFreeTrial({
 }) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
-  let response = await fetch(`/advantage/subscribe${queryString}`, {
+  let response = await fetch(`/pro/subscribe${queryString}`, {
     method: "POST",
     cache: "no-store",
     credentials: "include",
@@ -452,7 +452,7 @@ export async function postFreeTrial({
 export async function endTrial(accountID) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
-  let response = await fetch(`/advantage/trial/${accountID}${queryString}`, {
+  let response = await fetch(`/pro/trial/${accountID}${queryString}`, {
     method: "DELETE",
     cache: "no-store",
     credentials: "include",

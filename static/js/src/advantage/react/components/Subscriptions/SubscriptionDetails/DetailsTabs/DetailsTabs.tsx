@@ -94,9 +94,9 @@ const generateDocLinks = (
         case EntitlementType.EsmApps:
         case EntitlementType.EsmInfra:
           link = {
-            label: "ESM Infra",
+            label: "Ubuntu Pro (esm-apps --beta) tutorial",
             url:
-              "https://portal.support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
+              "https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018",
           };
           break;
         case EntitlementType.Livepatch:
@@ -188,7 +188,7 @@ const DetailsTabs = ({
                     <>
                       To attach a machine:{" "}
                       <code data-test="contract-token">
-                        sudo ua attach {token?.contract_token}
+                        sudo pro attach {token?.contract_token}
                       </code>
                     </>
                   ),

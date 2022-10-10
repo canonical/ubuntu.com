@@ -54,24 +54,24 @@
   </div>
   <div class="row p-divider">
     <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu desktop</a></h3>
-      <hr/>
-      <p>How to install Ubuntu Desktop on your laptop or PC.</p>
+      <h3 class="p-heading--4"><a href="/tutorials/install-ubuntu-desktop">Install Ubuntu Desktop</a></h3>
+      <hr>
+      <p>Follow this tutorial to install Ubuntu Desktop on your laptop or PC.</p>
       <p>You can also run Ubuntu from a USB to try it without installing.</p>
     </div>
     <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu on a virtual machine</a></h3>
-      <hr/>
+      <h3 class="p-heading--4"><a href="/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox">How to run Ubuntu Desktop using VirtualBox</a></h3>
+      <hr>
       <p>Run Ubuntu Desktop in a virtual machine using VirtualBox. A quick start guide that will work across any operating system.</p>
     </div>
     <div class="col-6 p-card">
       <h3 class="p-heading--4"><a href="/tutorials/how-to-install-ubuntu-desktop-on-raspberry-pi-4">How to install Ubuntu Desktop on Raspberry Pi 4</a></h3>
-      <hr/>
+      <hr>
       <p>A complete guide to installing Ubuntu Desktop on a Raspberry Pi 4 (2GB or above).</p>
     </div>
     <div class="col-6 p-card">
-      <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu desktop</a></h3>
-      <hr/>
+      <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu Desktop</a></h3>
+      <hr>
       <p>If you're already running Ubuntu, you can upgrade in a few clicks from the Software Updater.</p>
     </div>            
   </div>
@@ -79,36 +79,63 @@
 
 <section class="p-strip">
   <div class="row p-divider">
-    <div class="col-3 p-divider__block">
+    <div class="col-4 p-divider__block">
       <h3 class="p-heading--4">Verify your download</h3>
       <p>If you want to verify the  data integrity and authenticity of your Ubuntu download, follow our guide.</p>
-      <p><a href="/tutorials/tutorial-how-to-verify-ubuntu">Learn how to verify</a></p>
+      <p><a href="/tutorials/tutorial-how-to-verify-ubuntu">Learn how to verify&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-3 p-divider__block">
-      <h3 class="p-heading--4">Ubuntu desktop guide</h3>
-      <p>Read the official Ubuntu desktop documentation.</p>
-      <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu {{ releases.lts.short_version }} LTS documentation</a></p>
+    <div class="col-4 p-divider__block">
+      <h3 class="p-heading--4">Ubuntu Desktop guide</h3>
+      <p>Read the official Ubuntu Desktop documentation.</p>
+      <p><a href="https://help.ubuntu.com/stable/ubuntu-help">Ubuntu {{ releases.lts.short_version }} LTS documentation&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-3 p-divider__block">
-      <h3 class="p-heading--4">Professional support for Ubuntu</h3>
-      <p>Get professional support for Ubuntu from Canonical. We help organisations around the world to manage their Ubuntu cloud, server and desktop deployments.</p>
-      <p><a href="/advantage" class="button--primary">Buy Ubuntu Advantage</a></p>
-      <p><a href="/support">Find out more&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-3 p-divider__block">
+    <div class="col-4 p-divider__block">
       <h3 class="p-heading--4">Help is always at hand</h3>
       <p>Join our global community for support and tips on how to get started with Ubuntu.</p>
       <ul class="p-list">
-          <li><a href="https://discourse.ubuntu.com/">Ubuntu Discourse</a></li>
-          <li><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
-          <li><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers</a></li>
-          <li><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support</a></li>
+          <li><a href="https://discourse.ubuntu.com/">Ubuntu Discourse&nbsp;&rsaquo;</a></li>
+          <li><a href="https://askubuntu.com/">Ask Ubuntu&nbsp;&rsaquo;</a></li>
+          <li><a href="https://answers.launchpad.net/ubuntu">Launchpad Answers&nbsp;&rsaquo;</a></li>
+          <li><a href="https://wiki.ubuntu.com/IRC/ChannelList">IRC-based support&nbsp;&rsaquo;</a></li>
       </ul>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
+    <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations. Ubuntu Pro Desktop is free for personal use on up to five machines.</p>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a> (beta)</li>
+        <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration</li>
+        <li class="p-list__item is-ticked">Estate <a href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
+        <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
+        <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
+        <li class="p-list__item is-ticked">Optional weekday or 24x7 support tiers</li>
+      </ul>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+        alt="",
+        width="231",
+        height="250",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p><a class="p-button--positive" href="/pro">Register today</a></p>
+  </div>
+</section>
+
+<section class="p-strip">
   <div class="row">
     <div class="col-7">
       <h2 class="p-heading--3">Help us to keep Ubuntu free to download, share and use by contributing to ...</h2>

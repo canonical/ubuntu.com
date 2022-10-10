@@ -14,7 +14,7 @@ const parseAccountsResponse = (
 });
 
 const requestAccountUsers = (): Promise<AccountUsersData> =>
-  fetchJSON(`/advantage/account-users${window.location.search}`, {
+  fetchJSON(`/pro/account-users${window.location.search}`, {
     cache: "no-store",
   }).then((response) =>
     parseAccountsResponse(response as AccountUsersApiResponse)
@@ -30,7 +30,7 @@ const accountUserRequestInit: RequestInit = {
 };
 
 const getAccountUserRequestUrl = (accountId: string, urlParams: string) =>
-  `/advantage/accounts/${accountId}/user${urlParams}`;
+  `/pro/accounts/${accountId}/user${urlParams}`;
 
 export interface FetchError extends Error {
   response?: Response;

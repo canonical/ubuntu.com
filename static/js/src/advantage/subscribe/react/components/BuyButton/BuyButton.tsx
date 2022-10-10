@@ -42,7 +42,12 @@ const BuyButton = ({
   const { data: userInfo } = useStripeCustomerInfo();
   const { quantity, product } = useContext(FormContext);
 
-  const purchaseMutation = usePurchase({ quantity, product });
+  const SanitisedQuantity = Number(quantity) ?? 0;
+
+  const purchaseMutation = usePurchase({
+    quantity: SanitisedQuantity,
+    product,
+  });
 
   const freeTrialMutation = useFreeTrial();
 
@@ -56,7 +61,7 @@ const BuyButton = ({
     id: product?.id,
     name: product?.name,
     price: (product?.price?.value ?? 0) / 100,
-    quantity: quantity,
+    quantity: SanitisedQuantity,
   };
 
   const handleOnPurchaseBegin = () => {
@@ -69,11 +74,11 @@ const BuyButton = ({
 
   const handleOnAfterPurchaseSuccess = () => {
     if (window.isGuest && !window.isLoggedIn) {
-      location.href = `/advantage/subscribe/thank-you?email=${encodeURIComponent(
+      location.href = `/pro/subscribe/thank-you?email=${encodeURIComponent(
         userInfo?.customerInfo?.email
       )}`;
     } else {
-      location.pathname = "/advantage";
+      location.pathname = "/pro";
     }
   };
 

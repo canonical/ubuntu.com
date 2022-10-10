@@ -7,7 +7,7 @@ const Offers = () => {
     <div className="p-strip--suru-topped">
       <Row>
         <Col size={12}>
-          <h1>Your Ubuntu Advantage offers</h1>
+          <h1>Your Ubuntu Pro offers</h1>
         </Col>
       </Row>
       <Row>

@@ -131,6 +131,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include p-takeover-financial-services;
+@include vf-p-icon-success-grey;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -410,7 +411,7 @@ summary {
   margin-top: -2.2rem;
   padding-bottom: 1.75rem;
 
-  @media screen and (max-width: $breakpoint-large - 1px) {
+  @media screen and (max-width: ($breakpoint-large - 1px)) {
     padding-top: 2rem;
   }
 
@@ -426,7 +427,7 @@ summary {
     margin-bottom: 0;
   }
 
-  @media only screen and (min-width: $breakpoint-medium + 1) {
+  @media only screen and (min-width: ($breakpoint-medium + 1)) {
     &:nth-child(3) {
       margin-bottom: 0;
     }
@@ -613,6 +614,7 @@ body {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -622,6 +624,7 @@ body {
   0% {
     transform: translateX(0.5rem);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -631,6 +634,7 @@ body {
   0% {
     transform: translateX(-0.5rem);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -641,7 +645,6 @@ body {
     map-get($animation-easing, "in");
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
-
   &.is-loaded {
     animation-delay: 0s !important;
 
@@ -770,4 +773,83 @@ html {
       margin-left: 1rem;
     }
   }
+}
+
+.p-testimonial {
+  @extend %fixed-width-container;
+
+  padding-bottom: $sph--x-large;
+  position: relative;
+
+  @supports (display: grid) {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-gap: 0 map-get($grid-gutter-widths, small);
+    grid-template-columns: repeat($grid-columns-small, minmax(0, 1fr));
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $grid-max-width;
+
+    @media (min-width: $threshold-4-6-col) {
+      grid-gap: 0 map-get($grid-gutter-widths, default);
+      grid-template-columns: repeat($grid-columns-medium, minmax(0, 1fr));
+    }
+
+    @media (min-width: $threshold-6-12-col) {
+      grid-gap: 0 map-get($grid-gutter-widths, default);
+      grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+    }
+  }
+
+  .p-testimonial__logo {
+    @media (max-width: ($threshold-4-6-col - 1)) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
+      grid-column: 1 / span 2;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 1 / span 2;
+    }
+  }
+
+  .p-testimonial__author {
+    @media (max-width: ($threshold-4-6-col - 1)) {
+      grid-column: 3 / span 2;
+      grid-row: 2 / span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
+      grid-column: 3 / span 1;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 3 / span 3;
+    }
+  }
+
+  .p-testimonial__quote {
+    @media (max-width: ($threshold-4-6-col - 1)) {
+      grid-column: 1 / span 4;
+      grid-row: 1 / span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
+      grid-column: 4 / span 3;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 7 / span 6;
+    }
+  }
+}
+
+.u-pad-logo {
+  padding-top: 0.2rem;
+}
+
+.u-max-width {
+  display: block;
+  max-width: $text-max-width;
+}
+
+img.has-shadow {
+  box-shadow: 0 0 1rem #e5e5e5;
 }

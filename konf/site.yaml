@@ -288,7 +288,7 @@ production:
         - name: SENTRY_DSN
           value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
-    - paths: [/advantage, /account]
+    - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
@@ -324,7 +324,7 @@ production:
       rewrite ^ https://snapcraft.io/ permanent;
     }
     if ($host = 'buy.ubuntu.com' ) {
-      rewrite ^ https://ubuntu.com/advantage permanent;
+      rewrite ^ https://ubuntu.com/pro permanent;
     }
     if ($host = 'cloud.ubuntu.com' ) {
       rewrite ^ https://ubuntu.com/public-cloud$request_uri? permanent;
@@ -661,7 +661,7 @@ staging:
         - name: SENTRY_DSN
           value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
-    - paths: [/advantage, /account]
+    - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
       image: prod-comms.docker-registry.canonical.com/ubuntu.com

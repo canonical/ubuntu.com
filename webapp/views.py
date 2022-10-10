@@ -239,6 +239,22 @@ def account_query():
     )
 
 
+def json_asset_query(file_name):
+    """
+    A JSON endpoint to request JSON assets from the asset manager
+    """
+    try:
+        response = session.request(
+            method="GET",
+            url=f"https://assets.ubuntu.com/v1/{file_name}",
+        )
+        json = response.json()
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    return flask.jsonify(json)
+
+
 def mirrors_query():
     """
     A JSON endpoint to request list of Ubuntu mirrors
@@ -523,8 +539,7 @@ def engage_thank_you(engage_pages):
         try:
             form_details = flask.session["form_details"]
         except KeyError:
-            # Forbid direct access to thank-you page
-            return flask.abort(403)
+            form_details = None
 
         return flask.render_template(
             template_language,
