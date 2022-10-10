@@ -80,8 +80,8 @@ const MESSAGES: Messages = {
           "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
-            If you don&apos;t renew it, it will disappear from your dashboard in 90
-            days. Contact{" "}
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
             <a href="mailto:customersuccess@canonical.com">
               customersuccess@canonical.com
             </a>{" "}
@@ -90,8 +90,8 @@ const MESSAGES: Messages = {
         ),
         [UserSubscriptionType.Yearly]: (
           <>
-            If you don&apos;t renew it, it will disappear from your dashboard in 90
-            days. Contact{" "}
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
             <a href="mailto:customersuccess@canonical.com">
               customersuccess@canonical.com
             </a>{" "}
@@ -114,8 +114,8 @@ const MESSAGES: Messages = {
           "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
-            If you don&apos;t renew it, it will disappear from your dashboard in 90
-            days. Contact{" "}
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
             <a href="mailto:customersuccess@canonical.com">
               customersuccess@canonical.com
             </a>{" "}
@@ -124,9 +124,9 @@ const MESSAGES: Messages = {
         ),
         [UserSubscriptionType.Yearly]: (
           <>
-            If you don&apos;t renew it, it will disappear from your dashboard in 90
-            days. Contact{" "}
-            <a href='mailto:customersuccess@canonical.com'>
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
+            <a href="mailto:customersuccess@canonical.com">
               customersuccess@canonical.com
             </a>{" "}
             to renew.

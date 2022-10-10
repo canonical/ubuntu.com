@@ -214,7 +214,9 @@ describe("ExpiryNotification", () => {
         onDismiss={onDismiss}
       />
     );
-    expect(wrapper.find("[data-test='is_in_grace_period-large']").exists()).toBe(true);
+    expect(
+      wrapper.find("[data-test='is_in_grace_period-large']").exists()
+    ).toBe(true);
     expect(wrapper.find(Notification).prop("title")).toBe(
       "Your subscription has expired."
     );
