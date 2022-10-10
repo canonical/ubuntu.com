@@ -1,13 +1,16 @@
-import { ModularTable, Row } from "@canonical/react-components";
+import { Button, CheckboxInput, ModularTable, Row } from "@canonical/react-components";
 import React, { useMemo, useRef, useState } from "react";
+import { listAllKeys } from "advantage/credentialling/api/keys";
+import { useQuery } from "react-query";
 const CredManage = () => {
     const [tab, changeTab] = useState(0);
     const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
-    const filterTable = () => {
-        if (tab == 0) {
-
+    const {isLoading,data} = useQuery(["ActivationKeys"],
+        async () => {
+            return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
-    }
+    );
+    console.log(data);
     const switchTab = (
         event: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number
     ) => {
@@ -21,7 +24,25 @@ const CredManage = () => {
             inputRefs.current[(currentIndex + 1) % 4].focus();
         }
     };
-    return <div>
+
+    const copyToClipboard=(data)=>{
+        console.log(data["value"]);
+        navigator.clipboard.writeText(data["value"]);
+    };
+
+    const [selectedKeyIds,setSelectedKeyIds]=useState([]);
+    const handleCheckbox = (keyValue)=>{
+        console.log(keyValue,selectedKeyIds);
+        if(selectedKeyIds.includes(keyValue)){
+            setSelectedKeyIds(selectedKeyIds=>selectedKeyIds.filter(id=>id!=keyValue));
+            console.log("r",selectedKeyIds);
+        }
+        else{
+            setSelectedKeyIds(selectedKeyIds.concat(keyValue));
+            console.log("a",selectedKeyIds);
+        }
+    };
+    return (<div>
         <Row>
             <h1>Manage exam attempts</h1>
             <p>The table below shows exam attempts you have purchased</p>
@@ -109,11 +130,23 @@ const CredManage = () => {
                 columns={useMemo(() => [
                     {
                         Header: "EXAM KEY ID",
-                        accessor: "key"
+                        accessor: "key",
+                        width:300,
+                        Cell: ({
+                            value
+                        }) => <span><CheckboxInput onChange={()=>{handleCheckbox(value);}} label={""}/>{value}<Button inline onClick={()=>{copyToClipboard({value});}}></Button></span>
                     },
                     {
                         Header: "ASSIGNEE",
-                        accessor: "activatedBy"
+                        accessor: "activatedBy",
+                        Cell:({
+                            value
+                        }) => {
+                            if(value)
+                                return value;
+                            else
+                                return "N/A";
+                        }
                     },
                     {
                         Header: "EXAM",
@@ -125,9 +158,9 @@ const CredManage = () => {
                     }
                 ], []
                 )}
-                data={useMemo(() => [{}], [])}
+                data={isLoading?useMemo(()=>[{}],[data]):useMemo(() => data, [data])}
             />
         </Row>
-    </div>
-}
+    </div>);
+};
 export default CredManage;
