@@ -171,6 +171,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               borderless
               className="p-subscriptions__details-notification"
               size={ExpiryNotificationSize.Large}
+              subscriptionType={subscription.type}
               statuses={subscription.statuses}
             />
             {notification ? <Notification {...notification} /> : null}

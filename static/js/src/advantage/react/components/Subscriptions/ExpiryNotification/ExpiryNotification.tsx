@@ -7,6 +7,7 @@ import type { NotificationProps } from "@canonical/react-components";
 import React, { ReactNode } from "react";
 
 import { UserSubscriptionStatuses } from "advantage/api/types";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 export enum ExpiryNotificationSize {
   Small = "small",
@@ -22,6 +23,7 @@ export enum StatusKey {
 type Props = PropsWithSpread<
   {
     showMultiple?: boolean;
+    subscriptionType?: UserSubscriptionType | "default";
     size: ExpiryNotificationSize;
     statuses: UserSubscriptionStatuses;
   },
@@ -30,7 +32,12 @@ type Props = PropsWithSpread<
 
 type Messages = Record<
   StatusKey,
-  { [K in ExpiryNotificationSize]?: { message: ReactNode; title?: ReactNode } }
+  {
+    [K in ExpiryNotificationSize]?: {
+      message: { [K in UserSubscriptionType | "default"]?: ReactNode };
+      title?: ReactNode;
+    };
+  }
 >;
 
 // The expiry status keys in priority order.
@@ -48,39 +55,97 @@ export const ORDERED_STATUS_KEYS = [
 const MESSAGES: Messages = {
   [StatusKey.IsExpiring]: {
     [ExpiryNotificationSize.Large]: {
-      message: "Verify your renewal settings below.",
+      message: {
+        default:
+          "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity.",
+        [UserSubscriptionType.Legacy]:
+          "Click on Renew subscription to to ensure service continuity.",
+        [UserSubscriptionType.Monthly]:
+          "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
+        [UserSubscriptionType.Yearly]:
+          "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
+      },
       title: "Your subscription is about to expire.",
     },
     [ExpiryNotificationSize.Small]: {
-      message: "Subscription about to expire",
+      message: {
+        default: "Your subscription is about to expire.",
+      },
     },
   },
   [StatusKey.IsExpired]: {
     [ExpiryNotificationSize.Large]: {
-      message: (
-        <>
-          Please <a href="/contact-us">contact us</a>.
-        </>
-      ),
-      title: "This subscription has expired.",
+      message: {
+        default:
+          "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity.",
+        [UserSubscriptionType.Monthly]: (
+          <>
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
+            <a href="mailto:customersuccess@canonical.com">
+              customersuccess@canonical.com
+            </a>{" "}
+            to renew.
+          </>
+        ),
+        [UserSubscriptionType.Yearly]: (
+          <>
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
+            <a href="mailto:customersuccess@canonical.com">
+              customersuccess@canonical.com
+            </a>{" "}
+            to renew.
+          </>
+        ),
+      },
+      title: "Your subscription has expired.",
     },
     [ExpiryNotificationSize.Small]: {
-      message: "Subscription expired",
+      message: {
+        default: "Subscription expired",
+      },
     },
   },
   [StatusKey.IsInGracePeriod]: {
     [ExpiryNotificationSize.Large]: {
-      message: "It will be removed within 14 days if it's not renewed.",
+      message: {
+        default:
+          "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity.",
+        [UserSubscriptionType.Monthly]: (
+          <>
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
+            <a href="mailto:customersuccess@canonical.com">
+              customersuccess@canonical.com
+            </a>{" "}
+            to renew.
+          </>
+        ),
+        [UserSubscriptionType.Yearly]: (
+          <>
+            If you don&apos;t renew it, it will disappear from your dashboard in
+            90 days. Contact{" "}
+            <a href="mailto:customersuccess@canonical.com">
+              customersuccess@canonical.com
+            </a>{" "}
+            to renew.
+          </>
+        ),
+      },
       title: "Your subscription has expired.",
     },
     [ExpiryNotificationSize.Small]: {
-      message: "Subscription expired",
+      message: {
+        default: "Subscription expired",
+      },
     },
   },
 };
 
 const ExpiryNotification = ({
   showMultiple = false,
+  subscriptionType,
   size,
   statuses,
   ...notificationProps
@@ -99,7 +164,10 @@ const ExpiryNotification = ({
   const notifications = statusesToShow.map((statusKey) => {
     const notification = MESSAGES[statusKey][size];
     return {
-      children: notification?.message,
+      children:
+        subscriptionType && notification?.message[subscriptionType]
+          ? notification?.message[subscriptionType]
+          : notification?.message["default"],
       key: `${statusKey}-${size}`,
       // Display a title for large notifications.
       title: size === ExpiryNotificationSize.Large ? notification?.title : null,
