@@ -1,16 +1,44 @@
-import { Button, CheckboxInput, ModularTable, Row } from "@canonical/react-components";
-import React, { useMemo, useRef, useState } from "react";
+import { Row, Spinner } from "@canonical/react-components";
 import { listAllKeys } from "advantage/credentialling/api/keys";
+import React, { useRef, useState } from "react";
 import { useQuery } from "react-query";
+import KeyTable from "./KeyTable";
+
+type ActivationKey = {
+    contractItemID: string,
+    expirationDate: Date,
+    key: string,
+    productID: string
+}
 const CredManage = () => {
     const [tab, changeTab] = useState(0);
+    const [sortAttributes, setsortAttributes] = useState<[string, boolean]>(["expirationDate", true]);
     const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
-    const {isLoading,data} = useQuery(["ActivationKeys"],
+    const { isLoading, data } = useQuery(["ActivationKeys"],
         async () => {
             return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
     );
-    console.log(data);
+
+    const sortTable = (attr: string) => {
+        if (attr == "key") {
+            data.sort((x: ActivationKey, y: ActivationKey) => { return x[attr].localeCompare(y[attr]) });
+        }
+        else if (attr == "expirationDate") {
+            data.sort((x: ActivationKey, y: ActivationKey) => { return x[attr] - y[attr] });
+        }
+        if (attr == sortAttributes[0]) {
+            if (sortAttributes[1] == true) {
+                data.reverse();
+            }
+            setsortAttributes([attr, !sortAttributes[1]]);
+        }
+        else {
+            setsortAttributes([attr, true]);
+        }
+        console.log(data);
+    }
+
     const switchTab = (
         event: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number
     ) => {
@@ -25,23 +53,6 @@ const CredManage = () => {
         }
     };
 
-    const copyToClipboard=(data)=>{
-        console.log(data["value"]);
-        navigator.clipboard.writeText(data["value"]);
-    };
-
-    const [selectedKeyIds,setSelectedKeyIds]=useState([]);
-    const handleCheckbox = (keyValue)=>{
-        console.log(keyValue,selectedKeyIds);
-        if(selectedKeyIds.includes(keyValue)){
-            setSelectedKeyIds(selectedKeyIds=>selectedKeyIds.filter(id=>id!=keyValue));
-            console.log("r",selectedKeyIds);
-        }
-        else{
-            setSelectedKeyIds(selectedKeyIds.concat(keyValue));
-            console.log("a",selectedKeyIds);
-        }
-    };
     return (<div>
         <Row>
             <h1>Manage exam attempts</h1>
@@ -126,40 +137,19 @@ const CredManage = () => {
             </div>
         </Row>
         <Row>
-            <ModularTable
-                columns={useMemo(() => [
-                    {
-                        Header: "EXAM KEY ID",
-                        accessor: "key",
-                        width:300,
-                        Cell: ({
-                            value
-                        }) => <span><CheckboxInput onChange={()=>{handleCheckbox(value);}} label={""}/>{value}<Button inline onClick={()=>{copyToClipboard({value});}}></Button></span>
-                    },
-                    {
-                        Header: "ASSIGNEE",
-                        accessor: "activatedBy",
-                        Cell:({
-                            value
-                        }) => {
-                            if(value)
-                                return value;
-                            else
-                                return "N/A";
-                        }
-                    },
-                    {
-                        Header: "EXAM",
-                        accessor: "productID"
-                    },
-                    {
-                        Header: "EXPIRATION DATE",
-                        accessor: "expirationDate"
-                    }
-                ], []
-                )}
-                data={isLoading?useMemo(()=>[{}],[data]):useMemo(() => data, [data])}
-            />
+            <table aria-label="Manage activation keys">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th aria-sort="none" onClick={() => { sortTable("key") }}>Exam Key Id</th>
+                        <th></th>
+                        <th>Asignee</th>
+                        <th>Exam</th>
+                        <th aria-sort="none" onClick={() => { sortTable("expirationDate") }}>Expiration Date</th>
+                    </tr>
+                </thead>
+                {isLoading ? <Spinner /> : <KeyTable keyList={data} reload={sortAttributes} />}
+            </table>
         </Row>
     </div>);
 };
