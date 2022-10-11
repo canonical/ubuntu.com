@@ -1,5 +1,5 @@
-export async function listAllKeys(contractId){
-  let response = await fetch(`/credentialling/keys/list/${contractId}`,{
+export async function listAllKeys(contractId) {
+  let response = await fetch(`/credentialling/keys/list/${contractId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -7,5 +7,8 @@ export async function listAllKeys(contractId){
     }
   });
   const data = await response.json();
+  for (let key in data) {
+    data[key]["expirationDate"] = new Date(data[key]["expirationDate"]);
+  };
   return data;
 } 
