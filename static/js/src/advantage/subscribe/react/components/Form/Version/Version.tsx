@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Chip, Col, List, Row } from "@canonical/react-components";
+import { Col, List, Row, StatusLabel } from "@canonical/react-components";
 import classNames from "classnames";
 import {
   isPublicCloud,
@@ -26,13 +26,13 @@ const FIPSComingSoon = (
   <>
     FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS
     compliance
-    <Chip value="Coming soon" appearance="positive" className="is-dense" />
+    <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
 const CISComingSoon = (
   <>
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
-    <Chip value="Coming soon" appearance="positive" className="is-dense" />
+    <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
 const CommonCriteria = "Common Criteria EAL2";
