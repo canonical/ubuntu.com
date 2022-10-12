@@ -16,7 +16,7 @@ This privacy notice tells you about the information we collect from you when you
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
