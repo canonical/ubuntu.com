@@ -81,16 +81,31 @@
     }
   }
 
+  .p-status-label--positive {
+    @include vf-p-status-label;
+    @extend %small-text;
+
+    background-color: hsl(129deg 90% 39% / 10%);
+    border: 1px solid $color-positive;
+    border-radius: 1rem;
+    color: $color-dark;
+    font-weight: $font-weight-bold;
+    margin: 0 $sph--small $input-margin-bottom 0;
+    padding: calc(#{$spv--x-small} - 1px) $sph--small;
+    position: relative;
+    top: -0.4rem;
+  }
+
   .versions-features {
     > li.p-list__item {
       padding: 0.5rem 0;
     }
 
-    button.p-chip--positive {
+    .p-status-label--positive {
       border: none;
       font-style: oblique;
       margin-left: 0.5rem;
-      top: -0.4rem;
+      top: 0;
     }
   }
 
