@@ -117,6 +117,7 @@ extraHosts:
   - domain: certification.ubuntu.com
   - domain: security-certs.docs.ubuntu.com
   - domain: usn.ubuntu.com
+  - domain: developer.ubuntu.com
 
 # Overrides for production
 production:
@@ -320,6 +321,9 @@ production:
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
   nginxConfigurationSnippet: |
+    if ($host = 'developer.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/desktop/developer permanent;
+    }
     if ($host = 'apps.ubuntu.com' ) {
       rewrite ^ https://snapcraft.io/ permanent;
     }
