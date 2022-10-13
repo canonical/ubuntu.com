@@ -81,13 +81,17 @@ const MESSAGES: Messages = {
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. To renew your expired subscription, purchase it again by clicking <strong>Buy new subscription</strong>. Your token will remain the same.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
         [UserSubscriptionType.Yearly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. To renew your expired subscription, purchase it again by clicking <strong>Buy new subscription</strong>. Your token will remain the same.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
       },
@@ -107,13 +111,17 @@ const MESSAGES: Messages = {
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. To renew your expired subscription, purchase it again by clicking <strong>Buy new subscription</strong>. Your token will remain the same.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
         [UserSubscriptionType.Yearly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. To renew your expired subscription, purchase it again by clicking <strong>Buy new subscription</strong>. Your token will remain the same.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
       },
