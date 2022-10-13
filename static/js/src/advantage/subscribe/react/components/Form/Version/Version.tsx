@@ -17,7 +17,7 @@ const landscape = "Ubuntu systems management with Landscape";
 const knowledgeBase = "Access to the Knowledge base";
 const KVMDrivers = "Certified Windows Drivers for KVM guests";
 const CISBenchmark =
-  "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG configuration guide";
+  "Certified CIS benchmark tooling and DISA-STIG configuration guide";
 const CISBenchmarkAndAutomation =
   "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG tooling & automation";
 const FIPS =
