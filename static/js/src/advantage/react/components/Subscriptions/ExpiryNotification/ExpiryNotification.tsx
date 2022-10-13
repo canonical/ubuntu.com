@@ -77,25 +77,21 @@ const MESSAGES: Messages = {
     [ExpiryNotificationSize.Large]: {
       message: {
         default:
-          "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity.",
+          "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. Contact{" "}
-            <a href="mailto:customersuccess@canonical.com">
-              customersuccess@canonical.com
-            </a>{" "}
-            to renew.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
         [UserSubscriptionType.Yearly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. Contact{" "}
-            <a href="mailto:customersuccess@canonical.com">
-              customersuccess@canonical.com
-            </a>{" "}
-            to renew.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
       },
@@ -111,25 +107,21 @@ const MESSAGES: Messages = {
     [ExpiryNotificationSize.Large]: {
       message: {
         default:
-          "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity.",
+          "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity.",
         [UserSubscriptionType.Monthly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. Contact{" "}
-            <a href="mailto:customersuccess@canonical.com">
-              customersuccess@canonical.com
-            </a>{" "}
-            to renew.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
         [UserSubscriptionType.Yearly]: (
           <>
             If you don&apos;t renew it, it will disappear from your dashboard in
-            90 days. Contact{" "}
-            <a href="mailto:customersuccess@canonical.com">
-              customersuccess@canonical.com
-            </a>{" "}
-            to renew.
+            90 days. To renew your expired subscription, purchase it again by
+            clicking <strong>Buy new subscription</strong>. Your token will
+            remain the same.
           </>
         ),
       },
