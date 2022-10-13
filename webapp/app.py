@@ -317,7 +317,7 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
-app.add_url_rule("/pro", view_func=advantage_view)
+app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
     "/pro/contracts/<contract_id>/token", view_func=get_contract_token
