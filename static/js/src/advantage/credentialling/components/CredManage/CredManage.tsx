@@ -19,6 +19,7 @@ const CredManage = () => {
             return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
     );
+    const [tableData, changeTableData] = useState<ActivationKey[]>(data);
 
     const switchTab = (
         event: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number
@@ -35,19 +36,25 @@ const CredManage = () => {
     };
 
     const [selectedKeyIds, setSelectedKeyIds] = useState<string[]>([]);
-    var selectedKeys = new Map<string, ActivationKey>();
-    const handleCheckbox = (keyValue: string, key: ActivationKey) => {
+
+    const getKey = (keyId: string) => {
+        for (let d in data) {
+            console.log(d);
+            if (data[d]["key"] == keyId) {
+                return data[d];
+            }
+        }
+        return {};
+    }
+
+    const handleCheckbox = (keyValue: string) => {
         console.log(keyValue, selectedKeyIds);
         if (selectedKeyIds.includes(keyValue)) {
             setSelectedKeyIds(selectedKeyIds => selectedKeyIds.filter(id => id != keyValue));
-            selectedKeys.delete(keyValue);
-            console.log(selectedKeys);
             console.log("r", selectedKeyIds);
         }
         else {
             setSelectedKeyIds(selectedKeyIds.concat(keyValue));
-            selectedKeys.set(keyValue, key);
-            console.log(selectedKeys);
         }
     };
     const copyToClipboard = (value: string) => {
@@ -55,19 +62,40 @@ const CredManage = () => {
         navigator.clipboard.writeText(value);
     };
 
+    const keyIsArchivable = (keyItemId: string) => {
+        let tempKey = getKey(keyItemId);
+        if (("activatedBy" in tempKey)) {
+            return true;
+        }
+        return false;
+    }
+
     const isArchiveable = () => {
-        for (var i of selectedKeyIds) {
-            console.log("archivable", i, selectedKeys.get(i));
-            if ("activatedBy" in selectedKeys.get(i)) {
+        for (let i = 0; i < selectedKeyIds.length; i++) {
+            if (!keyIsArchivable(selectedKeyIds[i])) {
                 return false;
             }
         }
         return true;
-
     }
-    const isUnused = () => {
+
+    const keyIsUnused = (keyItemId: string) => {
+        let tempKey = getKey(keyItemId);
+        if (("activatedBy" in tempKey)) {
+            return false;
+        }
         return true;
     }
+
+    const isUnused = () => {
+        for (let i = 0; i < selectedKeyIds.length; i++) {
+            if (!keyIsUnused(selectedKeyIds[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     useEffect(() => {
         let newList = [];
         if (isArchiveable()) {
@@ -86,9 +114,32 @@ const CredManage = () => {
                 onClick: () => { }
             });
         }
+        if (newList.length == 0) {
+            newList.push({
+                children: "No bulk options available",
+                onClick: () => { }
+            });
+        }
         updateActionLinks(newList);
-
+        console.log(isArchiveable());
     }, [selectedKeyIds])
+
+    useEffect(() => {
+        if (tab == 0) {
+            changeTableData(data);
+        }
+        if (tab == 1) {
+            changeTableData(data.filter((keyItem: ActivationKey) => { return keyIsUnused(keyItem["key"]) }))
+        }
+        if (tab == 2) {
+            changeTableData(data.filter((keyItem: ActivationKey) => { return !keyIsArchivable(keyItem["key"]) }))
+        }
+    }, [tab]);
+
+    useEffect(() => {
+        changeTab(0);
+        changeTableData(data);
+    }, [data]);
 
     return (<div>
         <Row>
@@ -172,7 +223,7 @@ const CredManage = () => {
                     </button>
                 </div>
             </div>
-            <div className="col-6">
+            <div className="col-6 u-align--center">
                 {selectedKeyIds.length > 0 ?
                     <ContextualMenu
                         hasToggleIcon
@@ -212,12 +263,12 @@ const CredManage = () => {
                             }
                         ]
                     }
-                    rows={
-                        data.map((keyitem: ActivationKey) => {
+                    rows={tableData &&
+                        tableData.map((keyitem: ActivationKey) => {
                             return ({
                                 columns: [
                                     {
-                                        content: <CheckboxInput onChange={() => { handleCheckbox(keyitem["key"], keyitem) }} label="" id={keyitem["key"] + "_checkbox"} />
+                                        content: <CheckboxInput onChange={() => { handleCheckbox(keyitem["key"]) }} label="" id={keyitem["key"] + "_checkbox"} />
                                     },
                                     {
                                         content: keyitem["key"]
@@ -243,6 +294,7 @@ const CredManage = () => {
                             );
                         })
                     }
+                    paginate={5}
                     sortable
                 />
             }
