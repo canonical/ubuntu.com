@@ -92,13 +92,13 @@
           <li class="p-list__item">
             Make sure that you are up to date:
 
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">sudo apt update && sudo apt upgrade</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ sudo apt update && sudo apt upgrade</pre></div>
           </li>
 
           <li class="p-list__item">
             Ensure that you're running the latest version of the pro client:
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">pro --version</pre></div>
-            <div class="p-code-snippet"><pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ pro --version
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ pro --version</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ pro --version
 27.11.2~20.04.1
 </pre></div>
           </li>
@@ -127,12 +127,13 @@
           <p>First, let's find out how many deb packages are installed on your machine and from which source:</p>
         </div> 
         <div class="p-code-snippet">
-          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ pro security-status
+          <pre class="p-code-snippet__block">
+$ pro security-status
 2190 packages installed:
-    1870 packages from Ubuntu Main/Restricted repository
-    281 packages from Ubuntu Universe/Multiverse repository
-    10 packages from third parties
-    29 packages no longer available for download
+     1870 packages from Ubuntu Main/Restricted repository
+     281 packages from Ubuntu Universe/Multiverse repository
+     10 packages from third parties
+     29 packages no longer available for download
 
 To get more information about the packages, run
     pro security-status --help
@@ -258,20 +259,21 @@ Learn more at https://ubuntu.com/pro</pre>
           <p>Now that we have our Ubuntu Pro token, we can attach it to our Ubuntu instance. Open the terminal on your Ubuntu LTS, and type the following command:</p>
         </div> 
         <div class="p-code-snippet">
-          <pre class="p-code-snippet__block--icon"><code>sudo pro attach [YOUR_TOKEN]</code></pre>
+          <pre class="p-code-snippet__block--icon"><code>$ sudo pro attach [YOUR_TOKEN]</code></pre>
         </div>
         <p>
           You should see some of the Ubuntu Pro services - Expanded Security Maintenance for Infrastructure (esm-infra), and Livepatch - automatically enabling, while others will remain disabled until you switch them on:
         </p>
         <div class="p-code-snippet">
-          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo pro attach [YOUR_TOKEN]
+          <pre class="p-code-snippet__block">
+$ sudo pro attach [YOUR_TOKEN]
 Enabling default service esm-infra
 Updating package lists
 Ubuntu Pro: ESM Infra enabled
 Enabling default service livepatch
 Canonical livepatch enabled.
 Unable to determine current instance-id
-This machine is now attached to 'Ubuntu Pro - free personal subscription'
+This machine is now attached to 'Ubuntu Pro - free personal subscription'            
 
 SERVICE          ENTITLED  STATUS    DESCRIPTION
 esm-infra        <span class="token string">yes</span>       <span class="token string">enabled</span>   Expanded Security Maintenance for Infrastructure
@@ -284,7 +286,7 @@ NOTICES
 Operation in progress: pro attach
 
 Enable services with: pro enable &lt;service&gt;
-     Account: [YOUR_EMAIL]
+Account: [YOUR_EMAIL]
 Subscription: Ubuntu Pro - free personal subscription</pre>
           </div>
 
@@ -310,7 +312,8 @@ Subscription: Ubuntu Pro - free personal subscription</pre>
           <pre><code>$ sudo pro enable esm-apps --beta</code></pre>
 
           <div class="p-code-snippet">
-            <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo pro enable esm-apps --beta
+            <pre class="p-code-snippet__block">
+$ sudo pro enable esm-apps --beta
 One moment, checking your subscription first
 Updating package lists
 Ubuntu Pro: ESM Apps enabled</pre>
@@ -319,7 +322,8 @@ Ubuntu Pro: ESM Apps enabled</pre>
           <p>Remember that you need to attach a Pro subscription first. If you haven't done it in advance, you will see the following message:</p>
           
           <div class="p-code-snippet">
-            <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo pro enable esm-apps --beta
+            <pre class="p-code-snippet__block">
+$ sudo pro enable esm-apps --beta
 To use 'esm-apps' you need an Ubuntu Pro subscription
 Personal and community subscriptions are available at no charge
 See https://ubuntu.com/pro</pre>
@@ -343,17 +347,18 @@ See https://ubuntu.com/pro</pre>
         <p>
           Check if any additional security updates for the packages from the Ubuntu Universe repository are available for you
         </p>
-        <p>Run <code>apt list --upgradable | grep apps-security</code> to find out which packages can be upgraded. Ubuntu Pro: esm-apps packages will be listed under release-apps-security</p>
+        <p>Run <code>$ apt list --upgradable | grep apps-security</code> to find out which packages can be upgraded. Ubuntu Pro: esm-apps packages will be listed under release-apps-security</p>
 
         <div class="p-code-snippet">
-          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ apt list --upgradable | grep apps-security
+          <pre class="p-code-snippet__block">
+$ apt list --upgradable | grep apps-security
 
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
 redis-server/focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 amd64 [upgradable from: 5:5.0.7-2ubuntu0.1]
 redis-tools/focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 amd64 [upgradable from: 5:5.0.7-2ubuntu0.1]
-redis/focal-apps-security,focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 all [upgradable from: 5:5.0.7-2ubuntu0.1]
-</pre>
+redis/focal-apps-security,focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 all [upgradable from: 5:5.0.7-2ubuntu0.1]         
+          </pre>
         </div>
 
 
@@ -361,11 +366,11 @@ redis/focal-apps-security,focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 all [upgra
 
         <p>Note: If you don't see anything in your output, it means that no Ubuntu Pro security updates are currently available on that Ubuntu machine. In that case consider installing a package that would provide an output. Before doing that, please disable the esm-apps service and enable it again once the package is installed (otherwise it would install the new version right away and thereby you would not see the difference).</p>
 
-        <pre><code>sudo pro disable esm-apps</code></pre>
+        <pre><code>$ sudo pro disable esm-apps</code></pre>
 
-        <pre><code>sudo apt-get install pdfresurrect</code></pre>
+        <pre><code>$ sudo apt-get install pdfresurrect</code></pre>
 
-        <pre><code>sudo pro enable esm-apps --beta</code></pre>
+        <pre><code>$ sudo pro enable esm-apps --beta</code></pre>
 
         <p>And then move back to the top of step 6.</p>
       </div>
@@ -385,26 +390,29 @@ redis/focal-apps-security,focal-apps-security 5:5.0.7-2ubuntu0.1+esm1 all [upgra
 
         <ol>
           <li>
-            First, let's add the deb-src lines into the existing esm-apps source file. This will allow us to download the source packages directly which contain the CVE information (Notice that we are adding to deb-src, one for esm-apps security packages and for esm-apps updates packages):
+            First, let's add an apt source for the esm-apps deb-src repository. This will allow us to download the source packages directly which contain the CVE information.
             <div class="p-code-snippet">
               <pre class="p-code-snippet__block">echo "deb-src https://esm.ubuntu.com/apps/ubuntu $(lsb_release -s -c)-apps-security main"  | sudo tee /etc/apt/sources.list.d/esm-apps-sources.list'</pre>
             </div>
           </li>
           <li>Now, let's make sure that apt is aware of those source packages by running:
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">apt-get update</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ apt-get update</pre></div>
           </li>
           <li>Now, let's download a source package for a package present on esm-apps (from step 6). In our example here it can be redis. 
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">sudo apt-get source redis</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ sudo apt-get source redis</pre></div>
             </li>
             <li>Let's now find a file that starts with the package name we downloaded and ends with debian.tar.xz. We can do that by running the following ls command:
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">ls [PACKAGE_NAME]*.debian.tar.xz</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ ls [PACKAGE_NAME]*.debian.tar.xz</pre></div>
             For example, for redis we should run:
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">ls redis*.debian.tar.xz</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">
+$ ls redis*.debian.tar.xz
+redis_5.0.7-2ubuntu0.1+esm1.debian.tar.xz</pre></div>
           </li>
           <li>We can now use this name to show the latest changelog entry:
-            <div class="p-code-snippet"><pre class="p-code-snippet__block">tar -xOf [PACKAGE_NAME].debian.tar.xz debian/changelog | sed "/--/q"</pre></div>
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">$ tar -xOf [PACKAGE_NAME].debian.tar.xz debian/changelog | sed "/--/q"</pre></div>
             For example, for redis we should run:
-            <div class="p-code-snippet"><pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ tar -xOf redis_5.0.7-2ubuntu0.1+esm1.debian.tar.xz debian/changelog | sed "/--/q"
+            <div class="p-code-snippet"><pre class="p-code-snippet__block">
+$ tar -xOf redis_5.0.7-2ubuntu0.1+esm1.debian.tar.xz debian/changelog | sed "/--/q"
 redis (5:5.0.7-2ubuntu0.1+esm1) focal-security; urgency=medium
 
   * SECURITY UPDATE: Several security issues.
@@ -428,8 +436,8 @@ redis (5:5.0.7-2ubuntu0.1+esm1) focal-security; urgency=medium
     - CVE-2021-32687
     - CVE-2021-41099
 
- -- Eduardo Barretto <eduardo.barretto@canonical.com>  Tue, 08 Mar 2022 09:52:58 +0100
-</pre></div></li>
+ -- Eduardo Barretto <eduardo.barretto@canonical.com>  Tue, 08 Mar 2022 09:52:58 +0100              
+            </pre></div></li>
         </ol>
 
         <p>I can now see all CVE fixes available for redis with Ubuntu Pro. They fix the following CVEs:</p>
@@ -468,7 +476,8 @@ redis (5:5.0.7-2ubuntu0.1+esm1) focal-security; urgency=medium
         <p>Now that we have identified which packages and CVEs are affecting you, let's get them fixed.</p>
 
         <div class="p-code-snippet">
-          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ sudo apt upgrade
+          <pre class="p-code-snippet__block">
+$ sudo apt upgrade
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
@@ -513,7 +522,8 @@ Processing triggers for systemd (245.4-4ubuntu3.18) ...</pre></div>
         <h2>Find out how many esm-apps fixes have been installed overall</h2>
         
         <div class="p-code-snippet">
-          <pre class="p-code-snippet__block"><span class="token string">ubuntu@focal-machine</span>:~$ pro security-status
+          <pre class="p-code-snippet__block">
+$ pro security-status
 2190 packages installed:
      1870 packages from Ubuntu Main/Restricted repository
      281 packages from Ubuntu Universe/Multiverse repository
@@ -529,10 +539,11 @@ Main/Restricted packages receive updates with LTS until 2025.
 
 Universe/Multiverse packages are receiving security updates from
 Ubuntu Pro with 'esm-apps' enabled until 2030. You have received 3 security
-updates.</pre>
+updates.            
+          </pre>
         </div>
 
-        <p>Congrats! It seems that packages have been upgraded, so you're not vulnerable to the CVEs listed in step 8 anymore. In the final output above, with <code>esm-apps --beta</code> service enabled, we can see that 3 packages have received security updates.</p>
+        <p>Congrats! It seems that packages have been upgraded, so you're not vulnerable to the CVEs listed in step 8 anymore. In the final output above, with <code>$ esm-apps --beta</code> service enabled, we can see that 3 packages have received security updates.</p>
       </div>
     </div>
   </section>
