@@ -14,9 +14,11 @@ import { FormContext } from "../../utils/FormContext";
 
 const BuyButton = ({
   areTermsChecked,
+  isDescriptionChecked,
   isUsingFreeTrial,
   isMarketingOptInChecked,
   setTermsChecked,
+  setIsDescriptionChecked,
   setIsMarketingOptInChecked,
   setError,
   setStep,
@@ -181,6 +183,7 @@ const BuyButton = ({
         }
       }
       setTermsChecked(false);
+      setIsDescriptionChecked(false);
       setIsMarketingOptInChecked(false);
       setStep(1);
     }
@@ -234,7 +237,7 @@ const BuyButton = ({
       appearance="positive"
       aria-label="Buy"
       style={{ textAlign: "center" }}
-      disabled={!areTermsChecked || isLoading}
+      disabled={!areTermsChecked || !isDescriptionChecked || isLoading}
       onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
       loading={isLoading}
     >
