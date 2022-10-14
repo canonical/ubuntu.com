@@ -22,22 +22,23 @@ const CredManage = () => {
 
     const [tableData, changeTableData] = useState<ActivationKey[]>(data);
 
-    const rotateActivationKey = (keyId: string) => {
-        rotateKey(keyId).then((response) => {
-            let tempTableData = tableData;
-            for (let d in tableData) {
-                if (tableData[d]["key"] == keyId) {
-                    tempTableData[d]["key"] = response["activationKey"];
-                    data[d]["key"] = response["activationKey"];
-                    changeTableData(tempTableData);
-
-                    // hacky but seems to reload the table data \o/                    
-                    changeTab(tab + 1);
-                    changeTab(tab - 1);
-
+    const rotateActivationKeys = (keyIds: string[]) => {
+        let tempTableData = tableData;
+        for (let i in keyIds) {
+            let keyId = keyIds[i];
+            rotateKey(keyId).then((response) => {
+                for (let d in tableData) {
+                    if (tableData[d]["key"] == keyId) {
+                        tempTableData[d]["key"] = response["activationKey"];
+                        data[d]["key"] = response["activationKey"];
+                    }
                 }
-            }
-        });
+            });
+        }
+        changeTableData(tempTableData);
+        // hacky but seems to reload the table data \o/                    
+        changeTab(tab + 1);
+        changeTab(0);
     }
 
     const switchTab = (
@@ -130,7 +131,7 @@ const CredManage = () => {
             });
             newList.push({
                 children: "Refresh Keys",
-                onClick: () => { }
+                onClick: () => { rotateActivationKeys(selectedKeyIds); setSelectedKeyIds([]); }
             });
         }
         if (newList.length == 0) {
@@ -303,7 +304,7 @@ const CredManage = () => {
                                         content: keyitem["activatedBy"] ? keyitem["activatedBy"] : "N/A"
                                     },
                                     {
-                                        content: <a onClick={() => { rotateActivationKey(keyitem.key) }}><i className="p-icon--restart"></i></a>
+                                        content: <a onClick={() => { rotateActivationKeys([keyitem.key]) }}><i className="p-icon--restart"></i></a>
                                     },
                                     {
                                         content: keyitem.productID
