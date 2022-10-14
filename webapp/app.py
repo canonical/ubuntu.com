@@ -53,7 +53,8 @@ from webapp.shop.cube.views import (
     cube_study_labs_button,
     get_microcerts,
     post_microcerts_purchase,
-    get_activation_keys
+    get_activation_keys,
+    rotate_activation_key
 )
 
 from webapp.views import (
@@ -906,6 +907,7 @@ app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
 app.add_url_rule("/credentials/shop/<p>", view_func=cube_shop)
 app.add_url_rule("/credentials/keys/list/<contract_id>",view_func=get_activation_keys,methods=["GET"])
+app.add_url_rule("/credentialling/keys/rotate/<activation_key>",view_func=rotate_activation_key,methods=["GET"])
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(

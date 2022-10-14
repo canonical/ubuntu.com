@@ -1,4 +1,5 @@
 from typing import Optional
+from urllib import request
 
 from requests.exceptions import HTTPError
 
@@ -326,6 +327,17 @@ class UAContractsAPI:
         return self._request(
             method="get",
             path=f"v1/keys/list/{contract_id}",
+            error_rules=["default"]
+        ).json()
+    
+    def rotate_activation_key(
+        self,
+        request_body: dict
+    ) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/keys/rotate",
+            json=request_body,
             error_rules=["default"]
         ).json()
 

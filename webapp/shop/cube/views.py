@@ -438,9 +438,14 @@ def cube_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api,**kwargs):
-    # contract_id = kwargs.get("contract_id")
-    # keys = ua_contracts_api.list_activation_keys(contract_id)
-    # return flask.jsonify(keys)
-    keys = json.load(open("webapp/shop/cube/demo_keys.json", "r"))
+    contract_id = kwargs.get("contract_id")
+    keys = ua_contracts_api.list_activation_keys(contract_id)
     return flask.jsonify(keys)
+    # keys = json.load(open("webapp/shop/cube/demo_keys.json", "r"))
+    # return flask.jsonify(keys)
 
+@shop_decorator(area="cube",permission="user",response="json")
+def rotate_activation_key(ua_contracts_api, **kwargs):
+    activation_key = kwargs.get("activation_key")
+    new_activation_key = ua_contracts_api.rotate_activation_key({"activationKey":activation_key})
+    return flask.jsonify(new_activation_key)

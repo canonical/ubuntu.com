@@ -1,5 +1,5 @@
 import { CheckboxInput, ContextualMenu, MainTable, Row, Spinner } from "@canonical/react-components";
-import { listAllKeys } from "advantage/credentialling/api/keys";
+import { listAllKeys, rotateKey } from "advantage/credentialling/api/keys";
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 
@@ -14,12 +14,31 @@ const CredManage = () => {
     const [tab, changeTab] = useState(0);
     const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
     const [actionLinks, updateActionLinks] = useState<{ children: string, onClick: () => void }[]>([]);
-    const { isLoading, data } = useQuery(["ActivationKeys"],
+    let { isLoading, data } = useQuery(["ActivationKeys"],
         async () => {
             return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
     );
+
     const [tableData, changeTableData] = useState<ActivationKey[]>(data);
+
+    const rotateActivationKey = (keyId: string) => {
+        rotateKey(keyId).then((response) => {
+            let tempTableData = tableData;
+            for (let d in tableData) {
+                if (tableData[d]["key"] == keyId) {
+                    tempTableData[d]["key"] = response["activationKey"];
+                    data[d]["key"] = response["activationKey"];
+                    changeTableData(tempTableData);
+
+                    // hacky but seems to reload the table data \o/                    
+                    changeTab(tab + 1);
+                    changeTab(tab - 1);
+
+                }
+            }
+        });
+    }
 
     const switchTab = (
         event: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number
@@ -47,15 +66,15 @@ const CredManage = () => {
         return {};
     }
 
-    const handleCheckbox = (keyValue: string) => {
-        console.log(keyValue, selectedKeyIds);
-        if (selectedKeyIds.includes(keyValue)) {
-            setSelectedKeyIds(selectedKeyIds => selectedKeyIds.filter(id => id != keyValue));
-            console.log("r", selectedKeyIds);
-        }
-        else {
+    const handleCheckbox = (event: React.SyntheticEvent, keyValue: string) => {
+        console.log("checked", event.target.checked);
+        if (event.target.checked == true) {
             setSelectedKeyIds(selectedKeyIds.concat(keyValue));
         }
+        else {
+            setSelectedKeyIds(selectedKeyIds => selectedKeyIds.filter(id => id != keyValue));
+        }
+        console.log(keyValue, selectedKeyIds);
     };
     const copyToClipboard = (value: string) => {
         console.log(value);
@@ -139,6 +158,7 @@ const CredManage = () => {
     useEffect(() => {
         changeTab(0);
         changeTableData(data);
+        console.log(data);
     }, [data]);
 
     return (<div>
@@ -254,6 +274,9 @@ const CredManage = () => {
                                 sortKey: "activatedBy"
                             },
                             {
+                                content: ""
+                            },
+                            {
                                 content: "Exam",
                                 sortKey: "productID",
                             },
@@ -268,7 +291,7 @@ const CredManage = () => {
                             return ({
                                 columns: [
                                     {
-                                        content: <CheckboxInput onChange={() => { handleCheckbox(keyitem["key"]) }} label="" id={keyitem["key"] + "_checkbox"} />
+                                        content: <CheckboxInput onChange={(event) => { handleCheckbox(event, keyitem["key"]) }} label="" id={keyitem["key"] + "_checkbox"} />
                                     },
                                     {
                                         content: keyitem["key"]
@@ -278,6 +301,9 @@ const CredManage = () => {
                                     },
                                     {
                                         content: keyitem["activatedBy"] ? keyitem["activatedBy"] : "N/A"
+                                    },
+                                    {
+                                        content: <a onClick={() => { rotateActivationKey(keyitem.key) }}><i className="p-icon--restart"></i></a>
                                     },
                                     {
                                         content: keyitem.productID
