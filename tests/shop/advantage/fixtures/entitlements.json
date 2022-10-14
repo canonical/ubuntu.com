@@ -2,37 +2,121 @@
   {
     "type": "entitlement-type",
     "entitled": true,
-    "affordances": {"architectures": ["abc123a"], "series": ["bionic"]},
+    "affordances": {
+      "architectures": [
+        "abc123a"
+      ],
+      "series": [
+        "bionic"
+      ]
+    },
     "directives": {
       "aptKey": "123123123",
       "aptURL": "https://url",
-      "suites": ["bionic"]
+      "suites": [
+        "bionic"
+      ]
     },
-    "obligations": {"enableByDefault": true},
-    "series": {"bionic": {"directives": {"suites": ["bionic"]}}}
+    "obligations": {
+      "enableByDefault": true
+    },
+    "series": {
+      "bionic": {
+        "directives": {
+          "suites": [
+            "bionic"
+          ]
+        }
+      }
+    }
   },
   {
     "type": "entitlement-type-2",
     "entitled": true,
-    "affordances": {"architectures": ["abc123b"], "series": ["focal"]},
+    "affordances": {
+      "architectures": [
+        "abc123b"
+      ],
+      "series": [
+        "focal"
+      ]
+    },
     "directives": {
       "aptKey": "123123123",
       "aptURL": "https://url",
-      "suites": ["focal"]
+      "suites": [
+        "focal"
+      ]
     },
-    "obligations": {"enableByDefault": false},
-    "series": {"focal": {"directives": {"suites": ["focal"]}}}
+    "obligations": {
+      "enableByDefault": false
+    },
+    "series": {
+      "focal": {
+        "directives": {
+          "suites": [
+            "focal"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "type": "entitlement-type-3",
+    "entitled": true,
+    "affordances": {
+      "architectures": [
+        "abc123b"
+      ],
+      "series": [
+        "focal"
+      ],
+      "inBeta": true
+    },
+    "directives": {
+      "aptKey": "123123123",
+      "aptURL": "https://url",
+      "suites": [
+        "focal"
+      ]
+    },
+    "obligations": {
+      "enableByDefault": false
+    },
+    "series": {
+      "focal": {
+        "directives": {
+          "suites": [
+            "focal"
+          ]
+        }
+      }
+    }
   },
   {
     "type": "support",
     "entitled": true,
-    "affordances": {"supportLevel": "advanced"},
+    "affordances": {
+      "supportLevel": "advanced"
+    },
     "directives": {
       "aptKey": "123123123",
       "aptURL": "https://url",
-      "suites": ["focal"]
+      "suites": [
+        "focal"
+      ]
     },
-    "obligations": {"enableByDefault": false},
-    "series": {"focal": {"directives": {"suites": ["focal"]}}}
+    "obligations": {
+      "enableByDefault": false
+    },
+    "series": {
+      "focal": {
+        "directives": {
+          "suites": [
+            "focal"
+          ]
+        }
+      }
+    }
   }
 ]
