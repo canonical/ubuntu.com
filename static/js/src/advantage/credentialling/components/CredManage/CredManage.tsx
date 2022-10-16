@@ -14,7 +14,7 @@ const CredManage = () => {
     const [tab, changeTab] = useState(0);
     const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
     const [actionLinks, updateActionLinks] = useState<{ children: string, onClick: () => void }[]>([]);
-    let { isLoading, data } = useQuery(["ActivationKeys"],
+    const { isLoading, data, refetch } = useQuery(["ActivationKeys"],
         async () => {
             return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
@@ -27,23 +27,21 @@ const CredManage = () => {
         for (let i in keyIds) {
             let keyId = keyIds[i];
             rotateKey(keyId).then((response) => {
-                for (let d in tableData) {
-                    if (tableData[d]["key"] == keyId) {
-                        tempTableData[d]["key"] = response["activationKey"];
-                        data[d]["key"] = response["activationKey"];
-                    }
-                }
+                // for (let d in tableData) {
+                //     if (tableData[d]["key"] == keyId) {
+                //         tempTableData[d]["key"] = response["activationKey"];
+                //         data[d]["key"] = response["activationKey"];
+                //     }
+                // }
+                changeTableData(tempTableData.map((row) => row["key"] == keyId ? { ...row, key: response["activationKey"] } : { ...row }));
             });
         }
-        changeTableData(tempTableData);
-        // hacky but seems to reload the table data \o/                    
-        changeTab(tab + 1);
-        changeTab(0);
     }
 
     const switchTab = (
         event: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number
     ) => {
+        refetch();
         event.preventDefault();
         if (event.key == "ArrowLeft") {
             changeTab((currentIndex - 1) % 4);
