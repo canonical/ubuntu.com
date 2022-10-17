@@ -10,3 +10,5 @@ createNav({
 
 // Initalise the cookie policy notification.
 cookiePolicy();
+
+createNav();
