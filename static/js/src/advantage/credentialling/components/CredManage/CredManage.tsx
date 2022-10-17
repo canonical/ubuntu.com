@@ -14,7 +14,7 @@ const CredManage = () => {
     const [tab, changeTab] = useState(0);
     const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
     const [actionLinks, updateActionLinks] = useState<{ children: string, onClick: () => void }[]>([]);
-    const { isLoading, data, refetch } = useQuery(["ActivationKeys"],
+    let { isLoading, data } = useQuery(["ActivationKeys"],
         async () => {
             return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
@@ -23,25 +23,18 @@ const CredManage = () => {
     const [tableData, changeTableData] = useState<ActivationKey[]>(data);
 
     const rotateActivationKeys = (keyIds: string[]) => {
-        let tempTableData = tableData;
         for (let i in keyIds) {
-            let keyId = keyIds[i];
-            rotateKey(keyId).then((response) => {
-                // for (let d in tableData) {
-                //     if (tableData[d]["key"] == keyId) {
-                //         tempTableData[d]["key"] = response["activationKey"];
-                //         data[d]["key"] = response["activationKey"];
-                //     }
-                // }
-                changeTableData(tempTableData.map((row) => row["key"] == keyId ? { ...row, key: response["activationKey"] } : { ...row }));
+            rotateKey(keyIds[i]).then((response) => {
+                data = data.map((row: ActivationKey) => row["key"] == keyIds[i] ? { ...row, key: response["activationKey"] } : { ...row });
+                changeTableData(tableData.map((row) => row["key"] == keyIds[i] ? { ...row, key: response["activationKey"] } : { ...row }));
             });
         }
+        data.forEach((e) => console.log(e["key"]));
     }
 
     const switchTab = (
         event: React.KeyboardEvent<HTMLButtonElement>, currentIndex: number
     ) => {
-        refetch();
         event.preventDefault();
         if (event.key == "ArrowLeft") {
             changeTab((currentIndex - 1) % 4);
@@ -57,7 +50,6 @@ const CredManage = () => {
 
     const getKey = (keyId: string) => {
         for (let d in data) {
-            console.log(d);
             if (data[d]["key"] == keyId) {
                 return data[d];
             }
@@ -290,7 +282,7 @@ const CredManage = () => {
                             return ({
                                 columns: [
                                     {
-                                        content: <CheckboxInput onChange={(event) => { handleCheckbox(event, keyitem["key"]) }} label="" id={keyitem["key"] + "_checkbox"} />
+                                        content: <CheckboxInput onChange={(event) => { handleCheckbox(event, keyitem["key"]) }} label="" id={keyitem["key"] + "_checkbox"} checked={selectedKeyIds.includes(keyitem["key"])} />
                                     },
                                     {
                                         content: keyitem["key"]
