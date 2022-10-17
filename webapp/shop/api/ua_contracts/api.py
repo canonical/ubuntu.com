@@ -320,25 +320,19 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def list_activation_keys(
-        self,
-        contract_id: str
-    ) -> dict:
+    def list_activation_keys(self, contract_id: str) -> dict:
         return self._request(
             method="get",
             path=f"v1/keys/list/{contract_id}",
-            error_rules=["default"]
+            error_rules=["default"],
         ).json()
-    
-    def rotate_activation_key(
-        self,
-        request_body: dict
-    ) -> dict:
+
+    def rotate_activation_key(self, request_body: dict) -> dict:
         return self._request(
             method="get",
             path=f"v1/keys/rotate",
             json=request_body,
-            error_rules=["default"]
+            error_rules=["default"],
         ).json()
 
     def handle_error(self, error, error_rules=None):

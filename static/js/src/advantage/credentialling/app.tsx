@@ -4,11 +4,7 @@ import * as Sentry from "@sentry/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Integrations } from "@sentry/tracing";
 import { ReactQueryDevtools } from "react-query/devtools";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
 import CredShop from "./components/CredShop";
 

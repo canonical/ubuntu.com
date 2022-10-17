@@ -4,12 +4,12 @@ export async function listAllKeys(contractId) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-    }
+    },
   });
   const data = await response.json();
   for (let key in data) {
     data[key]["expirationDate"] = new Date(data[key]["expirationDate"]);
-  };
+  }
   return data;
 }
 
@@ -19,7 +19,7 @@ export async function rotateKey(activationKey) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-    }
+    },
   });
   const data = await response.json();
   return data;

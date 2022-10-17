@@ -1,1 +1,1 @@
-export {default} from "./CredManage";
+export { default } from "./CredManage";
