@@ -136,7 +136,7 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
                     >
                       {label}
                     </FeatureSwitch>
-                    {label === EntitlementLabel.EsmApps ? (
+                    {label === EntitlementLabel.EsmApps && featuresFormState[label]?.isDisabled ? (
                       <Tooltip
                         tooltipClassName="p-subscriptions-tooltip"
                         message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps --beta`."
@@ -185,52 +185,52 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         <Col size={12}>
           {features.alwaysAvailable.length
             ? generateList(
-                <>
-                  Compliance & Hardening:{" "}
-                  <span style={{ fontWeight: 300 }}>
-                    please read the{" "}
-                    <a href="https://ubuntu.com/security/certifications/docs">
-                      documentation
-                    </a>{" "}
-                    and only enable these features if you specifically require
-                    these certifications.
-                  </span>
-                </>,
-                features.alwaysAvailable.map((label) => ({
-                  label: (
-                    <div className="p-subscription-switch-wrapper">
-                      <FeatureSwitch
-                        key={label}
-                        isChecked={featuresFormState[label]?.isChecked}
-                        isDisabled={featuresFormState[label]?.isDisabled}
-                        handleOnChange={(event) =>
-                          handleOnFeatureSwitch(label, event)
+              <>
+                Compliance & Hardening:{" "}
+                <span style={{ fontWeight: 300 }}>
+                  please read the{" "}
+                  <a href="https://ubuntu.com/security/certifications/docs">
+                    documentation
+                  </a>{" "}
+                  and only enable these features if you specifically require
+                  these certifications.
+                </span>
+              </>,
+              features.alwaysAvailable.map((label) => ({
+                label: (
+                  <div className="p-subscription-switch-wrapper">
+                    <FeatureSwitch
+                      key={label}
+                      isChecked={featuresFormState[label]?.isChecked}
+                      isDisabled={featuresFormState[label]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(label, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                    {label === EntitlementLabel.Fips ||
+                      label === EntitlementLabel.FipsUpdates ? (
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message={
+                          label === EntitlementLabel.Fips
+                            ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
+                            : "Enabling FIPS-Updates will disable FIPS"
                         }
                       >
-                        {label}
-                      </FeatureSwitch>
-                      {label === EntitlementLabel.Fips ||
-                      label === EntitlementLabel.FipsUpdates ? (
-                        <Tooltip
-                          tooltipClassName="p-subscriptions-tooltip"
-                          message={
-                            label === EntitlementLabel.Fips
-                              ? "Enabling FIPS will disable Livepatch and FIPS-Updates"
-                              : "Enabling FIPS-Updates will disable FIPS"
-                          }
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
                         >
-                          <Button
-                            type="button"
-                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                          >
-                            <i className="p-icon--information" />
-                          </Button>
-                        </Tooltip>
-                      ) : null}
-                    </div>
-                  ),
-                }))
-              )
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    ) : null}
+                  </div>
+                ),
+              }))
+            )
             : null}
         </Col>
       </Row>
