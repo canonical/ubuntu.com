@@ -39,8 +39,8 @@
         <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
           <a class="p-navigation__link-anchor" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
         </li>
-        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
-          <a class="p-navigation__link-anchor" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
+        <li class="p-navigation__item p-navigation__dropdown-link" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown('/templates/navigation-get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
+          <a class="p-navigation__link-anchor" href="#get-ubuntu-content" onfocus="fetchDropdown('/templates/navigation-get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
         </li>
       </ul>
       <noscript>
@@ -72,7 +72,7 @@
   <div class="u-hide" id="enterprise-content"></div>
   <div class="u-hide" id="developer-content">  </div>
   <div class="u-hide" id="community-content"></div>
-  <div class="u-hide" id="download-content"></div>
+  <div class="u-hide" id="get-ubuntu-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
 {% if breadcrumbs and breadcrumbs.children %}

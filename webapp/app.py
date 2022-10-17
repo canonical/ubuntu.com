@@ -36,6 +36,7 @@ from webapp.context import (
     descending_years,
     format_date,
     get_json_feed,
+    get_meganav,
     modify_query,
     month_name,
     months_list,
@@ -283,6 +284,7 @@ def context():
         "modify_query": modify_query,
         "month_name": month_name,
         "months_list": months_list,
+        "get_meganav": get_meganav,
         "get_navigation": get_navigation,
         "get_stripe_publishable_key": os.getenv(
             "STRIPE_PUBLISHABLE_KEY",
