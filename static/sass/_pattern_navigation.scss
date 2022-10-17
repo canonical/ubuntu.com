@@ -187,19 +187,6 @@
       }
     }
 
-    .p-navigation__banner {
-      background-color: #111;
-
-      .p-navigation__tagged-logo {
-        .p-navigation__link {
-          color: $color-mid-light;
-          padding-bottom: 0.5rem;
-          padding-left: 0;
-          padding-top: 0.5rem;
-        }
-      }
-    }
-
     .p-navigation__link--search-toggle {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
@@ -226,8 +213,6 @@
       }
 
       &__logo {
-        @extend %paragraph;
-
         align-items: center;
         color: $color-x-light;
         display: flex;
@@ -253,9 +238,6 @@
         }
 
         &::after {
-          // white separator inside lockup
-          @extend %vf-pseudo-border--top;
-
           display: none;
 
           @media only screen and (min-width: $breakpoint-navigation-threshold) {
