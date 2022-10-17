@@ -14,22 +14,26 @@ const CredManage = () => {
     const [tab, changeTab] = useState(0);
     const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
     const [actionLinks, updateActionLinks] = useState<{ children: string, onClick: () => void }[]>([]);
-    let { isLoading, data } = useQuery(["ActivationKeys"],
+    const { isLoading, data } = useQuery(["ActivationKeys"],
         async () => {
             return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
         }
     );
 
+    const [filterData, changeFilterData] = useState<ActivationKey[]>(data);
     const [tableData, changeTableData] = useState<ActivationKey[]>(data);
 
-    const rotateActivationKeys = (keyIds: string[]) => {
-        for (let i in keyIds) {
-            rotateKey(keyIds[i]).then((response) => {
-                data = data.map((row: ActivationKey) => row["key"] == keyIds[i] ? { ...row, key: response["activationKey"] } : { ...row });
-                changeTableData(tableData.map((row) => row["key"] == keyIds[i] ? { ...row, key: response["activationKey"] } : { ...row }));
+    const rotateActivationKeys = async (keyIds: string[]) => {
+        let i = 0;
+        let temp = {};
+        while (i < keyIds.length) {
+            await rotateKey(keyIds[i]).then((response) => {
+                temp[keyIds[i]] = response["activationKey"];
+                i++;
             });
         }
-        data.forEach((e) => console.log(e["key"]));
+        changeFilterData(filterData.map((row: ActivationKey) => row["key"] in temp ? { ...row, key: temp[row["key"]] } : { ...row }));
+        changeTableData(tableData.map((row) => row["key"] in temp ? { ...row, key: temp[row["key"]] } : { ...row }));
     }
 
     const switchTab = (
@@ -49,9 +53,9 @@ const CredManage = () => {
     const [selectedKeyIds, setSelectedKeyIds] = useState<string[]>([]);
 
     const getKey = (keyId: string) => {
-        for (let d in data) {
-            if (data[d]["key"] == keyId) {
-                return data[d];
+        for (let d in filterData) {
+            if (filterData[d]["key"] == keyId) {
+                return filterData[d];
             }
         }
         return {};
@@ -136,21 +140,22 @@ const CredManage = () => {
 
     useEffect(() => {
         if (tab == 0) {
-            changeTableData(data);
+            changeTableData(filterData);
         }
         if (tab == 1) {
-            changeTableData(data.filter((keyItem: ActivationKey) => { return keyIsUnused(keyItem["key"]) }))
+            changeTableData(filterData.filter((keyItem: ActivationKey) => { return keyIsUnused(keyItem["key"]) }))
         }
         if (tab == 2) {
-            changeTableData(data.filter((keyItem: ActivationKey) => { return !keyIsArchivable(keyItem["key"]) }))
+            changeTableData(filterData.filter((keyItem: ActivationKey) => { return !keyIsArchivable(keyItem["key"]) }))
         }
     }, [tab]);
 
     useEffect(() => {
         changeTab(0);
+        changeFilterData(data);
         changeTableData(data);
-        console.log(data);
     }, [data]);
+
 
     return (<div>
         <Row>
