@@ -11,10 +11,11 @@
     "test-js": "TZ=UTC NODE_ICU_DATA=node_modules/full-icu jest",
     "test-links": "./entrypoint 0.0.0.0:${PORT} && sleep 2 && linkchecker --threads 2 --ignore-url /usn --ignore-url /resources --ignore-url /search --ignore-url /server/docs --no-warnings http://127.0.0.1:8000",
     "build-cookie-policy": "cp node_modules/@canonical/cookie-policy/build/js/cookie-policy.js static/js/dist/",
+    "build-global-nav": "cp node_modules/@canonical/global-nav/dist/global-nav.js static/js/dist/",
     "build-latest-news": "cp node_modules/@canonical/latest-news/dist/latest-news.js static/js/dist",
     "build-intl-tel-input-utils": "cp node_modules/intl-tel-input/build/js/utils.js static/js/dist",
     "build-css": "sass static/sass:static/css --load-path=node_modules --style=compressed && postcss --use autoprefixer --replace 'static/css/**/*.css' --no-map",
-    "build-js": "node build.js &&  yarn run build-cookie-policy && yarn run build-latest-news && yarn run build-intl-tel-input-utils",
+    "build-js": "node build.js && yarn run build-cookie-policy && yarn run build-latest-news && yarn run build-intl-tel-input-utils && yarn run build-global-nav",
     "build": "yarn run build-css && yarn run build-js",
     "watch": "concurrently --kill-others --raw 'yarn run watch-css' 'yarn run watch-js'",
     "watch-css": "watch -p 'static/sass/**/*.scss' -p 'node_modules/vanilla-framework/scss/**/*.scss' -c 'yarn run build-css'",
@@ -86,7 +87,12 @@
     "@canonical/cookie-policy": "^3.4.0",
     "@canonical/global-nav": "^2.7.0",
     "@canonical/latest-news": "1.4.1",
+<<<<<<< HEAD
     "@canonical/react-components": "^0.38.0",
+=======
+    "@canonical/react-components": "0.37.4",
+    "@canonical/global-nav": "3.1.4",
+>>>>>>> 4385ab4b2 (add global nav)
     "@reduxjs/toolkit": "1.7.1",
     "@sentry/react": "6.11.0",
     "@sentry/tracing": "6.11.0",
