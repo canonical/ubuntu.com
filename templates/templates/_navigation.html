@@ -43,8 +43,8 @@
           <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
           <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="download" onmouseover="fetchDropdown('/templates/navigation-download-h', 'download-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#download-content" onfocus="fetchDropdown('/templates/navigation-download-h', 'download-content');">Download</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown('/templates/navigation-get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown('/templates/navigation-get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
           <div class="u-hide dropdown-content-mobile" id="download-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
       </ul>
@@ -54,13 +54,13 @@
             <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
-        <li class="p-navigation__user u-hide--small u-hide--medium js-account"></li>
+        <li class="p-navigation__user u-hide--small u-hide--medium js-account" id="canonical-login"></li>
       </ul>
       <div class="p-navigation__search">
         <form action="/search" class="p-search-box">
         <input type="search" class="p-search-box__input" name="q" placeholder="Search our sites" required="" aria-label="Search our sites">
-        <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+        <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+        <button type="submit" class="p-search-box__button"><i class="p-icon--search">Search</i></button>
         </form>
       </div>
     </nav>
@@ -73,7 +73,7 @@
   <div class="u-hide dropdown-content-desktop" id="enterprise-content"></div>
   <div class="u-hide dropdown-content-desktop" id="developer-content"></div>
   <div class="u-hide dropdown-content-desktop" id="community-content"></div>
-  <div class="u-hide dropdown-content-desktop" id="download-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="get-ubuntu-content"></div>
 </div>
 {% if not(hide_subnav == True) %}
 {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
@@ -96,33 +96,23 @@
       {% if breadcrumbs.children %}
       <ul class="p-navigation__items">
         {% for child in breadcrumbs.children %}
-          {% if child.path == '/blog/topics' %}
-          <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}" style="position: relative;">
-            <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link  p-contextual-menu__toggle" href="#">{{ child.title }}</a>
-            <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="position: absolute; font-size: .875rem;">
-              <span class="p-contextual-menu__group">
-                {% for item in child.children %}
-                <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
-                {% endfor %}
-              </span>
-            </span>
-          </li>
-          {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
-          <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
-            <a class="p-navigation__link" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
-          </li>
-          {% endif %}
-
-          {% if breadcrumbs.grandchildren %}
-          <li class="p-navigation__item">
-            {% for grandchild in breadcrumbs.grandchildren %}
-            <li class="p-navigation__item {% if grandchild.active %}is-selected{% endif %}">
-              <a class="p-navigation__link" href="{{ grandchild.path }}">
-                {{ grandchild.title }}
-              </a>
-            </li>
-          </li>
-            {% endfor %}
+          {% if child.title != "Overview" %}
+            {% if child.path == '/blog/topics' %}
+              <li class="p-navigation__item  {% if child.active %}is-selected{% endif %}" style="position: relative;">
+                <a aria-controls="#topics" data-trigger="hover" class="p-navigation__link  p-contextual-menu__toggle" href="#">{{ child.title }}</a>
+                <span class="p-contextual-menu__dropdown" id="topics" aria-hidden="true" aria-label="submenu" style="position: absolute; font-size: .875rem;">
+                  <span class="p-contextual-menu__group">
+                    {% for item in child.children %}
+                    <a href="{{ item.path }}" class="p-contextual-menu__link breadcrumbs p-link--soft">{{ item.title }}</a>
+                    {% endfor %}
+                  </span>
+                </span>
+              </li>
+            {% elif child.path != '/blog/archives' and child.path != '/blog/upcoming' %}
+              <li class="p-navigation__item {% if child.active %}is-selected{% endif %}">
+                <a class="p-navigation__link" href="{{ child.path }}" {% if child.active %}aria-current="page"{% endif %}>{{ child.title }}</a>
+              </li>
+            {% endif %}
           {% endif %}
         {% endfor %}
 

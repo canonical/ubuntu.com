@@ -6,6 +6,6 @@ describe("formatDate", () => {
   });
 
   it("returns the unformatted date if it can't be parsed", () => {
-    expect(formatDate("2021-07-09")).toBe("2021-07-09");
+    expect(formatDate("abcd")).toBe("abcd");
   });
 });

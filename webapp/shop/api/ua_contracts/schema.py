@@ -29,7 +29,7 @@ class InvoiceSchema(BaseSchema):
     status = String(required=True)
     url = String()
     currency = String(required=True)
-    total = Integer(required=True)
+    total = Integer()
     taxAmount = Integer(attribute="tax_amount")
     paymentStatus = Nested(PaymentStatusSchema, attribute="payment_status")
     lineItems = List(Nested(InvoiceItemSchema), attribute="items")
@@ -80,7 +80,7 @@ class AccountSchema(BaseSchema):
 
 class EnsurePurchaseAccountSchema(BaseSchema):
     accountID = String(required=True, attribute="id")
-    token = String(required=True)
+    token = String()
 
     @post_load
     def make_purchase(self, data, **kwargs) -> Account:

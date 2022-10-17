@@ -23,6 +23,10 @@ api_session = CachedSession(fallback_cache_duration=3600)
 with open("navigation.yaml") as navigation_file:
     nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
 
+# Read meganav.yaml
+with open("meganav.yaml") as meganav_file:
+    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
+
 
 # Process data from YAML files
 # ===
@@ -39,15 +43,21 @@ def releases():
         return yaml.load(releases, Loader=yaml.FullLoader)
 
 
-def _remove_hidden(pages):
-    filtered_pages = []
+def get_meganav(section):
+    """
+    Set "meganav_section" as global template variable
+    """
 
-    # Filter out hidden pages
-    for child in pages:
-        if not child.get("hidden"):
-            filtered_pages.append(child)
+    sections = {}
+    meganav_sections = copy.deepcopy(meganav)
 
-    return filtered_pages
+    for section_name, meganav_section in meganav_sections.items():
+        print(section == section_name)
+
+        if section_name == section:
+            sections = meganav_section
+
+    return {"sections": sections}
 
 
 def get_navigation(path):
@@ -58,29 +68,16 @@ def get_navigation(path):
 
     breadcrumbs = {}
 
-    is_topic_page = path.startswith("/blog/topics/")
-
     sections = copy.deepcopy(nav_sections)
 
     for nav_section_name, nav_section in sections.items():
-        # Persist parent navigation on child pages in certain cases
-        if nav_section.get("persist") and path.startswith(nav_section["path"]):
-            breadcrumbs["section"] = nav_section
-            breadcrumbs["children"] = nav_section.get("children", [])
-
         longest_match_path = 0
         child_to_set_active = None
 
         for child in nav_section["children"]:
-            if is_topic_page and child["path"] == "/blog/topics":
-                # always show "Topics" as active on child topic pages
-                child["active"] = True
-                break
-            elif (
-                child["path"] == path
-                and path.startswith(nav_section["path"])
-                # If child path matches current path or has persist set to true
-            ) or (child.get("persist") and path.startswith(child["path"])):
+            if (
+                child["path"] == path and path.startswith(nav_section["path"])
+            ) or (path.startswith(child["path"])):
                 # look for the closest patch match
                 if len(child["path"]) > longest_match_path:
                     longest_match_path = len(child["path"])
@@ -89,38 +86,8 @@ def get_navigation(path):
                 nav_section["active"] = True
                 breadcrumbs["section"] = nav_section
 
-                grandchildren = breadcrumbs["grandchildren"] = _remove_hidden(
-                    child.get("children", [])
-                )
-
-                # Build up siblings
-                if child.get("hidden") or grandchildren:
-                    # Hidden nodes appear alone
-                    breadcrumbs["children"] = [child]
-                else:
-                    # Otherwise, include all siblings
-                    breadcrumbs["children"] = _remove_hidden(
-                        nav_section.get("children", [])
-                    )
-            elif path.startswith("/tutorials/"):
-                breadcrumbs = "tutorials"
-            else:
-                for grandchild in child.get("children", []):
-                    if grandchild["path"] == path:
-                        grandchild["active"] = True
-                        nav_section["active"] = True
-                        breadcrumbs["section"] = nav_section
-                        breadcrumbs["children"] = [child]
-
-                        if grandchild.get("hidden"):
-                            # Hidden nodes appear alone
-                            breadcrumbs["grandchildren"] = [grandchild]
-                        else:
-                            # Otherwise, include all siblings
-                            breadcrumbs["grandchildren"] = _remove_hidden(
-                                child.get("children", [])
-                            )
-                        break
+                # Include all siblings
+                breadcrumbs["children"] = nav_section.get("children", [])
 
         # set the child most closely matching the current path as active
         if child_to_set_active:

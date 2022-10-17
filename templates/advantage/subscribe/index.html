@@ -1,126 +1,20 @@
-{% extends "advantage/base_advantage.html" %} 
+{% extends "advantage/base_advantage.html" %} {% block title %}Buy Ubuntu Pro{% endblock %} {% block meta_description %}Ubuntu Pro offers a single, per-node packaging of the most comprehensive
+software, security and IaaS support in the industry, with OpenStack support,
+Kubernetes support included, and Livepatch, Landscape and Extended Security
+Maintenance to address security and compliance concerns.{% endblock %} {% block
+meta_copydoc
+%}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{%
+endblock meta_copydoc %} {% block content %}
 
-{% block title %}Ubuntu Advantage for Infrastructure{% endblock %}
-
-{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{% endblock meta_copydoc %}
-
-{% block content %}
-
-<section class="p-strip--suru-topped js-shop-hero u-no-padding--bottom">
-  <div class="row">
-    <div class="col-12 u-sv3">
-      {% if not user_info %}
-        <h1>Subscribe to Ubuntu Advantage</h1>
-        <p>
-          If you have existing subscriptions or sales offers,
-          <a
-            href="/login"
-            onclick="dataLayer.push({ 'event' : 'GAEvent', 'eventCategory' : 'Advantage subscribe', 'eventAction' : 'Authentication', 'eventLabel' : 'Sign in', 'eventValue' : undefined });" 
-          >
-            sign in
-          </a>
-          to see them. 
-        </p>
-      {% else %}
-        <h1>Add machines to your subscription</h1>
-      {% endif %}
-        <h2 class="p-heading--3 js-free-trial-header u-hide">Evaluate Ubuntu Advantage with your first month free on all subscriptions</h2>
-    </div>
-  </div>
-</section>
-
-<form class="js-shop-form" style="padding-top: 4rem">
-  <div class="row">
-    <ol class="p-stepped-list col-12">
-
-      {% include "advantage/subscribe/form/_type_select.html" %}
-
-      {% include "advantage/subscribe/form/_ubuntu_version_select.html" %}
-
-      {% include "advantage/subscribe/form/_feature_coverage.html" %}
-
-      {% include "advantage/subscribe/form/_tech_support.html" %}
-
-      <li class="p-stepped-list__item js-form-section" data-step="quantity">
-        <h3 class="p-stepped-list__title">How many?</h3>
-        <div class="row">
-          <div class="col-2 subscribe-section">
-            <input
-              autocomplete="off"
-              id="quantity-input"
-              type="number"
-              name="quantity"
-              placeholder="0"
-              min="1"
-              max="1000"
-              step="1"
-              data-stage="form"
-              onwheel="this.blur()"
-              pattern="\d+"
-              style="scroll-margin-bottom: 2rem"
-            />
-          </div>
-        </div>
-      </li>
-    </ol>
-  </div>
-  <section class="p-strip--light is-shallow p-shop-cart" id="summary-section">
+<div id="react-root">
+  <section class="p-strip u-no-padding--top">
     <div class="row">
-      <div class="col-12">
-        <h3>Your chosen plan</h3>
+      <div class="col-12 u-no-margin--bottom p-card">
+        <i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;
       </div>
-    </div>
-    <div class="row u-sv3">
-      <div class="col-8 p-shop-cart__selected-product">
-        <span id="summary-plan-quantity">1x</span>
-        <img id="summary-plan-image" src="${imageURL}" />
-        <span id="summary-plan-name"></span>
-        <div class="js-summary-billing">
-          <select
-            name="billing-period"
-            id="billing-period"
-            class="u-no-margin--bottom"
-            style="width: auto"
-          >
-          </select>
-          <p
-            id="summary-save-with-annual"
-            class="p-text--small"
-          >
-            <strong>Switch to annual billing and save over 15%</strong>
-          </p>
-        </div>
-        <div id="summary-free-trial-label" class="p-shop-cart__label">
-          <div class="p-label">1 month free trial</div>
-        </div>
-      </div>
-      <div class="col-4 p-shop-cart__buy">
-        <span>
-          <strong class="js-summary-cost">${cost} /year</strong>
-        </span>
-        <button
-          class="p-button--positive u-no-margin--bottom u-float-right"
-          id="buy-now-button"
-          aria-controls="purchase-modal"
-        >
-          Buy now
-        </button>
-        <p class="p-text--small">
-          Any applicable taxes are calculated before payment
-        </p>
-      </div>
-      <div class="col-8 col-start-large-4 js-trial-unavailable">
-        <p>Free Trial is not available for this account. <a href="/contact-us">Contact us</a> for further information.</p>
-      </div>
-      {% if is_trialling %}
-        <div class="col-8 col-start-large-4">
-          <p>You cannot purchase a new subscription while a Free Trial is active.</p>
-        </div>
-      {% endif %}
     </div>
   </section>
-</form>
+</div>
 
 <script
   src="{{ versioned_static('js/dist/uaSubscribe.js') }}"
@@ -128,22 +22,22 @@
   defer
 ></script>
 
-{% include '/advantage/subscribe/_purchase-modal.html' %}
-
-<script src="/static/js/dist/productSelector.js" type="module"></script>
 <script defer>
   var productList = {
     {% for listing_id, listing in product_listings.items() %}
-      "{{ listing.id }}": {
+      "{{ listing.product.id }}-{{ listing.period }}": {
+        id: "{{ listing.product.id }}-{{ listing.period }}",
         name: "{{ listing.product.name }}",
         price: {
-          value: "{{ listing.price }}",
+          value: {{ listing.price }},
           currency: "{{ listing.currency }}"
         },
         period: "{{ listing.period }}",
+        longId: "{{ listing.id }}",
         productID: "{{ listing.product.id }}",
         canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
         private: false,
+        marketplace: "canonical-ua",
       },
     {% endfor %}
   };

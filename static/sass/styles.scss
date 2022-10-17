@@ -13,6 +13,9 @@
 // import cookie policy
 @import "@canonical/cookie-policy/build/css/cookie-policy";
 
+// import dial-code dropdown
+@import "intl-tel-input/build/css/intlTelInput";
+
 // import vanilla-framework
 @import "vanilla-framework";
 @include vanilla;
@@ -64,6 +67,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_strip";
 @import "pattern_strip-photos";
 @import "pattern_subscriptions";
+@import "pattern_subscribe";
 @import "pattern_tabs";
 @import "pattern_takeunders";
 @import "pattern_takeovers";
@@ -112,6 +116,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-pie-chart;
 @include ubuntu-p-ua-payment-modal;
 @include ubuntu-p-ua-shop-cart;
+@include ubuntu-p-ua-subscribe;
 @include ubuntu-p-ua-subscriptions;
 @include ubuntu-p-strip-photos;
 @include ubuntu-p-table-compliance-profiles;
@@ -127,6 +132,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
 @include p-takeover-financial-services;
+@include vf-p-icon-success-grey;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -144,6 +150,21 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "layout-whitepapers";
 
 @include layout-whitepapers;
+
+// Overide the path to flags for dial codes
+.iti__flag {
+  background-image: url("#{$assets-path}21572c97-flags.png");
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("#{$assets-path}d6f84371-flags%402x.png");
+  }
+}
+
+.iti {
+  width: 100%;
+}
 
 // Bug fixes
 // Each of the the rules below are bug fixes which need to be addressed further upstream
@@ -391,7 +412,7 @@ summary {
   margin-top: -2.2rem;
   padding-bottom: 1.75rem;
 
-  @media screen and (max-width: $breakpoint-large - 1px) {
+  @media screen and (max-width: ($breakpoint-large - 1px)) {
     padding-top: 2rem;
   }
 
@@ -407,7 +428,7 @@ summary {
     margin-bottom: 0;
   }
 
-  @media only screen and (min-width: $breakpoint-medium + 1) {
+  @media only screen and (min-width: ($breakpoint-medium + 1)) {
     &:nth-child(3) {
       margin-bottom: 0;
     }
@@ -578,6 +599,7 @@ td.p-accordion {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -587,6 +609,7 @@ td.p-accordion {
   0% {
     transform: translateX(0.5rem);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -596,6 +619,7 @@ td.p-accordion {
   0% {
     transform: translateX(-0.5rem);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -606,7 +630,6 @@ td.p-accordion {
     map-get($animation-easing, "in");
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
-
   &.is-loaded {
     animation-delay: 0s !important;
 
@@ -735,4 +758,93 @@ html {
       margin-left: 1rem;
     }
   }
+}
+
+.p-testimonial {
+  @extend %fixed-width-container;
+
+  padding-bottom: $sph--x-large;
+  position: relative;
+
+  @supports (display: grid) {
+    display: grid;
+    grid-auto-rows: minmax(min-content, max-content);
+    grid-gap: 0 map-get($grid-gutter-widths, small);
+    grid-template-columns: repeat($grid-columns-small, minmax(0, 1fr));
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $grid-max-width;
+
+    @media (min-width: $threshold-4-6-col) {
+      grid-gap: 0 map-get($grid-gutter-widths, default);
+      grid-template-columns: repeat($grid-columns-medium, minmax(0, 1fr));
+    }
+
+    @media (min-width: $threshold-6-12-col) {
+      grid-gap: 0 map-get($grid-gutter-widths, default);
+      grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+    }
+  }
+
+  .p-testimonial__logo {
+    @media (max-width: ($threshold-4-6-col - 1)) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
+      grid-column: 1 / span 2;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 1 / span 2;
+    }
+  }
+
+  .p-testimonial__author {
+    @media (max-width: ($threshold-4-6-col - 1)) {
+      grid-column: 3 / span 2;
+      grid-row: 2 / span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
+      grid-column: 3 / span 1;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 3 / span 3;
+    }
+  }
+
+  .p-testimonial__quote {
+    @media (max-width: ($threshold-4-6-col - 1)) {
+      grid-column: 1 / span 4;
+      grid-row: 1 / span 1;
+    }
+    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
+      grid-column: 4 / span 3;
+    }
+    @media (min-width: $threshold-6-12-col) {
+      grid-column: 7 / span 6;
+    }
+  }
+}
+
+.u-pad-logo {
+  padding-top: 0.2rem;
+}
+
+.u-max-width {
+  display: block;
+  max-width: $text-max-width;
+}
+
+img.has-shadow {
+  box-shadow: 0 0 1rem #e5e5e5;
+}
+
+// Style for status labels (similar to chips but non-clickable)
+.p-status-label--rounded {
+  background-color: #ddf2e0;
+  border-radius: map-get($line-heights, h4);
+  margin-bottom: map-get($sp-after, h4) - map-get($nudges, h4);
+  padding-bottom: map-get($nudges, h4);
+  padding-left: $sph--x-large;
+  padding-right: $sph--x-large;
 }

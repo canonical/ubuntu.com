@@ -1,6 +1,7 @@
 import React from "react";
 import { screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
 
 import { User } from "./types";
 import AccountUsers from "./AccountUsers";
@@ -229,6 +230,8 @@ it("displays correct search results", () => {
   );
   expect(screen.getAllByLabelText("email")).toHaveLength(1);
 
-  userEvent.click(screen.getByRole("button", { name: "clear" }));
+  act(() => {
+    userEvent.click(screen.getByRole("button", { name: "clear" }));
+  });
   expect(screen.getAllByLabelText("email")).toHaveLength(mockUsers.length);
 });

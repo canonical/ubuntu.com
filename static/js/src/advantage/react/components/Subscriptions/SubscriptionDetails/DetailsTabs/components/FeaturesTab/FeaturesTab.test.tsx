@@ -40,7 +40,9 @@ const subscription = userSubscriptionFactory.build({
 });
 
 it("displays feature categories with content", () => {
-  renderWithQueryClient(<FeaturesTab subscription={subscription} />);
+  renderWithQueryClient(
+    <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
+  );
   screen.getByRole("heading", { name: "Included" });
   screen.getByRole("heading", { name: /Compliance & Hardening/ });
 
@@ -50,7 +52,9 @@ it("displays feature categories with content", () => {
 });
 
 it("submits correct entitlement updates", async () => {
-  renderWithQueryClient(<FeaturesTab subscription={subscription} />);
+  renderWithQueryClient(
+    <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
+  );
 
   expect(
     screen.queryByRole("button", { name: "Save" })
@@ -93,6 +97,8 @@ it("hides feature tab when no features are available", () => {
       }),
     ],
   });
-  renderWithQueryClient(<FeaturesTab subscription={subscription} />);
+  renderWithQueryClient(
+    <FeaturesTab subscription={subscription} setHasUnsavedChanges={jest.fn()} />
+  );
   expect(screen.queryByText("Features")).not.toBeInTheDocument();
 });

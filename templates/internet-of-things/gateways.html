@@ -86,7 +86,7 @@
     </div>
     <div class="col-6">
       <p class="p-heading--3">Self-confined containers</p>
-      <p>Application running on your gateways will be virtualised and confined to their own environments. This adds an additional layer of security, preventing anomalies from spreading through the system. The full isolation of processes and their associated data makes localisation and resolution of anomalies easy.</p>
+      <p>Applications running on your gateways will be virtualised and confined to their own environments. This adds an additional layer of security, preventing anomalies from spreading through the system. The full isolation of processes and their associated data makes localisation and resolution of anomalies easy.</p>
     </div>
   </div>
 
@@ -373,6 +373,10 @@
     </div>
   </div>
 </section>
+
+{% with current="gateways", strip_class="p-strip--light" %}
+  {% include "internet-of-things/shared/_links.html" %}
+{% endwith %}
 
 {% with first_item="_iot_developers", second_item="_iot_newsletter_signup", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 

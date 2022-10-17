@@ -1,5 +1,5 @@
-import os
 from distutils.util import strtobool
+import os
 from functools import wraps
 
 import flask
@@ -74,7 +74,9 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            if strtobool(os.getenv("STORE_MAINTENANCE", "false")):
+            if flask.request.path == "/pro/subscribe" and strtobool(
+                os.getenv("STORE_MAINTENANCE", "false")
+            ):
                 return flask.render_template("advantage/maintenance.html")
 
             # if logged in, get rid of guest token
@@ -99,11 +101,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             if permission == "user" and response == "html":
                 if not user_token:
-                    if flask.request.path == "/advantage":
-                        return flask.render_template(
-                            "advantage/index-no-login.html",
-                        )
-
                     redirect_path = redirect or flask.request.path
 
                     return flask.redirect(f"/login?next={redirect_path}")
@@ -170,7 +167,7 @@ def init_edx_session(area) -> Session:
 def get_redirect_default(area) -> str:
     redirect_path = "/account"
     if area == "advantage":
-        redirect_path = "/advantage"
+        redirect_path = "/pro/dashboard"
     elif area == "cube":
         redirect_path = "/cube/microcerts"
 

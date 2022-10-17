@@ -7,4 +7,6 @@ import "./accordion.js";
 import "./dynamic-forms.js";
 import "./core.js";
 import "./navigation.js";
+import "./mobile-footer-navigation.js";
 import "./smart-quotes.js";
+import "./intlTelInput.js";

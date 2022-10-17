@@ -32,7 +32,12 @@ describe("DetailsTabs", () => {
   });
 
   it("defaults to the features tab if there are entitlements", () => {
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
       true
     );
@@ -40,14 +45,24 @@ describe("DetailsTabs", () => {
 
   it("hides the feature content tab is there are not entitlements", () => {
     subscription = userSubscriptionFactory.build();
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     expect(wrapper.find("[data-testid='features-content']").exists()).toBe(
       false
     );
   });
 
   it("can change tabs", () => {
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     expect(wrapper.find("[data-test='docs-content']").exists()).toBe(false);
     wrapper.find("[data-test='docs-tab']").simulate("click");
     wrapper.update();
@@ -67,7 +82,12 @@ describe("DetailsTabs", () => {
         }),
       ],
     });
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
@@ -88,12 +108,19 @@ describe("DetailsTabs", () => {
         }),
       ],
     });
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
     expect(docsLinks.length).toBe(1);
-    expect(docsLinks.at(0).text()).toBe("ESM Infra");
+    expect(docsLinks.at(0).text()).toBe(
+      "Ubuntu Pro (esm-apps --beta) tutorial"
+    );
   });
 
   it("reorders FIPS, CC-EAL, and CIS to the end", () => {
@@ -121,11 +148,18 @@ describe("DetailsTabs", () => {
         }),
       ],
     });
-    const wrapper = mount(<DetailsTabs subscription={subscription} />);
+    const wrapper = mount(
+      <DetailsTabs
+        subscription={subscription}
+        setHasUnsavedChanges={jest.fn()}
+      />
+    );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
     const docsLinks = wrapper.find("[data-test='doc-link']");
-    expect(docsLinks.at(0).text()).toBe("ESM Infra");
+    expect(docsLinks.at(0).text()).toBe(
+      "Ubuntu Pro (esm-apps --beta) tutorial"
+    );
     expect(docsLinks.at(1).text()).toBe("Livepatch");
     expect(docsLinks.at(2).text()).toBe("FIPS setup instructions");
     expect(docsLinks.at(3).text()).toBe("CC-EAL2 setup instructions");
@@ -137,6 +171,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={subscription}
         token={contractTokenFactory.build()}
+        setHasUnsavedChanges={jest.fn()}
       />
     );
     // Switch to the docs tab:
@@ -149,6 +184,7 @@ describe("DetailsTabs", () => {
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
         token={contractTokenFactory.build()}
+        setHasUnsavedChanges={jest.fn()}
       />
     );
     // Switch to the docs tab:

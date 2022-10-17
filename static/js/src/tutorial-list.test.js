@@ -5,8 +5,8 @@ describe("handleFilter", () => {
   const Filters = `
     <form class="p-search-box u-no-margin--bottom" id="tutorials-search" action="">
       <input type="search" class="p-search-box__input" id="tutorials-search-input" name="search" placeholder="Search" required="" autocomplete="on">
-      <button type="reset" class="p-search-box__reset"><i class="p-icon--close"></i></button>
-      <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+      <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Close</i></button>
+      <button type="submit" class="p-search-box__button"><i class="p-icon--search">Submit</i></button>
     </form>
     <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
       <option value="">Any</option>

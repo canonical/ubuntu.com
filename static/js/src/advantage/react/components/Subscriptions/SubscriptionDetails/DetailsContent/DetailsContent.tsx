@@ -28,6 +28,7 @@ import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   selectedId?: SelectedId;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type Feature = {
@@ -50,7 +51,7 @@ const generateFeatures = (features: Feature[]) =>
     </Col>
   ));
 
-const DetailsContent = ({ selectedId }: Props) => {
+const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
   const { data: subscription, isLoading } = useUserSubscriptions({
     select: selectSubscriptionById(selectedId),
   });
@@ -165,7 +166,7 @@ const DetailsContent = ({ selectedId }: Props) => {
                       {subscription.number_of_active_machines}
                       <Tooltip
                         tooltipClassName="p-subscriptions-tooltip"
-                        message="The number of machines with this token that contacted Ubuntu Advantage in the last 24 hours (Beta)"
+                        message="The number of machines with this token that contacted Ubuntu Pro in the last 24 hours (Beta)"
                         position="right"
                       >
                         <Button
@@ -182,7 +183,11 @@ const DetailsContent = ({ selectedId }: Props) => {
         ])}
       </Row>
       {isTokenVisible ? <SubscriptionToken /> : null}
-      <DetailsTabs subscription={subscription} token={token} />
+      <DetailsTabs
+        subscription={subscription}
+        token={token}
+        setHasUnsavedChanges={setHasUnsavedChanges}
+      />
     </div>
   );
 };

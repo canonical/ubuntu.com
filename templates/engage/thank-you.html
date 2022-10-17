@@ -30,21 +30,40 @@
 </section>
 
 <section class="p-strip">
-  <div class="row">
-    <div class="col-8">
-      {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
+  <div class="u-fixed-width">
+  {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
+    {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
+    
+      <h3>We've emailed a copy of {{ resource_name }} to {{ form_details.email }}</h3>
       <p>
-        The {{ resource_name }} is now ready to download.
+        <a class="p-button--positive" href="{{ request_url }}">Back to last page</a>
+        <a class="p-button" href="/contact-us">Contact us</a>
       </p>
       <p>
-        <a class="p-button--positive" href="{{ resource_url }}">Download</a>
+        Not received it? Check your spam folder and that you've used the right email address.
       </p>
+      <p>
+        <a href="{{ request_url }}">Or try resending it</a>
+      </p>
+
+    {% else %}
+      {% if "thank_you_text" in metadata %}
+        <p>{{ metadata["thank_you_text"] }}</p>
       {% else %}
+        <p>The {{ resource_name }} is now ready to download.</p>
+      {% endif %}
+      {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
         <p>
-          Sorry, we do not recognise this download request.  Please let us know by <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=Bad+resource+download+link+from {{ request.url | urlencode }}">filing and issue on GitHub</a>. And let us know what you excepted to download.
+          <a class="p-button--positive" href="{{ resource_url }}">Download</a>
         </p>
       {% endif %}
-    </div>
+    {% endif %}
+      
+  {% else %}
+    <p>
+      Sorry, we do not recognise this download request.  Please let us know by <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=Bad+resource+download+link+from {{ request.url | urlencode }}">filing and issue on GitHub</a>. And let us know what you excepted to download.
+    </p>
+  {% endif %}
   </div>
 </section>
 
@@ -56,7 +75,7 @@
     </div>
   </div>
   <div class="row p-divider">
-    {% for page in related[0:3] %}
+    {% for page in related %}
     <div class="col-4 p-divider__block">
       <!-- THREE ADDITIONAL CTAs -->
       <h4>{{page["topic_name"]}}</h4>

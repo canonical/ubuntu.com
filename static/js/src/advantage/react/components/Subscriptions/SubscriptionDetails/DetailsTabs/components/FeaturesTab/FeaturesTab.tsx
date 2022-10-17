@@ -23,7 +23,12 @@ import {
 
 import { generateList } from "../../DetailsTabs";
 
-const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
+type Props = {
+  subscription: UserSubscription;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
   const [features, setFeatures] = React.useState<EntitlementsStore>(
     filterAndFormatEntitlements(subscription.entitlements)
   );
@@ -53,9 +58,10 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
       getNewFeaturesFormState(featuresFormState, entitlement)
     );
 
-    if (!entitlementsToUpdate.includes(label)) {
-      setEntitlementsToUpdate([...entitlementsToUpdate, label]);
-    }
+    if (label)
+      if (!entitlementsToUpdate.includes(label)) {
+        setEntitlementsToUpdate([...entitlementsToUpdate, label]);
+      }
   };
 
   const handleOnCancel = () => {
@@ -70,6 +76,24 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
     setFeatures(features);
     setFeaturesFormState(featuresFormState);
   }, [subscription]);
+
+  useEffect(() => {
+    if (entitlementsToUpdate.length <= 0) {
+      setHasUnsavedChanges(false);
+      window.removeEventListener("beforeunload", alertUser);
+    } else {
+      setHasUnsavedChanges(true);
+      window.addEventListener("beforeunload", alertUser);
+    }
+    return () => {
+      window.removeEventListener("beforeunload", alertUser);
+    };
+  }, [entitlementsToUpdate]);
+
+  const alertUser = async (e: Event) => {
+    e.preventDefault();
+    e.returnValue = false;
+  };
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -198,9 +222,7 @@ const FeaturesTab = ({ subscription }: { subscription: UserSubscription }) => {
         </Col>
       </Row>
       <p>
-        <a href="/legal/ubuntu-advantage-service-description">
-          Service description &rsaquo;
-        </a>
+        <a href="/legal/ubuntu-pro-description">Service description &rsaquo;</a>
       </p>
       <div className="row"></div>
       {isError ? (

@@ -167,7 +167,7 @@ def cube_microcerts(
     edx_register_url = f"{edx_url}{flask.request.base_url}"
 
     return flask.render_template(
-        "credentialing/microcerts.html",
+        "credentialling/microcerts.html",
         **{
             "account_id": account["id"] if account else None,
             "edx_user": edx_user,
@@ -380,7 +380,19 @@ def cube_home(
     badge_certification,
     **kwargs,
 ):
-    return flask.render_template("credentialing/index.html")
+    return flask.render_template("credentialling/index.html")
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_self_study(
+    ua_contracts_api,
+    badgr_issuer,
+    badgr_api,
+    edx_api,
+    badge_certification,
+    **kwargs,
+):
+    return flask.render_template("credentialling/self-study.html")
 
 
 @shop_decorator(area="cube", permission="user", response="json")
@@ -406,3 +418,15 @@ def cube_study_labs_button(edx_api, **kwargs):
         )
 
     return flask.jsonify({"text": text, "redirect_url": redirect_url})
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_syllabus_data(**kawrgs):
+    exam_name = flask.request.args.get("exam")
+    syllabus_file = open("webapp/shop/cube/syllabus.json", "r")
+    syllabus_data = json.load(syllabus_file)
+    return flask.render_template(
+        "credentialling/syllabus.html",
+        syllabus_data=syllabus_data,
+        exam_name=exam_name,
+    )

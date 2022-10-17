@@ -110,9 +110,8 @@ function closeMenu(dropdown, dropdownContent, dropdownContentMobile) {
 
 var origin = window.location.href;
 
-addGANavEvents("#canonical-products", "www.ubuntu.com-nav-0-products");
+addGANavEvents("#canonical-global-nav", "www.ubuntu.com-nav-global");
 addGANavEvents("#canonical-login", "www.ubuntu.com-nav-0-login");
-addGANavEvents("#navigation", "www.ubuntu.com-nav-1");
 addGANavEvents("#enterprise-content", "www.ubuntu.com-nav-1-enterprise");
 addGANavEvents("#developer-content", "www.ubuntu.com-nav-1-developer");
 addGANavEvents("#community-content", "www.ubuntu.com-nav-1-community");
@@ -127,7 +126,7 @@ function addGANavEvents(target, category) {
   var t = document.querySelector(target);
   if (t) {
     [].slice.call(t.querySelectorAll("a")).forEach(function (a) {
-      a.addEventListener("click", function () {
+      a.addEventListener("click", function (e) {
         dataLayer.push({
           event: "GAEvent",
           eventCategory: category,
@@ -236,7 +235,7 @@ if (accountContainer && accountContainerSmall) {
         accountContainer.innerHTML = `<div class="p-navigation__item--dropdown-toggle">
             <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
-              <li><a href="/advantage" class="p-navigation__dropdown-item">UA subscriptions</a></li>
+              <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">UA subscriptions</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
                 <a href="/account/invoices" class="p-navigation__dropdown-item">Invoices & Payments</a>
@@ -347,7 +346,7 @@ if (
       if (element.textContent === "Account users") {
         element.parentElement.innerHTML = `
           <div class="breadcrumbs__link">
-          <a class="p-link--soft" href="/advantage/users">Account users</a>
+          <a class="p-link--soft" href="/pro/users">Account users</a>
           <span class="p-label--positive">New</span>
           </div>
         `;

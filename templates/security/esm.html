@@ -16,7 +16,7 @@
       <p>Continue to receive security updates for the Ubuntu base OS, critical software packages and infrastructure components with Extended Security Maintenance (ESM). ESM provides five additional years of security maintenance, enabling an organization's continuous vulnerability management.</p>
       <p>ESM is available through an Ubuntu Advantage for Infrastructure subscription for physical servers, virtual machines, containers and desktops, and is free for personal use. ESM is also included in the Ubuntu Pro premium images that are optimised for <a href="/cloud/public-cloud">the public cloud</a>, and these also provide security maintenance for high and critical CVEs for the entire collection of software packages shipped with Ubuntu.</p>
       <p>
-        <a href="/advantage" class="p-button--positive">Get started with Ubuntu Advantage</a>
+        <a href="/pro" class="p-button--positive">Get started with Ubuntu Advantage</a>
         <a href="/security/esm#get-in-touch" class="p-button">Contact us</a  >
         </p>
       </div>
@@ -116,8 +116,8 @@
     <div class="row">
       <div class="col-8">
         <h2>Free for personal use</h2>
-        <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a> we will gladly increase that to 50 machines.</p>
-        <a href="/advantage" class="p-button--positive u-no-margin--bottom">Get ESM now</a>
+        <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a>, we will gladly increase that to 50 machines.</p>
+        <a href="/pro" class="p-button--positive u-no-margin--bottom">Get ESM now</a>
       </div>
     </div>
 
@@ -175,7 +175,7 @@
         <div class="col-8">
           <h2>ESM on Azure, AWS and Google Cloud with Ubuntu Pro</h2>
           <p>
-            If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built in.
+            If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built-in.
           </p>
           <p>Learn more about Ubuntu Pro 16.04 LTS on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">Google Cloud</a></p>
         </div>
@@ -193,25 +193,37 @@
             <h5 class="col-4">Attach your subscription</h5>
             <div class="col-4">
               <pre><code>sudo ua attach [TOKEN]</code></pre>
-              <p>Note: obtain the subscription token via the <a href="/advantage">Ubuntu Advantage portal</a>. Attaching the subscription is not necessary on Ubuntu Pro.</p>
+              <p>Note: obtain the subscription token via the <a href="/pro">Ubuntu Advantage portal</a>. Attaching the subscription is not necessary on Ubuntu Pro.</p>
             </div>
           </div>
           <div class="row">
-            <h5 class="col-4">ESM is now enabled!</h5>
+            <h5 class="col-4">If ESM is not listed as enabled after attaching your Token, the ESM entitlement can be enabled using the UA client.</h5>
+            <div class="col-4">
+              <pre><code>sudo ua enable esm-infra</code></pre>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4">If ESM is enabled manually, the status of this entitlement can be confirmed with the UA client as well.</h5>
+            <div class="col-4">
+              <pre><code>sudo ua status</code></pre>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="col-4 u-sv3">ESM is now enabled!</h5>
           </div>
 
           <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
-          <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can retrieve their credentials through the <a href="/advantage">Ubuntu Advantage portal</a>.</p>
+          <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can retrieve their credentials through the <a href="/pro">Ubuntu Advantage portal</a>.</p>
 
           <h4 class="u-no-max-width">How can we ensure the security of our Ubuntu systems after the end of Standard Security Maintenance?</h4>
           <p>
-            To ensure security continuity when a particular release reaches the end of its Standard Security Maintenance window, sign up for <a href="/advantage">Ubuntu Advantage</a> for free on up to 3 machines or through a paid subscription for enterprise use.
+            To ensure security continuity when a particular release reaches the end of its Standard Security Maintenance window, sign up for <a href="/pro">Ubuntu Advantage</a> for free on up to 3 machines or through a paid subscription for enterprise use.
           </p>
           <p>
             <a href="/about/release-cycle">Learn more about release dates and maintenance cadences &nbsp;&rsaquo;</a>
           </p>
           <p>
-            <a href="/advantage" class="p-button">Sign up for Ubuntu Advantage subscription</a>
+            <a href="/pro" class="p-button">Sign up for Ubuntu Advantage subscription</a>
           </p>
           <h4 id="how-long" class="u-no-max-width">How long will Ubuntu ESM be maintained?</h4>
           <p>All Ubuntu LTS releases until further announcement have ESM updates provided for five years establishing a lifecycle of ten years.</p>
@@ -259,9 +271,9 @@
     <section class="p-strip">
       <div class="row u-equal-height">
         <div class="col-6">
-          <h4>Ubuntu 16.04 LTS moving to Extended Security Maintenance period</h4>
+          <h2>Ubuntu 16.04 LTS moving to Extended Security Maintenance period</h2>
           <p>
-            Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
+            Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period in April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
           </p>
           <p><a href="/engage/16-04-ESM-webinar" class="p-button--positive">Watch the webinar</a></p>
         </div>

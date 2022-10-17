@@ -195,7 +195,7 @@ cloud/orchestration/juju/?: "https://jaas.ai/"
 cloud/orchestration/maas/?: "https://maas.io/"
 cloud/partner-ecosystem/?: "/openstack"
 cloud/partners/?: "/openstack"
-cloud/plans-and-pricing/?: "/pricing/infra"
+cloud/plans-and-pricing/?: "/pricing/pro"
 cloud/private-cloud/awsome/?: "https://launchpad.net/awsome"
 cloud/private-cloud/build-your-own/?: "/openstack"
 cloud/private-cloud/hybrid-cloud/?: "/openstack"
@@ -215,7 +215,7 @@ cloud/public/?: "/cloud/public-cloud"
 cloud/public/deploy/?: "https://jaas.ai/"
 cloud/registerlondon/?: "/openstack"
 cloud/registernyc/?: "/openstack"
-cloud/services/?: "/pricing/infra"
+cloud/services/?: "/pricing/pro"
 cloud/service-providers/?: "/openstack"
 cloud/snappy/?: "/core"
 cloud/solutions/jumpstart/?: "/openstack/training"
@@ -265,10 +265,12 @@ containers/docker-ubuntu/?: "/containers"
 containers/kubernetes/?: "/kubernetes"
 containers/lxd/?: "/lxd"
 core/smartstart(?P<path>.*)/?: "/core/services{path}"
-cube/?: "/credentialing"
-cube/microcerts/?: "/credentialing"
-cube/study/?: "/credentialing"
-data/?: "/blog/tag/data-lake"
+credentialing/?: "/credentialling"
+credentialing/(?P<path>.*)/?: "/credentialling/{path}"
+cube/?: "/credentialling"
+cube/microcerts/?: "/credentialling"
+cube/study/?: "/credentialling"
+data/?: "/data/kafka"
 data-privacy/?: "/legal/data-privacy"
 de/?: "/"
 debian/?: "/community/debian"
@@ -288,8 +290,8 @@ desktop/get-ubuntu/download.*: "/download"
 desktop/get-ubuntu/upgrade/?: "/tutorials/tutorial-upgrading-ubuntu-desktop"
 desktop/get.*/?: "/download/desktop"
 desktop/government/?: "/desktop/organisations"
-desktop/management/?: "/pricing/infra"
-desktop/services/?: "/pricing/infra"
+desktop/management/?: "/pricing/pro"
+desktop/services/?: "/pricing/pro"
 desktop/snappy/?: "/desktop/developers"
 desktop/take-the-tour-gallery/?: "http://tour.ubuntu.com/"
 desktop/take-the-tour/?: "http://tour.ubuntu.com/"
@@ -429,6 +431,8 @@ download/server/install-ubuntu-server/?: "/tutorials/tutorial-install-ubuntu-ser
 download/server/linuxone/?: "/download/server/s390x"
 download/server/power8/?: "/download/server/power"
 download/server/thank-you-linuxone/?: "/download/server/thank-you-s390x"
+download/server/step1/?: "/download/server/multipass"
+download/server/step2/?: "/download/server"
 download/support/documentation/faq/shipit/?: "https://blog.canonical.com/2011/04/05/shipit-comes-to-an-end/"
 download/ubuntu-kylin-zh-CN/?: "https://cn.ubuntu.com/desktop/"
 download/ubuntu/?: "/download/desktop"
@@ -472,6 +476,7 @@ engage/сравнение-платформ-kubernetes/?: "/engage/ru/enterprise-
 engage/сравнение-платформ-red-hat-openstack-canonical-charmed-openstack/?: "/engage/ru/cloud-pricing-report-2021"
 engage/custom-ubuntu-pro-image-on-azure: "/engage/unlisted/custom-ubuntu-pro-image-on-azure"
 engage/ShellOnboarding: "/engage/unlisted/shell-onboarding"
+engage/AT&TProOnboarding: "/engage/unlisted/at&t-onboarding"
 enterprise-canonical-kubernetes/?: "https://assets.ubuntu.com/v1/Enterprise-Canonical-Kubernetes.pdf"
 es/?: "/"
 esm/?: "/security/esm"
@@ -611,7 +616,7 @@ management/landscape-features/?: "/landscape/features"
 management/return-on-investment/?: "/landscape"
 management/working-with-landscape/?: "/landscape"
 management/u/?: "/support"
-management/ubuntu-advantage/?: "/pricing/infra"
+management/ubuntu-advantage/?: "/pricing/pro"
 marketplace/jointhanks/?: "https://partner-portal.canonical.com/"
 mirror_hit/.*/?: "https://releases.ubuntu.com/"
 msd/?: "/legal/managed-services-description"
@@ -621,6 +626,7 @@ n/?: "/desktop"
 netbook.*/?: "/desktop"
 ods/?: "/blog/extreme-openstack"
 oil/?: "/openstack"
+Openstack/?: "/openstack"
 openstack/storage/?: "/ceph"
 openstack/training/?: "/training"
 openstack/partners/?: "/openstack"
@@ -631,6 +637,7 @@ partners/trainin.*?: "/openstack/training"
 partners/partners/trainin.*?: "/openstack/training"
 partner.*/?: "https://canonical.com/partners"
 planetubuntu/?: "http://planet.ubuntu.com/"
+pricing/infra/?: "/pricing/pro"
 privacy-policy/?: "/legal/data-privacy"
 privacypolicy/?: "/legal/data-privacy"
 privacy-policy/third-parties/?: "/legal/data-privacy"
@@ -707,6 +714,7 @@ rss\.xmlsubscribe=feed/?: "/blog/feed"
 s/ubuntu.*/?: "/blog"
 screenshots/?: "/desktop/features"
 screenshots/document_view/?: "/desktop"
+security/notices/atom.xml/?: "/security/notices/rss.xml"
 server-provisioning/?: "https://maas.io/"
 server/doc/?: "/server"
 server/download/?: "/download/server"
@@ -719,8 +727,8 @@ server/how-can-it-be-free/?: "/server"
 server/livepatch/?: "/livepatch"
 server/maas/?: "https://maas.io/"
 server/maas/contact-us/?: "/server/contact-us?product=server-maas"
-server/management/?: "/pricing/infra"
-server/plans-and-pricing/?: "/pricing/infra"
+server/management/?: "/pricing/pro"
+server/plans-and-pricing/?: "/pricing/pro"
 server/provisioning/?: "https://maas.io/"
 server/services/?: "/server/management"
 server/technical-resources/?: "/server"
@@ -731,8 +739,8 @@ services/?: "/support"
 services/server/?: "/server/management"
 shipit.*: "https://blog.canonical.com/2011/04/05/shipit-comes-to-an-end/"
 sites/.*: "/blog"
-smart-start(?P<path>.*)/?: "/core/services/guide{path}"
-smartstart(?P<path>.*)/?: "/core/services/guide{path}"
+smart-start(?P<path>.*)/?: "/core/services/guide"
+smartstart(?P<path>.*)/?: "/core/services/guide"
 snappy/?: "/desktop/developers"
 software/?: "https://apps.ubuntu.com/cat/"
 start-download.*: "/download"
@@ -841,6 +849,7 @@ telcos/?: "/telco"
 
 # Blog redirects
 blog/search/?: /search
+blog/canonical-announces-ubuntu-22-04-lts-support-for-flexran-reference-software-2/?: /blog/canonical-announces-ubuntu-22-04-lts-support-for-flexran-reference-software
 
 # Copied from https://github.com/canonical-web-and-design/blog.ubuntu.com/blob/master/redirects.yaml
 
@@ -861,7 +870,8 @@ blog/category/(?P<category>[^/]+)/?: /blog/archives?category={category}
 blog/category/(?P<category>[^/]+)/year/(?P<year>[0-9]{4})/?: /blog/archives?category={category}&year={year}
 
 # Group archive pages
-blog/canonical-announcements/?: /blog/press-centre
+blog/canonical-announcements/?: https://canonical.com/press-centre
+blog/press-centre/?: https://canonical.com/press-centre
 blog/people-and-culture/?: /blog/archives?group=people-and-culture
 blog/phone-and-tablet/?: /blog/archives?group=phone-and-tablet
 blog/page/(?P<page>[0-9]+)/(?P<group>[^/]+)/?: /blog/archives?group={group}&page={page}
@@ -888,8 +898,9 @@ resources/?: "/blog"
 # Redirects from the soon-to-be-retired Apache+Squid frontend
 # From https://pastebin.canonical.com/p/3TXyyNkWkg/
 search/google-appliance/(?P<query>.*)/?: /search?q={query}
-news/pressreleasearchive/?: /blog/press-centre
-legal/ubuntu-advantage/service-description/?: /legal/ubuntu-advantage-service-description
+news/pressreleasearchive/?: https://canonical.com/press-centre
+legal/ubuntu-advantage/service-description/?: /legal/ubuntu-pro-description
+legal/ubuntu-advantage-service-description: /legal/ubuntu-pro-description
 download/desktop/questions/?: /download/desktop/thank-you
 
 # Tutorials section
@@ -937,3 +948,14 @@ security/cve/sitemap(?P<suffix>.*).xml: /security/cves/sitemap{suffix}.xml
 /advantage/purchases/(?P<purchase_id>.*): /account/purchases/{purchase_id}
 /advantage/(?P<tx_type>.*)/(?P<tx_id>.*)/invoices/(?P<invoice_id>.*): "/account/{tx_type}/{tx_id}/invoices/{invoice_id}"
 /advantage/last-purchase-ids/(?P<account_id>.*): "/account/last-purchase-ids/{account_id}"
+
+/advantage: "/pro"
+/advantage/(?P<path>.*): "/pro/{path}"
+
+# USN redirects
+/security/notices/months(/.*)?/?: /security/notices
+/security/notices/releases(/.*)?/?: /security/notices
+/security/notices/usn/atom.xml: /security/notices/atom.xml
+/security/notices/usn/rss.xml: /security/notices/rss.xml
+/security/notices/usn/(usn-|USN-)(?P<usn_id>.*)/?: /security/notices/USN-{usn_id}
+/security/notices/(usn/)?(?P<usn_id>[\d]{4}-[\d]{1,2})/?: /security/notices/USN-{usn_id}

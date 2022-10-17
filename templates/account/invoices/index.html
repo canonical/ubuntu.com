@@ -20,7 +20,7 @@
       <select name="marketplace" id="marketplace-dropdown">
         <option value="">All invoices</option>
         <option value="blender" {% if marketplace == 'blender' %}selected{% endif %}>Blender Support</option>
-        <option value="canonical-ua" {% if marketplace == 'canonical-ua' %}selected{% endif %}>Canonical UA</option>
+        <option value="canonical-ua" {% if marketplace == 'canonical-ua' %}selected{% endif %}>Ubuntu Pro</option>
       </select>
     </div>
   </div>
@@ -40,7 +40,7 @@
               <tr>
                 <td aria-label="Service">
                   {% if invoice.marketplace == "canonical-ua"%}
-                    Canonical UA
+                    Ubuntu Pro
                   {% elif invoice.marketplace == "blender" %}
                     Blender Support
                   {% elif invoice.marketplace == "canonical-cube" %}
@@ -50,12 +50,14 @@
                 <td aria-label="Status">
                   {% if invoice.invoice %}
                     {% if invoice.invoice.status == "paid" %}
-                      <div class="p-label--new">Paid</div>
+                      <div class="p-status-label--positive">Paid</div>
                     {% elif invoice.invoice.status == "open" %}
-                      <div class="p-label--deprecated">Failed</div>
-                    {% else %}
                       <div class="p-label">Pending</div>
+                    {% else %}
+                      <div class="p-status-label--negative">Failed</div>
                     {% endif %}
+                  {% elif invoice.status == "done" %}
+                    <div class="p-status-label--negative">Failed</div>
                   {% else %}
                     <div class="p-label">Pending</div>
                   {% endif %}
@@ -80,6 +82,13 @@
             {% endfor %}
           </tbody>
         </table>
+        <section class="p-strip is-shallow">
+          {% with %}
+            {% set total_pages = total_pages %}
+            {% set current_page = current_page %}
+            {% include "shared/_pagination.html" %}
+          {% endwith %}
+        </section>
       {% else %}
         <p>No invoices available.</p>
       {% endif %}

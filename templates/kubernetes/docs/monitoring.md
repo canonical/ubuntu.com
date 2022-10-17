@@ -57,9 +57,9 @@ relations:
   - [kubernetes-control-plane:grafana, grafana:dashboards]
   - [prometheus:certificates, easyrsa:client]
   - [kubernetes-worker:juju-info, telegraf:juju-info]
-  - [kubernetes-worker:scrape, prometheus:juju-info]
+  - [kubernetes-worker:scrape, prometheus:scrape]
   - [etcd:grafana, grafana:dashboards]
-  - [etcd:prometheus, prometheus:scrape]
+  - [etcd:prometheus, prometheus:manual-jobs]
 ```
 
 <div class="p-notification--information">
@@ -114,13 +114,14 @@ unit-grafana-0:
 
 With that, you can visit the URL and log in using the username and password.
 
-Once logged in, check out the cluster metric dashboard by clicking the `Home`
-drop-down box and selecting `Kubernetes Metrics (via Prometheus)`:
+Once logged in, check out the cluster metric dashboard by clicking the
+`Search dashboards` icon and selecting `Kubernetes Metrics (via Prometheus)`
+from the `General` folder:
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/e6934269-grafana-1.png)
 
-You can also check out the system metrics of the cluster by switching the
-drop-down box to `Node Metrics (via Telegraf):
+You can also check out the system metrics of the cluster by switching to the
+`Node Metrics (via Telegraf)` dashboard:
 
 ![grafana dashboard image](https://assets.ubuntu.com/v1/45b87639-grafana-2.png)
 

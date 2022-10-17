@@ -7,6 +7,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import UAPurchase from "./UAPurchase";
+import { FormProvider } from "./utils/FormContext";
+import { ProductListings } from "./utils/utils";
 
 declare global {
   interface Window {
@@ -15,8 +17,9 @@ declare global {
     isLoggedIn?: boolean;
     accountId?: string;
     tempAccountId?: string;
-    previousPurchaseIds?: string[];
+    previousPurchaseIds?: { monthly: string; yearly: string };
     handleTogglePurchaseModal?: () => void;
+    productList: ProductListings;
   }
 }
 
@@ -48,9 +51,11 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Elements stripe={stripePromise}>
-        <UAPurchase />
-      </Elements>
+      <FormProvider>
+        <Elements stripe={stripePromise}>
+          <UAPurchase />
+        </Elements>
+      </FormProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

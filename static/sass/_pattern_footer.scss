@@ -97,14 +97,15 @@
     background-size: 13px 13px;
     border-top: 1px solid $color-mid-light;
     color: $color-dark;
-    font-size: 0.8125rem;
+    font-size: 1.2rem;
+    font-weight: 300;
     margin-top: 0;
     max-width: inherit;
-    padding: $sp-medium 0;
 
     @media only screen and (min-width: $breakpoint-small) {
       background: none;
       border: 0;
+      font-size: 0.8125rem;
       padding: 0 0 $sp-x-small;
     }
 
@@ -112,20 +113,40 @@
       font-size: 0.8125rem;
     }
 
-    a:link,
-    a:visited {
-      color: $color-dark;
-      padding-left: $sp-x-small;
+    a,
+    span {
+      display: block;
+      padding: $sp-medium;
 
       @media only screen and (min-width: $breakpoint-small) {
-        font-weight: normal;
-        padding-left: 0;
+        padding: 0 0 $sp-x-small;
       }
     }
 
-    a::after {
-      content: ""; // hide the default > */
-    } /// open and close the primary/secondary navs
+    a {
+      &:hover {
+        text-decoration: none;
+
+        @media only screen and (min-width: $breakpoint-small) {
+          text-decoration: underline;
+        }
+      }
+
+      &:link,
+      &:visited {
+        color: $color-dark;
+
+        @media only screen and (min-width: $breakpoint-small) {
+          font-weight: normal;
+        }
+      }
+
+      &::after {
+        content: ""; // hide the default > */
+      }
+
+      /// open and close the primary/secondary navs
+    }
   }
 
   .p-footer__title + .second-level-nav {
@@ -204,11 +225,12 @@
         border-top: 1px solid $color-mid-light;
         color: $color-dark;
         display: block;
-        font-size: 0.8125rem;
-        padding: $sp-medium $sp-small $sp-medium;
+        font-size: 1.2rem;
+        padding: $sp-medium;
 
         @media only screen and (min-width: $breakpoint-small) {
           border: 0;
+          font-size: 0.8125rem;
           padding: 0;
         }
       }
@@ -234,8 +256,6 @@
     }
 
     @media only screen and (max-width: $breakpoint-small) {
-      padding-left: $sp-x-small;
-
       a {
         color: $color-mid-dark;
       }
@@ -307,10 +327,6 @@
     @media only screen and (min-width: $breakpoint-small) {
       .p-inline-list__item {
         display: inline-block;
-
-        &::after {
-          display: block;
-        }
       }
     }
   }

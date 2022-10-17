@@ -15,6 +15,8 @@ from ubuntu_release_info.data import Data
 from geolite2 import geolite2
 from requests import Session
 from requests.exceptions import HTTPError
+from urllib.parse import quote
+
 from canonicalwebteam.search.models import get_search_results
 from canonicalwebteam.search.views import NoAPIKeyError
 from bs4 import BeautifulSoup
@@ -88,40 +90,19 @@ def _build_mirror_list(local=False):
 
 
 def sixteen_zero_four():
-    host = "https://ubuntu.com"
-    total_notices_issued = "-"
-    total_cves_issued = "-"
+    total_notices_issued = "0"
     latest_notices = []
 
     try:
         response = session.request(
             method="GET",
-            url=f"{host}/security/notices.json?release=xenial&limit=1",
-        )
-
-        total_notices_issued = response.json().get("total_results")
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-
-    try:
-        response = session.request(
-            method="GET",
             url=(
-                f"{host}/security/cves.json"
-                f"?version=xenial&status=released&limit=1"
+                "https://ubuntu.com/security/"
+                "notices.json?release=xenial&limit=5"
             ),
         )
 
-        total_cves_issued = response.json().get("total_results")
-    except HTTPError:
-        flask.current_app.extensions["sentry"].captureException()
-
-    try:
-        response = session.request(
-            method="GET",
-            url=f"{host}/security/notices.json?release=xenial&limit=5",
-        )
-
+        total_notices_issued = response.json().get("total_results")
         latest_notices = [
             {
                 "id": notice.get("id"),
@@ -136,11 +117,9 @@ def sixteen_zero_four():
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
 
+    # Can only assume there were 1477 notices before ESM
     notices_since_esm = total_notices_issued - 1477
     context = {
-        "total_patches_applied": 69,  # hard-coded for now
-        "total_notices_issued": f"{total_notices_issued:,}",
-        "total_cves_issued": f"{total_cves_issued:,}",
         "latest_notices": latest_notices,
         "notices_since_esm": notices_since_esm,
     }
@@ -162,13 +141,14 @@ def show_template(filename):
 
 def download_server_steps():
     templates = {
-        "step1": "download/server/step1.html",
-        "step2": "download/server/step2.html",
+        "server": "download/server/manual.html",
+        "multipass": "download/server/multipass.html",
         "choose": "download/server/choose.html",
         "download": "download/server/download.html",
     }
     context = {}
-    step = flask.request.form.get("next-step") or "step1"
+    step = flask.request.form.get("next-step") or "server"
+    print(step)
 
     if step not in templates:
         flask.abort(400)
@@ -259,6 +239,22 @@ def account_query():
     )
 
 
+def json_asset_query(file_name):
+    """
+    A JSON endpoint to request JSON assets from the asset manager
+    """
+    try:
+        response = session.request(
+            method="GET",
+            url=f"https://assets.ubuntu.com/v1/{file_name}",
+        )
+        json = response.json()
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    return flask.jsonify(json)
+
+
 def mirrors_query():
     """
     A JSON endpoint to request list of Ubuntu mirrors
@@ -306,6 +302,7 @@ def build_tutorials_index(session, tutorials_docs):
                 search_engine_id=search_engine_id,
                 siteSearch="ubuntu.com/tutorials",
                 query=query,
+                site_restricted_search=False,
             )
 
         tutorials_docs.parser.parse()
@@ -379,8 +376,7 @@ def build_engage_index(engage_docs):
         resource = flask.request.args.get("resource", default=None, type=str)
         tag = flask.request.args.get("tag", default=None, type=str)
         posts_per_page = 15
-        engage_docs.parser.parse()
-        metadata = engage_docs.parser.metadata
+        metadata = engage_docs.get_index()
 
         resource_types = []
         tags_list = set()
@@ -433,7 +429,7 @@ def build_engage_index(engage_docs):
 
         return flask.render_template(
             "engage/index.html",
-            forum_url=engage_docs.parser.api.base_url,
+            forum_url=engage_docs.api.base_url,
             metadata=metadata,
             page=page,
             preview=preview,
@@ -446,6 +442,38 @@ def build_engage_index(engage_docs):
         )
 
     return engage_index
+
+
+def build_engage_page(engage_pages):
+    def engage_page(language, page):
+        if language:
+            path = f"/engage/{language}/{page}"
+        else:
+            path = f"/engage/{page}"
+        metadata = engage_pages.get_engage_page(path)
+        if not metadata:
+            flask.abort(404)
+        else:
+            return flask.render_template(
+                "engage/base.html",
+                forum_url=engage_pages.api.base_url,
+                metadata=metadata,
+                language=metadata["language"],
+                resource=metadata["type"],
+            )
+
+    return engage_page
+
+
+def match_tags(tags_1, tags_2):
+    for tag_1 in tags_1:
+        for tag_2 in tags_2:
+            if tag_1.strip().lower() == tag_2.strip().lower():
+                return True
+            else:
+                continue
+
+    return False
 
 
 def engage_thank_you(engage_pages):
@@ -462,41 +490,66 @@ def engage_thank_you(engage_pages):
     """
 
     def render_template(language, page):
-        engage_pages.parser.parse()
-        page_url = f"/engage/{page}"
+
         if language:
-            page_url = f"/engage/{language}/{page}"
-        index_topic_data = next(
-            (x for x in engage_pages.parser.metadata if x["path"] == page_url),
-            None,
-        )
-
-        if index_topic_data:
-            topic_id = engage_pages.parser.url_map[page_url]
-            engage_page_data = engage_pages.parser.get_topic(topic_id)
-            request_url = flask.request.referrer
-            resource_name = index_topic_data["type"]
-            resource_url = engage_page_data["metadata"]["resource_url"]
-            language = index_topic_data["language"]
-            # Filter related engage pages by language
-            related = [
-                item
-                for item in engage_page_data["related"]
-                if item["language"] == language
-            ]
-            template_language = "engage/thank-you.html"
-            if language and language != "en":
-                template_language = f"engage/shared/_{language}_thank-you.html"
-
-            return flask.render_template(
-                template_language,
-                request_url=request_url,
-                resource_name=resource_name,
-                resource_url=resource_url,
-                related=related,
-            )
+            path = f"/engage/{language}/{page}"
         else:
+            path = f"/engage/{page}"
+
+        metadata = engage_pages.get_engage_page(path)
+        all_engage_pages = engage_pages.get_index()
+        if not metadata:
+            flask.abort(404)
+
+        # Stop potential spamming of /engage/<engage-page>/thank-you
+        if (
+            "resource_url" not in metadata or metadata["resource_url"] == ""
+        ) and (
+            "contact_form_only" not in metadata
+            or metadata["contact_form_only"] == "true"
+        ):
             return flask.abort(404)
+
+        language = metadata["language"]
+        # Filter engage pages by language and tags
+        total_num_related = 3
+        related = []
+        for item in all_engage_pages:
+            # Skip related engage page
+            # missing metadata
+            if "language" not in item:
+                continue
+
+            check_match = match_tags(
+                item["tags"].split(","), metadata["tags"].split(",")
+            )
+
+            # Match language and match tags
+            if item["language"] == language and check_match:
+                related.append(item)
+            if len(related) > total_num_related:
+                # we can only fit 3 related posts, no need to finish the loop
+                break
+
+        if language and language != "en":
+            template_language = f"engage/shared/_{language}_thank-you.html"
+        else:
+            template_language = "engage/thank-you.html"
+
+        try:
+            form_details = flask.session["form_details"]
+        except KeyError:
+            form_details = None
+
+        return flask.render_template(
+            template_language,
+            request_url=flask.request.referrer,
+            metadata=metadata,
+            resource_name=metadata["type"],
+            resource_url=metadata["resource_url"],
+            related=related,
+            form_details=form_details,
+        )
 
     return render_template
 
@@ -506,7 +559,10 @@ def unlisted_engage_page(slug):
     Renders an engage page that is separate from the
     discourse implementation
     """
-    return flask.render_template(f"engage/unlisted/{slug}.html")
+    try:
+        return flask.render_template(f"engage/unlisted/{slug}.html")
+    except jinja2.exceptions.TemplateNotFound:
+        return flask.abort(404)
 
 
 def openstack_install():
@@ -556,6 +612,58 @@ def openstack_install():
     )
 
 
+def openstack_engage(engage_pages):
+    def openstack_resource_data():
+        metadata = engage_pages.get_index()
+
+        resource_tags = [
+            "openstack",
+            "OpenStack",
+            "Openstack",
+            "charmedopenstack",
+            "privatecloud",
+        ]
+
+        # filter for language, tags, publish_date
+        filtered_metadata = []
+        for item in metadata:
+            if (
+                "tags" in item
+                and any(tag in item["tags"] for tag in resource_tags)
+                and "en" in item["language"]
+                and item["publish_date"] != ""
+            ):
+                filtered_metadata.append(item)
+
+        # filter and seperate by type
+        whitepapers_metadata = []
+        webinars_metadata = []
+        casestudies_metadata = []
+
+        for item in filtered_metadata:
+            if "whitepaper" in item["type"]:
+                whitepapers_metadata.append(item)
+            elif "webinar" in item["type"]:
+                webinars_metadata.append(item)
+            elif "case study" in item["type"]:
+                casestudies_metadata.append(item)
+
+        # only show the latest three
+        whitepapers_metadata = whitepapers_metadata[:3]
+        webinars_metadata = webinars_metadata[:3]
+        casestudies_metadata = casestudies_metadata[:3]
+
+        return flask.render_template(
+            "openstack/resources.html",
+            metadata=metadata,
+            whitepapers_metadata=whitepapers_metadata,
+            webinars_metadata=webinars_metadata,
+            casestudies_metadata=casestudies_metadata,
+        )
+
+    return openstack_resource_data
+
+
 def build_tutorials_query(tutorials_docs):
     def tutorials_query():
         topic = flask.request.args.get("topic", default="", type=str)
@@ -585,6 +693,23 @@ class BlogView(flask.views.View):
         self.blog_views = blog_views
 
 
+class BlogRedirects(BlogView):
+    def dispatch_request(self, slug):
+
+        slug = quote(slug, safe="/:?&")
+        context = self.blog_views.get_article(slug)
+
+        if "article" not in context:
+            return flask.abort(404)
+
+        # Redirect canonical annoucements
+        group = context["article"].get("group")
+        if isinstance(group, dict) and group["id"] == 2100:
+            return flask.redirect(f"https://canonical.com/blog/{slug}")
+
+        return flask.render_template("blog/article.html", **context)
+
+
 class BlogCustomTopic(BlogView):
     def dispatch_request(self, slug):
         page_param = flask.request.args.get("page", default=1, type=int)
@@ -602,19 +727,6 @@ class BlogCustomGroup(BlogView):
         context = self.blog_views.get_group(slug, page_param, category_param)
 
         return flask.render_template(f"blog/{slug}.html", **context)
-
-
-class BlogPressCentre(BlogView):
-    def dispatch_request(self):
-        page_param = flask.request.args.get("page", default=1, type=int)
-        category_param = flask.request.args.get(
-            "category", default="", type=str
-        )
-        context = self.blog_views.get_group(
-            "canonical-announcements", page_param, category_param
-        )
-
-        return flask.render_template("blog/press-centre.html", **context)
 
 
 class BlogSitemapIndex(BlogView):
@@ -774,6 +886,11 @@ def marketo_submit():
         pass
 
     if return_url:
+        # Personalize thank-you page
+        flask.session["form_details"] = {
+            "name": flask.request.form.get("firstName"),
+            "email": flask.request.form.get("email"),
+        }
         return flask.redirect(return_url)
 
     if referrer:

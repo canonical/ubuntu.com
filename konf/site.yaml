@@ -8,11 +8,6 @@ env:
       key: maintenance
       name: ubuntu-com
 
-  - name: DATABASE_URL
-    secretKeyRef:
-      key: database_url
-      name: usn-db-url
-
   - name: SEARCH_API_KEY
     secretKeyRef:
       key: google-custom-search-key
@@ -121,6 +116,7 @@ extraHosts:
   - domain: core.docs.ubuntu.com
   - domain: certification.ubuntu.com
   - domain: security-certs.docs.ubuntu.com
+  - domain: usn.ubuntu.com
 
 # Overrides for production
 production:
@@ -134,11 +130,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -154,11 +145,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -166,7 +152,7 @@ production:
 
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
-   
+
         - name: BADGR_URL
           value: https://api.eu.badgr.io
 
@@ -212,11 +198,6 @@ production:
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -235,18 +216,23 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
+    - paths:
+        [
+          /server/docs,
+          /ceph/docs,
+          /core/docs,
+          /openstack/docs,
+          /engage,
+          /takeovers\.json,
+          /security/livepatch/docs,
+          /security/certifications/docs,
+        ]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -265,21 +251,25 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
+    - paths:
+        [
+          /security/cves\.json,
+          /security/cves/.*\.json,
+          /security/notices\.json,
+          /security/notices/.*\.json,
+          /security/releases\.json,
+          /security/releases/.*\.json,
+          /security/api/.*,
+        ]
       service_name: ubuntu-com-security-api
 
-    - paths: [/security/notices, /security/cves]
+    - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -296,20 +286,15 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
-    - paths: [/advantage, /account]
+    - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -326,7 +311,7 @@ production:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
 
         - name: CONTRACTS_API_URL
           value: https://contracts.canonical.com/
@@ -339,7 +324,7 @@ production:
       rewrite ^ https://snapcraft.io/ permanent;
     }
     if ($host = 'buy.ubuntu.com' ) {
-      rewrite ^ https://ubuntu.com/advantage permanent;
+      rewrite ^ https://ubuntu.com/pro permanent;
     }
     if ($host = 'cloud.ubuntu.com' ) {
       rewrite ^ https://ubuntu.com/public-cloud$request_uri? permanent;
@@ -377,6 +362,9 @@ production:
     if ($host = 'certification.ubuntu.com' ) {
       rewrite ^ https://ubuntu.com/certified$request_uri? permanent;
     }
+    if ($host = 'usn.ubuntu.com' ) {
+      rewrite ^ https://ubuntu.com/security/notices$request_uri? permanent;
+    }
     if ($host = 'core.docs.ubuntu.com' ) {
       rewrite ^(\/en)?(\/.*)$ https://ubuntu.com/core/docs$2? permanent;
     }
@@ -389,6 +377,7 @@ production:
     if ($uri = '/blog/latest-news') {
       add_header 'Access-Control-Allow-Origin' '*';
     }
+
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
 
   nginxServerSnippet: |
@@ -397,6 +386,9 @@ production:
     }
     location ^~ /wp-content/uploads/ {
       proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+    }
+    location ^~ /usn-db/ {
+      proxy_pass https://people.canonical.com/%7Eubuntu-security/usn/;
     }
 
 # Overrides for staging
@@ -408,11 +400,6 @@ staging:
       configMapKeyRef:
         key: maintenance
         name: ubuntu-com
-
-    - name: DATABASE_URL
-      secretKeyRef:
-        key: database_url
-        name: usn-db-url
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -500,6 +487,9 @@ staging:
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
+    - name: CANONICAL_LOGIN_URL
+      value: https://login.ubuntu.com/
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -508,11 +498,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -528,11 +513,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -557,7 +537,7 @@ staging:
         - name: CUBE_EDX_URL
           value: https://qa.cube.ubuntu.com
 
-        - name: 
+        - name:
           secretKeyRef:
             key: qa-client-secret
             name: cube-edx
@@ -591,11 +571,6 @@ staging:
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -614,18 +589,23 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/server/docs, /ceph/docs, /core/docs, /openstack/docs, /engage, /takeovers\.json, /security/livepatch/docs, /security/certifications/docs]
+    - paths:
+        [
+          /server/docs,
+          /ceph/docs,
+          /core/docs,
+          /openstack/docs,
+          /engage,
+          /takeovers\.json,
+          /security/livepatch/docs,
+          /security/certifications/docs,
+        ]
       name: ubuntu-com-discourse
       app_name: ubuntu.com-discourse
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -644,21 +624,25 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/security/cves\.json, /security/cves/.*\.json, /security/notices\.json, /security/notices/.*\.json, /security/releases\.json, /security/releases/.*\.json]
+    - paths:
+        [
+          /security/cves\.json,
+          /security/cves/.*\.json,
+          /security/notices\.json,
+          /security/notices/.*\.json,
+          /security/releases\.json,
+          /security/releases/.*\.json,
+          /security/api/.*,
+        ]
       service_name: ubuntu-com-security-api
 
-    - paths: [/security/notices, /security/cves]
+    - paths: [/security]
       name: ubuntu-com-security
       app_name: ubuntu.com-security
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 2
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -675,20 +659,15 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://08dea8b1d0414fb89b28844cdb1e16a0@sentry.is.canonical.com//53
 
-    - paths: [/advantage, /account]
+    - paths: [/advantage, /account, /pro]
       name: ubuntu-com-advantage
       app_name: ubuntu.com-advantage
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 2
       memoryLimit: 512Mi
       env:
-        - name: DATABASE_URL
-          secretKeyRef:
-            key: database_url
-            name: usn-db-url
-
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -705,7 +684,7 @@ staging:
             name: discourse-api
 
         - name: SENTRY_DSN
-          value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
+          value: https://a572cf09d13f42ceba3be1c9710751e3@sentry.is.canonical.com//52
 
         - name: CONTRACTS_API_URL
           value: https://contracts.staging.canonical.com/
@@ -759,11 +738,6 @@ demo:
         key: maintenance
         name: ubuntu-com
 
-    - name: DATABASE_URL
-      secretKeyRef:
-        key: database_url
-        name: usn-db-url
-
     - name: SEARCH_API_KEY
       secretKeyRef:
         key: google-custom-search-key
@@ -849,3 +823,6 @@ demo:
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+    - name: CANONICAL_LOGIN_URL
+      value: https://login.ubuntu.com/

@@ -23,6 +23,7 @@ enum ActiveTab {
 type Props = {
   subscription: UserSubscription;
   token?: ContractToken;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 } & HTMLProps<HTMLDivElement>;
 
 type DocsLink = {
@@ -93,9 +94,9 @@ const generateDocLinks = (
         case EntitlementType.EsmApps:
         case EntitlementType.EsmInfra:
           link = {
-            label: "ESM Infra",
+            label: "Ubuntu Pro (esm-apps --beta) tutorial",
             url:
-              "https://portal.support.canonical.com/staff/s/article/Obtaining-ESM-Credentials-And-Enabling-ESM-On-Ubuntu ",
+              "https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018",
           };
           break;
         case EntitlementType.Livepatch:
@@ -138,7 +139,12 @@ const generateDocLinks = (
     []
   );
 
-const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
+const DetailsTabs = ({
+  subscription,
+  token,
+  setHasUnsavedChanges,
+  ...wrapperProps
+}: Props) => {
   const featuresDisplay = filterAndFormatEntitlements(
     subscription.entitlements
   );
@@ -182,7 +188,7 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
                     <>
                       To attach a machine:{" "}
                       <code data-test="contract-token">
-                        sudo ua attach {token?.contract_token}
+                        sudo pro attach {token?.contract_token}
                       </code>
                     </>
                   ),
@@ -214,7 +220,12 @@ const DetailsTabs = ({ subscription, token, ...wrapperProps }: Props) => {
       break;
     case ActiveTab.FEATURES:
     default:
-      content = <FeaturesTab subscription={subscription} />;
+      content = (
+        <FeaturesTab
+          subscription={subscription}
+          setHasUnsavedChanges={setHasUnsavedChanges}
+        />
+      );
       break;
   }
   return (

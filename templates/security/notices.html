@@ -17,6 +17,8 @@
       {% if not search %}
       <p>Developers issue an Ubuntu Security Notice when a security issue is fixed in an <a href="https://packages.ubuntu.com">official Ubuntu package</a>.</p>
       <p>To report a security vulnerability in an Ubuntu package, please <a href="https://wiki.ubuntu.com/SecurityTeam/FAQ#Contact">contact the Security Team</a>.</p>
+
+      <p>The Security Team also produces <a href="/security/oval">OVAL</a> files for each Ubuntu release. These are an industry-standard machine-readable format dataset that contain details of all known security vulnerabilities and fixes relevant to the Ubuntu release, and can be used to determine whether a particular patch is appropriate. OVAL files can also be used to audit a system to check whether the latest security fixes have been applied.</p>
       {% endif %}
     </div>
   </div>
@@ -62,7 +64,7 @@
     <div class="row">
       <div class="col-8">
         <h2 class="p-heading--4">
-          {{ pagination.page_first_result}} - {{ pagination.page_last_result }} of {{ pagination.total_results }} results
+          {{ page_first_result}} - {{ page_last_result }} of {{ total_results }} results
         </h2>
       </div>
       <div class="col-4 p-form p-form--inline">
@@ -85,8 +87,8 @@
         <h2>Latest Notices</h2>
       {% endif %}
       {% if notices %}
-        {% for notice in notices %}
-        {% include "security/_notice-brief.html" %}
+        {% for notice in notices %} 
+          {% include "security/_notice-brief.html" %}
         {% endfor %}
       {% else %}
         <h2 class="p-heading--4">No notices found</h2>
@@ -98,7 +100,7 @@
     </div>
     {% endif %}
   </div>
-  {% with total_pages = pagination.total_pages, current_page=pagination.current_page %}
+  {% with total_pages = total_pages, current_page=current_page, offset=offset %}
     {% include "shared/_pagination.html" %}
   {% endwith %}
   {% if not search %}

@@ -45,16 +45,6 @@ const drawChart = (data) => {
     .style("border", "0")
     .style("padding", "0.5rem 1rem");
 
-  const link = d3
-    .select("body")
-    .append("div")
-    .html(
-      '<a href="https://www.openstack.org/analytics/">OpenStack User Survey 2020</a>'
-    )
-    .style("position", "absolute")
-    .attr("cx", "130")
-    .attr("cy", "-120");
-
   svg
     .selectAll("ledgend-dots")
     .data(piedata)

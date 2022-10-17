@@ -55,19 +55,33 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
+    .image-wrapper {
+      height: 48px;
+      margin-bottom: 2.4rem;
+    }
+
+    + .radio-wrapper--staggering {
+      border-top: solid 1px #d9d9d9;
+      padding-top: 1.5rem;
+    }
+
     @media only screen and (min-width: $breakpoint-medium) {
       display: flex;
 
       > div {
+        flex: 1 1 0;
+      }
+
+      span.p-radio__label {
         display: flex;
         flex-basis: 0;
         flex-direction: column;
         flex-grow: 1;
+      }
 
-        > .image-wrapper {
-          height: 48px;
-          margin-bottom: 2.4rem;
-        }
+      + .radio-wrapper--staggering {
+        border-top: unset;
+        padding-top: unset;
       }
     }
   }
@@ -106,6 +120,97 @@
     }
   }
 
+  .p-card--radio--column {
+    @extend %vf-card;
+    @extend %vf-is-bordered;
+    @extend %vf-has-round-corners;
+
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    padding-top: 1.5rem;
+    position: relative;
+
+    > label {
+      font-weight: 700;
+    }
+
+    > span > i {
+      margin-right: 0.8rem;
+    }
+
+    > * {
+      margin-bottom: 0;
+      padding: 1rem;
+      width: 100%;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      border: none;
+      padding: 0;
+      > label {
+        font-weight: inherit;
+      }
+    }
+
+    &.is-selected {
+      background-color: $color-light;
+    }
+
+    .inner-label {
+      height: 116px;
+      margin-left: 1rem;
+      text-align: left;
+
+      > .p-radio__label {
+        @extend .p-heading--2;
+      }
+    }
+
+    > .p-radio {
+      margin: 0;
+      max-width: none;
+      padding: 0;
+      position: initial;
+      text-indent: 0;
+      width: 100%;
+
+      &::before {
+        bottom: 0;
+        content: "";
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      > .p-radio__label {
+        padding: 0;
+
+        &::after,
+        &::before {
+          content: none;
+        }
+      }
+
+      hr {
+        margin-top: -1px;
+      }
+
+      small {
+        display: block;
+      }
+    }
+  }
+
   .p-card--radio {
     @extend %vf-card;
     @extend %vf-is-bordered;
@@ -135,7 +240,7 @@
       width: auto;
     }
 
-    .p-radio {
+    > .p-radio {
       margin: 0;
       max-width: none;
       padding: 0;
@@ -152,9 +257,8 @@
         top: 0;
       }
 
-      &__label {
+      > .p-radio__label {
         padding: 0;
-
         &::after,
         &::before {
           content: none;

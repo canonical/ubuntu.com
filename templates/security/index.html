@@ -10,10 +10,13 @@
     <div class="col-8">
       <h1>Dedicated to the security of Ubuntu</h1>
       <p>Since its inception in 2004, Ubuntu has been built on a foundation of enterprise-grade, industry leading security practices. From our toolchain to the suite of packages we use and from our update process to our industry standard certifications, Canonical never stops working to keep Ubuntu at the forefront of safety  and reliability.</p>
-      <p><a class="p-button--positive" href="/engage/ubuntu-cybersecurity-webinar" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });" >Watch the Ubuntu cybersecurity webinar</a></p>
+      <p>
+        <a class="p-button--positive" href="/engage/ubuntu-cybersecurity-webinar" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'External Link', 'eventAction' : 'Watch the Ubuntu security webinar', 'eventLabel' : 'Watch the Ubuntu security webinar', 'eventValue' : undefined });" >Watch the Ubuntu cybersecurity webinar</a>
+        <a class="p-button js-invoke-modal" data-testid="interactive-form-link" href="/security/contact-us">Contact us</a>
+      </p>
     </div>
 
-    <div class="col-4 u-hide--small u-vertically-center">
+    <div class="col-4 u-hide--small u-hide--medium u-vertically-center">
       {{
         image(
           url="https://assets.ubuntu.com/v1/c3814c0a-shields-security-white.svg",
@@ -58,7 +61,7 @@
         Learn about cybersecurity and zero trust as well as the common challenges faced in the implementation of cybersecurity programs, including challenges in vulnerability management, secure configuration of software and defenses against malware. See how Canonical and Ubuntu can help manage these challenges and lay the software foundation of a successful cybersecurity program.
       </p>
       <p>
-        <a class="p-button js-invoke-modal" data-testid="interactive-form-link" href="/security/contact-us">Contact us</a>
+        <a class="p-button js-invoke-modal" href="/security/contact-us">Contact us</a>
       </p>
     </div>
     <div class="col-6 u-hide--small u-hide--medium u-align--center">
@@ -172,8 +175,8 @@
       </li>
       <li class="p-matrix__item">
         <div>
-          <h3 class="p-matrix__title p-heading--4">Extended security</h3>
-          <p class="p-matrix__desc">For users of Ubuntu 14.04 and 16.04 LTS, Canonical offers Extended Security Maintenance (ESM) to provide kernel livepatches and vulnerability fixes through a secure and private archive.</p>
+          <h3 class="p-matrix__title p-heading--4">Expanded security</h3>
+          <p class="p-matrix__desc">Canonical offers Expanded Security Maintenance (ESM) for infrastructure and applications to provide kernel livepatches and vulnerability fixes through a secure and private archive.</p>
         </div>
       </li>
       <li class="p-matrix__item">
@@ -349,7 +352,7 @@
           width="200",
           hi_def=True,
           loading="lazy",
-          attrs={"class": "u-hide--small"}
+          attrs={"class": "u-hide--small u-hide--medium"}
         ) | safe
       }}
     </div>
@@ -360,7 +363,7 @@
   <div class="row">
     <div class="col-8">
       <h2>Helping you manage security</h2>
-      <p>Every Long Term Support (LTS) release of Ubuntu comes with five years of free security and maintenance updates. Canonical also offers a number of additional products and services to help manage the security of your Ubuntu systems.</p>
+      <p>Every Long Term Support (LTS) release of Ubuntu comes with five years of free security and maintenance updates for the main OS. Canonical also offers a number of additional products and services to help manage the security of your Ubuntu systems.</p>
     </div>
   </div>
   <div class="row u-equal-height">
@@ -394,8 +397,8 @@
       </p>
     </div>
     <div class="col-6 p-card">
-      <h3>Extend your Ubuntu security maintenance</h3>
-      <p>Following the end of the initial period of Ubuntu 14.04 LTS and Ubuntu 16.04 LTS, Canonical offers Extended Security Maintenance (ESM), to Ubuntu Advantage and Pro customers to provide important security fixes for the kernel and essential user space packages. These updates are delivered via a secure, private archive exclusively available to Canonical customers.</p>
+      <h3>Expand your Ubuntu security maintenance</h3>
+      <p>Canonical offers Expanded Security Maintenance (ESM), to Ubuntu Pro customers to provide important security fixes for the kernel and essential user space packages, toolchains, and applications. These updates are delivered via a secure, private archive exclusively available to Canonical customers.</p>
       <p>
         <a href="/engage/14-04-esm">
           Watch our security compliance webinar now&nbsp;&rsaquo;
@@ -408,19 +411,19 @@
 <section class="p-strip is-deep" id="ua-support">
   <div class="row">
     <div class="col-7">
-      <h2>Ubuntu Advantage</h2>
-      <p class="p-heading--4">All of our security products are available for a one off fee or they are all included in our Ubuntu Advantage support&nbsp;packages.</p>
-      <p>Ubuntu Advantage is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
+      <h2>Ubuntu Pro</h2>
+      <p class="p-heading--4">All of our security products are available for a one off fee.</p>
+      <p>Ubuntu Pro is the professional package of tools, technology and expertise from Canonical, helping organisations around the world get the most out of their Ubuntu deployments. It includes access to:</p>
       <ul class="p-list">
         <li class="p-list__item is-ticked">Livepatch: automatic kernel security hotfixes without rebooting</li>
         <li class="p-list__item is-ticked">FIPS: certified cryptographic modules available for compliance requirements</li>
         <li class="p-list__item is-ticked">Landscape: the systems management tool for using Ubuntu at scale</li>
-        <li class="p-list__item is-ticked">Extended Security Maintenance: critical security updates after Ubuntu end of the initial five year period</li>
+        <li class="p-list__item is-ticked">Expanded Security Maintenance: critical, high and selected medium security updates </li>
         <li class="p-list__item is-ticked">Knowledge Base: a private archive of expert-written articles and tutorials</li>
-        <li class="p-list__item is-ticked">Support: phone and web-based support at multiple service levels</li>
+        <li class="p-list__item is-ticked">Optional support: phone and web-based support at multiple service levels</li>
       </ul>
-      <p><a href="/advantage" class="p-button--positive">Purchase Ubuntu Advantage</a></p>
-      <p><a href="/support/contact-us" class="js-invoke-modal">Contact us about Ubuntu Advantage&nbsp;&rsaquo;</a></p>
+      <p><a href="/pro" class="p-button--positive">Purchase Ubuntu Pro</a></p>
+      <p><a href="/support/contact-us" class="js-invoke-modal">Contact us about Ubuntu Pro&nbsp;&rsaquo;</a></p>
     </div>
   </div>
 </section>

@@ -3,9 +3,9 @@
 - [Overview](/kubernetes/docs/overview)
 
 ## Supported versions
+- [1.25](/kubernetes/docs/1.25/components)
 - [1.24](/kubernetes/docs/1.24/components)
 - [1.23](/kubernetes/docs/1.23/components)
-- [1.22](/kubernetes/docs/1.22/components)
 - [Version info](/kubernetes/docs/supported-versions)
 
 ## Install
@@ -29,6 +29,7 @@
 - [Flannel](/kubernetes/docs/cni-flannel)
 - [Calico](/kubernetes/docs/cni-calico)
 - [Canal](/kubernetes/docs/cni-canal)
+- [Kube OVN](/kubernetes/docs/cni-kube-ovn)
 - [Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)
 - [Multus](/kubernetes/docs/cni-multus)
 - [SR-IOV](/kubernetes/docs/cni-sriov)

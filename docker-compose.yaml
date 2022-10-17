@@ -1,9 +1,0 @@
-version: "3.3"
-services:
-  postgres:
-    container_name: db
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
-    image: postgres

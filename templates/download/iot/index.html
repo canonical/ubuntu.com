@@ -49,14 +49,12 @@
   </section>
 
 
-  <section class="p-strip">
+  <section class="p-strip is-deep">
     <div class="row">
-      <div class="col-8">
+      <div class="col-2 col-medium-4">
         <h3>Supported platforms</h3>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{
           image(
             url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
@@ -71,7 +69,7 @@
           <a href="/download/intel-nuc-desktop">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{
           image(
             url="https://assets.ubuntu.com/v1/88444b11-logo-up2.svg",
@@ -86,10 +84,10 @@
           <a href="/download/up-squared-iot-grove-server">Install Ubuntu Server&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{ image (
           url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
-          alt="",
+          alt="AMD XILINX",
           width="72",
           height="45",
           hi_def=True,
@@ -100,10 +98,10 @@
           <a href="/download/amd-xilinx">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-3">
+      <div class="col-2 col-medium-3">
         {{ image (
           url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
-          alt="",
+          alt="Intel",
           width="75",
           height="42",
           hi_def=True,
@@ -113,6 +111,46 @@
         <p>
           <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
         </p>
+      </div>
+      <div class="col-2 col-medium-3">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/4d5b8d51-riscv-color.svg",
+          alt="RISC-V",
+          width="147",
+          height="23",
+          hi_def=True,
+          loading="auto",
+          attrs={"style": "margin: 0.5rem 0 0.75rem; max-width: 147px;"}
+          ) | safe
+        }}
+        <p>
+          <a href="/download/risc-v">Install Ubuntu Server&nbsp;&rsaquo;</a>
+        </p>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-8">
+        <h3>The ultimate Ubuntu Experience</h3>
+      </div>
+      </div>
+    <div class="row">
+      <div class="col-8">
+        <p>Ubuntu works along with silicon vendors and manufacturers to enable and certify Ubuntu on a wide range of hardware. The certified hardware passes our extensive testing and review process in our labs, ensuring that Ubuntu runs well out of the box, and regression tests are performed before every system update is delivered.</p>
+
+        <a class="p-button--positive" href="/certified">Get Certified Hardware</a>
+      </div>
+      <div class="col-4 u-align--center u-hide--medium u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
+          alt="",
+          width="102",
+          height="150",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
     </div>
   </section>
@@ -140,45 +178,68 @@
           ) | safe
         }}
       </div>
-      <div class="u-fixed-width">
-        <h3 class="p-heading--2">Ubuntu Core 22 Beta is now available</h3>
-        <p>
-          Pre-built Ubuntu Core 22 Beta images are available to download for some of the most popular architectures. Developers have the chance to try the new features ahead of the planned stable release on May 24, 2022.
-        </p>
-        <p>
-          <a class="p-button is-inline" style="margin-left: 0;" href="https://cdimage.ubuntu.com/ubuntu-core/22/beta/current/">Browse all supported images</a><br class="u-hide--large u-hide--medium" /><a href="https://forum.snapcraft.io/t/ubuntu-core-22-beta-is-now-available/29955">Read the announcement&nbsp;&rsaquo;</a>
-        </p>
-      </div>
     </div>
   </section>
 
   <section class="p-strip">
-    <div class="u-fixed-width">
+    <div class="u-fixed-width u-sv3">
       <h3>Supported platforms</h3>
     </div>
-    <div class="row p-divider">
-      <div class="col-3">
-        <img src="https://assets.ubuntu.com/v1/977f2b7a-raspberry+pi+horizontal.svg" width="168" height="45" alt="Raspberry Pi">
-        <p><a href="/download/raspberry-pi-core">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
+    <div class="row u-sv3">
+      <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/977f2b7a-raspberry+pi+horizontal.svg",
+            alt="Raspberry Pi logo",
+            width="168",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        <p><a href="/download/iot/raspberry-pi">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg" width="120" height="45" alt="Intel NUC">
-          <p><a href="/download/intel-nuc">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
+        <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/a69b2863-intel+nuc.svg",
+            alt="Intel NUC logo",
+            width="120",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+          <p><a href="/download/iot/intel-nuc">Install Ubuntu Core 22&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg" width="163" height="45" alt="Intel IEI TANK 870">
+        <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/db577ec7-tank-logo.svg",
+            alt="Intel Tank logo",
+            width="163",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
           <p><a href="/download/intel-iei-tank-870">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
       </div>
-      <div class="row">
-        <div class="col-3">
-          <img src="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg" width="139" height="45" alt="Qualcomm Snapdragon">
+      <div class="row u-sv3">
+        <div class="col-4">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/2a6d29c9-snapdragon.svg",
+            alt="Qualcomm Snapdragon logo",
+            width="139",
+            height="45",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
           <p><a href="/download/qualcomm-dragonboard-410c">Install Ubuntu Core 18&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           {{ image (
             url="https://assets.ubuntu.com/v1/f8ef46d3-AMD_Xilinx_logo.svg",
-            alt="",
+            alt="AMD Xilinx logo",
             width="72",
             height="45",
             hi_def=True,
@@ -187,10 +248,10 @@
           }}
           <p><a href="/download/amd-xilinx">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           {{ image (
             url="https://assets.ubuntu.com/v1/26cbe599-intel-logo.jpg",
-            alt="",
+            alt="Intel logo",
             width="75",
             height="42",
             hi_def=True,
@@ -202,10 +263,10 @@
           </p>
         </div>
       </div>
-      <div class="u-fixed-width" style="margin-top: 2rem;">
+      <div class="u-fixed-width">
         <p>
           <a class="p-button" href="https://cdimage.ubuntu.com/ubuntu-core/20/stable/current/">
-            <span>Browse all supported images</span>
+            Browse all supported images
           </a>
         </p>
       </div>
@@ -238,3 +299,4 @@
     {% with first_item="_core_learn_more", second_item="_core_contribute", third_item="_iot_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
     {% endblock content %}
+

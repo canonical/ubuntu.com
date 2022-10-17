@@ -33,8 +33,8 @@ const fillInCardDetails = () => {
 };
 
 const fillInUserDetails = (email) => {
-  cy.findByLabelText("Email my receipt to:").type(email);
-  cy.findByLabelText("Name:").type("Test Name");
+  cy.findByLabelText("Email my receipt to:").type(email, { force: true });
+  cy.findByLabelText("Name:").type("Test Name", { force: true });
   cy.findByLabelText("Organisation:").type("Abbey Road Studios");
   cy.findByLabelText("Address:").type("Abbey Road");
   cy.findByLabelText("Postal code:").type("NW8 9AY");
@@ -49,18 +49,13 @@ const completeFirstStep = (email = Cypress.env("UBUNTU_USERNAME")) => {
   cy.findByRole("button", { name: "Next step" }).click();
 };
 
-context("/advantage/subscribe", () => {
+context("/pro/subscribe", () => {
   it("should display the modal when pressing 'Buy now'", () => {
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.findByText("Accept all and visit site").click();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      // Need to use { force: true } because the actual input element (radio button)
-      // that the label is for is invisible (we use our own styles)
-      // and cypress complains (it would usually indicate an issue, in our case it's intentional).
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
     cy.findByText("Cancel").click();
@@ -69,14 +64,12 @@ context("/advantage/subscribe", () => {
   it("should be able to start a free trial", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
 
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
 
@@ -86,7 +79,7 @@ context("/advantage/subscribe", () => {
     // wait for request to be sent
     cy.intercept("POST", "/account/purchase-account*").as("purchaseAccount");
     cy.intercept("POST", "/account/customer-info*").as("customerInfo");
-    cy.intercept("POST", "/advantage/subscribe/preview*").as("preview");
+    cy.intercept("POST", "/pro/subscribe/preview*").as("preview");
 
     // assert that a matching request has been made
     cy.wait("@purchaseAccount");
@@ -104,7 +97,7 @@ context("/advantage/subscribe", () => {
       force: true,
     });
 
-    cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as("trial");
+    cy.intercept("POST", "/pro/subscribe*", slowDownResponse).as("trial");
 
     cy.findByRole("button", { name: "Buy" })
       .should(() => {
@@ -132,13 +125,11 @@ context("/advantage/subscribe", () => {
   it("should be able to buy a subscription", () => {
     const randomEmail = getRandomEmail();
 
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
 
@@ -148,7 +139,7 @@ context("/advantage/subscribe", () => {
     // wait for request to be sent
     cy.intercept("POST", "/account/purchase-account*").as("purchaseAccount");
     cy.intercept("POST", "/account/customer-info*").as("customerInfo");
-    cy.intercept("POST", "/advantage/subscribe/preview*").as("preview");
+    cy.intercept("POST", "/pro/subscribe/preview*").as("preview");
 
     // assert that a matching request has been made
     cy.wait("@purchaseAccount");
@@ -166,7 +157,7 @@ context("/advantage/subscribe", () => {
       force: true,
     });
 
-    cy.intercept("POST", "/advantage/subscribe*", slowDownResponse).as(
+    cy.intercept("POST", "/pro/subscribe*", slowDownResponse).as(
       "purchase"
     );
     cy.intercept("GET", "/account/purchases/*").as("pendingPurchase");
@@ -196,18 +187,16 @@ context("/advantage/subscribe", () => {
     cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
   });
 
-  it.skip("redirects logged-in user to /advantage on after successful purchase", () => {
-    cy.intercept("POST", "/advantage/subscribe*").as("purchase");
-    cy.intercept("GET", "/advantage/purchases/*").as("pendingPurchase");
+  it.skip("redirects logged-in user to /pro on after successful purchase", () => {
+    cy.intercept("POST", "/pro/subscribe*").as("purchase");
+    cy.intercept("GET", "/pro/purchases/*").as("pendingPurchase");
 
     cy.login();
-    cy.visit("/advantage/subscribe");
+    cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
 
     cy.scrollTo("bottom");
-    cy.findByLabelText(/Software and security updates only/).click({
-      force: true,
-    });
+    cy.findByText("Software and security updates only").click();
     cy.findByText("Buy now").click();
     cy.findByRole("dialog").should("be.visible");
 
@@ -219,6 +208,6 @@ context("/advantage/subscribe", () => {
     cy.wait("@purchase");
     cy.wait("@pendingPurchase");
 
-    cy.url().should("include", "/advantage");
+    cy.url().should("include", "/pro");
   });
 });

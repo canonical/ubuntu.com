@@ -3,11 +3,14 @@ A Flask application for ubuntu.com
 """
 
 # Packages
+from distutils.util import strtobool
 import os
 import talisker.requests
 import flask
+from datetime import datetime
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
+
 from canonicalwebteam.search import build_search_view
 from canonicalwebteam import image_template
 from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
@@ -15,7 +18,6 @@ from canonicalwebteam.discourse import (
     DiscourseAPI,
     Docs,
     DocParser,
-    EngageParser,
     EngagePages,
     Tutorials,
     TutorialParser,
@@ -34,6 +36,7 @@ from webapp.context import (
     descending_years,
     format_date,
     get_json_feed,
+    get_meganav,
     modify_query,
     month_name,
     months_list,
@@ -43,6 +46,8 @@ from webapp.context import (
 
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cube.views import (
+    cred_self_study,
+    cred_syllabus_data,
     cube_home,
     cube_microcerts,
     cube_study_labs_button,
@@ -53,9 +58,10 @@ from webapp.shop.cube.views import (
 from webapp.views import (
     BlogCustomGroup,
     BlogCustomTopic,
-    BlogPressCentre,
+    BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
+    build_engage_page,
     build_tutorials_index,
     download_server_steps,
     download_thank_you,
@@ -68,12 +74,14 @@ from webapp.views import (
     unlisted_engage_page,
     sitemap_index,
     account_query,
+    json_asset_query,
     sixteen_zero_four,
     openstack_install,
     marketo_submit,
     thank_you,
     mirrors_query,
     build_tutorials_query,
+    openstack_engage,
 )
 
 from webapp.shop.views import (
@@ -90,6 +98,7 @@ from webapp.shop.views import (
     get_purchase_v2,
     post_stripe_invoice_id,
     get_last_purchase_ids,
+    post_purchase_calculate,
     support,
 )
 
@@ -120,20 +129,12 @@ from webapp.shop.advantage.views import (
 )
 
 from webapp.login import login_handler, logout, user_info, empty_session
-from webapp.security.database import db_session
 from webapp.security.views import (
-    create_notice,
-    delete_notice,
-    create_release,
-    delete_release,
     notice,
     notices,
     notices_feed,
-    update_notice,
     cve_index,
     cve,
-    delete_cve,
-    bulk_upsert_cve,
     single_notices_sitemap,
     notices_sitemap,
     single_cves_sitemap,
@@ -192,6 +193,11 @@ search_engine_id = "adb2397a224a1fe55"
 @app.errorhandler(400)
 def bad_request_error(error):
     return flask.render_template("400.html", message=error.description), 400
+
+
+@app.errorhandler(403)
+def forbidden_error(error):
+    return flask.render_template("403.html", message=error.description), 403
 
 
 @app.errorhandler(410)
@@ -278,6 +284,7 @@ def context():
         "modify_query": modify_query,
         "month_name": month_name,
         "months_list": months_list,
+        "get_meganav": get_meganav,
         "get_navigation": get_navigation,
         "get_stripe_publishable_key": os.getenv(
             "STRIPE_PUBLISHABLE_KEY",
@@ -293,6 +300,7 @@ def context():
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
+        "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
     }
 
 
@@ -305,97 +313,94 @@ def utility_processor():
 # ===
 
 # Simple routes
+app.add_url_rule("/asset/<file_name>", view_func=json_asset_query)
 app.add_url_rule("/sitemap.xml", view_func=sitemap_index)
 app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
-app.add_url_rule("/advantage", view_func=advantage_view)
+app.add_url_rule("/pro/dashboard", view_func=advantage_view)
+app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(
-    "/advantage/user-subscriptions", view_func=get_user_subscriptions
+    "/pro/contracts/<contract_id>/token", view_func=get_contract_token
 )
+app.add_url_rule("/pro/users", view_func=advantage_account_users_view)
+app.add_url_rule("/pro/account-users", view_func=get_account_users)
 app.add_url_rule(
-    "/advantage/contracts/<contract_id>/token", view_func=get_contract_token
-)
-app.add_url_rule("/advantage/users", view_func=advantage_account_users_view)
-app.add_url_rule("/advantage/account-users", view_func=get_account_users)
-app.add_url_rule(
-    "/advantage/accounts/<account_id>/user",
+    "/pro/accounts/<account_id>/user",
     view_func=post_account_user_role,
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/accounts/<account_id>/user",
+    "/pro/accounts/<account_id>/user",
     view_func=put_account_user_role,
     methods=["PUT"],
 )
 app.add_url_rule(
-    "/advantage/accounts/<account_id>/user",
+    "/pro/accounts/<account_id>/user",
     view_func=delete_account_user_role,
     methods=["DELETE"],
 )
-app.add_url_rule("/advantage/subscribe", view_func=advantage_shop_view)
-app.add_url_rule("/advantage/subscribe/blender", view_func=blender_shop_view)
+app.add_url_rule("/pro/subscribe", view_func=advantage_shop_view)
+app.add_url_rule("/pro/subscribe/blender", view_func=blender_shop_view)
+app.add_url_rule("/pro/subscribe/thank-you", view_func=advantage_thanks_view)
 app.add_url_rule(
-    "/advantage/subscribe/thank-you", view_func=advantage_thanks_view
-)
-app.add_url_rule(
-    "/advantage/subscribe",
+    "/pro/subscribe",
     view_func=post_advantage_subscriptions,
     methods=["POST"],
     defaults={"preview": False},
 )
 app.add_url_rule(
-    "/advantage/subscribe",
+    "/pro/subscribe",
     view_func=cancel_advantage_subscriptions,
     methods=["DELETE"],
 )
 app.add_url_rule(
-    "/advantage/subscribe/preview",
+    "/pro/subscribe/preview",
     view_func=post_advantage_subscriptions,
     methods=["POST"],
     defaults={"preview": True},
 )
-app.add_url_rule("/advantage/offer", view_func=post_offer, methods=["POST"])
+app.add_url_rule("/pro/offer", view_func=post_offer, methods=["POST"])
 app.add_url_rule(
-    "/advantage/set-auto-renewal",
+    "/pro/set-auto-renewal",
     view_func=post_auto_renewal_settings,
     methods=["POST"],
 )
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
+    "/pro/renewals/<renewal_id>", view_func=get_renewal, methods=["GET"]
 )
 app.add_url_rule(
-    "/advantage/trial/<account_id>",
+    "/pro/trial/<account_id>",
     view_func=cancel_trial,
     methods=["DELETE"],
 )
 
 app.add_url_rule(
-    "/advantage/renewals/<renewal_id>/process-payment",
+    "/pro/renewals/<renewal_id>/process-payment",
     view_func=accept_renewal,
     methods=["POST"],
 )
 
 app.add_url_rule(
-    "/advantage/contracts/<contract_id>/entitlements",
+    "/pro/contracts/<contract_id>/entitlements",
     view_func=put_contract_entitlements,
     methods=["PUT"],
 )
 
 app.add_url_rule(
-    "/advantage/subscribe/blender/thank-you",
+    "/pro/subscribe/blender/thank-you",
     view_func=blender_thanks_view,
 )
 
 app.add_url_rule(
-    "/advantage/offers",
+    "/pro/offers",
     view_func=get_advantage_offers,
     methods=["GET"],
 )
 
 app.add_url_rule(
-    "/advantage/offers.json",
+    "/pro/offers.json",
     view_func=get_account_offers,
     methods=["GET"],
 )
@@ -463,16 +468,21 @@ app.add_url_rule(
     view_func=get_last_purchase_ids,
 )
 app.add_url_rule(
-    "/advantage/purchase",
+    "/pro/purchase",
     view_func=post_advantage_purchase,
     methods=["POST"],
     defaults={"preview": False},
 )
 app.add_url_rule(
-    "/advantage/purchase/preview",
+    "/pro/purchase/preview",
     view_func=post_advantage_purchase,
     methods=["POST"],
     defaults={"preview": True},
+)
+app.add_url_rule(
+    "/account/<marketplace>/purchase/calculate",
+    view_func=post_purchase_calculate,
+    methods=["POST"],
 )
 # end of shop
 
@@ -516,7 +526,7 @@ app.add_url_rule(
 # blog section
 
 blog_views = BlogViews(
-    api=BlogAPI(session=session),
+    api=BlogAPI(session=session, thumbnail_width=555, thumbnail_height=311),
     excluded_tags=[3184, 3265, 3408, 3960],
     per_page=11,
     blog_title="Ubuntu blog",
@@ -530,10 +540,6 @@ app.add_url_rule(
     view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
-    "/blog/press-centre",
-    view_func=BlogPressCentre.as_view("press_centre", blog_views=blog_views),
-)
-app.add_url_rule(
     "/blog/sitemap.xml",
     view_func=BlogSitemapIndex.as_view("sitemap", blog_views=blog_views),
 )
@@ -541,27 +547,18 @@ app.add_url_rule(
     "/blog/sitemap/<regex('.+'):slug>.xml",
     view_func=BlogSitemapPage.as_view("sitemap_page", blog_views=blog_views),
 )
+app.add_url_rule(
+    "/blog/<slug>",
+    view_func=BlogRedirects.as_view("blog_redirects", blog_views=blog_views),
+)
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)
-app.add_url_rule(
-    "/security/notices", view_func=create_notice, methods=["POST"]
-)
 
 app.add_url_rule(
     r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
     view_func=notice,
-)
-app.add_url_rule(
-    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
-    view_func=update_notice,
-    methods=["PUT"],
-)
-app.add_url_rule(
-    r"/security/notices/<regex('(lsn-|LSN-|usn-|USN-)\d{1,10}-\d{1,2}'):notice_id>",  # noqa: E501
-    view_func=delete_notice,
-    methods=["DELETE"],
 )
 
 app.add_url_rule("/security/notices/<feed_type>.xml", view_func=notices_feed)
@@ -580,26 +577,11 @@ app.add_url_rule(
 
 app.add_url_rule("/security/cves/sitemap.xml", view_func=cves_sitemap)
 
-app.add_url_rule(
-    "/security/releases", view_func=create_release, methods=["POST"]
-)
-app.add_url_rule(
-    "/security/releases/<codename>",
-    view_func=delete_release,
-    methods=["DELETE"],
-)
-
 # cve section
 app.add_url_rule("/security/cves", view_func=cve_index)
-app.add_url_rule("/security/cves", view_func=bulk_upsert_cve, methods=["PUT"])
 
 app.add_url_rule(
     r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>", view_func=cve
-)
-app.add_url_rule(
-    r"/security/<regex('(cve-|CVE-)\d{4}-\d{4,7}'):cve_id>",
-    view_func=delete_cve,
-    methods=["DELETE"],
 )
 
 # Login
@@ -608,40 +590,43 @@ app.add_url_rule("/logout", view_func=logout)
 
 # Engage pages and takeovers from Discourse
 # This section needs to provide takeover data for /
-
+engage_pages_discourse_api = DiscourseAPI(
+    base_url="https://discourse.ubuntu.com/",
+    session=session,
+    get_topics_query_id=14,
+    api_key=DISCOURSE_API_KEY,
+    api_username=DISCOURSE_API_USERNAME,
+)
 takeovers_path = "/takeovers"
 discourse_takeovers = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-        ),
-        index_topic_id=17229,
-        url_prefix=takeovers_path,
-    ),
-    # Takeovers doesn't need a base template
-    # But it is a required arg
-    document_template="/base.html",
-    url_prefix=takeovers_path,
-    blueprint_name="takeovers",
+    api=engage_pages_discourse_api,
+    page_type="takeovers",
+    category_id=106,
+    exclude_topics=[28426, 17250],
 )
 
 engage_path = "/engage"
 engage_pages = EngagePages(
-    parser=EngageParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.ubuntu.com/",
-            session=session,
-        ),
-        index_topic_id=18033,
-        url_prefix=engage_path,
-    ),
-    document_template="/engage/base.html",
-    url_prefix=engage_path,
-    blueprint_name="engage-pages",
+    api=engage_pages_discourse_api,
+    category_id=51,
+    page_type="engage-pages",
+    exclude_topics=[17229, 18033, 17250],
 )
 
+app.add_url_rule(
+    "/openstack/resources", view_func=openstack_engage(engage_pages)
+)
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
+app.add_url_rule(
+    "/engage/<page>",
+    defaults={"language": None},
+    view_func=build_engage_page(engage_pages),
+)
+app.add_url_rule(
+    "/engage/<language>/<page>",
+    endpoint="language-engage-page",
+    view_func=build_engage_page(engage_pages),
+)
 app.add_url_rule(
     "/engage/<page>/thank-you",
     defaults={"language": None},
@@ -658,45 +643,42 @@ app.add_url_rule(
 )
 
 
-def get_takeovers():
-    takeovers = {}
-
-    discourse_takeovers.parser.parse()
-    takeovers["sorted"] = sorted(
-        discourse_takeovers.parser.takeovers,
+def takeovers_json():
+    active_takeovers = discourse_takeovers.parse_active_takeovers()
+    takeovers = sorted(
+        active_takeovers,
         key=lambda takeover: takeover["publish_date"],
         reverse=True,
     )
-    takeovers["active"] = [
-        takeover
-        for takeover in discourse_takeovers.parser.takeovers
-        if takeover["active"] == "true"
-    ]
-
-    return takeovers
-
-
-def takeovers_json():
-    takeovers = get_takeovers()
-    response = flask.jsonify(takeovers["active"])
+    response = flask.jsonify(takeovers)
     response.cache_control.max_age = "300"
 
     return response
 
 
 def takeovers_index():
-    takeovers = get_takeovers()
+    all_takeovers = discourse_takeovers.get_index()
+    all_takeovers.sort(
+        key=lambda takeover: takeover["active"] == "true", reverse=True
+    )
+    active_count = len(
+        [
+            takeover
+            for takeover in all_takeovers
+            if takeover["active"] == "true"
+        ]
+    )
 
     return flask.render_template(
         "takeovers/index.html",
-        takeovers=takeovers,
+        takeovers=all_takeovers,
+        active_count=active_count,
     )
 
 
 app.add_url_rule("/16-04", view_func=sixteen_zero_four)
 app.add_url_rule("/takeovers.json", view_func=takeovers_json)
 app.add_url_rule("/takeovers", view_func=takeovers_index)
-engage_pages.init_app(app)
 
 
 core_services_guide_url = "/core/services/guide"
@@ -775,7 +757,8 @@ tutorials_docs = Tutorials(
     blueprint_name="tutorials",
 )
 app.add_url_rule(
-    tutorials_path, view_func=build_tutorials_index(session, tutorials_docs)
+    tutorials_path,
+    view_func=build_tutorials_index(session, tutorials_docs),
 )
 tutorials_docs.init_app(app)
 
@@ -918,7 +901,9 @@ core_als_autils_docs = Docs(
 core_als_autils_docs.init_app(app)
 
 # Cube docs
-app.add_url_rule("/credentialing", view_func=cube_home)
+app.add_url_rule("/credentialling", view_func=cube_home)
+app.add_url_rule("/credentialling/self-study", view_func=cred_self_study)
+app.add_url_rule("/credentialling/syllabus", view_func=cred_syllabus_data)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(
@@ -1072,6 +1057,7 @@ def cache_headers(response):
     disable_cache_on = (
         "/account",
         "/advantage",
+        "/pro",
         "/cube",
         "/core/build",
         "/account.json",
@@ -1083,7 +1069,13 @@ def cache_headers(response):
     return response
 
 
-@app.teardown_appcontext
-def remove_db_session(response):
-    db_session.remove()
-    return response
+def date_has_passed(date_str):
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+        present = datetime.now()
+        return present > date
+    except ValueError:
+        return False
+
+
+app.add_template_filter(date_has_passed)

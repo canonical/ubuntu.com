@@ -125,9 +125,9 @@
       <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
       <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
         {% for server_vendor in server_vendors %}
-          {% if server_vendor.vendor in ['Dell', 'Lenovo', 'HPE'] %}
+          {% if server_vendor.make in ['Dell Technologies', 'Lenovo', 'HPE'] %}
             <li class="p-inline-list__item">
-              <a href="/certified/servers?vendor={{ server_vendor.vendor }}">{{ server_vendor.vendor }}&nbsp;({{ server_vendor.total }})</a>
+              <a href="/certified/servers?vendor={{ server_vendor.make }}">{{ server_vendor.make }}&nbsp;({{ server_vendor.total }})</a>
             </li>
           {% endif %}
         {% endfor %}
@@ -135,9 +135,9 @@
 
       <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
       <ul class="p-inline-list--midline">
-        {% for server_release, total in server_releases.items() %}
+        {% for server_release in server_releases %}
         <li class="p-inline-list__item">
-          <a href="/certified/servers?release={{ server_release }}">{{ server_release }}&nbsp;({{ total }})</a>
+          <a href="/certified/servers?release={{ server_release.release }}">{{ server_release.release }}&nbsp;({{ server_release.servers }})</a>
         </li>
         {% endfor %}
       </ul>
@@ -182,6 +182,14 @@
         </li>
         {% endfor %}
       </ul>
+      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
+      <ul class="p-inline-list--midline">
+        {% for iot_release in iot_releases %}
+        <li class="p-inline-list__item">
+          <a href="/certified/devices?release={{ iot_release.release }}">{{ iot_release.release }}&nbsp;({{ iot_release.smart_core }})</a>
+        </li>
+        {% endfor %}
+      </ul>
       <p><a href="/certified/devices" class="p-button--positive">See all devices</a></p>
     </div>
   </div>
@@ -201,6 +209,14 @@
         </li>
         {% endfor %}
       </ul>
+      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
+      <ul class="p-inline-list--midline">
+        {% for soc_release in soc_releases %}
+        <li class="p-inline-list__item">
+          <a href="/certified/socs?release={{ soc_release.release }}">{{ soc_release.release }}&nbsp;({{ soc_release.soc }})</a>
+        </li>
+        {% endfor %}
+      </ul>      
       <p><a href="/certified/socs" class="p-button--positive">See all SoCs</a></p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">

@@ -1,13 +1,26 @@
 {% extends "advantage/base_advantage.html" %}
 
-{% block title %}{% if user_info %}Ubuntu Advantage Dashboard{% else %}Ubuntu Advantage for Infrastructure{% endif %}{% endblock %}
-{% block meta_description %}Ubuntu Advantage for Infrastructure offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block title %}{% if user_info %}Ubuntu Pro Dashboard{% else %}Ubuntu Pro{% endif %}{% endblock %}
+{% block meta_description %}Ubuntu Pro offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1So3n5HEpBX39xxEkkChnve09gKSr9TgYUcbfdOTCevk/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
 {% if user_info %}
   <section class="p-strip--suru-topped u-no-padding--bottom">
+    {% if is_maintenance %}
+    <div class="row">
+      <div class="col-12">
+        <div class="p-notification--caution">
+          <div class="p-notification__content">
+            <h5 class="p-notification__title">Ubuntu Pro store is in maintenance</h5>
+            <p class="p-notification__message">Subscriptions cannot be edited online until maintenance completes. Please retry shortly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
     <script>
       dataLayer.push({
         'event' : 'GAEvent',
@@ -18,22 +31,6 @@
       });
     </script>
 
-    <div class="row">
-      <div class="col-12">
-        <div class="p-notification">
-          <div class="p-notification__content">
-            <p class="p-notification__message">
-              Are you using Ubuntu in production?
-            </p>
-          </div>
-          <div class="p-notification__meta">
-            <div class="p-notification__actions">
-              <a class="p-notification__action js-invoke-modal" data-testid="interactive-form-link" href="/support/contact-us">Join our free beta programme for Ubuntu Pro on prem&nbsp;&rsaquo;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row u-equal-height u-sv3">
       <div class="col-5 u-vertically-center">
         <h1 class="p-subscriptions__header-title">Your subscriptions</h1>
@@ -41,7 +38,7 @@
       {% if not is_technical %}
         <div class="col-7 u-vertically-center u-align--right">
           <div>
-            <a class="p-button--positive" href="/advantage/subscribe">Buy new subscription</a>
+            <a class="p-button--positive" href="/pro/subscribe">Buy new subscription</a>
             <a class="p-button" href="/account/invoices">Invoices</a>
             <a class="p-button" href="/account/payment-methods">Payment methods</a>
           </div>

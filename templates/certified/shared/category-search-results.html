@@ -6,7 +6,7 @@
     <div class="u-fixed-width">
       <div class="p-search-box">
         <input class="p-search-box__input" type="text" name="q" value="{{ query or '' }}" placeholder="{{ placeholder or '' }}">
-        <button type="submit" class="p-search-box__button"><i class="p-icon--search"></i></button>
+        <button type="submit" class="p-search-box__button"><i class="p-icon--search">Submit</i></button>
       </div>
     </div>
     <div class="row">
@@ -93,7 +93,7 @@
                   <section class="p-accordion__panel {% if vendor_filters | length > 5 %}is-collapsed{% endif %} is-dense" id="tab2-section" aria-hidden="false" aria-labelledby="tab2">
                     {% for vendor_filter in vendor_filters %}
                     <label class="p-checkbox">
-                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters"name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
+                      <input type="checkbox" aria-labelledby="{{ vendor_filter }}" class="p-checkbox__input js-enable-apply-filters" name="vendor" value="{{ vendor_filter }}" {% if vendors and vendor_filter in vendors %}checked{% endif %}>
                       <span class="p-checkbox__label">{{ vendor_filter }}</span>
                     </label>
                     {% endfor %}

@@ -1201,3 +1201,73 @@ class TestPutContractEntitlements(unittest.TestCase):
         }
 
         self.assertEqual(session.request_kwargs, expected_args)
+
+
+class TestPostPurchaseCalculate(unittest.TestCase):
+    def test_errors(self):
+        cases = [
+            (500, False, UAContractsAPIError),
+            (500, True, UAContractsAPIErrorView),
+        ]
+
+        for code, is_for_view, expected_error in cases:
+            session = Session(response=Response(status_code=code, content={}))
+            client = make_client(session, is_for_view=is_for_view)
+
+            with self.assertRaises(expected_error):
+                client.post_purchase_calculate(
+                    marketplace="canonical-ua",
+                    request_body={
+                        "country": "GB",
+                        "productItems": [
+                            {
+                                "productListingID": "lAaBbCcDdEeFfHh",
+                                "value": 1,
+                            },
+                        ],
+                        "hasTaxID": True,
+                    },
+                )
+
+    def test_success(self):
+        session = Session(
+            response=Response(
+                status_code=200,
+                content={},
+            )
+        )
+        make_client(session).post_purchase_calculate(
+            marketplace="canonical-ua",
+            request_body={
+                "country": "GB",
+                "productItems": [
+                    {
+                        "productListingID": "lAaBbCcDdEeFfHh",
+                        "value": 1,
+                    },
+                ],
+                "hasTaxID": True,
+            },
+        )
+
+        expected_args = {
+            "headers": {"Authorization": "Macaroon secret-token"},
+            "json": {
+                "country": "GB",
+                "productItems": [
+                    {
+                        "productListingID": "lAaBbCcDdEeFfHh",
+                        "value": 1,
+                    },
+                ],
+                "hasTaxID": True,
+            },
+            "method": "post",
+            "params": None,
+            "url": (
+                "https://1.2.3.4"
+                "/v1/marketplace/canonical-ua/purchase/calculate"
+            ),
+        }
+
+        self.assertEqual(session.request_kwargs, expected_args)

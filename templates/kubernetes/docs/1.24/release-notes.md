@@ -13,6 +13,49 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
+# 1.24+ck1 Bugfix release 
+
+### August 5, 2022 - `charmed-kubernetes --channel 1.24/stable` 
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.24/bundle.yaml).
+
+## What's new
+
+- Jammy Jellyfish (22.04) Support
+
+All Charmed Kubernetes charms now come with the ability to run on `jammy`
+series machines. Xenial (16.04) support has been removed. Focal (20.04)
+remains the default series in all bundles and charms, however the charms
+now advertise `jammy` support and are considered stable for that series.
+
+- Improved Documentation
+
+Vault documentation updated to cover 20.04 `focal` environment.
+Operator charms and replacements for addons now have dedicated guides.
+CIDR size limitations are better described in the charm's `cidr` config option.
+
+- Containerd
+
+Improved GPU support by referencing apt sources with https and refreshing
+NVIDIA repository keys. Also improved NVIDIA driver upgrades and debug messages for
+units that encounter connectivity failures in air-gapped or proxied environments.
+
+Improved upgrade actions for containerd packages as well as NVIDIA packages.
+
+- Docker Registry
+
+Exposes docker registry `cache-*` settings to configure it as a pull-through cache.
+
+- Etcd
+
+Limits the set of TLS ciphers to remove weaker ones.
+ 
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.24+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.24+ck1).
+
+
 # 1.24
 
 ### May 6th, 2022 - `charmed-kubernetes --channel 1.24/stable`

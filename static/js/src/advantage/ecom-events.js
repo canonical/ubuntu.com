@@ -95,3 +95,15 @@ export function purchaseEvent(purchaseInfo, products) {
     });
   }
 }
+
+export function onLoginClick() {
+  if (dataLayer) {
+    dataLayer.push({
+      event: "GAEvent",
+      eventCategory: "Advantage subscribe",
+      eventAction: "Authentication",
+      eventLabel: "Sign in",
+      eventValue: undefined,
+    });
+  }
+}

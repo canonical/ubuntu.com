@@ -7,6 +7,7 @@ from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.decorators import shop_decorator, SERVICES
 from webapp.shop.flaskparser import use_kwargs
 from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPI,
     UAContractsAPIError,
     UAContractsUserHasNoAccount,
     AccessForbiddenError,
@@ -16,11 +17,13 @@ from webapp.shop.api.ua_contracts.helpers import (
     to_dict,
 )
 from webapp.shop.schemas import (
+    PurchaseTotalSchema,
     post_anonymised_customer_info,
     post_customer_info,
     ensure_purchase_account,
     invoice_view,
     post_payment_methods,
+    post_purchase_calculate,
 )
 
 
@@ -38,7 +41,7 @@ def account_view(**kwargs):
 @use_kwargs(invoice_view, location="query")
 def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
     marketplace = kwargs.get("marketplace")
-
+    page = kwargs.get("page", 1)
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
     except UAContractsUserHasNoAccount:
@@ -53,10 +56,17 @@ def invoices_view(advantage_mapper: AdvantageMapper, **kwargs):
             filters={"marketplace": marketplace} if marketplace else None,
         )
 
+    per_page = 10
+
+    start_page = (page - 1) * per_page
+    end_page = page * per_page
+
     return flask.render_template(
         "account/invoices/index.html",
-        invoices=payments,
+        invoices=payments[start_page:end_page],
         marketplace=marketplace,
+        total_pages=(len(payments) // per_page) + 1,
+        current_page=page,
     )
 
 
@@ -276,6 +286,27 @@ def get_last_purchase_ids(advantage_mapper, **kwargs):
         )
 
     return flask.jsonify(last_purchase_ids)
+
+
+@shop_decorator(area="account", response="json")
+@use_kwargs(post_purchase_calculate, location="json")
+def post_purchase_calculate(ua_contracts_api: UAContractsAPI, **kwargs):
+    response = ua_contracts_api.post_purchase_calculate(
+        marketplace=kwargs.get("marketplace"),
+        request_body={
+            "country": kwargs.get("country"),
+            "purchaseItems": [
+                {
+                    "value": product.get("quantity"),
+                    "productListingID": product.get("product_listing_id"),
+                }
+                for product in kwargs.get("products")
+            ],
+            "hasTaxID": kwargs.get("has_tax"),
+        },
+    )
+
+    return PurchaseTotalSchema().load(response)
 
 
 @shop_decorator(area="account", response="html")

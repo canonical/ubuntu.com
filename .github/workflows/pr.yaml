@@ -2,24 +2,11 @@ name: PR checks
 on: [push, pull_request]
 env:
   SECRET_KEY: insecure_test_key
-  DATABASE_URL: postgresql://postgres@localhost:5432/postgres
 
 jobs:
   run-image:
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_HOST_AUTH_METHOD: trust
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v2
@@ -29,25 +16,12 @@ jobs:
 
       - name: Run image
         run: |
-          docker run --env SECRET_KEY=insecure_secret_key --network host --env DATABASE_URL=postgresql://postgres@localhost:5432/postgres ubuntu-com &
+          docker run --env SECRET_KEY=insecure_secret_key --network host ubuntu-com &
           sleep 1
           curl --head --fail --retry-delay 1 --retry 30 --retry-connrefused http://localhost
 
   run-dotrun:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_HOST_AUTH_METHOD: trust
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v2
@@ -131,19 +105,6 @@ jobs:
 
   test-python:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_HOST_AUTH_METHOD: trust
-        ports:
-          - 5432:5432
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
       - uses: actions/checkout@v2

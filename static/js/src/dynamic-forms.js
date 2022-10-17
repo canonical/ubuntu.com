@@ -1,3 +1,5 @@
+import setupIntlTelInput from "./intlTelInput.js";
+
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var triggeringHash = "#get-in-touch";
@@ -5,6 +7,7 @@
     var contactButtons = document.querySelectorAll(".js-invoke-modal");
     const contactForm = document.getElementById("contact-form-container");
     const returnData = window.location.pathname + "#success";
+    const contactModalSelector = "contact-modal";
 
     contactButtons.forEach(function (contactButton) {
       contactButton.addEventListener("click", function (e) {
@@ -59,6 +62,7 @@
           setFBclid();
           loadCaptchaScript();
           initialiseForm();
+          setFocus();
         })
         .catch(function (error) {
           console.log("Request failed", error);
@@ -175,7 +179,7 @@
 
     function initialiseForm() {
       var contactIndex = 1;
-      var contactModal = document.getElementById("contact-modal");
+      const contactModal = document.getElementById(contactModalSelector);
       var closeModal = document.querySelector(".p-modal__close");
       var closeModalButton = document.querySelector(".js-close");
       var modalPaginationButtons = contactModal.querySelectorAll(
@@ -185,6 +189,8 @@
       var submitButton = contactModal.querySelector(".mktoButton");
       var comment = contactModal.querySelector("#Comments_from_lead__c");
       var otherContainers = document.querySelectorAll(".js-other-container");
+      var phoneInput = document.querySelector("#phone");
+      var modalTrigger = document.activeElement || document.body;
 
       document.onkeydown = function (evt) {
         evt = evt || window.event;
@@ -220,8 +226,12 @@
       }
 
       if (contactModal) {
-        contactModal.addEventListener("click", function (e) {
-          if (e.target.id == "contact-modal") {
+        let isClickStartedInside = false;
+        contactModal.addEventListener("mousedown", function (e) {
+          isClickStartedInside = e.target.id !== contactModalSelector;
+        });
+        contactModal.addEventListener("mouseup", function (e) {
+          if (!isClickStartedInside && e.target.id === contactModalSelector) {
             e.preventDefault();
             close();
           }
@@ -244,15 +254,25 @@
               window.location.pathname
             );
           } else {
-            index = index + 1;
-            setState(index);
-            ga(
-              "send",
-              "event",
-              "interactive-forms",
-              "goto:" + index,
-              window.location.pathname
-            );
+            var valid = true;
+
+            if (button.classList.contains("js-validate-form")) {
+              var form = button.closest("form");
+
+              valid = validateForm(form);
+            }
+
+            if (valid) {
+              index = index + 1;
+              setState(index);
+              ga(
+                "send",
+                "event",
+                "interactive-forms",
+                "goto:" + index,
+                window.location.pathname
+              );
+            }
           }
         });
       });
@@ -273,6 +293,49 @@
         });
       });
 
+      // Checks additional required fields to see whether a value has been set
+      function validateForm(form) {
+        var fields = form.querySelectorAll("[required]");
+        var validStates = [];
+
+        fields.forEach((field) => {
+          var fieldName = field.getAttribute("name");
+          var inputs = form.querySelectorAll(`[name="${fieldName}"]`);
+          var validationMessage = document.querySelector(
+            `.js-validation-${fieldName}`
+          );
+          var inputValid = false;
+
+          inputs.forEach((input) => {
+            if (input.type === "checkbox" && input.checked) {
+              inputValid = true;
+            }
+
+            if (input.type === "radio" && input.checked) {
+              inputValid = true;
+            }
+
+            if (input.type === "text" && input.value) {
+              inputValid = true;
+            }
+
+            if (input.type === "textarea" && input.value) {
+              inputValid = true;
+            }
+          });
+
+          if (!inputValid) {
+            validationMessage.classList.remove("u-hide");
+          } else {
+            validationMessage.classList.add("u-hide");
+          }
+
+          validStates.push(inputValid);
+        });
+
+        return !validStates.includes(false);
+      }
+
       // Updates the index and renders the changes
       function setState(index) {
         contactIndex = index;
@@ -284,6 +347,7 @@
         setState(1);
         formContainer.classList.add("u-hide");
         formContainer.removeChild(contactModal);
+        modalTrigger.focus();
         updateHash("");
         ga(
           "send",
@@ -452,6 +516,9 @@
 
       setCheckboxLimit();
 
+      // Setup dial code dropdown options (intlTelInput.js)
+      setupIntlTelInput(phoneInput);
+
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
         document.dispatchEvent(event);
@@ -482,6 +549,42 @@
           field.value = lastName;
         });
       }
+    }
+
+    // Sets the focus inside the modal and trap it
+    function setFocus() {
+      var modalTrigger = document.activeElement || document.body;
+      var modal = document.querySelector(".p-modal");
+      var firstFocusableEle = modal.querySelector(
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+      );
+
+      // set initial focus inside the modal
+      firstFocusableEle.focus();
+
+      // trap focus
+      firstFocusableEle.addEventListener("keydown", function (e) {
+        if (e.shiftKey && e.key === "Tab") {
+          e.preventDefault();
+          var targetPage = modal.querySelector(".js-pagination:not(.u-hide)");
+          var targetEle = targetPage.querySelector(".pagination__link--next");
+          targetEle.focus();
+        }
+      });
+
+      var modalPages = modal.querySelectorAll(".js-pagination");
+
+      modalPages.forEach(function (page, index) {
+        var lastFocusEle = page.querySelector(".pagination__link--next");
+        if (lastFocusEle) {
+          lastFocusEle.addEventListener("keydown", function (e) {
+            if (!e.shiftKey && e.key === "Tab") {
+              e.preventDefault();
+              firstFocusableEle.focus();
+            }
+          });
+        }
+      });
     }
 
     // Opens the form when the initial hash matches the trigger

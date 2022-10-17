@@ -6,7 +6,6 @@ let entries = {
   "desktop-statistics": "./static/js/src/desktop-statistics.js",
   tutorials: "./static/js/src/tutorials.js",
   "side-navigation": "./static/js/src/side-navigation.js",
-  forms: "./static/js/src/forms.js",
   "image-download": "./static/js/src/image-download.js",
   main: "./static/js/src/main.js",
   "release-chart": "./static/js/src/release-chart.js",
@@ -17,7 +16,6 @@ let entries = {
   "sticky-nav": "./static/js/src/sticky-nav.js",
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
-  productSelector: "./static/js/src/advantage/subscribe/product-selector.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
   advantageOffers: "./static/js/src/advantage/offers/app.jsx",
   openstackChart: "./static/js/src/openstack-chart.js",
@@ -26,12 +24,11 @@ let entries = {
   "cloud-price-slider": "./static/js/src/cloud-price-slider.js",
   "certified-search-results": "./static/js/src/certified-search-results.js",
   openstackDeploymentChart: "./static/js/src/openstack-deployment-chart.js",
-  blenderStore: "./static/js/src/advantage/subscribe/blender/blender-store.js",
-  blenderStoreModal:
-    "./static/js/src/advantage/subscribe/blender/blender-store-modal.js",
+  blender: "./static/js/src/advantage/subscribe/blender/app.tsx",
   tabbedContent: "./static/js/src/tabbed-content.js",
   utmInheritance: "./static/js/src/utm-inheritance.js",
   "kernel-form": "./static/js/src/kernel-form.js",
+  "random-partner-logos": "./static/js/src/random-partner-logos.js",
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

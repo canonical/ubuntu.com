@@ -37,7 +37,8 @@
       subtitle=takeover['subtitle'],
       class="p-takeover--" + takeover['class'],
       header_image=takeover['image'],
-      image_style="width: " + takeover['image_width'] + "px; height: " + takeover['image_height'] + "px; ",
+      image_width=takeover["image_width"],
+      image_height=takeover["image_height"],
       image_hide_small="true",
       primary_url=takeover['primary_url'],
       primary_cta=takeover['primary_cta'],
@@ -74,9 +75,6 @@
     {% include "shared/_notice_default.html" %}
   {% endwith %}
   {% with lang="zh", text="嗨！你知道我们有中文站吗？立即带我去！", url="https://cn.ubuntu.com", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
-    {% include "shared/_notice_default.html" %}
-  {% endwith %}
-  {% with lang="es", text="Join us at Cloud Expo Europe Madrid", url="/blog/canonical-cloud-expo-europe-madrid-2021", icon="https://assets.ubuntu.com/v1/8114528b-picto-ubuntu-orange.png" %}
     {% include "shared/_notice_default.html" %}
   {% endwith %}
 {% endblock notices_content %}

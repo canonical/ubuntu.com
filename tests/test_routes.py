@@ -67,9 +67,6 @@ class TestRoutes(VCRTestCase):
             self.client.get("/blog/topics/design").status_code, 200
         )
         self.assertEqual(
-            self.client.get("/blog/press-centre").status_code, 200
-        )
-        self.assertEqual(
             self.client.get("/blog/internet-of-things").status_code, 200
         )
         self.assertEqual(
@@ -143,7 +140,7 @@ class TestRoutes(VCRTestCase):
         When logged in, we should still get a 200 status code
         """
 
-        self.assertEqual(self.client.get("/advantage").status_code, 200)
+        self.assertEqual(self.client.get("/pro").status_code, 200)
 
     def test_ceph(self):
         """

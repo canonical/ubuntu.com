@@ -1,5 +1,6 @@
 from requests import Session
 from requests.exceptions import HTTPError
+from urllib.parse import urlencode
 
 
 class SecurityAPIError(HTTPError):
@@ -59,7 +60,7 @@ class SecurityAPI:
         except HTTPError as error:
             raise SecurityAPIError(error)
 
-        return releases_response.json()
+        return releases_response.json().get("releases")
 
     def get_notice(
         self,
@@ -78,3 +79,75 @@ class SecurityAPI:
             raise SecurityAPIError(error)
 
         return notice_response.json()
+
+    def get_notices(
+        self,
+        limit: int,
+        offset: int,
+        details: str,
+        release: str,
+        order: str,
+    ):
+        """
+        Makes request for all releases with ongoing support,
+        returns json object if found
+        """
+
+        parameters = {
+            "limit": limit,
+            "offset": offset,
+            "details": details,
+            "release": release,
+            "order": order,
+        }
+
+        # Remove falsey items from dictionary
+        parameters = {k: v for k, v in parameters.items() if v}
+
+        filtered_parameters = urlencode(parameters)
+
+        try:
+            notices_response = self._get(f"notices.json?{filtered_parameters}")
+        except HTTPError as error:
+            raise SecurityAPIError(error)
+
+        return notices_response.json()
+
+    def get_cves(
+        self,
+        query: str,
+        priority: str,
+        package: str,
+        limit: int,
+        offset: int,
+        component: str,
+        versions: list,
+        statuses: list,
+    ):
+        parameters = {
+            "q": query,
+            "priority": priority,
+            "package": package,
+            "limit": limit,
+            "offset": offset,
+            "component": component,
+            "version": versions,
+            "status": statuses,
+        }
+
+        # Remove falsey items from dictionary
+        filtered_parameters = {}
+        for key, value in parameters.items():
+            if value:
+                filtered_parameters[key] = value
+
+        query_string = urlencode(filtered_parameters, doseq=True)
+
+        try:
+            cves_response = self._get(f"cves.json?{query_string}")
+        except HTTPError as error:
+            if error.response.status_code == 404:
+                return None
+            raise SecurityAPIError(error)
+
+        return cves_response.json()

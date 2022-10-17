@@ -57,7 +57,7 @@
 
       <h3>Version numbers are YY.MM</h3>
 
-      <p>Releases of Ubuntu get a development codename ('{{ releases.latest.slug }}') and are versioned by the year and month of delivery - for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.</p>
+      <p>Releases of Ubuntu get a development codename ('{{ releases.latest.name }}') and are versioned by the year and month of delivery - for example, Ubuntu {{ releases.latest.short_version }} was released in {{ releases.latest.release_date }}.</p>
 
       <p>LTS or 'Long Term Support' releases are published every two years in April. LTS releases are the 'enterprise grade' releases of Ubuntu and are used the most. An estimated 95% of all Ubuntu installations are LTS releases.</p>
 
@@ -178,7 +178,7 @@
         </tbody>
       </table>
 
-      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year maintenance period, during which maintenance updates are publicly available without an Ubuntu Advantage Subscription, and five years of <a href="/security/esm">Extended Security Maintenance (ESM)</a>. The full lifecycle is available with an <a href="/advantage">Ubuntu Advantage subscription</a> or a <a href="/advantage">free personal subscription</a>.</p>
+      <p>For each Ubuntu LTS release, Canonical maintains the Base Packages and provides security updates, including kernel livepatching, for a period of ten years. The lifecycle consists of an initial five-year maintenance period, during which maintenance updates are publicly available without an Ubuntu Advantage Subscription, and five years of <a href="/security/esm">Extended Security Maintenance (ESM)</a>. The full lifecycle is available with an <a href="/pro">Ubuntu Advantage subscription</a> or a <a href="/pro">free personal subscription</a>.</p>
 
       <p>Customers of Canonical often ask for an extended security maintenance commitment beyond the Ubuntu Base Packages such as the 'universe' software packages. You can <a href="/support/contact-us">contact us for more information</a>.</p>
 
@@ -195,7 +195,7 @@
         }}
       </div>
 
-      <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public maintenance window comes to a close. Canonical recommends that users and organisations upgrade to the latest LTS release or <a href="/advantage">subscribe to Ubuntu Advantage</a> for continued security coverage with <a href="/security/esm">ESM</a> and <a href="/security/livepatch">kernel livepatching</a>.</p>
+      <p>Ubuntu LTS releases transition into Extended Security Maintenance (ESM) phase as the standard, five-year public maintenance window comes to a close. Canonical recommends that users and organisations upgrade to the latest LTS release or <a href="/pro">subscribe to Ubuntu Advantage</a> for continued security coverage with <a href="/security/esm">ESM</a> and <a href="/security/livepatch">kernel livepatching</a>.</p>
 
       <p>To check the subscription status of your system, use this command:</p>
 
@@ -401,9 +401,9 @@
 
       <p><a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.</p>
 
-      <p>However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provdide access to non-default versions of OpenStack on Ubuntu LTS.</p>
+      <p>However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provide access to non-default versions of OpenStack on Ubuntu LTS.</p>
 
-      <p>As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard support and Extended Security Maintenance (ESM). In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only.</p>
+      <p>As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard support and Extended Security Maintenance (ESM). In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only, except for some versions that are supported for 36 months under Ubuntu Advantage for Infrastructure (UA-I).</p>
 
       <p>Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack LTS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms</a> project.</p>
 
@@ -567,11 +567,15 @@
 <section class="p-tabs__content" id="canonical-kubernetes-release-cycle" role="tabpanel" aria-labelledby="canonical-kubernetes-release-cycle-tab">
   <div class="p-strip is-shallow">
     <div class="u-fixed-width">
-      <h2>Canonical Kubernetes release cycle</h2>
+      <h2>Charmed Kubernetes release cycle</h2>
 
-      <p>The release cycles of Canonical Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported, giving an effective support period of twelve months, subject to changes in the upstream release cycle. Canonical also provides security maintenance for N-4 Kubernetes releases in the stable release channel.</p>
-
-      <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
+      <p>The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides extended security maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.</p>
+      
+      <p>For <a href="/support">Ubuntu Advantage</a> support, users must upgrade to remain in the N-2 support window.</p>
+        
+      <p>ESM support includes fixes to high and critical CVEs related to Kubernetes charms, limited to the LTS Ubuntu releases in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and Microk8s.</p>
+      
+      <p>The Charmed Kubernetes support lifecycle can be represented this way:</p>
     </div>
 
     <div class="row">
@@ -582,69 +586,82 @@
             <tr>
               <th>Release</th>
               <th>Released</th>
-              <th>End of life</th>
+              <th>End of N-2 Support</th>
+              <th>End of N-4 ESM Support</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td><strong>1.25.x</strong></td>
+              <td align='right'>Sep 2022</td>
+              <td align='right'>Aug 2023</td>
+              <td align='right'>May 2024</td>
+            </tr>
+            <tr>
               <td><strong>1.24.x</strong></td>
               <td align='right'>May 2022</td>
               <td align='right'>May 2023</td>
+              <td align='right'>Dec 2023</td>
             </tr>
             <tr>
               <td><strong>1.23.x</strong></td>
               <td align='right'>Dec 2021</td>
-              <td align='right'>Dec 2022</td>
+              <td align='right'>Dec 2022</td>
+              <td align='right'>Aug 2023</td>
             </tr>
             <tr>
               <td><strong>1.22.x</strong></td>
-              <td align='right'>Aug 2021</td>
-              <td align='right'>Aug 2022</td>
+              <td align='right'>Sep 2021</td>
+              <td align='right'>Sep 2022</td>
+              <td align='right'>May 2023</td>
             </tr>
             <tr>
               <td><strong>1.21.x</strong></td>
               <td align='right'>Apr 2021</td>
-              <td align='right'>Apr 2022</td>
+              <td align='right'>May 2022</td>
+              <td align='right'>Dec 2022</td>
             </tr>
             <tr>
               <td><strong>1.20.x</strong></td>
               <td align='right'>Dec 2020</td>
               <td align='right'>Dec 2021</td>
+              <td align='right'>Sep 2022</td>
             </tr>
             <tr>
               <td><strong>1.19.x</strong></td>
-              <td align='right'>Aug 2020</td>
-              <td align='right'>Aug 2021</td>
+              <td align='right'>Sep 2020</td>
+              <td align='right'>Sep 2021</td>
+              <td align='right'>May 2022</td>
             </tr>
             <tr>
               <td><strong>1.18.x</strong></td>
-              <td align='right'>Mar 2020</td>
+              <td align='right'>Apr 2020</td>
               <td align='right'>Apr 2021</td>
+              <td align='right'>Dec 2021</td>
             </tr>
             <tr>
               <td><strong>1.17.x</strong></td>
-              <td align='right'>Jan 2020</td>
+              <td align='right'>Dec 2019</td>
               <td align='right'>Dec 2020</td>
+              <td align='right'>Sep 2021</td>
             </tr>
             <tr>
               <td><strong>1.16.x</strong></td>
-              <td align='right'>Oct 2019</td>
-              <td align='right'>Jul 2020</td>
+              <td align='right'>Sep 2019</td>
+              <td align='right'>Sep 2020</td>
+              <td align='right'>Apr 2021</td>
             </tr>
             <tr>
               <td><strong>1.15.x</strong></td>
-              <td>Sep 2019</td>
-              <td>Jun 2020</td>
+              <td>Jun 2019</td>
+              <td>Apr 2020</td>
+              <td>Dec 2020</td>
             </tr>
             <tr>
               <td><strong>1.14.x</strong></td>
-              <td>Jun 2019</td>
-              <td>Mar 2020</td>
-            </tr>
-            <tr>
-              <td><strong>1.13.x</strong></td>
               <td>Mar 2019</td>
               <td>Dec 2019</td>
+              <td>Sep 2020</td>
             </tr>
           </tbody>
         </table>
@@ -652,7 +669,7 @@
     </div>
 
     <div class="u-fixed-width">
-      <p>For more information on previous and current releases, please see the <a href="/kubernetes/docs/release-notes">Canonical Kubernetes</a> release notes or the <a href="https://microk8s.io/docs/release-notes">MicroK8s release notes.</a></p>
+      <p>For more information on previous and current releases, please see the <a href="/kubernetes/docs/release-notes">Charmed Kubernetes</a> release notes or the <a href="https://microk8s.io/docs/release-notes">MicroK8s release notes.</a></p>
     </div>
   </div>
 </section>

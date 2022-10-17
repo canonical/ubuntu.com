@@ -1,12 +1,5 @@
 from marshmallow import Schema, validate
-
-from webargs.fields import (
-    String,
-    List,
-    Nested,
-    Int,
-    Boolean,
-)
+from webargs.fields import Boolean, Int, List, Nested, String
 
 
 class EntitlementSchema(Schema):
@@ -53,17 +46,30 @@ class CustomerInfo(Schema):
     tax_id = Nested(TaxIdSchema())
 
 
+class PurchaseTotalSchema(Schema):
+    currency = String(required=True)
+    subtotal = Int(required=True)
+    tax = Int()
+    total = Int(required=True)
+
+
 account_purhcase = {
     "account_id": String(),
-    "captcha_value": String(requied=True),
     "customer_info": Nested(CustomerInfo),
-    "products": List(Nested(ProductListing), required=True),
-    "previous_purchase_id": String(required=True),
+    "products": List(Nested(ProductListing)),
+    "offer_id": String(),
+    "renewal_id": String(),
+    "previous_purchase_id": String(),
+    "captcha_value": String(),
     "marketplace": String(
         validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
         required=True,
     ),
-    "action": String(validate=validate.OneOf(["purchase", "resize", "trial"])),
+    "action": String(
+        validate=validate.OneOf(
+            ["purchase", "resize", "trial", "offer", "renewal"]
+        )
+    ),
 }
 
 
@@ -128,6 +134,7 @@ invoice_view = {
             ["", "canonical-ua", "canonical-cube", "blender"]
         )
     ),
+    "page": Int(),
 }
 
 post_account_user_role = {
@@ -158,4 +165,10 @@ put_contract_entitlements = {
 
 post_auto_renewal_settings = {
     "subscriptions": List(Nested(SubscriptionRenewalSchema), required=True)
+}
+
+post_purchase_calculate = {
+    "country": String(required=True),
+    "products": List(Nested(ProductSchema), required=True),
+    "has_tax": Boolean(),
 }

@@ -1,7 +1,8 @@
-<div class="col-4 blog-p-card--post">
-  {% include 'blog/blog-card-header.html' %}
+<div class="col-4 col-medium-2 blog-p-card--post">
+  {% include "blog/blog-card-header.html" %}
 
   <div class="blog-p-card__content">
+
     {% if article.image and article.image.source_url %}
     <div class="u-crop--16-9">
       <a href="/blog/{{ article.slug }}" aria-hidden="true" tabindex="-1">
@@ -20,9 +21,9 @@
         on {{ article.date }}</em>
     </p>
 
-    {% if summary_visible or not article.image.source_url %}
-    <p class="u-no-padding--bottom{% if summary_visible %} u-hide--small{% endif %}">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
-    {% endif %}
+      {% if summary_visible or not article.image.source_url %}
+      <p class="{% if summary_visible %}u-hide--small{% endif %}" style="padding-top:1rem;">{{ article.excerpt.raw.replace("[…]", "")|truncate(162) }}</p>
+      {% endif %}
   </div>
 
   <p class="blog-p-card__footer">

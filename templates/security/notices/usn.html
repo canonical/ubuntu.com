@@ -63,10 +63,10 @@
               <div>
                 <small>
                   {% if package.pocket == "esm-infra" %}
-                    Available with <a href="/advantage">UA Infra or UA Desktop</a>
+                    Available with <a href="/pro">Ubuntu Pro (Infra-only)</a>
                   {% endif %}
                   {% if package.pocket == "esm-apps" %}
-                    Available with <a href="/advantage">UA Apps or UA Desktop</a>
+                    Available with <a href="/pro">Ubuntu Pro</a>
                   {% endif %}
                 </small>
               </div>
@@ -92,7 +92,7 @@
 
         {% if notice.references %}
           {% for reference in notice.references %}
-            <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</li>
+            <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</a></li>
           {% endfor %}
         {% endif %}
       </ul>

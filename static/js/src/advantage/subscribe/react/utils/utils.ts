@@ -1,3 +1,4 @@
+import { marketplace } from "./../../../../PurchaseModal/utils/utils";
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
 
 interface DefaultPaymentMethod {
@@ -98,4 +99,144 @@ export type BuyButtonProps = {
   setIsMarketingOptInChecked: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export enum ProductTypes {
+  physical = "physical",
+  virtual = "virtual",
+  desktop = "desktop",
+  publicCloud = "publicCloud",
+}
+
+export enum PublicClouds {
+  aws = "aws",
+  azure = "azure",
+  gcp = "gcp",
+  oracle = "oracle",
+}
+
+export enum LTSVersions {
+  jammy = "22.04",
+  focal = "20.04",
+  bionic = "18.04",
+  xenial = "16.04",
+  trusty = "14.04",
+}
+
+export enum Support {
+  none = "none",
+  infra = "essential",
+  full = "advanced",
+}
+
+export enum SLA {
+  none = "none",
+  weekday = "weekday",
+  everyday = "everyday",
+}
+
+export enum Features {
+  infra = "uai",
+  pro = "uaia",
+}
+
+export enum Periods {
+  monthly = "monthly",
+  yearly = "yearly",
+}
+
+// export type ProductIDs = `${Features}-${Support}-${ProductTypes}-${Periods}`;
+export type ProductIDs = `${ProductTypes}-${Features}-${Support}-${SLA}-${Periods}`;
+
+export type ValidProducts =
+  | "uai-essential-physical-yearly"
+  | "uai-essential-physical-monthly"
+  | "uai-standard-physical-yearly"
+  | "uai-advanced-physical-yearly"
+  | "uaia-essential-physical-yearly"
+  | "uaia-essential-physical-monthly"
+  | "uio-standard-physical-yearly"
+  | "uio-advanced-physical-yearly"
+  | "uaia-standard-physical-yearly"
+  | "uaia-advanced-physical-yearly"
+  | "uai-essential-desktop-yearly"
+  | "uai-essential-desktop-monthly"
+  | "uai-standard-desktop-yearly"
+  | "uai-advanced-desktop-yearly"
+  | "no-product";
+
+export type ProductListings = {
+  [key in ValidProducts]?: Product;
+};
+
+export type Product = {
+  canBeTrialled: boolean;
+  longId: string;
+  name: string;
+  period: Periods;
+  price: {
+    value: number;
+    currency: string;
+  };
+  private: boolean;
+  id: ProductIDs;
+  productID: string;
+  marketplace: marketplace;
+};
+
+export const isMonthlyAvailable = (product: Product | null) => {
+  if (!product || !product.id) return false;
+
+  const monthlyID = product.id.replace(Periods.yearly, Periods.monthly);
+  return !!window.productList[monthlyID as ValidProducts];
+};
+
+export const isPublicCloud = (type: ProductTypes) =>
+  type === ProductTypes.publicCloud;
+
+export const formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+export const getProduct = (
+  productType: ProductTypes,
+  feature: Features,
+  support: Support,
+  sla: SLA,
+  period: Periods
+): ValidProducts => {
+  const productKey = `${productType}-${feature}-${support}-${sla}-${period}`;
+  switch (productKey) {
+    case `${ProductTypes.physical}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uai-essential-physical-yearly";
+    case `${ProductTypes.physical}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uai-essential-physical-monthly";
+    case `${ProductTypes.physical}-${Features.infra}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
+      return "uai-standard-physical-yearly";
+    case `${ProductTypes.physical}-${Features.infra}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
+      return "uai-advanced-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uaia-essential-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uaia-essential-physical-monthly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
+      return "uio-standard-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
+      return "uio-advanced-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.weekday}-${Periods.yearly}`:
+      return "uaia-standard-physical-yearly";
+    case `${ProductTypes.physical}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
+      return "uaia-advanced-physical-yearly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uai-essential-desktop-yearly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uai-essential-desktop-monthly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.full}-${SLA.weekday}-${Periods.yearly}`:
+      return "uai-standard-desktop-yearly";
+    case `${ProductTypes.desktop}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
+      return "uai-advanced-desktop-yearly";
+    default:
+      return "no-product";
+  }
 };

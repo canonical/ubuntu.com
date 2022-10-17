@@ -1,16 +1,18 @@
+from distutils.util import strtobool
+import os
 from datetime import datetime
-from typing import List, Optional, Dict
+from typing import Dict, List, Optional
 
 import pytz
 from dateutil.parser import parse
 
-from webapp.shop.api.ua_contracts.models import Listing, Entitlement
+from webapp.shop.api.ua_contracts.models import Entitlement, Listing
 from webapp.shop.api.ua_contracts.primitives import (
-    Subscription,
-    ContractItem,
-    Renewal,
     Account,
     Contract,
+    ContractItem,
+    Renewal,
+    Subscription,
 )
 
 
@@ -149,7 +151,7 @@ def get_user_subscription_statuses(
 ) -> dict:
     # The explanations below use two concepts:
     # - user subscription: these maps 1:1 with ua-contracts' contract items,
-    #   and these are the cards we present in /advantage.
+    #   and these are the cards we present in /pro.
     # - billing subscription: a bundle of products as billed periodically in
     #   Stripe. These may lead to the creation of one or more user
     #   subscriptions over time.
@@ -189,7 +191,7 @@ def get_user_subscription_statuses(
         "is_renewable": False,
         # is_renewal_actionable describes whether a user subscription that
         # is_renewable belongs to a renewal that can be acted on by the user
-        # via /advantage. If this is False, it means the customer should
+        # via /pro. If this is False, it means the customer should
         # contact support to renew (because it's a special old-style renewal).
         "is_renewal_actionable": False,
         # has_pending_purchases describes whether this user subscription
@@ -216,13 +218,16 @@ def get_user_subscription_statuses(
         # has_access_to_token describes whether this user subscription displays
         # the token or not. At the moment `billing` users do not have access
         "has_access_to_token": False,
+        # is_renewed describes whether this user subscription has been renewed
+        # already or not
+        "is_renewed": False,
     }
 
     if account.role != "billing":
         statuses["has_access_to_support"] = True
         statuses["has_access_to_token"] = True
 
-    if type == "free":
+    if type == "free" or strtobool(os.getenv("STORE_MAINTENANCE", "false")):
         return statuses
 
     if renewal is None or (renewal and renewal.status != "closed"):
@@ -260,19 +265,10 @@ def get_user_subscription_statuses(
             subscriptions, subscription_id
         )
 
-    if type == "yearly":
-        statuses["is_upsizeable"] = statuses["is_subscription_active"]
-        statuses["should_present_auto_renewal"] = (
-            statuses["is_subscription_active"] and statuses["is_expiring"]
+        statuses["is_renewed"] = is_subscription_auto_renewing(
+            subscriptions, subscription_id
         )
 
-        if (
-            not statuses["is_subscription_active"]
-            or statuses["is_subscription_auto_renewing"]
-        ):
-            statuses["is_expiring"] = False
-
-    if type == "monthly":
         is_cancelled = True if not current_number_of_machines else False
         statuses["is_cancelled"] = is_cancelled
         statuses["should_present_auto_renewal"] = (
@@ -301,6 +297,9 @@ def get_user_subscription_statuses(
             time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
             if start <= time_now <= end:
                 statuses["is_renewable"] = True
+
+        if renewal.actionable and renewal.status in ["done", "closed"]:
+            statuses["is_renewed"] = True
 
     return statuses
 
@@ -377,6 +376,21 @@ def is_billing_subscription_active(
             return True
 
     return False
+
+
+def is_subscription_auto_renewing(
+    subscriptions: List[Subscription], subscription_id: str
+) -> bool:
+    subscription = [
+        subscription
+        for subscription in subscriptions
+        if subscription.id == subscription_id
+    ]
+
+    if not subscription:
+        return False
+
+    return subscription[0].is_auto_renewing
 
 
 def is_billing_subscription_auto_renewing(

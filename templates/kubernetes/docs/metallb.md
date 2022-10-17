@@ -12,6 +12,7 @@ permalink: metallb.html
 layout: [base, ubuntu-com]
 toc: False
 ---
+
 # About
 
 [MetalLB][metallb] is a Kubernetes-aware solution that will monitor for services with
@@ -34,10 +35,11 @@ anti-affinity to prevent Kubernetes pods from stacking on a single node.
 <div class="p-notification--positive is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">For more information on configuring MetalLB with Calico in BGP mode, please see this
-    <a href="https://metallb.universe.tf/configuration/calico/">
-    explanation of the required configuration</a> from the
-    <a href="https://metallb.universe.tf/"> MetalLB website</a></p>
+    <p class="p-notification__message">
+      For more information on configuring MetalLB with Calico in BGP mode, please see this
+      <a href="https://metallb.universe.tf/configuration/calico/">explanation of the required configuration</a> from the
+      <a href="https://metallb.universe.tf/"> MetalLB website</a>
+    </p>
   </div>
 </div>
 
@@ -46,10 +48,10 @@ anti-affinity to prevent Kubernetes pods from stacking on a single node.
 ## Layer 2 mode
 
 The best way to deploy MetalLB in layer 2 mode on Charmed Kubernetes is with
-the MetalLB bundle, which includes Kubernetes operator charms both the
-controller and speaker components.
+the Kubernetes operator charms for both the
+controller and speaker components.  See notes concerning [RBAC](#rbac-note)
 
-To deploy the operator, you will first need a Kubernetes model in Juju.
+To deploy the operators, you will first need a Kubernetes model in Juju.
 Add your Kubernetes as a cloud to your Juju controller:
 
 ```
@@ -62,10 +64,11 @@ Next, create a new Kubernetes model:
 juju add-model metallb-system k8s-cloud
 ```
 
-Then you can deploy MetalLB:
+Then you can deploy the MetalLB charms:
 
 ```bash
-juju deploy metallb
+juju deploy metallb-controller
+juju deploy metallb-speaker
 ```
 
 ### Configuration
@@ -75,32 +78,14 @@ your environment. The IP addresses can be specified as a range, such as
 "192.168.1.88-192.168.1.89", or as a comma-separated list of pools in CIDR
 notation, such as "192.168.1.240/28, 10.0.0.0/28".
 
-Configuring the IP addresses can be done either at time of deployment via a
-[bundle overlay][], or later by changing the charm config via Juju.
-
-An example bundle overlay might look like:
-
-```yaml
-applications:
-  metallb-controller:
-    options:
-      iprange: "192.168.1.88-192.168.1.89"
-```
-
-You would then specify this when deploying the bundle:
-
-```bash
-juju deploy metallb --overlay ./overlay.yaml
-```
-
-Alternatively, you can change the config directly on the metallb-controller
-charm at any time:
+Configuring the IP addresses can be done at any time by changing the charm config via Juju.
 
 ```bash
 juju config metallb-controller iprange="192.168.1.240/28, 10.0.0.0/28"
 ```
 
 ### Note: Using RBAC
+<a name="rbac-note"> </a>
 
 If RBAC is enabled in the Kubernetes cluster, an extra deployment step is
 required: before deploying MetalLB, you must apply the [RBAC permissions
@@ -109,8 +94,7 @@ to use the Kubernetes API to create the necessary resources to make MetalLB
 work. You can apply the manifest using `kubectl`:
 
 ```bash
-wget https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/rbac-permissions-operators.yaml
-kubectl apply -f rbac-permissions-operators.yaml
+kubectl apply -f https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/main/docs/rbac-permissions-operators.yaml
 ```
 
 Be aware that the manifest has to refer to the namespace in which MetalLB is
@@ -178,7 +162,6 @@ kubectl delete -f example-microbot-lb.yaml
 [metallb]: https://metallb.universe.tf
 [arp]: https://tools.ietf.org/html/rfc826
 [bgp]: https://tools.ietf.org/html/rfc1105
-[bundle overlay]: https://juju.is/docs/charm-bundles#heading--overlay-bundles
 [rbac-manifest]: https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/rbac-permissions-operators.yaml
 [upstream manifests]: https://github.com/metallb/metallb/tree/main/manifests
 [configmap]: https://metallb.universe.tf/configuration/#bgp-configuration

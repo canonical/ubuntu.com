@@ -76,8 +76,19 @@ class AdvantageMapper:
 
         return response.get("contractToken")
 
-    def get_product_listings(self, marketplace: str) -> Dict[str, Listing]:
-        response = self.ua_contracts_api.get_product_listings(marketplace)
+    def get_product_listings(
+        self, marketplace: str, filters=None
+    ) -> Dict[str, Listing]:
+        url_filters = ""
+        if filters:
+            filters = "&".join(
+                "{}={}".format(key, value) for key, value in filters.items()
+            )
+            url_filters = f"?{filters}"
+
+        response = self.ua_contracts_api.get_product_listings(
+            marketplace, url_filters
+        )
 
         return parse_product_listings(
             response.get("productListings", []),
@@ -180,7 +191,10 @@ class AdvantageMapper:
     def get_user_subscriptions(self, email: str) -> List[UserSubscription]:
         listings = {}
         for marketplace in ["canonical-ua", "blender"]:
-            marketplace_listings = self.get_product_listings(marketplace)
+            marketplace_listings = self.get_product_listings(
+                marketplace,
+                filters={"include-hidden": "true"},
+            )
             listings.update(marketplace_listings)
 
         accounts = self.get_accounts(email=email)
@@ -226,8 +240,9 @@ class AdvantageMapper:
                 captcha_value=captcha_value,
             )
 
-            self.ua_contracts_api.set_authentication_token(account.token)
-            self.ua_contracts_api.set_token_type("Bearer")
+            if account.token:
+                self.ua_contracts_api.set_authentication_token(account.token)
+                self.ua_contracts_api.set_token_type("Bearer")
 
             return account
 
@@ -238,6 +253,8 @@ class AdvantageMapper:
         customer_info: dict,
         action: str,
         products: dict,
+        offer_id: str,
+        renewal_id: str,
         previous_purchase_id: str,
         session: dict,
         preview: bool = False,
@@ -294,6 +311,12 @@ class AdvantageMapper:
 
         if action == "trial":
             purchase_request["inTrial"] = True
+
+        if action == "offer":
+            purchase_request["offerID"] = offer_id
+
+        if action == "renewal":
+            purchase_request["renewalID"] = renewal_id
 
         # marketing parameters
         metadata_keys = [

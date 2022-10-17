@@ -1,6 +1,6 @@
 {% extends "templates/base.html" %}
 
-{% block title %} {{ vendor }} {{ model }} certified with Ubuntu{% endblock %}
+{% block title %}{{ vendor }} {{ name }} certified with Ubuntu{% endblock %}
 
 {% block meta_description %}Hardware that have been certified for use with Ubuntu.{% endblock meta_description %}
 
@@ -71,7 +71,7 @@
           <li class="{% if release_details['releases']|length > 1 %}p-accordion__group{% endif %}">
             {% if release_details['releases']|length > 1%}
             <h3 class="p-accordion__heading u-no-margin--bottom">
-              <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;"id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false">{{ release.name }}</button>
+              <button type="button" class="p-accordion__tab" style="background-position: top 1.25rem left 1rem;" id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false">{{ release.name }}</button>
             </h3>
             {% else %}
             <h3>{{ release.name }}</h3>
@@ -86,18 +86,7 @@
             {% elif release.level == "Certified" %}
               <p>The {{ vendor }} {{ name }} with the components described below has been awarded the status of certified for Ubuntu.</p>
               <p class="u-no-margin--bottom">
-                {% if category == "Desktop" or category == "Laptop" %}
-                <a href="/download/desktop" class="p-button">Download</a>
-                {% endif %}
-                {% if category == "Ubuntu Core" %}
-                <a href="/download/iot" class="p-button">Download</a>
-                {% endif %}
-                {% if category == "Server" %}
-                <a href="/download/server" class="p-button">Download</a>
-                {% endif %}
-                {% if category == "Server SoC" %}
-                <a href="/download/server/arm" class="p-button">Download</a>
-                {% endif %}
+                <a href="{{ release.download_url }}" class="p-button">Download</a>
               </p>
             {% endif %}
             {% if release.kernel %}

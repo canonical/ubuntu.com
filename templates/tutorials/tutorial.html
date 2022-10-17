@@ -10,32 +10,16 @@
 
 {% block content %}
 
-<div id="secondary-navigation" class="p-navigation is-secondary is-dark">
-  <div class="p-navigation__row">
-    <div class="p-navigation__banner">
-      <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link" href="/tutorials">
-          <div class="p-navigation__logo-tag">
-            <img class="p-navigation__logo-icon" src="https://assets.ubuntu.com/v1/82818827-CoF_white.svg" alt="">
-          </div>
-          <span class="p-navigation__logo-title">Tutorials</span>
-        </a>
-      </div>
-      <div class="u-hide js-account--small"></div>
-      <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
+<div class="p-strip">
+  <div class="row">
+    <div class="col-7 col-start-large-5">
+      <h1 class="p-heading--2">{{ document.title }}</h1>
     </div>
-    <nav class="p-navigation__nav" aria-label="Tutorials navigation">
-      <ul class="p-navigation__items">
-        <li class="p-navigation__item" style="max-width: none;">
-          <a class="p-navigation__link" href="{{ document['slug'] }}" style="overflow:visible;">{{ document.title }}</a>
-        </li>
-      </ul>
-    </nav>
   </div>
 </div>
 
-<div class="l-tutorial">
-  <aside class="l-tutorial__sidebar">
+<div class="l-tutorial row">
+  <aside class="l-tutorial__sidebar col-4">
     <button type="button" class="l-tutorial__nav-toggle p-icon--menu u-hide u-show--small" aria-controls="menu-tutorial" aria-expanded="false">
       Toggle tutorial menu
     </button>
@@ -51,7 +35,7 @@
       {% endfor %}
     </ol>
   </aside>
-  <div class="l-tutorial__content">
+  <div class="l-tutorial__content col-8">
     {% for section in document.sections %}
     <section class="l-tutorial-section" id="{{ loop.index }}-{{ section['slug']}}">
       <h2 class="p-heading--3">{{ loop.index }}. {{ section["title"]}}</h2>

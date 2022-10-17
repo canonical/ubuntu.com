@@ -132,18 +132,6 @@ export const interactiveForms = [
     noOfPages: 4,
   },
   {
-    url: "/automotive",
-    inputs: [
-      [/First name/, "test"],
-      [/Last name/, "test"],
-      [/Company/, "test"],
-      [/Email address/, "test@gmail.com"],
-      [/Mobile\/cell phone number:/, "07777777777"],
-    ],
-    submitBtn: /Let's discuss/,
-    noOfPages: 3,
-  },
-  {
     url: "/aws",
     inputs: [
       [/First name/, "test"],

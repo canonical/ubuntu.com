@@ -1,32 +1,5 @@
 {% extends "desktop/base_desktop.html" %}
 
-{% block head_extra %}
-<style type="text/css">
-  @-webkit-keyframes flash-sign {
-    22%, 28%, 98%, 100% {
-      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-      opacity: 0;p-strip--suru-half-and-half-reversed is-dark
-    }
-
-    27%, 99% {
-      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-      opacity: 1;
-    }
-  }
-
-  @keyframes flash-sign {
-    22%, 28%, 98%, 100% {
-      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-      opacity: 0;
-    }
-
-    27%, 99% {
-      filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-      opacity: 1;
-    }p-strip--suru-half-and-half-reversed is-dark
-  }
-</style>
-{% endblock %}
 {% block title %}Desktop features{% endblock %}
 {% block meta_description %}Learn about all the great features and default applications in the Ubuntu desktop operating system.{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1nLHJlZ3igDwAAOUDP03wp4iKLxZts8110EA2ZOF5uaU/edit{% endblock meta_copydoc %}
@@ -41,10 +14,10 @@
     </div>
     <div class="col-6 u-vertically-center u-hide--medium u-hide--medium u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/fa57dc30-desktop-22.04-laptop.png",
+        url="https://assets.ubuntu.com/v1/1930f20c-desktop-xps13-alt.png",
         alt="",
-        width="1000",
-        height="578",
+        width="600",
+        height="498",
         hi_def=True,
         loading="auto"
         ) | safe
@@ -81,8 +54,8 @@
       <li class="p-matrix__item">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/3d6245f8-skype-icon.svg",
-            alt="Skype icon",
+            url="https://assets.ubuntu.com/v1/4bb576dc-bitwarden.svg",
+            alt="Bitwarden icon",
             height="48",
             width="48",
             hi_def=True,
@@ -90,8 +63,8 @@
           ) | safe
         }}
         <div class="p-matrix__content">
-          <h3 class="p-matrix__title"><a href="https://snapcraft.io/skype">Skype</a></h3>
-          <p class="p-matrix__desc">The free instant messaging, voice or video calling service.</p>
+          <h3 class="p-matrix__title"><a href="https://snapcraft.io/bitwarden">Bitwarden</a></h3>
+          <p class="p-matrix__desc">A secure and free password manager for all of your devices.</p>
         </div>
       </li>
       <li class="p-matrix__item">
@@ -375,7 +348,7 @@
     <div class="col-6 col-start-large-7 p-gaming__content">
       <div class="p-card--overlay">
         <h2>Gaming</h2>
-        <p>From Sudoku to first-person shooters, we've got loads of games that'll keep you busy for hours.  There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms.  Pick from critically acclaimed titles such as Dota 2, Kerbal Space Program, Counter Strike: Global Offensive and Borderlands: The Pre-Sequel.</p>
+        <p>From Sudoku to first-person shooters, we've got loads of games that'll keep you busy for hours. There are thousands of games available for Ubuntu, including titles from the Unity and Steam platforms. Pick from critically acclaimed titles such as Dota 2, Kerbal Space Program and Counter Strike: Global Offensive.</p>
       </div>
     </div>
     <div class="u-hide--small p-gaming__flash"></div>

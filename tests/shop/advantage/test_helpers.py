@@ -593,6 +593,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_yearly_user_subscription_just_started": {
@@ -610,8 +611,8 @@ class TestHelpers(unittest.TestCase):
                 },
                 "expectations": {
                     "is_upsizeable": True,
-                    "is_downsizeable": False,
-                    "is_cancellable": False,
+                    "is_downsizeable": True,
+                    "is_cancellable": True,
                     "is_cancelled": False,
                     "is_expiring": False,
                     "is_in_grace_period": False,
@@ -622,9 +623,10 @@ class TestHelpers(unittest.TestCase):
                     "has_pending_purchases": False,
                     "is_subscription_active": True,
                     "is_subscription_auto_renewing": False,
-                    "should_present_auto_renewal": False,
+                    "should_present_auto_renewal": True,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_yearly_user_subscription_expiring": {
@@ -642,8 +644,8 @@ class TestHelpers(unittest.TestCase):
                 },
                 "expectations": {
                     "is_upsizeable": True,
-                    "is_downsizeable": False,
-                    "is_cancellable": False,
+                    "is_downsizeable": True,
+                    "is_cancellable": True,
                     "is_cancelled": False,
                     "is_expiring": True,
                     "is_in_grace_period": False,
@@ -657,6 +659,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": True,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_yearly_user_subscription_expiring_but_auto_renewing": {
@@ -677,8 +680,8 @@ class TestHelpers(unittest.TestCase):
                 },
                 "expectations": {
                     "is_upsizeable": True,
-                    "is_downsizeable": False,
-                    "is_cancellable": False,
+                    "is_downsizeable": True,
+                    "is_cancellable": True,
                     "is_cancelled": False,
                     "is_expiring": False,
                     "is_in_grace_period": False,
@@ -692,6 +695,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": True,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": True,
                 },
             },
             "test_yearly_user_subscription_grace_period": {
@@ -699,13 +703,20 @@ class TestHelpers(unittest.TestCase):
                     "account": make_account(),
                     "type": "yearly",
                     "end_date": "2020-08-31T23:59:59Z",
-                    "subscriptions": None,
+                    "subscriptions": [
+                        make_subscription(
+                            id="abc",
+                            status="active",
+                            period="yearly",
+                        ),
+                    ],
+                    "subscription_id": "abc",
                     "machines": 1,
                 },
                 "expectations": {
-                    "is_upsizeable": False,
-                    "is_downsizeable": False,
-                    "is_cancellable": False,
+                    "is_upsizeable": True,
+                    "is_downsizeable": True,
+                    "is_cancellable": True,
                     "is_cancelled": False,
                     "is_expiring": False,
                     "is_in_grace_period": True,
@@ -714,11 +725,12 @@ class TestHelpers(unittest.TestCase):
                     "is_renewable": False,
                     "is_renewal_actionable": False,
                     "has_pending_purchases": False,
-                    "is_subscription_active": False,
+                    "is_subscription_active": True,
                     "is_subscription_auto_renewing": False,
-                    "should_present_auto_renewal": False,
+                    "should_present_auto_renewal": True,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_monthly_user_subscription": {
@@ -754,6 +766,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": True,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": True,
                 },
             },
             "test_cancelled_user_subscription": {
@@ -788,6 +801,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_expired_user_subscription": {
@@ -815,6 +829,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_trial_user_subscription": {
@@ -848,6 +863,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_pending_purchases_user_subscription": {
@@ -879,6 +895,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_legacy_user_subscription": {
@@ -910,6 +927,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_non_actionable_legacy_user_subscription": {
@@ -936,6 +954,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": False,
                 },
             },
             "test_closed_legacy_user_subscription": {
@@ -967,6 +986,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": False,
                     "has_access_to_support": True,
                     "has_access_to_token": True,
+                    "is_renewed": True,
                 },
             },
             "test_billing_user_subscription": {
@@ -1000,6 +1020,7 @@ class TestHelpers(unittest.TestCase):
                     "should_present_auto_renewal": True,
                     "has_access_to_support": False,
                     "has_access_to_token": False,
+                    "is_renewed": False,
                 },
             },
         }

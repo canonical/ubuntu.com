@@ -9,6 +9,8 @@ from requests import Session
 from webapp.certified.api import CertificationAPI, PartnersAPI
 from urllib.parse import urlencode
 
+from webapp.certified.helpers import get_download_url
+
 session = Session()
 talisker.requests.configure(session)
 api = CertificationAPI(
@@ -142,6 +144,7 @@ def certified_model_details(canonical_id):
             "level": model_release["level"],
             "notes": model_release["notes"],
             "version": ubuntu_version,
+            "download_url": get_download_url(model_release),
             "components": {},
         }
 
@@ -214,6 +217,10 @@ def certified_home():
     iot_releases = []
     iot_vendors = []
 
+    # Server section
+    server_releases = []
+    server_vendors = []
+
     # Search results filters
     all_releases = []
     release_filters = []
@@ -243,6 +250,9 @@ def certified_home():
         if int(release["soc"] > 1):
             soc_releases.append(release)
 
+        if int(release["servers"] > 1):
+            server_releases.append(release)
+
     for vendor in certified_makes:
         make = vendor["make"]
 
@@ -266,19 +276,11 @@ def certified_home():
         if int(vendor["soc"] > 1):
             soc_vendors.append(vendor)
 
-    # Server section
-    server_releases = {}
-    server_vendors = api.vendor_summaries_server()["vendors"]
+        if int(vendor["servers"] > 1):
+            server_vendors.append(vendor)
 
-    for vendor in server_vendors:
-        for release in vendor["releases"]:
-            if release in server_releases:
-                server_releases[release] += vendor[release]
-            else:
-                server_releases[release] = vendor[release]
-
-    if request.args:
-        query = request.args.get("q", default=None, type=str)
+    if "q" in request.args:
+        query = request.args["q"]
 
         # Old site replacements
         if set(request.args) & set(["query", "vendors"]):

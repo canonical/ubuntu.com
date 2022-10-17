@@ -24,15 +24,20 @@ import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification
 import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import RenewalModal from "../RenewalModal";
+import { UserSubscriptionType } from "advantage/api/enum";
 
 type Props = {
   modalActive?: boolean;
   onCloseModal: () => void;
   selectedId?: SelectedId;
+  setHasUnsavedChanges: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
-  ({ modalActive, onCloseModal, selectedId }: Props, ref) => {
+  (
+    { modalActive, onCloseModal, selectedId, setHasUnsavedChanges }: Props,
+    ref
+  ) => {
     const { openPortal, closePortal, isOpen, Portal } = usePortal();
     const showPortal = useCallback((show: boolean) => {
       // Programatically opening portals currently has an unresolved issue so we
@@ -103,6 +108,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
           "is-active": modalActive && !showingCancel,
         })}
         ref={ref}
+        style={{ position: "sticky", top: 0, alignSelf: "start" }}
       >
         <section className="p-modal__dialog">
           <div className="u-sv1">
@@ -123,17 +129,56 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               >
                 Close
               </button>
+              {subscription.statuses.is_expired ? (
+                <button className="p-chip--negative">
+                  <span className="p-chip__value">Expired</span>
+                </button>
+              ) : (
+                <>
+                  {subscription.type == "legacy" && subscription.renewal_id ? (
+                    <>
+                      {subscription.statuses.is_renewed ? (
+                        <button className="p-chip--positive">
+                          <span className="p-chip__value">Renewed</span>
+                        </button>
+                      ) : (
+                        <button className="p-chip--caution">
+                          <span className="p-chip__value">Not renewed</span>
+                        </button>
+                      )}
+                    </>
+                  ) : null}
+                  {subscription.type == "monthly" ||
+                  subscription.type == "yearly" ? (
+                    <>
+                      {subscription.statuses.is_renewed ? (
+                        <button className="p-chip--positive">
+                          <span className="p-chip__value">Auto-renewal on</span>
+                        </button>
+                      ) : (
+                        <button className="p-chip--caution">
+                          <span className="p-chip__value">
+                            Auto-renewal off
+                          </span>
+                        </button>
+                      )}
+                    </>
+                  ) : null}
+                </>
+              )}
             </header>
             <ExpiryNotification
               borderless
               className="p-subscriptions__details-notification"
               size={ExpiryNotificationSize.Large}
+              subscriptionType={subscription.type}
               statuses={subscription.statuses}
             />
             {notification ? <Notification {...notification} /> : null}
             {isFree ? null : (
               <>
-                {subscription.statuses.has_access_to_support ? (
+                {subscription.statuses.has_access_to_support &&
+                subscription.type !== UserSubscriptionType.Trial ? (
                   <Button
                     appearance="positive"
                     className="p-subscriptions__details-action"
@@ -241,7 +286,10 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               setShowingCancel={setShowingCancel}
             />
           ) : (
-            <DetailsContent selectedId={selectedId} />
+            <DetailsContent
+              selectedId={selectedId}
+              setHasUnsavedChanges={setHasUnsavedChanges}
+            />
           )}
         </section>
         {showingRenewalModal ? (

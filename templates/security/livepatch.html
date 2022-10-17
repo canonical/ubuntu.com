@@ -9,7 +9,7 @@
 meta_copydoc %}
 
 {% block content %}
-<section class="p-strip u-no-padding--top u-no-padding--bottom is-bordered">
+<section class="p-strip u-no-padding">
   <div class="p-strip--suru-topped">
     <div class="row u-equal-height">
       <div class="col-7">
@@ -18,14 +18,36 @@ meta_copydoc %}
         <p>Livepatch eliminates the need for unplanned maintenance windows for high and critical severity kernel
           vulnerabilities by patching the Linux kernel while the system runs. Reduce fire drills while keeping
           uninterrupted service with the Ubuntu Livepatch service for up to 10 years.</p>
-        <p>Livepatch is included in <a href="/cloud/public-cloud">Ubuntu Pro</a> and <a href="/advantage">Ubuntu Advantage</a>.
+        <p>Livepatch is included in <a href="/pro">Ubuntu Pro</a>.
         </p>
-        <p><a class="p-button--positive" href="/advantage#livepatch">Get Ubuntu Advantage</a></p>
+        <p><a class="p-button--positive" href="/pro#livepatch">Get Ubuntu Pro</a></p>
       </div>
       <div class="col-5 u-vertically-center">
         <div class="u-embedded-media">
           <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/IOLQQZVYbbg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow u-equal-height">
+  <div class="row">
+    <div class="col-2 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5865c9d2-image-document-ubuntuterms.png",
+        alt="",
+        width="100",
+        height="120",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+    <div class="col-10 u-vertically-center">
+      <div>
+        <h2 class="p-heading--3">Read the Livepatch documentation</h2>
+        <a href="/security/livepatch/docs">Read the docs</a>
       </div>
     </div>
   </div>
@@ -104,7 +126,7 @@ meta_copydoc %}
         </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/72bfe690-Livepatching+at-a-glance-diagram.svg",
@@ -130,7 +152,7 @@ meta_copydoc %}
       <p>Livepatch on-prem is designed for complex Enterprise environments that follow their own rollout policy and remain in control of which machines will get updated and when. Livepatch on-prem regularly syncs with the Ubuntu Livepatch service and obtains the latest patches. It then deploys the livepatches gradually in as many stages as required.</p>
       <a href="/security/livepatch/docs/on_prem" class="p-button">Read more</a>
     </div>
-    <div class="col-6">
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{
         image(
         url="https://assets.ubuntu.com/v1/0fe5fa1d-Livepatch+on-prem+overview-diagram.svg",
@@ -284,13 +306,13 @@ meta_copydoc %}
         <hr>
         <p>All you need is an Ubuntu One Account. Free for up to 3 machines.</p>
         <br>
-        <a href="/advantage" class="p-button--positive">Get your free subscription</a>
+        <a href="/pro" class="p-button--positive">Get your free subscription</a>
       </div>
       <div class="p-card col-6">
-        <h3 class="p-card__title">Part of Ubuntu Pro and Advantage</h3>
+        <h3 class="p-card__title">Part of Ubuntu Pro</h3>
         <hr>
-        <p>Get Livepatch with Ubuntu Pro or your Ubuntu Advantage subscription from Canonical.</p>
-        <a href="/advantage#livepatch" class="p-button--positive">Get Ubuntu Advantage</a>
+        <p>Get Livepatch with an Ubuntu Pro subscription from Canonical.</p>
+        <a href="/pro#livepatch" class="p-button--positive">Get Ubuntu Pro</a>
       </div>
   </div>
 </section>
@@ -310,11 +332,11 @@ meta_copydoc %}
             Attach your subscription
           </h3>
           <div class="p-code-snippet">
-            <pre class="p-code-snippet__block--icon"><code>sudo ua attach [TOKEN]</code></pre>
+            <pre class="p-code-snippet__block--icon"><code>sudo pro attach [TOKEN]</code></pre>
           </div>            
           <div class="p-notification--information">
             <div class="p-notification__content">
-              <p class="p-notification__message">Note: obtain the subscription token via the <a href="/advantage">Ubuntu Advantage portal</a>. This step is not necessary on Ubuntu Pro.</p>
+              <p class="p-notification__message">Note: obtain the subscription token via the <a href="/pro">Ubuntu Pro portal</a>. This step is not necessary on Ubuntu Pro.</p>
             </div>
           </div>
         </li>
@@ -323,7 +345,7 @@ meta_copydoc %}
             Enable Livepatch on your system
           </h3>
           <div class="p-code-snippet">
-            <pre class="p-code-snippet__block--icon"><code>sudo ua enable livepatch</code></pre>
+            <pre class="p-code-snippet__block--icon"><code>sudo pro enable livepatch</code></pre>
           </div>          
         </li>
       </ol>
@@ -365,7 +387,7 @@ meta_copydoc %}
 
 <section class="p-strip is-deep is-bordered">
   <div class="row u-equal-height">
-    <div class="col-3 u-vertically-center u-hide--medium u-hide--small">
+    <div class="col-3 u-vertically-center u-align--center u-hide--medium u-hide--small">
       {{
       image(
       url="https://assets.ubuntu.com/v1/0326ac7d-dena-logo.png",

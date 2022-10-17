@@ -189,10 +189,12 @@ class UAContractsAPI:
 
         return {}
 
-    def get_product_listings(self, marketplace: str) -> dict:
+    def get_product_listings(
+        self, marketplace: str, filters: str = ""
+    ) -> dict:
         return self._request(
             method="get",
-            path=f"v1/marketplace/{marketplace}/product-listings",
+            path=f"v1/marketplace/{marketplace}/product-listings{filters}",
             error_rules=["default"],
         ).json()
 
@@ -304,6 +306,18 @@ class UAContractsAPI:
         )
 
         return {}
+
+    def post_purchase_calculate(
+        self,
+        marketplace: str,
+        request_body: dict,
+    ) -> dict:
+        return self._request(
+            method="post",
+            path=f"v1/marketplace/{marketplace}/purchase/calculate",
+            json=request_body,
+            error_rules=["default"],
+        ).json()
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:

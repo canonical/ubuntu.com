@@ -1,7 +1,7 @@
 import React from "react";
 import { RadioInput, Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
-import { formatter } from "../../../advantage/subscribe/renderers/form-renderer";
+import { formatter } from "advantage/subscribe/react/utils/utils";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -19,7 +19,6 @@ const FreeTrialRadio = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsUsingFreeTrial(e.target.value === "useFreeTrial");
   };
-
   return (
     <Row>
       <Col size={11} emptyLarge={2}>

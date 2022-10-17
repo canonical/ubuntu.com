@@ -64,32 +64,44 @@
     }
   }
 
+  // a fallback to catch any instances where a post.group exists,
+  // but we haven't yet defined a BEM variant to match
+  [class*="blog-p-card__header"] {
+    @extend %post-card-header;
+
+    border-top: 3px solid $color-mid-dark;
+  }
+
   .blog-p-card__header {
-    &--canonical-announcements {
+    border-radius: 2px;
+    border-top: 3px solid $color-mid-dark;
+    padding: $sp-medium $sp-medium $sp-small;
+
+    &.highlight--canonical-announcements {
       border-color: #ff8936;
     }
 
-    &--cloud-and-server {
+    &.highlight--cloud-and-server {
       border-color: #a87ca0;
     }
 
-    &--desktop {
+    &.highlight--desktop {
       border-color: #faba54;
     }
 
-    &--internet-of-things {
+    &.highlight--internet-of-things {
       border-color: #8db255;
     }
 
-    &--phone-and-tablet {
+    &.highlight--phone-and-tablet {
       border-color: $color-mid-light;
     }
 
-    &--webinar {
+    &.highlight--webinar {
       border-color: #48929b;
     }
 
-    &--tutorials {
+    &.highlight--tutorials {
       border-color: #47919e;
     }
   }
@@ -112,14 +124,6 @@
       margin: 0 $sp-small $sp-small;
       padding: $sp-medium $sp-small $sp-small;
     }
-  }
-
-  // a fallback to catch any instances where a post.group exists,
-  // but we haven't yet defined a BEM variant to match
-  [class*="blog-p-card__header"] {
-    @extend %post-card-header;
-
-    border-top: 3px solid $color-mid-dark;
   }
 
   .blog-p-card__date {

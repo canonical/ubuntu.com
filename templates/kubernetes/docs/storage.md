@@ -127,8 +127,8 @@ change these, you can delete the pools:
 ```bash
 juju run --unit ceph-mon/0 "ceph tell mon.\* injectargs '--mon-allow-pool-delete=true'"
 
-juju run-action ceph-mon/0 delete-pool pool-name=xfs-pool --wait
-juju run-action ceph-mon/0 delete-pool pool-name=ext4-pool --wait
+juju run-action ceph-mon/0 delete-pool name=xfs-pool --wait
+juju run-action ceph-mon/0 delete-pool name=ext4-pool --wait
 ```
 
 Then recreate them, using the options listed from the `list-actions` command ran

@@ -1,0 +1,39 @@
+{% set nav = get_meganav("get_ubuntu") %}
+
+{% if "side_nav_sections" in nav.sections %}
+  {% for side_nav_section in nav.sections.side_nav_sections %}
+    <h1>{{ side_nav_section.title }}</h1>
+
+    {% for links_section in side_nav_section.primary_links %}
+      <h2>{{ links_section.title }}</h2>
+      
+      <ul>
+        {% for link in links_section.links %}
+          <li>
+            {% if link.url %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% else %}
+              {{ link.title }}
+
+              {% for cta in link.ctas %}
+                <a href="{{ cta.url }}">{{ cta.title }}</a>
+              {% endfor %}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+
+    {% for links_section in side_nav_section.secondary_links %}
+      <h2>{{ links_section.title }}</h2>
+      
+      <ul>
+        {% for link in links_section.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+  {% endfor %}
+{% endif %}

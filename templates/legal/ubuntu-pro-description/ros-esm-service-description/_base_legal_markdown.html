@@ -1,0 +1,22 @@
+{% extends "templates/base.html" %}
+
+{% block outer_content %}
+
+<div class="p-strip is-deep">
+  <div class="row" id="service-description">
+    <div class="col-8 l-legal-pages">
+      {% block content %}
+        {{ content | safe }}
+      {% endblock %}
+    </div>
+    <div class="col-4 sticky-toc">
+      <aside class="p-table-of-contents u-hide--small">
+        {% include '/legal/ubuntu-pro-description/ros-esm-service-description/_toc.html' %}
+      </aside>
+    </div>
+  </div>
+</div>
+
+  {% with first_item="_cloud_bootstack", second_item="_generic_download", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+{% endblock %}

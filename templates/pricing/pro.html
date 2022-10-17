@@ -1,0 +1,160 @@
+{% extends "pricing/base_pricing.html" %}
+
+
+{% block title %}Ubuntu Pro | plans and pricing{% endblock %}
+
+{% block meta_description %}Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures (CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.
+{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section id="ua-infra" class="p-strip--suru-topped is-bordered">
+  <div class="u-fixed-width">
+    <h1>Ubuntu Pro: security, compliance, and support</h1>
+    <p>Ubuntu Pro covers all aspects of open infrastructure and applications.</p>
+    <ul class="p-inline-list">
+      <li class="p-inline-list__item">
+        <a href="/support/contact-us" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Get in touch</a>
+      </li>
+      <li class="p-inline-list__item">
+        <a href="/pro/subscribe" class="p-button">Purchase a subscription</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="p-strip is-shallow" id="ua-infra">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--3">Security maintenance and compliance</h2>
+  </div>
+
+  {% include "shared/pricing/_ua-for-infrastructure.html" %}
+
+  <div class="u-fixed-width">
+    <h2 class="p-heading--3">Ubuntu Pro + phone and ticket support</h2>
+  </div>
+
+  <div class="u-fixed-width">
+    <div style="overflow-x: auto;">
+      <table class="p-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Ubuntu Pro + weekday support</th>
+            <th class="u-align--right">Infra Support</th>
+            <th class="u-align--right">Full Stack Support</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ubuntu Pro (Infra-only) - per machine per year</td>
+            <td class="u-align--right">$750</td>
+            <td class="u-align--right">n/a</td>
+          </tr>
+          <tr>
+            <td>Ubuntu Pro - per machine per year</td>
+            <td class="u-align--right">$885</td>
+            <td class="u-align--right">$1,700</td>
+          </tr>
+          <tr>
+            <td>Desktop - per machine per year</td>
+            <td class="u-align--right">n/a</td>
+            <td class="u-align--right">$150</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <div style="overflow-x: auto;">
+      <table class="p-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Ubuntu Pro + 24/7 support</th>
+            <th class="u-align--right">Infra Support</th>
+            <th class="u-align--right">Full Stack Support</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ubuntu Pro (Infra-only) - per machine per year</td>
+            <td class="u-align--right">$1,500</td>
+            <td class="u-align--right">n/a</td>
+          </tr>
+          <tr>
+            <td>Ubuntu Pro - per machine per year</td>
+            <td class="u-align--right">$1,775</td>
+            <td class="u-align--right">$3,400</td>
+          </tr>
+          <tr>
+            <td>Desktop - per machine per year</td>
+            <td class="u-align--right">n/a</td>
+            <td class="u-align--right">$300</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <p>Please refer to the <a href='/uasd'>service description</a> for full details.</p>
+    <p>
+      See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
+    </p>
+    <p>
+      <a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip--light is-shallow" id="storage">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--3">Software-defined storage &ndash; Ceph and Swift</h2>
+    <p>Only applies if attaching more than 192TB of raw Ceph/Swift capacity per node in the cluster. Priced by the amount exceeding the total of 192TB per node included in Ubuntu Pro.</p>
+  </div>
+  {% include "shared/pricing/_ua-advanced-storage.html" %}
+  <div class="u-fixed-width">
+    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+  </div>
+
+</section>
+
+<section class="p-strip is-shallow" id="managed">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--3">Fully managed OpenStack, Kubernetes and LMA</h2>
+    <p>We manage infrastructure at both the host and the guest level. Infrastructure includes Ceph and Swift storage, Kubernetes, OpenStack and the recommended logging, monitoring and alerting stack.</p>
+  </div>
+  {% include "shared/pricing/_openstack-kubernetes-lma.html" %}
+  <div class="u-fixed-width">
+    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+  </div>
+</section>
+
+<section class="p-strip--light is-bordered is-shallow">
+  <div class="u-fixed-width">
+    <h2 class="p-heading--3" id="maas">MAAS</h2>
+    <p>Support and commercial capabilities for MAAS are included with Ubuntu Pro and Ubuntu Pro (Infra-only). These additional charges apply for machines managed by MAAS and <em>not</em> covered by an Ubuntu Pro contract.</p>
+  </div>
+  {% include "shared/pricing/_maas-pricing.html" %}
+  <div class="u-fixed-width">
+    <p>
+      <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+    </p>
+  </div>
+</section>
+
+{% with colour="white", border="false" %}{% include "shared/_call-sales.html" %}{% endwith %}
+
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/pricing-infra" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+
+
+{% endblock content %}
+{% block footer_extra %}{% endblock footer_extra %}
