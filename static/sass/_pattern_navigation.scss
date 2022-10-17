@@ -187,19 +187,6 @@
       }
     }
 
-    .p-navigation__banner {
-      background-color: #111;
-
-      .p-navigation__tagged-logo {
-        .p-navigation__link {
-          color: $color-mid-light;
-          padding-bottom: 0.5rem;
-          padding-left: 0;
-          padding-top: 0.5rem;
-        }
-      }
-    }
-
     .p-navigation__link--search-toggle {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
@@ -225,10 +212,40 @@
         transition: none;
       }
 
-      .p-navigation__banner {
-        .p-navigation__tagged-logo {
-          .p-navigation__link {
-            padding: 0.5rem 0 0.5rem 0;
+      &__logo {
+        align-items: center;
+        color: $color-x-light;
+        display: flex;
+        font-size: 0.875rem;
+        margin-bottom: $sp-unit * 1.5;
+        padding-top: 0.55rem;
+        position: relative;
+
+        @media (max-width: $breakpoint-navigation-threshold - 1) {
+          padding-left: $sp-small !important;
+          padding-right: 0 !important;
+        }
+
+        a {
+          border-left: 1px solid rgba(247, 247, 247, 0.3);
+          color: $color-light !important;
+          padding-left: $sp-small;
+
+          @media (max-width: $breakpoint-navigation-threshold - 1) {
+            position: relative;
+            top: 1px;
+          }
+        }
+
+        &::after {
+          display: none;
+
+          @media only screen and (min-width: $breakpoint-navigation-threshold) {
+            background-color: $color-light;
+            display: block;
+            left: $sph--large;
+            opacity: 0.3;
+            right: $sph--large - $circle-of-friends-compensation;
           }
         }
       }
