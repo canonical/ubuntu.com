@@ -221,7 +221,7 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity."
+      "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity."
     );
   });
 
@@ -243,7 +243,7 @@ describe("ExpiryNotification", () => {
       "Your subscription has expired."
     );
     expect(wrapper.find(Notification).prop("children")).toBe(
-      "If you don't renew it, it will disappear from your dashboard in 90 days. Click on Renew subscription to to ensure service continuity."
+      "Click on renew subscription or enable auto-renewals via the renewal settings menu to ensure service continuity."
     );
   });
 });
