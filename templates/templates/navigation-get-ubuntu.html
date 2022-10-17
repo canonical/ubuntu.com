@@ -15,9 +15,13 @@
             {% else %}
               {{ link.title }}
 
-              {% for cta in link.ctas %}
-                <a href="{{ cta.url }}">{{ cta.title }}</a>
-              {% endfor %}
+              {% if link.ctas %}
+                <ul>
+                  {% for cta in link.ctas %}
+                    <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
             {% endif %}
           </li>
         {% endfor %}
@@ -35,5 +39,9 @@
         {% endfor %}
       </ul>
     {% endfor %}
+
+    {% if side_nav_section.section_footer %}
+      <a href="{{ side_nav_section.section_footer.cta_url }}">{{ side_nav_section.section_footer.cta_title }}</a>
+    {% endif %}
   {% endfor %}
 {% endif %}

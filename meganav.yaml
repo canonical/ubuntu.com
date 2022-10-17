@@ -1,3 +1,26 @@
+# -- Format example --
+# section_name:
+#   side_nav_sections:
+#     - title:
+#       primary_links:
+#         - title: (optional)
+#           links:
+#             - title:
+#               description:
+#               url:
+#               ctas: (optional)
+#                 - title:
+#                   url:
+#                   type: primary/secondary
+#       secondary_links:
+#         - title: (optional)
+#           links:
+#             - title:
+#               url:
+#       section_footer: (optional)
+#         cta_title:
+#         cta_url:
+
 get_ubuntu:
   side_nav_sections:
     - title: Desktop
@@ -34,5 +57,175 @@ get_ubuntu:
               url: /tutorials/install-ubuntu-desktop#1-overview
             - title: Try before installation
               url: /tutorials/try-ubuntu-before-you-install#1-getting-started
+            - title: Case studies, whitepapers & webinars
+              url: /engage
             - title: All tutorials
               url: /tutorials
+    - title: Server
+      primary_links:
+        - title: Products
+          links:
+            - title: Ubuntu Server
+              description: Ubuntu optimsed for servers
+              url: /server
+            - title: MAAS
+              description: Bare metal provisioning
+              url: https://maas.io/
+            - title: Certified hardware
+              description: Machines you can trust
+              url: /certified/servers
+            - title: Public clouds
+              description: Server on AWS, Azure and GCP
+              url: /cloud/public-cloud
+            - title: Multipass
+              description: VMs for Windows, macOS & Linux
+              url: https://multipass.run/
+      secondary_links:
+        - title: Tutorials and docs
+          links:
+            - title: Server guide
+              url: /server/docs
+            - title: Installation tutorial
+              url: /tutorials/install-ubuntu-server#1-overview
+            - title: ARM
+              url: /download/server/arm
+            - title: IBM Power
+              url: /download/server/power
+            - title: s390x
+              url: /download/server/s390x
+            - title: RISC-V
+              url: /download/risc-v
+      section_footer:
+        cta_title: Get Ubuntu Server
+        cta_url: /download/server
+    - title: Raspberry Pi
+      primary_links:
+        - title: Products
+          links:
+            - title: Ubuntu for Raspberry Pi
+              description: Single board computer
+              url: /raspberry-pi
+            - title: Install on Raspberry Pi
+              description: Download per-model
+              url: /download/raspberry-pi
+            - title: Ubuntu Core for Raspberry Pi
+              description: Embedded OS
+              url: /download/raspberry-pi-core
+            - title: Ubuntu-ready Pi devices
+              description: Certified hardware
+              url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
+      secondary_links:
+        - title: Tutorials and docs
+          links:
+            - title: Desktop installation tutorial
+              url: /tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview
+            - title: Server installation tutorial
+              url: /tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview
+            - title: Core install instructions
+              url: /download/raspberry-pi-core
+            - title: Introduction video
+              url:
+            - title: Build a Kubernetes cluster on Raspberry Pi
+              url: /tutorials/how-to-kubernetes-cluster-on-raspberry-pi#1-overview
+      section_footer:
+        cta_title: Get Ubuntu for Raspberry Pi
+        cta_url: /download/raspberry-pi
+    - title: Ubuntu Core for IoT
+      primary_links:
+        - title: Products
+          links:
+            - title: Ubuntu Core
+              description: OS designed for IoT
+              url: /core
+            - title: Internet of Things
+              description: Ubuntu for IoT
+              url: /internet-of-things
+            - title: Smart Start
+              description: Deliver IoT devices to market
+              url: /smartstart
+            - title: Ubuntu-ready devices
+              description: Certified Hardware
+              url: /certified?q=&limit=20&category=Device&category=SoC
+            - title: Embedded Linux
+              description: Developers, apps and hardware
+              url: /embedded
+      secondary_links:
+        - title: Tutorials and docs
+          links:
+            - title: Intel IoT Platforms
+              url: /download/iot/intel-iotg
+            - title: Intel NUC
+              url: /download/intel-nuc
+            - title: KVM
+              url: http://kvm/
+            - title: Qualcomm Dragonboard 410c
+              url: /download/qualcomm-dragonboard-410c
+            - title: Intel IEI TANK 870
+              url: /download/intel-iei-tank-870
+            - title: Xilinx Evaluation kits & SOMs
+              url: /download/xilinx
+            - title: Ubuntu for Raspberry Pi
+              url: /raspberry-pi
+            - title: Real-time Ubuntu
+              url: /internet-of-things#beta-signup
+      section_footer:
+        cta_title: Get Ubuntu for IoT
+        cta_url: /download/iot
+    - title: Develop on Ubuntu
+      primary_links:
+        - title: Products
+          links:
+            - title: Deb, snap and charm packages
+              description: Deliver Ubuntu software
+              url: /about/packages
+            - title: Publish apps
+              description: For users, servers and devices
+              url: https://snapcraft.io/
+            - title: Cloud Packages
+              description: Deploy and operate cloud software
+              url: https://charmhub.io/
+            - title: AI and Machine Learning
+              description: Develop AI models
+              url: /ai
+            - title: Certified Ubuntu Engineer
+              description: Professional endorsement
+              url: /cube
+      secondary_links:
+        - title: Tutorials and docs
+          links:
+            - title: Ubuntu on public clouds
+              url: /cloud/public-cloud
+            - title: Minimal Ubuntu for containers
+              url: /blog/minimal-ubuntu-released
+            - title: Customise cloud instances
+              url: https://cloud-init.io/
+            - title: Model driven operations
+              url: /model-driven-operations
+            - title: Juju for standardised operations
+              url: https://jaas.ai/
+            - title: Charmed Kubernetes
+              url: /kubernetes
+            - title: MicroK8s - single node k8s
+              url: https://microk8s.io/
+            - title: MAAS - fast server provisioning
+              url: https://maas.io/
+      section_footer:
+        cta_title: Develop Ubuntu
+        cta_url: /desktop/developers
+    - title: Windows & MacOS
+      primary_links:
+        - title: Products
+          links:
+            - title: WSL2
+              description: Windows Subsystem for Linux
+              url: /wsl
+            - title: Multipass
+              description: Ubuntu VMs for Windows, macOS
+              url: https://multipass.run/
+      secondary_links:
+        - title: Tutorials and docs
+          links:
+            - title: Install tutorial for Windows 10
+              url: /tutorials/install-ubuntu-on-wsl2-on-windows-10
+            - title: Install tutorial for Windows 11
+              url: /tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support
