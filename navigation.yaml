@@ -303,7 +303,7 @@ support:
     - title: Overview
       path: /support
     - title: Your subscriptions
-      path: /pro
+      path: /pro/dashboard
     - title: Account users
       path: /pro/users
 
@@ -315,8 +315,10 @@ pro:
   path: /pro
 
   children:
-    - title: Your subscriptions
+    - title: Overview
       path: /pro
+    - title: Your subscriptions
+      path: /pro/dashboard
     - title: Account users
       path: /pro/users
     - title: Community support
