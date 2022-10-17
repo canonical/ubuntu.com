@@ -122,48 +122,61 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
         <Col size={4}>
           {features.included.length
             ? generateList(
-                "Included",
-                features.included.map((label) => ({
-                  label: (
-                    <div className="p-subscription-switch-wrapper">
-                      <FeatureSwitch
-                        key={label}
-                        isChecked={featuresFormState[label]?.isChecked}
-                        isDisabled={featuresFormState[label]?.isDisabled}
-                        handleOnChange={(event) =>
-                          handleOnFeatureSwitch(label, event)
-                        }
+              "Included",
+              features.included.map((label) => ({
+                label: (
+                  <div className="p-subscription-switch-wrapper">
+                    <FeatureSwitch
+                      key={label}
+                      isChecked={featuresFormState[label]?.isChecked}
+                      isDisabled={featuresFormState[label]?.isDisabled}
+                      handleOnChange={(event) =>
+                        handleOnFeatureSwitch(label, event)
+                      }
+                    >
+                      {label}
+                    </FeatureSwitch>
+                    {label === EntitlementLabel.EsmApps ? (
+                      <Tooltip
+                        tooltipClassName="p-subscriptions-tooltip"
+                        message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps --beta`."
                       >
-                        {label}
-                      </FeatureSwitch>
-                    </div>
-                  ),
-                }))
-              )
+                        <Button
+                          type="button"
+                          className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                        >
+                          <i className="p-icon--information" />
+                        </Button>
+                      </Tooltip>
+                    ) : null}
+                  </div>
+                ),
+              }))
+            )
             : null}
         </Col>
         <Col size={4} data-testid="excluded-features">
           {features.excluded.length
             ? generateList(
-                <div>
-                  Not included
-                  <Tooltip
-                    tooltipClassName="p-subscriptions-tooltip"
-                    message="Not available with your subscription"
+              <div>
+                Not included
+                <Tooltip
+                  tooltipClassName="p-subscriptions-tooltip"
+                  message="Not available with your subscription"
+                >
+                  <Button
+                    type="button"
+                    className="u-no-margin--bottom p-subscriptions-tooltip__button"
                   >
-                    <Button
-                      type="button"
-                      className="u-no-margin--bottom p-subscriptions-tooltip__button"
-                    >
-                      <i className="p-icon--information" />
-                    </Button>
-                  </Tooltip>
-                </div>,
-                features.excluded.map((label) => ({
-                  icon: "error",
-                  label: label,
-                }))
-              )
+                    <i className="p-icon--information" />
+                  </Button>
+                </Tooltip>
+              </div>,
+              features.excluded.map((label) => ({
+                icon: "error",
+                label: label,
+              }))
+            )
             : null}
         </Col>
       </Row>
