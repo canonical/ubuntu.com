@@ -314,7 +314,7 @@ const CredManage = () => {
                 sortKey: "productID",
               },
               {
-                content: "ExpirationDate",
+                content: "Expiration Date",
                 sortKey: "expirationDate",
               },
             ]}
