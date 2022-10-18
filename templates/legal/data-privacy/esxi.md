@@ -5,16 +5,17 @@ context:
   description: This privacy notice tells you about the information collected from you when you register to download the ESXi packer-template.
   copydoc: https://docs.google.com/document/d/1I1PtxFqV1KNsnnxJlo-Q9V7JDvkbmsAxAvVk4Nf9aLQ
 ---
+
 <h4 class="p-muted-heading">Version - May 2019</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice – ESXi  
+# Privacy notice – ESXi
 
 This privacy notice tells you about the information collected from you when you register to download the ESXi packer-template. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -26,7 +27,7 @@ When you register to download the ESXi packer-template we ask you for your name,
 
 We will use your information for internal user and product research purposes. We ask for your consent to do this and will only contact you for this purpose for as long as you continue to consent. This may involve inviting you to talk to us about how you use Canonical products and to test new features.
 
-If relevant, and where you have agreed, we may also use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.  
+If relevant, and where you have agreed, we may also use your information to send you other news and product updates from Canonical. This may involve us calling you, where we have your phone number in order to do so.
 
 ## What do we do with your information?
 
@@ -34,7 +35,7 @@ Your information is stored in our database and may be processed outside of the E
 
 Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection similar to those which apply to the United Kingdom and EEA, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of you personal information. If you would like further information please contact us (see "Your right to complain" below). We will not otherwise transfer your personal data outside of the EEA.
 
-## How long do we keep your information for? 
+## How long do we keep your information for?
 
 Your information is kept for as long as you continue to consent and for so long as reasonably required thereafter in accordance with our record retention policy.
 
@@ -47,14 +48,13 @@ You have a number of important rights under data protection laws. In summary, th
 - require us to correct any mistakes in your information which we hold;
 - require the erasure of personal information concerning you in certain situations;
 - receive the personal information concerning you which you have provided to us, in a structured, commonly used and machine-readable format and have the right to transmit that data to a third party in certain situations;
-- object at any time to processing of personal information concerning you for direct marketing; 
+- object at any time to processing of personal information concerning you for direct marketing;
 - object to decisions being taken by automated means which produce legal effects concerning you or similarly significantly affect you;
 - object in certain other situations to our continued processing of your personal information;
 - otherwise restrict our processing of your personal information in certain circumstances;
-- claim compensation for damages caused by out breach of any data protection laws. 
+- claim compensation for damages caused by out breach of any data protection laws.
 
-
-For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner's Office (ICO) on individuals rights under the General Data Protection Regulation. 
+For further information on each of those rights, including the circumstances in which they apply, see the Guidance from the UK Information Commissioner's Office (ICO) on individuals rights under the General Data Protection Regulation.
 
 If you would like to exercise any of those rights, please:
 
@@ -81,10 +81,10 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-The Office Group, St Dunstans House, <br />
-4th floor, 201 Borough High St, <br />
-London SE1 1JA, <br />
-United Kingdom
+    2nd Floor, Clarendon House, <br/>
+    Victoria Street, <br/>
+    Douglas IM1 2LN, <br/> 
+    Isle of Man
 </div>
 
 Alternatively, you can use the relevant contact us form.

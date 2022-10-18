@@ -81,10 +81,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-The Office Group<br />
-4th floor, 201 Borough High St,<br />
-London SE1 1JA,<br />
-United Kingdom
+2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
 </div>
 
 Alternatively, you can use the relevant contact us form.
