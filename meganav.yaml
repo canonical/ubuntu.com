@@ -40,6 +40,7 @@
 #       section_footer: (optional)
 #         cta_title:
 #         cta_url:
+
 products:
   side_nav_sections:
     - title: Featured
@@ -100,7 +101,7 @@ products:
               url: /core
             - title: Ubuntu FIPS
               description: Secure Linux for Government
-              url:
+              url: /security/fips
             - title: WSL2
               description: Windows Subsystem for Linux
               url: /wsl
@@ -120,10 +121,6 @@ products:
               url: /server/docs/installation
             - title: Server Guide
               url: /server/docs
-            - title: Ubuntu on public clouds
-              url: /cloud/public-cloud
-            - title: Minimal Ubuntu for containers
-              url:
 
     - title: Private cloud
       primary_links:
@@ -226,10 +223,10 @@ products:
           links:
             - title: Ubuntu Pro + support
               description: Enterprise support for Ubuntu
-              url:
+              url: /support
             - title: ESM
               description: 10 years of security maintenance
-              url:
+              url: /security/esm
             - title: Landscape
               description: Remotely manage & update servers
               url: https://landscape.canonical.com/
@@ -255,8 +252,6 @@ products:
               url: /pricing/consulting
             - title: Private cloud pricing calculator
               url: /openstack/pricing-calculator
-            - title: Certified Hardware
-              url:
 
     - title: Kubernetes
       primary_links:
@@ -277,12 +272,10 @@ products:
           links:
             - title: Kubernetes documentation
               url: /kubernetes/docs
-            - title: Kubernates Quickstart
+            - title: Kubernetes Quickstart
               url: /kubernetes/docs/quickstart
             - title: Distributions comparison
               url: /kubernetes/compare
-            - title: Cloud native operations report 2022
-              url: https://assets.ubuntu.com/v1/ee0365d8-Kubernetes+cloud+native+operations+report+2022_10.05.22.pdf
             - title: MicroK8s getting started
               url: http://microk8s.io/docs/getting-started
             - title: Kubeflow installation tutorial
@@ -329,7 +322,6 @@ products:
               description: Universal Linux packages
               url: https://snapcraft.io/about
             - title: Snapcraft
-              description:
               url: https://snapcraft.io/build
             - title: Dedicated Snap Store
               description: Private app store for Linux and IoT
@@ -362,7 +354,7 @@ products:
               description: Certified for Ubuntu
               url: /certified?q=&limit=20&category=Laptop&category=Desktop
             - title: Servers
-              description: Deploy on certifed servers
+              description: Deploy on certified servers
               url: /certified/servers
             - title: IoT Devices
               description: Stable and secure devices
@@ -399,16 +391,12 @@ products:
               description: Private app store for Linux and IoT
               url: http://snapcraft.io/
             - title: Device management
-              description:
               url: /internet-of-things/management
             - title: Certified devices
-              description:
               url: /certified/devices
             - title: Ubuntu Frame
-              description:
               url: https://mir-server.io/ubuntu-frame
             - title: IoT Professional Services
-              description:
               url: /core/smartstart
 
       secondary_links:
@@ -517,8 +505,6 @@ support:
               url: /pricing/consulting
             - title: TCO calculator
               url: /openstack/pricing-calculator
-            - title: Certified Hardware
-              url: /certified
     - title: Resources
       primary_links:
         - title: Products
@@ -623,7 +609,7 @@ community:
               url: https://ubuntuforums.org/forumdisplay.php?f=327
             - title: "Forum: Ubuntu, Linux and OS Chat"
               url: https://ubuntuforums.org/forumdisplay.php?f=434
-            - title: "Discourse Community category"
+            - title: Discourse Community category
               url: https://discourse.ubuntu.com/c/community/78
     - title: Contribute to Ubuntu
       primary_links:
@@ -664,7 +650,7 @@ community:
               description: Our stance on Diversity
               url: /community/diversity
             - title: Project governace
-              description: How the project's governed
+              description: How the project is governed
               url: /community/governance
       secondary_links:
         - title: Links
@@ -683,7 +669,7 @@ community:
               description: Canonical's blogs
               url: /blog
             - title: Weekly Newsletter
-              description: Sign up to our newslette
+              description: Sign up to our newsletter
               url: https://wiki.ubuntu.com/UbuntuWeeklyNewsletter
             - title: Mailing lists
               description: All the public mailing lists
@@ -805,7 +791,7 @@ get_ubuntu:
             - title: Core install instructions
               url: /download/raspberry-pi-core
             - title: Introduction video
-              url:
+              url: /engage/raspberry-pi-livestream
             - title: Build a Kubernetes cluster on Raspberry Pi
               url: /tutorials/how-to-kubernetes-cluster-on-raspberry-pi#1-overview
       section_footer:
@@ -821,9 +807,9 @@ get_ubuntu:
             - title: Internet of Things
               description: Ubuntu for IoT
               url: /internet-of-things
-            - title: Smart Start
+            - title: Smart things as a service
               description: Deliver IoT devices to market
-              url: /smartstart
+              url: /core/services
             - title: Ubuntu-ready devices
               description: Certified Hardware
               url: /certified?q=&limit=20&category=Device&category=SoC
