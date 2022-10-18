@@ -4,6 +4,7 @@ import {
   MainTable,
   Row,
   Spinner,
+  Tooltip,
 } from "@canonical/react-components";
 import { listAllKeys, rotateKey } from "advantage/credentialling/api/keys";
 import React, { useEffect, useRef, useState } from "react";
@@ -131,7 +132,7 @@ const CredManage = () => {
     if (isArchiveable()) {
       newList.push({
         children: "Archive",
-        onClick: () => {},
+        onClick: () => { },
       });
     }
     if (isUnused()) {
@@ -152,7 +153,7 @@ const CredManage = () => {
     if (newList.length == 0) {
       newList.push({
         children: "No bulk options available",
-        onClick: () => {},
+        onClick: () => { },
       });
     }
     updateActionLinks(newList);
@@ -339,13 +340,18 @@ const CredManage = () => {
                     },
                     {
                       content: (
-                        <a
-                          onClick={() => {
-                            copyToClipboard(keyitem.key);
-                          }}
+                        <Tooltip
+                          message="Copy Key"
+                          position="right"
                         >
-                          <i className="p-icon--copy"></i>
-                        </a>
+                          <a
+                            onClick={() => {
+                              copyToClipboard(keyitem.key);
+                            }}
+                          >
+                            <i className="p-icon--copy"></i>
+                          </a>
+                        </Tooltip>
                       ),
                     },
                     {
@@ -354,15 +360,32 @@ const CredManage = () => {
                         : "N/A",
                     },
                     {
-                      content: (
-                        <a
-                          onClick={() => {
-                            rotateActivationKeys([keyitem.key]);
-                          }}
-                        >
-                          <i className="p-icon--restart"></i>
-                        </a>
-                      ),
+                      content:
+                        <>
+                          {keyitem["activatedBy"] ?
+                            <Tooltip
+                              message="Archive Key"
+                              position="right"
+                            >
+                              <a
+                                onClick={() => {
+                                  ;
+                                }}
+                              >
+                                <i className="p-icon--delete"></i>
+                              </a>
+                            </Tooltip> :
+                            <Tooltip message="Refresh Key" position="right">
+                              <a
+                                onClick={() => {
+                                  rotateActivationKeys([keyitem.key]);
+                                }}
+                              >
+                                <i className="p-icon--restart"></i>
+                              </a>
+                            </Tooltip>
+                          }
+                        </>
                     },
                     {
                       content: keyitem.productID,
