@@ -158,8 +158,15 @@ const DetailsTabs = ({
   const isBlender = isBlenderSubscription(subscription);
 
   const isFree = isFreeSubscription(subscription);
-  // Don't display any docs links for the free subscription.
-  const docs = isFree ? [] : generateDocLinks(subscription.entitlements);
+  // Display tutorial link for the free subscription.
+  const docs = isFree
+    ? [
+        {
+          label: "Ubuntu Pro (esm-apps --beta) tutorial",
+          url: "https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018",
+        },
+      ]
+    : generateDocLinks(subscription.entitlements);
   const setTab = (tab: ActiveTab) => {
     setActiveTab(tab);
     sendAnalyticsEvent({

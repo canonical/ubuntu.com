@@ -179,7 +179,7 @@ describe("DetailsTabs", () => {
     expect(wrapper.find("[data-test='contract-token']").exists()).toBe(true);
   });
 
-  it("does not display docs links for the free subscription", () => {
+  it("Display tutorial link for the free subscription", () => {
     const wrapper = mount(
       <DetailsTabs
         subscription={freeSubscriptionFactory.build()}
@@ -189,6 +189,9 @@ describe("DetailsTabs", () => {
     );
     // Switch to the docs tab:
     wrapper.find("[data-test='docs-tab']").simulate("click");
-    expect(wrapper.find("[data-test='doc-link']").exists()).toBe(false);
+    const docsLinks = wrapper.find("[data-test='doc-link']");
+    expect(docsLinks.at(0).text()).toBe(
+      "Ubuntu Pro (esm-apps --beta) tutorial"
+    );
   });
 });
