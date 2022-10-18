@@ -1,0 +1,85 @@
+{% if "side_nav_sections" in sections %}
+  {% for side_nav_section in sections.side_nav_sections %}
+    <h1>{{ side_nav_section.title }}</h1>
+
+    {% for links_section in side_nav_section.primary_links %}
+      <h2>{{ links_section.title }}</h2>
+      
+      <ul>
+        {% for link in links_section.links %}
+          <li>
+            {% if link.url %}
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            {% else %}
+              {{ link.title }}
+
+              {% if link.ctas %}
+                <ul>
+                  {% for cta in link.ctas %}
+                    <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+
+    {% for links_section in side_nav_section.secondary_links %}
+      <h2>{{ links_section.title }}</h2>
+      
+      <ul>
+        {% for link in links_section.links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfor %}
+
+    {% if side_nav_section.section_footer %}
+      <a href="{{ side_nav_section.section_footer.cta_url }}">{{ side_nav_section.section_footer.cta_title }}</a>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if "primary_links" in sections %}
+  {% for links_section in sections.primary_links %}
+    <h1>{{ links_section.title }}</h1>
+    
+    <ul>
+      {% for link in links_section.links %}
+        <li>
+          {% if link.url %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% else %}
+            {{ link.title }}
+
+            {% if link.ctas %}
+              <ul>
+                {% for cta in link.ctas %}
+                  <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endif %}
+
+{% if "primary_links" in sections %}
+  {% for links_section in sections.secondary_links %}
+    <h2>{{ links_section.title }}</h2>
+    
+    <ul>
+      {% for link in links_section.links %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endif %}
