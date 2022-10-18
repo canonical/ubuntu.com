@@ -1,5 +1,8 @@
+import pytz
+
 from typing import List
 
+from datetime import datetime
 from dateutil.parser import parse
 
 
@@ -102,6 +105,17 @@ class UserSubscription:
         self.listing_id = listing_id
         self.renewal_id = renewal_id
 
+    @property
+    def active(self):
+        if self.type == "free":
+            return True
+        
+        grace_period_days = -120 if self.type == "legacy" else -30
+        parsed_end_date = parse(self.end_date)
+        time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+        delta_till_expiry = parsed_end_date - time_now
+        days_till_expiry = delta_till_expiry.days
+        return days_till_expiry >= grace_period_days 
 
 class OfferItem:
     def __init__(self, id: str, name: str, price: int, allowance: int):

@@ -1,3 +1,4 @@
+import pdb
 from typing import List, Dict, Optional, Union
 
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
@@ -197,32 +198,11 @@ class AdvantageMapper:
             )
             listings.update(marketplace_listings)
 
-        accounts = self.get_accounts(email=email)
+        contract_items = self.ua_contracts_api.get_annotated_contract_items(
+            email=email
+        )
 
-        user_summary = []
-        for account in accounts:
-            contracts = self.get_account_contracts(
-                account_id=account.id,
-                include_active_machines=True,
-            )
-            subscriptions = []
-            if account.role != "technical":
-                for marketplace in ["canonical-ua", "blender"]:
-                    market_subscriptions = self.get_account_subscriptions(
-                        account_id=account.id,
-                        marketplace=marketplace,
-                    )
-                    subscriptions.extend(market_subscriptions)
-
-            user_summary.append(
-                {
-                    "account": account,
-                    "contracts": contracts,
-                    "subscriptions": subscriptions,
-                }
-            )
-
-        return build_user_subscriptions(user_summary, listings)
+        return build_user_subscriptions(contract_items, listings)
 
     def get_or_create_user_account(
         self, marketplace, customer_info, captcha_value

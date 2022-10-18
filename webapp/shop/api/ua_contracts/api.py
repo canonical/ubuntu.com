@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from requests.exceptions import HTTPError
 
@@ -99,20 +99,6 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def put_account_user_role(
-        self,
-        account_id: str,
-        user_role_request: dict,
-    ) -> dict:
-        self._request(
-            method="put",
-            path=f"v1/accounts/{account_id}/user-role",
-            json=user_role_request,
-            error_rules=["default"],
-        )
-
-        return {}
-
     def get_contract_token(self, contract_id: str) -> Optional[str]:
         return self._request(
             method="post",
@@ -127,6 +113,33 @@ class UAContractsAPI:
             path=f"v1/accounts/{account_id}/customer-info/stripe",
             error_rules=["default", "no-found"],
         ).json()
+
+    def get_annotated_contract_items(self, email: str = "", product_tags: List[str] = []) -> List[dict]:
+        params = {"email": email}
+
+        if product_tags:
+            params["productTags"] = product_tags
+
+        return self._request(
+            method="get",
+            path="/web/annotated-contract-items",
+            params=params,
+            error_rules=["default"],
+        ).json()
+
+    def put_account_user_role(
+        self,
+        account_id: str,
+        user_role_request: dict,
+    ) -> dict:
+        self._request(
+            method="put",
+            path=f"v1/accounts/{account_id}/user-role",
+            json=user_role_request,
+            error_rules=["default"],
+        )
+
+        return {}
 
     def put_customer_info(
         self, account_id, payment_method_id, address, name, tax_id
