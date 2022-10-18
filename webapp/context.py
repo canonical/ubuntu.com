@@ -51,8 +51,6 @@ def get_meganav(section):
     meganav_sections = copy.deepcopy(meganav)
 
     for section_name, meganav_section in meganav_sections.items():
-        print(section == section_name)
-
         if section_name == section:
             sections = meganav_section
 

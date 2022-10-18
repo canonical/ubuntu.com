@@ -45,3 +45,43 @@
     {% endif %}
   {% endfor %}
 {% endif %}
+
+{% if "primary_links" in nav.sections %}
+  {% for links_section in nav.sections.primary_links %}
+    <h1>{{ links_section.title }}</h1>
+    
+    <ul>
+      {% for link in links_section.links %}
+        <li>
+          {% if link.url %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% else %}
+            {{ link.title }}
+
+            {% if link.ctas %}
+              <ul>
+                {% for cta in link.ctas %}
+                  <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endif %}
+
+{% if "primary_links" in nav.sections %}
+  {% for links_section in nav.sections.secondary_links %}
+    <h2>{{ links_section.title }}</h2>
+    
+    <ul>
+      {% for link in links_section.links %}
+        <li>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% endif %}
