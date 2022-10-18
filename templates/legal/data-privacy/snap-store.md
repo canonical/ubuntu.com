@@ -115,7 +115,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man
+2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
 </div>
 
 Alternatively, you can use the relevant contact us form.

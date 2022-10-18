@@ -105,7 +105,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 <div style="margin: 2rem;">
   <p>
     Legal, Canonical<br />
-    2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man
+    2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
   </p>
 </div>
 
