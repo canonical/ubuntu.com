@@ -1,6 +1,26 @@
 # -- Format example --
+# A section can have either a "flat" layout where all of the content
+# appears in a single panel, or it can have multiple panels navigated
+# via a side navigation.
+#
+# To achieve the "flat" layout, the section should include primary_links
+# and secondary_links at the top level, and to use the side navigation view
+# the section should only include side_nav_sections at the top level, using
+# the formats below.
+#
 # section_name:
-#   side_nav_sections:
+#   primary_links: (optional)
+#   - title: (optional)
+#     links:
+#       - title:
+#         description:
+#         url:
+#   secondary_links: (optional)
+#   - title: (optional)
+#     links:
+#       - title:
+#         url:
+#   side_nav_sections: (optional)
 #     - title:
 #       primary_links:
 #         - title: (optional)
@@ -27,10 +47,10 @@ products:
         - links:
             - title: Ubuntu Desktop
               description: Secure Enterprise Linux
-              url: https://ubuntu.com/desktop
+              url: /desktop
             - title: Ubuntu Server
               description: Ubuntu optimsed for servers
-              url: https://ubuntu.com/server
+              url: /server
             - title: MAAS
               description: Bare metal provisioning
               url: https://maas.io/
@@ -39,22 +59,22 @@ products:
               url: https://snapcraft.io/
             - title: OpenStack
               description: Private cloud provisioning
-              url: https://ubuntu.com/openstack
+              url: /openstack
             - title: Multipass
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
             - title: Ubuntu Pro
               description: An additional layer of security and compliance
-              url: https://ubuntu.com/pro
+              url: /pro
             - title: Enteprise grade support
               description: 24x7 phone & ticket support for the full-stack
-              url: http://ubuntu.com/support
+              url: /support
             - title: Livepatch
               description: Secure Ubuntu without reboots
-              url: https://ubuntu.com/security/livepatch
+              url: /security/livepatch
             - title: Kubernetes
               description: Containerised workloads
-              url: https://ubuntu.com/kubernetes
+              url: /kubernetes
             - title: Charmhub
               description: Store for Juju operators
               url: https://charmhub.io/
@@ -63,7 +83,7 @@ products:
               url: https://juju.is/
             - title: Ubuntu Certified Hardware
               description: Machines you can trust
-              url: https://ubuntu.com/certified
+              url: /certified
 
     - title: Ubuntu OS
       primary_links:
@@ -71,19 +91,19 @@ products:
           links:
             - title: Ubuntu Desktop
               description: Secure Enterprise Linux
-              url: https://ubuntu.com/desktop
+              url: /desktop
             - title: Ubuntu Server
               description: Ubuntu optimsed for servers
-              url: https://ubuntu.com/server
+              url: /server
             - title: Ubuntu Core
               description: Tiny embedded Linux
-              url: https://ubuntu.com/core
+              url: /core
             - title: Ubuntu FIPS
               description: Secure Linux for Government
               url:
             - title: WSL2
               description: Windows Subsystem for Linux
-              url: https://ubuntu.com/wsl
+              url: /wsl
             - title: Multipass
               description: VMs for Windows, macOS & Linux
               url: https://multipass.run/
@@ -91,17 +111,17 @@ products:
         - title: Links
           links:
             - title: Upgrade Ubuntu
-              url: https://ubuntu.com/tutorials/upgrading-ubuntu-desktop#1-before-you-start
+              url: /tutorials/upgrading-ubuntu-desktop#1-before-you-start
             - title: Ubuntu dcoumentation
               url: https://help.ubuntu.com/
             - title: Desktop Install
-              url: https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview
+              url: /tutorials/install-ubuntu-desktop#1-overview
             - title: Server install
-              url: https://ubuntu.com/server/docs/installation
+              url: /server/docs/installation
             - title: Server Guide
-              url: https://ubuntu.com/server/docs
+              url: /server/docs
             - title: Ubuntu on public clouds
-              url: https://ubuntu.com/cloud/public-cloud
+              url: /cloud/public-cloud
             - title: Minimal Ubuntu for containers
               url:
 
@@ -111,13 +131,13 @@ products:
           links:
             - title: Ubuntu Server
               description: Ubuntu optimsed for servers
-              url: https://ubuntu.com/server
+              url: /server
             - title: Landscape
               description: Monitor and manage servers
               url: https://landscape.canonical.com/
             - title: OpenStack
               description: Private cloud provisioning
-              url: https://ubuntu.com/openstack
+              url: /openstack
             - title: MicroStack
               description: Small private cloud
               url: https://microstack.run/
@@ -126,36 +146,36 @@ products:
               url: https://maas.io/
             - title: Ceph
               description: Open source software storage
-              url: https://ubuntu.com/ceph
+              url: /ceph
             - title: Anbox cloud
               description: Virtual Android devices on demand
               url: https://anbox-cloud.io/
             - title: Open Source MANO
               description: Network Functions Virtualisation
-              url: https://ubuntu.com/telco/osm
+              url: /telco/osm
             - title: JAAS
               description: Juju as a Service
               url: https://jaas.ai/
             - title: Private cloud build
               description: OpenStack implementation
-              url: https://ubuntu.com/openstack/consulting
+              url: /openstack/consulting
       secondary_links:
         - title: Links
           links:
             - title: Server documentation
-              url: https://ubuntu.com/server/docs
+              url: /server/docs
             - title: MAAS documentation
               url: https://maas.io/docs
             - title: MicroStack installation
               url: https://microstack.run/docs/single-node
             - title: Data Centre Networking blog
-              url: https://ubuntu.com/blog/data-centre-networking-what-is-sdn
+              url: /blog/data-centre-networking-what-is-sdn
             - title: OpenStack pricing
-              url: https://ubuntu.com/openstack/pricing-calculator
+              url: /openstack/pricing-calculator
             - title: Private cloud consulting
-              url: https://ubuntu.com/openstack/consulting
+              url: /openstack/consulting
             - title: "Private cloud: Avoiding the high cost of operations"
-              url: https://ubuntu.com/blog/private_cloud_avoiding_operational_costs
+              url: /blog/private_cloud_avoiding_operational_costs
 
     - title: Public cloud
       primary_links:
@@ -163,12 +183,12 @@ products:
           links:
             - title: Ubuntu on AWS
               description: AWS Marketplace
-              url: https://ubuntu.com/aws
+              url: /aws
             - title: Ubuntu on Azure
               description: Microsoft Azure Marketplace
-              url: https://ubuntu.com/azure
+              url: /azure
             - title: Ubuntu on Google Cloud
-              url: https://ubuntu.com/gcp
+              url: /gcp
 
     - title: Virtualisation
       primary_links:
@@ -182,7 +202,7 @@ products:
               url: https://linuxcontainers.org/
             - title: WSL
               description: Windows subsytem for Linux
-              url: https://ubuntu.com/wsl
+              url: /wsl
 
       secondary_links:
         - title: Links
@@ -192,13 +212,13 @@ products:
             - title: Multipass Documentation
               url: https://multipass.run/docs
             - title: Virtualization docs in the server guide
-              url: https://ubuntu.com/server/docs/virtualization-multipass
+              url: /server/docs/virtualization-multipass
             - title: What is WSL?
               url: https://wiki.ubuntu.com/WSL
             - title: Install Ubuntu on Windows 10
-              url: https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10
+              url: /tutorials/install-ubuntu-on-wsl2-on-windows-10
             - title: Install Ubuntu on Windows 11
-              url: https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview
+              url: /tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview
 
     - title: Support
       primary_links:
@@ -215,26 +235,26 @@ products:
               url: https://landscape.canonical.com/
             - title: Livepatch
               description: Secure Ubuntu without reboots
-              url: https://ubuntu.com/security/livepatch
+              url: /security/livepatch
             - title: Ubuntu Pro Azure
               description: Azure cloud support
-              url: https://ubuntu.com/azure/pro
+              url: /azure/pro
             - title: Ubuntu Pro AWS
               description: AWS cloud support
-              url: https://ubuntu.com/aws/pro
+              url: /aws/pro
             - title: Ubuntu Pro GCP
               description: GCP cloud support
-              url: https://ubuntu.com/blog/introducing-ubuntu-pro-for-google-cloud
+              url: /blog/introducing-ubuntu-pro-for-google-cloud
 
       secondary_links:
         - title: Links
           links:
             - title: Ubuntu Pro pricing
-              url: https://ubuntu.com/pricing/infra
+              url: /pricing/infra
             - title: Open infrastructure consulting
-              url: https://ubuntu.com/pricing/consulting
+              url: /pricing/consulting
             - title: Private cloud pricing calculator
-              url: https://ubuntu.com/openstack/pricing-calculator
+              url: /openstack/pricing-calculator
             - title: Certified Hardware
               url:
 
@@ -244,23 +264,23 @@ products:
           links:
             - title: Kubernetes
               description: Containerised workloads
-              url: https://ubuntu.com/kubernetes
+              url: /kubernetes
             - title: MicroK8s
               description: Simplest way to get K8s
               url: https://microk8s.io/
             - title: Kubeflow
               description: Machine learning toolkit for K8s
-              url: https://ubuntu.com/ai/what-is-kubeflow
+              url: /ai/what-is-kubeflow
 
       secondary_links:
         - title: Links
           links:
             - title: Kubernetes documentation
-              url: https://ubuntu.com/kubernetes/docs
+              url: /kubernetes/docs
             - title: Kubernates Quickstart
-              url: https://ubuntu.com/kubernetes/docs/quickstart
+              url: /kubernetes/docs/quickstart
             - title: Distributions comparison
-              url: https://ubuntu.com/kubernetes/compare
+              url: /kubernetes/compare
             - title: Cloud native operations report 2022
               url: https://assets.ubuntu.com/v1/ee0365d8-Kubernetes+cloud+native+operations+report+2022_10.05.22.pdf
             - title: MicroK8s getting started
@@ -313,7 +333,7 @@ products:
               url: https://snapcraft.io/build
             - title: Dedicated Snap Store
               description: Private app store for Linux and IoT
-              url: https://ubuntu.com/internet-of-things/appstore
+              url: /internet-of-things/appstore
 
       secondary_links:
         - title: Links
@@ -323,7 +343,7 @@ products:
             - title: Snap documentation
               url: https://snapcraft.io/docs
             - title: Tutorial - create your first snap
-              url: http://ubuntu.com/tutorials/create-your-first-snap
+              url: /tutorials/create-your-first-snap
             - title: Snapcraft forum
               url: https://forum.snapcraft.io/
             - title: Snapcraft Blog
@@ -337,28 +357,28 @@ products:
           links:
             - title: Certfiied Hardware
               description: Machines you can trust with Ubuntu
-              url: https://ubuntu.com/certified
+              url: /certified
             - title: PC and Laptops
               description: Certified for Ubuntu
-              url: https://ubuntu.com/certified?q=&limit=20&category=Laptop&category=Desktop
+              url: /certified?q=&limit=20&category=Laptop&category=Desktop
             - title: Servers
               description: Deploy on certifed servers
-              url: https://ubuntu.com/certified/servers
+              url: /certified/servers
             - title: IoT Devices
               description: Stable and secure devices
-              url: https://ubuntu.com/certified/devices
+              url: /certified/devices
             - title: System on a Chip
               description: Supported in Ubuntu
-              url: https://ubuntu.com/certified/socs
+              url: /certified/socs
             - title: Raspberry Pi devices
               description: Certified Pi devices
-              url: https://ubuntu.com/certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
+              url: /certified?q=&limit=20&vendor=Raspberry+Pi+Foundation
 
       secondary_links:
         - title: Links
           links:
             - title: Why use Certified devices?
-              url: https://ubuntu.com/certified/why-certified
+              url: /certified/why-certified
             - title: Certify your device
               url: https://canonical.com/partners/become-a-partner
             - title: Why certification matters for AIoT
@@ -366,7 +386,7 @@ products:
             - title: Industrial Pi use cases webinar
               url: https://www.brighttalk.com/webcast/6793/514263
             - title: Why buy a preinstalled workstation?
-              url: https://ubuntu.com/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation
+              url: /blog/why-you-should-buy-a-pre-installed-ubuntu-workstation
 
     - title: IoT and Edge
       primary_links:
@@ -374,40 +394,95 @@ products:
           links:
             - title: Ubuntu Core
               description: Tiny Embedded Ubuntu
-              url: https://ubuntu.com/core
+              url: /core
             - title: Dedicated Snap Store
               description: Private app store for Linux and IoT
               url: http://snapcraft.io/
             - title: Device management
               description:
-              url: https://ubuntu.com/internet-of-things/management
+              url: /internet-of-things/management
             - title: Certified devices
               description:
-              url: https://ubuntu.com/certified/devices
+              url: /certified/devices
             - title: Ubuntu Frame
               description:
               url: https://mir-server.io/ubuntu-frame
             - title: IoT Professional Services
               description:
-              url: https://ubuntu.com/core/smartstart
+              url: /core/smartstart
 
       secondary_links:
         - title: Links
           links:
             - title: Real-time Ubuntu
-              url: https://ubuntu.com/blog/real-time-ubuntu-released
+              url: /blog/real-time-ubuntu-released
             - title: Guide to IoT lifecycle management
-              url: https://ubuntu.com/engage/a-practical-guide-to-iot-lifecycle-management
+              url: /engage/a-practical-guide-to-iot-lifecycle-management
             - title: Canonical joins the CSA
-              url: https://ubuntu.com/blog/canonical-joins-the-connectivity-standards-alliance
+              url: /blog/canonical-joins-the-connectivity-standards-alliance
             - title: Pick the OS for your robots
-              url: https://ubuntu.com/engage/robot-operating-system-choice
+              url: /engage/robot-operating-system-choice
             - title: "Embedded Linux: make or buy?"
-              url: https://ubuntu.com/engage/embedded-linux-make-or-buy
+              url: /engage/embedded-linux-make-or-buy
             - title: Try Ubuntu Core on Raspberry Pi
-              url: https://ubuntu.com/download/raspberry-pi-core
+              url: /download/raspberry-pi-core
             - title: Industry 4.0
-              url: https://ubuntu.com/engage/bridge-the-IT-OT-gap-Industry4
+              url: /engage/bridge-the-IT-OT-gap-Industry4
+
+use_case:
+  primary_links:
+    - title: By solution
+      links:
+        - title: AI/ML
+          url: /ai
+        - title: Compliance
+          url: /security/certifications
+        - title: Containers
+          url: /containers
+        - title: IoT
+          url: /internet-of-things
+        - title: Edge computing
+          url: /edge-computing
+        - title: Managed applications
+          url: /managed/apps
+        - title: Managed infrastructure
+          url: /pricing/infra
+        - title: Observability
+          url: /observability
+        - title: Private cloud and data centre
+          url: /openstack/consulting
+        - title: Public cloud
+          url: /cloud/public-cloud
+        - title: Robotics
+          url: /robotics
+        - title: Security
+          url: /security
+
+    - title: By Industry
+      links:
+        - title: Telco
+          url: /telco
+        - title: Automotive
+          url: /automotive
+        - title: Financial services
+          url: /financial-services
+        - title: Industrial
+          url: /industrial
+  secondary_links:
+    - title: IoT/Devices Use Cases/Verticals
+      links:
+        - title: Robotics
+          url: /robotics
+        - title: EdgeX
+          url: /internet-of-things/edgex
+        - title: Smart Home
+          url: /internet-of-things/smart-home
+        - title: Industrial
+          url: /industrial
+        - title: Automotive
+          url: /automotive
+        - title: Smart displays
+          url: /internet-of-things/smart-displays
 
 support:
   side_nav_sections:
@@ -571,7 +646,7 @@ community:
               url: http://loco.ubuntu.com/teams/
             - title: Donate
               description: Donate to the Ubuntu project
-              url: https://ubuntu.com/download/desktop/thank-you
+              url: /download/desktop/thank-you
     - title: Mission
       primary_links:
         - title: Resources
