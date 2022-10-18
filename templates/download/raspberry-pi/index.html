@@ -46,12 +46,10 @@
     <h2 class="u-sv2">
       Download Ubuntu Desktop
     </h2>
-    <p class="p-muted-heading">
-      Recommended desktop
-    </p>
   </div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-6">
+      <p class="p-muted-heading">&nbsp;</p>
       <h3>
         Ubuntu Desktop {{ releases.lts.full_version }} LTS
       </h3>
@@ -67,16 +65,24 @@
         </a>
       </p>
     </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
-        alt="",
-        width="260",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
+    <div class="col-6">
+      <p class="p-muted-heading">
+        Recommended desktop
+      </p>
+      <h3>
+        Ubuntu Desktop {{ releases.latest.full_version }}
+      </h3>
+      <p>
+        The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.
+      </p>
+      <p>
+        <a
+        class="p-button--positive"
+        href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=desktop-arm64+raspi"
+        onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          Download 64-bit
+        </a>
+      </p>
     </div>
   </div>
 
@@ -190,6 +196,22 @@
           Download 64-bit
         </a>
         <a class="p-button" href="/download/raspberry-pi/thank-you?version={{ releases.lts.full_version }}&amp;architecture=server-armhf+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 32-bit - server', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">
+          Download 32-bit
+        </a>
+      </p>
+    </div>
+    <div class="col-6">
+      <h3>
+        Ubuntu Server {{ releases.latest.full_version }}
+      </h3>
+      <p>
+        The latest development release of Ubuntu with nine months of support, until {{ releases.latest.eol }}.
+      </p>
+      <p>
+        <a class="p-button--positive" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-arm64+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 64-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
+          Download 64-bit
+        </a>
+        <a class="p-button" href="/download/raspberry-pi/thank-you?version={{ releases.latest.full_version }}&amp;architecture=server-armhf+raspi" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Raspberry Pi 32-bit - server', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">
           Download 32-bit
         </a>
       </p>
