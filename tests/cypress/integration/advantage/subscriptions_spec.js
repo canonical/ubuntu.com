@@ -1,30 +1,30 @@
 /// <reference types="cypress" />
 
-context("/pro", () => {
+context("/pro/dashboard", () => {
   it("header links work correctly", () => {
     const links = [
       {
         name: "Buy new subscription",
-        href: "/pro",
+        href: "/pro/subscribe",
       },
       { name: "Invoices", href: "/account/invoices" },
       { name: "Payment methods", href: "/account/payment-methods" },
     ];
 
     cy.login();
-    cy.visit("/pro");
+    cy.visit("/pro/dashboard");
     cy.acceptCookiePolicy();
 
     links.forEach(({ name, href }) => {
       cy.findByRole("link", { name }).click();
       cy.url().should("include", href);
-      cy.visit("/pro");
+      cy.visit("/pro/dashboard");
     });
   });
 
   it("free personal token is at the bottom of the list", () => {
     cy.login();
-    cy.visit("/pro");
+    cy.visit("/pro/dashboard");
     cy.acceptCookiePolicy();
 
     cy.get("[data-test=subscription-card-content] h5")
