@@ -22,18 +22,16 @@
         <li class="p-list__item is-ticked">Commercial support for enterprise customers</li>
       </ul>
     </div>
-    <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
-      <div class="u-hide--medium u-hide--small u-align--center">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
-          alt="",
-          width="260",
-          height="150",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
-      </div>
+    <div class="col-5 u-align--center u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/38ba52dc-Kinetic+Kudo+22.10.svg",
+        alt="",
+        width="288",
+        height="250",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
   <div class="row">
@@ -59,19 +57,19 @@
 
   </div>
   <div class="row">
-    <div class="col-12">
-      <button disabled class="p-button u-no-margin--left">
+    <div class="col-12" style="display:flex; flex-wrap: wrap;">
+      <button disabled class="p-button">
         Option 1 - Manual server installation
       </button>
-      <form action="/download/server" method="post" style="display: inline">
+      <form action="/download/server" method="post">
         <input type="hidden" name="next-step" value="multipass">
-        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });" style="margin-right: 1rem">
           Option 2 - Instant Ubuntu VMs
         </button>
       </form>
-      <form action="/download/server" method="post" style="display: inline">
+      <form action="/download/server" method="post">
         <input type="hidden" name="next-step" value="choose">
-        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
           Option 3 - Automated server provisioning
         </button>
       </form>
@@ -132,7 +130,7 @@
       <ul class="p-list u-no-margin--bottom">
         <li class="p-list__item">
           <a class="download-torrent p-button u-no-margin--bottom" href="https://releases.ubuntu.com/{{ releases.lts.short_version }}/ubuntu-{{ releases.lts.full_version }}-live-server-amd64.iso.torrent">
-            Ubuntu Server {{ releases.lts.full_version }} LTS
+            Ubuntu Server {{ releases.lts.short_version }} LTS
           </a>
         </li>
         <li class="p-list__item">
