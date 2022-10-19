@@ -95,8 +95,7 @@ const generateDocLinks = (
         case EntitlementType.EsmInfra:
           link = {
             label: "Ubuntu Pro (esm-apps --beta) tutorial",
-            url:
-              "/pro/beta",
+            url: "/pro/beta",
           };
           break;
         case EntitlementType.Livepatch:
