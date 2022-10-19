@@ -34,7 +34,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
 
   const taxMutation = useCalculateTaxes({
     country: values.country,
-    productListing: product.longId,
+    productListing: product?.longId,
     quantity,
     VATNumber: values.VATNumber,
   });

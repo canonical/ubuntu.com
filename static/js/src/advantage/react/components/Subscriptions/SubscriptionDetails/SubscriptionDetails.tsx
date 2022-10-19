@@ -52,7 +52,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     }, []);
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
-    const [showingRenewalModal, setShowingRenewalModal] = useState(false);
     const [notification, setNotification] = useState<NotificationProps | null>(
       null
     );
@@ -191,22 +190,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                   </Button>
                 ) : null}
                 {subscription.statuses.is_renewable ? (
-                  <Button
-                    appearance="neutral"
-                    className="p-subscriptions__details-action"
-                    data-test="renew-button"
-                    disabled={editing}
-                    onClick={() => {
-                      setShowingRenewalModal(true);
-                      sendAnalyticsEvent({
-                        eventCategory: "Advantage",
-                        eventAction: "subscription-renewal-modal",
-                        eventLabel: "subscription renewal modal opened",
-                      });
-                    }}
-                  >
-                    Renew subscription&hellip;
-                  </Button>
+                  <RenewalModal subscription={subscription} editing={editing} />
                 ) : null}
                 {subscription.statuses.is_trialled ? (
                   <Button
@@ -292,14 +276,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             />
           )}
         </section>
-        {showingRenewalModal ? (
-          <RenewalModal
-            subscription={subscription}
-            closeModal={() => {
-              setShowingRenewalModal(false);
-            }}
-          />
-        ) : null}
       </div>
     );
   }

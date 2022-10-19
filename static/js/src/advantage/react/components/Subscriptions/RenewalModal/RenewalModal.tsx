@@ -1,18 +1,24 @@
 import { add } from "date-fns";
 import React from "react";
 import { UserSubscription } from "../../../../api/types";
-import { BuyButtonProps } from "../../../../subscribe/react/utils/utils";
 
 type Props = {
   subscription: UserSubscription;
-  closeModal: () => void;
+  editing: boolean;
 };
 
 import PurchaseModal from "../../../../../PurchaseModal";
 import Summary from "./Summary";
-import RenewButton from "./RenewButton";
+import usePortal from "react-useportal";
+import useRenewal from "advantage/react/hooks/useRenewal";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import { Button } from "@canonical/react-components";
 
-const RenewalModal = ({ subscription, closeModal }: Props) => {
+const RenewalModal = ({ subscription, editing }: Props) => {
+  const { openPortal, closePortal, isOpen, Portal } = usePortal();
+
+  const renewalMutation = useRenewal(subscription.renewal_id);
+
   const termsLabel = (
     <>
       I agree to the{" "}
@@ -41,54 +47,38 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
     );
   };
 
-  const BuyButton = ({
-    areTermsChecked,
-    isMarketingOptInChecked,
-    setTermsChecked,
-    setIsMarketingOptInChecked,
-    setError,
-    setStep,
-    isUsingFreeTrial,
-  }: BuyButtonProps) => {
-    return (
-      <RenewButton
-        renewalID={subscription.renewal_id}
-        closeModal={closeModal}
-        areTermsChecked={areTermsChecked}
-        isMarketingOptInChecked={isMarketingOptInChecked}
-        setTermsChecked={setTermsChecked}
-        setIsMarketingOptInChecked={setIsMarketingOptInChecked}
-        setError={setError}
-        setStep={setStep}
-        isUsingFreeTrial={isUsingFreeTrial}
-      />
-    );
-  };
-
   return (
-    <div
-      className="p-modal p-modal--ua-payment is-details-mode"
-      id="purchase-modal"
-    >
-      <div
-        id="react-root"
-        className="p-modal__dialog ua-dialog"
-        role="dialog"
-        aria-labelledby="modal-title"
+    <>
+      <Button
+        appearance="neutral"
+        className="p-subscriptions__details-action"
+        data-test="renew-button"
+        disabled={editing}
+        onClick={(e) => {
+          openPortal(e);
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-renewal-modal",
+            eventLabel: "subscription renewal modal opened",
+          });
+        }}
       >
-        <PurchaseModal
-          accountId={subscription.account_id}
-          termsLabel={termsLabel}
-          marketingLabel={marketingLabel}
-          quantity={subscription.number_of_machines}
-          closeModal={closeModal}
-          Summary={RenewalSummary}
-          BuyButton={BuyButton}
-          modalTitle={`Renew ${subscription.product_name}`}
-          marketplace="canonical-ua"
-        />
-      </div>
-    </div>
+        Renew subscription&hellip;
+      </Button>
+
+      {isOpen ? (
+        <Portal>
+          <PurchaseModal
+            termsLabel={termsLabel}
+            marketingLabel={marketingLabel}
+            Summary={RenewalSummary}
+            closeModal={closePortal}
+            mutation={renewalMutation}
+            marketplace={subscription.marketplace}
+          />
+        </Portal>
+      ) : null}
+    </>
   );
 };
 
