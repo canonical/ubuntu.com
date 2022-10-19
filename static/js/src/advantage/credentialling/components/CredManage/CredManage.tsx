@@ -24,7 +24,7 @@ const CredManage = () => {
     { children: string; onClick: () => void }[]
   >([]);
   const { isLoading, data } = useQuery(["ActivationKeys"], async () => {
-    return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
+    return listAllKeys("default");
   });
 
   const [filterData, changeFilterData] = useState<ActivationKey[]>(data);
@@ -88,6 +88,15 @@ const CredManage = () => {
     }
     console.log(keyValue, selectedKeyIds);
   };
+
+
+  const selectAllKeys = (event: React.SyntheticEvent) => {
+    setSelectedKeyIds([]);
+    if (event.target.checked) {
+      setSelectedKeyIds(tableData.map((item) => item["key"]));
+    }
+  }
+
   const copyToClipboard = (value: string) => {
     console.log(value);
     navigator.clipboard.writeText(value);
@@ -126,6 +135,7 @@ const CredManage = () => {
     }
     return true;
   };
+
 
   useEffect(() => {
     let newList = [];
@@ -292,22 +302,18 @@ const CredManage = () => {
           <MainTable
             headers={[
               {
-                content: "",
-                sortKey: "checkbox",
+                content: <CheckboxInput onChange={selectAllKeys} label="" checked={tableData != undefined && selectedKeyIds.length == tableData.length} />,
+                colSpan: 1
               },
               {
                 content: "Exam Key Id",
                 sortKey: "key",
-              },
-              {
-                content: "",
+                colSpan: 2
               },
               {
                 content: "Assignee",
                 sortKey: "activatedBy",
-              },
-              {
-                content: "",
+                colSpan: 2
               },
               {
                 content: "Exam",
@@ -336,28 +342,26 @@ const CredManage = () => {
                       ),
                     },
                     {
-                      content: keyitem["key"],
-                    },
-                    {
                       content: (
-                        <Tooltip
-                          message="Copy Key"
-                          position="right"
-                        >
-                          <a
-                            onClick={() => {
-                              copyToClipboard(keyitem.key);
-                            }}
+                        <>
+                          <Tooltip
+                            message="Copy Key"
+                            position="right"
                           >
-                            <i className="p-icon--copy"></i>
-                          </a>
-                        </Tooltip>
+                            <p>
+                              {keyitem["key"]} &emsp;
+                              <a
+                                onClick={() => {
+                                  copyToClipboard(keyitem.key);
+                                }}
+                              >
+                                <i className="p-icon--copy"></i>
+                              </a>
+                            </p>
+                          </Tooltip>
+                        </>
                       ),
-                    },
-                    {
-                      content: keyitem["activatedBy"]
-                        ? keyitem["activatedBy"]
-                        : "N/A",
+                      colSpan: 2
                     },
                     {
                       content:
@@ -367,25 +371,32 @@ const CredManage = () => {
                               message="Archive Key"
                               position="right"
                             >
-                              <a
-                                onClick={() => {
-                                  ;
-                                }}
-                              >
-                                <i className="p-icon--delete"></i>
-                              </a>
+                              <p>
+                                {keyitem["activatedBy"]} &emsp;
+                                <a
+                                  onClick={() => {
+                                    ;
+                                  }}
+                                >
+                                  <i className="p-icon--delete"></i>
+                                </a>
+                              </p>
                             </Tooltip> :
                             <Tooltip message="Refresh Key" position="right">
-                              <a
-                                onClick={() => {
-                                  rotateActivationKeys([keyitem.key]);
-                                }}
-                              >
-                                <i className="p-icon--restart"></i>
-                              </a>
+                              <p>
+                                N/A &emsp;
+                                <a
+                                  onClick={() => {
+                                    rotateActivationKeys([keyitem.key]);
+                                  }}
+                                >
+                                  <i className="p-icon--restart"></i>
+                                </a>
+                              </p>
                             </Tooltip>
                           }
-                        </>
+                        </>,
+                      colSpan: 2
                     },
                     {
                       content: keyitem.productID,
@@ -403,10 +414,11 @@ const CredManage = () => {
             }
             paginate={5}
             sortable
+            responsive
           />
         )}
       </Row>
-    </div>
+    </div >
   );
 };
 export default CredManage;
