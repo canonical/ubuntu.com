@@ -450,7 +450,7 @@ def cred_schedule(
         if response and "error" in response:
             error = response["message"]
             return flask.render_template(
-                "/credentialing/schedule.html", error=error
+                "/credentials/schedule.html", error=error
             )
         else:
             exam = {
@@ -460,7 +460,7 @@ def cred_schedule(
                 "uuid": data["uuid"] if "uuid" in data else "",
             }
             return flask.render_template(
-                "/credentialing/schedule-confirm.html", exam=exam
+                "/credentials/schedule-confirm.html", exam=exam
             )
 
     assessment_reservation_uuid = flask.request.args.get("uuid")
@@ -483,7 +483,7 @@ def cred_schedule(
         time = starts_at.strftime("%H:%M")
 
     return flask.render_template(
-        "credentialing/schedule.html",
+        "credentials/schedule.html",
         uuid=assessment_reservation_uuid,
         timezone=timezone,
         date=date,
@@ -537,7 +537,7 @@ def cred_your_exams(
                     [
                         {
                             "text": "Take exam",
-                            "href": f"/credentialing/exam?id={ assessment_id }",
+                            "href": f"/credentials/exam?id={ assessment_id }",
                             "button_class": "p-button--positive",
                         }
                     ]
@@ -548,12 +548,12 @@ def cred_your_exams(
                     [
                         {
                             "text": "Reschedule",
-                            "href": f"/credentialing/schedule?uuid={ r['uuid'] }",
+                            "href": f"/credentials/schedule?uuid={ r['uuid'] }",
                             "button_class": "p-button",
                         },
                         {
                             "text": "Cancel",
-                            "href": f"/credentialing/cancel-exam?uuid={ r['uuid'] }",
+                            "href": f"/credentials/cancel-exam?uuid={ r['uuid'] }",
                             "button_class": "p-button--negative",
                         },
                     ]
@@ -579,11 +579,11 @@ def cred_your_exams(
     key_len = len(os.getenv("TRUEABILITY_API_KEY", ""))
 
     return flask.render_template(
-        "credentialing/your-exams.html",
+        "credentials/your-exams.html",
         exams=exams,
         #  url=url,
         #  key_len=key_len,
-        #  tb=tb,
+        tb=tb,
     )
 
 
@@ -600,7 +600,7 @@ def cred_cancel_exam(
 ):
     uuid = flask.request.args.get("uuid")
     response = trueability_api.delete_assessment_reservation(uuid)
-    return flask.redirect("/credentialing/your-exams")
+    return flask.redirect("/credentials/your-exams")
 
 
 @shop_decorator(area="cube", permission="user", response="html")
@@ -644,7 +644,7 @@ def cred_assessments(
             }
         )
 
-    return flask.render_template("credentialing/assessments.html", exams=exams)
+    return flask.render_template("credentials/assessments.html", exams=exams)
 
 
 @shop_decorator(area="cube", permission="user", response="html")
@@ -671,7 +671,7 @@ def cred_exam(
         return flask.abort(403)
 
     url = trueability_api.get_assessment_redirect(assessment_id)
-    return flask.render_template("credentialing/exam.html", url=url)
+    return flask.render_template("credentials/exam.html", url=url)
 
 
 @shop_decorator(area="cube", permission="user", response="json")

@@ -912,10 +912,10 @@ app.add_url_rule(
     view_func=cred_schedule,
     methods=["GET", "POST"],
 )
-app.add_url_rule("/credentialing/your-exams", view_func=cred_your_exams)
-app.add_url_rule("/credentialing/cancel-exam", view_func=cred_cancel_exam)
-app.add_url_rule("/credentialing/assessments", view_func=cred_assessments)
-app.add_url_rule("/credentialing/exam", view_func=cred_exam)
+app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
+app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
+app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
+app.add_url_rule("/credentials/exam", view_func=cred_exam)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(
