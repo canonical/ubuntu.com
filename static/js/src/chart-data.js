@@ -53,6 +53,12 @@ export var smallReleases = [
     taskName: "Ubuntu 22.04 LTS",
     status: "ESM",
   },
+  {
+    startDate: new Date("2022-10-20T00:00:00"),
+    endDate: new Date("2023-07-20T00:00:00"),
+    taskName: "Ubuntu 22.10",
+    status: "INTERIM_RELEASE",
+  },
 ];
 
 export var serverAndDesktopReleases = [
@@ -129,10 +135,10 @@ export var serverAndDesktopReleases = [
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
-    startDate: new Date("2027-04-01T00:00:00"),
-    endDate: new Date("2032-04-09T00:00:00"),
-    taskName: "22.04 LTS (Jammy Jellyfish)",
-    status: "ESM",
+    startDate: new Date("2022-10-20T00:00:00"),
+    endDate: new Date("2023-07-20T00:00:00"),
+    taskName: "22.10 (Kinetic Kudu)",
+    status: "INTERIM_RELEASE",
   },
 ];
 
@@ -1417,6 +1423,7 @@ export var kubernetesStatus = {
 };
 
 export var smallReleaseNames = [
+  "Ubuntu 22.10",
   "Ubuntu 22.04 LTS",
   "Ubuntu 21.10",
   "Ubuntu 21.04",
@@ -1425,6 +1432,7 @@ export var smallReleaseNames = [
 ];
 
 export var desktopServerReleaseNames = [
+  "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",
   "21.10 (Impish Indri)",
   "21.04 (Hirsute Hippo)",
