@@ -96,7 +96,7 @@ const generateDocLinks = (
           link = {
             label: "Ubuntu Pro (esm-apps --beta) tutorial",
             url:
-              "https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018",
+              "/pro/beta",
           };
           break;
         case EntitlementType.Livepatch:
@@ -163,7 +163,7 @@ const DetailsTabs = ({
     ? [
         {
           label: "Ubuntu Pro (esm-apps --beta) tutorial",
-          url: "https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018",
+          url: "/pro/beta",
         },
       ]
     : generateDocLinks(subscription.entitlements);
