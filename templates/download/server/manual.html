@@ -22,18 +22,16 @@
         <li class="p-list__item is-ticked">Commercial support for enterprise customers</li>
       </ul>
     </div>
-    <div class="col-5 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center" style="min-height: 228px">
-      <div class="u-hide--medium u-hide--small u-align--center">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
-          alt="",
-          width="260",
-          height="150",
-          hi_def=True,
-          loading="auto"
-          ) | safe
-        }}
-      </div>
+    <div class="col-5 u-align--center u-hide--medium u-hide--small u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fe859a7f-Jammy+Jellyfish+RGB.svg",
+        alt="",
+        width="260",
+        height="150",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
   <div class="row">
@@ -52,26 +50,26 @@
       </ul>
       <p class="u-sv3">
         <a href="{{ releases.lts.release_notes_url }}">
-          Read the Ubuntu Server {{ releases.lts.short_version }} LTS release notes
+          Read the Ubuntu Server {{ releases.lts.short_version }} LTS release notes&nbsp;&rsaquo;
         </a>
       </p>
     </div>
 
   </div>
   <div class="row">
-    <div class="col-12">
-      <button disabled class="p-button u-no-margin--left">
+    <div class="col-12" style="display:flex; flex-wrap: wrap;">
+      <button disabled class="p-button">
         Option 1 - Manual server installation
       </button>
-      <form action="/download/server" method="post" style="display: inline">
+      <form action="/download/server" method="post">
         <input type="hidden" name="next-step" value="multipass">
-        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 2', 'eventValue' : undefined });" style="margin-right: 1rem">
           Option 2 - Instant Ubuntu VMs
         </button>
       </form>
-      <form action="/download/server" method="post" style="display: inline">
+      <form action="/download/server" method="post">
         <input type="hidden" name="next-step" value="choose">
-        <button type="submit" class="p-button is-inline" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
+        <button type="submit" class="p-button" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Server download', 'eventAction' : 'Next option', 'eventLabel' : 'Option 3', 'eventValue' : undefined });">
           Option 3 - Automated server provisioning
         </button>
       </form>
@@ -105,15 +103,15 @@
       </p>
     </div>
     <div class="col-4 col-start-large-8 u-hide--medium u-hide--small u-align--center u-vertically-center">
-        {{ image (
-          url="https://assets.ubuntu.com/v1/c9a911d5-II-grad-mascot.svg",
-          alt="",
-          width="263",
-          height="150",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
+      {{ image (
+        url="https://assets.ubuntu.com/v1/38ba52dc-Kinetic+Kudo+22.10.svg",
+        alt="",
+        width="288",
+        height="250",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
     </div>
   </div>
   {% endif %}

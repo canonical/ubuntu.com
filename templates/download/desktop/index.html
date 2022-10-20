@@ -23,7 +23,7 @@
 
     <div class="col-8 p-divider__block">
       <h2>Ubuntu {{ releases.lts.full_version }} LTS</h2>
-      <p class="u-no-padding--top">Download the latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed until {{ releases.lts.eol }}.</p>
+      <p class="u-no-padding--top">The latest <abbr title="Long-term support">LTS</abbr> version of Ubuntu, for desktop PCs and laptops. LTS stands for long-term support &mdash; which means five years of free security and maintenance updates, guaranteed until {{ releases.lts.eol }}.</p>
       <p><a href="{{ releases.lts.release_notes_url }}">Ubuntu {{ releases.lts.short_version }} LTS release notes</a></p>
       <p>Recommended system requirements:</p>
       <ul class="p-list is-split">
@@ -48,6 +48,37 @@
       </div>
       <p>
         <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">Download</a>
+        <script>performance.mark("Download (Desktop) button rendered")</script>
+      </p>
+      <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+
+    <div class="col-8 p-divider__block">
+      <h2>Ubuntu {{ releases.latest.full_version }}</h2>
+      <p class="u-no-padding--top">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.short_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.</p>
+      <p>Recommended system requirements are the same as for Ubuntu {{ releases.lts.short_version }} LTS.</p>
+      <p><a href="{{ releases.latest.release_notes_url }}">Ubuntu {{ releases.latest.short_version }} release notes</a></p>
+    </div>
+    <div class="col-4">
+      <div class="u-align--center u-sv4">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/38ba52dc-Kinetic+Kudo+22.10.svg",
+          alt="",
+          width="173",
+          height="150",
+          hi_def=True,
+          loading="auto|lazy"
+          ) | safe
+        }}
+      </div>
+      <p>
+        <a class="p-button--positive is-wide" href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">Download</a>
         <script>performance.mark("Download (Desktop) button rendered")</script>
       </p>
       <p><small>For other versions of Ubuntu Desktop including torrents, the network installer, a list of local mirrors and past releases <a href="/download/alternative-downloads">see our alternative downloads</a>.</small></p>
