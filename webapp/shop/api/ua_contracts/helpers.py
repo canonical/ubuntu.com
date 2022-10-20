@@ -271,9 +271,13 @@ def get_user_subscription_statuses(
 
         is_cancelled = True if not current_number_of_machines else False
         statuses["is_cancelled"] = is_cancelled
-        statuses["should_present_auto_renewal"] = (
-            statuses["is_subscription_active"] and not is_cancelled
-        )
+
+        if type == "yearly":
+            statuses["should_present_auto_renewal"] = False
+        elif type == "monthly":
+            statuses["should_present_auto_renewal"] = (
+                statuses["is_subscription_active"] and not is_cancelled
+            )
 
         # If the subscription is set to auto-renew, we shouldn't alarm the
         # user.
