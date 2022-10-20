@@ -438,11 +438,18 @@ def cube_shop(**kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
-def get_activation_keys(ua_contracts_api, **kwargs):
+def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     # contract_id = kwargs.get("contract_id")
     # keys = ua_contracts_api.list_activation_keys(contract_id)
     # return flask.jsonify(keys)
+    accounts = advantage_mapper.get_accounts()
+    account_dict = {}
+    for account in accounts:
+        account_dict[account.id] = account.name
     keys = json.load(open("webapp/shop/cube/demo_keys.json", "r"))
+    for k in keys:
+        if "activatedBy" in k:
+            k["activatedBy"]=account_dict[k["activatedBy"]]
     return flask.jsonify(keys)
 
 
