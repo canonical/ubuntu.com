@@ -1,4 +1,5 @@
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
+import { Periods } from "advantage/subscribe/react/utils/utils";
 
 export interface DefaultPaymentMethod {
   brand: PaymentMethod.Card["brand"];
@@ -39,6 +40,7 @@ export interface FormValues {
   captchaValue: string | null;
   TermsAndConditions: boolean;
   MarketingOptIn: boolean;
+  FreeTrial: string;
 }
 
 function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
@@ -70,7 +72,8 @@ function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
 
 function getInitialFormValues(
   userInfo: UserInfo,
-  accountId?: string
+  accountId?: string,
+  canBeTrialled?: boolean
 ): FormValues {
   return {
     email: userInfo?.customerInfo?.email ?? "",
@@ -88,6 +91,7 @@ function getInitialFormValues(
     captchaValue: null,
     TermsAndConditions: false,
     MarketingOptIn: false,
+    FreeTrial: canBeTrialled ? "useFreeTrial" : "payNow",
   };
 }
 
@@ -103,3 +107,17 @@ export const marketplaceDisplayName = {
   "canonical-cube": "CUE",
   blender: "Blender",
 };
+
+export interface Product {
+  longId: string;
+  period: Periods;
+  marketplace: marketplace;
+  id: string;
+  name: string;
+  price: {
+    value: number;
+  };
+  canBeTrialled?: boolean;
+}
+
+export type Action = "purchase" | "resize" | "trial";

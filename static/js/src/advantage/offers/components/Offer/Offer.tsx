@@ -111,7 +111,6 @@ const Offer = ({ offer }: Props) => {
             marketingLabel={marketingLabel}
             Summary={OfferSummary}
             closeModal={closePortal}
-            mutation={purchaseMutation}
             marketplace={marketplace}
           />
         </Portal>

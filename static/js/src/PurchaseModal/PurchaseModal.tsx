@@ -3,9 +3,8 @@ import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./hooks/useStripeCustomerInfo";
 import registerPaymentMethod from "./hooks/registerPaymentMethod";
 import { Formik, FormikHelpers } from "formik";
-import { UseMutationResult, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 import { getErrorMessage } from "../advantage/error-handler";
-import usePurchase from "advantage/subscribe/react/hooks/usePurchase";
 import { checkoutEvent } from "../advantage/ecom-events";
 import {
   getUserInfoFromVariables,
@@ -13,6 +12,8 @@ import {
   FormValues,
   marketplace,
   marketplaceDisplayName,
+  Product,
+  Action,
 } from "./utils/utils";
 
 import { Col, List, Notification, Row } from "@canonical/react-components";
@@ -22,20 +23,19 @@ import UserInfoForm from "./components/UserInfoForm";
 import ConfirmAndBuy from "./components/ConfirmAndBuy";
 import ModalFooter from "./components/ModalParts/ModalFooter";
 import BuyButton from "./components/BuyButton";
+import FreeTrial from "./components/FreeTrial";
 
 type Props = {
   accountId?: string;
   termsLabel: React.ReactNode;
   marketingLabel: React.ReactNode;
-  product?: any;
-  preview?: any;
-  quantity?: number;
+  product: Product;
+  quantity: number;
   closeModal: () => void;
   Summary: React.ComponentType;
   modalTitle?: string;
-  isFreeTrialApplicable?: boolean;
-  mutation: UseMutationResult<any, unknown, void, unknown>;
   marketplace: marketplace;
+  action?: Action;
 };
 
 const PurchaseModal = ({
@@ -43,21 +43,15 @@ const PurchaseModal = ({
   termsLabel,
   marketingLabel,
   product,
-  preview,
   quantity,
   closeModal,
   Summary,
-  isFreeTrialApplicable,
-  mutation,
   marketplace,
+  action = "purchase",
 }: Props) => {
+
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
-
-  const sanitisedQuantity = quantity ?? 1;
-
-  const purchaseMutation =
-    mutation || usePurchase({ quantity: sanitisedQuantity, product });
 
   const [isCardValid, setCardValid] = useState(false);
 
@@ -69,7 +63,12 @@ const PurchaseModal = ({
 
   const paymentMethodMutation = registerPaymentMethod();
 
-  const initialValues = getInitialFormValues(userInfo, window.accountId);
+  const initialValues = getInitialFormValues(
+    userInfo,
+    window.accountId,
+    product.canBeTrialled
+  );
+
 
   const isGuest = !userInfo?.customerInfo?.email;
 
@@ -77,7 +76,7 @@ const PurchaseModal = ({
     id: product?.id,
     name: product?.name,
     price: product?.price?.value / 100,
-    quantity: sanitisedQuantity,
+    quantity: quantity,
   };
   const scrollToTop = () => {
     titleRef?.current?.scrollIntoView();
@@ -170,9 +169,7 @@ const PurchaseModal = ({
               items={[
                 {
                   title: "Region and taxes",
-                  content: (
-                    <Taxes product={product} quantity={sanitisedQuantity} />
-                  ),
+                  content: <Taxes product={product} quantity={quantity} />,
                 },
                 {
                   title: "Your purchase",
@@ -190,6 +187,14 @@ const PurchaseModal = ({
                   title: "Your information",
                   content: <UserInfoForm setCardValid={setCardValid} />,
                 },
+                ...(product.canBeTrialled
+                  ? [
+                      {
+                        title: "Free trial",
+                        content: <FreeTrial />,
+                      },
+                    ]
+                  : []),
                 {
                   title: "Confirm and buy",
                   content: (
@@ -204,10 +209,9 @@ const PurchaseModal = ({
             <ModalFooter closeModal={closeModal}>
               <BuyButton
                 setError={setError}
-                userInfo={userInfo}
                 product={product}
-                quantity={sanitisedQuantity}
-                purchaseMutation={purchaseMutation}
+                quantity={quantity}
+                action={action}
               ></BuyButton>
             </ModalFooter>
           </>

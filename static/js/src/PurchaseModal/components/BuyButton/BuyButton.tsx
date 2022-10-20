@@ -1,37 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
-import useFreeTrial from "advantage/subscribe/react/hooks/useFreeTrial";
-import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import { getSessionData } from "utils/getSessionData";
-import { FormValues } from "../../utils/utils";
+import { Action, FormValues, Product } from "../../utils/utils";
 import { getErrorMessage } from "advantage/error-handler";
 
 import { checkoutEvent, purchaseEvent } from "advantage/ecom-events";
-import { UseMutationResult } from "react-query";
 import { useFormikContext } from "formik";
+import useMakePurchase from "PurchaseModal/hooks/useMakePurchase";
+import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
+import usePollPurchaseStatus from "PurchaseModal/hooks/usePollPurchaseStatus";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  userInfo: any;
   quantity: number;
-  product: any;
-  purchaseMutation: UseMutationResult<any, unknown, void, unknown>;
+  product: Product;
+  action: Action;
 };
 
-const BuyButton = ({
-  setError,
-  userInfo,
-  quantity,
-  product,
-  purchaseMutation,
-}: Props) => {
+const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const { data: userInfo } = useStripeCustomerInfo();
 
   const { values, setFieldValue } = useFormikContext<FormValues>();
 
+  const genericPurchaseMutation = useMakePurchase();
+
   const isButtonDisabled =
     !values.captchaValue || !values.TermsAndConditions || isLoading;
+
+  const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -40,13 +39,11 @@ const BuyButton = ({
     utm_medium: getSessionData("utm_medium"),
   };
 
-  const freeTrialMutation = useFreeTrial(); //ignore for now
-
   const {
     data: pendingPurchase,
     setPendingPurchaseID,
     error: purchaseError,
-  } = usePendingPurchase();
+  } = usePollPurchaseStatus();
 
   const GAFriendlyProduct = {
     id: product?.id,
@@ -69,73 +66,51 @@ const BuyButton = ({
         location.pathname
       }/thank-you?email=${encodeURIComponent(userInfo?.customerInfo?.email)}`;
     } else {
-      location.pathname = "/advantage";
+      location.pathname = "/pro";
     }
-  };
-
-  const onStartTrialClick = () => {
-    //ignore for now
-    handleOnPurchaseBegin();
-
-    freeTrialMutation.mutate(undefined, {
-      onSuccess: () => {
-        handleOnAfterPurchaseSuccess();
-      },
-      onError: (error) => {
-        setIsLoading(false);
-        if (
-          error instanceof Error &&
-          error.message.includes("account already had or has access to product")
-        ) {
-          setError(<>You already have trialled this product</>);
-        } else {
-          Sentry.captureException(error);
-          setError(
-            <>
-              Sorry, there was an unknown error with the free trial. Check the
-              details and try again. Contact{" "}
-              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-              problem persists.
-            </>
-          );
-        }
-      },
-    });
   };
 
   const onPayClick = () => {
     handleOnPurchaseBegin();
     checkoutEvent(GAFriendlyProduct, "3");
-    purchaseMutation.mutate(undefined, {
-      onSuccess: (data) => {
-        //start polling
-        setPendingPurchaseID(data);
+    genericPurchaseMutation.mutate(
+      {
+        formData: values,
+        product,
+        quantity,
+        action: buyAction,
       },
-      onError: (error) => {
-        setIsLoading(false);
-        if (
-          error instanceof Error &&
-          error.message.includes("can only make one purchase at a time")
-        ) {
-          setError(
-            <>
-              You already have a pending purchase. Please go to{" "}
-              <a href="/account/payment-methods">payment methods</a> to retry.
-            </>
-          );
-        } else {
-          Sentry.captureException(error);
-          setError(
-            <>
-              Sorry, there was an unknown error with the payment. Check the
-              details and try again. Contact{" "}
-              <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
-              problem persists.
-            </>
-          );
-        }
-      },
-    });
+      {
+        onSuccess: (data) => {
+          //start polling
+          setPendingPurchaseID(data);
+        },
+        onError: (error) => {
+          setIsLoading(false);
+          if (
+            error instanceof Error &&
+            error.message.includes("can only make one purchase at a time")
+          ) {
+            setError(
+              <>
+                You already have a pending purchase. Please go to{" "}
+                <a href="/account/payment-methods">payment methods</a> to retry.
+              </>
+            );
+          } else {
+            Sentry.captureException(error);
+            setError(
+              <>
+                Sorry, there was an unknown error with the payment. Check the
+                details and try again. Contact{" "}
+                <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
+                the problem persists.
+              </>
+            );
+          }
+        },
+      }
+    );
   };
 
   useEffect(() => {

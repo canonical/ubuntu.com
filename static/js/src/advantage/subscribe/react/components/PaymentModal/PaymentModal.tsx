@@ -47,10 +47,9 @@ export default function PaymentModal({ isHidden }: Props) {
             marketingLabel={marketingLabel}
             product={product}
             preview={preview}
-            quantity={quantity}
+            quantity={sanitisedQuantity}
             closeModal={closePortal}
             Summary={Summary}
-            isFreeTrialApplicable={true}
             marketplace="canonical-ua"
           />
         </Portal>

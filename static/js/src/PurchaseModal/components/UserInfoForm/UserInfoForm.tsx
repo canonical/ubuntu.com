@@ -14,6 +14,7 @@ import { getErrorMessage } from "advantage/error-handler";
 import FormRow from "../FormRow";
 import { CardElement } from "@stripe/react-stripe-js";
 import PaymentMethodSummary from "./PaymentMethodSummary";
+import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
 
 type Error = {
   type: "validation_error";
@@ -35,7 +36,11 @@ const UserInfoForm = ({ setCardValid }: Props) => {
     isSubmitting,
   } = useFormikContext<FormValues>();
 
-  const [isEditing, setIsEditing] = useState(!values.city);
+  const { data: userInfo } = useStripeCustomerInfo();
+
+  const [isEditing, setIsEditing] = useState(
+    !userInfo?.customerInfo?.defaultPaymentMethod?.id
+  );
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
 
@@ -226,16 +231,6 @@ const UserInfoForm = ({ setCardValid }: Props) => {
         stacked
         validate={validateRequired}
         error={touched?.postalCode && errors?.postalCode}
-      />
-      <Field
-        as={Select}
-        id="country"
-        name="country"
-        options={countries}
-        label="Country/Region:"
-        stacked
-        validate={validateRequired}
-        error={touched?.country && errors?.country}
       />
       <Field
         as={Input}

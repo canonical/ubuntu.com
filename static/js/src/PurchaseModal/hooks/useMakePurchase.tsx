@@ -1,27 +1,24 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useMutation } from "react-query";
-import {
-  ensurePurchaseAccount,
-  postCustomerInfoToStripeAccount,
-} from "../../advantage/api/contracts";
-import { FormValues, marketplace } from "../utils/utils";
+import { Action, FormValues, Product } from "../utils/utils";
+import useStripeCustomerInfo from "./useStripeCustomerInfo";
 
 type Props = {
   formData: FormValues;
-  marketplace: marketplace;
-  action: "purchase" | "resize" | "trial";
+  product: Product;
+  quantity: number;
+  action: Action;
 };
 
 const useMakePurchase = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const { data: userInfo } = useStripeCustomerInfo();
 
   const mutation = useMutation(
-    async ({ formData, product, quantity, marketplace, action }: Props) => {
+    async ({ formData, product, quantity, action }: Props) => {
       const {
         name,
-        buyingFor,
-        organisationName,
         email,
         address,
         city,
@@ -33,12 +30,6 @@ const useMakePurchase = () => {
         captchaValue,
       } = formData;
 
-      const card = elements?.getElement(CardElement);
-
-      if (!stripe || !card) {
-        throw new Error("Stripe failed to initialise");
-      }
-
       const addressObject = {
         city: city,
         country: country,
@@ -47,56 +38,73 @@ const useMakePurchase = () => {
         state: country === "US" ? usState : caProvince,
       };
 
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card: card,
-        billing_details: {
-          name: name,
-          email: email,
-          address: addressObject,
-        },
-      });
+      let paymentMethodId = userInfo?.customerInfo?.defaultPaymentMethod?.id;
 
-      if (error) {
-        throw new Error(error.code);
+      if (!paymentMethodId) {
+        const card = elements?.getElement(CardElement);
+
+        if (!stripe || !card) {
+          throw new Error("Stripe failed to initialise");
+        }
+
+        const {
+          error,
+          paymentMethod: newPaymentMethod,
+        } = await stripe.createPaymentMethod({
+          type: "card",
+          card: card,
+          billing_details: {
+            name: name,
+            email: email,
+            address: addressObject,
+          },
+        });
+
+        if (error) {
+          throw new Error(error.code);
+        }
+
+        paymentMethodId = newPaymentMethod?.id;
       }
 
-      const purchaseRes = await fetch(
-        `/advantage/purchase${window.location.search}`,
-        {
-          method: "POST",
-          cache: "no-store",
-          credentials: "include",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            customer_info: {
-              payment_method_id: paymentMethod?.id,
-              email: email,
-              name: name,
-              address: addressObject,
-              tax_id: {
-                type: "",
-                value: VATNumber,
-              },
+      const response = await fetch(`/pro/purchase${window.location.search}`, {
+        method: "POST",
+        cache: "no-store",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          customer_info: {
+            payment_method_id: paymentMethodId,
+            email: email,
+            name: name,
+            address: addressObject,
+            tax_id: {
+              type: "",
+              value: VATNumber,
             },
-            products: [
-              {
-                product_listing_id: product.longId,
-                quantity: quantity,
-              },
-            ],
-            marketplace: marketplace,
-            action: action, // can be resize or trial too
-            previous_purchase_id: window.previousPurchaseIds?.[product.period],
-            captcha_value: captchaValue,
-          }),
-        }
-      );
+          },
+          products: [
+            {
+              product_listing_id: product.longId,
+              quantity: quantity,
+            },
+          ],
+          marketplace: product.marketplace,
+          action: action,
+          previous_purchase_id: window.previousPurchaseIds?.[product.period],
+          captcha_value: captchaValue,
+        }),
+      });
+      const res = await response.json();
 
-      return true;
+      if (res.errors) {
+        throw new Error(res.errors);
+      }
+
+      return res.id;
     }
   );
 

@@ -16,6 +16,7 @@ import {
   vatCountries,
 } from "advantage/countries-and-states";
 import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
+import useMakePurchasePreview from "PurchaseModal/hooks/useMakePurchasePreview";
 
 type TaxesProps = {
   product: any;
@@ -32,6 +33,8 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
 
   const [isEditing, setIsEditing] = useState(!values.country);
 
+  const previewMutations = useMakePurchasePreview();
+
   const taxMutation = useCalculateTaxes({
     country: values.country,
     productListing: product?.longId,
@@ -42,6 +45,13 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
   const onSaveClick = () => {
     setIsEditing(false);
     taxMutation.mutate();
+    previewMutations.mutate({
+      formData: values,
+      product,
+      quantity,
+      marketplace: "canonical-ua",
+      action: "purchase",
+    });
   };
 
   const onEditClick = () => {

@@ -39,7 +39,7 @@ const useMakePurchasePreview = () => {
       };
 
       const previewRes = await fetch(
-        `/advantage/purchase/preview${window.location.search}`,
+        `/pro/purchase/preview${window.location.search}`,
         {
           method: "POST",
           cache: "no-store",
@@ -72,6 +72,8 @@ const useMakePurchasePreview = () => {
           }),
         }
       );
+      const data = await previewRes.json();
+      return data.id;
 
       return true;
     }

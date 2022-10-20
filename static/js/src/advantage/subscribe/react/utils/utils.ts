@@ -37,6 +37,7 @@ export interface FormValues {
   usState?: string;
   caProvince?: string;
   VATNumber?: string;
+  freeTrial?: string;
 }
 
 function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
