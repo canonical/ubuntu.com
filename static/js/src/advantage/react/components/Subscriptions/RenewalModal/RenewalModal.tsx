@@ -10,14 +10,29 @@ type Props = {
 import PurchaseModal from "../../../../../PurchaseModal";
 import Summary from "./Summary";
 import usePortal from "react-useportal";
-import useRenewal from "advantage/react/hooks/useRenewal";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import { Button } from "@canonical/react-components";
+import { Periods } from "advantage/subscribe/react/utils/utils";
+import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { marketplace } from "PurchaseModal/utils/utils";
 
 const RenewalModal = ({ subscription, editing }: Props) => {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
 
-  const renewalMutation = useRenewal(subscription.renewal_id);
+  const product = {
+    longId: subscription.renewal_id ?? "",
+    period:
+      subscription.period === UserSubscriptionPeriod.Monthly
+        ? Periods.monthly
+        : Periods.yearly,
+    marketplace: subscription.marketplace as marketplace,
+    id: subscription.id,
+    name: subscription.product_name ?? "",
+    price: {
+      value: Number(subscription.price),
+    },
+    canBeTrialled: false,
+  };
 
   const termsLabel = (
     <>
@@ -71,10 +86,11 @@ const RenewalModal = ({ subscription, editing }: Props) => {
           <PurchaseModal
             termsLabel={termsLabel}
             marketingLabel={marketingLabel}
+            product={product}
+            quantity={subscription.number_of_machines}
             Summary={RenewalSummary}
             closeModal={closePortal}
-            mutation={renewalMutation}
-            marketplace={subscription.marketplace}
+            action="renewal"
           />
         </Portal>
       ) : null}

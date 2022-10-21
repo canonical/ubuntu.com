@@ -2,7 +2,6 @@ import { Button } from "@canonical/react-components";
 import React, { useContext } from "react";
 import usePortal from "react-useportal";
 import PurchaseModal from "../../../../../PurchaseModal";
-import usePreview from "advantage/subscribe/react/hooks/usePreview";
 import { FormContext } from "../../utils/FormContext";
 import Summary from "../Summary";
 
@@ -13,7 +12,6 @@ type Props = {
 export default function PaymentModal({ isHidden }: Props) {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
   const { quantity, product } = useContext(FormContext);
-  const { data: preview } = usePreview({ quantity, product });
 
   const termsLabel = (
     <>
@@ -44,11 +42,9 @@ export default function PaymentModal({ isHidden }: Props) {
             termsLabel={termsLabel}
             marketingLabel={marketingLabel}
             product={product}
-            preview={preview}
             quantity={quantity}
             closeModal={closePortal}
             Summary={Summary}
-            marketplace="blender"
           />
         </Portal>
       ) : null}

@@ -10,7 +10,6 @@ import {
   getUserInfoFromVariables,
   getInitialFormValues,
   FormValues,
-  marketplace,
   marketplaceDisplayName,
   Product,
   Action,
@@ -29,12 +28,10 @@ type Props = {
   accountId?: string;
   termsLabel: React.ReactNode;
   marketingLabel: React.ReactNode;
-  product: Product;
+  product: Product | null;
   quantity: number;
   closeModal: () => void;
   Summary: React.ComponentType;
-  modalTitle?: string;
-  marketplace: marketplace;
   action?: Action;
 };
 
@@ -46,9 +43,11 @@ const PurchaseModal = ({
   quantity,
   closeModal,
   Summary,
-  marketplace,
   action = "purchase",
 }: Props) => {
+  if (!product) {
+    return null;
+  }
 
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
@@ -69,7 +68,6 @@ const PurchaseModal = ({
     product.canBeTrialled
   );
 
-
   const isGuest = !userInfo?.customerInfo?.email;
 
   const GAFriendlyProduct = {
@@ -86,7 +84,7 @@ const PurchaseModal = ({
     setError(null);
     checkoutEvent(GAFriendlyProduct, "2");
     paymentMethodMutation.mutate(
-      { formData: values, marketplace: marketplace },
+      { formData: values, marketplace: product.marketplace },
       {
         onSuccess: (data, variables) => {
           window.accountId = data.accountId;
@@ -147,7 +145,7 @@ const PurchaseModal = ({
     <div className="checkout-container">
       <Row>
         <h1 ref={titleRef}>
-          Your {marketplaceDisplayName[marketplace]} purchase
+          Your {marketplaceDisplayName[product.marketplace]} purchase
         </h1>
         {error ? (
           <Notification severity="negative" title="error">

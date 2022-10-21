@@ -120,4 +120,4 @@ export interface Product {
   canBeTrialled?: boolean;
 }
 
-export type Action = "purchase" | "resize" | "trial";
+export type Action = "purchase" | "resize" | "trial" | "offer" | "renewal";

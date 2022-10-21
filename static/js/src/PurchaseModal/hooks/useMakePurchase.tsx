@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useMutation } from "react-query";
-import { Action, FormValues, Product } from "../utils/utils";
+import { Action, FormValues, marketplace, Product } from "../utils/utils";
 import useStripeCustomerInfo from "./useStripeCustomerInfo";
 
 type Props = {
@@ -8,6 +8,39 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
+};
+
+type AddressObejct = {
+  city?: string;
+  country?: string;
+  line1?: string;
+  postal_code?: string;
+  state?: string;
+};
+
+type Payload = {
+  customer_info: {
+    payment_method_id: string;
+    email?: string;
+    name?: string;
+    address: AddressObejct;
+    tax_id: {
+      type: string;
+      value?: string;
+    };
+  };
+  marketplace: marketplace;
+  action: Action;
+  previous_purchase_id?: string;
+  captcha_value: string | null;
+  products?: [
+    {
+      product_listing_id: string;
+      quantity: number;
+    }
+  ];
+  renewal_id?: string;
+  offer_id?: string;
 };
 
 const useMakePurchase = () => {
@@ -30,7 +63,7 @@ const useMakePurchase = () => {
         captchaValue,
       } = formData;
 
-      const addressObject = {
+      const addressObject: AddressObejct = {
         city: city,
         country: country,
         line1: address,
@@ -67,6 +100,42 @@ const useMakePurchase = () => {
         paymentMethodId = newPaymentMethod?.id;
       }
 
+      let payload: Payload = {
+        customer_info: {
+          payment_method_id: paymentMethodId,
+          email: email,
+          name: name,
+          address: addressObject,
+          tax_id: {
+            type: "",
+            value: VATNumber,
+          },
+        },
+        marketplace: product.marketplace,
+        action: action,
+        previous_purchase_id: window.previousPurchaseIds?.[product.period],
+        captcha_value: captchaValue,
+      };
+
+      if (action === "purchase") {
+        payload = {
+          ...payload,
+          products: [
+            {
+              product_listing_id: product.longId,
+              quantity: quantity,
+            },
+          ],
+        };
+      }
+
+      if (action === "renewal") {
+        payload = { ...payload, renewal_id: product.longId };
+      }
+      if (action === "offer") {
+        payload = { ...payload, offer_id: product.longId };
+      }
+
       const response = await fetch(`/pro/purchase${window.location.search}`, {
         method: "POST",
         cache: "no-store",
@@ -75,28 +144,7 @@ const useMakePurchase = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          customer_info: {
-            payment_method_id: paymentMethodId,
-            email: email,
-            name: name,
-            address: addressObject,
-            tax_id: {
-              type: "",
-              value: VATNumber,
-            },
-          },
-          products: [
-            {
-              product_listing_id: product.longId,
-              quantity: quantity,
-            },
-          ],
-          marketplace: product.marketplace,
-          action: action,
-          previous_purchase_id: window.previousPurchaseIds?.[product.period],
-          captcha_value: captchaValue,
-        }),
+        body: JSON.stringify(payload),
       });
       const res = await response.json();
 

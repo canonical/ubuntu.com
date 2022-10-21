@@ -4,8 +4,9 @@ import { currencyFormatter } from "advantage/react/utils";
 import PurchaseModal from "../../../../PurchaseModal";
 import { Offer as OfferType, Item } from "../../types";
 import Summary from "../Summary";
-import usePurchaseOffer from "advantage/offers/hooks/usePurchaseOffer";
 import usePortal from "react-useportal";
+import { marketplace } from "PurchaseModal/utils/utils";
+import { Periods } from "advantage/subscribe/react/utils/utils";
 
 type Props = {
   offer: OfferType;
@@ -30,15 +31,21 @@ const marketingLabel =
   "I agree to receive information about Canonical's products and services";
 
 const Offer = ({ offer }: Props) => {
-  const { items, marketplace, total, account_id } = offer;
+  const { id, marketplace, items, total, account_id } = offer;
 
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
 
-  const purchaseMutation = usePurchaseOffer({
-    offerId: offer.id,
-    marketplace: offer.marketplace,
-    accountId: offer.account_id,
-  });
+  const product = {
+    longId: id ?? "",
+    period: Periods.yearly,
+    marketplace: marketplace as marketplace,
+    id: id,
+    name: items[0].name ?? "",
+    price: {
+      value: Number(total),
+    },
+    canBeTrialled: false,
+  };
 
   const OfferSummary = () => {
     return <Summary offer={offer} />;
@@ -108,10 +115,12 @@ const Offer = ({ offer }: Props) => {
           <PurchaseModal
             accountId={account_id}
             termsLabel={termsLabel}
+            product={product}
+            quantity={items.length}
             marketingLabel={marketingLabel}
             Summary={OfferSummary}
             closeModal={closePortal}
-            marketplace={marketplace}
+            action="offer"
           />
         </Portal>
       ) : null}

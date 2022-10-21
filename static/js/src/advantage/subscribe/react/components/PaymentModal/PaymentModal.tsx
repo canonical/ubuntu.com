@@ -2,7 +2,6 @@ import { Button } from "@canonical/react-components";
 import React, { useContext } from "react";
 import usePortal from "react-useportal";
 import PurchaseModal from "../../../../../PurchaseModal";
-import usePreview from "../../hooks/usePreview";
 import { FormContext } from "../../utils/FormContext";
 import Summary from "../Summary";
 
@@ -14,10 +13,6 @@ export default function PaymentModal({ isHidden }: Props) {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
   const { quantity, product } = useContext(FormContext);
   const sanitisedQuantity = Number(quantity) ?? 0;
-  const { data: preview } = usePreview({
-    quantity: sanitisedQuantity,
-    product,
-  });
 
   const termsLabel = (
     <>
@@ -46,11 +41,9 @@ export default function PaymentModal({ isHidden }: Props) {
             termsLabel={termsLabel}
             marketingLabel={marketingLabel}
             product={product}
-            preview={preview}
             quantity={sanitisedQuantity}
             closeModal={closePortal}
             Summary={Summary}
-            marketplace="canonical-ua"
           />
         </Portal>
       ) : null}
