@@ -89,6 +89,7 @@ const generateError = (error: Error | null) => {
 type ResizeSummaryProps = {
   oldNumberOfMachines: number;
   newNumberOfMachines: number;
+  currentNumberOfMachines: number;
   isBlender: boolean;
   unitName: string;
   price: UserSubscription["price"];
@@ -101,6 +102,7 @@ type ResizeSummaryProps = {
 const ResizeSummary = ({
   oldNumberOfMachines,
   newNumberOfMachines,
+  currentNumberOfMachines,
   unitName,
   price,
   period,
@@ -115,7 +117,7 @@ const ResizeSummary = ({
 
   const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
-  const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
+  const unitPrice = (price ?? 0) / 100 / currentNumberOfMachines;
 
   return (
     <div>
@@ -334,6 +336,7 @@ const SubscriptionEdit = ({
                 />
                 <ResizeSummary
                   oldNumberOfMachines={subscription.current_number_of_machines}
+                  currentNumberOfMachines={subscription.number_of_machines}
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}
