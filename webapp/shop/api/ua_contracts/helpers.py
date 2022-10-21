@@ -510,6 +510,7 @@ def apply_entitlement_rules(
                 enabled_by_default=False,
                 is_available=False,
                 is_editable=False,
+                is_in_beta=False,
             )
         )
 
@@ -550,6 +551,9 @@ def apply_entitlement_rules(
             if entitlement.type == "fips":
                 entitlement.is_editable = False
                 entitlement.enabled_by_default = False
+
+        if entitlement.is_in_beta:
+            entitlement.is_editable = not entitlement.is_in_beta
 
     return final_entitlements
 

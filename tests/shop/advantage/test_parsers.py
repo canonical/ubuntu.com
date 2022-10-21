@@ -254,12 +254,21 @@ class TestParsers(unittest.TestCase):
                 support_level=None,
                 enabled_by_default=True,
                 is_available=True,
+                is_in_beta=False,
             ),
             Entitlement(
                 type="entitlement-type-2",
                 support_level=None,
                 enabled_by_default=False,
                 is_available=True,
+                is_in_beta=False,
+            ),
+            Entitlement(
+                type="entitlement-type-3",
+                support_level=None,
+                enabled_by_default=False,
+                is_available=True,
+                is_in_beta=True,
             ),
             Entitlement(
                 type="support",
