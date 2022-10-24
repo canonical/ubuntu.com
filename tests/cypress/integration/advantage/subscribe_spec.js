@@ -95,6 +95,9 @@ context("/pro/subscribe", () => {
       // and cypress complains (it would usually indicate an issue, in our case it's intentional).
       force: true,
     });
+    cy.findByLabelText(/I agree to the Ubuntu Pro description/).click({
+      force: true,
+    });
 
     cy.intercept("POST", "/pro/subscribe*", slowDownResponse).as("trial");
 
@@ -143,6 +146,9 @@ context("/pro/subscribe", () => {
       // Need to use { force: true } because the actual input element (radio button)
       // that the label is for is invisible (we use our own styles)
       // and cypress complains (it would usually indicate an issue, in our case it's intentional).
+      force: true,
+    });
+    cy.findByLabelText(/I agree to the Ubuntu Pro description/).click({
       force: true,
     });
 

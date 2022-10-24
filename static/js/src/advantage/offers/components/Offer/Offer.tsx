@@ -32,6 +32,19 @@ const termsLabel = (
   </>
 );
 
+const descriptionLabel = (
+  <>
+    I agree to the{" "}
+    <a
+      href="/legal/ubuntu-pro-description"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Ubuntu Pro description
+    </a>
+  </>
+);
+
 const marketingLabel =
   "I agree to receive information about Canonical's products and services";
 
@@ -53,8 +66,10 @@ const Offer = ({ offer }: Props) => {
   const BuyOfferButton = ({
     areTermsChecked,
     isMarketingOptInChecked,
+    isDescriptionChecked,
     setTermsChecked,
     setIsMarketingOptInChecked,
+    setIsDescriptionChecked,
     setError,
     setStep,
     isUsingFreeTrial,
@@ -63,9 +78,11 @@ const Offer = ({ offer }: Props) => {
       <BuyButton
         offer={offer}
         areTermsChecked={areTermsChecked}
+        isDescriptionChecked={isDescriptionChecked}
         isMarketingOptInChecked={isMarketingOptInChecked}
         setTermsChecked={setTermsChecked}
         setIsMarketingOptInChecked={setIsMarketingOptInChecked}
+        setIsDescriptionChecked={setIsDescriptionChecked}
         setError={setError}
         setStep={setStep}
         isUsingFreeTrial={isUsingFreeTrial}
@@ -137,6 +154,7 @@ const Offer = ({ offer }: Props) => {
           <PurchaseModal
             accountId={account_id}
             termsLabel={termsLabel}
+            descriptionLabel={descriptionLabel}
             marketingLabel={marketingLabel}
             Summary={OfferSummary}
             closeModal={closeModal}
