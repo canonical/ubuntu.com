@@ -112,9 +112,11 @@
       tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
+          tabElement.classList.add("is-active");
           content.removeAttribute("hidden");
         } else {
           tabElement.setAttribute("aria-selected", false);
+          tabElement.classList.remove("is-active");
           content.setAttribute("hidden", true);
         }
       });
