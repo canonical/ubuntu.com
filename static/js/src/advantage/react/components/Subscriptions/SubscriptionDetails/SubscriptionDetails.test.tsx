@@ -432,6 +432,6 @@ describe("SubscriptionDetails", () => {
       </QueryClientProvider>
     );
 
-    expect(wrapper.find(".p-chip__value").exists()).toBe(false)
+    expect(wrapper.find(".p-chip__value").exists()).toBe(false);
   });
 });
