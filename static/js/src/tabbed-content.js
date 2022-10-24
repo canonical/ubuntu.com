@@ -105,6 +105,7 @@
       @param {Array} tabs an array of tabs within a container
     */
   const setActiveTab = (tab, tabs) => {
+    console.log('tab', tab);
     tabs.forEach((tabElement) => {
       var tabContent = document.querySelectorAll(
         "#" + tabElement.getAttribute("aria-controls")
@@ -112,12 +113,14 @@
       tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
+          tabElement.classList.add("is-active");
           content.classList.remove("u-hide");
           if (triggerReload) {
             window.dispatchEvent(new Event("resize"));
           }
         } else {
           tabElement.setAttribute("aria-selected", false);
+          tabElement.classList.remove("is-active");
           content.classList.add("u-hide");
         }
       });
