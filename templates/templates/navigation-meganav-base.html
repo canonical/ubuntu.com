@@ -7,7 +7,7 @@
             <div class="p-side-navigation__drawer">
               <ul class="p-side-navigation__list js-tabs u-no-margin--bottom js-tabbed-content" role="tablist" aria-label="Categories">
                 {% for side_nav_section in sections.side_nav_sections %}
-                  <li class="p-side-navigation__item p-tab">
+                  <li class="p-side-navigation__item">
                     <a href="#" class="p-side-navigation__link js-tab {{ 'is-active' if loop.index == 1 }}" id="tab-{{ loop.index }}" aria-controls="tab-content-{{ loop.index }}" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" tabindex="{{ '0' if loop.index == 1 else '-1' }}">{{ side_nav_section.title }}</a>
                   </li>
                 {% endfor %}
@@ -23,21 +23,20 @@
                 {% for links_section in side_nav_section.primary_links %}
                   <p class="p-muted-heading">{{ links_section.title }}</p>
                   
-                  <ul>
+                  <ul class="p-list is-split">
                     {% for link in links_section.links %}
-                      <li>
-                        {% if link.url %}
-                          <a href="{{ link.url }}">{{ link.title }}</a>
-                        {% else %}
-                          {{ link.title }}
+                      <li class="p-list__item">
+                        <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
+                        <small>{{ link.description }}</small>
 
-                          {% if link.ctas %}
-                            <ul>
-                              {% for cta in link.ctas %}
-                                <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
-                              {% endfor %}
-                            </ul>
-                          {% endif %}
+                        {% if link.ctas %}
+                          <ul class="p-list">
+                            {% for cta in link.ctas %}
+                              <li class="p-list__item">
+                                <a href="{{ cta.url }}" class="{{ 'p-button--positive' if cta.type == 'primary'}}">{{ cta.title }}</a>
+                              </li>
+                            {% endfor %}
+                          </ul>
                         {% endif %}
                       </li>
                     {% endfor %}
