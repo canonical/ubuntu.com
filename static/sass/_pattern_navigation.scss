@@ -42,22 +42,24 @@
   .dropdown-window {
     @include vf-animation(all, brisk, in);
 
-    background-color: $color-x-light;
+    background-color: #3a3a3a;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
     flex-direction: column;
     position: absolute;
     width: 100%;
     z-index: 11;
 
-    &__content {
-      @extend %p-strip--very-shallow;
+    &__content-container {
+      @extend %fixed-width-container;
 
-      background-color: $color-x-light;
-      color: $color-dark;
-
-      &:last-child {
-        padding-bottom: math.div($spv--x-large, 1.5);
+      @media (max-width: $breakpoint-small - 1) {
+        padding: 0;
       }
+    }
+
+    &__content {
+      color: $color-light;
+      padding: 0;
 
       @media (max-width: $breakpoint-x-small - 1) {
         .p-inline-list--middot.is-x-dense {
@@ -65,6 +67,81 @@
         }
       }
     }
+
+    &__main-panel {
+      border-right: 1px solid $color-mid-dark;
+      padding-top: 1rem;
+
+      .p-list__item {
+        border-bottom: 1px solid $color-mid-dark;
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    &__side-panel {
+      padding-top: 1rem;
+    }
+
+    &__footer {
+      align-items: center;
+      border-top: 1px solid $color-mid-dark;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+
+      a {
+        margin: 0;
+      }
+    }
+
+    [hidden="true"] {
+      display: none;
+    }
+
+    .p-muted-heading {
+      color: inherit;
+    }
+
+    .p-side-navigation {
+      height: 100%;
+      padding: 1rem 0;
+      position: relative;
+
+      &::after {
+        background: #262626;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: -50vw;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+      }
+
+      &__drawer {
+        height: 100%;
+      }
+
+      &__item:last-child {
+        .p-side-navigation__link {
+          border: 0;
+        }
+      }
+
+      &__link {
+        border-bottom: 1px solid $color-mid-dark;
+        padding-left: 0.5rem;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
     & .p-inline-list__item {
       @extend %small-text-fixed;
 
