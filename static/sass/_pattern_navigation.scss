@@ -83,6 +83,10 @@
 
     &__side-panel {
       padding-top: 1rem;
+
+      a {
+        color: #3097ff;
+      }
     }
 
     &__footer {
@@ -136,7 +140,8 @@
         border-bottom: 1px solid $color-mid-dark;
         padding-left: 0.5rem;
 
-        &::before {
+        &::before,
+        &:focus::before {
           display: none;
         }
       }
