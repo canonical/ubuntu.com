@@ -863,3 +863,10 @@ img.has-shadow {
   padding-left: $sph--x-large;
   padding-right: $sph--x-large;
 }
+
+// Temp fix for anchor underlines
+// Being addressed upstream in https://github.com/canonical/vanilla-framework/issues/4600
+a:hover {
+  text-decoration: underline 1px;
+  text-underline-offset: 0.075em;
+}
