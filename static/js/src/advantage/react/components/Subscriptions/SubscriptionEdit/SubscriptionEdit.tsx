@@ -100,7 +100,6 @@ type ResizeSummaryProps = {
 };
 
 const ResizeSummary = ({
-  oldNumberOfMachines,
   newNumberOfMachines,
   currentNumberOfMachines,
   unitName,
@@ -110,12 +109,12 @@ const ResizeSummary = ({
   preview,
   isPreviewLoading,
 }: ResizeSummaryProps) => {
-  const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
+  const absoluteDelta = Math.abs(newNumberOfMachines - currentNumberOfMachines);
   if (absoluteDelta === 0) {
     return null;
   }
 
-  const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
+  const isDecreasing = newNumberOfMachines - currentNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
   const unitPrice = (price ?? 0) / 100 / currentNumberOfMachines;
 
