@@ -81,7 +81,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         if (
           subscription?.current_number_of_machines &&
           (subscription?.current_number_of_machines ?? 0) <
-            (subscription?.number_of_machines ?? 0)
+          (subscription?.number_of_machines ?? 0)
         ) {
           setNotification({
             severity: "caution",
@@ -142,14 +142,18 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                           <span className="p-chip__value">Renewed</span>
                         </button>
                       ) : (
-                        <button className="p-chip--caution">
-                          <span className="p-chip__value">Not renewed</span>
-                        </button>
+                        <>
+                          {subscription.statuses.is_renewal_actionable ? (
+                            <button className="p-chip--caution">
+                              <span className="p-chip__value">Not renewed</span>
+                            </button>
+                          ) : null}
+                        </>
                       )}
                     </>
                   ) : null}
                   {subscription.type == "monthly" ||
-                  subscription.type == "yearly" ? (
+                    subscription.type == "yearly" ? (
                     <>
                       {subscription.statuses.is_renewed ? (
                         <button className="p-chip--positive">
@@ -178,7 +182,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             {isFree ? null : (
               <>
                 {subscription.statuses.has_access_to_support &&
-                subscription.type !== UserSubscriptionType.Trial ? (
+                  subscription.type !== UserSubscriptionType.Trial ? (
                   <Button
                     appearance="positive"
                     className="p-subscriptions__details-action"
