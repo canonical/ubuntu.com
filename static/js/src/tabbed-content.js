@@ -159,4 +159,18 @@
   document.addEventListener("DOMContentLoaded", () => {
     initTabs(".js-tabbed-content");
   });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("js-tab")) {
+      const tabContainer = e.target.closest(".js-tabs");
+
+      const tabs = [].slice.call(
+        tabContainer.querySelectorAll("[aria-controls]")
+      );
+
+      if (tabs) {
+        setActiveTab(e.target, tabs);
+      }
+    }
+  });
 })();
