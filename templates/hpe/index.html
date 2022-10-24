@@ -176,7 +176,7 @@
     <div class="col-7">
       <h2>Contacts</h2>
       <p>Do you want more information about the Canonical and HPE partnership or how to purchase our joint solutions? Contact us!</p>
-      <p><a href="" class="p-button">Send us a message</a></p>
+      <p><a href="/contact-us" class="p-button js-invoke-modal">Send us a message</a></p>
     </div>
     <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
@@ -190,6 +190,7 @@
       }}
     </div>
   </div>
+
   <div class="row">
     <div class="col-6">
       <h3 class="p-heading--4">Canonical</h3>
@@ -203,10 +204,14 @@
       <p class="u-no-margin--bottom"><strong>Technology Partner Program</strong> 
       <p>tam.vuong@hpe.com</p>
       <p class="u-no-margin--bottom"><strong>Certification Program</strong> 
-      <p>nery-gabriela.herrera@hpe.com</p>
+      <p class="u-no-margin--bottom">nery-gabriela.herrera@hpe.com</p>
       <p>karen.skweres@hpe.com</p>    
     </div>
   </div>
 </section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/basic" data-form-id="4563" data-lp-id="" data-return-url="https://ubuntu.com/templates/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
 
 {% endblock content %}
