@@ -1,4 +1,6 @@
 @mixin ubuntu-p-navigation-dropdown {
+  $dropdown-border: 1px solid hsla(0, 0%, 100%, 0.1);
+
   @media (min-width: 1024px) {
     .dropdown-content-mobile {
       display: none !important;
@@ -6,8 +8,8 @@
   }
 
   .dropdown-content-desktop {
-    background-color: rgba(255, 255, 255, .1);;
-    border-top: 1px solid hsla(0, 0%, 100%, .1);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: $dropdown-border;
 
     @media (max-width: 1024px) {
       display: none !important;
@@ -54,13 +56,33 @@
       }
     }
 
+    &__footer {
+      align-items: center;
+      border-top: $dropdown-border;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+
+      a {
+        margin: 0;
+      }
+    }
+
+    &__side-panel {
+      margin: 2rem 0;
+
+      a {
+        color: #3097ff;
+      }
+    }
+
     &__main-panel {
-      border-right: 1px solid $color-mid-dark;
+      border-right: $dropdown-border;
       margin: 2rem 0;
       padding-right: 2rem;
 
       .p-list__item {
-        border-bottom: 1px solid $color-mid-dark;
+        padding: 0.5rem;
         position: relative;
 
         > a {
@@ -74,7 +96,7 @@
           }
 
           &:hover::before {
-            background-color: #39576C;
+            background-color: rgba(170, 170, 170, 0.1);
           }
         }
 
@@ -82,25 +104,9 @@
           border-bottom: 0;
         }
       }
-    }
 
-    &__side-panel {
-      margin: 2rem 0;
-
-      a {
-        color: #3097ff;
-      }
-    }
-
-    &__footer {
-      align-items: center;
-      border-top: 1px solid $color-mid-dark;
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-
-      a {
-        margin: 0;
+      .p-muted-heading {
+        padding-left: 0.5rem;
       }
     }
 
@@ -133,19 +139,19 @@
         position: relative;
       }
 
-      &__item:last-child {
-        .p-side-navigation__link {
-          border: 0;
-        }
-      }
-
       &__link {
-        border-bottom: 1px solid $color-mid-dark;
+        border-bottom: $dropdown-border;
         padding-left: 0.5rem;
 
         &::before,
         &:focus::before {
           display: none;
+        }
+      }
+
+      &__item:last-child {
+        .p-side-navigation__link {
+          border: 0;
         }
       }
     }
