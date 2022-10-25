@@ -18,15 +18,15 @@ navDropdowns.forEach(function (dropdown) {
         dropdown.id + "-content-mobile"
       );
       if (dropdown === clickedDropdown) {
-        if (dropdown.classList.contains("is-selected")) {
+        if (dropdown.classList.contains("is-active")) {
           closeMenu(dropdown, dropdownContent, dropdownContentMobile);
         } else {
-          dropdown.classList.add("is-selected");
+          dropdown.classList.add("is-active");
           dropdownContent.classList.remove("u-hide");
           dropdownContentMobile.classList.remove("u-hide");
         }
       } else {
-        dropdown.classList.remove("is-selected");
+        dropdown.classList.remove("is-active");
         dropdownContent.classList.add("u-hide");
         dropdownContentMobile.classList.add("u-hide");
       }
@@ -40,7 +40,7 @@ function mobileViewUpdate() {
   var viewportWidth = window.innerWidth;
   if (viewportWidth <= 1024) {
     navDropdowns.forEach(function (dropdown) {
-      if (dropdown.classList.contains("is-selected")) {
+      if (dropdown.classList.contains("is-active")) {
         navigation.classList.add("has-menu-open");
       }
     });
@@ -54,7 +54,7 @@ window.addEventListener("Open menu on mobile", function (e) {
   function menuOpenMobile() {
     navDropdowns.forEach(function (dropdown) {
       if (
-        dropdown.classList.contains("is-selected") &&
+        dropdown.classList.contains("is-active") &&
         window.innerWidth < 1024
       ) {
         navigation.classList.add("has-menu-open");
@@ -71,7 +71,7 @@ if (dropdownWindowOverlay) {
       var dropdownContentMobile = document.getElementById(
         dropdown.id + "-content-mobile"
       );
-      if (dropdown.classList.contains("is-selected")) {
+      if (dropdown.classList.contains("is-active")) {
         dropdownContent.classList.add("u-hide");
         closeMenu(dropdown, dropdownContent, dropdownContentMobile);
       }
@@ -99,7 +99,7 @@ if (secondaryNav) {
 }
 
 function closeMenu(dropdown, dropdownContent, dropdownContentMobile) {
-  dropdown.classList.remove("is-selected");
+  dropdown.classList.remove("is-active");
   dropdownWindow.classList.add("slide-animation");
   dropdownWindowOverlay.classList.add("fade-animation");
   dropdownContentMobile.classList.add("u-hide");
