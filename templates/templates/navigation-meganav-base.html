@@ -23,24 +23,44 @@
                 {% for links_section in side_nav_section.primary_links %}
                   <p class="p-muted-heading">{{ links_section.title }}</p>
                   
-                  <ul class="p-list is-split">
-                    {% for link in links_section.links %}
-                      <li class="p-list__item">
-                        <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
-                        <small>{{ link.description }}</small>
+                  <div class="row">
+                    <div class="col-4">
+                      <ul class="p-list">
+                        {% for link in links_section.links %}
+                          {% if loop.index % 2 == 1 %}
+                            <li class="p-list__item">
+                              <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
+                              <small>{{ link.description }}</small>
 
-                        {% if link.ctas %}
-                          <ul class="p-list">
-                            {% for cta in link.ctas %}
-                              <li class="p-list__item">
-                                <a href="{{ cta.url }}" class="{{ 'p-button--positive' if cta.type == 'primary'}}">{{ cta.title }}</a>
-                              </li>
-                            {% endfor %}
-                          </ul>
-                        {% endif %}
-                      </li>
-                    {% endfor %}
-                  </ul>
+                              {% if link.ctas %}
+                                {% for cta in link.ctas %}
+                                  <a href="{{ cta.url }}" class="u-no-margin {{ 'p-button--positive' if cta.type == 'primary'}}">{{ cta.title }}</a>
+                                {% endfor %}
+                              {% endif %}
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    <div class="col-4">
+                      <ul class="p-list">
+                        {% for link in links_section.links %}
+                          {% if loop.index % 2 == 0 %}
+                            <li class="p-list__item">
+                              <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
+                              <small>{{ link.description }}</small>
+
+                              {% if link.ctas %}
+                                {% for cta in link.ctas %}
+                                  <a href="{{ cta.url }}" class="u-no-margin {{ 'p-button--positive' if cta.type == 'primary'}}">{{ cta.title }}</a>
+                                {% endfor %}
+                              {% endif %}
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
                 {% endfor %}
 
                 <!-- <div class="row u-no-padding">
