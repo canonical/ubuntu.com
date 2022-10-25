@@ -28,7 +28,7 @@
   }
 
   .dropdown-window {
-    @include vf-animation(all, brisk, in);
+    @include vf-animation(all, brisk, out);
 
     background-color: #262626;
     box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
@@ -103,8 +103,12 @@
             position: relative;
           }
 
-          &:hover::before {
-            background-color: rgba(170, 170, 170, 0.1);
+          &:hover {
+            text-decoration: none;
+
+            &::before {
+              background-color: rgba(170, 170, 170, 0.1);
+            }
           }
         }
 
