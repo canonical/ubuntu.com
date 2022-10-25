@@ -82,17 +82,25 @@
       padding-right: 2rem;
 
       .p-list__item {
+        border-bottom: $dropdown-border;
         padding: 0.5rem;
         position: relative;
 
-        > a {
-          &::before {
+        a {
+          &:first-child::before {
             bottom: 0;
             content: "";
             left: 0;
             position: absolute;
             right: 0;
             top: 0;
+          }
+
+          &:not(:first-child) {
+            // Main panel list items can contain more than one link,
+            // setting position allows them to be clicked independently
+            // of the primary/first link
+            position: relative;
           }
 
           &:hover::before {
