@@ -62,26 +62,6 @@
                     </div>
                   </div>
                 {% endfor %}
-
-                <!-- <div class="row u-no-padding">
-                  <div class="col-4">
-                    <ul class="p-list">
-                      <li class="p-list__item">
-                        <a class="p-link--inverted" href="https://ubuntu.com/desktop">Ubuntu Desktop</a><br />
-                        <small>Free, reliable simple desktop OS</small>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="col-4">
-                    <ul class="p-list">
-                      <li class="p-list__item">
-                        <a class="p-link--inverted" href="https://ubuntu.com/certified?q=&limit=20&category=Laptop&category=Desktop">Ubuntu ready PC and Laptops</a><br />
-                        <small>Certified Hardware</small>
-                      </li>
-                    </ul>
-                  </div>
-                </div> -->
               </div>      
 
               <div class="col-2 dropdown-window__side-panel">
@@ -97,15 +77,6 @@
                   </ul>
                 {% endfor %}
               </div>
-
-              <!-- <div class="col-10 dropdown-window__footer">
-                <span>Download Ubuntu Desktop:</span>
-
-                <div>
-                  <a href="#" class="p-button--positive">20.04 LTS</a>
-                  <a href="#" class="p-button--base is-dark">21.10</a>
-                </div>
-              </div> -->
             </div>
           </div>
         {% endfor %}
@@ -113,89 +84,3 @@
     </div>
   </div>
 </nav>
-
-<!-- {% if "side_nav_sections" in sections %} -->
-  <!-- {% for side_nav_section in sections.side_nav_sections %}
-    <h1>{{ side_nav_section.title }}</h1>
-
-    {% for links_section in side_nav_section.primary_links %}
-      <h2>{{ links_section.title }}</h2>
-      
-      <ul>
-        {% for link in links_section.links %}
-          <li>
-            {% if link.url %}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {% else %}
-              {{ link.title }}
-
-              {% if link.ctas %}
-                <ul>
-                  {% for cta in link.ctas %}
-                    <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    {% endfor %}
-
-    {% for links_section in side_nav_section.secondary_links %}
-      <h2>{{ links_section.title }}</h2>
-      
-      <ul>
-        {% for link in links_section.links %}
-          <li>
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endfor %} -->
-<!-- 
-    {% if side_nav_section.section_footer %}
-      <a href="{{ side_nav_section.section_footer.cta_url }}">{{ side_nav_section.section_footer.cta_title }}</a>
-    {% endif %}
-  {% endfor %}
-{% endif %}
-
-{% if "primary_links" in sections %}
-  {% for links_section in sections.primary_links %}
-    <h1>{{ links_section.title }}</h1>
-    
-    <ul>
-      {% for link in links_section.links %}
-        <li>
-          {% if link.url %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          {% else %}
-            {{ link.title }}
-
-            {% if link.ctas %}
-              <ul>
-                {% for cta in link.ctas %}
-                  <li><a href="{{ cta.url }}">{{ cta.title }}</a></li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-{% endif %}
-
-{% if "primary_links" in sections %}
-  {% for links_section in sections.secondary_links %}
-    <h2>{{ links_section.title }}</h2>
-    
-    <ul>
-      {% for link in links_section.links %}
-        <li>
-          <a href="{{ link.url }}">{{ link.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% endfor %}
-{% endif %} -->
