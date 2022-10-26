@@ -1,5 +1,5 @@
 @mixin ubuntu-p-navigation-dropdown {
-  $dropdown-border: 1px solid hsla(0, 0%, 100%, 0.1);
+  $dropdown-border: 1px solid $colors--dark-theme--border-low-contrast;
 
   @media (min-width: 1024px) {
     .dropdown-content-mobile {
@@ -83,6 +83,7 @@
 
       .p-list__item {
         border-bottom: $dropdown-border;
+        line-height: 1.5rem;
         padding: 0.5rem;
         position: relative;
 
@@ -100,6 +101,7 @@
             // Main panel list items can contain more than one link,
             // setting position allows them to be clicked independently
             // of the primary/first link
+            margin-top: 1rem;
             position: relative;
           }
 
@@ -124,10 +126,6 @@
 
     [hidden="true"] {
       display: none;
-    }
-
-    .p-muted-heading {
-      color: inherit;
     }
 
     .p-side-navigation {
