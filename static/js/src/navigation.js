@@ -205,7 +205,7 @@ if (accountContainer && accountContainerSmall) {
         accountContainer.innerHTML = `<div class="p-navigation__dropdown-link">
             <a href="#" class="p-navigation__link-anchor p-navigation__toggle" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
-              <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">UA subscriptions</a></li>
+              <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">Ubuntu Pro dashboard</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
                 <a href="/account/invoices" class="p-navigation__dropdown-item">Invoices & Payments</a>
