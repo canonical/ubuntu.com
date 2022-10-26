@@ -3,13 +3,11 @@ import { Field, useFormikContext } from "formik";
 import {
   Row,
   Col,
-  Select,
   Input,
   ActionButton,
   RadioInput,
 } from "@canonical/react-components";
 import { FormValues } from "advantage/subscribe/react/utils/utils";
-import { countries } from "advantage/countries-and-states";
 import { getErrorMessage } from "advantage/error-handler";
 import FormRow from "../FormRow";
 import { CardElement } from "@stripe/react-stripe-js";
