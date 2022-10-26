@@ -1,0 +1,144 @@
+{% extends "aws/base_aws.html" %}
+
+{% block title %}Ubuntu Pro with Support{% endblock %}
+{% block meta_description %}Ubuntu Pro for AWS, the Ubuntu image optimised for production and professional use on public cloud. Including broad security coverage, live kernel patching, certified components with hardening profiles, and backed by a 10-years maintenance commitment by Canonical. Get it on the AWS marketplace.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1j_gH-pU1ldCGSoJ8EwXPtSFqhdS1zEY8mXUAqSDxK2U/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--square-darksuru is-dark">
+  <div class="row">
+    <div class="col-6">
+      <h1>Ubuntu Pro with Support</h1>
+      <p>Ubuntu Pro with Support provides a supported, secure foundation for modern applications by adding 24x7 technical support for your Ubuntu Pro workloads on AWS, metered by the hour as a Private Offer.</p>
+      <p><a href="/contact-us" class="p-button--positive js-invoke-modal">Contact us</a></p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/5295cee7-AWS.svg",
+        alt="",
+        width="167",
+        height="100",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-6">
+      <h2>Ubuntu Pro</h2>
+      <p>Ubuntu Pro for AWS is a premium image delivering the most comprehensive open source security and AWS compliance. Ubuntu Pro is suitable for small to large-scale Linux enterprise operations offering pay-as-you-go billing on your existing AWS invoice.</p>
+      <p>For more information about Ubuntu Pro on AWS, see <a href="/aws/pro">https://ubuntu.com/aws/pro</a>.</p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d649019e-u+pro+logo+158x40.png",
+        alt="",
+        width="395",
+        height="100",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Ubuntu Pro with 24x7 Support</h2>
+      <p>With 24x7 SLAed support and the widest open source security patching, teams can build on Ubuntu Pro with Support to secure their application's open source supply chain and receive expert assistance when they need it.</p>
+      <p>24x7 Support is available for the Ubuntu operating system (infrastructure) and can be extended to include application support for <a href="/support#apps-support">key open source applications</a>.</p>
+      <p>See more details at <a href="/support">https://ubuntu.com/support</a>.</p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/e9d3cf66-We+support+your+operations.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Features</h2>
+    <table class="p-table">
+      <thead>
+        <tr>
+          <th style="width: 50%;">Feature</th>
+          <th>Ubuntu</th>
+          <th>Ubuntu Pro</th>
+          <th>Ubuntu Pro with Support</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Security patches for 2,300+ Ubuntu infrastructure packages</th>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th>Security patches for 28,000+ open source packages, including Apache Kafka, MongoDB, RabbitMQ, Redis and NodeJS and key language ecosystems including Java, Python, Ruby and Javascript/Node.js</th>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th>Livepatch for instant kernel security and higher uptimes</th>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th>FIPS 140-2 and Common Criteria EAL2 certified components</th>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th>Hardening profiles, including CIS and DISA STIG, with CIS and other Shell security recommendations for production environments built into hardened images in the gallery</th>
+          <td>No</td>
+          <td>Yes</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th>Landscape fleet management</th>
+          <td>No</td>
+          <td>On request</td>
+          <td>On request</td>
+        </tr>
+        <tr>
+          <th>Maintenance period</th>
+          <td>5 years</td>
+          <td>10 years</td>
+          <td>10 years</td>
+        </tr>
+        <tr>
+          <th>Knowledge Base</th>
+          <td>No</td>
+          <td>No</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <th>Canonical-backed 24x7 Support with enterprise grade SLA, with possibilities to integrate into existing Azure support workflows</th>
+          <td>No</td>
+          <td>No</td>
+          <td>Yes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% endblock content %}
