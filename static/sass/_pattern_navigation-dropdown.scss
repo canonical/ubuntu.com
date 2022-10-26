@@ -1,17 +1,17 @@
 @mixin ubuntu-p-navigation-dropdown {
   $dropdown-border: 1px solid $colors--dark-theme--border-low-contrast;
 
-  @media (min-width: 1024px) {
-    .dropdown-content-mobile {
+  .dropdown-content-mobile {
+    @media (min-width: $breakpoint-navigation-threshold) {
       display: none !important;
     }
   }
 
   .dropdown-content-desktop {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #2d2d2d;
     border-top: $dropdown-border;
 
-    @media (max-width: 1024px) {
+    @media (max-width: $breakpoint-navigation-threshold) {
       display: none !important;
     }
   }
@@ -44,83 +44,15 @@
         padding: 0;
       }
     }
+  }
 
-    &__content {
-      color: $color-light;
-      padding: 0;
+  .dropdown-window__content {
+    color: $color-light;
+    padding: 0;
 
-      @media (max-width: $breakpoint-x-small - 1) {
-        .p-inline-list--middot.is-x-dense {
-          margin-bottom: 0.3rem;
-        }
-      }
-    }
-
-    &__footer {
-      align-items: center;
-      border-top: $dropdown-border;
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-
-      a {
-        margin: 0;
-      }
-    }
-
-    &__side-panel {
-      margin: 2rem 0;
-
-      a {
-        color: #3097ff;
-      }
-    }
-
-    &__main-panel {
-      border-right: $dropdown-border;
-      margin: 2rem 0;
-      padding-right: 2rem;
-
-      .p-list__item {
-        border-bottom: $dropdown-border;
-        line-height: 1.5rem;
-        padding: 0.5rem;
-        position: relative;
-
-        a {
-          &:first-child::before {
-            bottom: 0;
-            content: "";
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-          }
-
-          &:not(:first-child) {
-            // Main panel list items can contain more than one link,
-            // setting position allows them to be clicked independently
-            // of the primary/first link
-            margin-top: 1rem;
-            position: relative;
-          }
-
-          &:hover {
-            text-decoration: none;
-
-            &::before {
-              background-color: rgba(170, 170, 170, 0.1);
-            }
-          }
-        }
-
-        &:last-child {
-          border-bottom: 0;
-        }
-      }
-
-      .p-muted-heading {
-        padding-left: 0.5rem;
+    @media (max-width: $breakpoint-x-small - 1) {
+      .p-inline-list--middot.is-x-dense {
+        margin-bottom: 0.3rem;
       }
     }
 
@@ -129,30 +61,41 @@
     }
 
     .p-side-navigation {
-      height: 100%;
-      padding: 2rem 0;
-      position: relative;
+      @media (min-width: $breakpoint-navigation-threshold) {
+        height: 100%;
+        padding: 2rem 0;
+        position: relative;
 
-      &::after {
-        background: #262626;
-        bottom: 0;
-        content: "";
-        display: block;
-        left: -50vw;
-        position: absolute;
-        right: 0;
-        top: 0;
+        &::after {
+          background: #262626;
+          bottom: 0;
+          content: "";
+          display: block;
+          left: -50vw;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
       }
 
       &__drawer {
         height: 100%;
         position: relative;
+
+        @media (max-width: $breakpoint-navigation-threshold) {
+          max-width: none;
+          position: initial;
+          transform: none;
+        }
       }
 
       &__link {
         border-bottom: $dropdown-border;
-        padding-left: 0.5rem;
 
+        @media (min-width: $breakpoint-navigation-threshold) {
+          padding-left: 0.5rem;
+        }
+        
         &::before,
         &:focus::before {
           display: none;
@@ -176,6 +119,123 @@
           display: none;
         }
       }
+    }
+  }
+
+  .dropdown-window__footer {
+    align-items: center;
+    border-top: $dropdown-border;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+    a {
+      margin: 0;
+    }
+  }
+
+  .dropdown-window__side-panel {
+    @media (min-width: $breakpoint-navigation-threshold) {
+      margin: 2rem 0;
+    }
+
+    a {
+      color: #3097ff;
+    }
+
+    .p-muted-heading {
+      @media (max-width: $breakpoint-navigation-threshold) {
+        padding-left: 1rem;
+      }
+    }
+
+    .p-list__item {
+      @media (max-width: $breakpoint-navigation-threshold) {
+        padding-left: 1rem;
+      }
+    }
+  }
+
+  .dropdown-window__main-panel {
+    @media (min-width: $breakpoint-navigation-threshold) {
+      border-right: $dropdown-border;
+      margin: 2rem 0;
+      padding-right: 2rem;
+    }
+
+    .p-list__item {
+      border-bottom: $dropdown-border;
+      line-height: 1.5rem;
+      margin: 0.5rem;
+      padding-left: 0.5rem;
+      position: relative;
+      
+      @media (min-width: $breakpoint-navigation-threshold) {
+        margin: 0;
+      }
+
+      a {
+        &:first-child::before {
+          bottom: 0;
+          content: "";
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        &:not(:first-child) {
+          // Main panel list items can contain more than one link,
+          // setting position allows them to be clicked independently
+          // of the primary/first link
+          margin-top: 1rem;
+          position: relative;
+        }
+
+        &:hover {
+          text-decoration: none;
+
+          &::before {
+            background-color: rgba(170, 170, 170, 0.1);
+          }
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    .p-muted-heading {
+      padding-left: 1rem;
+
+      @media (min-width: $breakpoint-navigation-threshold) {
+        padding-left: 0.5rem;
+      }
+    }
+  }
+
+  .dropdown-window__sidenav-content {
+    @media (max-width: $breakpoint-navigation-threshold) {
+      @include vf-animation(all, brisk, out);
+      background-color: #2d2d2d;
+      position: absolute;
+      top: 3rem;
+      transform: translateX(100vw);
+      width: 100%;
+      z-index: 101;
+
+      &.is-active {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .dropdown-window__sidenav-back {
+    padding-left: 1rem;
+
+    @media (min-width: $breakpoint-navigation-threshold) {
+      display: none;
     }
   }
 

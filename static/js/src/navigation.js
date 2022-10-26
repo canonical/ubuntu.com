@@ -353,3 +353,15 @@ if (
       }
     });
 }
+
+document.addEventListener("click", (e) => {
+  const el = e.target;
+
+  console.log(e.target);
+
+  if (el.classList.contains("dropdown-window__sidenav-back")) {
+    const contentPanel = el.closest(".dropdown-window__sidenav-content");
+
+    contentPanel.classList.remove("is-active");
+  }
+});
