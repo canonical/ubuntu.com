@@ -6,16 +6,17 @@
 {% block meta_image %} https://assets.ubuntu.com/v1/c0671f7e-HPC-index-meta-image.png {% endblock meta_image %}
 {% block meta_copydoc %} https://docs.google.com/document/d/1d4E1IA2mEu72q277sihNSkl7QRKsU1ezwA3jVgJ0TCE/edit {% endblock meta_copydoc %}
 {% block outer_content %}
+
   <section class="p-strip--suru-bottomed">
     <div class="row">
       <div class="col-7">
-        <h1>Your trusted partner for HPC and supercomputing</h1>
+        <h1>HPC and supercomputing</h1>
         <p class="p-heading--4">Open source, fast, reliable, scalable and modular</p>
         <p>
           Get a consistent and unified experience for HPC with solutions from Canonical across any type of cluster. On-premise, bare metal, private and public clouds.
         </p>
         <p>
-          <a href="/hpc/contact-us" class="p-button--positive">Get in touch</a>
+          <a href="/hpc/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
         </p>
       </div>
       <div class="col-5 u-align--center">
@@ -25,24 +26,12 @@
       </div>
     </div>
   </section>
+
   <section class="p-strip">
     <div class="u-fixed-width">
       <div class="p-logo-section">
         <p class="p-logo-section__title u-align--center">Advancing high-performance workloads</p>
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{
-                image (
-                url="https://assets.ubuntu.com/v1/d3ee88a5-2018-logo-tesla.svg",
-                alt="",
-                width="145",
-                height="145",
-                hi_def=True,
-                loading="auto",
-                attrs={"class": "p-logo-section__logo"}
-              ) | safe
-              }}
-            </div>
+        <div class="p-logo-section__items">       
           <div class="p-logo-section__item">
             {{
                 image (
@@ -120,26 +109,15 @@
                 attrs={"class": "p-logo-section__logo"}
             ) | safe
             }}
-          </div>
+          </div>          
         </div>
       </div>
     </div>
   </section>
+
   <section class="p-strip--light">
-    <div class="row">
+    <div class="row u-sv1">
       <div class="col-8">
-        <div>
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/f880a3bd-Enterprise+support.svg",
-            alt="",
-            width="80",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <hr class="u-sv1" />
         <h2>HPC is used across multiple sectors and industries</h2>
         <p>
           From energy to healthcare, we help industry leaders ease operations and break new ground with the power of compute.
@@ -157,66 +135,73 @@
           ) | safe
         }}
       </div>
-      <div class="p-strip is-shallow">
-        <ul class="p-list is-split">
+      <hr>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <ul class="p-list">
           <li class="p-list__item is-ticked">Agriculture</li>
           <li class="p-list__item is-ticked">Automotive</li>
           <li class="p-list__item is-ticked">Banking and finance</li>
           <li class="p-list__item is-ticked">Construction</li>
           <li class="p-list__item is-ticked">Defence and security</li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <ul class="p-list">
           <li class="p-list__item is-ticked">Electronics</li>
           <li class="p-list__item is-ticked">Energy and utilities</li>
           <li class="p-list__item is-ticked">Government</li>
           <li class="p-list__item is-ticked">Healthcare and pharmaceuticals</li>
           <li class="p-list__item is-ticked">Life sciences</li>
+        </ul>
+      </div>
+      <div class="col-4">
+        <ul class="p-list">
           <li class="p-list__item is-ticked">Manufacturing and industry</li>
           <li class="p-list__item is-ticked">Media and entertainment</li>
           <li class="p-list__item is-ticked">Research and universities</li>
           <li class="p-list__item is-ticked">Weather</li>
         </ul>
-        <p>
-          <a class="p-button--positive" href="/hpc/use-cases">Use cases</a>
-        </p>
       </div>
+      <p>
+        <a class="p-button--positive" href="/hpc/use-cases">See use cases</a>
+      </p>
     </div>
   </section>
-  <section class="p-strip--suru">
-    <div class="row">
-      <div class="col-8">
-        <h2>Solutions for HPC</h2>
-        <p>Embrace the open source mandate in HPC with Canonical.</p>
-        <p>
-          Learn more about how Canonical, a leading provider of commercial support for open source solutions can help you with your challenges as a trusted partner for  high-performance computing and supercomputing.
-        </p>
-        <br />
-        <p>
-          <a class="p-button--positive" href="/hpc/contact-us">Canonical and HPC learn more</a>
-        </p>
-      </div>
-      <div class="col-4 u-hide--medium u-hide--small u-vertically-center">
+
+  <section class="p-strip u-no-padding--bottom">
+    <div class="u-fixed-width u-sv3">
+      <h2>Solutions for HPC</h2>
+      <p class="p-heading--5">Embrace the open source mandate in HPC with Canonical.</p>
+    </div>
+  </section>
+
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <div class="u-sv1">
         {{
           image (
-          url="https://assets.ubuntu.com/v1/91b86713-Enterprise_support.svg",
-          alt="",
-          width="288",
-          hi_def=True,
-          loading="auto",
+            url="https://assets.ubuntu.com/v1/3c891a50-Canonical+MAAS.svg",
+            alt="",
+            width="205",
+            height="40",
+            hi_def=True,
+            loading="auto"
           ) | safe
         }}
       </div>
+      <hr>
     </div>
-  </section>
-  <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6">
-        <h2 class="p-heading--5">
-          MAAS
-        </h2>
-        <p class="p-heading--2">
-          Cluster deployment and delivery
-        </p>
+        <h3 class="p-heading--2">
+          Cluster management at scale
+        </h3>
+      </div>
+      <div class="col-6">
         <p>
-          The ultimate experience for bare metal resource discovery, management, delivery and observability.
+          <strong>MAAS: super fast cluster deployment and delivery</strong> <br> The ultimate experience for bare metal resource.
         </p>
         <p>
           Deploy HPC and supercomputing clusters with ease.
@@ -228,159 +213,222 @@
           <a href="/hpc/contact-us?product=hpc-maas">Get in touch to learn more&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/3c891a50-Canonical+MAAS.svg",
-          alt="",
-          width="308",
-          height="60",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-        }}
-      </div>
     </div>
   </section>
-  <div class="u-fixed-width">
-    <hr class="p-seperator" />
-  </div>
+
   <section class="p-strip">
-    <div class="row u-equal-height">
-      <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
+    <div class="u-fixed-width">
+      <div class="u-sv1">
         {{
           image (
-          url="https://assets.ubuntu.com/v1/54f0ce21-ubuntu-logo-2022-LRG.png",
-          alt="",
-          height="60",
-          width="170",
-          hi_def=True,
-          loading="auto"
+            url="https://assets.ubuntu.com/v1/54f0ce21-ubuntu-logo-2022-LRG.png",
+            alt="",
+            width="113",
+            height="40",
+            hi_def=True,
+            loading="auto"
           ) | safe
         }}
       </div>
+      <hr>
+    </div>
+    <div class="row u-equal-height">
       <div class="col-6">
-        <h2 class="p-heading--5">
-          Ubuntu
-        </h2>
-        <p class="p-heading--2">
-          The distro for HPC, HPDA, and AI/ML
+        <h3 class="p-heading--2">
+          Operating system for computational workloads
+        </h3>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>Ubuntu is the distro for HPC, HPDA and AI/ML </strong>
         </p>
         <p>
-          Ubuntu is the ultimate distribution for HPC. Recent kernel, extensive package repositories, 2-year fixed release cadence for LTS releases with 5 year support, maintenance, bug fixes by standard, extendable to 10 years with Ubuntu Advantage. Perfect for long-running environments.
+          Ubuntu is the ultimate distribution for HPC. Recent kernel , LTS releases with 5-year support, maintenance and bug fixes, extendable to 10 years.  An extensive list of packages available across its repositories, giving you a unified source for installation. Available for local installation or public clouds. Perfect for long-running environments. 
         </p>
-        <p>
-          Ubuntu has an extensive list of packages available across its repositories, giving you a unified source for installation, which is critical for support commitments. Available for local installation or public clouds.
-        </p>
-        <a href="/hpc/contact-us?product=hpc-ubuntu">Get in touch to learn more&nbsp;&rsaquo;</a>
       </div>
     </div>
   </section>
-  <div class="u-fixed-width">
-    <hr class="p-seperator" />
-  </div>
+
   <section class="p-strip">
-    <div class="row u-equal-height">
-      <div class="col-6">
-        <h2 class="p-heading--5">
-          Juju and Charms
-        </h2>
-        <p class="p-heading--2">
-          The best way to deploy, maintain and operate HPC cluster software
-        </p>
-        <p>
-          Simplify the delivery of HPC clusters. Charmed HPC software solutions could be just the thing you need to ease cluster operation and monitoring.
-        </p>
-        <p>
-          <a href="/hpc/contact-us?product=hpc-charmed">Get in touch to learn more&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
+    <div class="u-fixed-width">
+      <div class="u-sv1">
         {{
           image (
-          url="https://assets.ubuntu.com/v1/53cfe748-Canonical+Charmhub.svg",
-          alt="",
-          height="60",
-          width="379",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
+            url="https://assets.ubuntu.com/v1/53cfe748-Canonical+Charmhub.svg",
+            alt="",
+            width="253",
+            height="40",
+            hi_def=True,
+            loading="lazy"
+          ) | safe
         }}
+      </div>
+      <hr>
+    </div>
+    <div class="row u-equal-height">
+      <div class="col-6">
+        <h3 class="p-heading--2">
+          Software and cluster automation
+        </h3>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>Juju and Charms: deploy, maintain and operate, on autopilot</strong>
+        </p>
+        <p>
+          Simplify the delivery of HPC clusters. Charmed HPC software solutions could be just the thing you need to ease cluster operation and monitoring. 
+        </p>
+        <p>
+          Juju charms help you simplify operations by assisting in the installation, maintenance and integration of applications.
+        </p>
       </div>
     </div>
   </section>
-  <div class="u-fixed-width">
-    <hr class="p-seperator" />
-  </div>
+
   <section class="p-strip">
-    <div class="row u-equal-height">
-      <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
+    <div class="u-fixed-width">
+      <div class="u-sv1">
         {{
           image (
-          url="https://assets.ubuntu.com/v1/e6cd15f7-Charmed+Kubernetes_RGB_2022.svg",
-          alt="",
-          width="392",
-          height="60",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
+            url="https://assets.ubuntu.com/v1/e6cd15f7-Charmed+Kubernetes_RGB_2022.svg",
+            alt="",
+            width="261",
+            height="40",
+            hi_def=True,
+            loading="lazy"
+          ) | safe
         }}
       </div>
+      <hr>
+    </div>
+    <div class="row u-equal-height">
       <div class="col-6">
-        <h2 class="p-heading--5">
-          Kubernetes
-        </h2>
-        <p class="p-heading--2">
-          Unified experience across HPC, HPDA, and AI/ML workloads
+        <h3 class="p-heading--2">
+          Container-based resource scheduling
+        </h3>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>Charmed Kubernetes: a unified experience across substrates</strong>
         </p>
         <p>
-          A single unified experience across multiple substrates.
-        </p>
-        <p>
-          Learn more about using Kubernetes for HPC workload scheduling.
-        </p>
-        <p>
-          <a href="/hpc/contact-us?product=hpc-kubernetes">Get in touch to learn more&nbsp;&rsaquo;</a>
+          Manage your cloud-native computational workloads with ease using Charmed Kubernetes.
         </p>
       </div>
     </div>
-  </section>
-  <div class="u-fixed-width">
-    <hr class="p-seperator" />
-  </div>
+  </section> 
+
   <section class="p-strip">
+    <div class="u-fixed-width">
+      <div class="u-sv1">
+        {{
+          image (
+            url="https://assets.ubuntu.com/v1/0b784c9c-Canonical+OpenStack.svg",
+            alt="",
+            width="257",
+            height="40",
+            hi_def=True,
+            loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <hr>
+    </div>
     <div class="row u-equal-height">
       <div class="col-6">
-        <h2 class="p-heading--5">
-          Openstack
-        </h2>
-        <p class="p-heading--2">
-          Reference architecture for Computational workloads
+        <h3 class="p-heading--2">
+          Management for virtualised computational infrastructure
+        </h3>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>OpenStack: the reference architecture for computational workloads</strong>
         </p>
         <p>
           Get agile management for your computational resources alongside an extended service portfolio for VDI and auxiliary nodes. Everything to support your computational workload.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--suru is-dark is-deep">
+    <div class="row p-divider is-dark">
+      <div class="col-6 p-divider__block">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <div>
+              {{ image (
+                url="https://assets.ubuntu.com/v1/816ae23b-Webinar+-+white.svg",
+                alt="",
+                width="171",
+                height="150",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+            <h3 class="p-heading-icon__title">
+              Webinar
+            </h3>
+          </div>
+        </div>
+        <p>Scania, a major manufacturer of commercial vehicles, relies on SLURM and a Canonical stack to power up and scale their HPC clusters. Using MAAS and Juju, they are well-positioned to meet peaks in demand with confidence.</p>
+        <p><a href="https://www.youtube.com/watch?v=SGrRqCuiT90" class="p-button">Watch the video&nbsp;&rsaquo;</a></p>
+      </div>
+      <div class="col-6 p-divider__block">
+        <div class="p-heading-icon">
+          <div class="p-heading-icon__header">
+            <div>
+              {{ image (
+                url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
+                alt="",
+                width="171",
+                height="150",
+                hi_def=True,
+                loading="lazy"
+                ) | safe
+              }}
+            </div>
+            <h3 class="p-heading-icon__title">
+              Case study
+            </h3>
+          </div>
+          <p>The Wellcome Sanger Institute is a global centre of excellence for genomic research. As capacity needs grew from 3 PB to over 20 PB, the Institute turned to Canonical for high-level Ceph support, providing direct access to Canonical's engineering teams to resolve the more complex issues.</p>
+          <p><a href="/engage/wellcome-sanger-case-study" class="p-button">Read the story&nbsp;&rsaquo;</a></p>
+        </div>        
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip--suru">
+    <div class="row">
+      <div class="col-8">
+        <h2>
+          Performance through partnerships
+        </h2>
         <p>
-          <a href="/hpc/contact-us?product=hpc-openstack">Get in touch to learn more&nbsp;&rsaquo;</a>
+          Canonical has a strong network of technical alliances, driving platform compatibility on Ubuntu. Close partnerships make sure Ubuntu runs optimally on the CPU architecture and works well with GPUs, FPGA, accelerators and high speed interconnects.
+        </p>
+        <br />
+        <p>
+          <a class="p-button--positive" href="/hpc/contact-us">Learn more about partnerships</a>
         </p>
       </div>
-      <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      <div class="col-4 u-hide--medium u-hide--small u-vertically-center">
         {{
           image (
-          url="https://assets.ubuntu.com/v1/0b784c9c-Canonical+OpenStack.svg",
+          url="https://assets.ubuntu.com/v1/3bf0d30e-partner-with-us-light.svg",
           alt="",
-          width="385",
-          height="60",
+          width="200",
+          height="148",
           hi_def=True,
           loading="lazy"
-        ) | safe
+          ) | safe
         }}
       </div>
     </div>
   </section>
-  <div class="u-fixed-width">
-    <hr class="p-seperator" />
-  </div>
+
   <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
@@ -414,34 +462,11 @@
       </div>
     </div>
   </section>
-  <section class="p-strip--suru">
-    <div class="row">
-      <div class="col-8">
-        <h2>
-          Performance through partnerships
-        </h2>
-        <p>
-          Canonical has a strong network of technical alliances, driving platform compatibility on Ubuntu. Close partnerships make sure Ubuntu runs optimally on the CPU architecture and works well with GPUs, FPGA, accelerators and high speed interconnects.
-        </p>
-        <br />
-        <p>
-          <a class="p-button--positive" href="/hpc/contact-us">Learn more about partnerships</a>
-        </p>
-      </div>
-      <div class="col-4 u-hide--medium u-hide--small u-vertically-center">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/3bf0d30e-partner-with-us-light.svg",
-          alt="",
-          width="200",
-          height="148",
-          hi_def=True,
-          loading="lazy"
-          ) | safe
-        }}
-      </div>
-    </div>
-  </section>
+
+  <div class="u-fixed-width">
+    <hr class="p-seperator" />
+  </div>
+
   <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6">
@@ -471,9 +496,11 @@
       </div>
     </div>
   </section>
+
   <div class="u-fixed-width">
     <hr class="p-seperator" />
   </div>
+
   <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
@@ -502,9 +529,11 @@
       </div>
     </div>
   </section>
+
   <div class="u-fixed-width">
     <hr class="p-seperator" />
   </div>
+
   <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6">
@@ -538,9 +567,11 @@
       </div>
     </div>
   </section>
+
   <div class="u-fixed-width">
     <hr class="p-seperator" />
   </div>
+
   <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
@@ -571,9 +602,11 @@
       </div>
     </div>
   </section>
+
   <div class="u-fixed-width">
     <hr class="p-seperator" />
   </div>
+
   <section class="p-strip">
     <div class="row u-equal-height">
       <div class="col-6">
@@ -584,7 +617,7 @@
           Clusters on the rise
         </p>
         <p>
-          Numerous initiatives are driving the adoption of RISC-V for HPC. Canonical’s RISC-V team is actively engaged in the RISC-V community.
+          Numerous initiatives are driving the adoption of RISC-V for HPC. Canonical's RISC-V team is actively engaged in the RISC-V community.
         </p>
         <p>
           <a href="/hpc/contact-us">Get in touch to learn more&nbsp;&rsaquo;</a>
@@ -604,6 +637,7 @@
       </div>
     </div>
   </section>
+
   <section class="p-strip--light">
     <div class="u-fixed-width">
       <h2>
@@ -637,6 +671,7 @@
       </div>
     </div>
   </section>
+
   <section class="p-strip">
     <div class="u-fixed-width">
       <h2>
@@ -669,6 +704,7 @@
       </div>
     </div>
   </section>
+  
   <section class="p-strip--light">
     <div class="row u-vertically-center">
       <div class="col-5 u-hide--medium u-hide--small u-align--center">
@@ -697,4 +733,9 @@
       </div>
     </div>
   </section>
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/hpc" data-form-id="4537" data-lp-id="" data-return-url="https://ubuntu.com/hpc/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+  </div>
+
 {% endblock outer_content %}
