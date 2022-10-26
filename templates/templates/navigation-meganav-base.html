@@ -21,7 +21,7 @@
             <div class="row u-no-padding"> 
               <div class="col-8 dropdown-window__main-panel">
                 {% for links_section in side_nav_section.primary_links %}
-                  <p class="p-muted-heading">{{ links_section.title }}</p>
+                  <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
                   
                   <div class="row">
                     <div class="col-4">
@@ -30,11 +30,11 @@
                           {% if loop.index % 2 == 1 %}
                             <li class="p-list__item">
                               <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
-                              <small>{{ link.description }}</small>
+                              <small class="is-muted">{{ link.description }}</small>
 
                               {% if link.ctas %}
                                 {% for cta in link.ctas %}
-                                  <a href="{{ cta.url }}" class="u-no-margin {{ 'p-button--positive' if cta.type == 'primary'}}">{{ cta.title }}</a>
+                                  <a href="{{ cta.url }}" class="{{ 'p-button--positive' if cta.type == 'primary'}}">{{ cta.title }}</a>
                                 {% endfor %}
                               {% endif %}
                             </li>
@@ -48,7 +48,7 @@
                           {% if loop.index % 2 == 0 %}
                             <li class="p-list__item">
                               <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
-                              <small>{{ link.description }}</small>
+                              <small class="is-muted">{{ link.description }}</small>
 
                               {% if link.ctas %}
                                 {% for cta in link.ctas %}
@@ -66,7 +66,7 @@
 
               <div class="col-2 dropdown-window__side-panel">
                 {% for links_section in side_nav_section.secondary_links %}
-                  <p class="p-muted-heading">{{ links_section.title }}</h2>
+                  <p class="p-muted-heading is-muted">{{ links_section.title }}</h2>
                   
                   <ul class="p-list">
                     {% for link in links_section.links %}
