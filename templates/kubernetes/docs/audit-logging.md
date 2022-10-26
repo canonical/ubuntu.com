@@ -91,7 +91,7 @@ juju config kubernetes-control-plane api-extra-args="audit-log-path=/root/cdk/my
 <div class="p-notification--caution is-inline">
   <div markdown="1" class="p-notification__content">
     <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message"The <code>audit-log-path</code> must be a directory that is writeable by the kube-apiserver snap. Any non-hidden folders in <code>/root</code>, <code>/var/snap/kube-apiserver/current</code>, or <code>/var/snap/kube-apiserver/common</code> should work.</p>
+    <p class="p-notification__message">The <code>audit-log-path</code> must be a directory that is writeable by the kube-apiserver snap. Any non-hidden folders in <code>/root</code>, <code>/var/snap/kube-apiserver/current</code>, or <code>/var/snap/kube-apiserver/common</code> should work.</p>
   </div>
 </div>
 

@@ -197,16 +197,17 @@ describe("RenewalSettings", () => {
     expect(
       settings.includes(
         `Renew my 2 yearly subscriptions for the next year for ` +
-          `$1,900.00*.The renewal will happen on 9 July 2022:3x UA Applications` +
-          ` - Standard (Physical)1x UA Applications - Standard (Physical)`
+          `$1,900.00*. The renewal will happen on 9 July 2022: ` +
+          `3x UA Applications - Standard (Physical)` +
+          `1x UA Applications - Standard (Physical)`
       )
     ).toBe(true);
     expect(
       settings.includes(
         `Automatically renew my 2 monthly subscriptions every month` +
-          ` for $27.50*.The next renewal will be on 9 July 2022:2x UA ` +
-          `Applications - Standard (Physical)100x UA Applications - Standard ` +
-          `(Physical)`
+          ` for $27.50*. The next renewal will be on 9 July 2022: ` +
+          `2x UA Applications - Standard (Physical)` +
+          `100x UA Applications - Standard (Physical)`
       )
     ).toBe(true);
   });

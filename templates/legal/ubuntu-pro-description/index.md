@@ -14,9 +14,9 @@ markdown_includes:
 As an **Ubuntu Pro** customer, you are entitled to the following coverage, depending on the appropriate support level on a per-machine basis. Each subscription can cover either (i) Infrastructure-only: **Ubuntu Pro (Infra-only)** with or without support (previously known as Ubuntu Advantage for Infrastructure), or (ii)Infrastructure and Applications: (**Ubuntu Pro**), with or without support:
 
 1. **Physical server**: A subscription attached to a physical host running Ubuntu or a Covered Hypervisor. If all physical hosts in the Environment are attached, then Ubuntu Pro subscription also covers all Ubuntu guests on those hosts
-2. **Desktop**: A subscription limited to Desktop use-cases. It covers packages in the base Ubuntu desktop image as well as packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugin. It can also cover support (wwekday or 24/7) for Ubuntu distribution for [Windows Subsystem for Linux](https://ubuntu.com/wsl) (WSL) and developer tools such as MicroK8s and Multipass
+2. **Desktop**: A subscription limited to Desktop use-cases. It covers packages in the base Ubuntu desktop image as well as packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugin. It can also cover support (weekday or 24/7) for Ubuntu distribution for [Windows Subsystem for Linux](https://ubuntu.com/wsl) (WSL) and developer tools such as MicroK8s and Multipass
 
-Each subscription can be purchased at one of three support levels - **no support, weekday support or 24/7 support** and must cover all Ubuntu systems within your production environment. Unless otherwise stated, a subscription will be no support. Detailed pricing can be found at: https://ubuntu.com/pricing/pro
+Each subscription can be purchased at one of three support levels - **no support** (previously known as Essential), **weekday support** (previously known as Standard) **or 24/7 support** (previously known as Advanced) and must cover all Ubuntu systems within your production environment. Unless otherwise stated, a subscription will be no support. Detailed pricing can be found at: https://ubuntu.com/pricing/pro
 
 {{ pricing_table | safe }}
 

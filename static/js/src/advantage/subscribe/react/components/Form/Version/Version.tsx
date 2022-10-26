@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Chip, Col, List, Row } from "@canonical/react-components";
+import { Col, List, Row, StatusLabel } from "@canonical/react-components";
 import classNames from "classnames";
 import {
   isPublicCloud,
@@ -17,7 +17,7 @@ const landscape = "Ubuntu systems management with Landscape";
 const knowledgeBase = "Access to the Knowledge base";
 const KVMDrivers = "Certified Windows Drivers for KVM guests";
 const CISBenchmark =
-  "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG configuration guide";
+  "Certified CIS benchmark tooling and DISA-STIG configuration guide";
 const CISBenchmarkAndAutomation =
   "Ubuntu Security Guide (USG) for certified CIS benchmark tooling and DISA-STIG tooling & automation";
 const FIPS =
@@ -26,13 +26,13 @@ const FIPSComingSoon = (
   <>
     FIPS 140-3 Level 1 cryptographic packages for FedRAMP, HIPAA and PCI-DSS
     compliance
-    <Chip value="Coming soon" appearance="positive" className="is-dense" />
+    <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
 const CISComingSoon = (
   <>
     Ubuntu Security Guide (USG) for certified CIS benchmark tooling & automation
-    <Chip value="Coming soon" appearance="positive" className="is-dense" />
+    <StatusLabel appearance="positive">Coming soon</StatusLabel>
   </>
 );
 const CommonCriteria = "Common Criteria EAL2";

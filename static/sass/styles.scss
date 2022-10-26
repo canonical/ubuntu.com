@@ -855,3 +855,20 @@ html {
 img.has-shadow {
   box-shadow: 0 0 1rem #e5e5e5;
 }
+
+// Style for status labels (similar to chips but non-clickable)
+.p-status-label--rounded {
+  background-color: #ddf2e0;
+  border-radius: map-get($line-heights, h4);
+  margin-bottom: map-get($sp-after, h4) - map-get($nudges, h4);
+  padding-bottom: map-get($nudges, h4);
+  padding-left: $sph--x-large;
+  padding-right: $sph--x-large;
+}
+
+// Temp fix for anchor underlines
+// Being addressed upstream in https://github.com/canonical/vanilla-framework/issues/4600
+a:hover {
+  text-decoration: underline 1px;
+  text-underline-offset: 0.075em;
+}

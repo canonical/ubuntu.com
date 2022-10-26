@@ -27,6 +27,7 @@ import FreeTrial from "./components/FreeTrial";
 type Props = {
   accountId?: string;
   termsLabel: React.ReactNode;
+  descriptionLabel: React.ReactNode;
   marketingLabel: React.ReactNode;
   product: Product | null;
   quantity: number;
@@ -38,6 +39,7 @@ type Props = {
 const PurchaseModal = ({
   accountId,
   termsLabel,
+  descriptionLabel,
   marketingLabel,
   product,
   quantity,

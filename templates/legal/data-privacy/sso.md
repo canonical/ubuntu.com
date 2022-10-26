@@ -5,6 +5,7 @@ context:
   description: "This privacy notice tells you about the information collected from you when you register for a Single Sign On (SSO) and/or Ubuntu One account."
   copydoc: https://docs.google.com/document/d/1nOk02AAjdOi2sW4rc1FOIO1n1BNzfU-iX88EKayXw-k/edit#
 ---
+
 <h4 class="p-muted-heading">Version - August 2022</h4>
 <hr style="margin-bottom: 2rem;" />
 
@@ -14,7 +15,7 @@ This privacy notice tells you about the information collected from you when you 
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 

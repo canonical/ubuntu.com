@@ -5,16 +5,17 @@ context:
   description: This Privacy notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey.
   copydoc: https://docs.google.com/document/d/1JODNGJQ0G-aSrycKTv4XOGmJVWw98Fqk2gLfHmQqgB4/edit
 ---
+
 <h4 class="p-muted-heading">Version - December 2018</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice – Snapcraft NPS Survey  
+# Privacy notice – Snapcraft NPS Survey
 
 This Privacy notice tells you about the information collected from you when you participate in the Snapcraft Net Promoter Score (NPS) survey. In collecting this information, we are acting as a data controller and, by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -77,10 +78,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-The Office Group, St Dunstans House, <br />
-4th floor, 201 Borough High St, <br />
-London SE1 1JA,<br />
-United Kingdom
+2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
 </div>
 
 Alternatively, you can use the relevant contact us form.

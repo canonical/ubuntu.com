@@ -3,8 +3,7 @@
 
 {% block title %}Ubuntu Pro | plans and pricing{% endblock %}
 
-{% block meta_description %}Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures (CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.
-{% endblock %}
+{% block meta_description %}Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures (CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit{% endblock meta_copydoc %}
 
@@ -12,8 +11,9 @@
 
 <section id="ua-infra" class="p-strip--suru-topped is-bordered">
   <div class="u-fixed-width">
-    <h1>Ubuntu Pro:  security, compliance, and support</h1>
+    <h1>Ubuntu Pro: security, compliance, and support</h1>
     <p>Ubuntu Pro covers all aspects of open infrastructure and applications.</p>
+    <p>Please refer to the <a href="/legal/ubuntu-advantage-service-description">service description</a> for full details.</p>
     <ul class="p-inline-list">
       <li class="p-inline-list__item">
         <a href="/support/contact-us" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Get in touch</a>
@@ -29,11 +29,12 @@
   <div class="u-fixed-width">
     <h2 class="p-heading--3">Security maintenance and compliance</h2>
   </div>
-  
+
   {% include "shared/pricing/_ua-for-infrastructure.html" %}
-  
+
   <div class="u-fixed-width">
-    <h2 class="p-heading--3">Ubuntu Pro + phone and ticket support</h2>
+    <h2 class="p-heading--3">Ubuntu Pro + <a href="/support">phone and ticket support</a></h2>
+    <p>Please refer to the list of <a href="/support">supported infrastructure and applications</a>.</p>
   </div>
 
   <div class="u-fixed-width">
@@ -41,25 +42,25 @@
       <table class="p-table">
         <thead>
           <tr>
-            <th style="width: 50%;">Ubuntu Pro + weekday support</th>
-            <th class="u-align--right">Infra Support</th>
-            <th class="u-align--right">Full Stack Support</th>
+            <th style="width: 50%;">Ubuntu Pro + <a href="/support">weekday support</a></th>
+            <th class="u-align--right"><a href="/support">Infra Support</a></th>
+            <th class="u-align--right"><a href="/support">Full Stack Support</a></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Ubuntu Pro (Infra)</td>
+            <td>Ubuntu Pro (Infra-only) - per machine per year</td>
             <td class="u-align--right">$750</td>
             <td class="u-align--right">n/a</td>
           </tr>
           <tr>
-            <td>Ubuntu Pro</td>
+            <td>Ubuntu Pro - per machine per year</td>
             <td class="u-align--right">$885</td>
             <td class="u-align--right">$1,700</td>
           </tr>
           <tr>
-            <td>Desktop</td>
+            <td>Desktop - per machine per year</td>
             <td class="u-align--right">n/a</td>
             <td class="u-align--right">$150</td>
           </tr>
@@ -73,25 +74,25 @@
       <table class="p-table">
         <thead>
           <tr>
-            <th style="width: 50%;">Ubuntu Pro + 24/7 support</th>
-            <th class="u-align--right">Infra Support</th>
-            <th class="u-align--right">Full Stack Support</th>
+            <th style="width: 50%;">Ubuntu Pro + <a href="/support">24/7 support</a></th>
+            <th class="u-align--right"><a href="/support">Infra Support</a></th>
+            <th class="u-align--right"><a href="/support">Full Stack Support</a></th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Ubuntu Pro (Infra)</td>
+            <td>Ubuntu Pro (Infra-only) - per machine per year</td>
             <td class="u-align--right">$1,500</td>
             <td class="u-align--right">n/a</td>
           </tr>
           <tr>
-            <td>Ubuntu Pro</td>
+            <td>Ubuntu Pro - per machine per year</td>
             <td class="u-align--right">$1,775</td>
             <td class="u-align--right">$3,400</td>
           </tr>
           <tr>
-            <td>Desktop</td>
+            <td>Desktop - per machine per year</td>
             <td class="u-align--right">n/a</td>
             <td class="u-align--right">$300</td>
           </tr>
@@ -101,13 +102,8 @@
   </div>
 
   <div class="u-fixed-width">
-    <p>Please refer to the <a href='/uasd'>service description</a> for full details.</p>
-    <p>
-      See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
-    </p>
-    <p>
-      <a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a>
-    </p>
+    <p>See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.</p>
+    <p><a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a></p>
   </div>
 </section>
 

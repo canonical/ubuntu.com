@@ -5,6 +5,7 @@ context:
   description: "This privacy notice tells you about the information we collect from you when you download and install and purchase snaps and software on Ubuntu Core and any compatible supported systems."
   copydoc: https://docs.google.com/document/d/1rEyCOZWoKKJRPIg5jhANfWVibZJ9QVfqj4MkeNIJp4M/edit#
 ---
+
 <h4 class="p-muted-heading">VERSION - OCTOBER 2020</h4>
 <hr style="margin-bottom: 2rem;" />
 
@@ -14,7 +15,7 @@ This privacy notice tells you about the information we collect from you when you
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -26,13 +27,13 @@ When you use the Snap Store we may ask you for your name, address, contact telep
 
 We require this information in order to manage your Snap Store account, to provide you with Snaps and to fulfil our contract with you.
 
-Your information may be used by our third party payment provider to verify your credit card details for any purchase and for Canonical or our third party suppliers to process your account. 
+Your information may be used by our third party payment provider to verify your credit card details for any purchase and for Canonical or our third party suppliers to process your account.
 
 ## What do we do with your information?
 
-Your information is stored in our database and may be processed outside of the European Economic Area. 
+Your information is stored in our database and may be processed outside of the European Economic Area.
 
-Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of your personal information. If you would like further information please contact us (see "Your right to complain" below).  It is shared with the third parties set out below and as reasonably required for Canonical to process and store your data.
+Such countries do not have the same data protection laws as the United Kingdom and EEA. Where the European Commission has not given a formal decision that such countries provide an adequate level of data protection, any transfer of your personal information will be subject to approved contract terms designed to help safeguard your privacy rights and give you remedies in the unlikely event of misuse of your personal information. If you would like further information please contact us (see "Your right to complain" below). It is shared with the third parties set out below and as reasonably required for Canonical to process and store your data.
 
 Your credit card details are passed to a third-party payment processor who retains credit card details. Our third-party payment processor is a company called Stripe Payments Europe, Limited who we use to process and confirm your payments. We share with them your name, address and credit card information only for payment purposes. We do not retain credit card data but our payment service providers do. For your safety, we have in place agreement between us to protect, safeguard your information and prohibit any sharing for any reasons whatsoever.
 
@@ -92,7 +93,7 @@ To submit a request by email, post or telephone, please use the contact informat
 
 Canonical offers a free email newsletter subscription service to keep you informed of our products and services. You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service to ensure that the emails you receive are relevant to your interests.
 
-Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with "STOP",  (iii) sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com), or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate. 
+Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by (i) clicking the unsubscribe button at the end of the email, (ii) reply to the email with "STOP", (iii) sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com), or (iv) navigating to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate.
 
 ## Links to other websites
 
@@ -114,10 +115,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-The Office Group, St Dunstans House, <br />
-4th floor, 201 Borough High St, <br />
-London SE1 1JA,<br />
-United Kingdom
+2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
 </div>
 
 Alternatively, you can use the relevant contact us form.

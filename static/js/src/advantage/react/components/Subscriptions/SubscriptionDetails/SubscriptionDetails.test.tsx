@@ -306,6 +306,7 @@ describe("SubscriptionDetails", () => {
       type: UserSubscriptionType.Legacy,
       statuses: userSubscriptionStatusesFactory.build({
         is_renewed: false,
+        is_renewal_actionable: true,
       }),
     });
 
@@ -410,5 +411,27 @@ describe("SubscriptionDetails", () => {
     );
 
     expect(wrapper.find(".p-chip__value").text()).toBe("Auto-renewal off");
+  });
+  it("it does not display label for unactionable subs", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewed: false,
+        is_renewal_actionable: false,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+
+    expect(wrapper.find(".p-chip__value").exists()).toBe(false);
   });
 });
