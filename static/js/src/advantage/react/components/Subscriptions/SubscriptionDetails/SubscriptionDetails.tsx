@@ -142,9 +142,13 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                           <span className="p-chip__value">Renewed</span>
                         </button>
                       ) : (
-                        <button className="p-chip--caution">
-                          <span className="p-chip__value">Not renewed</span>
-                        </button>
+                        <>
+                          {subscription.statuses.is_renewal_actionable ? (
+                            <button className="p-chip--caution">
+                              <span className="p-chip__value">Not renewed</span>
+                            </button>
+                          ) : null}
+                        </>
                       )}
                     </>
                   ) : null}

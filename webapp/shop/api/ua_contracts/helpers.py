@@ -298,7 +298,7 @@ def get_user_subscription_statuses(
             if start <= time_now <= end:
                 statuses["is_renewable"] = True
 
-        if renewal.actionable and renewal.status in ["done", "closed"]:
+        if renewal.status in ["done", "closed"]:
             statuses["is_renewed"] = True
 
     return statuses
