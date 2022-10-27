@@ -16,6 +16,16 @@
     z-index: 40;
   }
 
+  .p-navigation__row {
+    @include vf-animation(all, fast, out);
+
+    transform: 0;
+
+    .subsection-active & {
+      transform: translateX(-100vw);
+    }
+  }
+
   .p-navigation.has-menu-open {
     .p-navigation__row {
       .p-navigation__nav {
