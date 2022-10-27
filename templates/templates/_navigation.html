@@ -393,20 +393,26 @@ function handleClickOutside(toggles, containerClass) {
 
 function showSection(e) {
   const target = e.target.getAttribute('aria-controls');
-  const el = document.getElementById(target)
+  const el = document.getElementById(target);
   
-  el.classList.add('is-active')
   el.removeAttribute('hidden')
+
+  setTimeout(function () {
+    el.classList.add('is-active')
+  }, 1);
 }
 
 function hideSection(e) {
   e.preventDefault();
-  e.stopPropagation();
   const target = e.target.getAttribute('aria-controls');
   const el = document.getElementById(target)
-  
+
+
   el.classList.remove('is-active')
-  el.setAttribute('hidden', true)
+
+  setTimeout(function () {
+    el.setAttribute('hidden', true)
+  }, 333);
 }
 
 function initNavDropdowns(containerClass) {

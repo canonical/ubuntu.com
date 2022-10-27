@@ -40,7 +40,7 @@
     &__content-container {
       @extend %fixed-width-container;
 
-      @media (max-width: $breakpoint-small - 1) {
+      @media (max-width: $breakpoint-navigation-threshold) {
         padding: 0;
       }
     }
@@ -49,12 +49,6 @@
   .dropdown-window__content {
     color: $color-light;
     padding: 0;
-
-    @media (max-width: $breakpoint-x-small - 1) {
-      .p-inline-list--middot.is-x-dense {
-        margin-bottom: 0.3rem;
-      }
-    }
 
     [hidden="true"] {
       display: none;
@@ -113,6 +107,10 @@
           right: 1rem;
           top: 0;
           transform: rotate(-90deg);
+
+          @media (min-width: $breakpoint-small) {
+            right: 1.5rem;
+          }
           
           @media (min-width: $breakpoint-navigation-threshold) {
             display: none;
@@ -123,18 +121,6 @@
       &__item:last-child {
         .p-side-navigation__link {
           border: 0;
-        }
-      }
-    }
-
-    & .p-inline-list__item {
-      @extend %small-text-fixed;
-
-      list-style-type: none;
-
-      &::after {
-        @media only screen and (max-width: $breakpoint-medium - 1) {
-          display: none;
         }
       }
     }
@@ -153,12 +139,23 @@
   }
 
   .dropdown-window__side-panel {
+    margin-top: 1rem;
+
+    @media (min-width: $breakpoint-small) {
+      padding: 0 0.5rem;
+    }
+
     @media (min-width: $breakpoint-navigation-threshold) {
       margin: 2rem 0;
+      padding: 0;
     }
 
     a {
       color: #3097ff;
+
+      @media (max-width: $breakpoint-navigation-threshold) {
+        display: block;
+      }
     }
 
     .p-muted-heading {
@@ -178,15 +175,25 @@
     @media (min-width: $breakpoint-navigation-threshold) {
       border-right: $dropdown-border;
       margin: 2rem 0;
-      padding-right: 2rem;
+      padding: 0 2rem 0 0;
+    }
+
+    .p-list {
+      @media (max-width: $breakpoint-navigation-threshold) {
+        margin-bottom: 0;
+      }
     }
 
     .p-list__item {
       border-bottom: $dropdown-border;
       line-height: 1.5rem;
-      margin: 0.5rem;
+      margin: 0 0.5rem;
       padding-left: 0.5rem;
       position: relative;
+
+      @media (min-width: $breakpoint-small) {
+        margin: 0 1rem;
+      }
       
       @media (min-width: $breakpoint-navigation-threshold) {
         margin: 0;
@@ -220,12 +227,18 @@
       }
 
       &:last-child {
-        border-bottom: 0;
+        @media (min-width: $breakpoint-navigation-threshold) {
+          border-bottom: 0;
+        }
       }
     }
 
     .p-muted-heading {
       padding-left: 1rem;
+
+      @media (min-width: $breakpoint-small) {
+        padding-left: 1.5rem;
+      }
 
       @media (min-width: $breakpoint-navigation-threshold) {
         padding-left: 0.5rem;
@@ -235,7 +248,7 @@
 
   .dropdown-window__sidenav-content {
     @media (max-width: $breakpoint-navigation-threshold) {
-      @include vf-animation(all, brisk, out);
+      @include vf-animation(transform, brisk, out);
       background-color: #2d2d2d;
       position: absolute;
       top: 3rem;
@@ -244,6 +257,7 @@
       z-index: 101;
 
       &.is-active {
+        @include vf-animation(transform, brisk, out);
         transform: translateX(0);
       }
     }
@@ -254,6 +268,10 @@
     display: block;
     padding: 0.75rem 0.25rem 0.75rem 2.5rem;
     position: relative;
+
+    @media (min-width: $breakpoint-small) {
+      padding-left: 3rem;
+    }
 
     &:hover {
       background-color: $colors--dark-theme--background-hover;
@@ -274,7 +292,12 @@
       position: absolute;
       top: 0;
       transform: rotate(90deg);
+      
+      @media (min-width: $breakpoint-small) {
+        left: 1.25rem;
+      }
     }
+
 
     @media (min-width: $breakpoint-navigation-threshold) {
       display: none;
