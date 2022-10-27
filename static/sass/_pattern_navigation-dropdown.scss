@@ -250,15 +250,16 @@
     @media (max-width: $breakpoint-navigation-threshold) {
       @include vf-animation(transform, brisk, out);
       background-color: #2d2d2d;
-      position: absolute;
-      top: 3rem;
-      transform: translateX(100vw);
+      bottom: 0;
+      position: fixed;
+      top: 0;
+      transform: translateX(150vw);
       width: 100%;
       z-index: 101;
 
       &.is-active {
         @include vf-animation(transform, brisk, out);
-        transform: translateX(0);
+        transform: translateX(100vw);
       }
     }
   }
