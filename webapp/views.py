@@ -318,12 +318,21 @@ def build_tutorials_index(session, tutorials_docs):
             ]
 
         # Create list of topics
-        topics_list = set()
+        topics_list = {}
         for item in tutorials_docs.parser.tutorials:
-            if "categories" in item and item["categories"] not in topics_list:
-                topics_list = topics_list | set(
-                    item["categories"].replace(" ", "").lower().split(",")
-                )
+            if "categories" in item:
+                for cat in item["categories"].split(", "):
+                    cat_value = cat
+                    cat = cat.strip().capitalize()
+                    if cat == "Ua":
+                        cat = "Ubuntu advantage"
+                        cat_value = "ua"
+                    if cat == "Iot":
+                        cat = "IoT"
+                    if cat == "Aws":
+                        cat = "AWS"
+                    if cat not in topics_list.keys():
+                        topics_list[cat] = cat_value
 
         if query:
             temp_metadata = []
@@ -357,7 +366,9 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials=tutorials,
             page=page,
             topic=topic,
-            topics_list=sorted(list(topics_list)),
+            topics_list=dict(
+                sorted(topics_list.items(), key=lambda key: key[0])
+            ),
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,
