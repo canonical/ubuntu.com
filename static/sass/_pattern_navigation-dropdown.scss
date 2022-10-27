@@ -91,7 +91,7 @@
         @media (min-width: $breakpoint-navigation-threshold) {
           padding: 0.25rem 1rem 0.25rem 0.5rem;
         }
-        
+
         &::before,
         &:focus::before {
           display: none;
@@ -100,8 +100,9 @@
         &::after {
           @extend %icon;
           @include vf-icon-chevron;
+
           bottom: 0;
-          content: '';
+          content: "";
           margin: auto;
           position: absolute;
           right: 1rem;
@@ -111,7 +112,7 @@
           @media (min-width: $breakpoint-small) {
             right: 1.5rem;
           }
-          
+
           @media (min-width: $breakpoint-navigation-threshold) {
             display: none;
           }
@@ -194,7 +195,7 @@
       @media (min-width: $breakpoint-small) {
         margin: 0 1rem;
       }
-      
+
       @media (min-width: $breakpoint-navigation-threshold) {
         margin: 0;
       }
@@ -249,6 +250,7 @@
   .dropdown-window__sidenav-content {
     @media (max-width: $breakpoint-navigation-threshold) {
       @include vf-animation(transform, brisk, out);
+
       background-color: #2d2d2d;
       bottom: 0;
       position: fixed;
@@ -259,6 +261,7 @@
 
       &.is-active {
         @include vf-animation(transform, brisk, out);
+
         transform: translateX(100vw);
       }
     }
@@ -282,23 +285,23 @@
     &:visited {
       color: $color-light;
     }
-    
+
     &::before {
       @extend %icon;
       @include vf-icon-chevron;
+
       bottom: 0;
-      content: '';
+      content: "";
       left: 0.75rem;
       margin: auto;
       position: absolute;
       top: 0;
       transform: rotate(90deg);
-      
+
       @media (min-width: $breakpoint-small) {
         left: 1.25rem;
       }
     }
-
 
     @media (min-width: $breakpoint-navigation-threshold) {
       display: none;
