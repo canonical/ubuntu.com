@@ -392,26 +392,29 @@ function handleClickOutside(toggles, containerClass) {
 }
 
 function showSection(e) {
+  const nav = document.querySelector('.p-navigation');
   const target = e.target.getAttribute('aria-controls');
   const el = document.getElementById(target);
   
-  el.removeAttribute('hidden')
+  el.removeAttribute('hidden');
 
   setTimeout(function () {
-    el.classList.add('is-active')
+    nav.classList.add('subsection-active');
+    el.classList.add('is-active');
   }, 1);
 }
 
 function hideSection(e) {
   e.preventDefault();
+  const nav = document.querySelector('.p-navigation');
   const target = e.target.getAttribute('aria-controls');
   const el = document.getElementById(target)
 
-
-  el.classList.remove('is-active')
+  nav.classList.remove('subsection-active');
+  el.classList.remove('is-active');
 
   setTimeout(function () {
-    el.setAttribute('hidden', true)
+    el.setAttribute('hidden', true);
   }, 333);
 }
 
