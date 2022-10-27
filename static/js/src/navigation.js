@@ -17,18 +17,21 @@ navDropdowns.forEach(function (dropdown) {
       var dropdownContentMobile = document.getElementById(
         dropdown.id + "-content-mobile"
       );
-      if (dropdown === clickedDropdown) {
-        if (dropdown.classList.contains("is-active")) {
-          closeMenu(dropdown, dropdownContent, dropdownContentMobile);
+
+      if (dropdownContent && dropdownContentMobile) {
+        if (dropdown === clickedDropdown) {
+          if (dropdown.classList.contains("is-active")) {
+            closeMenu(dropdown, dropdownContent, dropdownContentMobile);
+          } else {
+            dropdown.classList.add("is-active");
+            dropdownContent.classList.remove("u-hide");
+            dropdownContentMobile.classList.remove("u-hide");
+          }
         } else {
-          dropdown.classList.add("is-active");
-          dropdownContent.classList.remove("u-hide");
-          dropdownContentMobile.classList.remove("u-hide");
+          dropdown.classList.remove("is-active");
+          dropdownContent.classList.add("u-hide");
+          dropdownContentMobile.classList.add("u-hide");
         }
-      } else {
-        dropdown.classList.remove("is-active");
-        dropdownContent.classList.add("u-hide");
-        dropdownContentMobile.classList.add("u-hide");
       }
     });
   });
@@ -356,8 +359,6 @@ if (
 
 document.addEventListener("click", (e) => {
   const el = e.target;
-
-  console.log(e.target);
 
   if (el.classList.contains("dropdown-window__sidenav-back")) {
     const contentPanel = el.closest(".dropdown-window__sidenav-content");
