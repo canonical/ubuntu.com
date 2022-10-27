@@ -199,6 +199,12 @@
       });
       req.addEventListener('load', function() {
         mobile.innerHTML = this.responseText;
+
+        var activeCTAs = mobile.querySelectorAll('a.is-active');
+
+        activeCTAs.forEach((cta) => {
+          cta.classList.remove('is-active');
+        })
       });
     }
   }
