@@ -18,11 +18,12 @@
 
   // overlay
   .dropdown-window-overlay {
+    @include vf-animation(opacity, brisk, out);
+
     background-color: rgba(17, 17, 17, 0.4);
     height: 100%;
     position: fixed;
     top: 0;
-    transition: opacity 1s ease-in-out;
     width: 100%;
     z-index: 7;
   }
@@ -85,11 +86,10 @@
 
       &__link {
         border-bottom: $dropdown-border;
-        padding-right: 2rem;
+        padding: 0.75rem 2rem 0.75rem 1.5rem;
 
         @media (min-width: $breakpoint-navigation-threshold) {
-          padding-left: 0.5rem;
-          padding-right: 1rem;
+          padding: 0.25rem 1rem 0.25rem 0.5rem;
         }
         
         &::before,
