@@ -91,14 +91,32 @@
 
       &__link {
         border-bottom: $dropdown-border;
+        padding-right: 2rem;
 
         @media (min-width: $breakpoint-navigation-threshold) {
           padding-left: 0.5rem;
+          padding-right: 1rem;
         }
         
         &::before,
         &:focus::before {
           display: none;
+        }
+
+        &::after {
+          @extend %icon;
+          @include vf-icon-chevron;
+          bottom: 0;
+          content: '';
+          margin: auto;
+          position: absolute;
+          right: 1rem;
+          top: 0;
+          transform: rotate(-90deg);
+          
+          @media (min-width: $breakpoint-navigation-threshold) {
+            display: none;
+          }
         }
       }
 
@@ -232,7 +250,31 @@
   }
 
   .dropdown-window__sidenav-back {
-    padding-left: 1rem;
+    color: $color-light;
+    display: block;
+    padding: 0.75rem 0.25rem 0.75rem 2.5rem;
+    position: relative;
+
+    &:hover {
+      background-color: $colors--dark-theme--background-hover;
+      text-decoration: none;
+    }
+
+    &:visited {
+      color: $color-light;
+    }
+    
+    &::before {
+      @extend %icon;
+      @include vf-icon-chevron;
+      bottom: 0;
+      content: '';
+      left: 0.75rem;
+      margin: auto;
+      position: absolute;
+      top: 0;
+      transform: rotate(90deg);
+    }
 
     @media (min-width: $breakpoint-navigation-threshold) {
       display: none;
