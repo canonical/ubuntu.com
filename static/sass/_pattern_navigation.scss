@@ -22,7 +22,9 @@
     transform: 0;
 
     .subsection-active & {
-      transform: translateX(-100vw);
+      @media (max-width: $breakpoint-navigation-threshold) {
+        transform: translateX(-100vw);
+      }
     }
   }
 
