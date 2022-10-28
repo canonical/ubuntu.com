@@ -204,6 +204,10 @@
         margin: 0;
       }
 
+      &:hover {
+        background-color: rgba(170, 170, 170, 0.1);
+      }
+
       a {
         &:first-child::before {
           bottom: 0;
@@ -224,10 +228,6 @@
 
         &:hover {
           text-decoration: none;
-
-          &::before {
-            background-color: rgba(170, 170, 170, 0.1);
-          }
         }
       }
 
