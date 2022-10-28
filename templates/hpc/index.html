@@ -61,7 +61,7 @@
           <div class="p-logo-section__item">
             {{
                 image (
-                url="https://assets.ubuntu.com/v1/a3bb7ca4-mercedes-benz-group-logo.png",
+                url="https://assets.ubuntu.com/v1/5615d149-mercedes-benz.png",
                 alt="",
                 width="288",
                 height="288",
@@ -122,7 +122,7 @@
         <p>
           From energy to healthcare, we help industry leaders ease operations and break new ground with the power of compute.
         </p>
-        <p>Accelerate discovery in:</p>
+        <p><strong>Accelerate discovery in:</strong></p>
       </div>
       <div class="col-4 u-hide--medium u-hide--small u-vertically-center">
         {{
@@ -165,7 +165,7 @@
         </ul>
       </div>
       <p>
-        <a class="p-button--positive" href="/hpc/use-cases">See use cases</a>
+        <a class="p-button--positive" href="/hpc/use-cases">Explore use cases</a>
       </p>
     </div>
   </section>
@@ -173,7 +173,7 @@
   <section class="p-strip u-no-padding--bottom">
     <div class="u-fixed-width u-sv3">
       <h2>Solutions for HPC</h2>
-      <p class="p-heading--5">Embrace the open source mandate in HPC with Canonical.</p>
+      <p>Embrace the open source mandate in HPC with Canonical</p>
     </div>
   </section>
 
@@ -184,8 +184,8 @@
           image (
             url="https://assets.ubuntu.com/v1/3c891a50-Canonical+MAAS.svg",
             alt="",
-            width="205",
-            height="40",
+            width="179",
+            height="35",
             hi_def=True,
             loading="auto"
           ) | safe
@@ -200,17 +200,10 @@
         </h3>
       </div>
       <div class="col-6">
+        <p><strong>MAAS: super fast cluster deployment and delivery</strong></p>
+        <p>The ultimate experience for bare metal resource discovery, management, delivery and observability. Deploy HPC and supercomputing clusters with ease. Test and validate clusters with commissioning scripts.</p>
         <p>
-          <strong>MAAS: super fast cluster deployment and delivery</strong> <br> The ultimate experience for bare metal resource.
-        </p>
-        <p>
-          Deploy HPC and supercomputing clusters with ease.
-        </p>
-        <p>
-          Test and validate clusters with commissioning scripts.
-        </p>
-        <p>
-          <a href="/hpc/contact-us?product=hpc-maas">Get in touch to learn more&nbsp;&rsaquo;</a>
+          <a href="/blog/hpc-cluster-architecture-part-4">Read more about cluster architecture&nbsp;&rsaquo;</a>
         </p>
       </div>
     </div>
@@ -219,14 +212,13 @@
   <section class="p-strip u-no-padding--bottom">
     <div class="u-fixed-width">
       <div class="u-sv1">
-        {{
-          image (
-            url="https://assets.ubuntu.com/v1/54f0ce21-ubuntu-logo-2022-LRG.png",
-            alt="",
-            width="113",
-            height="40",
-            hi_def=True,
-            loading="auto"
+        {{ image (
+          url="https://assets.ubuntu.com/v1/9bf4120e-Canonical+Ubuntu.svg",
+          alt="",
+          width="191",
+          height="35",
+          hi_def=True,
+          loading="lazy"
           ) | safe
         }}
       </div>
@@ -256,8 +248,8 @@
           image (
             url="https://assets.ubuntu.com/v1/53cfe748-Canonical+Charmhub.svg",
             alt="",
-            width="253",
-            height="40",
+            width="221",
+            height="35",
             hi_def=True,
             loading="lazy"
           ) | safe
@@ -292,8 +284,8 @@
           image (
             url="https://assets.ubuntu.com/v1/e6cd15f7-Charmed+Kubernetes_RGB_2022.svg",
             alt="",
-            width="261",
-            height="40",
+            width="228",
+            height="35",
             hi_def=True,
             loading="lazy"
           ) | safe
@@ -318,15 +310,15 @@
     </div>
   </section> 
 
-  <section class="p-strip">
+  <section class="p-strip u-no-padding--bottom">
     <div class="u-fixed-width">
       <div class="u-sv1">
         {{
           image (
             url="https://assets.ubuntu.com/v1/0b784c9c-Canonical+OpenStack.svg",
             alt="",
-            width="257",
-            height="40",
+            width="225",
+            height="35",
             hi_def=True,
             loading="lazy"
           ) | safe
@@ -350,6 +342,38 @@
       </div>
     </div>
   </section>
+
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <div class="u-sv1">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/5d769d45-Canonical+Ceph.svg",
+          alt="",
+          width="172",
+          height="35",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <hr>
+    </div>
+    <div class="row u-equal-height">
+      <div class="col-6">
+        <h2 class="p-heading--3">
+          Scalable storage for objects and files
+        </h3>
+      </div>
+      <div class="col-6">
+        <p>
+          <strong>Ceph: a scale out solution</strong>
+        </p>
+        <p>
+          CephFS delivers a scale-out parallel file system for workloads requiring POSIX support. Deliver archival tiers, where supported, with object storage. 
+        </p>
+      </div>
+    </div>
+  </section>  
 
   <section class="p-strip--suru-blog-header is-dark">
     <div class="row p-divider is-dark">
@@ -411,39 +435,6 @@
         <p>
           <a class="p-button--positive" href="/hpc/contact-us">Learn more about partnerships</a>
         </p>
-    </div>
-  </section>
-
-  <section class="p-strip u-no-padding--bottom">
-    <div class="u-fixed-width">
-      <hr>
-    </div>
-    <div class="row u-equal-height">
-      <div class="col-3">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg",
-          alt="",
-          width="98",
-          height="40",
-          hi_def=True,
-          loading="auto"
-        ) | safe
-        }}
-      </div>
-      <div class="col-3">
-        <h2 class="p-heading--4">
-          Scalable storage for objects and files
-        </h2>
-      </div>
-      <div class="col-6">
-        <p>
-          Ceph: a scale out solution
-        </p>
-        <p>
-          CephFS delivers a scale-out parallel file system for workloads requiring POSIX support. Deliver archival tiers, where supported, with object storage.
-        </p>
-      </div>
     </div>
   </section>
 
