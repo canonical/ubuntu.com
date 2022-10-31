@@ -182,16 +182,26 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               <>
                 {subscription.statuses.has_access_to_support &&
                 subscription.type !== UserSubscriptionType.Trial ? (
-                  <Button
-                    appearance="positive"
-                    className="p-subscriptions__details-action"
-                    data-test="support-button"
-                    disabled={editing}
-                    element="a"
-                    href="https://portal.support.canonical.com/"
-                  >
-                    Support portal
-                  </Button>
+                  <>
+                    <Button
+                      appearance="positive"
+                      className="p-subscriptions__details-action"
+                      data-test="support-button"
+                      disabled={editing}
+                      element="a"
+                      href="https://portal.support.canonical.com/"
+                    >
+                      Support portal
+                    </Button>
+                    {subscription.statuses.is_expired &&
+                      (subscription.type == "monthly" ||
+                        subscription.type == "yearly") && (
+                        <RenewalModal
+                          subscription={subscription}
+                          editing={editing}
+                        />
+                      )}
+                  </>
                 ) : null}
                 {subscription.statuses.is_renewable ? (
                   <RenewalModal subscription={subscription} editing={editing} />
