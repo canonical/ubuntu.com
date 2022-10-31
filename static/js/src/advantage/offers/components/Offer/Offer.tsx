@@ -130,6 +130,7 @@ const Offer = ({ offer }: Props) => {
             termsLabel={termsLabel}
             product={product}
             quantity={items.length}
+            descriptionLabel={descriptionLabel}
             marketingLabel={marketingLabel}
             Summary={OfferSummary}
             closeModal={closePortal}

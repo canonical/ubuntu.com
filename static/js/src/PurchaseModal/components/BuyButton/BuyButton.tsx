@@ -28,7 +28,10 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const genericPurchaseMutation = useMakePurchase();
 
   const isButtonDisabled =
-    !values.captchaValue || !values.TermsAndConditions || isLoading;
+    !values.captchaValue ||
+    !values.TermsAndConditions ||
+    !values.Description ||
+    isLoading;
 
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 
@@ -148,6 +151,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         }
       }
       setFieldValue("MarketingOptIn", false);
+      setFieldValue("Description", false);
       setFieldValue("TermsAndConditions", false);
     }
   }, [purchaseError]);

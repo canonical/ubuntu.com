@@ -52,6 +52,7 @@ export default function PaymentModal({ isHidden }: Props) {
         <Portal>
           <PurchaseModal
             termsLabel={termsLabel}
+            descriptionLabel={descriptionLabel}
             marketingLabel={marketingLabel}
             product={product}
             quantity={sanitisedQuantity}
