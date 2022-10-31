@@ -122,14 +122,18 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
           </Col>
         </>
       ) : null}
-      <Col size={4}>
-        <p>VAT number:</p>
-      </Col>
-      <Col size={8}>
-        <p>
-          <strong>{values.VATNumber ? values.VATNumber : "None"}</strong>
-        </p>
-      </Col>
+      {vatCountries.includes(values.country ?? "") ? (
+        <>
+          <Col size={4}>
+            <p>VAT number:</p>
+          </Col>
+          <Col size={8}>
+            <p>
+              <strong>{values.VATNumber ? values.VATNumber : "None"}</strong>
+            </p>
+          </Col>
+        </>
+      ) : null}
     </>
   );
 

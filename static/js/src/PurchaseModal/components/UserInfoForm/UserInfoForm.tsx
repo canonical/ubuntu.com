@@ -22,9 +22,10 @@ type Error = {
 
 type Props = {
   setCardValid: React.Dispatch<React.SetStateAction<boolean>>;
+  isGuest: boolean;
 };
 
-const UserInfoForm = ({ setCardValid }: Props) => {
+const UserInfoForm = ({ setCardValid, isGuest }: Props) => {
   const {
     errors,
     touched,
@@ -34,11 +35,7 @@ const UserInfoForm = ({ setCardValid }: Props) => {
     isSubmitting,
   } = useFormikContext<FormValues>();
 
-  const { data: userInfo } = useStripeCustomerInfo();
-
-  const [isEditing, setIsEditing] = useState(
-    !userInfo?.customerInfo?.defaultPaymentMethod?.id
-  );
+  const [isEditing, setIsEditing] = useState(isGuest);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
 
@@ -246,11 +243,13 @@ const UserInfoForm = ({ setCardValid }: Props) => {
   return (
     <Row>
       {isEditing ? editMode : displayMode}
-      <div className="u-align--right">
-        <ActionButton onClick={toggleEditing} loading={isSubmitting}>
-          {isEditing ? "Save" : "Edit"}
-        </ActionButton>
-      </div>
+      {!isGuest ? (
+        <div className="u-align--right">
+          <ActionButton onClick={toggleEditing} loading={isSubmitting}>
+            {isEditing ? "Save" : "Edit"}
+          </ActionButton>
+        </div>
+      ) : null}
     </Row>
   );
 };

@@ -196,7 +196,12 @@ const PurchaseModal = ({
                   : []),
                 {
                   title: "Your information",
-                  content: <UserInfoForm setCardValid={setCardValid} />,
+                  content: (
+                    <UserInfoForm
+                      setCardValid={setCardValid}
+                      isGuest={isGuest}
+                    />
+                  ),
                 },
                 ...(product.canBeTrialled
                   ? [
