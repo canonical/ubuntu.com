@@ -4,10 +4,15 @@ import { Row, Col, CheckboxInput } from "@canonical/react-components";
 
 type Props = {
   termsLabel: React.ReactNode;
+  descriptionLabel: React.ReactNode;
   marketingLabel: React.ReactNode;
 };
 
-const ConfirmAndBuy = ({ termsLabel, marketingLabel }: Props) => {
+const ConfirmAndBuy = ({
+  termsLabel,
+  descriptionLabel,
+  marketingLabel,
+}: Props) => {
   return (
     <Row>
       <Col size={12}>
@@ -15,6 +20,14 @@ const ConfirmAndBuy = ({ termsLabel, marketingLabel }: Props) => {
           as={CheckboxInput}
           name="TermsAndConditions"
           label={termsLabel}
+          defaultChecked={false}
+        />
+      </Col>
+      <Col size={12}>
+        <Field
+          as={CheckboxInput}
+          name="Description"
+          label={descriptionLabel}
           defaultChecked={false}
         />
       </Col>

@@ -40,6 +40,7 @@ export interface FormValues {
   captchaValue: string | null;
   TermsAndConditions: boolean;
   MarketingOptIn: boolean;
+  Description: boolean;
   FreeTrial: string;
 }
 
@@ -91,6 +92,7 @@ function getInitialFormValues(
     captchaValue: null,
     TermsAndConditions: false,
     MarketingOptIn: false,
+    Description: false,
     FreeTrial: canBeTrialled ? "useFreeTrial" : "payNow",
   };
 }

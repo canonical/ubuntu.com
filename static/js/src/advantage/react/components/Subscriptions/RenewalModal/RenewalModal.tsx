@@ -99,6 +99,7 @@ const RenewalModal = ({ subscription, editing }: Props) => {
           <PurchaseModal
             termsLabel={termsLabel}
             marketingLabel={marketingLabel}
+            descriptionLabel={descriptionLabel}
             product={product}
             quantity={subscription.number_of_machines}
             Summary={RenewalSummary}

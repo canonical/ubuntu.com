@@ -200,6 +200,7 @@ const PurchaseModal = ({
                   content: (
                     <ConfirmAndBuy
                       termsLabel={termsLabel}
+                      descriptionLabel={descriptionLabel}
                       marketingLabel={marketingLabel}
                     />
                   ),
