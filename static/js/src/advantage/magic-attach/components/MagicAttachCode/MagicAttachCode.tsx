@@ -4,6 +4,7 @@ import {
   Row,
   Input,
   Accordion,
+  List,
 } from "@canonical/react-components";
 import React, {
   ChangeEvent,
@@ -108,12 +109,31 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                   aria-labelledby="desktop"
                   hidden={tab == 0}
                 >
-                  <p>
-                    A system to help you move from configuration management to
-                    application management across your hybrid cloud estate -
-                    through sharable, reusable, tiny applications called Charmed
-                    Operators.
-                  </p>
+                  <Row>
+                    <Col size={6}></Col>
+                    <Col size={6}>
+                      <p>
+                        During installation, you'll be asked whether you want to Upgrade to Ubuntu Pro.
+                        <ol className="p-stepped-list">
+                          <li className="p-stepped-list__item">
+                            <p className="p-stepped-list__title">
+                              Choose "Enable Ubuntu Pro"
+                            </p>
+                          </li>
+                          <li className="p-stepped-list__item">
+                            <p className="p-stepped-list__title">
+                              On the next screen you will be presented with a six-character code as part of the first option.
+                            </p>
+                          </li>
+                          <li className="p-stepped-list__item">
+                            <p className="p-stepped-list__title">
+                              Enter the code into the field above on this page.
+                            </p>
+                          </li>
+                        </ol>
+                      </p>
+                    </Col>
+                  </Row>
                 </div>
 
                 <div
@@ -123,10 +143,31 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                   aria-labelledby="server"
                   hidden={tab == 1}
                 >
-                  <p>
-                    A set of tools to help you write Charmed Operators and to
-                    package them as Charms.
-                  </p>
+                  <Row>
+                    <Col size={6}></Col>
+                    <Col size={6}>
+                      <p>
+                        During installation, you'll be asked whether you want to Upgrade to Ubuntu Pro.
+                        <ol className="p-stepped-list">
+                          <li className="p-stepped-list__item">
+                            <p className="p-stepped-list__title">
+                              Choose "Enable Ubuntu Pro"
+                            </p>
+                          </li>
+                          <li className="p-stepped-list__item">
+                            <p className="p-stepped-list__title">
+                              On the next screen you will be presented with a six-character code as part of the first option.
+                            </p>
+                          </li>
+                          <li className="p-stepped-list__item">
+                            <p className="p-stepped-list__title">
+                              Enter the code into the field above on this page.
+                            </p>
+                          </li>
+                        </ol>
+                      </p>
+                    </Col>
+                  </Row>
                 </div>
               </>
             ),
