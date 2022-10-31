@@ -133,6 +133,7 @@ const ResizeSummary = ({
             <br />
           </>
         ) : null}
+        {!isPreviewLoading && !preview ? <>You will be charged nothing.<br /></> : null}
         {!isPreviewLoading ? (
           <>
             Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
