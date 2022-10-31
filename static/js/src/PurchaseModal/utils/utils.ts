@@ -103,7 +103,7 @@ export const getIsFreeTrialEnabled = () =>
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
 
 export const marketplaceDisplayName = {
-  "canonical-ua": "Ubuntu Advantage",
+  "canonical-ua": "Ubuntu Pro",
   "canonical-cube": "CUE",
   blender: "Blender",
 };
