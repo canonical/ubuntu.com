@@ -66,7 +66,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         location.pathname
       }/thank-you?email=${encodeURIComponent(userInfo?.customerInfo?.email)}`;
     } else {
-      location.pathname = "/pro";
+      location.pathname = "/pro/dashboard";
     }
   };
 
