@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as Sentry from "@sentry/react";
 import useStripeCustomerInfo from "./hooks/useStripeCustomerInfo";
 import registerPaymentMethod from "./hooks/registerPaymentMethod";
@@ -50,6 +50,17 @@ const PurchaseModal = ({
   if (!product) {
     return null;
   }
+
+  // Block the scroll on the body when the modal is open
+  useEffect(() => {
+    document.body.style.height = "100vh";
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.height = "auto";
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo } = useStripeCustomerInfo();
