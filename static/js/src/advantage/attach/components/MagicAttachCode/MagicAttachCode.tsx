@@ -113,7 +113,8 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                     <Col size={6}></Col>
                     <Col size={6}>
                       <p>
-                        During installation, you'll be asked whether you want to Upgrade to Ubuntu Pro.
+                        During installation, you'll be asked whether you want to
+                        Upgrade to Ubuntu Pro.
                         <ol className="p-stepped-list">
                           <li className="p-stepped-list__item">
                             <p className="p-stepped-list__title">
@@ -122,7 +123,8 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                           </li>
                           <li className="p-stepped-list__item">
                             <p className="p-stepped-list__title">
-                              On the next screen you will be presented with a six-character code as part of the first option.
+                              On the next screen you will be presented with a
+                              six-character code as part of the first option.
                             </p>
                           </li>
                           <li className="p-stepped-list__item">
@@ -147,7 +149,8 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                     <Col size={6}></Col>
                     <Col size={6}>
                       <p>
-                        During installation, you'll be asked whether you want to Upgrade to Ubuntu Pro.
+                        During installation, you'll be asked whether you want to
+                        Upgrade to Ubuntu Pro.
                         <ol className="p-stepped-list">
                           <li className="p-stepped-list__item">
                             <p className="p-stepped-list__title">
@@ -156,7 +159,8 @@ const MagicAttachCode = ({ setCodeStatus, setMagicAttachCode }: Props) => {
                           </li>
                           <li className="p-stepped-list__item">
                             <p className="p-stepped-list__title">
-                              On the next screen you will be presented with a six-character code as part of the first option.
+                              On the next screen you will be presented with a
+                              six-character code as part of the first option.
                             </p>
                           </li>
                           <li className="p-stepped-list__item">

@@ -405,8 +405,10 @@ app.add_url_rule(
     methods=["GET"],
 )
 
-app.add_url_rule("/pro/magic-attach", view_func=activate_magic_attach)
-app.add_url_rule("/pro/account-users", view_func=get_account_users)
+app.add_url_rule(
+    "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
+)
+app.add_url_rule("/pro/attach", view_func=magic_attach_view, methods=["GET"])
 # shop
 app.add_url_rule(
     "/account",
