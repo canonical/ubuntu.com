@@ -100,6 +100,7 @@ type ResizeSummaryProps = {
 };
 
 const ResizeSummary = ({
+  oldNumberOfMachines,
   newNumberOfMachines,
   currentNumberOfMachines,
   unitName,
@@ -116,7 +117,7 @@ const ResizeSummary = ({
 
   const isDecreasing = newNumberOfMachines - currentNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
-  const unitPrice = (price ?? 0) / 100 / currentNumberOfMachines;
+  const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
 
   return (
     <div>
@@ -335,8 +336,8 @@ const SubscriptionEdit = ({
                   wrapperClassName="u-sv3"
                 />
                 <ResizeSummary
-                  oldNumberOfMachines={subscription.current_number_of_machines}
-                  currentNumberOfMachines={subscription.number_of_machines}
+                  oldNumberOfMachines={subscription.number_of_machines}
+                  currentNumberOfMachines={subscription.current_number_of_machines}
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}
