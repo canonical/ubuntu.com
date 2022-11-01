@@ -639,5 +639,5 @@ def activate_magic_attach(advantage_mapper, **kwargs):
 @shop_decorator(area="advantage", permission="user", response="html")
 def magic_attach_view(**kwargs):
     return flask.render_template(
-        "advantage/magic-attach/index.html",
+        "advantage/attach/index.html",
     )

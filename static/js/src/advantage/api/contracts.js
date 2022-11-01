@@ -467,7 +467,7 @@ export async function endTrial(accountID) {
 }
 
 export async function confirmMagicAttach(magicAttachCode, contractId) {
-  let response = await fetch("/advantage/attach", {
+  let response = await fetch("/pro/attach", {
     method: "POST",
     cache: "no-store",
     credentials: "include",
