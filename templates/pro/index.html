@@ -622,7 +622,11 @@
       <p>
         If you were an active customer before October 4th, 2022, this trial lasts for up to 1 year - until the end of your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain as an Ubuntu Pro (Infra-only) customer at your current price.
       </p>
-      <button class="js-invoke-modal">Request beta access at no extra cost</button>
+      {% if user_info %}
+        <button class="js-invoke-modal">Request beta access at no extra cost</button>
+      {% else %}
+        <a class="p-button" href="/login?next=/pro/get-in-touch">Login to request beta access</a>
+      {% endif %}
     </div>
   </div>
 </section>
