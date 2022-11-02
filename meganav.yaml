@@ -24,14 +24,16 @@
 #     - title:
 #       primary_links:
 #         - title: (optional)
+#           hero_item: (optional)
+#             title: Ubuntu Desktop
+#             description: Free, reliable simple desktop OS
+#             url: /download/desktop
+#             secondary_cta_title: Download 22.04 LTS
+#             secondary_cta_url: /download/desktop/thank-you?version=22.04.1&architecture=amd64
 #           links:
 #             - title:
 #               description:
 #               url:
-#               ctas: (optional)
-#                 - title:
-#                   url:
-#                   type: primary/secondary
 #       secondary_links:
 #         - title: (optional)
 #           links:
@@ -713,14 +715,13 @@ get_ubuntu:
     - title: Desktop
       primary_links:
         - title: Products
+          hero_item:
+            title: Ubuntu Desktop
+            description: Free, reliable simple desktop OS
+            url: /download/desktop
+            secondary_cta_title: Download 22.04 LTS
+            secondary_cta_url: /download/desktop/thank-you?version=22.04.1&architecture=amd64
           links:
-            - title: Ubuntu Desktop
-              description: Free, reliable simple desktop OS
-              url: /download/desktop
-              ctas:
-                - title: Download 22.04 LTS
-                  url: /download/desktop/thank-you?version=22.04.1&architecture=amd64
-                  type: primary
             - title: Ubuntu flavours
               description: Variations of Ubuntu OS
               url: /download/flavours
