@@ -107,6 +107,10 @@ class EnsurePurchaseAccountSchema(BaseSchema):
 class EntitlementSchema(BaseSchema):
     type = String(data_key="resource", required=True)
     enabled_by_default = Boolean(data_key="enabledByDefault", required=True)
+    support_level = String(missing="")
+    is_available = Boolean(data_key="entitled", missing=True)
+    is_editable = Boolean(data_key="editable", missing=True)
+    is_in_beta = Boolean(data_key="inBeta", missing=False)
 
     @post_load
     def preprocess(self, data, **kwargs) -> Entitlement:
@@ -114,6 +118,16 @@ class EntitlementSchema(BaseSchema):
 
 
 class AnnotatedContractItemsSchema(BaseSchema):
+    ALLOWED_ENTITLEMENTS = [
+        "cis",
+        "esm-infra",
+        "esm-apps",
+        "fips",
+        "fips-updates",
+        "livepatch",
+        "support",
+    ]
+
     id = Function(required=True)
     account_id = Function(
         deserialize=(lambda v: v.get("accountID")),
@@ -165,6 +179,7 @@ class AnnotatedContractItemsSchema(BaseSchema):
     product_id = Function(
         deserialize=(lambda v: v["products"][0]),
         data_key="contractContext",
+        required=True,
     )
     period = Function(
         deserialize=(lambda v: v["listing"]["period"]),
@@ -188,22 +203,22 @@ class AnnotatedContractItemsSchema(BaseSchema):
     subscription_id = Function(
         deserialize=(lambda v: v["purchase"].get("subscriptionID")),
         data_key="purchaseContext",
-        missing="",
+        missing=None,
     )
     offer_id = Function(
         deserialize=(lambda v: v["purchase"].get("offerID")),
         data_key="purchaseContext",
-        missing="",
+        missing=None,
     )
     renewal_id = Function(
         deserialize=(lambda v: v.get("id", "")),
         data_key="renewalContext",
-        missing="",
+        missing=None,
     )
     listing_id = Function(
         deserialize=(lambda v: v["listing"]["id"]),
         data_key="purchaseContext",
-        missing="",
+        missing=None,
     )
     contract_id = String(required=True, data_key="contractID")
     support_level = Function(
@@ -261,10 +276,81 @@ class AnnotatedContractItemsSchema(BaseSchema):
 
     @post_load
     def preprocess(self, data, **kwargs) -> typing.List[AnnotatedContractItem]:
-        if data["entitlements"]:
-            entitlements = EntitlementSchema(many=True).load(
-                data["entitlements"]
-            )
-            data["entitlements"] = entitlements
+        data = self.adjust_personal_subscription(data)
+        data = self.adjust_entitlements(data)
+        data = self.set_machine_type(data)
 
         return AnnotatedContractItem(**data)
+
+    def adjust_entitlements(self, data) -> dict:
+        if not data.get("entitlements"):
+            return data
+
+        # set support level
+        for entitlement in data.get("entitlements"):
+            if entitlement["resource"] == "support":
+                entitlement["support_level"] = data["support_level"]
+                entitlement["editable"] = False
+
+        entitlements = []
+
+        has_livepatch_on = False
+        has_fips_on = False
+        has_fips_updates_on = False
+        for entitlement in data.get("entitlements"):
+            if entitlement["resource"] not in self.ALLOWED_ENTITLEMENTS:
+                continue
+
+            entitlements.append(entitlement)
+
+            if entitlement["resource"] == "livepatch":
+                has_livepatch_on = entitlement["enabledByDefault"]
+            if entitlement["resource"] == "fips-updates":
+                has_fips_updates_on = entitlement["enabledByDefault"]
+            if entitlement["resource"] == "fips":
+                has_fips_on = entitlement["enabledByDefault"]
+
+        for entitlement in entitlements:
+            if has_fips_on:
+                if entitlement["resource"] == "livepatch":
+                    entitlement["editable"] = False
+                    entitlement["enabledByDefault"] = False
+                if entitlement["resource"] == "fips-updates":
+                    entitlement["editable"] = False
+                    entitlement["enabledByDefault"] = False
+            elif has_livepatch_on or has_fips_updates_on:
+                if entitlement["resource"] == "fips":
+                    entitlement["editable"] = False
+                    entitlement["enabledByDefault"] = False
+
+            if entitlement.get("inBeta"):
+                entitlement["editable"] = not entitlement["inBeta"]
+
+        data["entitlements"] = EntitlementSchema(many=True).load(entitlements)
+
+        return data
+
+    def set_machine_type(self, data) -> dict:
+        product_id = data["product_id"]
+
+        # some product ids don't mention the machine type
+        # those products are all "physical", so I set it as default
+        machine_type = "physical"
+
+        if "virtual" in product_id:
+            machine_type = "virtual"
+        if "physical" in product_id:
+            machine_type = "physical"
+        if "desktop" in product_id:
+            machine_type = "desktop"
+
+        data["machine_type"] = machine_type
+        return data
+
+    def adjust_personal_subscription(self, data) -> dict:
+        if data["type"] == "free":
+            data["marketplace"] = "free"
+            data["end_date"] = None
+            data["entitlements"] = []
+
+        return data

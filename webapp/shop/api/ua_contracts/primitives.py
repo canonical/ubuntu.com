@@ -175,6 +175,7 @@ class AnnotatedContractItem:
     price: int
     currency: str
     entitlements: List[Entitlement]
+    machine_type: str
     contract_id: str = None
     subscription_id: str = None
     offer_id: str = None

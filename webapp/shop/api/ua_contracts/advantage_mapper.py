@@ -256,7 +256,96 @@ class AdvantageMapper:
         resp = self.ua_contracts_api.get_annotated_contract_items(email=email)
         items = AnnotatedContractItemsSchema(many=True).load(resp)
 
-        return items
+        aggregated_items = {}
+        for item in items:
+            if item.type not in ["monthly", "yearly"]:
+                aggregated_items[f"{item.id}"] = [item]
+
+                continue
+
+            key = f"{item.subscription_id}||{item.listing_id}"
+            if key not in aggregated_items:
+                aggregated_items[f"{key}"] = []
+
+            aggregated_items[f"{key}"].append(item)
+
+        return [
+            UserSubscription(
+                id="||".join(str(item.id) for item in items),
+                type=items[0].type,
+                account_id=items[0].account_id,
+                entitlements=items[0].entitlements,
+                start_date=min(item.start_date for item in items),
+                end_date=items[0].end_date,
+                number_of_machines=sum(
+                    item.number_of_machines for item in items
+                ),
+                number_of_active_machines=(
+                    items[0].number_of_active_machines
+                ),  # hardcoded
+                current_number_of_machines=items[0].current_number_of_machines,
+                product_name=items[0].product_name,
+                marketplace=items[0].marketplace,
+                price=items[0].price,  # hardcoded-ish
+                currency=items[0].currency,
+                machine_type=items[0].machine_type,
+                period=items[0].period,
+                listing_id=items[0].listing_id,
+                contract_id=items[0].contract_id,
+                subscription_id=items[0].subscription_id,
+                renewal_id=items[0].renewal_id,
+                statuses={
+                    "is_expiring": items[0].is_expiring,  # hardcoded-ish
+                    "is_expired": items[0].is_expired,
+                    "should_present_auto_renewal": (
+                        items[0].is_subscription_active
+                        and items[0].current_number_of_machines
+                    ),
+                    "is_in_grace_period": items[0].in_grace_period,
+                    "is_upsizeable": items[0].is_upsizeable,
+                    "is_downsizeable": items[0].is_downsizeable,
+                    "is_subscription_active": items[0].is_subscription_active,
+                    "has_pending_purchases": False,  # hardcoded
+                    "is_subscription_auto_renewing": (
+                        items[0].is_subscription_auto_renewing
+                    ),
+                    "is_cancelled": (
+                        True
+                        if not items[0].current_number_of_machines
+                        and items[0].type in ["monthly", "yearly"]
+                        else False
+                    ),
+                    "is_cancellable": (
+                        True
+                        if items[0].current_number_of_machines
+                        and items[0].type in ["monthly", "yearly"]
+                        else False
+                    ),
+                    "is_trialled": (
+                        True
+                        if items[0].type == "trial"
+                        and items[0].is_subscription_active
+                        else False
+                    ),
+                    "is_renewal_actionable": items[0].is_renewal_actionable,
+                    "is_renewable": items[0].is_renewable,
+                    "is_renewed": (
+                        (
+                            items[0].type in ["monthly", "yearly"]
+                            and items[0].is_subscription_auto_renewing
+                        )
+                        or (
+                            items[0].type == "legacy"
+                            and items[0].is_renewable
+                            and items[0].is_renewal_actionable
+                        )
+                    ),
+                    "has_access_to_support": items[0].role != "billing",
+                    "has_access_to_token": items[0].role != "billing",
+                },
+            )
+            for items in aggregated_items.values()
+        ]
 
     def get_or_create_user_account(
         self, marketplace, customer_info, captcha_value

@@ -88,7 +88,8 @@ def advantage_view(advantage_mapper, **kwargs):
 @use_kwargs({"email": String()}, location="query")
 def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
-    user_subscriptions = advantage_mapper.get_user_subscriptions(email)
+    user_subscriptions = advantage_mapper.get_annotated_subscriptions(email)
+
     return flask.jsonify(to_dict(user_subscriptions))
 
 
