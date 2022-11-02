@@ -204,31 +204,8 @@
         margin: 0;
       }
 
-      &:hover {
-        background-color: rgba(170, 170, 170, 0.1);
-      }
-
-      a {
-        &:first-child::before {
-          bottom: 0;
-          content: "";
-          left: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
-
-        &:not(:first-child) {
-          // Main panel list items can contain more than one link,
-          // setting position allows them to be clicked independently
-          // of the primary/first link
-          margin: 0.5rem 0 0.75rem;
-          position: relative;
-        }
-
-        &:hover {
-          text-decoration: none;
-        }
+      a:not(:first-child) {
+        margin: 0.5rem 0 0.75rem;
       }
 
       &:last-child {
