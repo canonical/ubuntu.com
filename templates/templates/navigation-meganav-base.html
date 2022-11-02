@@ -2,7 +2,7 @@
   <div class="dropdown-window__content is-dark">
     <div class="row u-no-padding">
       {% if "side_nav_sections" in sections %}
-        <div class="col-2">
+        <div class="col-3">
           <div class="p-side-navigation is-dark">
             <div class="p-side-navigation__drawer">
               <ul class="p-side-navigation__list js-tabs u-no-margin--bottom js-tabbed-content" role="tablist" aria-label="Categories">
@@ -17,23 +17,23 @@
         </div>
 
         {% for side_nav_section in sections.side_nav_sections %}
-          <div class="col-10 dropdown-window__sidenav-content"  {% if loop.index != 1 %}hidden="true"{% endif %} id="tab-content-{{ loop.index }}" tabindex="0" role="tabpanel" aria-labelledby="tab-{{ loop.index }}" >
+          <div class="col-9 dropdown-window__sidenav-content"  {% if loop.index != 1 %}hidden="true"{% endif %} id="tab-content-{{ loop.index }}" tabindex="0" role="tabpanel" aria-labelledby="tab-{{ loop.index }}" >
             <div class="row u-no-padding"> 
-              <div class="col-8 dropdown-window__main-panel">
+              <div class="col-6 dropdown-window__main-panel">
                 <a class="dropdown-window__sidenav-back" href="#" onclick="hideSection(event);" aria-controls="tab-content-{{ loop.index }}">Back</a>
                 {% for links_section in side_nav_section.primary_links %}
                   <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
                   
                   <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                       <ul class="p-list">
                         {% for link in links_section.links %}
                           {% if loop.index % 2 == 1 %}
                             <li class="p-list__item">
-                              <div>
-                                <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
+                              <a href="{{ link.url }}" class="p-link--inverted">
+                                <span>{{ link.title }}</span><br />
                                 <small class="is-muted">{{ link.description }}</small>
-                              </div>
+                              </a>
 
                               {% if link.ctas %}
                                 {% for cta in link.ctas %}
@@ -45,15 +45,15 @@
                         {% endfor %}
                       </ul>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                       <ul class="p-list">
                         {% for link in links_section.links %}
                           {% if loop.index % 2 == 0 %}
                             <li class="p-list__item">
-                              <div>
-                                <a href="{{ link.url }}" class="p-link--inverted">{{ link.title }}</a><br />
+                              <a href="{{ link.url }}" class="p-link--inverted">
+                                <span>{{ link.title }}</span><br />
                                 <small class="is-muted">{{ link.description }}</small>
-                              </div>
+                              </a>
 
                               {% if link.ctas %}
                                 {% for cta in link.ctas %}
@@ -69,7 +69,7 @@
                 {% endfor %}
               </div>      
 
-              <div class="col-2 dropdown-window__side-panel">
+              <div class="col-3 dropdown-window__side-panel">
                 {% for links_section in side_nav_section.secondary_links %}
                   <p class="p-muted-heading is-muted">{{ links_section.title }}</h2>
                   
