@@ -178,9 +178,12 @@
 
   .dropdown-window__main-panel {
     @media (min-width: $breakpoint-navigation-threshold) {
-      border-right: $dropdown-border;
       margin: 2.5rem 0;
       padding: 0 2rem 0 0;
+
+      &.is-bordered {
+        border-right: $dropdown-border;
+      }
     }
 
     .p-list {
@@ -211,6 +214,29 @@
       &:last-child {
         @media (min-width: $breakpoint-navigation-threshold) {
           border-bottom: 0;
+        }
+      }
+    }
+
+    .p-list--hero-items {
+      @extend %vf-list;
+
+      border-bottom: $dropdown-border;
+
+      @media (min-width: $breakpoint-navigation-threshold) {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .p-list__item {
+        @extend %vf-list-item;
+
+        border-bottom: 0;
+
+        &:last-child a {
+          @media (min-width: $breakpoint-navigation-threshold) {
+            margin-bottom: 0;
+          }
         }
       }
     }
