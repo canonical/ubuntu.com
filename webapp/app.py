@@ -34,6 +34,7 @@ from webapp.security.api import SecurityAPIError
 from webapp.context import (
     current_year,
     descending_years,
+    split_list,
     format_date,
     get_json_feed,
     get_meganav,
@@ -281,6 +282,7 @@ def context():
         "descending_years": descending_years,
         "format_date": format_date,
         "get_json_feed": get_json_feed,
+        "split_list": split_list,
         "modify_query": modify_query,
         "month_name": month_name,
         "months_list": months_list,
