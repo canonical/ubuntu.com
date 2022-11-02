@@ -19,7 +19,7 @@
         {% for side_nav_section in sections.side_nav_sections %}
           <div class="col-9 dropdown-window__sidenav-content"  {% if loop.index != 1 %}hidden="true"{% endif %} id="tab-content-{{ loop.index }}" tabindex="0" role="tabpanel" aria-labelledby="tab-{{ loop.index }}" >
             <div class="row u-no-padding"> 
-              <div class="col-6 dropdown-window__main-panel">
+              <div class="col-6 dropdown-window__main-panel  {% if side_nav_section.secondary_links %}is-bordered{% endif %}">
                 <a class="dropdown-window__sidenav-back" href="#" onclick="hideSection(event);" aria-controls="tab-content-{{ loop.index }}">Back</a>
                 {% for links_section in side_nav_section.primary_links %}
                   {% if links_section.title %}
@@ -29,7 +29,7 @@
                   <div class="row">
                     {% if links_section.hero_item %}
                       <div class="col-6">
-                        <ul class="p-list dropdown-window__hero-links">
+                        <ul class="p-list--hero-items u-no-margin--bottom">
                           {% with 
                             url = links_section.hero_item['url'], 
                             title = links_section.hero_item['title'], 
