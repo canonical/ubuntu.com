@@ -31,16 +31,20 @@
     </div>
     <nav class="p-navigation__nav js-show-nav u-hide" aria-label="Categories">
       <ul class="p-navigation__items">
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="enterprise" onmouseover="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#enterprise-content" onfocus="fetchDropdown('/templates/navigation-enterprise-h', 'enterprise-content');">Enterprise</a>
-          <div class="u-hide dropdown-content-mobile" id="enterprise-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseover="fetchDropdown('/templates/meganav/products', 'products-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#products-content" onfocus="fetchDropdown('/templates/meganav/products', 'products-content');">Products</a>
+          <div class="u-hide dropdown-content-mobile" id="products-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="developer" onmouseover="fetchDropdown('/templates/navigation-developer-h', 'developer-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#developer-content" onfocus="fetchDropdown('/templates/navigation-developer-h', 'developer-content');">Developer</a>
-          <div class="u-hide dropdown-content-mobile" id="developer-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseover="fetchDropdown('/templates/meganav/use-case', 'use-case-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#use-case-content" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case-content');">Use Case</a>
+          <div class="u-hide dropdown-content-mobile" id="use-case-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/navigation-community-h', 'community-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseover="fetchDropdown('/templates/meganav/support', 'support-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#support-content" onfocus="fetchDropdown('/templates/meganav/support', 'support-content');">Support</a>
+          <div class="u-hide dropdown-content-mobile" id="support-content-mobile" onclick="event.stopPropagation()"></div>
+        </li>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/meganav/community', 'community-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/meganav/community', 'community-content');">Community</a>
           <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
         <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
@@ -70,8 +74,9 @@
 </header>
 <div class="dropdown-window-overlay fade-animation"></div>
 <div class="dropdown-window slide-animation {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}is-reduced {% elif breadcrumbs == 'tutorials' %}is-reduced{% endif %}">
-  <div class="u-hide dropdown-content-desktop" id="enterprise-content"></div>
-  <div class="u-hide dropdown-content-desktop" id="developer-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="products-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="use-case-content"></div>
+  <div class="u-hide dropdown-content-desktop" id="support-content"></div>
   <div class="u-hide dropdown-content-desktop" id="community-content"></div>
   <div class="u-hide dropdown-content-desktop" id="download-content"></div>
 </div>
