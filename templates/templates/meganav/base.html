@@ -27,71 +27,37 @@
                   {% endif %}
                   
                   <div class="row">
-                    {% if links_section.hero_item %}
-                      <div class="col-6">
-                        <ul class="p-list--hero-items u-no-margin--bottom">
+                    {% set split_links_list = split_list(links_section.links) %}
+
+                    <div class="col-3">
+                      <ul class="p-list">
+                        {% for link in split_links_list[0] %}
                           {% with 
-                            url = links_section.hero_item['url'], 
-                            title = links_section.hero_item['title'], 
-                            description = links_section.hero_item['description']
+                            url = link.url, 
+                            title = link.title, 
+                            description = link.description,
+                            secondary_cta_url = link.secondary_cta_url,
+                            secondary_cta_title = link.secondary_cta_title 
                           %}
                             {% include "templates/meganav/_list-item.html" %}
                           {% endwith %}
+                        {% endfor %}
+                      </ul>
+                    </div>
 
-                          <li class="p-list__item">
-                            <a href="{{ links_section.hero_item['secondary_cta_url'] }}" class="p-button--positive">
-                              {{ links_section.hero_item['secondary_cta_title'] }}
-                            </a>
-                          </li>
-                        </ul>
-                      </div>
-                    {% endif %}
-
-                    {% if links_section.links | length > 8 %}
-                      {% set split_links_list = split_list(links_section.links) %}
-
-                      <div class="col-3">
-                        <ul class="p-list">
-                          {% for link in split_links_list[0] %}
-                            {% with 
-                              url = link.url, 
-                              title = link.title, 
-                              description = link.description 
-                            %}
-                              {% include "templates/meganav/_list-item.html" %}
-                            {% endwith %}
-                          {% endfor %}
-                        </ul>
-                      </div>
-
-                      <div class="col-3">
-                        <ul class="p-list">
-                          {% for link in split_links_list[1] %}
-                            {% with 
-                              url = link.url, 
-                              title = link.title, 
-                              description = link.description 
-                            %}
-                              {% include "templates/meganav/_list-item.html" %}
-                            {% endwith %}
-                          {% endfor %}
-                        </ul>
-                      </div>
-                    {% else %}
-                      <div class="col-6">
-                        <ul class="p-list">
-                          {% for link in links_section.links %}
-                            {% with 
-                              url = link.url, 
-                              title = link.title, 
-                              description = link.description 
-                            %}
-                              {% include "templates/meganav/_list-item.html" %}
-                            {% endwith %}
-                          {% endfor %}
-                        </ul>
-                      </div>
-                    {% endif %}
+                    <div class="col-3">
+                      <ul class="p-list">
+                        {% for link in split_links_list[1] %}
+                          {% with 
+                            url = link.url, 
+                            title = link.title, 
+                            description = link.description 
+                          %}
+                            {% include "templates/meganav/_list-item.html" %}
+                          {% endwith %}
+                        {% endfor %}
+                      </ul>
+                    </div>
                   </div>
                 {% endfor %}
               </div>      
