@@ -112,9 +112,11 @@
       tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
+          tabElement.classList.add("is-active");
           content.removeAttribute("hidden");
         } else {
           tabElement.setAttribute("aria-selected", false);
+          tabElement.classList.remove("is-active");
           content.setAttribute("hidden", true);
         }
       });
@@ -158,5 +160,19 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initTabs(".js-tabbed-content");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("js-tab")) {
+      const tabContainer = e.target.closest(".js-tabs");
+
+      const tabs = [].slice.call(
+        tabContainer.querySelectorAll("[aria-controls]")
+      );
+
+      if (tabs) {
+        setActiveTab(e.target, tabs);
+      }
+    }
   });
 })();

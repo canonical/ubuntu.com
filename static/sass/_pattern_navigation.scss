@@ -1,16 +1,4 @@
 @mixin ubuntu-p-navigation {
-  @media (min-width: 1024px) {
-    .dropdown-content-mobile {
-      display: none !important;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .dropdown-content-desktop {
-      display: none !important;
-    }
-  }
-
   body:not(.navigation-lock) {
     margin-top: -41px;
     transition: margin-top 0.25s;
@@ -28,75 +16,14 @@
     z-index: 40;
   }
 
-  // overlay
-  .dropdown-window-overlay {
-    background-color: rgba(17, 17, 17, 0.4);
-    height: 100%;
-    position: fixed;
-    top: 0;
-    transition: opacity 1s ease-in-out;
-    width: 100%;
-    z-index: 7;
-  }
+  .p-navigation__row {
+    @include vf-animation(all, fast, out);
 
-  .dropdown-window {
-    @include vf-animation(all, brisk, in);
+    transform: 0;
 
-    background-color: $color-x-light;
-    box-shadow: 0 1px 32px 1px transparentize($color-dark, 0.8);
-    flex-direction: column;
-    position: absolute;
-    width: 100%;
-    z-index: 11;
-
-    &__content {
-      @extend %p-strip--very-shallow;
-
-      background-color: $color-x-light;
-      color: $color-dark;
-
-      &:last-child {
-        padding-bottom: math.div($spv--x-large, 1.5);
-      }
-
-      @media (max-width: $breakpoint-x-small - 1) {
-        .p-inline-list--middot.is-x-dense {
-          margin-bottom: 0.3rem;
-        }
-      }
-    }
-    & .p-inline-list__item {
-      @extend %small-text-fixed;
-
-      list-style-type: none;
-
-      &::after {
-        @media only screen and (max-width: $breakpoint-medium - 1) {
-          display: none;
-        }
-      }
-    }
-  }
-  .slide-animation {
-    transform: translateY(-101%);
-  }
-
-  .fade-animation {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  // chevron transformation when menu is open
-  .p-navigation__item--dropdown-toggle {
-    &.is-selected {
-      &::after {
-        transform: rotate(-180deg);
-      }
-
-      .p-navigation__link::before {
-        @media (max-width: $breakpoint-navigation-threshold) {
-          display: none;
-        }
+    .subsection-active & {
+      @media (max-width: $breakpoint-navigation-threshold) {
+        transform: translateX(-100vw);
       }
     }
   }

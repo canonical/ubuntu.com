@@ -43,9 +43,9 @@
           <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/navigation-community-h', 'community-content');">Community</a>
           <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown('/templates/navigation-get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown('/templates/navigation-get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
-          <div class="u-hide dropdown-content-mobile" id="download-content-mobile" onclick="event.stopPropagation()"></div>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
+          <div class="u-hide dropdown-content-mobile" id="get-ubuntu-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
       </ul>
       <ul class="p-navigation__items global-nav">
@@ -189,15 +189,24 @@
   function fetchDropdown(url, id) {
     var mobile = document.getElementById(id+"-mobile");
     var div = document.getElementById(id);
-    var req = new XMLHttpRequest();
-    req.open('GET', url);
-    req.send();
-    req.addEventListener('load', function() {
-      div.innerHTML = this.responseText;
-    });
-    req.addEventListener('load', function() {
-      mobile.innerHTML = this.responseText;
-    });
+
+    if (div.innerHTML === "") {
+      var req = new XMLHttpRequest();
+      req.open('GET', url);
+      req.send();
+      req.addEventListener('load', function() {
+        div.innerHTML = this.responseText;
+      });
+      req.addEventListener('load', function() {
+        mobile.innerHTML = this.responseText;
+
+        var activeCTAs = mobile.querySelectorAll('a.is-active');
+
+        activeCTAs.forEach((cta) => {
+          cta.classList.remove('is-active');
+        })
+      });
+    }
   }
 
   function initNavigationSearch(element) {
@@ -380,6 +389,33 @@ function handleClickOutside(toggles, containerClass) {
       }
     }
   });
+}
+
+function showSection(e) {
+  const nav = document.querySelector('.p-navigation');
+  const target = e.target.getAttribute('aria-controls');
+  const el = document.getElementById(target);
+  
+  el.removeAttribute('hidden');
+
+  setTimeout(function () {
+    nav.classList.add('subsection-active');
+    el.classList.add('is-active');
+  }, 1);
+}
+
+function hideSection(e) {
+  e.preventDefault();
+  const nav = document.querySelector('.p-navigation');
+  const target = e.target.getAttribute('aria-controls');
+  const el = document.getElementById(target)
+
+  nav.classList.remove('subsection-active');
+  el.classList.remove('is-active');
+
+  setTimeout(function () {
+    el.setAttribute('hidden', true);
+  }, 333);
 }
 
 function initNavDropdowns(containerClass) {

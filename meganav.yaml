@@ -28,10 +28,8 @@
 #             - title:
 #               description:
 #               url:
-#               ctas: (optional)
-#                 - title:
-#                   url:
-#                   type: primary/secondary
+#               secondary_cta_title: (optional)
+#               secondary_cta_url: (optional)
 #       secondary_links:
 #         - title: (optional)
 #           links:
@@ -716,10 +714,9 @@ get_ubuntu:
           links:
             - title: Ubuntu Desktop
               description: Free, reliable simple desktop OS
-              ctas:
-                - title: Download 22.04 LTS
-                  url: /download/desktop/thank-you?version=22.04.1&architecture=amd64
-                  type: primary
+              url: /download/desktop
+              secondary_cta_title: Download 22.04 LTS
+              secondary_cta_url: /download/desktop/thank-you?version=22.04.1&architecture=amd64
             - title: Ubuntu flavours
               description: Variations of Ubuntu OS
               url: /download/flavours
@@ -839,7 +836,7 @@ get_ubuntu:
             - title: Intel NUC
               url: /download/intel-nuc
             - title: KVM
-              url: http://kvm/
+              url: /download/kvm
             - title: Qualcomm Dragonboard 410c
               url: /download/qualcomm-dragonboard-410c
             - title: Intel IEI TANK 870
