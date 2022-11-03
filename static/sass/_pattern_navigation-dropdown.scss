@@ -196,7 +196,7 @@
       border-bottom: $dropdown-border;
       line-height: 1.5rem;
       margin: 0 0.5rem;
-      padding-left: 0.5rem;
+      padding: 0;
       position: relative;
 
       @media (min-width: $breakpoint-small) {
@@ -207,36 +207,24 @@
         margin: 0;
       }
 
-      a:not(:first-child) {
-        margin: 0.5rem 0 0.75rem;
+      a {
+        display: block;
+        padding: 0.25rem 0.5rem;
+
+        &:not(:first-child) {
+          display: inline-block;
+          margin: 0.5rem 0.5rem 0.75rem;
+        }
+
+        &:hover:not([class*="p-button"]) {
+          background-color: rgba(170, 170, 170, 0.1);
+          text-decoration: none;
+        }
       }
 
       &:last-child {
         @media (min-width: $breakpoint-navigation-threshold) {
           border-bottom: 0;
-        }
-      }
-    }
-
-    .p-list--hero-items {
-      @extend %vf-list;
-
-      border-bottom: $dropdown-border;
-
-      @media (min-width: $breakpoint-navigation-threshold) {
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .p-list__item {
-        @extend %vf-list-item;
-
-        border-bottom: 0;
-
-        &:last-child a {
-          @media (min-width: $breakpoint-navigation-threshold) {
-            margin-bottom: 0;
-          }
         }
       }
     }
