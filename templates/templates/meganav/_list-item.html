@@ -3,4 +3,10 @@
     <span>{{ title }}</span><br />
     <small class="is-muted">{{ description }}</small>
   </a>
+
+  {% if secondary_cta_url and secondary_cta_title %}
+    <a href="{{ secondary_cta_url }}" class="p-button--positive">
+      {{ secondary_cta_title }}
+    </a>
+  {% endif %}
 </li>
