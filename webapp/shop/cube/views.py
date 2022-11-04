@@ -371,8 +371,8 @@ def post_microcerts_purchase(ua_contracts_api, **kwargs):
     return flask.jsonify(purchase)
 
 
-@shop_decorator(area="cube", permission="user", response="html")
-def cube_home(
+@shop_decorator(area="cube", permission="user_or_guest", response="html")
+def cred_home(
     ua_contracts_api,
     badgr_issuer,
     badgr_api,
@@ -383,7 +383,7 @@ def cube_home(
     return flask.render_template("credentials/index.html")
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cube", permission="user_or_guest", response="html")
 def cred_self_study(
     ua_contracts_api,
     badgr_issuer,
@@ -420,7 +420,7 @@ def cube_study_labs_button(edx_api, **kwargs):
     return flask.jsonify({"text": text, "redirect_url": redirect_url})
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cube", permission="user_or_guest", response="html")
 def cred_syllabus_data(**kawrgs):
     exam_name = flask.request.args.get("exam")
     syllabus_file = open("webapp/shop/cube/syllabus.json", "r")

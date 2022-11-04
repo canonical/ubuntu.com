@@ -812,7 +812,10 @@ def marketo_submit():
     form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
 
-    if "Comments_from_lead__c" in form_fields:
+    encode_lead_comments = (
+        form_fields.get("Encode_Comments_from_lead__c", "yes") == "yes"
+    )
+    if "Comments_from_lead__c" in form_fields and encode_lead_comments:
         encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
         form_fields["Comments_from_lead__c"] = encoded_comment
 
@@ -857,7 +860,9 @@ def marketo_submit():
 
     try:
         # Send form data
-        data = marketo_api.submit_form(payload).json()
+        r = marketo_api.submit_form(payload)
+        data = r.json()
+        print("!!! Submitted marketo form", r, data)
 
         if "result" not in data:
             flask.current_app.extensions["sentry"].captureMessage(
