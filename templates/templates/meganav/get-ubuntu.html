@@ -1,5 +1,5 @@
 {% set nav = get_meganav("get_ubuntu") %}
 
-{% with sections = nav.sections %}
+{% with sections = nav.sections, key = "get_ubuntu" %}
   {% include "templates/meganav/base.html" %}
 {% endwith %}
