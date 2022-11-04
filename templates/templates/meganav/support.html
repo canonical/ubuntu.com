@@ -1,5 +1,5 @@
 {% set nav = get_meganav("support") %}
 
-{% with sections = nav.sections %}
+{% with sections = nav.sections, key = "support" %}
   {% include "templates/meganav/base.html" %}
 {% endwith %}
