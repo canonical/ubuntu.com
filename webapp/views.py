@@ -148,7 +148,6 @@ def download_server_steps():
     }
     context = {}
     step = flask.request.form.get("next-step") or "server"
-    print(step)
 
     if step not in templates:
         flask.abort(400)
@@ -813,9 +812,9 @@ def marketo_submit():
     return_url = form_fields.pop("returnURL", None)
 
     encode_lead_comments = (
-        form_fields.get("Encode_Comments_from_lead__c", "yes") == "yes"
+        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
     )
-    if "Comments_from_lead__c" in form_fields and encode_lead_comments:
+    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
         encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
         form_fields["Comments_from_lead__c"] = encoded_comment
 
@@ -862,7 +861,6 @@ def marketo_submit():
         # Send form data
         r = marketo_api.submit_form(payload)
         data = r.json()
-        print("!!! Submitted marketo form", r, data)
 
         if "result" not in data:
             flask.current_app.extensions["sentry"].captureMessage(
