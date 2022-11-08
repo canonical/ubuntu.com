@@ -919,7 +919,19 @@ def marketo_submit():
             spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
             range="Sheet1",
             valueInputOption="RAW",
-            body={"values": [[field for field in form_fields.values()]]},
+            body={
+                "values": [
+                    [
+                        form_fields.get("firstName"),
+                        form_fields.get("lastName"),
+                        form_fields.get("email"),
+                        form_fields.get("Job_Role__c"),
+                        form_fields.get("title"),
+                        form_fields.get("Comments_from_lead__c"),
+                        form_fields.get("canonicalUpdatesOptIn")
+                    ]
+                ]
+            },
         ).execute()
 
     # Send enrichment data
