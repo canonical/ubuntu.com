@@ -27,6 +27,9 @@ from canonicalwebteam.discourse import (
     DocParser,
 )
 
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
@@ -892,6 +895,32 @@ def marketo_submit():
             ),
             400,
         )
+
+    if payload["formId"] == "3801":
+        service_account_info = {
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+            "private_key": os.getenv(
+                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+            ).replace("\\n", "\n"),
+            "scopes": [
+                "https://www.googleapis.com/auth/spreadsheets.readonly"
+            ],
+        }
+
+        credentials = service_account.Credentials.from_service_account_info(
+            service_account_info,
+        )
+
+        service = build("sheets", "v4", credentials=credentials)
+
+        sheet = service.spreadsheets()
+        sheet.values().append(
+            spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
+            range="Sheet1",
+            valueInputOption="RAW",
+            body={"values": [[field for field in form_fields.values()]]},
+        ).execute()
 
     # Send enrichment data
     try:

@@ -53,6 +53,16 @@ env:
       key: api_secret
       name: marketo
 
+  - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+    secretKeyRef:
+      key: email
+      name: google-service-account
+
+  - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+    secretKeyRef:
+      key: private-key
+      name: google-service-account
+
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -445,6 +455,16 @@ staging:
       secretKeyRef:
         key: api_secret
         name: marketo
+
+    - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+      secretKeyRef:
+        key: email
+        name: google-service-account
+
+    - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+      secretKeyRef:
+        key: private-key
+        name: google-service-account
 
     - name: SENTRY_DSN
       value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
