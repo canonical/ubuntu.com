@@ -70,13 +70,35 @@ export const FormProvider = ({
   initialPeriod = defaultValues.period,
   children,
 }: FormProviderProps) => {
-  const [productType, setProductType] = useState<ProductTypes>(initialType);
-  const [version, setVersion] = useState<LTSVersions>(initialVersion);
-  const [feature, setFeature] = useState<Features>(initialFeature);
-  const [sla, setSLA] = useState<SLA>(initialSLA);
-  const [support, setSupport] = useState<Support>(initialSupport);
-  const [quantity, setQuantity] = useState(initialQuantity);
-  const [period, setPeriod] = useState<Periods>(initialPeriod);
+  const localProductType = localStorage.getItem("productType");
+  const localVersion = localStorage.getItem("version");
+  const localQuantity = localStorage.getItem("quantity");
+  const localFeature = localStorage.getItem("feature");
+  const localSupport = localStorage.getItem("support");
+  const localSLA = localStorage.getItem("sla");
+  const localPeriod = localStorage.getItem("period");
+
+  const [productType, setProductType] = useState<ProductTypes>(
+    localProductType ? JSON.parse(localProductType) : initialType
+  );
+  const [version, setVersion] = useState<LTSVersions>(
+    localVersion ? JSON.parse(localVersion) : initialVersion
+  );
+  const [feature, setFeature] = useState<Features>(
+    localFeature ? JSON.parse(localFeature) : initialFeature
+  );
+  const [sla, setSLA] = useState<SLA>(
+    localSLA ? JSON.parse(localSLA) : initialSLA
+  );
+  const [support, setSupport] = useState<Support>(
+    localSupport ? JSON.parse(localSupport) : initialSupport
+  );
+  const [quantity, setQuantity] = useState(
+    localQuantity ? JSON.parse(localQuantity) : initialQuantity
+  );
+  const [period, setPeriod] = useState<Periods>(
+    localPeriod ? JSON.parse(localPeriod) : initialPeriod
+  );
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {

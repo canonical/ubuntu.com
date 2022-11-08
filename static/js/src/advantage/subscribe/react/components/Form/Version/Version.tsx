@@ -169,6 +169,10 @@ const Version = () => {
               onClick={(e) => {
                 e.preventDefault();
                 setVersion(key as LTSVersions);
+                localStorage.setItem(
+                  "version",
+                  JSON.stringify(key as LTSVersions)
+                );
               }}
             >
               {key} LTS
