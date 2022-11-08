@@ -928,7 +928,7 @@ def marketo_submit():
                         form_fields.get("Job_Role__c"),
                         form_fields.get("title"),
                         form_fields.get("Comments_from_lead__c"),
-                        form_fields.get("canonicalUpdatesOptIn")
+                        form_fields.get("canonicalUpdatesOptIn"),
                     ]
                 ]
             },
