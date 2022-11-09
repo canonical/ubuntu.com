@@ -128,6 +128,20 @@ extraHosts:
   - domain: security-certs.docs.ubuntu.com
   - domain: usn.ubuntu.com
 
+nginxServerSnippet: |
+  location ^~ /blog/wp-json/wp/v2/ {
+    proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
+  }
+  location ^~ /wp-content/uploads/ {
+    proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
+  }
+  location ^~ /usn-db/ {
+    proxy_pass https://people.canonical.com/%7Eubuntu-security/usn/;
+  }
+  location ^~ /pro/docs/client {
+    proxy_pass https://canonical-ubuntu-advantage-client.readthedocs-hosted.com/;
+  }
+
 # Overrides for production
 production:
   replicas: 9
@@ -389,17 +403,6 @@ production:
     }
 
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
-
-  nginxServerSnippet: |
-    location ^~ /blog/wp-json/wp/v2/ {
-      proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
-    }
-    location ^~ /wp-content/uploads/ {
-      proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
-    }
-    location ^~ /usn-db/ {
-      proxy_pass https://people.canonical.com/%7Eubuntu-security/usn/;
-    }
 
 # Overrides for staging
 staging:
@@ -742,107 +745,3 @@ staging:
     }
     more_set_headers "X-Robots-Tag: noindex";
     more_set_headers "Link: <https://assets.ubuntu.com>; rel=preconnect; crossorigin, <https://assets.ubuntu.com>; rel=preconnect, <https://res.cloudinary.com>; rel=preconnect";
-
-  nginxServerSnippet: |
-    location ^~ /blog/wp-json/wp/v2/ {
-      proxy_pass https://admin.insights.ubuntu.com/wp-json/wp/v2/;
-    }
-    location ^~ /wp-content/uploads/ {
-      proxy_pass https://admin.insights.ubuntu.com/wp-content/uploads/;
-    }
-
-demo:
-  env:
-    - name: STORE_MAINTENANCE
-      configMapKeyRef:
-        key: maintenance
-        name: ubuntu-com
-
-    - name: SEARCH_API_KEY
-      secretKeyRef:
-        key: google-custom-search-key
-        name: google-api
-
-    - name: DISCOURSE_API_KEY
-      secretKeyRef:
-        key: ubuntu-api-key
-        name: discourse-api
-
-    - name: DISCOURSE_API_USERNAME
-      secretKeyRef:
-        key: ubuntu-api-username
-        name: discourse-api
-
-    - name: LAUNCHPAD_IMAGE_BUILD_USER
-      secretKeyRef:
-        key: user
-        name: launchpad-imagebuild
-
-    - name: LAUNCHPAD_IMAGE_BUILD_TOKEN
-      secretKeyRef:
-        key: token
-        name: launchpad-imagebuild
-
-    - name: LAUNCHPAD_IMAGE_BUILD_SECRET
-      secretKeyRef:
-        key: secret
-        name: launchpad-imagebuild
-
-    - name: LAUNCHPAD_IMAGE_BUILD_AUTH_CONSUMER
-      secretKeyRef:
-        key: auth-consumer
-        name: launchpad-imagebuild
-
-    - name: MARKETO_API_CLIENT
-      secretKeyRef:
-        key: api_client
-        name: marketo
-
-    - name: MARKETO_API_SECRET
-      secretKeyRef:
-        key: api_secret
-        name: marketo
-
-    - name: SENTRY_DSN
-      value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
-
-    - name: BADGR_URL
-      value: https://api.test.badgr.com
-
-    - name: BAGDR_USER
-      secretKeyRef:
-        key: user
-        name: badgr
-
-    - name: BADGR_PASSWORD
-      secretKeyRef:
-        key: qa-password
-        name: badgr
-
-    - name: CUBE_EDX_URL
-      value: https://qa.cube.ubuntu.com
-
-    - name: CUBE_EDX_CLIENT_ID
-      secretKeyRef:
-        key: qa-client-id
-        name: cube-edx
-
-    - name: CUBE_EDX_CLIENT_SECRET
-      secretKeyRef:
-        key: qa-client-secret
-        name: cube-edx
-
-    - name: BADGR_ISSUER
-      value: 36ZEJnXdTjqobw93BJElog
-
-    - name: CERTIFIED_BADGE
-      value: x9kzmcNhSSyqYhZcQGz0qg
-
-    - name: CONTRACTS_API_URL
-      value: https://contracts.staging.canonical.com/
-
-    - name: STRIPE_PUBLISHABLE_KEY
-      value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
-
-    - name: CANONICAL_LOGIN_URL
-      value: https://login.ubuntu.com/
