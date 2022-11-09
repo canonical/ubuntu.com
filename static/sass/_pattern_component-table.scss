@@ -38,6 +38,14 @@
     }
 
     &:nth-child(6) {
+      width: 10%;
+      @media only screen and (min-width: $breakpoint-medium) {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    &:nth-child(7) {
       width: 25%;
     }
   }
