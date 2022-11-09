@@ -120,6 +120,7 @@ const BuyButton = ({
       onSuccess: (data) => {
         //start polling
         setPendingPurchaseID(data);
+        localStorage.clear();
       },
       onError: (error) => {
         setIsLoading(false);
