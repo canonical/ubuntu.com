@@ -870,3 +870,12 @@ a:hover {
   text-decoration: underline 1px;
   text-underline-offset: 0.075em;
 }
+
+.u-overflow-pricing-pro-table {
+  @media only screen and (max-width: 720px) {
+    overflow-x: scroll;
+    .p-table {
+      table-layout: initial;
+    }
+  }
+}
