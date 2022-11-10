@@ -170,7 +170,7 @@ const Version = () => {
                 e.preventDefault();
                 setVersion(key as LTSVersions);
                 localStorage.setItem(
-                  "version",
+                  "pro-selector-version",
                   JSON.stringify(key as LTSVersions)
                 );
               }}

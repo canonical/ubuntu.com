@@ -14,7 +14,7 @@ const Feature = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
     localStorage.setItem(
-      "feature",
+      "pro-selector-feature",
       JSON.stringify(event.target.value as Features)
     );
   };
