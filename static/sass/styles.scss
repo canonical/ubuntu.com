@@ -871,11 +871,16 @@ a:hover {
   text-underline-offset: 0.075em;
 }
 
+// pricing/pro custom styles
 .u-overflow-pricing-pro-table {
-  @media only screen and (max-width: 720px) {
-    overflow-x: scroll;
-    .p-table {
-      table-layout: initial;
-    }
+  td {
+    text-overflow: initial;
+  }
+}
+.u-pro-support {
+  display: flex;
+  justify-content: space-between;
+  .u-pro-support__logos {
+    flex: 0 0 10%;
   }
 }
