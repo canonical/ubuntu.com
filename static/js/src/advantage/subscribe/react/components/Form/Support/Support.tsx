@@ -25,7 +25,7 @@ const Support = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
     localStorage.setItem(
-      "support",
+      "pro-selector-support",
       JSON.stringify(event.target.value as SupportEnum)
     );
   };
@@ -205,7 +205,10 @@ const Support = () => {
           })}
           onClick={() => {
             setSupport(SupportEnum.none);
-            localStorage.setItem("support", JSON.stringify(SupportEnum.none));
+            localStorage.setItem(
+              "pro-selector-support",
+              JSON.stringify(SupportEnum.none)
+            );
           }}
         >
           <RadioInput
@@ -244,7 +247,10 @@ const Support = () => {
           })}
           onClick={() => {
             setSupport(SupportEnum.infra);
-            localStorage.setItem("support", JSON.stringify(SupportEnum.infra));
+            localStorage.setItem(
+              "pro-selector-support",
+              JSON.stringify(SupportEnum.infra)
+            );
           }}
         >
           <RadioInput
@@ -279,7 +285,10 @@ const Support = () => {
           })}
           onClick={() => {
             setSupport(SupportEnum.full);
-            localStorage.setItem("support", JSON.stringify(SupportEnum.full));
+            localStorage.setItem(
+              "pro-selector-support",
+              JSON.stringify(SupportEnum.full)
+            );
           }}
         >
           <RadioInput
@@ -329,7 +338,10 @@ const Support = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setSLA(SLA.weekday);
-                    localStorage.setItem("sla", JSON.stringify(SLA.weekday));
+                    localStorage.setItem(
+                      "pro-selector-sla",
+                      JSON.stringify(SLA.weekday)
+                    );
                   }}
                   style={{ textAlign: "justify" }}
                 >
@@ -347,7 +359,10 @@ const Support = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setSLA(SLA.everyday);
-                    localStorage.setItem("sla", JSON.stringify(SLA.everyday));
+                    localStorage.setItem(
+                      "pro-selector-sla",
+                      JSON.stringify(SLA.everyday)
+                    );
                   }}
                   style={{ textAlign: "justify" }}
                 >

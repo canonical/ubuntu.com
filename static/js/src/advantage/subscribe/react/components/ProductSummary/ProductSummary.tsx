@@ -10,7 +10,7 @@ const ProductSummary = () => {
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
     localStorage.setItem(
-      "period",
+      "pro-selector-period",
       JSON.stringify(event.target.value as Periods)
     );
   };

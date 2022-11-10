@@ -70,13 +70,13 @@ export const FormProvider = ({
   initialPeriod = defaultValues.period,
   children,
 }: FormProviderProps) => {
-  const localProductType = localStorage.getItem("productType");
-  const localVersion = localStorage.getItem("version");
-  const localQuantity = localStorage.getItem("quantity");
-  const localFeature = localStorage.getItem("feature");
-  const localSupport = localStorage.getItem("support");
-  const localSLA = localStorage.getItem("sla");
-  const localPeriod = localStorage.getItem("period");
+  const localProductType = localStorage.getItem("pro-selector-productType");
+  const localVersion = localStorage.getItem("pro-selector-version");
+  const localQuantity = localStorage.getItem("pro-selector-quantity");
+  const localFeature = localStorage.getItem("pro-selector-feature");
+  const localSupport = localStorage.getItem("pro-selector-support");
+  const localSLA = localStorage.getItem("pro-selector-sla");
+  const localPeriod = localStorage.getItem("pro-selector-period");
 
   const [productType, setProductType] = useState<ProductTypes>(
     localProductType ? JSON.parse(localProductType) : initialType

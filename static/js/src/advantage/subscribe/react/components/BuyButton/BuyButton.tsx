@@ -113,6 +113,17 @@ const BuyButton = ({
     });
   };
 
+  const proSelectorStates = [
+    "pro-selector-productType",
+    "pro-selector-version",
+    "pro-selector-quantity",
+    "pro-selector-feature",
+    "pro-selector-support",
+    "pro-selector-sla",
+    "pro-selector-period",
+    "pro-selector-publicCloud",
+  ];
+
   const onPayClick = () => {
     handleOnPurchaseBegin();
     checkoutEvent(GAFriendlyProduct, "3");
@@ -120,7 +131,7 @@ const BuyButton = ({
       onSuccess: (data) => {
         //start polling
         setPendingPurchaseID(data);
-        localStorage.clear();
+        proSelectorStates.forEach((state) => localStorage.removeItem(state));
       },
       onError: (error) => {
         setIsLoading(false);

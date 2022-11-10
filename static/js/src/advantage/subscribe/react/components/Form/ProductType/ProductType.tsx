@@ -39,7 +39,7 @@ const PublicCloudInfo = {
 };
 
 const ProductType = () => {
-  const localPublicCloud = localStorage.getItem("publicCloud");
+  const localPublicCloud = localStorage.getItem("pro-selector-publicCloud");
   const { productType, setProductType } = useContext(FormContext);
   const [publicCloud, setPublicCloud] = useState(
     localPublicCloud
@@ -52,7 +52,7 @@ const ProductType = () => {
   ) => {
     setProductType(event.target.value as ProductTypes);
     localStorage.setItem(
-      "productType",
+      "pro-selector-productType",
       JSON.stringify(event.target.value as ProductTypes)
     );
   };
@@ -75,7 +75,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.aws);
               localStorage.setItem(
-                "publicCloud",
+                "pro-selector-publicCloud",
                 JSON.stringify(PublicClouds.aws)
               );
             }}
@@ -92,7 +92,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.azure);
               localStorage.setItem(
-                "publicCloud",
+                "pro-selector-publicCloud",
                 JSON.stringify(PublicClouds.azure)
               );
             }}
@@ -109,7 +109,7 @@ const ProductType = () => {
               e.preventDefault();
               setPublicCloud(PublicClouds.gcp);
               localStorage.setItem(
-                "publicCloud",
+                "pro-selector-publicCloud",
                 JSON.stringify(PublicClouds.gcp)
               );
             }}
