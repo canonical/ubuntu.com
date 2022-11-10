@@ -13,6 +13,10 @@ const Feature = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
+    localStorage.setItem(
+      "feature",
+      JSON.stringify(event.target.value as Features)
+    );
   };
 
   const infraOnlyDisabled = ProductTypes.desktop === productType;

@@ -9,6 +9,10 @@ const ProductSummary = () => {
   const { quantity, period, setPeriod, product } = useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
+    localStorage.setItem(
+      "period",
+      JSON.stringify(event.target.value as Periods)
+    );
   };
 
   const isHidden = !product || !quantity || quantity < 1;

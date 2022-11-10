@@ -10,6 +10,10 @@ const Quantity = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (Number(event.target.value) > 0) {
       setQuantity(Number(event.target.value));
+      localStorage.setItem(
+        "quantity",
+        JSON.stringify(Number(event.target.value))
+      );
     } else {
       setQuantity("");
     }

@@ -87,6 +87,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         onSuccess: (data) => {
           //start polling
           setPendingPurchaseID(data);
+          localStorage.clear();
         },
         onError: (error) => {
           setIsLoading(false);

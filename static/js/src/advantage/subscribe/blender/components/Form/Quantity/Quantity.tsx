@@ -7,6 +7,10 @@ const Quantity = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuantity(Number(event.target.value));
+    localStorage.setItem(
+      "quantity",
+      JSON.stringify(Number(event.target.value))
+    );
   };
 
   return (
