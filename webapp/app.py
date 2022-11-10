@@ -86,6 +86,7 @@ from webapp.views import (
     build_tutorials_query,
     openstack_engage,
     get_user_country_by_ip,
+    subscription_centre,
 )
 
 from webapp.shop.views import (
@@ -1055,6 +1056,9 @@ app.add_url_rule(
     "/openstack/install",
     view_func=openstack_install,
 )
+
+# Subscription centre
+app.add_url_rule("/subscription-centre", view_func=subscription_centre)
 
 
 @app.after_request
