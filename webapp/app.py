@@ -81,6 +81,7 @@ from webapp.views import (
     mirrors_query,
     build_tutorials_query,
     openstack_engage,
+    subscription_centre,
 )
 
 from webapp.shop.views import (
@@ -1036,6 +1037,9 @@ app.add_url_rule(
     "/openstack/install",
     view_func=openstack_install,
 )
+
+# Subscription centre
+app.add_url_rule("/subscription-centre", view_func=subscription_centre)
 
 
 @app.before_request
