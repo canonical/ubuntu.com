@@ -962,3 +962,21 @@ def thank_you():
     return flask.render_template(
         "thank-you.html", referrer=flask.request.args.get("referrer")
     )
+
+
+def subscription_centre():
+    leadId = flask.request.args.get("id")
+    try:
+        response = marketo_api.request(
+            "GET",
+            f"/rest/v1/lead/{leadId}.json",
+            {"fields": "prototype_interests,email"},
+        )
+        data = response.json()
+    except Exception:
+        return flask.jsonify(
+            {"error": "There was an issue with your request."}, 400
+        )
+    return flask.render_template(
+        "subscription-centre/index.html", data=data["result"]
+    )
