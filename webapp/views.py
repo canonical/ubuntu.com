@@ -966,10 +966,10 @@ def subscription_centre():
         response = marketo_api.request(
             "GET",
             "/rest/v1/leads.json",
-            {   
+            {
                 "filterType": "sfdcLeadId",
                 "filterValues": sfdcLeadId,
-                "fields": "prototype_interests,email"
+                "fields": "prototype_interests,email",
             },
         )
         data = response.json()
