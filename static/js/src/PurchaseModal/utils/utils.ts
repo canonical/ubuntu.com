@@ -1,6 +1,8 @@
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
+import { Periods } from "advantage/subscribe/react/utils/utils";
 
-interface DefaultPaymentMethod {
+export interface DefaultPaymentMethod {
+  id: PaymentMethod["id"];
   brand: PaymentMethod.Card["brand"];
   last4: PaymentMethod.Card["last4"];
   expMonth: PaymentMethod.Card["exp_month"];
@@ -22,6 +24,7 @@ interface UserInfo {
 interface Data {
   accountId?: string;
   paymentMethod?: PaymentMethod.Card;
+  paymentMethodId?: PaymentMethod["id"];
 }
 
 export interface FormValues {
@@ -37,6 +40,10 @@ export interface FormValues {
   caProvince?: string;
   VATNumber?: string;
   captchaValue: string | null;
+  TermsAndConditions: boolean;
+  MarketingOptIn: boolean;
+  Description: boolean;
+  FreeTrial: string;
 }
 
 function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
@@ -53,6 +60,7 @@ function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
           variables.country === "US" ? variables.usState : variables.caProvince,
       },
       defaultPaymentMethod: {
+        id: data?.paymentMethodId ?? "",
         brand: data?.paymentMethod?.brand ?? "",
         last4: data?.paymentMethod?.last4 ?? "",
         expMonth: data?.paymentMethod?.exp_month ?? 0,
@@ -68,7 +76,8 @@ function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
 
 function getInitialFormValues(
   userInfo: UserInfo,
-  accountId?: string
+  accountId?: string,
+  canBeTrialled?: boolean
 ): FormValues {
   return {
     email: userInfo?.customerInfo?.email ?? "",
@@ -84,6 +93,10 @@ function getInitialFormValues(
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
     VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
     captchaValue: null,
+    TermsAndConditions: false,
+    MarketingOptIn: false,
+    Description: false,
+    FreeTrial: canBeTrialled ? "useFreeTrial" : "payNow",
   };
 }
 
@@ -92,16 +105,24 @@ export { getUserInfoFromVariables, getInitialFormValues };
 export const getIsFreeTrialEnabled = () =>
   process.env.NODE_ENV === "development";
 
-export type BuyButtonProps = {
-  areTermsChecked: boolean;
-  isUsingFreeTrial: boolean;
-  isMarketingOptInChecked: boolean;
-  isDescriptionChecked: boolean;
-  setTermsChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsMarketingOptInChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsDescriptionChecked: React.Dispatch<React.SetStateAction<boolean>>;
-  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
+export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
+
+export const marketplaceDisplayName = {
+  "canonical-ua": "Ubuntu Pro",
+  "canonical-cube": "CUE",
+  blender: "Blender",
 };
 
-export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
+export interface Product {
+  longId: string;
+  period: Periods;
+  marketplace: marketplace;
+  id: string;
+  name: string;
+  price: {
+    value: number;
+  };
+  canBeTrialled?: boolean;
+}
+
+export type Action = "purchase" | "resize" | "trial" | "offer" | "renewal";

@@ -1,10 +1,8 @@
-import { Button, Modal } from "@canonical/react-components";
+import { Button } from "@canonical/react-components";
 import React, { useContext } from "react";
 import usePortal from "react-useportal";
 import PurchaseModal from "../../../../../PurchaseModal";
-import usePreview from "../../hooks/usePreview";
 import { FormContext } from "../../utils/FormContext";
-import BuyButton from "../BuyButton";
 import Summary from "../Summary";
 
 type Props = {
@@ -15,10 +13,6 @@ export default function PaymentModal({ isHidden }: Props) {
   const { openPortal, closePortal, isOpen, Portal } = usePortal();
   const { quantity, product } = useContext(FormContext);
   const sanitisedQuantity = Number(quantity) ?? 0;
-  const { data: preview } = usePreview({
-    quantity: sanitisedQuantity,
-    product,
-  });
 
   const termsLabel = (
     <>
@@ -56,21 +50,15 @@ export default function PaymentModal({ isHidden }: Props) {
       </Button>
       {isOpen ? (
         <Portal>
-          <Modal close={closePortal}>
-            <PurchaseModal
-              termsLabel={termsLabel}
-              descriptionLabel={descriptionLabel}
-              marketingLabel={marketingLabel}
-              product={product}
-              preview={preview}
-              quantity={sanitisedQuantity}
-              closeModal={closePortal}
-              Summary={Summary}
-              BuyButton={BuyButton}
-              isFreeTrialApplicable={true}
-              marketplace="canonical-ua"
-            />
-          </Modal>
+          <PurchaseModal
+            termsLabel={termsLabel}
+            descriptionLabel={descriptionLabel}
+            marketingLabel={marketingLabel}
+            product={product}
+            quantity={sanitisedQuantity}
+            closeModal={closePortal}
+            Summary={Summary}
+          />
         </Portal>
       ) : null}
     </>

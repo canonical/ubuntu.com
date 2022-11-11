@@ -37,6 +37,7 @@ export interface FormValues {
   usState?: string;
   caProvince?: string;
   VATNumber?: string;
+  freeTrial?: string;
 }
 
 function getUserInfoFromVariables(data: Data, variables: FormValues): UserInfo {
@@ -241,4 +242,11 @@ export const getProduct = (
     default:
       return "no-product";
   }
+};
+
+export const getLabel = (
+  toFind: string,
+  array: { label: string; value: string }[]
+) => {
+  return array.find((element) => element.value === toFind)?.label;
 };

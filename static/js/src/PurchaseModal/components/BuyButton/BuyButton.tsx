@@ -1,74 +1,87 @@
 import React, { useEffect, useState } from "react";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
-import useStripeCustomerInfo from "../../../PurchaseModal/hooks/useStripeCustomerInfo";
-import usePurchaseOffer from "../hooks/usePurchaseOffer";
-import usePendingPurchase from "../../subscribe/react/hooks/usePendingPurchase";
-import { getSessionData } from "../../../utils/getSessionData";
-import { BuyButtonProps } from "../../subscribe/react/utils/utils";
-import { Offer as OfferType } from "../types";
-import { getErrorMessage } from "../../error-handler";
+import { getSessionData } from "utils/getSessionData";
+import { Action, FormValues, Product } from "../../utils/utils";
+import { getErrorMessage } from "advantage/error-handler";
 
-import { checkoutEvent, purchaseEvent } from "../../ecom-events";
+import { checkoutEvent, purchaseEvent } from "advantage/ecom-events";
+import { useFormikContext } from "formik";
+import useMakePurchase from "PurchaseModal/hooks/useMakePurchase";
+import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
+import usePollPurchaseStatus from "PurchaseModal/hooks/usePollPurchaseStatus";
 
 type Props = {
-  offer: OfferType;
-} & BuyButtonProps;
+  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  quantity: number;
+  product: Product;
+  action: Action;
+};
 
-const BuyButton = ({
-  offer,
-  areTermsChecked,
-  isDescriptionChecked,
-  isMarketingOptInChecked,
-  setTermsChecked,
-  setIsMarketingOptInChecked,
-  setIsDescriptionChecked,
-  setError,
-  setStep,
-}: Props) => {
+const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const { data: userInfo } = useStripeCustomerInfo();
+
+  const { values, setFieldValue } = useFormikContext<FormValues>();
+
+  const genericPurchaseMutation = useMakePurchase();
+
+  const isButtonDisabled =
+    !values.captchaValue ||
+    !values.TermsAndConditions ||
+    !values.Description ||
+    isLoading;
+
+  const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
+
+  const sessionData = {
+    gclid: getSessionData("gclid"),
+    utm_campaign: getSessionData("utm_campaign"),
+    utm_source: getSessionData("utm_source"),
+    utm_medium: getSessionData("utm_medium"),
+  };
 
   const {
     data: pendingPurchase,
     setPendingPurchaseID,
     error: purchaseError,
-  } = usePendingPurchase();
-
-  const { data: userInfo } = useStripeCustomerInfo();
-
-  const purchaseMutation = usePurchaseOffer();
-
-  const [sessionData, setSessionData] = useState({
-    gclid: "",
-    utm_campaign: "",
-    utm_source: "",
-    utm_medium: "",
-  });
-
-  useEffect(() => {
-    setSessionData({
-      gclid: getSessionData("gclid"),
-      utm_campaign: getSessionData("utm_campaign"),
-      utm_source: getSessionData("utm_source"),
-      utm_medium: getSessionData("utm_medium"),
-    });
-  }, []);
+  } = usePollPurchaseStatus();
 
   const GAFriendlyProduct = {
-    id: offer.id,
-    name: offer.items[0].name,
-    price: offer.total / 100,
-    quantity: 1,
+    id: product?.id,
+    name: product?.name,
+    price: (product?.price?.value ?? 0) / 100,
+    quantity: quantity,
+  };
+
+  const handleOnPurchaseBegin = () => {
+    // empty the product selector state persisted in the local storage
+    // after the user chooses to make a purchase
+    // to prevent page refreshes from causing accidental double purchasing
+    localStorage.removeItem("ua-subscribe-state");
+    setIsLoading(true);
+  };
+
+  const handleOnAfterPurchaseSuccess = () => {
+    if (window.isGuest && !window.isLoggedIn) {
+      location.href = `${
+        location.pathname
+      }/thank-you?email=${encodeURIComponent(userInfo?.customerInfo?.email)}`;
+    } else {
+      location.pathname = "/pro/dashboard";
+    }
   };
 
   const onPayClick = () => {
-    setIsLoading(true);
+    handleOnPurchaseBegin();
     checkoutEvent(GAFriendlyProduct, "3");
-    purchaseMutation.mutate(
+    genericPurchaseMutation.mutate(
       {
-        offerId: offer.id,
-        marketplace: offer.marketplace,
-        accountId: offer.account_id,
+        formData: values,
+        product,
+        quantity,
+        action: buyAction,
       },
       {
         onSuccess: (data) => {
@@ -76,16 +89,8 @@ const BuyButton = ({
           setPendingPurchaseID(data);
         },
         onError: (error) => {
-          setTermsChecked(false);
-          setIsDescriptionChecked(false);
-          setIsMarketingOptInChecked(false);
           setIsLoading(false);
           if (
-            error instanceof Error &&
-            error.message.includes("purchased already")
-          ) {
-            setError(<>This offer has already been purchased.</>);
-          } else if (
             error instanceof Error &&
             error.message.includes("can only make one purchase at a time")
           ) {
@@ -145,10 +150,9 @@ const BuyButton = ({
           setError(knownError);
         }
       }
-      setTermsChecked(false);
-      setIsDescriptionChecked(false);
-      setIsMarketingOptInChecked(false);
-      setStep(1);
+      setFieldValue("MarketingOptIn", false);
+      setFieldValue("Description", false);
+      setFieldValue("TermsAndConditions", false);
     }
   }, [purchaseError]);
 
@@ -163,6 +167,11 @@ const BuyButton = ({
 
       purchaseEvent(purchaseInfo, GAFriendlyProduct);
 
+      // The state of the product selector is stored in the local storage
+      // if a purchase is successful we empty it so the customer will see
+      // the default values pre-selected instead of what they just bought.
+      localStorage.removeItem("ua-subscribe-state");
+
       const request = new XMLHttpRequest();
       const formData = new FormData();
       formData.append("formid", "3756");
@@ -175,7 +184,7 @@ const BuyButton = ({
       formData.append("store_name__c", "ua");
       formData.append(
         "canonicalUpdatesOptIn",
-        isMarketingOptInChecked ? "yes" : "no"
+        values.MarketingOptIn ? "yes" : "no"
       );
 
       request.open("POST", "/marketo/submit");
@@ -183,7 +192,7 @@ const BuyButton = ({
 
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
-          location.href = `/advantage`;
+          handleOnAfterPurchaseSuccess();
         }
       };
     }
@@ -195,11 +204,11 @@ const BuyButton = ({
       appearance="positive"
       aria-label="Buy"
       style={{ textAlign: "center" }}
-      disabled={!areTermsChecked || !isDescriptionChecked || isLoading}
+      disabled={isButtonDisabled}
       onClick={onPayClick}
       loading={isLoading}
     >
-      Buy
+      Buy now
     </ActionButton>
   );
 };

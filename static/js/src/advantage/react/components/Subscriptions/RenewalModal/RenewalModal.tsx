@@ -1,18 +1,39 @@
 import { add } from "date-fns";
 import React from "react";
 import { UserSubscription } from "../../../../api/types";
-import { BuyButtonProps } from "../../../../subscribe/react/utils/utils";
 
 type Props = {
   subscription: UserSubscription;
-  closeModal: () => void;
+  editing: boolean;
 };
 
 import PurchaseModal from "../../../../../PurchaseModal";
 import Summary from "./Summary";
-import RenewButton from "./RenewButton";
+import usePortal from "react-useportal";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import { Button } from "@canonical/react-components";
+import { Periods } from "advantage/subscribe/react/utils/utils";
+import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { marketplace } from "PurchaseModal/utils/utils";
 
-const RenewalModal = ({ subscription, closeModal }: Props) => {
+const RenewalModal = ({ subscription, editing }: Props) => {
+  const { openPortal, closePortal, isOpen, Portal } = usePortal();
+
+  const product = {
+    longId: subscription.renewal_id ?? "",
+    period:
+      subscription.period === UserSubscriptionPeriod.Monthly
+        ? Periods.monthly
+        : Periods.yearly,
+    marketplace: subscription.marketplace as marketplace,
+    id: subscription.id,
+    name: subscription.product_name ?? "",
+    price: {
+      value: Number(subscription.price),
+    },
+    canBeTrialled: false,
+  };
+
   const termsLabel = (
     <>
       I agree to the{" "}
@@ -54,59 +75,40 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
     );
   };
 
-  const BuyButton = ({
-    areTermsChecked,
-    isDescriptionChecked,
-    isMarketingOptInChecked,
-    setTermsChecked,
-    setIsMarketingOptInChecked,
-    setIsDescriptionChecked,
-    setError,
-    setStep,
-    isUsingFreeTrial,
-  }: BuyButtonProps) => {
-    return (
-      <RenewButton
-        renewalID={subscription.renewal_id}
-        closeModal={closeModal}
-        areTermsChecked={areTermsChecked}
-        isMarketingOptInChecked={isMarketingOptInChecked}
-        isDescriptionChecked={isDescriptionChecked}
-        setTermsChecked={setTermsChecked}
-        setIsMarketingOptInChecked={setIsMarketingOptInChecked}
-        setIsDescriptionChecked={setIsDescriptionChecked}
-        setError={setError}
-        setStep={setStep}
-        isUsingFreeTrial={isUsingFreeTrial}
-      />
-    );
-  };
-
   return (
-    <div
-      className="p-modal p-modal--ua-payment is-details-mode"
-      id="purchase-modal"
-    >
-      <div
-        id="react-root"
-        className="p-modal__dialog ua-dialog"
-        role="dialog"
-        aria-labelledby="modal-title"
+    <>
+      <Button
+        appearance="neutral"
+        className="p-subscriptions__details-action"
+        data-test="renew-button"
+        disabled={editing}
+        onClick={(e) => {
+          openPortal(e);
+          sendAnalyticsEvent({
+            eventCategory: "Advantage",
+            eventAction: "subscription-renewal-modal",
+            eventLabel: "subscription renewal modal opened",
+          });
+        }}
       >
-        <PurchaseModal
-          accountId={subscription.account_id}
-          termsLabel={termsLabel}
-          descriptionLabel={descriptionLabel}
-          marketingLabel={marketingLabel}
-          quantity={subscription.number_of_machines}
-          closeModal={closeModal}
-          Summary={RenewalSummary}
-          BuyButton={BuyButton}
-          modalTitle={`Renew ${subscription.product_name}`}
-          marketplace="canonical-ua"
-        />
-      </div>
-    </div>
+        Renew subscription&hellip;
+      </Button>
+
+      {isOpen ? (
+        <Portal>
+          <PurchaseModal
+            termsLabel={termsLabel}
+            marketingLabel={marketingLabel}
+            descriptionLabel={descriptionLabel}
+            product={product}
+            quantity={subscription.number_of_machines}
+            Summary={RenewalSummary}
+            closeModal={closePortal}
+            action="renewal"
+          />
+        </Portal>
+      ) : null}
+    </>
   );
 };
 

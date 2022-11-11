@@ -1,17 +1,12 @@
 import React from "react";
-import {
-  ActionButton,
-  Card,
-  Row,
-  Col,
-  Modal,
-} from "@canonical/react-components";
+import { ActionButton, Card, Row, Col } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import PurchaseModal from "../../../../PurchaseModal";
-import { BuyButtonProps } from "../../../subscribe/react/utils/utils";
 import { Offer as OfferType, Item } from "../../types";
-import BuyButton from "../BuyButton";
 import Summary from "../Summary";
+import usePortal from "react-useportal";
+import { marketplace } from "PurchaseModal/utils/utils";
+import { Periods } from "advantage/subscribe/react/utils/utils";
 
 type Props = {
   offer: OfferType;
@@ -49,45 +44,24 @@ const marketingLabel =
   "I agree to receive information about Canonical's products and services";
 
 const Offer = ({ offer }: Props) => {
-  const { items, marketplace, total, account_id } = offer;
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const { id, marketplace, items, total, account_id } = offer;
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const { openPortal, closePortal, isOpen, Portal } = usePortal();
+
+  const product = {
+    longId: id ?? "",
+    period: Periods.yearly,
+    marketplace: marketplace as marketplace,
+    id: id,
+    name: items[0].name ?? "",
+    price: {
+      value: Number(total),
+    },
+    canBeTrialled: false,
   };
 
   const OfferSummary = () => {
     return <Summary offer={offer} />;
-  };
-
-  const BuyOfferButton = ({
-    areTermsChecked,
-    isMarketingOptInChecked,
-    isDescriptionChecked,
-    setTermsChecked,
-    setIsMarketingOptInChecked,
-    setIsDescriptionChecked,
-    setError,
-    setStep,
-    isUsingFreeTrial,
-  }: BuyButtonProps) => {
-    return (
-      <BuyButton
-        offer={offer}
-        areTermsChecked={areTermsChecked}
-        isDescriptionChecked={isDescriptionChecked}
-        isMarketingOptInChecked={isMarketingOptInChecked}
-        setTermsChecked={setTermsChecked}
-        setIsMarketingOptInChecked={setIsMarketingOptInChecked}
-        setIsDescriptionChecked={setIsDescriptionChecked}
-        setError={setError}
-        setStep={setStep}
-        isUsingFreeTrial={isUsingFreeTrial}
-      />
-    );
   };
 
   return (
@@ -143,25 +117,26 @@ const Offer = ({ offer }: Props) => {
           <ActionButton
             appearance="positive"
             className="u-no-margin--bottom"
-            onClick={openModal}
+            onClick={openPortal}
           >
             Purchase
           </ActionButton>
         </Col>
       </Row>
-      {isModalOpen ? (
-        <Modal>
+      {isOpen ? (
+        <Portal>
           <PurchaseModal
             accountId={account_id}
             termsLabel={termsLabel}
+            product={product}
+            quantity={items.length}
             descriptionLabel={descriptionLabel}
             marketingLabel={marketingLabel}
             Summary={OfferSummary}
-            closeModal={closeModal}
-            BuyButton={BuyOfferButton}
-            marketplace={marketplace}
+            closeModal={closePortal}
+            action="offer"
           />
-        </Modal>
+        </Portal>
       ) : null}
     </Card>
   );

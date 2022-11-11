@@ -103,6 +103,7 @@ const registerPaymentMethod = () => {
     return {
       accountId: accountRes.accountID,
       paymentMethod: paymentMethod?.card,
+      paymentMethodId: paymentMethod?.id,
     };
   });
 

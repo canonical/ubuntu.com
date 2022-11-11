@@ -1,0 +1,21 @@
+@mixin ubuntu-p-checkout {
+  .checkout-container {
+    background-color: white;
+    height: 100vh;
+    overflow-y: scroll;
+    padding: $sp-large 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 999;
+
+    .p-stepped-list--detailed {
+      margin-left: 0;
+    }
+
+    .email-field {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
