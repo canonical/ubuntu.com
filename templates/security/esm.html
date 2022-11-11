@@ -8,318 +8,555 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped is-bordered">
+<section class="p-strip--image is-deep u-no-margin-bottom" style="background-image:url('https://assets.ubuntu.com/v1/18717572-05_suru2_light_glow_8K_edited.png')">
   <div class="row u-equal-height">
-    <div class="col-8">
-      <span class="u-sv3"><h1>Extended Security Maintenance</h1></span>
-      <span class="u-sv3"><p class="p-heading--4">Security updates for Ubuntu LTS for additional 5 years</p></span>
-      <p>Continue to receive security updates for the Ubuntu base OS, critical software packages and infrastructure components with Extended Security Maintenance (ESM). ESM provides five additional years of security maintenance, enabling an organization's continuous vulnerability management.</p>
-      <p>ESM is available through an Ubuntu Advantage for Infrastructure subscription for physical servers, virtual machines, containers and desktops, and is free for personal use. ESM is also included in the Ubuntu Pro premium images that are optimised for <a href="/cloud/public-cloud">the public cloud</a>, and these also provide security maintenance for high and critical CVEs for the entire collection of software packages shipped with Ubuntu.</p>
-      <p>
-        <a href="/pro" class="p-button--positive">Get started with Ubuntu Advantage</a>
-        <a href="/security/esm#get-in-touch" class="p-button">Contact us</a  >
-        </p>
-      </div>
-      <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-        {{
-          image(
-          url="https://assets.ubuntu.com/v1/92a095cb-Shield-greentick.svg",
-          alt="",
-          height="226",
-          width="190",
-          hi_def=True,
-          loading="auto",
-          ) | safe
-        }}
-      </div>
-    </div>
-  </section>
-
-  <div class="p-strip is-shallow">
-    <div class="u-fixed-width">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          <h4 class="p-heading-icon__title u-no-max-width u-no-margin--bottom">Extended Security Maintenance for Ubuntu 16.04 LTS is available from April 2021 until 2026. <a href="/blog/ubuntu-16-04-lts-transitions-to-extended-security-maintenance-esm">Learn more&nbsp;&rsaquo;</a></h4>
-        </div>
-      </div>
+    <div class="col-12">
+      <h1 class="p-heading--2 u-no-margin--bottom"><strong>Extended Security Maintenance (ESM)</strong></h1>
+      <h2 class="u-no-padding--top u-text--muted">Extra security patching for Ubuntu LTS, now included in Ubuntu Pro</h2>
     </div>
   </div>
+</section>
 
-  <section class="p-strip--suru-accent">
-    <div class="row p-divider is-dark">
-      <div class="col-6 p-divider__block">
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
-              alt="",
-              height="32",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img"},
-              ) | safe
-            }}
-            <p class="p-heading--4">Case study</p>
-          </div>
-          <h4>
-            Interana uses ESM while planning public cloud upgrades to 18.04
-          </h4>
-          <p>
-            Due to the large amounts of customer data that Interana handles, ensuring that security was tight was a priority. Rather than rush the upgrade from Ubuntu 14.04LTS, which would have been a major inconvenience for its customers, Interana turned to Canonical and ESM.
-          </p>
-          <p><a href="/blog/interana-uses-esm-to-maintain-system-security-while-upgrading-its-customers-to-ubuntu-18-04-lts-across-public-clouds" class="p-button">Read more in the case study</a></p>
-        </div>
-      </div>
-      <div class="col-6 p-divider__block">
-        <div class="p-heading-icon--small">
-          <div class="p-heading-icon__header">
-            {{
-              image(
-              url="https://assets.ubuntu.com/v1/fc781c43-Case+study+-+white.svg",
-              alt="",
-              height="32",
-              width="32",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-heading-icon__img"},
-              ) | safe
-            }}
-            <p class="p-heading--4">Case study</p>
-          </div>
-          <h4>
-            TIM maintains system security and client confidence with ESM
-          </h4>
-          <p>
-            To ensure the ongoing security of Ubuntu 14.04 LTS machines, ESM provided TIM, the world's largest trade recommendations network, the freedom to upgrade within their own timeframe. This approach saved time and money for this finserv organisation.
-          </p>
-          <p><a href="/engage/case-study-acuris" class="p-button">Read more in the case study</a></p>
-        </div>
-      </div>
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-6">
+      <h2>10 year security coverage</h2>
     </div>
-  </section>
-  <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="col-8">
-        <h2>Is Ubuntu 16.04 LTS still supported beyond April 2021?</h2>
-        <p>
-          Ubuntu 16.04 LTS will still be supported beyond its free initial five-year maintenance period in April 2021, as it transitions to the extended security maintenance phase - with five additional years of security ensured.
-        </p>
-        <p>
-          <a href="/16-04">Learn more about Ubuntu 16.04 LTS moving to ESM &nbsp;&rsaquo;</a>
-        </p>
-      </div>
+    <div class="col-6">
+      <p>Security maintenance for the entire collection of software packages shipped with Ubuntu.</p>
+      <p>ESM enables continuous vulnerability management for critical, high and medium CVEs.</p>
+      <p>
+        <a href="/security/esm#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a>
+      </p>
     </div>
-  </section>
-  <section class="p-strip is-deep is-bordered" id="get-esm">
-    <div class="row">
-      <div class="col-8">
-        <h2>Free for personal use</h2>
-        <p>Canonical provides Ubuntu Advantage Essential subscriptions, which include ESM, free of charge for individuals on up to 3 machines. For our community of <a href="https://wiki.ubuntu.com/Membership">Ubuntu members</a>, we will gladly increase that to 50 machines.</p>
-        <a href="/pro" class="p-button--positive u-no-margin--bottom">Get ESM now</a>
-      </div>
-    </div>
+  </div>
+</section>
 
+<section class="p-strip is-deep u-no-padding--top">
+  <div class="row">
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ab22825a-ansible+logo.png",
+        alt="Ansible",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/df2c8fa0-apache+tomcat+logo.png",
+        alt="Apache Tomcat",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fad485a5-docker+logo.png",
+        alt="Docker",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a5ceec76-drupal+logo.png",
+        alt="Drupal",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/810bed2f-etcd+logo.png",
+        alt="E T C D",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/ebff661c-glusterfs+logo.png",
+        alt="Gluster",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2f883d00-go+logo.png",
+        alt="GoLang",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fabdefb7-kafka+logo.png",
+        alt="Kafka",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d00a6ac1-nagios+logo.png",
+        alt="Nagios",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2dfa0b07-nginex+logo.png",
+        alt="nginex",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2303838b-node-logo.png",
+        alt="Node J S",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/c9baeb67-openjdk+logo.png",
+        alt="Open J D K",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  <div class="row">
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/71547ec1-perl+logo.png",
+        alt="Perl",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/75484ed4-pg-bouncer+logo.png",
+        alt="P G Bouncecr",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/8b428ac2-php+logo.png",
+        alt="P H P",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/1dfdcd1c-powerdns+logo.png",
+        alt="Power D N S",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fbaf6348-puppet+logo.png",
+        alt="Puppet",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f2803dcb-python+logo.png",
+        alt="Python",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7b5c7032-redis+logo.png",
+        alt="Redis",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/bc7ceb58-ruby-rails+logo.png",
+        alt="Ruby on Rails",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/fd0e15fd-rust+logo.png",
+        alt="Rust",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/62c2f466-vagrant+logo.png",
+        alt="Vagrant",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/12295113-wordpress+logo.png",
+        alt="Wordpress",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6b559369-zookeeper+logo.png",
+        alt="Apache Zookeper",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep u-no-padding--top">
     <div class="u-fixed-width">
-      <hr class="p-separator">
+      <hr />
+      <h2>What's the difference?</h2>
+      <div class="esm-table">
+        <table class="p-table">
+          <thead>
+            <tr>
+              <th width="50%">Security patching<br /> <span style="text-transform: initial; color: #666666;">(Coverage for critical, high and selected medium CVEs)</span></th>
+              <th width="33.33%" class="u-align--left">Ubuntu LTS</th>
+              <th width="33.33%" class="u-align--left">Ubuntu Pro (Infra-only)<br /> <span style="text-transform: initial; color: #666666;">(Previously known as ”Ubuntu Advantage for Infrastructure”)</span></th>
+              <th width="33.33%" class="u-align--left">Ubuntu Pro</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Over 2,300 packages in Ubuntu Main repository</td>
+              <td class="u-align--left">5 years </td>
+              <td class="u-align--left">10 years</td>
+              <td class="u-align--left">10 years</td>
+            </tr>
+            <tr>
+              <td>Over 23,000 packages in Ubuntu Universe repository</td>
+              <td class="u-align--left">Best effort</td>
+              <td class="u-align--left">Best effort</td>
+              <td class="u-align--left">10 years</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </section>
+    
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="u-fixed-width">
+      <table class="p-table" style="border-spacing:0;">
+        <tbody>
+          <tr>
+            <td colspan="2" style="border-top: 1px solid #E5E5E5;" width="28%"><strong>2,300</strong> Ubuntu Main packages, plus<br /><strong>23,000</strong> Ubuntu Universe packages</td>
+            <td colspan="10" style="background-color:black; color:#ffffff; height: 277px">Ubuntu Pro</td>
+          </tr>
+          <tr>
+            <td colspan="2"><strong>2,300</strong> Ubuntu Main  packages</td>
+            <td colspan="5" style="background-color:#E95420; color:#ffffff; border-top: 1px solid #E95420;">Ubuntu LTS</td>
+            <td colspan="5" style="background-color:black; color:#ffffff; border-top:1px solid #000;">&nbsp;</td>
+          </tr>
+          <tr class="u-hide--small u-hide--medium" style="border-top: 0;">
+            <td width="50%">&nbsp;</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">GA</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">1 year</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">2 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">3 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">4 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">5 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">6 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">7 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">8 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">9 years</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">10 years</td>
+          </tr>
+          <tr class="u-hide--large" style="border-top: 0;">
+            <td width="50%">&nbsp;</td>
+            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">GA</td>
+            <td colspan="5" class="u-align--right" style="border-right: 1px solid #E5E5E5;">5 years</td>
+            <td colspan="5" class="u-align--right" style="border-right: 1px solid #E5E5E5;">10 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-    <div class="row" id="benefits">
-      <div class="col-10">
-        <h2>What is covered?</h2>
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="row">
+      <h3 class="p-text--x-small-capitalised">Case studies</h3>
+      <hr />
+      <div class="col-3">
+        <div style="max-width: 118px;">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/e32cef6a-aa62411e-8a50-467b-9b76-edb083819144.svg",
+            alt="",
+            width="1224",
+            height="792",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+      </div>
+      <div class="col-9">
+        <h4>
+          Interana uses ESM while planning public cloud upgrades to 18.04
+        </h4>
+        <p>
+          Due to the large amounts of customer data that Interana handles, ensuring that security was tight was a priority. Rather than rush the upgrade from Ubuntu 14.04LTS, which would have been a major inconvenience for its customers, Interana turned to Canonical and ESM.
+        </p>
+        <p><a href="/blog/interana-uses-esm-to-maintain-system-security-while-upgrading-its-customers-to-ubuntu-18-04-lts-across-public-clouds">Read more in the case study</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <hr />
+      <div class="col-3">
+        <div style="max-width: 118px;">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/593b675f-TIM_Logo.png",
+            alt="",
+            width="300",
+            height="127",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+      </div>
+      <div class="col-9">
+        <h4>
+          TIM maintains system security and client confidence with ESM
+        </h4>
+        <p>
+          To ensure the ongoing security of Ubuntu 14.04 LTS machines, ESM provided TIM, the world's largest trade recommendations network, the freedom to upgrade within their own timeframe.
+        </p>
+        <p>This approach saved time and money for this finserv organisation.</p>
+        <p><a href="/engage/case-study-acuris">Read more in the case study</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="row">
+      <hr />
+      <div class="col-6">
+        <h2>What's covered?</h2>
+      </div>
+      <div class="col-6">
         <p>ESM continues security updates and <a href="/security/livepatch">kernel livepatching</a> for high and critical CVEs (Common Vulnerabilities and Exposures).</p>
       </div>
-      <div class="row">
-        <div class="col-10" style="overflow: auto;">
-          <table style="width: auto;">
-            <thead>
-              <tr>
-                <th scope="col">Released</th>
-                <th scope="col">Coverage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Ubuntu 14.04 LTS (Trusty Tahr)</td>
-                <td>
-                  <ul>
-                    <li>The Ubuntu base OS and scale-out infrastructure</li>
-                    <li>Kernel livepatching</li>
-                    <li>x86-64 architecture</li>
-                  </ul>
-                  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/14.04" class="p-button">Learn more</a>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="/16-04">Ubuntu 16.04 LTS (Xenial Xerus)&nbsp;&rsaquo;</a></td>
-                <td>
-                  <ul>
-                    <li>The Ubuntu base OS and scale-out infrastructure</li>
-                    <li>Kernel livepatching</li>
-                    <li>x86-64 architecture</li>
-                  </ul>
-                  <a href="https://wiki.ubuntu.com/SecurityTeam/ESM/16.04" class="p-button">Learn more</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="u-fixed-width">
-        <hr class="p-separator">
-      </div>
-
-      <div class="row">
-        <div class="col-8">
-          <h2>ESM on Azure, AWS and Google Cloud with Ubuntu Pro</h2>
-          <p>
-            If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built-in.
-          </p>
-          <p>Learn more about Ubuntu Pro 16.04 LTS on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">Google Cloud</a></p>
-        </div>
-      </div>
-      <div class="u-fixed-width">
-        <hr class="p-separator">
-      </div>
-
-      <div class="row" id="faq">
-        <div class="col-8">
-          <h2>Common questions</h2>
-
-          <h4 class="u-no-max-width">How to enable ESM?</h4>
-          <div class="row">
-            <h5 class="col-4">Attach your subscription</h5>
-            <div class="col-4">
-              <pre><code>sudo ua attach [TOKEN]</code></pre>
-              <p>Note: obtain the subscription token via the <a href="/pro">Ubuntu Advantage portal</a>. Attaching the subscription is not necessary on Ubuntu Pro.</p>
-            </div>
-          </div>
-          <div class="row">
-            <h5 class="col-4">If ESM is not listed as enabled after attaching your Token, the ESM entitlement can be enabled using the UA client.</h5>
-            <div class="col-4">
-              <pre><code>sudo ua enable esm-infra</code></pre>
-            </div>
-          </div>
-          <div class="row">
-            <h5 class="col-4">If ESM is enabled manually, the status of this entitlement can be confirmed with the UA client as well.</h5>
-            <div class="col-4">
-              <pre><code>sudo ua status</code></pre>
-            </div>
-          </div>
-          <div class="row">
-            <h5 class="col-4 u-sv3">ESM is now enabled!</h5>
-          </div>
-
-          <h4 class="u-no-max-width">Do all levels of Ubuntu Advantage for Infrastructure have access to Ubuntu ESM?</h4>
-          <p>Yes. Ubuntu ESM is available for UA-I Essential, Standard and Advanced customers. For more information on levels please visit our <a href="/pricing">pricing page</a>. Existing UA customers can retrieve their credentials through the <a href="/pro">Ubuntu Advantage portal</a>.</p>
-
-          <h4 class="u-no-max-width">How can we ensure the security of our Ubuntu systems after the end of Standard Security Maintenance?</h4>
-          <p>
-            To ensure security continuity when a particular release reaches the end of its Standard Security Maintenance window, sign up for <a href="/pro">Ubuntu Advantage</a> for free on up to 3 machines or through a paid subscription for enterprise use.
-          </p>
-          <p>
-            <a href="/about/release-cycle">Learn more about release dates and maintenance cadences &nbsp;&rsaquo;</a>
-          </p>
-          <p>
-            <a href="/pro" class="p-button">Sign up for Ubuntu Advantage subscription</a>
-          </p>
-          <h4 id="how-long" class="u-no-max-width">How long will Ubuntu ESM be maintained?</h4>
-          <p>All Ubuntu LTS releases until further announcement have ESM updates provided for five years establishing a lifecycle of ten years.</p>
-          <table>
-            <thead>
-              <tr>
-                <th>Release</th>
-                <th>Release date</th>
-                <th>End of Life</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Ubuntu 14.04 (Trusty Tahr)</td>
-                <td>April 2014</td>
-                <td>April 2024</td>
-              </tr>
-              <tr>
-                <td>Ubuntu 16.04 (Xenial Xerus)</td>
-                <td>April 2016</td>
-                <td>April 2026</td>
-              </tr>
-              <tr>
-                <td>Ubuntu 18.04 (Bionic Beaver)</td>
-                <td>April 2018</td>
-                <td>April 2028</td>
-              </tr>
-              <tr>
-                <td>Ubuntu 20.04 (Focal Fossa)</td>
-                <td>April 2020</td>
-                <td>April 2030</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <h4 class="u-no-max-width">Is it possible to purchase Ubuntu ESM months down the road when needed, with or without backdating the cost, or does it need to be in place in advance?</h4>
-          <p>You can purchase Ubuntu Advantage support at any time. It does not need to be in place in advance, although we strongly recommend you eliminate the gap between when Ubuntu ESM is enabled on your system(s), to avoid exposing your systems to security vulnerabilities. Ubuntu Advantage is priced year-over-year so there is no backdating.</p>
-
-          <h4 class="u-no-max-width">We're mirroring the repository on our internal Landscape server. Can we still get Ubuntu ESM if using Landscape?</h4>
-          <p>ESM is just a regular Ubuntu archive, but authenticated and served over HTTPS. Archive mirroring is already available in Landscape and is a supported mechanism for mirroring the ESM archive.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="p-strip">
-      <div class="row u-equal-height">
-        <div class="col-6">
-          <h2>Ubuntu 16.04 LTS moving to Extended Security Maintenance period</h2>
-          <p>
-            Ubuntu 16.04 LTS Xenial Xerus transitions to the extended security maintenance (ESM) period in April 2021. Register for our webinar to learn about the ESM period and six key considerations when assessing and planning your migration path.
-          </p>
-          <p><a href="/engage/16-04-ESM-webinar" class="p-button--positive">Watch the webinar</a></p>
-        </div>
-        <div class="col-6 u-align--center">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/332c020e-webinar-social-1604-to-esm.jpg",
-            alt="",
-            width="450",
-            height="250",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-        </div>
-      </div>
-    </section>
-
-    <section class="p-strip--light">
-      <div class="row u-equal-height">
-        <div class="col-5 u-hide--medium u-hide--small u-align--center">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-            alt="",
-            height="200",
-            width="281",
-            hi_def=True,
-            loading="lazy",
-            ) | safe
-          }}
-        </div>
-        <div class="col-7 u-vertically-center">
-          <div>
-            <h2>Secure your Ubuntu estate</h2>
-            <p class="u-no-margin--bottom">If you would like to discuss ESM or Ubuntu Advantage please <a href="/security/contact-us" data-testid="interactive-form-link" class="js-invoke-modal">get in touch</a>.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {% with first_item="_support_landscape", second_item="_support_contact_us", third_item="_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-
-    <!-- Set default Marketo information for contact form below-->
-    <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/esm" data-form-id="3764" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=esm" data-lp-url="">
     </div>
+    <br />
+    <div class="u-fixed-width">
+      <table class="p-table">
+        <thead>
+          <tr>
+            <th width="25%">Release</th>
+            <th width="25.5%">Ubuntu Base OS security coverage</th>
+            <th width="25%">Security updates - Universe repo (applications & toolchains)</th>
+            <th width="10%">Kernel Livepatch</th>
+            <th>Architectures supported with ESM</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ubuntu 14.04 LTS (Trusty Tahr)</td>
+            <td>Until 2024</td>
+            <td>n/a</td>
+            <td>yes</td>
+            <td>x86</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 16.04 LTS (Xenial Xerus)</td>
+            <td>Until 2026</td>
+            <td>Until 2026</td>
+            <td>yes</td>
+            <td>x86</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 18.04 LTS (Bionic Beaver)</td>
+            <td>Until 2028</td>
+            <td>Until 2028</td>
+            <td>yes</td>
+            <td>x86, ARM, S390X, POWER, RISC-V</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 20.04 LTS (Focal Fossa)</td>
+            <td>Until 2030</td>
+            <td>Until 2030</td>
+            <td>yes</td>
+            <td>x86, ARM, S390X, POWER, RISC-V</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 22.04 LTS (Jammy Jellyfish)</td>
+            <td>Until 2032</td>
+            <td>Until 2032</td>
+            <td>yes</td>
+            <td>x86, ARM, S390X, POWER, RISC-V</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-    {% endblock content %}
-    {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="row">
+      <hr />
+      <div class="col-6">
+        <h2>ESM on public clouds with Ubuntu Pro</h2>
+      </div>
+      <div class="col-6">
+        <p>If you are running Ubuntu 16.04 LTS images on the public cloud and are looking for continued security coverage with ESM, it is recommended to launch new, Ubuntu Pro images for <a href="/azure/pro">Azure</a>, <a href="/aws/pro">AWS</a> and <a href="/gcp/pro">Google Cloud</a>. Ubuntu Pro images are paid, premium images that are optimised and priced for the cloud, with security and compliance features built-in.</p>
+        <p>Learn more about Ubuntu Pro 16.04 LTS on <a href="/16-04/azure">Azure</a> | <a href="/aws/pro">AWS</a> | <a href="/gcp/pro">Google Cloud</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="row">
+      <hr />
+      <div class="col-6">
+        <h2>Ubuntu 16.04 LTS out of standard security maintenance</h2>
+      </div>
+      <div class="col-6">
+        <div class="jsBrightTALKEmbedWrapper">
+          <script class="jsBrightTALKEmbedConfig" type="application/json">{ "channelId" : "6793", "language": "en-US", "commId" : "453617", "displayMode" : "standalone" }</script>
+          <script src="https://www.brighttalk.com/clients/js/player-embed/player-embed.js" class="jsBrightTALKEmbed"></script>
+        </div>
+        <p>Ubuntu 16.04 LTS Xenial Xerus moves out from the standard LTS security updates transitions to the extended security maintenance (ESM) period in April 2021. Learn about the ESM period and six key considerations when assessing and planning your migration path.</p>
+        <p>
+          <a href="/engage/migrating-to-20.04" class="p-button">Watch the webinar</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-strip is-deep">
+    <hr class="is-fixed-width"/>
+    <div class="p-strip is-deep">
+      <div class="u-fixed-width">
+        <h2>Secure your Ubuntu estate.<br /><a href="/support/contact-us?product=contextual-footer-landscape" class="js-invoke-modal" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'support contact-us', 'eventLabel' : 'Contact us', 'eventValue' : undefined });">Get in touch to discuss ESM</a></h2>
+      </div>
+    </div>
+  </section>
+
+  {% endblock content %}
+  {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
