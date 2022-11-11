@@ -966,6 +966,9 @@ def thank_you():
 
 def subscription_centre():
     sfdcLeadId = flask.request.args.get("id")
+    with open("subscriptions.yaml") as subscriptions:
+        subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
+
     try:
         response = marketo_api.request(
             "GET",
@@ -981,5 +984,7 @@ def subscription_centre():
         flask.current_app.extensions["sentry"].captureException()
 
     return flask.render_template(
-        "subscription-centre/index.html", data=data["result"]
+        "subscription-centre/index.html",
+        categories=subscriptions,
+        interests=data["result"][0]["prototype_interests"],
     )
