@@ -34,7 +34,7 @@ context("/pro/subscribe VAT checks", () => {
     cy.get('[data-testid="total"]').should("have.text", "$1,200.00")
   });
 
-  it("It should refresh the price by adding and removing the price", () => {
+  it.skip("It should refresh the price by adding and removing the price", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts(2)
@@ -103,7 +103,7 @@ context("/pro/subscribe trial", () => {
     cy.findByText("Use free trial month").should('not.exist')
   });
 
-  it("should be able to start trial", () => {
+  it.skip("should be able to start trial", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts()
@@ -144,7 +144,7 @@ context("/pro/subscribe trial", () => {
 })
 
 context("/pro/subscribe guest purchase", () => {
-  it("should be able to purchase", () => {
+  it.skip("should be able to purchase", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts()
@@ -188,7 +188,7 @@ context("/pro/subscribe guest purchase", () => {
 })
 
 context("/pro/subscribe logged out purchase", () => {
-  it("should be able to login and purchase", () => {
+  it.skip("should be able to login and purchase", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts()
@@ -258,7 +258,7 @@ context("/pro/subscribe logged in purchase", () => {
 })
 
 context("/pro/subscribe errors", () => {
-  it("should get card error when purchasing with invalid card and retrying", () => {
+  it.skip("should get card error when purchasing with invalid card and retrying", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts()
