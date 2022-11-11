@@ -299,21 +299,3 @@ if (accountContainer && accountContainerSmall) {
       );
     });
 }
-
-if (
-  localStorage.getItem("dismissedOnboardingNotification") === "false" ||
-  localStorage.getItem("dismissedOnboardingNotification") === null
-) {
-  document
-    .querySelectorAll(".breadcrumbs__item a.breadcrumbs__link")
-    .forEach((element) => {
-      if (element.textContent === "Account users") {
-        element.parentElement.innerHTML = `
-          <div class="breadcrumbs__link">
-          <a class="p-link--soft" href="/pro/users">Account users</a>
-          <span class="p-label--positive">New</span>
-          </div>
-        `;
-      }
-    });
-}
