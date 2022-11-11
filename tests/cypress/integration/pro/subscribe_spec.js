@@ -34,7 +34,7 @@ context("/pro/subscribe VAT checks", () => {
     cy.get('[data-testid="total"]').should("have.text", "$1,200.00")
   });
 
-  it.skip("It should refresh the price by adding and removing the price", () => {
+  it("It should refresh the price by adding and removing the price", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts(2)
@@ -53,16 +53,21 @@ context("/pro/subscribe VAT checks", () => {
     cy.findByLabelText("VAT number:").clear()
     cy.findByRole("button", { name: "Save" }).click()
     cy.wait("@calculate")
-    cy.get('[data-testid="total"]').should("have.text", "$1,000.00")
+    cy.get('[data-testid="total"]').should("have.text", "$1,200.00")
 
     cy.findByRole("button", { name: "Edit" }).click()
-    cy.findByLabelText("Country/Region:").select(4)  // United Kingdom
-    cy.findByLabelText("VAT number:").type("GB 123 1234 12 123")
+    cy.findByLabelText("Country/Region:").select(1)  // France
+    cy.findByLabelText("VAT number:").clear()
     cy.findByRole("button", { name: "Save" }).click()
     cy.wait("@calculate")
     cy.get('[data-testid="total"]').should("have.text", "$1,200.00")
 
-    // ToDo: Final price does not get refersh on change
+    cy.findByRole("button", { name: "Edit" }).click()
+    cy.findByLabelText("Country/Region:").select(1)  // France
+    cy.findByLabelText("VAT number:").clear().type("FR 123 1234 12 123")
+    cy.findByRole("button", { name: "Save" }).click()
+    cy.wait("@calculate")
+    cy.get('[data-testid="subtotal"]').should("have.text", "$1,000.00")
   })
 })
 
