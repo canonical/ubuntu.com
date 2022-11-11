@@ -34,7 +34,7 @@ context("/pro/subscribe VAT checks", () => {
     cy.get('[data-testid="total"]').should("have.text", "$1,200.00")
   });
 
-  it("It should refresh the price by adding and removing the price", () => {
+  it.skip("It should refresh the price by adding and removing the price", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts(2)
