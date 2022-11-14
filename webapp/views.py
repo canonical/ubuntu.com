@@ -961,18 +961,21 @@ def thank_you():
 
 
 def subscription_centre():
-    leadId = flask.request.args.get("id")
+    sfdcLeadId = flask.request.args.get("id")
     try:
         response = marketo_api.request(
             "GET",
-            f"/rest/v1/lead/{leadId}.json",
-            {"fields": "prototype_interests,email"},
+            "/rest/v1/leads.json",
+            {
+                "filterType": "sfdcLeadId",
+                "filterValues": sfdcLeadId,
+                "fields": "prototype_interests,email",
+            },
         )
         data = response.json()
-    except Exception:
-        return flask.jsonify(
-            {"error": "There was an issue with your request."}, 400
-        )
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
     return flask.render_template(
         "subscription-centre/index.html", data=data["result"]
     )
