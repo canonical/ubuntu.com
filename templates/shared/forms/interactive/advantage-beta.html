@@ -32,9 +32,9 @@
                 {% endif %}
               </li>
               <li class="p-list__item">
-                <label for="email">Work email:</label>
+                <label for="email_disabled">Work email:</label>
                 {% if user_info %}
-                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" value="{{ user_info.email }}" disabled/>
+                  <input required id="email_disabled" name="email_disabled" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" value="{{ user_info.email }}" disabled/>
                 {% else %}
                   <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
                 {% endif %}
@@ -77,6 +77,9 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+              {% if user_info %}
+                <input type="hidden" id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" value="{{ user_info.email }}" />
+              {% endif %}
             </div>
             
             <div class="pagination">
