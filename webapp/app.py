@@ -52,6 +52,7 @@ from webapp.shop.cube.views import (
     cube_study_labs_button,
     get_microcerts,
     post_microcerts_purchase,
+    trueability_assessment_created
 )
 
 from webapp.views import (
@@ -902,6 +903,7 @@ core_als_autils_docs.init_app(app)
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
+app.add_url_rule("/credentials/trueability_assessment_created", view_func=trueability_assessment_created)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(

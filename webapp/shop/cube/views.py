@@ -430,3 +430,8 @@ def cred_syllabus_data(**kawrgs):
         syllabus_data=syllabus_data,
         exam_name=exam_name,
     )
+
+@shop_decorator(area="cube", permission="user_or_guest", response="json")
+def trueability_assessment_created(**kwargs):
+    print(flask.request.body)
+    print("assessment_created")
