@@ -431,7 +431,11 @@ def cred_syllabus_data(**kawrgs):
         exam_name=exam_name,
     )
 
-@shop_decorator(area="cube", permission="user_or_guest", response="json")
-def trueability_assessment_created(**kwargs):
-    print(flask.request.body)
+@shop_decorator(area="cube", permission="guest", response="json")
+def trueability_assessment_created(ua_contracts_api,**kwargs):
+    data = flask.request.json
+    user=data["assessment"]["user"]
+    accounts=ua_contracts_api.get_accounts(email=user["email"])
     print("assessment_created")
+
+    return flask.jsonify({"status":"success"})
