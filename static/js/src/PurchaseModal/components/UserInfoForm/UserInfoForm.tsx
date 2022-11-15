@@ -69,10 +69,72 @@ const UserInfoForm = ({ setCardValid, isGuest }: Props) => {
     return errorMessage;
   };
 
+  const { data: userInfo } = useStripeCustomerInfo();
+
+  const defaultPaymentMethod = userInfo?.customerInfo?.defaultPaymentMethod;
+
   const displayMode = (
     <>
       <Col size={12}>
-        <PaymentMethodSummary />
+        {!defaultPaymentMethod?.brand ||
+        !defaultPaymentMethod?.last4 ||
+        !defaultPaymentMethod?.expMonth?.toString()?.padStart(2, "0") ||
+        !defaultPaymentMethod?.expYear?.toString()?.slice(-2) ? (
+          <FormRow
+            label="Payment card:"
+            error={getErrorMessage(cardFieldError ?? {})}
+          >
+            <div
+              id="card-element"
+              className={`${cardFieldHasFocus ? "StripeElement--focus" : ""} ${
+                cardFieldError ? "StripeElement--invalid" : ""
+              }`}
+            >
+              <CardElement
+                options={{
+                  style: {
+                    base: {
+                      iconColor: "#e95420",
+                      color: "#111",
+                      fontWeight: 300,
+                      fontFamily:
+                        '"Ubuntu", -apple-system, "Segoe UI", "Roboto", "Oxygen", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+                      fontSmoothing: "antialiased",
+                      fontSize: "16px",
+                      lineHeight: "24px",
+
+                      "::placeholder": {
+                        color: "#666",
+                      },
+                      ":-webkit-autofill": {
+                        color: "#666",
+                      },
+                    },
+                  },
+                }}
+                onFocus={() => {
+                  setCardFieldFocus(true);
+                }}
+                onBlur={() => {
+                  setCardFieldFocus(false);
+                }}
+                onChange={(e) => {
+                  if (e.complete && !e.error) {
+                    setCardValid(true);
+                    setCardFieldError(null);
+                  } else {
+                    setCardValid(false);
+                    if (e.error) {
+                      setCardFieldError(e.error);
+                    }
+                  }
+                }}
+              />
+            </div>
+          </FormRow>
+        ) : (
+          <PaymentMethodSummary />
+        )}
       </Col>
       {values.buyingFor === "organisation" ? (
         <Col size={12}>
