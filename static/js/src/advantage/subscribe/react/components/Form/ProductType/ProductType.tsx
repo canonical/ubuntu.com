@@ -39,13 +39,22 @@ const PublicCloudInfo = {
 };
 
 const ProductType = () => {
+  const localPublicCloud = localStorage.getItem("pro-selector-publicCloud");
   const { productType, setProductType } = useContext(FormContext);
-  const [publicCloud, setPublicCloud] = useState(PublicClouds.aws);
+  const [publicCloud, setPublicCloud] = useState(
+    localPublicCloud
+      ? (JSON.parse(localPublicCloud) as PublicClouds)
+      : PublicClouds.aws
+  );
 
   const handleProductTypeChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setProductType(event.target.value as ProductTypes);
+    localStorage.setItem(
+      "pro-selector-productType",
+      JSON.stringify(event.target.value as ProductTypes)
+    );
   };
 
   const publicCloudsSelector = (
@@ -65,6 +74,10 @@ const ProductType = () => {
             onClick={(e) => {
               e.preventDefault();
               setPublicCloud(PublicClouds.aws);
+              localStorage.setItem(
+                "pro-selector-publicCloud",
+                JSON.stringify(PublicClouds.aws)
+              );
             }}
           >
             {PublicCloudInfo[PublicClouds.aws].title}
@@ -78,6 +91,10 @@ const ProductType = () => {
             onClick={(e) => {
               e.preventDefault();
               setPublicCloud(PublicClouds.azure);
+              localStorage.setItem(
+                "pro-selector-publicCloud",
+                JSON.stringify(PublicClouds.azure)
+              );
             }}
           >
             {PublicCloudInfo[PublicClouds.azure].title}
@@ -91,6 +108,10 @@ const ProductType = () => {
             onClick={(e) => {
               e.preventDefault();
               setPublicCloud(PublicClouds.gcp);
+              localStorage.setItem(
+                "pro-selector-publicCloud",
+                JSON.stringify(PublicClouds.gcp)
+              );
             }}
           >
             {PublicCloudInfo[PublicClouds.gcp].title}

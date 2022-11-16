@@ -73,6 +73,17 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     }
   };
 
+  const proSelectorStates = [
+    "pro-selector-productType",
+    "pro-selector-version",
+    "pro-selector-quantity",
+    "pro-selector-feature",
+    "pro-selector-support",
+    "pro-selector-sla",
+    "pro-selector-period",
+    "pro-selector-publicCloud",
+  ];
+
   const onPayClick = () => {
     handleOnPurchaseBegin();
     checkoutEvent(GAFriendlyProduct, "3");
@@ -87,6 +98,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         onSuccess: (data) => {
           //start polling
           setPendingPurchaseID(data);
+          proSelectorStates.forEach((state) => localStorage.removeItem(state));
         },
         onError: (error) => {
           setIsLoading(false);
