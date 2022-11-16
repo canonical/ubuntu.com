@@ -61,24 +61,6 @@ context("Static marketo forms", () => {
     cy.findByRole("heading", { name: /Thank you/ });
   });
 
-  it("should check contact form on /credentials/sign-up", () => {
-    cy.visit("/credentials/sign-up");
-    cy.acceptCookiePolicy();
-    cy.findByLabelText(/First name:/).type("Test");
-    cy.findByLabelText(/Last name:/).type("Test");
-    cy.findByLabelText(/What is your native language?/).select("English");
-    cy.findByLabelText(/What is your Employment level?/).select("Senior");
-    cy.findByLabelText(/Choose the closest category corresponding to your current occupation:/).select("Software");
-    cy.findByLabelText(/What is your motivation to certify your Linux and Ubuntu skills?/).select("Personal growth");
-    cy.findByLabelText(/When was the last time you had academic or training experience with Linux\/Ubuntu?/).select("Never");
-    cy.findByLabelText(/How long have you used\/worked with Ubuntu?/).select("Never");
-    cy.findByLabelText(/When was the last time you had professional experience with Ubuntu?/).select("Never");
-    cy.findByLabelText(/I agree to receive information/).click({
-      force: true,
-    });
-    cy.findByText(/Submit/).click();
-    cy.findByRole("heading", { name: /Thank you/ });
-  });
 });
 
 context("Interactive marketo forms", () => {
