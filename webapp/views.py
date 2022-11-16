@@ -986,6 +986,10 @@ def get_user_country_by_ip():
     return response
 def subscription_centre():
     sfdcLeadId = flask.request.args.get("id")
+
+    if flask.request.method == "POST":
+        subscription_centre_submit(sfdcLeadId)
+
     with open("subscriptions.yaml") as subscriptions:
         subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
 
@@ -996,7 +1000,7 @@ def subscription_centre():
             {
                 "filterType": "sfdcLeadId",
                 "filterValues": sfdcLeadId,
-                "fields": "prototype_interests,email",
+                "fields": "prototype_interests,canonicalUpdatesOptIn,email",
             },
         )
         data = response.json()
@@ -1007,4 +1011,28 @@ def subscription_centre():
         "subscription-centre/index.html",
         categories=subscriptions,
         interests=data["result"][0]["prototype_interests"],
+        updatesOptIn=data["result"][0]["canonicalUpdatesOptIn"],
     )
+
+
+def subscription_centre_submit(sfdcLeadId):
+    updatesOptIn = flask.request.form.get("generalUpdates") or False
+    subscriptionList = flask.request.form.get("Subscriptions_list")
+    data = {
+        "lookupField": "sfdcLeadId",
+        "input": [
+            {
+                "sfdcLeadId": sfdcLeadId,
+                "prototype_interests": subscriptionList,
+                "canonicalUpdatesOptIn": updatesOptIn,
+            }
+        ],
+    }
+
+    try:
+        response = marketo_api.request(
+            "POST", "/rest/v1/leads.json", json=data
+        )
+        return response
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
