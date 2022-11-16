@@ -10,23 +10,11 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
     <div class="col-8">
-      <form action="" id="subscription-centre">
-        <div class="row">
-          <div class="col-3">
-            <label for="newsletter-frequency"><strong>I'd like to receive a newletter</strong></label>
-          </div>
-          <div class="col-2">
-            <select name="newsletter-frequency" id="newsletter-frequency">
-              <option value="daily">Every day</option>
-              <option value="weekly">Every week</option>
-              <option value="monthly">Every month</option>
-            </select>
-          </div>
-        </div>
+      <form id="subscription-centre" method="post">
         <label class="p-checkbox">
-          <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="yes-general-updates">
+          <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="true" {% if updatesOptIn %}checked{% endif %}>
           <span class="p-checkbox__label">Include regular updates about Canonical's products and services, including webinar and event invites</span>
-        </label>
+        </label>      
         <hr class="p-separator is-shallow">
         <div class="row">
           <div class="col-6">
@@ -34,18 +22,18 @@
               <ul class="p-accordion__list" id="subscriptions-list">
                 {% for category in categories %}
                   <li class="p-accordion__group">
-                    <div role="heading" aria-level="2" class="p-accordion__heading">
+                    <div role="heading" aria-level="1" class="p-accordion__heading">
                       <button type="button" class="p-accordion__tab" id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false"><strong>{{ category }}</strong></button>
                     </div>
                     <section class="p-accordion__panel has-tick-elements" id="tab{{ loop.index }}-section" aria-controls="tab{{ loop.index }}-section" aria-hidden="true">
                       <div class="row">
                         {% for tag in categories[category] %}
-                        <div class="col-3">
-                          <label class="p-checkbox">
-                            <input type="checkbox" class="p-checkbox__input" name="{{ catagory }}" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if tag in interests%}checked{% endif %}>
-                            <span class="p-checkbox__label" id="{{ tag }}">{{ tag }}</span>
-                          </label>
-                        </div>
+                          <div class="col-3">
+                            <label class="p-checkbox">
+                              <input type="checkbox" class="p-checkbox__input" name="{{ catagory }}" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if tag in interests %}checked{% endif %}>
+                              <span class="p-checkbox__label" id="{{ tag }}">{{ tag }}</span>
+                            </label>
+                          </div>
                         {% endfor %}
                       </div>
                     </section>
@@ -55,16 +43,21 @@
             </div>
           </div>
         </div>
+        <div class="u-hide">
+          <h3>Your subscriptions</h3>
+            <label for="Subscriptions_list">What would you like to talk to us about?</label>
+            <textarea id="Subscriptions_list" name="Subscriptions_list" rows="5" maxlength="2000"></textarea>
+        </div>
       </form>
     </div>
   </div>
   <hr class="p-separator is-fixed-width">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 col-medium-3 col-small-2">
       <p><button id="unsubscribe" class="p-button u-float-left" aria-controls="modal">Unsubscribe</button></p>
     </div>
-    <div class="col-6">
-      <p><button class="p-button--positive u-float-right">Update Preferences</button></p>
+    <div class="col-6 col-medium-3 col-small-2">
+      <p><button id="update-preferences" form="subscription-centre" class="p-button--positive u-float-right">Update Preferences</button></p>
     </div>
   </div>
 </section>
@@ -84,132 +77,33 @@
   </section>
 </div>
 
+<script src="/static/js/src/modal.js"></script>
 <script>
-  (function () {
-  var currentDialog = null;
-  var lastFocus = null;
-  var ignoreFocusChanges = false;
-  var focusAfterClose = null;
-  const unsubscribeButton =  document.querySelector("#unsubscribe");
-
-  // Traps the focus within the currently open modal dialog
-  function trapFocus(e) {
-    if (ignoreFocusChanges) return;
-
-    if (currentDialog.contains(e.target)) {
-      lastFocus = e.target;
-    } else {
-      focusFirstDescendant(currentDialog);
-      if (lastFocus == document.activeElement) {
-        focusLastDescendant(currentDialog);
-      }
-      lastFocus = document.activeElement;
-    }
-  }
-
-  // Attempts to focus given element
-  function attemptFocus(child) {
-    if (child.focus) {
-      ignoreFocusChanges = true;
-      child.focus();
-      ignoreFocusChanges = false;
-      return document.activeElement === child;
-    }
-
-    return false;
-  }
-
-  // Focuses first child element
-  function focusFirstDescendant(element) {
-    for (var i = 0; i < element.childNodes.length; i++) {
-      var child = element.childNodes[i];
-      if (attemptFocus(child) || focusFirstDescendant(child)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // Focuses last child element
-  function focusLastDescendant(element) {
-    for (var i = element.childNodes.length - 1; i >= 0; i--) {
-      var child = element.childNodes[i];
-      if (attemptFocus(child) || focusLastDescendant(child)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
-    Toggles visibility of modal dialog.
-    @param {HTMLElement} modal Modal dialog to show or hide.
-    @param {HTMLElement} sourceEl Element that triggered toggling modal
-    @param {Boolean} open If defined as `true` modal will be opened, if `false` modal will be closed, undefined toggles current visibility.
-  */
-  function toggleModal(modal, sourceEl, open) {
-    if (modal && modal.classList.contains('p-modal')) {
-      if (typeof open === 'undefined') {
-        open = modal.style.display === 'none';
-      }
-
-      if (open) {
-        currentDialog = modal;
-        modal.style.display = 'flex';
-        focusFirstDescendant(modal);
-        focusAfterClose = sourceEl;
-        document.addEventListener('focus', trapFocus, true);
-      } else {
-        modal.style.display = 'none';
-        if (focusAfterClose && focusAfterClose.focus) {
-          focusAfterClose.focus();
-        }
-        document.removeEventListener('focus', trapFocus, true);
-        currentDialog = null;
-      }
-    }
-  }
-
-  // Find and hide all modals on the page
-  function closeModals() {
-    var modals = [].slice.apply(document.querySelectorAll('.p-modal'));
-    modals.forEach(function (modal) {
-      toggleModal(modal, false, false);
-    });
-  }
-
-  // Add click handler for clicks on elements with aria-controls
-  document.addEventListener('click', function (event) {
-    var targetControls = event.target.getAttribute('aria-controls');
-    if (targetControls) {
-      toggleModal(document.getElementById(targetControls), event.target);
-    }
-  });
-
-  // Add handler to close modal when clicking 'close' or outside the modal
-  document.addEventListener("click", function(e) {
-    if (!e.target.closest("#unsubscribe")) {
-      if (e.target.matches(".p-modal__close") || !e.target.closest(".p-modal__dialog")) {
-        closeModals();
-      }
-    }
-  });
-
-  // Add handler for closing modals using ESC key.
-  document.addEventListener('keydown', function (e) {
-    e = e || window.event;
-
-    if (e.code === 'Escape') {
-      closeModals();
-    } else if (e.keyCode === 27) {
-      closeModals();
-    }
-  });
-
-
-  // init the dialog that is initially closed
-  toggleModal(document.querySelector('#modal'), document.querySelector('[aria-controls=modal]'), false);
-  })();
+  initModals('#modal', '[aria-controls=modal]', false)
 </script>
+<script>
+  const createSubsString = () => {
+    const subsWrapper = document.querySelector("#subscriptions-list");
+    const subsInputs = subsWrapper.querySelectorAll("input[type=checkbox]")
+    const subsString = [].reduce.call(subsInputs, function(acc, ele) {
+      return ele.checked ? ele.value + ',' + acc : acc;
+    }, '');
+
+    const subListInput = document.querySelector("#Subscriptions_list");
+    subListInput.value = subsString;
+    return;
+  }
+
+  const handleSubmit = async () => {
+    await createSubsString();
+    const form = document.querySelector("#subscription-centre");
+    form.submit();
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#update-preferences").addEventListener("click", handleSubmit);
+  })
+</script>
+
 {% endblock content%}
 
