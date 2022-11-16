@@ -53,10 +53,6 @@ from webapp.shop.cube.views import (
     cred_cancel_exam,
     cred_assessments,
     cred_exam,
-    cube_microcerts,
-    cube_study_labs_button,
-    get_microcerts,
-    post_microcerts_purchase,
 )
 
 from webapp.views import (
@@ -916,14 +912,6 @@ app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
 app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
 app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
 app.add_url_rule("/credentials/exam", view_func=cred_exam)
-app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
-app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
-app.add_url_rule(
-    "/cube/microcerts/purchase.json",
-    view_func=post_microcerts_purchase,
-    methods=["POST"],
-)
-app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
@@ -1052,13 +1040,6 @@ app.add_url_rule(
 )
 
 
-@app.before_request
-def cube_require_login_cube_study():
-    if flask.request.path.startswith("/cube/study"):
-        user = user_info(flask.session)
-        if not user:
-            return flask.redirect("/login?next=" + flask.request.path)
-
 
 @app.after_request
 def cache_headers(response):
@@ -1070,7 +1051,7 @@ def cache_headers(response):
         "/account",
         "/advantage",
         "/pro",
-        "/cube",
+        "/credentials",
         "/core/build",
         "/account.json",
     )
