@@ -1039,7 +1039,11 @@ app.add_url_rule(
 )
 
 # Subscription centre
-app.add_url_rule("/subscription-centre", view_func=subscription_centre)
+app.add_url_rule(
+    "/subscription-centre",
+    view_func=subscription_centre,
+    methods=["GET", "POST"],
+)
 
 
 @app.before_request
