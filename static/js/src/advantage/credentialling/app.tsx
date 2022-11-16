@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
 import CredShop from "./components/CredShop";
+import CredRedeem from "./components/CredRedeem/CredRedeem";
 
 const oneHour = 1000 * 60 * 60;
 const queryClient = new QueryClient({
@@ -38,6 +39,7 @@ function App() {
         <Router basename="/credentialling/shop">
           <Routes>
             <Route path="/" element={<CredShop />} />
+            <Route path="/redeem" element={<CredRedeem />} />
             <Route path="/cred-manage" element={<CredManage />} />
           </Routes>
         </Router>
