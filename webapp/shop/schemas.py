@@ -52,6 +52,12 @@ class PurchaseTotalSchema(Schema):
     tax = Int()
     total = Int(required=True)
 
+
+class MagicAttachTokenSchema(Schema):
+    contractID = String(required=True)
+    userCode = String(required=True)
+
+
 account_purhcase = {
     "account_id": String(),
     "customer_info": Nested(CustomerInfo),

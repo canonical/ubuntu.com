@@ -32,14 +32,24 @@ class UAContractsAPI:
     def set_is_for_view(self, is_for_view):
         self.is_for_view = is_for_view
 
-    def _request(self, method, path, json=None, params=None, error_rules=None):
-        authorization = f"{self.token_type} {self.authentication_token}"
+    def _request(
+        self,
+        method,
+        path,
+        json=None,
+        params=None,
+        error_rules=None,
+        headers={},
+    ):
+        headers[
+            "Authorization"
+        ] = f"{self.token_type} {self.authentication_token}"
 
         response = self.session.request(
             method=method,
             url=f"{self.api_url}/{path}",
             json=json,
-            headers={"Authorization": authorization},
+            headers=headers,
             params=params,
         )
 
@@ -319,12 +329,13 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def post_magic_attach(self, request_body: dict) -> dict:
+    def post_magic_attach(self, request_body: dict, headers : dict) -> dict:
         self._request(
             method="post",
             path=f"v1/magic-attach/activate",
             json=request_body,
             error_rules=["default"],
+            headers=headers
         )
         return {"success": "true"}
 

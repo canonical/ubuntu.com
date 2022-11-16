@@ -630,13 +630,19 @@ def blender_thanks_view(**kwargs):
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"contractID": String(), "userCode": String()}, location="json")
 def activate_magic_attach(advantage_mapper, **kwargs):
+    client_ip = flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
+    flask.current_app.logger.info(client_ip)
     return advantage_mapper.activate_magic_attach(
-        contractID=kwargs.get("contractID"), userCode=kwargs.get("userCode")
+        contractID=kwargs.get("contractID"),
+        userCode=kwargs.get("userCode"),
+        client_ip=client_ip,
     )
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def magic_attach_view(**kwargs):
+    client_ip = flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
+    flask.current_app.logger.info(client_ip)
     return flask.render_template(
         "advantage/attach/index.html",
     )
