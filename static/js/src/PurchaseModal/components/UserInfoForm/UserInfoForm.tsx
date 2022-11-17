@@ -35,7 +35,9 @@ const UserInfoForm = ({ setCardValid, isGuest }: Props) => {
     isSubmitting,
   } = useFormikContext<FormValues>();
 
-  const [isEditing, setIsEditing] = useState(isGuest);
+  const { data: userInfo } = useStripeCustomerInfo();
+  const defaultPaymentMethod = userInfo?.customerInfo?.defaultPaymentMethod;
+  const [isEditing, setIsEditing] = useState(isGuest || !defaultPaymentMethod);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
 
