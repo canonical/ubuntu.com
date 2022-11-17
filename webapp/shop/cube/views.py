@@ -439,18 +439,18 @@ def cube_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    # contract_id = kwargs.get("contract_id")
-    # keys = ua_contracts_api.list_activation_keys(contract_id)
-    # return flask.jsonify(keys)
-    accounts = advantage_mapper.get_accounts()
-    account_dict = {}
-    for account in accounts:
-        account_dict[account.id] = account.name
-    keys = json.load(open("webapp/shop/cube/demo_keys.json", "r"))
-    for k in keys:
-        if "activatedBy" in k:
-            k["activatedBy"]=account_dict[k["activatedBy"]]
+    contract_id = kwargs.get("contract_id")
+    keys = ua_contracts_api.list_activation_keys(contract_id)
     return flask.jsonify(keys)
+    # accounts = advantage_mapper.get_accounts()
+    # account_dict = {}
+    # for account in accounts:
+    #     account_dict[account.id] = account.name
+    # keys = json.load(open("webapp/shop/cube/demo_keys.json", "r"))
+    # for k in keys:
+    #     if "activatedBy" in k:
+    #         k["activatedBy"]=account_dict[k["activatedBy"]]
+    # return flask.jsonify(keys)
 
 
 @shop_decorator(area="cube", permission="user", response="json")
@@ -460,3 +460,12 @@ def rotate_activation_key(ua_contracts_api, **kwargs):
         {"activationKey": activation_key}
     )
     return flask.jsonify(new_activation_key)
+
+@shop_decorator(area="cube", permission="user", response=json)
+def activate_activation_key(ua_contracts_api, **kwargs):
+    data = flask.request.json
+    activation_key = data["activationKey"]
+    account = ua_contracts_api.get_purchase_account("canonical-cube")
+    account_id = account["id"]
+    product_id = data["productID"]
+    return ua_contracts_api.activate_activation_key({"activationKey":activation_key,"accountID":account_id,"productID":product_id})

@@ -335,6 +335,16 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def activate_activation_key(self, request_body: dict) -> dict:
+        self._request(
+            method="post",
+            path=f"v1/keys/activate",
+            json=request_body,
+            error_rules=["default"]
+        )
+
+        return {}
+
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
