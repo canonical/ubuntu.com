@@ -54,7 +54,7 @@
   <hr class="p-separator is-fixed-width">
   <div class="row">
     <div class="col-6 col-medium-3 col-small-2">
-      <p><button id="unsubscribe" class="p-button u-float-left" aria-controls="modal">Unsubscribe</button></p>
+      <p><button class="p-button u-float-left" aria-controls="modal">Unsubscribe</button></p>
     </div>
     <div class="col-6 col-medium-3 col-small-2">
       <p><button id="update-preferences" form="subscription-centre" class="p-button--positive u-float-right">Update Preferences</button></p>
@@ -71,7 +71,7 @@
     <p id="modal-description">Are you sure you want to unsubscribe from all topics?</p>
     <footer class="p-modal__footer">
       <button class="u-no-margin--bottom" aria-controls="modal">Cancel</button>
-      <button class="p-button--negative u-no-margin--bottom">Unsubscribe</button>
+      <button id="unsubscribe" class="p-button--negative u-no-margin--bottom">Unsubscribe</button>
     </footer>
     </div>
   </section>
@@ -84,26 +84,41 @@
   })();
 </script>
 <script>
-  const createSubsString = () => {
-    const subsWrapper = document.querySelector("#subscriptions-list");
-    const subsInputs = subsWrapper.querySelectorAll("input[type=checkbox]")
-    const subsString = [].reduce.call(subsInputs, function(acc, ele) {
-      return ele.checked ? ele.value + ',' + acc : acc;
-    }, '');
+  const generalUdatesOptin = document.querySelector("#general-updates")
+  const tagListTextarea = document.querySelector("#Subscriptions_list");
+  const form = document.querySelector("#subscription-centre");
+  
+  const createTagsString = () => {
+    const tagsWrapper = document.querySelector("#subscriptions-list");
+    const tagsInputs = tagsWrapper.querySelectorAll("input[type=checkbox]")
 
-    const subListInput = document.querySelector("#Subscriptions_list");
-    subListInput.value = subsString;
-    return;
+    const tagsString = [].reduce.call(tagsInputs, (acc, ele) => {
+      return ele.checked ? ele.value + ',' + acc : acc;
+    }, '').replace(/\,$/, '')
+
+    tagListTextarea.value = tagsString;
   }
 
-  const handleSubmit = async () => {
-    await createSubsString();
-    const form = document.querySelector("#subscription-centre");
+  const clearFields = () => {
+    generalUdatesOptin.checked = false;
+    tagListTextarea.value = "";
+  }
+
+  const handleUpdatePreferencesBtn = async (e) => {
+    e.preventDefault();
+    await createTagsString();
+    form.submit();
+  }
+
+  const handleUnsubscribeBtn = async (e) => {
+    e.preventDefault();
+    await clearFields();
     form.submit();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#update-preferences").addEventListener("click", handleSubmit);
+    document.querySelector("#update-preferences").addEventListener("click", handleUpdatePreferencesBtn);
+    document.querySelector("#unsubscribe").addEventListener("click", handleUnsubscribeBtn);
   })
 </script>
 
