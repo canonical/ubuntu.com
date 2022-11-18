@@ -835,7 +835,11 @@ def marketo_submit():
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
-            {"leadFormFields": form_fields, "visitorData": visitor_data}
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
         ],
     }
 
