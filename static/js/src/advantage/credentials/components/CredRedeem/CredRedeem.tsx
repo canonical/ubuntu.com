@@ -1,5 +1,5 @@
 import { Notification, Row, Spinner } from "@canonical/react-components";
-import { activateKey } from "advantage/credentialling/api/keys";
+import { activateKey } from "advantage/credentials/api/keys";
 import React from "react";
 import { useQuery } from "react-query";
 

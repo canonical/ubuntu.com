@@ -6,7 +6,7 @@ import {
   Spinner,
   Tooltip,
 } from "@canonical/react-components";
-import { listAllKeys, rotateKey } from "advantage/credentialling/api/keys";
+import { listAllKeys, rotateKey } from "advantage/credentials/api/keys";
 import React, { useEffect, useRef, useState } from "react";
 import { useQuery } from "react-query";
 

@@ -1,5 +1,5 @@
 export async function listAllKeys(contractId) {
-  let response = await fetch(`/credentialling/keys/list/${contractId}`, {
+  let response = await fetch(`/credentials/keys/list/${contractId}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -14,7 +14,7 @@ export async function listAllKeys(contractId) {
 }
 
 export async function rotateKey(activationKey) {
-  let response = await fetch(`/credentialling/keys/rotate/${activationKey}`, {
+  let response = await fetch(`/credentials/keys/rotate/${activationKey}`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -26,7 +26,7 @@ export async function rotateKey(activationKey) {
 }
 
 export async function activateKey(activationKey) {
-  let response = await fetch('/credentialling/keys/activate', {
+  let response = await fetch('/credentials/keys/activate', {
     method: "POST",
     headers: {
       Accept: "application/json",

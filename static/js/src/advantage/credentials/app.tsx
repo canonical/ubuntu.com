@@ -36,11 +36,11 @@ function App() {
   return (
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
-        <Router basename="/credentialling/shop">
+        <Router basename="/credentials/shop">
           <Routes>
             <Route path="/" element={<CredShop />} />
             <Route path="/redeem" element={<CredRedeem />} />
-            <Route path="/cred-manage" element={<CredManage />} />
+            <Route path="/manage" element={<CredManage />} />
           </Routes>
         </Router>
         <ReactQueryDevtools initialIsOpen={false} />

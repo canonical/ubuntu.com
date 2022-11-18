@@ -4,7 +4,7 @@ const CredShop = () => {
   return (
     <>
       <h1>Shop</h1>
-      <Link to={"/cred-manage"}>manage</Link>
+      <Link to={"/manage"}>manage</Link>
     </>
   );
 };

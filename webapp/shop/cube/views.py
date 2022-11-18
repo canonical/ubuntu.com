@@ -434,7 +434,7 @@ def cred_syllabus_data(**kawrgs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cube_shop(**kwargs):
-    return flask.render_template("credentialling/shop/index.html")
+    return flask.render_template("credentials/shop/index.html")
 
 
 @shop_decorator(area="cube", permission="user", response="json")
