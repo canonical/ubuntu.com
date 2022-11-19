@@ -461,6 +461,7 @@ def rotate_activation_key(ua_contracts_api, **kwargs):
     )
     return flask.jsonify(new_activation_key)
 
+
 @shop_decorator(area="cube", permission="user", response=json)
 def activate_activation_key(ua_contracts_api, **kwargs):
     data = flask.request.json
@@ -468,4 +469,10 @@ def activate_activation_key(ua_contracts_api, **kwargs):
     account = ua_contracts_api.get_purchase_account("canonical-cube")
     account_id = account["id"]
     product_id = data["productID"]
-    return ua_contracts_api.activate_activation_key({"activationKey":activation_key,"accountID":account_id,"productID":product_id})
+    return ua_contracts_api.activate_activation_key(
+        {
+            "activationKey": activation_key,
+            "accountID": account_id,
+            "productID": product_id,
+        }
+    )

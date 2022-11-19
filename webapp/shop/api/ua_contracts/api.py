@@ -340,7 +340,7 @@ class UAContractsAPI:
             method="post",
             path=f"v1/keys/activate",
             json=request_body,
-            error_rules=["default"]
+            error_rules=["default"],
         )
 
         return {}

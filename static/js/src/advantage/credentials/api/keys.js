@@ -26,16 +26,16 @@ export async function rotateKey(activationKey) {
 }
 
 export async function activateKey(activationKey) {
-  let response = await fetch('/credentials/keys/activate', {
+  let response = await fetch("/credentials/keys/activate", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      "activationKey": activationKey,
-      "productID": "cube-admintasks"
-    })
+      activationKey: activationKey,
+      productID: "cube-admintasks",
+    }),
   });
   const data = await response.json();
   return data;

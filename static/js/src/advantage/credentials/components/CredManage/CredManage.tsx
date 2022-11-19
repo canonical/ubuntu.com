@@ -89,13 +89,12 @@ const CredManage = () => {
     console.log(keyValue, selectedKeyIds);
   };
 
-
   const selectAllKeys = (event: React.SyntheticEvent) => {
     setSelectedKeyIds([]);
     if (event.target.checked) {
       setSelectedKeyIds(tableData.map((item) => item["key"]));
     }
-  }
+  };
 
   const copyToClipboard = (value: string) => {
     console.log(value);
@@ -136,13 +135,12 @@ const CredManage = () => {
     return true;
   };
 
-
   useEffect(() => {
     let newList = [];
     if (isArchiveable()) {
       newList.push({
         children: "Archive",
-        onClick: () => { },
+        onClick: () => {},
       });
     }
     if (isUnused()) {
@@ -163,7 +161,7 @@ const CredManage = () => {
     if (newList.length == 0) {
       newList.push({
         children: "No bulk options available",
-        onClick: () => { },
+        onClick: () => {},
       });
     }
     updateActionLinks(newList);
@@ -302,18 +300,27 @@ const CredManage = () => {
           <MainTable
             headers={[
               {
-                content: <CheckboxInput onChange={selectAllKeys} label="" checked={tableData != undefined && selectedKeyIds.length == tableData.length} />,
-                colSpan: 1
+                content: (
+                  <CheckboxInput
+                    onChange={selectAllKeys}
+                    label=""
+                    checked={
+                      tableData != undefined &&
+                      selectedKeyIds.length == tableData.length
+                    }
+                  />
+                ),
+                colSpan: 1,
               },
               {
                 content: "Exam Key Id",
                 sortKey: "key",
-                colSpan: 2
+                colSpan: 2,
               },
               {
                 content: "Assignee",
                 sortKey: "activatedBy",
-                colSpan: 2
+                colSpan: 2,
               },
               {
                 content: "Exam",
@@ -344,10 +351,7 @@ const CredManage = () => {
                     {
                       content: (
                         <>
-                          <Tooltip
-                            message="Copy Key"
-                            position="right"
-                          >
+                          <Tooltip message="Copy Key" position="right">
                             <p>
                               {keyitem["key"]} &emsp;
                               <a
@@ -361,27 +365,21 @@ const CredManage = () => {
                           </Tooltip>
                         </>
                       ),
-                      colSpan: 2
+                      colSpan: 2,
                     },
                     {
-                      content:
+                      content: (
                         <>
-                          {keyitem["activatedBy"] ?
-                            <Tooltip
-                              message="Archive Key"
-                              position="right"
-                            >
+                          {keyitem["activatedBy"] ? (
+                            <Tooltip message="Archive Key" position="right">
                               <p>
                                 {keyitem["activatedBy"]} &emsp;
-                                <a
-                                  onClick={() => {
-                                    ;
-                                  }}
-                                >
+                                <a onClick={() => {}}>
                                   <i className="p-icon--delete"></i>
                                 </a>
                               </p>
-                            </Tooltip> :
+                            </Tooltip>
+                          ) : (
                             <Tooltip message="Refresh Key" position="right">
                               <p>
                                 N/A &emsp;
@@ -394,9 +392,10 @@ const CredManage = () => {
                                 </a>
                               </p>
                             </Tooltip>
-                          }
-                        </>,
-                      colSpan: 2
+                          )}
+                        </>
+                      ),
+                      colSpan: 2,
                     },
                     {
                       content: keyitem.productID,
@@ -418,7 +417,7 @@ const CredManage = () => {
           />
         )}
       </Row>
-    </div >
+    </div>
   );
 };
 export default CredManage;
