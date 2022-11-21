@@ -989,12 +989,14 @@ def subscription_centre():
     return_url = flask.request.form.get("returnURL")
 
     if flask.request.method == "POST":
-        subscription_centre_submit(sfdcLeadId)
         if return_url == "#unsubscribe":
+            subscription_centre_submit(sfdcLeadId, True)
             return flask.redirect(f"/{return_url}")
         else:
-            return flask.redirect(f"{flask.request.path}?id={sfdcLeadId}{return_url}")
-
+            subscription_centre_submit(sfdcLeadId, False)
+            return flask.redirect(
+                f"{flask.request.path}?id={sfdcLeadId}{return_url}"
+            )
 
     with open("subscriptions.yaml") as subscriptions:
         subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
@@ -1021,15 +1023,20 @@ def subscription_centre():
     )
 
 
-def subscription_centre_submit(sfdcLeadId):
+def subscription_centre_submit(sfdcLeadId, unsubscribe):
     updatesOptIn = flask.request.form.get("generalUpdates") or False
-    subscriptionList = flask.request.form.get("Subscriptions_list")
-    data = {
+    if unsubscribe:
+        tagListString = ""
+    else:
+        tagListArray = flask.request.form.getlist("tags")
+        tagListString = ",".join(tagListArray)
+
+    payload = {
         "lookupField": "sfdcLeadId",
         "input": [
             {
                 "sfdcLeadId": sfdcLeadId,
-                "prototype_interests": subscriptionList,
+                "prototype_interests": tagListString,
                 "canonicalUpdatesOptIn": updatesOptIn,
             }
         ],
@@ -1037,7 +1044,7 @@ def subscription_centre_submit(sfdcLeadId):
 
     try:
         response = marketo_api.request(
-            "POST", "/rest/v1/leads.json", json=data
+            "POST", "/rest/v1/leads.json", json=payload
         )
         return response
     except HTTPError:
