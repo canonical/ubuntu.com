@@ -21,7 +21,7 @@ it into view
 @param {HTMLElement} element The tab that acts as the handles.
 */
 function moveInView(element) {
-  // Returns a Boolean based on whether the element in in view
+  // Returns a Boolean based on whether the element is in view
   function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (
