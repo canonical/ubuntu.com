@@ -1,5 +1,5 @@
 /**
-    Sets up modals and makes them accessible.
+    Set up modals and make them accessible.
     @param {String} modalId Id for target modal
     @param {String} ariaControls Aria controls of triggering element
     @param {Boolean} open If defined as `true` modal will be opened, if `false` modal will be closed, undefined toggles current visibility.

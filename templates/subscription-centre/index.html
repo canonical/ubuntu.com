@@ -14,7 +14,7 @@
         <label class="p-checkbox">
           <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="true" {% if updatesOptIn %}checked{% endif %}>
           <span class="p-checkbox__label">Include regular updates about Canonical's products and services, including webinar and event invites</span>
-        </label>      
+        </label>
         <hr class="p-separator is-shallow">
         <div class="row">
           <div class="col-6">
@@ -30,7 +30,7 @@
                         {% for tag in categories[category] %}
                           <div class="col-3">
                             <label class="p-checkbox">
-                              <input type="checkbox" class="p-checkbox__input" name="{{ catagory }}" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if tag in interests %}checked{% endif %}>
+                              <input type="checkbox" class="p-checkbox__input" name="{{ catagory }}" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if interests is not none and tag in interests %}checked{% endif %}>
                               <span class="p-checkbox__label" id="{{ tag }}">{{ tag }}</span>
                             </label>
                           </div>
@@ -79,7 +79,9 @@
 
 <script src="/static/js/src/modal.js"></script>
 <script>
-  initModals('#modal', '[aria-controls=modal]', false)
+  (function() {
+    initModals('#modal', '[aria-controls=modal]', false)
+  })();
 </script>
 <script>
   const createSubsString = () => {
