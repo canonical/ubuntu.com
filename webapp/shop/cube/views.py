@@ -437,6 +437,30 @@ def cube_shop(**kwargs):
     return flask.render_template("credentials/shop/index.html")
 
 
+@shop_decorator(area="cube", permission="user", response="html")
+def cube_redeem_code(ua_contracts_api, **kwargs):
+    activation_key = kwargs.get("code")
+    account = ua_contracts_api.get_purchase_account("canonical-cube")
+    account_id = account["id"]
+    product_id = kwargs.get("product_id", "cube-admintasks")
+    try:
+        activation_response = ua_contracts_api.activate_activation_key(
+            {
+                "activationKey": activation_key,
+                "accountID": account_id,
+                "productID": product_id,
+            }
+        )
+        return flask.render_template(
+            "/credentials/redeem.html", activation_response=activation_response
+        )
+    except:
+        return flask.render_template(
+            "/credentials/redeem.html",
+            activation_response={"error": "Activation unsuccessful"},
+        )
+
+
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     contract_id = kwargs.get("contract_id")
