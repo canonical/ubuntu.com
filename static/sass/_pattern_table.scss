@@ -86,11 +86,13 @@
 
   .p-table {
     &.is-not-indented {
-      td:first-child {
+      td:first-child,
+      th:first-child {
         padding-left: 0;
       }
 
-      td:last-child {
+      td:last-child,
+      th:first-child {
         padding-right: 0;
       }
     }
