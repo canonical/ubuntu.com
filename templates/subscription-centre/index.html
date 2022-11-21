@@ -43,11 +43,13 @@
             </div>
           </div>
         </div>
-        <div class="u-hide">
+        <div class="u-hide" aria-hidden="true">
           <h3>Your subscriptions</h3>
             <label for="Subscriptions_list">What would you like to talk to us about?</label>
             <textarea id="Subscriptions_list" name="Subscriptions_list" rows="5" maxlength="2000"></textarea>
         </div>
+
+        <input id="return-url" type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="" />
       </form>
     </div>
   </div>
@@ -84,9 +86,10 @@
   })();
 </script>
 <script>
-  const generalUdatesOptin = document.querySelector("#general-updates")
+  const generalUdatesOptin = document.querySelector("#general-updates");
   const tagListTextarea = document.querySelector("#Subscriptions_list");
   const form = document.querySelector("#subscription-centre");
+  const returnUrl = document.querySelector("#return-url");
   
   const createTagsString = () => {
     const tagsWrapper = document.querySelector("#subscriptions-list");
@@ -107,12 +110,14 @@
   const handleUpdatePreferencesBtn = async (e) => {
     e.preventDefault();
     await createTagsString();
+    returnUrl.value = "#success";
     form.submit();
   }
 
   const handleUnsubscribeBtn = async (e) => {
     e.preventDefault();
     await clearFields();
+    returnUrl.value = "#unsubscribe";
     form.submit();
   }
 
