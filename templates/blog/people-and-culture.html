@@ -1,0 +1,27 @@
+{% extends "templates/one-column.html" %}
+
+{% block title %}People and culture{% endblock %}
+
+{% block content %}
+
+  <section class="p-strip--suru-blog-header">
+    <div class="u-fixed-width">
+      <h1>People and culture</h1>
+      <p class="p-heading--4">
+        Read about our people led initiatives that define our culture.
+      </p>
+    </div>
+  </section>
+
+  <section class="p-strip is-shallow">
+    {% include 'blog/posts.html' %}
+  </section>
+
+  <section class="p-strip is-shallow">
+    {% with %}
+      {% set total_pages = total_pages %}
+      {% set current_page = current_page %}
+      {% include "shared/_pagination.html" %}
+    {% endwith %}
+  </section>
+{% endblock %}
