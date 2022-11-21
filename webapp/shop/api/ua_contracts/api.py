@@ -1,5 +1,4 @@
 from typing import Optional
-from urllib import request
 
 from requests.exceptions import HTTPError
 
