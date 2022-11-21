@@ -16,37 +16,28 @@
           <span class="p-checkbox__label">Include regular updates about Canonical's products and services, including webinar and event invites</span>
         </label>
         <hr class="p-separator is-shallow">
-        <div class="row">
-          <div class="col-6">
-            <div class="p-accordion">
-              <ul class="p-accordion__list" id="subscriptions-list">
-                {% for category in categories %}
-                  <li class="p-accordion__group">
-                    <div role="heading" aria-level="1" class="p-accordion__heading">
-                      <button type="button" class="p-accordion__tab" id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false"><strong>{{ category }}</strong></button>
-                    </div>
-                    <section class="p-accordion__panel has-tick-elements" id="tab{{ loop.index }}-section" aria-controls="tab{{ loop.index }}-section" aria-hidden="true">
-                      <div class="row">
-                        {% for tag in categories[category] %}
-                          <div class="col-3">
-                            <label class="p-checkbox">
-                              <input type="checkbox" class="p-checkbox__input" name="{{ catagory }}" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if interests is not none and tag in interests %}checked{% endif %}>
-                              <span class="p-checkbox__label" id="{{ tag }}">{{ tag }}</span>
-                            </label>
-                          </div>
-                        {% endfor %}
+        <div class="p-accordion">
+          <ul class="p-accordion__list" id="subscriptions-list">
+            {% for category in categories %}
+              <li class="p-accordion__group">
+                <div role="heading" aria-level="1" class="p-accordion__heading">
+                  <button type="button" class="p-accordion__tab" id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false"><strong>{{ category }}</strong></button>
+                </div>
+                <section class="p-accordion__panel has-tick-elements" id="tab{{ loop.index }}-section" aria-controls="tab{{ loop.index }}-section" aria-hidden="true">
+                  <div class="row">
+                    {% for tag in categories[category] %}
+                      <div class="col-4">
+                        <label class="p-checkbox">
+                          <input type="checkbox" class="p-checkbox__input" name="tags" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if interests is not none and tag in interests %}checked{% endif %}>
+                          <span class="p-checkbox__label" id="{{ tag }}">{{ tag }}</span>
+                        </label>
                       </div>
-                    </section>
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="u-hide" aria-hidden="true">
-          <h3>Your subscriptions</h3>
-            <label for="Subscriptions_list">What would you like to talk to us about?</label>
-            <textarea id="Subscriptions_list" name="Subscriptions_list" rows="5" maxlength="2000"></textarea>
+                    {% endfor %}
+                  </div>
+                </section>
+              </li>
+            {% endfor %}
+          </ul>
         </div>
 
         <input id="return-url" type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="" />
@@ -59,7 +50,7 @@
       <p><button class="p-button u-float-left" aria-controls="modal">Unsubscribe</button></p>
     </div>
     <div class="col-6 col-medium-3 col-small-2">
-      <p><button id="update-preferences" form="subscription-centre" class="p-button--positive u-float-right">Update Preferences</button></p>
+      <p><button id="update-preferences" form="subscription-centre" class="p-button--positive u-float-right" disabled>Update Preferences</button></p>
     </div>
   </div>
 </section>
@@ -73,7 +64,7 @@
     <p id="modal-description">Are you sure you want to unsubscribe from all topics?</p>
     <footer class="p-modal__footer">
       <button class="u-no-margin--bottom" aria-controls="modal">Cancel</button>
-      <button id="unsubscribe" class="p-button--negative u-no-margin--bottom">Unsubscribe</button>
+      <button id="unsubscribe-btn" class="p-button--negative u-no-margin--bottom">Unsubscribe</button>
     </footer>
     </div>
   </section>
@@ -87,44 +78,44 @@
 </script>
 <script>
   const generalUdatesOptin = document.querySelector("#general-updates");
-  const tagListTextarea = document.querySelector("#Subscriptions_list");
   const form = document.querySelector("#subscription-centre");
   const returnUrl = document.querySelector("#return-url");
-  
-  const createTagsString = () => {
-    const tagsWrapper = document.querySelector("#subscriptions-list");
-    const tagsInputs = tagsWrapper.querySelectorAll("input[type=checkbox]")
-
-    const tagsString = [].reduce.call(tagsInputs, (acc, ele) => {
-      return ele.checked ? ele.value + ',' + acc : acc;
-    }, '').replace(/\,$/, '')
-
-    tagListTextarea.value = tagsString;
-  }
+  let hasRun = false;
 
   const clearFields = () => {
     generalUdatesOptin.checked = false;
-    tagListTextarea.value = "";
-  }
+  };
 
   const handleUpdatePreferencesBtn = async (e) => {
     e.preventDefault();
-    await createTagsString();
     returnUrl.value = "#success";
     form.submit();
-  }
+  };
 
   const handleUnsubscribeBtn = async (e) => {
     e.preventDefault();
     await clearFields();
     returnUrl.value = "#unsubscribe";
     form.submit();
-  }
+  };
+
+  const enableUpdatePreferencesBtn = () => {
+    const updatePreferencesBtn = document.querySelector("#update-preferences");
+    updatePreferencesBtn.disabled = false;
+  };
 
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#update-preferences").addEventListener("click", handleUpdatePreferencesBtn);
-    document.querySelector("#unsubscribe").addEventListener("click", handleUnsubscribeBtn);
-  })
+
+    document.querySelector("#unsubscribe-btn").addEventListener("click", handleUnsubscribeBtn);
+
+    form.addEventListener('input', () => {
+      if (hasRun) return;
+      hasRun = true;
+      enableUpdatePreferencesBtn();
+    });
+  });
+
 </script>
 
 {% endblock content%}
