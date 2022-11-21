@@ -539,7 +539,7 @@ app.add_url_rule(
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
 )
 app.add_url_rule(
-    "/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>",
+    "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
     view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
