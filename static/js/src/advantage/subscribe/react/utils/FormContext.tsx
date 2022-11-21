@@ -116,9 +116,7 @@ export const FormProvider = ({
     }
 
     if (version === LTSVersions.xenial) {
-      if (support !== Support.none) {
-        setSupport(Support.infra);
-      }
+      setSupport(Support.none);
     }
   }, [version, support]);
 
