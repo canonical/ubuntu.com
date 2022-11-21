@@ -44,11 +44,13 @@ class TestGetAccounts(unittest.TestCase):
             Account(
                 id="a123AbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                 name="Free",
+                type="personal",
                 role="admin",
             ),
             Account(
                 id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
                 name="Account Name",
+                type="paid",
                 role="admin",
             ),
         ]
@@ -335,6 +337,7 @@ class TestGetPurchaseAccount(unittest.TestCase):
         expectation = Account(
             id="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpP",
             name="Account Name",
+            type="paid",
             role="admin",
         )
 

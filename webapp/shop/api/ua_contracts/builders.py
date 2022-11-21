@@ -53,10 +53,11 @@ def build_free_item_groups(user_summary: List) -> List:
             if contract.items is None:
                 continue
 
-            if contract.product_id == "free":
+            account: Account = user_details.get("account")
+            if account.type == "personal" and contract.product_id == "free":
                 free_item_groups.append(
                     {
-                        "account": user_details.get("account"),
+                        "account": account,
                         "contract": contract,
                         "items": contract.items,
                         "listing": None,
