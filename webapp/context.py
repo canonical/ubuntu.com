@@ -5,6 +5,7 @@ import calendar
 import logging
 import json
 from urllib.parse import parse_qs, urlencode
+from geolite2 import geolite2
 
 # Packages
 import flask
@@ -17,7 +18,7 @@ from canonicalwebteam.http import CachedSession
 logger = logging.getLogger(__name__)
 
 api_session = CachedSession(fallback_cache_duration=3600)
-
+ip_reader = geolite2.reader()
 
 # Read navigation.yaml
 with open("navigation.yaml") as navigation_file:
@@ -137,3 +138,13 @@ def get_json_feed(url, offset=0, limit=None):
         return False
 
     return content[offset:end]
+
+
+def get_user_country_by_ip():
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+    ip_location = ip_reader.get(client_ip)
+    if not ip_location:
+        return None
+    return ip_location["country"]["iso_code"]

@@ -41,6 +41,7 @@ from webapp.context import (
     months_list,
     get_navigation,
     releases,
+    get_user_country_by_ip,
 )
 
 from webapp.shop.flaskparser import UAContractsValidationError
@@ -303,6 +304,7 @@ def context():
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
         "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
+        "current_user_country": get_user_country_by_ip(),
     }
 
 
