@@ -15,17 +15,6 @@ beforeAll(() => {
   global.window.productList = productListFixture as ProductListings;
 });
 
-test("Full support is disabled if Xenial is selected", () => {
-  render(
-    <FormProvider initialVersion={LTSVersions.xenial}>
-      <Support />
-    </FormProvider>
-  );
-
-  expect(screen.getByTestId("infra-support")).not.toHaveClass("u-disable");
-  expect(screen.getByTestId("full-support")).toHaveClass("u-disable");
-});
-
 test("Full support is disabled if Infra is selected", () => {
   render(
     <FormProvider initialFeature={Features.infra}>
@@ -51,6 +40,17 @@ test("Infra support is disabled if desktop is selected", () => {
 test("Infra and full support are disabled if Trusty is selected", () => {
   render(
     <FormProvider initialVersion={LTSVersions.trusty}>
+      <Support />
+    </FormProvider>
+  );
+
+  expect(screen.getByTestId("infra-support")).toHaveClass("u-disable");
+  expect(screen.getByTestId("full-support")).toHaveClass("u-disable");
+});
+
+test("Infra and full support are disabled if Xenial is selected", () => {
+  render(
+    <FormProvider initialVersion={LTSVersions.xenial}>
       <Support />
     </FormProvider>
   );
