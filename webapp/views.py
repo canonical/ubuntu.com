@@ -966,9 +966,15 @@ def thank_you():
 
 def subscription_centre():
     sfdcLeadId = flask.request.args.get("id")
+    return_url = flask.request.form.get("returnURL")
 
     if flask.request.method == "POST":
         subscription_centre_submit(sfdcLeadId)
+        if return_url == "#unsubscribe":
+            return flask.redirect(f"/{return_url}")
+        else:
+            return flask.redirect(f"{flask.request.path}?id={sfdcLeadId}{return_url}")
+
 
     with open("subscriptions.yaml") as subscriptions:
         subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
@@ -980,7 +986,7 @@ def subscription_centre():
             {
                 "filterType": "sfdcLeadId",
                 "filterValues": sfdcLeadId,
-                "fields": "prototype_interests,canonicalUpdatesOptIn,email",
+                "fields": "prototype_interests,canonicalUpdatesOptIn",
             },
         )
         data = response.json()
