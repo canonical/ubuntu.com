@@ -1382,8 +1382,15 @@
           var takeovers = JSON.parse(xhr.responseText);
 
           // Get the selected takeovers based on the primary language
+          var currentUserCountry = "{{ current_user_country }}"
           var selectedTakeovers = takeovers.filter(function(item) {
-            return item.lang === primaryParentLanguage || item.lang === ""
+            if (item.target_country && item.target_country == currentUserCountry) {
+              return true
+            } else if (item.lang === primaryParentLanguage || item.lang === "") {
+              return true
+            } else {
+              return false
+            }
           })
 
           if (selectedTakeovers && selectedTakeovers.length > 0) {
