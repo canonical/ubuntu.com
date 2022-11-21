@@ -65,9 +65,10 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
   const handleOnAfterPurchaseSuccess = () => {
     if (window.isGuest && !window.isLoggedIn) {
+      const email = userInfo?.customerInfo?.email || values.email;
       location.href = `${
         location.pathname
-      }/thank-you?email=${encodeURIComponent(userInfo?.customerInfo?.email)}`;
+      }/thank-you?email=${encodeURIComponent(email)}`;
     } else {
       location.pathname = "/pro/dashboard";
     }
