@@ -548,12 +548,14 @@ def cred_your_exams(
                     [
                         {
                             "text": "Reschedule",
-                            "href": f"/credentials/schedule?uuid={ r['uuid'] }",
+                            "href": "/credentials/schedule"
+                            + f"?uuid={ r['uuid'] }",
                             "button_class": "p-button",
                         },
                         {
                             "text": "Cancel",
-                            "href": f"/credentials/cancel-exam?uuid={ r['uuid'] }",
+                            "href": "/credentials/cancel-exam"
+                            + f"?uuid={ r['uuid'] }",
                             "button_class": "p-button--negative",
                         },
                     ]
