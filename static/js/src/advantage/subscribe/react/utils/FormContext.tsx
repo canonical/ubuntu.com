@@ -111,10 +111,11 @@ export const FormProvider = ({
   }, [support, sla]);
 
   useEffect(() => {
-    if (version === LTSVersions.trusty || version === LTSVersions.xenial) {
-      if (support !== Support.none) {
-        setSupport(Support.infra);
-      }
+    if (version === LTSVersions.trusty) {
+      setSupport(Support.none);
+    }
+    if (version === LTSVersions.xenial) {
+      setSupport(Support.none);
     }
   }, [version, support]);
 
