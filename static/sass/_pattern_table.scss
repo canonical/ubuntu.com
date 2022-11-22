@@ -50,36 +50,9 @@
   }
 
   .p-table--pricing-pro-maas {
-    :nth-child(1){
-      @media (min-width: $breakpoint-medium) {
-        
-      }
+    :nth-child(1) {
       @media (min-width: $breakpoint-large) {
         width: calc(50% + 2.5rem);
-      }
-    }
-    :nth-child(1){
-      @media (min-width: $breakpoint-medium) {
-      
-      }
-      @media (min-width: $breakpoint-large) {
-      
-      }
-    }
-    :nth-child(1){
-      @media (min-width: $breakpoint-medium) {
-      
-      }
-      @media (min-width: $breakpoint-large) {
-      
-      }
-    }
-    :nth-child(1){
-      @media (min-width: $breakpoint-medium) {
-      
-      }
-      @media (min-width: $breakpoint-large) {
-      
       }
     }
   }
@@ -98,8 +71,8 @@
     }
 
     &.is-list {
-      table-layout: auto; 
-      
+      table-layout: auto;
+
       td:first-child {
         text-align: right;
         width: 3ch;
