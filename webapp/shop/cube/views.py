@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from time import tzname
 import pytz
 import os
 import flask
@@ -420,7 +419,7 @@ def cred_schedule(
 
     if flask.request.method == "POST":
         data = flask.request.form
-        print("data: ", data)
+        sso_user = user_info(flask.session)
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
         scheduled_time = f"{data['date']}T{data['time']}"
@@ -434,7 +433,6 @@ def cred_schedule(
             response = trueability_api.patch_assessment_reservation(
                 starts_at.isoformat(), timezone, data["uuid"]
             )
-            print(json.dumps(response, indent=4))
         else:
             response = trueability_api.post_assessment_reservation(
                 ability_screen_id,
@@ -444,7 +442,6 @@ def cred_schedule(
                 last_name,
                 timezone,
             )
-            print(json.dumps(response, indent=4))
 
         if response and "error" in response:
             error = response["message"]
@@ -452,11 +449,12 @@ def cred_schedule(
                 "/credentials/schedule.html", error=error
             )
         else:
+            uuid = response.get("assessment_reservation", {}).get("uuid", "")
             exam = {
                 "name": "Linux Essentials",
                 "date": starts_at.strftime("%d %b %Y"),
                 "time": starts_at.strftime("%I:%M %p %Z"),
-                "uuid": data["uuid"] if "uuid" in data else "",
+                "uuid": uuid,
             }
             return flask.render_template(
                 "/credentials/schedule-confirm.html", exam=exam
@@ -518,85 +516,80 @@ def cred_your_exams(
     **kwargs,
 ):
     exams = []
-    tb = ""
-    try:
-        ability_screen_id = 4190
-        user_email = user_info(flask.session)["email"]
-        response = trueability_api.get_user_assessment_reservations(
-            ability_screen_id, user_email
+    ability_screen_id = 4190
+    response = trueability_api.get_assessment_reservations(ability_screen_id)
+    user_email = user_info(flask.session)["email"]
+    for r in response["assessment_reservations"]:
+        if r["user"]["email"] != user_email:
+            continue
+
+        name = r["ability_screen"]["display_name"]
+        timezone = r["user"]["time_zone"]
+        tz_info = pytz.timezone(timezone)
+        starts_at = (
+            datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+            .replace(tzinfo=pytz.timezone("UTC"))
+            .astimezone(tz_info)
         )
-        for r in response:
+        assessment_id = r.get("assessment") and r["assessment"]["id"]
 
-            name = r["ability_screen"]["display_name"]
-            timezone = r["user"]["time_zone"]
-            tz_info = pytz.timezone(timezone)
-            starts_at = (
-                datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-                .replace(tzinfo=pytz.timezone("UTC"))
-                .astimezone(tz_info)
-            )
-            assessment_id = r.get("assessment") and r["assessment"]["id"]
+        actions = []
+        utc = pytz.timezone("UTC")
+        now = utc.localize(datetime.utcnow())
+        end = starts_at + timedelta(hours=6)
 
-            actions = []
-            utc = pytz.timezone("UTC")
-            now = utc.localize(datetime.utcnow())
-            end = starts_at + timedelta(hours=6)
-
-            if assessment_id and now > starts_at and now < end:
-                actions.extend(
-                    [
-                        {
-                            "text": "Take exam",
-                            "href": f"/credentials/exam?id={ assessment_id }",
-                            "button_class": "p-button--positive",
-                        }
-                    ]
-                )
-
-            if r["state"] == "scheduled":
-                actions.extend(
-                    [
-                        {
-                            "text": "Reschedule",
-                            "href": "/credentials/schedule"
-                            + f"?uuid={ r['uuid'] }",
-                            "button_class": "p-button",
-                        },
-                        {
-                            "text": "Cancel",
-                            "href": "/credentials/cancel-exam"
-                            + f"?uuid={ r['uuid'] }",
-                            "button_class": "p-button--negative",
-                        },
-                    ]
-                )
-            exams.append(
-                {
-                    "name": name,
-                    "date": starts_at.strftime("%d %b %Y"),
-                    "time": starts_at.strftime("%I:%M %p %Z"),
-                    "timezone": timezone,
-                    "state": r["state"],
-                    "uuid": r["uuid"],
-                    "actions": actions,
-                }
+        if assessment_id and now > starts_at and now < end:
+            actions.extend(
+                [
+                    {
+                        "text": "Take exam",
+                        "href": f"/credentials/exam?id={ assessment_id }",
+                        "button_class": "p-button--positive",
+                    }
+                ]
             )
 
-    except Exception as e:
-        import traceback
+        if r["state"] == "scheduled":
+            actions.extend(
+                [
+                    {
+                        "text": "Reschedule",
+                        "href": "/credentials/schedule"
+                        + f"?uuid={ r['uuid'] }",
+                        "button_class": "p-button",
+                    },
+                    {
+                        "text": "Cancel",
+                        "href": "/credentials/cancel-exam"
+                        + f"?uuid={ r['uuid'] }",
+                        "button_class": "p-button--negative",
+                    },
+                ]
+            )
+        exams.append(
+            {
+                "name": name,
+                "date": starts_at.strftime("%d %b %Y"),
+                "time": starts_at.strftime("%I:%M %p %Z"),
+                "timezone": timezone,
+                "state": r["state"],
+                "uuid": r["uuid"],
+                "actions": actions,
+            }
+        )
 
-        tb = traceback.format_exc()
-
-    url = os.getenv("TRUEABILITY_URL", "")
-    key_len = len(os.getenv("TRUEABILITY_API_KEY", ""))
-
-    return flask.render_template(
-        "credentials/your-exams.html",
-        exams=exams,
-        #  url=url,
-        #  key_len=key_len,
-        tb=tb,
+    response = flask.make_response(
+        flask.render_template(
+            "credentials/your-exams.html",
+            exams=exams,
+        )
     )
+
+    # Do not cache this view
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+
+    return response
 
 
 @shop_decorator(area="cube", permission="user", response="html")
@@ -611,7 +604,18 @@ def cred_cancel_exam(
     **kwargs,
 ):
     uuid = flask.request.args.get("uuid")
-    response = trueability_api.delete_assessment_reservation(uuid)
+    reservation = trueability_api.get_assessment_reservation(uuid)
+
+    if reservation.get("error"):
+        return flask.abort(404)
+
+    reservation_email = reservation["assessment_reservation"]["user"]["email"]
+    sso_user = user_info(flask.session)["email"]
+
+    if reservation_email != sso_user:
+        return flask.abort(403)
+
+    trueability_api.delete_assessment_reservation(uuid)
     return flask.redirect("/credentials/your-exams")
 
 
