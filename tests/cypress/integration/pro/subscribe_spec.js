@@ -253,6 +253,7 @@ context("/pro/subscribe logged in purchase", () => {
     cy.intercept("GET", "/account/purchases_v2/*").as("pendingPurchase");
     cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
     cy.wait("@purchase").then((interception) => {
+      cy.log(interception.response)
       expect(interception.response.statusCode).to.equal(200)
     });
     cy.wait("@pendingPurchase")
