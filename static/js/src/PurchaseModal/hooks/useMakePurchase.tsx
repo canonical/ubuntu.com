@@ -107,7 +107,7 @@ const useMakePurchase = () => {
           name: name,
           address: addressObject,
           tax_id: {
-            type: "",
+            type: country === "ZA" ? "za_vat" : "eu_vat",
             value: VATNumber,
           },
         },
@@ -135,7 +135,6 @@ const useMakePurchase = () => {
       if (action === "offer") {
         payload = { ...payload, offer_id: product.longId };
       }
-
       const response = await fetch(`/pro/purchase${window.location.search}`, {
         method: "POST",
         cache: "no-store",
