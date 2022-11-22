@@ -4,7 +4,10 @@ import json
 
 from urllib.parse import quote_plus
 from webapp.shop.decorators import shop_decorator
-from webapp.shop.api.ua_contracts.api import UAContractsUserHasNoAccount
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsUserHasNoAccount,
+    UAContractsAPIErrorView,
+)
 from webapp.login import user_info
 
 
@@ -433,12 +436,12 @@ def cred_syllabus_data(**kawrgs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
-def cube_shop(**kwargs):
+def cred_shop(**kwargs):
     return flask.render_template("credentials/shop/index.html")
 
 
 @shop_decorator(area="cube", permission="user", response="html")
-def cube_redeem_code(ua_contracts_api, **kwargs):
+def cred_redeem_code(ua_contracts_api, **kwargs):
     activation_key = kwargs.get("code")
     account = ua_contracts_api.get_purchase_account("canonical-cube")
     account_id = account["id"]
@@ -452,12 +455,14 @@ def cube_redeem_code(ua_contracts_api, **kwargs):
             }
         )
         return flask.render_template(
-            "/credentials/redeem.html", activation_response=activation_response
+            "/credentials/redeem.html",
+            activation_response=activation_response,
         )
-    except:
+    except UAContractsAPIErrorView as e:
+        activation_response = json.loads(e.response.text)
         return flask.render_template(
             "/credentials/redeem.html",
-            activation_response={"error": "Activation unsuccessful"},
+            activation_response=activation_response,
         )
 
 

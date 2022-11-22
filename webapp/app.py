@@ -49,9 +49,9 @@ from webapp.shop.cube.views import (
     cred_syllabus_data,
     cred_home,
     cube_microcerts,
-    cube_shop,
+    cred_shop,
     cube_study_labs_button,
-    cube_redeem_code,
+    cred_redeem_code,
     get_microcerts,
     post_microcerts_purchase,
     get_activation_keys,
@@ -907,8 +907,8 @@ core_als_autils_docs.init_app(app)
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
-app.add_url_rule("/credentials/shop/<p>", view_func=cube_shop)
-app.add_url_rule("/credentials/redeem/<code>", view_func=cube_redeem_code)
+app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
+app.add_url_rule("/credentials/redeem/<code>", view_func=cred_redeem_code)
 app.add_url_rule(
     "/credentials/keys/list/<contract_id>",
     view_func=get_activation_keys,
