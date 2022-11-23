@@ -908,7 +908,11 @@ app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
-app.add_url_rule("/credentials/redeem/<code>", view_func=cred_redeem_code)
+app.add_url_rule(
+    "/credentials/redeem/<code>",
+    view_func=cred_redeem_code,
+    methods=["GET", "POST"],
+)
 app.add_url_rule(
     "/credentials/keys/list/<contract_id>",
     view_func=get_activation_keys,
