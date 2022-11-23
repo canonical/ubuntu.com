@@ -745,6 +745,15 @@ body {
   z-index: 10;
 }
 
+#updated {
+  display: none;
+}
+
+#updated:target {
+  display: block;
+  z-index: 10;
+}
+
 #unsubscribe {
   display: none;
   position: absolute;
@@ -899,6 +908,8 @@ a:hover {
 }
 .u-table-border-bottom {
   border-bottom: 1px solid $color-mid-light;
+}
+
 // Style for a shallow p-separator
 hr.p-separator.is-shallow {
   margin-bottom: 2rem;
