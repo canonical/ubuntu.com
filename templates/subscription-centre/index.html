@@ -3,7 +3,16 @@
 {% block title %}Subscription Centre{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped" style="padding-top:192px">
+<section class="p-strip--suru-topped">
+  <div id="updated" class="p-strip u-no-padding--top">
+    <div class="u-fixed-width">
+      <div class="p-notification--positive u-no-margin--bottom">
+        <div class="p-notification__content">
+          <p class="p-notification__message">Your preferences have been successfully updated. <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-4">
       <h1 class="p-heading--2">Subscription centre</h1>
@@ -20,7 +29,7 @@
           <ul class="p-accordion__list" id="subscriptions-list">
             {% for category in categories %}
               <li class="p-accordion__group">
-                <div role="heading" aria-level="1" class="p-accordion__heading">
+                <div role="heading" aria-level="2" class="p-accordion__heading">
                   <button type="button" class="p-accordion__tab" id="tab{{ loop.index }}" aria-controls="tab{{ loop.index }}-section" aria-expanded="false"><strong>{{ category }}</strong></button>
                 </div>
                 <section class="p-accordion__panel has-tick-elements" id="tab{{ loop.index }}-section" aria-controls="tab{{ loop.index }}-section" aria-hidden="true">
@@ -88,7 +97,7 @@
 
   const handleUpdatePreferencesBtn = async (e) => {
     e.preventDefault();
-    returnUrl.value = "#success";
+    returnUrl.value = "#updated";
     form.submit();
   };
 
