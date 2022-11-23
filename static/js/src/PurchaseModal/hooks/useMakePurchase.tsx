@@ -116,8 +116,7 @@ const useMakePurchase = () => {
         previous_purchase_id: window.previousPurchaseIds?.[product.period],
         captcha_value: captchaValue,
       };
-
-      if (action === "purchase") {
+      if (action === "purchase" || action === "trial") {
         payload = {
           ...payload,
           products: [
