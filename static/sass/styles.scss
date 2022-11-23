@@ -745,6 +745,15 @@ body {
   z-index: 10;
 }
 
+#updated {
+  display: none;
+}
+
+#updated:target {
+  display: block;
+  z-index: 10;
+}
+
 #unsubscribe {
   display: none;
   position: absolute;
