@@ -16,9 +16,10 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
+  isCardValid: boolean;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({ setError, quantity, product, action, isCardValid }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { data: userInfo } = useStripeCustomerInfo();
@@ -31,7 +32,8 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     !values.captchaValue ||
     !values.TermsAndConditions ||
     !values.Description ||
-    isLoading;
+    isLoading ||
+    isCardValid;
 
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 

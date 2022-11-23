@@ -2,22 +2,15 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { add, format } from "date-fns";
-import { preview } from "../../utils/test/Mocks";
 
 import FreeTrial from "./FreeTrial";
 import { formatter } from "advantage/subscribe/react/utils/utils";
 
 const total = 123456;
 
-const previewData = { ...preview, total: total };
-
 it("displays a message explaining the trial if free trial is selected", () => {
   render(
-    <FreeTrial
-      preview={previewData}
-      isUsingFreeTrial={true}
-      setIsUsingFreeTrial={() => {}}
-    />
+    <FreeTrial />
   );
   screen.getByText("Your free trial ends:");
   screen.getByText(
@@ -32,11 +25,7 @@ it("displays a message explaining the trial if free trial is selected", () => {
 
 it("does not display the message if pay now is selected", () => {
   render(
-    <FreeTrial
-      preview={previewData}
-      isUsingFreeTrial={false}
-      setIsUsingFreeTrial={() => {}}
-    />
+    <FreeTrial />
   );
   expect(screen.queryByText("Your free trial ends:")).not.toBeInTheDocument();
 });
@@ -44,11 +33,7 @@ it("does not display the message if pay now is selected", () => {
 it("calls the setIsUsingFreeTrial function when the radio is clicked", () => {
   const setIsUsingFreeTrial = jest.fn();
   render(
-    <FreeTrial
-      preview={previewData}
-      isUsingFreeTrial={false}
-      setIsUsingFreeTrial={setIsUsingFreeTrial}
-    />
+    <FreeTrial />
   );
   userEvent.click(screen.getByLabelText("Use free trial month"));
   expect(setIsUsingFreeTrial).toHaveBeenCalledWith(true);
