@@ -968,6 +968,9 @@ def subscription_centre():
     sfdcLeadId = flask.request.args.get("id")
     return_url = flask.request.form.get("returnURL")
 
+    if sfdcLeadId is None:
+        return flask.redirect("/blog")
+
     if flask.request.method == "POST":
         if return_url == "#unsubscribe":
             subscription_centre_submit(sfdcLeadId, True)
