@@ -145,6 +145,27 @@ const BuyButton = ({
               <a href="/account/payment-methods">payment methods</a> to retry.
             </>
           );
+        } else if (
+          error instanceof Error &&
+          error.message.includes("invalid VAT")
+        ) {
+          setError(
+            "That VAT number is invalid. Check the number and try again."
+          );
+        } else if (
+          error instanceof Error &&
+          error.message.includes("validate your VAT")
+        ) {
+          setError(
+            <>
+              VAT number could not be validated at this time, please try again
+              later or contact
+              <a href="mailto:customersuccess@canonical.com">
+                customer success
+              </a>{" "}
+              if the problem persists.
+            </>
+          );
         } else {
           Sentry.captureException(error);
           setError(
