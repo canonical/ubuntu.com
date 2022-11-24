@@ -879,3 +879,23 @@ a:hover {
   text-decoration: underline 1px;
   text-underline-offset: 0.075em;
 }
+
+// pricing/pro custom styles
+.u-overflow-pricing-pro-table {
+  td {
+    text-overflow: initial;
+  }
+}
+.u-pro-support {
+  display: flex;
+  justify-content: space-between;
+  .u-pro-support__logos {
+    flex: 0 0 10%;
+  }
+}
+.u-table-border-top {
+  border-top: 1px solid $color-mid-light;
+}
+.u-table-border-bottom {
+  border-bottom: 1px solid $color-mid-light;
+}

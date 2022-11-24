@@ -30,7 +30,11 @@ const Support = () => {
     );
   };
 
-  const isInfraOnlyDisabled = productType === ProductTypes.desktop;
+  const isInfraOnlyDisabled =
+    productType === ProductTypes.desktop ||
+    version === LTSVersions.trusty ||
+    version === LTSVersions.xenial;
+
   const isFullSupportDisabled =
     feature === Features.infra ||
     version === LTSVersions.trusty ||
@@ -110,6 +114,7 @@ const Support = () => {
               "is-selected": support === SupportEnum.infra,
               "u-disable": isInfraOnlyDisabled,
             })}
+            data-testid="infra-support"
           >
             <label className="p-radio u-align-text--center">
               <input
@@ -153,6 +158,7 @@ const Support = () => {
               "is-selected": support === SupportEnum.full,
               "u-disable": isFullSupportDisabled,
             })}
+            data-testid="full-support"
           >
             <label className="p-radio u-align-text--center">
               <input

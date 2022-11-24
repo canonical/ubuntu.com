@@ -48,4 +48,35 @@
       }
     }
   }
+
+  .p-table--pricing-pro-maas {
+    :nth-child(1) {
+      @media (min-width: $breakpoint-large) {
+        width: calc(50% + 2.5rem);
+      }
+    }
+  }
+
+  .p-table {
+    &.is-not-indented {
+      td:first-child,
+      th:first-child {
+        padding-left: 0;
+      }
+
+      td:last-child,
+      th:first-child {
+        padding-right: 0;
+      }
+    }
+
+    &.is-list {
+      table-layout: auto;
+
+      td:first-child {
+        text-align: right;
+        width: 3ch;
+      }
+    }
+  }
 }
