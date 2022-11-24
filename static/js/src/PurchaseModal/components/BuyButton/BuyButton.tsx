@@ -19,7 +19,13 @@ type Props = {
   isCardValid: boolean;
 };
 
-const BuyButton = ({ setError, quantity, product, action, isCardValid }: Props) => {
+const BuyButton = ({
+  setError,
+  quantity,
+  product,
+  action,
+  isCardValid,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { data: userInfo } = useStripeCustomerInfo();
