@@ -890,9 +890,11 @@ a:hover {
 .u-table-border-bottom {
   border-bottom: 1px solid $color-mid-light;
 }
-.u-overflow-table {
-  min-width: 720px;
-  @media only screen and (min-width: 720px) {
+.u-esm-overflow-table {
+  @media only screen and (max-width: $breakpoint-medium) {
     overflow-x: scroll;
+    .p-table {
+      min-width: $breakpoint-medium;
+    }
   }
 }
