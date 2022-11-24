@@ -39,7 +39,7 @@ const BuyButton = ({
     !values.TermsAndConditions ||
     !values.Description ||
     isLoading ||
-    isCardValid;
+    !isCardValid;
 
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 
