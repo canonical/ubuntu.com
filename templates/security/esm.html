@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<section class="p-strip--image is-deep" style="background-image:url('https://assets.ubuntu.com/v1/18717572-05_suru2_light_glow_8K_edited.png'); background-position: bottom right;">
+<section class="p-strip--pro-banner is-deep">
   <div class="u-fixed-width p-strip is-shallow u-no-padding--top">
       <h1 class="p-heading--2 u-no-margin--bottom"><strong>Extended Security Maintenance (ESM)</strong></h1>
       <h2 class="u-no-padding--top u-text--muted">Extra security patching for Ubuntu LTS, now included in Ubuntu Pro</h2>
@@ -331,10 +331,10 @@
         <table class="p-table">
           <thead>
             <tr>
-              <th width="50%">Security patching<br /> <span style="text-transform: initial; color: #666666;">(Coverage for critical, high and selected medium CVEs)</span></th>
-              <th width="33.33%" class="u-align--left">Ubuntu LTS</th>
-              <th width="33.33%" class="u-align--left">Ubuntu Pro (Infra-only)<br /> <span style="text-transform: initial; color: #666666;">(Previously known as ”Ubuntu Advantage for Infrastructure”)</span></th>
-              <th width="33.33%" class="u-align--left">Ubuntu Pro</th>
+              <th width="51%">Security patching<br /> <span style="text-transform: initial; color: #666666;">(Coverage for critical, high and selected medium CVEs)</span></th>
+              <th width="15%" class="u-align--left">Ubuntu LTS</th>
+              <th width="24%" class="u-align--left">Ubuntu Pro (Infra-only)<br /> <span style="text-transform: initial; color: #666666;">(Previously known as ”Ubuntu Advantage for Infrastructure”)</span></th>
+              <th width="10%" class="u-align--left">Ubuntu Pro</th>
             </tr>
           </thead>
           <tbody>
@@ -356,36 +356,43 @@
     </div>
 
     <div class="u-fixed-width">
-      <table class="p-table" style="border-spacing:0;">
+      <table aria-hidden="true" class="p-table--esm-chart">
+        <thead class="u-hidden">
+          <th width="6%"></th>
+          <th colspan="2" width="25%">&nbsp;</th>
+          <th colspan="10" width="65%">&nbsp;</th>
+        </thead>
         <tbody>
-          <tr>
-            <td colspan="2" style="border-top: 1px solid #E5E5E5;" width="25.75%"><strong>2,300</strong> Ubuntu Main packages, plus<br /><strong>23,000</strong> Ubuntu Universe packages</td>
-            <td colspan="10" style="background-color:black; color:#ffffff; height: 277px">Ubuntu Pro</td>
+          <tr height="254px">
+            <td class="u-align--right u-table-border--top u-no-padding-right" style="padding-top: 0"><strong>2,300</strong><br /><strong>23,000</strong></td>
+            <td colspan="2" class="u-table-border--top" style="padding-top: 0" width="25.75%"> Ubuntu Main packages, plus<br /> Ubuntu Universe packages</td>
+            <td colspan="10" style="background-color:#000; color:#ffffff;padding-top: 0"><strong>Ubuntu Pro</strong></td>
           </tr>
-          <tr>
-            <td colspan="2"><strong>2,300</strong> Ubuntu Main  packages</td>
-            <td colspan="5" style="background-color:#E95420; color:#ffffff; border-top: 1px solid #E95420;">Ubuntu LTS</td>
-            <td colspan="5" style="background-color:black; color:#ffffff; border-top:1px solid #000;">&nbsp;</td>
+          <tr style="border-top: none; line-height: 8px;">
+            <td class="u-align--right u-table-border--top u-no-padding-right"><strong>2,300</strong></td>
+            <td colspan="2" class="u-table-border--top" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"> Ubuntu Main packages</td>
+            <td colspan="5" style="background-color:#E95420; color:#ffffff; border-top: 1px solid #E95420;"><strong>Ubuntu LTS</strong></td>
+            <td colspan="5" style="background-color:#000; color:#ffffff; border-top:1px solid #000;">&nbsp;</td>
           </tr>
           <tr class="u-hide--small u-hide--medium" style="border-top: 0;">
-            <td width="50%">&nbsp;</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">GA</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">1 year</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">2 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">3 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">4 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">5 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">6 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">7 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">8 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">9 years</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">10 years</td>
+            <td colspan="2" width="50%">&nbsp;</td>
+            <td class="u-align--right u-table-border--right">GA</td>
+            <td class="u-align--right u-table-border--right">1 year</td>
+            <td class="u-align--right u-table-border--right">2 years</td>
+            <td class="u-align--right u-table-border--right">3 years</td>
+            <td class="u-align--right u-table-border--right">4 years</td>
+            <td class="u-align--right u-table-border--right">5 years</td>
+            <td class="u-align--right u-table-border--right">6 years</td>
+            <td class="u-align--right u-table-border--right">7 years</td>
+            <td class="u-align--right u-table-border--right">8 years</td>
+            <td class="u-align--right u-table-border--right">9 years</td>
+            <td class="u-align--right u-table-border--right" style="padding-left: 0.3rem">10 years</td>
           </tr>
           <tr class="u-hide--large" style="border-top: 0;">
-            <td width="50%">&nbsp;</td>
-            <td class="u-align--right" style="border-right: 1px solid #E5E5E5;">GA</td>
-            <td colspan="5" class="u-align--right" style="border-right: 1px solid #E5E5E5;">5 years</td>
-            <td colspan="5" class="u-align--right" style="border-right: 1px solid #E5E5E5;">10 years</td>
+            <td colspan="2" width="50%">&nbsp;</td>
+            <td class="u-align--right u-table-border--right">GA</td>
+            <td colspan="5" class="u-align--right u-table-border--right">5 years</td>
+            <td colspan="5" class="u-align--right u-table-border--right">10 years</td>
           </tr>
         </tbody>
       </table>
@@ -550,6 +557,11 @@
       </div>
     </div>
   </section>
+
+
+  <!-- Set default Marketo information for contact form below-->
+  <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/esm" data-form-id="3764" data-lp-id="" data-return-url="https://ubuntu.com/security/thank-you?product=esm" data-lp-url="">
+  </div>
 
   {% endblock content %}
   {% block footer_extra %}{{ marketo }}{% endblock footer_extra %}
