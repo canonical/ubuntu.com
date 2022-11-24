@@ -1,5 +1,5 @@
 export async function listAllKeys(contractId) {
-  let response = await fetch(`/credentials/keys/list/${contractId}`, {
+  let response = await fetch(`/credentials/keys/list`, {
     method: "GET",
     headers: {
       Accept: "application/json",

@@ -914,7 +914,7 @@ app.add_url_rule(
     methods=["GET", "POST"],
 )
 app.add_url_rule(
-    "/credentials/keys/list/<contract_id>",
+    "/credentials/keys/list",
     view_func=get_activation_keys,
     methods=["GET"],
 )

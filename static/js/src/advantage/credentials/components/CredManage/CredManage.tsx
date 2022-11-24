@@ -24,7 +24,7 @@ const CredManage = () => {
     { children: string; onClick: () => void }[]
   >([]);
   const { isLoading, data } = useQuery(["ActivationKeys"], async () => {
-    return listAllKeys("cANU9TzI1bfZ2nnSSSnPdlp30TwdVkLse2vzi1TzKPBc");
+    return listAllKeys();
   });
 
   const [filterData, changeFilterData] = useState<ActivationKey[]>(data);
@@ -140,7 +140,7 @@ const CredManage = () => {
     if (isArchiveable()) {
       newList.push({
         children: "Archive",
-        onClick: () => {},
+        onClick: () => { },
       });
     }
     if (isUnused()) {
@@ -161,7 +161,7 @@ const CredManage = () => {
     if (newList.length == 0) {
       newList.push({
         children: "No bulk options available",
-        onClick: () => {},
+        onClick: () => { },
       });
     }
     updateActionLinks(newList);
@@ -374,7 +374,7 @@ const CredManage = () => {
                             <Tooltip message="Archive Key" position="right">
                               <p>
                                 {keyitem["activatedBy"]} &emsp;
-                                <a onClick={() => {}}>
+                                <a onClick={() => { }}>
                                   <i className="p-icon--delete"></i>
                                 </a>
                               </p>

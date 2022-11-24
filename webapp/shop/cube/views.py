@@ -483,7 +483,14 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    contract_id = kwargs.get("contract_id")
+    account = advantage_mapper.get_purchase_account()
+    contracts = advantage_mapper.get_all_account_contracts(account.id)
+
+    contract_id = None
+    for contract in contracts:
+        if contract.name == "CUBE Activation Key":
+            contract_id = contract.id
+
     keys = ua_contracts_api.list_activation_keys(contract_id)
     return flask.jsonify(keys)
 
