@@ -113,6 +113,20 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
                 <a href="/account/payment-methods">payment methods</a> to retry.
               </>
             );
+          } else if (
+            error instanceof Error &&
+            error.message.includes("invalid VAT")
+          ) {
+            setError(
+              <>That VAT number is invalid. Check the number and try again.</>
+            );
+          } else if (
+            error instanceof Error &&
+            error.message.includes("eu_vat")
+          ) {
+            setError(
+              <>That VAT number is invalid. Check the number and try again.</>
+            );
           } else {
             Sentry.captureException(error);
             setError(
