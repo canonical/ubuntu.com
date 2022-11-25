@@ -134,7 +134,12 @@ const ResizeSummary = ({
             <br />
           </>
         ) : null}
-        {!isPreviewLoading && !preview ? <>You will be charged nothing.<br /></> : null}
+        {!isPreviewLoading && !preview ? (
+          <>
+            You will be charged nothing.
+            <br />
+          </>
+        ) : null}
         {!isPreviewLoading ? (
           <>
             Your {isMonthly ? "monthly" : "yearly"} payment will be{" "}
@@ -337,7 +342,9 @@ const SubscriptionEdit = ({
                 />
                 <ResizeSummary
                   oldNumberOfMachines={subscription.number_of_machines}
-                  currentNumberOfMachines={subscription.current_number_of_machines}
+                  currentNumberOfMachines={
+                    subscription.current_number_of_machines
+                  }
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}
