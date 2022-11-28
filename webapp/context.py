@@ -4,6 +4,7 @@ import datetime
 import calendar
 import logging
 import json
+import numpy
 from urllib.parse import parse_qs, urlencode
 
 # Packages
@@ -135,20 +136,8 @@ def descending_years(end_year):
     return range(now.year, end_year, -1)
 
 
-def split_list(array):
-    half = len(array) // 2
-    first_half = array[:half]
-    second_half = array[half:]
-
-    # If there are an odd number of items in the list,
-    # the second half will one more item than the first,
-    # but we want the opposite to be true, so move the first
-    # item from the second half to the first half
-    if len(second_half) > len(first_half):
-        first_half.append(second_half[0])
-        second_half.pop(0)
-
-    return [first_half, second_half]
+def split_list(array, parts):
+    return numpy.array_split(array, parts)
 
 
 def get_json_feed(url, offset=0, limit=None):
