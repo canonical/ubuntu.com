@@ -132,13 +132,18 @@
   }
 
   .dropdown-window__footer {
-    align-items: center;
-    border-top: $dropdown-border;
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0;
+    padding: 0 1rem;
 
-    a {
+    @media (min-width: $breakpoint-navigation-threshold) {
+      align-items: start;
+      border-top: $dropdown-border;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    [class*="p-button"] {
+      background: transparent;
       margin: 0;
     }
   }
