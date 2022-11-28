@@ -411,6 +411,14 @@ def cred_schedule(
     sso_user = user_info(flask.session)
     ability_screen_id = 4190
     email = sso_user["email"]
+    if (
+        len(
+            trueability_api.get_user_assessment_reservations(
+                ability_screen_id, email
+            )
+        )
+    ) > 0:
+        flask.redirect("/credentials/your-exams")
 
     error = None
     now = datetime.utcnow()
