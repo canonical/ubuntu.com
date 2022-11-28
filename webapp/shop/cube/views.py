@@ -482,14 +482,13 @@ def cred_schedule(
         time = starts_at.strftime("%H:%M")
 
     else:
-        if (
-            len(
-                trueability_api.get_user_assessment_reservations(
-                    ability_screen_id, email
-                )
-            )
-            > 0
-        ):
+        user_exams = trueability_api.get_user_assessment_reservations(
+            ability_screen_id, email
+        )
+        user_exams = [
+            exam for exam in user_exams if exam["state"] != "canceled"
+        ]
+        if len(user_exams) > 0:
             return flask.render_template(
                 "/credentials/schedule.html",
                 error="You have already scheduled an exam",
@@ -522,13 +521,11 @@ def cred_your_exams(
     tb = ""
     try:
         ability_screen_id = 4190
-        response = trueability_api.get_assessment_reservations(
-            ability_screen_id
-        )
         user_email = user_info(flask.session)["email"]
-        for r in response["assessment_reservations"]:
-            if r["user"]["email"] != user_email:
-                continue
+        response = trueability_api.get_user_assessment_reservations(
+            ability_screen_id, user_email
+        )
+        for r in response:
 
             name = r["ability_screen"]["display_name"]
             timezone = r["user"]["time_zone"]
