@@ -31,6 +31,19 @@ export default function PaymentModal({ isHidden }: Props) {
     </>
   );
 
+  const descriptionLabel = (
+    <>
+      I agree to the{" "}
+      <a
+        href="/legal/ubuntu-pro-description"
+        target="_blank"
+        rel="noopener norefferer"
+      >
+        Ubuntu Pro description
+      </a>
+    </>
+  );
+
   const marketingLabel =
     "I agree to receive information about Canonical's products and services";
 
@@ -45,6 +58,7 @@ export default function PaymentModal({ isHidden }: Props) {
             <PurchaseModal
               termsLabel={termsLabel}
               marketingLabel={marketingLabel}
+              descriptionLabel={descriptionLabel}
               product={product}
               preview={preview}
               quantity={quantity}

@@ -43,6 +43,7 @@ const fillInUserDetails = (email) => {
 };
 
 const completeFirstStep = (email = Cypress.env("UBUNTU_USERNAME")) => {
+  cy.wait(2000)
   fillInCardDetails();
   fillInUserDetails(email);
   cy.clickRecaptcha();
@@ -55,8 +56,7 @@ context("/pro/subscribe", () => {
     cy.findByText("Accept all and visit site").click();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByText("Software and security updates only").click();
-    cy.findByText("Buy now").click();
+    cy.findByRole("button", { name: "Buy now" }).click();
     cy.findByRole("dialog").should("be.visible");
     cy.findByText("Cancel").click();
   });
@@ -69,8 +69,7 @@ context("/pro/subscribe", () => {
 
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByText("Software and security updates only").click();
-    cy.findByText("Buy now").click();
+    cy.findByRole("button", { name: "Buy now" }).click();
     cy.findByRole("dialog").should("be.visible");
 
     // fill in the form
@@ -87,30 +86,24 @@ context("/pro/subscribe", () => {
     cy.wait("@preview");
 
     // test for contents of 2nd step
-    cy.findByText("1 x $225.00");
+    cy.findByText("$600.00");
 
     cy.findByText("Use free trial month").click();
-    cy.findByLabelText(/I agree to the Ubuntu Advantage service terms/).click({
+    cy.findByLabelText(/I agree to the Ubuntu Pro service terms/).click({
       // Need to use { force: true } because the actual input element (radio button)
       // that the label is for is invisible (we use our own styles)
       // and cypress complains (it would usually indicate an issue, in our case it's intentional).
+      force: true,
+    });
+    cy.findByLabelText(/I agree to the Ubuntu Pro description/).click({
       force: true,
     });
 
     cy.intercept("POST", "/pro/subscribe*", slowDownResponse).as("trial");
 
     cy.findByRole("button", { name: "Buy" })
-      .should(() => {
-        expect(
-          JSON.parse(localStorage.getItem("ua-subscribe-state"))
-        ).to.have.keys("form", "ui");
-      })
       .click()
-      .should("be.disabled")
-      .should(() => {
-        expect(JSON.parse(localStorage.getItem("ua-subscribe-state"))).to.be
-          .null;
-      });
+      .should("be.disabled");
 
     // The trial call is made
     cy.wait("@trial").then((interception) => {
@@ -129,8 +122,7 @@ context("/pro/subscribe", () => {
     cy.acceptCookiePolicy();
     cy.findByRole("dialog").should("not.exist");
     cy.scrollTo("bottom");
-    cy.findByText("Software and security updates only").click();
-    cy.findByText("Buy now").click();
+    cy.findByRole("button", { name: "Buy now" }).click();
     cy.findByRole("dialog").should("be.visible");
 
     // fill in the form
@@ -147,13 +139,16 @@ context("/pro/subscribe", () => {
     cy.wait("@preview");
 
     // test for contents of 2nd step
-    cy.findByText("1 x $225.00");
+    cy.findByText("$600.00");
 
     cy.findByText("Pay now").click();
-    cy.findByLabelText(/I agree to the Ubuntu Advantage service terms/).click({
+    cy.findByLabelText(/I agree to the Ubuntu Pro service terms/).click({
       // Need to use { force: true } because the actual input element (radio button)
       // that the label is for is invisible (we use our own styles)
       // and cypress complains (it would usually indicate an issue, in our case it's intentional).
+      force: true,
+    });
+    cy.findByLabelText(/I agree to the Ubuntu Pro description/).click({
       force: true,
     });
 
@@ -163,17 +158,8 @@ context("/pro/subscribe", () => {
     cy.intercept("GET", "/account/purchases/*").as("pendingPurchase");
 
     cy.findByRole("button", { name: "Buy" })
-      .should(() => {
-        expect(
-          JSON.parse(localStorage.getItem("ua-subscribe-state"))
-        ).to.have.keys("form", "ui");
-      })
       .click()
-      .should("be.disabled")
-      .should(() => {
-        expect(JSON.parse(localStorage.getItem("ua-subscribe-state"))).to.be
-          .null;
-      });
+      .should("be.disabled");
 
     // The purchase call is made
     cy.wait("@purchase").then((interception) => {

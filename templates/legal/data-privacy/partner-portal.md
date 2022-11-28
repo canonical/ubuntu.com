@@ -5,9 +5,9 @@ context:
   description: This privacy notice tells you about the information we collect from you when you access the Canonical Partner Portal.
   copydoc: https://docs.google.com/document/d/1yuh7dL3jjkj21sKJCUhm_z00PKzH4vssY339wbp4U-s/edit
 ---
+
 <h4 class="p-muted-heading">Version - February 2019</h4>
 <hr style="margin-bottom: 2rem;" />
-
 
 # Privacy notice - Partner Portal
 
@@ -15,7 +15,7 @@ This privacy notice tells you about the information we collect from you when you
 
 ## Who are we ?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -33,12 +33,12 @@ We require this information in order to provide you with access to the Canonical
 
 We may:
 
-- process  your details in order to ensure that you are a partner of Canonical able to use the Canonical Partner Platform; 	
+- process your details in order to ensure that you are a partner of Canonical able to use the Canonical Partner Platform;
 - contact you in response to information provided on the Canonical Partner Platform;
-- contact you to provide or obtain any other pertinent information concerning the Canonical Partner Platform; 	
-- monitor and analyse usage of the Canonical Partner Platform, including by analysing and creating reports about the Canonical Partner Platform; 	
+- contact you to provide or obtain any other pertinent information concerning the Canonical Partner Platform;
+- monitor and analyse usage of the Canonical Partner Platform, including by analysing and creating reports about the Canonical Partner Platform;
 - provide reports to third party suppliers about the use of the Canonical Partner Platform; and
-- contact you by email about our products and services, if you have consented to receiving them. If you are a business 	customer, we may contact you by telephone and email from time to time to discuss products and services that we offer. 	
+- contact you by email about our products and services, if you have consented to receiving them. If you are a business customer, we may contact you by telephone and email from time to time to discuss products and services that we offer.
 
 Your information is stored in our order processing system and may be processed outside of the European Economic Area. It is shared with the third parties set out below and as reasonably required for Canonical to process and store your data.
 
@@ -66,9 +66,9 @@ We keep your order information for so long as reasonably required in accordance 
 
 - You have a number of important rights under data protection laws free of charge. In summary, those include rights to:
 - fair processing of information and transparency over how we use your use personal information;
-- access to your personal information and to certain other supplementary 	information that this Privacy notice is already designed to address;
+- access to your personal information and to certain other supplementary information that this Privacy notice is already designed to address;
 - require us to correct any mistakes in your information which we hold;
-- require the erasure of personal information concerning you in certain 	situations;
+- require the erasure of personal information concerning you in certain situations;
 - receive the personal information concerning you which you have provided to us, in a structured, commonly used and machine-readable format and have the right to transmit those data to a third party in certain situations;
 - object at any time to processing of personal information concerning you for direct marketing;
 - object to decisions being taken by automated means which produce legal effects concerning you or similarly significantly affect you;
@@ -79,7 +79,7 @@ For further information on each of those rights, including the circumstances in 
 
 If you would like to exercise any of those rights, please:
 
-- email, 	call or write to us, please see "Your right to complain" section,
+- email, call or write to us, please see "Your right to complain" section,
 - let us have enough information to identify you,
 - let us have proof of your identity and address (a copy of your driving licence or passport and a recent utility or credit card bill), and
 - let us know the information to which your request relates.
@@ -94,8 +94,7 @@ To submit a request by email, post or telephone, please use the contact informat
 
 <h2 id="mkt-comms">Email marketing communications</h2>
 
-
-Canonical offers a free email newsletter subscription service to keep you informed of our products and services.  You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service. to ensure that the emails you receive are relevant to your interests.
+Canonical offers a free email newsletter subscription service to keep you informed of our products and services. You may receive these marketing communications from us. We incorporate a tracking system in our email marketing communications which allows us to monitor whether the email has been opened and which links are the most popular. This allows us to tailor and refine our service. to ensure that the emails you receive are relevant to your interests.
 
 Where you have consented to receiving email marketing material from us or are currently receiving material relating to similar products or services, you may at any time ask us to cease sending you such material by clicking the unsubscribe button at the end of the email or by sending an email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) with the heading "unsubscribe" or you can go to your subscription centre page (you will need to login if you have not already done so) and click the 'unsubscribe' link at the foot of the page as appropriate. Unsubscribe instructions are also clearly outlined at the bottom of every direct marketing email that we send you.
 
@@ -126,10 +125,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-The Office Group, St Dunstans House, <br />
-4th floor, 201 Borough High St, <br />
-London SE1 1JA, <br />
-United Kingdom
+2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
 </div>
 
 Alternatively, you can use the relevant [contact us](/legal/data-privacy/enquiry) form.

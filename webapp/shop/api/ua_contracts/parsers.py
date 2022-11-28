@@ -74,6 +74,7 @@ def parse_entitlements(
         support_level = None
         if affordances:
             support_level = affordances.get("supportLevel")
+            is_in_beta = affordances.get("inBeta", False)
 
         enabled_by_default = (
             obligations.get("enableByDefault") if obligations else False
@@ -84,6 +85,7 @@ def parse_entitlements(
             support_level=support_level,
             enabled_by_default=enabled_by_default,
             is_available=is_available,
+            is_in_beta=is_in_beta,
         )
 
         entitlements.append(entitlement)

@@ -27,6 +27,9 @@ from canonicalwebteam.discourse import (
     DocParser,
 )
 
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
@@ -148,7 +151,6 @@ def download_server_steps():
     }
     context = {}
     step = flask.request.form.get("next-step") or "server"
-    print(step)
 
     if step not in templates:
         flask.abort(400)
@@ -318,12 +320,21 @@ def build_tutorials_index(session, tutorials_docs):
             ]
 
         # Create list of topics
-        topics_list = set()
+        topics_list = {}
         for item in tutorials_docs.parser.tutorials:
-            if "categories" in item and item["categories"] not in topics_list:
-                topics_list = topics_list | set(
-                    item["categories"].replace(" ", "").lower().split(",")
-                )
+            if "categories" in item:
+                for cat in item["categories"].split(", "):
+                    cat_value = cat
+                    cat = cat.strip().capitalize()
+                    if cat == "Ua":
+                        cat = "Ubuntu advantage"
+                        cat_value = "ua"
+                    if cat == "Iot":
+                        cat = "IoT"
+                    if cat == "Aws":
+                        cat = "AWS"
+                    if cat not in topics_list.keys():
+                        topics_list[cat] = cat_value
 
         if query:
             temp_metadata = []
@@ -357,7 +368,9 @@ def build_tutorials_index(session, tutorials_docs):
             tutorials=tutorials,
             page=page,
             topic=topic,
-            topics_list=sorted(list(topics_list)),
+            topics_list=dict(
+                sorted(topics_list.items(), key=lambda key: key[0])
+            ),
             sort=sort,
             query=query,
             posts_per_page=posts_per_page,
@@ -801,7 +814,10 @@ def marketo_submit():
     form_fields.pop("g-recaptcha-response", None)
     return_url = form_fields.pop("returnURL", None)
 
-    if "Comments_from_lead__c" in form_fields:
+    encode_lead_comments = (
+        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
+    )
+    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
         encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
         form_fields["Comments_from_lead__c"] = encoded_comment
 
@@ -819,7 +835,11 @@ def marketo_submit():
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
-            {"leadFormFields": form_fields, "visitorData": visitor_data}
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
         ],
     }
 
@@ -846,7 +866,8 @@ def marketo_submit():
 
     try:
         # Send form data
-        data = marketo_api.submit_form(payload).json()
+        r = marketo_api.submit_form(payload)
+        data = r.json()
 
         if "result" not in data:
             flask.current_app.extensions["sentry"].captureMessage(
@@ -878,6 +899,44 @@ def marketo_submit():
             ),
             400,
         )
+
+    if payload["formId"] == "3801":
+        service_account_info = {
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+            "private_key": os.getenv(
+                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+            ).replace("\\n", "\n"),
+            "scopes": [
+                "https://www.googleapis.com/auth/spreadsheets.readonly"
+            ],
+        }
+
+        credentials = service_account.Credentials.from_service_account_info(
+            service_account_info,
+        )
+
+        service = build("sheets", "v4", credentials=credentials)
+
+        sheet = service.spreadsheets()
+        sheet.values().append(
+            spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
+            range="Sheet1",
+            valueInputOption="RAW",
+            body={
+                "values": [
+                    [
+                        form_fields.get("firstName"),
+                        form_fields.get("lastName"),
+                        form_fields.get("email"),
+                        form_fields.get("Job_Role__c"),
+                        form_fields.get("title"),
+                        form_fields.get("Comments_from_lead__c"),
+                        form_fields.get("canonicalUpdatesOptIn"),
+                    ]
+                ]
+            },
+        ).execute()
 
     # Send enrichment data
     try:

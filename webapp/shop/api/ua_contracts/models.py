@@ -11,12 +11,14 @@ class Entitlement:
         support_level: str = None,
         is_available: bool = True,
         is_editable: bool = True,
+        is_in_beta: bool = False,
     ):
         self.type = type
         self.support_level = support_level
         self.enabled_by_default = enabled_by_default
         self.is_available = is_available
         self.is_editable = is_editable
+        self.is_in_beta = is_in_beta
 
 
 class Product:

@@ -61,7 +61,7 @@ additional configuration or hassle.
 [managedk8s]: /kubernetes/managed
 [maas]: https://maas.io
 [cdk]: /kubernetes
-[juju]: https://charmhub.io
+[juju]: https://juju.is/
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

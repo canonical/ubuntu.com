@@ -15,15 +15,29 @@
             <ul class="p-list">
               <li class="p-list__item">
                 <label for="firstName">First name:</label>
-                <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+                {% if user_info %}
+                  {% set first_name = user_info.fullname.split(' ')[0] %}
+                  {% set last_name = user_info.fullname | replace(first_name + " ", "") %}
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" value="{{ first_name }}" />
+                {% else %}
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+                {% endif %}
               </li>
               <li class="p-list__item">
                 <label for="lastName">Last name:</label>
-                <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                {% if user_info %}
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" value="{{ last_name }}" />
+                {% else %}
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                {% endif %}
               </li>
               <li class="p-list__item">
-                <label for="email">Work email:</label>
-                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                <label for="email_disabled">Work email:</label>
+                {% if user_info %}
+                  <input required id="email_disabled" name="email_disabled" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" value="{{ user_info.email }}" disabled/>
+                {% else %}
+                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                {% endif %}
               </li>
               <li class="p-list__item">
                 <label class="p-checkbox">
@@ -63,6 +77,9 @@
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
               <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+              {% if user_info %}
+                <input type="hidden" id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" value="{{ user_info.email }}" />
+              {% endif %}
             </div>
             
             <div class="pagination">

@@ -70,13 +70,35 @@ export const FormProvider = ({
   initialPeriod = defaultValues.period,
   children,
 }: FormProviderProps) => {
-  const [productType, setProductType] = useState<ProductTypes>(initialType);
-  const [version, setVersion] = useState<LTSVersions>(initialVersion);
-  const [feature, setFeature] = useState<Features>(initialFeature);
-  const [sla, setSLA] = useState<SLA>(initialSLA);
-  const [support, setSupport] = useState<Support>(initialSupport);
-  const [quantity, setQuantity] = useState(initialQuantity);
-  const [period, setPeriod] = useState<Periods>(initialPeriod);
+  const localProductType = localStorage.getItem("pro-selector-productType");
+  const localVersion = localStorage.getItem("pro-selector-version");
+  const localQuantity = localStorage.getItem("pro-selector-quantity");
+  const localFeature = localStorage.getItem("pro-selector-feature");
+  const localSupport = localStorage.getItem("pro-selector-support");
+  const localSLA = localStorage.getItem("pro-selector-sla");
+  const localPeriod = localStorage.getItem("pro-selector-period");
+
+  const [productType, setProductType] = useState<ProductTypes>(
+    localProductType ? JSON.parse(localProductType) : initialType
+  );
+  const [version, setVersion] = useState<LTSVersions>(
+    localVersion ? JSON.parse(localVersion) : initialVersion
+  );
+  const [feature, setFeature] = useState<Features>(
+    localFeature ? JSON.parse(localFeature) : initialFeature
+  );
+  const [sla, setSLA] = useState<SLA>(
+    localSLA ? JSON.parse(localSLA) : initialSLA
+  );
+  const [support, setSupport] = useState<Support>(
+    localSupport ? JSON.parse(localSupport) : initialSupport
+  );
+  const [quantity, setQuantity] = useState(
+    localQuantity ? JSON.parse(localQuantity) : initialQuantity
+  );
+  const [period, setPeriod] = useState<Periods>(
+    localPeriod ? JSON.parse(localPeriod) : initialPeriod
+  );
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -89,10 +111,11 @@ export const FormProvider = ({
   }, [support, sla]);
 
   useEffect(() => {
-    if (version === LTSVersions.trusty || version === LTSVersions.xenial) {
-      if (support !== Support.none) {
-        setSupport(Support.infra);
-      }
+    if (version === LTSVersions.trusty) {
+      setSupport(Support.none);
+    }
+    if (version === LTSVersions.xenial) {
+      setSupport(Support.none);
     }
   }, [version, support]);
 

@@ -53,6 +53,16 @@ env:
       key: api_secret
       name: marketo
 
+  - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+    secretKeyRef:
+      key: email
+      name: google-service-account
+
+  - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+    secretKeyRef:
+      key: private-key
+      name: google-service-account
+
   - name: SENTRY_DSN
     value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -93,6 +103,14 @@ env:
 
   - name: STRIPE_PUBLISHABLE_KEY
     value: pk_live_68aXqowUeX574aGsVck8eiIE
+
+  - name: TRUEABILITY_URL
+    value: https://app.trueability.com
+
+  - name: TRUEABILITY_API_KEY
+    secretKeyRef:
+      key: api-key
+      name: trueability
 
 memoryLimit: 512Mi
 
@@ -446,6 +464,16 @@ staging:
         key: api_secret
         name: marketo
 
+    - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+      secretKeyRef:
+        key: email
+        name: google-service-account
+
+    - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+      secretKeyRef:
+        key: private-key
+        name: google-service-account
+
     - name: SENTRY_DSN
       value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
@@ -486,6 +514,14 @@ staging:
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+    - name: TRUEABILITY_URL
+      value: https://app.trueability.com
+
+    - name: TRUEABILITY_API_KEY
+      secretKeyRef:
+        key: api-key
+        name: trueability
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
@@ -823,6 +859,14 @@ demo:
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+    - name: TRUEABILITY_URL
+      value: https://app.trueability.com
+
+    - name: TRUEABILITY_API_KEY
+      secretKeyRef:
+        key: api-key
+        name: trueability
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/

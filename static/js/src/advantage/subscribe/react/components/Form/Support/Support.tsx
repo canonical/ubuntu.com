@@ -24,9 +24,17 @@ const Support = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSupport(event.target.value as SupportEnum);
+    localStorage.setItem(
+      "pro-selector-support",
+      JSON.stringify(event.target.value as SupportEnum)
+    );
   };
 
-  const isInfraOnlyDisabled = productType === ProductTypes.desktop;
+  const isInfraOnlyDisabled =
+    productType === ProductTypes.desktop ||
+    version === LTSVersions.trusty ||
+    version === LTSVersions.xenial;
+
   const isFullSupportDisabled =
     feature === Features.infra ||
     version === LTSVersions.trusty ||
@@ -106,6 +114,7 @@ const Support = () => {
               "is-selected": support === SupportEnum.infra,
               "u-disable": isInfraOnlyDisabled,
             })}
+            data-testid="infra-support"
           >
             <label className="p-radio u-align-text--center">
               <input
@@ -149,6 +158,7 @@ const Support = () => {
               "is-selected": support === SupportEnum.full,
               "u-disable": isFullSupportDisabled,
             })}
+            data-testid="full-support"
           >
             <label className="p-radio u-align-text--center">
               <input
@@ -199,7 +209,13 @@ const Support = () => {
             "is-selected": SupportEnum.none === support,
             "u-disable": false,
           })}
-          onClick={() => setSupport(SupportEnum.none)}
+          onClick={() => {
+            setSupport(SupportEnum.none);
+            localStorage.setItem(
+              "pro-selector-support",
+              JSON.stringify(SupportEnum.none)
+            );
+          }}
         >
           <RadioInput
             inline
@@ -235,7 +251,13 @@ const Support = () => {
             "is-selected": SupportEnum.infra === support,
             "u-disable": isInfraOnlyDisabled,
           })}
-          onClick={() => setSupport(SupportEnum.infra)}
+          onClick={() => {
+            setSupport(SupportEnum.infra);
+            localStorage.setItem(
+              "pro-selector-support",
+              JSON.stringify(SupportEnum.infra)
+            );
+          }}
         >
           <RadioInput
             inline
@@ -267,7 +289,13 @@ const Support = () => {
             "is-selected": SupportEnum.full === support,
             "u-disable": isFullSupportDisabled,
           })}
-          onClick={() => setSupport(SupportEnum.full)}
+          onClick={() => {
+            setSupport(SupportEnum.full);
+            localStorage.setItem(
+              "pro-selector-support",
+              JSON.stringify(SupportEnum.full)
+            );
+          }}
         >
           <RadioInput
             inline
@@ -316,6 +344,10 @@ const Support = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setSLA(SLA.weekday);
+                    localStorage.setItem(
+                      "pro-selector-sla",
+                      JSON.stringify(SLA.weekday)
+                    );
                   }}
                   style={{ textAlign: "justify" }}
                 >
@@ -333,6 +365,10 @@ const Support = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     setSLA(SLA.everyday);
+                    localStorage.setItem(
+                      "pro-selector-sla",
+                      JSON.stringify(SLA.everyday)
+                    );
                   }}
                   style={{ textAlign: "justify" }}
                 >

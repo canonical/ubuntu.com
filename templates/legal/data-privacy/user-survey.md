@@ -5,16 +5,17 @@ context:
   description: "This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla."
   copydoc: https://docs.google.com/document/d/1XKWK3VvJe0Z_soJqO3F0BrrXwlP9ZObYYKxA1hym7QU/edit
 ---
+
 <h4 class="p-muted-heading">Version - February 2019</h4>
 <hr style="margin-bottom: 2rem;" />
 
-# Privacy notice – User Survey  
+# Privacy notice – User Survey
 
-This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on their website here: [usabilla.com/terms/](https://usabilla.com/terms/)  and the Usabilla Privacy notice. Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
+This privacy notice tells you about the information collected from you when you take part in a user survey on a Canonical webpage, hosted by Usabilla. Usabilla is a third party software provider that enables live user feedback. In collecting this information, Usabilla are acting as a data controller and details of their terms can be found on their website here: [usabilla.com/terms/](https://usabilla.com/terms/) and the Usabilla Privacy notice. Usabilla will be sharing your data with us and by law, we are required to provide you with information about us, about why and how we use your data, and about the rights you have over your data. For more information, please see our [privacy policy](/legal/data-privacy).
 
 ## Who are we?
 
-We are Canonical Group Limited. Our address is The Office Group, St Dunstans House, 4th floor, 201 Borough High St, London SE1 1JA. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
+We are Canonical Group Limited. Our address is 2nd Floor, Clarendon House, Victoria Street, Douglas IM1 2LN, Isle of Man. You can contact us by post at the above address or by email to [dataprotection@canonical.com](mailto:dataprotection@canonical.com) for the attention of "Legal".
 
 We are not required to have a data protection officer, so any enquiries about our use of your personal data should be addressed to the contact details above.
 
@@ -78,10 +79,7 @@ We hope that we can resolve any query or concern you raise about our use of your
 
 <div style="margin:2rem;">
 Legal, Canonical<br />
-The Office Group, St Dunstans House, <br />
-4th floor, 201 Borough High St, <br />
-London SE1 1JA,<br />
-United Kingdom
+2nd Floor, Clarendon House,<br/>Victoria Street,<br/>Douglas IM1 2LN,<br/>Isle of Man
 </div>
 
 Alternatively, you can use the relevant contact us form.

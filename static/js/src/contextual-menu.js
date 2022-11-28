@@ -1,6 +1,6 @@
 function toggleMenu(element, show) {
   const dropdownControl = element.getAttribute("aria-controls");
-  const dropdown = document.querySelector(dropdownControl);
+  const dropdown = document.getElementById(dropdownControl);
 
   element.setAttribute("aria-expanded", show);
   dropdown.setAttribute("aria-hidden", !show);
@@ -16,7 +16,9 @@ function attachClickEvent(toggle) {
 }
 
 function attachHoverEvent(toggle) {
-  const dropdown = document.querySelector(toggle.getAttribute("aria-controls"));
+  const dropdown = document.getElementById(
+    toggle.getAttribute("aria-controls")
+  );
   let timer = null;
 
   toggle.addEventListener("click", (e) => {

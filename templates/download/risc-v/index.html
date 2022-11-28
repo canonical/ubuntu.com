@@ -2,7 +2,7 @@
 
 {% block title %}Download Ubuntu for RISC-V Platforms{% endblock %}
 
-{% block meta_description %}Use Ubuntu on RISC-V platforms for the familiar developer experience and an accelerated path to production.{% endblock meta_description %}
+{% block meta_description %}Use Ubuntu on RISC-V platforms for the familiar developer experience and an accelerated path to production{% endblock meta_description %}
 
 {% block meta_copydoc%}https://docs.google.com/document/d/1kkJeq9HdH3iWV35HwihcJd3CxZw9Jy21W66lJl8VbWs/edit#{% endblock meta_copydoc %}
 
@@ -12,8 +12,8 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h1>Download Ubuntu for RISC-V Platforms</h1>
-      <h2 class="p-heading--3">Ubuntu - now available for multiple RISC-V platforms</h2>
-      <p>Run Ubuntu with your favourite RISC-V boards. Ubuntu recently enabled SiFive Unmatched, StarFive VisionFive and Allwinner Nezha in Ubuntu 22.04.1. Download the images for those boards below.</p>
+      <h2 class="p-heading--3">Ubuntu &mdash; now available for multiple RISC-V platforms</h2>
+      <p>Run Ubuntu with your favourite RISC-V boards. Ubuntu recently enabled SiFive Unmatched, StarFive VisionFive, Allwinner Nezha, and Sipeed LicheeRV in 22.10. Download the images for those boards below.</p>
       <p>Pick the OS image to match your hardware, flash it onto SD/microSD card, load it onto your board and away you go.</p>
       <p>
         <a href="/download/contact-us" class="js-invoke-modal p-button">Get in touch</a>
@@ -48,6 +48,9 @@
             <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="allwinner-nezha-tab" id="allwinner-nezha">AllWinner Nezha</button>
         </div>
         <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="sipeed-licheerv-dock-tab" id="sipeed-licheerv-dock">Sipeed LicheeRV Dock</button>
+        </div>
+        <div class="p-tabs__item">
             <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="live-installer-tab" id="live-installer">Live installer</button>
         </div>
       </div>
@@ -55,6 +58,7 @@
       {% include "download/risc-v/tab-2.html" %}
       {% include "download/risc-v/tab-3.html" %}
       {% include "download/risc-v/tab-4.html" %}
+      {% include "download/risc-v/tab-5.html" %}
     </div>
   </div>
 </section>

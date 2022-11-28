@@ -131,9 +131,13 @@
                       <td rowspan="{{ package.statuses | length }}">
                         <a href="/security/cves?q=&package={{ package["name"] }}">{{ package["name"] }}</a><br>
                         <small>
-                        <a href="https://launchpad.net/distros/ubuntu/+source/{{ package["name"] }}">Launchpad</a>,
-                        <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package["name"] }}">Ubuntu</a>,
-                        <a href="https://tracker.debian.org/{{ package["name"] }}">Debian</a>
+                        {% if package["name"] in kenetic_packages or package["name"] in melodic_packages  %}
+                          <a href="/robotics/ros-esm">ROS ESM</a>
+                        {% else %}
+                          <a href="https://launchpad.net/distros/ubuntu/+source/{{ package["name"] }}">Launchpad</a>,
+                          <a href="https://packages.ubuntu.com/search?suite=all&section=all&arch=any&searchon=sourcenames&keywords={{ package["name"] }}">Ubuntu</a>,
+                          <a href="https://tracker.debian.org/{{ package["name"] }}">Debian</a>
+                        {% endif %}
                         </small>
                       </td>
                     {% endif %}

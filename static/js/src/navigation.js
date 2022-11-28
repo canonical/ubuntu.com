@@ -238,7 +238,7 @@ if (accountContainer && accountContainerSmall) {
         accountContainer.innerHTML = `<div class="p-navigation__item--dropdown-toggle">
             <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
-              <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">UA subscriptions</a></li>
+              <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">Ubuntu Pro dashboard</a></li>
               <li>
                 <hr class="u-no-margin--bottom">
                 <a href="/account/invoices" class="p-navigation__dropdown-item">Invoices & Payments</a>
@@ -338,31 +338,3 @@ if (accountContainer && accountContainerSmall) {
       );
     });
 }
-
-if (
-  localStorage.getItem("dismissedOnboardingNotification") === "false" ||
-  localStorage.getItem("dismissedOnboardingNotification") === null
-) {
-  document
-    .querySelectorAll(".breadcrumbs__item a.breadcrumbs__link")
-    .forEach((element) => {
-      if (element.textContent === "Account users") {
-        element.parentElement.innerHTML = `
-          <div class="breadcrumbs__link">
-          <a class="p-link--soft" href="/pro/users">Account users</a>
-          <span class="p-label--positive">New</span>
-          </div>
-        `;
-      }
-    });
-}
-
-document.addEventListener("click", (e) => {
-  const el = e.target;
-
-  if (el.classList.contains("dropdown-window__sidenav-back")) {
-    const contentPanel = el.closest(".dropdown-window__sidenav-content");
-
-    contentPanel.classList.remove("is-active");
-  }
-});

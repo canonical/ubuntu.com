@@ -17,6 +17,8 @@ azure:
       path: /azure
     - title: Pro
       path: /azure/pro
+    - title: Support
+      path: /azure/support
     - title: FIPS
       path: /azure/fips
     - title: SQL
@@ -48,6 +50,8 @@ aws:
       path: /aws
     - title: Pro
       path: /aws/pro
+    - title: Support
+      path: /aws/support
     - title: Outposts
       path: /aws/outposts
     - title: FIPS
@@ -238,6 +242,8 @@ blog:
       path: /blog/topics/design
     - title: Robotics
       path: /blog/topics/robotics
+    - title: People and culture
+      path: /blog/people-and-culture
     - title: Archives
       path: /blog/archives
     - title: Upcoming
@@ -306,10 +312,12 @@ support:
       path: /pro/dashboard
     - title: Account users
       path: /pro/users
-
-    - title: Community support
-      path: /support/community-support
-
+    - title: Support
+      path: /support
+    - title: Pricing
+      path: /pricing/pro
+    - title: Discourse
+      path: https://discourse.ubuntu.com/c/ubuntu-pro
 pro:
   title: Pro
   path: /pro
@@ -321,8 +329,12 @@ pro:
       path: /pro/dashboard
     - title: Account users
       path: /pro/users
-    - title: Community support
-      path: /support/community-support
+    - title: Support
+      path: /support
+    - title: Pricing
+      path: /pricing/pro
+    - title: Discourse
+      path: https://discourse.ubuntu.com/c/ubuntu-pro
 
 account:
   title: Account
@@ -526,17 +538,21 @@ robotics:
     - title: Community
       path: /robotics/community
 
-credentialling:
-  title: Credentialling
-  path: /credentialling
+credentials:
+  title: Credentials
+  path: /credentials
 
   children:
     - title: Overview
-      path: /credentialling
+      path: /credentials
     - title: Syllabus
-      path: /credentialling/syllabus
+      path: /credentials/syllabus
     - title: Study guide
-      path: /credentialling/self-study
+      path: /credentials/self-study
+    # - title: Schedule
+    #   path: /credentials/schedule
+    # - title: Your exams
+    #   path: /credentials/your-exams
 
 gcp:
   title: GCP

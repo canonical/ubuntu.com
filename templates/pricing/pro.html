@@ -3,17 +3,16 @@
 
 {% block title %}Ubuntu Pro | plans and pricing{% endblock %}
 
-{% block meta_description %}Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures (CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.
-{% endblock %}
+{% block meta_description %}Ubuntu Pro, the expanded security maintenance and compliance subscription is now available for data centres and workstations. Ubuntu Pro expands security coverage for critical, high and medium Common Vulnerabilities and Exposures (CVEs) to thousands of applications and toolchains including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and more.{% endblock %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1Ynk0iLa9hjrdich6ATTsybtPbDwW_k4vRI0nk_HNhcI/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section id="ua-infra" class="p-strip--suru-topped is-bordered">
+<section id="ua-infra" class="p-strip--image is-deep" style="background-image:url('https://assets.ubuntu.com/v1/18717572-05_suru2_light_glow_8K_edited.png'); background-position: bottom right;">
   <div class="u-fixed-width">
-    <h1>Ubuntu Pro: security, compliance, and support</h1>
-    <p>Ubuntu Pro covers all aspects of open infrastructure and applications.</p>
+    <h1 class="p-heading--2 u-no-margin--bottom"><strong>Ubuntu Pro: more security, compliance, and support</strong></h1>
+    <h2 class="u-no-padding--top u-text--muted">Covering all aspects of open infrastructure and applications</h2>
     <ul class="p-inline-list">
       <li class="p-inline-list__item">
         <a href="/support/contact-us" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Get in touch</a>
@@ -25,130 +24,582 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow" id="ua-infra">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--3">Security maintenance and compliance</h2>
+<section class="p-strip is-deep">
+  <div class="row">
+    <h2 class="p-text--x-small-capitalised">Pricing</h2>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-6">
+      <h3 class="p-heading--2">Ubuntu Pro (Infra-only)</h3>
+    </div>
+    <div class="col-6">
+      <div class="u-overflow-pricing-pro-table">
+        <table class="p-table is-not-indented">
+          <thead>
+            <tr>
+              <th colspan="2">No Support</th>
+              <th colspan="2">24/7 Infra support</th>
+              <th colspan="2">24/7 Full support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="u-truncate">Desktop</td>
+              <td class="u-truncate">Server</td>
+              <td class="u-truncate">Desktop</td>
+              <td class="u-truncate">Server</td>
+              <td class="u-truncate">Desktop</td>
+              <td class="u-truncate">Server</td>
+            </tr>
+            <tr>
+              <td>&dash;</td>
+              <td>&dollar;225</td>
+              <td>&dash;</td>
+              <td>&dollar;1,500</td>
+              <td>&dash;</td>
+              <td>&dash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
-  {% include "shared/pricing/_ua-for-infrastructure.html" %}
+  <div class="row">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="col-6">
+      <h3 class="p-heading--2 u-no-margin--bottom">Ubuntu Pro</h3>
+    </div>
+    <div class="col-6">
+      <div class="u-overflow-pricing-pro-table">
+        <table class="p-table is-not-indented">
+          <thead>
+            <tr>
+              <th colspan="2">No Support</th>
+              <th colspan="2">24/7 Infra support</th>
+              <th colspan="2">24/7 Full support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="u-truncate">Desktop</td>
+              <td class="u-truncate">Server</td>
+              <td class="u-truncate">Desktop</td>
+              <td class="u-truncate">Server</td>
+              <td class="u-truncate">Desktop</td>
+              <td class="u-truncate">Server</td>
+            </tr>
+            <tr>
+              <td>&dollar;25</td>
+              <td>&dollar;500</td>
+              <td>&dash;</td>
+              <td>&dollar;1,775</td>
+              <td>&dollar;300</td>
+              <td>&dollar;3,400</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="u-fixed-width">
+        <div>
+          <table class="p-table">
+            <thead>
+              <th style="width: 3.1rem">&nbsp;</th>
+              <th>&nbsp;</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="u-align-left">N.B.:</td>
+                <td class="u-align-left">Price is per machine per year</td>
+              </tr>
+              <tr>
+                <td style="border-top: 0;">&nbsp;</td>
+                <td class="u-table-border-top u-align--left">Weekday support is half the price of 24/7 support</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="u-align-left">Please refer to the list of <a href="/support">supported infrastructure and applications</a>.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="u-fixed-width">
-    <h2 class="p-heading--3">Ubuntu Pro + phone and ticket support</h2>
+<section class="p-strip is-deep u-no-padding--top">
+  <div class="row">
+    <h2 class="p-text--x-small-capitalised">What's the difference</h2>
   </div>
 
-  <div class="u-fixed-width">
-    <div style="overflow-x: auto;">
-      <table class="p-table">
-        <thead>
-          <tr>
-            <th style="width: 50%;">Ubuntu Pro + weekday support</th>
-            <th class="u-align--right">Infra Support</th>
-            <th class="u-align--right">Full Stack Support</th>
-            <th></th>
-          </tr>
-        </thead>
+  <div class="row">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="col-6">
+      <h3 class="p-heading--2">Ubuntu Pro (Infra-only) vs<br class="u-hide--small u-hide--medium"> Ubuntu Pro</h3>
+    </div>
+
+    <div class="col-6">
+      <h4 class="p-heading--5 u-no-margin--bottom">Ubuntu Pro (Infra-only):</h5>
+      <table class="p-table is-list is-not-indented">
         <tbody>
           <tr>
-            <td>Ubuntu Pro (Infra-only) - per machine per year</td>
-            <td class="u-align--right">$750</td>
-            <td class="u-align--right">n/a</td>
+            <td>1</td>
+            <td>Expanded Security Maintenance for Infrastructure (esm-infra)</td>
           </tr>
           <tr>
-            <td>Ubuntu Pro - per machine per year</td>
-            <td class="u-align--right">$885</td>
-            <td class="u-align--right">$1,700</td>
+            <td>2</td>
+            <td>Kernel Livepatch service to avoid reboots</td>
           </tr>
           <tr>
-            <td>Desktop - per machine per year</td>
-            <td class="u-align--right">n/a</td>
-            <td class="u-align--right">$150</td>
+            <td>3</td>
+            <td>Ubuntu systems management with Landscape</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Knowledge base access</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Certified Windows drivers for KVM guests</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>FIPS 140 certified crypto modules</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Common Criteria EAL2 certified</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Ubuntu Security Guide (USG) with CIS Benchmark and DISA-STIG profiles</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="u-fixed-width">
-    <div style="overflow-x: auto;">
-      <table class="p-table">
-        <thead>
-          <tr>
-            <th style="width: 50%;">Ubuntu Pro + 24/7 support</th>
-            <th class="u-align--right">Infra Support</th>
-            <th class="u-align--right">Full Stack Support</th>
-            <th></th>
-          </tr>
-        </thead>
+  <div class="row">
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <h4 class="p-heading--5 u-no-margin--bottom u-sv-1">Ubuntu Pro:</h5>
+      <p><i>All of the above, plus:</i></p>
+      <table class="p-table is-list is-not-indented">
         <tbody>
           <tr>
-            <td>Ubuntu Pro (Infra-only) - per machine per year</td>
-            <td class="u-align--right">$1,500</td>
-            <td class="u-align--right">n/a</td>
+            <td>9</td>
+            <td class="u-align--left">Expanded Security Maintenance for Application (esm-apps) – in beta</td>
           </tr>
           <tr>
-            <td>Ubuntu Pro - per machine per year</td>
-            <td class="u-align--right">$1,775</td>
-            <td class="u-align--right">$3,400</td>
-          </tr>
-          <tr>
-            <td>Desktop - per machine per year</td>
-            <td class="u-align--right">n/a</td>
-            <td class="u-align--right">$300</td>
+            <td>10</td>
+            <td class="u-align--left">Advanced Active Directory policies for Ubuntu Desktop</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 
-  <div class="u-fixed-width">
-    <p>Please refer to the <a href='/uasd'>service description</a> for full details.</p>
-    <p>
-      See our consulting, architecture, deployment and training packages for <a href="/pricing/consulting#openstack">OpenStack</a>, <a href="/pricing/consulting#kubernetes">Kubernetes</a> and <a href="/pricing/consulting#kubeflow">Kubeflow</a>.
-    </p>
-    <p>
-      <a href="/support/contact-us" class="p-button js-invoke-modal">Solve compliance and security for your Ubuntu estate</a>
-    </p>
+</section>
+
+<section class="p-strip is-deep u-no-padding--top">
+  <div class="row">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="col-6">
+      <h3 class="p-heading--2">Support: Infra vs Full-stack</h3>
+    </div>
+
+    <div class="col-6">
+      <h4 class="p-heading--5 u-no-margin--bottom"><a href="/support">Infra support</a></h4>
+      <p>Over 2,300 open source deb packages in Ubuntu Main repository for 10 years, including:</p>
+        <div class="u-pro-support">
+          <div class="u-pro-support__logos">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/3ad7e0a9-systemd-logo.png",
+            alt="",
+            width="67",
+            height="64",
+            hi_def=False,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+          </div>
+          <div class="u-pro-support__logos">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/a3e33ca1-RabbitMQ.png",
+              alt="",
+              width="144",
+              height="144",
+              hi_def=False,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="u-pro-support__logos">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/ff1530cc-OpenSSL.png",
+              alt="",
+              width="144",
+              height="144",
+              hi_def=False,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="u-pro-support__logos">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/bc7ceb58-ruby-rails+logo.png",
+              alt="Ruby on Rails",
+              attrs={"class":"p-logo-section__logo"},
+              width="280",
+              height="280",
+              hi_def=False,
+              loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <div class="u-pro-support__logos">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/247a8141-php+logo.png",
+              alt="",
+              width="63",
+              height="64",
+              hi_def=False,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="u-pro-support__logos">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/55e1eab0-Nginx.png",
+              alt="",
+              width="144",
+              height="144",
+              hi_def=False,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="u-pro-support__logos">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/343dc96b-MySQL.png",
+              alt="",
+              width="144",
+              height="144",
+              hi_def=False,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <hr class="is-fixed-width u-no-margin--bottom">
+      <h4 class="p-heading--5 u-no-margin--bottom"><a href="/support">Full support</a></h5>
+      <p>Over 23,000 open source deb packages in Ubuntu Universe repository for 10 years, including:</p>
+      <div class="u-pro-support">
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/df2c8fa0-apache+tomcat+logo.png",
+            alt="Apache Tomcat",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/d00a6ac1-nagios+logo.png",
+            alt="Nagios",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/2303838b-node-logo.png",
+            alt="Node J S",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fbaf6348-puppet+logo.png",
+            alt="Puppet",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/7b5c7032-redis+logo.png",
+            alt="Redis",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fd0e15fd-rust+logo.png",
+            alt="Rust",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+        <div class="u-pro-support__logos">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/12295113-wordpress+logo.png",
+            alt="Wordpress",
+            attrs={"class":"p-logo-section__logo"},
+            width="280",
+            height="280",
+            hi_def=False,
+            loading="lazy",
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="p-strip--light is-shallow" id="storage">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--3">Software-defined storage &ndash; Ceph and Swift</h2>
-    <p>Only applies if attaching more than 192TB of raw Ceph/Swift capacity per node in the cluster. Priced by the amount exceeding the total of 192TB per node included in Ubuntu Pro.</p>
-  </div>
-  {% include "shared/pricing/_ua-advanced-storage.html" %}
-  <div class="u-fixed-width">
-    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+
+<section class="p-strip is-deep u-no-padding--top">
+  <div class="row">
+    <h2 class="p-text--x-small-capitalised">Software-defined storage</h2>
   </div>
 
+  <div class="row">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="col-6">
+      <h3 class="p-heading--2">Ubuntu Pro storage nodes</h3>
+      <p>Only applies if attaching more than 192TB of raw Ceph/Swift capacity  per node in the cluster. Priced by the amount exceeding the total of 192TB per node included in Ubuntu Pro.</p>
+    </div>
+
+    <div class="col-6">
+      <table class="p-table p-table--advanced-storage is-not-indented">
+        <thead>
+          <tr>
+            <th width="40%">The storage node size</th>
+            <th width="20%">Tier Price</th>
+            <th width="30%" class="u-align--right">Additional Per TB</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Up to 150 TB</td>
+            <td class="u-align--right">0</td>
+            <td class="u-align--right">&dollar;33.33</td>
+          </tr>
+          <tr>
+            <td>150 - 1,500 TB</td>
+            <td class="u-align--right">&dollar;5,000</td>
+            <td class="u-align--right">&dollar;25.00</td>
+          </tr>
+          <tr>
+            <td>1500 - 3,000 TB</td>
+            <td class="u-align--right">&dollar;38,750</td>
+            <td class="u-align--right">&dollar;13.33</td>
+          </tr>
+          <tr>
+            <td>3,000 to 15,000 TB</td>
+            <td class="u-align--right">&dollar;58,750</td>
+            <td class="u-align--right">&dollar;6.67</td>
+          </tr>
+          <tr>
+            <td>15,000 to 30,000 TB </td>
+            <td class="u-align--right">&dollar;138,750</td>
+            <td class="u-align--right">&dollar;3.33</td>
+          </tr>
+          <tr>
+            <td>Beyond 30,000 TB</td>
+            <td class="u-align--right">&dollar;188,750</td>
+            <td class="u-align--right">&dollar;0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <p>Prices are for Ubuntu Pro + 24/7 support contracts.<br class="u-hide--small">Weekday support is discounted by 50%.</p>
+      <p><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+    </div>
+  </div>
 </section>
 
-<section class="p-strip is-shallow" id="managed">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--3">Fully managed OpenStack, Kubernetes and LMA</h2>
-    <p>We manage infrastructure at both the host and the guest level. Infrastructure includes Ceph and Swift storage, Kubernetes, OpenStack and the recommended logging, monitoring and alerting stack.</p>
+  <section class="p-strip is-deep u-no-padding--top">
+    <hr class="is-fixed-width u-no-margin--bottom">
+    <div class="row">
+      <div class="col-6">
+        <h3 class="p-heading--2">Fully managed OpenStack, Kubernetes and LMA</h3>
+        <p>We manage infrastructure at both the host and the guest level. Infrastructure includes Ceph and Swift storage, Kubernetes, OpenStack and the recommended logging, monitoring and alerting stack.</p>
+      </div>
+  
+      <div class="col-6">
+        <table class="p-table is-not-indented p-table--openstack-k9s-lma">
+          <thead>
+            <tr>
+              <th width="35%">Feature</th>
+              <th class="u-align--right">Per VM</th>
+              <th class="u-align--right">Per host</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://ubuntu.com/kubernetes/managed">Managed Kubernetes</a> on public cloud, VMware or OpenStack</td>
+              <td class="u-align--right">&dollar;1,305</td>
+              <td class="u-align--right">&dollar;2,925*</td>
+            </tr>
+            <tr>
+              <td><a href="https://ubuntu.com/openstack/managed">Managed OpenStack</a> on bare metal</td>
+              <td class="u-align--right">&nbsp;</td>
+              <td class="u-align--right">&dollar;5,475</td>
+            </tr>
+            <tr>
+              <td><a href="https://ubuntu.com/kubernetes/managed">Managed Kubernetes</a> on bare metal</td>
+              <td class="u-align--right">&nbsp;</td>
+              <td class="u-align--right">&dollar;3,985</td>
+            </tr>
+            <tr>
+              <td><a href="https://ubuntu.com/ceph">Managed Ceph</a> on bare metal</td>
+              <td class="u-align--right">&nbsp;</td>
+              <td class="u-align--right">&dollar;3,985</td>
+            </tr>
+            <tr>
+              <td>Combined offering - managed on-demand K8s on fully managed OpenStack</td>
+              <td class="u-align--right">&nbsp;</td>
+              <td class="u-align--right">&dollar;6,351</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-6">&nbsp;</div>
+    <div class="col-6">
+      <p>* On a VMware or OpenStack cluster, managed guests can be priced per host in the cluster.</p>
+      <p><a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a></p>
+    </div>
   </div>
-  {% include "shared/pricing/_openstack-kubernetes-lma.html" %}
-  <div class="u-fixed-width">
-    <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+</section>
+<section class="p-strip is-deep u-no-padding--top">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-6">
+      <h3 class="p-heading--2">MAAS</h3>
+      <p>Support and commercial capabilities for MAAS are included with Ubuntu Pro and Ubuntu Pro (Infra-only). These additional charges apply for machines managed by MAAS and <em>not</em> covered by an Ubuntu Pro contract.</p>
+    </div>
+    <div class="col-6">
+        <table class="p-table is-not-indented p-table--pro-maas">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="u-align--right">No Support</th>
+              <th class="u-align--right">Weekday support</th>
+              <th class="u-align--right">24/7 support</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Per managed machine - annual</td>
+              <td class="u-align--right">&dollar;30</td>
+              <td class="u-align--right">&dollar;50</td>
+              <td class="u-align--right">&dollar;100</td>
+            </tr>
+            <tr>
+              <td>Phone and ticket support</td>
+              <td class="u-align--right">None</td>
+              <td class="u-align--right">Office hours</td>
+              <td class="u-align--right">24/7</td>
+            </tr>
+            <tr>
+              <td>Response time - SLA Sev 1</td>
+              <td class="u-align--right">&dash;</td>
+              <td class="u-align--right">4 hours</td>
+              <td class="u-align--right">1 hour</td>
+            </tr>
+            <tr>
+              <td>Knowledge base access</td>
+              <td class="u-align--right">Included</td>
+              <td class="u-align--right">Included</td>
+              <td class="u-align--right">Included</td>
+            </tr>
+            <tr>
+              <td>Role based access controls (RBAC)</td>
+              <td class="u-align--right">Included</td>
+              <td class="u-align--right">Included</td>
+              <td class="u-align--right">Included</td>
+            </tr>
+            <tr>
+              <td>High availability</td>
+              <td class="u-align--right">Included</td>
+              <td class="u-align--right">Included</td>
+              <td class="u-align--right">Included</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+        </p>
+    </div>
   </div>
 </section>
 
-<section class="p-strip--light is-bordered is-shallow">
-  <div class="u-fixed-width">
-    <h2 class="p-heading--3" id="maas">MAAS</h2>
-    <p>Support and commercial capabilities for MAAS are included with Ubuntu Pro and Ubuntu Pro (Infra-only). These additional charges apply for machines managed by MAAS and <em>not</em> covered by an Ubuntu Pro contract.</p>
-  </div>
-  {% include "shared/pricing/_maas-pricing.html" %}
-  <div class="u-fixed-width">
-    <p>
-      <a href="/support/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
-    </p>
+<section class="p-strip is-deep u-no-padding--top">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="col-6">
+      <h3 class="p-heading--2">Any questions? Call us:</h3>
+    </div>
+    <div class="col-6">
+      <h3><tel href="+17372040291">+1&nbsp;737&nbsp;204&nbsp;0291</tel>&nbsp;(Americas)<br /><tel href="+442036565291">+44&nbsp;203&nbsp;656&nbsp;5291</tel>&nbsp;(Rest of the World)</h3>
+      <p>or <a href="/support/contact-us" class="js-invoke-modal">contact us online</a></p>
+    </div>
   </div>
 </section>
-
-{% with colour="white", border="false" %}{% include "shared/_call-sales.html" %}{% endwith %}
-
 
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/pricing-infra" data-form-id="1240" data-lp-id="2065" data-return-url="https://ubuntu.com/pricing/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">

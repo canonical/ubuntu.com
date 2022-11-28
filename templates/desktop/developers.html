@@ -21,7 +21,7 @@
   <section class="u-image-position p-strip--suru-topped is-bordered">
     <div class="row u-vertically-center">
       <div class="col-6">
-        <h1>Ubuntu Desktop for&nbsp;Linux developers</h1>
+        <h1>Ubuntu Desktop for developers</h1>
         <p>Whether you're an app or web developer, engineering manager, data scientist, or AI/ML researcher &mdash; Ubuntu is your ideal workstation.</p>
         <p><a href="/download/desktop" class="p-button--positive">Get Ubuntu now</a></p>
       </div>
@@ -142,6 +142,11 @@
               <td>Apr 2027</td>
               <td>Apr 2032</td>
             </tr>
+            <tr>
+              <td><strong>22.10 (Kinetic Kudu)</strong></td>
+              <td>Apr 2022</td>
+              <td>Jul 2023</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -258,7 +263,7 @@
       <div class="col-8">
         <h3>A rich ecosystem</h3>
         <ul class="p-list">
-          <li class="p-list__item is-ticked">With a <a href="https://snapcraft.io/store">Snap Store</a> of over 7,000 applications in addition to the Ubuntu archive, it's easy to tailor Ubuntu desktop to your needs.</li>
+          <li class="p-list__item is-ticked">With a <a href="https://snapcraft.io/store">Snap Store</a> of over 7,000 applications in addition to the Ubuntu repository, it's easy to tailor Ubuntu desktop to your needs.</li>
           <li class="p-list__item is-ticked">Development tools include Visual Studio Code, IntelliJ, GitKraken, Unity and Blender.</li>
           <li class="p-list__item is-ticked">Office productivity tools include Slack, Microsoft Teams, Dropbox, and Zoom as well as the Microsoft-compatible LibreOffice.</li>
           <li class="p-list__item is-ticked">Media, gaming, and content creation apps include Spotify, Steam, Discord and OBS Studio.</li>
@@ -504,6 +509,32 @@
   <section class="p-strip--light">
     <div class="row">
       <div class="col-8">
+        <h2>What's new in Ubuntu {{ releases.latest.short_version }}</h2>
+      </div>
+    </div>
+    <div class="u-fixed-width">
+      <ul class="p-list is-split">
+        <li class="p-list__item is-ticked">Linux 5.19 kernel</li>
+        <li class="p-list__item is-ticked">GNOME 43 desktop environment
+          <ul>
+            <li>New quick settings interface</li>
+            <li>New spread effect for multitasking</li>
+            <li>Dynamic UI for the file manager</li>
+          </ul>
+        </li>
+        <li class="p-list__item is-ticked">Pipewire as the default audio system delivering improve bluetooth performance</li>
+        <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.1, Perl 5.34, Go 1.19, GCC 12.2, Rust 1.61</li>
+        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.4, Thunderbird 102, and Firefox 105</li>
+        <li class="p-list__item is-ticked">Multi-threaded CPU squashfs decompression for faster Snap startup</li>
+      </ul>
+    </div>
+    <div class="u-fixed-width">
+      <p><a href="{{ releases.latest.release_notes_url }}">Read the full release notes&nbsp;&rsaquo;</a></p>
+    </div>
+  </section>
+  <section class="p-strip--suru">
+    <div class="row">
+      <div class="col-8">
         <h2>What's new in Ubuntu {{ releases.lts.short_version }}</h2>
       </div>
     </div>
@@ -539,7 +570,7 @@
       </ul>
     </div>
     <div class="u-fixed-width">
-      <p><a href="{{ releases.lts.release_notes_url }}">Read the full release notes&nbsp;&rsaquo;</a></p>
+      <p><a class="p-link--inverted" href="{{ releases.lts.release_notes_url }}">Read the full release notes&nbsp;&rsaquo;</a></p>
     </div>
   </section>
   <section class="p-strip">
@@ -610,7 +641,7 @@
       <div class="col-4">
        <h3>Buy it pre-installed</h3>
        <p>Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers including Dell, HP, and Lenovo.</p>
-       <p><a href="https://partners.ubuntu.com/programmes/retail">Find out more about our retail partners</a></p>
+       <p><a href="https://canonical.com/partners/desktop">Find out more about our retail partners</a></p>
       </div>
       <div class="col-4">
        <h3>Join our community</h3>

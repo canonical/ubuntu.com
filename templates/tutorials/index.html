@@ -33,14 +33,8 @@
         <label for="tutorials-topic">Topic:</label>
         <select name="tutorials-topic" id="tutorials-topic" class="u-no-margin--bottom">
           <option value="">Any</option>
-          {% for item in topics_list %}
-            {% if item == "ua" %}
-              <option value="{{ item }}">Ubuntu Advantage</option>
-            {% elif item == "iot" %}
-              <option value="{{ item }}">IoT</option>
-            {% else %}
-              <option value="{{ item }}">{{item | capitalize}}</option>
-            {% endif %}
+          {% for key in topics_list %}
+            <option value="{{ topics_list[key] }}">{{ key }}</option>
           {% endfor %}
         </select>
       </div>

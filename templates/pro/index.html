@@ -24,9 +24,6 @@
       <div class="col-6 col-medium-3">
         <p>Ubuntu Pro (currently in public beta) expands our famous ten-year security coverage to an additional 23,000 packages beyond the main operating system.
         </p>
-        <p>
-          Including Ansible, Apache Tomcat, Apache Zookeeper, Docker, Drupal, Nagios, Node.js, phpMyAdmin, Puppet, PowerDNS, Python 2, Redis, Rust, WordPress, and many more...
-        </p>
       </div>
     </div>
   </div>
@@ -44,7 +41,8 @@
       }}
     </div>
     <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
+      {{
+        image (
         url="https://assets.ubuntu.com/v1/df2c8fa0-apache+tomcat+logo.png",
         alt="Apache Tomcat",
         attrs={"class":"p-logo-section__logo"},
@@ -326,7 +324,7 @@
 <section class="p-strip is-x-deep u-no-padding--top">
   <div class="u-fixed-width">
     <h2>Ready to try Ubuntu Pro beta today?<br>
-      <a href="https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018">Discover the step-by-step tutorial</a>
+      <a href="/pro/beta">Discover the step-by-step tutorial</a>
     </h2>
   </div>
 </section>
@@ -435,7 +433,7 @@
       <div class="p-strip is-shallow u-no-padding--top">
         <h2>Available everywhere</h2>
         <p>Enterprise-grade security and compliance delivered on every cloud, <br>data centre, and desktop.</p>
-        <p><a href="https://ubuntu.com/contact-us/form?product=pro">Let's talk</a></p>
+        <p><a class="p-button" href="https://ubuntu.com/contact-us/form?product=pro">Contact us</a></p>
       </div>
     </div>
     <div class="col-6 col-medium-6">
@@ -601,7 +599,9 @@
       <h3 class="p-heading--2">Become a customer</h3>
     </div>
     <div class="col-6 col-medium-3">
-      <p>For enterprises to cover their Ubuntu estate - <br class="u-hide--medium u-hide--small">servers and workstations.</p>
+      <p>For enterprises to cover their Ubuntu estate - servers and workstations.<br class="u-hide--medium u-hide--small">
+        <a href="https://ubuntu.com/pricing/pro">See Ubuntu Pro pricing.</a>
+      </p>
       <a href="/pro/subscribe" class="p-button">Buy</a>
     </div>
   </div>
@@ -620,13 +620,11 @@
       <p>
         If you were an active customer before October 4th, 2022, this trial lasts for up to 1 year - until the end of your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain as an Ubuntu Pro (Infra-only) customer at your current price.
       </p>
-      <p class="u-sv-1">
-        <a href="#" class="js-invoke-modal">Request beta access at no extra cost</a>
-      </p>
-      <hr class="u-no-margin--bottom">
-      <p>
-        <a href="https://ubuntu.com/pricing/pro">Ubuntu Pro pricing</a>
-      </p>
+      {% if user_info %}
+        <button class="js-invoke-modal">Request beta access at no extra cost</button>
+      {% else %}
+        <a class="p-button" href="/login?next=/pro/get-in-touch">Login to request beta access</a>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -724,7 +722,7 @@
         <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
       </tr>
       <tr>
-        <td class="u-no-padding--left" data-heading="Other features">Optional Support</td>
+        <td class="u-no-padding--left" data-heading="Other features"><a href="/support">Optional Support</a></td>
         <td data-heading="Ubuntu LTS">No</td>
         <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
         <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
@@ -738,7 +736,7 @@
     <h2>Experience Ubuntu Pro in action: <br>
       <a href="https://ubuntu.com/engage/introduction-to-ubuntu-pro">Webinar&nbsp;&rsaquo;</a>
       &nbsp;&nbsp;
-      <a href="https://discourse.ubuntu.com/t/ubuntu-pro-beta-tutorial/31018">Tutorials&nbsp;&rsaquo;</a>
+      <a href="/pro/beta">Tutorials&nbsp;&rsaquo;</a>
     </h2>
   </div>
 </section>

@@ -14,9 +14,9 @@ markdown_includes:
 As an **Ubuntu Pro** customer, you are entitled to the following coverage, depending on the appropriate support level on a per-machine basis. Each subscription can cover either (i) Infrastructure-only: **Ubuntu Pro (Infra-only)** with or without support (previously known as Ubuntu Advantage for Infrastructure), or (ii)Infrastructure and Applications: (**Ubuntu Pro**), with or without support:
 
 1. **Physical server**: A subscription attached to a physical host running Ubuntu or a Covered Hypervisor. If all physical hosts in the Environment are attached, then Ubuntu Pro subscription also covers all Ubuntu guests on those hosts
-2. **Desktop**: A subscription limited to Desktop use-cases. It covers packages in the base Ubuntu desktop image as well as packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugin. It can also cover support (wwekday or 24/7) for Ubuntu distribution for [Windows Subsystem for Linux](https://ubuntu.com/wsl) (WSL) and developer tools such as MicroK8s and Multipass
+2. **Desktop**: A subscription limited to Desktop use-cases. It covers packages in the base Ubuntu desktop image as well as packages necessary for basic network authentication and connectivity using sssd, winbind, network-manager, and network-manager plugin. It can also cover support (weekday or 24/7) for Ubuntu distribution for [Windows Subsystem for Linux](https://ubuntu.com/wsl) (WSL) and developer tools such as MicroK8s and Multipass
 
-Each subscription can be purchased at one of three support levels - **no support** (previously known as Essential), **weekday support** (previously known as Standard) **or 24/7 support** (previously known as Advanced) and must cover all Ubuntu systems within your production environment. Unless otherwise stated, a subscription will be no support. Detailed pricing can be found at: https://ubuntu.com/pricing/pro
+Each subscription can be purchased at one of three support levels - **Ubuntu Pro** (previously known as Essential), **Ubuntu Pro + support (weekday)** (previously known as Standard) **or Ubuntu Pro + support (24/7)** (previously known as Advanced) and must cover all Ubuntu systems within your production environment. Unless otherwise stated, a subscription will be Ubuntu Pro. Detailed pricing can be found at: https://ubuntu.com/pricing/pro
 
 {{ pricing_table | safe }}
 
@@ -122,10 +122,26 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
     9. <span id="uprosd-charms-support">Charms support</span>
         14. Each Charm version is supported for one year from the release date
         15. Canonical will not provide support for any Charms that have been modified from the [supported version](https://docs.openstack.org/charm-guide/latest/reference/openstack-charms.html)
-    10. <span id="uprosd-storage-support">Storage support</span>
-        16. Canonical will provide support for 192TB of raw storage per storage node with Ceph or Swift storage exposed to the OpenStack cluster. This allowance can be used for Ceph, Swift, or a combination of these. Please note that only storage Nodes count towards the 192TB free tier of raw storage per node
-        17. If the Node allowance is exceeded, [additional Storage Support](https://ubuntu.com/pricing/infra) needs to be acquired
-        18. Customers who have purchased Storage Support for an unlimited amount of storage are limited to support in a single Ceph Cluster or Swift Cluster
+    10. <span id="uprosd-ceph-storage-support">Ceph storage support</span>
+        1. Ceph storage support depends on the Ubuntu release deployed on the underlying storage nodes:
+            1. The [version of Ceph](https://ubuntu.com/ceph/docs/supported-ceph-versions) initially included in the release of a LTS version of Ubuntu is supported for the entire lifecycle of that Ubuntu version
+            2. Updated releases of Ceph are made available in the Ubuntu Cloud Archive after an LTS version is released. Each Ceph release in the Ubuntu Cloud Archive is supported on an Ubuntu LTS version for a minimum of 18 months from the release date of the Ubuntu version that included the applicable Ceph version
+        2. Canonical will provide support for 192TB of raw storage per Ceph storage node. Please note that only Ceph storage nodes count towards the 192TB free tier of raw storage per node
+        3. If the Node allowance is exceeded, [additional Ceph storage support](https://ubuntu.com/pricing/infra) needs to be acquired
+        4. Customers who have purchased Ceph storage support for an unlimited amount of storage are limited to support of a single Ceph cluster
+        5. Ceph storage support requires all nodes that participate in the Ceph storage cluster to be covered under an active support agreement
+        6. Full Ceph storage support
+            1. Requirements:
+            2. The Ceph storage cluster was deployed via a Private Cloud Build, Ceph Cluster Build or was validated through a Cloud Validation engagement
+            3. Scope:
+            4. Support for the Charms deployed
+            5. Support is included for all packages required to run Ceph as deployed
+            6. Upgrades of Ceph components as part of the regular Ubuntu LTS maintenance cycle
+            7. Upgrades between versions of Ceph or LTS versions of Ubuntu, Juju, and MAAS are supported as long as the upgrade is performed following a documented process as specified by Canonical as part of the Private Cloud Build or Cloud Validation Package
+            8. Addition of new Ceph storage nodes and replacement of existing nodes with new nodes of equivalent capacity are both supported
+        7. Limited Ceph storage support
+            1. Stand-alone storage clusters not deployed through a [Ceph Cluster Build Package](https://ubuntu.com/ceph/consulting) or cloud attached Ceph storage clusters not validated using a Cloud Validation Package are limited to Bug-fix Support only
+            2. Ceph storage support does not include support beyond Bug-fix Support during the deployment or configuration of a standalone or cloud-attached storage cluster
     11. <span id="uprosd-maas-support">MAAS support</span>
         19. In order to be eligible for MAAS support, all machines connected to a MAAS need to be covered under a MAAS support agreement or Ubuntu Pro
         20. To be eligible for MAAS support, MAAS support must be purchased for all machines not covered by Ubuntu Pro
@@ -183,6 +199,9 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
         8. Only Canonical will have login access to Environment Nodes
     11. Environment size. The Managed Service will add or remove Nodes from the Environment as requested by the customer through a support ticket, provided that the Environment does not go under the Minimum Size Requirement. All Environment Nodes must be covered under the service, so additional fees may apply
     12. Ubuntu, OpenStack and Kubernetes upgrades. The Managed Service will ensure the customer's Environment remains on a supported LTS version of Ubuntu and OpenStack and/or Kubernetes
+        1. Upgrades will be performed on a per-AZ basis within maintenance windows decided in concert with the client.
+        2. Downtime should be expected for non-cloud-native workloads that cannot be migrated away from the availability zone undergoing upgrade.
+        3. If cloud utilisation is very high, upgrade risks will need to be carefully evaluated with the customer, potentially causing delays or preventing the project from being undertaken.
     13. Project work. The Managed Service will provide planned upgrades and maintenance Monday to Friday during Canonical working days
     14. Managed Apps. Canonical will manage Applications from its [managed applications portfolio](https://ubuntu.com/managed/apps). Canonical will expose only API and other user-level interfaces of the Applications
 4. Out of scope. The Managed Service does not provide:
@@ -303,20 +322,20 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
           <tr>
             <td>2</td>
             <td>Core functionality severely degraded</td>
-            <td>8 Business Hours</td>
+            <td>8 Business hours</td>
             <td>2 hours</td>
           </tr>
           <tr>
             <td>3</td>
             <td>Standard support request</td>
-            <td>12 Business Hours</td>
-            <td>6 hours</td>
+            <td>12 Business hours</td>
+            <td>6 Business hours</td>
           </tr>
           <tr>
             <td>4</td>
             <td>Non-urgent requests, including cosmetic, informational and feature requests.</td>
-            <td>24 Business Hours</td>
-            <td>12 hours</td>
+            <td>24 Business hours</td>
+            <td>12 Business hours</td>
           </tr>
         </tbody>
       </table>
@@ -350,12 +369,11 @@ Where services are denoted to be “Embedded” the following applies:
 
 **Applications:** Applications Supported or Managed by Canonical (Managed Applications as described in the Add-ons section, under Managed Services, and at [https://ubuntu.com/managed](https://ubuntu.com/managed))
 
-**Apps support:** phone and ticket support for the base Ubuntu OS image and a set of open source applications from Ubuntu repositories, built by Canonical or otherwise agreed with Canonical. A list of currently offered applications is set out at [https://ubuntu.com/support](https://ubuntu.com/support). The list of Applications is subject to change without notice. The support scope also covers Kubernetes and LXD.
+**Apps support:** phone and ticket support for the base Ubuntu OS image and a set of open source applications from Ubuntu repositories, built by Canonical or otherwise agreed with Canonical. A list of currently offered applications is set out at [https://ubuntu.com/support](https://ubuntu.com/support). The list of Applications is subject to change without notice. The support scope also covers Kubernetes and LXD
 
+**Break-fix Support**: request assistance in the event of an incident and answer questions about Supported Packages and products
 
-**Break-fix Support**: assistance in the event of an error or bug and answering basic questions about Supported Packages and Standard Releases of Ubuntu
-
-**Bug-fix Support**: support for valid code bugs in supported packages only. This does not include troubleshooting of issues to determine if a bug is present
+**Bug-fix Support**: support for reported software bugs in Supported Packages only. This does not include troubleshooting of issues to determine if a bug is present
 
 **Business Hours:** 08:00&ndash;18:00, Monday&ndash;Friday, local to the customer's headquarters unless another location is agreed. All times exclude public holidays
 
@@ -385,13 +403,9 @@ Where services are denoted to be “Embedded” the following applies:
 
 **Expanded Security Maintenance (ESM):** an additional scope of security patching service delivered by the Ubuntu Security Team as found at https://ubuntu.com/security/esm. It covers fixes to High and Critical CVE vulnerabilities for 10 years and could be offered for Ubuntu Main repository (with Ubuntu Pro (Infra-only)), or both Ubuntu Main and Universe repositories (with the full Ubuntu Pro).
 
-**Full Stack Support**: addressing problems pertaining to user and operations-level functionality, performance and availability
-
 **Guest Instance**: a virtual machine instance
 
 **Infra support:** Support for the base Ubuntu OS image and a set of open source infrastructure components, such as MAAS, Ceph storage and OpenStack. It also covers Kubernetes and LXD.
-
-**Full (Infra & Apps) support:** The support for the whole stack, including Infra support and Apps support.
 
 **Kubernetes**: the container orchestration software known as “Kubernetes” as distributed by Canonical
 

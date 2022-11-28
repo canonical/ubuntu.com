@@ -26,6 +26,19 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
     </>
   );
 
+  const descriptionLabel = (
+    <>
+      I agree to the{" "}
+      <a
+        href="/legal/ubuntu-pro-description"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Ubuntu Pro description
+      </a>
+    </>
+  );
+
   const marketingLabel =
     "I agree to receive information about Canonical's products and services";
 
@@ -43,9 +56,11 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
 
   const BuyButton = ({
     areTermsChecked,
+    isDescriptionChecked,
     isMarketingOptInChecked,
     setTermsChecked,
     setIsMarketingOptInChecked,
+    setIsDescriptionChecked,
     setError,
     setStep,
     isUsingFreeTrial,
@@ -56,8 +71,10 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
         closeModal={closeModal}
         areTermsChecked={areTermsChecked}
         isMarketingOptInChecked={isMarketingOptInChecked}
+        isDescriptionChecked={isDescriptionChecked}
         setTermsChecked={setTermsChecked}
         setIsMarketingOptInChecked={setIsMarketingOptInChecked}
+        setIsDescriptionChecked={setIsDescriptionChecked}
         setError={setError}
         setStep={setStep}
         isUsingFreeTrial={isUsingFreeTrial}
@@ -79,6 +96,7 @@ const RenewalModal = ({ subscription, closeModal }: Props) => {
         <PurchaseModal
           accountId={subscription.account_id}
           termsLabel={termsLabel}
+          descriptionLabel={descriptionLabel}
           marketingLabel={marketingLabel}
           quantity={subscription.number_of_machines}
           closeModal={closeModal}

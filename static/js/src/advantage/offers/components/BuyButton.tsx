@@ -18,9 +18,11 @@ type Props = {
 const BuyButton = ({
   offer,
   areTermsChecked,
+  isDescriptionChecked,
   isMarketingOptInChecked,
   setTermsChecked,
   setIsMarketingOptInChecked,
+  setIsDescriptionChecked,
   setError,
   setStep,
 }: Props) => {
@@ -75,6 +77,7 @@ const BuyButton = ({
         },
         onError: (error) => {
           setTermsChecked(false);
+          setIsDescriptionChecked(false);
           setIsMarketingOptInChecked(false);
           setIsLoading(false);
           if (
@@ -143,6 +146,7 @@ const BuyButton = ({
         }
       }
       setTermsChecked(false);
+      setIsDescriptionChecked(false);
       setIsMarketingOptInChecked(false);
       setStep(1);
     }
@@ -191,7 +195,7 @@ const BuyButton = ({
       appearance="positive"
       aria-label="Buy"
       style={{ textAlign: "center" }}
-      disabled={!areTermsChecked || isLoading}
+      disabled={!areTermsChecked || !isDescriptionChecked || isLoading}
       onClick={onPayClick}
       loading={isLoading}
     >

@@ -74,18 +74,17 @@ const AutoRenewalLabel = ({
 
   return (
     <>
-      <p className="u-no-padding">
-        {doWhat} {toWhat} {forHowLong} for{" "}
-        <strong>{currencyFormatter.format(total)}</strong>
-        *.
-      </p>
-      <p className="u-no-padding">{next}:</p>
+      {doWhat} {toWhat} {forHowLong} for{" "}
+      <strong>{currencyFormatter.format(total)}</strong>
+      *. <br />
+      {next}: <br />
       <small>
-        <ul>
-          {products.map((product) => (
-            <li key={product}>{product}</li>
-          ))}
-        </ul>
+        {products.map((product) => (
+          <>
+            {product}
+            <br />
+          </>
+        ))}
       </small>
     </>
   );

@@ -100,6 +100,52 @@
     <main class="col-9">
       {{ document.body_html | safe }}
 
+      <div class="p-strip">
+        <hr class="u-no-margin--bottom">
+        <div class="p-article-pagination">
+          {% set nav_items = navigation.nav_items %}
+          {% set ns = namespace(use_next=false, outer_title=none) %}
+
+          {%- for page in nav_items|reverse recursive %}
+            {% if ns.use_next and not page.hidden and page.navlink_text and not page.navlink_href %}
+              {% set ns.outer_title = page.navlink_text %}
+            {% endif %}
+            {{- loop(page.children|reverse) }}
+            {% if page.is_active %}
+                {% set ns.use_next = true %}
+            {% elif ns.use_next and not page.hidden and page.navlink_text %}
+              {% if page.navlink_href %}
+                <a class="p-article-pagination__link--previous" href="{{ page.navlink_href }}">
+                  <span class="p-article-pagination__label">Previous</span>
+                  <span class="p-article-pagination__title">{% if ns.outer_title %}{{ ns.outer_title }}: {% endif %}{{ page.navlink_text }}</span>
+                </a>
+                {% set ns.use_next = false %}
+              {% endif %}
+            {% endif %}
+          {%- endfor %}
+
+          {% set ns.outer_title = none %}
+          {% set ns.use_next = false %}
+
+          {%- for page in nav_items recursive %}
+            {% if page.is_active %}
+                {% set ns.use_next = true %}
+            {% elif ns.use_next and not page.hidden and page.navlink_text %}
+              {% if page.navlink_href %}
+                <a class="p-article-pagination__link--next" href="{{ page.navlink_href }}">
+                  <span class="p-article-pagination__label">Next</span>
+                  <span class="p-article-pagination__title">{% if ns.outer_title %}{{ ns.outer_title }}: {% endif %}{{ page.navlink_text }}</span>
+                </a>
+                {% set ns.use_next = false %}
+              {% else %}
+                {% set ns.outer_title = page.navlink_text %}
+              {% endif %}
+            {% endif %}
+            {{- loop(page.children) }}
+          {%- endfor %}
+        </div>
+      </div>
+
 			<div class="p-strip is-shallow">
 				<div class="p-notification--information">
 					<div class="p-notification__content">

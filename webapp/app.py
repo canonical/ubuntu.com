@@ -49,7 +49,12 @@ from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cube.views import (
     cred_self_study,
     cred_syllabus_data,
-    cube_home,
+    cred_home,
+    cred_schedule,
+    cred_your_exams,
+    cred_cancel_exam,
+    cred_assessments,
+    cred_exam,
     cube_microcerts,
     cube_study_labs_button,
     get_microcerts,
@@ -538,7 +543,7 @@ app.add_url_rule(
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
 )
 app.add_url_rule(
-    "/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>",
+    "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
     view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
@@ -902,10 +907,19 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 
-# Cube docs
-app.add_url_rule("/credentialling", view_func=cube_home)
-app.add_url_rule("/credentialling/self-study", view_func=cred_self_study)
-app.add_url_rule("/credentialling/syllabus", view_func=cred_syllabus_data)
+# Credentials
+app.add_url_rule("/credentials", view_func=cred_home)
+app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
+app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
+app.add_url_rule(
+    "/credentials/schedule",
+    view_func=cred_schedule,
+    methods=["GET", "POST"],
+)
+app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
+app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
+app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
+app.add_url_rule("/credentials/exam", view_func=cred_exam)
 app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
 app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
 app.add_url_rule(

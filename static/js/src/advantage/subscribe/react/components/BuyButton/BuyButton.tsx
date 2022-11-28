@@ -14,9 +14,11 @@ import { FormContext } from "../../utils/FormContext";
 
 const BuyButton = ({
   areTermsChecked,
+  isDescriptionChecked,
   isUsingFreeTrial,
   isMarketingOptInChecked,
   setTermsChecked,
+  setIsDescriptionChecked,
   setIsMarketingOptInChecked,
   setError,
   setStep,
@@ -111,6 +113,17 @@ const BuyButton = ({
     });
   };
 
+  const proSelectorStates = [
+    "pro-selector-productType",
+    "pro-selector-version",
+    "pro-selector-quantity",
+    "pro-selector-feature",
+    "pro-selector-support",
+    "pro-selector-sla",
+    "pro-selector-period",
+    "pro-selector-publicCloud",
+  ];
+
   const onPayClick = () => {
     handleOnPurchaseBegin();
     checkoutEvent(GAFriendlyProduct, "3");
@@ -118,6 +131,7 @@ const BuyButton = ({
       onSuccess: (data) => {
         //start polling
         setPendingPurchaseID(data);
+        proSelectorStates.forEach((state) => localStorage.removeItem(state));
       },
       onError: (error) => {
         setIsLoading(false);
@@ -181,6 +195,7 @@ const BuyButton = ({
         }
       }
       setTermsChecked(false);
+      setIsDescriptionChecked(false);
       setIsMarketingOptInChecked(false);
       setStep(1);
     }
@@ -234,7 +249,7 @@ const BuyButton = ({
       appearance="positive"
       aria-label="Buy"
       style={{ textAlign: "center" }}
-      disabled={!areTermsChecked || isLoading}
+      disabled={!areTermsChecked || !isDescriptionChecked || isLoading}
       onClick={isUsingFreeTrial ? onStartTrialClick : onPayClick}
       loading={isLoading}
     >

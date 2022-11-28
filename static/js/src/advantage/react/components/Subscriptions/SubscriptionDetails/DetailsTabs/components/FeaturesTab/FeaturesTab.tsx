@@ -136,6 +136,20 @@ const FeaturesTab = ({ subscription, setHasUnsavedChanges }: Props) => {
                       >
                         {label}
                       </FeatureSwitch>
+                      {label === EntitlementLabel.EsmApps &&
+                      featuresFormState[label]?.isDisabled ? (
+                        <Tooltip
+                          tooltipClassName="p-subscriptions-tooltip"
+                          message="ESM Apps is in beta for your contract. To enable it on a machine, run `sudo pro enable esm-apps --beta`."
+                        >
+                          <Button
+                            type="button"
+                            className="u-no-margin--bottom p-subscriptions-tooltip__button"
+                          >
+                            <i className="p-icon--information" />
+                          </Button>
+                        </Tooltip>
+                      ) : null}
                     </div>
                   ),
                 }))
