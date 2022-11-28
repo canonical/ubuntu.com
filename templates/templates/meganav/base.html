@@ -19,7 +19,7 @@
         {% for side_nav_section in sections.side_nav_sections %}
           <div class="col-9 dropdown-window__sidenav-content"  {% if loop.index != 1 %}hidden="true"{% endif %} id="tab-content-{{ key }}-{{ loop.index }}" tabindex="0" role="tabpanel" aria-labelledby="tab-{{ key }}-{{ loop.index }}" >
             <div class="row u-no-padding"> 
-              <div class="col-6 dropdown-window__main-panel  {% if side_nav_section.secondary_links %}is-bordered{% endif %}">
+              <div class="col-{% if side_nav_section.secondary_links %}6{% else %}9{% endif %} dropdown-window__main-panel  {% if side_nav_section.secondary_links %}is-bordered{% endif %}">
                 <a class="dropdown-window__sidenav-back" href="#" onclick="hideSection(event);" aria-controls="tab-content-{{ key }}-{{ loop.index }}">Back</a>
                 {% for links_section in side_nav_section.primary_links %}
                   {% if links_section.title %}
@@ -62,6 +62,22 @@
                         {% endfor %}
                       </ul>
                     </div>
+
+                    {% if secondary_links not in side_nav_section %}
+                      <div class="col-3">
+                        <ul class="p-list">
+                          {% for link in split_links_list[2] %}
+                            {% with 
+                              url = link.url, 
+                              title = link.title, 
+                              description = link.description 
+                            %}
+                              {% include "templates/meganav/_list-item.html" %}
+                            {% endwith %}
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    {% endif %}
                   </div>
                 {% endfor %}
               </div>      
@@ -80,12 +96,21 @@
                 {% endfor %}
               </div>
             </div>
+
+            {% if side_nav_section.section_footer %}
+              <div class="col-9 dropdown-window__footer">
+                {% if "copy" in side_nav_section.section_footer %}
+                  <p>{{ side_nav_section.section_footer['copy'] }}</p>
+                {% endif %}
+
+                <a href="{{side_nav_section.section_footer['cta_url'] }}" class="p-button is-dark">{{ side_nav_section.section_footer['cta_title'] }}</a>
+              </div>
+            {% endif %}
           </div>
         {% endfor %}
       {% elif "primary_links" in sections %}
         <div class="row u-no-padding"> 
           <div class="col-9 dropdown-window__main-panel  {% if sections.secondary_links %}is-bordered{% endif %}">
-            <a class="dropdown-window__sidenav-back" href="#" onclick="hideSection(event);" aria-controls="tab-content-">Back</a>
             {% for links_section in sections.primary_links %}
               {% if links_section.title %}
                 <p class="p-muted-heading is-muted">{{ links_section.title }}</p>
@@ -113,6 +138,20 @@
                 <div class="col-3">
                   <ul class="p-list">
                     {% for link in split_links_list[1] %}
+                      {% with 
+                        url = link.url, 
+                        title = link.title, 
+                        description = link.description 
+                      %}
+                        {% include "templates/meganav/_list-item.html" %}
+                      {% endwith %}
+                    {% endfor %}
+                  </ul>
+                </div>
+
+                <div class="col-3">
+                  <ul class="p-list">
+                    {% for link in split_links_list[2] %}
                       {% with 
                         url = link.url, 
                         title = link.title, 
