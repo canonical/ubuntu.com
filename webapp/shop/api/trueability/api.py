@@ -79,6 +79,19 @@ class TrueAbilityAPI:
         )
         return self.make_request("GET", uri).json()
 
+    def get_user_assessment_reservations(
+        self, ability_screen_id: int = None, user_email: str = None
+    ):
+        all_assessment_reservations = self.get_assessment_reservations(
+            ability_screen_id=ability_screen_id
+        )["assessment_reservations"]
+        user_assessment_reservations = [
+            x
+            for x in all_assessment_reservations
+            if x["user"]["email"] == user_email
+        ]
+        return user_assessment_reservations
+
     def post_assessment_reservation(
         self,
         ability_screen_id: int,

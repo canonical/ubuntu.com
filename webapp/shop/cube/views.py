@@ -1,9 +1,7 @@
-from datetime import datetime, timedelta, tzinfo
+from datetime import datetime, timedelta
 from time import tzname
-import uuid
 import pytz
 import os
-from urllib import request
 import flask
 import json
 
@@ -411,6 +409,18 @@ def cred_schedule(
     badge_certification,
     **kwargs,
 ):
+    sso_user = user_info(flask.session)
+    ability_screen_id = 4190
+    email = sso_user["email"]
+    if (
+        len(
+            trueability_api.get_user_assessment_reservations(
+                ability_screen_id, email
+            )
+        )
+    ) > 0:
+        flask.redirect("/credentials/your-exams")
+
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
@@ -419,15 +429,12 @@ def cred_schedule(
     if flask.request.method == "POST":
         data = flask.request.form
         print("data: ", data)
-        sso_user = user_info(flask.session)
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
         scheduled_time = f"{data['date']}T{data['time']}"
         starts_at = tz_info.localize(
             datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
         )
-        ability_screen_id = 4190
-        email = sso_user["email"]
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
         response = None
 
