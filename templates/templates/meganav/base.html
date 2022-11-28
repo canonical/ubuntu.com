@@ -27,7 +27,11 @@
                   {% endif %}
                   
                   <div class="row">
-                    {% set split_links_list = split_list(links_section.links) %}
+                    {% if side_nav_section.secondary_links %}
+                      {% set split_links_list = split_list(links_section.links, 2) %}
+                    {% else %}
+                      {% set split_links_list = split_list(links_section.links, 3) %}
+                    {% endif %}
 
                     <div class="col-3">
                       <ul class="p-list">
@@ -88,7 +92,7 @@
               {% endif %}
               
               <div class="row">
-                {% set split_links_list = split_list(links_section.links) %}
+                {% set split_links_list = split_list(links_section.links, 3) %}
 
                 <div class="col-3">
                   <ul class="p-list">
