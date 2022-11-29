@@ -1,6 +1,6 @@
 {% extends "subscription-centre/base_subscription-centre.html" %}
 
-{% block title %}Subscription Centre{% endblock %}
+{% block title %}Subscription centre{% endblock %}
 
 {% block content %}
 <section class="p-strip--suru-topped">
@@ -201,13 +201,13 @@
       // Checks for exact match of string and add to the top of results. If no exact match, look for any kind of match and add to the end of results
       if (searchVal) {
         const searchResults = [];
-        for (let i = 0; i < subsList.length; i++) {
-          if (subsList[i].toLowerCase().slice(0, searchVal.length) == searchVal) {
-            searchResults.unshift(subsList[i]);
-          } else if (subsList[i].toLowerCase().includes(searchVal)) {
-            searchResults.push(subsList[i]);
+        subsList.forEach(subItem => {
+          if (subItem.toLowerCase().slice(0, searchVal.length) == searchVal) {
+            searchResults.unshift(subItem);
+          } else if (subItem.toLowerCase().includes(searchVal)) {
+            searchResults.push(subItem);
           }
-        }
+        });
         renderResults(searchResults);
       } else {
         hideResultsDropdown();
