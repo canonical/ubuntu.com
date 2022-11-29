@@ -19,6 +19,24 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
     <div class="col-8">
+      <div class="p-search-and-filter" id="subscription-centre-search" style="margin-bottom:1rem;">
+        <button class="p-search-and-filter__clear"><i class="p-icon--close"></i></button>
+        <div class="p-search-and-filter__search-container" aria-expanded="true" data-active="true" data-empty="false">
+          <div class="p-search-and-filter__box" data-overflowing="false">
+            <label class="u-off-screen" for="search">Search and filter</label>
+            <input autocomplete="off" class="p-search-and-filter__input" id="subscription-search" name="search" placeholder="Search and filter" type="search" value="">
+          </div>
+        </div>
+
+        <div class="p-search-and-filter__panel" aria-hidden="true" style="background:#f7f7f7;padding-top:0;"></div>
+
+        <template id="search-result-template">
+          <div class="p-search-and-filter__search-prompt" role="button" tabindex="0">
+            <span class="p-search-and-filter__search-query"></span>
+          </div>
+        </template>
+      </div>
+
       <form id="subscription-centre" method="post">
         <label class="p-checkbox">
           <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="true" {% if updatesOptIn %}checked{% endif %}>
@@ -38,7 +56,7 @@
                       <div class="col-4">
                         <label class="p-checkbox">
                           <input type="checkbox" class="p-checkbox__input" name="tags" aria-labelledby="{{ tag }}" value="{{ tag }}" {% if interests is not none and tag in interests %}checked{% endif %}>
-                          <span class="p-checkbox__label" id="{{ tag }}">{{ tag }}</span>
+                          <span class="p-checkbox__label" id="{{ tag|lower }}">{{ tag }}</span>
                         </label>
                       </div>
                     {% endfor %}
@@ -86,45 +104,169 @@
   })();
 </script>
 <script>
-  const generalUdatesOptin = document.querySelector("#general-updates");
-  const form = document.querySelector("#subscription-centre");
-  const returnUrl = document.querySelector("#return-url");
-  let hasRun = false;
+  // Handles form submissions
+  (function() {
+    const generalUdatesOptin = document.querySelector("#general-updates");
+    const form = document.querySelector("#subscription-centre");
+    const returnUrl = document.querySelector("#return-url");
+    let hasRun = false;
 
-  const clearFields = () => {
-    generalUdatesOptin.checked = false;
-  };
+    const clearFields = () => {
+      generalUdatesOptin.checked = false;
+    };
 
-  const handleUpdatePreferencesBtn = async (e) => {
-    e.preventDefault();
-    returnUrl.value = "#updated";
-    form.submit();
-  };
+    const handleUpdatePreferencesBtn = (e) => {
+      e.preventDefault();
 
-  const handleUnsubscribeBtn = async (e) => {
-    e.preventDefault();
-    await clearFields();
-    returnUrl.value = "#unsubscribe";
-    form.submit();
-  };
+      returnUrl.value = "#updated";
+      form.submit();
+    };
 
-  const enableUpdatePreferencesBtn = () => {
-    const updatePreferencesBtn = document.querySelector("#update-preferences");
-    updatePreferencesBtn.disabled = false;
-  };
+    const handleUnsubscribeBtn = async (e) => {
+      e.preventDefault();
 
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#update-preferences").addEventListener("click", handleUpdatePreferencesBtn);
+      await clearFields();
+      returnUrl.value = "#unsubscribe";
+      form.submit();
+    };
 
-    document.querySelector("#unsubscribe-btn").addEventListener("click", handleUnsubscribeBtn);
+    const enableUpdatePreferencesBtn = () => {
+      const updatePreferencesBtn = document.querySelector("#update-preferences");
+      updatePreferencesBtn.disabled = false;
+    };
+
+    document.querySelector("#update-preferences").addEventListener("click", handleUpdatePreferencesBtn, { once: true });
+
+    document.querySelector("#unsubscribe-btn").addEventListener("click", handleUnsubscribeBtn, { once: true });
 
     form.addEventListener('input', () => {
       if (hasRun) return;
       hasRun = true;
       enableUpdatePreferencesBtn();
     });
-  });
+  })()
+</script>
+<script>
+  // Setup search
+  (function() {
+    const subsContainer = document.querySelector("#subscriptions-list");
+    const subsSearch = document.querySelector("#subscription-centre-search");
+    const resultContainer = document.querySelector(".p-search-and-filter__panel");
+    const searchInput = document.querySelector("#subscription-search");
 
+    const attachListeners = () => {
+      const clearSearchBtn = subsSearch.querySelector(".p-search-and-filter__clear");
+
+      searchInput.addEventListener("input", handleSearch);
+
+      clearSearchBtn.addEventListener("pointerdown", handleClearBtn);
+      clearSearchBtn.addEventListener("keyup", handleClearBtn);
+
+      resultContainer.addEventListener("pointerdown", handleSearchSelection);
+      resultContainer.addEventListener("keyup", handleSearchSelection);
+
+      //subsSearch.addEventListener("focusout", hideResultsDropdown);
+      searchInput.addEventListener("focus", (e) => e.target.value && showDropdown());
+    };
+
+    // Get all input field and map them into a searchable array
+    const buildSearchableList = () => {
+      const nodeList = subsContainer.querySelectorAll("input[type=checkbox]");
+      const subsArray = [].map.call(nodeList, node => node.value);
+
+      return subsArray;
+    };
+    
+    // Searches for matching strings and renders the matches in the search dropdown
+    const handleSearch = (e) => {
+      let searchVal = e.target.value.trim().toLowerCase();
+
+      const renderResults = (results) => {
+        const templateContainer = document.querySelector("#search-result-template");
+
+        clearResults();
+        showDropdown();
+
+        if (!results.length) {
+          results.push(`No results for ${searchVal}...`);
+        } else {
+          results.slice(0, 10).forEach(result => {
+            const newResultNode = templateContainer.content.cloneNode(true);
+            newResultNode.querySelector("span").innerText = result;
+            resultContainer.appendChild(newResultNode);
+          });
+        }
+      };
+
+      // Checks for exact match of string and add to the top of results. If no exact match, look for any kind of match and add to the end of results
+      if (searchVal) {
+        const searchResults = [];
+        for (let i = 0; i < subsList.length; i++) {
+          if (subsList[i].toLowerCase().slice(0, searchVal.length) == searchVal) {
+            searchResults.unshift(subsList[i]);
+          } else if (subsList[i].toLowerCase().includes(searchVal)) {
+            searchResults.push(subsList[i]);
+          }
+        }
+        renderResults(searchResults);
+      } else {
+        hideResultsDropdown();
+        clearResults();
+      }
+    };
+
+    // On selecting an option from the dropdown, focus the associated input field
+    const handleSearchSelection = (e) => {
+      if (!checkValidEventType(e)) return;
+
+      let target = e.target.closest("[role=button]");
+      let targetName = target.querySelector("span").innerHTML;
+      let targetInput = subsContainer.querySelector(`[aria-labelledby="${targetName}"]`);
+      let subGroup = targetInput.closest(".p-accordion__group");
+      let subGroupTab = subGroup.querySelector(".p-accordion__tab");
+
+      if (targetInput) {
+        // Checks if the panel is already open and opens it if needed
+        if (subGroupTab.getAttribute("aria-expanded") == "false") {
+          subGroupTab.click();
+        }
+        hideResultsDropdown();
+        targetInput.focus();
+      }
+    };
+
+    // Clear button in the search bar
+    const handleClearBtn = (e) => {
+      if (!checkValidEventType(e)) return;
+      hideResultsDropdown();
+      clearResults();
+      searchInput.value = "";
+    };
+
+    // Hides the results dropdown
+    const hideResultsDropdown = () => {
+      resultContainer.setAttribute("aria-hidden", true);
+    };
+
+    const showDropdown = () => {
+      resultContainer.setAttribute("aria-hidden", false);
+    };
+
+    // Clear current stored results
+    const clearResults = () => {
+      resultContainer.innerHTML = "";
+    };
+
+    const checkValidEventType = (e) => {
+      if (e.type == "pointerdown") return true;
+      if (e.keyCode == 13) return true;
+      if (e.keyCode == 32) return true;
+      return false;
+    }
+
+    const subsList = buildSearchableList();
+    attachListeners();
+  })();
 </script>
 
 {% endblock content%}
