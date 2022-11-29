@@ -23,7 +23,11 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
   const { data: userInfo } = useStripeCustomerInfo();
 
-  const { values, setFieldValue } = useFormikContext<FormValues>();
+  const {
+    values,
+    setFieldValue,
+    setErrors: setFormikErrors,
+  } = useFormikContext<FormValues>();
 
   const genericPurchaseMutation = useMakePurchase();
 
@@ -103,41 +107,34 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         },
         onError: (error) => {
           setIsLoading(false);
-          if (
-            error instanceof Error &&
-            error.message.includes("can only make one purchase at a time")
-          ) {
-            setError(
-              <>
-                You already have a pending purchase. Please go to{" "}
-                <a href="/account/payment-methods">payment methods</a> to retry.
-              </>
-            );
-          } else if (
-            error instanceof Error &&
-            error.message.includes("invalid VAT")
-          ) {
-            setError(
-              <>That VAT number is invalid. Check the number and try again.</>
-            );
-          } else if (
-            error instanceof Error &&
-            error.message.includes("eu_vat")
-          ) {
-            setError(
-              <>That VAT number is invalid. Check the number and try again.</>
-            );
-          } else {
-            Sentry.captureException(error);
-            setError(
-              <>
-                Sorry, there was an unknown error with the payment. Check the
-                details and try again. Contact{" "}
-                <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
-                the problem persists.
-              </>
-            );
-          }
+
+          if (error instanceof Error)
+            if (
+              error.message.includes("can only make one purchase at a time")
+            ) {
+              setError(
+                <>
+                  You already have a pending purchase. Please go to{" "}
+                  <a href="/account/payment-methods">payment methods</a> to
+                  retry.
+                </>
+              );
+            } else if (error.message.includes("tax_id_invalid")) {
+              setFormikErrors({
+                VATNumber:
+                  "That VAT number is invalid. Check the number and try again.",
+              });
+            } else {
+              Sentry.captureException(error);
+              setError(
+                <>
+                  Sorry, there was an unknown error with the payment. Check the
+                  details and try again. Contact{" "}
+                  <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
+                  the problem persists.
+                </>
+              );
+            }
         },
       }
     );
