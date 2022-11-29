@@ -107,7 +107,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         },
         onError: (error) => {
           setIsLoading(false);
-
+          console.log(error);
           if (error instanceof Error)
             if (
               error.message.includes("can only make one purchase at a time")
@@ -124,6 +124,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
                 VATNumber:
                   "That VAT number is invalid. Check the number and try again.",
               });
+              setError(
+                <>That VAT number is invalid. Check the number and try again.</>
+              );
             } else {
               Sentry.captureException(error);
               setError(
