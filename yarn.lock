@@ -1292,12 +1292,12 @@
   resolved "https://registry.yarnpkg.com/@canonical/cookie-policy/-/cookie-policy-3.4.0.tgz#0d6708da340df5867fd2cc9dbd95538c46f20cf8"
   integrity sha512-cdVqxQmGu+j+Q86UobihWWVFzGzHlekFeMFxlbRpm+yqxEOUCrLkA9/t/RsMfLNDToP2ECPgsMbS20aPlA2tIg==
 
-"@canonical/global-nav@3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-3.1.4.tgz#f75ccf951086f219f33791aedc9fac326b6886ff"
-  integrity sha512-gNWGvElqG6RFW0QpMqwq4bQXjUnZR2bTFgu+Ms1UL9/oD8u0anQ+k7lE5fZivcJPej3OJTkPL9GZQ6LGtWoeNg==
+"@canonical/global-nav@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@canonical/global-nav/-/global-nav-3.2.0.tgz#6b6c6cefafb22220fa3c43c4176cf2c27ed5a403"
+  integrity sha512-mNxKPFLdib0Wa0pXRvEt/hlSC0MSe3MKTxyu/Hy3sJTt/gDQBvwfDXaVnkIhI7rZoZmRWl8TxsFuaS2apTQrig==
   dependencies:
-    vanilla-framework "3.7.1"
+    vanilla-framework "3.8.1"
 
 "@canonical/latest-news@1.4.1":
   version "1.4.1"
@@ -8849,6 +8849,20 @@ vanilla-framework@3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-3.7.1.tgz#ee107f0695cffb386760164a2bb1901a610d3929"
   integrity sha512-QR188kOz6mENe4/owkifksgrK6EsTcymG39Wr3nereUadxh1GlipNsxo0MhozhBP0ZvQkBwD8V734j8wjdcydg==
+  dependencies:
+    "@canonical/cookie-policy" "3.4.0"
+    "@canonical/latest-news" "1.4.1"
+    autoprefixer "10.4.8"
+    postcss "8.4.14"
+    postcss-cli "9.1.0"
+    postcss-scss "4.0.4"
+    sass "1.54.0"
+    yaml "1.10.2"
+
+vanilla-framework@3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/vanilla-framework/-/vanilla-framework-3.8.1.tgz#9534f89a3120b95b0d3ece022ceabf10812fecdc"
+  integrity sha512-rtG4ipxyHWOlA2cwUzskGZY1NieVt57uDq2TidY8Fk1+jQDo9wbe5N3M7S9e4oI+UhTXUKTKRvLYDP6s4TMsqQ==
   dependencies:
     "@canonical/cookie-policy" "3.4.0"
     "@canonical/latest-news" "1.4.1"
