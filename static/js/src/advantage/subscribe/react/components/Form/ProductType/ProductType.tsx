@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Icon, Row, Tooltip } from "@canonical/react-components";
+import { Button, Col, Row } from "@canonical/react-components";
 import { RadioInput } from "@canonical/react-components";
 import {
   isPublicCloud,
@@ -138,25 +138,26 @@ const ProductType = () => {
       <Row>
         <Col size={12}>
           <RadioInput
-            label={
-              <>
-                Physical servers with unlimited VMs on selected hypervisors
-                <Tooltip
-                  position="top-right"
-                  message="Covered Hypervisor: any of: KVM | Qemu | Boch, VMWare ESXi, LXD | LXC, Xen, Hyper-V (WSL, Multipass), VirtualBox, z/VM, Docker. All Nodes in the cluster have to be subscribed to the service in order to benefit from the unlimited VM support."
-                  className="productTypes-tooltip"
-                  tooltipClassName="productTypes-tooltip-message"
-                >
-                  <Icon name="information" />
-                </Tooltip>
-              </>
-            }
+            label="Physical servers with unlimited VMs"
             name="type"
             value={ProductTypes.physical}
             onChange={handleProductTypeChange}
             checked={productType === ProductTypes.physical}
           />
         </Col>
+        {productType === "physical" && (
+          <Col size={12} style={{ marginLeft: "35px" }}>
+            <p>
+              <strong>Unlimited VMs on selected hypervisors</strong>
+            </p>
+            <p>
+              Any of: KVM | Qemu | Boch, VMWare ESXi, LXD | LXC, Xen, Hyper-V
+              (WSL, Multipass), VirtualBox, z/VM, Docker. All Nodes in the
+              cluster have to be subscribed to the service in order to benefit
+              from the unlimited VM support
+            </p>
+          </Col>
+        )}
         <Col size={12}>
           <RadioInput
             label="Public cloud instances"
