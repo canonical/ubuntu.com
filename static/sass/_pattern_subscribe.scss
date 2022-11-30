@@ -166,22 +166,17 @@
     }
   }
 
-  .productTypes-physical {
-    display: flex;
-  }
-
   .productTypes-tooltip {
-    display: block;
-    margin-bottom: 0.6rem;
-    margin-left: 0.5rem;
-    margin-top: 0;
-    padding-top: 0.4rem;
+    margin-left: 2.5rem;
   }
 
   .productTypes-tooltip-message {
     .p-tooltip__message {
       white-space: normal;
       width: 25rem;
+      @media screen and (max-width: $breakpoint-small - 1) {
+        width: 20rem;
+      }
     }
   }
 
