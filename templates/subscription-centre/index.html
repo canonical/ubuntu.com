@@ -8,7 +8,7 @@
     <div class="u-fixed-width">
       <div class="p-notification--positive u-no-margin--bottom">
         <div class="p-notification__content">
-          <p class="p-notification__message">Your preferences have been successfully updated. <a href="#" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
+          <p class="p-notification__message">Your preferences have been successfully updated. <a href="#" alt="Close notification" onclick="location.href = document.referrer; return false;"><i class="p-notification__close">Close</i></a></p>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="col-8">
       <div class="p-search-and-filter" id="subscription-centre-search" style="margin-bottom:1rem;">
-        <button class="p-search-and-filter__clear"><i class="p-icon--close"></i></button>
+        <button class="p-search-and-filter__clear" aria-hidden="true" hidden=""><i class="p-icon--close"></i></button>
         <div class="p-search-and-filter__search-container" aria-expanded="true" data-active="true" data-empty="false">
           <div class="p-search-and-filter__box" data-overflowing="false">
             <label class="u-off-screen" for="search">Search and filter</label>
@@ -153,10 +153,9 @@
     const subsSearch = document.querySelector("#subscription-centre-search");
     const resultContainer = document.querySelector(".p-search-and-filter__panel");
     const searchInput = document.querySelector("#subscription-search");
+    const clearSearchBtn = subsSearch.querySelector(".p-search-and-filter__clear");
 
     const attachListeners = () => {
-      const clearSearchBtn = subsSearch.querySelector(".p-search-and-filter__clear");
-
       searchInput.addEventListener("input", handleSearch);
 
       clearSearchBtn.addEventListener("pointerdown", handleClearBtn);
@@ -165,8 +164,7 @@
       resultContainer.addEventListener("pointerdown", handleSearchSelection);
       resultContainer.addEventListener("keyup", handleSearchSelection);
 
-      //subsSearch.addEventListener("focusout", hideResultsDropdown);
-      searchInput.addEventListener("focus", (e) => e.target.value && showDropdown());
+      searchInput.addEventListener("focus", (e) => e.target.value && hideResultsDropdown(false));
     };
 
     // Get all input field and map them into a searchable array
@@ -179,27 +177,27 @@
     
     // Searches for matching strings and renders the matches in the search dropdown
     const handleSearch = (e) => {
-      let searchVal = e.target.value.trim().toLowerCase();
+      const searchVal = e.target.value.trim().toLowerCase();
 
       const renderResults = (results) => {
         const templateContainer = document.querySelector("#search-result-template");
 
         clearResults();
-        showDropdown();
+        hideResultsDropdown(false);
 
         if (!results.length) {
           results.push(`No results for ${searchVal}...`);
-        } else {
-          results.slice(0, 10).forEach(result => {
-            const newResultNode = templateContainer.content.cloneNode(true);
-            newResultNode.querySelector("span").innerText = result;
-            resultContainer.appendChild(newResultNode);
-          });
         }
+        results.slice(0, 10).forEach(result => {
+          const newResultNode = templateContainer.content.cloneNode(true);
+          newResultNode.querySelector("span").innerText = result;
+          resultContainer.appendChild(newResultNode);
+        });
       };
 
       // Checks for exact match of string and add to the top of results. If no exact match, look for any kind of match and add to the end of results
       if (searchVal) {
+        hideCancleBtn(false);
         const searchResults = [];
         subsList.forEach(subItem => {
           if (subItem.toLowerCase().slice(0, searchVal.length) == searchVal) {
@@ -210,7 +208,8 @@
         });
         renderResults(searchResults);
       } else {
-        hideResultsDropdown();
+        hideResultsDropdown(true);
+        hideCancleBtn(true);
         clearResults();
       }
     };
@@ -219,18 +218,18 @@
     const handleSearchSelection = (e) => {
       if (!checkValidEventType(e)) return;
 
-      let target = e.target.closest("[role=button]");
-      let targetName = target.querySelector("span").innerHTML;
-      let targetInput = subsContainer.querySelector(`[aria-labelledby="${targetName}"]`);
-      let subGroup = targetInput.closest(".p-accordion__group");
-      let subGroupTab = subGroup.querySelector(".p-accordion__tab");
+      const target = e.target.closest("[role=button]");
+      const targetName = target.querySelector("span").innerHTML;
+      const targetInput = subsContainer.querySelector(`[aria-labelledby="${targetName}"]`);
+      const subGroup = targetInput.closest(".p-accordion__group");
+      const subGroupTab = subGroup.querySelector(".p-accordion__tab");
 
       if (targetInput) {
-        // Checks if the panel is already open and opens it if needed
+        // checks if the panel is already open and opens it if needed
         if (subGroupTab.getAttribute("aria-expanded") == "false") {
           subGroupTab.click();
         }
-        hideResultsDropdown();
+        hideResultsDropdown(true);
         targetInput.focus();
       }
     };
@@ -238,25 +237,29 @@
     // Clear button in the search bar
     const handleClearBtn = (e) => {
       if (!checkValidEventType(e)) return;
-      hideResultsDropdown();
+      hideResultsDropdown(true);
       clearResults();
       searchInput.value = "";
     };
 
-    // Hides the results dropdown
-    const hideResultsDropdown = () => {
-      resultContainer.setAttribute("aria-hidden", true);
+    // Shows/hides results dropdown
+    const hideResultsDropdown = (bool) => {
+      resultContainer.setAttribute("aria-hidden", bool);
     };
 
-    const showDropdown = () => {
-      resultContainer.setAttribute("aria-hidden", false);
-    };
+    // Shows/hides cancle button
+    const hideCancleBtn = (bool) => {
+      clearSearchBtn.setAttribute("aria-hidden", bool);
+      if (bool) clearSearchBtn.setAttribute("hidden", bool);
+      else clearSearchBtn.removeAttribute("hidden");
+    }
 
     // Clear current stored results
     const clearResults = () => {
       resultContainer.innerHTML = "";
     };
 
+    // Check for valid affirmative key/pointer press
     const checkValidEventType = (e) => {
       if (e.type == "pointerdown") return true;
       if (e.keyCode == 13) return true;
