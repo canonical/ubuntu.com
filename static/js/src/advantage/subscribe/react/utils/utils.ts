@@ -108,6 +108,12 @@ export enum ProductTypes {
   virtual = "virtual",
   desktop = "desktop",
   publicCloud = "publicCloud",
+  ioTDevice = "ioTDevice",
+}
+
+export enum IoTDevices {
+  classic = "classic",
+  core = "core",
 }
 
 export enum PublicClouds {
@@ -195,6 +201,12 @@ export const isMonthlyAvailable = (product: Product | null) => {
 
 export const isPublicCloud = (type: ProductTypes) =>
   type === ProductTypes.publicCloud;
+
+export const isIoTDevice = (type: ProductTypes) =>
+  type === ProductTypes.ioTDevice;
+
+export const isDeviceUbuntuCore = (type: IoTDevices) =>
+  type === IoTDevices.core;
 
 export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",

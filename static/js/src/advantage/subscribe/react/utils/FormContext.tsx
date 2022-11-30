@@ -9,6 +9,7 @@ import {
   Periods,
   SLA,
   isMonthlyAvailable,
+  IoTDevices,
 } from "./utils";
 
 interface FormContext {
@@ -27,6 +28,8 @@ interface FormContext {
   product: Product | null;
   period: Periods;
   setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
+  ioTDevice: IoTDevices;
+  setIoTDevice: React.Dispatch<React.SetStateAction<IoTDevices>>;
 }
 
 export const defaultValues: FormContext = {
@@ -45,6 +48,8 @@ export const defaultValues: FormContext = {
   period: Periods.yearly,
   setPeriod: () => {},
   product: null,
+  ioTDevice: IoTDevices.classic,
+  setIoTDevice: () => {},
 };
 
 export const FormContext = createContext<FormContext>(defaultValues);
@@ -57,6 +62,7 @@ interface FormProviderProps {
   initialSupport?: Support;
   initialQuantity?: number | string;
   initialPeriod?: Periods;
+  initialIoTDevice?: IoTDevices;
   children: React.ReactNode;
 }
 
@@ -68,6 +74,7 @@ export const FormProvider = ({
   initialSupport = defaultValues.support,
   initialQuantity = defaultValues.quantity,
   initialPeriod = defaultValues.period,
+  initialIoTDevice = defaultValues.ioTDevice,
   children,
 }: FormProviderProps) => {
   const localProductType = localStorage.getItem("pro-selector-productType");
@@ -77,6 +84,7 @@ export const FormProvider = ({
   const localSupport = localStorage.getItem("pro-selector-support");
   const localSLA = localStorage.getItem("pro-selector-sla");
   const localPeriod = localStorage.getItem("pro-selector-period");
+  const localIoTDevice = localStorage.getItem("pro-selector-iotDevice");
 
   const [productType, setProductType] = useState<ProductTypes>(
     localProductType ? JSON.parse(localProductType) : initialType
@@ -100,6 +108,9 @@ export const FormProvider = ({
     localPeriod ? JSON.parse(localPeriod) : initialPeriod
   );
   const [product, setProduct] = useState<Product | null>(null);
+  const [ioTDevice, setIoTDevice] = useState<IoTDevices>(
+    localIoTDevice ? JSON.parse(localIoTDevice) : initialIoTDevice
+  );
 
   useEffect(() => {
     if (support === Support.none) {
@@ -170,6 +181,8 @@ export const FormProvider = ({
         period,
         setPeriod,
         product,
+        ioTDevice,
+        setIoTDevice,
       }}
     >
       {children}

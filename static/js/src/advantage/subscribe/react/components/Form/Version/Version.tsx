@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { Col, List, Row, StatusLabel } from "@canonical/react-components";
 import classNames from "classnames";
 import {
+  IoTDevices,
+  isIoTDevice,
   isPublicCloud,
   LTSVersions,
   ProductTypes,
@@ -143,7 +145,9 @@ const DesktopVersionDetails: {
 };
 
 const Version = () => {
-  const { version, setVersion, productType } = useContext(FormContext);
+  const { version, setVersion, productType, ioTDevice } = useContext(
+    FormContext
+  );
 
   const versionDetails =
     productType === ProductTypes.desktop
@@ -185,7 +189,11 @@ const Version = () => {
 
   return (
     <div
-      className={classNames({ "u-disable": isPublicCloud(productType) })}
+      className={classNames({
+        "u-disable":
+          isPublicCloud(productType) ||
+          (isIoTDevice(productType) && ioTDevice === IoTDevices.core),
+      })}
       data-testid="wrapper"
     >
       <Row>
