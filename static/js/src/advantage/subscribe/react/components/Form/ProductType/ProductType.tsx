@@ -127,7 +127,11 @@ const ProductType = () => {
         hourly, per-machine rate. If you need tech support as well,{" "}
         <a href="/support/contact-us">contact us</a>.
       </p>
-      <Button element="a" href={PublicCloudInfo[publicCloud]?.link}>
+      <Button
+        appearance="positive"
+        element="a"
+        href={PublicCloudInfo[publicCloud]?.link}
+      >
         Visit {PublicCloudInfo[publicCloud]?.CTAName}
       </Button>
     </>
