@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Row } from "@canonical/react-components";
+import { Button, Col, Icon, Row, Tooltip } from "@canonical/react-components";
 import { RadioInput } from "@canonical/react-components";
 import {
   isPublicCloud,
@@ -136,14 +136,22 @@ const ProductType = () => {
   return (
     <>
       <Row>
-        <Col size={12}>
+        <Col size={12} className="productTypes-physical">
           <RadioInput
-            label="Physical servers"
+            label="Physical servers with unlimited VMs on selected hypervisors"
             name="type"
             value={ProductTypes.physical}
             onChange={handleProductTypeChange}
             checked={productType === ProductTypes.physical}
           />
+          <Tooltip
+            position="top-right"
+            message="Covered Hypervisor: any of: KVM | Qemu | Boch, VMWare ESXi, LXD | LXC, Xen, Hyper-V (WSL, Multipass), VirtualBox, z/VM, Docker. All Nodes in the cluster have to be subscribed to the service in order to benefit from the unlimited VM support."
+            className="productTypes-tooltip"
+            tooltipClassName="productTypes-tooltip-message"
+          >
+            <Icon name="information" />
+          </Tooltip>
         </Col>
         <Col size={12}>
           <RadioInput
