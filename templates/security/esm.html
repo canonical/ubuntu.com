@@ -354,57 +354,79 @@
         </table>
       </div>
     </div>
-
+    
     <div class="u-fixed-width">
-      <table aria-hidden="true" class="p-table--esm-chart">
-        <thead class="u-hidden">
-          <th colspan="2" width="35%">&nbsp;</th>
-          <th colspan="10" width="65%">&nbsp;</th>
-        </thead>
-        <tbody>
-          <tr height="254px">
-            <td colspan="2" class="u-table-border--top u-no-padding--top">
-              <p>
-                <strong class="u-align--right">2,300</strong>
-                <span class="u-text--muted"> Ubuntu Main packages,</span>
-                <br>
-                <strong class="u-align--right">23,000</strong>
-                <span class="u-text--muted">plus Ubuntu Universe packages</span>
-              </p>
-            </td>
-            <td colspan="10" style="background-color:#000; color:#ffffff;padding-top: 0"><strong>Ubuntu Pro</strong></td>
-          </tr>
-          <tr style="border-top: none; line-height: .5rem;">
-            <td colspan="2" class="u-table-border--top" style="overflow: hidden; white-space: nowrap;text-overflow: ellipsis;">
-              <p>
-                <strong class="u-align--right">2,300</strong>
-                <span class="u-text--muted">Ubuntu Main packages</span>
-              </p>
-            </td>
-            <td colspan="5" style="background-color:#E95420; color:#ffffff; border-top: 1px solid #E95420;"><strong>Ubuntu LTS</strong></td>
-            <td colspan="5" style="background-color:#000; color:#ffffff; border-top:1px solid #000;">&nbsp;</td>
-          </tr>
-          <tr class="u-hide--small u-hide--medium" style="border-top: 0;">
-            <td colspan="2" width="50%">&nbsp;</td>
-            <td class="u-align--right u-table-border--right">GA</td>
-            <td class="u-align--right u-table-border--right">1 year</td>
-            <td class="u-align--right u-table-border--right">2 years</td>
-            <td class="u-align--right u-table-border--right">3 years</td>
-            <td class="u-align--right u-table-border--right">4 years</td>
-            <td class="u-align--right u-table-border--right">5 years</td>
-            <td class="u-align--right u-table-border--right">6 years</td>
-            <td class="u-align--right u-table-border--right">7 years</td>
-            <td class="u-align--right u-table-border--right">8 years</td>
-            <td class="u-align--right u-table-border--right">9 years</td>
-            <td class="u-align--right u-table-border--right" style="padding-left: 0.3rem">10 years</td>
-          </tr>
-          <tr class="u-hide--large" style="border-top: 0;">
-            <td colspan="2" class="u-align--right u-table-border--right">GA</td>
-            <td colspan="5" class="u-align--right u-table-border--right">5 years</td>
-            <td colspan="5" class="u-align--right u-table-border--right">10 years</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="p-esm-chart">
+        <div class="p-esm-chart__row">
+          <div class="p-esm-chart__left-col">
+            <hr class="u-no-margin--bottom">
+            <p class="p-esm-chart__label">
+              <strong class="p-esm-chart__label-numbers">2,300</strong>
+              <span class="p-esm-chart__label-text"> Ubuntu Main packages, plus</span>
+            </p>
+            <p class="p-esm-chart__label">
+              <strong class="p-esm-chart__label-numbers">23,000</strong>
+              <span class="p-esm-chart__label-text">Ubuntu Universe packages</span>
+            </p>
+          </div>
+          <div class="p-esm-chart__right-col p-esm-chart__right-col--Ubuntu-Pro" style="height: 16.5rem;">
+            <p>Ubuntu Pro</p>
+          </div>
+        </div>
+        <div class="p-esm-chart__row">
+          <div class="p-esm-chart__left-col">
+            <p class="p-esm-chart__label" style="padding-top: 0">
+              <strong class="p-esm-chart__label-numbers">2,300</strong>
+              <span class="u-truncate p-esm-chart__label-text"> Ubuntu Main packages</span>
+            </p>
+          </div>
+          <div class="p-esm-chart__right-col" style="background-color: #000">
+            <div class="p-esm-chart__right-col-lts">
+              <div style="background: #E95420;">
+                <p style="margin-bottom: 0; padding-top: 0;">Ubuntu Pro LTS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-esm-chart__row">
+          <div class="p-esm-chart__left-col">
+            <hr class="u-no-margin--bottom">
+            <p class="u-align-text--right">GA</p>
+          </div>
+          <div class="p-esm-chart__right-col p-esm-chart__right-col-axis">
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>1 year</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>2 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>3 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>4 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick">
+              <p>5 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>6 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>7 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>8 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick u-hide--small u-hide--medium">
+              <p>9 years</p>
+            </div>
+            <div class="p-esm-chart__axis-tick">
+              <p>10 years</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
