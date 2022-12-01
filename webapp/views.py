@@ -992,14 +992,14 @@ def subscription_centre():
         return flask.redirect("/blog")
 
     if flask.request.method == "POST":
-        if return_url == "#unsubscribe":
-            subscription_centre_submit(sfdcLeadId, True)
-            return flask.redirect(f"/{return_url}")
-        else:
+        if not return_url:
             subscription_centre_submit(sfdcLeadId, False)
             return flask.redirect(
-                f"{flask.request.path}?id={sfdcLeadId}{return_url}"
+                f"{flask.request.path}?id={sfdcLeadId}#updated"
             )
+        else:
+            subscription_centre_submit(sfdcLeadId, True)
+            return flask.redirect(f"/{return_url}")
 
     with open("subscriptions.yaml") as subscriptions:
         subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
@@ -1028,11 +1028,8 @@ def subscription_centre():
 
 def subscription_centre_submit(sfdcLeadId, unsubscribe):
     updatesOptIn = flask.request.form.get("generalUpdates") or False
-    if unsubscribe:
-        tagListString = ""
-    else:
-        tagListArray = flask.request.form.getlist("tags")
-        tagListString = ",".join(tagListArray)
+    tagListArray = flask.request.form.getlist("tags")
+    tagListString = ",".join(tagListArray)
 
     payload = {
         "lookupField": "sfdcLeadId",
@@ -1041,6 +1038,7 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
                 "sfdcLeadId": sfdcLeadId,
                 "prototype_interests": tagListString,
                 "canonicalUpdatesOptIn": updatesOptIn,
+                "unsubscribed": unsubscribe,
             }
         ],
     }

@@ -91,7 +91,7 @@
     <p id="modal-description">Are you sure you want to unsubscribe from all topics?</p>
     <footer class="p-modal__footer">
       <button class="u-no-margin--bottom" aria-controls="modal">Cancel</button>
-      <button id="unsubscribe-btn" class="p-button--negative u-no-margin--bottom">Unsubscribe</button>
+      <button id="unsubscribe" class="p-button--negative u-no-margin--bottom">Unsubscribe</button>
     </footer>
     </div>
   </section>
@@ -106,27 +106,18 @@
 <script>
   // Handles form submissions
   (function() {
-    const generalUdatesOptin = document.querySelector("#general-updates");
     const form = document.querySelector("#subscription-centre");
     const returnUrl = document.querySelector("#return-url");
     let hasRun = false;
 
-    const clearFields = () => {
-      generalUdatesOptin.checked = false;
-    };
-
     const handleUpdatePreferencesBtn = (e) => {
       e.preventDefault();
-
-      returnUrl.value = "#updated";
       form.submit();
     };
 
     const handleUnsubscribeBtn = async (e) => {
       e.preventDefault();
-
-      await clearFields();
-      returnUrl.value = "#unsubscribe";
+      returnUrl.value = "#unsubscribed";
       form.submit();
     };
 
@@ -137,7 +128,7 @@
 
     document.querySelector("#update-preferences").addEventListener("click", handleUpdatePreferencesBtn, { once: true });
 
-    document.querySelector("#unsubscribe-btn").addEventListener("click", handleUnsubscribeBtn, { once: true });
+    document.querySelector("#unsubscribe").addEventListener("click", handleUnsubscribeBtn, { once: true });
 
     form.addEventListener('input', () => {
       if (hasRun) return;
