@@ -25,6 +25,7 @@ import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import RenewalModal from "../RenewalModal";
 import { UserSubscriptionType } from "advantage/api/enum";
+import ReBuyExpiredModal from "../ReBuyExpired";
 
 type Props = {
   modalActive?: boolean;
@@ -53,6 +54,9 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
     const [showingRenewalModal, setShowingRenewalModal] = useState(false);
+    const [showingReBuyExpiredModal, setShowingReBuyExpiredModal] = useState(
+      false
+    );
     const [notification, setNotification] = useState<NotificationProps | null>(
       null
     );
@@ -247,6 +251,27 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     />
                   </Portal>
                 )}
+                {(subscription.statuses.is_expired ||
+                  subscription.statuses.is_in_grace_period) &&
+                  (subscription.type == "monthly" ||
+                    subscription.type == "yearly") && (
+                    <Button
+                      appearance="neutral"
+                      className="p-subscriptions__details-action"
+                      data-test="renew-button"
+                      disabled={editing}
+                      onClick={() => {
+                        setShowingReBuyExpiredModal(true);
+                        sendAnalyticsEvent({
+                          eventCategory: "Advantage",
+                          eventAction: "subscription-rebuy-expired-modal",
+                          eventLabel: "subscription rebuy expired modal opened",
+                        });
+                      }}
+                    >
+                      Renew subscription&hellip;
+                    </Button>
+                  )}
                 {isResizable ? (
                   <Button
                     appearance="neutral"
@@ -301,6 +326,14 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             subscription={subscription}
             closeModal={() => {
               setShowingRenewalModal(false);
+            }}
+          />
+        ) : null}
+        {showingReBuyExpiredModal ? (
+          <ReBuyExpiredModal
+            subscription={subscription}
+            closeModal={() => {
+              setShowingReBuyExpiredModal(false);
             }}
           />
         ) : null}
