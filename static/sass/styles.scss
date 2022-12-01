@@ -884,9 +884,145 @@ a:hover {
     flex: 0 0 10%;
   }
 }
-.u-table-border-top {
+.u-table-border--top {
   border-top: 1px solid $color-mid-light;
 }
-.u-table-border-bottom {
+.u-table-border--bottom {
   border-bottom: 1px solid $color-mid-light;
+}
+.u-table-border--right {
+  border-right: 1px solid $color-mid-light;
+}
+.u-esm-overflow-table {
+  @media only screen and (max-width: $breakpoint-medium) {
+    overflow-x: scroll;
+    .p-table {
+      min-width: $breakpoint-medium;
+    }
+  }
+}
+.p-strip--pro-banner {
+  @extend %vf-strip;
+
+  background: url("https://assets.ubuntu.com/v1/18717572-05_suru2_light_glow_8K_edited.png")
+    70% bottom;
+  background-size: cover;
+}
+.p-table--esm-chart {
+  border-spacing: 0;
+  @media only screen and (min-width: $breakpoint-medium) {
+    td:nth-child(1) {
+      padding-left: 0;
+    }
+    th:nth-child(1) {
+      width: 5.8%;
+    }
+    th:nth-child(2) {
+      width: 19%;
+    }
+    th:nth-child(3) {
+      width: 70.5%;
+    }
+  }
+  @media only screen and (max-width: $breakpoint-small) {
+    td:nth-child(1) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    th:nth-child(1) {
+      width: 7%;
+    }
+    th:nth-child(2) {
+      width: 19%;
+    }
+    th:nth-child(3) {
+      width: 68.5%;
+    }
+  }
+}
+
+.p-esm-chart {
+  .p-esm-chart__right-col-axis {
+    border-top: 1px solid $colors--light-theme--border-low-contrast;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .p-esm-chart__axis-tick {
+    border-right: 1px solid $colors--light-theme--border-low-contrast;
+    flex: 1 1 auto;
+    text-align: right;
+    width: 10%;
+  }
+
+  .p-esm-chart__label {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .p-esm-chart__label-numbers {
+    display: inline-block;
+    flex: 0 0 auto;
+    text-align: right;
+    width: 3rem;
+  }
+
+  .p-esm-chart__label-text {
+    @extend %muted-text;
+
+    display: inline-block;
+
+    @media (max-width: $threshold-6-12-col) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .p-esm-chart__left-col {
+    grid-column: auto / span 3;
+    padding: 0 0 0 0.5rem;
+  }
+
+  .p-esm-chart__right-col {
+    grid-column: auto / span 9;
+  }
+
+  .p-esm-chart__right-col--Ubuntu-Pro {
+    background-color: $color-x-dark;
+    color: $color-x-light;
+    font-weight: $font-weight-bold;
+  }
+
+  .p-esm-chart__right-col-lts {
+    background: #e95420;
+    color: $color-x-light;
+    font-weight: $font-weight-bold;
+    width: 50%;
+  }
+
+  .p-esm-chart__row {
+    @extend %vf-row;
+    @include vf-b-row-reset;
+
+    @supports (display: grid) {
+      grid-gap: 0;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+
+      @media (min-width: $threshold-4-6-col) {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+
+      @media (min-width: $threshold-6-12-col) {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+    }
+
+    p {
+      padding-left: $sph--small;
+      padding-right: $sph--small;
+    }
+  }
 }
