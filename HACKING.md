@@ -127,9 +127,6 @@ You will probably want to connect to the DEV/QA environment. To do so, use the U
 BADGR_URL=https://api.test.badgr.com
 BAGDR_USER=<badgr_user>
 BADGR_PASSWORD=<badgr_password>
-CUBE_EDX_URL=https://qa.cube.ubuntu.com
-CUBE_EDX_CLIENT_ID=<cube_client_id>
-CUBE_EDX_CLIENT_SECRET=<cube_client_secret>
 ```
 
 In addition, load the `cube-qa.yaml` in `webapp/cube/views.py` by changing the file we load into `CUBE_CONTENT`:

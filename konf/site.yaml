@@ -79,19 +79,6 @@ env:
       key: password
       name: badgr
 
-  - name: CUBE_EDX_URL
-    value: https://cube.ubuntu.com
-
-  - name: CUBE_EDX_CLIENT_ID
-    secretKeyRef:
-      key: client-id
-      name: cube-edx
-
-  - name: CUBE_EDX_CLIENT_SECRET
-    secretKeyRef:
-      key: client-secret
-      name: cube-edx
-
   - name: BADGR_ISSUER
     value: eTedPNzMTuqy1SMWJ05UbA
 
