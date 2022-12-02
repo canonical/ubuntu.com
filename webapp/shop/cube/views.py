@@ -1,13 +1,12 @@
 from datetime import datetime, timedelta
 import pytz
-import os
 import flask
 import json
 
 from urllib.parse import quote_plus
 from webapp.shop.decorators import shop_decorator, canonical_staff
-from webapp.shop.api.ua_contracts.api import UAContractsUserHasNoAccount
 from webapp.login import user_info
+
 
 @shop_decorator(area="cube", permission="user_or_guest", response="html")
 def cred_home(

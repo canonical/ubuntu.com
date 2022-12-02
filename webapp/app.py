@@ -1040,7 +1040,6 @@ app.add_url_rule(
 )
 
 
-
 @app.after_request
 def cache_headers(response):
     """
