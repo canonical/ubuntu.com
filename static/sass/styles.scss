@@ -1346,3 +1346,14 @@ hr.p-separator.is-shallow {
 .bordered-thumbnail {
   border: 1px solid $colors--light-theme--border-low-contrast;
 }
+
+.is-reduced .global-nav__header-link-anchor::after {
+  top: 0.5rem !important;
+}
+
+#all-canonical-mobile .global-nav__header-link-anchor::after {
+  @media (max-width: $breakpoint-small) {
+    right: 1rem !important;
+    top: 1.25rem !important;
+  }
+}
