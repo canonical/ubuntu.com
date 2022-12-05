@@ -89,6 +89,7 @@ const generateError = (error: Error | null) => {
 type ResizeSummaryProps = {
   oldNumberOfMachines: number;
   newNumberOfMachines: number;
+  currentNumberOfMachines: number;
   isBlender: boolean;
   unitName: string;
   price: UserSubscription["price"];
@@ -101,6 +102,7 @@ type ResizeSummaryProps = {
 const ResizeSummary = ({
   oldNumberOfMachines,
   newNumberOfMachines,
+  currentNumberOfMachines,
   unitName,
   price,
   period,
@@ -108,12 +110,12 @@ const ResizeSummary = ({
   preview,
   isPreviewLoading,
 }: ResizeSummaryProps) => {
-  const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
+  const absoluteDelta = Math.abs(newNumberOfMachines - currentNumberOfMachines);
   if (absoluteDelta === 0) {
     return null;
   }
 
-  const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
+  const isDecreasing = newNumberOfMachines - currentNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
   const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
 
@@ -129,6 +131,12 @@ const ResizeSummary = ({
             You will be charged{" "}
             <b>{currencyFormatter.format(preview.amountDue / 100)}</b> when you
             click Resize.
+            <br />
+          </>
+        ) : null}
+        {!isPreviewLoading && !preview ? (
+          <>
+            You will be charged nothing.
             <br />
           </>
         ) : null}
@@ -333,7 +341,10 @@ const SubscriptionEdit = ({
                   wrapperClassName="u-sv3"
                 />
                 <ResizeSummary
-                  oldNumberOfMachines={subscription.current_number_of_machines}
+                  oldNumberOfMachines={subscription.number_of_machines}
+                  currentNumberOfMachines={
+                    subscription.current_number_of_machines
+                  }
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}
