@@ -345,6 +345,8 @@ class AdvantageMapper:
                 marketplace=marketplace, purchase_request=purchase_request
             )
 
+            invoice["account_id"] = account_id
+
             return InvoiceSchema().load(invoice)
 
         purchase = self.ua_contracts_api.purchase_from_marketplace(

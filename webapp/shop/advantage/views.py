@@ -308,7 +308,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     customer_info = kwargs.get("customer_info")
     marketplace = kwargs.get("marketplace", "canonical-ua")
 
-    if account_id is None:
+    if not account_id:
         try:
             account = advantage_mapper.get_or_create_user_account(
                 marketplace, customer_info, kwargs.get("captcha_value")
