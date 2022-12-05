@@ -233,7 +233,7 @@ const ProductType = () => {
         </Col>
         <Col size={12}>
           <RadioInput
-            label="IoT devices"
+            label="IoT and devices"
             name="type"
             value={ProductTypes.ioTDevice}
             onChange={handleProductTypeChange}
