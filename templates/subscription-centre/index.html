@@ -16,15 +16,14 @@
   <div class="row">
     <div class="col-4">
       <h1 class="p-heading--2">Subscription centre</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </div>
     <div class="col-8">
       <div class="p-search-and-filter" id="subscription-centre-search" style="margin-bottom:1rem;">
         <button class="p-search-and-filter__clear" aria-hidden="true" hidden=""><i class="p-icon--close"></i></button>
         <div class="p-search-and-filter__search-container" aria-expanded="true" data-active="true" data-empty="false">
           <div class="p-search-and-filter__box" data-overflowing="false">
-            <label class="u-off-screen" for="search">Search and filter</label>
-            <input autocomplete="off" class="p-search-and-filter__input" id="subscription-search" name="search" placeholder="Search and filter" type="search" value="">
+            <label class="u-off-screen" for="search">Search</label>
+            <input autocomplete="off" class="p-search-and-filter__input" id="subscription-search" name="search" placeholder="Search" type="search" value="">
           </div>
         </div>
 
@@ -229,6 +228,7 @@
     const handleClearBtn = (e) => {
       if (!checkValidEventType(e)) return;
       hideResultsDropdown(true);
+      hideCancleBtn(true);
       clearResults();
       searchInput.value = "";
     };
