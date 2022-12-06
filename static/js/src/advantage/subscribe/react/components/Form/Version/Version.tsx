@@ -145,7 +145,7 @@ const DesktopVersionDetails: {
 };
 
 const Version = () => {
-  const { version, setVersion, productType, ioTDevice } = useContext(
+  const { version, setVersion, productType, iotDevice } = useContext(
     FormContext
   );
 
@@ -192,7 +192,7 @@ const Version = () => {
       className={classNames({
         "u-disable":
           isPublicCloud(productType) ||
-          (isIoTDevice(productType) && ioTDevice === IoTDevices.core),
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >

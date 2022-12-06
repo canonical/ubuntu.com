@@ -1,12 +1,24 @@
 import React, { useContext } from "react";
 import { Col, Row, Select, StatusLabel } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
-import { isMonthlyAvailable, Periods } from "../../utils/utils";
+import {
+  IoTDevices,
+  isMonthlyAvailable,
+  Periods,
+  ProductTypes,
+} from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
 import PaymentModal from "../PaymentModal";
 
 const ProductSummary = () => {
-  const { quantity, period, setPeriod, product } = useContext(FormContext);
+  const {
+    quantity,
+    period,
+    setPeriod,
+    product,
+    iotDevice,
+    productType,
+  } = useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
     localStorage.setItem(
@@ -14,8 +26,11 @@ const ProductSummary = () => {
       JSON.stringify(event.target.value as Periods)
     );
   };
-
-  const isHidden = !product || !quantity || quantity < 1;
+  const isHidden =
+    !product ||
+    !quantity ||
+    quantity < 1 ||
+    (productType === ProductTypes.iotDevice && iotDevice === IoTDevices.core);
 
   return (
     <>
@@ -74,9 +89,13 @@ const ProductSummary = () => {
           </Col>
           <Col size={2} className="u-align--right">
             <p className="p-heading--2">
-              {currencyFormatter.format(
-                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
-              )}
+              {productType === ProductTypes.iotDevice &&
+              iotDevice === IoTDevices.core
+                ? currencyFormatter.format(0)
+                : currencyFormatter.format(
+                    ((product?.price.value ?? 0) / 100) *
+                      (Number(quantity) ?? 0)
+                  )}
             </p>{" "}
             <p className="p-text--small">
               per {period === Periods.yearly ? "year" : "month"}

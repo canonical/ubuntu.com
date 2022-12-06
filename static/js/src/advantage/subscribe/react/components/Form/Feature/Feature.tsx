@@ -11,7 +11,7 @@ import {
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
-  const { productType, feature, setFeature, ioTDevice } = useContext(
+  const { productType, feature, setFeature, iotDevice } = useContext(
     FormContext
   );
 
@@ -32,7 +32,7 @@ const Feature = () => {
         "p-divider": true,
         "u-disable":
           isPublicCloud(productType) ||
-          (isIoTDevice(productType) && ioTDevice === IoTDevices.core),
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >

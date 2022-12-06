@@ -28,7 +28,7 @@ interface FormContext {
   product: Product | null;
   period: Periods;
   setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
-  ioTDevice: IoTDevices;
+  iotDevice: IoTDevices;
   setIoTDevice: React.Dispatch<React.SetStateAction<IoTDevices>>;
 }
 
@@ -48,7 +48,7 @@ export const defaultValues: FormContext = {
   period: Periods.yearly,
   setPeriod: () => {},
   product: null,
-  ioTDevice: IoTDevices.classic,
+  iotDevice: IoTDevices.classic,
   setIoTDevice: () => {},
 };
 
@@ -74,7 +74,7 @@ export const FormProvider = ({
   initialSupport = defaultValues.support,
   initialQuantity = defaultValues.quantity,
   initialPeriod = defaultValues.period,
-  initialIoTDevice = defaultValues.ioTDevice,
+  initialIoTDevice = defaultValues.iotDevice,
   children,
 }: FormProviderProps) => {
   const localProductType = localStorage.getItem("pro-selector-productType");
@@ -108,7 +108,7 @@ export const FormProvider = ({
     localPeriod ? JSON.parse(localPeriod) : initialPeriod
   );
   const [product, setProduct] = useState<Product | null>(null);
-  const [ioTDevice, setIoTDevice] = useState<IoTDevices>(
+  const [iotDevice, setIoTDevice] = useState<IoTDevices>(
     localIoTDevice ? JSON.parse(localIoTDevice) : initialIoTDevice
   );
 
@@ -181,7 +181,7 @@ export const FormProvider = ({
         period,
         setPeriod,
         product,
-        ioTDevice,
+        iotDevice,
         setIoTDevice,
       }}
     >

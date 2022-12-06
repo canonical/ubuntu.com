@@ -9,7 +9,7 @@ import {
 } from "advantage/subscribe/react/utils/utils";
 
 const Quantity = () => {
-  const { quantity, setQuantity, productType, ioTDevice } = useContext(
+  const { quantity, setQuantity, productType, iotDevice } = useContext(
     FormContext
   );
 
@@ -30,7 +30,7 @@ const Quantity = () => {
       className={classNames({
         "u-disable":
           isPublicCloud(productType) ||
-          (isIoTDevice(productType) && ioTDevice === IoTDevices.core),
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >

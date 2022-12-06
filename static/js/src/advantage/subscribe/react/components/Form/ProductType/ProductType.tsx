@@ -41,7 +41,7 @@ const PublicCloudInfo = {
 };
 const ProductType = () => {
   const localPublicCloud = localStorage.getItem("pro-selector-publicCloud");
-  const { productType, setProductType, ioTDevice, setIoTDevice } = useContext(
+  const { productType, setProductType, iotDevice, setIoTDevice } = useContext(
     FormContext
   );
   const [publicCloud, setPublicCloud] = useState(
@@ -147,7 +147,7 @@ const ProductType = () => {
           <button
             className="p-segmented-control__button"
             role="tab"
-            aria-selected={ioTDevice === IoTDevices.classic}
+            aria-selected={iotDevice === IoTDevices.classic}
             aria-controls={IoTDevices.classic}
             id={IoTDevices.classic}
             onClick={(e) => {
@@ -165,7 +165,7 @@ const ProductType = () => {
           <button
             className="p-segmented-control__button"
             role="tab"
-            aria-selected={ioTDevice === IoTDevices.core}
+            aria-selected={iotDevice === IoTDevices.core}
             aria-controls={IoTDevices.core}
             id={IoTDevices.core}
             onClick={(e) => {
@@ -181,7 +181,7 @@ const ProductType = () => {
           </button>
         </div>
       </div>
-      {ioTDevice === IoTDevices.core && (
+      {iotDevice === IoTDevices.core && (
         <>
           <p>
             <strong> Ubuntu Core </strong>
@@ -235,9 +235,9 @@ const ProductType = () => {
           <RadioInput
             label="IoT and devices"
             name="type"
-            value={ProductTypes.ioTDevice}
+            value={ProductTypes.iotDevice}
             onChange={handleProductTypeChange}
-            checked={productType === ProductTypes.ioTDevice}
+            checked={productType === ProductTypes.iotDevice}
           />
         </Col>
         <Col size={12} style={{ marginLeft: "35px" }}>

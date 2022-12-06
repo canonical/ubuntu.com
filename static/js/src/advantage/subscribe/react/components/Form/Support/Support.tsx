@@ -22,7 +22,7 @@ const Support = () => {
     setSupport,
     productType,
     version,
-    ioTDevice,
+    iotDevice,
   } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +49,7 @@ const Support = () => {
         row: true,
         "u-disable":
           isPublicCloud(productType) ||
-          (isIoTDevice(productType) && ioTDevice === IoTDevices.core),
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >
