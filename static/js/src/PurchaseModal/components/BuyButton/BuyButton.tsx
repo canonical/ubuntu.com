@@ -17,6 +17,7 @@ type Props = {
   product: Product;
   action: Action;
   isCardValid: boolean;
+  isTaxSaved: boolean;
 };
 
 const BuyButton = ({
@@ -25,6 +26,7 @@ const BuyButton = ({
   product,
   action,
   isCardValid,
+  isTaxSaved,
 }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -38,9 +40,9 @@ const BuyButton = ({
   } = useFormikContext<FormValues>();
 
   const genericPurchaseMutation = useMakePurchase();
-
   useEffect(() => {
     if (
+      !isTaxSaved ||
       !isCardValid ||
       !values.email ||
       !values.name ||
@@ -60,7 +62,7 @@ const BuyButton = ({
     } else {
       setIsButtonDisabled(false);
     }
-  }, [values, isCardValid]);
+  }, [values, isCardValid, isTaxSaved]);
 
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 

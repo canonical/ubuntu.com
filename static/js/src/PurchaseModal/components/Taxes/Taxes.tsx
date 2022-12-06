@@ -20,9 +20,10 @@ import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
 type TaxesProps = {
   product: any;
   quantity: number;
+  setTaxSaved: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Taxes = ({ product, quantity }: TaxesProps) => {
+const Taxes = ({ product, quantity, setTaxSaved }: TaxesProps) => {
   const {
     errors,
     touched,
@@ -51,11 +52,13 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
 
   const onSaveClick = () => {
     setIsEditing(false);
+    setTaxSaved(true);
     taxMutation.mutate();
   };
 
   const onEditClick = () => {
     setIsEditing(true);
+    setTaxSaved(false);
   };
 
   const validateRequired = (value: string) => {
