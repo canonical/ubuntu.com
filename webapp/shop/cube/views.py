@@ -135,12 +135,19 @@ def cred_your_exams(
     badge_certification,
     **kwargs,
 ):
-    exams = []
+    sso_user_email = user_info(flask.session)["email"]
     ability_screen_id = 4190
-    response = trueability_api.get_assessment_reservations(ability_screen_id)
-    user_email = user_info(flask.session)["email"]
+    response = trueability_api.paginate(
+        trueability_api.get_assessment_reservations,
+        "assessment_reservations",
+        ability_screen_id=ability_screen_id,
+    )
+
+    exams = []
     for r in response["assessment_reservations"]:
-        if r["user"]["email"] != user_email:
+        user_email = r.get("user", {}).get("email")
+
+        if user_email != sso_user_email:
             continue
 
         name = r["ability_screen"]["display_name"]
@@ -250,13 +257,16 @@ def cred_assessments(
     badge_certification,
     **kwargs,
 ):
-    user_email = user_info(flask.session)["email"]
-    ability_screen_id = 4190
-    response = trueability_api.get_assessments(ability_screen_id)
+    sso_user_email = user_info(flask.session)["email"]
+    response = trueability_api.paginate(
+        trueability_api.get_assessments, "assessments", ability_screen_id=None
+    )
 
     exams = []
     for r in response["assessments"]:
-        if r["user"]["email"] != user_email:
+        user_email = r.get("user", {}).get("email")
+
+        if user_email != sso_user_email:
             continue
 
         name = r["ability_screen"]["name"]

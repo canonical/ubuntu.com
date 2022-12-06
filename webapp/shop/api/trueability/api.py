@@ -1,3 +1,4 @@
+from urllib.parse import urlencode
 from requests import Session
 
 
@@ -46,6 +47,21 @@ class TrueAbilityAPI:
 
         return response
 
+    def paginate(self, action, result_list_name=str, **kwargs):
+        result = {result_list_name: []}
+
+        page = 1
+        while True:
+            response = action(page=page, **kwargs)
+            result_list = response.get(result_list_name, [])
+            result[result_list_name] = result[result_list_name] + result_list
+
+            page = response.get("meta", {}).get("next_page")
+            if not page:
+                break
+
+        return result
+
     def get_ability_screens(self):
         uri = "/api/v1/ability_screens"
         return self.make_request("GET", uri).json()
@@ -57,10 +73,16 @@ class TrueAbilityAPI:
         uri = f"/api/v1//assessment_reservations/{uuid}"
         return self.make_request("GET", uri).json()
 
-    def get_assessment_reservations(self, ability_screen_id: int = None):
-        uri = "/api/v1/assessment_reservations" + (
-            f"?{ability_screen_id}" if ability_screen_id else ""
-        )
+    def get_assessment_reservations(
+        self, ability_screen_id: int = None, page: int = 1, per_page: int = 500
+    ):
+        params = {
+            "ability_screen_id": ability_screen_id,
+            "page": page,
+            "per_page": per_page,
+        }
+        filtered_params = {k: v for k, v in params.items() if v is not None}
+        uri = "/api/v1/assessment_reservations?" + urlencode(filtered_params)
         return self.make_request("GET", uri).json()
 
     def post_assessment_reservation(
@@ -118,16 +140,21 @@ class TrueAbilityAPI:
         uri = f"/api/v1/assessment_reservations/{uuid}"
         return self.make_request("DELETE", uri).json()
 
-    def get_assessments(self, ability_screen_id: int = None, uuid: str = None):
-        uri = (
-            "/api/v1/assessments"
-            + (f"/{uuid}?uuid=true" if uuid else "")
-            + (
-                f"?ability_screen_id={ability_screen_id}"
-                if ability_screen_id
-                else ""
-            )
-        )
+    def get_assessments(
+        self,
+        ability_screen_id: int = None,
+        uuid: str = None,
+        page: int = 1,
+        per_page: int = 500,
+    ):
+        params = {
+            "ability_screen_id": ability_screen_id,
+            "uuid": uuid,
+            "page": page,
+            "per_page": per_page,
+        }
+        filtered_params = {k: v for k, v in params.items() if v is not None}
+        uri = "/api/v1/assessments?" + urlencode(filtered_params)
         return self.make_request("GET", uri).json()
 
     def get_assessment(self, id: str):
