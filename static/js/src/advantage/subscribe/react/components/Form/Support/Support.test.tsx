@@ -8,6 +8,7 @@ import {
   ProductListings,
   ProductTypes,
   Features,
+  IoTDevices,
 } from "advantage/subscribe/react/utils/utils";
 import { productListFixture } from "advantage/subscribe/react/utils/test/Mocks";
 
@@ -66,5 +67,17 @@ test("The section is disabled if a public cloud is selected", () => {
     </FormProvider>
   );
 
+  expect(screen.getByTestId("wrapper")).toHaveClass("u-disable");
+});
+
+test("The section is disabled if IoT devices - Ubuntu Core is selected", async () => {
+  render(
+    <FormProvider
+      initialType={ProductTypes.iotDevice}
+      initialIoTDevice={IoTDevices.core}
+    >
+      <Support />
+    </FormProvider>
+  );
   expect(screen.getByTestId("wrapper")).toHaveClass("u-disable");
 });
