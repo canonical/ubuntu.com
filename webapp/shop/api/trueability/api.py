@@ -74,11 +74,12 @@ class TrueAbilityAPI:
         return self.make_request("GET", uri).json()
 
     def get_assessment_reservations(
-        self, ability_screen_id: int = None, page: int = 1
+        self, ability_screen_id: int = None, page: int = 1, per_page: int = 500
     ):
         params = {
             "ability_screen_id": ability_screen_id,
             "page": page,
+            "per_page": per_page,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
         uri = "/api/v1/assessment_reservations?" + urlencode(filtered_params)
@@ -140,12 +141,17 @@ class TrueAbilityAPI:
         return self.make_request("DELETE", uri).json()
 
     def get_assessments(
-        self, ability_screen_id: int = None, uuid: str = None, page: int = 1
+        self,
+        ability_screen_id: int = None,
+        uuid: str = None,
+        page: int = 1,
+        per_page: int = 500,
     ):
         params = {
             "ability_screen_id": ability_screen_id,
             "uuid": uuid,
             "page": page,
+            "per_page": per_page,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
         uri = "/api/v1/assessments?" + urlencode(filtered_params)
