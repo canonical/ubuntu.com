@@ -108,14 +108,52 @@ https://docs.google.com/document/d/1StqylVToo1URkhLvNfl17vZ52H35fXCVOR1aMKG1aGU/
 </section>
 <section class="p-strip">
   <div class="row">
-    <div class="col-6">
+    <div class="col-8">
+      <h2>Openstack Support you can trust</h2>
+      <p><a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.</p>
+      <p>The OpenStack support lifecycle on Ubuntu can be represented this way:</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+      {% include "/about/openstack-release-cycle.html" %}
+    <p>
+      <a href="/about/release-cycle#openstack-release-cycle">Learn more&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Combat inflation with cloud cost optimisation</h2>
+      <p>Discover proven techniques to reduce TCO in public, private and hybrid multi-cloud environments in this webinar. </p>
+      <p>Get to know Canonica's cloud cost optimisation best practices and learn how to cut your 2023 cloud spending by up to two-thirds. </p>
+      <p>
+        <a href="/engage/cloud-cost-optimisation-best-practices" class="p-button">Register to the webinar</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7281d2f3-Private+Cloud+Build.svg",
+        alt="",
+        width="233",
+        height="170",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
       <h2>Get in touch</h2>
       <p>Let's work together on expanding the benefits of using Charmed OpenStack in your organisation.</p>
       <p>
         <button href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Get in touch</button>
       </p>
     </div>
-    <div class="col-6 u-vertically-center u-hide--medium u-hide--small u-align--center">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
         alt="",
@@ -132,4 +170,6 @@ https://docs.google.com/document/d/1StqylVToo1URkhLvNfl17vZ52H35fXCVOR1aMKG1aGU/
 <!-- Set default Marketo information for contact form below-->
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="4578" data-lp-id="2086" data-return-url="https://ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
 {% endblock content %}
