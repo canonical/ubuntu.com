@@ -93,22 +93,15 @@ class TrueAbilityAPI:
         first_name: str,
         last_name: str,
         timezone: str,
+        country_code: str,
     ):
         uri = "/api/v1/assessment_reservations"
-        # headers = {"Content-Type": "application/json"}
         body = {
             "assessment_reservation": {
                 "ability_screen_id": ability_screen_id,
                 "starts_at": starts_at,
-                "additional_time_minutes": 20,
                 "address_attributes": {
-                    "city": "San Antonio",
-                    "country_code": "US",
-                    "street_address": "1234 Pecan",
-                    "street_address2": "Suite 300",
-                    "state": "Texas",
-                    "time_zone": timezone,
-                    "zipcode": "78201",
+                    "country_code": country_code,
                 },
             },
             "user": {
@@ -121,15 +114,14 @@ class TrueAbilityAPI:
         return self.make_request("POST", uri, json=body).json()
 
     def patch_assessment_reservation(
-        self, starts_at: str, timezone: str, uuid: str
+        self, starts_at: str, timezone: str, country_code: str, uuid: str
     ):
         uri = f"/api/v1/assessment_reservations/{uuid}"
         body = {
             "assessment_reservation": {
                 "starts_at": starts_at,
                 "address_attributes": {
-                    "country_code": "US",
-                    "time_zone": timezone,
+                    "country_code": country_code,
                 },
             },
             "user": {"time_zone": timezone},
