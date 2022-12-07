@@ -229,6 +229,7 @@ const PurchaseModal = ({
                 product={product}
                 quantity={quantity}
                 action={action}
+                isCardValid={isCardValid}
               ></BuyButton>
             </ModalFooter>
           </>

@@ -140,6 +140,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
   const editMode = (
     <>
       <Field
+        data-testid="select-country"
         as={Select}
         id="country"
         name="country"
@@ -152,6 +153,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
       />
       {values.country === "US" && (
         <Field
+          data-testid="select-state"
           as={Select}
           id="usStates"
           name="usState"
