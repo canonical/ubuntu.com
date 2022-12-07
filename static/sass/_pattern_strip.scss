@@ -992,7 +992,7 @@
 }
 
 @mixin ubuntu-p-strip-x-deep {
-  .p-strip.is-x-deep {
+  [class*="p-strip"].is-x-deep {
     $spv--strip-x-deep-top: $spv--strip-deep + $spv--x-large;
     $spv--strip-x-deep-bottom: $spv--strip-deep + 2 * $spv--x-large;
 
