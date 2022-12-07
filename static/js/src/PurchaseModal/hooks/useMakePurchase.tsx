@@ -8,7 +8,7 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  preview: Boolean;
+  preview: boolean;
 };
 
 type AddressObejct = {
@@ -138,9 +138,9 @@ const useMakePurchase = () => {
         payload = { ...payload, offer_id: product.longId };
       }
 
-      let url = `/pro/purchase${window.location.search}`
+      let url = `/pro/purchase${window.location.search}`;
       if (preview == true) {
-        url = `/pro/purchase/preview${window.location.search}`
+        url = `/pro/purchase/preview${window.location.search}`;
       }
 
       const response = await fetch(url, {
