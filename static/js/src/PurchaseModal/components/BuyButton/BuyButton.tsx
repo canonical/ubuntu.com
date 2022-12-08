@@ -16,9 +16,16 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
+  isCardValid: boolean;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({
+  setError,
+  quantity,
+  product,
+  action,
+  isCardValid,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { data: userInfo } = useStripeCustomerInfo();
@@ -35,7 +42,8 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     !values.captchaValue ||
     !values.TermsAndConditions ||
     !values.Description ||
-    isLoading;
+    isLoading ||
+    !isCardValid;
 
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 
@@ -78,6 +86,40 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     }
   };
 
+  const handlePurchaseError = (error: any) => {
+    setIsLoading(false);
+    console.log(error);
+    if (
+      error instanceof Error &&
+      error.message.includes("can only make one purchase at a time")
+    ) {
+      setError(
+        <>
+          You already have a pending purchase. Please go to{" "}
+          <a href="/account/payment-methods">payment methods</a> to retry.
+        </>
+      );
+    }  else if (error.message.includes("tax_id_invalid")) {
+        setFormikErrors({
+          VATNumber:
+            "That VAT number is invalid. Check the number and try again.",
+        });
+        setError(
+          <>That VAT number is invalid. Check the number and try again.</>
+        );
+      } else {
+      Sentry.captureException(error);
+      setError(
+        <>
+          Sorry, there was an unknown error with the payment. Check the details
+          and try again. Contact{" "}
+          <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+          problem persists.
+        </>
+      );
+    }
+  };
+
   const proSelectorStates = [
     "pro-selector-productType",
     "pro-selector-version",
@@ -98,47 +140,31 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         product,
         quantity,
         action: buyAction,
+        preview: true,
       },
       {
-        onSuccess: (data) => {
-          //start polling
-          setPendingPurchaseID(data);
-          proSelectorStates.forEach((state) => localStorage.removeItem(state));
-        },
-        onError: (error) => {
-          setIsLoading(false);
-          console.log(error);
-          if (error instanceof Error)
-            if (
-              error.message.includes("can only make one purchase at a time")
-            ) {
-              setError(
-                <>
-                  You already have a pending purchase. Please go to{" "}
-                  <a href="/account/payment-methods">payment methods</a> to
-                  retry.
-                </>
-              );
-            } else if (error.message.includes("tax_id_invalid")) {
-              setFormikErrors({
-                VATNumber:
-                  "That VAT number is invalid. Check the number and try again.",
-              });
-              setError(
-                <>That VAT number is invalid. Check the number and try again.</>
-              );
-            } else {
-              Sentry.captureException(error);
-              setError(
-                <>
-                  Sorry, there was an unknown error with the payment. Check the
-                  details and try again. Contact{" "}
-                  <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
-                  the problem persists.
-                </>
-              );
+        onSuccess: () => {
+          genericPurchaseMutation.mutate(
+            {
+              formData: values,
+              product,
+              quantity,
+              action: buyAction,
+              preview: false,
+            },
+            {
+              onSuccess: (data) => {
+                //start polling
+                setPendingPurchaseID(data);
+                proSelectorStates.forEach((state) =>
+                  localStorage.removeItem(state)
+                );
+              },
+              onError: handlePurchaseError,
             }
+          );
         },
+        onError: handlePurchaseError,
       }
     );
   };

@@ -16,6 +16,7 @@ import {
   vatCountries,
 } from "advantage/countries-and-states";
 import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
+import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
 
 type TaxesProps = {
   product: any;
@@ -30,7 +31,17 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
     setFieldValue,
   } = useFormikContext<FormValues>();
 
+  const { data: userInfo } = useStripeCustomerInfo();
+
   const [isEditing, setIsEditing] = useState(!values.country);
+
+  const savedCountry = userInfo?.customerInfo?.address?.country;
+
+  useEffect(() => {
+    if (savedCountry) {
+      setIsEditing(!savedCountry);
+    }
+  }, [savedCountry]);
 
   const taxMutation = useCalculateTaxes({
     country: values.country,
@@ -140,6 +151,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
   const editMode = (
     <>
       <Field
+        data-testid="select-country"
         as={Select}
         id="country"
         name="country"
@@ -152,6 +164,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
       />
       {values.country === "US" && (
         <Field
+          data-testid="select-state"
           as={Select}
           id="usStates"
           name="usState"

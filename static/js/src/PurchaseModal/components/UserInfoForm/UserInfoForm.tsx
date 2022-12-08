@@ -55,6 +55,14 @@ const UserInfoForm = ({ setCardValid, isGuest }: Props) => {
     }
   }, [isSubmitting]);
 
+  useEffect(() => {
+    if (defaultPaymentMethod && !isEditing) {
+      setCardValid(true);
+    } else {
+      setCardValid(false);
+    }
+  }, [isEditing]);
+
   const validateRequired = (value: string) => {
     let errorMessage;
     if (!value) {

@@ -7,10 +7,17 @@ import * as usePreview from "advantage/subscribe/react/hooks/usePreview";
 import { product, preview } from "advantage/subscribe/react/utils/test/Mocks";
 import { Periods, Support } from "advantage/subscribe/blender/utils/utils";
 import { FormProvider } from "../../utils/FormContext";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 describe("Summary", () => {
+  let queryClient;
+
+  beforeEach(async () => {
+    queryClient = new QueryClient();
+  });
+
   beforeAll(() => {
     Object.defineProperty(window, "blenderProductList", {
       value: {
@@ -33,9 +40,11 @@ describe("Summary", () => {
     });
 
     render(
-      <FormProvider initialSupport={Support.standard} initialQuantity={3}>
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider initialSupport={Support.standard} initialQuantity={3}>
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByText("Blender Support - Standard")).toBeInTheDocument();
@@ -60,12 +69,14 @@ describe("Summary", () => {
       return { data: null };
     });
     render(
-      <FormProvider
-        initialSupport={Support.standard}
-        initialPeriod={Periods.monthly}
-      >
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider
+          initialSupport={Support.standard}
+          initialPeriod={Periods.monthly}
+        >
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByTestId("start-date")).toHaveTextContent(
@@ -93,9 +104,11 @@ describe("Summary", () => {
       };
     });
     render(
-      <FormProvider initialSupport={Support.essential}>
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider initialSupport={Support.essential}>
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByTestId("tax")).toHaveTextContent("$999.99");
@@ -114,9 +127,11 @@ describe("Summary", () => {
       };
     });
     render(
-      <FormProvider initialSupport={Support.essential}>
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider initialSupport={Support.essential}>
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByTestId("for-this-period")).toHaveTextContent("$200.00");

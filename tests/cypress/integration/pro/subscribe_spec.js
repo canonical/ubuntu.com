@@ -264,7 +264,7 @@ context("/pro/subscribe logged in purchase", () => {
 })
 
 context("/pro/subscribe errors", () => {
-  it.skip("should get card error when purchasing with invalid card and retrying", () => {
+  it("should get card error when purchasing with invalid card and retrying", () => {
     cy.visit("/pro/subscribe")
     cy.acceptCookiePolicy()
     cy.selectProducts()
@@ -290,10 +290,10 @@ context("/pro/subscribe errors", () => {
     cy.acceptTerms();
 
     cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("purchase");
-
+    cy.intercept("POST", "/pro/purchase/preview*", slowDownResponse).as("preview");
     cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
 
-    cy.wait("@purchase").then((interception) => {
+    cy.wait("@preview").then((interception) => {
       expect(interception.response.statusCode).to.equal(400)
       expect(interception.response.body).to.have.any.keys('errors')
     });
@@ -308,9 +308,14 @@ context("/pro/subscribe errors", () => {
 
     cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
 
-    // ToDo: Make subsequent purchase calls send the account_id 
-    // received form first purchase reponse
-    cy.wait("@purchase").then((interception) => {
+    cy.intercept("POST", "/pro/purchase/preview*", slowDownResponse).as("preview2");
+    cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("purchase2");
+
+    cy.wait("@preview2").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200)
+    });
+
+    cy.wait("@purchase2").then((interception) => {
       expect(interception.response.statusCode).to.equal(200)
     });
 
@@ -346,11 +351,14 @@ context("/pro/subscribe errors", () => {
 
     cy.acceptTerms();
 
-    cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("purchase");
+    cy.intercept("POST", "/pro/purchase/preview*", slowDownResponse).as("preview");
     cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
-    cy.wait("@purchase").then((interception) => {
+    cy.wait("@preview").then((interception) => {
       expect(interception.response.statusCode).to.equal(401)
+      expect(interception.response.body.errors).to.equal("please login to purchase")
     });
+
+    // because preview fails pruchase endpoint does not happen
 
     // ToDo: Surface a nice error message to the user
     cy.get('.checkout-container').scrollTo('top')

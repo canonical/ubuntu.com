@@ -8,10 +8,17 @@ import * as utils from "../../utils/utils";
 import { product, preview } from "../../utils/test/Mocks";
 import { Periods, Support } from "../../utils/utils";
 import { FormProvider } from "../../utils/FormContext";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
 describe("Summary", () => {
+  let queryClient;
+
+  beforeEach(async () => {
+    queryClient = new QueryClient();
+  });
+
   beforeAll(() => {
     Object.defineProperty(window, "productList", {
       value: {
@@ -34,9 +41,11 @@ describe("Summary", () => {
     });
 
     render(
-      <FormProvider initialSupport={Support.none} initialQuantity={3}>
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider initialSupport={Support.none} initialQuantity={3}>
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByText("Ubuntu Pro")).toBeInTheDocument();
@@ -65,13 +74,15 @@ describe("Summary", () => {
     });
 
     render(
-      <FormProvider
-        initialSupport={Support.essential}
-        initialQuantity={3}
-        initialPeriod={Periods.monthly}
-      >
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider
+          initialSupport={Support.essential}
+          initialQuantity={3}
+          initialPeriod={Periods.monthly}
+        >
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByText("Ubuntu Pro")).toBeInTheDocument();
@@ -101,9 +112,11 @@ describe("Summary", () => {
       };
     });
     render(
-      <FormProvider initialSupport={Support.essential}>
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider initialSupport={Support.essential}>
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByTestId("tax")).toHaveTextContent("$999.99");
@@ -122,9 +135,11 @@ describe("Summary", () => {
       };
     });
     render(
-      <FormProvider initialSupport={Support.essential}>
-        <Summary />
-      </FormProvider>
+      <QueryClientProvider client={queryClient}>
+        <FormProvider initialSupport={Support.essential}>
+          <Summary />
+        </FormProvider>
+      </QueryClientProvider>
     );
 
     expect(screen.getByTestId("for-this-period")).toHaveTextContent("$200.00");
