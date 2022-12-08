@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import {
@@ -35,15 +35,13 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
 
   const [isEditing, setIsEditing] = useState(!values.country);
 
-  const memoizedValue = useMemo(() => {
-    if (userInfo?.customerInfo?.address?.country) {
-      setIsEditing(!userInfo?.customerInfo?.address?.country);
-    }
-  }, [userInfo?.customerInfo?.address?.country]);
+  const savedCountry = userInfo?.customerInfo?.address?.country;
 
   useEffect(() => {
-    memoizedValue;
-  }, []);
+    if (savedCountry) {
+      setIsEditing(!savedCountry);
+    }
+  }, [savedCountry]);
 
   const taxMutation = useCalculateTaxes({
     country: values.country,
