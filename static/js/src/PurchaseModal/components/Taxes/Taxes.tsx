@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import {
@@ -16,6 +16,7 @@ import {
   vatCountries,
 } from "advantage/countries-and-states";
 import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
+import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
 
 type TaxesProps = {
   product: any;
@@ -30,7 +31,19 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
     setFieldValue,
   } = useFormikContext<FormValues>();
 
+  const { data: userInfo } = useStripeCustomerInfo();
+
   const [isEditing, setIsEditing] = useState(!values.country);
+
+  const memoizedValue = useMemo(() => {
+    if (userInfo?.customerInfo?.address?.country) {
+      setIsEditing(!userInfo?.customerInfo?.address?.country);
+    }
+  }, [userInfo?.customerInfo?.address?.country]);
+
+  useEffect(() => {
+    memoizedValue;
+  }, []);
 
   const taxMutation = useCalculateTaxes({
     country: values.country,
