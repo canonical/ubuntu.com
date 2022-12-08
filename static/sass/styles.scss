@@ -1020,3 +1020,17 @@ a:hover {
     }
   }
 }
+
+.p-title-logo {
+  align-items: center;
+  display: flex;
+  margin-bottom: 1rem;
+
+  &__image {
+    margin-right: 1rem;
+
+    @media only screen and (min-width: $breakpoint-small) {
+      margin-right: 2rem;
+    }
+  }
+}

@@ -9,6 +9,8 @@
   @include ubuntu-p-form-list-ticked;
   @include ubuntu-p-list-divided-with-bullets;
   @include ubuntu-p-step-counter;
+  @include ubuntu-p-list-ticked;
+  @include ubuntu-p-list-horizontal-divided;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -331,5 +333,80 @@
     padding: $disk-padding;
     text-align: center;
     width: calc(#{map-get($line-heights, default-text)} + #{2 * $disk-padding});
+  }
+}
+
+@mixin ubuntu-p-list-ticked {
+  .p-list--ticked {
+    @extend %vf-clearfix;
+    @extend %vf-list;
+
+    .p-list__item {
+      @extend %vf-list-item;
+
+      border-bottom: 1px solid $colors--light-theme--border-default;
+      padding-left: 2rem;
+      position: relative;
+
+      &::before {
+        @extend %icon;
+        @include vf-icon-success-grey($color-mid-dark);
+
+        content: '';
+        left: 0;
+        position: absolute;
+        top: 0.9rem;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-list-horizontal-divided {
+  .p-list--horizontal-divided {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .p-list__item {
+      align-items: center;
+      border-bottom: 1px solid $colors--light-theme--border-default;
+      display: flex;
+      padding: 1rem 0;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        border-bottom: 0;
+        border-right: 1px solid $colors--light-theme--border-default;
+        display: inline-flex;
+        padding: 0 2rem;
+      }
+
+      &:first-child {
+        padding-top: 0;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          padding-left: 0;
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          border-right: 0;
+        }
+      }
+
+      img {
+        margin-right: 1.5rem;
+
+        @media only screen and (max-width: $breakpoint-medium) {
+          display: none;
+        }
+      }
+    }
   }
 }
