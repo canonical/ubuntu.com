@@ -130,8 +130,7 @@ const BuyButton = ({
         preview: true,
       },
       {
-        onSuccess: (data) => {
-          window.accountId = data.account_id;
+        onSuccess: () => {
           genericPurchaseMutation.mutate(
             {
               formData: values,
@@ -143,7 +142,7 @@ const BuyButton = ({
             {
               onSuccess: (data) => {
                 //start polling
-                setPendingPurchaseID(data.id);
+                setPendingPurchaseID(data);
                 proSelectorStates.forEach((state) =>
                   localStorage.removeItem(state)
                 );

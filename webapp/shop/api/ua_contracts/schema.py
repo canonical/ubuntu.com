@@ -25,7 +25,6 @@ class PaymentStatusSchema(BaseSchema):
 
 class InvoiceSchema(BaseSchema):
     id = Function(deserialize=(lambda id: id.get("IDs")[0]), required=True)
-    account_id = String()
     reason = String(required=True)
     status = String(required=True)
     url = String()

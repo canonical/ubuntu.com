@@ -103,7 +103,6 @@ const useMakePurchase = () => {
       }
 
       let payload: Payload = {
-        account_id: window.accountId,
         customer_info: {
           payment_method_id: paymentMethodId,
           email: email,
@@ -159,7 +158,7 @@ const useMakePurchase = () => {
         throw new Error(res.errors);
       }
 
-      return res;
+      return res.id;
     }
   );
 

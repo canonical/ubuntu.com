@@ -141,14 +141,12 @@ class Invoice:
         status: str,
         id: str,
         total: int = 0,
-        account_id: str = None,
         items: dict = None,
         tax_amount: int = None,
         payment_status: dict = None,
         url: str = None,
     ):
         self.id = id
-        self.account_id = account_id
         self.currency = currency
         self.tax_amount = tax_amount
         self.total = total
