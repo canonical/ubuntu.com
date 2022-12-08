@@ -30,7 +30,11 @@ const BuyButton = ({
 
   const { data: userInfo } = useStripeCustomerInfo();
 
-  const { values, setFieldValue } = useFormikContext<FormValues>();
+  const {
+    values,
+    setFieldValue,
+    setErrors: setFormikErrors,
+  } = useFormikContext<FormValues>();
 
   const genericPurchaseMutation = useMakePurchase();
 
@@ -92,6 +96,27 @@ const BuyButton = ({
         <>
           You already have a pending purchase. Please go to{" "}
           <a href="/account/payment-methods">payment methods</a> to retry.
+        </>
+      );
+    } else if (error.message.includes("tax_id_invalid")) {
+      setFormikErrors({
+        VATNumber:
+          "That VAT number is invalid. Check the number and try again.",
+      });
+      setError(
+        <>That VAT number is invalid. Check the number and try again.</>
+      );
+    } else if (error.message.includes("tax_id_cannot_be_validated")) {
+      setFormikErrors({
+        VATNumber:
+          "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
+      });
+      setError(
+        <>
+          VAT number could not be validated at this time, please try again later
+          or contact
+          <a href="mailto:customersuccess@canonical.com">customer success</a> if
+          the problem persists.
         </>
       );
     } else {
