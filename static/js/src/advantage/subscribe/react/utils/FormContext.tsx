@@ -154,8 +154,15 @@ export const FormProvider = ({
 
   useEffect(() => {
     const product = getProduct(productType, feature, support, sla, period);
-    setProduct(window.productList[product] ?? null);
-  }, [feature, productType, sla, support, period]);
+    if (
+      productType === ProductTypes.iotDevice &&
+      iotDevice === IoTDevices.core
+    ) {
+      setProduct(null);
+    } else {
+      setProduct(window.productList[product] ?? null);
+    }
+  }, [feature, productType, sla, support, period, iotDevice]);
 
   useEffect(() => {
     if (!isMonthlyAvailable(product)) {

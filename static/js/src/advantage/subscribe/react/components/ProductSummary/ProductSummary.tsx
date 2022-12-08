@@ -89,13 +89,9 @@ const ProductSummary = () => {
           </Col>
           <Col size={2} className="u-align--right">
             <p className="p-heading--2">
-              {productType === ProductTypes.iotDevice &&
-              iotDevice === IoTDevices.core
-                ? currencyFormatter.format(0)
-                : currencyFormatter.format(
-                    ((product?.price.value ?? 0) / 100) *
-                      (Number(quantity) ?? 0)
-                  )}
+              {currencyFormatter.format(
+                ((product?.price.value ?? 0) / 100) * (Number(quantity) ?? 0)
+              )}
             </p>{" "}
             <p className="p-text--small">
               per {period === Periods.yearly ? "year" : "month"}
