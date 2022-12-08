@@ -88,7 +88,6 @@ const BuyButton = ({
 
   const handlePurchaseError = (error: any) => {
     setIsLoading(false);
-    console.log(error);
     if (
       error instanceof Error &&
       error.message.includes("can only make one purchase at a time")
@@ -106,6 +105,19 @@ const BuyButton = ({
       });
       setError(
         <>That VAT number is invalid. Check the number and try again.</>
+      );
+    } else if (error.message.includes("tax_id_cannot_be_validated")) {
+      setFormikErrors({
+        VATNumber:
+          "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
+      });
+      setError(
+        <>
+          VAT number could not be validated at this time, please try again later
+          or contact
+          <a href="mailto:customersuccess@canonical.com">customer success</a> if
+          the problem persists.
+        </>
       );
     } else {
       Sentry.captureException(error);
