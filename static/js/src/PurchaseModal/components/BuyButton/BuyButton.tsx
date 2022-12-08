@@ -99,15 +99,15 @@ const BuyButton = ({
           <a href="/account/payment-methods">payment methods</a> to retry.
         </>
       );
-    }  else if (error.message.includes("tax_id_invalid")) {
-        setFormikErrors({
-          VATNumber:
-            "That VAT number is invalid. Check the number and try again.",
-        });
-        setError(
-          <>That VAT number is invalid. Check the number and try again.</>
-        );
-      } else {
+    } else if (error.message.includes("tax_id_invalid")) {
+      setFormikErrors({
+        VATNumber:
+          "That VAT number is invalid. Check the number and try again.",
+      });
+      setError(
+        <>That VAT number is invalid. Check the number and try again.</>
+      );
+    } else {
       Sentry.captureException(error);
       setError(
         <>
