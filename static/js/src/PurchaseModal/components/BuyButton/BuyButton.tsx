@@ -82,6 +82,31 @@ const BuyButton = ({
     }
   };
 
+  const handlePurchaseError = (error: any) => {
+    setIsLoading(false);
+    if (
+      error instanceof Error &&
+      error.message.includes("can only make one purchase at a time")
+    ) {
+      setError(
+        <>
+          You already have a pending purchase. Please go to{" "}
+          <a href="/account/payment-methods">payment methods</a> to retry.
+        </>
+      );
+    } else {
+      Sentry.captureException(error);
+      setError(
+        <>
+          Sorry, there was an unknown error with the payment. Check the details
+          and try again. Contact{" "}
+          <a href="https://ubuntu.com/contact-us">Canonical sales</a> if the
+          problem persists.
+        </>
+      );
+    }
+  };
+
   const proSelectorStates = [
     "pro-selector-productType",
     "pro-selector-version",
@@ -102,37 +127,31 @@ const BuyButton = ({
         product,
         quantity,
         action: buyAction,
+        preview: true,
       },
       {
-        onSuccess: (data) => {
-          //start polling
-          setPendingPurchaseID(data);
-          proSelectorStates.forEach((state) => localStorage.removeItem(state));
+        onSuccess: () => {
+          genericPurchaseMutation.mutate(
+            {
+              formData: values,
+              product,
+              quantity,
+              action: buyAction,
+              preview: false,
+            },
+            {
+              onSuccess: (data) => {
+                //start polling
+                setPendingPurchaseID(data);
+                proSelectorStates.forEach((state) =>
+                  localStorage.removeItem(state)
+                );
+              },
+              onError: handlePurchaseError,
+            }
+          );
         },
-        onError: (error) => {
-          setIsLoading(false);
-          if (
-            error instanceof Error &&
-            error.message.includes("can only make one purchase at a time")
-          ) {
-            setError(
-              <>
-                You already have a pending purchase. Please go to{" "}
-                <a href="/account/payment-methods">payment methods</a> to retry.
-              </>
-            );
-          } else {
-            Sentry.captureException(error);
-            setError(
-              <>
-                Sorry, there was an unknown error with the payment. Check the
-                details and try again. Contact{" "}
-                <a href="https://ubuntu.com/contact-us">Canonical sales</a> if
-                the problem persists.
-              </>
-            );
-          }
-        },
+        onError: handlePurchaseError,
       }
     );
   };

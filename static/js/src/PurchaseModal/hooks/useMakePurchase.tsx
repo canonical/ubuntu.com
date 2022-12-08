@@ -8,6 +8,7 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
+  preview: boolean;
 };
 
 type AddressObejct = {
@@ -19,6 +20,7 @@ type AddressObejct = {
 };
 
 type Payload = {
+  account_id?: string;
   customer_info: {
     payment_method_id: string;
     email?: string;
@@ -49,7 +51,7 @@ const useMakePurchase = () => {
   const { data: userInfo } = useStripeCustomerInfo();
 
   const mutation = useMutation(
-    async ({ formData, product, quantity, action }: Props) => {
+    async ({ formData, product, quantity, action, preview }: Props) => {
       const {
         name,
         email,
@@ -134,7 +136,13 @@ const useMakePurchase = () => {
       if (action === "offer") {
         payload = { ...payload, offer_id: product.longId };
       }
-      const response = await fetch(`/pro/purchase${window.location.search}`, {
+
+      let url = `/pro/purchase${window.location.search}`;
+      if (preview == true) {
+        url = `/pro/purchase/preview${window.location.search}`;
+      }
+
+      const response = await fetch(url, {
         method: "POST",
         cache: "no-store",
         credentials: "include",
