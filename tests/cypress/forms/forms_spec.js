@@ -60,18 +60,16 @@ context("Static marketo forms", () => {
     cy.findByText(/Let’s discuss/).click();
     cy.findByRole("heading", { name: /Thank you/ });
   });
-
 });
 
 context("Interactive marketo forms", () => {
-  it(
-    "should check each interactive contact modal",
-    { scrollBehavior: "center" },
-    () => {
-      cy.visit("/");
-      cy.acceptCookiePolicy();
-
-      interactiveForms.forEach((form) => {
+  interactiveForms.forEach((form) => {
+    it(
+      `can submit a contact dialog form on ${form.url}`,
+      { scrollBehavior: "center" },
+      () => {
+        cy.visit("/");
+        cy.acceptCookiePolicy();
         cy.visit(form.url);
         cy.findByTestId("interactive-form-link").click();
         cy.findByRole("dialog").within(() => {
@@ -84,19 +82,19 @@ context("Interactive marketo forms", () => {
           cy.findByText(form.submitBtn).click();
         });
         cy.url().should("include", "#success");
-      });
-    }
-  );
+      }
+    );
+  });
 
   // wrote separate test for some pages as there are same email inputs in the modal and in the page.
-  it(
-    "should check interactive contact modal With Email TestId",
-    { scrollBehavior: "center" },
-    () => {
-      cy.visit("/");
-      cy.acceptCookiePolicy();
+  formsWithEmailTestId.forEach((form) => {
+    it(
+      `can submit a contact form with e-mail on ${form.url}`,
+      { scrollBehavior: "center" },
+      () => {
+        cy.visit("/");
+        cy.acceptCookiePolicy();
 
-      formsWithEmailTestId.forEach((form) => {
         cy.visit(form.url);
         cy.findByTestId("interactive-form-link").click();
 
@@ -112,9 +110,9 @@ context("Interactive marketo forms", () => {
         });
 
         cy.url().should("include", "#success");
-      });
-    }
-  );
+      }
+    );
+  });
 
   // wrote separate test for /robotics page as cypress couldn't find the job title input field by label text
   it(
