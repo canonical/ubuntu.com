@@ -55,14 +55,16 @@
   <div class="row">
     <div class="col-9">
       <h2 class="u-sv3">Explore certified hardware</h2>
-      <form>
+      <form class="p-form p-form--inline">
         <div class="p-form__group">
-          <div class="p-search-box">
-            <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search" aria-label="Search" required>
-            <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Reset</i></button>
-            <button type="submit" class="p-search-box__button"><i class="p-icon--search">Submit</i></button>
+          <div class="p-form__control">
+            <div class="p-search-box">
+              <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search" aria-label="Search" required>
+              <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Reset</i></button>
+            </div>
           </div>
         </div>
+        <button type="submit" class="p-button--positive u-no-margin">Search</button>
       </form>
     </div>
   </div>
@@ -251,81 +253,27 @@
 
   <div class="row u-sv2">
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/7238e876-high-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M11.992 3.293 7.285 8H4.213l-.147.238a7.22 7.22 0 0 0-.002 7.524l.147.238h3.074l4.707 4.707z" style="color:#000;fill:#e95420;-inkscape-stroke:none"/><path d="m14.492 7.793-.707.707.354.354c1.823 1.823 1.823 4.47 0 6.292l-.354.354.707.707.354-.353c2.176-2.177 2.176-5.53 0-7.708z" style="color:#000;fill:#e95420;stroke-linecap:square;-inkscape-stroke:none"/><path d="m17.846 5.146-.707.708C19.065 7.78 19.992 9.898 19.992 12c0 2.102-.927 4.22-2.853 6.146l.707.708c2.073-2.074 3.146-4.456 3.146-6.854 0-2.398-1.073-4.78-3.146-6.854z" style="color:#000;fill:#e95420;-inkscape-stroke:none"/></svg>
       <p>Audio</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/9325fdfb-wired.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M9 3c-.554 0-1 .446-1 1v3c0 .554.446 1 1 1h2v3H7.5c-.806 0-1.462.13-1.916.584C5.13 12.038 5 12.694 5 13.5V15H3c-.554 0-1 .446-1 1v3c0 .554.446 1 1 1h5c.554 0 1-.446 1-1v-3c0-.554-.446-1-1-1H6v-1.5c0-.694.12-1.038.291-1.209C6.462 12.12 6.806 12 7.5 12h8c.694 0 1.038.12 1.209.291.171.171.291.515.291 1.209V15h-2c-.554 0-1 .446-1 1v3c0 .554.446 1 1 1h5c.554 0 1-.446 1-1v-3c0-.554-.446-1-1-1h-2v-1.5c0-.806-.13-1.462-.584-1.916-.454-.454-1.11-.584-1.916-.584H12V8h2c.554 0 1-.446 1-1V4c0-.554-.446-1-1-1H9z" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/></svg>
       <p>Ethernet</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/8da609d5-wifi.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M12 4A15 15 0 0 0 1.922 7.922l.703.703A14 14 0 0 1 12 5a14 14 0 0 1 9.385 3.615l.71-.71A15 15 0 0 0 12 4zm0 3a12 12 0 0 0-7.945 3.055l.697.697A11 11 0 0 1 12 8a11 11 0 0 1 7.26 2.74l.709-.709A12 12 0 0 0 12 7zm0 3a9 9 0 0 0-5.84 2.16l.733.733A8 8 0 0 1 12 11a8 8 0 0 1 5.133 1.867l.709-.709A9 9 0 0 0 12 10zm0 3a6 6 0 0 0-3.71 1.29l.722.722A5 5 0 0 1 12 14a5 5 0 0 1 2.998 1.002l.711-.711A6 6 0 0 0 12 13z" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/><circle cx="12" cy="19" r="2" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/></svg>
       <p>Wireless</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/0c4e7c92-key-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M4.787 6c-.677.006-1.25.048-1.76.303-.34.17-.63.462-.797.838C2.064 7.516 2 7.958 2 8.5v7c0 .542.064.984.23 1.36.167.375.458.668.797.837.68.34 1.473.303 2.473.303h3c1 0 1.794.037 2.473-.303.34-.17.63-.462.797-.838.166-.375.23-.817.23-1.359V14h2.207l.793-.793 1 1 1-1 .646.647 1.395 1.394 2.629-3.285-.316-.317L19.707 10H12V8.5c0-.542-.064-.984-.23-1.36a1.72 1.72 0 0 0-.797-.837C10.293 5.963 9.5 6 8.5 6h-3c-.25 0-.487-.002-.713 0zM6 11a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1z" style="color:#000;fill:#e95420;fill-opacity:1;-inkscape-stroke:none"/></svg>
       <p>TPM</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/5c59215f-bluetooth.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M7 2c-1.108 0-2 .892-2 2v16c0 1.108.892 2 2 2h10c1.108 0 2-.892 2-2V4c0-1.108-.892-2-2-2H7zm4 1.293L16.207 8.5l-3.5 3.5 3.5 3.5L11 20.707v-7l-2.146 2.147-.708-.708L11 12.293v-.586L8.146 8.854l.708-.708L11 10.293v-7zm1 2.414v5.586L14.793 8.5 12 5.707zm0 7v5.586l2.793-2.793L12 12.707z" style="fill:#e95420;fill-rule:evenodd;stroke-linecap:square;stroke-linejoin:round;fill-opacity:1"/></svg>
       <p>Bluetooth</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/386f9d79-usb-stick-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M8 2v4.999h8v-5zm2 2v1h1V4zm3 0v1h1V4zM7.787 7.998c-.677.006-1.25.048-1.76.303-.34.17-.63.462-.797.838-.166.375-.23.817-.23 1.359v9c0 .542.064.984.23 1.36.167.375.458.668.797.838.68.34 1.473.302 2.473.302h7c1 0 1.794.037 2.473-.302.34-.17.63-.463.797-.838.166-.376.23-.818.23-1.36v-9c0-.542-.064-.984-.23-1.36a1.72 1.72 0 0 0-.797-.837c-.68-.34-1.473-.303-2.473-.303h-7c-.25 0-.487-.002-.713 0z" style="fill:#e95420;fill-opacity:1;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round"/></svg>
       <p>USB</p>
     </div>
   </div>
@@ -336,81 +284,27 @@
 
   <div class="row">
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/4e5935b3-download.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M10 2v8H6.598l5.902 9.443L18.402 10H15V2zm1 1h3v8h2.598L12.5 17.557 8.402 11H11z" style="color:#000;fill:#e95420;-inkscape-stroke:none;fill-opacity:1"/><path d="M7 20h11v1H7z" style="color:#000;fill:#e95420;fill-rule:evenodd;stroke-linecap:square;stroke-linejoin:round;-inkscape-stroke:none;fill-opacity:1"/></svg>
       <p>Firmware</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/8d01d4c2-power-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M12 2.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5zm.5 4v5h2l-3 6v-5h-2l3-6z" style="fill:#e95420;fill-opacity:1;fill-rule:evenodd;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:round"/></svg>
       <p>Power management</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/16f33d16-hotspot.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M11.5 3A9.5 9.5 0 0 0 2 12.5a9.5 9.5 0 0 0 2.8 6.7l.69-.69A8.5 8.5 0 0 1 3 12.5 8.5 8.5 0 0 1 11.5 4a8.5 8.5 0 0 1 8.5 8.5 8.5 8.5 0 0 1-2.03 5.47l.727.727A9.5 9.5 0 0 0 21 12.5 9.5 9.5 0 0 0 11.5 3zm0 2A7.5 7.5 0 0 0 4 12.5a7.5 7.5 0 0 0 2.21 5.29l.694-.694A6.5 6.5 0 0 1 5 12.5 6.5 6.5 0 0 1 11.5 6a6.5 6.5 0 0 1 6.5 6.5 6.5 6.5 0 0 1-1.443 4.057l.714.714A7.5 7.5 0 0 0 19 12.5 7.5 7.5 0 0 0 11.5 5zm0 2A5.5 5.5 0 0 0 6 12.5a5.5 5.5 0 0 0 1.621 3.879l.697-.697A4.5 4.5 0 0 1 7 12.5 4.5 4.5 0 0 1 11.5 8a4.5 4.5 0 0 1 4.5 4.5 4.5 4.5 0 0 1-.857 2.643l.705.705A5.5 5.5 0 0 0 17 12.5 5.5 5.5 0 0 0 11.5 7zm0 4a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1 1.41V22h1v-8.09a1.5 1.5 0 0 0 1-1.41 1.5 1.5 0 0 0-1.5-1.5z" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/></svg>
       <p>WWAN</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/e163fc9c-flash-card-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M7.787 3c-.677.006-1.25.048-1.76.303-.34.17-.63.462-.797.838C5.064 4.516 5 4.958 5 5.5v13c0 .542.064.984.23 1.36.167.375.458.668.797.837.68.34 1.473.303 2.473.303h7c1 0 1.794.037 2.473-.303.34-.17.63-.462.797-.838.166-.375.23-.817.23-1.359v-8.117l-1-2V5.5c0-.542-.064-.984-.23-1.36a1.72 1.72 0 0 0-.797-.837C16.293 2.963 15.5 3 14.5 3h-6c-.25 0-.487-.002-.713 0zM8 6h1v2H8V6zm3 0h1v2h-1V6zm3 0h1v2h-1V6z" style="color:#000;fill:#e95420;fill-opacity:1;-inkscape-stroke:none"/></svg>
       <p>Media cards</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/759b179b-harddisk-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M7.455 2c-.969.009-1.718.073-2.338.445-.413.248-.72.656-.888 1.162C4.059 4.114 4 4.722 4 5.5v13c0 .778.06 1.386.229 1.893.168.506.475.914.888 1.162C5.944 22.05 7 22 8.5 22h7c1.5 0 2.556.05 3.383-.445.413-.248.72-.656.888-1.162.17-.507.229-1.115.229-1.893v-13c0-.778-.06-1.386-.229-1.893-.168-.506-.475-.914-.888-1.162C18.056 1.95 17 2 15.5 2h-7c-.375 0-.722-.003-1.045 0zm4.47 7a5 5 0 0 1 3.744 1.623l.685.73-1.5 1.5-.708-.707.819-.818a4 4 0 0 0-4.496-1.023A4 4 0 1 0 16 14h1a5 5 0 1 1-5.074-5zM12 12a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1z" style="color:#000;fill:#e95420;fill-opacity:1;-inkscape-stroke:none"/></svg>
       <p>Memory</p>
     </div>
     <div class="col-2 col-small-2 col-medium-2 u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/f82f02ab-chip-filled.svg",
-          alt="",
-          height="32",
-          width="32",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M6.5 3c-.277 0-.5.223-.5.5v1.807c-.25.086-.487.195-.705.334-.484.308-.841.767-1.057 1.359H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5H4v1H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5H4v1H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5H4v1H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5h1.738c.216.592.573 1.051 1.057 1.36.218.138.454.247.705.333V21.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5v-1.508c.163.005.33.008.5.008H9v1.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5V20h1v1.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5V20h.5c.17 0 .337-.003.5-.008V21.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5v-1.807c.25-.086.487-.195.705-.334.484-.308.841-.767 1.057-1.359H20.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5H19v-1h1.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5H19v-1h1.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5H19V9h1.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5h-1.738c-.216-.592-.573-1.051-1.057-1.36A3.333 3.333 0 0 0 17 5.308V3.5c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5v1.508c-.163-.005-.33-.008-.5-.008H14V3.5c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5V5h-1V3.5c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5V5h-.5c-.17 0-.337.003-.5.008V3.5c0-.277-.223-.5-.5-.5zm2.287 4c.226-.002.463 0 .713 0h4c1 0 1.794-.037 2.473.303.34.17.63.462.797.838.166.375.23.817.23 1.359v6c0 .542-.064.984-.23 1.36a1.72 1.72 0 0 1-.797.837c-.68.34-1.473.303-2.473.303h-4c-1 0-1.794.037-2.473-.303a1.72 1.72 0 0 1-.797-.838C6.064 16.484 6 16.042 6 15.5v-6c0-.542.064-.984.23-1.36a1.72 1.72 0 0 1 .797-.837c.51-.255 1.083-.297 1.76-.303zM9.5 8c-1 0-1.706.037-2.027.197a.615.615 0 0 0-.328.35C7.06 8.734 7 9.042 7 9.5v6c0 .458.061.766.145.953.083.187.167.27.328.35.32.16 1.027.197 2.027.197h4c1 0 1.706-.037 2.027-.197a.615.615 0 0 0 .328-.35c.084-.187.145-.495.145-.953v-6c0-.458-.061-.766-.145-.953a.615.615 0 0 0-.328-.35C15.207 8.037 14.5 8 13.5 8z" style="fill:#e95420;fill-rule:evenodd;stroke:#fff;stroke-width:0;stroke-linecap:square;stroke-linejoin:round"/></svg>
       <p>CPU</p>
     </div>
   </div>
