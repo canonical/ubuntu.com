@@ -938,6 +938,33 @@ def marketo_submit():
             },
         ).execute()
 
+    if payload["formId"] == "4777":
+        service_account_info = {
+            "token_uri": "https://oauth2.googleapis.com/token",
+            "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+            "private_key": os.getenv(
+                "GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY"
+            ).replace("\\n", "\n"),
+            "scopes": [
+                "https://www.googleapis.com/auth/spreadsheets.readonly"
+            ],
+        }
+
+        credentials = service_account.Credentials.from_service_account_info(
+            service_account_info,
+        )
+
+        service = build("sheets", "v4", credentials=credentials)
+
+        sheet = service.spreadsheets()
+        sheet.values().append(
+            spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
+            range="Sheet2",
+            valueInputOption="RAW",
+            body={"values": [[form_fields.__dict__.values()]]},
+        ).execute()
+        return flask.redirect("/thank-you")
+
     # Send enrichment data
     try:
         marketo_api.submit_form(enriched_payload).json()
