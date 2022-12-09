@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Button, Col, Row } from "@canonical/react-components";
 import { RadioInput } from "@canonical/react-components";
 import {
+  IoTDevices,
+  isIoTDevice,
   isPublicCloud,
   ProductTypes,
   PublicClouds,
@@ -37,10 +39,11 @@ const PublicCloudInfo = {
     link: "",
   },
 };
-
 const ProductType = () => {
   const localPublicCloud = localStorage.getItem("pro-selector-publicCloud");
-  const { productType, setProductType } = useContext(FormContext);
+  const { productType, setProductType, iotDevice, setIoTDevice } = useContext(
+    FormContext
+  );
   const [publicCloud, setPublicCloud] = useState(
     localPublicCloud
       ? (JSON.parse(localPublicCloud) as PublicClouds)
@@ -137,6 +140,68 @@ const ProductType = () => {
     </>
   );
 
+  const IoTDeviceselector = (
+    <>
+      <div className="p-segmented-control">
+        <div
+          className="p-segmented-control__list"
+          role="tablist"
+          aria-label="IoT device options"
+        >
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={iotDevice === IoTDevices.classic}
+            aria-controls={IoTDevices.classic}
+            id={IoTDevices.classic}
+            onClick={(e) => {
+              e.preventDefault();
+              setIoTDevice(IoTDevices.classic);
+              localStorage.setItem(
+                "pro-selector-iotDevice",
+                JSON.stringify(IoTDevices.classic)
+              );
+            }}
+          >
+            Ubuntu Classic
+          </button>
+          <dfn></dfn>
+          <button
+            className="p-segmented-control__button"
+            role="tab"
+            aria-selected={iotDevice === IoTDevices.core}
+            aria-controls={IoTDevices.core}
+            id={IoTDevices.core}
+            onClick={(e) => {
+              e.preventDefault();
+              setIoTDevice(IoTDevices.core);
+              localStorage.setItem(
+                "pro-selector-iotDevice",
+                JSON.stringify(IoTDevices.core)
+              );
+            }}
+          >
+            Ubuntu Core
+          </button>
+        </div>
+      </div>
+      {iotDevice === IoTDevices.core && (
+        <>
+          <p>
+            <strong> Ubuntu Core </strong>
+          </p>
+          <p>
+            If you are interested in Ubuntu Core, please{" "}
+            <a href="/core/contact-us">contact us</a>.
+          </p>
+          <Button element="a" href="/core">
+            Learn more about Ubuntu Core
+          </Button>
+        </>
+      )}
+    </>
+  );
+
   return (
     <>
       <Row>
@@ -182,6 +247,18 @@ const ProductType = () => {
             onChange={handleProductTypeChange}
             checked={productType === ProductTypes.desktop}
           />
+        </Col>
+        <Col size={12}>
+          <RadioInput
+            label="IoT and devices"
+            name="type"
+            value={ProductTypes.iotDevice}
+            onChange={handleProductTypeChange}
+            checked={productType === ProductTypes.iotDevice}
+          />
+        </Col>
+        <Col size={12} style={{ marginLeft: "35px" }}>
+          {isIoTDevice(productType) ? IoTDeviceselector : null}
         </Col>
       </Row>
     </>

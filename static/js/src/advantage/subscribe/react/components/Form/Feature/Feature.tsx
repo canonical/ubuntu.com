@@ -3,13 +3,17 @@ import classNames from "classnames";
 import { Col, RadioInput, Row } from "@canonical/react-components";
 import {
   Features,
+  IoTDevices,
+  isIoTDevice,
   isPublicCloud,
   ProductTypes,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
-  const { productType, feature, setFeature } = useContext(FormContext);
+  const { productType, feature, setFeature, iotDevice } = useContext(
+    FormContext
+  );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
@@ -26,7 +30,9 @@ const Feature = () => {
       className={classNames({
         row: true,
         "p-divider": true,
-        "u-disable": isPublicCloud(productType),
+        "u-disable":
+          isPublicCloud(productType) ||
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >

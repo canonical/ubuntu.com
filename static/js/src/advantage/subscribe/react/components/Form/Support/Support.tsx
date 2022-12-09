@@ -8,6 +8,8 @@ import {
   SLA,
   Support as SupportEnum,
   LTSVersions,
+  IoTDevices,
+  isIoTDevice,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
@@ -20,6 +22,7 @@ const Support = () => {
     setSupport,
     productType,
     version,
+    iotDevice,
   } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +47,9 @@ const Support = () => {
     <div
       className={classNames({
         row: true,
-        "u-disable": isPublicCloud(productType),
+        "u-disable":
+          isPublicCloud(productType) ||
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >
