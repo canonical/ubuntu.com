@@ -446,7 +446,7 @@ Now you have a cluster up and running, check out the
 [credentials]: https://juju.is/docs/olm/credentials
 [quickstart]: /kubernetes/docs/quickstart
 [juju-bundle]: https://juju.is/docs/sdk/bundles
-[juju-gui]: https://juju.is/docs/olm/accessing-juju%E2%80%99s-web-interface
+[juju-gui]: https://juju.is/docs/olm/manage-the-juju-dashboard
 [juju-constraints]: https://juju.is/docs/olm/constraints
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
 [charm-kworker]: https://charmhub.io/containers-kubernetes-worker
