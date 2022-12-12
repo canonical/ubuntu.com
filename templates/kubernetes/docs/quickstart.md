@@ -50,7 +50,7 @@ Kubernetes cluster running on the cloud of your choice in minutes!
 deploying, configuring, and operating complex software on public or private
 clouds. It can be installed with a snap:
           <div class="p-code-snippet">
-            <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic</code></pre>
+            <pre class="p-code-snippet__block--icon"><code>sudo snap install juju --classic --channel=2.9/stable</code></pre>
           </div>
           <script id="asciicast-254739" src="https://asciinema.org/a/254739.js" async data-autoplay="true" data-rows="4"></script>
         </div>
