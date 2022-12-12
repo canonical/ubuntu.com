@@ -1020,3 +1020,17 @@ a:hover {
     }
   }
 }
+
+.p-img-cta {
+  .p-img-cta__image {
+    @extend %vf-strip;
+
+    background-color: $color-light;
+  }
+
+  &:hover {
+    .p-img-cta__image {
+      background-color: $colors--light-theme--background-active;
+    }
+  }
+}
