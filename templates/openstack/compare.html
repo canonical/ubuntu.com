@@ -5,7 +5,7 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1ibpATi-e0rKP3GaLgvzwO_XyFU9ZTsUaCHMwrg96MZM/edit{% endblock %}
 
 {% block content %}
-<section class="p-strip--suru-topped is-deep is-bordered">
+<section class="p-strip--suru-topped is-bordered">
   <div class="row">
     <div class="col-8">
       <h1>OpenStack distributions: <br class="u-hide--small">a comparison</h1>
@@ -13,7 +13,7 @@
       <p><a href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Move to Charmed OpenStack</a></p>
       <p><a href="/engage/vmware-to-charmed-openstack">Read the whitepaper &mdash; "From VMware to Charmed OpenStack"&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4">
+    <div class="col-4 u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/f66803a0-openstack-comparison.svg",
@@ -21,7 +21,6 @@
           height="200",
           width="320",
           hi_def=True,
-          attrs={"class": ""},
           loading="auto",
         ) | safe
       }}
@@ -310,7 +309,7 @@
       <p>By applying a per host pricing model to the subscription structure and offering design and delivery at a fixed price, Canonical's Charmed OpenStack is cheaper than Red Hat OpenStack Platform. Moreover, no license is required to get started with Charmed OpenStack. This means that organisations only have to pay for the environments that require enterprise support, such as the production environment, while they can run their testing and development environments free of charge.</p>
       <p><a href="/engage/redhat-openstack-comparison-whitepaper">Read a Red Hat OpenStack comparison whitepaper&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-vertically-center">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/aab47d07-openstack-cheaper.svg",
@@ -318,7 +317,6 @@
           height="220",
           width="320",
           hi_def=True,
-          attrs={"class": ""},
           loading="lazy",
         ) | safe
       }}
@@ -328,7 +326,7 @@
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
-    <div class="col-4 u-vertically-center">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/ab100b97-openstack-simpler.svg",
@@ -336,7 +334,6 @@
           height="220",
           width="320",
           hi_def=True,
-          attrs={"class": ""},
           loading="lazy",
         ) | safe
       }}
@@ -360,7 +357,7 @@
       <p>Canonical's Charmed OpenStack is fully open source which allows it to benefit from a broader community, faster development process and wider selection of technology choices than those available in VMware's platform. Choosing an open source platform avoids vendor lock-in and significantly reduces infrastructure costs.</p>
       <p><a href="/engage/vmware-to-charmed-openstack">Explore VMware to OpenStack migration options&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-vertically-center">
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/d6271e62-openstack-opensource.svg",
@@ -368,7 +365,6 @@
           height="220",
           width="320",
           hi_def=True,
-          attrs={"class": ""},
           loading="lazy",
         ) | safe
       }}
