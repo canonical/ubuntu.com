@@ -264,13 +264,6 @@ Ensure that all the control plane units have upgraded and are reporting normal s
 
 ### Upgrading the **kubernetes-worker** units
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.
-</p>
-</div>
-
 For a running cluster, there are two different ways to proceed:
 
 - [Blue-green][blue-green] upgrade - This requires more resources, but should ensure a safe, zero-downtime transition of workloads to an updated cluster
@@ -375,57 +368,6 @@ juju status
 ... should indicate that all units are active and the correct version of **Kubernetes** is running.
 
 It is recommended that you run a [cluster validation][validation] to ensure that the cluster is fully functional.
-
-
-## Known Issues
-
-A [current bug](https://github.com/kubernetes/kubernetes/issues/70044) in Kubernetes could prevent the upgrade from properly deleting old pods. You can see such an issue here:
-
-```bash
-kubectl get po --all-namespaces
-```
-
-```
-NAMESPACE                         NAME                                                          READY   STATUS        RESTARTS   AGE
-default                           nginx-ingress-kubernetes-worker-controller-r8d2v              0/1     Terminating   0          17m
-ingress-nginx-kubernetes-worker   default-http-backend-kubernetes-worker-5d9bb77bc5-76c8w       1/1     Running       0          10m
-ingress-nginx-kubernetes-worker   nginx-ingress-controller-kubernetes-worker-5dcf47fc4c-q9mh6   1/1     Running       0          10m
-kube-system                       heapster-v1.6.0-beta.1-6db4b87d-phjvb                         4/4     Running       0          16m
-kube-system                       kube-dns-596fbb8fbd-bp8lz                                     3/3     Running       0          18m
-kube-system                       kubernetes-dashboard-67d4c89764-nwxss                         1/1     Running       0          18m
-kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx                         2/2     Running       0          17m
-kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running       0          17m
-```
-
-In this case the  `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
-
-```bash
-kubectl delete po/nginx-ingress-kubernetes-worker-controller-r8d2v --force --grace-period=0
-```
-
-This will result in output similar to the following:
-
-```
-warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
-pod "nginx-ingress-kubernetes-worker-controller-r8d2v" force deleted
-```
-
-You should verify that the pod has been sucessfully removed:
-
-```bash
-kubectl get po --all-namespaces
-```
-
-```
-NAMESPACE                         NAME                                                          READY   STATUS    RESTARTS   AGE
-ingress-nginx-kubernetes-worker   default-http-backend-kubernetes-worker-5d9bb77bc5-76c8w       1/1     Running   0          11m
-ingress-nginx-kubernetes-worker   nginx-ingress-controller-kubernetes-worker-5dcf47fc4c-q9mh6   1/1     Running   0          11m
-kube-system                       heapster-v1.6.0-beta.1-6db4b87d-phjvb                         4/4     Running   0          17m
-kube-system                       kube-dns-596fbb8fbd-bp8lz                                     3/3     Running   0          19m
-kube-system                       kubernetes-dashboard-67d4c89764-nwxss                         1/1     Running   0          19m
-kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx                         2/2     Running   0          18m
-kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running   0          18m
-```
 
 <!-- LINKS -->
 
