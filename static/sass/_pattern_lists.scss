@@ -304,6 +304,10 @@
     .p-list__item {
       margin-left: -1rem;
       padding-left: 1rem;
+
+      &::after {
+        left: $sph--large;
+      }
     }
   }
 
@@ -313,10 +317,6 @@
 
   ul.p-list--divided.has-bullets {
     list-style: disc;
-  }
-
-  .p-list--divided .p-list__item::after {
-    left: $sph--large;
   }
 }
 
