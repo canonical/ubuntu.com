@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import {
   Row,
@@ -81,10 +80,6 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
       errorMessage = "This field is required.";
     }
     return errorMessage;
-  };
-
-  const onCaptchaChange = (value: string | null) => {
-    setFieldValue("captchaValue", value);
   };
 
   useEffect(() => {
@@ -214,10 +209,6 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
           <ActionButton onClick={onEditClick}>Edit</ActionButton>
         )}
       </div>
-      <ReCAPTCHA
-        sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
-        onChange={onCaptchaChange}
-      />
     </Row>
   );
 };
