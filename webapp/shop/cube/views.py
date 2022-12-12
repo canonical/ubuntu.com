@@ -2,10 +2,16 @@ from datetime import datetime, timedelta
 import pytz
 import flask
 import json
+import os
+import html
 
 from urllib.parse import quote_plus
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.login import user_info
+
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from werkzeug.exceptions import BadRequest
 
 
 @shop_decorator(area="cube", permission="user_or_guest", response="html")
@@ -355,3 +361,68 @@ def cred_syllabus_data(**kawrgs):
         syllabus_data=syllabus_data,
         exam_name=exam_name,
     )
+
+
+@shop_decorator(area="cube", permission="user_or_guest", response="html")
+def cred_submit_form(**kwargs):
+    if flask.request.method == "GET":
+        return flask.render_template("credentials/exit-survey.html")
+
+    form_fields = {}
+    for key in flask.request.form:
+        values = flask.request.form.getlist(key)
+        value = ", ".join(values)
+        if value:
+            form_fields[key] = value
+    # Check honeypot values are not set
+    honeypots = {}
+    honeypots["name"] = flask.request.form.get("name")
+    honeypots["website"] = flask.request.form.get("website")
+
+    # There is logically difference between None and empty string here.
+    # 1. The first if check, we are working with a form that contains honeypots
+    # or the legacy ones using recaptcha.
+    # 2. The second that checks for empty string is actually testing if the
+    # honeypots have been triggered
+
+    if honeypots["name"] is not None and honeypots["website"] is not None:
+        if honeypots["name"] != "" and honeypots["website"] != "":
+            raise BadRequest("Unexpected honeypot fields (name, website)")
+        else:
+            form_fields["grecaptcharesponse"] = "no-recaptcha"
+            form_fields.pop("website", None)
+            form_fields.pop("name", None)
+
+    form_fields.pop("thankyoumessage", None)
+    form_fields.pop("g-recaptcha-response", None)
+
+    encode_lead_comments = (
+        form_fields.pop("Encode_Comments_from_lead__c", "yes") == "yes"
+    )
+    if encode_lead_comments and "Comments_from_lead__c" in form_fields:
+        encoded_comment = html.escape(form_fields["Comments_from_lead__c"])
+        form_fields["Comments_from_lead__c"] = encoded_comment
+
+    service_account_info = {
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_email": os.getenv("GOOGLE_SERVICE_ACCOUNT_EMAIL"),
+        "private_key": os.getenv("GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY").replace(
+            "\\n", "\n"
+        ),
+        "scopes": ["https://www.googleapis.com/auth/spreadsheets.readonly"],
+    }
+
+    credentials = service_account.Credentials.from_service_account_info(
+        service_account_info,
+    )
+
+    service = build("sheets", "v4", credentials=credentials)
+    row = list(form_fields.values())
+    sheet = service.spreadsheets()
+    sheet.values().append(
+        spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
+        range="Sheet2",
+        valueInputOption="RAW",
+        body={"values": [row]},
+    ).execute()
+    return flask.redirect("/thank-you")
