@@ -24,7 +24,10 @@ import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification
 import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import RenewalModal from "../RenewalModal";
-import { UserSubscriptionType } from "advantage/api/enum";
+import {
+  UserSubscriptionPeriod,
+  UserSubscriptionType,
+} from "advantage/api/enum";
 import ReBuyExpiredModal from "../ReBuyExpired";
 
 type Props = {
@@ -331,7 +334,15 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         ) : null}
         {showingReBuyExpiredModal ? (
           <ReBuyExpiredModal
-            subscription={subscription}
+            repurchase={{
+              accountId: subscription.account_id,
+              listingId: subscription.listing_id || "",
+              units: subscription.number_of_machines,
+              period: subscription.period || UserSubscriptionPeriod.Yearly,
+              marketplace: subscription.marketplace,
+              total: subscription.price || 0,
+              productName: subscription.product_name || "Unknown product",
+            }}
             closeModal={() => {
               setShowingReBuyExpiredModal(false);
             }}

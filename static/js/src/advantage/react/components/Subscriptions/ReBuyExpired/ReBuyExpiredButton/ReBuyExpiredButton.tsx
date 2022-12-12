@@ -86,7 +86,12 @@ const BuyButton = ({
         userInfo?.customerInfo?.email
       )}`;
     } else {
-      location.pathname = "/pro";
+      location.hash = "";
+      if (location.pathname.startsWith("/pro/dashboard")) {
+        location.reload();
+      } else {
+        location.pathname = "/pro/dashboard";
+      }
     }
   };
 

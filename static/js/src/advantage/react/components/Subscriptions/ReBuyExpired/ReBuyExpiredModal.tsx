@@ -1,5 +1,4 @@
 import React from "react";
-import { UserSubscription } from "advantage/api/types";
 import {
   Product,
   Periods,
@@ -7,7 +6,15 @@ import {
 } from "advantage/subscribe/react/utils/utils";
 
 type Props = {
-  subscription: UserSubscription;
+  repurchase: {
+    accountId: string;
+    listingId: string;
+    units: number;
+    total: number;
+    productName: string;
+    marketplace: UserSubscriptionMarketplace;
+    period: UserSubscriptionPeriod;
+  };
   closeModal: () => void;
 };
 
@@ -17,8 +24,12 @@ import ReBuyExpiredButton from "./ReBuyExpiredButton";
 import usePreview from "advantage/subscribe/react/hooks/usePreview";
 import { useLastPurchaseIds } from "advantage/react/hooks";
 import { selectPurchaseIdsByMarketplaceAndPeriod } from "advantage/react/hooks/useLastPurchaseIds";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 
-const ReBuyExpiredModal = ({ subscription, closeModal }: Props) => {
+const ReBuyExpiredModal = ({ repurchase, closeModal }: Props) => {
   const termsLabel = (
     <>
       I agree to the{" "}
@@ -48,14 +59,14 @@ const ReBuyExpiredModal = ({ subscription, closeModal }: Props) => {
   const marketingLabel =
     "I agree to receive information about Canonical's products and services";
 
-  const price: number = subscription.price || 0;
+  const price: number = repurchase.total || 0;
   const product: Product = {
     canBeTrialled: false,
-    longId: subscription.listing_id || "",
-    name: subscription.product_name || "",
+    longId: repurchase.listingId || "",
+    name: repurchase.productName || "",
     period: Periods.yearly,
     price: {
-      value: price / subscription.number_of_machines,
+      value: price / repurchase.units,
       currency: "USD",
     },
     private: false,
@@ -64,15 +75,12 @@ const ReBuyExpiredModal = ({ subscription, closeModal }: Props) => {
     marketplace: "canonical-ua",
   };
 
-  const { data: lastPurchaseId } = useLastPurchaseIds(
-    subscription?.account_id,
-    {
-      select: selectPurchaseIdsByMarketplaceAndPeriod(
-        subscription?.marketplace,
-        subscription?.period
-      ),
-    }
-  );
+  const { data: lastPurchaseId } = useLastPurchaseIds(repurchase.accountId, {
+    select: selectPurchaseIdsByMarketplaceAndPeriod(
+      repurchase.marketplace,
+      repurchase.period
+    ),
+  });
 
   window.previousPurchaseIds = {
     monthly: "",
@@ -80,16 +88,11 @@ const ReBuyExpiredModal = ({ subscription, closeModal }: Props) => {
   };
 
   const { data: preview } = usePreview({
-    quantity: subscription.current_number_of_machines,
+    quantity: repurchase.units,
     product,
   });
   const ReBuyExpiredSummary = () => {
-    return (
-      <Summary
-        quantity={subscription.current_number_of_machines}
-        product={product}
-      />
-    );
+    return <Summary quantity={repurchase.units} product={product} />;
   };
 
   const BuyButton = ({
@@ -105,7 +108,7 @@ const ReBuyExpiredModal = ({ subscription, closeModal }: Props) => {
   }: BuyButtonProps) => {
     return (
       <ReBuyExpiredButton
-        quantity={subscription.current_number_of_machines}
+        quantity={repurchase.units}
         product={product}
         areTermsChecked={areTermsChecked}
         isMarketingOptInChecked={isMarketingOptInChecked}
@@ -132,17 +135,17 @@ const ReBuyExpiredModal = ({ subscription, closeModal }: Props) => {
         aria-labelledby="modal-title"
       >
         <PurchaseModal
-          accountId={subscription.account_id}
+          accountId={repurchase.accountId}
           termsLabel={termsLabel}
           descriptionLabel={descriptionLabel}
           marketingLabel={marketingLabel}
           product={product}
           preview={preview}
-          quantity={subscription.current_number_of_machines}
+          quantity={repurchase.units}
           closeModal={closeModal}
           Summary={ReBuyExpiredSummary}
           BuyButton={BuyButton}
-          modalTitle={`Renew ${subscription.product_name}`}
+          modalTitle={`Renew ${repurchase.productName}`}
           marketplace="canonical-ua"
         />
       </div>
