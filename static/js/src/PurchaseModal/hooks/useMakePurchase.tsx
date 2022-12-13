@@ -141,7 +141,7 @@ const useMakePurchase = () => {
       if (preview == true) {
         url = `/pro/purchase/preview${window.location.search}`;
       }
-
+      console.log("payload", payload);
       const response = await fetch(url, {
         method: "POST",
         cache: "no-store",
@@ -153,12 +153,12 @@ const useMakePurchase = () => {
         body: JSON.stringify(payload),
       });
       const res = await response.json();
-
+      console.log("response", res);
       if (res.errors) {
         throw new Error(res.errors);
       }
 
-      return res.id;
+      return res;
     }
   );
 

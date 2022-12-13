@@ -167,7 +167,7 @@ const BuyButton = ({
             {
               onSuccess: (data) => {
                 //start polling
-                setPendingPurchaseID(data);
+                setPendingPurchaseID(data.id);
                 proSelectorStates.forEach((state) =>
                   localStorage.removeItem(state)
                 );

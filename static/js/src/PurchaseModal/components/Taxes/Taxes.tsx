@@ -7,7 +7,7 @@ import {
   Input,
   ActionButton,
 } from "@canonical/react-components";
-import { FormValues, getLabel } from "advantage/subscribe/react/utils/utils";
+import { getLabel } from "advantage/subscribe/react/utils/utils";
 import {
   caProvinces,
   countries,
@@ -16,6 +16,8 @@ import {
 } from "advantage/countries-and-states";
 import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
 import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
+import useMakePurchase from "PurchaseModal/hooks/useMakePurchase";
+import { FormValues } from "../../utils/utils";
 
 type TaxesProps = {
   product: any;
@@ -28,13 +30,17 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
     touched,
     values,
     setFieldValue,
+    setErrors,
   } = useFormikContext<FormValues>();
+
+  const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : "purchase";
 
   const { data: userInfo } = useStripeCustomerInfo();
 
   const [isEditing, setIsEditing] = useState(!values.country);
 
   const savedCountry = userInfo?.customerInfo?.address?.country;
+  const isGuest = !userInfo?.customerInfo?.email;
 
   useEffect(() => {
     if (savedCountry) {
@@ -48,10 +54,64 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
     quantity,
     VATNumber: values.VATNumber,
   });
+  const genericPurchaseMutation = useMakePurchase();
 
   const onSaveClick = () => {
     setIsEditing(false);
-    taxMutation.mutate();
+    if (isGuest) {
+      taxMutation.mutate();
+    } else {
+      console.log("values", values);
+      genericPurchaseMutation.mutate(
+        {
+          formData: values,
+          product,
+          quantity,
+          action: buyAction,
+          preview: true,
+        },
+        {
+          onSuccess: () => {
+            genericPurchaseMutation.mutate(
+              {
+                formData: values,
+                product,
+                quantity,
+                action: buyAction,
+                preview: false,
+              },
+              {
+                onSuccess: (data) => {
+                  console.log("success data", data);
+                },
+                onError: (error) => {
+                  console.log("error", error);
+                  if (
+                    error instanceof Error &&
+                    error.message === "tax_id_invalid"
+                  ) {
+                    setErrors({
+                      VATNumber:
+                        "That VAT number is invalid. Check the number and try again.",
+                    });
+                  }
+                },
+              }
+            );
+          },
+          onError: (error) => {
+            console.log("error", error);
+
+            if (error instanceof Error && error.message === "tax_id_invalid") {
+              setErrors({
+                VATNumber:
+                  "That VAT number is invalid. Check the number and try again.",
+              });
+            }
+          },
+        }
+      );
+    }
   };
 
   const onEditClick = () => {
