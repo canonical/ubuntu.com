@@ -32,6 +32,14 @@ def cred_self_study(
     return flask.render_template("credentials/self-study.html")
 
 
+@shop_decorator(area="cube", permission="user_or_guest", response="html")
+def cred_sign_up(**_):
+    sign_up_open = False
+    return flask.render_template(
+        "credentials/sign-up.html", sign_up_open=sign_up_open
+    )
+
+
 @shop_decorator(area="cube", permission="user", response="html")
 @canonical_staff()
 def cred_schedule(
