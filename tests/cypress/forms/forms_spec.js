@@ -5,21 +5,26 @@ import {
   formsWithEmailTestId,
 } from "../utils";
 
-beforeEach(() => {
-  cy.intercept({
-    method: "POST",
-    url: "/marketo/submit",
-  }).as("captureLead");
-});
-
-afterEach(() => {
-  cy.wait("@captureLead").then(({ request, response }) => {
-    expect(request.method).to.equal("POST");
-    expect(response.statusCode).to.equal(302);
-  });
-});
-
 context("Static marketo forms", () => {
+  beforeEach(() => {
+    cy.intercept({ hostname: "www.google-analytics.com" }, { statusCode: 503 });
+    cy.intercept({ hostname: "www.googletagmanager.com" }, { statusCode: 503 });
+    cy.intercept({
+      method: "POST",
+      url: "/marketo/submit",
+    }).as("captureLead");
+  });
+
+  afterEach(() => {
+    cy.wait("@captureLead")
+      .should("not.be.undefined")
+      .should("include.all.keys", ["request", "response"])
+      .then(({ request, response }) => {
+        expect(request.method).to.equal("POST");
+        expect(response.statusCode).to.equal(302);
+      });
+  });
+
   it("should check each contact form on /contact-us pages with standard form", () => {
     cy.visit("/");
     cy.acceptCookiePolicy();
@@ -60,18 +65,36 @@ context("Static marketo forms", () => {
     cy.findByText(/Let’s discuss/).click();
     cy.findByRole("heading", { name: /Thank you/ });
   });
-
 });
 
 context("Interactive marketo forms", () => {
-  it(
-    "should check each interactive contact modal",
-    { scrollBehavior: "center" },
-    () => {
-      cy.visit("/");
-      cy.acceptCookiePolicy();
+  beforeEach(() => {
+    cy.intercept({ hostname: "www.google-analytics.com" }, { statusCode: 503 });
+    cy.intercept({ hostname: "www.googletagmanager.com" }, { statusCode: 503 });
+    cy.intercept({
+      method: "POST",
+      url: "/marketo/submit",
+    }).as("captureLead");
+  });
 
-      interactiveForms.forEach((form) => {
+  afterEach(() => {
+    cy.wait("@captureLead")
+      .should("not.be.undefined")
+      .should("include.all.keys", ["request", "response"])
+      .then(({ request, response }) => {
+        expect(request.method).to.equal("POST");
+        expect(response.statusCode).to.equal(302);
+      });
+  });
+
+  interactiveForms.forEach((form) => {
+    it(
+      `should check each interactive contact modal on ${form.url}`,
+      { scrollBehavior: "center" },
+      () => {
+        cy.visit("/");
+        cy.acceptCookiePolicy();
+
         cy.visit(form.url);
         cy.findByTestId("interactive-form-link").click();
         cy.findByRole("dialog").within(() => {
@@ -84,9 +107,9 @@ context("Interactive marketo forms", () => {
           cy.findByText(form.submitBtn).click();
         });
         cy.url().should("include", "#success");
-      });
-    }
-  );
+      }
+    );
+  });
 
   // wrote separate test for some pages as there are same email inputs in the modal and in the page.
   it(
@@ -228,6 +251,25 @@ context("Interactive marketo forms", () => {
 });
 
 context("engage forms", () => {
+  beforeEach(() => {
+    cy.intercept({ hostname: "www.google-analytics.com" }, { statusCode: 503 });
+    cy.intercept({ hostname: "www.googletagmanager.com" }, { statusCode: 503 });
+    cy.intercept({
+      method: "POST",
+      url: "/marketo/submit",
+    }).as("captureLead");
+  });
+
+  afterEach(() => {
+    cy.wait("@captureLead")
+      .should("not.be.undefined")
+      .should("include.all.keys", ["request", "response"])
+      .then(({ request, response }) => {
+        expect(request.method).to.equal("POST");
+        expect(response.statusCode).to.equal(302);
+      });
+  });
+
   it("should check forms on engage pages", () => {
     cy.visit("/engage/dockerandros");
     cy.acceptCookiePolicy();
