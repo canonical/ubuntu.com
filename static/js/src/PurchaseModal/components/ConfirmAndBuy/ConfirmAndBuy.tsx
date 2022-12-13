@@ -1,6 +1,8 @@
 import React from "react";
-import { Field } from "formik";
+import { Field, useFormikContext } from "formik";
 import { Row, Col, CheckboxInput } from "@canonical/react-components";
+import ReCAPTCHA from "react-google-recaptcha";
+import { FormValues } from "PurchaseModal/utils/utils";
 
 type Props = {
   termsLabel: React.ReactNode;
@@ -13,6 +15,12 @@ const ConfirmAndBuy = ({
   descriptionLabel,
   marketingLabel,
 }: Props) => {
+  const { setFieldValue } = useFormikContext<FormValues>();
+
+  const onCaptchaChange = (value: string | null) => {
+    setFieldValue("captchaValue", value);
+  };
+
   return (
     <Row>
       <Col size={12}>
@@ -39,6 +47,10 @@ const ConfirmAndBuy = ({
           defaultChecked={false}
         />
       </Col>
+      <ReCAPTCHA
+        sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
+        onChange={onCaptchaChange}
+      />
     </Row>
   );
 };

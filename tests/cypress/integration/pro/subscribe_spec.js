@@ -119,8 +119,6 @@ context("/pro/subscribe trial", () => {
     cy.fillCountryVAT("GB", "GB 123 1234 12 123")
     cy.wait("@calculate")
 
-    cy.clickRecaptcha();
-
     const randomEmail = getRandomEmail()
     cy.fillInEmail(randomEmail)
 
@@ -130,6 +128,7 @@ context("/pro/subscribe trial", () => {
     cy.findByLabelText("Use free trial month").click({ force: true });
 
     cy.acceptTerms();
+    cy.clickRecaptcha();
 
     cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("trial");
 
@@ -160,8 +159,6 @@ context("/pro/subscribe guest purchase", () => {
     cy.fillCountryVAT()
     cy.wait("@calculate")
 
-    cy.clickRecaptcha();
-
     cy.get('[data-testid="subtotal"]').should("have.text", "$500.00")
 
     const randomEmail = getRandomEmail()
@@ -173,6 +170,7 @@ context("/pro/subscribe guest purchase", () => {
     cy.findByLabelText("Pay now").click({ force: true });
 
     cy.acceptTerms();
+    cy.clickRecaptcha();
 
     cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("purchase");
     cy.intercept("GET", "/account/purchases_v2/*").as("pendingPurchase");
@@ -203,8 +201,6 @@ context("/pro/subscribe logged out purchase", () => {
     cy.intercept("POST", "/account/canonical-ua/purchase/calculate*").as("calculate")
     cy.fillCountryVAT("GB", "GB 123 1234 12 123")
     cy.wait("@calculate")
-
-    cy.clickRecaptcha();
 
     // Mimic "Sign in with Ubuntu One" click()
     cy.login();
@@ -243,11 +239,10 @@ context("/pro/subscribe logged in purchase", () => {
 
     // ToDo: Fix VAT pre-fill then add check for it to be there
 
-    cy.clickRecaptcha();
-
     // We do not check for price as it might be pro-rata'ed
 
     cy.acceptTerms();
+    cy.clickRecaptcha();
 
     cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("purchase");
     cy.intercept("GET", "/account/purchases_v2/*").as("pendingPurchase");
@@ -275,8 +270,6 @@ context("/pro/subscribe errors", () => {
     cy.fillCountryVAT()
     cy.wait("@calculate")
 
-    cy.clickRecaptcha();
-
     cy.get('[data-testid="subtotal"]').should("have.text", "$500.00")
 
     const randomEmail = getRandomEmail()
@@ -288,6 +281,7 @@ context("/pro/subscribe errors", () => {
     cy.findByLabelText("Pay now").click({ force: true });
 
     cy.acceptTerms();
+    cy.clickRecaptcha();
 
     cy.intercept("POST", "/pro/purchase*", slowDownResponse).as("purchase");
     cy.intercept("POST", "/pro/purchase/preview*", slowDownResponse).as("preview");
@@ -338,8 +332,6 @@ context("/pro/subscribe errors", () => {
     cy.fillCountryVAT()
     cy.wait("@calculate")
 
-    cy.clickRecaptcha();
-
     cy.get('[data-testid="subtotal"]').should("have.text", "$500.00")
 
     // defaults to Peter's email
@@ -350,6 +342,7 @@ context("/pro/subscribe errors", () => {
     cy.findByLabelText("Pay now").click({ force: true });
 
     cy.acceptTerms();
+    cy.clickRecaptcha();
 
     cy.intercept("POST", "/pro/purchase/preview*", slowDownResponse).as("preview");
     cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
