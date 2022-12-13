@@ -368,7 +368,42 @@ def cred_submit_form(**kwargs):
     if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
 
-    form_fields = {}
+    form_fields = {
+        "ExitSurveyRelevanceofShortFormQuestions": "",
+        "ExitSurveyShortFormQuestionExpectation": "",
+        "ExitSurveyNumberOfShortFormQuestions": "",
+        "ExitSurveyShortFormDifficulty": "",
+        "ExitSurveyShortFormQuestionTimeAllocated": "",
+        "ExitSurveyRelevanceofLabQuestions": "",
+        "ExitSurveyLabCoverage": "",
+        "ExitSurveyNumberOfLabQuestions": "",
+        "ExitSurveyLabQuestionsDifficulty": "",
+        "ExitSurveyLabQuestionsTimeAllocated": "",
+        "ExitSurveyExamManagementExperience": "",
+        "ExitSurveyExamManagementNegatives": "",
+        "ExitSurveyExamEnvironmentExperience": "",
+        "ExitSurveyExamEnvironmentNegatives": "",
+        "ExitSurveyPlatformBestReasons": "",
+        "ExitSurveyPlatformWorstReasons": "",
+        "ExitSurveyValueKnowledge": "",
+        "ExitSurveyValueKnowledgeReason": "",
+        "ExitSurveyReasonablePrice": "",
+        "ExitSurveyMoreExams": "",
+        "ExitSurveyWhyPrice": "",
+        "ExitSurveyCompanyInterest": "",
+        "ExitSurveyBenchmarkPlatform": "",
+        "ExitSurveyBenchmarkContent": "",
+        "ExitSurveyOverallExperienceRating": "",
+        "ExitSurveyBestThingAboutExam": "",
+        "ExitSurveyWorstThingAboutExam": "",
+        "ExitSurveyDifferenceInExperience": "",
+        "ExitSurveyPromoterPeer": "",
+        "ExitSurveyPromoterManager": "",
+        "formid": "",
+        "returnURL": "",
+        "Consent_to_Processing__c": "",
+        "grecaptcharesponse": "",
+    }
     for key in flask.request.form:
         values = flask.request.form.getlist(key)
         value = ", ".join(values)
