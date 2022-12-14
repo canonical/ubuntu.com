@@ -358,6 +358,28 @@ def cred_provision(trueability_api, **_):
     reservation = None
     error = None
 
+    if not reservation_uuid:
+        response = trueability_api.paginate(
+            trueability_api.get_assessment_reservations,
+            "assessment_reservations",
+            ability_screen_id=ability_screen_id,
+        )
+
+        for reservation in response["assessment_reservations"]:
+            if reservation.get("user", {}).get("email") != sso_user_email:
+                continue
+
+            if reservation.get("state") in [
+                "created",
+                "scheduled",
+                "processed",
+            ]:
+                reservation_uuid = reservation["uuid"]
+                flask.session[
+                    "_assessment_reservation_uuid"
+                ] = reservation_uuid
+                break
+
     if reservation_uuid:
         response = trueability_api.get_assessment_reservation(reservation_uuid)
 
