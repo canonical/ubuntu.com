@@ -363,12 +363,19 @@ def cred_syllabus_data(**kawrgs):
     )
 
 
-@shop_decorator(area="cube", permission="user_or_guest", response="html")
+@shop_decorator(area="cube", permission="user", response="html")
 def cred_submit_form(**kwargs):
     if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
 
+    sso_user = user_info(flask.session)
+    email = sso_user["email"]
+    first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+
     form_fields = {
+        "firstName": first_name,
+        "lastName": last_name,
+        "email": email,
         "ExitSurveyRelevanceofShortFormQuestions": "",
         "ExitSurveyShortFormQuestionExpectation": "",
         "ExitSurveyNumberOfShortFormQuestions": "",
