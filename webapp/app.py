@@ -46,6 +46,7 @@ from webapp.context import (
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cube.views import (
     cred_self_study,
+    cred_submit_form,
     cred_syllabus_data,
     cred_home,
     cred_schedule,
@@ -912,6 +913,11 @@ app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
 app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
 app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
 app.add_url_rule("/credentials/exam", view_func=cred_exam)
+app.add_url_rule(
+    "/credentials/exit-survey",
+    view_func=cred_submit_form,
+    methods=["GET", "POST"],
+)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
