@@ -98,7 +98,7 @@ def cred_schedule(
         else:
             uuid = response.get("assessment_reservation", {}).get("uuid", "")
             exam = {
-                "name": "Linux Essentials",
+                "name": "CUE: Linux",
                 "date": starts_at.strftime("%d %b %Y"),
                 "time": starts_at.strftime("%I:%M %p %Z"),
                 "uuid": uuid,
