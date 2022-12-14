@@ -48,6 +48,7 @@ from webapp.shop.cube.views import (
     cred_self_study,
     cred_submit_form,
     cred_syllabus_data,
+    cred_sign_up,
     cred_home,
     cred_schedule,
     cred_your_exams,
@@ -904,6 +905,7 @@ core_als_autils_docs.init_app(app)
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
+app.add_url_rule("/credentials/sign-up", view_func=cred_sign_up)
 app.add_url_rule(
     "/credentials/schedule",
     view_func=cred_schedule,
