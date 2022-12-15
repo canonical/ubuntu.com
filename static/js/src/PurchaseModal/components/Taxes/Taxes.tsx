@@ -18,6 +18,7 @@ import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
 import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
 import useMakePurchase from "PurchaseModal/hooks/useMakePurchase";
 import { FormValues } from "../../utils/utils";
+import { useQueryClient } from "react-query";
 
 type TaxesProps = {
   product: any;
@@ -33,6 +34,8 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
     setErrors,
   } = useFormikContext<FormValues>();
 
+  const queryClient = useQueryClient();
+  
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : "purchase";
 
   const { data: userInfo } = useStripeCustomerInfo();
@@ -73,6 +76,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
         {
           onSuccess: (data) => {
             console.log("success data", data);
+            queryClient.setQueryData("taxCalulations", data);
           },
           onError: (error) => {
             console.log("error", error);
