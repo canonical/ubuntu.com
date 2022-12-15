@@ -1037,7 +1037,7 @@ app.add_url_rule(
     view_func=certified_socs,
 )
 app.add_url_rule(
-    "/certified/why-certified",
+    "/certified/why-certify",
     view_func=certified_why,
 )
 
