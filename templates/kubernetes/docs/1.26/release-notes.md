@@ -16,7 +16,7 @@ toc: False
 
 ## 1.26
 
-### December ??, 2022 - `charmed-kubernetes --channel 1.26/stable` 
+### December 15, 2022 - `charmed-kubernetes --channel 1.26/stable` 
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
 
