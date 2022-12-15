@@ -365,16 +365,19 @@ def cred_provision(trueability_api, **_):
             ability_screen_id=ability_screen_id,
         )
 
-        for reservation in response["assessment_reservations"]:
-            if reservation.get("user", {}).get("email") != sso_user_email:
+        for response_reservation in response["assessment_reservations"]:
+            if (
+                response_reservation.get("user", {}).get("email")
+                != sso_user_email
+            ):
                 continue
 
-            if reservation.get("state") in [
+            if response_reservation.get("state") in [
                 "created",
                 "scheduled",
                 "processed",
             ]:
-                reservation_uuid = reservation["uuid"]
+                reservation_uuid = response_reservation["uuid"]
                 flask.session[
                     "_assessment_reservation_uuid"
                 ] = reservation_uuid
