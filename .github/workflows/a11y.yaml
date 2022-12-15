@@ -5,7 +5,7 @@ env:
   CONTRACTS_API_URL: https://contracts.staging.canonical.com
   STRIPE_PUBLISHABLE_KEY: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
-on:
+on: [push, pull_request]
 
 jobs:
   run-cypress-a11y: 
