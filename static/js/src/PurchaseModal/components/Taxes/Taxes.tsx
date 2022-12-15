@@ -71,33 +71,8 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
           preview: true,
         },
         {
-          onSuccess: () => {
-            genericPurchaseMutation.mutate(
-              {
-                formData: values,
-                product,
-                quantity,
-                action: buyAction,
-                preview: false,
-              },
-              {
-                onSuccess: (data) => {
-                  console.log("success data", data);
-                },
-                onError: (error) => {
-                  console.log("error", error);
-                  if (
-                    error instanceof Error &&
-                    error.message === "tax_id_invalid"
-                  ) {
-                    setErrors({
-                      VATNumber:
-                        "That VAT number is invalid. Check the number and try again.",
-                    });
-                  }
-                },
-              }
-            );
+          onSuccess: (data) => {
+            console.log("success data", data);
           },
           onError: (error) => {
             console.log("error", error);
