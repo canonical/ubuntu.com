@@ -299,3 +299,19 @@ if (accountContainer && accountContainerSmall) {
       );
     });
 }
+
+const queryString = window.location.pathname;
+
+if (queryString === "/pro") {
+  let li = document.createElement("li");
+
+  document
+    .querySelector(".breadcrumbs--secondary")
+    .appendChild(li).innerHTML = `
+      <div class="breadcrumbs__link">
+        <a class="p-link--soft" href="/pro/subscribe">
+          <span class="p-label--positive">Buy Ubuntu Pro</span>
+        </a>
+      </div>
+    `;
+}
