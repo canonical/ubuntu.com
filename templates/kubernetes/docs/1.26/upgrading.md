@@ -3,12 +3,12 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
-  title: "Upgrading to 1.25"
+  title: "Upgrading to 1.26"
   description: How to upgrade your version of Charmed Kubernetes.
 keywords: juju, upgrading, track, version
 tags: [operating]
 sidebar: k8smain-sidebar
-permalink: 1.25/upgrading.html
+permalink: 1.26/upgrading.html
 layout: [base, ubuntu-com]
 toc: False
 ---
@@ -36,13 +36,20 @@ The 'App' section of the output lists each application and its version number. N
 
 ## Before you begin
 
+<div class="p-notification--warning is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Warning!:</span>
+    <p class="p-notification__message"><strong>Juju compatibility</strong>  - currently, only the latest <strong>2.9/stable</strong> version of Juju is recommended for use with Charmed Kubernetes. The later 3.0 versions of Juju introduce breaking changes and are not supported until a tested upgrade path is in place. If you have already installed a later version of the Juju client, you can revert to the supported channel by running <code> sudo snap refresh juju --channel=2.9/stable</code></p>
+  </div>
+</div>
+
 As with all upgrades, there is a possibility that there may be unforeseen difficulties. It is **highly recommended that you make a backup** of any important data, including any running workloads. For more details on creating backups, see the separate [documentation on backups][backups].
 
 You should also make sure:
 
 -   The machine from which you will perform the backup has sufficient internet access to retrieve updated software
 -   Your cluster is running normally
--   Your Juju client and controller/models are running the latest versions (see the [Juju docs][juju-controller-upgrade])
+-   Your Juju client and controller/models are running the 2.9/stable version of Juju (see the [Juju docs][juju-controller-upgrade]).
 -   You read the [Upgrade notes][notes] to see if any caveats apply to the versions you are upgrading to/from
 -   You read the [Release notes][release-notes] for the version you are upgrading to, which will alert you to any important changes to the operation of your cluster
 -   You read the [Upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#deprecation) for details of deprecation notices and API changes for Kubernetes 1.25 which may impact your workloads.
@@ -53,6 +60,13 @@ Kubernetes installed and configured as part of Charmed Kubernetes.
 This may not include any customised configuration of Kubernetes, or user
 generated objects (e.g. storage classes) or deployments which rely on
 deprecated APIs.
+
+<div class="p-notification--information is-inline">
+  <div markdown="1" class="p-notification__content">
+    <span class="p-notification__title">Note:</span>
+    <p class="p-notification__message"><strong>The 'bionic' series (Ubuntu 18.04) is no longer supported:</strong> Support for bionic series charms in relation to Charmed Kubernetes has expired. If you are running charms on 'bionic', you will need to series upgrade the charms before completing the rest of the upgrade procedure.</p>
+  </div>
+</div>
 
 
 ## Infrastructure updates
@@ -250,13 +264,6 @@ Ensure that all the control plane units have upgraded and are reporting normal s
 
 ### Upgrading the **kubernetes-worker** units
 
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Caution:</span>
-    A <a href="https://github.com/kubernetes/kubernetes/issues/70044"> current bug in Kubernetes</a> could prevent the upgrade from properly deleting old pods. See the <a href="#known-issues"> Known issues section</a> at the bottom of this page.
-</p>
-</div>
-
 For a running cluster, there are two different ways to proceed:
 
 - [Blue-green][blue-green] upgrade - This requires more resources, but should ensure a safe, zero-downtime transition of workloads to an updated cluster
@@ -361,7 +368,6 @@ juju status
 ... should indicate that all units are active and the correct version of **Kubernetes** is running.
 
 It is recommended that you run a [cluster validation][validation] to ensure that the cluster is fully functional.
-
 
 <!-- LINKS -->
 

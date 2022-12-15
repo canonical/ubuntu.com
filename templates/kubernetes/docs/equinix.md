@@ -14,7 +14,7 @@ toc: False
 ---
 
 As with any cloud supported by Juju, **Charmed Kubernetes** can be deployed and used on
-[Equinix Metal][]. This document provides some extra information and an overlay to 
+[Equinix Metal][]. This document provides some extra information and an overlay to
 help get the most out of this cloud. For instructions on installing Juju itself, please
 see the latest [Juju documentation][].
 
@@ -45,19 +45,36 @@ juju add-credential equinix
 your auth token).
 
 
+## Bootstrapping
+
+Bootstrap a Juju controller within one of the equinix regions.
+
+For example, to select  Dallas 'da' from the list of [equinix-facilities][]
+
+```bash
+juju bootstrap equinix/da equinix-da \
+    --bootstrap-series focal\
+    --bootstrap-constraints arch=amd64\
+    --model-default image-stream=daily\
+    --model-default automatically-retry-hooks=true\
+    --model-default 'logging-config=<root>=DEBUG'\
+    --debug --verbose -vv
+```
+
 
 ## Installing
 
 To deploy **Charmed Kubernetes** on Equinix Metal, it is also recommended to deploy
 some storage and to use Calico for networking. You can deploy and configure
-Charmed kubernetes any way you like, but this example overlay will help you get started.
+Charmed Kubernetes any way you like, but this example overlay will help you get started.
 
-You can [download the example bundle here][asset-equinix-bundle]
+You can [download the ceph-radosgw overlay here][asset-ceph-radosgw-overlay]
+And [download the equinix overlay here][asset-equinix-overlay]
 
 It can then be installed with the command:
 
 ```bash
-juju deploy ./equinix-bundle.yaml
+juju deploy charmed-kubernetes --overlay ./ceph-radosgw.yaml --overlay ./equinix-overlay.yaml
 ```
 
 <!-- COMMENTED OUT UNTIL OVERLAYS WORK
@@ -239,9 +256,10 @@ taints being set on each node. The taints will be removed once the Cloud Control
 is enabled and the nodes are registered with the cloud control plane.
 
 First, a Kubernetes secret has to be created, defining the variables for the CCM:
+Configuration of the CCM can be applied via the secret, See [equinix-configuration][] for detalis.
 
 ```bash
-kubectl create -f - <<EOY
+cat <<EOY > secret.yaml 
 apiVersion: v1
 kind: Secret
 metadata:
@@ -252,15 +270,18 @@ stringData:
     {
     "apiKey": "<Metal API key>",
     "projectID": "<Metal Project ID>",
-    "loadbalancer": "kube-vip://"
+    "loadbalancer": "kube-vip://",
+    "metro": "da"
     }
 EOY
+vim secret.yaml
+kubectl create -f secret.yaml
 ```
 
 The next steps are to confirm the version of the CCM to use:
 
 ```bash
-export CCM_VERSION=3.2.2
+export CCM_VERSION=3.5.0
 kubectl apply -f https://github.com/equinix/cloud-provider-equinix-metal/releases/download/v${CCM_VERSION}/deployment.yaml
 ```
 
@@ -344,7 +365,13 @@ EOY
 Note: in some Equinix Metal facilities it is required to define a static route on each Kubernetes Worker node to allow the traffic to the workloads exposed via the Load Balancer to go via proper gateway:
 
 ```bash
-juju exec --application kubernetes-worker 'GATEWAY_IP=$(curl https://metadata.platformequinix.com/metadata | jq -r ".network.addresses[] | select(.public == false) | .gateway"); sudo ip route add 169.254.255.1 via $GATEWAY_IP; sudo ip route add 169.254.255.2 via $GATEWAY_IP'
+juju run --application kubernetes-worker,kubernetes-control-plane '
+  apt install jq -y
+  GATEWAY_IP=$(curl https://metadata.platformequinix.com/metadata | jq -r ".network.addresses[] | select(.public == false) | .gateway")
+  PEERS=$(curl https://metadata.platformequinix.com/metadata | jq -r ".bgp_neighbors[0].peer_ips[]")
+  for i in ${PEERS}; do
+    ip route add ${i} via $GATEWAY_IP
+  done
 ```
 
 ## Using load balancers
@@ -402,8 +429,11 @@ Hello Kubernetes!
 
 <!-- LINKS -->
 
-[asset-equinix-bundle]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/specs/equinix-bundle.yaml
-[asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/equinix-overlay.yaml
+
+[asset-ceph-radosgw-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/ceph-radosgw.yaml
+[asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/equinix-overaly.yaml
+[equinix-facilities]: https://metal.equinix.com/developers/docs/locations/facilities/
+[equinix-configuration]: https://github.com/equinix/cloud-provider-equinix-metal#configuration
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes

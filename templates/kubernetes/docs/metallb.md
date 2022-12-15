@@ -163,7 +163,7 @@ kubectl delete -f example-microbot-lb.yaml
 [arp]: https://tools.ietf.org/html/rfc826
 [bgp]: https://tools.ietf.org/html/rfc1105
 [rbac-manifest]: https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/rbac-permissions-operators.yaml
-[upstream manifests]: https://github.com/metallb/metallb/tree/main/manifests
+[upstream manifests]: https://github.com/metallb/metallb/tree/main/config/manifests
 [configmap]: https://metallb.universe.tf/configuration/#bgp-configuration
 [microbot manifest]: https://raw.githubusercontent.com/charmed-kubernetes/metallb-operator/master/docs/example-microbot-lb.yaml
 

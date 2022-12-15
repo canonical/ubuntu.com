@@ -142,7 +142,7 @@ See the [operations documentation][vault-cdk] for details on how to deploy Vault
 [CN]: https://knowledge.digicert.com/solution/SO7239.html
 [SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
 [network primitives]: https://juju.is/docs/olm/quick-reference
-[kubernetes-control-plane]: /kubernetes/docs/charm-kubernetes-control-plane
+[kubernetes-control-plane]: https://charmhub.io/kubernetes-control-plane
 [`extra_sans`]:  https://charmhub.io/kubernetes-control-plane/configure
 [HA]: https://en.wikipedia.org/wiki/High_availability
 [vault-cdk]: /kubernetes/docs/using-vault

@@ -38,7 +38,7 @@ There are several important changes to 1.24 that will effect all users:
    explanation about this.
 
 Due to these and other changes, it is recommended to follow the specific upgrade
-procedure described in the [upgrading to 1.24 docs](/kubernetes/docs/1.24/upgrading').
+procedure described in the [upgrading to 1.24 docs](/kubernetes/docs/1.24/upgrading).
 
 ### ceph-storage relation deprecated
 

@@ -3,13 +3,13 @@ wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
   nav: kubernetes/docs/shared/_side-navigation.md
 context:
-  title: Components of Charmed Kubernetes 1.25
+  title: Components of Charmed Kubernetes 1.26
   description: Detailed description of Charmed Kubernetes release
 keywords: component, charms, versions, release
 tags:
     - reference
 sidebar: k8smain-sidebar
-permalink: 1.25/components.html
+permalink: 1.26/components.html
 layout:
     - base
     - ubuntu-com
@@ -24,20 +24,20 @@ https://github.com/charmed-kubernetes/kubernetes-docs/issues
 rather than editing the text -->
 
 This page details the charms, snaps, images and other components
-which comprise the 1.25 release of Charmed Kubernetes.
+which comprise the 1.26 release of Charmed Kubernetes.
 
 Other information about this release can be found on the following pages:
 
-<a class='p-button--brand' href='/kubernetes/docs/1.25/release-notes'>Release notes </a>
-<a class='p-button--brand' href='/kubernetes/docs/1.25/upgrading'>Upgrading </a>
+<a class='p-button--brand' href='/kubernetes/docs/1.26/release-notes'>Release notes </a>
+<a class='p-button--brand' href='/kubernetes/docs/1.26/upgrading'>Upgrading </a>
 <a class='p-button--brand' href='https://bugs.launchpad.net/charmed-kubernetes'>Bugs </a>
 <a class='p-button--brand' href='https://github.com/charmed-kubernetes/bundle'>Source </a>
-<a class='p-button--brand' href='https://launchpad.net/charmed-kubernetes/+milestone/1.25'>Milestone </a>
+<a class='p-button--brand' href='https://launchpad.net/charmed-kubernetes/+milestone/1.26'>Milestone </a>
 
 ## What's new
 
 For a list of new features, changes, deprecations, and bug fixes in this
-release, please see the [Release notes](release-notes).
+release, please see the [release notes](release-notes).
 
 ## Core charms
 
@@ -57,10 +57,11 @@ release. These charms are maintained by the Charmed Kubernetes team.
 
 
 ## CNI charms
-These are the CNI charms also supported by Charmed Kubernetes ( calico is the default CNI and is included in the core charms above)
+These are the CNI charms also supported by Charmed Kubernetes (calico is the default CNI and is included in the core charms above)
 
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
+| [bird](https://charmhub.io/bird) | A dynamic IP routing daemon | [source](https://github.com/charmed-kubernetes/bird-operator.git) | [docs](https://charmhub.io/bird/docs) | [bugs](https://bugs.launchpad.net/charm-bird) |
 | [calico](https://charmhub.io/calico) | A robust Software Defined Network from Project Calico | [source](https://github.com/charmed-kubernetes/layer-calico.git) | [docs](https://charmhub.io/calico/docs) | [bugs](https://bugs.launchpad.net/charm-calico) |
 | [canal](https://charmhub.io/canal) | A Software Defined Network based on Flannel and Calico | [source](https://github.com/charmed-kubernetes/layer-canal.git) | [docs](https://charmhub.io/canal/docs) | [bugs](https://bugs.launchpad.net/charm-canal) |
 | [coredns](https://charmhub.io/coredns) | The CoreDNS domain name service provider | [source](https://github.com/charmed-kubernetes/charm-coredns.git) | [docs](https://charmhub.io/coredns/docs) | [bugs](https://bugs.launchpad.net/charm-coredns) |
@@ -79,9 +80,11 @@ These charms provide cloud integration for Charmed Kubernetes (e.g. for running 
 |charm | summary | source | docs | bugs |
 |-|-|-|-|-|
 | [aws-integrator](https://charmhub.io/aws-integrator) | Charm to enable AWS integrations via Juju relations. | [source](https://github.com/juju-solutions/charm-aws-integrator.git) | [docs](https://charmhub.io/aws-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-aws-integrator) |
+| [aws-k8s-storage](https://charmhub.io/aws-k8s-storage) | Charm which enables out-of-tree AWS storage for Charmed Kubernetes. | [source](https://github.com/charmed-kubernetes/aws-k8s-storage.git) | [docs](https://charmhub.io/aws-k8s-storage/docs) | [bugs](https://bugs.launchpad.net/charm-aws-k8s-storage) |
 | [azure-cloud-provider](https://charmhub.io/azure-cloud-provider) | Charm which enables Azure out-of-tree integrations for Charmed Kubernetes | [source](https://github.com/charmed-kubernetes/charm-azure-cloud-provider.git) | [docs](https://charmhub.io/azure-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-azure-cloud-provider) |
 | [azure-integrator](https://charmhub.io/azure-integrator) | Charm which enables Azure integrations for Juju | [source](https://github.com/juju-solutions/charm-azure-integrator.git) | [docs](https://charmhub.io/azure-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-azure-integrator) |
 | [gcp-integrator](https://charmhub.io/gcp-integrator) | Charm which enables Google GCP integrations for Juju | [source](https://github.com/juju-solutions/charm-gcp-integrator.git) | [docs](https://charmhub.io/gcp-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-gcp-integrator) |
+| [gcp-k8s-storage](https://charmhub.io/gcp-k8s-storage) | Charm which enables out-of-tree GCP storage for Charmed Kubernetes. | [source](https://github.com/charmed-kubernetes/gcp-k8s-storage.git) | [docs](https://charmhub.io/gcp-k8s-storage/docs) | [bugs](https://bugs.launchpad.net/charm-gcp-k8s-storage) |
 | [openstack-integrator](https://charmhub.io/openstack-integrator) | Charm which enables OpenStack integrations for Juju | [source](https://github.com/juju-solutions/charm-openstack-integrator.git) | [docs](https://charmhub.io/openstack-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-openstack-integrator) |
 | [vsphere-cloud-provider](https://charmhub.io/vsphere-cloud-provider) | Charm which enables vSphere out of tree provider for Juju | [source](https://github.com/charmed-kubernetes/vsphere-cloud-provider.git) | [docs](https://charmhub.io/vsphere-cloud-provider/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-cloud-provider) |
 | [vsphere-integrator](https://charmhub.io/vsphere-integrator) | Charm which enables vSphere integrations for Juju | [source](https://github.com/juju-solutions/charm-vsphere-integrator.git) | [docs](https://charmhub.io/vsphere-integrator/docs) | [bugs](https://bugs.launchpad.net/charm-vsphere-integrator) |
@@ -100,7 +103,7 @@ These charms are also maintained and supported by the Charmed Kubernetes team to
 | [kubernetes-e2e](https://charmhub.io/kubernetes-e2e) | End-to-end (e2e) tests for Kubernetes | [source](https://github.com/charmed-kubernetes/charm-kubernetes-e2e.git) | [docs](https://charmhub.io/kubernetes-e2e/docs)  | [bugs](https://bugs.launchpad.net/charm-kubernetes-e2e) |
 | [kubernetes-metrics-server](https://charmhub.io/kubernetes-metrics-server) | Exposes core Kubernetes metrics via metrics API | [source](https://github.com/charmed-kubernetes/kubernetes-metrics-server-operator.git) | [docs](https://charmhub.io/kubernetes-metrics-server/docs)  | [bugs](https://bugs.launchpad.net/charmed-kubernetes) |
 | [metallb-controller](https://charmhub.io/metallb-controller) | Controller charm for the metallb loadbalancer | [source](https://github.com/charmed-kubernetes/metallb-operator.git) | [docs](https://charmhub.io/metallb-controller/docs)  | [bugs](https://bugs.launchpad.net/operator-metallb) |
-| [metallb-speaker](https://charmhub.io/metallb-speaker) | Speaker charm for the metallb loadbalancer | [source](https://github.com/charmed-kubernetes/metallb-operator.git) | [docs](https://charmhub.io/metallb-speaker/docs)  | [bugs](https://bugs.launchpad.net/operator-metallb) |
+| [metallb-speaker](https://charmhub.io/metallb-speaker) | Speaker charm for the metallb loadbalancer | [source](https://github.com/charmed-kubernetes/metallb-operator.git) | [docs](https://charmhub.io/metallb-speaker/docs)  | [bugs](https://bugs.launchpad.net/operator-metallb') |
 
 ## Images
 
@@ -119,7 +122,7 @@ These are the container images used by this release:
 -  cdkbot/microbot-amd64:latest
 -  cdkbot/microbot-arm64:latest
 -  cdkbot/microbot-s390x:latest
--  cephcsi/cephcsi:v3.5.1
+-  cephcsi/cephcsi:v3.7.2
 -  cloud-provider-vsphere/cpi/release/manager:v1.18.0
 -  cloud-provider-vsphere/cpi/release/manager:v1.19.0
 -  cloud-provider-vsphere/cpi/release/manager:v1.2.1
@@ -128,46 +131,45 @@ These are the container images used by this release:
 -  cloud-provider-vsphere/cpi/release/manager:v1.22.3
 -  cloud-provider-vsphere/csi/release/driver:v2.5.1
 -  cloud-provider-vsphere/csi/release/syncer:v2.5.1
--  coredns/coredns:1.9.0
+-  coredns/coredns:1.9.4
 -  defaultbackend-amd64:1.5
 -  defaultbackend-arm64:1.5
 -  defaultbackend-ppc64le:1.5
 -  defaultbackend-s390x:1.4
--  dns/k8s-dns-dnsmasq-nanny:1.22.8
--  dns/k8s-dns-kube-dns:1.22.8
--  dns/k8s-dns-sidecar:1.22.8
+-  dns/k8s-dns-dnsmasq-nanny:1.22.13
+-  dns/k8s-dns-kube-dns:1.22.13
+-  dns/k8s-dns-sidecar:1.22.13
 -  external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
 -  k8s-artifacts-prod/ingress-nginx/controller:v1.2.0
--  k8scloudprovider/cinder-csi-plugin:v1.23.0
--  k8scloudprovider/k8s-keystone-auth:v1.23.0
--  k8scloudprovider/openstack-cloud-controller-manager:v1.23.0
--  kube-state-metrics/kube-state-metrics:v2.4.2
+-  k8scloudprovider/cinder-csi-plugin:v1.25.0
+-  k8scloudprovider/k8s-keystone-auth:v1.25.3
+-  k8scloudprovider/openstack-cloud-controller-manager:v1.25.0
+-  kube-state-metrics/kube-state-metrics:v2.6.0
 -  kubernetes-ingress-controller/nginx-ingress-controller-ppc64le:0.20.0
--  kubernetesui/dashboard:v2.5.1
--  kubernetesui/metrics-scraper:v1.0.7
+-  kubernetesui/dashboard:v2.7.0
+-  kubernetesui/metrics-scraper:v1.0.8
 -  metrics-server/metrics-server:v0.5.2
--  nvidia/k8s-device-plugin:v0.12.2
+-  nvidia/k8s-device-plugin:v0.12.3
 -  pause:3.6
--  sig-storage/csi-attacher:v3.3.0
 -  sig-storage/csi-attacher:v3.4.0
--  sig-storage/csi-node-driver-registrar:v2.4.0
+-  sig-storage/csi-attacher:v3.5.0
 -  sig-storage/csi-node-driver-registrar:v2.5.0
--  sig-storage/csi-provisioner:v3.0.0
+-  sig-storage/csi-node-driver-registrar:v2.5.1
 -  sig-storage/csi-provisioner:v3.1.0
--  sig-storage/csi-resizer:v1.3.0
+-  sig-storage/csi-provisioner:v3.2.1
 -  sig-storage/csi-resizer:v1.4.0
--  sig-storage/csi-snapshotter:v4.2.0
--  sig-storage/csi-snapshotter:v4.2.1
+-  sig-storage/csi-resizer:v1.5.0
 -  sig-storage/csi-snapshotter:v5.0.1
--  sig-storage/livenessprobe:v2.5.0
+-  sig-storage/csi-snapshotter:v6.0.1
 -  sig-storage/livenessprobe:v2.6.0
+-  sig-storage/livenessprobe:v2.7.0
 
 <!-- CONTAINER IMAGES END -->
 
 <!-- LINKS -->
-[release notes]: /kubernetes/docs/release-notes#1.25
+[release notes]: /kubernetes/docs/release-notes#1.26
 [upgrade notes]: /kubernetes/docs/upgrade-notes
 [bugs]: /kubernetes/docs/
 [source]: https://github.com/charmed-kubernetes
-[1.25 milestone]: https://launchpad.net/charmed-kubernetes/+milestone/1.25
+[1.26 milestone]: https://launchpad.net/charmed-kubernetes/+milestone/1.26
 
