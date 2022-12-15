@@ -84,6 +84,23 @@ A list of bug fixes and other minor feature updates in this release can be found
 A list of issues to be fixed in the first 1.26 maintenance release can be found at
 [the launchpad milestone page for 1.26+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.26+ck1).
 
+* [LP1999427](https://launchpad.net/bugs/1999427)
+  Charm errors during update-status hook with 502 Gateway Error
+
+  The charm's status may appear like this:
+  ```
+    aws-k8s-storage/0*         error        idle                54.80.73.214                    hook failed: "update-status"
+  ```
+
+  When the affected charms (see bug link above) are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
+  can respond to client requests with a 502 Gateway Error, amongst other error statuses not produced
+  by the API server itself.  The charm's Kubernetes client library raises an unhandled exception in
+  this case. This results is the charm being in an error state which is easily resolved by running
+
+  ```bash
+  juju resolve <charm/unit>
+  ```
+
 ## Deprecations and API changes
 
 - Upstream
