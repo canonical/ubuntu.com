@@ -14,6 +14,13 @@ from googleapiclient.discovery import build
 from werkzeug.exceptions import BadRequest
 
 
+TIMEZONE_COUNTRIES = {
+    timezone: country
+    for country, timezones in pytz.country_timezones.items()
+    for timezone in timezones
+}
+
+
 @shop_decorator(area="cube", permission="user_or_guest", response="html")
 def cred_home(
     ua_contracts_api,
@@ -74,11 +81,12 @@ def cred_schedule(
         ability_screen_id = 4190
         email = sso_user["email"]
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+        country_code = TIMEZONE_COUNTRIES[timezone]
         response = None
 
         if "uuid" in data:
             response = trueability_api.patch_assessment_reservation(
-                starts_at.isoformat(), timezone, data["uuid"]
+                starts_at.isoformat(), timezone, country_code, data["uuid"]
             )
         else:
             response = trueability_api.post_assessment_reservation(
@@ -88,6 +96,7 @@ def cred_schedule(
                 first_name,
                 last_name,
                 timezone,
+                country_code,
             )
 
         if response and "error" in response:
@@ -296,11 +305,14 @@ def cred_assessments(
                 "date": started_at.strftime("%d %b %Y")
                 if started_at
                 else "N/A",
-                "time": started_at.strftime("%H:%M") if started_at else "N/A",
+                "time": started_at.strftime("%I:%M %p %Z")
+                if started_at
+                else "N/A",
                 "timezone": timezone,
                 "state": r["state"],
                 "id": r["id"],
                 "uuid": r["uuid"],
+                "user_email": user_email,
             }
         )
 
@@ -332,6 +344,84 @@ def cred_exam(
 
     url = trueability_api.get_assessment_redirect(assessment_id)
     return flask.render_template("credentials/exam.html", url=url)
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_provision(trueability_api, **_):
+    sso_user = user_info(flask.session)
+    sso_user_email = sso_user["email"]
+    ability_screen_id = 4194
+
+    reservation_uuid = flask.session.get("_assessment_reservation_uuid")
+    assessment = None
+    reservation = None
+    error = None
+
+    if not reservation_uuid:
+        response = trueability_api.paginate(
+            trueability_api.get_assessment_reservations,
+            "assessment_reservations",
+            ability_screen_id=ability_screen_id,
+        )
+
+        for response_reservation in response["assessment_reservations"]:
+            if (
+                response_reservation.get("user", {}).get("email")
+                != sso_user_email
+            ):
+                continue
+
+            if response_reservation.get("state") in [
+                "created",
+                "scheduled",
+                "processed",
+            ]:
+                reservation_uuid = response_reservation["uuid"]
+                flask.session[
+                    "_assessment_reservation_uuid"
+                ] = reservation_uuid
+                break
+
+    if reservation_uuid:
+        response = trueability_api.get_assessment_reservation(reservation_uuid)
+
+        if "error" in response:
+            error = response.get(
+                "message", "An error occurred while fetching your exam."
+            )
+        else:
+            reservation = response["assessment_reservation"]
+            assessment = reservation["assessment"]
+
+    elif flask.request.method == "POST":
+        starts_at = datetime.utcnow() + timedelta(seconds=70)
+        first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+        response = trueability_api.post_assessment_reservation(
+            ability_screen_id,
+            starts_at.isoformat(),
+            sso_user_email,
+            first_name,
+            last_name,
+            "UTC",
+            "DE",
+        )
+
+        if "error" in response:
+            error = response.get(
+                "message", "An error occurred while creating your exam."
+            )
+        else:
+            reservation = response["assessment_reservation"]
+            assessment = reservation["assessment"]
+            flask.session["_assessment_reservation_uuid"] = reservation["uuid"]
+
+    return flask.render_template(
+        "/credentials/provision.html",
+        assessment=assessment,
+        reservation=reservation,
+        error=error,
+    )
 
 
 @shop_decorator(area="cube", permission="user", response="json")
