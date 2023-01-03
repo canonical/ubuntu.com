@@ -62,7 +62,7 @@ const BuyButton = ({
     } else {
       setIsButtonDisabled(false);
     }
-  }, [values, isCardValid, isTaxSaved]);
+  }, [values, isLoading, isCardValid, isTaxSaved]);
 
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
 

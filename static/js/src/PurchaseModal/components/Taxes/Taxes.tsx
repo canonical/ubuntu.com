@@ -40,6 +40,7 @@ const Taxes = ({ product, quantity, setTaxSaved }: TaxesProps) => {
   useEffect(() => {
     if (savedCountry) {
       setIsEditing(!savedCountry);
+      setTaxSaved(savedCountry);
     }
   }, [savedCountry]);
 
