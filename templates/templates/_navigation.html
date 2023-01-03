@@ -325,6 +325,7 @@
       
       dropdownWindow.classList.add("slide-animation");
       dropdownWindowOverlay.classList.add("fade-animation");
+      navigation.classList.remove('subsection-active');
 
       reducedNavItems.forEach( item => {
         if (item.classList.contains("is-selected")){
@@ -365,13 +366,24 @@
   function showSection(e) {
     const nav = document.querySelector('.p-navigation');
     const target = e.target.getAttribute('aria-controls');
-    const el = document.getElementById(target);
+    const isDesktop = e.target.closest('.dropdown-content-desktop');
+    const isMobile = e.target.closest('.dropdown-content-mobile');
+    let el;
+
+    e.preventDefault()
+
+    if (isDesktop) {
+      el = document.querySelector(`.dropdown-content-desktop #${target}`);
+    } else if (isMobile) {
+      el = document.querySelector(`.dropdown-content-mobile #${target}`);
+    }
     
     el.removeAttribute('hidden');
 
     setTimeout(function () {
       nav.classList.add('subsection-active');
       el.classList.add('is-active');
+      el.focus();
     }, 1);
   }
 
