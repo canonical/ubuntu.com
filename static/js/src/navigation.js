@@ -71,6 +71,8 @@ function toggleNavMenu(dropdown, show) {
         filteredDropdownContent.classList.add("u-hide");
         filteredDropdownContentMobile.classList.add("u-hide");
       });
+
+      handleFocusEvents(dropdown, dropdownContent, dropdownContentMobile);
     } else {
       dropdown.classList.remove("is-active");
       dropdownWindow.classList.add("slide-animation");
@@ -85,9 +87,46 @@ function toggleNavMenu(dropdown, show) {
   }
 }
 
+function handleFocusEvents(dropdown, content, mobileContent) {
+  let visibleContent;
+  let firstFocusableEl;
+
+  if (isVisible(content)) {
+    visibleContent = content;
+  } else if (isVisible(mobileContent)) {
+    visibleContent = mobileContent;
+  }
+
+  if (visibleContent) {
+    firstFocusableEl = visibleContent.querySelector(
+      "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+    );
+  }
+
+  if (firstFocusableEl) {
+    const contentTabs = visibleContent.querySelectorAll(".js-tabs");
+    firstFocusableEl.focus();
+
+    contentTabs.forEach((tab) => {
+      tab.addEventListener("click", (e) => {
+        const targetEl = document.getElementById(
+          e.target.getAttribute("aria-controls")
+        );
+        targetEl.focus();
+      });
+    });
+  }
+}
+
+function isVisible(element) {
+  const computedStyle = window.getComputedStyle(element);
+
+  return computedStyle.getPropertyValue("display") !== "none";
+}
+
 function mobileViewUpdate() {
   var viewportWidth = window.innerWidth;
-  if (viewportWidth <= 1024) {
+  if (viewportWidth <= 1150) {
     navDropdowns.forEach(function (dropdown) {
       if (dropdown.classList.contains("is-active")) {
         navigation.classList.add("has-menu-open");
