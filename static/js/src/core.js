@@ -11,4 +11,4 @@ createNav({
 // Initalise the cookie policy notification.
 cookiePolicy();
 
-createNav({ breakpoint: 1024 });
+createNav({ breakpoint: 1150 });
