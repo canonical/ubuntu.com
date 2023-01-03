@@ -431,7 +431,7 @@ Hello Kubernetes!
 
 
 [asset-ceph-radosgw-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/ceph-radosgw.yaml
-[asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/equinix-overaly.yaml
+[asset-equinix-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/equinix-overlay.yaml
 [equinix-facilities]: https://metal.equinix.com/developers/docs/locations/facilities/
 [equinix-configuration]: https://github.com/equinix/cloud-provider-equinix-metal#configuration
 [quickstart]: /kubernetes/docs/quickstart
