@@ -2,7 +2,7 @@
 
 {% block title %}Boost your automotive business with Ubuntu{% endblock %}
 {% block meta_description %}Ubuntu is widely used to reduce time to market in automotive companies, as a platform for data analytics, online services, robotics and machine learning. Infotainment, ADAS and cockpit application development on Ubuntu is faster. New real-time hypervisors enable Ubuntu VMs alongside functional safety RTOS solutions.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1PVliB92h4ZqexaZV9F5MIcX7aRG6yBAGH1hG7x8UZTw/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/10jSLdwz2Ks7gnEMXlKWzrpsY6TQFxISUgnQo4y3yOrA/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru-bottomed">
@@ -12,6 +12,12 @@
       <p class="p-heading--4">Build smarter vehicles, factories and business models.</p>
       <p>Trusted by major automotive companies, Canonical delivers a full suite of open-source solutions and services that help you deliver security, safety and innovation for digital transformation in automotive.</p>
       <p><a class="js-invoke-modal p-button--positive" href="/internet-of-things/contact-us?product=automotive" data-testid="interactive-form-link">Contact Canonical</a></p>
+    </div>
+
+    <div class="col-5 u-vertically-center">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/_bHdUo_ZOEo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -510,7 +516,19 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/08a30f5b-ibeo-logo.png",
+            url="https://assets.ubuntu.com/v1/d01c96ec-Elektrobit%20logo%20288.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/29213f73-Ibeo%20logo%20288.png",
             alt="",
             width="288",
             height="288",
