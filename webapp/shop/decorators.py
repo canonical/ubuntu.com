@@ -8,7 +8,6 @@ import talisker.requests
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
-from webapp.shop.api.edx.api import EdxAPI
 from webapp.shop.api.trueability.api import TrueAbilityAPI
 from webapp.login import user_info
 from requests import Session
@@ -17,7 +16,7 @@ from requests import Session
 AREA_LIST = {
     "account": "Account pages",
     "advantage": "UA pages",
-    "cube": "Cube",
+    "cred": "Credentials",
 }
 
 PERMISSION_LIST = {
@@ -63,7 +62,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
     session = talisker.requests.get_session()
     badgr_session = init_badgr_session(area)
-    edx_session = init_edx_session(area)
     trueability_session = init_trueability_session(area)
 
     def decorator(func):
@@ -127,7 +125,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 ua_contracts_api=ua_contracts_api,
                 advantage_mapper=advantage_mapper,
                 badgr_api=get_badgr_api_instance(area, badgr_session),
-                edx_api=get_edx_api_instance(area, edx_session),
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
@@ -159,7 +156,7 @@ def canonical_staff():
 
 
 def init_badgr_session(area) -> Session:
-    if area != "cube":
+    if area != "cred":
         return None
 
     badgr_session = Session()
@@ -168,28 +165,8 @@ def init_badgr_session(area) -> Session:
     return badgr_session
 
 
-def init_edx_session(area) -> Session:
-    if area != "cube":
-        return None
-
-    # This API lives under a sub-domain of ubuntu.com but requests to
-    # it still need proxying, so we configure the session manually to
-    # avoid it loading the configurations from environment variables,
-    # since those default to not proxy requests for ubuntu.com sub-domains
-    # and that is the intended behaviour for most of our apps
-    proxies = {
-        "http": os.getenv("HTTP_PROXY"),
-        "https": os.getenv("HTTPS_PROXY"),
-    }
-    edx_session = Session()
-    edx_session.proxies.update(proxies)
-    talisker.requests.configure(edx_session)
-
-    return edx_session
-
-
 def init_trueability_session(area) -> Session:
-    if area != "cube":
+    if area != "cred":
         return None
 
     trueability_session = Session()
@@ -202,14 +179,14 @@ def get_redirect_default(area) -> str:
     redirect_path = "/account"
     if area == "advantage":
         redirect_path = "/pro/dashboard"
-    elif area == "cube":
-        redirect_path = "/cube/microcerts"
+    elif area == "cred":
+        redirect_path = "/credentials"
 
     return redirect_path
 
 
 def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
-    if area != "cube":
+    if area != "cred":
         return None
 
     return BadgrAPI(
@@ -220,20 +197,8 @@ def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
     )
 
 
-def get_edx_api_instance(area, edx_session) -> EdxAPI:
-    if area != "cube":
-        return None
-
-    return EdxAPI(
-        os.getenv("CUBE_EDX_URL", "https://cube.ubuntu.com"),
-        os.getenv("CUBE_EDX_CLIENT_ID"),
-        os.getenv("CUBE_EDX_CLIENT_SECRET"),
-        edx_session,
-    )
-
-
 def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
-    if area != "cube":
+    if area != "cred":
         return None
 
     return TrueAbilityAPI(

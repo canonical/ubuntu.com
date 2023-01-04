@@ -118,23 +118,18 @@ For the most part this will happen automatically as long as the subpages (/ai/wh
 {% endblock %}
 ```
 
-### Working on CUBE
+### Working on Credentials
 
-If you want to work on CUBE you need to add some environment vars into your .env.local.
-You will probably want to connect to the DEV/QA environment. To do so, use the URLs below together with the appropriate credentials.
+If you want to work on [Credentials](https://ubuntu.com/credentials) you need to add some environment vars into your `.env.local`.
+If you have a TrueAbility account with API access enabled, you can find your API key in [Settings](https://app.trueability.com/settings).
+
 
 ```
+TRUEABILITY_URL="https://app.trueability.com"
+TRUEABILITY_API_KEY=<trueability_api_key>
 BADGR_URL=https://api.test.badgr.com
 BAGDR_USER=<badgr_user>
 BADGR_PASSWORD=<badgr_password>
-```
-
-In addition, load the `cube-qa.yaml` in `webapp/cube/views.py` by changing the file we load into `CUBE_CONTENT`:
-
-```
-CUBE_CONTENT = yaml.load(
-    Path("webapp/cube/content/cube-qa.yaml").read_text(), Loader=yaml.Loader
-)
 ```
 
 ### JavaScript

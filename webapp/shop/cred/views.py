@@ -5,7 +5,6 @@ import json
 import os
 import html
 
-from urllib.parse import quote_plus
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.login import user_info
 
@@ -21,31 +20,17 @@ TIMEZONE_COUNTRIES = {
 }
 
 
-@shop_decorator(area="cube", permission="user_or_guest", response="html")
-def cred_home(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    badge_certification,
-    **kwargs,
-):
+@shop_decorator(area="cred", permission="user_or_guest", response="html")
+def cred_home(**_):
     return flask.render_template("credentials/index.html")
 
 
-@shop_decorator(area="cube", permission="user_or_guest", response="html")
-def cred_self_study(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    badge_certification,
-    **kwargs,
-):
+@shop_decorator(area="cred", permission="user_or_guest", response="html")
+def cred_self_study(**_):
     return flask.render_template("credentials/self-study.html")
 
 
-@shop_decorator(area="cube", permission="user_or_guest", response="html")
+@shop_decorator(area="cred", permission="user_or_guest", response="html")
 def cred_sign_up(**_):
     sign_up_open = False
     return flask.render_template(
@@ -53,17 +38,9 @@ def cred_sign_up(**_):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_schedule(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    trueability_api,
-    badge_certification,
-    **kwargs,
-):
+def cred_schedule(trueability_api, **_):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
@@ -147,17 +124,9 @@ def cred_schedule(
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_your_exams(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    trueability_api,
-    badge_certification,
-    **kwargs,
-):
+def cred_your_exams(trueability_api, **_):
     sso_user_email = user_info(flask.session)["email"]
     ability_screen_id = 4190
     response = trueability_api.paginate(
@@ -242,17 +211,9 @@ def cred_your_exams(
     return response
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_cancel_exam(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    trueability_api,
-    badge_certification,
-    **kwargs,
-):
+def cred_cancel_exam(trueability_api, **_):
     uuid = flask.request.args.get("uuid")
     reservation = trueability_api.get_assessment_reservation(uuid)
 
@@ -269,17 +230,9 @@ def cred_cancel_exam(
     return flask.redirect("/credentials/your-exams")
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_assessments(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    trueability_api,
-    badge_certification,
-    **kwargs,
-):
+def cred_assessments(trueability_api, **_):
     sso_user_email = user_info(flask.session)["email"]
     response = trueability_api.paginate(
         trueability_api.get_assessments, "assessments", ability_screen_id=None
@@ -319,17 +272,9 @@ def cred_assessments(
     return flask.render_template("credentials/assessments.html", exams=exams)
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_exam(
-    ua_contracts_api,
-    badgr_issuer,
-    badgr_api,
-    edx_api,
-    trueability_api,
-    badge_certification,
-    **kwargs,
-):
+def cred_exam(trueability_api, **_):
     assessment_id = flask.request.args.get("id")
     assessment = trueability_api.get_assessment(assessment_id)
 
@@ -346,7 +291,7 @@ def cred_exam(
     return flask.render_template("credentials/exam.html", url=url)
 
 
-@shop_decorator(area="cube", permission="user", response="html")
+@shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
 def cred_provision(trueability_api, **_):
     sso_user = user_info(flask.session)
@@ -424,35 +369,10 @@ def cred_provision(trueability_api, **_):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="json")
-def cube_study_labs_button(edx_api, **kwargs):
-    sso_user = user_info(flask.session)
-    study_labs = "course-v1:CUBE+study_labs+2020"
-    edx_user = edx_api.get_user(sso_user["email"])
-    enrollments = [
-        enrollment["course_details"]["course_id"]
-        for enrollment in edx_api.get_enrollments(edx_user["username"])
-        if enrollment["is_active"]
-    ]
-
-    text = "Purchase study labs access"
-    redirect_url = "/cube/microcerts"
-
-    if study_labs in enrollments:
-        text = "Access study labs"
-        prepare_materials_path = quote_plus(f"/courses/{study_labs}/course/")
-        redirect_url = (
-            f"{edx_api.base_url}/auth/login/tpa-saml/"
-            f"?auth_entry=login&idp=ubuntuone&next={prepare_materials_path}"
-        )
-
-    return flask.jsonify({"text": text, "redirect_url": redirect_url})
-
-
-@shop_decorator(area="cube", permission="user_or_guest", response="html")
-def cred_syllabus_data(**kawrgs):
+@shop_decorator(area="cred", permission="user_or_guest", response="html")
+def cred_syllabus_data(**_):
     exam_name = flask.request.args.get("exam")
-    syllabus_file = open("webapp/shop/cube/syllabus.json", "r")
+    syllabus_file = open("webapp/shop/cred/syllabus.json", "r")
     syllabus_data = json.load(syllabus_file)
     return flask.render_template(
         "credentials/syllabus.html",
@@ -461,8 +381,8 @@ def cred_syllabus_data(**kawrgs):
     )
 
 
-@shop_decorator(area="cube", permission="user", response="html")
-def cred_submit_form(**kwargs):
+@shop_decorator(area="cred", permission="user", response="html")
+def cred_submit_form(**_):
     if flask.request.method == "GET":
         return flask.render_template("credentials/exit-survey.html")
 
