@@ -61,7 +61,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
 
   const onSaveClick = () => {
     setIsEditing(false);
-    if (isGuest) {
+    if (isGuest || !window.accountId) {
       taxMutation.mutate();
     } else {
       genericPurchaseMutation.mutate(
