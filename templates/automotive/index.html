@@ -13,6 +13,12 @@
       <p>Trusted by major automotive companies, Canonical delivers a full suite of open-source solutions and services that help you deliver security, safety and innovation for digital transformation in automotive.</p>
       <p><a class="js-invoke-modal p-button--positive" href="/internet-of-things/contact-us?product=automotive" data-testid="interactive-form-link">Contact Canonical</a></p>
     </div>
+
+    <div class="col-5 u-vertically-center">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/_bHdUo_ZOEo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
   </div>
 </section>
 <section class="p-strip">
@@ -499,6 +505,18 @@
         <div class="p-logo-section__item">
           {{ image (
             url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/62fb30d0-Elektrobit.svg",
             alt="",
             width="288",
             height="288",
