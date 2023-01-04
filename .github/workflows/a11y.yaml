@@ -5,10 +5,10 @@ env:
   CONTRACTS_API_URL: https://contracts.staging.canonical.com
   STRIPE_PUBLISHABLE_KEY: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
 
-on: [push, pull_request]
+on: pull_request
 
 jobs:
-  run-cypress-a11y: 
+  run-cypress-a11y:
     if: github.repository == 'canonical/ubuntu.com'
     runs-on: ubuntu-latest
 
