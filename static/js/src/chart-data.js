@@ -1326,7 +1326,7 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2022-05-06T00:00:00"),
-    endDate: new Date("2022-12-06T00:00:00"),
+    endDate: new Date("2022-12-15T00:00:00"),
     taskName: "Kubernetes 1.21",
     status: "CHARMED_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
   },
@@ -1344,12 +1344,12 @@ export var kubernetesReleases = [
   },
   {
     startDate: new Date("2021-12-15T00:00:00"),
-    endDate: new Date("2022-12-06T00:00:00"),
+    endDate: new Date("2022-12-15T00:00:00"),
     taskName: "Kubernetes 1.23",
     status: "CHARMED_KUBERNETES_SUPPORT",
   },
   {
-    startDate: new Date("2022-12-06T00:00:00"),
+    startDate: new Date("2022-12-15T00:00:00"),
     endDate: new Date("2023-08-23T00:00:00"),
     taskName: "Kubernetes 1.23",
     status: "CHARMED_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
@@ -1376,6 +1376,18 @@ export var kubernetesReleases = [
     startDate: new Date("2023-08-23T00:00:00"),
     endDate: new Date("2024-05-03T00:00:00"),
     taskName: "Kubernetes 1.25",
+    status: "CHARMED_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
+  },
+  {
+    startDate: new Date("2022-12-15T00:00:00"),
+    endDate: new Date("2023-12-15T00:00:00"),
+    taskName: "Kubernetes 1.26",
+    status: "CHARMED_KUBERNETES_SUPPORT",
+  },
+  {
+    startDate: new Date("2023-12-15T00:00:00"),
+    endDate: new Date("2024-08-23T00:00:00"),
+    taskName: "Kubernetes 1.26",
     status: "CHARMED_KUBERNETES_EXTENDED_SECURITY_MAINTENANCE",
   },
 ];
@@ -1597,6 +1609,7 @@ export var openStackReleaseNames = [
 ];
 
 export var kubernetesReleaseNames = [
+  "Kubernetes 1.26",
   "Kubernetes 1.25",
   "Kubernetes 1.24",
   "Kubernetes 1.23",
