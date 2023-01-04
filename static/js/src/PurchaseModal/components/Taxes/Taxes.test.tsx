@@ -4,9 +4,12 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { product } from "advantage/subscribe/react/utils/test/Mocks";
 import { Formik } from "formik";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 describe("PaymentMethodSummary", () => {
   let queryClient: QueryClient;
+  const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
   beforeEach(async () => {
     queryClient = new QueryClient();
@@ -16,7 +19,9 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product={product} quantity={1} />
+          <Elements stripe={stripePromise}>
+            <Taxes product={product} quantity={1} />
+          </Elements>
         </Formik>
       </QueryClientProvider>
     );
@@ -29,7 +34,9 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product="test" quantity={1} />
+          <Elements stripe={stripePromise}>
+            <Taxes product={product} quantity={1} />
+          </Elements>
         </Formik>
       </QueryClientProvider>
     );
@@ -44,7 +51,9 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product={product} quantity={1} />
+          <Elements stripe={stripePromise}>
+            <Taxes product={product} quantity={1} />
+          </Elements>
         </Formik>
       </QueryClientProvider>
     );
@@ -61,7 +70,9 @@ describe("PaymentMethodSummary", () => {
     const { getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product="test" quantity={1} />
+          <Elements stripe={stripePromise}>
+            <Taxes product={product} quantity={1} />
+          </Elements>
         </Formik>
       </QueryClientProvider>
     );
