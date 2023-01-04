@@ -21,17 +21,18 @@ import { FormValues } from "../../utils/utils";
 import { useQueryClient } from "react-query";
 
 type TaxesProps = {
+  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   product: any;
   quantity: number;
 };
 
-const Taxes = ({ product, quantity }: TaxesProps) => {
+const Taxes = ({ product, quantity, setError }: TaxesProps) => {
   const {
     errors,
     touched,
     values,
     setFieldValue,
-    setErrors,
+    setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
 
   const queryClient = useQueryClient();
@@ -77,11 +78,17 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
             queryClient.invalidateQueries("preview");
           },
           onError: (error) => {
-            if (error instanceof Error && error.message === "tax_id_invalid") {
-              setErrors({
+            if (
+              error instanceof Error &&
+              error.message.includes("tax_id_invalid")
+            ) {
+              setFormikErrors({
                 VATNumber:
                   "That VAT number is invalid. Check the number and try again.",
               });
+              setError(
+                <>That VAT number is invalid. Check the number and try again.</>
+              );
             }
           },
         }

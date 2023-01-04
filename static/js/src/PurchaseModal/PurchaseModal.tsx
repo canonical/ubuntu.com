@@ -180,7 +180,13 @@ const PurchaseModal = ({
               items={[
                 {
                   title: "Region and taxes",
-                  content: <Taxes product={product} quantity={quantity} />,
+                  content: (
+                    <Taxes
+                      product={product}
+                      quantity={quantity}
+                      setError={setError}
+                    />
+                  ),
                 },
                 {
                   title: "Your purchase",

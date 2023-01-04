@@ -20,7 +20,7 @@ describe("PaymentMethodSummary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={product} quantity={1} />
+            <Taxes product={product} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -35,7 +35,7 @@ describe("PaymentMethodSummary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={product} quantity={1} />
+            <Taxes product={product} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -52,7 +52,7 @@ describe("PaymentMethodSummary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={product} quantity={1} />
+            <Taxes product={product} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -71,7 +71,7 @@ describe("PaymentMethodSummary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes product={product} quantity={1} />
+            <Taxes product={product} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
