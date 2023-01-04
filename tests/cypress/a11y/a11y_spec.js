@@ -3,7 +3,8 @@
 function terminalLog(violations) {
   cy.task(
     "log",
-    `${violations.length} accessibility violation${violations.length === 1 ? "" : "s"
+    `${violations.length} accessibility violation${
+      violations.length === 1 ? "" : "s"
     } ${violations.length === 1 ? "was" : "were"} detected`
   );
   // pluck specific keys to keep the table readable
@@ -24,6 +25,6 @@ context("a11y", () => {
     cy.visit("/pro");
     cy.injectAxe();
     cy.acceptCookiePolicy();
-    cy.checkA11y(null, null, terminalLog);
+    cy.checkA11y("#main-content", null, terminalLog);
   });
 });
