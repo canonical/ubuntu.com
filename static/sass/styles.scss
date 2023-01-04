@@ -886,8 +886,9 @@ a:hover {
   top: 0.5rem !important;
 }
 
-#all-canonical-mobile .global-nav__header-link-anchor:after {
+#all-canonical-mobile .global-nav__header-link-anchor::after {
   @media (max-width: $breakpoint-small) {
     right: 1rem !important;
+    top: 1.25rem !important;
   }
 }
