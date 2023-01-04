@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Row, Col } from "@canonical/react-components";
 import { add, format } from "date-fns";
 import usePreview from "../../hooks/usePreview";
@@ -16,84 +16,74 @@ function Summary() {
 
   const taxAmount = (preview?.taxAmount || taxes?.tax) / 100;
   const total = (preview?.total || taxes?.total) / 100;
-  console.log("taxes", taxes);
-  console.log("preview", preview);
 
-  useEffect(() => {
-    callTotalSection();
-  }, [taxes]);
-
-  const callTotalSection = () => {
-    let totalSection = (
-      <Row className="u-no-padding u-sv1">
-        <Col size={4}>
-          <div className="u-text-light">Subtotal:</div>
-        </Col>
-        <Col size={8}>
-          <div data-testid="subtotal">
-            {currencyFormatter.format(
-              ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
-            )}
-          </div>
-        </Col>
-      </Row>
-    );
-
-    if (taxAmount && total) {
-      totalSection = (
-        <>
-          {preview?.subscriptionEndOfCycle && (
-            <Row className="u-no-padding u-sv1">
-              <Col size={4}>
-                <div className="u-text-light">For this period:</div>
-              </Col>
-              <Col size={8}>
-                <div data-testid="for-this-period">
-                  {currencyFormatter.format(total - taxAmount)}
-                </div>
-              </Col>
-            </Row>
+  let totalSection = (
+    <Row className="u-no-padding u-sv1">
+      <Col size={4}>
+        <div className="u-text-light">Subtotal:</div>
+      </Col>
+      <Col size={8}>
+        <div data-testid="subtotal">
+          {currencyFormatter.format(
+            ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
           )}
+        </div>
+      </Col>
+    </Row>
+  );
+
+  if (taxAmount && total) {
+    totalSection = (
+      <>
+        {preview?.subscriptionEndOfCycle && (
           <Row className="u-no-padding u-sv1">
             <Col size={4}>
-              <div className="u-text-light">Tax:</div>
+              <div className="u-text-light">For this period:</div>
             </Col>
             <Col size={8}>
-              <div data-testid="tax">{currencyFormatter.format(taxAmount)}</div>
-            </Col>
-          </Row>
-          <Row className="u-no-padding u-sv1">
-            <Col size={4}>
-              <div className="u-text-light">Total</div>
-            </Col>
-            <Col size={8}>
-              <div data-testid="total">
-                <b>{currencyFormatter.format(total)}</b>
+              <div data-testid="for-this-period">
+                {currencyFormatter.format(total - taxAmount)}
               </div>
             </Col>
           </Row>
-        </>
-      );
-    } else if (preview) {
-      totalSection = (
+        )}
         <Row className="u-no-padding u-sv1">
           <Col size={4}>
-            <div className="u-text-light">
-              Total
-              {preview?.subscriptionEndOfCycle && " for this period"}
-            </div>
+            <div className="u-text-light">Tax:</div>
           </Col>
           <Col size={8}>
-            <div>
+            <div data-testid="tax">{currencyFormatter.format(taxAmount)}</div>
+          </Col>
+        </Row>
+        <Row className="u-no-padding u-sv1">
+          <Col size={4}>
+            <div className="u-text-light">Total</div>
+          </Col>
+          <Col size={8}>
+            <div data-testid="total">
               <b>{currencyFormatter.format(total)}</b>
             </div>
           </Col>
         </Row>
-      );
-    }
-    return totalSection;
-  };
-
+      </>
+    );
+  } else if (preview) {
+    totalSection = (
+      <Row className="u-no-padding u-sv1">
+        <Col size={4}>
+          <div className="u-text-light">
+            Total
+            {preview?.subscriptionEndOfCycle && " for this period"}
+          </div>
+        </Col>
+        <Col size={8}>
+          <div>
+            <b>{currencyFormatter.format(total)}</b>
+          </div>
+        </Col>
+      </Row>
+    );
+  }
   return (
     <section
       id="summary-section"
@@ -133,7 +123,6 @@ function Summary() {
         <Col size={4}>
           <div className="u-text-light">Ends:</div>
         </Col>
-
         {preview?.subscriptionEndOfCycle ? (
           <Col size={8}>
             <div data-testid="end-date">
@@ -155,7 +144,7 @@ function Summary() {
           </Col>
         )}
       </Row>
-      {callTotalSection()}
+      {totalSection}
     </section>
   );
 }

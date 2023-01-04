@@ -35,7 +35,7 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
   } = useFormikContext<FormValues>();
 
   const queryClient = useQueryClient();
-  
+
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : "purchase";
 
   const { data: userInfo } = useStripeCustomerInfo();
@@ -64,7 +64,6 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
     if (isGuest) {
       taxMutation.mutate();
     } else {
-      console.log("values", values);
       genericPurchaseMutation.mutate(
         {
           formData: values,
@@ -74,13 +73,10 @@ const Taxes = ({ product, quantity }: TaxesProps) => {
           preview: true,
         },
         {
-          onSuccess: (data) => {
-            console.log("success data", data);
-            queryClient.setQueryData("taxCalulations", data);
+          onSuccess: () => {
+            queryClient.invalidateQueries("preview");
           },
           onError: (error) => {
-            console.log("error", error);
-
             if (error instanceof Error && error.message === "tax_id_invalid") {
               setErrors({
                 VATNumber:
