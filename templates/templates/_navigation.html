@@ -94,7 +94,11 @@
         </a>
       </div>
       <div class="u-hide js-account--small"></div>
-      <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
+      {% if breadcrumbs.children %}
+        {% if not (breadcrumbs.children | length == 1 and breadcrumbs.children[0].title == "Overview") %}
+         <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
+        {% endif %}
+      {% endif %}
     </div>
 
     <nav class="p-navigation__nav" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
