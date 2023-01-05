@@ -16,7 +16,7 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product={product} quantity={1} />
+          <Taxes product={product} quantity={1} setTaxSaved={jest.fn()} />
         </Formik>
       </QueryClientProvider>
     );
@@ -29,7 +29,7 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product="test" quantity={1} />
+          <Taxes product="test" quantity={1} setTaxSaved={jest.fn()} />
         </Formik>
       </QueryClientProvider>
     );
@@ -44,7 +44,7 @@ describe("PaymentMethodSummary", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product={product} quantity={1} />
+          <Taxes product={product} quantity={1} setTaxSaved={jest.fn()} />
         </Formik>
       </QueryClientProvider>
     );
@@ -61,7 +61,7 @@ describe("PaymentMethodSummary", () => {
     const { getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <Taxes product="test" quantity={1} />
+          <Taxes product="test" quantity={1} setTaxSaved={jest.fn()} />
         </Formik>
       </QueryClientProvider>
     );
