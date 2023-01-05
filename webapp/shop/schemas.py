@@ -60,7 +60,7 @@ account_purhcase = {
     "offer_id": String(),
     "renewal_id": String(),
     "previous_purchase_id": String(),
-    "captcha_value": String(),
+    "captcha_value": String(allow_none=True),
     "marketplace": String(
         validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
         required=True,
