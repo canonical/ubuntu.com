@@ -309,19 +309,16 @@ function addUTMToForms() {
 }
 
 var accountContainer = document.querySelector(".js-account");
-var accountContainerSmall = document.querySelector(".js-account--small");
-if (accountContainer && accountContainerSmall) {
+if (accountContainer) {
   fetch("/account.json")
     .then((response) => response.json())
     .then((data) => {
       if (data.account === null) {
-        accountContainerSmall.innerHTML = `<a href="/login" class="p-navigation__link"><i class="p-icon--user is-light">Sign in</i></a>`;
-        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><span>Sign in</span><i class="p-icon--user is-light"></i></a>`;
+        accountContainer.innerHTML = `<a href="/login" class="p-navigation__link" style="padding-right: 1rem;"><i class="p-icon--user is-light">Sign in</i></a>`;
       } else {
         window.accountJSONRes = data.account;
-        accountContainerSmall.innerHTML = `<span class="p-navigation__link">${data.account.fullname} (<a href="/logout" class="p-link--inverted">logout</a>)</span>`;
         accountContainer.innerHTML = `<div class="p-navigation__item--dropdown-toggle">
-            <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true">${data.account.fullname}</a>
+            <a href="#" class="p-navigation__link" aria-controls="user-menu" aria-expanded="false" aria-haspopup="true"><i class="p-icon--user is-light">${data.account.fullname}</i></a>
             <ul class="p-navigation__dropdown--right" id="user-menu" aria-hidden="true">
               <li><a href="/pro/dashboard" class="p-navigation__dropdown-item">Ubuntu Pro dashboard</a></li>
               <li>
