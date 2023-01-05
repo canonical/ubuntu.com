@@ -24,9 +24,10 @@ type TaxesProps = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   product: any;
   quantity: number;
+  setTaxSaved: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Taxes = ({ product, quantity, setError }: TaxesProps) => {
+const Taxes = ({ product, quantity, setError, setTaxSaved }: TaxesProps) => {
   const {
     errors,
     touched,
@@ -49,6 +50,7 @@ const Taxes = ({ product, quantity, setError }: TaxesProps) => {
   useEffect(() => {
     if (savedCountry) {
       setIsEditing(!savedCountry);
+      setTaxSaved(savedCountry);
     }
   }, [savedCountry]);
 
@@ -62,8 +64,10 @@ const Taxes = ({ product, quantity, setError }: TaxesProps) => {
 
   const onSaveClick = () => {
     setIsEditing(false);
+
     if (isGuest || !window.accountId) {
       taxMutation.mutate();
+      setTaxSaved(true);
     } else {
       genericPurchaseMutation.mutate(
         {
@@ -76,6 +80,7 @@ const Taxes = ({ product, quantity, setError }: TaxesProps) => {
         {
           onSuccess: () => {
             queryClient.invalidateQueries("preview");
+            setTaxSaved(true);
           },
           onError: (error) => {
             if (
@@ -98,6 +103,7 @@ const Taxes = ({ product, quantity, setError }: TaxesProps) => {
 
   const onEditClick = () => {
     setIsEditing(true);
+    setTaxSaved(false);
   };
 
   const validateRequired = (value: string) => {

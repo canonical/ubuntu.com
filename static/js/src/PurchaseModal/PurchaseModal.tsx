@@ -66,6 +66,7 @@ const PurchaseModal = ({
   const { data: userInfo } = useStripeCustomerInfo();
 
   const [isCardValid, setCardValid] = useState(false);
+  const [isTaxSaved, setTaxSaved] = useState(false);
 
   window.accountId = accountId ?? window.accountId;
 
@@ -185,6 +186,7 @@ const PurchaseModal = ({
                       product={product}
                       quantity={quantity}
                       setError={setError}
+                      setTaxSaved={setTaxSaved}
                     />
                   ),
                 },
@@ -236,6 +238,7 @@ const PurchaseModal = ({
                 quantity={quantity}
                 action={action}
                 isCardValid={isCardValid}
+                isTaxSaved={isTaxSaved}
               ></BuyButton>
             </ModalFooter>
           </>
