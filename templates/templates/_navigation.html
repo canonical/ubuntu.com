@@ -5,7 +5,7 @@
   <div class="p-navigation__row">
     <div class="p-navigation__banner">
       <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link" href="/">
+        <a class="p-navigation__link {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}u-no-padding--left {% elif breadcrumbs == 'tutorials' %}u-no-padding--left{% endif %}" href="/">
           {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
           Canonical Ubuntu
           {% elif breadcrumbs == "tutorials" %}
@@ -21,7 +21,6 @@
       <ul class="p-navigation__items">
         <li class="p-navigation__item">
           <button class="js-search-button p-navigation__link--search-toggle">
-            <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
         <li class="p-navigation__item">
@@ -55,7 +54,6 @@
       <ul class="p-navigation__items global-nav">
         <li class="p-navigation__item">
           <button href="#" class="js-search-button p-navigation__link--search-toggle">
-            <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
         <li class="p-navigation__user js-account" id="canonical-login"></li>
@@ -93,7 +91,6 @@
           <span class="p-navigation__logo-title">{{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}</span>
         </a>
       </div>
-      <div class="u-hide js-account--small"></div>
       {% if breadcrumbs.children %}
         {% if not (breadcrumbs.children | length == 1 and breadcrumbs.children[0].title == "Overview") %}
          <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
