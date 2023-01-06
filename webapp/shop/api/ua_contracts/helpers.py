@@ -400,7 +400,6 @@ def is_billing_subscription_auto_renewing(
         if (
             subscription.id == subscription_id
             and subscription.status in ["active", "locked"]
-            and subscription.is_auto_renewing
         ):
             return True
 

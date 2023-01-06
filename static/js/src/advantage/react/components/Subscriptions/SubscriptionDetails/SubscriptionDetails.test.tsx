@@ -373,7 +373,7 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Monthly,
       statuses: userSubscriptionStatusesFactory.build({
-        is_renewed: true,
+        is_subscription_auto_renewing: true,
       }),
     });
 
@@ -395,7 +395,7 @@ describe("SubscriptionDetails", () => {
     const contract = userSubscriptionFactory.build({
       type: UserSubscriptionType.Monthly,
       statuses: userSubscriptionStatusesFactory.build({
-        is_renewed: false,
+        is_subscription_auto_renewing: false,
       }),
     });
 

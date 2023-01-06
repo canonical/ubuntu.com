@@ -154,7 +154,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                   {subscription.type == "monthly" ||
                   subscription.type == "yearly" ? (
                     <>
-                      {subscription.statuses.is_renewed ? (
+                      {subscription.statuses.is_subscription_auto_renewing ? (
                         <button className="p-chip--positive">
                           <span className="p-chip__value">Auto-renewal on</span>
                         </button>
