@@ -22,6 +22,7 @@ from webapp.shop.schemas import (
     post_customer_info,
     ensure_purchase_account,
     invoice_view,
+    get_purchase_account_status,
     post_payment_methods,
     post_purchase_calculate,
 )
@@ -35,6 +36,43 @@ def account_view(**kwargs):
         "account/index.html",
         email=email,
     )
+
+
+@shop_decorator(area="account", permission="user", response="json")
+@use_kwargs(get_purchase_account_status, location="query")
+def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
+    marketplace = kwargs.get("marketplace")
+    try:
+        account = advantage_mapper.get_purchase_account(marketplace)
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({}), 404
+    except AccessForbiddenError:
+        return flask.jsonify({"error": "access forbidden"}), 403
+
+    last_purchase_ids = {}
+    subscription_counter = 0
+    for marketplace in SERVICES:
+        if marketplace == "canonical-cube":
+            continue
+
+        subscriptions = advantage_mapper.get_account_subscriptions(
+            account_id=account.id,
+            marketplace=marketplace,
+        )
+
+        subscription_counter += len(subscriptions)
+
+        last_purchase_ids[marketplace] = extract_last_purchase_ids(
+            subscriptions
+        )
+
+    response = {
+        "account": to_dict(account),
+        "last_purchase_ids": last_purchase_ids,
+        "can_trial": subscription_counter == 0,
+    }
+
+    return flask.jsonify(response), 200
 
 
 @shop_decorator(area="account", permission="user", response="html")
@@ -313,4 +351,11 @@ def post_purchase_calculate(ua_contracts_api: UAContractsAPI, **kwargs):
 def support(**kwargs):
     return flask.render_template(
         "support/index.html",
+    )
+
+
+@shop_decorator(area="account", response="html")
+def checkout(**kwargs):
+    return flask.render_template(
+        "account/checkout.html",
     )

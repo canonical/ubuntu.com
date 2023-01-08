@@ -86,7 +86,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             if user_token and guest_token:
                 flask.session.pop("guest_authentication_token")
-                flask.session.pop("guest_account_id")
                 guest_token = None
 
             if permission == "user" and response == "json":

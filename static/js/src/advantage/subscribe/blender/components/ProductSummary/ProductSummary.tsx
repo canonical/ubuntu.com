@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Col, Row, Select } from "@canonical/react-components";
+import { currencyFormatter } from "advantage/react/utils";
 import { FormContext } from "../../utils/FormContext";
 import { isMonthlyAvailable, Periods } from "../../utils/utils";
-import { currencyFormatter } from "advantage/react/utils";
-import PaymentModal from "../PaymentModal";
+import PaymentButton from "../PaymentButton";
 
 const ProductSummary = () => {
   const { quantity, period, setPeriod, product } = useContext(FormContext);
@@ -64,7 +64,7 @@ const ProductSummary = () => {
               /{period === Periods.yearly ? "year" : "month"}
             </strong>
           </span>
-          <PaymentModal isHidden={isHidden} />
+          <PaymentButton />
           <p className="p-text--small">
             Any applicable taxes are calculated before payment
           </p>

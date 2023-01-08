@@ -1,0 +1,38 @@
+{% extends "advantage/base_advantage.html" %}{% block title %}Buy Ubuntu Pro{% endblock %} {% block meta_description %}Ubuntu Pro offers a single, per-node packaging of the most comprehensive
+software, security and IaaS support in the industry, with OpenStack support,
+Kubernetes support included, and Livepatch, Landscape and Extended Security
+Maintenance to address security and compliance concerns.{% endblock %} {% block
+meta_copydoc
+%}https://docs.google.com/document/d/1UqL8YJH9ywvOXnrt3syY0U8fiOakfAGWmLS9uerwAWk/edit{%
+endblock meta_copydoc %} {% block content %}
+
+<div id="shop-checkout-app">
+    <div class="p-strip">
+        <div class="row">
+            <div class="col-12">
+                <h1>Checkout</h1>
+            </div>
+        </div>
+    </div>
+    <section class="p-strip u-no-padding--top">
+        <div class="row">
+            <div class="col-12">
+                <div class="u-no-margin--bottom p-card">
+                    <div class="p-card__content">
+                        <span class="p-text--default">
+                            <i class="p-icon--spinner u-animation--spin"></i>
+                        </span>
+                        Loading…
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+window.stripePublishableKey = "{{ get_stripe_publishable_key }}";
+</script>
+<script src="{{ versioned_static('js/dist/shopCheckout.js') }}" type="module"></script>
+
+{% endblock %}

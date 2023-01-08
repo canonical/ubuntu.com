@@ -1,10 +1,10 @@
-import { onLoginClick } from "advantage/ecom-events";
 import React from "react";
-import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
+import { onLoginClick } from "advantage/ecom-events";
+import useCustomerInfo from "advantage/subscribe/checkout/hooks/useCustomerInfo";
 import { getIsFreeTrialEnabled } from "../../utils/utils";
 
 export default function Heading() {
-  const { data: userInfo } = useStripeCustomerInfo();
+  const { data: userInfo } = useCustomerInfo();
   const freeTrial = getIsFreeTrialEnabled();
 
   return (

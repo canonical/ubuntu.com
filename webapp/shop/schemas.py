@@ -128,6 +128,14 @@ ensure_purchase_account = {
     "marketplace": String(),
 }
 
+get_purchase_account_status = {
+    "marketplace": String(
+        validate=validate.OneOf(
+            ["", "canonical-ua", "canonical-cube", "blender"]
+        )
+    ),
+}
+
 invoice_view = {
     "marketplace": String(
         validate=validate.OneOf(

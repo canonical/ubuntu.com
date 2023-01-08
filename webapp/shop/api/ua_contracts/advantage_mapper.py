@@ -341,13 +341,15 @@ class AdvantageMapper:
             purchase_request["metadata"] = metadata
 
         if preview:
-            invoice = self.ua_contracts_api.preview_purchase_from_marketplace(
-                marketplace=marketplace, purchase_request=purchase_request
+            invoice = (
+                self.ua_contracts_api.web_preview_purchase_from_marketplace(
+                    marketplace=marketplace, purchase_request=purchase_request
+                )
             )
 
             return InvoiceSchema().load(invoice)
 
-        purchase = self.ua_contracts_api.purchase_from_marketplace(
+        purchase = self.ua_contracts_api.web_purchase_from_marketplace(
             marketplace=marketplace, purchase_request=purchase_request
         )
 

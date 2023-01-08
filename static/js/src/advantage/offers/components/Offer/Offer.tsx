@@ -1,74 +1,39 @@
 import React from "react";
-import { ActionButton, Card, Row, Col } from "@canonical/react-components";
+import { Card, Col, Row } from "@canonical/react-components";
+import { UserSubscriptionPeriod } from "advantage/api/enum";
 import { currencyFormatter } from "advantage/react/utils";
-import PurchaseModal from "../../../../PurchaseModal";
-import { Offer as OfferType, Item } from "../../types";
-import Summary from "../Summary";
-import usePortal from "react-useportal";
-import { marketplace } from "PurchaseModal/utils/utils";
-import { Periods } from "advantage/subscribe/react/utils/utils";
+import { Product } from "advantage/subscribe/checkout/utils/types";
+import { Item, Offer as OfferType } from "../../types";
+import PaymentButton from "../PaymentButton";
 
 type Props = {
   offer: OfferType;
 };
 
-const termsLabel = (
-  <>
-    I agree to the{" "}
-    <a
-      href="/legal/ubuntu-advantage-service-terms"
-      target="_blank"
-      rel="noopener norefferer"
-    >
-      Ubuntu Pro terms
-    </a>
-    , which apply to the <a href="/legal/solution-support">Solution Support</a>{" "}
-    service.
-  </>
-);
-
-const descriptionLabel = (
-  <>
-    I agree to the{" "}
-    <a
-      href="/legal/ubuntu-pro-description"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Ubuntu Pro description
-    </a>
-  </>
-);
-
-const marketingLabel =
-  "I agree to receive information about Canonical's products and services";
-
 const Offer = ({ offer }: Props) => {
-  const { id, marketplace, items, total, account_id } = offer;
+  const { id, marketplace, items, total } = offer;
 
-  const { openPortal, closePortal, isOpen, Portal } = usePortal();
+  let names = items.map((item: Item) => {
+    return `${item.allowance ?? 0} x ${item.name}`;
+  });
 
-  const product = {
+  const product: Product = {
     longId: id ?? "",
-    period: Periods.yearly,
-    marketplace: marketplace as marketplace,
+    period: UserSubscriptionPeriod.Yearly,
+    marketplace: marketplace,
     id: id,
-    name: items[0].name ?? "",
+    name: names.join(", "),
     price: {
       value: Number(total),
     },
     canBeTrialled: false,
   };
 
-  const OfferSummary = () => {
-    return <Summary offer={offer} />;
-  };
-
   return (
     <Card data-testid="offer-card">
       <Row>
         <Col size={6} small={2} medium={2}>
-          <p className="p-text--x-small-capitalised">Contract item</p>
+          <p className="p-text--x-small-capitalised">Contract item22</p>
         </Col>
         <Col size={3} small={1} medium={2}>
           <p className="p-text--x-small-capitalised">Allowance</p>
@@ -114,30 +79,9 @@ const Offer = ({ offer }: Props) => {
       </Row>
       <Row>
         <Col size={12} className="u-align--right">
-          <ActionButton
-            appearance="positive"
-            className="u-no-margin--bottom"
-            onClick={openPortal}
-          >
-            Purchase
-          </ActionButton>
+          <PaymentButton product={product} />
         </Col>
       </Row>
-      {isOpen ? (
-        <Portal>
-          <PurchaseModal
-            accountId={account_id}
-            termsLabel={termsLabel}
-            product={product}
-            quantity={items.length}
-            descriptionLabel={descriptionLabel}
-            marketingLabel={marketingLabel}
-            Summary={OfferSummary}
-            closeModal={closePortal}
-            action="offer"
-          />
-        </Portal>
-      ) : null}
     </Card>
   );
 };

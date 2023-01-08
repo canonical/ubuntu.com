@@ -81,4 +81,12 @@ export type LastPurchaseIds = {
     monthly: string;
     yearly: string;
   };
+  [UserSubscriptionMarketplace.CanonicalCUBE]?: {
+    monthly: string;
+    yearly: string;
+  };
+  [UserSubscriptionMarketplace.Free]?: {
+    monthly: string;
+    yearly: string;
+  };
 };
