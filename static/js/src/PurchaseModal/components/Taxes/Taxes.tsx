@@ -7,7 +7,7 @@ import {
   Input,
   ActionButton,
 } from "@canonical/react-components";
-import { FormValues, getLabel } from "advantage/subscribe/react/utils/utils";
+import { getLabel } from "advantage/subscribe/react/utils/utils";
 import {
   caProvinces,
   countries,
@@ -16,26 +16,36 @@ import {
 } from "advantage/countries-and-states";
 import useCalculateTaxes from "PurchaseModal/hooks/useCalculateTaxes";
 import useStripeCustomerInfo from "PurchaseModal/hooks/useStripeCustomerInfo";
+import useMakePurchase from "PurchaseModal/hooks/useMakePurchase";
+import { FormValues } from "../../utils/utils";
+import { useQueryClient } from "react-query";
 
 type TaxesProps = {
+  setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   product: any;
   quantity: number;
   setTaxSaved: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Taxes = ({ product, quantity, setTaxSaved }: TaxesProps) => {
+const Taxes = ({ product, quantity, setError, setTaxSaved }: TaxesProps) => {
   const {
     errors,
     touched,
     values,
     setFieldValue,
+    setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
+
+  const queryClient = useQueryClient();
+
+  const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : "purchase";
 
   const { data: userInfo } = useStripeCustomerInfo();
 
   const [isEditing, setIsEditing] = useState(!values.country);
 
   const savedCountry = userInfo?.customerInfo?.address?.country;
+  const isGuest = !userInfo?.customerInfo?.email;
 
   useEffect(() => {
     if (savedCountry) {
@@ -50,11 +60,45 @@ const Taxes = ({ product, quantity, setTaxSaved }: TaxesProps) => {
     quantity,
     VATNumber: values.VATNumber,
   });
+  const genericPurchaseMutation = useMakePurchase();
 
   const onSaveClick = () => {
     setIsEditing(false);
-    setTaxSaved(true);
-    taxMutation.mutate();
+
+    if (isGuest || !window.accountId) {
+      taxMutation.mutate();
+      setTaxSaved(true);
+    } else {
+      genericPurchaseMutation.mutate(
+        {
+          formData: values,
+          product,
+          quantity,
+          action: buyAction,
+          preview: true,
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries("preview");
+            setTaxSaved(true);
+          },
+          onError: (error) => {
+            if (
+              error instanceof Error &&
+              error.message.includes("tax_id_invalid")
+            ) {
+              setFormikErrors({
+                VATNumber:
+                  "That VAT number is invalid. Check the number and try again.",
+              });
+              setError(
+                <>That VAT number is invalid. Check the number and try again.</>
+              );
+            }
+          },
+        }
+      );
+    }
   };
 
   const onEditClick = () => {

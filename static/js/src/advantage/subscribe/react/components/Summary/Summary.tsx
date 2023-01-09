@@ -84,7 +84,6 @@ function Summary() {
       </Row>
     );
   }
-
   return (
     <section
       id="summary-section"
@@ -124,7 +123,6 @@ function Summary() {
         <Col size={4}>
           <div className="u-text-light">Ends:</div>
         </Col>
-
         {preview?.subscriptionEndOfCycle ? (
           <Col size={8}>
             <div data-testid="end-date">

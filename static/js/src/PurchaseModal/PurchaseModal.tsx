@@ -185,6 +185,7 @@ const PurchaseModal = ({
                     <Taxes
                       product={product}
                       quantity={quantity}
+                      setError={setError}
                       setTaxSaved={setTaxSaved}
                     />
                   ),
