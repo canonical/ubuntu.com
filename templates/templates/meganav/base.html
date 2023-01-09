@@ -8,7 +8,7 @@
               <ul class="p-side-navigation__list js-tabs u-no-margin--bottom js-tabbed-content" role="tablist" aria-label="Categories">
                 {% for side_nav_section in sections.side_nav_sections %}
                   <li class="p-side-navigation__item">
-                    <a href="#" class="p-side-navigation__link js-tab {{ 'is-active' if loop.index == 1 }}" id="tab-{{ key }}-{{ loop.index }}" aria-controls="tab-content-{{ key }}-{{ loop.index }}" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" tabindex="{{ '0' if loop.index == 1 else '-1' }}" onclick="showSection(event);">{{ side_nav_section.title }}</a>
+                    <a href="#" class="p-side-navigation__link js-tab {{ 'is-active' if loop.index == 1 }}" id="tab-{{ key }}-{{ loop.index }}" aria-controls="tab-content-{{ key }}-{{ loop.index }}" role="tab" aria-selected="{{ 'true' if loop.index == 1 else 'false' }}" onclick="showSection(event);">{{ side_nav_section.title }}</a>
                   </li>
                 {% endfor %}
                 </ul>

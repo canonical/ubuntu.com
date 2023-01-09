@@ -881,3 +881,14 @@ a:hover {
 .u-table-border-bottom {
   border-bottom: 1px solid $color-mid-light;
 }
+
+.is-reduced .global-nav__header-link-anchor::after {
+  top: 0.5rem !important;
+}
+
+#all-canonical-mobile .global-nav__header-link-anchor::after {
+  @media (max-width: $breakpoint-small) {
+    right: 1rem !important;
+    top: 1.25rem !important;
+  }
+}

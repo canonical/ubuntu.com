@@ -5,7 +5,7 @@
   <div class="p-navigation__row">
     <div class="p-navigation__banner">
       <div class="p-navigation__tagged-logo">
-        <a class="p-navigation__link" href="/">
+        <a class="p-navigation__link {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}u-no-padding--left {% elif breadcrumbs == 'tutorials' %}u-no-padding--left{% endif %}" href="/">
           {% if breadcrumbs and breadcrumbs.children or breadcrumbs.grandchildren %}
           Canonical Ubuntu
           {% elif breadcrumbs == "tutorials" %}
@@ -21,7 +21,6 @@
       <ul class="p-navigation__items">
         <li class="p-navigation__item">
           <button class="js-search-button p-navigation__link--search-toggle">
-            <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
         <li class="p-navigation__item">
@@ -31,34 +30,33 @@
     </div>
     <nav class="p-navigation__nav js-show-nav u-hide" aria-label="Categories">
       <ul class="p-navigation__items">
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseover="fetchDropdown('/templates/meganav/products', 'products-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#products-content" onfocus="fetchDropdown('/templates/meganav/products', 'products-content');">Products</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="products" onmouseover="fetchDropdown(event, '/templates/meganav/products', 'products-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#products-content" onfocus="fetchDropdown(event, '/templates/meganav/products', 'products-content');">Products</a>
           <div class="u-hide dropdown-content-mobile" id="products-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseover="fetchDropdown('/templates/meganav/use-case', 'use-case-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#use-case-content" onfocus="fetchDropdown('/templates/meganav/use-case', 'use-case-content');">Use Case</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="use-case" onmouseover="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#use-case-content" onfocus="fetchDropdown(event, '/templates/meganav/use-case', 'use-case-content');">Use Case</a>
           <div class="u-hide dropdown-content-mobile" id="use-case-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseover="fetchDropdown('/templates/meganav/support', 'support-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#support-content" onfocus="fetchDropdown('/templates/meganav/support', 'support-content');">Support</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="support" onmouseover="fetchDropdown(event, '/templates/meganav/support', 'support-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#support-content" onfocus="fetchDropdown(event, '/templates/meganav/support', 'support-content');">Support</a>
           <div class="u-hide dropdown-content-mobile" id="support-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown('/templates/meganav/community', 'community-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown('/templates/meganav/community', 'community-content');">Community</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="community" onmouseover="fetchDropdown(event, '/templates/meganav/community', 'community-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#community-content" onfocus="fetchDropdown(event, '/templates/meganav/community', 'community-content');">Community</a>
           <div class="u-hide dropdown-content-mobile" id="community-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
-        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
-          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown('/templates/meganav/get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
+        <li class="p-navigation__item--dropdown-toggle" role="menuitem" id="get-ubuntu" onmouseover="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content'); this.onmouseover = null;">
+          <a class="p-navigation__link" href="#get-ubuntu-content" onfocus="fetchDropdown(event, '/templates/meganav/get-ubuntu', 'get-ubuntu-content');">Get Ubuntu</a>
           <div class="u-hide dropdown-content-mobile" id="get-ubuntu-content-mobile" onclick="event.stopPropagation()"></div>
         </li>
       </ul>
       <ul class="p-navigation__items global-nav">
         <li class="p-navigation__item">
           <button href="#" class="js-search-button p-navigation__link--search-toggle">
-            <span class="p-navigation__search-label">Search</span>
           </button>
         </li>
-        <li class="p-navigation__user u-hide--small u-hide--medium js-account" id="canonical-login"></li>
+        <li class="p-navigation__user js-account" id="canonical-login"></li>
       </ul>
       <div class="p-navigation__search">
         <form action="/search" class="p-search-box">
@@ -93,8 +91,11 @@
           <span class="p-navigation__logo-title">{{ breadcrumbs.section.title | replace(" ", "&nbsp;") | safe }}</span>
         </a>
       </div>
-      <div class="u-hide js-account--small"></div>
-      <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
+      {% if breadcrumbs.children %}
+        {% if not (breadcrumbs.children | length == 1 and breadcrumbs.children[0].title == "Overview") %}
+         <a href="#" class="p-navigation__toggle--open" title="Toggle navigation"><i class="p-icon--chevron-down is-light"></i></a>
+        {% endif %}
+      {% endif %}
     </div>
 
     <nav class="p-navigation__nav" aria-label="{{ breadcrumbs.section.title | replace(' ', '&nbsp;') | safe }} navigation">
@@ -191,21 +192,23 @@
     sessionStorage.setItem('navBubble', currentBubble)
   }
   
-  function fetchDropdown(url, id) {
-    var mobile = document.getElementById(id+"-mobile");
-    var div = document.getElementById(id);
+  function fetchDropdown(event, url, id) {
+    const triggerEl = event.target;
+    const container = document.getElementById(id);
+    const mobileContainer = document.getElementById(id+"-mobile");
 
-    if (div.innerHTML === "") {
-      var req = new XMLHttpRequest();
+    if (container.innerHTML === "") {
+      const req = new XMLHttpRequest();
       req.open('GET', url);
       req.send();
       req.addEventListener('load', function() {
-        div.innerHTML = this.responseText;
+        container.innerHTML = this.responseText;
+        // attachNavEvents(triggerEl, container);
       });
       req.addEventListener('load', function() {
-        mobile.innerHTML = this.responseText;
-
-        var activeCTAs = mobile.querySelectorAll('a.is-active');
+        mobileContainer.innerHTML = this.responseText;
+        
+        const activeCTAs = mobileContainer.querySelectorAll('a.is-active');
 
         activeCTAs.forEach((cta) => {
           cta.classList.remove('is-active');
@@ -215,228 +218,187 @@
   }
 
   function initNavigationSearch(element) {
-  const searchButtons = element.querySelectorAll('.js-search-button');
+    const searchButtons = element.querySelectorAll('.js-search-button');
+    const menuButton = element.querySelector('.js-menu-button');
+    const overlay = element.querySelector('.p-navigation__search-overlay');
 
-  searchButtons.forEach((searchButton) => {
-    searchButton.addEventListener('click', toggleSearch);
-  });
-
-  const menuButton = element.querySelector('.js-menu-button');
-  if (menuButton) {
-    menuButton.addEventListener('click', toggleMenu);
-  }
-
-  const overlay = element.querySelector('.p-navigation__search-overlay');
-  if (overlay) {
-    overlay.addEventListener('click', closeAll);
-  }
-
-  function toggleMenu(e) {
-    e.preventDefault();
-
-    var navigation = e.target.closest('.p-navigation');
-    if (navigation.classList.contains('has-menu-open')) {
-      var mobileContent = document.querySelector('.dropdown-content-mobile')
-      mobileContent.classList.add('u-hide')
-      closeAll();
-    } else {
-      closeAll();
-      openMenu(e);
-    }
-  }
-
-  function toggleSearch(e) {
-    e.preventDefault();
-
-    var navigation = e.target.closest('.p-navigation');
-    if (navigation.classList.contains('has-search-open')) {
-      closeAll();
-    } else {
-      closeAll();
-      openSearch(e);
-    }
-  }
-
-  function openSearch(e) {
-    e.preventDefault();
-    var navigation = e.target.closest('.p-navigation');
-    var nav = navigation.querySelector('.p-navigation__nav');
-
-    var searchInput = navigation.querySelector('.p-search-box__input');
-    var buttons = document.querySelectorAll('.js-search-button');
-    var secondaryNav = document.querySelector(".is-secondary")
-
-    buttons.forEach((searchButton) => {
-      searchButton.setAttribute('aria-pressed', true);
+    searchButtons.forEach((searchButton) => {
+      searchButton.addEventListener('click', toggleSearch);
     });
 
-    navigation.classList.add('has-search-open');
-    if(secondaryNav){
-      secondaryNav.classList.add('u-hide');
+    if (menuButton) {
+      menuButton.addEventListener('click', toggleMenu);
     }
-    searchInput.focus();
-    document.addEventListener('keyup', keyPressHandler);
-  }
 
-  function openMenu(e) {
-    e.preventDefault();
-    var navigation = e.target.closest('.p-navigation');
-    var nav = navigation.querySelector('.p-navigation__nav');
-
-    var buttons = document.querySelectorAll('.js-menu-button');
-
-    buttons.forEach((searchButton) => {
-      searchButton.setAttribute('aria-pressed', true);
-    });
-
-    navigation.classList.add('has-menu-open');
-    document.addEventListener('keyup', keyPressHandler);
-  }
-
-  function closeSearch() {
-    var navigation = document.querySelector('.p-navigation');
-    var nav = navigation.querySelector('.p-navigation__nav');
-
-    var banner = document.querySelector('.p-navigation__banner');
-    var buttons = document.querySelectorAll('.js-search-button');
-
-    buttons.forEach((searchButton) => {
-      searchButton.removeAttribute('aria-pressed');
-    });
-    var secondaryNav = document.querySelector(".is-secondary")
-
-    navigation.classList.remove('has-search-open');
-    if(secondaryNav){
-      secondaryNav.classList.remove('u-hide');
+    if (overlay) {
+      overlay.addEventListener('click', closeAll);
     }
-    document.removeEventListener('keyup', keyPressHandler);
-  }
 
-  function closeMenu() {
-    var navigation = document.querySelector('.p-navigation');
-    var nav = navigation.querySelector('.p-navigation__nav');
-
-    var banner = document.querySelector('.p-navigation__banner');
-    var buttons = document.querySelectorAll('.js-menu-button');
-    var dropdownWindow =  document.querySelector('.dropdown-window');
-    var dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
-    var reducedNavItems = document.querySelectorAll('[role="menuitem"]');
-    dropdownWindow.classList.add("slide-animation");
-    dropdownWindowOverlay.classList.add("fade-animation");
-
-    reducedNavItems.forEach( item => {
-      if (item.classList.contains("is-selected")){
-        item.classList.remove("is-selected");
-      }
-    });
-
-    [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
-        if (dropdownContent.classList.contains("u-hide") === false) {
-          dropdownContent.classList.add("u-hide");
-        }
-      }
-    )
-
-    buttons.forEach((searchButton) => {
-      searchButton.removeAttribute('aria-pressed');
-    });
-
-    navigation.classList.remove('has-menu-open');
-    document.removeEventListener('keyup', keyPressHandler);
-  }
-
-  function closeAll() {
-    closeSearch();
-    closeMenu();
-  }
-
-  function keyPressHandler(e) {
-    if (e.key === 'Escape') {
-      closeAll();
-    }
-  }
-}
-
-var navigation = document.querySelector('#navigation');
-initNavigationSearch(navigation);
-
-function toggleDropdown(toggle, open) {
-  var parentElement = toggle.parentNode;
-  var dropdownWindow =  document.querySelector('.dropdown-window');
-  var dropdown = document.getElementById(toggle.getAttribute('aria-controls'));
-  dropdown.setAttribute('aria-hidden', !open);
-
-  if (open) {
-    parentElement.classList.add('is-active');
-    [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
-      if (dropdownContent.classList.contains("u-hide") === false) {
-        dropdownContent.classList.add("u-hide");
-      }
-    })
-  } else {
-    parentElement.classList.remove('is-active');
-  }
-}
-
-function closeAllDropdowns(toggles) {
-  toggles.forEach(function (toggle) {
-    toggleDropdown(toggle, false);
-  });
-}
-
-function handleClickOutside(toggles, containerClass) {
-  document.addEventListener('click', function (event) {
-    var target = event.target;
-
-    if (target.closest) {
-      if (!target.closest(containerClass)) {
-        closeAllDropdowns(toggles);
-      }
-    }
-  });
-}
-
-function showSection(e) {
-  const nav = document.querySelector('.p-navigation');
-  const target = e.target.getAttribute('aria-controls');
-  const el = document.getElementById(target);
-  
-  el.removeAttribute('hidden');
-
-  setTimeout(function () {
-    nav.classList.add('subsection-active');
-    el.classList.add('is-active');
-  }, 1);
-}
-
-function hideSection(e) {
-  e.preventDefault();
-  const nav = document.querySelector('.p-navigation');
-  const target = e.target.getAttribute('aria-controls');
-  const el = document.getElementById(target)
-
-  nav.classList.remove('subsection-active');
-  el.classList.remove('is-active');
-
-  setTimeout(function () {
-    el.setAttribute('hidden', true);
-  }, 333);
-}
-
-function initNavDropdowns(containerClass) {
-  var toggles = [].slice.call(document.querySelectorAll(containerClass + ' [aria-controls]'));
-
-  handleClickOutside(toggles, containerClass);
-
-  toggles.forEach(function (toggle) {
-    toggle.addEventListener('click', function (e) {
+    function toggleMenu(e) {
       e.preventDefault();
+      const navigation = e.target.closest('.p-navigation');
 
-      closeAllDropdowns(toggles);
-      toggleDropdown(toggle, true);
-    });
-  });
-}
+      if (navigation.classList.contains('has-menu-open')) {
+        const mobileContent = document.querySelector('.dropdown-content-mobile')
+        
+        mobileContent.classList.add('u-hide')
+        closeAll();
+      } else {
+        closeAll();
+        openMenu(e);
+      }
+    }
 
-initNavDropdowns('.p-navigation__item--dropdown-toggle')
+    function toggleSearch(e) {
+      e.preventDefault();
+      const navigation = e.target.closest('.p-navigation');
+
+      if (navigation.classList.contains('has-search-open')) {
+        closeAll();
+      } else {
+        closeAll();
+        openSearch(e);
+      }
+    }
+
+    function openSearch(e) {
+      e.preventDefault();
+      const navigation = e.target.closest('.p-navigation');
+      const nav = navigation.querySelector('.p-navigation__nav');
+      const searchInput = navigation.querySelector('.p-search-box__input');
+      const buttons = document.querySelectorAll('.js-search-button');
+      const secondaryNav = document.querySelector(".is-secondary")
+
+      buttons.forEach((searchButton) => {
+        searchButton.setAttribute('aria-pressed', true);
+      });
+
+      navigation.classList.add('has-search-open');
+      if(secondaryNav){
+        secondaryNav.classList.add('u-hide');
+      }
+      searchInput.focus();
+      document.addEventListener('keyup', keyPressHandler);
+    }
+
+    function openMenu(e) {
+      e.preventDefault();
+      const navigation = e.target.closest('.p-navigation');
+      const nav = navigation.querySelector('.p-navigation__nav');
+      const buttons = document.querySelectorAll('.js-menu-button');
+
+      buttons.forEach((searchButton) => {
+        searchButton.setAttribute('aria-pressed', true);
+      });
+
+      navigation.classList.add('has-menu-open');
+      document.addEventListener('keyup', keyPressHandler);
+    }
+
+    function closeSearch() {
+      const navigation = document.querySelector('.p-navigation');
+      const nav = navigation.querySelector('.p-navigation__nav');
+      const banner = document.querySelector('.p-navigation__banner');
+      const buttons = document.querySelectorAll('.js-search-button');
+      const secondaryNav = document.querySelector(".is-secondary");
+
+      buttons.forEach((searchButton) => {
+        searchButton.removeAttribute('aria-pressed');
+      });
+
+      navigation.classList.remove('has-search-open');
+      
+      if(secondaryNav){
+        secondaryNav.classList.remove('u-hide');
+      }
+      
+      document.removeEventListener('keyup', keyPressHandler);
+    }
+
+    function closeMenu() {
+      const navigation = document.querySelector('.p-navigation');
+      const nav = navigation.querySelector('.p-navigation__nav');
+      const banner = document.querySelector('.p-navigation__banner');
+      const buttons = document.querySelectorAll('.js-menu-button');
+      const dropdownWindow =  document.querySelector('.dropdown-window');
+      const dropdownWindowOverlay = document.querySelector(".dropdown-window-overlay");
+      const reducedNavItems = document.querySelectorAll('[role="menuitem"]');
+      
+      dropdownWindow.classList.add("slide-animation");
+      dropdownWindowOverlay.classList.add("fade-animation");
+      navigation.classList.remove('subsection-active');
+
+      reducedNavItems.forEach( item => {
+        if (item.classList.contains("is-selected")){
+          item.classList.remove("is-selected");
+        }
+      });
+
+      [].slice.call(dropdownWindow.children).forEach( dropdownContent => {
+          if (dropdownContent.classList.contains("u-hide") === false) {
+            dropdownContent.classList.add("u-hide");
+          }
+        }
+      )
+
+      buttons.forEach((searchButton) => {
+        searchButton.removeAttribute('aria-pressed');
+      });
+
+      navigation.classList.remove('has-menu-open');
+      document.removeEventListener('keyup', keyPressHandler);
+    }
+
+    function closeAll() {
+      closeSearch();
+      closeMenu();
+    }
+
+    function keyPressHandler(e) {
+      if (e.key === 'Escape') {
+        closeAll();
+      }
+    }
+  }
+
+  const navigation = document.querySelector('#navigation');
+  initNavigationSearch(navigation);
+
+  function showSection(e) {
+    const nav = document.querySelector('.p-navigation');
+    const target = e.target.getAttribute('aria-controls');
+    const isDesktop = e.target.closest('.dropdown-content-desktop');
+    const isMobile = e.target.closest('.dropdown-content-mobile');
+    let el;
+
+    e.preventDefault()
+
+    if (isDesktop) {
+      el = document.querySelector(`.dropdown-content-desktop #${target}`);
+    } else if (isMobile) {
+      el = document.querySelector(`.dropdown-content-mobile #${target}`);
+    }
+    
+    el.removeAttribute('hidden');
+
+    setTimeout(function () {
+      nav.classList.add('subsection-active');
+      el.classList.add('is-active');
+      el.focus();
+    }, 1);
+  }
+
+  function hideSection(e) {
+    e.preventDefault();
+    const nav = document.querySelector('.p-navigation');
+    const target = e.target.getAttribute('aria-controls');
+    const el = document.getElementById(target)
+
+    nav.classList.remove('subsection-active');
+    el.classList.remove('is-active');
+
+    setTimeout(function () {
+      el.setAttribute('hidden', true);
+    }, 333);
+  }
 </script>

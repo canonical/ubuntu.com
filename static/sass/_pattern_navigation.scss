@@ -17,8 +17,6 @@
   }
 
   .p-navigation__row {
-    @include vf-animation(all, fast, out);
-
     transform: 0;
 
     .subsection-active & {
@@ -219,6 +217,10 @@
       .p-navigation__dropdown--right {
         top: 2rem;
       }
+    }
+
+    & ~ .global-nav-dropdown {
+      top: 2.1rem !important;
     }
   }
 }
