@@ -202,7 +202,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                       element="a"
                       href={
                         "/pro/attach?subscription=" +
-                        subscription.id
+                        subscription.contract_id
                       }
                     >
                       Attach a machine

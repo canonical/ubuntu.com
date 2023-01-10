@@ -1,4 +1,5 @@
 # Packages
+import json
 from typing import List
 
 import flask
@@ -54,7 +55,6 @@ def advantage_view(advantage_mapper, **kwargs):
 def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
     user_subscriptions = advantage_mapper.get_user_subscriptions(email)
-
     return flask.jsonify(to_dict(user_subscriptions))
 
 
@@ -627,22 +627,39 @@ def blender_thanks_view(**kwargs):
     )
 
 
-@shop_decorator(area="advantage", permission="user", response="json")
-@use_kwargs({"contractID": String(), "userCode": String()}, location="json")
+@shop_decorator(area="advantage", permission="user", response="html")
 def activate_magic_attach(advantage_mapper, **kwargs):
-    client_ip = flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
-    flask.current_app.logger.info(client_ip)
-    return advantage_mapper.activate_magic_attach(
-        contractID=kwargs.get("contractID"),
-        userCode=kwargs.get("userCode"),
-        client_ip=client_ip,
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
     )
+    flask.current_app.logger.info(client_ip)
+    try:
+        activation_status = advantage_mapper.activate_magic_attach(
+            contractID=flask.request.form.get("contractID"),
+            userCode=flask.request.form.get("userCode"),
+            client_ip=client_ip,
+        )
+        return flask.render_template(
+            "/pro/attach/confirmation.html", status=activation_status
+        )
+    except Exception as e:
+        print(e.response)
+        return flask.render_template(
+            "/pro/attach/confirmation.html",
+            status=json.loads(e.response.content),
+        )
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def magic_attach_view(**kwargs):
-    client_ip = flask.request.headers.get("X-Real-IP", flask.request.remote_addr)
+def magic_attach_view(advantage_mapper, **kwargs):
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
     flask.current_app.logger.info(client_ip)
+    user_subscriptions = advantage_mapper.get_user_subscriptions(email=None)
+    selectedId = flask.request.args.get("subscription")
     return flask.render_template(
-        "advantage/attach/index.html",
+        "pro/attach/index.html",
+        subscriptions=user_subscriptions,
+        selectedId=selectedId,
     )

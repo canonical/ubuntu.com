@@ -1,0 +1,57 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage - Magic Attach{% endblock %}
+{% block meta_description %}Magically attach devices with your {% endblock %}
+
+{% block content %}
+<div class="p-strip--suru-topped p-strip">
+    <div class="row">
+        <div class="col-12">
+            <form action="/pro/attach" method="POST">
+                <div class="p-form__group p-form-validation row">
+                    <div class="col-4">
+                        <label class="p-form__label" for="magic-attach-code">
+                            Enter the code displayed in your installation
+                        </label>
+                    </div>
+                    <div class="col-8">
+                        <div class="p-form__control u-clearfix">
+                            <input class="p-form-validation__input" type="text" aria-invalid="false"
+                                id="magic-attach-code" name="userCode"
+                                label="Enter the code displayed in your installation">
+                        </div>
+                    </div>
+                </div>
+                <div class="p-form__group p-form-validation row">
+                    <div class="col-4">
+                        <label class="p-form__label">Choose a subscription to attach</label>
+                    </div>
+                    <div class="col-8">
+                        <div class="p-form__control u-clearfix">
+                            <div class="p-form-validation__select-wrapper">
+                                <select aria-invalid="false" name="contractID" class="p-form-validation__input">
+                                    {% for subscription in subscriptions %}
+                                    <option value={{ subscription.contract_id }} {{ "selected" if
+                                        selectedId==subscription.contract_id }}>{{
+                                        subscription.product_name
+                                        }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="p-button--positive u-float-right" name="add-details">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <!-- {% include "pro/attach/instructions.html" %} -->
+    </div>
+</div>
+{% endblock content %}

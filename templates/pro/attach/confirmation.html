@@ -1,0 +1,39 @@
+{% extends "advantage/base_advantage.html" %}
+
+{% block title %}Ubuntu Advantage - Magic Attach{% endblock %}
+{% block meta_description %}Magically attach devices with your {% endblock %}
+
+{% block content %}
+<section class="u-fixed-width">
+
+    {% if 'success' in status %}
+    <div class="p-notification--positive" id="notification-success">
+        <div class="p-notification__content">
+            <h5 class="p-notification__title">Success</h5>
+            <p class="p-notification__message">Successfully Attached Machine</p>
+            <button class="p-notification__close" aria-controls="notification">Close</button>
+        </div>
+        <div class="p-notification__meta">
+            <div class="p-notification__actions">
+                <a class="p-notification__action"><button onclick="history.back()"> Go Back</button></a>
+                <a class="p-notification__action" href="/pro/dashboard"><button>Your Subscriptions</button></a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="p-notification--negative" id="notification-error">
+        <div class="p-notification__content">
+            <h5 class="p-notification__title">{{status.code}}</h5>
+            <p class="p-notification__message">{{status.message}}</p>
+            <button class="p-notification__close" aria-controls="notification">Close</button>
+        </div>
+        <div class="p-notification__meta">
+            <div class="p-notification__actions">
+                <a class="p-notification__action"><button onclick="history.back()"> Go Back</button></a>
+                <a class="p-notification__action" href="/pro/dashboard"><button>Your Subscriptions</button></a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
