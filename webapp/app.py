@@ -85,6 +85,7 @@ from webapp.views import (
     mirrors_query,
     build_tutorials_query,
     openstack_engage,
+    get_user_country_by_ip,
 )
 
 from webapp.shop.views import (
@@ -708,6 +709,8 @@ app.add_url_rule(
 
 core_services_guide.init_app(app)
 
+
+app.add_url_rule("/user-country.json", view_func=get_user_country_by_ip)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")

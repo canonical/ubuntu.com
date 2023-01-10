@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 
 api_session = CachedSession(fallback_cache_duration=3600)
 
-
 # Read navigation.yaml
 with open("navigation.yaml") as navigation_file:
     nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
