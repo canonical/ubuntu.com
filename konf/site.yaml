@@ -143,9 +143,9 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/cube]
-      name: ubuntu-com-cube
-      app_name: ubuntu.com-cube
+    - paths: [/credentials]
+      name: ubuntu-com-credentials
+      app_name: ubuntu.com-credentials
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
@@ -170,19 +170,6 @@ production:
           secretKeyRef:
             key: password
             name: badgr
-
-        - name: CUBE_EDX_URL
-          value: https://cube.ubuntu.com
-
-        - name: CUBE_EDX_CLIENT_ID
-          secretKeyRef:
-            key: client-id
-            name: cube-edx
-
-        - name: CUBE_EDX_CLIENT_SECRET
-          secretKeyRef:
-            key: client-secret
-            name: cube-edx
 
         - name: BADGR_ISSUER
           value: eTedPNzMTuqy1SMWJ05UbA
@@ -477,19 +464,6 @@ staging:
         key: qa-password
         name: badgr
 
-    - name: CUBE_EDX_URL
-      value: https://qa.cube.ubuntu.com
-
-    - name: CUBE_EDX_CLIENT_ID
-      secretKeyRef:
-        key: qa-client-id
-        name: cube-edx
-
-    - name: CUBE_EDX_CLIENT_SECRET
-      secretKeyRef:
-        key: qa-client-secret
-        name: cube-edx
-
     - name: BADGR_ISSUER
       value: 36ZEJnXdTjqobw93BJElog
 
@@ -556,24 +530,6 @@ staging:
           secretKeyRef:
             key: qa-password
             name: badgr
-
-        - name: CUBE_EDX_URL
-          value: https://qa.cube.ubuntu.com
-
-        - name:
-          secretKeyRef:
-            key: qa-client-secret
-            name: cube-edx
-
-        - name: CUBE_EDX_CLIENT_ID
-          secretKeyRef:
-            key: qa-client-id
-            name: cube-edx
-
-        - name: CUBE_EDX_CLIENT_SECRET
-          secretKeyRef:
-            key: qa-client-secret
-            name: cube-edx
 
         - name: BADGR_ISSUER
           value: 36ZEJnXdTjqobw93BJElog
@@ -821,19 +777,6 @@ demo:
       secretKeyRef:
         key: qa-password
         name: badgr
-
-    - name: CUBE_EDX_URL
-      value: https://qa.cube.ubuntu.com
-
-    - name: CUBE_EDX_CLIENT_ID
-      secretKeyRef:
-        key: qa-client-id
-        name: cube-edx
-
-    - name: CUBE_EDX_CLIENT_SECRET
-      secretKeyRef:
-        key: qa-client-secret
-        name: cube-edx
 
     - name: BADGR_ISSUER
       value: 36ZEJnXdTjqobw93BJElog

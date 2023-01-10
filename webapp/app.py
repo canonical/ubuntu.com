@@ -44,7 +44,7 @@ from webapp.context import (
 )
 
 from webapp.shop.flaskparser import UAContractsValidationError
-from webapp.shop.cube.views import (
+from webapp.shop.cred.views import (
     cred_self_study,
     cred_submit_form,
     cred_syllabus_data,
