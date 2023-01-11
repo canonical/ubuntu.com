@@ -183,6 +183,14 @@ production:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
+        - name: TRUEABILITY_URL
+          value: https://app.trueability.com
+
+        - name: TRUEABILITY_API_KEY
+          secretKeyRef:
+            key: api-key
+            name: trueability
+
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
@@ -503,9 +511,9 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/cube]
-      name: ubuntu-com-cube
-      app_name: ubuntu.com-cube
+    - paths: [/credentials]
+      name: ubuntu-com-credentials
+      app_name: ubuntu.com-credentials
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
@@ -542,6 +550,14 @@ staging:
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+        - name: TRUEABILITY_URL
+          value: https://app.trueability.com
+
+        - name: TRUEABILITY_API_KEY
+          secretKeyRef:
+            key: api-key
+            name: trueability
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
