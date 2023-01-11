@@ -183,6 +183,14 @@ production:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
+        - name: TRUEABILITY_URL
+          value: https://app.trueability.com
+
+        - name: TRUEABILITY_API_KEY
+          secretKeyRef:
+            key: api-key
+            name: trueability
+
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
       app_name: ubuntu.com-tutorials
