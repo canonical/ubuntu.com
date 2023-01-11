@@ -329,13 +329,13 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def post_magic_attach(self, request_body: dict, headers : dict) -> dict:
+    def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
             method="post",
             path=f"v1/magic-attach/activate",
             json=request_body,
             error_rules=["default"],
-            headers=headers
+            headers=headers,
         )
         return {"success": "true"}
 
