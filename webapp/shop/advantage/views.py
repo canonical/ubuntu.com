@@ -632,11 +632,10 @@ def activate_magic_attach(advantage_mapper, **kwargs):
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
-    flask.current_app.logger.info(client_ip)
     try:
         activation_status = advantage_mapper.activate_magic_attach(
-            contractID=flask.request.form.get("contractID"),
-            userCode=flask.request.form.get("userCode"),
+            contract_id=flask.request.form.get("contractID"),
+            user_code=flask.request.form.get("userCode"),
             client_ip=client_ip,
         )
         return flask.render_template(
@@ -652,10 +651,6 @@ def activate_magic_attach(advantage_mapper, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def magic_attach_view(advantage_mapper, **kwargs):
-    client_ip = flask.request.headers.get(
-        "X-Real-IP", flask.request.remote_addr
-    )
-    flask.current_app.logger.info(client_ip)
     user_subscriptions = advantage_mapper.get_user_subscriptions(email=None)
     selectedId = flask.request.args.get("subscription")
     return flask.render_template(
