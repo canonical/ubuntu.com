@@ -33,7 +33,7 @@
                                     <select aria-invalid="false" name="contractID" class="p-form-validation__input">
                                         {% for subscription in subscriptions %}
                                         <option value={{ subscription.contract_id }} {{ "selected" if
-                                            selectedId==subscription.contract_id }}>{{
+                                            selected_id==subscription.contract_id }}>{{
                                             subscription.product_name
                                             }} [ {{ subscription.number_of_machines }} {{ "machines" if
                                             subscription.number_of_machines >1 else "machine" }} ]
