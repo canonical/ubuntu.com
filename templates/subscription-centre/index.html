@@ -15,11 +15,11 @@
   </div>
   <div class="row">
     <div class="col-4">
-      <h1 class="p-heading--2">Subscription centre</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <h1 class="p-heading--2 u-no-margin--bottom u-sv1">Subscription centre</h1>
+      <p class="p-heading--4">Tailor your email preferences</p>
     </div>
     <div class="col-8">
-      <div class="p-search-and-filter" id="subscription-centre-search" style="margin-bottom:1rem;">
+      <div class="p-search-and-filter" id="subscription-centre-search" style="margin-bottom:1rem;" aria-hidden="true" hidden>
         <button class="p-search-and-filter__clear" aria-hidden="true" hidden=""><i class="p-icon--close"></i></button>
         <div class="p-search-and-filter__search-container" aria-expanded="true" data-active="true" data-empty="false">
           <div class="p-search-and-filter__box" data-overflowing="false">
@@ -38,9 +38,10 @@
       </div>
 
       <form id="subscription-centre" method="post">
+        <p>Select your areas of interest below to regularly receive informative emails about relevant product announcements, webinars and events, case studies, and more. You can update your preferences here anytime.</p>
         <label class="p-checkbox">
           <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="true" {% if updatesOptIn %}checked{% endif %}>
-          <span class="p-checkbox__label">Include regular updates about Canonical's products and services, including webinar and event invites</span>
+          <span class="p-checkbox__label">I agree to receive information about Canonical's products and services</span>
         </label>
         <hr class="p-separator is-shallow">
         <div class="p-accordion">
@@ -165,7 +166,7 @@
 
       return subsArray;
     };
-    
+
     // Searches for matching strings and renders the matches in the search dropdown
     const handleSearch = (e) => {
       const searchVal = e.target.value.trim().toLowerCase();
@@ -229,6 +230,7 @@
     const handleClearBtn = (e) => {
       if (!checkValidEventType(e)) return;
       hideResultsDropdown(true);
+      hideCancleBtn(true);
       clearResults();
       searchInput.value = "";
     };
