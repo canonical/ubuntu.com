@@ -922,6 +922,7 @@ app.add_url_rule("/credentials/exam", view_func=cred_exam)
 app.add_url_rule(
     "/credentials/exit-survey",
     view_func=cred_submit_form,
+    methods=["GET", "POST"],
 )
 app.add_url_rule(
     "/credentials/provision",
