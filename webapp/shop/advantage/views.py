@@ -635,14 +635,13 @@ def activate_magic_attach(advantage_mapper, **kwargs):
     try:
         activation_status = advantage_mapper.activate_magic_attach(
             contract_id=flask.request.form.get("contractID"),
-            user_code=flask.request.form.get("userCode"),
+            user_code=flask.request.form.get("userCode").upper(),
             client_ip=client_ip,
         )
         return flask.render_template(
             "/pro/attach/confirmation.html", status=activation_status
         )
     except Exception as e:
-        print(e.response)
         return flask.render_template(
             "/pro/attach/confirmation.html",
             status=json.loads(e.response.content),

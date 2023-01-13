@@ -18,7 +18,7 @@
                         <div class="col-8">
                             <div class="p-form__control u-clearfix">
                                 <input class="p-form-validation__input" type="text" aria-invalid="false"
-                                    id="magic-attach-code" name="userCode"
+                                    id="magic-attach-code" name="userCode" maxlength="6"
                                     label="Enter the code displayed in your installation">
                             </div>
                         </div>
@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="row">
-            <!-- {% include "pro/attach/instructions.html" %} -->
+            {% include "pro/attach/instructions.html" %}
         </div>
     </div>
 </div>
@@ -68,6 +68,10 @@
 
     .m-auto {
         margin: auto;
+    }
+
+    #magic-attach-code {
+        text-transform: uppercase;
     }
 </style>
 {% endblock content %}
