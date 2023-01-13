@@ -183,6 +183,16 @@ production:
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
+        - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+          secretKeyRef:
+            key: email
+            name: google-service-account
+
+        - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: google-service-account
+
         - name: TRUEABILITY_URL
           value: https://app.trueability.com
 
@@ -550,6 +560,16 @@ staging:
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+        - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+          secretKeyRef:
+            key: email
+            name: google-service-account
+
+        - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: google-service-account
 
         - name: TRUEABILITY_URL
           value: https://app.trueability.com
