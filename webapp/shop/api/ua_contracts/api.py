@@ -326,6 +326,13 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def get_activation_key_contracts(self, account_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=(f"v1/accounts/{account_id}/contracts?productTags=key"),
+            error_rules=["default"],
+        ).json()
+
     def list_activation_keys(self, contract_id: str) -> dict:
         return self._request(
             method="get",

@@ -764,11 +764,11 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account()
-    contracts = advantage_mapper.get_all_account_contracts(account.id)
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
     contract_id = None
     for contract in contracts:
-        if contract.name == "CUBE Activation Key":
+        if contract.name == "CUE TEST key":
             contract_id = contract.id
 
     keys = ua_contracts_api.list_activation_keys(contract_id)
