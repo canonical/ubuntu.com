@@ -332,7 +332,7 @@ class UAContractsAPI:
     def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
             method="post",
-            path=f"v1/magic-attach/activate",
+            path="v1/magic-attach/activate",
             json=request_body,
             error_rules=["default"],
             headers=headers,
