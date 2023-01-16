@@ -90,7 +90,17 @@ returnURL="/training/thank-you?product=juju-administrator-training-onsite" %}
 intro_text="Fill in your details below and a member of our training team will be in touch.",
 formid="1448",
 lpId="2661",
-returnURL="/training/thank-you?product=juju-administrator-training-onsite" %}
+returnURL="/training/thank-you?product=charm-developer-training-onsite" %}
+{% include "shared/_cloud-contact-us-form.html" %}
+{% endwith %}
+
+{% elif product == 'snapcraft-101' %}
+
+{% with h1="Contact us about our Snapcraft 101 training course",
+intro_text="Fill in your details below and a member of our training team will be in touch.",
+formid="1448",
+lpId="2661",
+returnURL="/training/thank-you?product=snapcraft-101" %}
 {% include "shared/_cloud-contact-us-form.html" %}
 {% endwith %}
 
