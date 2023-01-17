@@ -2,7 +2,7 @@
 
 {% block title %}Boost your automotive business with Ubuntu{% endblock %}
 {% block meta_description %}Ubuntu is widely used to reduce time to market in automotive companies, as a platform for data analytics, online services, robotics and machine learning. Infotainment, ADAS and cockpit application development on Ubuntu is faster. New real-time hypervisors enable Ubuntu VMs alongside functional safety RTOS solutions.{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1PVliB92h4ZqexaZV9F5MIcX7aRG6yBAGH1hG7x8UZTw/edit{% endblock meta_copydoc %}
+{% block meta_copydoc %}https://docs.google.com/document/d/10jSLdwz2Ks7gnEMXlKWzrpsY6TQFxISUgnQo4y3yOrA/edit{% endblock meta_copydoc %}
 
 {% block content %}
 <section class="p-strip--suru-bottomed">
@@ -12,6 +12,12 @@
       <p class="p-heading--4">Build smarter vehicles, factories and business models.</p>
       <p>Trusted by major automotive companies, Canonical delivers a full suite of open-source solutions and services that help you deliver security, safety and innovation for digital transformation in automotive.</p>
       <p><a class="js-invoke-modal p-button--positive" href="/internet-of-things/contact-us?product=automotive" data-testid="interactive-form-link">Contact Canonical</a></p>
+    </div>
+
+    <div class="col-5 u-vertically-center">
+      <div class="u-embedded-media">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/_bHdUo_ZOEo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -23,9 +29,10 @@
   <div class="row u-vertically-center">
     <div class="col-6">
       <h3 class="p-heading--2">The best operating system for all your needs</h3>
-      <p>Remove complexity and improve compatibility with a secure OS that speeds up deployment and management.
-      </p>
+      <p>Remove complexity and improve compatibility with a secure OS that speeds up deployment and management.</p>
+      <p>Canonical is joining forces with Elektrobit to pave the way for software-defined vehicles.</p>
       <p><a href="/core">Learn more about Ubuntu Core&nbsp;&rsaquo;</a></p>
+      <p><a href="https://canonical.com/blog/elektrobit-partners-with-canonical">Learn more about our partnership with Elektrobit&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{ image (
@@ -259,6 +266,7 @@
       <p>Crunch data. Develop algorithms. In-car, on-premises and on-cloud.</p>
       <p>Run AI/ML computations for digital twin simulations with Ubuntu on your HPC cluster.</p>
       <p>Deploy clusters for rapid digital design, validation, crash testing, and aerodynamics.</p>
+      <p><a href="/blog/how-desktop-and-gpu-virtualisation-power-up-automotive-innovation">Read our vGPU blog&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6 u-hide--medium u-hide--small u-align--center">
       {{ image (
@@ -289,7 +297,8 @@
     </div>
     <div class="col-6">
       <h3 class="p-heading--2">Safety-critical & Mixed-criticality ECUs</h3>
-      <p>Canonical is part of the SOAFEE consortium, which is at the forefront of defining the reference architecture for mixed-criticality and safety.</p>
+      <p>Canonical is part of the <a href="https://soafee.io">SOAFEE</a> consortium as well as the <a href="https://sdv.eclipse.org">Eclipse SDV</a> working group, which are at the forefront of defining the reference architecture for mixed-criticality and safety.</p>
+      <p>Canonical is also contributing to ISO26262 to enable automotive functional safety.</p>
       <p>Vehicles need to have the fastest response time to guarantee functional safety. With Real-time Ubuntu, our Linux kernel integrates PREEMPT_RT and guarantees low-latency response time.</p>
       <p><a href="/blog/real-time-ubuntu-released">Read more about Real-time Ubuntu&nbsp;&rsaquo;</a></p>
     </div>
@@ -510,7 +519,19 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
-            url="https://assets.ubuntu.com/v1/08a30f5b-ibeo-logo.png",
+            url="https://assets.ubuntu.com/v1/d01c96ec-Elektrobit%20logo%20288.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/29213f73-Ibeo%20logo%20288.png",
             alt="",
             width="288",
             height="288",
@@ -648,7 +669,7 @@
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
             alt="whitepaper",
@@ -688,7 +709,7 @@
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon--small">
         <div class="p-heading-icon__header">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
             alt="",
@@ -704,7 +725,7 @@
       </div>
       <p>Learn more about SDV shift challenges</p>
       <p><a href="/blog/unravelling-complexity-in-a-software-defined-vehicles-industry">Read here&nbsp;&rsaquo;</a></p>
-    </div>        
+    </div>
   </div>
   <div class="u-fixed-width">
     <p><a class="js-invoke-modal p-button--positive" href="/internet-of-things/contact-us?product=automotive">Contact Canonical</a></p>
@@ -717,4 +738,3 @@
   </div>
 
   {% endblock content %}
-  

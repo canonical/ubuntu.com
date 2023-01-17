@@ -79,19 +79,6 @@ env:
       key: password
       name: badgr
 
-  - name: CUBE_EDX_URL
-    value: https://cube.ubuntu.com
-
-  - name: CUBE_EDX_CLIENT_ID
-    secretKeyRef:
-      key: client-id
-      name: cube-edx
-
-  - name: CUBE_EDX_CLIENT_SECRET
-    secretKeyRef:
-      key: client-secret
-      name: cube-edx
-
   - name: BADGR_ISSUER
     value: eTedPNzMTuqy1SMWJ05UbA
 
@@ -103,6 +90,14 @@ env:
 
   - name: STRIPE_PUBLISHABLE_KEY
     value: pk_live_68aXqowUeX574aGsVck8eiIE
+
+  - name: TRUEABILITY_URL
+    value: https://app.trueability.com
+
+  - name: TRUEABILITY_API_KEY
+    secretKeyRef:
+      key: api-key
+      name: trueability
 
 memoryLimit: 512Mi
 
@@ -148,9 +143,9 @@ production:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/cube]
-      name: ubuntu-com-cube
-      app_name: ubuntu.com-cube
+    - paths: [/credentials]
+      name: ubuntu-com-credentials
+      app_name: ubuntu.com-credentials
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 5
       memoryLimit: 512Mi
@@ -176,19 +171,6 @@ production:
             key: password
             name: badgr
 
-        - name: CUBE_EDX_URL
-          value: https://cube.ubuntu.com
-
-        - name: CUBE_EDX_CLIENT_ID
-          secretKeyRef:
-            key: client-id
-            name: cube-edx
-
-        - name: CUBE_EDX_CLIENT_SECRET
-          secretKeyRef:
-            key: client-secret
-            name: cube-edx
-
         - name: BADGR_ISSUER
           value: eTedPNzMTuqy1SMWJ05UbA
 
@@ -200,6 +182,24 @@ production:
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_live_68aXqowUeX574aGsVck8eiIE
+
+        - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+          secretKeyRef:
+            key: email
+            name: google-service-account
+
+        - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: google-service-account
+
+        - name: TRUEABILITY_URL
+          value: https://app.trueability.com
+
+        - name: TRUEABILITY_API_KEY
+          secretKeyRef:
+            key: api-key
+            name: trueability
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -482,19 +482,6 @@ staging:
         key: qa-password
         name: badgr
 
-    - name: CUBE_EDX_URL
-      value: https://qa.cube.ubuntu.com
-
-    - name: CUBE_EDX_CLIENT_ID
-      secretKeyRef:
-        key: qa-client-id
-        name: cube-edx
-
-    - name: CUBE_EDX_CLIENT_SECRET
-      secretKeyRef:
-        key: qa-client-secret
-        name: cube-edx
-
     - name: BADGR_ISSUER
       value: 36ZEJnXdTjqobw93BJElog
 
@@ -506,6 +493,14 @@ staging:
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+    - name: TRUEABILITY_URL
+      value: https://app.trueability.com
+
+    - name: TRUEABILITY_API_KEY
+      secretKeyRef:
+        key: api-key
+        name: trueability
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
@@ -526,9 +521,9 @@ staging:
         - name: SENTRY_DSN
           value: https://0293bb7fc3104e56bafd2422e155790c@sentry.is.canonical.com//13
 
-    - paths: [/cube]
-      name: ubuntu-com-cube
-      app_name: ubuntu.com-cube
+    - paths: [/credentials]
+      name: ubuntu-com-credentials
+      app_name: ubuntu.com-credentials
       image: prod-comms.docker-registry.canonical.com/ubuntu.com
       replicas: 3
       memoryLimit: 512Mi
@@ -554,24 +549,6 @@ staging:
             key: qa-password
             name: badgr
 
-        - name: CUBE_EDX_URL
-          value: https://qa.cube.ubuntu.com
-
-        - name:
-          secretKeyRef:
-            key: qa-client-secret
-            name: cube-edx
-
-        - name: CUBE_EDX_CLIENT_ID
-          secretKeyRef:
-            key: qa-client-id
-            name: cube-edx
-
-        - name: CUBE_EDX_CLIENT_SECRET
-          secretKeyRef:
-            key: qa-client-secret
-            name: cube-edx
-
         - name: BADGR_ISSUER
           value: 36ZEJnXdTjqobw93BJElog
 
@@ -583,6 +560,24 @@ staging:
 
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+        - name: GOOGLE_SERVICE_ACCOUNT_EMAIL
+          secretKeyRef:
+            key: email
+            name: google-service-account
+
+        - name: GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY
+          secretKeyRef:
+            key: private-key
+            name: google-service-account
+
+        - name: TRUEABILITY_URL
+          value: https://app.trueability.com
+
+        - name: TRUEABILITY_API_KEY
+          secretKeyRef:
+            key: api-key
+            name: trueability
 
     - paths: [/tutorials]
       name: ubuntu-com-tutorials
@@ -819,19 +814,6 @@ demo:
         key: qa-password
         name: badgr
 
-    - name: CUBE_EDX_URL
-      value: https://qa.cube.ubuntu.com
-
-    - name: CUBE_EDX_CLIENT_ID
-      secretKeyRef:
-        key: qa-client-id
-        name: cube-edx
-
-    - name: CUBE_EDX_CLIENT_SECRET
-      secretKeyRef:
-        key: qa-client-secret
-        name: cube-edx
-
     - name: BADGR_ISSUER
       value: 36ZEJnXdTjqobw93BJElog
 
@@ -843,6 +825,14 @@ demo:
 
     - name: STRIPE_PUBLISHABLE_KEY
       value: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+
+    - name: TRUEABILITY_URL
+      value: https://app.trueability.com
+
+    - name: TRUEABILITY_API_KEY
+      secretKeyRef:
+        key: api-key
+        name: trueability
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/

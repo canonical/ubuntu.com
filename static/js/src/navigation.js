@@ -300,20 +300,18 @@ if (accountContainer && accountContainerSmall) {
     });
 }
 
-if (
-  localStorage.getItem("dismissedOnboardingNotification") === "false" ||
-  localStorage.getItem("dismissedOnboardingNotification") === null
-) {
+const queryString = window.location.pathname;
+
+if (queryString === "/pro") {
+  let li = document.createElement("li");
+
   document
-    .querySelectorAll(".breadcrumbs__item a.breadcrumbs__link")
-    .forEach((element) => {
-      if (element.textContent === "Account users") {
-        element.parentElement.innerHTML = `
-          <div class="breadcrumbs__link">
-          <a class="p-link--soft" href="/pro/users">Account users</a>
-          <span class="p-label--positive">New</span>
-          </div>
-        `;
-      }
-    });
+    .querySelector(".breadcrumbs--secondary")
+    .appendChild(li).innerHTML = `
+      <div class="breadcrumbs__link">
+        <a class="p-link--soft" href="/pro/subscribe">
+          <span class="p-label--positive">Buy Ubuntu Pro</span>
+        </a>
+      </div>
+    `;
 }

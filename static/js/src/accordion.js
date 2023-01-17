@@ -11,6 +11,31 @@ function toggleExpanded(element, show) {
     element.setAttribute("aria-expanded", show);
     target.setAttribute("aria-hidden", !show);
   }
+
+  moveInView(element);
+}
+
+/**
+Checks if the top of the opened panel is visible and if it is not, moves
+it into view
+@param {HTMLElement} element The tab that acts as the handles.
+*/
+function moveInView(element) {
+  // Returns a Boolean based on whether the element is in view
+  function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <=
+        (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  if (!isInViewport(element)) {
+    element.scrollIntoView();
+  }
 }
 
 /**

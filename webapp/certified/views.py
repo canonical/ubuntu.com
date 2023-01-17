@@ -562,7 +562,7 @@ def certified_socs():
 
 
 def certified_why():
-    view = create_category_views("Why", "certified/why-certified.html")
+    view = create_category_views("Why", "certified/why-certify.html")
     return view
 
 

@@ -1,14 +1,15 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
-  getProduct,
-  ProductTypes,
-  LTSVersions,
-  Support,
-  Product,
   Features,
-  Periods,
-  SLA,
+  getProduct,
+  IoTDevices,
   isMonthlyAvailable,
+  LTSVersions,
+  Periods,
+  Product,
+  ProductTypes,
+  SLA,
+  Support,
 } from "./utils";
 
 interface FormContext {
@@ -27,6 +28,8 @@ interface FormContext {
   product: Product | null;
   period: Periods;
   setPeriod: React.Dispatch<React.SetStateAction<Periods>>;
+  iotDevice: IoTDevices;
+  setIoTDevice: React.Dispatch<React.SetStateAction<IoTDevices>>;
 }
 
 export const defaultValues: FormContext = {
@@ -45,6 +48,8 @@ export const defaultValues: FormContext = {
   period: Periods.yearly,
   setPeriod: () => {},
   product: null,
+  iotDevice: IoTDevices.classic,
+  setIoTDevice: () => {},
 };
 
 export const FormContext = createContext<FormContext>(defaultValues);
@@ -57,6 +62,7 @@ interface FormProviderProps {
   initialSupport?: Support;
   initialQuantity?: number | string;
   initialPeriod?: Periods;
+  initialIoTDevice?: IoTDevices;
   children: React.ReactNode;
 }
 
@@ -68,6 +74,7 @@ export const FormProvider = ({
   initialSupport = defaultValues.support,
   initialQuantity = defaultValues.quantity,
   initialPeriod = defaultValues.period,
+  initialIoTDevice = defaultValues.iotDevice,
   children,
 }: FormProviderProps) => {
   const localProductType = localStorage.getItem("pro-selector-productType");
@@ -77,6 +84,7 @@ export const FormProvider = ({
   const localSupport = localStorage.getItem("pro-selector-support");
   const localSLA = localStorage.getItem("pro-selector-sla");
   const localPeriod = localStorage.getItem("pro-selector-period");
+  const localIoTDevice = localStorage.getItem("pro-selector-iotDevice");
 
   const [productType, setProductType] = useState<ProductTypes>(
     localProductType ? JSON.parse(localProductType) : initialType
@@ -100,6 +108,9 @@ export const FormProvider = ({
     localPeriod ? JSON.parse(localPeriod) : initialPeriod
   );
   const [product, setProduct] = useState<Product | null>(null);
+  const [iotDevice, setIoTDevice] = useState<IoTDevices>(
+    localIoTDevice ? JSON.parse(localIoTDevice) : initialIoTDevice
+  );
 
   useEffect(() => {
     if (support === Support.none) {
@@ -111,10 +122,11 @@ export const FormProvider = ({
   }, [support, sla]);
 
   useEffect(() => {
-    if (version === LTSVersions.trusty || version === LTSVersions.xenial) {
-      if (support !== Support.none) {
-        setSupport(Support.infra);
-      }
+    if (version === LTSVersions.trusty) {
+      setSupport(Support.none);
+    }
+    if (version === LTSVersions.xenial) {
+      setSupport(Support.none);
     }
   }, [version, support]);
 
@@ -142,8 +154,15 @@ export const FormProvider = ({
 
   useEffect(() => {
     const product = getProduct(productType, feature, support, sla, period);
-    setProduct(window.productList[product] ?? null);
-  }, [feature, productType, sla, support, period]);
+    if (
+      productType === ProductTypes.iotDevice &&
+      iotDevice === IoTDevices.core
+    ) {
+      setProduct(null);
+    } else {
+      setProduct(window.productList[product] ?? null);
+    }
+  }, [feature, productType, sla, support, period, iotDevice]);
 
   useEffect(() => {
     if (!isMonthlyAvailable(product)) {
@@ -169,6 +188,8 @@ export const FormProvider = ({
         period,
         setPeriod,
         product,
+        iotDevice,
+        setIoTDevice,
       }}
     >
       {children}

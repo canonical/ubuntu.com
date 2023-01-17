@@ -135,6 +135,7 @@ certified/desktop/models/?: "/certified?category=Desktop&category=Laptop"
 certified/server/models/?: "/certified?category=Server"
 certified/iot/models/?: "/certified?category=Device"
 certified/soc/models/?: "/certified?category=SoC"
+certified/why-certified/?: "/certified/why-certify"
 certification/?: "/certified"
 
 cc/?: "/security/certifications"
@@ -418,6 +419,7 @@ download/iot/orange-pi-zero/?: "http://www.orangepi.org/downloadresources/"
 download/iot/qualcomm-dragonboard-410c/?: "/download/qualcomm-dragonboard-410c"
 download/iot/intel-nuc/?: "/download/intel-nuc"
 download/iot/intel-nuc-desktop/?: "/download/intel-nuc-desktop"
+download/iot/intel-iotg/?: "/download/iot/intel-iot"
 download/orange-pi-zero/?: "http://www.orangepi.org/downloadresources/"
 download/raspberry-pi-2-3-core/?: "/download/raspberry-pi-core"
 download/raspberry-pi-compute-module-3/?: "/download/raspberry-pi-core"
@@ -465,7 +467,7 @@ end-of-life/?: "/about/release-cycle"
 engage/autonomous-more-profitable-farming-using-AI-and-lightweight-robots/?: "/engage/small-robot-company"
 engage/finance/?: "/engage/ubuntu-finance-sector-whitepaper"
 engage/iot-business-model2/?: "/engage/iot-business-model"
-engage/iot-elkhart-lake/?: "/download/iot/intel-iotg"
+engage/iot-elkhart-lake/?: "/download/iot/intel-iot"
 engage/kubernetes-case-study/?: "/engage/k8s-allan-gray"
 engage/multi-cloud-guide2/?: "/engage/multi-cloud-guide"
 engage/North-Americas-first-autonomous-runway-snowplough-case-study/?: "/engage/northstar"
@@ -482,6 +484,7 @@ engage/AT&TProOnboarding: "/engage/unlisted/at&t-onboarding"
 engage/smart-start-whitepaper/?: "/engage/4-ways-to-accelerate-time-to-market-for-iot-devices"
 engage/cloud-pricing-report-2021/?: "/engage/cloud-pricing-report"
 engage/cloud-pricing-report-2022/?: "/engage/cloud-pricing-report"
+engage/vmware-to-charmed-openstack/?: "/engage/from-vmware-to-open-source"
 enterprise-canonical-kubernetes/?: "https://assets.ubuntu.com/v1/Enterprise-Canonical-Kubernetes.pdf"
 es/?: "/"
 esm/?: "/security/esm"
@@ -877,7 +880,6 @@ blog/category/(?P<category>[^/]+)/year/(?P<year>[0-9]{4})/?: /blog/archives?cate
 # Group archive pages
 blog/canonical-announcements/?: https://canonical.com/press-centre
 blog/press-centre/?: https://canonical.com/press-centre
-blog/people-and-culture/?: /blog/archives?group=people-and-culture
 blog/phone-and-tablet/?: /blog/archives?group=phone-and-tablet
 blog/page/(?P<page>[0-9]+)/(?P<group>[^/]+)/?: /blog/archives?group={group}&page={page}
 blog/group/(?P<group>[^/]+)/?: /blog/archives?group={group}
@@ -940,7 +942,7 @@ blog/topic/(?P<path>.*): /blog/topics/{path}
 blog/topic: /blog
 
 # Marketing redirects to become pages in time
-nvidia: /engage/ubuntu-at-nvidia-gtc-2021
+nvidia: /engage/gtc_nvidia_2021
 
 # Move /securtiy/cve to /security/cves
 security/cve: /security/cves

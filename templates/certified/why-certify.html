@@ -1,0 +1,269 @@
+{% extends "templates/base.html" %}
+
+
+{% block title %}Why certify? | Certified hardware{% endblock %}
+
+{% block meta_description %}Ubuntu Certified Hardware has passed our extensive testing and review process, ensuring that Ubuntu runs optimally out of the box, ready for your organisation. Canonical provides continuous support throughout the lifecycle of the Ubuntu release to ensure quality, functionality, and maintenance for up to 10 years{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1q3rOtDgJ_7_seGCP5pbCKyJYzXLvY45y8gis2FSKxXI/edit{% endblock meta_copydoc %}
+
+{% block outer_content %}
+
+<section class="p-strip--suru-shape-dark is-x-deep">
+  <div class="row u-vertically-center">
+    <div class="col-3 col-small-1 col-medium-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
+        alt="",
+        width="112",
+        height="157",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+    <div class="col-9 col-small-3 col-medium-5">
+      <h1 class="p-heading--2 u-no-margin--bottom"><strong>Ubuntu Certified programmes</strong></h1>
+      <p class="p-heading--2 u-no-margin--bottom">Ubuntu hardware <br class="u-hide--medium u-hide--large">you can trust</p>
+    </div>
+  </div>  
+</section>
+
+<section class="p-strip is-deep">
+  <div class="u-sv2">
+    <hr class="is-fixed-width">
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>Hardware certification</h2>
+      <p class="u-sv3">Participating in the Hardware Certification programme ensures that every user of your solution gets the best Ubuntu experience. Canonical provides a rigorous set of certification tests and continuous regression testing on a certified device throughout the Ubuntu release life cycle, offering up to 10 years of support and security updates.</p>
+
+      <p class="u-no-margin--bottom"><a href="https://canonical.com/partners/become-a-partner" class="p-button--positive u-no-margin--bottom">Certify your hardware</a></p>
+    </div>
+
+    <div class="col-6" style="background-image: url('https://assets.ubuntu.com/v1/4c88715b-why-certified.jpg'); background-size: cover;">
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep u-no-padding--top">
+  <hr class="is-fixed-width">
+
+  <div class="row">
+    <div class="col-6">
+      <h2>Advantages of certifying hardware with Canonical</h2>
+    </div>
+
+    <div class="col-6">
+      <p>Ubuntu Certified hardware is your top choice for differentiation, reliability, security, and product visibility.</p>
+
+      <hr />
+
+      <ul class="p-list--ticked u-no-margin--bottom">
+        <li class="p-list__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Sell more</h3>
+          <p>Right out of the box, Ubuntu improves your customer's experience and reduces their time to market.</p>
+
+          <p>Partner with Ubuntu, the OS that your customers trust.</p>
+
+          <p>Reduce marketing costs with joint go to market strategies with Canonical.</p>
+        </li>
+        <li class="p-list__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Reliable</h3>
+          <p>Gain peace of mind with the extensive, continuous testing in our automated test labs.</p>
+
+          <p>Secure the life of your certified devices long term with security updates for 10 years with an <a href="/pro">Ubuntu Pro subscription</a>.</p>
+        </li>
+        <li class="p-list__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Cost effective</h3>
+          <p>A robust, cost-effective, and long-term software enablement strategy for your hardware devices.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-3">
+      <h2 class="p-text--x-small-capitalised">Different devices</h2>
+    </div>
+    <div class="col-3">
+      <h3 class="p-heading--2 u-no-padding--top">Server</h3>
+    </div>
+    <div class="col-6">
+      <div class="p-strip is-shallow u-no-padding--top">
+        <p>Ubuntu Server and Canonical's tools give you the ability to deploy your workloads as easily and repeatably on bare metal as if they were in the cloud.</p>
+
+        <p>Deploying on Ubuntu Certified servers saves you time in choosing and testing what hardware you will use, from a single server instance to the largest scale-out data centre environments.</p>
+
+        <p><a href="/certified/servers">Explore certified servers</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="is-fixed-width">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">Desktop</h3>
+        </div>
+        <div class="col-6">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <p>Many of the world's biggest PC manufacturers certify their desktops  and laptops for Ubuntu, ensuring these systems always run as smoothly as their millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That's why you'll find Ubuntu preloaded on desktops across government, education, enterprise and in homes around the world.</p>
+
+            <p><a href="/certified/desktops">Explore certified desktops</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="is-fixed-width">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">IoT</h3>
+        </div>
+        <div class="col-6">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <p>A number of IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure, and optimised Ubuntu, either pre-loaded or as a build-your-own option.</p>
+
+            <p>Canonical's certification programme offers you peace of mind: all your Internet of Things devices will remain secure and regularly updated.</p>
+
+            <p><a href="/certified/devices">Explore certified IoT</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="is-fixed-width">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">Laptop</h3>
+        </div>
+        <div class="col-6">
+          <div class="p-strip is-shallow u-no-padding--top">
+            <p>Just like desktops, manufacturers choose to certify their laptops for Ubuntu, ensuring they work beautifully and reliably, just as you would expect.</p>
+            <p><a href="/certified/laptops">Explore certified Laptops</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="is-fixed-width">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">SoC</h3>
+        </div>
+        <div class="col-6">
+          <div class="">
+            <p>Low-power small-footprint System on a Chip (SoC) hardware is redefining the future of sustainable data centres.</p>
+            <p class="u-no-margin--bottom"><a href="/certified/socs">Explore certified SoC</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  {% include "certified/shared/_partners.html" %}
+</section>
+
+<section class="p-strip--suru-shape-light is-deep">
+  <hr class="is-fixed-width is-dark">
+  <div class="row">
+    <div class="col-3 col-small-1 col-medium-1">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
+        alt="",
+        width="112",
+        height="157",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-9 col-small-3 col-medium-5">
+      <h2>Are you interested <br class="u-hide--medium u-hide--large">in <br class="u-hide--medium u-hide--small">certifying <br class="u-hide--medium u-hide--large">your hardware?</h2>
+      <hr />
+      <p>Becoming Ubuntu Certified is your top choice for differentiation, reliability, and product visibility. Our certification programme increases customer confidence that your products integrate seamlessly with Ubuntu.</p>
+      <a href="https://canonical.com/partners/become-a-partner" class="p-button--positive">Discover the benefits</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-deep">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-3">
+      <h2 class="p-text--x-small-capitalised">Certification reference</h2>
+    </div>
+    <div class="col-3">
+      <h3 class="p-heading--2 u-no-padding--top">Webinar</h3>
+    </div>
+    <div class="col-6">
+      <ul class="p-list--divided">
+        <li class="p-list__item">
+          <a href="https://www.brighttalk.com/webcast/6793/497538">Why Ubuntu Certification Matters for AIoT</a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://www.brighttalk.com/webcast/6793/514263">“Industrial Pi” Use Cases With Ubuntu and AMD</a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://ubuntu.com/engage/embedded-linux-make-or-buy">Embedded Linux: make or buy</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="is-fixed-width">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">Further reading</h3>
+        </div>
+        <div class="col-6">
+          <ul class="p-list--divided">
+            <li class="p-list__item">
+              <a href="/blog/people-and-processes-behind-ubuntu-certified-devices">People and processes behind “Ubuntu certified” devices</a>
+            </li>
+            <li class="p-list__item">
+              <a href="/blog/ubuntu-20-04-lts-is-certified-for-the-raspberry-pi">Ubuntu 20.04 LTS is certified for the Raspberry Pi</a>
+            </li>
+            <li class="p-list__item">
+              <a href="/blog/why-you-should-buy-a-pre-installed-ubuntu-workstation">Why you should buy a pre-installed Ubuntu workstation</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-9 col-start-large-4">
+      <hr class="is-fixed-width">
+      <div class="row">
+        <div class="col-3">
+          <h3 class="p-heading--2">Contact Us</h3>
+        </div>
+        <div class="col-6">
+          <p>Make your hardware stand out. Talk to us about certifying your products. <a href="https://canonical.com/partners/become-a-partner">Learn more about becoming certifed</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

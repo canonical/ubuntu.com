@@ -44,14 +44,18 @@ from webapp.context import (
 )
 
 from webapp.shop.flaskparser import UAContractsValidationError
-from webapp.shop.cube.views import (
+from webapp.shop.cred.views import (
     cred_self_study,
+    cred_submit_form,
     cred_syllabus_data,
+    cred_sign_up,
     cred_home,
-    cube_microcerts,
-    cube_study_labs_button,
-    get_microcerts,
-    post_microcerts_purchase,
+    cred_schedule,
+    cred_your_exams,
+    cred_cancel_exam,
+    cred_assessments,
+    cred_exam,
+    cred_provision,
 )
 
 from webapp.views import (
@@ -81,6 +85,7 @@ from webapp.views import (
     mirrors_query,
     build_tutorials_query,
     openstack_engage,
+    get_user_country_by_ip,
 )
 
 from webapp.shop.views import (
@@ -534,7 +539,7 @@ app.add_url_rule(
     view_func=BlogCustomTopic.as_view("blog_topic", blog_views=blog_views),
 )
 app.add_url_rule(
-    "/blog/<regex('cloud-and-server|desktop|internet-of-things'):slug>",
+    "/blog/<regex('cloud-and-server|desktop|internet-of-things|people-and-culture'):slug>",  # noqa: E501
     view_func=BlogCustomGroup.as_view("blog_group", blog_views=blog_views),
 )
 app.add_url_rule(
@@ -704,6 +709,8 @@ app.add_url_rule(
 
 core_services_guide.init_app(app)
 
+
+app.add_url_rule("/user-country.json", view_func=get_user_country_by_ip)
 
 # All other routes
 template_finder_view = TemplateFinder.as_view("template_finder")
@@ -898,18 +905,30 @@ core_als_autils_docs = Docs(
 )
 core_als_autils_docs.init_app(app)
 
-# Cube docs
+# Credentials
 app.add_url_rule("/credentials", view_func=cred_home)
 app.add_url_rule("/credentials/self-study", view_func=cred_self_study)
 app.add_url_rule("/credentials/syllabus", view_func=cred_syllabus_data)
-app.add_url_rule("/cube/microcerts", view_func=cube_microcerts)
-app.add_url_rule("/cube/microcerts.json", view_func=get_microcerts)
+app.add_url_rule("/credentials/sign-up", view_func=cred_sign_up)
 app.add_url_rule(
-    "/cube/microcerts/purchase.json",
-    view_func=post_microcerts_purchase,
-    methods=["POST"],
+    "/credentials/schedule",
+    view_func=cred_schedule,
+    methods=["GET", "POST"],
 )
-app.add_url_rule("/cube/study/labs", view_func=cube_study_labs_button)
+app.add_url_rule("/credentials/your-exams", view_func=cred_your_exams)
+app.add_url_rule("/credentials/cancel-exam", view_func=cred_cancel_exam)
+app.add_url_rule("/credentials/assessments", view_func=cred_assessments)
+app.add_url_rule("/credentials/exam", view_func=cred_exam)
+app.add_url_rule(
+    "/credentials/exit-survey",
+    view_func=cred_submit_form,
+    methods=["GET", "POST"],
+)
+app.add_url_rule(
+    "/credentials/provision",
+    view_func=cred_provision,
+    methods=["GET", "POST"],
+)
 
 # Charmed OpenStack docs
 openstack_docs = Docs(
@@ -1027,7 +1046,7 @@ app.add_url_rule(
     view_func=certified_socs,
 )
 app.add_url_rule(
-    "/certified/why-certified",
+    "/certified/why-certify",
     view_func=certified_why,
 )
 
@@ -1036,14 +1055,6 @@ app.add_url_rule(
     "/openstack/install",
     view_func=openstack_install,
 )
-
-
-@app.before_request
-def cube_require_login_cube_study():
-    if flask.request.path.startswith("/cube/study"):
-        user = user_info(flask.session)
-        if not user:
-            return flask.redirect("/login?next=" + flask.request.path)
 
 
 @app.after_request
@@ -1056,7 +1067,7 @@ def cache_headers(response):
         "/account",
         "/advantage",
         "/pro",
-        "/cube",
+        "/credentials",
         "/core/build",
         "/account.json",
     )

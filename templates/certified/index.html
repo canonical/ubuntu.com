@@ -6,249 +6,394 @@
 
 {% block outer_content %}
 
-<section class="p-strip--suru-bottomed">
+<section class="p-strip--suru-shape-dark is-x-deep">
   <div class="row u-vertically-center">
-    <div class="col-7">
-      <h1>Ubuntu Certified Hardware</h1>
-      <p class="p-heading--4">Machines you can trust with Ubuntu</p>
-      <p>Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out of the box, ready for your organisation. We work closely with OEMs to make Ubuntu available on a wide range of desktops, laptops, servers, IoT and SoC hardware.</p>
-      <p><a href="/certified/why-certified">Why get certified?</a></p>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+    <div class="col-3 col-small-1 col-medium-1">
       {{ image (
-        url="https://assets.ubuntu.com/v1/a491f87c-Ubuntu+Certified+Hardware.svg",
+        url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
         alt="",
-        width="364",
-        height="297",
+        width="112",
+        height="157",
         hi_def=True,
         loading="auto"
         ) | safe
       }}
-      </div>
+    </div>
+    <div class="col-9 col-small-3 col-medium-5">
+      <h1 class="p-heading--2 u-no-margin--bottom"><strong>Ubuntu Certified</strong></h1>
+      <p class="p-heading--2 u-no-margin--bottom">Ubuntu hardware <br class="u-hide--medium u-hide--large">you can trust</p>
+    </div>
   </div>  
 </section>
-<section class="p-strip--light is-shallow">
-  <form>
+
+<section class="p-strip u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <div class="p-strip--light u-no-padding">
+      <div class="row u-no-padding">
+        <div class="col-6" style="padding: 1rem;">
+          <p class="p-heading--2">Discover hardware <br class="u-hide--small u-hide--medium">that's been rigorously tested <br class="u-hide--small u-hide--medium">to ensure you get the best <br class="u-hide--small u-hide--medium">Ubuntu experience</p>
+        </div>
+        <div class="col-6">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/e562eba7-lab.jpg",
+            alt="",
+            width="807",
+            height="420",
+            hi_def=True,
+            loading="auto",
+            attrs={"style": "display: block;", "class": "u-hide--small u-hide--medium"}
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="u-sv3">Explore certified hardware</h2>
+      <form class="p-form p-form--inline" style="width: 100%;">
+        <div class="p-form__group" style="flex-grow: 1;">
+          <div class="p-form__control" style="width: 100%;">
+            <input type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search" aria-label="Search" autocomplete="off" required>
+          </div>
+        </div>
+        <button type="submit" class="p-button--positive">Search</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="p-strip is-shallow">
+    <div class="u-fixed-width">
+      <ul class="p-list--horizontal-divided u-equal-height">
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
+            alt="",
+            width="28",
+            height="16",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+          <span><a href="/certified/laptops">Laptops</a></span>
+        </li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
+            alt="",
+            width="28",
+            height="19",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+          <span><a href="/certified/desktops">Desktops</a></span>
+        </li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
+            alt="",
+            width="28",
+            height="37",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+          <span><a href="/certified/servers">Servers</a></span>
+        </li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
+            alt="",
+            width="28",
+            height="30",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+          <span><a href="/certified/devices">IoT</a></span>
+        </li>
+        <li class="p-list__item">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
+            alt="",
+            width="28",
+            height="33",
+            hi_def=True,
+            loading="auto"
+            ) | safe
+          }}
+          <span><a href="/certified/socs">SoC</a></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <h2>Featured devices</h2>
+
+    <div class="col-3 col-medium-3 col-small-2 u-sv3">
+      <a class="p-img-cta" href="/certified/202112-29802">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/26a9efb0-laptops2.png",
+          alt="",
+          width="500",
+          height="402",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-img-cta__image"}
+          ) | safe
+        }}
+        <hr />
+        Dell XPS 13 Plus
+      </a>
+    </div>
+    <div class="col-3 col-medium-3 col-small-2 u-sv3">
+      <a class="p-img-cta" href="/certified/202201-29843">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/49ef46d4-laptops3.png",
+          alt="",
+          width="1000",
+          height="804",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-img-cta__image"}
+          ) | safe
+        }}
+        <hr />
+        HP Zbook Studio G9
+      </a>
+    </div>
+    <div class="col-3 col-medium-3 col-small-2 u-sv3">
+      <a class="p-img-cta" href="/certified/202207-30472/22.04%20LTS">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/1073b60d-laptops1.png",
+          alt="",
+          width="500",
+          height="402",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-img-cta__image"}
+          ) | safe
+        }}
+        <hr />
+        Lenovo ThinkPad P16
+      </a>
+    </div>
+    <div class="col-3 col-medium-3 col-small-2 u-sv3">
+      <a class="p-img-cta" href="/certified/202004-27866">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e4eb4ea7-Raspberry_Pi_4_Model_B.svg",
+          alt="",
+          width="1000",
+          height="804",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-img-cta__image"}
+          ) | safe
+        }}
+        <hr />
+        Raspberry Pi 4 Model B
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-6">
+      <h2>The best Ubuntu experience is with certified hardware</h2>
+      <p>Certified devices are tested for reliability and performance, ensuring you have the best out-of-the-box Ubuntu experiences.</p>
+    </div>
+
+    <div class="col-6">
+      <ul class="p-list--ticked">
+        <li class="p-list__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Select trusted hardware</h3>
+          <p>Explore the Ubuntu certified catalogue to discover hardware from partners that fits your needs.</p>
+        </li>
+        <li class="p-list__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Lower costs</h3>
+          <p>Simplify the implementation of your solutions by choosing reliable, certified hardware. Reduce operating system development and support costs.</p>
+        </li>
+        <li class="p-list__item">
+          <h3 class="p-heading--5 u-no-margin--bottom">Speed up go-to-market</h3>
+          <p>Build on the combined expertise of Canonical and hardware partners to get your solution to market faster. </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <hr class="is-fixed-width">
+  <div class="p-strip u-no-padding--top">
     <div class="row">
-      <div class="col-12" style="margin-top: 1rem;">
-        <div class="p-form__group">
-          <div class="p-search-box">
-            <input class="p-search-box__input" type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search" required>
-            <button type="reset" class="p-search-box__reset"><i class="p-icon--close">Reset</i></button>
-            <button type="submit" class="p-search-box__button"><i class="p-icon--search">Submit</i></button>
+      <div class="col-6">
+        <h2>What we test</h2>
+        <p>Canonical's QA team performs an extensive set of over 500 OS compatibility focused hardware tests to ensure the best Ubuntu experience. Every aspect of the system is checked and verified.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row u-sv2">
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M11.992 3.293 7.285 8H4.213l-.147.238a7.22 7.22 0 0 0-.002 7.524l.147.238h3.074l4.707 4.707z" style="color:#000;fill:#e95420;-inkscape-stroke:none"/><path d="m14.492 7.793-.707.707.354.354c1.823 1.823 1.823 4.47 0 6.292l-.354.354.707.707.354-.353c2.176-2.177 2.176-5.53 0-7.708z" style="color:#000;fill:#e95420;stroke-linecap:square;-inkscape-stroke:none"/><path d="m17.846 5.146-.707.708C19.065 7.78 19.992 9.898 19.992 12c0 2.102-.927 4.22-2.853 6.146l.707.708c2.073-2.074 3.146-4.456 3.146-6.854 0-2.398-1.073-4.78-3.146-6.854z" style="color:#000;fill:#e95420;-inkscape-stroke:none"/></svg>
+      <p>Audio</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M9 3c-.554 0-1 .446-1 1v3c0 .554.446 1 1 1h2v3H7.5c-.806 0-1.462.13-1.916.584C5.13 12.038 5 12.694 5 13.5V15H3c-.554 0-1 .446-1 1v3c0 .554.446 1 1 1h5c.554 0 1-.446 1-1v-3c0-.554-.446-1-1-1H6v-1.5c0-.694.12-1.038.291-1.209C6.462 12.12 6.806 12 7.5 12h8c.694 0 1.038.12 1.209.291.171.171.291.515.291 1.209V15h-2c-.554 0-1 .446-1 1v3c0 .554.446 1 1 1h5c.554 0 1-.446 1-1v-3c0-.554-.446-1-1-1h-2v-1.5c0-.806-.13-1.462-.584-1.916-.454-.454-1.11-.584-1.916-.584H12V8h2c.554 0 1-.446 1-1V4c0-.554-.446-1-1-1H9z" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/></svg>
+      <p>Ethernet</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M12 4A15 15 0 0 0 1.922 7.922l.703.703A14 14 0 0 1 12 5a14 14 0 0 1 9.385 3.615l.71-.71A15 15 0 0 0 12 4zm0 3a12 12 0 0 0-7.945 3.055l.697.697A11 11 0 0 1 12 8a11 11 0 0 1 7.26 2.74l.709-.709A12 12 0 0 0 12 7zm0 3a9 9 0 0 0-5.84 2.16l.733.733A8 8 0 0 1 12 11a8 8 0 0 1 5.133 1.867l.709-.709A9 9 0 0 0 12 10zm0 3a6 6 0 0 0-3.71 1.29l.722.722A5 5 0 0 1 12 14a5 5 0 0 1 2.998 1.002l.711-.711A6 6 0 0 0 12 13z" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/><circle cx="12" cy="19" r="2" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/></svg>
+      <p>Wireless</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M4.787 6c-.677.006-1.25.048-1.76.303-.34.17-.63.462-.797.838C2.064 7.516 2 7.958 2 8.5v7c0 .542.064.984.23 1.36.167.375.458.668.797.837.68.34 1.473.303 2.473.303h3c1 0 1.794.037 2.473-.303.34-.17.63-.462.797-.838.166-.375.23-.817.23-1.359V14h2.207l.793-.793 1 1 1-1 .646.647 1.395 1.394 2.629-3.285-.316-.317L19.707 10H12V8.5c0-.542-.064-.984-.23-1.36a1.72 1.72 0 0 0-.797-.837C10.293 5.963 9.5 6 8.5 6h-3c-.25 0-.487-.002-.713 0zM6 11a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1z" style="color:#000;fill:#e95420;fill-opacity:1;-inkscape-stroke:none"/></svg>
+      <p>TPM</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M7 2c-1.108 0-2 .892-2 2v16c0 1.108.892 2 2 2h10c1.108 0 2-.892 2-2V4c0-1.108-.892-2-2-2H7zm4 1.293L16.207 8.5l-3.5 3.5 3.5 3.5L11 20.707v-7l-2.146 2.147-.708-.708L11 12.293v-.586L8.146 8.854l.708-.708L11 10.293v-7zm1 2.414v5.586L14.793 8.5 12 5.707zm0 7v5.586l2.793-2.793L12 12.707z" style="fill:#e95420;fill-rule:evenodd;stroke-linecap:square;stroke-linejoin:round;fill-opacity:1"/></svg>
+      <p>Bluetooth</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M8 2v4.999h8v-5zm2 2v1h1V4zm3 0v1h1V4zM7.787 7.998c-.677.006-1.25.048-1.76.303-.34.17-.63.462-.797.838-.166.375-.23.817-.23 1.359v9c0 .542.064.984.23 1.36.167.375.458.668.797.838.68.34 1.473.302 2.473.302h7c1 0 1.794.037 2.473-.302.34-.17.63-.463.797-.838.166-.376.23-.818.23-1.36v-9c0-.542-.064-.984-.23-1.36a1.72 1.72 0 0 0-.797-.837c-.68-.34-1.473-.303-2.473-.303h-7c-.25 0-.487-.002-.713 0z" style="fill:#e95420;fill-opacity:1;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round"/></svg>
+      <p>USB</p>
+    </div>
+  </div>
+  
+  <div class="u-sv3 u-hide--medium u-hide--small">
+    <hr class="is-fixed-width">
+  </div>
+
+  <div class="row">
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M10 2v8H6.598l5.902 9.443L18.402 10H15V2zm1 1h3v8h2.598L12.5 17.557 8.402 11H11z" style="color:#000;fill:#e95420;-inkscape-stroke:none;fill-opacity:1"/><path d="M7 20h11v1H7z" style="color:#000;fill:#e95420;fill-rule:evenodd;stroke-linecap:square;stroke-linejoin:round;-inkscape-stroke:none;fill-opacity:1"/></svg>
+      <p>Firmware</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M12 2.5A9.5 9.5 0 0 0 2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5zm.5 4v5h2l-3 6v-5h-2l3-6z" style="fill:#e95420;fill-opacity:1;fill-rule:evenodd;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:round"/></svg>
+      <p>Power management</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M11.5 3A9.5 9.5 0 0 0 2 12.5a9.5 9.5 0 0 0 2.8 6.7l.69-.69A8.5 8.5 0 0 1 3 12.5 8.5 8.5 0 0 1 11.5 4a8.5 8.5 0 0 1 8.5 8.5 8.5 8.5 0 0 1-2.03 5.47l.727.727A9.5 9.5 0 0 0 21 12.5 9.5 9.5 0 0 0 11.5 3zm0 2A7.5 7.5 0 0 0 4 12.5a7.5 7.5 0 0 0 2.21 5.29l.694-.694A6.5 6.5 0 0 1 5 12.5 6.5 6.5 0 0 1 11.5 6a6.5 6.5 0 0 1 6.5 6.5 6.5 6.5 0 0 1-1.443 4.057l.714.714A7.5 7.5 0 0 0 19 12.5 7.5 7.5 0 0 0 11.5 5zm0 2A5.5 5.5 0 0 0 6 12.5a5.5 5.5 0 0 0 1.621 3.879l.697-.697A4.5 4.5 0 0 1 7 12.5 4.5 4.5 0 0 1 11.5 8a4.5 4.5 0 0 1 4.5 4.5 4.5 4.5 0 0 1-.857 2.643l.705.705A5.5 5.5 0 0 0 17 12.5 5.5 5.5 0 0 0 11.5 7zm0 4a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1 1.41V22h1v-8.09a1.5 1.5 0 0 0 1-1.41 1.5 1.5 0 0 0-1.5-1.5z" style="fill:#e95420;fill-rule:evenodd;stroke-width:.5;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1"/></svg>
+      <p>WWAN</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M7.787 3c-.677.006-1.25.048-1.76.303-.34.17-.63.462-.797.838C5.064 4.516 5 4.958 5 5.5v13c0 .542.064.984.23 1.36.167.375.458.668.797.837.68.34 1.473.303 2.473.303h7c1 0 1.794.037 2.473-.303.34-.17.63-.462.797-.838.166-.375.23-.817.23-1.359v-8.117l-1-2V5.5c0-.542-.064-.984-.23-1.36a1.72 1.72 0 0 0-.797-.837C16.293 2.963 15.5 3 14.5 3h-6c-.25 0-.487-.002-.713 0zM8 6h1v2H8V6zm3 0h1v2h-1V6zm3 0h1v2h-1V6z" style="color:#000;fill:#e95420;fill-opacity:1;-inkscape-stroke:none"/></svg>
+      <p>Media cards</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M7.455 2c-.969.009-1.718.073-2.338.445-.413.248-.72.656-.888 1.162C4.059 4.114 4 4.722 4 5.5v13c0 .778.06 1.386.229 1.893.168.506.475.914.888 1.162C5.944 22.05 7 22 8.5 22h7c1.5 0 2.556.05 3.383-.445.413-.248.72-.656.888-1.162.17-.507.229-1.115.229-1.893v-13c0-.778-.06-1.386-.229-1.893-.168-.506-.475-.914-.888-1.162C18.056 1.95 17 2 15.5 2h-7c-.375 0-.722-.003-1.045 0zm4.47 7a5 5 0 0 1 3.744 1.623l.685.73-1.5 1.5-.708-.707.819-.818a4 4 0 0 0-4.496-1.023A4 4 0 1 0 16 14h1a5 5 0 1 1-5.074-5zM12 12a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1z" style="color:#000;fill:#e95420;fill-opacity:1;-inkscape-stroke:none"/></svg>
+      <p>Memory</p>
+    </div>
+    <div class="col-2 col-small-2 col-medium-2 u-align--center">
+      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 1 24 24"><path d="M6.5 3c-.277 0-.5.223-.5.5v1.807c-.25.086-.487.195-.705.334-.484.308-.841.767-1.057 1.359H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5H4v1H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5H4v1H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5H4v1H2.5c-.277 0-.5.223-.5.5v1c0 .277.223.5.5.5h1.738c.216.592.573 1.051 1.057 1.36.218.138.454.247.705.333V21.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5v-1.508c.163.005.33.008.5.008H9v1.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5V20h1v1.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5V20h.5c.17 0 .337-.003.5-.008V21.5c0 .277.223.5.5.5h1c.277 0 .5-.223.5-.5v-1.807c.25-.086.487-.195.705-.334.484-.308.841-.767 1.057-1.359H20.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5H19v-1h1.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5H19v-1h1.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5H19V9h1.5c.277 0 .5-.223.5-.5v-1c0-.277-.223-.5-.5-.5h-1.738c-.216-.592-.573-1.051-1.057-1.36A3.333 3.333 0 0 0 17 5.308V3.5c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5v1.508c-.163-.005-.33-.008-.5-.008H14V3.5c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5V5h-1V3.5c0-.277-.223-.5-.5-.5h-1c-.277 0-.5.223-.5.5V5h-.5c-.17 0-.337.003-.5.008V3.5c0-.277-.223-.5-.5-.5zm2.287 4c.226-.002.463 0 .713 0h4c1 0 1.794-.037 2.473.303.34.17.63.462.797.838.166.375.23.817.23 1.359v6c0 .542-.064.984-.23 1.36a1.72 1.72 0 0 1-.797.837c-.68.34-1.473.303-2.473.303h-4c-1 0-1.794.037-2.473-.303a1.72 1.72 0 0 1-.797-.838C6.064 16.484 6 16.042 6 15.5v-6c0-.542.064-.984.23-1.36a1.72 1.72 0 0 1 .797-.837c.51-.255 1.083-.297 1.76-.303zM9.5 8c-1 0-1.706.037-2.027.197a.615.615 0 0 0-.328.35C7.06 8.734 7 9.042 7 9.5v6c0 .458.061.766.145.953.083.187.167.27.328.35.32.16 1.027.197 2.027.197h4c1 0 1.706-.037 2.027-.197a.615.615 0 0 0 .328-.35c.084-.187.145-.495.145-.953v-6c0-.458-.061-.766-.145-.953a.615.615 0 0 0-.328-.35C15.207 8.037 14.5 8 13.5 8z" style="fill:#e95420;fill-rule:evenodd;stroke:#fff;stroke-width:0;stroke-linecap:square;stroke-linejoin:round"/></svg>
+      <p>CPU</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-sv2">
+    <hr class="is-fixed-width">
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h2>Regular testing<br />for up to 10 years</h2>
+      <p>Roughly every 3 weeks, Ubuntu releases <a href="https://wiki.ubuntu.com/StableReleaseUpdates">Stable Release Updates</a>, ensuring a secure and reliable experience. These updates are carefully tested by the Hardware Certifications team to make sure that systems work well with Ubuntu.</p>
+      <p><a href="/about/release-cycle">Learn more about Ubuntu release lifecycle</a></p>
+    </div>
+
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      <div class="p-strip--light">
+        <div class="u-fixed-width">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/aa1dc625-10+Year+shield+trio_AW.svg",
+            alt="",
+            width="293",
+            height="161",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+          }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row">
+    <div class="p-strip is-deep u-no-padding--top" style="background-image: url('https://assets.ubuntu.com/v1/b7ecd8a2-lab-1.jpg'); background-size: cover;">
+      <div class="p-strip is-shallow u-no-padding--bottom">
+        <div class="row" style="padding-left: 1rem;">
+          <div class="col-5 col-medium-3">
+            <h2>Our laboratories</h2>
+            <p class="u-sv3">Canonical conducts tests in dedicated laboratories, located around the world. The “Ubuntu Certified” label is applied to systems that have been verified and are continuously tested by Canonical throughout the Ubuntu release life cycle.</p>
+            <p><a href="/blog/people-and-processes-behind-ubuntu-certified-devices">Learn more about the Device Certification team</a></p>
           </div>
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </section>
+
+<section class="p-strip u-no-padding--bottom">
+  <div class="u-sv2">
+    <hr class="is-fixed-width">
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <div class="p-strip is-deep u-no-padding--top">
+        <div class="u-fixed-width">
+          <h2>Testing on real hardware</h2>
+          <p>Regular testing is performed directly on the hardware throughout the lifecycle of the Ubuntu release for which it has been certified. This approach allows Canonical to control the quality of the released updates on a point-by-point basis and ensures that users of certified hardware get the best experience.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6" style="background-image: url('https://assets.ubuntu.com/v1/6dccc5cb-rpis.jpg'); background-size: cover;">
+    </div>
+  </div>
+</section>
+
 <section class="p-strip">
-  <div class="row u-equal-height">
-   <div class="col-8">
-      <h2>Ubuntu certified desktops</h2>
-      <p>Many of the world's biggest PC manufacturers certify their desktops for Ubuntu, ensuring these systems always run as smoothly as their millions of users expect. Ubuntu is fast, reliable, packed with great software and free of viruses. That's why you'll find Ubuntu preloaded on desktops across government, education, enterprise and in homes around the world.</p>
-      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
-      <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
-        {% for desktop_vendor in desktop_vendors %}
-        <li class="p-inline-list__item">
-          <a href="/certified/desktops?vendor={{ desktop_vendor.make }}">{{ desktop_vendor.make }}&nbsp;({{ desktop_vendor.desktops }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
-      <ul class="p-inline-list--midline">
-        {% for desktop_release in desktop_releases %}
-        <li class="p-inline-list__item">
-          <a href="/certified/desktops?release={{ desktop_release.release }}">{{ desktop_release.release }}&nbsp;({{ desktop_release.desktops }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p><a href="/certified/desktops" class="p-button--positive">See all desktops</a></p>
-   </div>
-   <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-    {{ image (
-      url="https://assets.ubuntu.com/v1/21efb2ec-desktop.svg",
-      alt="",
-      width="223",
-      height="150",
-      hi_def=True,
-      loading="auto"
-      ) | safe
-    }}
-   </div>
-  </div>
-
-  <div class="u-fixed-width u-sv3"><hr></div>
-  
-  <div class="row u-equal-height">
-    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/4b732966-Laptop.svg",
-        alt="",
-        width="249",
-        height="144",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h2>Ubuntu certified laptops</h2>
-      <p>Just like desktops, manufacturers choose to certify their laptops for Ubuntu, ensuring they work beautifully and reliably, just as you would expect.</p>
-      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
-      <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
-        {% for laptop_vendor in laptop_vendors %}
-        <li class="p-inline-list__item">
-          <a href="/certified/laptops?vendor={{ laptop_vendor.make }}">{{ laptop_vendor.make }}&nbsp;({{ laptop_vendor.laptops }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
-      <ul class="p-inline-list--midline">
-        {% for laptop_release in laptop_releases %}
-        <li class="p-inline-list__item">
-          <a href="/certified/laptops?release={{ laptop_release.release }}">{{ laptop_release.release }}&nbsp;&nbsp;({{ laptop_release.laptops }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p><a href="/certified/laptops" class="p-button--positive">See all laptops</a></p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-sv3"><hr></div>
-
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Ubuntu certified servers</h2>
-      <p>Ubuntu Server and Canonical&rsaquo;s tools give you the ability to deploy your workloads as easily and repeatably on bare metal as if they were in the cloud.</p>
-      <p>Deploying on Ubuntu certified servers saves you time in choosing and testing what hardware you will use from a single server instance to the largest scale-out data centre environments.</p>
-      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
-      <ul class="p-inline-list--midline" style="margin-bottom: 0.5rem;">
-        {% for server_vendor in server_vendors %}
-          {% if server_vendor.make in ['Dell Technologies', 'Lenovo', 'HPE'] %}
-            <li class="p-inline-list__item">
-              <a href="/certified/servers?vendor={{ server_vendor.make }}">{{ server_vendor.make }}&nbsp;({{ server_vendor.total }})</a>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-
-      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
-      <ul class="p-inline-list--midline">
-        {% for server_release in server_releases %}
-        <li class="p-inline-list__item">
-          <a href="/certified/servers?release={{ server_release.release }}">{{ server_release.release }}&nbsp;({{ server_release.servers }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p><a href="/certified/servers" class="p-button--positive">See all servers</a></p>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fdf83d49-Server.svg",
-        alt="",
-        width="120",
-        height="144",
-        hi_def=True,
-        loading="auto"
-        ) | safe
-      }}
-    </div>
-  </div>
-  
-  <div class="u-fixed-width u-sv3"><hr></div>
-
-  <div class="row u-equal-height">
-    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/f9f8ace9-gateway.svg",
-        alt="",
-        width="138",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-    <div class="col-8">
-      <h2>Ubuntu certified IoT devices</h2>
-      <p>A number of IoT vendors rely on Ubuntu for their devices, from drones and robots to edge gateways and development boards. They certify their devices to offer users the guarantee of a stable, secure, and optimised Ubuntu, either pre-loaded or as a build-your-own option.</p>
-      <p>Canonical's certification program offers you the peace of mind that all your Internet of Things devices will remain secure and regularly updated.</p>
-      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
-      <ul class="p-inline-list--midline">
-        {% for iot_vendor in iot_vendors %}
-        <li class="p-inline-list__item">
-          <a href="/certified/devices?vendor={{ iot_vendor.make }}">{{ iot_vendor.make }}&nbsp;({{ iot_vendor.smart_core }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
-      <ul class="p-inline-list--midline">
-        {% for iot_release in iot_releases %}
-        <li class="p-inline-list__item">
-          <a href="/certified/devices?release={{ iot_release.release }}">{{ iot_release.release }}&nbsp;({{ iot_release.smart_core }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p><a href="/certified/devices" class="p-button--positive">See all devices</a></p>
-    </div>
-  </div>
-
-  <div class="u-fixed-width u-sv3"><hr></div>
-
-  <div class="row u-equal-height">
-    <div class="col-8">
-      <h2>Ubuntu certified SoCs</h2>
-      <p>64-bit ARM based System on a Chip (SoC) hardware is re-defining the future of sustainable data centres. Featuring high core counts and lower power consumption and cooling needs, Ubuntu certified Servers that utilise certified System on Chip hardware can lower your costs while allowing you to scale up and out to meet customer demand.</p>
-      <p>Canonical's certification program offers server manufacturers a selection of SoCs officially supported and maintained in Ubuntu to choose from for their products.</p>
-      <p class="u-text--muted u-no-margin--bottom">Vendor:</p>
-      <ul class="p-inline-list--midline">
-        {% for soc_vendor in soc_vendors %}
-        <li class="p-inline-list__item">
-          <a href="/certified/socs?vendor={{ soc_vendor.make }}">{{ soc_vendor.make }} ({{ soc_vendor.soc }})</a>
-        </li>
-        {% endfor %}
-      </ul>
-      <p class="u-text--muted u-no-margin--bottom">Certified for:</p>
-      <ul class="p-inline-list--midline">
-        {% for soc_release in soc_releases %}
-        <li class="p-inline-list__item">
-          <a href="/certified/socs?release={{ soc_release.release }}">{{ soc_release.release }}&nbsp;({{ soc_release.soc }})</a>
-        </li>
-        {% endfor %}
-      </ul>      
-      <p><a href="/certified/socs" class="p-button--positive">See all SoCs</a></p>
-    </div>
-    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/4e0399a1-chip.svg",
-        alt="",
-        width="126",
-        height="150",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
+  {% include "certified/shared/_partners.html" %}
 </section>
-<section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h2>Become Ubuntu certified!</h2>
-      <p>Becoming Ubuntu certified is your top choice for differentiation, reliability, and product visibility. When your hardware is certified, they can carry the Ubuntu certified Hardware logo on websites and product packaging. The “Ubuntu Certified Hardware” sticker increases customer confidence that your products integrate seamlessly with Ubuntu, which in turn increases traffic to your products.</p>
-      <a href="https://canonical.com/partners/become-a-partner">Learn more</a>
-    </div>
-    <div class="col-5 u-hide--medium u-hide--small u-align--center">
+
+<section class="p-strip--suru-shape-dark is-deep">
+  <div class="u-fixed-width u-sv2">
+    <hr class="is-fixed-width is-dark">
+  </div>
+
+  <div class="row">
+    <div class="col-3 col-small-1 col-medium-1">
       {{ image (
-        url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
+        url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
         alt="",
-        width="102",
-        height="150",
+        width="112",
+        height="157",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
+    </div>
+    <div class="col-9 col-small-3 col-medium-5">
+      <h2 class="u-no-padding--top">Are you interested <br class="u-hide--medium u-hide--large">in <br class="u-hide--medium u-hide--small">certifying <br class="u-hide--medium u-hide--large">your hardware?</h2>
+      <hr />
+      <p>Drive differentiation for your hardware by certifying with the world's most widely used Linux. Our certification programme increases customer confidence that your products integrate seamlessly with Ubuntu.</p>
+      <a href="/certified/why-certify" class="p-button--positive">Discover the benefits</a>
     </div>
   </div>
 </section>

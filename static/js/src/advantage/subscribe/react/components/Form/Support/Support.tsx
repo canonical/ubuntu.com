@@ -8,6 +8,8 @@ import {
   SLA,
   Support as SupportEnum,
   LTSVersions,
+  IoTDevices,
+  isIoTDevice,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
@@ -20,6 +22,7 @@ const Support = () => {
     setSupport,
     productType,
     version,
+    iotDevice,
   } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +33,11 @@ const Support = () => {
     );
   };
 
-  const isInfraOnlyDisabled = productType === ProductTypes.desktop;
+  const isInfraOnlyDisabled =
+    productType === ProductTypes.desktop ||
+    version === LTSVersions.trusty ||
+    version === LTSVersions.xenial;
+
   const isFullSupportDisabled =
     feature === Features.infra ||
     version === LTSVersions.trusty ||
@@ -40,7 +47,9 @@ const Support = () => {
     <div
       className={classNames({
         row: true,
-        "u-disable": isPublicCloud(productType),
+        "u-disable":
+          isPublicCloud(productType) ||
+          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >
@@ -110,6 +119,7 @@ const Support = () => {
               "is-selected": support === SupportEnum.infra,
               "u-disable": isInfraOnlyDisabled,
             })}
+            data-testid="infra-support"
           >
             <label className="p-radio u-align-text--center">
               <input
@@ -153,6 +163,7 @@ const Support = () => {
               "is-selected": support === SupportEnum.full,
               "u-disable": isFullSupportDisabled,
             })}
+            data-testid="full-support"
           >
             <label className="p-radio u-align-text--center">
               <input

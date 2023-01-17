@@ -31,6 +31,14 @@ vSphere servers. Using the credentials provided to **Juju**, it acts as a proxy 
 Charmed Kubernetes and the underlying cloud, granting permissions to
 dynamically create, for example, storage.
 
+### Model configuration
+
+If the cluster has multiple datastores or a non-default network name, you'll need to configure the model defaults before deployment. For example:
+
+```bash
+juju model-config datastore=mydatastore primary-network=mynetwork
+```
+
 ### Installing
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install],
@@ -197,7 +205,7 @@ please see the [vSphere integrator charm page][vsphere-integrator].
 [vsphere-integrator]: https://charmhub.io/vsphere-integrator/docs
 [vsphere-juju]: https://juju.is/docs/olm/vmware-vsphere
 [install]: /kubernetes/docs/install-manual
-[vmware documentation]: https://vmware.github.io/vsphere-storage-for-kubernetes/documentation/existing.html
+[vmware documentation]: https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/index.html
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

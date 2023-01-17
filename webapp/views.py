@@ -835,7 +835,11 @@ def marketo_submit():
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
-            {"leadFormFields": form_fields, "visitorData": visitor_data}
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
         ],
     }
 
@@ -958,3 +962,25 @@ def thank_you():
     return flask.render_template(
         "thank-you.html", referrer=flask.request.args.get("referrer")
     )
+
+
+def get_user_country_by_ip():
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+    ip_location = ip_reader.get("84.247.0.146")
+
+    if not ip_location:
+        country_code = None
+    else:
+        country_code = ip_location["country"]["iso_code"]
+
+    response = flask.jsonify(
+        {
+            "client_ip": client_ip,
+            "country_code": country_code,
+        }
+    )
+    response.cache_control.private = True
+
+    return response

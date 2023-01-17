@@ -125,6 +125,11 @@ const PurchaseModal = ({
                 VATNumber:
                   "That VAT number is invalid. Check the number and try again.",
               });
+            } else if (error.message === "tax_id_cannot_be_validated") {
+              actions.setErrors({
+                VATNumber:
+                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
+              });
             } else {
               const knownErrorMessage = getErrorMessage({
                 message: "",

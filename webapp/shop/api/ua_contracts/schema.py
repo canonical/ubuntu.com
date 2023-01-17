@@ -71,6 +71,7 @@ class PurchaseSchema(BaseSchema):
 class AccountSchema(BaseSchema):
     id = String(required=True, attribute="id")
     name = String(required=True)
+    type = String(required=True)
     userRoleOnAccount = String(required=True, attribute="role")
 
     @post_load

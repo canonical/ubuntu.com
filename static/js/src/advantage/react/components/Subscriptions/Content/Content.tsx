@@ -4,12 +4,16 @@ import {
   NotificationSeverity,
   Spinner,
 } from "@canonical/react-components";
-import { UserSubscriptionMarketplace } from "advantage/api/enum";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { useScrollIntoView } from "advantage/react/hooks/useScrollIntoView";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
 import React, { useCallback, useEffect, useState } from "react";
 
+import ReBuyExpiredModal from "../ReBuyExpired";
 import SubscriptionDetails from "../SubscriptionDetails";
 import SubscriptionList from "../SubscriptionList";
 import { SelectedId } from "./types";
@@ -21,6 +25,7 @@ const Content = () => {
   const [scrollTargetRef, scrollIntoView] = useScrollIntoView<HTMLDivElement>(
     20
   );
+
   const { data: allSubscriptions, isError, isLoading } = useUserSubscriptions();
   const onSetActive = useCallback(
     (token: SelectedId) => {
@@ -66,6 +71,41 @@ const Content = () => {
       setSelectedId(firstSubscription.id);
     }
   }, [selectedId, setSelectedId, allSubscriptions, isLoading]);
+
+  const [showRepurchase, setShowRepurchase] = useState(false);
+  useEffect(() => {
+    if (location.hash.startsWith("#repurchase,")) {
+      setShowRepurchase(true);
+    }
+  }, []);
+
+  if (showRepurchase) {
+    const [
+      accountId,
+      listingId,
+      units,
+      period,
+      marketplace,
+      total,
+      productName,
+    ] = location.hash.split(",").slice(1);
+    return (
+      <ReBuyExpiredModal
+        repurchase={{
+          accountId: accountId,
+          listingId: listingId,
+          units: parseInt(units),
+          period: period as UserSubscriptionPeriod,
+          marketplace: marketplace as UserSubscriptionMarketplace,
+          total: parseInt(total),
+          productName: decodeURI(productName),
+        }}
+        closeModal={() => {
+          setShowRepurchase(false);
+        }}
+      />
+    );
+  }
 
   if (isLoading) {
     return (

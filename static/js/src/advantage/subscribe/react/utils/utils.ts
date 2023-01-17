@@ -109,6 +109,12 @@ export enum ProductTypes {
   virtual = "virtual",
   desktop = "desktop",
   publicCloud = "publicCloud",
+  iotDevice = "iotDevice",
+}
+
+export enum IoTDevices {
+  classic = "classic",
+  core = "core",
 }
 
 export enum PublicClouds {
@@ -197,6 +203,12 @@ export const isMonthlyAvailable = (product: Product | null) => {
 export const isPublicCloud = (type: ProductTypes) =>
   type === ProductTypes.publicCloud;
 
+export const isIoTDevice = (type: ProductTypes) =>
+  type === ProductTypes.iotDevice;
+
+export const isDeviceUbuntuCore = (type: IoTDevices) =>
+  type === IoTDevices.core;
+
 export const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -239,6 +251,26 @@ export const getProduct = (
       return "uai-standard-desktop-yearly";
     case `${ProductTypes.desktop}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
       return "uai-advanced-desktop-yearly";
+    case `${ProductTypes.iotDevice}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uai-essential-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.infra}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uai-essential-physical-monthly";
+    case `${ProductTypes.iotDevice}-${Features.infra}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
+      return "uai-standard-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.infra}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
+      return "uai-advanced-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.yearly}`:
+      return "uaia-essential-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.pro}-${Support.none}-${SLA.none}-${Periods.monthly}`:
+      return "uaia-essential-physical-monthly";
+    case `${ProductTypes.iotDevice}-${Features.pro}-${Support.infra}-${SLA.weekday}-${Periods.yearly}`:
+      return "uio-standard-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.pro}-${Support.infra}-${SLA.everyday}-${Periods.yearly}`:
+      return "uio-advanced-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.pro}-${Support.full}-${SLA.weekday}-${Periods.yearly}`:
+      return "uaia-standard-physical-yearly";
+    case `${ProductTypes.iotDevice}-${Features.pro}-${Support.full}-${SLA.everyday}-${Periods.yearly}`:
+      return "uaia-advanced-physical-yearly";
     default:
       return "no-product";
   }

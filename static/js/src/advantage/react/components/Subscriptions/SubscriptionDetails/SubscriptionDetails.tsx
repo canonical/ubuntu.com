@@ -1,30 +1,37 @@
+import React, { forwardRef, useCallback, useEffect, useState } from "react";
+import usePortal from "react-useportal";
+import classNames from "classnames";
 import {
   Button,
   Notification,
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, forwardRef, useEffect, useState } from "react";
-import classNames from "classnames";
-import usePortal from "react-useportal";
-
-import SubscriptionCancel from "../SubscriptionCancel";
-import DetailsContent from "./DetailsContent";
-import SubscriptionEdit from "../SubscriptionEdit";
-import { useUserSubscriptions } from "advantage/react/hooks";
-import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
-  isFreeSubscription,
+  UserSubscriptionPeriod,
+  UserSubscriptionType,
+} from "advantage/api/enum";
+import { useUserSubscriptions } from "advantage/react/hooks";
+import {
+  selectSubscriptionById,
+} from "advantage/react/hooks/useUserSubscriptions";
+import {
+  formatDate,
   getNextCycleStart,
   isBlenderSubscription,
-  formatDate,
+  isFreeSubscription,
 } from "advantage/react/utils";
-import ExpiryNotification from "../ExpiryNotification";
-import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
-import { SelectedId } from "../Content/types";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import { SelectedId } from "../Content/types";
+import ExpiryNotification from "../ExpiryNotification";
+import {
+  ExpiryNotificationSize,
+} from "../ExpiryNotification/ExpiryNotification";
+import ReBuyExpiredModal from "../ReBuyExpired";
 import RenewalModal from "../RenewalModal";
-import { UserSubscriptionType } from "advantage/api/enum";
+import SubscriptionCancel from "../SubscriptionCancel";
+import SubscriptionEdit from "../SubscriptionEdit";
+import DetailsContent from "./DetailsContent";
 
 type Props = {
   modalActive?: boolean;
@@ -52,6 +59,10 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     }, []);
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
+    const [showingRenewalModal, setShowingRenewalModal] = useState(false);
+    const [showingReBuyExpiredModal, setShowingReBuyExpiredModal] = useState(
+      false
+    );
     const [notification, setNotification] = useState<NotificationProps | null>(
       null
     );
@@ -241,6 +252,27 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     />
                   </Portal>
                 )}
+                {(subscription.statuses.is_expired ||
+                  subscription.statuses.is_in_grace_period) &&
+                  (subscription.type == "monthly" ||
+                    subscription.type == "yearly") && (
+                    <Button
+                      appearance="neutral"
+                      className="p-subscriptions__details-action"
+                      data-test="renew-button"
+                      disabled={editing}
+                      onClick={() => {
+                        setShowingReBuyExpiredModal(true);
+                        sendAnalyticsEvent({
+                          eventCategory: "Advantage",
+                          eventAction: "subscription-rebuy-expired-modal",
+                          eventLabel: "subscription rebuy expired modal opened",
+                        });
+                      }}
+                    >
+                      Renew subscription&hellip;
+                    </Button>
+                  )}
                 {isResizable ? (
                   <Button
                     appearance="neutral"
@@ -290,6 +322,30 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             />
           )}
         </section>
+        {showingRenewalModal ? (
+          <RenewalModal
+            subscription={subscription}
+            closeModal={() => {
+              setShowingRenewalModal(false);
+            }}
+          />
+        ) : null}
+        {showingReBuyExpiredModal ? (
+          <ReBuyExpiredModal
+            repurchase={{
+              accountId: subscription.account_id,
+              listingId: subscription.listing_id || "",
+              units: subscription.number_of_machines,
+              period: subscription.period || UserSubscriptionPeriod.Yearly,
+              marketplace: subscription.marketplace,
+              total: subscription.price || 0,
+              productName: subscription.product_name || "Unknown product",
+            }}
+            closeModal={() => {
+              setShowingReBuyExpiredModal(false);
+            }}
+          />
+        ) : null}
       </div>
     );
   }
