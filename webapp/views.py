@@ -984,3 +984,71 @@ def get_user_country_by_ip():
     response.cache_control.private = True
 
     return response
+
+
+def subscription_centre():
+    sfdcLeadId = flask.request.args.get("id")
+    return_url = flask.request.form.get("returnURL")
+
+    if sfdcLeadId is None:
+        return flask.redirect("/blog")
+
+    if flask.request.method == "POST":
+        if not return_url:
+            subscription_centre_submit(sfdcLeadId, False)
+            return flask.redirect(
+                f"{flask.request.path}?id={sfdcLeadId}#updated"
+            )
+        else:
+            subscription_centre_submit(sfdcLeadId, True)
+            return flask.redirect(f"/{return_url}")
+
+    with open("subscriptions.yaml") as subscriptions:
+        subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
+
+    try:
+        response = marketo_api.request(
+            "GET",
+            "/rest/v1/leads.json",
+            {
+                "filterType": "sfdcLeadId",
+                "filterValues": sfdcLeadId,
+                "fields": "prototype_interests,canonicalUpdatesOptIn",
+            },
+        )
+        data = response.json()
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    return flask.render_template(
+        "subscription-centre/index.html",
+        categories=subscriptions,
+        interests=data["result"][0]["prototype_interests"],
+        updatesOptIn=data["result"][0]["canonicalUpdatesOptIn"],
+    )
+
+
+def subscription_centre_submit(sfdcLeadId, unsubscribe):
+    updatesOptIn = flask.request.form.get("generalUpdates") or False
+    tagListArray = flask.request.form.getlist("tags")
+    tagListString = ",".join(tagListArray)
+
+    payload = {
+        "lookupField": "sfdcLeadId",
+        "input": [
+            {
+                "sfdcLeadId": sfdcLeadId,
+                "prototype_interests": tagListString,
+                "canonicalUpdatesOptIn": updatesOptIn,
+                "unsubscribed": unsubscribe,
+            }
+        ],
+    }
+
+    try:
+        response = marketo_api.request(
+            "POST", "/rest/v1/leads.json", json=payload
+        )
+        return response
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
