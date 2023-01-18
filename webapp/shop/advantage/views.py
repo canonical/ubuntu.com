@@ -650,7 +650,9 @@ def activate_magic_attach(advantage_mapper, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="html")
 def magic_attach_view(advantage_mapper, **kwargs):
-    user_subscriptions = advantage_mapper.get_user_subscriptions(email=None)
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=None, marketplaces=["canonical-ua"]
+    )
     selected_id = flask.request.args.get("subscription")
     return flask.render_template(
         "pro/attach/index.html",

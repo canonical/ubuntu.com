@@ -188,9 +188,11 @@ class AdvantageMapper:
 
         return EnsurePurchaseAccountSchema().load(response)
 
-    def get_user_subscriptions(self, email: str) -> List[UserSubscription]:
+    def get_user_subscriptions(
+        self, email: str, marketplaces: List = ["canonical-ua", "blender"]
+    ) -> List[UserSubscription]:
         listings = {}
-        for marketplace in ["canonical-ua", "blender"]:
+        for marketplace in marketplaces:
             marketplace_listings = self.get_product_listings(
                 marketplace,
                 filters={"include-hidden": "true"},
@@ -207,7 +209,7 @@ class AdvantageMapper:
             )
             subscriptions = []
             if account.role != "technical":
-                for marketplace in ["canonical-ua", "blender"]:
+                for marketplace in marketplaces:
                     market_subscriptions = self.get_account_subscriptions(
                         account_id=account.id,
                         marketplace=marketplace,
