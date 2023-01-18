@@ -16,7 +16,7 @@
   <div class="row">
     <div class="col-4">
       <h1 class="p-heading--2 u-no-margin--bottom u-sv1">Subscription centre</h1>
-      <p class="p-heading--4">Tailor your email preferences</p>
+      <p class="p-heading--5">Tailor your email preferences</p>
     </div>
     <div class="col-8">
       <div class="p-search-and-filter" id="subscription-centre-search" style="margin-bottom:1rem;" aria-hidden="true" hidden>
@@ -43,7 +43,7 @@
           <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="true" {% if updatesOptIn %}checked{% endif %}>
           <span class="p-checkbox__label">I agree to receive information about Canonical's products and services</span>
         </label>
-        <hr class="p-separator is-shallow">
+        <hr style="margin-top:1rem;margin-bottom:0;">
         <div class="p-accordion">
           <ul class="p-accordion__list" id="subscriptions-list">
             {% for category in categories %}
@@ -72,7 +72,12 @@
       </form>
     </div>
   </div>
-  <hr class="p-separator is-fixed-width">
+  <hr class="p-separator is-fixed-width u-no-margin--top" style="margin-bottom:1rem;">
+  <div class="row">
+    <div class="col-start-large-5">
+      <span class="u-sv3">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</span>
+    </div>
+  </div>
   <div class="row">
     <div class="col-6 col-medium-3 col-small-2">
       <p><button class="p-button u-float-left" aria-controls="modal">Unsubscribe</button></p>
