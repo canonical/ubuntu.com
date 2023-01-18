@@ -43,7 +43,7 @@
           <input id="general-updates" type="checkbox" aria-labelledby="generalUpdates" class="p-checkbox__input" name="generalUpdates" value="true" {% if updatesOptIn %}checked{% endif %}>
           <span class="p-checkbox__label">I agree to receive information about Canonical's products and services</span>
         </label>
-        <hr class="p-separator is-shallow">
+        <hr style="margin-top:1rem;margin-bottom:0;">
         <div class="p-accordion">
           <ul class="p-accordion__list" id="subscriptions-list">
             {% for category in categories %}
