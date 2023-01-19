@@ -46,10 +46,13 @@ class AdvantageMapper:
         return AccountSchema(many=True).load(response.get("accounts", []))
 
     def get_account_contracts(
-        self, account_id: str, include_active_machines: bool = False
+        self,
+        account_id: str,
+        product_tags: str = "ua,classic,pro,blender",
+        include_active_machines: bool = False,
     ) -> List[Contract]:
         response = self.ua_contracts_api.get_account_contracts(
-            account_id, include_active_machines
+            account_id, product_tags, include_active_machines
         )
         contracts = response.get("contracts", [])
 
@@ -192,19 +195,24 @@ class AdvantageMapper:
         self, email: str, marketplaces: List = ["canonical-ua", "blender"]
     ) -> List[UserSubscription]:
         listings = {}
+        product_tags = []
         for marketplace in marketplaces:
             marketplace_listings = self.get_product_listings(
                 marketplace,
                 filters={"include-hidden": "true"},
             )
             listings.update(marketplace_listings)
-
+            if marketplace == "canonical-ua":
+                product_tags.extend(["ua", "classic", "pro"])
+            elif marketplace == "blender":
+                product_tags.append("blender")
         accounts = self.get_accounts(email=email)
 
         user_summary = []
         for account in accounts:
             contracts = self.get_account_contracts(
                 account_id=account.id,
+                product_tags=",".join(product_tags),
                 include_active_machines=True,
             )
             subscriptions = []

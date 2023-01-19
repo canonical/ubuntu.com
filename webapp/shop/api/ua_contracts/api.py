@@ -72,7 +72,10 @@ class UAContractsAPI:
         ).json()
 
     def get_account_contracts(
-        self, account_id: str, include_active_machines: bool = False
+        self,
+        account_id: str,
+        product_tags: str = "ua,classic,pro,blender",
+        include_active_machines: bool = False,
     ) -> dict:
         include_active_machines = str(include_active_machines).lower()
 
@@ -80,7 +83,7 @@ class UAContractsAPI:
             method="get",
             path=(
                 f"v1/accounts/{account_id}/contracts"
-                f"?productTags=ua,classic,pro,blender"
+                f"?productTags={product_tags}"
                 f"&include-active-machines={include_active_machines}"
             ),
             error_rules=["default"],
