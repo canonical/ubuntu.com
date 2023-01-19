@@ -76,6 +76,16 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def get_exam_contracts(
+        self,
+        account_id: str,
+    ) -> dict:
+        return self._request(
+            method="get",
+            path=(f"v1/accounts/{account_id}/contracts?productTags=cue"),
+            error_rules=["default"],
+        ).json()
+
     def get_contract(self, contract_id: str) -> dict:
         return self._request(
             method="get",

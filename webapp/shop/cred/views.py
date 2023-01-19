@@ -126,7 +126,7 @@ def cred_schedule(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_your_exams(trueability_api, **_):
+def cred_your_exams(advantage_mapper, trueability_api, **_):
     sso_user_email = user_info(flask.session)["email"]
     ability_screen_id = 4190
     response = trueability_api.paginate(
@@ -134,7 +134,7 @@ def cred_your_exams(trueability_api, **_):
         "assessment_reservations",
         ability_screen_id=ability_screen_id,
     )
-
+    exam_contracts = advantage_mapper.get_exam_contracts()
     exams = []
     for r in response["assessment_reservations"]:
         user_email = r.get("user", {}).get("email")
