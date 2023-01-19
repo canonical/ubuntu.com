@@ -6,25 +6,56 @@
     </header>
     <div class="js-pagination js-pagination--1">
       <p id="modal-description" class="u-no-max-width">Canonical partners with silicon companies, board manufacturers and ODMs to help the industry bring smart device and software capabilities to market faster.</p>
-      <p class="u-no-max-width u-no-margin--bottom">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
+      <p class="u-no-max-width">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
 
       <div class="js-formfield">
-        <h3 class="p-heading--5">Do you have a commercial project?</h3>
+        <h3 class="p-heading--5">Your company is...</h3>
         <div class="row u-no-padding">
           <div class="col-4 u-sv3">
             <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="commerical-project-yes" name="commercial-project" value="Yes">
-              <span class="p-radio__label" id="commerical-project-yes">Yes</span>
+              <input class="p-radio__input" type="radio" aria-labelledby="company-type-silicon-vendor" name="company-type" value="silicon-vendor">
+              <span class="p-radio__label" id="company-type-silicon-vendor">a silicon vendor</span>
             </label>
           </div>
           <div class="col-4 u-sv3">
             <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
-              <span class="p-radio__label" id="commercial-project-no">No</span>
+              <input class="p-radio__input" type="radio" aria-labelledby="company-type-tool-provider" name="company-type" value="tool-provider">
+              <span class="p-radio__label" id="company-type-tool-provider">a tool provider</span>
+            </label>
+          </div>
+          <div class="col-4 u-sv3">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="company-type-odm-oem" name="company-type" value="odm-oem">
+              <span class="p-radio__label" id="company-type-odm-oem">an ODM/OEM</span>
             </label>
           </div>
         </div>
       </div>
+
+      <div class="js-formfield">
+        <h3 class="p-heading--5">If you are a silicon vendor or a tool provider, is Linux possible to run on the SoC/solution?</h3>
+        <div class="row u-no-padding">
+          <div class="col-4 u-sv3">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="soc-solution-yes" name="soc-solution" value="yes">
+              <span class="p-radio__label" id="soc-solution-yes">Yes</span>
+            </label>
+          </div>
+          <div class="col-4 u-sv3">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="soc-solution-no" name="soc-solution" value="no">
+              <span class="p-radio__label" id="soc-solution-no">No</span>
+            </label>
+          </div>
+          <div class="col-4 u-sv3">
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="soc-solution-not-applicable" name="soc-solution" value="not-applicable">
+              <span class="p-radio__label" id="soc-solution-not-applicable">Not applicable</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
       <div class="js-formfield">
         <div class="u-sv3">
           <h3 class="p-heading--5">When do you need to ship?</h3>
@@ -34,6 +65,8 @@
                 <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-months" name="shipping-time" value="Next 3 months">
                 <span class="p-radio__label" id="shipping-time-next-3-months">Next 3 months</span>
               </label>
+            </div>
+            <div class="col-4 u-sv3">
               <label class="p-radio">
                 <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-3-6-months" name="shipping-time" value="Next 3 - 6 months">
                 <span class="p-radio__label" id="shipping-time-next-3-6-months">Next 3 - 6 months</span>
@@ -44,15 +77,18 @@
                 <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-next-6-12-months" name="shipping-time" value="Next 6 - 12 months">
                 <span class="p-radio__label" id="shipping-time-next-6-12-months">Next 6 - 12 months</span>
               </label>
+            </div>
+            <div class="col-4 u-sv3">
               <label class="p-radio">
                 <input class="p-radio__input" type="radio" aria-labelledby="shipping-time-no-timeline" name="shipping-time" value="No timeline - just researching">
                 <span class="p-radio__label" id="shipping-time-no-timeline">No timeline - just researching</span>
               </label>
             </div>
           </div>
+
           <div class="row u-no-padding">
-            <div class="col-6 u-sv3">
-              <label for="about-project">Tell us more about your project</label>
+            <div class="col-8 u-sv3">
+              <label for="about-project" class="p-heading--5">Tell us more about your project:</label>
               <textarea name="about-project" id="about-project"></textarea>
             </div>
           </div>
