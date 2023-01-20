@@ -76,13 +76,10 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def get_exam_contracts(
-        self,
-        account_id: str,
-    ) -> dict:
+    def get_exam_contracts(self) -> dict:
         return self._request(
             method="get",
-            path=(f"v1/accounts/{account_id}/contracts?productTags=cue"),
+            path="web/annotated-contract-items?productTags=cue",
             error_rules=["default"],
         ).json()
 

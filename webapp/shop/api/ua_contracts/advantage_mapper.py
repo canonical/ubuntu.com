@@ -56,13 +56,7 @@ class AdvantageMapper:
         return parse_contracts(contracts)
 
     def get_exam_contracts(self) -> List[Contract]:
-        accounts = self.get_accounts()
-        exam_contracts = []
-        for account in accounts:
-            response = self.ua_contracts_api.get_exam_contracts(account.id)
-            contracts = response.get("contracts", [])
-            exam_contracts.extend(contracts)
-        return parse_contracts(exam_contracts)
+        self.ua_contracts_api.get_exam_contracts()
 
     def get_contract(self, contract_id: str) -> Contract:
         contract = self.ua_contracts_api.get_contract(contract_id)
