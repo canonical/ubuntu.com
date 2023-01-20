@@ -395,10 +395,17 @@ import setupIntlTelInput from "./intlTelInput.js";
               case "checkbox":
                 if (input.checked) {
                   var subSectionText = "";
-                  var subSection = input
-                    .closest('[class*="col-"]')
-                    .querySelector(".js-sub-section");
-                  if (subSection) {
+
+                  // Forms that have column separation
+                  if (
+                    input.closest('[class*="col-"]') &&
+                    input
+                      .closest('[class*="col-"]')
+                      .querySelector(".js-sub-section")
+                  ) {
+                    var subSection = input
+                      .closest('[class*="col-"]')
+                      .querySelector(".js-sub-section");
                     subSectionText = subSection.innerText + ": ";
                   }
 
@@ -436,7 +443,6 @@ import setupIntlTelInput from "./intlTelInput.js";
             }
           });
         });
-
         return message;
       }
 
