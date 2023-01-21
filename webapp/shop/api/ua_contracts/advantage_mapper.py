@@ -55,9 +55,6 @@ class AdvantageMapper:
 
         return parse_contracts(contracts)
 
-    def get_exam_contracts(self) -> List[Contract]:
-        self.ua_contracts_api.get_exam_contracts()
-
     def get_contract(self, contract_id: str) -> Contract:
         contract = self.ua_contracts_api.get_contract(contract_id)
 

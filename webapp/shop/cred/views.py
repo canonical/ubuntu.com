@@ -126,76 +126,79 @@ def cred_schedule(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_your_exams(advantage_mapper, trueability_api, **_):
-    sso_user_email = user_info(flask.session)["email"]
-    ability_screen_id = 4190
-    response = trueability_api.paginate(
-        trueability_api.get_assessment_reservations,
-        "assessment_reservations",
-        ability_screen_id=ability_screen_id,
-    )
-    exam_contracts = advantage_mapper.get_exam_contracts()
+def cred_your_exams(ua_contracts_api, trueability_api, **_):
+    exam_contracts = ua_contracts_api.get_exam_contracts()
     exams = []
-    for r in response["assessment_reservations"]:
-        user_email = r.get("user", {}).get("email")
-
-        if user_email != sso_user_email:
-            continue
-
-        name = r["ability_screen"]["display_name"]
-        timezone = r["user"]["time_zone"]
-        tz_info = pytz.timezone(timezone)
-        starts_at = (
-            datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-            .replace(tzinfo=pytz.timezone("UTC"))
-            .astimezone(tz_info)
-        )
-        assessment_id = r.get("assessment") and r["assessment"]["id"]
-
-        actions = []
-        utc = pytz.timezone("UTC")
-        now = utc.localize(datetime.utcnow())
-        end = starts_at + timedelta(hours=6)
-
-        if assessment_id and now > starts_at and now < end:
-            actions.extend(
-                [
-                    {
-                        "text": "Take exam",
-                        "href": f"/credentials/exam?id={ assessment_id }",
-                        "button_class": "p-button--positive",
-                    }
-                ]
+    for exam_contract in exam_contracts:
+        name = exam_contract["cueContext"]["courseID"]
+        if "reservation" in exam_contract["cueContext"]:
+            response = trueability_api.get_assessment_reservation(
+                exam_contract["cueContext"]["reservation"]["IDs"][-1]
             )
+            r = response["assessment_reservation"]
 
-        if r["state"] == "scheduled":
-            actions.extend(
-                [
-                    {
-                        "text": "Reschedule",
-                        "href": "/credentials/schedule"
-                        + f"?uuid={ r['uuid'] }",
-                        "button_class": "p-button",
-                    },
-                    {
-                        "text": "Cancel",
-                        "href": "/credentials/cancel-exam"
-                        + f"?uuid={ r['uuid'] }",
-                        "button_class": "p-button--negative",
-                    },
-                ]
+            timezone = r["user"]["time_zone"]
+            tz_info = pytz.timezone(timezone)
+            starts_at = (
+                datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                .replace(tzinfo=pytz.timezone("UTC"))
+                .astimezone(tz_info)
             )
-        exams.append(
-            {
-                "name": name,
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p %Z"),
-                "timezone": timezone,
-                "state": r["state"],
-                "uuid": r["uuid"],
-                "actions": actions,
-            }
-        )
+            assessment_id = r.get("assessment") and r["assessment"]["id"]
+
+            actions = []
+            utc = pytz.timezone("UTC")
+            now = utc.localize(datetime.utcnow())
+            end = starts_at + timedelta(hours=6)
+
+            if assessment_id and now > starts_at and now < end:
+                actions.extend(
+                    [
+                        {
+                            "text": "Take exam",
+                            "href": f"/credentials/exam?id={ assessment_id }",
+                            "button_class": "p-button--positive",
+                        }
+                    ]
+                )
+
+            if r["state"] == "scheduled":
+                actions.extend(
+                    [
+                        {
+                            "text": "Reschedule",
+                            "href": "/credentials/schedule"
+                            + f"?uuid={ r['uuid'] }",
+                            "button_class": "p-button",
+                        },
+                        {
+                            "text": "Cancel",
+                            "href": "/credentials/cancel-exam"
+                            + f"?uuid={ r['uuid'] }",
+                            "button_class": "p-button--negative",
+                        },
+                    ]
+                )
+            exams.append(
+                {
+                    "name": name,
+                    "date": starts_at.strftime("%d %b %Y"),
+                    "time": starts_at.strftime("%I:%M %p %Z"),
+                    "timezone": timezone,
+                    "state": r["state"],
+                    "uuid": r["uuid"],
+                    "actions": actions,
+                }
+            )
+        else:
+            actions = [
+                {
+                    "text": "Schedule",
+                    "href": "/credentials/schedule",
+                    "button_class": "p-button",
+                }
+            ]
+            exams.append({"name": name, "actions": actions})
 
     response = flask.make_response(
         flask.render_template(
