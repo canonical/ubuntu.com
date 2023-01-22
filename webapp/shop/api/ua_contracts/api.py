@@ -76,13 +76,6 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def get_exam_contracts(self) -> dict:
-        return self._request(
-            method="get",
-            path="web/annotated-contract-items?productTags=cue",
-            error_rules=["default"],
-        ).json()
-
     def get_contract(self, contract_id: str) -> dict:
         return self._request(
             method="get",
@@ -323,6 +316,36 @@ class UAContractsAPI:
             method="post",
             path=f"v1/marketplace/{marketplace}/purchase/calculate",
             json=request_body,
+            error_rules=["default"],
+        ).json()
+
+    def get_exam_contracts(self) -> dict:
+        return self._request(
+            method="get",
+            path="web/annotated-contract-items?productTags=cue",
+            error_rules=["default"],
+        ).json()
+
+    def post_assessment_reservation(
+        self,
+        contract_item_id,
+        first_name,
+        last_name,
+        timezone,
+        starts_at,
+        country_code,
+    ) -> dict:
+        return self._request(
+            method="get",
+            path="v1/cue/schedule",
+            json={
+                "contractItemID": contract_item_id,
+                "firstName": first_name,
+                "lastName": last_name,
+                "timezone": timezone,
+                "startsAt": starts_at,
+                "countryCode": country_code,
+            },
             error_rules=["default"],
         ).json()
 

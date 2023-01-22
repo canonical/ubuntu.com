@@ -40,7 +40,7 @@ def cred_sign_up(**_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_schedule(trueability_api, **_):
+def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
@@ -55,8 +55,7 @@ def cred_schedule(trueability_api, **_):
         starts_at = tz_info.localize(
             datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
         )
-        ability_screen_id = 4190
-        email = sso_user["email"]
+        contract_item_id = data["contractItemID"]
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
         country_code = TIMEZONE_COUNTRIES[timezone]
         response = None
@@ -66,13 +65,12 @@ def cred_schedule(trueability_api, **_):
                 starts_at.isoformat(), timezone, country_code, data["uuid"]
             )
         else:
-            response = trueability_api.post_assessment_reservation(
-                ability_screen_id,
-                starts_at.isoformat(),
-                email,
+            response = ua_contracts_api.post_assessment_reservation(
+                contract_item_id,
                 first_name,
                 last_name,
                 timezone,
+                starts_at.isoformat(),
                 country_code,
             )
 
@@ -94,6 +92,7 @@ def cred_schedule(trueability_api, **_):
             )
 
     assessment_reservation_uuid = flask.request.args.get("uuid")
+    contract_item_id = flask.request.args.get("contractItemID")
     timezone = ""
     date = min_date
     time = "13:00"
@@ -115,6 +114,7 @@ def cred_schedule(trueability_api, **_):
     return flask.render_template(
         "credentials/schedule.html",
         uuid=assessment_reservation_uuid,
+        contract_item_id=contract_item_id,
         timezone=timezone,
         date=date,
         time=time,
@@ -125,7 +125,6 @@ def cred_schedule(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_your_exams(ua_contracts_api, trueability_api, **_):
     exam_contracts = ua_contracts_api.get_exam_contracts()
     exams = []
@@ -191,10 +190,11 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                 }
             )
         else:
+            contract_item_id = exam_contract["id"]
             actions = [
                 {
                     "text": "Schedule",
-                    "href": "/credentials/schedule",
+                    "href": f"/credentials/schedule?contractItemID={contract_item_id}",
                     "button_class": "p-button",
                 }
             ]
