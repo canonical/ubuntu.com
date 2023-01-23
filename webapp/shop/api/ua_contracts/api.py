@@ -339,7 +339,7 @@ class UAContractsAPI:
             method="get",
             path="v1/cue/schedule",
             json={
-                "contractItemID": contract_item_id,
+                "contractItemID": int(contract_item_id),
                 "firstName": first_name,
                 "lastName": last_name,
                 "timezone": timezone,
