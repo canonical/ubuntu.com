@@ -18,6 +18,7 @@ TIMEZONE_COUNTRIES = {
     for country, timezones in pytz.country_timezones.items()
     for timezone in timezones
 }
+TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
@@ -80,7 +81,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 "/credentials/schedule.html", error=error
             )
         else:
-            uuid = response.get("assessment_reservation", {}).get("uuid", "")
+            uuid = response.get("reservation", {}).get("IDs", [])[-1]
             exam = {
                 "name": "CUE: Linux",
                 "date": starts_at.strftime("%d %b %Y"),
@@ -130,6 +131,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
     exams = []
     for exam_contract in exam_contracts:
         name = exam_contract["cueContext"]["courseID"]
+        contract_item_id = exam_contract["id"]
         if "reservation" in exam_contract["cueContext"]:
             response = trueability_api.get_assessment_reservation(
                 exam_contract["cueContext"]["reservation"]["IDs"][-1]
@@ -172,8 +174,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         },
                         {
                             "text": "Cancel",
-                            "href": "/credentials/cancel-exam"
-                            + f"?uuid={ r['uuid'] }",
+                            "href": f"/credentials/cancel-exam?contractItemID={contract_item_id}",
                             "button_class": "p-button--negative",
                         },
                     ]
@@ -190,7 +191,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                 }
             )
         else:
-            contract_item_id = exam_contract["id"]
             actions = [
                 {
                     "text": "Schedule",
@@ -216,20 +216,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_cancel_exam(trueability_api, **_):
-    uuid = flask.request.args.get("uuid")
-    reservation = trueability_api.get_assessment_reservation(uuid)
-
-    if reservation.get("error"):
-        return flask.abort(404)
-
-    reservation_email = reservation["assessment_reservation"]["user"]["email"]
-    sso_user = user_info(flask.session)["email"]
-
-    if reservation_email != sso_user:
-        return flask.abort(403)
-
-    trueability_api.delete_assessment_reservation(uuid)
+def cred_cancel_exam(ua_contracts_api, **_):
+    contract_item_id = flask.request.args.get("contractItemID")
+    ua_contracts_api.delete_assessment_reservation(contract_item_id)
     return flask.redirect("/credentials/your-exams")
 
 
