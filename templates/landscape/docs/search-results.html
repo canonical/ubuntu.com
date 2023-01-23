@@ -1,0 +1,12 @@
+{% with
+    title="Landscape Docs",
+    query=query,
+    results=results,
+    search_action="/landscape/docs/search",
+    siteSearch="https://ubuntu.com/landscape/docs",
+    placeholder="Search on Landscape Docs",
+    search_path="/landscape/docs/search",
+    forum_link="https://discourse.ubuntu.com/c/landscape/89"
+  %}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}

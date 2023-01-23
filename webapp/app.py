@@ -1009,6 +1009,32 @@ app.add_url_rule(
 
 security_certs_docs.init_app(app)
 
+# Landscape docs
+landscape_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=23070,
+        url_prefix="/landscape/docs",
+    ),
+    document_template="/landscape/docs/document.html",
+    url_prefix="/landscape/docs",
+    blueprint_name="landscape-docs",
+)
+
+# Landscape search
+app.add_url_rule(
+    "/landscape/docs/search",
+    "landscape-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/landscape/docs",
+        template_path="/landscape/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+landscape_docs.init_app(app)
+
 app.add_url_rule("/certified", view_func=certified_home)
 app.add_url_rule(
     "/certified/<canonical_id>",
