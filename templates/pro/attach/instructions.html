@@ -1,73 +1,75 @@
-<aside class="p-accordion">
-    <ul class="p-accordion__list">
-        <li class="p-accordion__group">
-            <h2 class="p-accordion__heading">
-                <button type="button" class="p-accordion__tab" id="tab0" aria-controls="tab0-section"
-                    aria-expanded="true">Where can I find the Ubuntu Pro installer code?</button>
-            </h2>
-            <section class="p-accordion__panel" id="tab0-section" aria-hidden="false" aria-labelledby="tab0">
-                <div class="p-segmented-control">
-                    <div class="p-segmented-control__list" role="tablist" aria-label="Magic Attach Instructions">
-                        <button class="p-segmented-control__button" role="tab" aria-selected="true"
-                            aria-controls="desktop-tab" id="MADesktop">Desktop</button>
-                        <button class="p-segmented-control__button" role="tab" aria-selected="false"
-                            aria-controls="server-tab" id="MAServer" tabindex="-1">Server</button>
-                    </div>
-                </div>
+<h2>Where can I find the Ubuntu Pro installer code? </h2>
+<div class="p-segmented-control">
+    <div class="p-segmented-control__list" role="tablist" aria-label="Magic Attach Instructions">
+        <button class="p-segmented-control__button" role="tab" aria-selected="true" aria-controls="desktop-tab"
+            id="MADesktop">Desktop</button>
+        <button class="p-segmented-control__button" role="tab" aria-selected="false" aria-controls="server-tab"
+            id="MAServer" tabindex="-1">Server</button>
+    </div>
+</div>
 
-                <div tabindex="0" role="tabpanel" id="desktop-tab" aria-labelledby="MADesktop">
-                    <p>
-                        During installation, you'll be asked whether you want to
-                        Upgrade to Ubuntu Pro.
-                    <ol className="p-stepped-list">
-                        <li className="p-stepped-list__item">
-                            <p className="p-stepped-list__title">
-                                Choose "Enable Ubuntu Pro"
-                            </p>
-                        </li>
-                        <li className="p-stepped-list__item">
-                            <p className="p-stepped-list__title">
-                                On the next screen you will be presented with a
-                                six-character code as part of the first option.
-                            </p>
-                        </li>
-                        <li className="p-stepped-list__item">
-                            <p className="p-stepped-list__title">
-                                Enter the code into the field above on this page.
-                            </p>
-                        </li>
-                    </ol>
+<div tabindex="0" role="tabpanel" id="desktop-tab" aria-labelledby="MADesktop">
+    <div class="row">
+        <div class="col-6">
+            {{ image( url="https://assets.ubuntu.com/v1/7671c4a8-magic_attach_visual_aid_desktop.png",
+            alt="", width="1174", height="615", hi_def=True, loading="auto" ) | safe }}
+        </div>
+        <div class="col-6">
+            <p>
+                During installation, you'll be asked whether you want to Upgrade to Ubuntu Pro.
+            <ol className="p-stepped-list">
+                <li className="p-stepped-list__item">
+                    <p className="p-stepped-list__title">
+                        Choose "Enable Ubuntu Pro"
                     </p>
-                </div>
+                </li>
+                <li className="p-stepped-list__item">
+                    <p className="p-stepped-list__title">
+                        On the next screen you will be presented with a
+                        six-character code as part of the first option.
+                    </p>
+                </li>
+                <li className="p-stepped-list__item">
+                    <p className="p-stepped-list__title">
+                        Enter the code into the field above on this page.
+                    </p>
+                </li>
+            </ol>
+            </p>
+        </div>
+    </div>
+</div>
 
-                <div tabindex="0" role="tabpanel" id="server-tab" aria-labelledby="MAServer" hidden="hidden">
-                    <p>
-                        During installation, you'll be asked whether you want to
-                        Upgrade to Ubuntu Pro.
-                    <ol className="p-stepped-list">
-                        <li className="p-stepped-list__item">
-                            <p className="p-stepped-list__title">
-                                Choose "Enable Ubuntu Pro"
-                            </p>
-                        </li>
-                        <li className="p-stepped-list__item">
-                            <p className="p-stepped-list__title">
-                                On the next screen you will be presented with a
-                                six-character code as part of the first option.
-                            </p>
-                        </li>
-                        <li className="p-stepped-list__item">
-                            <p className="p-stepped-list__title">
-                                Enter the code into the field above on this page.
-                            </p>
-                        </li>
-                    </ol>
+<div tabindex="0" role="tabpanel" id="server-tab" aria-labelledby="MAServer" hidden="hidden">
+    <div class="row">
+        <div class="col-6">
+            {{ image( url="https://assets.ubuntu.com/v1/4119ff56-magic_attach_visual_aid_server.png",
+            alt="", width="1174", height="615", hi_def=True, loading="auto" ) | safe }}
+        </div>
+        <div class="col-6">
+            <p>
+                During installation, you'll be asked whether you want to Upgrade to Ubuntu Pro.
+            <ol className="p-stepped-list">
+                <li className="p-stepped-list__item">
+                    <p className="p-stepped-list__title">
+                        Choose "Enable Ubuntu Pro"
                     </p>
-                </div>
-            </section>
-        </li>
-    </ul>
-</aside>
+                </li>
+                <li className="p-stepped-list__item">
+                    <p className="p-stepped-list__title">
+                        On the next screen you will be presented with a six-character code as part of the first option.
+                    </p>
+                </li>
+                <li className="p-stepped-list__item">
+                    <p className="p-stepped-list__title">
+                        Enter the code into the field above on this page.
+                    </p>
+                </li>
+            </ol>
+            </p>
+        </div>
+    </div>
+</div>
 
 <script>
     (function () {
