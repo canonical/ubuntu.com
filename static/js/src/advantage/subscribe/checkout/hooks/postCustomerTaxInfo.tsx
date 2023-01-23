@@ -27,7 +27,7 @@ const postCustomerTaxInfo = () => {
       state: country === "US" ? usState : caProvince,
     };
 
-    let accountRes = {
+    const accountRes = {
       accountID: window.accountId || window.tempAccountId,
       code: null,
       message: "",

@@ -4,20 +4,12 @@ import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
 } from "advantage/api/contracts";
-import {
-  Product as BlenderProduct,
-} from "advantage/subscribe/blender/utils/utils";
-import {
-  Action,
-  FormValues,
-  PaymentPayload,
-  Product as UAProduct,
-} from "../utils/types";
+import { Action, FormValues, PaymentPayload, Product } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
 
 type Props = {
   formData: FormValues;
-  product: UAProduct | BlenderProduct | undefined;
+  product: Product;
   quantity: number;
   action: Action;
 };
@@ -30,9 +22,6 @@ const useFinishPurchase = () => {
 
   const mutation = useMutation(
     async ({ formData, product, quantity, action }: Props) => {
-      if (!product) {
-        throw new Error("Product missing");
-      }
       const {
         name,
         buyingFor,
@@ -106,7 +95,6 @@ const useFinishPurchase = () => {
             );
           }
         } else {
-          accountRes.accountID = accountRes.accountID;
           window.tempAccountId = accountRes.accountID;
         }
       }

@@ -88,7 +88,8 @@ const getLabels = (product: Product, action: Action) => {
       ),
       marketingLabel: (
         <>
-          I agree to receive information about Canonical's products and services
+          I agree to receive information about Canonical&apos;s products and
+          services
         </>
       ),
     };
@@ -121,7 +122,8 @@ const getLabels = (product: Product, action: Action) => {
     ),
     marketingLabel: (
       <>
-        I agree to receive information about Canonical's products and services
+        I agree to receive information about Canonical&apos;s products and
+        services
       </>
     ),
   };

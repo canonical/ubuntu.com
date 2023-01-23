@@ -13,7 +13,7 @@ type Props = {
 const Offer = ({ offer }: Props) => {
   const { id, marketplace, items, total } = offer;
 
-  let names = items.map((item: Item) => {
+  const names = items.map((item: Item) => {
     return `${item.allowance ?? 0} x ${item.name}`;
   });
 

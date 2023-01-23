@@ -23,7 +23,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const [isCardValid, setCardValid] = useState<boolean>(false);
   const [isTaxSaved, setTaxSaved] = useState<boolean>(false);
   const { data: userInfo } = useCustomerInfo();
-  const isGuest: boolean = !userInfo?.customerInfo?.email;
+  const isGuest = !userInfo?.customerInfo?.email;
 
   const initialValues = getInitialFormValues(
     product,
