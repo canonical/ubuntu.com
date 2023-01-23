@@ -716,6 +716,7 @@ def cred_syllabus_data(**kawrgs):
 
 
 @shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
 def cred_shop(**kwargs):
     return flask.render_template("credentials/shop/index.html")
 
@@ -762,6 +763,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
+@canonical_staff()
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account()
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
@@ -776,6 +778,7 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
+@canonical_staff()
 def rotate_activation_key(ua_contracts_api, **kwargs):
     activation_key = kwargs.get("activation_key")
     new_activation_key = ua_contracts_api.rotate_activation_key(
