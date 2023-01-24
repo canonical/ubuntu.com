@@ -176,7 +176,7 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
 
 <h3 id="uprosd-managed-services">Managed Services</h3>
 
-1. Managed Services are an add-on to Ubuntu Pro + Infra Support (24/7), or Ubuntu Pro + Apps support (24/7) or Ubuntu Pro +  Full Stack support (24/7). When added on, Canonical will manage the Environment as described below. Guests Instance running in the Environment receive the Ubuntu Advantage subscriptions and support
+1. Managed Services are an add-on to Ubuntu Pro + Infra Support (24/7), or Ubuntu Pro + Apps support (24/7) or Ubuntu Pro +  Full Stack support (24/7). When added on, Canonical will manage the Environment as described below. Guests Instance running in the Environment receive the Ubuntu Pro subscriptions and support
 2. Following Canonical's building and initialising of the Environment (subject to separate service engagement), the Managed Service will re-deploy the Environment to reset credentials and validate the deployment process. The Managed Service will also provide documentation providing further detail on the working relationship with Canonical. Additional services can be offered subject to purchasing Professional Support Services (as listed in the section below)
 3. The Managed Service will remotely operate, monitor, and manage the Environment. Concrete examples include:
     1. backing up and restoring of the management infrastructure suite
@@ -260,13 +260,13 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
     2. Canonical will hold a quarterly service review meeting with the customer to assess service performance and determine areas of improvement
     3. If required, the TAM may facilitate integration of the Customer's ticketing system with Canonical's
     4. The TAM will visit the customer's site annually for on-site technical review
-    5. The TAM is available to respond to support cases during the TAM's working hours. Outside of such hours, support will be provided per the Ubuntu Advantage Support Process
+    5. The TAM is available to respond to support cases during the TAM's working hours. Outside of such hours, support will be provided per the Ubuntu Pro Support Process
 2. Dedicated Technical Account Manager (DTAM) is an add-on service to enhance support
     6. Canonical will provide a DTAM, who will perform all services provided by TAM and the services listed below during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during local Business Hours during the term of service:
         4. Act as the primary point of contact for all support requests originating from the customer department for which the DTAM is responsible
         5. Manage support escalations and prioritisation in accordance with Canonical's standard support response definitions and customer needs
         6. Attend applicable Canonical internal training and development activities (in-person and remote)
-    7. The DTAM is available to respond to support cases during the DTAM's working hours. Outside of Business Hours, support will be provided per the Ubuntu Advantage Support Process
+    7. The DTAM is available to respond to support cases during the DTAM's working hours. Outside of Business Hours, support will be provided per the Ubuntu Pro Support Process
     8. If a DTAM is on leave for longer than five consecutive days, Canonical will assign a temporary remote resource to cover the leave period. Canonical will coordinate with the customer with respect to foreseeable DTAM leave
 3. Dedicated Support Engineer (DSE) is an add-on service to enhance support
     9. Canonical will provide a DSE, who will perform the following services during local Business Hours for up to 40 hours per week (subject to Canonical leave policies) during the term of service:
