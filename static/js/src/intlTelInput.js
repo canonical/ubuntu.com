@@ -12,6 +12,16 @@ function setupIntlTelInput(phoneInput) {
     utilsScript,
     separateDialCode: true,
     hiddenInput: inputName,
+    initialCountry: "auto",
+    geoIpLookup: async function fetchUserIp(success, failure) {
+      const response = await fetch("/user-country.json");
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      const JSONObject = await response.json();
+      const countryCode = (JSONObject && JSONObject.country_code) ? JSONObject.country_code : "UK";
+      success(countryCode)
+    },
   });
 }
 
