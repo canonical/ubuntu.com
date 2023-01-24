@@ -50,6 +50,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     if flask.request.method == "POST":
         data = flask.request.form
         sso_user = user_info(flask.session)
+
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
         scheduled_time = f"{data['date']}T{data['time']}"
@@ -59,21 +60,15 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
         contract_item_id = data["contractItemID"]
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
         country_code = TIMEZONE_COUNTRIES[timezone]
-        response = None
 
-        if "uuid" in data:
-            response = trueability_api.patch_assessment_reservation(
-                starts_at.isoformat(), timezone, country_code, data["uuid"]
-            )
-        else:
-            response = ua_contracts_api.post_assessment_reservation(
-                contract_item_id,
-                first_name,
-                last_name,
-                timezone,
-                starts_at.isoformat(),
-                country_code,
-            )
+        response = ua_contracts_api.post_assessment_reservation(
+            contract_item_id,
+            first_name,
+            last_name,
+            timezone,
+            starts_at.isoformat(),
+            country_code,
+        )
 
         if response and "error" in response:
             error = response["message"]
@@ -87,6 +82,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 "date": starts_at.strftime("%d %b %Y"),
                 "time": starts_at.strftime("%I:%M %p %Z"),
                 "uuid": uuid,
+                "contract_item_id": contract_item_id,
             }
             return flask.render_template(
                 "/credentials/schedule-confirm.html", exam=exam
@@ -168,8 +164,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                     [
                         {
                             "text": "Reschedule",
-                            "href": "/credentials/schedule"
-                            + f"?uuid={ r['uuid'] }",
+                            "href": f"/credentials/schedule?contractItemID={contract_item_id}&uuid={r['uuid']}",
                             "button_class": "p-button",
                         },
                         {
