@@ -33,6 +33,7 @@ from googleapiclient.discovery import build
 # Local
 from webapp.login import user_info
 from webapp.marketo import MarketoAPI
+from webapp.geolocation.ip_country_lite import DbIp
 
 ip_reader = geolite2.reader()
 session = talisker.requests.get_session()
@@ -965,20 +966,29 @@ def thank_you():
 
 
 def get_user_country_by_ip():
+
+    geo_ip = DbIp().reader()
+    print(geo_ip)
+
+
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
-    ip_location = ip_reader.get("84.247.0.146")
+    ip_location = geo_ip.get(client_ip)
+    
 
     if not ip_location:
         country_code = None
+        country_name = None
     else:
         country_code = ip_location["country"]["iso_code"]
+        country_name = ip_location["country"]["names"]["en"]
 
     response = flask.jsonify(
         {
             "client_ip": client_ip,
             "country_code": country_code,
+            "name": country_name,
         }
     )
     response.cache_control.private = True
