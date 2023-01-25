@@ -4,9 +4,9 @@
 {% block meta_description %}Canonical provides Ubuntu Pro with 10 years of enhanced CVE patching, FIPS compliance, CIS
 and DISA-STIG profiles and enterprise-grade open source software support with a single subscription for open source
 supply chain provenance.{% endblock %}
-{% block meta_copydoc
-%}https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/edit?usp=sharing{% endblock
-meta_copydoc %}
+{% block meta_copydoc %}
+https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/edit?usp=sharing
+{% endblock meta_copydoc %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@ meta_copydoc %}
     <a href="/pro/subscribe" class="p-button--positive">Get Ubuntu Pro now</a>
   </div>
 </section>
-<section class="p-strip is-x-deep ">
+<section class="p-strip is-x-deep u-no-padding--bottom">
   <div class="p-strip u-no-padding--top">
     <div class="row">
       <div class="col-6 col-medium-3">
@@ -51,14 +51,14 @@ meta_copydoc %}
           </h1>
           <p>2,300 packages in the Ubuntu Main repo supported for 5 years</p>
         </div>
-        <div class="col-3 col-medium-3 col-card" style="background-color: #666; color: white;">
+        <div class="col-3 col-medium-3 col-card bg-mid-dark">
           <h5>Pro (Infra-Only)</h5>
           <h1>
             Main:<br />10 years
           </h1>
           <p>2,300 packages in the Ubuntu Main repo supported for 10 years</p>
         </div>
-        <div class="col-6 col-medium-6 col-card" style="background-color: black; color: white;">
+        <div class="col-6 col-medium-6 col-card bg-dark">
           <h5>Pro</h5>
           <h1>
             Main + Universe:<br />10 years
@@ -73,8 +73,93 @@ meta_copydoc %}
   </div>
   <hr class="is-fixed-width" />
 </section>
-<section class="p-strip">
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="row">
+    <p>A few of the 2,300 packages included in Ubuntu Main:</p>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/7dcc10d3-Systemd.png",
+      alt="",
+      width="280",
+      height="280",
+      hi_def=True,
+      loading="auto|lazy"
+      ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/94340492-logo-ruby.png",
+      alt="",
+      width="280",
+      height="280",
+      hi_def=True,
+      loading="auto|lazy"
+      ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/a3e33ca1-RabbitMQ.png",
+      alt="",
+      width="144",
+      height="144",
+      hi_def=True,
+      loading="auto|lazy"
+      ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/8b428ac2-php+logo.png",
+      alt="P H P",
+      attrs={"class":"p-logo-section__logo"},
+      width="280",
+      height="280",
+      hi_def=False,
+      loading="lazy",
+      ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/ff1530cc-OpenSSL.png",
+      alt="",
+      width="280",
+      height="280",
+      hi_def=True,
+      loading="auto|lazy"
+      ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/55e1eab0-Nginx.png",
+      alt="",
+      width="280",
+      height="280",
+      hi_def=True,
+      loading="auto|lazy"
+      ) | safe
+      }}
+    </div>
+    <div class="col-small-1 col-medium-1 col-1">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/343dc96b-MySQL.png",
+      alt="",
+      width="280",
+      height="280",
+      hi_def=True,
+      loading="auto|lazy"
+      ) | safe
+      }}
+    </div>
+  </div>
+  <hr class="is-fixed-width" />
+</section>
+<section class="p-strip u-no-padding--top">
+  <div class="row">
+    <p>A few of the 23,000 packages included in Ubuntu Universe:</p>
     <div class="col-small-1 col-medium-1 col-1">
       {{ image (
       url="https://assets.ubuntu.com/v1/ab22825a-ansible+logo.png",
@@ -248,18 +333,6 @@ meta_copydoc %}
     </div>
     <div class="col-small-1 col-medium-1 col-1">
       {{ image (
-      url="https://assets.ubuntu.com/v1/8b428ac2-php+logo.png",
-      alt="P H P",
-      attrs={"class":"p-logo-section__logo"},
-      width="280",
-      height="280",
-      hi_def=False,
-      loading="lazy",
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
       url="https://assets.ubuntu.com/v1/1dfdcd1c-powerdns+logo.png",
       alt="Power D N S",
       attrs={"class":"p-logo-section__logo"},
@@ -368,19 +441,227 @@ meta_copydoc %}
     </div>
   </div>
 </section>
-<section class="p-strip is-x-deep u-no-padding--top">
+<section class="p-strip is-x-deep">
   <div class="u-fixed-width">
-    <h2>Ready to try Ubuntu Pro beta today?<br>
-      <a href="/pro/beta">Discover the step-by-step tutorial</a>
+    <h2>Want to discuss what would be best for you?<br>
+      <a href="/pro/beta">Talk to an expert about your security needs.</a>
     </h2>
   </div>
 </section>
+<section class="p-strip is-x-deep u-no-padding--top u-no-padding--bottom">
+  <div class="row">
+    <h2>What's new with Ubuntu Pro plans?</h2>
+    <div class="p-strip">
+      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Security patching">
+        <thead>
+          <tr>
+            <th class="u-no-padding--left" style="width: 50%;">
+              Security patching
+              <p class="p-text--small u-text--muted u-no-margin--bottom"
+                style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br /> and selected
+                medium CVEs)</p>
+            </th>
+
+            <th style="width: 15%;">Ubuntu LTS</th>
+            <th style="width: 20%;">
+              Ubuntu Pro (Infra-only)<br />
+              <p class="p-text--small u-text--muted u-no-margin--bottom"
+                style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for
+                Infrastructure")</p>
+            </th>
+            <th style="width: 15%;">Ubuntu Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main
+              repository</td>
+            <td data-heading="Ubuntu LTS">5 years</td>
+            <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">10 years</td>
+            <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe
+              repository</td>
+            <td data-heading="Ubuntu LTS">Best effort</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
+            <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Security patching">Optional phone/ticket support</td>
+            <td data-heading="Ubuntu LTS">No</td>
+            <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">Yes</td>
+            <td data-heading="Ubuntu Pro" class="bg-dark">Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="p-strip is-shallow u-no-padding--top">
+      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Compliance and hardening">
+        <thead>
+          <tr>
+            <th class="u-no-padding--left" style="width: 50%;"><a
+                href="https://ubuntu.com/security/certifications">Compliance and hardening</a></th>
+            <th style="width: 15%;">Ubuntu LTS</th>
+            <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
+            <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Compliance and hardening">NIST-certified FIPS crypto-modules
+            </td>
+            <td data-heading="Ubuntu LTS">No</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Compliance and hardening">USG hardening with CIS and DISA-STIG
+              profiles</td>
+            <td data-heading="Ubuntu LTS">No</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+          </tr>
+          <tr>
+            <td class="u-no-padding--left" data-heading="Compliance and hardening">Common Criteria EAL2</td>
+            <td data-heading="Ubuntu LTS">No</td>
+            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <table class="p-table--mobile-card u-no-margin--bottom" aria-label="Pro vs Advantage - Other features">
+      <thead>
+        <tr>
+          <th class="u-no-padding--left" style="width: 50%;">Other features</th>
+          <th style="width: 15%;">Ubuntu LTS</th>
+          <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
+          <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Other features"><a
+              href="https://ubuntu.com/security/livepatch">Kernel Livepatch</a></td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Other features"><a href="https://ubuntu.com/landscape">Systems
+              management at scale with Landscape</a></td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+</section>
+<section class="p-strip is-x-deep">
+  <div class="u-fixed-width">
+    <h2><a href="/pro/beta">Request your security assessment today. ></a></h2>
+  </div>
+</section>
+<section class="p-strip is-x-deep u-no-padding--top u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <h2 class="p-text--x-small-capitalised">Upgrade to Ubuntu Pro beta today</h2>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-6 col-medium-3">
+      <h3 class="p-heading--2">Become a customer</h3>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>For enterprises to cover their Ubuntu estate - servers and workstations.<br
+          class="u-hide--medium u-hide--small">
+        <a href="https://ubuntu.com/pricing/pro">See Ubuntu Pro pricing.</a>
+      </p>
+      <a href="/pro/subscribe" class="p-button--positive">Buy</a>
+    </div>
+  </div>
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-6 col-medium-3">
+      <h3 class="p-heading--2">Free for personal use</h3>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Anyone can use Ubuntu Pro for free on up to 5 machines, or 50 if you are <a
+          href="https://wiki.ubuntu.com/Membership">an official Ubuntu Community member.</a></p>
+      <a href="/pro/dashboard" class="p-button">Register</a>
+    </div>
+  </div>
+
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-6 col-medium-3">
+      <h3 class="p-heading--2">Trial at no extra cost for existing Ubuntu Advantage customers</h3>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>
+        Ubuntu Advantage for Infrastructure is now rebranded to Ubuntu Pro (Infra-only). The features and price have not
+        changed.
+      </p>
+      <p>
+        Ubuntu Pro (Infra-only) customers can register for the beta to try the full Ubuntu Pro subscription, including
+        security coverage for an additional 23,000 packages for 10 years.
+      </p>
+      <p>
+        If you were an active customer before October 4th, 2022, this trial lasts for up to 1 year - until the end of
+        your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain
+        as an Ubuntu Pro (Infra-only) customer at your current price.
+      </p>
+      {% if user_info %}
+      <button class="js-invoke-modal">Request beta access at no extra cost</button>
+      {% else %}
+      <a class="p-button" href="/login?next=/pro/get-in-touch">Login to request beta access</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+<section class="p-strip is-x-deep">
+  <hr class="is-fixed-width u-no-margin--bottom">
+  <div class="u-fixed-width">
+    <div class="row">
+      <div class="col-8 col-medium-6">
+        <h2>Curious to know how much Ubuntu Pro can do for you? Try this:</h2>
+      </div>
+    </div>
+    <div class="row">
+      <pre><code>
+        user@xenial-machine:~$ pro security-status
+        645 packages installed:
+              639 packages from Ubuntu Main/Restricted repository
+              3 packages from Ubuntu Universe/Multiverse repository
+              1 package from a third party
+              2 packages no longer available for download
+        
+        To get more information about the packages, run
+              pro security-status --help
+        for a list of available options.
+        
+        This machine is NOT receiving security patches because the LTS period has ended and esm-infra is not enabled.
+        This machine is NOT attached to an Ubuntu Pro subscription.
+        
+        Ubuntu Pro with 'esm-infra' enabled provides security updates for
+        Main/Restricted packages until 2026 and has 5 pending security updates.
+        
+        Ubuntu Pro with 'esm-apps' enabled provides security updates for
+        Universe/Multiverse packages until 2026 and has 1 pending security update.
+        
+        Try Ubuntu Pro with a free personal subscription on up to 5 machines.
+        Learn more at https://ubuntu.com/pro
+      </code></pre>
+    </div>
+  </div>
+</section>
+
 <section class="p-strip is-x-deep u-no-padding--top">
   <div class="row">
-    <!-- <div class="p-strip is-shallow u-no-padding--top"> -->
-    <h2>Recommended by professionals</h2>
+    <h2>Used by professionals</h2>
     <hr class="u-no-margin--bottom">
-    <!-- </div> -->
   </div>
   <div class="p-testimonial">
     <div class="p-testimonial__logo u-pad-logo">
@@ -644,174 +925,6 @@ meta_copydoc %}
     </div>
   </div>
 </section>
-<section class="p-strip is-x-deep u-no-padding--top">
-  <div class="u-fixed-width">
-    <h2 class="p-text--x-small-capitalised">Upgrade to Ubuntu Pro beta today</h2>
-  </div>
-  <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row p-strip is-shallow u-no-padding--top">
-    <div class="col-6 col-medium-3">
-      <h3 class="p-heading--2">Free for personal use</h3>
-    </div>
-    <div class="col-6 col-medium-3">
-      <p>Anyone can use Ubuntu Pro for free on up to 5 machines, or 50 if you are <a
-          href="https://wiki.ubuntu.com/Membership">an official Ubuntu Community member.</a></p>
-      <a href="/login" class="p-button--positive">Register</a>
-    </div>
-  </div>
-  <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row p-strip is-shallow u-no-padding--top">
-    <div class="col-6 col-medium-3">
-      <h3 class="p-heading--2">Become a customer</h3>
-    </div>
-    <div class="col-6 col-medium-3">
-      <p>For enterprises to cover their Ubuntu estate - servers and workstations.<br
-          class="u-hide--medium u-hide--small">
-        <a href="https://ubuntu.com/pricing/pro">See Ubuntu Pro pricing.</a>
-      </p>
-      <a href="/pro/subscribe" class="p-button">Buy</a>
-    </div>
-  </div>
-  <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row p-strip is-shallow u-no-padding--top">
-    <div class="col-6 col-medium-3">
-      <h3 class="p-heading--2">Trial at no extra cost for existing Ubuntu Advantage customers</h3>
-    </div>
-    <div class="col-6 col-medium-3">
-      <p>
-        Ubuntu Advantage for Infrastructure is now rebranded to Ubuntu Pro (Infra-only). The features and price have not
-        changed.
-      </p>
-      <p>
-        Ubuntu Pro (Infra-only) customers can register for the beta to try the full Ubuntu Pro subscription, including
-        security coverage for an additional 23,000 packages for 10 years.
-      </p>
-      <p>
-        If you were an active customer before October 4th, 2022, this trial lasts for up to 1 year - until the end of
-        your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain
-        as an Ubuntu Pro (Infra-only) customer at your current price.
-      </p>
-      {% if user_info %}
-      <button class="js-invoke-modal">Request beta access at no extra cost</button>
-      {% else %}
-      <a class="p-button" href="/login?next=/pro/get-in-touch">Login to request beta access</a>
-      {% endif %}
-    </div>
-  </div>
-</section>
-<section class="p-strip is-x-deep u-no-padding--top">
-  <div class="row">
-    <h2>What's the difference?</h2>
-    <hr class="u-no-margin--bottom">
-    <div class="p-strip is-shallow u-no-padding--top">
-      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Security patching">
-        <thead>
-          <tr>
-            <th class="u-no-padding--left" style="width: 50%;">
-              Security patching
-              <p class="p-text--small u-text--muted u-no-margin--bottom"
-                style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br /> and selected
-                medium CVEs)</p>
-            </th>
-
-            <th style="width: 15%;">Ubuntu LTS</th>
-            <th style="width: 20%;">
-              Ubuntu Pro (Infra-only)<br />
-              <p class="p-text--small u-text--muted u-no-margin--bottom"
-                style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for
-                Infrastructure")</p>
-            </th>
-            <th style="width: 15%;">Ubuntu Pro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main
-              repository</td>
-            <td data-heading="Ubuntu LTS">5 years</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">10 years</td>
-            <td data-heading="Ubuntu Pro">10 years</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe
-              repository</td>
-            <td data-heading="Ubuntu LTS">Best effort</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
-            <td data-heading="Ubuntu Pro">10 years</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="p-strip is-shallow u-no-padding--top">
-      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Compliance and hardening">
-        <thead>
-          <tr>
-            <th class="u-no-padding--left" style="width: 50%;"><a
-                href="https://ubuntu.com/security/certifications">Compliance and hardening</a></th>
-            <th style="width: 15%;">Ubuntu LTS</th>
-            <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
-            <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Compliance and hardening">NIST-certified FIPS crypto-modules
-            </td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Compliance and hardening">USG hardening with CIS and DISA-STIG
-              profiles</td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Compliance and hardening">Common Criteria EAL2</td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <table class="p-table--mobile-card u-no-margin--bottom" aria-label="Pro vs Advantage - Other features">
-      <thead>
-        <tr>
-          <th class="u-no-padding--left" style="width: 50%;">Other features</th>
-          <th style="width: 15%;">Ubuntu LTS</th>
-          <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
-          <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="u-no-padding--left" data-heading="Other features"><a
-              href="https://ubuntu.com/security/livepatch">Kernel Livepatch</a></td>
-          <td data-heading="Ubuntu LTS">No</td>
-          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-        </tr>
-        <tr>
-          <td class="u-no-padding--left" data-heading="Other features"><a href="https://ubuntu.com/landscape">Systems
-              management at scale with Landscape</a></td>
-          <td data-heading="Ubuntu LTS">No</td>
-          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-        </tr>
-        <tr>
-          <td class="u-no-padding--left" data-heading="Other features"><a href="/support">Optional Support</a></td>
-          <td data-heading="Ubuntu LTS">No</td>
-          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-        </tr>
-      </tbody>
-    </table>
-</section>
 
 <section class="p-strip is-x-deep u-no-padding--top">
   <div class="u-fixed-width">
@@ -937,6 +1050,16 @@ meta_copydoc %}
 
   .col-card {
     padding: 1.5rem;
+  }
+
+  .bg-mid-dark {
+    background-color: #666;
+    color: white;
+  }
+
+  .bg-dark {
+    background-color: black;
+    color: white;
   }
 </style>
 {% endblock content %}
