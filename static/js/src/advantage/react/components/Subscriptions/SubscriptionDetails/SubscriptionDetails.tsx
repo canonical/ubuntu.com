@@ -194,7 +194,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     Support portal
                   </Button>
                 ) : null}
-                {subscription.product_name?.includes("Pro") ? (
+                {subscription.marketplace == "canonical-ua" ? (
                   <Button
                     appearance="positive"
                     className="p-subscriptions__details-action"
