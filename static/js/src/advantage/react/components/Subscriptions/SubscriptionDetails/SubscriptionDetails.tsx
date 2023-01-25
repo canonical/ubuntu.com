@@ -81,7 +81,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
         if (
           subscription?.current_number_of_machines &&
           (subscription?.current_number_of_machines ?? 0) <
-            (subscription?.number_of_machines ?? 0)
+          (subscription?.number_of_machines ?? 0)
         ) {
           setNotification({
             severity: "caution",
@@ -153,7 +153,7 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     </>
                   ) : null}
                   {subscription.type == "monthly" ||
-                  subscription.type == "yearly" ? (
+                    subscription.type == "yearly" ? (
                     <>
                       {subscription.statuses.is_renewed ? (
                         <button className="p-chip--positive">
@@ -182,31 +182,31 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             {isFree ? null : (
               <>
                 {subscription.statuses.has_access_to_support &&
-                subscription.type !== UserSubscriptionType.Trial ? (
-                  <>
-                    <Button
-                      appearance="positive"
-                      className="p-subscriptions__details-action"
-                      data-test="support-button"
-                      disabled={editing}
-                      element="a"
-                      href="https://portal.support.canonical.com/"
-                    >
-                      Support portal
-                    </Button>
-                    <Button
-                      appearance="positive"
-                      className="p-subscriptions__details-action"
-                      data-test="support-button"
-                      disabled={editing}
-                      element="a"
-                      href={
-                        "/pro/attach?subscription=" + subscription.contract_id
-                      }
-                    >
-                      Attach a machine
-                    </Button>
-                  </>
+                  subscription.type !== UserSubscriptionType.Trial ? (
+                  <Button
+                    appearance="positive"
+                    className="p-subscriptions__details-action"
+                    data-test="support-button"
+                    disabled={editing}
+                    element="a"
+                    href="https://portal.support.canonical.com/"
+                  >
+                    Support portal
+                  </Button>
+                ) : null}
+                {subscription.product_name?.includes("Pro") ? (
+                  <Button
+                    appearance="positive"
+                    className="p-subscriptions__details-action"
+                    data-test="support-button"
+                    disabled={editing}
+                    element="a"
+                    href={
+                      "/pro/attach?subscription=" + subscription.contract_id
+                    }
+                  >
+                    Attach a machine
+                  </Button>
                 ) : null}
                 {subscription.statuses.is_renewable ? (
                   <Button
