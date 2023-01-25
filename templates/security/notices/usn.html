@@ -7,10 +7,18 @@
   <div class="u-fixed-width">
     <h1>{{ notice.id }}: {{ notice.title }}</h1>
     <p class="p-muted-heading">{{ notice.published }}</p>
-    <p class="u-sv3">{{ notice.summary | safe }}</p>
+    <p>{{ notice.summary | safe }}</p>
+    <div class="col-5 u-hide--large">
+      <div class="p-card--highlighted">
+        <h3 class="p-card__title">Reduce your security exposure</h3>
+        <p>Ubuntu Pro provides ten-year security coverage to 23,000+packages in Main and Universe, and it is free for up to five machines.</p>
+        <p class="p-card__content"><a href="/pro/beta">Step-by-step tutorial to acivate Ubuntu Pro</a></p>
+        <p class="p-card__content"><a href="/pro">Learn more about Ubuntu Pro</a></p>
+      </div>
+    </div>
   </div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-7">
       <h2>Releases</h2>
       <ul class="p-inline-list">
         {% for release in notice.releases %}
@@ -31,7 +39,19 @@
 
       <h2>Details</h2>
       <p>{{ notice.details|safe }}</p>
+    </div>
+    <div class="col-5 u-hide--small u-hide--medium">
+      <div class="p-card--highlighted">
+        <h3 class="p-card__title">Reduce your security exposure</h3>
+        <p>Ubuntu Pro provides ten-year security coverage to 23,000+packages in Main and Universe, and it is free for up to five machines.</p>
+        <p class="p-card__content"><a href="/pro/beta">Step-by-step tutorial to acivate Ubuntu Pro</a></p>
+        <p class="p-card__content"><a href="/pro">Learn more about Ubuntu Pro</a></p>
+      </div>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-8">
       <h2>Update instructions</h2>
       {% if notice.release_packages %}
       <p>The problem can be corrected by updating your system to the following package versions:</p>
@@ -67,44 +87,43 @@
       {% endfor %}
       {% endif %}
       <p>{{ notice.instructions|safe }}</p>
-    
-      {% if notice.cves or notice.references %}
-        <h2>References</h2>
-        <ul class="p-list">
-          {% if notice.cves %}
-            {% for cve in notice.cves %}
-              <li class="p-list__item"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></li>
-            {% endfor %}
-          {% endif %}
-  
-          {% if notice.references %}
-            {% for reference in notice.references %}
-              <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</a></li>
-            {% endfor %}
-          {% endif %}
-        </ul>
-      {% endif %}
-      {% if notice.related_notices|length > 0 %}
-        <h2>Related notices</h2>
-        <ul class="p-list">
-          {% for notice in notice.related_notices %}
-            <li class="p-list__item">
-              <a href="/security/notices/{{ notice.id }}">{{ notice.id }}</a>: {{ notice.packages }}
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-
-    </div>
-    <div class="col-4">
-      <div class="p-card--highlighted">
-        <h3 class="p-card__title">Reduce your security exposure</h3>
-        <p>Ubuntu Pro provides ten-year security coverage to 23,000+packages in Main and Universe, and it is free for up to five machines.</p>
-        <p class="p-card__content"><a href="/pro/beta">Step-by-step tutorial to acivate Ubuntu Pro</a></p>
-        <p class="p-card__content"><a href="/pro">Learn more about Ubuntu Pro</a></p>
-      </div>
     </div>
   </div>
+
+  {% if notice.cves or notice.references %}
+  <div class="row">
+    <div class="col-8">
+      <h2>References</h2>
+      <ul class="p-list">
+        {% if notice.cves %}
+          {% for cve in notice.cves %}
+            <li class="p-list__item"><a href="/security/{{ cve.id }}">{{ cve.id }}</a></li>
+          {% endfor %}
+        {% endif %}
+
+        {% if notice.references %}
+          {% for reference in notice.references %}
+            <li class="p-list__item"><a href="{{ reference }}">{{ reference }}</a></li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  {% if notice.related_notices|length > 0 %}
+  <div class="row">
+    <div class="col-8">
+      <h2>Related notices</h2>
+      <ul class="p-list">
+        {% for notice in notice.related_notices %}
+          <li class="p-list__item">
+            <a href="/security/notices/{{ notice.id }}">{{ notice.id }}</a>: {{ notice.packages }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
 </section>
 
 {% with first_item="_security_discussion", second_item="_security_need", third_item="_security_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
