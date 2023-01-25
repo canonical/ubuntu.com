@@ -20,7 +20,8 @@ function setupIntlTelInput(phoneInput) {
       }
       const JSONObject = await response.json();
       const countryCode =
-        JSONObject && JSONObject.country_code ? JSONObject.country_code : "UK";
+        JSONObject && JSONObject.country_code ? JSONObject.country_code : "gb";
+
       success(countryCode);
     },
   });
