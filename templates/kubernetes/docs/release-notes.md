@@ -14,6 +14,44 @@ toc: False
 ---
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
+# 1.26+ck1 Bugfix release
+
+### January 16, 2022 - `charmed-kubernetes --channel 1.26/stable` 
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
+
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane / Octavia [LP#1990494](https://bugs.launchpad.net/bugs/1990494)
+
+  Resolves an issue which made it impossible to delete a kubernetes service when octavia loadbalancers are detected
+
+- Kubernetes Control Plane / Octavia [LP#1995746](https://bugs.launchpad.net/bugs/1995746)
+
+  Adds support to disable openstack loadbalancer integration
+
+- Kubernetes Control Plane / Ceph [LP#1998257](https://bugs.launchpad.net/bugs/1998257)
+
+  Resolves an issue where the `csi-rbdplugin` pod cannot start if the control-plane unit is running in a LXD machine.
+
+- Containerd [#LP2002593](https://bugs.launchpad.net/bugs/2002593)
+  
+  Resolves issue with flooding `/var/log/syslog` with messages about a deprecation of `io.containerd.runc.v1`
+
+- CoreDNS [LP#2002698](https://bugs.launchpad.net/bugs/2002698)
+
+  Upgrade of the coredns image from `1.6.7` to `1.10.0`
+
+- ops.lib-manifest library [LP#1999427](https://bugs.launchpad.net/bugs/1999427)
+
+  Resolves an issue where a charm hook fails rather than retrying when the kubernetes-api is available.
+
+- SRIOV CNI/Network Device Plugin [LP#2002186](https://bugs.launchpad.net/bugs/2002186)
+
+  Add support for control-plane node toleration for SRIOV daemonsets
 
 # 1.26
 
@@ -92,9 +130,9 @@ A list of issues to be fixed in the first 1.26 maintenance release can be found 
     aws-k8s-storage/0*         error        idle                54.80.73.214                    hook failed: "update-status"
   ```
 
-  When the affected charms (see bug link above) are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
+  When the affected charms are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
   can respond to client requests with a 502 Gateway Error, amongst other error statuses not produced
-  by the API server itself.  The charm's Kubernetes client library raises an unhandled exception in
+  by the API server itself.  The charm's kubernetes client library raises an unhandled exception in
   this case. This results is the charm being in an error state which is easily resolved by running
 
   ```bash

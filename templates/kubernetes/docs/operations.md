@@ -105,7 +105,7 @@ The kubernetes-worker charm supports deploying an NGINX ingress controller.
 Ingress allows access from the Internet to containers running web
 services inside the cluster.
 
-First allow the Internet access to the kubernetes-worker charm with with the
+First allow the Internet access to the kubernetes-worker charm with the
 following Juju command:
 
 ```
