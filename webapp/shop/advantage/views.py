@@ -34,6 +34,43 @@ from webapp.shop.schemas import (
 )
 
 
+@shop_decorator(area="advantage", response="html")
+def pro_page_view(advantage_mapper, **kwargs):
+    """
+    Renders the /pro page. If there is a logged in user it checks for active
+    subscriptions so we can display a contact form, otherwise renders the page
+    without any form. Anonymous requests don't see the form either.
+    """
+
+    show_beta_request = False
+
+    user = user_info(flask.session)
+    if user:
+        try:
+            subscriptions = advantage_mapper.get_user_subscriptions(
+                user["email"]
+            )
+            for subscription in subscriptions:
+                if (
+                    subscription.marketplace == "canonical-ua"
+                    and subscription.statuses["has_access_to_support"]
+                ):
+                    show_beta_request = True
+                    break
+        except Exception as exception:
+            flask.current_app.extensions["sentry"].captureException(
+                exception,
+                extra={
+                    "message": "Could not get user subscriptions on pro page"
+                },
+            )
+
+    return flask.render_template(
+        "pro/index.html",
+        show_beta_request=show_beta_request,
+    )
+
+
 @shop_decorator(area="advantage", permission="user", response="html")
 def advantage_view(advantage_mapper, **kwargs):
     is_technical = False
