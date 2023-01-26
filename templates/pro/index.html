@@ -29,8 +29,9 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       <div class="col-6 col-medium-3">
         <p>
           <strong>Reduce your average CVE exposure time from 98 days to 1 day</strong>
-          <br/>
-          with expanded CVE patching, ten-years security maintenance, optional support and operations for the full stack of open-source applications.
+          <br />
+          with expanded CVE patching, ten-years security maintenance, optional support and operations for the full stack
+          of open-source applications.
         </p>
       </div>
     </div>
@@ -42,7 +43,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
         <h2 class="p-text--x-small-capitalised">Security coverage compared</h2>
       </div>
       <div class="row row-card">
-        <div class="col-3 col-medium-3 col-card">
+        <div class="col-3 col-medium-3 col-card bg-light">
           <p class="p-heading--5">LTS</p>
           <p class="p-heading--1">
             Main:<br />5 years
@@ -62,7 +63,8 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
             Main + Universe:<br />10 years
           </p>
           <p>
-            2,300 packages in the Ubuntu Main repo included in Infra-only, plus an additional 23,000+ packages in the Ubuntu Universe repository for 10 years
+            2,300 packages in the Ubuntu Main repo included in Infra-only, plus an additional 23,000+ packages in the
+            Ubuntu Universe repository for 10 years
           </p>
         </div>
       </div>
@@ -612,24 +614,26 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
         as an Ubuntu Pro (Infra-only) customer at your current price.
       </p>
       {% if user_info and not show_beta_request %}
-        <button class="js-invoke-modal">Request access</button>
+      <button class="js-invoke-modal">Request access</button>
       {% elif user_info and show_beta_request %}
       <div class="p-strip is-shallow">
         <hr class="is-fixed-width" />
         <p>
-          To request an Ubuntu Pro extension please login using email address associated with your existing paid subscription.
-          If you don't have an existing subscription - consider starting a <a href="/pro/subscribe">free Ubuntu Pro monthly trial</a>
-          or try a <a href="/pro/dashboard">free personal subscription</a>. 
+          To request an Ubuntu Pro extension please login using email address associated with your existing paid
+          subscription.
+          If you don't have an existing subscription - consider starting a <a href="/pro/subscribe">free Ubuntu Pro
+            monthly trial</a>
+          or try a <a href="/pro/dashboard">free personal subscription</a>.
           If you have questions contact <a href="mailto:customersuccess@canonical.com">customer success</a>.
         </p>
-      </div>     
+      </div>
       {% else %}
       <div class="p-strip is-shallow">
         <hr class="is-fixed-width" />
         <a href="/login?next=/pro/dashboard">Login to learn more</a>
-      </div>      
+      </div>
       {% endif %}
-  </div>
+    </div>
 </section>
 <section class="p-strip is-x-deep">
   <hr class="is-fixed-width u-no-margin--bottom">
@@ -896,6 +900,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
   .bg-mid-dark {
     background-color: #666;
     color: white;
+  }
+
+  .bg-light {
+    background-color: #f7f7f7;
   }
 
   .bg-dark {
