@@ -369,7 +369,7 @@ class UAContractsAPI:
             error_rules=["default"],
         )
         return {}
-        
+
     def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
             method="post",
