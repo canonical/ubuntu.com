@@ -441,7 +441,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
 <section class="p-strip is-x-deep">
   <div class="u-fixed-width">
     <h2>Want to discuss what would be best for you?<br>
-      <a href="/pro/beta">Talk to an expert about your security needs.&nbsp;&rsaquo;</a>
+      <a href="/contact-us/form?product=pro">Talk to an expert about your security needs.&nbsp;&rsaquo;</a>
     </h2>
   </div>
 </section>
@@ -560,7 +560,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
 </section>
 <section class="p-strip is-x-deep">
   <div class="u-fixed-width">
-    <h2><a href="/pro/beta">Request your security assessment today.&nbsp;&rsaquo;</a></h2>
+    <h2><a href="/contact-us/form?product=pro">Request your security assessment today.&nbsp;&rsaquo;</a></h2>
   </div>
 </section>
 <section class="p-strip is-x-deep u-no-padding--top u-no-padding--bottom">
@@ -611,12 +611,17 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
         your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain
         as an Ubuntu Pro (Infra-only) customer at your current price.
       </p>
-      {% if user_info and show_beta_request %}
-        <button class="js-invoke-modal">Request access at no extra cost</button>
-      {% elif user_info and not show_beta_request %}
+      {% if user_info and not show_beta_request %}
+        <button class="js-invoke-modal">Request access</button>
+      {% elif user_info and show_beta_request %}
       <div class="p-strip is-shallow">
         <hr class="is-fixed-width" />
-        <p>To request an Ubuntu Pro extension please login using email address associated with your existing paid subscription. If you don't have an existing subscription - consider starting a [free Ubuntu Pro monthly trial](https://ubuntu.com/pro/subscribe) or try a [free personal subscription](https://ubuntu.com/pro/dashboard). If you have questions contact customersuccess@canonical.com"</p>
+        <p>
+          To request an Ubuntu Pro extension please login using email address associated with your existing paid subscription.
+          If you don't have an existing subscription - consider starting a <a href="/pro/subscribe">free Ubuntu Pro monthly trial</a>
+          or try a <a href="/pro/dashboard">free personal subscription</a>. 
+          If you have questions contact <a href="mailto:customersuccess@canonical.com">customer success</a>.
+        </p>
       </div>     
       {% else %}
       <div class="p-strip is-shallow">
@@ -739,7 +744,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       <div class="p-strip is-shallow u-no-padding--top">
         <h2>Available everywhere</h2>
         <p>Enterprise-grade security and compliance delivered on every cloud, <br>data centre, and desktop.</p>
-        <p><a href="https://ubuntu.com/contact-us/form?product=pro">Let's talk</a></p>
+        <p><a href="/contact-us/form?product=pro">Let's talk</a></p>
       </div>
     </div>
     <div class="col-6 col-medium-6">
