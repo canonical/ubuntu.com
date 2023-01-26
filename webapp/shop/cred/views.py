@@ -155,7 +155,8 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         [
                             {
                                 "text": "Take exam",
-                                "href": f"/credentials/exam?id={ assessment_id }",
+                                "href": "/credentials/exam?"
+                                f"id={ assessment_id }",
                                 "button_class": "p-button--positive",
                             }
                         ]
@@ -166,12 +167,15 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         [
                             {
                                 "text": "Reschedule",
-                                "href": f"/credentials/schedule?contractItemID={contract_item_id}&uuid={r['uuid']}",
+                                "href": "/credentials/schedule?"
+                                f"contractItemID={contract_item_id}"
+                                f"&uuid={r['uuid']}",
                                 "button_class": "p-button",
                             },
                             {
                                 "text": "Cancel",
-                                "href": f"/credentials/cancel-exam?contractItemID={contract_item_id}",
+                                "href": "/credentials/cancel-exam?"
+                                f"contractItemID={contract_item_id}",
                                 "button_class": "p-button--negative",
                             },
                         ]
@@ -191,7 +195,8 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                 actions = [
                     {
                         "text": "Schedule",
-                        "href": f"/credentials/schedule?contractItemID={contract_item_id}",
+                        "href": "/credentials/schedule?"
+                        f"contractItemID={contract_item_id}",
                         "button_class": "p-button",
                     }
                 ]
