@@ -956,6 +956,7 @@ security/cve/sitemap(?P<suffix>.*).xml: /security/cves/sitemap{suffix}.xml
 /advantage/purchases/(?P<purchase_id>.*): /account/purchases/{purchase_id}
 /advantage/(?P<tx_type>.*)/(?P<tx_id>.*)/invoices/(?P<invoice_id>.*): "/account/{tx_type}/{tx_id}/invoices/{invoice_id}"
 /advantage/last-purchase-ids/(?P<account_id>.*): "/account/last-purchase-ids/{account_id}"
+/advantage/attach: "/pro/attach"
 
 /advantage: "/pro"
 /advantage/(?P<path>.*): "/pro/{path}"

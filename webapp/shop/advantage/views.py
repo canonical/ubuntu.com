@@ -1,4 +1,5 @@
 # Packages
+import json
 from typing import List
 
 import flask
@@ -54,7 +55,6 @@ def advantage_view(advantage_mapper, **kwargs):
 def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
     user_subscriptions = advantage_mapper.get_user_subscriptions(email)
-
     return flask.jsonify(to_dict(user_subscriptions))
 
 
@@ -624,4 +624,38 @@ def blender_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def activate_magic_attach(advantage_mapper, **kwargs):
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+    try:
+        activation_status = advantage_mapper.activate_magic_attach(
+            contract_id=flask.request.form.get("contractID"),
+            user_code=flask.request.form.get("userCode").upper(),
+            client_ip=client_ip,
+        )
+        return flask.render_template(
+            "/pro/attach/confirmation.html", status=activation_status
+        )
+    except Exception as e:
+        return flask.render_template(
+            "/pro/attach/confirmation.html",
+            status=json.loads(e.response.content),
+        )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def magic_attach_view(advantage_mapper, **kwargs):
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=None, marketplaces=["canonical-ua"]
+    )
+    selected_id = flask.request.args.get("subscription")
+    return flask.render_template(
+        "pro/attach/index.html",
+        subscriptions=user_subscriptions,
+        selected_id=selected_id,
     )

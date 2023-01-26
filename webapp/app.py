@@ -109,11 +109,13 @@ from webapp.shop.views import (
 
 from webapp.shop.advantage.views import (
     accept_renewal,
+    activate_magic_attach,
     advantage_view,
     advantage_account_users_view,
     advantage_shop_view,
     advantage_thanks_view,
     get_renewal,
+    magic_attach_view,
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     cancel_advantage_subscriptions,
@@ -409,6 +411,10 @@ app.add_url_rule(
     methods=["GET"],
 )
 
+app.add_url_rule(
+    "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
+)
+app.add_url_rule("/pro/attach", view_func=magic_attach_view, methods=["GET"])
 # shop
 app.add_url_rule(
     "/account",

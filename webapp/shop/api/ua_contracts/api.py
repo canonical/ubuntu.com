@@ -32,14 +32,24 @@ class UAContractsAPI:
     def set_is_for_view(self, is_for_view):
         self.is_for_view = is_for_view
 
-    def _request(self, method, path, json=None, params=None, error_rules=None):
-        authorization = f"{self.token_type} {self.authentication_token}"
+    def _request(
+        self,
+        method,
+        path,
+        json=None,
+        params=None,
+        error_rules=None,
+        headers={},
+    ):
+        headers[
+            "Authorization"
+        ] = f"{self.token_type} {self.authentication_token}"
 
         response = self.session.request(
             method=method,
             url=f"{self.api_url}/{path}",
             json=json,
-            headers={"Authorization": authorization},
+            headers=headers,
             params=params,
         )
 
@@ -62,7 +72,10 @@ class UAContractsAPI:
         ).json()
 
     def get_account_contracts(
-        self, account_id: str, include_active_machines: bool = False
+        self,
+        account_id: str,
+        product_tags: str = "ua,classic,pro,blender",
+        include_active_machines: bool = False,
     ) -> dict:
         include_active_machines = str(include_active_machines).lower()
 
@@ -70,7 +83,7 @@ class UAContractsAPI:
             method="get",
             path=(
                 f"v1/accounts/{account_id}/contracts"
-                f"?productTags=ua,classic,pro,blender"
+                f"?productTags={product_tags}"
                 f"&include-active-machines={include_active_machines}"
             ),
             error_rules=["default"],
@@ -318,6 +331,16 @@ class UAContractsAPI:
             json=request_body,
             error_rules=["default"],
         ).json()
+
+    def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
+        self._request(
+            method="post",
+            path="v1/magic-attach/activate",
+            json=request_body,
+            error_rules=["default"],
+            headers=headers,
+        )
+        return {"success": "true"}
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:
