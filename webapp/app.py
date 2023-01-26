@@ -124,6 +124,7 @@ from webapp.shop.advantage.views import (
     get_account_users,
     delete_account_user_role,
     post_account_user_role,
+    pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
     blender_thanks_view,
@@ -470,6 +471,11 @@ app.add_url_rule("/support", view_func=support)
 app.add_url_rule(
     "/account/last-purchase-ids/<account_id>",
     view_func=get_last_purchase_ids,
+)
+app.add_url_rule(
+    "/pro",
+    view_func=pro_page_view,
+    methods=["GET"],
 )
 app.add_url_rule(
     "/pro/purchase",
