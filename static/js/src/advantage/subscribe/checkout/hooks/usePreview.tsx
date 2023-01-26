@@ -73,7 +73,11 @@ const usePreview = ({ quantity, product, action }: Props) => {
       return data;
     },
     {
-      enabled: !!window.accountId && !!product && !isUserInfoError,
+      enabled:
+        !!window.accountId &&
+        !window.currentPaymentId &&
+        !!product &&
+        !isUserInfoError,
     }
   );
 

@@ -11,6 +11,7 @@ const ENDPOINTS = {
   ensure: "/account/purchase-account*",
   customerInfo: "/account/customer-info*",
   getPurchase: "/account/purchases_v2/*",
+  postInvoice: "/account/purchase/*/invoices/*",
 };
 
 context("Checkout - Step 1", () => {
@@ -400,7 +401,7 @@ context("Checkout purchase", () => {
 });
 
 context("Checkout purchase errors", () => {
-  it("guest: should get card error when purchasing with invalid card and retrying", () => {
+  it.only("guest: should get card error when purchasing with invalid card and retrying", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();
@@ -465,6 +466,91 @@ context("Checkout purchase errors", () => {
       expect(interception.response.statusCode).to.equal(200);
     });
     cy.wait("@getPurchase").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+
+    cy.url().should("include", "/pro/subscribe/thank-you");
+    cy.findByText("Thanks for your purchase");
+    cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
+  });
+
+  it("guest: should get card error when gets new payment method error and retrying", () => {
+    cy.visit("/pro/subscribe");
+    cy.acceptCookiePolicy();
+    cy.selectProducts();
+    cy.scrollTo("bottom");
+    cy.findByRole("button", { name: "Buy now" }).click();
+
+    // Redirected to checkout
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.equal("/account/checkout");
+    });
+
+    cy.wait(2000);
+
+    cy.intercept("POST", ENDPOINTS.calculate).as("calculate");
+    cy.fillCountryVAT("GB");
+    cy.wait("@calculate");
+
+    cy.get('[data-testid="tax"]').should("have.text", "$100.00");
+    cy.get('[data-testid="total"]').should("have.text", "$600.00");
+
+    const randomEmail = getRandomEmail();
+    cy.fillInEmail(randomEmail);
+
+    cy.fillInCardDetails("4000000000000341");
+    cy.fillInCustomerInfo();
+
+    cy.findByLabelText("Pay now").click({ force: true });
+
+    cy.acceptTerms();
+    cy.clickRecaptcha();
+
+    cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
+    cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
+    cy.intercept("POST", ENDPOINTS.preview, slow).as("preview");
+    cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
+    cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
+    cy.intercept("POST", ENDPOINTS.postInvoice, slow).as("postInvoice");
+
+    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+
+    cy.wait("@ensure").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@customerInfo").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@preview").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@postPurchase").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@getPurchase").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@postInvoice").then((interception) => {
+      expect(interception.response.statusCode).to.equal(400);
+    });
+
+    cy.scrollTo("top");
+    cy.get(".p-notification--negative").should("be.visible");
+
+    // user reattempts
+    cy.fillInCardDetails("4242424242424242");
+    cy.acceptTerms();
+    cy.clickRecaptcha();
+
+    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+
+    cy.wait("@customerInfo").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@getPurchase").then((interception) => {
+      expect(interception.response.statusCode).to.equal(200);
+    });
+    cy.wait("@postInvoice").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
 
