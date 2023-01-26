@@ -17,17 +17,16 @@
       <p>Install a complete Ubuntu terminal environment in minutes on Windows with Windows Subsystem for Linux (WSL).</p>
       <p>Access the Linux terminal on Windows, develop cross-platform applications, and manage IT infrastructure without leaving Windows.</p>
       <a href="https://www.microsoft.com/p/ubuntu/9pdxgncfsczv" class="p-button--positive">Download from the Microsoft Store</a>
-      <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview">Install Ubuntu on WSL for Windows 10&nbsp;&rsaquo;</a></p>
-      <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview">Install Ubuntu on WSL for Windows 11&nbsp;&rsaquo;</a></p>
+      <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview">Install Ubuntu on WSL&nbsp;&rsaquo;</a></p>
     </div>
 
-    <div class="col-5 col-start-large-8 u-hide--small">
+    <div class="col-5 col-start-large-8 u-hide--small u-hide--medium">
       {{
         image(
-        url="https://assets.ubuntu.com/v1/f06b3499-ubuntu+windows.svg",
+        url="https://assets.ubuntu.com/v1/5f6db24d-Windows_11+Ubuntu_white.svg",
         alt="",
-        height="167",
-        width="463",
+        height="150",
+        width="500",
         hi_def=True,
         loading="auto"
         ) | safe
@@ -72,8 +71,8 @@
       </li>
       <li class="p-matrix__item">
         <div class="p-matrix__content">
-          <h3 class="p-matrix__title p-heading--4">Shells</h3>
-          <p class="p-matrix__desc">Use your choice of Linux shells, such as bash, zsh and fish</p>
+          <h3 class="p-matrix__title p-heading--4">Systemd</h3>
+          <p class="p-matrix__desc">Develop and run service applications and use snap packages to run popular workflow tools</p>
         </div>
       </li>
       <li class="p-matrix__item">
@@ -145,6 +144,7 @@
       <h4>Data Science</h4>
       <p>NVIDIA Data Science Stack lets you maximise the performance of your Data Science and Machine Learning projects on top of native Windows NVIDIA drivers.</p>
       <p><a class="p-link--inverted" href="/tutorials/enabling-gpu-acceleration-on-ubuntu-on-wsl2-with-the-nvidia-cuda-platform#1-overview">Learn how to enable GPU acceleration with NVIDIA CUDA&nbsp;&rsaquo;</a></p>
+      <p><a href="/engage/ubuntu-wsl-for-data-scientists" class="p-link--inverted">Ubuntu WSL for Data Scientists&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-3">
       {{ image (
@@ -175,7 +175,7 @@
       <h4>Develop Graphical Applications</h4>
       <p>Develop and preview web and graphical applications on Linux using WSLg. Create multiplatform graphical applications using popular open source development frameworks like Flutter or React Native.</p>
       <p><a class="p-link--inverted" href="/tutorials/install-ubuntu-on-wsl2-on-windows-11-with-gui-support#1-overview">Learn how to run graphical apps with Ubuntu on WSL&nbsp;&rsaquo;</a></p>
-    </div>            
+    </div>
   </div>
 
   <div class="row">
@@ -239,8 +239,8 @@
       <h4>Enterprise support</h4>
       <p>Ubuntu is certified on WSL through close collaboration with Microsoft. Enterprise support is provided for Ubuntu from Azure to Windows workstations creating a seamless operating environment.</p>
       <p><a class="p-button js-invoke-modal" class="p-button" href="/wsl/contact-us">Get in touch</a></p>
-    </div>            
-  </div>  
+    </div>
+  </div>
 </section>
 
 <section class="p-strip is-deep" style="display:none;" id="tutorial-strip">
@@ -270,44 +270,50 @@
   {% include "shared/_tutorial-template.html" %}
 </section>
 
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Video Guides</h2>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 col-medium-3 col-small-4">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/08WDGV0u58Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3 class="p-heading--5">An introduction to numerical computation applications using Ubuntu WSL</h3>
+    </div>
+    <div class="col-4 col-medium-3 col-small-4">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/J4gvO1rDYME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3 class="p-heading--5">Tips for working with web services on Ubuntu WSL</h3>
+    </div>
+    <div class="col-4 col-medium-3 col-small-4">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/LViy7x2Gpc4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3 class="p-heading--5">Ubuntu on WSL: An FAQ for data scientists and developers</h3>
+    </div>
+    <div class="col-4 col-medium-3 col-small-4">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/Ja3qikzd-as" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3 class="p-heading--5">WSL: Partnering with Canonical to support systemd</h3>
+    </div>
+    <div class="col-4 col-medium-3 col-small-4">
+      <div class="u-embedded-media u-no-margin--bottom">
+        <iframe class="u-embedded-media__element" width="560" height="315" src="https://www.youtube.com/embed/-tAelKpya4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <h3 class="p-heading--5">Ubuntu Summit 2022 | The Windows Subsystem for Linux WSL Latest updates and future improvements</h3>
+    </div>
+  </div>
+</section>
+
 <script src="/static/js/src/render-tutorials.js" type="text/javascript"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     renderTutorials('wsl');
   });
 </script>
-
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>WSL 1 vs WSL 2</h2>
-  </div>
-
-  <div class="row u-equal-height">
-    <div class="col-6 p-card">
-      <h3 class="p-card__title">WSL 1</h3>
-      <hr class="u-sv1">
-      <div class="p-card__content">
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Powered by a Linux binary translation layer.</li>
-          <li class="p-list__item is-ticked">Supported on all versions of Windows 10 since Fall Creators Update.</li>
-          <li class="p-list__item is-ticked">Supported on all editions of Windows 10, including Home, Pro, Enterprise, and Server.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="col-6 p-card">
-      <h3 class="p-card__title">WSL 2</h3>
-      <hr class="u-sv1">
-      <div class="p-card__content">
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Powered by a Linux kernel running on Hyper-V technology.</li>
-          <li class="p-list__item is-ticked">Features significant speed and networking improvements.</li>
-          <li class="p-list__item is-ticked">Available to everyone, on all editions of Windows 10, as of the May 2020 update from Microsoft.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
 {% with section_classes='p-strip is-deep is-bordered', heading_topic='Ubuntu WSL', tag_name='ubuntu-wsl', tag_id='3332', limit='4' %}
   {% include "shared/_latest_news_strip.html" %}
