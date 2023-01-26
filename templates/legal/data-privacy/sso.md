@@ -65,7 +65,7 @@ Please note that if you ask us to remove your SSO and/or Ubuntu One account you 
 
 ## Your right to complain
 
-If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/concerns/](https://ico.org.uk/concerns/) or write to them at:
+If you have a complaint about our use of your information, you can contact the Information Commissioner's Office via their website at [ico.org.uk/make-a-complaint/](https://ico.org.uk/make-a-complaint/) or write to them at:
 
 <div style="margin:2rem;">
 Information Commissioner's Office<br />
