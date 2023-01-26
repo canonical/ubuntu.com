@@ -1,4 +1,5 @@
 # Packages
+import json
 from typing import List
 
 import flask
@@ -33,6 +34,43 @@ from webapp.shop.schemas import (
 )
 
 
+@shop_decorator(area="advantage", response="html")
+def pro_page_view(advantage_mapper, **kwargs):
+    """
+    Renders the /pro page. If there is a logged in user it checks for active
+    subscriptions so we can display a contact form, otherwise renders the page
+    without any form. Anonymous requests don't see the form either.
+    """
+
+    show_beta_request = False
+
+    user = user_info(flask.session)
+    if user:
+        try:
+            subscriptions = advantage_mapper.get_user_subscriptions(
+                user["email"]
+            )
+            for subscription in subscriptions:
+                if (
+                    subscription.marketplace == "canonical-ua"
+                    and subscription.statuses["has_access_to_support"]
+                ):
+                    show_beta_request = True
+                    break
+        except Exception as exception:
+            flask.current_app.extensions["sentry"].captureException(
+                exception,
+                extra={
+                    "message": "Could not get user subscriptions on pro page"
+                },
+            )
+
+    return flask.render_template(
+        "pro/index.html",
+        show_beta_request=show_beta_request,
+    )
+
+
 @shop_decorator(area="advantage", permission="user", response="html")
 def advantage_view(advantage_mapper, **kwargs):
     is_technical = False
@@ -54,7 +92,6 @@ def advantage_view(advantage_mapper, **kwargs):
 def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
     user_subscriptions = advantage_mapper.get_user_subscriptions(email)
-
     return flask.jsonify(to_dict(user_subscriptions))
 
 
@@ -624,4 +661,38 @@ def blender_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def activate_magic_attach(advantage_mapper, **kwargs):
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+    try:
+        activation_status = advantage_mapper.activate_magic_attach(
+            contract_id=flask.request.form.get("contractID"),
+            user_code=flask.request.form.get("userCode").upper(),
+            client_ip=client_ip,
+        )
+        return flask.render_template(
+            "/pro/attach/confirmation.html", status=activation_status
+        )
+    except Exception as e:
+        return flask.render_template(
+            "/pro/attach/confirmation.html",
+            status=json.loads(e.response.content),
+        )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def magic_attach_view(advantage_mapper, **kwargs):
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=None, marketplaces=["canonical-ua"]
+    )
+    selected_id = flask.request.args.get("subscription")
+    return flask.render_template(
+        "pro/attach/index.html",
+        subscriptions=user_subscriptions,
+        selected_id=selected_id,
     )

@@ -109,11 +109,13 @@ from webapp.shop.views import (
 
 from webapp.shop.advantage.views import (
     accept_renewal,
+    activate_magic_attach,
     advantage_view,
     advantage_account_users_view,
     advantage_shop_view,
     advantage_thanks_view,
     get_renewal,
+    magic_attach_view,
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     cancel_advantage_subscriptions,
@@ -124,6 +126,7 @@ from webapp.shop.advantage.views import (
     get_account_users,
     delete_account_user_role,
     post_account_user_role,
+    pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
     blender_thanks_view,
@@ -409,6 +412,10 @@ app.add_url_rule(
     methods=["GET"],
 )
 
+app.add_url_rule(
+    "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
+)
+app.add_url_rule("/pro/attach", view_func=magic_attach_view, methods=["GET"])
 # shop
 app.add_url_rule(
     "/account",
@@ -470,6 +477,11 @@ app.add_url_rule("/support", view_func=support)
 app.add_url_rule(
     "/account/last-purchase-ids/<account_id>",
     view_func=get_last_purchase_ids,
+)
+app.add_url_rule(
+    "/pro",
+    view_func=pro_page_view,
+    methods=["GET"],
 )
 app.add_url_rule(
     "/pro/purchase",
@@ -1008,6 +1020,32 @@ app.add_url_rule(
 )
 
 security_certs_docs.init_app(app)
+
+# Landscape docs
+landscape_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=23070,
+        url_prefix="/landscape/docs",
+    ),
+    document_template="/landscape/docs/document.html",
+    url_prefix="/landscape/docs",
+    blueprint_name="landscape-docs",
+)
+
+# Landscape search
+app.add_url_rule(
+    "/landscape/docs/search",
+    "landscape-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/landscape/docs",
+        template_path="/landscape/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+landscape_docs.init_app(app)
 
 app.add_url_rule("/certified", view_func=certified_home)
 app.add_url_rule(

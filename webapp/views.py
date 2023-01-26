@@ -968,7 +968,7 @@ def get_user_country_by_ip():
     client_ip = flask.request.headers.get(
         "X-Real-IP", flask.request.remote_addr
     )
-    ip_location = ip_reader.get("84.247.0.146")
+    ip_location = ip_reader.get(client_ip)
 
     if not ip_location:
         country_code = None

@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/landscape/docs/search",
+  siteSearch="https://ubuntu.com/landscape/docs",
+  placeholder="Search on Landscape Docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}

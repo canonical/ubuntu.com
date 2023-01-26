@@ -73,7 +73,7 @@
       <h3 class="p-heading--4"><a href="/tutorials/upgrading-ubuntu-desktop">Upgrade Ubuntu Desktop</a></h3>
       <hr>
       <p>If you're already running Ubuntu, you can upgrade in a few clicks from the Software Updater.</p>
-    </div>            
+    </div>
   </div>
 </section>
 
@@ -110,7 +110,7 @@
   <div class="row">
     <div class="col-6">
       <ul class="p-list">
-        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a> (beta)</li>
+        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a></li>
         <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration</li>
         <li class="p-list__item is-ticked">Estate <a href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
         <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
@@ -120,15 +120,19 @@
     </div>
     <div class="col-6 u-vertically-center u-align--center u-hide--medium">
       {{ image (
-        url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
         alt="",
-        width="231",
-        height="250",
+        width="250",
+        height="270",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>For more information, download our whitepaper:</p>
+    <p><a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Adopting a secure enterprise Linux desktop</a></p>
   </div>
   <div class="u-fixed-width">
     <p><a class="p-button--positive" href="/pro">Register today</a></p>
@@ -143,7 +147,7 @@
         <p>Contributions require JavaScript. Please enable JavaScript if you want to contribute.</p>
       </noscript>
       <form class="p-card contribute__options" action="https://www.paypal.com/cgi-bin/webscr" id="contributions-form" method="post" target="_top">
-        
+
         <section id="community-projects" class="u-sv3">
           <label for="amount-community">
             <p class="p-heading--4">Community projects</p>
@@ -157,7 +161,7 @@
             I support LoCo teams, UbuCons and other events, upstream projects and all the good work the community does.
           </p>
         </section>
-        
+
         <section id="ubuntu-desktop" class="u-sv3">
           <label for="amount-desktop">
             <p class="p-heading--4">Ubuntu Desktop</p>
@@ -171,7 +175,7 @@
             Make the desktop even more amazing.
           </p>
         </section>
-        
+
         <section id="tip-to-canonical" class="u-sv3">
           <label for="amount-canonical">
             <p class="p-heading--4">Tip to Canonical</p>
@@ -185,7 +189,7 @@
             Hats off for making Ubuntu possible. Keep it up.
           </p>
         </section>
-        
+
         <section id="ubuntu-for-things" class="u-sv3">
           <label for="amount-things">
             <p class="p-heading--4">Ubuntu for IoT</p>
@@ -199,7 +203,7 @@
             I want a secure, upgradeable Internet of Things, powered by Ubuntu.
           </p>
         </section>
-        
+
         <section id="ubuntu-for-cloud" class="u-sv3">
           <label for="amount-cloud">
             <p class="p-heading--4">Ubuntu Server & Cloud</p>
@@ -213,7 +217,7 @@
             I want Ubuntu Server running my servers, cloud and as a guest everywhere.
           </p>
         </section>
-        
+
         <div class="p-media-object u-no-margin--bottom u-sv3 u-vertically-center">
           <img alt="T-shirt" src="https://assets.ubuntu.com/v1/b26d26e5-t-shirt.png?w=78" width="78" class="p-media-object__image js-equivalent-image">
           <div class="p-media-object__details">
@@ -221,9 +225,9 @@
             <p class="p-media-object__content u-no-margin--bottom js-equivalent-description">Peace, Love and Linux t-shirt</p>
           </div>
         </div>
-        
+
         <hr class="u-sv3" />
-        
+
         <div class="row">
           <div class="col-4">
             <p>Your contribution&nbsp;<span class="p-card" style="padding: .5rem;">&#36;<span class="js-total-amount">16</span></span></p>
@@ -238,10 +242,10 @@
             <input type="hidden" name="no_note" value="1">
             <input type="hidden" name="no_shipping" value="1">
             <input type="hidden" name="rm" value="1">
-            
+
             <input type="hidden" name="return" value="http://{{ http_host }}/download/desktop/thank-you">
             <input type="hidden" name="cancel_return" value="http://{{ http_host }}/download/desktop">
-            
+
             <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHosted">
             <button type="submit" class="js-contribute-submit p-button--positive u-no-margin--bottom" tabindex="9">Contribute with PayPal</button>
           </div>
@@ -261,21 +265,21 @@
                   <input type="checkbox" aria-labelledby="insightscloudserver" class="p-checkbox__input" name="insightscloudserver" value="true" />
                   <span class="p-checkbox__label" id="insightscloudserver">Cloud and Server</span>
                 </label>
-                
+
               </li>
               <li class="p-list__item u-clearfix">
                 <label class="p-checkbox">
                   <input type="checkbox" aria-labelledby="insightsdesktop" class="p-checkbox__input" name="insightsdesktop" value="true" />
                   <span class="p-checkbox__label" id="insightsdesktop">Desktop</span>
                 </label>
-                
+
               </li>
               <li class="p-list__item u-clearfix">
                 <label class="p-checkbox">
                   <input type="checkbox" aria-labelledby="insightsiot" class="p-checkbox__input" name="insightsiot" value="true" />
                   <span class="p-checkbox__label" id="insightsiot">Internet of Things</span>
                 </label>
-                
+
               </li>
               <li class="p-list__item u-clearfix">
                 <label class="p-checkbox">
@@ -317,8 +321,8 @@
             <p>
               <small>In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/newsletter">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</small>
             </p>
-            
-            
+
+
             <div>
               <span class="p-card--content">
                 <button type="submit" class="u-no-margin--bottom">Subscribe now</button>
@@ -364,7 +368,7 @@
     <div class="col-3 p-divider__block">
       <p><a href="/blog/linux-gaming-tutorial-raspberry-pi-minecraft-server-on-ubuntu-desktop">Raspberry Pi Tutorial: Host a Minecraft server on Ubuntu Desktop</a></p>
       <p><em>by <a href="/blog/author/local-optimum">Oliver Smith</a> on 9 December 2021</em></p>
-    </div>            
+    </div>
   </div>
 </section>
 
@@ -380,11 +384,11 @@
 <script defer>
   var architecture = '{{ architecture }}';
   var version = '{{ version }}';
-  
+
   if (version && architecture && architecture != 'amd64+mac') {
     var GAlabel = version + '-desktop-' + architecture;
     var imagePath = version + '/ubuntu-' + version + '-desktop-' + architecture + '.iso';
-    
+
     window.initImageDownload(imagePath, GAlabel);
   }
 </script>
