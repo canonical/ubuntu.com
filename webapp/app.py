@@ -725,6 +725,7 @@ template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
+# Server docs
 url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
@@ -734,6 +735,7 @@ server_docs = Docs(
     ),
     document_template="/server/docs/document.html",
     url_prefix=url_prefix,
+    blueprint_name="server-docs",
 )
 
 # Server docs search
@@ -749,6 +751,33 @@ app.add_url_rule(
 )
 
 server_docs.init_app(app)
+
+# Community docs
+url_prefix = "/community/docs"
+community_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=33115,
+        url_prefix=url_prefix,
+    ),
+    document_template="/community/docs/document.html",
+    url_prefix=url_prefix,
+    blueprint_name="community-docs",
+)
+
+# Community docs search
+app.add_url_rule(
+    "/community/docs/search",
+    "community-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/community/docs",
+        template_path="/community/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+community_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(

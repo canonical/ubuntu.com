@@ -1,0 +1,12 @@
+{% with
+    title="Ubuntu Community Docs",
+    query=query,
+    results=results,
+    search_action="/community/docs/search",
+    siteSearch="https://ubuntu.com/community/docs",
+    placeholder="Search the Community Docs",
+    search_path="/community/docs/search",
+    forum_link="https://discourse.ubuntu.com/c/community/78"
+  %}
+    {% include "templates/docs/shared/_search-results.html" %}
+{% endwith %}
