@@ -36,10 +36,11 @@ from webapp.shop.schemas import (
 @shop_decorator(area="advantage", response="html")
 def pro_page_view(advantage_mapper, **kwargs):
     """
-    Renders the /pro page. If there is a logged in user it checks for active 
+    Renders the /pro page. If there is a logged in user it checks for active
     subscriptions so we can display a contact form, otherwise renders the page
     without any form. Anonymous requests don't see the form either.
     """
+
     show_beta_request = False
 
     user = user_info(flask.session)
