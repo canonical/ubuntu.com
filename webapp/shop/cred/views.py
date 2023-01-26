@@ -88,8 +88,10 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
                 "/credentials/schedule-confirm.html", exam=exam
             )
 
-    assessment_reservation_uuid = flask.request.args.get("uuid")
     contract_item_id = flask.request.args.get("contractItemID")
+    if contract_item_id is None:
+        return flask.redirect("/credentials/your-exams")
+    assessment_reservation_uuid = flask.request.args.get("uuid")
     timezone = ""
     date = min_date
     time = "13:00"
