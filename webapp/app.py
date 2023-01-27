@@ -753,7 +753,7 @@ app.add_url_rule(
 server_docs.init_app(app)
 
 # Community docs
-url_prefix = "/community/docs"
+url_prefix = "/community"
 community_docs = Docs(
     parser=DocParser(
         api=discourse_api,
@@ -767,11 +767,11 @@ community_docs = Docs(
 
 # Community docs search
 app.add_url_rule(
-    "/community/docs/search",
-    "community-docs-search",
+    "/community/search",
+    "community-search",
     build_search_view(
         session=session,
-        site="ubuntu.com/community/docs",
+        site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
         search_engine_id=search_engine_id,
     ),
