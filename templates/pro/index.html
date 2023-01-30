@@ -613,9 +613,9 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
         your current contract. At the end of the trial, you can choose to upgrade to full Pro (at extra cost), or remain
         as an Ubuntu Pro (Infra-only) customer at your current price.
       </p>
-      {% if user_info and not show_beta_request %}
+      {% if user_info and show_beta_request %}
       <button class="js-invoke-modal">Request access</button>
-      {% elif user_info and show_beta_request %}
+      {% elif user_info and not show_beta_request %}
       <div class="p-strip is-shallow">
         <hr class="is-fixed-width" />
         <p>
@@ -630,7 +630,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {% else %}
       <div class="p-strip is-shallow">
         <hr class="is-fixed-width" />
-        <a href="/login?next=/pro/dashboard">Login to learn more</a>
+        <a href="/login">Login to learn more</a>
       </div>
       {% endif %}
     </div>
