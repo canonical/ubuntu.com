@@ -1,3 +1,18 @@
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
+import { Product, TaxInfo } from "../types";
+
+export const taxInfo: TaxInfo = {
+  currency: "USD",
+  subtotal: 150000,
+  tax: 30000,
+  total: 180000,
+  start_of_cycle: "",
+  end_of_cycle: "",
+};
+
 export const preview = {
   amountDue: 14031,
   currency: "usd",
@@ -104,4 +119,14 @@ export const userInfo = {
       value: "GB123123123123",
     },
   },
+};
+
+export const UAProduct: Product = {
+  longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
+  period: UserSubscriptionPeriod.Yearly,
+  marketplace: UserSubscriptionMarketplace.CanonicalUA,
+  id: "uaia-essential-physical-yearly",
+  name: "Ubuntu Pro",
+  price: { value: 50000 },
+  canBeTrialled: true,
 };
