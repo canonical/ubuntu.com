@@ -89,6 +89,17 @@ export async function getContractToken(contractId) {
   return await response.json();
 }
 
+export async function getPurchaseAccountStatus(marketplace) {
+  const queryString = window.location.search; // Pass arguments to the flask backend
+  const response = await fetch(
+    `/account/${marketplace}/purchase-account-status${queryString}`,
+    {
+      cache: "no-store",
+    }
+  );
+  return await response.json();
+}
+
 export async function putContractEntitlements(contractId, entitlements) {
   const queryString = window.location.search; // Pass arguments to the flask backend
   const response = await fetch(

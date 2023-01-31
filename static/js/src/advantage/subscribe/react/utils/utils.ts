@@ -1,5 +1,5 @@
-import { marketplace } from "./../../../../PurchaseModal/utils/utils";
 import { PaymentMethod, PaymentMethodCreateParams } from "@stripe/stripe-js";
+import { marketplace } from "advantage/subscribe/checkout/utils/types";
 
 interface DefaultPaymentMethod {
   brand: PaymentMethod.Card["brand"];
@@ -87,7 +87,7 @@ function getInitialFormValues(
   };
 }
 
-export { getUserInfoFromVariables, getInitialFormValues };
+export { getInitialFormValues, getUserInfoFromVariables };
 
 export const getIsFreeTrialEnabled = () =>
   process.env.NODE_ENV === "development";

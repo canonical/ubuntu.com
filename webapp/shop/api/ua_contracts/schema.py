@@ -24,13 +24,15 @@ class PaymentStatusSchema(BaseSchema):
 
 
 class InvoiceSchema(BaseSchema):
-    id = Function(deserialize=(lambda id: id.get("IDs")[0]), required=True)
+    id = Function(deserialize=(lambda id: id.get("IDs")[0]))
     reason = String(required=True)
     status = String(required=True)
     url = String()
     currency = String(required=True)
     total = Integer()
     taxAmount = Integer(attribute="tax_amount")
+    subscriptionStartOfCycle = String(attribute="start_of_cycle")
+    subscriptionEndOfCycle = String(attribute="end_of_cycle")
     paymentStatus = Nested(PaymentStatusSchema, attribute="payment_status")
     lineItems = List(Nested(InvoiceItemSchema), attribute="items")
 

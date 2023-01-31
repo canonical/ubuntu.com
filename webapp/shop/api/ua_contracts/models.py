@@ -139,8 +139,10 @@ class Invoice:
         reason: str,
         currency: str,
         status: str,
-        id: str,
+        id: str = "",
         total: int = 0,
+        end_of_cycle: str = "",
+        start_of_cycle: str = "",
         items: dict = None,
         tax_amount: int = None,
         payment_status: dict = None,
@@ -154,6 +156,8 @@ class Invoice:
         self.reason = reason
         self.url = url
         self.payment_status = payment_status
+        self.end_of_cycle = end_of_cycle
+        self.start_of_cycle = start_of_cycle
         self.items = items
 
 

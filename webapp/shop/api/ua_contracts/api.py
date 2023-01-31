@@ -319,6 +319,26 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def web_purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict
+    ) -> dict:
+        return self._request(
+            method="post",
+            path=f"web/marketplace/{marketplace}/purchase",
+            json=purchase_request,
+            error_rules=["default"],
+        ).json()
+
+    def web_preview_purchase_from_marketplace(
+        self, marketplace: str, purchase_request: dict
+    ) -> dict:
+        return self._request(
+            method="post",
+            path=f"web/marketplace/{marketplace}/purchase/preview",
+            json=purchase_request,
+            error_rules=["default"],
+        ).json()
+
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
