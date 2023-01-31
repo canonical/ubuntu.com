@@ -54,7 +54,7 @@
     <div class="col-3">
       {% if cve.status == 'active' and cve.priority %}
       <div class="cve-status-box">
-        <div class="p-muted-heading">Priority</div>
+        <h2 class="p-muted-heading">Priority</h2>
         <div class="p-heading-icon--small">
           <div class="p-heading-icon__header">
             {% if cve.priority == 'unknown' %}
@@ -80,19 +80,17 @@
             {% if cve.priority == 'critical' %}
               <img src="https://assets.ubuntu.com/v1/c96f27b9-CVE-Priority-icon-Critical.svg" alt="" class="p-heading-icon__img">
             {% endif %}
-            <h4 class="p-heading-icon__title u-no-margin--bottom">
+            <p class="p-heading-icon__title u-no-margin--bottom p-heading--4">
               {{ cve.priority | capitalize }}
-            </h4>
+            </p>
           </div>
         </div>
       </div>
         {% if cvssV3 %}
-        <div class="cve-status-box">
-          <div class="p-heading--4 u-no-margin--bottom">
-            <p class="p-muted-heading">Cvss 3 Severity Score</p>
-            {{cvssV3.baseScore}}
-            <p class="p-heading--5"><a href="#impact-score">See score breakdown</a></p>
-          </div>
+        <div class="cve-status-box u-no-margin--bottom">
+          <h2 class="p-muted-heading">Cvss 3 Severity Score</h2>
+          <p class="u-no-margin--bottom p-heading--4">{{cvssV3.baseScore}}</p>
+          <p class="p-heading--5 u-no-margin--bottom"><a href="#impact-score">Score breakdown</a></p>
         </div>
         {% elif cve.cvss3 %}
           <p>CVSS 3 base score: {{ cve.cvss3 }}</p>
@@ -202,7 +200,7 @@
               {% if package["name"] in patches|map(attribute="name")%}
                 <tr>
                   <td style="border-top: 0px"></td>
-                  <td colspan="2" style="border-top: 5px double #cdcdcd">
+                  <td colspan="2">
                     Patches: <br>
                     <small>
                       {% for patch in patches %}
