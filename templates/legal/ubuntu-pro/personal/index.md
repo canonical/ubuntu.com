@@ -1,5 +1,5 @@
 ---
-wrapper_template: "legal/ubuntu-advantage/personal/_markdown.html"
+wrapper_template: "legal/ubuntu-pro/personal/_markdown.html"
 context:
   title: "Ubuntu Pro - personal, Terms of Service"
   description: "The terms of Ubuntu Pro - personal subscription which provides users of Ubuntu with Ubuntu Pro with no support on up to five physical or virtual Ubuntu systems for the eligible LTS release. And up to 50 machines for official Ubuntu Community members."

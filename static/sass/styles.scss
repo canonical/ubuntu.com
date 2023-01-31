@@ -747,6 +747,25 @@ body {
   z-index: 10;
 }
 
+#updated {
+  display: none;
+}
+
+#updated:target {
+  display: block;
+  z-index: 10;
+}
+
+#unsubscribed {
+  display: none;
+  position: absolute;
+}
+
+#unsubscribed:target {
+  display: block;
+  z-index: 10;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -891,6 +910,12 @@ a:hover {
 }
 .u-table-border--bottom {
   border-bottom: 1px solid $color-mid-light;
+}
+
+// Style for a shallow p-separator
+hr.p-separator.is-shallow {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 .u-table-border--right {
   border-right: 1px solid $color-mid-light;

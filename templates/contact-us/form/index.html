@@ -37,6 +37,14 @@
     {% include "shared/_cloud-contact-us-form.html" %}
   {% endwith %}
 
+{% elif product == 'pro' %}
+  {% with h1="Contact us about Ubuntu Pro",
+    intro_text="",
+    formid="1257",
+    lpId="2154",
+    returnURL="/contact-us/form/thank-you" %}
+    {% include "shared/_pro-contact-us-form.html" %}
+  {% endwith %}
 {% else %}
 
 {% with h1="Contact Canonical",

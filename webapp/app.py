@@ -86,6 +86,7 @@ from webapp.views import (
     build_tutorials_query,
     openstack_engage,
     get_user_country_by_ip,
+    subscription_centre,
 )
 
 from webapp.shop.views import (
@@ -110,11 +111,13 @@ from webapp.shop.views import (
 
 from webapp.shop.advantage.views import (
     accept_renewal,
+    activate_magic_attach,
     advantage_view,
     advantage_account_users_view,
     advantage_shop_view,
     advantage_thanks_view,
     get_renewal,
+    magic_attach_view,
     post_advantage_subscriptions,
     post_auto_renewal_settings,
     cancel_advantage_subscriptions,
@@ -125,6 +128,7 @@ from webapp.shop.advantage.views import (
     get_account_users,
     delete_account_user_role,
     post_account_user_role,
+    pro_page_view,
     put_account_user_role,
     put_contract_entitlements,
     blender_thanks_view,
@@ -410,6 +414,10 @@ app.add_url_rule(
     methods=["GET"],
 )
 
+app.add_url_rule(
+    "/pro/attach", view_func=activate_magic_attach, methods=["POST"]
+)
+app.add_url_rule("/pro/attach", view_func=magic_attach_view, methods=["GET"])
 # shop
 app.add_url_rule(
     "/account",
@@ -476,6 +484,11 @@ app.add_url_rule("/support", view_func=support)
 app.add_url_rule(
     "/account/last-purchase-ids/<account_id>",
     view_func=get_last_purchase_ids,
+)
+app.add_url_rule(
+    "/pro",
+    view_func=pro_page_view,
+    methods=["GET"],
 )
 app.add_url_rule(
     "/pro/purchase",
@@ -730,6 +743,7 @@ template_finder_view._exclude_xframe_options_header = True
 app.add_url_rule("/", view_func=template_finder_view)
 app.add_url_rule("/<path:subpath>", view_func=template_finder_view)
 
+# Server docs
 url_prefix = "/server/docs"
 server_docs = Docs(
     parser=DocParser(
@@ -739,6 +753,7 @@ server_docs = Docs(
     ),
     document_template="/server/docs/document.html",
     url_prefix=url_prefix,
+    blueprint_name="server-docs",
 )
 
 # Server docs search
@@ -754,6 +769,33 @@ app.add_url_rule(
 )
 
 server_docs.init_app(app)
+
+# Community docs
+url_prefix = "/community"
+community_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=33115,
+        url_prefix=url_prefix,
+    ),
+    document_template="/community/docs/document.html",
+    url_prefix=url_prefix,
+    blueprint_name="community-docs",
+)
+
+# Community docs search
+app.add_url_rule(
+    "/community/search",
+    "community-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/community",
+        template_path="/community/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+community_docs.init_app(app)
 
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
@@ -1020,6 +1062,32 @@ app.add_url_rule(
 
 security_certs_docs.init_app(app)
 
+# Landscape docs
+landscape_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=23070,
+        url_prefix="/landscape/docs",
+    ),
+    document_template="/landscape/docs/document.html",
+    url_prefix="/landscape/docs",
+    blueprint_name="landscape-docs",
+)
+
+# Landscape search
+app.add_url_rule(
+    "/landscape/docs/search",
+    "landscape-docs-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/landscape/docs",
+        template_path="/landscape/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+landscape_docs.init_app(app)
+
 app.add_url_rule("/certified", view_func=certified_home)
 app.add_url_rule(
     "/certified/<canonical_id>",
@@ -1066,6 +1134,13 @@ app.add_url_rule(
 app.add_url_rule(
     "/openstack/install",
     view_func=openstack_install,
+)
+
+# Subscription centre
+app.add_url_rule(
+    "/subscription-centre",
+    view_func=subscription_centre,
+    methods=["GET", "POST"],
 )
 
 

@@ -196,6 +196,19 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     </Button>
                   </>
                 ) : null}
+                {subscription.marketplace == "canonical-ua" ? (
+                  <Button
+                    className="p-subscriptions__details-action"
+                    data-test="attach-button"
+                    disabled={editing}
+                    element="a"
+                    href={
+                      "/pro/attach?subscription=" + subscription.contract_id
+                    }
+                  >
+                    Attach a machine
+                  </Button>
+                ) : null}
                 {subscription.statuses.is_renewable ? (
                   <RenewalButton
                     subscription={subscription}

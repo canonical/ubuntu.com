@@ -82,7 +82,12 @@
             <section>
             {% endif %}
             {% if release.level == "Enabled" %}
-              <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system’s hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
+              <p class="u-no-margin--bottom">Pre-installed in some regions with a custom Ubuntu image that takes advantage of the system's hardware features and may include additional software. Standard images of Ubuntu may not work well, or at all.</p>
+              {% if vendor == "Xilinx" %}
+                <p class="u-no-margin--bottom" style="padding-top:1.4rem;">
+                  <a href="/download/amd-xilinx" class="p-button">Download</a>
+                </p>
+              {% endif %}
             {% elif release.level == "Certified" %}
               <p>The {{ vendor }} {{ name }} with the components described below has been awarded the status of certified for Ubuntu.</p>
               <p class="u-no-margin--bottom">
@@ -109,7 +114,7 @@
                 {% for hardware_subtitle, values in release["components"].items() %}
                   <tr>
                     <th colspan="2" class="u-text--muted">{{ hardware_subtitle }}</th>
-                    <td colspan="8">{% for value in values %} 
+                    <td colspan="8">{% for value in values %}
                       <p style="margin-bottom: 0.5rem;">{{ value.name }}{% if value.bus in ["usb", "pci"] %} {{ value.bus }} ({{ value.identifier }}{% if value.subsystem != '' %} {{ value.subsystem }}{% endif %}){% endif %}</p>
                       {% endfor %}
                     </td>
