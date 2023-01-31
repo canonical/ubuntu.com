@@ -10,6 +10,8 @@
 
 {% block content %}
 <section class="p-strip--suru-bottomed js-livestream__intro">
+  {% include "robotics/shared/_18-04-eol-robotics-banner.html" %}
+
   <div class="row u-equal-height">
     <div class="col-6">
       <h1>Powering robotics in every industry</h1>
@@ -140,7 +142,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/255a3171-abb-logo.svg",
             alt="ABB",
@@ -187,7 +189,7 @@
         ) | safe
       }}
     </div>
-    
+
     <div class="u-fixed-width u-hide--small u-hide--medium js-robotics-diagrams">
       <img src="https://assets.ubuntu.com/v1/6a795f4f-Right-OS-diagram-core-1.png" id="robotics-diagram-1" alt=""/>
       <img src="https://assets.ubuntu.com/v1/235ca3d0-Right-OS-diagram-core-ubuntu-1.png" id="robotics-diagram-2"  class="u-hide" alt=""/>
@@ -248,7 +250,7 @@
       <div class="u-hide--large js-robotics-content" id="robotics-content-5">
         <h3 class="p-heading--2">Ubuntu Core</h3>
         <p>Ubuntu Core is an optimised version of Ubuntu for edge devices. It brings a reliable software management infrastructure, including independent, transactional, and delta updates for the OS, kernel, and applications. It provides advanced security features, such as secure boot and strict confinement.</p>
-        
+
         <p>Ubuntu Core uses the same kernel, libraries, and system software as classic Ubuntu, resulting in a smooth transition to production.</p>
 
         <p>
@@ -337,7 +339,7 @@
       <p>Embedded applications depend on the kernel, drivers, libraries, file systems, and runtime environment. How can you guarantee that your robot will continue working after critical security upgrades to the base kernel and the OS?</p>
       <p>Our Enablement services allow you to get a production-grade Ubuntu image for your robot, while our Maintenance services guarantee that any security update won't break your device.</p>
       <p>
-        No regressions, no surprises. 
+        No regressions, no surprises.
       </p>
       <a class="p-button--positive js-invoke-modal" href="/core/contact-us"> Reach out to hear more</a>
     </div>
@@ -485,7 +487,7 @@
       /**
       * Choose robotics image randomly
       * ===
-      */    
+      */
       var selectedIndex = null;
 
       if (window.localStorage.getItem('selected_robotics_image') !== null) {
@@ -498,12 +500,12 @@
       }
       // Set takeover content
       roboticsImageEl.src = roboticsImages[selectedIndex];
-      
+
       roboticsImageEl.removeAttribute("style");
       roboticsImageEl.width = 1468;
       roboticsImageEl.height = 1078;
       roboticsImageEl.classList.remove('u-hide')
-      
+
       // Store the current takeover index
       localStorage.setItem('selected_robotics_image', selectedIndex)
     }
@@ -511,9 +513,9 @@
 
   function initRoboticsTabs() {
     const tabs = document.querySelectorAll('.js-robotics-tab');
-    
+
     tabs.forEach((tab) => {
-      tab.addEventListener('click', (e) => {  
+      tab.addEventListener('click', (e) => {
         e.preventDefault();
         setActiveTab(tab, tabs);
       });
@@ -529,7 +531,7 @@
 
       console.log(targetContentID)
 
-      if (tab === tabElement) {  
+      if (tab === tabElement) {
         tabElement.setAttribute('aria-selected', true);
         tabContent.classList.remove('u-hide--large');
         targetImage.classList.remove('u-hide');
@@ -540,7 +542,7 @@
       }
     })
   }
-  
+
   document.addEventListener('DOMContentLoaded', function () {
     rotateRoboticsHeroImage();
     initRoboticsTabs();
