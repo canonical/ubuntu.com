@@ -8,7 +8,9 @@
 {% block content %}
 
 <section class="p-strip--suru-topped">
-  {% include "shared/_18-04-eol-banner.html" %}
+  {% with robotics=true %}
+    {% include "shared/_18-04-eol-banner.html" %}
+  {% endwith %}
 
   <div class="row u-equal-height">
     <div class="col-8">
