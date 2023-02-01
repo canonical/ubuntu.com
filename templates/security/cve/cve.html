@@ -2,9 +2,9 @@
 {% block title %}{{ cve.id }}{% endblock %}
 
 {% block content %}
-{% if cve.impact%}
+{% if cve.impact %}
  {% set cvssV3 = cve.impact.baseMetricV3.cvssV3 %}
-{%endif%}
+{% endif %}
 
 {% if cve.status == 'rejected' or cve.status == 'not-in-ubuntu' %}
   <section class="p-strip--light is-bordered--top">
