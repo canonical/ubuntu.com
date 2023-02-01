@@ -217,7 +217,6 @@ class PartnersAPI:
         self.base_url = "https://partners.ubuntu.com/partners.json"
 
     def _get(self, params=None):
-
         # Get the JSON data
         response = self.session.get(
             f"{self.base_url}",

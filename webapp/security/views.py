@@ -36,7 +36,6 @@ def get_processed_details(notice):
 
 
 def notice(notice_id):
-
     notice = security_api.get_notice(notice_id)
 
     if not notice:
@@ -488,7 +487,6 @@ def cve(cve_id):
 # This is a temporary fix. To be removed pending redesign
 # Parses given URL to create a list of package names
 def list_package_names(url):
-
     source = session.get(url).text
     soup = bs.BeautifulSoup(source, "lxml")
     raw_string = soup.code(string=True)[0].split()
