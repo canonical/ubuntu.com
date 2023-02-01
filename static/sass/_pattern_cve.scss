@@ -19,7 +19,6 @@
   .cve-table {
     @extend %small-text;
     @media only screen and (max-width: $breakpoint-small) {
-      display: block;
       overflow-x: auto;
     }
   }
@@ -29,7 +28,6 @@
     @media only screen and (max-width: $breakpoint-small) {
       &:nth-child(1) {
         background-color: #fff;
-        box-shadow: inset -1px 0 #d9d9d9;
         left: 0;
         position: sticky;
         z-index: 1;
