@@ -145,7 +145,6 @@ def make_contract_item(
     trial_id: str = None,
     renewal: Renewal = None,
 ) -> ContractItem:
-
     return ContractItem(
         id=id or 123,
         contract_id=contract_id or "cAaBbCcDdEeFfGg",
