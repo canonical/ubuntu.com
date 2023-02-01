@@ -203,7 +203,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                 ) : null}
                 {subscription.marketplace == "canonical-ua" ? (
                   <Button
-                    appearance="neutral"
                     className="p-subscriptions__details-action"
                     data-test="attach-button"
                     disabled={editing}

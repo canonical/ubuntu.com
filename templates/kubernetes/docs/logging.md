@@ -294,7 +294,7 @@ view.
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
 [logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/logging-egf-overlay.yaml
 [graylog-vhost]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/graylog-vhost.tmpl
-[graylog-dashboards]: http://docs.graylog.org/en/3.0/pages/dashboards.html
+[graylog-dashboards]: https://go2docs.graylog.org/5-0/search.htm?q=dashboard
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

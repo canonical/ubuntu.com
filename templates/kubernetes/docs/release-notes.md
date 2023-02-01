@@ -15,9 +15,48 @@ toc: False
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
 
+# 1.26+ck1 Bugfix release
+
+### January 16, 2022 - `charmed-kubernetes --channel 1.26/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
+
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane / Octavia [LP#1990494](https://bugs.launchpad.net/bugs/1990494)
+
+  Resolves an issue which made it impossible to delete a kubernetes service when octavia loadbalancers are detected
+
+- Kubernetes Control Plane / Octavia [LP#1995746](https://bugs.launchpad.net/bugs/1995746)
+
+  Adds support to disable openstack loadbalancer integration
+
+- Kubernetes Control Plane / Ceph [LP#1998257](https://bugs.launchpad.net/bugs/1998257)
+
+  Resolves an issue where the `csi-rbdplugin` pod cannot start if the control-plane unit is running in a LXD machine.
+
+- Containerd [#LP2002593](https://bugs.launchpad.net/bugs/2002593)
+
+  Resolves issue with flooding `/var/log/syslog` with messages about a deprecation of `io.containerd.runc.v1`
+
+- CoreDNS [LP#2002698](https://bugs.launchpad.net/bugs/2002698)
+
+  Upgrade of the coredns image from `1.6.7` to `1.10.0`
+
+- ops.lib-manifest library [LP#1999427](https://bugs.launchpad.net/bugs/1999427)
+
+  Resolves an issue where a charm hook fails rather than retrying when the kubernetes-api is available.
+
+- SRIOV CNI/Network Device Plugin [LP#2002186](https://bugs.launchpad.net/bugs/2002186)
+
+  Add support for control-plane node toleration for SRIOV daemonsets
+
 # 1.26
 
-### December 15, 2022 - `charmed-kubernetes --channel 1.26/stable` 
+### December 15, 2022 - `charmed-kubernetes --channel 1.26/stable`
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
 
@@ -72,7 +111,7 @@ v0.12 and can now run on amd64, arm, arm64, ppc64le, and s390x hosts.
 - vsphere-csi-driver 2.6.0
 - cloud-provider-azure 1.25.0
 - azuredisk-csi-driver 1.23.0
- 
+
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
@@ -92,9 +131,9 @@ A list of issues to be fixed in the first 1.26 maintenance release can be found 
     aws-k8s-storage/0*         error        idle                54.80.73.214                    hook failed: "update-status"
   ```
 
-  When the affected charms (see bug link above) are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
+  When the affected charms are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
   can respond to client requests with a 502 Gateway Error, amongst other error statuses not produced
-  by the API server itself.  The charm's Kubernetes client library raises an unhandled exception in
+  by the API server itself.  The charm's kubernetes client library raises an unhandled exception in
   this case. This results is the charm being in an error state which is easily resolved by running
 
   ```bash
@@ -131,7 +170,7 @@ Notable additions in this release include:
 
 - AwsEbs in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1988186](https://bugs.launchpad.net/bugs/1988186)
 
-  With the pinning of [CSIMigrationAWS=True](https://github.com/kubernetes/kubernetes/pull/111479) in 
+  With the pinning of [CSIMigrationAWS=True](https://github.com/kubernetes/kubernetes/pull/111479) in
   Kubernetes 1.25, the charm must not allow these to be set `False`.  This means that in-tree storage
   provided by AWS is only supported in 1.25 and beyond with an [out-of-tree deployment](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/).
 
@@ -139,7 +178,7 @@ Notable additions in this release include:
 
 - GCE in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1988186](https://bugs.launchpad.net/bugs/1988186)
 
-  With the pinning of [CSIMigrationGCE=True](https://github.com/kubernetes/kubernetes/pull/111301) in 
+  With the pinning of [CSIMigrationGCE=True](https://github.com/kubernetes/kubernetes/pull/111301) in
   Kubernetes 1.25, the charm must not allow these to be set `False`.  This means that in-tree storage
   provided by GCE is only supported in 1.25 and beyond with an [out-of-tree deployment](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver).
 
@@ -147,7 +186,7 @@ Notable additions in this release include:
 
 
 
-# 1.25+ck2 Bugfix release 
+# 1.25+ck2 Bugfix release
 
 ### September 30, 2022 - `charmed-kubernetes --channel 1.25/stable`
 
@@ -159,7 +198,7 @@ Notable fixes in this release include:
 
 - AzureDisk in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1990687](https://bugs.launchpad.net/bugs/1990687)
 
-  With the pinning of [CSIMigrationAzureDisk=True](https://github.com/kubernetes/kubernetes/pull/110491) in 
+  With the pinning of [CSIMigrationAzureDisk=True](https://github.com/kubernetes/kubernetes/pull/110491) in
   Kubernetes 1.25, the charm must not allow these to be set `False`.  This means that in-tree storage
   provided by AzureDisk is only supported in 1.25 and beyond with an [out-of-tree deployment](https://github.com/kubernetes-sigs/azuredisk-csi-driver).
 
@@ -182,7 +221,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 [the launchpad milestone page for 1.25+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.25+ck2).
 
 
-# 1.25+ck1 Bugfix release 
+# 1.25+ck1 Bugfix release
 
 ### September 19, 2022 - `charmed-kubernetes --channel 1.25/stable`
 
@@ -215,7 +254,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 
 # 1.25
 
-### September 1, 2022 - `charmed-kubernetes --channel 1.25/stable` 
+### September 1, 2022 - `charmed-kubernetes --channel 1.25/stable`
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
 
@@ -223,28 +262,28 @@ The release bundle can also be [downloaded here](https://raw.githubusercontent.c
 
 - Telco-ready CNI
 
-Identifying a need for increasingly sophisticated SDN within Kubernetes, Charmed Kubernetes now has a Kube-OVN charm. 
-This enables a set of new networking capabilities such as VXLAN, QoS, IP Dualstack and more. 
+Identifying a need for increasingly sophisticated SDN within Kubernetes, Charmed Kubernetes now has a Kube-OVN charm.
+This enables a set of new networking capabilities such as VXLAN, QoS, IP Dualstack and more.
 
 - High availability secret management
 
-Furthering our commitment to resilience, we have now extended the Hashicorp Vault charm to provide HA capabilities, 
+Furthering our commitment to resilience, we have now extended the Hashicorp Vault charm to provide HA capabilities,
 ensuring your secrets are always available.
 
 - Cloud provider integration
 
-OpenStack, vSphere and Azure become the latest Cloud integrations to benefit from updated Charmed Kubernetes charms. With these integrations, 
+OpenStack, vSphere and Azure become the latest Cloud integrations to benefit from updated Charmed Kubernetes charms. With these integrations,
 we enable you to deploy our Kubernetes and make it your own as you leverage native features within those clouds.
 
 - Lightweight observability
 
-Canonical Observability Stack (COS Lite) now integrates with our flagship networking charm Kube-OVN. 
+Canonical Observability Stack (COS Lite) now integrates with our flagship networking charm Kube-OVN.
 This marks a commitment to providing high quality relations that enable zero-ops observability.
 
 - CDK-addons uplifted to operators
 
-As an effort to keep our charms evergreen and ready for production use, we have uplifted CDK-addons to individual operators. 
-This provides a range of benefits, from individual build processes to versioning and releasing. 
+As an effort to keep our charms evergreen and ready for production use, we have uplifted CDK-addons to individual operators.
+This provides a range of benefits, from individual build processes to versioning and releasing.
 
 - Ubuntu 22.04 LTS support
 
@@ -270,7 +309,7 @@ All the components of Charmed Kubernetes can now run on the newest Ubuntu releas
 - cloud-provider-azure v1.24.0
 - azuredisk-csi-driver v1.21.0
 
- 
+
 ## Fixes
 
 Notable fixes in this release include:
@@ -295,15 +334,15 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
   Storage Components on AWS and Google Cloud
 
   Beginning in 1.25 `CSIMigrationAWS` and `CSIMigrationGCE` have been locked to `true` resulting this release being unable to support storage volume mounting in AWS or Google Cloud without the use of those providers' out-of-tree csi-drivers. No charms yet exist for these two cloud platforms but will soon be addressed.
-  
+
   :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
   * Not using storage
   * Using alternative storage like `ceph-csi`
   * Manually configuring the out-of-tree storage provisioner
 
 * PodSecurityPolicy Removed
-  PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster. 
-  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
+  PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster.
+  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated.
 
 ## Deprecations and API changes
 
@@ -323,9 +362,9 @@ relevant sections of the [upstream release notes][upstream-changelog-1.25].
 [upstream-changelog-1.25]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#deprecation
 <!-- AUTOGENERATED RELEASE 1.25 ABOVE -->
 
-# 1.24+ck1 Bugfix release 
+# 1.24+ck1 Bugfix release
 
-### August 5, 2022 - `charmed-kubernetes --channel 1.24/stable` 
+### August 5, 2022 - `charmed-kubernetes --channel 1.24/stable`
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.24/bundle.yaml).
 
@@ -359,7 +398,7 @@ Exposes docker registry `cache-*` settings to configure it as a pull-through cac
 - Etcd
 
 Limits the set of TLS ciphers to remove weaker ones.
- 
+
 
 ## Fixes
 
@@ -417,7 +456,7 @@ new and existing deployments that use Flannel as well.
 
 - Docker support deprecated
 
-The default container runtime in Charmed Kubernetes has been containerd for 
+The default container runtime in Charmed Kubernetes has been containerd for
 some time. The Docker container runtime is no longer supported.
 
 ## Component upgrades
@@ -711,14 +750,14 @@ relevant sections of the [upstream release notes](https://github.com/kubernetes/
 
 ## Previous releases
 
-Please see [this page][rel] for release notes of earlier versions.
+Please see [this page](/kubernetes/docs/release-notes-historic) for release notes of earlier versions.
 
 <!--LINKS-->
+
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
 [rel]: /kubernetes/docs/release-notes
 [images-per-release]: https://github.com/charmed-kubernetes/bundle/tree/master/container-images
 [arc-docs]: https://github.com/Azure/azure-arc-validation/blob/main/README.md
-
 
 # 1.20+ck1 Bugfix release
 

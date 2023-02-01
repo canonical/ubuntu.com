@@ -1,4 +1,4 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/iot/_base_iot.html" %}
 
 {% block title %}Download Ubuntu for IoT boards | Download{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1Sxdl5cGGe1wbHmKB2eL2zQLfVW3KBea02a2FIGx3VdQ/edit{% endblock meta_copydoc %}
@@ -141,11 +141,10 @@
         <a class="p-button--positive" href="/certified">Get Certified Hardware</a>
       </div>
       <div class="col-4 u-align--center u-hide--medium u-hide--small">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
+        {{ image (
+          url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
           alt="",
-          width="102",
+          width="106",
           height="150",
           hi_def=True,
           loading="lazy"
@@ -271,7 +270,7 @@
         </p>
       </div>
     </section>
-  
+
     <div class="u-fixed-width">
       <hr />
     </div>

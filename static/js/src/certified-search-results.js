@@ -49,11 +49,11 @@ function enableApplyFilters() {
         let vendorFilterCount = 0;
         let releaseFilterCount = 0;
         filtersSelected.forEach((filter) => {
-          if (filter.id === "category-filter") {
+          if (filter.classList.contains("category-filter")) {
             categoryFilterCount++;
-          } else if (filter.id === "vendor-filter") {
+          } else if (filter.classList.contains("vendor-filter")) {
             vendorFilterCount++;
-          } else if (filter.id === "release-filter") {
+          } else if (filter.classList.contains("release-filter")) {
             releaseFilterCount++;
           }
         });
