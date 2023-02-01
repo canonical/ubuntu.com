@@ -503,7 +503,6 @@ def engage_thank_you(engage_pages):
     """
 
     def render_template(language, page):
-
         if language:
             path = f"/engage/{language}/{page}"
         else:
@@ -708,7 +707,6 @@ class BlogView(flask.views.View):
 
 class BlogRedirects(BlogView):
     def dispatch_request(self, slug):
-
         slug = quote(slug, safe="/:?&")
         context = self.blog_views.get_article(slug)
 
