@@ -18,6 +18,8 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from werkzeug.exceptions import BadRequest
 
+from ...views import marketo_api
+
 
 TIMEZONE_COUNTRIES = {
     timezone: country
@@ -652,3 +654,25 @@ def activate_activation_key(ua_contracts_api, **kwargs):
             "activationKey": activation_key,
         }
     )
+
+
+@shop_decorator(area="cred", permission="user", response="html")
+@canonical_staff()
+def cred_beta_activation(**_):
+    if flask.request.method == "POST":
+        data = flask.request.form
+
+        emails = data["emails"].split("\n")
+        keys = data["keys"].split("\n")
+
+        leads = []
+        for email, key in zip(emails, keys):
+            leads.append({
+                "email": email,
+                "cred_activation_key": key
+
+            })
+
+        marketo_api.update_leads(leads)
+
+    return flask.render_template("credentials/beta-activation.html")
