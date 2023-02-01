@@ -2,6 +2,7 @@
   @include ubuntu-card;
   @include ubuntu-card-layout;
   @include ubuntu-card-radio;
+  @include ubuntu-tiered-cards;
 }
 
 @mixin ubuntu-card {
@@ -333,6 +334,42 @@
     &.is-selected span::before {
       background-color: #06c;
       border-color: #06c;
+    }
+  }
+}
+
+// XXX: Ant - 01/02/2023
+// There is a new pattern emerging across this site and has been proposed
+// upstream here. Once addressed this local styling can be removed:
+// https://github.com/canonical/vanilla-framework/issues/4640
+@mixin ubuntu-tiered-cards {
+  %tiered-padding {
+    padding: $sp-large;
+  }
+
+  .p-tiered {
+    &-cards {
+      grid-gap: 0 !important;
+    }
+
+    &-card--low {
+      @extend %tiered-padding;
+
+      background-color: $color-light;
+    }
+
+    &-card--medium {
+      @extend %tiered-padding;
+
+      background-color: $color-mid-dark;
+      color: $color-x-light;
+    }
+
+    &-card--high {
+      @extend %tiered-padding;
+
+      background-color: $color-x-dark;
+      color: $color-x-light
     }
   }
 }

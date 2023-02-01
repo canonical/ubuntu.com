@@ -1,34 +1,8 @@
 <section class="{% if section %}{{ section }}{% else %}p-strip{% endif %}">
   <div class="u-fixed-width">
-    <h3>Learn about our solutions</h3>
+    <h3>Learn more about robotics</h3>
   </div>
   <div class="row p-divider">
-    <div class="col-4 p-divider__block">
-      <div class="p-heading-icon--muted">
-        <div class="p-heading-icon__header">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg",
-            alt="",
-            height="32",
-            width="32",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-heading-icon__img"}
-          ) | safe
-          }}
-          <h4 class="p-heading-icon__title">Case study and whitepaper</h4>
-        </div>
-      </div>
-      <ul class="p-list">
-        <li class="p-list__item">
-          <a href="/engage/drone-infrastructure-case-study-smartdrone">SmartDrone fast-tracks drone infrastructure revolution with Ubuntu Core</a>
-        </li>
-        <li class="p-list__item">
-          <a href="/engage/dockerandros">Docker & ROS: When all you have is a hammer, everything looks like a nail</a>
-        </li>
-      </ul>
-    </div>
     <div class="col-4 p-divider__block">
       <div class="p-heading-icon--muted">
         <div class="p-heading-icon__header">
@@ -43,18 +17,24 @@
             loading="lazy",
             ) | safe
           }}
-          <h4 class="p-heading-icon__title">Video and Webinar</h4>
+          <h4 class="p-heading-icon__title">Webinars</h4>
         </div>
       </div>
+      <p>A detailed look into choosing your robot's OS getting to market, and more.</p>
       <ul class="p-list">
         <li class="p-list__item">
-          <a href="https://ubuntu.com/engage/ros-kinetic-eol">
+          <a href="/engage/ros-kinetic-eol">
             ROS Kinetic EOL: Keep your robot secure with ROS ESM
           </a>
         </li>
         <li class="p-list__item">
-          <a href="https://www.youtube.com/watch?v=bf26BY33gGw&ab_channel=Ubuntu">
-            Robot Makers | Chapter 1
+          <a href="https://www.brighttalk.com/webcast/6793/379600?utm_source=brighttalk-portal&utm_medium=web&utm_content=robotics%20ubuntu&utm_campaign=webcasts-search-results-feed">
+            Key considerations when choosing a robot's operating system
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a href="https://www.brighttalk.com/webcast/6793/377825?utm_source=brighttalk-portal&utm_medium=web&utm_content=robotics%20ubuntu&utm_campaign=webcasts-search-results-feed">
+            How to start and succeed with ROS on Ubuntu
           </a>
         </li>
       </ul>
@@ -64,24 +44,61 @@
         <div class="p-heading-icon__header">
           {{
             image(
-              url="https://assets.ubuntu.com/v1/e2315503-tutorial.svg",
+            url="https://assets.ubuntu.com/v1/f6d6f78b-Case+study.svg",
+            alt="",
+            height="32",
+            width="32",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"}
+          ) | safe
+          }}
+          <h4 class="p-heading-icon__title">Case Studies</h4>
+        </div>
+      </div>
+      <p>Case studies from customers and partners who are using Ubuntu for their robots.</p>
+      <ul class="p-list">
+        <li class="p-list__item">
+          <a href="/engage/cyberdyne">
+            Cyberdyne keeps cleaning robots up-to-date
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a href="/engage/dockerandros">
+            Docker &amp; ROS: When all you have is a hammer, everything looks like a nail
+          </a>
+        </li>
+        <li class="p-list__item">
+          <a href="/engage/drone-infrastructure-case-study-smartdrone">
+            SmartDrone fast-tracks drone infrastructure revolution
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 p-divider__block">
+      <div class="p-heading-icon--muted">
+        <div class="p-heading-icon__header">
+          {{
+            image(
+              url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
               alt="",
-              height="32",
+              height="28",
               width="32",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-heading-icon__img"}
             ) | safe
           }}
-          <h4 class="p-heading-icon__title">Tutorial</h4>
+          <h4 class="p-heading-icon__title">Whitepaper</h4>
         </div>
       </div>
+      <p>Examine the fundamentals of a successful AI project that helps your organisation achieve their AI ambitions.</p>
       <ul class="p-list">
         <li class="p-list__item">
-          <a href="https://snapcraft.io/docs/robotics">Containerisation for robotics applications</a>
+          <a href="/engage/securing-ros-on-robotics-platforms-whitepaper">Securing ROS on robotics platforms</a>
         </li>
         <li class="p-list__item">
-          <a href="/blog/feeling-at-home-in-a-lxd-container">Feeling at home in a LXD container</a>
+          <a href="/whitepapers/beta/robotics">Pick the right OS for your robotics platform</a>
         </li>
       </ul>
     </div>
