@@ -332,6 +332,44 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def get_exam_contracts(self) -> dict:
+        return self._request(
+            method="get",
+            path="web/annotated-contract-items?productTags=cue",
+            error_rules=["default"],
+        ).json()
+
+    def post_assessment_reservation(
+        self,
+        contract_item_id,
+        first_name,
+        last_name,
+        timezone,
+        starts_at,
+        country_code,
+    ) -> dict:
+        return self._request(
+            method="get",
+            path="v1/cue/schedule",
+            json={
+                "contractItemID": int(contract_item_id),
+                "firstName": first_name,
+                "lastName": last_name,
+                "timezone": timezone,
+                "startsAt": starts_at,
+                "countryCode": country_code,
+            },
+            error_rules=["default"],
+        ).json()
+
+    def delete_assessment_reservation(self, contract_item_id) -> dict:
+        self._request(
+            method="delete",
+            path=f"v1/cue/item/{contract_item_id}",
+            error_rules=["default"],
+        )
+        return {}
+
     def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
             method="post",
