@@ -1,6 +1,5 @@
 {% extends "robotics/base_robotics.html" %}
 
-
 {% block title %}What is ROS?{% endblock %}
 {% block meta_description %}With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector. {% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1yX2Ikcn1fgIKX3el8fKWQt7SGxSwY633TfW5V1lwUuc/edit{% endblock meta_copydoc %}
@@ -8,7 +7,7 @@
 {% block content %}
 
 <section class="p-strip--suru-topped">
-  {% with robotics=true %}
+  {% with product = "robotics industry" %}
     {% include "shared/_18-04-eol-banner.html" %}
   {% endwith %}
 
