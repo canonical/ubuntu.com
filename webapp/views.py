@@ -968,10 +968,17 @@ def get_user_country_by_ip():
     )
     ip_location = ip_reader.get(client_ip)
 
-    if not ip_location:
-        country_code = None
-    else:
+    try:
         country_code = ip_location["country"]["iso_code"]
+    except KeyError:
+        # geolite2 can't identify IP address
+        country_code = None
+    except Exception as error:
+        # Errors not documented in the geolite2 module
+        country_code = None
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"ip_location object": ip_location, "error": error}
+        )
 
     response = flask.jsonify(
         {
