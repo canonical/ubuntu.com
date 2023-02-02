@@ -133,6 +133,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
+@include vf-p-icon-begin-downloading;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -1081,4 +1082,20 @@ hr.p-separator.is-shallow {
       background-color: $colors--light-theme--background-active;
     }
   }
+}
+
+// Extend p-lists--divided with bullets
+.p-list--divided-bulleted {
+  @extend .p-list--divided;
+
+  list-style: inherit;
+  margin-left: 1.5rem;
+  .p-list__item::after {
+    margin-left: -1.5rem !important;
+  }
+}
+
+// Remove borders for p-lists on /nvidia
+.no-border::after {
+  content: none !important;
 }
