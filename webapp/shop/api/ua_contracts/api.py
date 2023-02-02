@@ -404,7 +404,7 @@ class UAContractsAPI:
     def rotate_activation_key(self, request_body: dict) -> dict:
         return self._request(
             method="put",
-            path=f"v1/keys/rotate",
+            path="v1/keys/rotate",
             json=request_body,
             error_rules=["default"],
         ).json()
@@ -412,7 +412,7 @@ class UAContractsAPI:
     def activate_activation_key(self, request_body: dict) -> dict:
         self._request(
             method="post",
-            path=f"v1/keys/activate",
+            path="v1/keys/activate",
             json=request_body,
             error_rules=["default"],
         )
