@@ -19,7 +19,7 @@ type ActivationKey = {
 };
 const CredManage = () => {
   const [tab, changeTab] = useState(0);
-  const inputRefs = useRef<HTMLButtonElement[] | null[]>([]);
+  const inputRefs = useRef<HTMLButtonElement[]>([]);
   const [actionLinks, updateActionLinks] = useState<
     { children: string; onClick: () => void }[]
   >([]);
@@ -32,7 +32,7 @@ const CredManage = () => {
 
   const rotateActivationKeys = async (keyIds: string[]) => {
     let i = 0;
-    let temp = {};
+    const temp = {};
     while (i < keyIds.length) {
       await rotateKey(keyIds[i]).then((response) => {
         temp[keyIds[i]] = response["activationKey"];
@@ -69,7 +69,7 @@ const CredManage = () => {
   const [selectedKeyIds, setSelectedKeyIds] = useState<string[]>([]);
 
   const getKey = (keyId: string) => {
-    for (let d in filterData) {
+    for (const d in filterData) {
       if (filterData[d]["key"] == keyId) {
         return filterData[d];
       }
@@ -102,7 +102,7 @@ const CredManage = () => {
   };
 
   const keyIsArchivable = (keyItemId: string) => {
-    let tempKey = getKey(keyItemId);
+    const tempKey = getKey(keyItemId);
     if ("activatedBy" in tempKey) {
       return true;
     }
@@ -119,7 +119,7 @@ const CredManage = () => {
   };
 
   const keyIsUnused = (keyItemId: string) => {
-    let tempKey = getKey(keyItemId);
+    const tempKey = getKey(keyItemId);
     if ("activatedBy" in tempKey) {
       return false;
     }
@@ -136,11 +136,11 @@ const CredManage = () => {
   };
 
   useEffect(() => {
-    let newList = [];
+    const newList = [];
     if (isArchiveable()) {
       newList.push({
         children: "Archive",
-        onClick: () => {},
+        onClick: () => { },
       });
     }
     if (isUnused()) {
@@ -161,7 +161,7 @@ const CredManage = () => {
     if (newList.length == 0) {
       newList.push({
         children: "No bulk options available",
-        onClick: () => {},
+        onClick: () => { },
       });
     }
     updateActionLinks(newList);
@@ -223,7 +223,7 @@ const CredManage = () => {
               onKeyUp={(e) => {
                 switchTab(e, 4);
               }}
-              ref={(ref) => (inputRefs.current[0] = ref)}
+              ref={(ref: HTMLButtonElement) => (inputRefs.current[0] = ref)}
             >
               All Keys
             </button>
@@ -240,7 +240,7 @@ const CredManage = () => {
               onKeyUp={(e) => {
                 switchTab(e, 1);
               }}
-              ref={(ref) => (inputRefs.current[1] = ref)}
+              ref={(ref: HTMLButtonElement) => (inputRefs.current[1] = ref)}
             >
               Unused Keys
             </button>
@@ -257,7 +257,7 @@ const CredManage = () => {
               onKeyUp={(e) => {
                 switchTab(e, 2);
               }}
-              ref={(ref) => (inputRefs.current[2] = ref)}
+              ref={(ref: HTMLButtonElement) => (inputRefs.current[2] = ref)}
             >
               Active Keys
             </button>
@@ -274,7 +274,7 @@ const CredManage = () => {
               onKeyUp={(e) => {
                 switchTab(e, 3);
               }}
-              ref={(ref) => (inputRefs.current[3] = ref)}
+              ref={(ref: HTMLButtonElement) => (inputRefs.current[3] = ref)}
             >
               Archived Keys
             </button>
@@ -374,7 +374,7 @@ const CredManage = () => {
                             <Tooltip message="Archive Key" position="right">
                               <p>
                                 {keyitem["activatedBy"]} &emsp;
-                                <a onClick={() => {}}>
+                                <a onClick={() => { }}>
                                   <i className="p-icon--delete"></i>
                                 </a>
                               </p>

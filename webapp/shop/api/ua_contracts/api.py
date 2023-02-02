@@ -403,7 +403,7 @@ class UAContractsAPI:
 
     def rotate_activation_key(self, request_body: dict) -> dict:
         return self._request(
-            method="get",
+            method="put",
             path=f"v1/keys/rotate",
             json=request_body,
             error_rules=["default"],
