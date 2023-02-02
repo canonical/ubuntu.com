@@ -140,7 +140,7 @@ const CredManage = () => {
     if (isArchiveable()) {
       newList.push({
         children: "Archive",
-        onClick: () => { },
+        onClick: () => {},
       });
     }
     if (isUnused()) {
@@ -161,7 +161,7 @@ const CredManage = () => {
     if (newList.length == 0) {
       newList.push({
         children: "No bulk options available",
-        onClick: () => { },
+        onClick: () => {},
       });
     }
     updateActionLinks(newList);
@@ -374,7 +374,7 @@ const CredManage = () => {
                             <Tooltip message="Archive Key" position="right">
                               <p>
                                 {keyitem["activatedBy"]} &emsp;
-                                <a onClick={() => { }}>
+                                <a onClick={() => {}}>
                                   <i className="p-icon--delete"></i>
                                 </a>
                               </p>
