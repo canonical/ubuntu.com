@@ -348,19 +348,38 @@ class UAContractsAPI:
         starts_at,
         country_code,
     ) -> dict:
-        return self._request(
+        #  return self._request(
+        #      method="get",
+        #      path="v1/cue/schedule",
+        #      json={
+        #          "contractItemID": int(contract_item_id),
+        #          "firstName": first_name,
+        #          "lastName": last_name,
+        #          "timezone": timezone,
+        #          "startsAt": starts_at,
+        #          "countryCode": country_code,
+        #      },
+        #      error_rules=["default"],
+        #  ).json()
+        json_={
+            "contractItemID": int(contract_item_id),
+            "firstName": first_name,
+            "lastName": last_name,
+            "timezone": timezone,
+            "startsAt": starts_at,
+            "countryCode": country_code,
+        }
+        import json
+        print("Request body: ", json.dumps(json_, indent=4))
+
+        response = self._request(
             method="get",
             path="v1/cue/schedule",
-            json={
-                "contractItemID": int(contract_item_id),
-                "firstName": first_name,
-                "lastName": last_name,
-                "timezone": timezone,
-                "startsAt": starts_at,
-                "countryCode": country_code,
-            },
+            json=json_,
             error_rules=["default"],
-        ).json()
+        )
+        print("API repsonse: ", response)
+        return response.json()
 
     def delete_assessment_reservation(self, contract_item_id) -> dict:
         self._request(

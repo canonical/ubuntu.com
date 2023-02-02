@@ -204,6 +204,12 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "href": "/credentials/schedule?"
                         f"contractItemID={contract_item_id}",
                         "button_class": "p-button",
+                    },
+                    {
+                        "text": "Take now",
+                        "href": "/credentials/provision?"
+                        f"contractItemID={contract_item_id}",
+                        "button_class": "p-button",
                     }
                 ]
                 exams.append({"name": name, "actions": actions})
@@ -293,41 +299,90 @@ def cred_exam(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_provision(trueability_api, **_):
+def cred_provision(ua_contracts_api, trueability_api, **_):
+    contract_item_id = flask.request.args.get("contractItemID")
+
+    if contract_item_id is None:
+        return flask.redirect("/credentials/your-exams")
+
     sso_user = user_info(flask.session)
     sso_user_email = sso_user["email"]
     ability_screen_id = 4194
 
-    reservation_uuid = flask.session.get("_assessment_reservation_uuid")
+    reservation_uuid = None
     assessment = None
     reservation = None
     error = None
 
-    if not reservation_uuid:
-        response = trueability_api.paginate(
-            trueability_api.get_assessment_reservations,
-            "assessment_reservations",
-            ability_screen_id=ability_screen_id,
-        )
+    exam_contracts = ua_contracts_api.get_exam_contracts()
+    #  print(json.dumps(exam_contracts, indent=4))
+    print("contract_item_id: ", contract_item_id)
+    #  breakpoint()
 
-        for response_reservation in response["assessment_reservations"]:
-            if (
-                response_reservation.get("user", {}).get("email")
-                != sso_user_email
-            ):
-                continue
+    #  contract_item = next(filter(lambda item: item["id"] == contract_item_id, exam_contracts))
+    #  print("contract_item: ", contract_item)
+    exam_contract = None
+    for item in exam_contracts:
+        if int(contract_item_id) == item["id"]:
+            exam_contract = item
+            break
 
-            if response_reservation.get("state") in [
-                "created",
-                "scheduled",
-                "processed",
-            ]:
-                reservation_uuid = response_reservation["uuid"]
-                flask.session[
-                    "_assessment_reservation_uuid"
-                ] = reservation_uuid
-                break
+    print("exam_contract: ", json.dumps(exam_contract, indent=4))
 
+
+    if exam_contract:
+        if "reservation" in exam_contract["cueContext"]:
+            #  response = trueability_api.get_assessment_reservation(
+            #      exam_contract["cueContext"]["reservation"]["IDs"][-1]
+            #  )
+            #  r = response["assessment_reservation"]
+            reservation_uuid = exam_contract["cueContext"]["reservation"]["IDs"][-1]
+    else:
+        error = "Exam not found"
+
+
+
+
+
+
+    if flask.request.method == "POST":
+        data = flask.request.form
+        print("data: ", data)
+        contract_item_id = data["contractItemID"]
+        print("POST contract_item_id: ", contract_item_id)
+        starts_at = datetime.utcnow() + timedelta(seconds=70)
+        first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+
+        try:
+            response = ua_contracts_api.post_assessment_reservation(
+                contract_item_id,
+                first_name,
+                last_name,
+                #  "UTC",
+                "Europe/Berlin",
+                #  starts_at.strftime("%Y-%m-%dT%H:%M"),
+                #  "2023-02-05T21:00:00+01:00",
+                "2023-02-08T20:00:00+01:00",
+                "DE",
+            )
+
+            #  print(json.dumps(response, indent=4))
+            #  print(response)
+
+            if "error" in response:
+                print("error!")
+                error = response.get(
+                    "message", "An error occurred while creating your exam."
+                )
+            else:
+                reservation_uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                print("reservation_uuid: ", reservation_uuid)
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            print("exception: ", e)
+
+    print("if reservation_uuid: ", reservation_uuid)
     if reservation_uuid:
         response = trueability_api.get_assessment_reservation(reservation_uuid)
 
@@ -338,31 +393,11 @@ def cred_provision(trueability_api, **_):
         else:
             reservation = response["assessment_reservation"]
             assessment = reservation["assessment"]
-
-    elif flask.request.method == "POST":
-        starts_at = datetime.utcnow() + timedelta(seconds=70)
-        first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
-        response = trueability_api.post_assessment_reservation(
-            ability_screen_id,
-            starts_at.isoformat(),
-            sso_user_email,
-            first_name,
-            last_name,
-            "UTC",
-            "DE",
-        )
-
-        if "error" in response:
-            error = response.get(
-                "message", "An error occurred while creating your exam."
-            )
-        else:
-            reservation = response["assessment_reservation"]
-            assessment = reservation["assessment"]
-            flask.session["_assessment_reservation_uuid"] = reservation["uuid"]
+            print("assessment_reservation: ", json.dumps(response, indent=4))
 
     return flask.render_template(
         "/credentials/provision.html",
+        contract_item_id=contract_item_id,
         assessment=assessment,
         reservation=reservation,
         error=error,
