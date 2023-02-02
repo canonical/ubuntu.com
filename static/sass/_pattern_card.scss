@@ -336,6 +336,7 @@
       border-color: #06c;
     }
   }
+
 }
 
 // XXX: Ant - 01/02/2023
@@ -344,7 +345,9 @@
 // https://github.com/canonical/vanilla-framework/issues/4640
 @mixin ubuntu-tiered-cards {
   %tiered-padding {
-    padding: $sp-large;
+    @extend %section-padding--default;
+
+    padding: $spv--small $sph--large;
   }
 
   .p-tiered {
@@ -369,7 +372,7 @@
       @extend %tiered-padding;
 
       background-color: $color-x-dark;
-      color: $color-x-light
+      color: $color-x-light;
     }
   }
 }
