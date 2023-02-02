@@ -32,7 +32,7 @@ const CredManage = () => {
 
   const rotateActivationKeys = async (keyIds: string[]) => {
     let i = 0;
-    const temp = {};
+    const temp: { [key: string]: string } = {};
     while (i < keyIds.length) {
       await rotateKey(keyIds[i]).then((response) => {
         temp[keyIds[i]] = response["activationKey"];
@@ -77,8 +77,10 @@ const CredManage = () => {
     return {};
   };
 
-  const handleCheckbox = (event: React.SyntheticEvent, keyValue: string) => {
-    console.log("checked", event.target.checked);
+  const handleCheckbox = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    keyValue: string
+  ) => {
     if (event.target.checked == true) {
       setSelectedKeyIds(selectedKeyIds.concat(keyValue));
     } else {
@@ -89,7 +91,7 @@ const CredManage = () => {
     console.log(keyValue, selectedKeyIds);
   };
 
-  const selectAllKeys = (event: React.SyntheticEvent) => {
+  const selectAllKeys = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedKeyIds([]);
     if (event.target.checked) {
       setSelectedKeyIds(tableData.map((item) => item["key"]));
@@ -140,7 +142,7 @@ const CredManage = () => {
     if (isArchiveable()) {
       newList.push({
         children: "Archive",
-        onClick: () => { },
+        onClick: () => {},
       });
     }
     if (isUnused()) {
@@ -161,7 +163,7 @@ const CredManage = () => {
     if (newList.length == 0) {
       newList.push({
         children: "No bulk options available",
-        onClick: () => { },
+        onClick: () => {},
       });
     }
     updateActionLinks(newList);
@@ -339,7 +341,9 @@ const CredManage = () => {
                     {
                       content: (
                         <CheckboxInput
-                          onChange={(event) => {
+                          onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                          ) => {
                             handleCheckbox(event, keyitem["key"]);
                           }}
                           label=""
@@ -374,7 +378,7 @@ const CredManage = () => {
                             <Tooltip message="Archive Key" position="right">
                               <p>
                                 {keyitem["activatedBy"]} &emsp;
-                                <a onClick={() => { }}>
+                                <a onClick={() => {}}>
                                   <i className="p-icon--delete"></i>
                                 </a>
                               </p>

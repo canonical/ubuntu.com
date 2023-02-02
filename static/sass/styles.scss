@@ -156,8 +156,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
   background-image: url("#{$assets-path}21572c97-flags.png");
 }
 
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
     background-image: url("#{$assets-path}d6f84371-flags%402x.png");
   }
@@ -222,7 +221,7 @@ fieldset {
   border-radius: $sp-xx-small $sp-xx-small 0 0;
 }
 
-fieldset+fieldset {
+fieldset + fieldset {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top-width: 0 !important;
@@ -242,7 +241,6 @@ fieldset:last-child {
 // XXX Steve: Pull quote colour override
 .p-pull-quote,
 .p-pull-quote--large {
-
   .p-pull-quote__quote:first-of-type::before,
   .p-pull-quote__quote:last-of-type::after {
     color: $color-brand;
@@ -308,7 +306,7 @@ summary {
 .u-inline--child {
   display: inline;
 
-  >* {
+  > * {
     display: inline;
   }
 }
@@ -332,25 +330,25 @@ summary {
   grid-template-columns: 1fr 2fr;
   margin: 1rem 0;
 
-  >span {
+  > span {
     color: $color-mid-dark;
     grid-column: 1;
   }
 
-  >code,
-  >a,
-  >p {
+  > code,
+  > a,
+  > p {
     align-self: flex-start;
     grid-column: 2;
     padding-left: 0;
   }
 
-  >p {
+  > p {
     margin: 0;
     padding: 0;
   }
 
-  >hr {
+  > hr {
     display: none;
   }
 
@@ -362,7 +360,7 @@ summary {
     grid-template-columns: auto 2fr;
     margin: 1.5rem 0;
 
-    >hr {
+    > hr {
       display: block;
       grid-column: span 2;
       margin: 0;
@@ -378,7 +376,6 @@ summary {
   }
 
   @media only screen and (min-width: $breakpoint-small) {
-
     td,
     th {
       &:nth-child(1) {
@@ -456,7 +453,6 @@ summary {
 
 .p-list--no-borders {
   .p-list__item {
-
     &::after,
     &:last-of-type {
       border-bottom: 0 !important;
@@ -646,7 +642,8 @@ body {
 }
 
 .p-takeover-animation {
-  animation: FadeIn map-get($animation-duration, "snap") map-get($animation-easing, "in");
+  animation: FadeIn map-get($animation-duration, "snap")
+    map-get($animation-easing, "in");
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
 
@@ -654,11 +651,13 @@ body {
     animation-delay: 0s !important;
 
     .col-7 {
-      animation: SlideInFromLeft map-get($animation-duration, "fast") map-get($animation-easing, "out");
+      animation: SlideInFromLeft map-get($animation-duration, "fast")
+        map-get($animation-easing, "out");
     }
 
     .col-5 {
-      animation: SlideInFromRight map-get($animation-duration, "fast") map-get($animation-easing, "out");
+      animation: SlideInFromRight map-get($animation-duration, "fast")
+        map-get($animation-easing, "out");
     }
   }
 
@@ -687,7 +686,7 @@ body {
     display: flex;
     margin-bottom: 1.1rem;
 
-    >p {
+    > p {
       margin: 0;
       padding: 0;
     }
@@ -707,7 +706,7 @@ body {
 }
 
 #payment-modal-form {
-  >.row {
+  > .row {
     padding-left: 0;
     padding-right: 0;
   }
