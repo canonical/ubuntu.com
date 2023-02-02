@@ -4,6 +4,10 @@ import flask
 import json
 import os
 import html
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPIErrorView,
+    UAContractsUserHasNoAccount,
+)
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.login import user_info
@@ -482,3 +486,91 @@ def cred_submit_form(**_):
         body={"values": [row]},
     ).execute()
     return flask.redirect("/thank-you")
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_shop(**kwargs):
+    return flask.render_template("credentials/shop/index.html")
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
+    if flask.request.method == "POST":
+        sso_user = user_info(flask.session)
+        account = advantage_mapper.ensure_purchase_account(
+            marketplace="canonical-cube",
+            email=sso_user["email"],
+            account_name=sso_user["fullname"],
+            captcha_value=flask.request.form["g-recaptcha-response"],
+        )
+        return flask.redirect("/credentials/redeem/" + kwargs.get("code"))
+
+    activation_key = kwargs.get("code")
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-cube")
+        account_id = account.id
+        product_id = kwargs.get("product_id", "cue-test")
+
+        activation_response = ua_contracts_api.activate_activation_key(
+            {
+                "activationKey": activation_key,
+                "accountID": account_id,
+                "productID": product_id,
+            }
+        )
+        return flask.render_template(
+            "/credentials/redeem.html",
+            activation_response=activation_response,
+        )
+    except UAContractsAPIErrorView as error:
+        activation_response = json.loads(error.response.text)
+        return flask.render_template(
+            "/credentials/redeem.html",
+            activation_response=activation_response,
+        )
+    except UAContractsUserHasNoAccount:
+        return flask.render_template(
+            "/credentials/redeem_with_captcha.html", key=activation_key
+        )
+
+
+@shop_decorator(area="cube", permission="user", response="json")
+@canonical_staff()
+def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account()
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)
+
+    contract_id = None
+    for contract in contracts:
+        if contract.name == "CUE TEST key":
+            contract_id = contract.id
+
+    keys = ua_contracts_api.list_activation_keys(contract_id)
+    return flask.jsonify(keys)
+
+
+@shop_decorator(area="cube", permission="user", response="json")
+@canonical_staff()
+def rotate_activation_key(ua_contracts_api, **kwargs):
+    activation_key = kwargs.get("activation_key")
+    new_activation_key = ua_contracts_api.rotate_activation_key(
+        {"activationKey": activation_key}
+    )
+    return flask.jsonify(new_activation_key)
+
+
+@shop_decorator(area="cube", permission="user", response=json)
+def activate_activation_key(ua_contracts_api, **kwargs):
+    data = flask.request.json
+    activation_key = data["activationKey"]
+    account = ua_contracts_api.get_purchase_account("canonical-cube")
+    account_id = account["id"]
+    product_id = data["productID"]
+    return ua_contracts_api.activate_activation_key(
+        {
+            "activationKey": activation_key,
+            "accountID": account_id,
+            "productID": product_id,
+        }
+    )

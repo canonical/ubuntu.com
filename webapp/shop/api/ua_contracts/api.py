@@ -380,6 +380,45 @@ class UAContractsAPI:
         )
         return {"success": "true"}
 
+    def get_all_account_contracts(self, account_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/contracts",
+            error_rules=["default"],
+        ).json()
+
+    def get_activation_key_contracts(self, account_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=(f"v1/accounts/{account_id}/contracts?productTags=key"),
+            error_rules=["default"],
+        ).json()
+
+    def list_activation_keys(self, contract_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/keys/list/{contract_id}",
+            error_rules=["default"],
+        ).json()
+
+    def rotate_activation_key(self, request_body: dict) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/keys/rotate",
+            json=request_body,
+            error_rules=["default"],
+        ).json()
+
+    def activate_activation_key(self, request_body: dict) -> dict:
+        self._request(
+            method="post",
+            path=f"v1/keys/activate",
+            json=request_body,
+            error_rules=["default"],
+        )
+
+        return {}
+
     def handle_error(self, error, error_rules=None):
         if not error_rules:
             return
