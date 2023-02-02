@@ -403,10 +403,45 @@ summary {
 .pro-card-container {
   grid-gap: 0;
   .pro-card {
-    padding: 0.5rem 0.5rem 4rem;
+    padding: calc(#{$spv--large} - 1px) calc(#{$spv--large} - 1px)
+      $spv--strip-deep * 0.5;
+    @media (min-width: $breakpoint-large) {
+      padding: calc(#{$spv--small} - 1px) calc(#{$spv--large} - 1px)
+        $spv--strip-deep;
+    }
+  }
+}
+.bg-light {
+  background-color: #f7f7f7;
+}
+
+.bg-mid-dark {
+  background-color: #666;
+  color: white;
+  hr {
+    background-color: rgba(217, 217, 217, 0.2);
   }
 }
 
+.bg-dark {
+  background-color: black;
+  color: white;
+  hr {
+    background-color: rgba(217, 217, 217, 0.2);
+  }
+}
+
+.pro-table {
+  @media (max-width: $breakpoint-medium) {
+    tr {
+      padding: 0;
+    }
+    td {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
 .subscribe-section {
   @media (min-width: $breakpoint-medium) {
     margin-left: 4rem !important;

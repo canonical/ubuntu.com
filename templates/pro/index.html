@@ -47,20 +47,23 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
   <div class="row pro-card-container">
     <div class="col-3 col-medium-3 pro-card bg-light">
       <p class="p-heading--5 u-no-padding--top">LTS</p>
+      <hr class="u-fixed-width u-hide--large"/>
       <p class="p-heading--1">
-        Main:<br />5 years
+        Main:<br class="u-hide--small u-hide--medium"/>5 years
       </p>
       <p>2,300 packages in the Ubuntu Main repo supported for 5 years</p>
     </div>
     <div class="col-3 col-medium-3 pro-card bg-mid-dark">
       <p class="p-heading--5 u-no-padding--top">Pro (Infra-Only)</p>
+      <hr class="u-fixed-width u-hide--large"/>
       <p class="p-heading--1">
-        Main:<br />10 years
+        Main:<br class="u-hide--small u-hide--medium"/>10 years
       </p>
       <p>2,300 packages in the Ubuntu Main repo supported for 10 years</p>
     </div>
     <div class="col-6 col-medium-6 pro-card bg-dark">
       <p class="p-heading--5 u-no-padding--top">Pro</p>
+      <hr class="u-fixed-width u-hide--large"/>
       <p class="p-heading--1">
         Main + Universe:<br />10 years
       </p>
@@ -415,10 +418,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2 class="u-sv3">What's new with Ubuntu Pro plans?</h2>
-    <table class="p-table--mobile-card u-sv1" aria-label="Pro vs Advantage - Security patching" >
+    <table class="pro-table p-table--mobile-card u-sv1" aria-label="Pro vs Advantage - Security patching" >
       <thead>
         <tr>
-          <th class="u-no-padding--left" style="width: 50%;">
+          <th style="width: 50%;">
             Security patching
             <p class="p-text--small u-text--muted u-no-margin--bottom"
               style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br /> and selected
@@ -428,30 +431,26 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
           <th style="width: 16.7%;">
             Ubuntu Pro<br/>(Infra-only)<br />
             <p class="p-text--small u-text--muted u-no-margin--bottom"
-              style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for
-              Infrastructure")</p>
+              style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for Infrastructure")</p>
           </th>
           <th style="width: 16.6%;">Ubuntu Pro</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main
-            repository</td>
+          <td data-heading="Security patching">Over 2,300 packages in Ubuntu Main repository</td>
           <td data-heading="Ubuntu LTS">5 years</td>
           <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">10 years</td>
           <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
         </tr>
         <tr>
-          <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe
-            repository</td>
+          <td data-heading="Security patching">Over 23,000 packages in Ubuntu Universe repository</td>
           <td data-heading="Ubuntu LTS">Best effort</td>
           <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
           <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
         </tr>
         <tr>
-          <td class="u-no-padding--left" data-heading="Security patching"><a href="/support">Optional phone/ticket
-              support</a></td>
+          <td data-heading="Security patching"><a href="/support">Optional phone/ticket support</a></td>
           <td data-heading="Ubuntu LTS">No</td>
           <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">Yes</td>
           <td data-heading="Ubuntu Pro" class="bg-dark">Yes</td>
@@ -849,25 +848,4 @@ Learn more at https://ubuntu.com/pro</code></pre>
     </div>
   </div>
 </section>
-<style>
-  .bg-mid-dark {
-    background-color: #666;
-    color: white;
-  }
-
-  .bg-light {
-    background-color: #f7f7f7;
-  }
-
-  .bg-dark {
-    background-color: black;
-    color: white;
-  }
-
- pre code {
-    align-self: flex-start;
-    grid-column: 2;
-    padding-left: 0;
-  }
-</style>
 {% endblock content %}
