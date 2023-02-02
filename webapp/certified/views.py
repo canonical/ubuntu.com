@@ -20,7 +20,6 @@ partners_api = PartnersAPI(session=session)
 
 
 def certified_component_details(component_id):
-
     try:
         component = api.component_summary(component_id)
     except requests.exceptions.HTTPError as error:
@@ -53,7 +52,6 @@ def certified_component_details(component_id):
 
 
 def certified_hardware_details(canonical_id, release):
-
     models = api.certified_models(canonical_id=canonical_id)["objects"]
 
     if not models or len(models) == 0:
@@ -115,7 +113,6 @@ def certified_hardware_details(canonical_id, release):
 
 
 def certified_model_details(canonical_id):
-
     model_releases = api.certified_model_details(canonical_id=canonical_id)[
         "objects"
     ]
@@ -197,7 +194,6 @@ def certified_model_details(canonical_id):
 
 
 def certified_home():
-
     certified_releases = api.certified_releases(limit="0")["objects"]
     certified_makes = api.certified_makes(limit="0")["objects"]
 
@@ -379,7 +375,6 @@ def certified_home():
         )
 
     else:
-
         return render_template(
             "certified/index.html",
             laptop_releases=laptop_releases,
@@ -572,7 +567,6 @@ def certified_devices():
 
 
 def certified_vendors(vendor):
-
     partners_data = partners_api.get_partner_by_name(vendor)
     try:
         vendor_data = partners_data[0]

@@ -99,7 +99,7 @@
   };
 
   /**
-      Cycles through an array of tab elements and ensures 
+      Cycles through an array of tab elements and ensures
       only the target tab and its content are selected
       @param {HTMLElement} tab the tab whose content will be shown
       @param {Array} tabs an array of tabs within a container
@@ -125,7 +125,7 @@
       Attaches events to tab links within a given parent element,
       and sets the active tab if the current hash matches the id
       of an element controlled by a tab link
-      @param {String} selector class name of the element 
+      @param {String} selector class name of the element
       containing the tabs we want to attach events to
     */
   const initTabs = (selector) => {

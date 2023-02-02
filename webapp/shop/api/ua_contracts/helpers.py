@@ -582,7 +582,7 @@ def to_dict(structure, class_key=None):
         return data
     elif isinstance(structure, dict):
         data = {}
-        for (key, value) in structure.items():
+        for key, value in structure.items():
             data[key] = to_dict(value, class_key)
         return data
     elif hasattr(structure, "__dict__"):
