@@ -58,6 +58,20 @@ class AdvantageMapper:
 
         return parse_contracts(contracts)
 
+    def get_all_account_contracts(self, account_id: str) -> List[Contract]:
+        response = self.ua_contracts_api.get_all_account_contracts(account_id)
+        contracts = response.get("contracts", [])
+
+        return parse_contracts(contracts)
+
+    def get_activation_key_contracts(self, account_id: str) -> List[Contract]:
+        response = self.ua_contracts_api.get_activation_key_contracts(
+            account_id
+        )
+        contracts = response.get("contracts", [])
+
+        return parse_contracts(contracts)
+
     def get_contract(self, contract_id: str) -> Contract:
         contract = self.ua_contracts_api.get_contract(contract_id)
 

@@ -132,6 +132,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-u-vertically-center;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
+@include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 
 // Layouts:
@@ -646,6 +647,7 @@ body {
     map-get($animation-easing, "in");
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
+
   &.is-loaded {
     animation-delay: 0s !important;
 
@@ -826,9 +828,11 @@ html {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
+
     @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
       grid-column: 1 / span 2;
     }
+
     @media (min-width: $threshold-6-12-col) {
       grid-column: 1 / span 2;
     }
@@ -839,9 +843,11 @@ html {
       grid-column: 3 / span 2;
       grid-row: 2 / span 1;
     }
+
     @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
       grid-column: 3 / span 1;
     }
+
     @media (min-width: $threshold-6-12-col) {
       grid-column: 3 / span 3;
     }
@@ -852,9 +858,11 @@ html {
       grid-column: 1 / span 4;
       grid-row: 1 / span 1;
     }
+
     @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
       grid-column: 4 / span 3;
     }
+
     @media (min-width: $threshold-6-12-col) {
       grid-column: 7 / span 6;
     }
@@ -897,16 +905,20 @@ a:hover {
     text-overflow: initial;
   }
 }
+
 .u-pro-support {
   display: flex;
   justify-content: space-between;
+
   .u-pro-support__logos {
     flex: 0 0 10%;
   }
 }
+
 .u-table-border--top {
   border-top: 1px solid $color-mid-light;
 }
+
 .u-table-border--bottom {
   border-bottom: 1px solid $color-mid-light;
 }
@@ -916,12 +928,15 @@ hr.p-separator.is-shallow {
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
+
 .u-table-border--right {
   border-right: 1px solid $color-mid-light;
 }
+
 .u-esm-overflow-table {
   @media only screen and (max-width: $breakpoint-medium) {
     overflow-x: scroll;
+
     .p-table {
       min-width: $breakpoint-medium;
     }
@@ -930,31 +945,39 @@ hr.p-separator.is-shallow {
 
 .p-table--esm-chart {
   border-spacing: 0;
+
   @media only screen and (min-width: $breakpoint-medium) {
     td:nth-child(1) {
       padding-left: 0;
     }
+
     th:nth-child(1) {
       width: 5.8%;
     }
+
     th:nth-child(2) {
       width: 19%;
     }
+
     th:nth-child(3) {
       width: 70.5%;
     }
   }
+
   @media only screen and (max-width: $breakpoint-small) {
     td:nth-child(1) {
       padding-left: 0;
       padding-right: 0;
     }
+
     th:nth-child(1) {
       width: 7%;
     }
+
     th:nth-child(2) {
       width: 19%;
     }
+
     th:nth-child(3) {
       width: 68.5%;
     }
