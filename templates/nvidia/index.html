@@ -31,12 +31,12 @@
 		<div class="col-6">
 			<h2 class="u-sv2">Turnkey AI solutions for the enterprise powered by Canonical and NVIDIA</h2>
 			<p>Canonical and NVIDIA partner up to build turnkey solutions for enterprises in various industries to optimise their AI journey. Develop, deploy and scale AI with unparalleled hardware performance and the power of open source.</p>
-			<p><a href="https://assets.ubuntu.com/v1/ae0aedcc-AI%20enterprise%20solution%20powered%20by%20Canonical%20and%20NVIDIA-UPDATED.pdf">Check out the Enterprise-Ready AI solution powered by Canonical and NVIDIA.&nbsp;<i class="p-icon--begin-downloading"></i></a></p>
+			<p><a href="https://assets.ubuntu.com/v1/49180a1d-AI%20enterprise%20solution%20powered%20by%20Canonical%20and%20NVIDIA.pdf">Check out the Enterprise-Ready AI solution powered by Canonical and NVIDIA.&nbsp;<i class="p-icon--begin-downloading"></i></a></p>
 		</div>
 		<div class="col-6 u-align--center u-vertically-center u-hide--small u-hide--medium">
 			{{
-				image ( 
-				url="https://assets.ubuntu.com/v1/6b6e253a-diagram-nvidia.png",
+				image (
+				url="https://assets.ubuntu.com/v1/9d5e5884-diagram-nvidia.png",
 				alt="",
 				width="1144",
 				height="729",
@@ -136,7 +136,7 @@
 			<p>The NVIDIA GPU operator is integrated into Canonical Kubernetes, allowing automation of all software components required to provision NVIDIA GPUs.</p>
 			<hr style="top: 8px;" />
 			<ul class="p-list--divided">
-				<li class="p-list__item"><a href="/kubernetes/charmed-k8s">Learn more for charmed kubernetes</a><li>
+				<li class="p-list__item"><a href="/kubernetes/charmed-k8s">Learn more for Charmed Kubernetes</a><li>
 				<li class="p-list__item"><a href="https://microk8s.io/resources?_ga=2.63950252.208025466.1654521646-1680362023.1652798743">Explore MicroK8s</a><li>
 				<li class="p-list__item"><a href="https://www.nvidia.com/en-us/data-center/dgx-ready-software/">Check out certified MLOps software for NVIDIA DGX systems</a><li>
 				<li class="p-list__item no-border"><a href="/engage/kubernetes-by-canonical-delivered-on-nvidia-dgx-systems"> Download the solution brief: Kubernetes by Canonical delivered on NVIDIA DGX systems</a><li>
@@ -145,13 +145,14 @@
 	</div>
 
 	<div class="row p-strip u-no-margin-top u-no-padding--top">
-		{{ image (
-			url="https://assets.ubuntu.com/v1/2b47887a-workload-diagram.svg",
+		{{
+			image (
+			url="https://assets.ubuntu.com/v1/d998251a-workload-diagram.png",
 			alt="",
 			width="1242",
 			height="320",
 			hi_def=True,
-			loading="lazy"
+			loading="auto"
 			) | safe
 		}}
 	</div>
@@ -223,7 +224,7 @@
 			<h3 class="p-heading--4">AI-Ready platforms</h3>
 		</div>
 		<div class="col-6">
-			<p>NVIDIA AI Enterprise is an end-to-end, cloud-native suite of AI and data analytics software, optimised so every organisation can be good at AI, certified to deploy anywhere from the enterprise data centre to the public cloud, and includes global enterprise support so AI projects stay on track.</p>
+			<p>NVIDIA AI Enterprise is an end-to-end, secure, cloud-native suite of AI software, enabling organisations to solve new challenges while increasing operational efficiency. It accelerates the data science pipeline and streamlines the development and deployment of predictive AI models to automate essential processes and gain rapid insights from data. NVIDIA AI Enterprise includes an extensive library of full-stack software including AI solution workflows, frameworks, pretrained models and infrastructure optimization.</p>
 			<p>You can use all of Canonical's enterprise-grade software including Ubuntu LTS, <a href="/kubernetes">Canonical Kubernetes</a> and Openstack today, with the assurance that help is available through Canonical's support services if required.</p>
 
 			<ul class="p-list--divided">
@@ -235,7 +236,7 @@
 	<div class="row p-strip u-no-padding--top u-hide--small">
 		{{
 			image (
-			url="https://assets.ubuntu.com/v1/65e22fc8-Nvidia%20partner%20Fig%202.jpg",
+			url="https://assets.ubuntu.com/v1/12b2d293-NVIDIA%20and%20Canonical%20diagram.png",
 			alt="",
 			width="1922",
 			height="822",
@@ -277,17 +278,7 @@
 				<li class="p-list__item">OVN integrations for offload on to DPU</li>
 				<li class="p-list__item">Native support for MOFED in the Ubuntu kernel</li>
 			</ul>
-			<h5 class="u-no-margin--bottom" >Next steps</h5>
 			<hr />
-			<div class="row">
-				<div class="col-4">
-					<p>Read the blog</p>
-				</div>
-				<div class="col-8">
-					<a href="https://ubuntu.com/blog/ai-based-cybersecurity-with-canonical-ubuntu-and-bluefield-2-dpuvn">Security at the Edge: hardware accelerated AI-based cybersecurity with Canonical Ubuntu and the BlueField-2 DPU</a>
-				</div>
-				<hr />
-			</div>
 			<div class="row">
 				<div class="col-4">
 					<p>Learn more</p>
@@ -308,11 +299,33 @@
 			</div>
 			<div class="row">
 				<div class="col-4">
+					<p>Read the blog</p>
+				</div>
+				<div class="col-8">
+					<a href="/blog/ai-based-cybersecurity-with-canonical-ubuntu-and-bluefield-2-dpu">Security at the Edge: hardware accelerated AI-based cybersecurity with Canonical Ubuntu and the BlueField-2 DPU</a>
+				</div>
+				<hr />
+			</div>
+
+			<div class="row">
+				<div class="col-4">
+					<p>Read the reference deployment guide</p>
+				</div>
+				<div class="col-8">
+					<a href="https://docs.nvidia.com/networking/display/SOL/RDG+for+Canonical+Charmed+OpenStack+with+NVIDIA+Networking+and+Accelerated+OVN+for+High+Performance+Workloads">RDG for Canonical Charmed OpenStack with NVIDIA Networking and Accelerated OVN for High Performance Workloads</a>
+				</a>
+				</div>
+				<hr />
+			</div>
+
+			<div class="row">
+				<div class="col-4">
 					<p>Read the e-book</p>
 				</div>
 				<div class="col-8">
-					<a href="https://www.nvidia.com/en-us/networking/data-center-transformation-with-bluefield-dpus/">Modernize Your Data Center with Accelerated Networking</a>
+					<a href="https://www.nvidia.com/en-us/networking/data-center-transformation-with-bluefield-dpus/">Modernise Your Data Center with Accelerated Networking</a>
 				</div>
+				<hr style="background: transparent" />
 			</div>
 			</ul>
 		</div>
