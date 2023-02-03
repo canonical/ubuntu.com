@@ -3,7 +3,7 @@
   %vf-heading-1 {
     font-size: #{map-get($font-sizes, h1-mobile)}rem;
     font-style: normal;
-    font-weight: $font-weight-display-heading;
+    font-weight: 150;
     line-height: map-get($line-heights, h1-mobile);
     margin-bottom: map-get($sp-after, h1-mobile) - map-get($nudges, h1-mobile);
     margin-top: 0;
@@ -32,7 +32,7 @@
   %vf-heading-2 {
     font-size: #{map-get($font-sizes, h2-mobile)}rem;
     font-style: normal;
-    font-weight: $font-weight-display-heading;
+    font-weight: 225;
     line-height: map-get($line-heights, h2-mobile);
     margin-bottom: map-get($sp-after, h2-mobile) - map-get($nudges, h2-mobile);
     margin-top: 0;
@@ -54,7 +54,7 @@
   %vf-heading-3 {
     font-size: #{map-get($font-sizes, h3-mobile)}rem;
     font-style: normal;
-    font-weight: $font-weight-display-heading;
+    font-weight: 400;
     line-height: map-get($line-heights, h3-mobile);
     margin-bottom: map-get($sp-after, h3-mobile) - map-get($nudges, h3-mobile);
     margin-top: 0;
@@ -76,7 +76,7 @@
   %vf-heading-4 {
     font-size: #{map-get($font-sizes, h4-mobile)}rem;
     font-style: normal;
-    font-weight: $font-weight-regular-text;
+    font-weight: 500;
     line-height: map-get($line-heights, h4-mobile);
     margin-bottom: map-get($sp-after, h4-mobile) - map-get($nudges, h4-mobile);
     margin-top: 0;
@@ -204,9 +204,10 @@
   }
 
   %table-header-label {
-    @extend %x-small-text;
-
-    text-transform: uppercase;
+    @extend %common-default-text-properties;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.07em;
+    margin-bottom: map-get($sp-after, default-text) - map-get($nudges, p);
   }
 
   %muted-heading {
