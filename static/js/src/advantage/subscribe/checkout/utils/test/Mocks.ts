@@ -130,3 +130,23 @@ export const UAProduct: Product = {
   price: { value: 50000 },
   canBeTrialled: true,
 };
+
+export const UAOffer: Product = {
+  longId: "oAaBbCcDdEe",
+  period: UserSubscriptionPeriod.Yearly,
+  marketplace: UserSubscriptionMarketplace.CanonicalUA,
+  id: "oAaBbCcDdEe",
+  name: "1x Ubuntu Pro, 2x Ubuntu Pro (Infra)",
+  price: { value: 50000 },
+  canBeTrialled: false,
+};
+
+export const BlenderProduct: Product = {
+  longId: "lANXjQ-H8fzvf_Ea8bIK1KW7Wi2W0VHnV0ZUsrEGbUiQ",
+  period: UserSubscriptionPeriod.Yearly,
+  marketplace: UserSubscriptionMarketplace.Blender,
+  id: "blender-support-standard-yearly",
+  name: "Blender Support Yearly",
+  price: { value: 50000 },
+  canBeTrialled: false,
+};

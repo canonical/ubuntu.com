@@ -42,6 +42,7 @@ export default function RenewalButton({
       <Button
         appearance="neutral"
         disabled={editing}
+        data-test="renewal-button"
         className="u-no-margin--bottom"
         onClick={(e) => {
           e.preventDefault();
