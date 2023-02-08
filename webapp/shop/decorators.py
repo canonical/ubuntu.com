@@ -37,6 +37,7 @@ MARKETING_FLAGS = {
     "gbraid": "google-gbraid-id",
     "wbraid": "google-wbraid-id",
     "fbclid": "facebook-click-id",
+    "referrer": "referrer",
 }
 
 SERVICES = {
@@ -73,6 +74,10 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session.pop(metadata_key, None)
                     value = flask.request.args.get(query_parameter)
                     flask.session[metadata_key] = value
+                else:
+                    referrer_value = flask.session.get("referrer")
+                    if referrer_value:
+                        flask.session.pop("referrer")
 
             # shop under maintenance
             if flask.request.path == "/pro/subscribe" and strtobool(
