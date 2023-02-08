@@ -11,6 +11,7 @@ from webapp.shop.api.ua_contracts.api import (
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.login import user_info
+from webapp.views import get_user_country_by_ip
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -308,6 +309,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     sso_user = user_info(flask.session)
     sso_user_email = sso_user["email"]
     ability_screen_id = 4194
+    country_code = get_user_country_by_ip().json['country_code'] or "DE"
 
     reservation_uuid = None
     assessment = None
@@ -358,7 +360,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
                 last_name,
                 tz_info.zone,
                 starts_at.isoformat(),
-                "DE",
+                country_code,
             )
 
             #  print(json.dumps(response, indent=4))
