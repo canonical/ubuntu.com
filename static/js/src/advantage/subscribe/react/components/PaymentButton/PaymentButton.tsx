@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { Button } from "@canonical/react-components";
 import { FormContext } from "../../utils/FormContext";
 
-export default function PaymentButton() {
+export default function PaymentButton(referrer: { referrer: string | null }) {
   const { quantity, product } = useContext(FormContext);
-
+  const referrerValue = referrer ? referrer.referrer : "";
   const shopCheckoutData = {
     product: product,
     quantity: Number(quantity) ?? 0,
@@ -21,7 +21,9 @@ export default function PaymentButton() {
             "shop-checkout-data",
             JSON.stringify(shopCheckoutData)
           );
-          location.href = "/account/checkout";
+          location.href = referrerValue
+            ? `/account/checkout?referrer=${referrerValue}`
+            : "/account/checkout";
         }}
       >
         Buy now
