@@ -522,13 +522,14 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         exam_contracts = ua_contracts_api.get_exam_contracts()
         contract_id = exam_contracts[-1]["id"]
         if flask.request.args.get("action") == "schedule":
-            flask.redirect(
+            return flask.redirect(
                 f"/credentials/schedule?contractItemID={contract_id}"
             )
-        else:
-            flask.redirect(
+        if flask.request.args.get("action") == "take":
+            return flask.redirect(
                 f"/credentials/provision?contractItemID={contract_id}"
             )
+        return flask.redirect("/credentials/your-exams")
     except UAContractsAPIErrorView as error:
         activation_response = json.loads(error.response.text)
         return flask.render_template(
