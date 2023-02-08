@@ -240,7 +240,7 @@ export const interactiveForms = [
       [/Work email/, "test@gmail.com"],
     ],
     submitBtn: /Let's discuss/,
-    noOfPages: 3,
+    noOfPages: 2,
   },
   {
     url: "/gcp",
