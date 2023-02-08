@@ -1,6 +1,7 @@
 <!-- MARKETO FORM -->
 <form action="/marketo/submit" method="post" id="mktoForm_{{ id }}" onSubmit='if (typeof fbq === "function"){fbq("trackCustom", "Download"); }'>
   <fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
+    <legend class="u-off-screen">Información del contacto</legend>
     <ul class="p-list">
       <li class="p-list__item">
         <label for="firstName">Nombre:</label>
@@ -51,7 +52,7 @@
         <label class="name" for="name">Name:</label>
         <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
       </li>
-      {# End of honey pots #}       
+      {# End of honey pots #}
       <li>
         <input name="Consent_to_Processing__c" aria-label="Consent" value="Yes" type="hidden">
       </li>
