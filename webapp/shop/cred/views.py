@@ -210,7 +210,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "href": "/credentials/provision?"
                         f"contractItemID={contract_item_id}",
                         "button_class": "p-button",
-                    }
+                    },
                 ]
                 exams.append({"name": name, "actions": actions})
 
@@ -329,28 +329,26 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
 
     print("exam_contract: ", json.dumps(exam_contract, indent=4))
 
-
     if exam_contract:
         if "reservation" in exam_contract["cueContext"]:
             #  response = trueability_api.get_assessment_reservation(
             #      exam_contract["cueContext"]["reservation"]["IDs"][-1]
             #  )
             #  r = response["assessment_reservation"]
-            reservation_uuid = exam_contract["cueContext"]["reservation"]["IDs"][-1]
+            reservation_uuid = exam_contract["cueContext"]["reservation"][
+                "IDs"
+            ][-1]
     else:
         error = "Exam not found"
 
-
-
-
-
-
-    if flask.request.method == "POST":
+    if flask.request.method == "POST" and not reservation_uuid:
         data = flask.request.form
         print("data: ", data)
         contract_item_id = data["contractItemID"]
         print("POST contract_item_id: ", contract_item_id)
-        starts_at = datetime.utcnow() + timedelta(seconds=70)
+
+        tz_info = pytz.timezone("UTC")
+        starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=70))
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
 
         try:
@@ -358,16 +356,13 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
                 contract_item_id,
                 first_name,
                 last_name,
-                #  "UTC",
-                "Europe/Berlin",
-                #  starts_at.strftime("%Y-%m-%dT%H:%M"),
-                #  "2023-02-05T21:00:00+01:00",
-                "2023-02-08T20:00:00+01:00",
+                tz_info.zone,
+                starts_at.isoformat(),
                 "DE",
             )
 
             #  print(json.dumps(response, indent=4))
-            #  print(response)
+            print("response: ", response)
 
             if "error" in response:
                 print("error!")
@@ -375,10 +370,13 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
                     "message", "An error occurred while creating your exam."
                 )
             else:
-                reservation_uuid = response.get("reservation", {}).get("IDs", [])[-1]
+                reservation_uuid = response.get("reservation", {}).get(
+                    "IDs", []
+                )[-1]
                 print("reservation_uuid: ", reservation_uuid)
         except Exception as e:
             import traceback
+
             traceback.print_exc()
             print("exception: ", e)
 
