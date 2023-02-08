@@ -307,9 +307,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         return flask.redirect("/credentials/your-exams")
 
     sso_user = user_info(flask.session)
-    sso_user_email = sso_user["email"]
-    ability_screen_id = 4194
-    country_code = get_user_country_by_ip().json['country_code'] or "DE"
+    country_code = get_user_country_by_ip().json["country_code"] or "DE"
 
     reservation_uuid = None
     assessment = None
@@ -317,26 +315,15 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     error = None
 
     exam_contracts = ua_contracts_api.get_exam_contracts()
-    #  print(json.dumps(exam_contracts, indent=4))
-    print("contract_item_id: ", contract_item_id)
-    #  breakpoint()
 
-    #  contract_item = next(filter(lambda item: item["id"] == contract_item_id, exam_contracts))
-    #  print("contract_item: ", contract_item)
     exam_contract = None
     for item in exam_contracts:
         if int(contract_item_id) == item["id"]:
             exam_contract = item
             break
 
-    print("exam_contract: ", json.dumps(exam_contract, indent=4))
-
     if exam_contract:
         if "reservation" in exam_contract["cueContext"]:
-            #  response = trueability_api.get_assessment_reservation(
-            #      exam_contract["cueContext"]["reservation"]["IDs"][-1]
-            #  )
-            #  r = response["assessment_reservation"]
             reservation_uuid = exam_contract["cueContext"]["reservation"][
                 "IDs"
             ][-1]
@@ -345,44 +332,29 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
 
     if flask.request.method == "POST" and not reservation_uuid:
         data = flask.request.form
-        print("data: ", data)
         contract_item_id = data["contractItemID"]
-        print("POST contract_item_id: ", contract_item_id)
-
         tz_info = pytz.timezone("UTC")
         starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=70))
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
 
-        try:
-            response = ua_contracts_api.post_assessment_reservation(
-                contract_item_id,
-                first_name,
-                last_name,
-                tz_info.zone,
-                starts_at.isoformat(),
-                country_code,
+        response = ua_contracts_api.post_assessment_reservation(
+            contract_item_id,
+            first_name,
+            last_name,
+            tz_info.zone,
+            starts_at.isoformat(),
+            country_code,
+        )
+
+        if "error" in response:
+            error = response.get(
+                "message", "An error occurred while creating your exam."
             )
+        else:
+            reservation_uuid = response.get("reservation", {}).get("IDs", [])[
+                -1
+            ]
 
-            #  print(json.dumps(response, indent=4))
-            print("response: ", response)
-
-            if "error" in response:
-                print("error!")
-                error = response.get(
-                    "message", "An error occurred while creating your exam."
-                )
-            else:
-                reservation_uuid = response.get("reservation", {}).get(
-                    "IDs", []
-                )[-1]
-                print("reservation_uuid: ", reservation_uuid)
-        except Exception as e:
-            import traceback
-
-            traceback.print_exc()
-            print("exception: ", e)
-
-    print("if reservation_uuid: ", reservation_uuid)
     if reservation_uuid:
         response = trueability_api.get_assessment_reservation(reservation_uuid)
 
@@ -393,7 +365,6 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         else:
             reservation = response["assessment_reservation"]
             assessment = reservation["assessment"]
-            print("assessment_reservation: ", json.dumps(response, indent=4))
 
     return flask.render_template(
         "/credentials/provision.html",
