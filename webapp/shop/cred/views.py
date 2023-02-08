@@ -4,6 +4,10 @@ import flask
 import json
 import os
 import html
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPIErrorView,
+    UAContractsUserHasNoAccount,
+)
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.login import user_info
@@ -18,6 +22,7 @@ TIMEZONE_COUNTRIES = {
     for country, timezones in pytz.country_timezones.items()
     for timezone in timezones
 }
+TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
@@ -40,7 +45,7 @@ def cred_sign_up(**_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_schedule(trueability_api, **_):
+def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
@@ -49,32 +54,25 @@ def cred_schedule(trueability_api, **_):
     if flask.request.method == "POST":
         data = flask.request.form
         sso_user = user_info(flask.session)
+
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
         scheduled_time = f"{data['date']}T{data['time']}"
         starts_at = tz_info.localize(
             datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
         )
-        ability_screen_id = 4190
-        email = sso_user["email"]
+        contract_item_id = data["contractItemID"]
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
         country_code = TIMEZONE_COUNTRIES[timezone]
-        response = None
 
-        if "uuid" in data:
-            response = trueability_api.patch_assessment_reservation(
-                starts_at.isoformat(), timezone, country_code, data["uuid"]
-            )
-        else:
-            response = trueability_api.post_assessment_reservation(
-                ability_screen_id,
-                starts_at.isoformat(),
-                email,
-                first_name,
-                last_name,
-                timezone,
-                country_code,
-            )
+        response = ua_contracts_api.post_assessment_reservation(
+            contract_item_id,
+            first_name,
+            last_name,
+            timezone,
+            starts_at.isoformat(),
+            country_code,
+        )
 
         if response and "error" in response:
             error = response["message"]
@@ -82,17 +80,21 @@ def cred_schedule(trueability_api, **_):
                 "/credentials/schedule.html", error=error
             )
         else:
-            uuid = response.get("assessment_reservation", {}).get("uuid", "")
+            uuid = response.get("reservation", {}).get("IDs", [])[-1]
             exam = {
                 "name": "CUE: Linux",
                 "date": starts_at.strftime("%d %b %Y"),
                 "time": starts_at.strftime("%I:%M %p %Z"),
                 "uuid": uuid,
+                "contract_item_id": contract_item_id,
             }
             return flask.render_template(
                 "/credentials/schedule-confirm.html", exam=exam
             )
 
+    contract_item_id = flask.request.args.get("contractItemID")
+    if contract_item_id is None:
+        return flask.redirect("/credentials/your-exams")
     assessment_reservation_uuid = flask.request.args.get("uuid")
     timezone = ""
     date = min_date
@@ -115,6 +117,7 @@ def cred_schedule(trueability_api, **_):
     return flask.render_template(
         "credentials/schedule.html",
         uuid=assessment_reservation_uuid,
+        contract_item_id=contract_item_id,
         timezone=timezone,
         date=date,
         time=time,
@@ -125,77 +128,85 @@ def cred_schedule(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
-def cred_your_exams(trueability_api, **_):
-    sso_user_email = user_info(flask.session)["email"]
-    ability_screen_id = 4190
-    response = trueability_api.paginate(
-        trueability_api.get_assessment_reservations,
-        "assessment_reservations",
-        ability_screen_id=ability_screen_id,
-    )
-
+def cred_your_exams(ua_contracts_api, trueability_api, **_):
+    exam_contracts = ua_contracts_api.get_exam_contracts()
     exams = []
-    for r in response["assessment_reservations"]:
-        user_email = r.get("user", {}).get("email")
 
-        if user_email != sso_user_email:
-            continue
+    if exam_contracts:
+        for exam_contract in exam_contracts:
+            name = exam_contract["cueContext"]["courseID"]
+            contract_item_id = exam_contract["id"]
+            if "reservation" in exam_contract["cueContext"]:
+                response = trueability_api.get_assessment_reservation(
+                    exam_contract["cueContext"]["reservation"]["IDs"][-1]
+                )
+                r = response["assessment_reservation"]
 
-        name = r["ability_screen"]["display_name"]
-        timezone = r["user"]["time_zone"]
-        tz_info = pytz.timezone(timezone)
-        starts_at = (
-            datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
-            .replace(tzinfo=pytz.timezone("UTC"))
-            .astimezone(tz_info)
-        )
-        assessment_id = r.get("assessment") and r["assessment"]["id"]
+                timezone = r["user"]["time_zone"]
+                tz_info = pytz.timezone(timezone)
+                starts_at = (
+                    datetime.strptime(r["starts_at"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                    .replace(tzinfo=pytz.timezone("UTC"))
+                    .astimezone(tz_info)
+                )
+                assessment_id = r.get("assessment") and r["assessment"]["id"]
 
-        actions = []
-        utc = pytz.timezone("UTC")
-        now = utc.localize(datetime.utcnow())
-        end = starts_at + timedelta(hours=6)
+                actions = []
+                utc = pytz.timezone("UTC")
+                now = utc.localize(datetime.utcnow())
+                end = starts_at + timedelta(hours=6)
 
-        if assessment_id and now > starts_at and now < end:
-            actions.extend(
-                [
+                if assessment_id and now > starts_at and now < end:
+                    actions.extend(
+                        [
+                            {
+                                "text": "Take exam",
+                                "href": "/credentials/exam?"
+                                f"id={ assessment_id }",
+                                "button_class": "p-button--positive",
+                            }
+                        ]
+                    )
+
+                if r["state"] == "scheduled":
+                    actions.extend(
+                        [
+                            {
+                                "text": "Reschedule",
+                                "href": "/credentials/schedule?"
+                                f"contractItemID={contract_item_id}"
+                                f"&uuid={r['uuid']}",
+                                "button_class": "p-button",
+                            },
+                            {
+                                "text": "Cancel",
+                                "href": "/credentials/cancel-exam?"
+                                f"contractItemID={contract_item_id}",
+                                "button_class": "p-button--negative",
+                            },
+                        ]
+                    )
+                exams.append(
                     {
-                        "text": "Take exam",
-                        "href": f"/credentials/exam?id={ assessment_id }",
-                        "button_class": "p-button--positive",
+                        "name": name,
+                        "date": starts_at.strftime("%d %b %Y"),
+                        "time": starts_at.strftime("%I:%M %p %Z"),
+                        "timezone": timezone,
+                        "state": r["state"],
+                        "uuid": r["uuid"],
+                        "actions": actions,
+                    }
+                )
+            else:
+                actions = [
+                    {
+                        "text": "Schedule",
+                        "href": "/credentials/schedule?"
+                        f"contractItemID={contract_item_id}",
+                        "button_class": "p-button",
                     }
                 ]
-            )
-
-        if r["state"] == "scheduled":
-            actions.extend(
-                [
-                    {
-                        "text": "Reschedule",
-                        "href": "/credentials/schedule"
-                        + f"?uuid={ r['uuid'] }",
-                        "button_class": "p-button",
-                    },
-                    {
-                        "text": "Cancel",
-                        "href": "/credentials/cancel-exam"
-                        + f"?uuid={ r['uuid'] }",
-                        "button_class": "p-button--negative",
-                    },
-                ]
-            )
-        exams.append(
-            {
-                "name": name,
-                "date": starts_at.strftime("%d %b %Y"),
-                "time": starts_at.strftime("%I:%M %p %Z"),
-                "timezone": timezone,
-                "state": r["state"],
-                "uuid": r["uuid"],
-                "actions": actions,
-            }
-        )
+                exams.append({"name": name, "actions": actions})
 
     response = flask.make_response(
         flask.render_template(
@@ -213,20 +224,9 @@ def cred_your_exams(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_cancel_exam(trueability_api, **_):
-    uuid = flask.request.args.get("uuid")
-    reservation = trueability_api.get_assessment_reservation(uuid)
-
-    if reservation.get("error"):
-        return flask.abort(404)
-
-    reservation_email = reservation["assessment_reservation"]["user"]["email"]
-    sso_user = user_info(flask.session)["email"]
-
-    if reservation_email != sso_user:
-        return flask.abort(403)
-
-    trueability_api.delete_assessment_reservation(uuid)
+def cred_cancel_exam(ua_contracts_api, **_):
+    contract_item_id = flask.request.args.get("contractItemID")
+    ua_contracts_api.delete_assessment_reservation(contract_item_id)
     return flask.redirect("/credentials/your-exams")
 
 
@@ -486,3 +486,91 @@ def cred_submit_form(**_):
         body={"values": [row]},
     ).execute()
     return flask.redirect("/thank-you")
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+@canonical_staff()
+def cred_shop(**kwargs):
+    return flask.render_template("credentials/shop/index.html")
+
+
+@shop_decorator(area="cube", permission="user", response="html")
+def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
+    if flask.request.method == "POST":
+        sso_user = user_info(flask.session)
+        account = advantage_mapper.ensure_purchase_account(
+            marketplace="canonical-cube",
+            email=sso_user["email"],
+            account_name=sso_user["fullname"],
+            captcha_value=flask.request.form["g-recaptcha-response"],
+        )
+        return flask.redirect("/credentials/redeem/" + kwargs.get("code"))
+
+    activation_key = kwargs.get("code")
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-cube")
+        account_id = account.id
+        product_id = kwargs.get("product_id", "cue-test")
+
+        activation_response = ua_contracts_api.activate_activation_key(
+            {
+                "activationKey": activation_key,
+                "accountID": account_id,
+                "productID": product_id,
+            }
+        )
+        return flask.render_template(
+            "/credentials/redeem.html",
+            activation_response=activation_response,
+        )
+    except UAContractsAPIErrorView as error:
+        activation_response = json.loads(error.response.text)
+        return flask.render_template(
+            "/credentials/redeem.html",
+            activation_response=activation_response,
+        )
+    except UAContractsUserHasNoAccount:
+        return flask.render_template(
+            "/credentials/redeem_with_captcha.html", key=activation_key
+        )
+
+
+@shop_decorator(area="cube", permission="user", response="json")
+@canonical_staff()
+def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
+    account = advantage_mapper.get_purchase_account()
+    contracts = advantage_mapper.get_activation_key_contracts(account.id)
+
+    contract_id = None
+    for contract in contracts:
+        if contract.name == "CUE TEST key":
+            contract_id = contract.id
+
+    keys = ua_contracts_api.list_activation_keys(contract_id)
+    return flask.jsonify(keys)
+
+
+@shop_decorator(area="cube", permission="user", response="json")
+@canonical_staff()
+def rotate_activation_key(ua_contracts_api, **kwargs):
+    activation_key = kwargs.get("activation_key")
+    new_activation_key = ua_contracts_api.rotate_activation_key(
+        {"activationKey": activation_key}
+    )
+    return flask.jsonify(new_activation_key)
+
+
+@shop_decorator(area="cube", permission="user", response=json)
+def activate_activation_key(ua_contracts_api, **kwargs):
+    data = flask.request.json
+    activation_key = data["activationKey"]
+    account = ua_contracts_api.get_purchase_account("canonical-cube")
+    account_id = account["id"]
+    product_id = data["productID"]
+    return ua_contracts_api.activate_activation_key(
+        {
+            "activationKey": activation_key,
+            "accountID": account_id,
+            "productID": product_id,
+        }
+    )

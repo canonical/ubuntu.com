@@ -7,6 +7,8 @@
 {% block content %}
 
 <section class="p-strip--suru">
+  {% include "shared/_18-04-eol-banner.html" %}
+
   <div class="row u-equal-height u-vertically-center">
     <div class="col-7">
       <h1>The operating system optimised for IoT and Edge</h1>
@@ -108,7 +110,7 @@
               ) | safe
             }}
           </div>
-          <div class="p-logo-section__item"> 
+          <div class="p-logo-section__item">
             {{ image (
               url="https://assets.ubuntu.com/v1/2b253402-advantech-logo.png",
               alt="Advantech",
@@ -591,7 +593,7 @@
     </div>
   </div>
 </section>
-  
+
 
 <section class="p-strip--light is-deep" id="built-for-business">
   <div class="row u-vertically-center">

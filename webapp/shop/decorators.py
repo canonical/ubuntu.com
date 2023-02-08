@@ -102,7 +102,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             if permission == "user" and response == "html":
                 if not user_token:
-                    redirect_path = redirect or flask.request.path
+                    redirect_path = redirect or flask.request.full_path
 
                     return flask.redirect(f"/login?next={redirect_path}")
 

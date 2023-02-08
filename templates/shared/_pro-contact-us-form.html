@@ -9,13 +9,15 @@
     <div class="col-8">
       <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" onsubmit="getCustomFields()">
         <fieldset class="u-no-margin--bottom">
-          <h3>Tell us about your project</h3>
-          <textarea id="about-your-project" aria-label="Tell us about your project and team"
-            placeholder="What do you want to achieve, which applications and languages do you use, and what’s your team's setup?"
+          <legend class="u-off-screen">Tell us about your project and team</legend>
+          <h2 class="p-heading--3">Tell us about your project</h2>
+          <textarea id="about-your-project"
+            placeholder="What do you want to achieve, which applications and languages do you use, and what's your team's setup?"
             rows="3"></textarea>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="ubuntu-versions">
-          <h3>If you use Ubuntu, which version(s) are you using?</h3>
+          <legend class="u-off-screen">If you use Ubuntu, which version or versions are you using?</legend>
+          <h2 class="p-heading--3">If you use Ubuntu, which version(s) are you using?</h2>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <strong>LTS within standard support</strong>
@@ -82,7 +84,8 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="how-do-you-consume-open-source">
-          <h3>How do you consume open source?</h3>
+          <legend class="u-off-screen">How do you consume open source?</legend>
+          <h2 class="p-heading--3">How do you consume open source?</h2>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3 u-no-padding--bottom">
               <label class="p-checkbox">
@@ -104,13 +107,14 @@
               </label>
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
-                <span class="p-checkbox__label" id="i-dont-know">I don’t know</span>
+                <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
               </label>
             </div>
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="hardening-requirements">
-          <h3>Do you have specific compliance or hardening requirements?</h3>
+          <legend class="u-off-screen">Do you have specific compliance or hardening requirements?</legend>
+          <h2 class="p-heading--3">Do you have specific compliance or hardening requirements?</h2>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
@@ -151,7 +155,8 @@
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom" id="responsible-for-tracking">
-          <h3>Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h3>
+          <legend class="u-off-screen">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</legend>
+          <h2 class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h2>
           <div class="row u-no-padding">
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
@@ -172,18 +177,20 @@
               </label>
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
-                <span class="p-checkbox__label" id="i-dont-know">I don’t know</span>
+                <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
               </label>
             </div>
           </div>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
-          <h3>What advice are you looking for?</h3>
+          <legend class="u-off-screen">What advice are you looking for?</legend>
+          <h2 class="p-heading--3">What advice are you looking for?</h2>
           <textarea id="advice" aria-label="Tell us about your challenge and your goals"
             placeholder="Tell us about your challenge and your goals" rows="3"></textarea>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
-          <h3>About you</h3>
+          <legend class="u-off-screen">About you</legend>
+          <h2 class="p-heading--3">About you</h2>
           <ul class="p-list">
             <li class="p-list__item">
               <label for="firstName">First name:</label>
@@ -207,7 +214,8 @@
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
-          <h3>About your company</h3>
+          <legend class="u-off-screen">About your company</legend>
+          <h2 class="p-heading--3">About your company</h2>
           <ul class="p-list">
             <li class="p-list__item">
               <label for="company">Company name:</label>
@@ -220,6 +228,7 @@
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">Privacy policy</legend>
           <ul class="p-list">
             <li class="p-list__item">
               <label class="p-checkbox">
@@ -281,11 +290,11 @@
 
     <div class="col-4">
       <div class="p-card">
-        <h3 class="p-card__title">Any questions? Call us</h3>
+        <h2 class="p-heading--3 p-card__title">Any questions? Call us</h2>
         {% include "shared/_call-sales-long.html" %}
       </div>
       <div class="p-card">
-        <h3 class="p-card__title">Need help with Ubuntu?</h3>
+        <h2 class="p-heading--3 p-card__title">Need help with Ubuntu?</h2>
         <p>If you are just looking for some free support for yourself, you can try:</p>
         <ul class="p-list--divided">
           <li class="p-list__item"><a href="https://askubuntu.com/">Ask Ubuntu</a></li>

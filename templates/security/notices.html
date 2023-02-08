@@ -69,13 +69,13 @@
       </div>
       <div class="col-4 p-form p-form--inline">
         <div class="p-form__group">
-          <label class="p-form__label">Sort by:</label>
-          <select class="p-form__control u-no-margin--bottom js-order-select">
+          <label class="p-form__label" for="sort-by">Sort by:</label>
+          <select class="p-form__control u-no-margin--bottom js-order-select" id="sort-by">
             <option value="newest" {% if request.args.order == 'newest'%} selected {% endif %}>Newest</option>
             <option value="oldest" {% if request.args.order == 'oldest'%} selected {% endif %}>Oldest</option>
           </select>
         </div>
-      </div>  
+      </div>
     </div>
     <div class="u-fixed-width" style="margin-bottom: 2rem; margin-top: 2rem;">
       <hr class="u-hide--small"/>
@@ -87,7 +87,7 @@
         <h2>Latest Notices</h2>
       {% endif %}
       {% if notices %}
-        {% for notice in notices %} 
+        {% for notice in notices %}
           {% include "security/_notice-brief.html" %}
         {% endfor %}
       {% else %}
@@ -122,7 +122,7 @@
   var release = document.querySelector(".js-release");
   var submit = document.querySelector(".js-submit");
 
-  // Submit form on order select change 
+  // Submit form on order select change
   if (orderSelect != null) {
     orderSelect.onchange = function(event) {
       orderInput.value = event.target.value;
