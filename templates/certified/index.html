@@ -58,7 +58,8 @@
       <form class="p-form p-form--inline" style="width: 100%;">
         <div class="p-form__group" style="flex-grow: 1;">
           <div class="p-form__control" style="width: 100%;">
-            <input type="text" name="q" id="text" value="{{ query or '' }}" placeholder="Search" aria-label="Search" autocomplete="off" required>
+            <label for="certified-hardware-search" class="u-off-screen">Search in Ubuntu certified hardware</label>
+            <input type="text" name="q" id="certified-hardware-search" value="{{ query or '' }}" placeholder="Search" autocomplete="off" required>
           </div>
         </div>
         <button type="submit" class="p-button--positive">Search</button>

@@ -49,6 +49,7 @@ const Quantity = () => {
             value={quantity}
             pattern="\d+"
             style={{ minWidth: "unset", width: "4rem" }}
+            aria-label="For how many machines"
           />
         </Col>
       </Row>
