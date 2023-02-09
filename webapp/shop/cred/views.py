@@ -25,6 +25,14 @@ TIMEZONE_COUNTRIES = {
 }
 TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
+EXAM_NAMES = {"cue-test": "CUE: Linux Beta"}
+
+EXAM_STATES = {
+    "scheduled": "Scheduled",
+    "canceled": "Cancelled",
+    "processed": "Complete",
+}
+
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
 def cred_home(**_):
@@ -136,6 +144,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
     if exam_contracts:
         for exam_contract in exam_contracts:
             name = exam_contract["cueContext"]["courseID"]
+            name = EXAM_NAMES.get(name, name)
             contract_item_id = exam_contract["id"]
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
@@ -188,13 +197,14 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         ]
                     )
 
+                state = EXAM_STATES.get(r["state"], r["state"])
                 exams.append(
                     {
                         "name": name,
                         "date": starts_at.strftime("%d %b %Y"),
                         "time": starts_at.strftime("%I:%M %p %Z"),
                         "timezone": timezone,
-                        "state": r["state"],
+                        "state": state,
                         "uuid": r["uuid"],
                         "actions": actions,
                     }
@@ -214,7 +224,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "button_class": "p-button--positive",
                     },
                 ]
-                exams.append({"name": name, "actions": actions})
+                exams.append(
+                    {"name": name, "state": "Not taken", "actions": actions}
+                )
 
     response = flask.make_response(
         flask.render_template(
