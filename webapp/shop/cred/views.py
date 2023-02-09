@@ -188,12 +188,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                                 f"&uuid={r['uuid']}",
                                 "button_class": "p-button",
                             },
-                            {
-                                "text": "Cancel",
-                                "href": "/credentials/cancel-exam?"
-                                f"contractItemID={contract_item_id}",
-                                "button_class": "p-button--negative",
-                            },
                         ]
                     )
 
