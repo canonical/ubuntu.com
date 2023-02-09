@@ -123,6 +123,7 @@ class Offer:
         actionable: bool,
         total: int,
         items: List[OfferItem],
+        discount: int = None,
     ):
         self.id = id
         self.account_id = account_id
@@ -131,6 +132,7 @@ class Offer:
         self.marketplace = marketplace
         self.created_at = created_at
         self.actionable = actionable
+        self.discount = discount
 
 
 class Invoice:
