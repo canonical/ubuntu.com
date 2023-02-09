@@ -330,9 +330,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     else:
         error = "Exam not found"
 
-    if flask.request.method == "POST" and not reservation_uuid:
-        data = flask.request.form
-        contract_item_id = data["contractItemID"]
+    if not reservation_uuid:
         tz_info = pytz.timezone("UTC")
         starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=70))
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
@@ -359,9 +357,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         response = trueability_api.get_assessment_reservation(reservation_uuid)
 
         if "error" in response:
-            error = response.get(
-                "message", "An error occurred while fetching your exam."
-            )
+            error = response.get("message", "No exam booking could be found.")
         else:
             reservation = response["assessment_reservation"]
             assessment = reservation["assessment"]
