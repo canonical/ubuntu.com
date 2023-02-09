@@ -130,9 +130,10 @@ class AnnotatedContractItemsSchema(BaseSchema):
         data_key="contractContext",
         required=True,
     )
-    type = String(
-        required=True,
-        data_key="presentationHint",
+    type = Function(
+        deserialize=(lambda v: v.get("presentationHint")),
+        data_key="ubuntuProContext",
+        missing="",
     )
     start_date = String(
         required=True,
@@ -181,8 +182,8 @@ class AnnotatedContractItemsSchema(BaseSchema):
     )
     token = Function(
         deserialize=(lambda v: v["token"]),
-        data_key="contractContext",
-        required=True,
+        data_key="ubuntuProContext",
+        missing="",
     )
     subscription_id = Function(
         deserialize=(lambda v: v["purchase"].get("subscriptionID")),
@@ -207,21 +208,21 @@ class AnnotatedContractItemsSchema(BaseSchema):
     contract_id = String(required=True, data_key="contractID")
     support_level = Function(
         deserialize=(lambda v: v.get("supportLevel", "")),
-        data_key="contractContext",
-        required=True,
+        data_key="ubuntuProContext",
+        missing="",
     )
     entitlements = Function(
-        deserialize=(lambda v: v.get("entitlements")),
-        data_key="contractContext",
-        required=True,
+        deserialize=(lambda v: v.get("entitlements", [])),
+        data_key="ubuntuProContext",
+        missing=[],
     )
     is_expiring = Function(
         deserialize=(lambda v: v.get("isExpiring")),
         data_key="subscriptionContext",
         missing=False,
     )
-    is_expired = Function(data_key="expired", required=True)
-    in_grace_period = Function(data_key="inGracePeriod", required=True)
+    is_expired = Function(data_key="expired")
+    in_grace_period = Function(data_key="inGracePeriod")
     should_present_auto_renewal = Function(
         deserialize=(lambda v: v.get("shouldAllowAutoRenewalToggle")),
         data_key="subscriptionContext",
