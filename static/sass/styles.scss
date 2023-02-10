@@ -134,6 +134,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
+@include vf-p-icon-video-play;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -1098,4 +1099,31 @@ hr.p-separator.is-shallow {
 // Remove borders for p-lists on /nvidia
 .no-border::after {
   content: none !important;
+}
+
+// Custom styles /dell
+$dell-blue: #232943;
+.p-strip--dell-blue {
+  @extend .p-strip--dark;
+
+  background-color: $dell-blue;
+}
+.p-card--dell-webinars {
+  background: #000 url("https://assets.ubuntu.com/v1/4329b93d-vertical-thumb_111.png") right;
+  color: #fff;
+  height: 400px;
+  padding: calc(1rem - 1px);
+
+  @media only screen and (max-width: $threshold-6-12-col) {
+    background-color: #000;
+    background-size: cover;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .p-icon--video-play {
+    color: #fff;
+    height: 28px;
+    width: 28px;
+  }
 }
