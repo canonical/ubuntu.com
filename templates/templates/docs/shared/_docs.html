@@ -57,8 +57,8 @@
   <div class="row">
     <aside class="col-3">
       {% if versions | length > 1 %}
-      <label for="version-select" class="u-hide">Version</label>
-      <select name="version-select" id="version-select" onChange="window.location.href=this.value">
+      <label for="version-select" class="u-off-screen">Version selection</label>
+      <select class="js-onchange-select" name="version-select" id="version-select">
       {% for version in versions %}
         {% set active = docs_version == version['path'] %}
         <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>Version {{ version['version'] }}</option>
@@ -157,4 +157,64 @@
   </div>
 </div>
 
+<script>
+// Allows the 'onchange' listener to be used on a select field, while still being accessible.
+(function initSelect() {
+	var selectField = document.querySelector(".js-onchange-select");
+
+  selectField.changed = false;
+  selectField.onfocus = selectFocussed;
+  selectField.onchange = selectChanged;
+  selectField.onkeydown = selectKeyed;
+  selectField.onclick = selectClicked;
+})();
+
+function selectChanged(theElement) {
+	var selectField;
+
+	if (theElement && theElement.value) {
+		selectField = theElement;
+	}
+	else {
+		selectField = this;
+	}
+
+	if (!selectField.changed) {
+		return false;
+	}
+
+	window.location.href = selectField.value;
+}
+
+function selectClicked() {
+	this.changed = true;
+  window.location.href = this.value;
+}
+
+function selectFocussed() {
+  this.initValue = this.value;
+}
+
+function selectKeyed(e) {
+	var theEvent;
+	var keyCodeTab = "9";
+	var keyCodeEnter = "13";
+	var keyCodeEsc = "27";
+
+	if (e) {
+    theEvent = e;
+  } else {
+    return false;
+  }
+
+	if ((theEvent.keyCode == keyCodeEnter || theEvent.keyCode == keyCodeTab) &&   this.value != this.initValue) {
+		this.changed = true;
+		selectChanged(this);
+	} else if (theEvent.keyCode == keyCodeEsc) {
+		this.value = this.initValue;
+	} else {
+		this.changed = false;
+	}
+}
+</script>
 {% endblock %}
