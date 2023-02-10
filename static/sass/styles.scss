@@ -76,6 +76,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_table";
 @import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
+@import "pattern_dell";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -132,10 +133,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-tabs;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
+@include ubuntu-p-dell;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
+@include vf-p-icon-video-play;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -605,19 +608,9 @@ td.p-accordion {
 }
 
 // Prevent the page from jumping as the global nav loads
-body {
-  border-top: 32px solid #262626;
-
-  @media only screen and (min-width: $breakpoint-x-large) {
-    border-top-width: 36px;
-  }
-}
-
-.global-nav {
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+.global-nav__header {
+  background-color: #262626;
+  height: 32px;
 }
 
 .article-title {

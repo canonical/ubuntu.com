@@ -1,0 +1,110 @@
+@mixin ubuntu-p-dell {
+  // Custom styles /dell
+  $dell-blue: #232943;
+  .p-strip--dell-blue {
+    @extend .p-strip--dark;
+
+    background-color: $dell-blue;
+  }
+
+  .p-card--dell {
+    background-position: right, right, right;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    color: #fff;
+    height: 400px;
+    margin-top: 1rem;
+    padding: calc(1rem - 1px);
+
+    &.p-card--dell-ceph {
+      background-image: linear-gradient(
+          0deg,
+          rgba(17, 17, 17, 0.8),
+          rgba(17, 17, 17, 0.8)
+        ),
+        url(https://assets.ubuntu.com/v1/4329b93d-vertical-thumb_111.png);
+    }
+    &.p-card--dell-wsl {
+      background-image: linear-gradient(
+          0deg,
+          rgba(51, 51, 51, 0.8),
+          rgba(51, 51, 51, 0.8)
+        ),
+        url(https://assets.ubuntu.com/v1/4329b93d-vertical-thumb_111.png);
+    }
+    &.p-card--dell-data-science {
+      background-image: linear-gradient(
+          0deg,
+          rgba(102, 102, 102, 0.8),
+          rgba(102, 102, 102, 0.8)
+        ),
+        url(https://assets.ubuntu.com/v1/4329b93d-vertical-thumb_111.png);
+    }
+
+    @media only screen and (max-width: $threshold-6-12-col) {
+      background-color: #000;
+      background-size: cover;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .p-icon--video-play {
+      color: #fff;
+      height: 28px;
+      width: 28px;
+    }
+  }
+
+  .p-aspect-ratio-image--desktop-solutions {
+    background: #666
+      url("https://assets.ubuntu.com/v1/3c7f0508-DELLBartonGe_3-1661193946868.png")
+      50% no-repeat;
+    background-size: contain;
+    height: 0;
+    margin-top: 1rem;
+    padding-top: calc(200% / 3);
+    width: 100%;
+  }
+
+  .p-aspect-ratio-image--2-3 {
+    background-color: #f7f7f7;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: 1rem;
+    padding-top: calc(130% / 3);
+  }
+
+  .p-aspect-ratio-image--enterprise-business {
+    background: url("https://assets.ubuntu.com/v1/3f83c080-dell-servers-category-hero-poweredge-r750-lf-3440x1800.png")
+      50% 65% no-repeat;
+    background-size: 432px;
+    height: 100%;
+    margin-top: 1.5rem;
+    padding-top: calc(120% / 3);
+
+    @media screen and (max-width: $breakpoint-medium) {
+      background-position: 50% 0;
+      background-size: 100%;
+    }
+  }
+
+  .p-aspect-ratio-image--partnership {
+    background: url("https://assets.ubuntu.com/v1/a0da6c7e-dell-technologies-logo.png")
+      50% 50% no-repeat;
+    background-size: 252px;
+    height: 0;
+    margin-top: 1rem;
+    padding-top: calc(150% / 3);
+    width: 100%;
+  }
+
+  .p-aspect-ratio-image--dell-claim {
+    background: url("https://assets.ubuntu.com/v1/6e95c15d-top-image-placeholder.png")
+      100% 0 no-repeat;
+    background-size: contain;
+    height: 0;
+    margin-top: 1rem;
+    padding-top: calc(170% / 2);
+    width: 100%;
+  }
+}
