@@ -58,7 +58,7 @@
     <aside class="col-3">
       {% if versions | length > 1 %}
       <label for="version-select" class="u-off-screen">Version selection</label>
-      <select class="js-onchange-select" name="version-select" id="version-select">
+      <select name="version-select" id="version-select">
       {% for version in versions %}
         {% set active = docs_version == version['path'] %}
         <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>Version {{ version['version'] }}</option>
@@ -160,7 +160,7 @@
 <script>
 // Allows the 'onchange' listener to be used on a select field, while still being accessible.
 (function initSelect() {
-	var selectField = document.querySelector(".js-onchange-select");
+	var selectField = document.querySelector("#version-select");
 
   selectField.changed = false;
   selectField.onfocus = selectFocussed;
