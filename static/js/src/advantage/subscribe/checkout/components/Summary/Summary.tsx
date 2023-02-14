@@ -1,6 +1,6 @@
 import React from "react";
 import { add, format } from "date-fns";
-import { Col, Row } from "@canonical/react-components";
+import { Col, Row, Spinner } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 import useGetTaxAmount from "../../hooks/useGetTaxAmount";
 import usePreview from "../../hooks/usePreview";
@@ -35,8 +35,18 @@ function Summary({ quantity, product, action }: Props) {
       </Col>
       <Col size={8}>
         <div data-testid="subtotal">
-          {currencyFormatter.format(
-            ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
+          {!priceData ? (
+            <>
+              <Spinner /> Loading&hellip;
+            </>
+          ) : (
+            currencyFormatter.format(
+              (((priceData.subtotal
+                ? priceData.subtotal
+                : product?.price?.value) ?? 0) *
+                sanitisedQuanity) /
+                100
+            )
           )}
         </div>
       </Col>
