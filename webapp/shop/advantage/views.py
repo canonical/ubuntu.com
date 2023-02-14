@@ -93,6 +93,15 @@ def get_user_subscriptions(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
+@use_kwargs({"email": String()}, location="query")
+def get_annotated_subscriptions(advantage_mapper: AdvantageMapper, **kwargs):
+    email = kwargs.get("email")
+    subscriptions = advantage_mapper.get_annotated_subscriptions(email)
+
+    return flask.jsonify(to_dict(subscriptions))
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
 def get_account_users(advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-ua")
