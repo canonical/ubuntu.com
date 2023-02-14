@@ -29,28 +29,45 @@ function Summary({ quantity, product, action }: Props) {
     action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
 
   let totalSection = (
-    <Row className="u-no-padding u-sv1">
-      <Col size={4}>
-        <div className="u-text-light">Subtotal:</div>
-      </Col>
-      <Col size={8}>
-        <div data-testid="subtotal">
-          {!priceData ? (
-            <>
-              <Spinner /> Loading&hellip;
-            </>
-          ) : (
-            currencyFormatter.format(
-              (((priceData.subtotal
-                ? priceData.subtotal
-                : product?.price?.value) ?? 0) *
-                sanitisedQuanity) /
-                100
-            )
-          )}
-        </div>
-      </Col>
-    </Row>
+    <>
+      {priceData?.subtotal && (
+        <Row className="u-no-padding u-sv1">
+          <Col size={4}>
+            <div className="u-text-light">Discount:</div>
+          </Col>
+          <Col size={8}>
+            <div data-testid="discount">
+              {currencyFormatter.format(
+                ((product?.price?.value - priceData.subtotal) *
+                  sanitisedQuanity) /
+                  100
+              )}
+            </div>
+          </Col>
+        </Row>
+      )}
+      <Row className="u-no-padding u-sv1">
+        <Col size={4}>
+          <div className="u-text-light">Subtotal:</div>
+        </Col>
+        <Col size={8}>
+          <div data-testid="subtotal">
+            {!priceData ? (
+              <>
+                <Spinner /> Loading&hellip;
+              </>
+            ) : (
+              currencyFormatter.format(
+                (((priceData ? priceData.subtotal : product?.price?.value) ??
+                  0) *
+                  sanitisedQuanity) /
+                  100
+              )
+            )}
+          </div>
+        </Col>
+      </Row>
+    </>
   );
 
   if (taxAmount && total) {
@@ -64,6 +81,23 @@ function Summary({ quantity, product, action }: Props) {
             <Col size={8}>
               <div data-testid="for-this-period">
                 {currencyFormatter.format(total - taxAmount)}
+              </div>
+            </Col>
+          </Row>
+        )}
+        {priceData?.total && product?.price?.value !== priceData.total && (
+          <Row className="u-no-padding u-sv1">
+            <Col size={4}>
+              <div className="u-text-light">Discount:</div>
+            </Col>
+            <Col size={8}>
+              <div data-testid="discount">
+                {currencyFormatter.format(
+                  ((product?.price?.value - priceData.total) *
+                    sanitisedQuanity) /
+                    100 +
+                    taxAmount
+                )}
               </div>
             </Col>
           </Row>
@@ -90,19 +124,37 @@ function Summary({ quantity, product, action }: Props) {
     );
   } else if (priceData?.end_of_cycle) {
     totalSection = (
-      <Row className="u-no-padding u-sv1">
-        <Col size={4}>
-          <div className="u-text-light">
-            Total
-            {priceData?.end_of_cycle && " for this period"}
-          </div>
-        </Col>
-        <Col size={8}>
-          <div>
-            <b>{currencyFormatter.format(total)}</b>
-          </div>
-        </Col>
-      </Row>
+      <>
+        {priceData?.total && product?.price?.value !== priceData.total && (
+          <Row className="u-no-padding u-sv1">
+            <Col size={4}>
+              <div className="u-text-light">Discount:</div>
+            </Col>
+            <Col size={8}>
+              <div data-testid="discount">
+                {currencyFormatter.format(
+                  ((product?.price?.value - priceData.total) *
+                    sanitisedQuanity) /
+                    100
+                )}
+              </div>
+            </Col>
+          </Row>
+        )}
+        <Row className="u-no-padding u-sv1">
+          <Col size={4}>
+            <div className="u-text-light">
+              Total
+              {priceData?.end_of_cycle && " for this period"}
+            </div>
+          </Col>
+          <Col size={8}>
+            <div>
+              <b>{currencyFormatter.format(total)}</b>
+            </div>
+          </Col>
+        </Row>
+      </>
     );
   }
   return (
