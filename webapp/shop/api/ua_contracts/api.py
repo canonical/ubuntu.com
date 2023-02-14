@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from requests.exceptions import HTTPError
 
@@ -418,6 +418,21 @@ class UAContractsAPI:
         )
 
         return {}
+
+    def get_annotated_contract_items(
+        self, email: str = "", product_tags: List[str] = []
+    ) -> List[dict]:
+        params = {"email": email}
+
+        if product_tags:
+            params["productTags"] = product_tags
+
+        return self._request(
+            method="get",
+            path="/web/annotated-contract-items",
+            params=params,
+            error_rules=["default"],
+        ).json()
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:
