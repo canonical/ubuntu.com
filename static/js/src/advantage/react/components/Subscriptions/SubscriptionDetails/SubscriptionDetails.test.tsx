@@ -1,18 +1,17 @@
 import React from "react";
-import { mount } from "enzyme";
 import { QueryClient, QueryClientProvider } from "react-query";
-
+import { mount } from "enzyme";
+import { Notification } from "@canonical/react-components";
+import { UserSubscriptionType } from "advantage/api/enum";
+import { UserSubscription } from "advantage/api/types";
+import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
 import {
   freeSubscriptionFactory,
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
-import SubscriptionDetails from "./SubscriptionDetails";
-import { UserSubscription } from "advantage/api/types";
 import SubscriptionEdit from "../SubscriptionEdit";
-import { Notification } from "@canonical/react-components";
-import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
-import { UserSubscriptionType } from "advantage/api/enum";
+import SubscriptionDetails from "./SubscriptionDetails";
 
 describe("SubscriptionDetails", () => {
   let queryClient: QueryClient;
@@ -101,6 +100,79 @@ describe("SubscriptionDetails", () => {
     expect(wrapper.find("Button[data-test='support-button']").exists()).toBe(
       false
     );
+  });
+
+  it("shows the renewal button for renewals", () => {
+    const contract = userSubscriptionFactory.build({
+      type: UserSubscriptionType.Legacy,
+      statuses: userSubscriptionStatusesFactory.build({
+        is_renewable: true,
+      }),
+    });
+
+    queryClient.setQueryData("userSubscriptions", [contract]);
+
+    const wrapper = mount(
+      <QueryClientProvider client={queryClient}>
+        <SubscriptionDetails
+          onCloseModal={jest.fn()}
+          selectedId={contract.id}
+          setHasUnsavedChanges={jest.fn()}
+        />
+      </QueryClientProvider>
+    );
+    expect(wrapper.find("Button[data-test='renewal-button']").exists()).toBe(
+      true
+    );
+  });
+
+  it("shows the renewal button for expired yearly shop purchases", () => {
+    const contracts = [
+      userSubscriptionFactory.build({
+        type: UserSubscriptionType.Yearly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_expired: true,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        type: UserSubscriptionType.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_expired: true,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        type: UserSubscriptionType.Yearly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_in_grace_period: true,
+        }),
+      }),
+      userSubscriptionFactory.build({
+        type: UserSubscriptionType.Monthly,
+        statuses: userSubscriptionStatusesFactory.build({
+          is_in_grace_period: true,
+        }),
+      }),
+    ];
+
+    queryClient.setQueryData("userSubscriptions", contracts);
+
+    contracts.forEach((contract) => {
+      const wrapper = mount(
+        <QueryClientProvider client={queryClient}>
+          <SubscriptionDetails
+            onCloseModal={jest.fn()}
+            selectedId={contract.id}
+            setHasUnsavedChanges={jest.fn()}
+          />
+        </QueryClientProvider>
+      );
+
+      const button = wrapper
+        .find("Button[data-test='renewal-button']")
+        .exists();
+
+      expect(button).toBe(true);
+    });
   });
 
   it("closes the edit form when closing the modal", () => {

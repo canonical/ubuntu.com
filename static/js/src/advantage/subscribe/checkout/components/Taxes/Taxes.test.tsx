@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { fireEvent, render, screen } from "@testing-library/react";
+import * as useCustomerInfo from "../../hooks/useCustomerInfo";
 import { UAProduct } from "../../utils/test/Mocks";
 import Taxes from "./Taxes";
 
@@ -103,5 +104,69 @@ describe("PaymentMethodSummary", () => {
     fireEvent.change(getByTestId("select-state"), {
       target: { value: "Texas" },
     });
+  });
+
+  it("sets status right if country is stored", () => {
+    jest.spyOn(useCustomerInfo, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: {
+          customerInfo: {
+            address: {
+              country: "GB",
+            },
+          },
+        },
+        isError: false,
+        isSuccess: true,
+        error: undefined,
+      };
+    });
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Taxes
+              product={UAProduct}
+              quantity={1}
+              setError={jest.fn()}
+              setTaxSaved={jest.fn()}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    expect(screen.getByRole("button", { name: "Edit" })).toBeInTheDocument();
+  });
+
+  it("sets status right if country is not stored", () => {
+    jest.spyOn(useCustomerInfo, "default").mockImplementation(() => {
+      return {
+        isLoading: false,
+        data: undefined,
+        isError: false,
+        isSuccess: true,
+        error: undefined,
+      };
+    });
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={{}} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Taxes
+              product={UAProduct}
+              quantity={1}
+              setError={jest.fn()}
+              setTaxSaved={jest.fn()}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
   });
 });
