@@ -46,6 +46,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
   const [isEditing, setIsEditing] = useState(
     !window.accountId || !defaultPaymentMethod
   );
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
 
@@ -67,6 +68,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
 
   const onSaveClick = () => {
     checkoutEvent(window.GAFriendlyProduct, "2");
+    setIsButtonDisabled(true);
 
     paymentMethodMutation.mutate(
       { formData: values },
@@ -77,11 +79,13 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             getUserInfoFromVariables(data, variables.formData)
           );
           queryClient.invalidateQueries("preview");
+          setIsButtonDisabled(false);
           setIsEditing(false);
         },
         onError: (error) => {
           setFieldValue("Description", false);
           setFieldValue("TermsAndConditions", false);
+          setIsButtonDisabled(false);
           document.querySelector("h1")?.scrollIntoView();
 
           if (error instanceof Error)
@@ -373,7 +377,11 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
               Cancel
             </ActionButton>
           ) : null}
-          <ActionButton onClick={toggleEditing} loading={isSubmitting}>
+          <ActionButton
+            onClick={toggleEditing}
+            loading={isSubmitting}
+            disabled={isButtonDisabled}
+          >
             {isEditing ? "Save" : "Edit"}
           </ActionButton>
         </div>

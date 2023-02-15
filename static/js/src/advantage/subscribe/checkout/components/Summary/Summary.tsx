@@ -31,7 +31,7 @@ function Summary({ quantity, product, action }: Props) {
   let totalSection = (
     <Row className="u-no-padding u-sv1">
       <Col size={4}>
-        <div className="u-text-light">Subtotal:</div>
+        <div className="u-text-light">Total:</div>
       </Col>
       <Col size={8}>
         <div data-testid="subtotal">
