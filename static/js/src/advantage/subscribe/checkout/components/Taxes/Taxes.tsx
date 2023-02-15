@@ -26,9 +26,16 @@ type TaxesProps = {
   quantity: number;
   setTaxSaved: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  setIsSummaryLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
+const Taxes = ({
+  product,
+  quantity,
+  setTaxSaved,
+  setError,
+  setIsSummaryLoading,
+}: TaxesProps) => {
   const {
     values,
     errors,
@@ -83,6 +90,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
         },
       });
       setTaxSaved(true);
+      setIsSummaryLoading(true);
     } else {
       postCustomerTaxInfoMutation.mutate(
         {
@@ -130,6 +138,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
         }
       );
       setTaxSaved(true);
+      setIsSummaryLoading(true);
     }
   };
 
