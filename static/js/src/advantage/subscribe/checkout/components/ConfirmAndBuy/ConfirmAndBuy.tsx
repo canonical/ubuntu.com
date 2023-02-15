@@ -49,11 +49,15 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           defaultChecked={false}
         />
       </Col>
-      <ReCAPTCHA
-        sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
-        onChange={onCaptchaChange}
-      />
+      <div className="p-strip is-shallow u-no-padding--top">
+        <ReCAPTCHA
+          sitekey={process.env.CAPTCHA_TESTING_API_KEY ?? ""}
+          onChange={onCaptchaChange}
+        />
+      </div>
+      <hr/>
     </Row>
+
   );
 };
 

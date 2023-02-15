@@ -18,7 +18,8 @@ const SignIn = () => {
   };
 
   return (
-    <Row>
+    <div>
+    <Row className="p-strip is-shallow u-no-padding--top">
       <Col size={12}>
         <p>
           Sign in to add new subscriptions or to renew existing subscriptions.
@@ -27,8 +28,10 @@ const SignIn = () => {
           Sign in with Ubuntu One
         </Button>
       </Col>
+    </Row>
+    <hr />
+    <Row>
       <Col size={12}>
-        <hr />
         <p>
           <strong>Don&apos;t have an Ubuntu One account? Start here</strong>
         </p>
@@ -47,6 +50,7 @@ const SignIn = () => {
         />
       </Col>
     </Row>
+    </div>
   );
 };
 
