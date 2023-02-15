@@ -18,7 +18,6 @@ function Summary({ quantity, product, action }: Props) {
   const sanitisedQuanity = Number(quantity) ?? 0;
   const { data: taxData } = useGetTaxAmount();
   const { data: preview } = usePreview({ quantity, product, action });
-
   const priceData: TaxInfo | undefined = preview || taxData;
 
   const taxAmount = (priceData?.tax ?? 0) / 100;
@@ -30,25 +29,27 @@ function Summary({ quantity, product, action }: Props) {
 
   let totalSection = (
     <>
-      {priceData?.subtotal && (
-        <Row className="u-no-padding u-sv1">
-          <Col size={4}>
-            <div className="u-text-light">Discount:</div>
-          </Col>
-          <Col size={8}>
-            <div data-testid="discount">
-              {currencyFormatter.format(
-                ((product?.price?.value - priceData.subtotal) *
-                  sanitisedQuanity) /
-                  100
-              )}
-            </div>
-          </Col>
-        </Row>
-      )}
+      {priceData?.subtotal &&
+        action === "offer" &&
+        priceData?.subtotal !== product?.price?.value && (
+          <Row className="u-no-padding u-sv1">
+            <Col size={4}>
+              <div className="u-text-light">Discount:</div>
+            </Col>
+            <Col size={8}>
+              <div data-testid="discount">
+                {currencyFormatter.format(
+                  ((product?.price?.value - priceData.subtotal) *
+                    sanitisedQuanity) /
+                    100
+                )}
+              </div>
+            </Col>
+          </Row>
+        )}
       <Row className="u-no-padding u-sv1">
         <Col size={4}>
-          <div className="u-text-light">Subtotal:</div>
+          <div className="u-text-light">Total:</div>
         </Col>
         <Col size={8}>
           <div data-testid="subtotal">
@@ -85,75 +86,93 @@ function Summary({ quantity, product, action }: Props) {
             </Col>
           </Row>
         )}
-        {priceData?.total && product?.price?.value !== priceData.total && (
-          <Row className="u-no-padding u-sv1">
-            <Col size={4}>
-              <div className="u-text-light">Discount:</div>
-            </Col>
-            <Col size={8}>
-              <div data-testid="discount">
-                {currencyFormatter.format(
-                  ((product?.price?.value - priceData.total) *
-                    sanitisedQuanity) /
-                    100 +
-                    taxAmount
-                )}
-              </div>
-            </Col>
-          </Row>
+        {!priceData?.total ? (
+          <>
+            <Spinner /> Loading&hellip;
+          </>
+        ) : (
+          <>
+            {action === "offer" && product?.price?.value !== priceData.total && (
+              <Row className="u-no-padding u-sv1">
+                <Col size={4}>
+                  <div className="u-text-light">Discount:</div>
+                </Col>
+                <Col size={8}>
+                  <div data-testid="discount">
+                    {currencyFormatter.format(
+                      ((product?.price?.value - priceData.total) *
+                        sanitisedQuanity) /
+                        100 +
+                        taxAmount
+                    )}
+                  </div>
+                </Col>
+              </Row>
+            )}
+            <Row className="u-no-padding u-sv1">
+              <Col size={4}>
+                <div className="u-text-light">Tax:</div>
+              </Col>
+              <Col size={8}>
+                <div data-testid="tax">
+                  {currencyFormatter.format(taxAmount)}
+                </div>
+              </Col>
+            </Row>
+            <Row className="u-no-padding u-sv1">
+              <Col size={4}>
+                <div className="u-text-light">Total</div>
+              </Col>
+              <Col size={8}>
+                <div data-testid="total">
+                  <b>{currencyFormatter.format(total)}</b>
+                </div>
+              </Col>
+            </Row>
+          </>
         )}
-        <Row className="u-no-padding u-sv1">
-          <Col size={4}>
-            <div className="u-text-light">Tax:</div>
-          </Col>
-          <Col size={8}>
-            <div data-testid="tax">{currencyFormatter.format(taxAmount)}</div>
-          </Col>
-        </Row>
-        <Row className="u-no-padding u-sv1">
-          <Col size={4}>
-            <div className="u-text-light">Total</div>
-          </Col>
-          <Col size={8}>
-            <div data-testid="total">
-              <b>{currencyFormatter.format(total)}</b>
-            </div>
-          </Col>
-        </Row>
       </>
     );
   } else if (priceData?.end_of_cycle) {
     totalSection = (
       <>
-        {priceData?.total && product?.price?.value !== priceData.total && (
-          <Row className="u-no-padding u-sv1">
-            <Col size={4}>
-              <div className="u-text-light">Discount:</div>
-            </Col>
-            <Col size={8}>
-              <div data-testid="discount">
-                {currencyFormatter.format(
-                  ((product?.price?.value - priceData.total) *
-                    sanitisedQuanity) /
-                    100
-                )}
-              </div>
-            </Col>
-          </Row>
+        {!priceData?.total ? (
+          <>
+            <Spinner /> Loading&hellip;
+          </>
+        ) : (
+          <>
+            {action === "offer" && product?.price?.value !== priceData.total && (
+              <Row className="u-no-padding u-sv1">
+                <Col size={4}>
+                  <div className="u-text-light">Discount:</div>
+                </Col>
+                <Col size={8}>
+                  <div data-testid="discount">
+                    {currencyFormatter.format(
+                      ((product?.price?.value - priceData.total) *
+                        sanitisedQuanity) /
+                        100
+                    )}
+                  </div>
+                </Col>
+              </Row>
+            )}
+            <Row className="u-no-padding u-sv1">
+              <Col size={4}>
+                <div className="u-text-light">
+                  Total
+                  {priceData?.end_of_cycle && " for this period"}
+                </div>
+              </Col>
+              <Col size={8}>
+                <div>
+                  <b>{currencyFormatter.format(total)}</b>
+                </div>
+              </Col>
+            </Row>
+          </>
         )}
-        <Row className="u-no-padding u-sv1">
-          <Col size={4}>
-            <div className="u-text-light">
-              Total
-              {priceData?.end_of_cycle && " for this period"}
-            </div>
-          </Col>
-          <Col size={8}>
-            <div>
-              <b>{currencyFormatter.format(total)}</b>
-            </div>
-          </Col>
-        </Row>
       </>
     );
   }
@@ -171,17 +190,6 @@ function Summary({ quantity, product, action }: Props) {
             data-testid="name"
             dangerouslySetInnerHTML={{ __html: productName ?? "" }}
           />
-        </Col>
-      </Row>
-      <Row className="u-no-padding u-sv1">
-        <Col size={4}>
-          <div className="u-text-light">{units}:</div>
-        </Col>
-        <Col size={8}>
-          <div data-testid="machines">
-            {quantity} x{" "}
-            {currencyFormatter.format((product?.price?.value ?? 0) / 100)}
-          </div>
         </Col>
       </Row>
       <Row className="u-no-padding u-sv1">
@@ -216,6 +224,17 @@ function Summary({ quantity, product, action }: Props) {
             </div>
           </Col>
         )}
+      </Row>
+      <Row className="u-no-padding u-sv1">
+        <Col size={4}>
+          <div className="u-text-light">{units}:</div>
+        </Col>
+        <Col size={8}>
+          <div data-testid="machines">
+            {quantity} x{" "}
+            {currencyFormatter.format((product?.price?.value ?? 0) / 100)}
+          </div>
+        </Col>
       </Row>
       {totalSection}
     </section>
