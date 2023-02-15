@@ -187,6 +187,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                             },
                         ]
                     )
+
                 exams.append(
                     {
                         "name": name,
@@ -301,7 +302,7 @@ def cred_exam(trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
 def cred_provision(ua_contracts_api, trueability_api, **_):
-    contract_item_id = flask.request.args.get("contractItemID")
+    contract_item_id = flask.request.args.get("contractItemID", type=int)
 
     if contract_item_id is None:
         return flask.redirect("/credentials/your-exams")
@@ -318,7 +319,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
 
     exam_contract = None
     for item in exam_contracts:
-        if int(contract_item_id) == item["id"]:
+        if contract_item_id == item["id"]:
             exam_contract = item
             break
 
@@ -361,6 +362,13 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         else:
             reservation = response["assessment_reservation"]
             assessment = reservation["assessment"]
+
+    if assessment and assessment.get("state") in [
+        "notified",
+        "released",
+        "in_progress",
+    ]:
+        return flask.redirect(f"/credentials/exam?id={ assessment['id'] }")
 
     return flask.render_template(
         "/credentials/provision.html",
