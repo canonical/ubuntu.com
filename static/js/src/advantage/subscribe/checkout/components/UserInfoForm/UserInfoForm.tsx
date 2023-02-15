@@ -309,22 +309,22 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
       <Field
         as={Input}
         type="text"
-        id="postalCode"
-        name="postalCode"
-        label="Postal code:"
-        stacked
-        validate={validateRequired}
-        error={touched?.postalCode && errors?.postalCode}
-      />
-      <Field
-        as={Input}
-        type="text"
         id="city"
         name="city"
         label="City:"
         stacked
         validate={validateRequired}
         error={touched?.city && errors?.city}
+      />
+      <Field
+        as={Input}
+        type="text"
+        id="postalCode"
+        name="postalCode"
+        label="Postal code:"
+        stacked
+        validate={validateRequired}
+        error={touched?.postalCode && errors?.postalCode}
       />
     </>
   );
@@ -334,6 +334,45 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
       {isEditing ? editMode : displayMode}
       {window.accountId ? (
         <div className="u-align--right">
+          {isEditing ? (
+            <ActionButton
+              onClick={() => {
+                if (touched?.buyingFor) {
+                  setFieldValue(
+                    "buyingFor",
+                    userInfo?.accountInfo?.name ? "organisation" : "myself"
+                  );
+                }
+                if (touched?.organisationName) {
+                  setFieldValue(
+                    "organisationName",
+                    userInfo?.accountInfo?.name
+                  );
+                }
+                if (touched?.name) {
+                  setFieldValue("name", userInfo?.customerInfo?.name);
+                }
+                if (touched?.address) {
+                  setFieldValue(
+                    "address",
+                    userInfo?.customerInfo?.address?.line1
+                  );
+                }
+                if (touched?.city) {
+                  setFieldValue("city", userInfo?.customerInfo?.address?.city);
+                }
+                if (touched?.postalCode) {
+                  setFieldValue(
+                    "postalCode",
+                    userInfo?.customerInfo?.address?.postal_code
+                  );
+                }
+                setIsEditing(false);
+              }}
+            >
+              Cancel
+            </ActionButton>
+          ) : null}
           <ActionButton onClick={toggleEditing} loading={isSubmitting}>
             {isEditing ? "Save" : "Edit"}
           </ActionButton>

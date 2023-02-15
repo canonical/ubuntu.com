@@ -49,7 +49,7 @@ const FreeTrial = () => {
             </p>
             <p>
               You can cancel your subscription before your free trial ends in
-              your UA Dashboard
+              your Ubuntu Pro Dashboard
             </p>
           </>
         ) : null}
