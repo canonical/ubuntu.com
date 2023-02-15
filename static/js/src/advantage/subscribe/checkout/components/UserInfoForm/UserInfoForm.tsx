@@ -215,6 +215,13 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
       >
         <div
           id="card-element"
+          style={{
+            backgroundColor: "#F5F5F6",
+            borderBottom: "1px solid",
+            padding: "calc(.4rem - 1px)",
+            paddingLeft: "0.5rem",
+            paddingRight: "0.5rem"
+          }}
           className={`${cardFieldHasFocus ? "StripeElement--focus" : ""} ${
             cardFieldError ? "StripeElement--invalid" : ""
           }`}
@@ -233,10 +240,10 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
                   lineHeight: "24px",
 
                   "::placeholder": {
-                    color: "#666",
+                    color: "#000",
                   },
                   ":-webkit-autofill": {
-                    color: "#666",
+                    color: "#000",
                   },
                 },
               },
