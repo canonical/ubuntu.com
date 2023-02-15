@@ -165,7 +165,7 @@
   selectField.changed = false;
   selectField.onfocus = selectFocussed;
   selectField.onchange = selectChanged;
-  selectField.onkeydown = selectKeyed;
+  selectField.onkeyup = selectKeyed;
   selectField.onclick = selectClicked;
 })();
 
@@ -196,21 +196,20 @@ function selectFocussed() {
 }
 
 function selectKeyed(e) {
-	var theEvent;
-	var keyCodeTab = "9";
-	var keyCodeEnter = "13";
-	var keyCodeEsc = "27";
+	var theKeyPressed;
+  var validConfirmKeys = [9, "Tab", 13, "Enter"]
+  var validCancleKeys = [27, "Escape", "esc"]
 
 	if (e) {
-    theEvent = e;
+    theKeyPressed = e.key || e.keyCode;
   } else {
     return false;
   }
 
-	if ((theEvent.keyCode == keyCodeEnter || theEvent.keyCode == keyCodeTab) &&   this.value != this.initValue) {
+	if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
 		this.changed = true;
 		selectChanged(this);
-	} else if (theEvent.keyCode == keyCodeEsc) {
+	} else if (validCancleKeys.includes(theKeyPressed)) {
 		this.value = this.initValue;
 	} else {
 		this.changed = false;
