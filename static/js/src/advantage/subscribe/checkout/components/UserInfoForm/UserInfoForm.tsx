@@ -362,7 +362,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
   return (
     <Row>
       {isEditing ? editMode : displayMode}
-      {window.accountId ? (
+      {window.accountId && defaultPaymentMethod ? (
         <>
           <hr />
           <div
