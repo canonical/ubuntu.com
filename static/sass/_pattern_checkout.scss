@@ -11,8 +11,9 @@
       $bullet-width: map-get($line-heights, default-text);
       $bullet-width-mobile: map-get($line-heights, default-text);
       $i: 2;
-      $bullet-margin: calc((map-get($line-heights, h#{$i}) - $bullet-width) / 2) + map-get($nudges, h#{$i});
-      $bullet-margin-mobile: calc((map-get($line-heights, h#{$i}-mobile) - $bullet-width-mobile) / 2) + map-get($nudges, h#{$i});
+      $bullet-margin: calc((map-get($line-heights, h#{$i}) - $bullet-width) / 2) + map-get($nudges, h#{$i}) - 0.25rem;
+      $bullet-margin-mobile: calc((map-get($line-heights, h#{$i}-mobile) - $bullet-width-mobile) / 2) + map-get($nudges, h#{$i}) - 0.25rem;
+      padding-left: 2.5rem;
 
       &::before {
         // Need to account for the 1px border:

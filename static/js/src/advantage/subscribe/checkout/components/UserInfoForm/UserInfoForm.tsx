@@ -361,7 +361,10 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
       {window.accountId ? (
         <>
           <hr />
-          <div className="u-align--right" style={{ marginTop: 25 }}>
+          <div
+            className="u-align--right"
+            style={{ marginTop: "calc(.5rem - 1.5px)" }}
+          >
             {isEditing ? (
               <ActionButton
                 onClick={() => {

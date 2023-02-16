@@ -288,6 +288,7 @@ const BuyButton = ({
       className="u-float-right u-fixed-width"
       appearance="positive"
       aria-label="Buy"
+      style={{ marginTop: "calc(.5rem - 1.5px)" }}
       disabled={isButtonDisabled}
       onClick={onPayClick}
       loading={isLoading}
