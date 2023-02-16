@@ -28,6 +28,8 @@ const usePollPurchaseStatus = () => {
         throw new Error("Missing invoice");
       }
 
+      window.invoiceId = res.invoice.id;
+
       const {
         payment_status: { status, pi_client_secret },
       } = res.invoice;
@@ -47,12 +49,7 @@ const usePollPurchaseStatus = () => {
         }
       }
 
-      //Card declined
       if (status === "need_another_payment_method") {
-        // setTimeout(() => {
-        //   console.log("wait");
-        // }, 5000);
-
         const response = await fetch(
           `/account/purchase/${pendingPurchaseID}/invoices/${res.invoice.id}${queryString}`,
           {

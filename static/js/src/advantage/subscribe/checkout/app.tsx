@@ -42,6 +42,7 @@ declare global {
     marketplace: UserSubscriptionMarketplace;
     canTrial?: boolean;
     currentPaymentId: string;
+    invoiceId: string;
     previousPurchaseIds?: { monthly: string; yearly: string };
     GAFriendlyProduct?: {
       id: string;
@@ -65,6 +66,7 @@ window.previousPurchaseIds = {
 };
 window.canTrial = undefined;
 window.currentPaymentId = "";
+window.invoiceId = "";
 window.accountId = "";
 
 window.marketplace = product.marketplace;

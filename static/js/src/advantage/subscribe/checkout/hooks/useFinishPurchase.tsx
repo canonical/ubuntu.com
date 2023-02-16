@@ -117,6 +117,15 @@ const useFinishPurchase = () => {
       }
 
       if (window.currentPaymentId) {
+        await fetch(
+          `/account/purchase/${window.currentPaymentId}/invoices/${window.invoiceId}`,
+          {
+            cache: "no-store",
+            credentials: "include",
+            method: "POST",
+          }
+        );
+
         queryClient.invalidateQueries("pendingPurchase");
 
         // prevent re-purchase attemp
