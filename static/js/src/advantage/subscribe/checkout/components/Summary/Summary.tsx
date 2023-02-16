@@ -5,6 +5,7 @@ import { currencyFormatter } from "advantage/react/utils";
 import useGetTaxAmount from "../../hooks/useGetTaxAmount";
 import usePreview from "../../hooks/usePreview";
 import { Action, Product, TaxInfo } from "../../utils/types";
+import useCustomerInfo from "../../hooks/useCustomerInfo";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -33,14 +34,19 @@ function Summary({
   const planType = action !== "offer" ? "Plan type" : "Products";
   const productName =
     action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
+  const { data: userInfo } = useCustomerInfo();
 
   useEffect(() => {
-    if (!preview) {
-      setIsSummaryLoading(true);
-    } else {
+    if (!userInfo) {
       setIsSummaryLoading(false);
+    } else {
+      if (!priceData) {
+        setIsSummaryLoading(true);
+      } else {
+        setIsSummaryLoading(false);
+      }
     }
-  }, [preview]);
+  }, [userInfo, priceData]);
 
   let totalSection = (
     <>

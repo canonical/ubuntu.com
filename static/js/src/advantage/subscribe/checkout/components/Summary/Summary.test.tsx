@@ -57,7 +57,13 @@ describe("Summary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Summary quantity={3} product={UAProduct} action={"purchase"} />
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              isSummaryLoading={false}
+              setIsSummaryLoading={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -98,7 +104,13 @@ describe("Summary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Summary quantity={3} product={UAProduct} action={"purchase"} />
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              isSummaryLoading={false}
+              setIsSummaryLoading={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -127,7 +139,13 @@ describe("Summary", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Summary quantity={3} product={UAProduct} action={"purchase"} />
+            <Summary
+              quantity={3}
+              product={UAProduct}
+              action={"purchase"}
+              isSummaryLoading={false}
+              setIsSummaryLoading={jest.fn()}
+            />
           </Elements>
         </Formik>
       </QueryClientProvider>

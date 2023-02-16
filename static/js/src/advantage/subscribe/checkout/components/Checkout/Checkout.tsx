@@ -16,17 +16,15 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  isSummaryLoading: boolean;
-  setIsSummaryLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Checkout = ({ product, quantity, action }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const [isCardValid, setCardValid] = useState<boolean>(false);
   const [isTaxSaved, setTaxSaved] = useState<boolean>(false);
-  const [isSummaryLoading, setIsSummaryLoading] = useState<boolean>(true);
   const { data: userInfo } = useCustomerInfo();
   const isGuest = !userInfo?.customerInfo?.email;
+  const [isSummaryLoading, setIsSummaryLoading] = useState<boolean>(!userInfo);
 
   const initialValues = getInitialFormValues(
     product,

@@ -26,6 +26,7 @@ describe("PaymentMethodSummary", () => {
               quantity={1}
               setTaxSaved={jest.fn()}
               setError={jest.fn()}
+              setIsSummaryLoading={jest.fn()}
             />
           </Elements>
         </Formik>
@@ -46,6 +47,7 @@ describe("PaymentMethodSummary", () => {
               quantity={1}
               setError={jest.fn()}
               setTaxSaved={jest.fn()}
+              setIsSummaryLoading={jest.fn()}
             />
           </Elements>
         </Formik>
@@ -68,6 +70,7 @@ describe("PaymentMethodSummary", () => {
               quantity={1}
               setError={jest.fn()}
               setTaxSaved={jest.fn()}
+              setIsSummaryLoading={jest.fn()}
             />
           </Elements>
         </Formik>
@@ -92,6 +95,7 @@ describe("PaymentMethodSummary", () => {
               quantity={1}
               setError={jest.fn()}
               setTaxSaved={jest.fn()}
+              setIsSummaryLoading={jest.fn()}
             />
           </Elements>
         </Formik>
@@ -132,6 +136,7 @@ describe("PaymentMethodSummary", () => {
               quantity={1}
               setError={jest.fn()}
               setTaxSaved={jest.fn()}
+              setIsSummaryLoading={jest.fn()}
             />
           </Elements>
         </Formik>
@@ -161,6 +166,7 @@ describe("PaymentMethodSummary", () => {
               quantity={1}
               setError={jest.fn()}
               setTaxSaved={jest.fn()}
+              setIsSummaryLoading={jest.fn()}
             />
           </Elements>
         </Formik>
