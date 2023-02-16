@@ -33,7 +33,7 @@ const SignIn = () => {
     <Row>
       <Col size={12}>
         <p>
-          <strong>Don&apos;t have an Ubuntu One account? Start here</strong>
+          <strong>Don&apos;t have an Ubuntu One account? Start here:</strong>
         </p>
         <Field
           as={Input}

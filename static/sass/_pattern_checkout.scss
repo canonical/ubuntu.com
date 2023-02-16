@@ -5,7 +5,29 @@
     }
 
     .p-stepped-list__title {
-      font-size: 2.2281872349rem;
+      //TODO: remove this once this issue is fixed {@albert insert react issue on vanilla here}
+      @extend %vf-heading-2;
+      
+      $bullet-width: map-get($line-heights, default-text);
+      $bullet-width-mobile: map-get($line-heights, default-text);
+      $i: 2;
+      $bullet-margin: calc((map-get($line-heights, h#{$i}) - $bullet-width) / 2) + map-get($nudges, h#{$i});
+      $bullet-margin-mobile: calc((map-get($line-heights, h#{$i}-mobile) - $bullet-width-mobile) / 2) + map-get($nudges, h#{$i});
+
+      &::before {
+        // Need to account for the 1px border:
+        line-height: calc($bullet-width-mobile - 2px);
+        margin-right: $sph--large;
+        margin-top: $bullet-margin-mobile;
+        width: $bullet-width-mobile;
+
+        @media (min-width: $breakpoint-heading-threshold) {
+          // Need to account for the 1px border:
+          line-height: calc($bullet-width - 2px);
+          margin-top: $bullet-margin;
+          width: $bullet-width;
+        }
+      }
     }
 
     .email-field {
