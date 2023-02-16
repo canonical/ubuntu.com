@@ -91,6 +91,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
         {
           onSuccess: () => {
             queryClient.invalidateQueries("preview");
+            queryClient.invalidateQueries("customerInfo");
           },
           onError: (error) => {
             setFieldValue("Description", false);
@@ -176,48 +177,59 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
 
   const displayMode = (
     <>
-      <Col size={4}>
-        <p>Your country:</p>
-      </Col>
-      <Col size={8}>
-        <p>
-          <strong>{getLabel(values.country ?? "", countries)}</strong>
-        </p>
-      </Col>
-      {values.usState ? (
+      <Row>
+        <Col size={4}>
+          <p>Country/Region:</p>
+        </Col>
+        <Col size={8}>
+          <p>
+            <strong>{getLabel(values.country ?? "", countries)}</strong>
+          </p>
+        </Col>
+      </Row>
+      {values.country == "US" && values.usState ? (
         <>
-          <Col size={4}>
-            <p>Your state:</p>
-          </Col>
-          <Col size={8}>
-            <p>
-              <strong>{getLabel(values.usState, USStates)}</strong>
-            </p>
-          </Col>
+          <hr />
+          <Row>
+            <Col size={4}>
+              <p>Your state:</p>
+            </Col>
+            <Col size={8}>
+              <p>
+                <strong>{getLabel(values.usState, USStates)}</strong>
+              </p>
+            </Col>
+          </Row>
         </>
       ) : null}
-      {values.caProvince ? (
+      {values.country == "CA" && values.caProvince ? (
         <>
-          <Col size={4}>
-            <p>Your province:</p>
-          </Col>
-          <Col size={8}>
-            <p>
-              <strong>{getLabel(values.caProvince, caProvinces)}</strong>
-            </p>
-          </Col>
+          <hr />
+          <Row>
+            <Col size={4}>
+              <p>Your province:</p>
+            </Col>
+            <Col size={8}>
+              <p>
+                <strong>{getLabel(values.caProvince, caProvinces)}</strong>
+              </p>
+            </Col>
+          </Row>
         </>
       ) : null}
       {vatCountries.includes(values.country ?? "") ? (
         <>
-          <Col size={4}>
-            <p>VAT number:</p>
-          </Col>
-          <Col size={8}>
-            <p>
-              <strong>{values.VATNumber ? values.VATNumber : "None"}</strong>
-            </p>
-          </Col>
+          <hr />
+          <Row>
+            <Col size={4}>
+              <p>VAT number:</p>
+            </Col>
+            <Col size={8}>
+              <p>
+                <strong>{values.VATNumber ? values.VATNumber : "None"}</strong>
+              </p>
+            </Col>
+          </Row>
         </>
       ) : null}
     </>
@@ -282,9 +294,48 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
   return (
     <Row>
       {isEditing ? editMode : displayMode}
-      <div className="u-align--right">
+      <hr />
+      <div
+        className="u-align--right"
+        style={{ marginTop: "calc(.5rem - 1.5px)" }}
+      >
         {isEditing ? (
-          <ActionButton onClick={onSaveClick}>Save</ActionButton>
+          <>
+            {window.accountId ? (
+              <ActionButton
+                onClick={() => {
+                  if (touched?.country) {
+                    setFieldValue(
+                      "country",
+                      userInfo?.customerInfo?.address?.country
+                    );
+                  }
+                  if (touched?.usState) {
+                    setFieldValue(
+                      "usState",
+                      userInfo?.customerInfo?.address?.state
+                    );
+                  }
+                  if (touched?.caProvince) {
+                    setFieldValue(
+                      "caProvince",
+                      userInfo?.customerInfo?.address?.state
+                    );
+                  }
+                  if (touched?.VATNumber) {
+                    setFieldValue(
+                      "VATNumber",
+                      userInfo?.customerInfo?.taxID?.value
+                    );
+                  }
+                  setIsEditing(false);
+                }}
+              >
+                Cancel
+              </ActionButton>
+            ) : null}
+            <ActionButton onClick={onSaveClick}>Save</ActionButton>
+          </>
         ) : (
           <ActionButton onClick={onEditClick}>Edit</ActionButton>
         )}
