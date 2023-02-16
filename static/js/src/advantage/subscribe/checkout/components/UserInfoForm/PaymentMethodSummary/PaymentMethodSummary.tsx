@@ -18,7 +18,7 @@ function PaymentMethodSummary() {
     <>
       <Row className="u-no-padding">
         <Col size={6} className="u-vertically-center">
-          <p className="u-text-light">Payment method:</p>
+          <p>Payment method:</p>
         </Col>
       </Row>
 

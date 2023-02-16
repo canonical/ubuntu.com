@@ -29,16 +29,18 @@ function Summary({ quantity, product, action }: Props) {
     action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
 
   let totalSection = (
-    <Row className="u-no-padding u-sv1">
+    <Row>
       <Col size={4}>
-        <div className="u-text-light">Total:</div>
+        <p>Total:</p>
       </Col>
       <Col size={8}>
-        <div data-testid="subtotal">
-          {currencyFormatter.format(
-            ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
-          )}
-        </div>
+        <p data-testid="subtotal">
+          <strong>
+            {currencyFormatter.format(
+              ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
+            )}
+          </strong>
+        </p>
       </Col>
     </Row>
   );
@@ -47,50 +49,56 @@ function Summary({ quantity, product, action }: Props) {
     totalSection = (
       <>
         {priceData?.end_of_cycle && (
-          <Row className="u-no-padding u-sv1">
-            <Col size={4}>
-              <div className="u-text-light">For this period:</div>
-            </Col>
-            <Col size={8}>
-              <div data-testid="for-this-period">
-                {currencyFormatter.format(total - taxAmount)}
-              </div>
-            </Col>
-          </Row>
+          <>
+            <Row>
+              <Col size={4}>
+                <p>For this period:</p>
+              </Col>
+              <Col size={8}>
+                <p data-testid="for-this-period">
+                  <strong>{currencyFormatter.format(total - taxAmount)}</strong>
+                </p>
+              </Col>
+            </Row>
+            <hr />
+          </>
         )}
-        <Row className="u-no-padding u-sv1">
+        <Row>
           <Col size={4}>
-            <div className="u-text-light">Tax:</div>
+            <p>Tax:</p>
           </Col>
           <Col size={8}>
-            <div data-testid="tax">{currencyFormatter.format(taxAmount)}</div>
+            <p data-testid="tax">
+              <strong>{currencyFormatter.format(taxAmount)}</strong>
+            </p>
           </Col>
         </Row>
-        <Row className="u-no-padding u-sv1">
+        <hr />
+        <Row>
           <Col size={4}>
-            <div className="u-text-light">Total</div>
+            <p>Total:</p>
           </Col>
           <Col size={8}>
-            <div data-testid="total">
-              <b>{currencyFormatter.format(total)}</b>
-            </div>
+            <p data-testid="total">
+              <strong>{currencyFormatter.format(total)}</strong>
+            </p>
           </Col>
         </Row>
       </>
     );
   } else if (priceData?.end_of_cycle) {
     totalSection = (
-      <Row className="u-no-padding u-sv1">
+      <Row>
         <Col size={4}>
-          <div className="u-text-light">
+          <p>
             Total
             {priceData?.end_of_cycle && " for this period"}
-          </div>
+          </p>
         </Col>
         <Col size={8}>
-          <div>
-            <b>{currencyFormatter.format(total)}</b>
-          </div>
+          <p>
+            <strong>{currencyFormatter.format(total)}</strong>
+          </p>
         </Col>
       </Row>
     );
@@ -100,61 +108,73 @@ function Summary({ quantity, product, action }: Props) {
       id="summary-section"
       className="p-strip is-shallow u-no-padding--top"
     >
-      <Row className="u-no-padding u-sv1">
+      <Row>
         <Col size={4}>
-          <div className="u-text-light">{planType}:</div>
+          <p>{planType}:</p>
         </Col>
         <Col size={8}>
-          <div
+          <p
+            style={{ fontWeight: "bold" }}
             data-testid="name"
             dangerouslySetInnerHTML={{ __html: productName ?? "" }}
           />
         </Col>
       </Row>
-      <Row className="u-no-padding u-sv1">
+      <hr />
+      <Row>
         <Col size={4}>
-          <div className="u-text-light">{units}:</div>
+          <p>{units}:</p>
         </Col>
         <Col size={8}>
-          <div data-testid="machines">
-            {quantity} x{" "}
-            {currencyFormatter.format((product?.price?.value ?? 0) / 100)}
-          </div>
+          <p data-testid="machines">
+            <strong>
+              {quantity} x{" "}
+              {currencyFormatter.format((product?.price?.value ?? 0) / 100)}
+            </strong>
+          </p>
         </Col>
       </Row>
-      <Row className="u-no-padding u-sv1">
+      <hr />
+      <Row>
         <Col size={4}>
-          <div className="u-text-light">Starts:</div>
+          <p>Starts:</p>
         </Col>
         <Col size={8}>
-          <div data-testid="start-date">{format(new Date(), DATE_FORMAT)}</div>
+          <p data-testid="start-date">
+            <strong>{format(new Date(), DATE_FORMAT)}</strong>
+          </p>
         </Col>
       </Row>
-      <Row className="u-no-padding u-sv1">
+      <hr />
+      <Row>
         <Col size={4}>
-          <div className="u-text-light">Ends:</div>
+          <p>Ends:</p>
         </Col>
         {priceData?.end_of_cycle ? (
           <Col size={8}>
-            <div data-testid="end-date">
-              {format(new Date(priceData?.end_of_cycle), DATE_FORMAT)}
-            </div>
-            <br />
-            <small>The same date as your existing subscription.</small>
+            <p data-testid="end-date">
+              <strong>
+                {format(new Date(priceData?.end_of_cycle), DATE_FORMAT)}
+              </strong>
+            </p>
+            <p>The same date as your existing subscription.</p>
           </Col>
         ) : (
           <Col size={8}>
-            <div data-testid="end-date">
-              {format(
-                add(new Date(), {
-                  months: product?.period === "monthly" ? 1 : 12,
-                }),
-                DATE_FORMAT
-              )}
-            </div>
+            <p data-testid="end-date">
+              <strong>
+                {format(
+                  add(new Date(), {
+                    months: product?.period === "monthly" ? 1 : 12,
+                  }),
+                  DATE_FORMAT
+                )}
+              </strong>
+            </p>
           </Col>
         )}
       </Row>
+      <hr />
       {totalSection}
     </section>
   );

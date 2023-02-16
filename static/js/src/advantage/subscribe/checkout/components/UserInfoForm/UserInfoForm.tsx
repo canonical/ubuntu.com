@@ -14,7 +14,6 @@ import { checkoutEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
 import registerPaymentMethod from "../../hooks/postCustomerInfo";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
-import { getUserInfoFromVariables } from "../../utils/helpers";
 import { FormValues } from "../../utils/types";
 import FormRow from "../FormRow";
 import PaymentMethodSummary from "./PaymentMethodSummary";
@@ -73,11 +72,8 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
     paymentMethodMutation.mutate(
       { formData: values },
       {
-        onSuccess: (data, variables) => {
-          queryClient.setQueryData(
-            "customerInfo",
-            getUserInfoFromVariables(data, variables.formData)
-          );
+        onSuccess: () => {
+          queryClient.invalidateQueries("customerInfo");
           queryClient.invalidateQueries("preview");
           setIsButtonDisabled(false);
           setIsEditing(false);
@@ -164,46 +160,65 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
 
   const displayMode = (
     <>
-      <Col size={12}>
-        <PaymentMethodSummary />
-      </Col>
+      <PaymentMethodSummary />
       {values.buyingFor === "organisation" ? (
-        <Col size={12}>
-          <h3>{values.organisationName}</h3>
-        </Col>
+        <>
+          <Row>
+            <Col size={4}>
+              <p>Organisation:</p>
+            </Col>
+            <Col size={8}>
+              <p>
+                <strong>{values.organisationName}</strong>
+              </p>
+            </Col>
+          </Row>
+          <hr />
+        </>
       ) : null}
-      <Col size={4}>
-        <p>Your name:</p>
-      </Col>
-      <Col size={8}>
-        <p>
-          <strong>{values.name}</strong>
-        </p>
-      </Col>
-      <Col size={4}>
-        <p>Billing address:</p>
-      </Col>
-      <Col size={8}>
-        <p>
-          <strong>{values.address}</strong>
-        </p>
-      </Col>
-      <Col size={4}>
-        <p>City:</p>
-      </Col>
-      <Col size={8}>
-        <p>
-          <strong>{values.city}</strong>
-        </p>
-      </Col>
-      <Col size={4}>
-        <p>Postal code:</p>
-      </Col>
-      <Col size={8}>
-        <p>
-          <strong>{values.postalCode}</strong>
-        </p>
-      </Col>
+      <Row>
+        <Col size={4}>
+          <p>Your name:</p>
+        </Col>
+        <Col size={8}>
+          <p>
+            <strong>{values.name}</strong>
+          </p>
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col size={4}>
+          <p>Billing address:</p>
+        </Col>
+        <Col size={8}>
+          <p>
+            <strong>{values.address}</strong>
+          </p>
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col size={4}>
+          <p>City:</p>
+        </Col>
+        <Col size={8}>
+          <p>
+            <strong>{values.city}</strong>
+          </p>
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col size={4}>
+          <p>Postal code:</p>
+        </Col>
+        <Col size={8}>
+          <p>
+            <strong>{values.postalCode}</strong>
+          </p>
+        </Col>
+      </Row>
     </>
   );
 
@@ -217,10 +232,10 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
           id="card-element"
           style={{
             backgroundColor: "#F5F5F6",
-            borderBottom: "1px solid",
+            borderBottom: "1.5px solid #111",
             padding: "calc(.4rem - 1px)",
             paddingLeft: "0.5rem",
-            paddingRight: "0.5rem"
+            paddingRight: "0.5rem",
           }}
           className={`${cardFieldHasFocus ? "StripeElement--focus" : ""} ${
             cardFieldError ? "StripeElement--invalid" : ""
@@ -344,54 +359,60 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
     <Row>
       {isEditing ? editMode : displayMode}
       {window.accountId ? (
-        <div className="u-align--right">
-          {isEditing ? (
+        <>
+          <hr />
+          <div className="u-align--right" style={{ marginTop: 25 }}>
+            {isEditing ? (
+              <ActionButton
+                onClick={() => {
+                  if (touched?.buyingFor) {
+                    setFieldValue(
+                      "buyingFor",
+                      userInfo?.accountInfo?.name ? "organisation" : "myself"
+                    );
+                  }
+                  if (touched?.organisationName) {
+                    setFieldValue(
+                      "organisationName",
+                      userInfo?.accountInfo?.name
+                    );
+                  }
+                  if (touched?.name) {
+                    setFieldValue("name", userInfo?.customerInfo?.name);
+                  }
+                  if (touched?.address) {
+                    setFieldValue(
+                      "address",
+                      userInfo?.customerInfo?.address?.line1
+                    );
+                  }
+                  if (touched?.city) {
+                    setFieldValue(
+                      "city",
+                      userInfo?.customerInfo?.address?.city
+                    );
+                  }
+                  if (touched?.postalCode) {
+                    setFieldValue(
+                      "postalCode",
+                      userInfo?.customerInfo?.address?.postal_code
+                    );
+                  }
+                  setIsEditing(false);
+                }}
+              >
+                Cancel
+              </ActionButton>
+            ) : null}
             <ActionButton
-              onClick={() => {
-                if (touched?.buyingFor) {
-                  setFieldValue(
-                    "buyingFor",
-                    userInfo?.accountInfo?.name ? "organisation" : "myself"
-                  );
-                }
-                if (touched?.organisationName) {
-                  setFieldValue(
-                    "organisationName",
-                    userInfo?.accountInfo?.name
-                  );
-                }
-                if (touched?.name) {
-                  setFieldValue("name", userInfo?.customerInfo?.name);
-                }
-                if (touched?.address) {
-                  setFieldValue(
-                    "address",
-                    userInfo?.customerInfo?.address?.line1
-                  );
-                }
-                if (touched?.city) {
-                  setFieldValue("city", userInfo?.customerInfo?.address?.city);
-                }
-                if (touched?.postalCode) {
-                  setFieldValue(
-                    "postalCode",
-                    userInfo?.customerInfo?.address?.postal_code
-                  );
-                }
-                setIsEditing(false);
-              }}
+              onClick={toggleEditing}
+              loading={isSubmitting}
+              disabled={isButtonDisabled}
             >
-              Cancel
+              {isEditing ? "Save" : "Edit"}
             </ActionButton>
-          ) : null}
-          <ActionButton
-            onClick={toggleEditing}
-            loading={isSubmitting}
-            disabled={isButtonDisabled}
-          >
-            {isEditing ? "Save" : "Edit"}
-          </ActionButton>
-        </div>
+          </div>
+        </>
       ) : null}
     </Row>
   );
