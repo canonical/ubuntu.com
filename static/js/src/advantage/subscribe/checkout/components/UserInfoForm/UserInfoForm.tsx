@@ -320,7 +320,11 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         label="Organisation:"
         stacked
         validate={validateOrganisationName}
-        error={touched?.organisationName && errors?.organisationName}
+        error={
+          values.buyingFor === "organisation" &&
+          touched?.organisationName &&
+          errors?.organisationName
+        }
       />
       <Field
         as={Input}
