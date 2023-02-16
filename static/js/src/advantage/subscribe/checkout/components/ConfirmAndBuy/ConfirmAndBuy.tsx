@@ -55,9 +55,8 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           onChange={onCaptchaChange}
         />
       </div>
-      <hr/>
+      <hr />
     </Row>
-
   );
 };
 

@@ -295,7 +295,10 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
     <Row>
       {isEditing ? editMode : displayMode}
       <hr />
-      <div className="u-align--right" style={{ marginTop: "calc(.5rem - 1.5px)" }}>
+      <div
+        className="u-align--right"
+        style={{ marginTop: "calc(.5rem - 1.5px)" }}
+      >
         {isEditing ? (
           <>
             {window.accountId ? (
