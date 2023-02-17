@@ -414,22 +414,22 @@ summary {
   }
 }
 .bg-light {
-  background-color: #f7f7f7;
+  background-color: $color-light;
 }
 
 .bg-mid-dark {
-  background-color: #666;
-  color: white;
+  background-color: $color-mid-dark;
+  color: $color-x-light;
   hr {
-    background-color: rgba(217, 217, 217, 0.2);
+    background-color: $colors--dark-theme--border-low-contrast;
   }
 }
 
 .bg-dark {
-  background-color: black;
-  color: white;
+  background-color: $color-x-dark;
+  color: $color-x-light;
   hr {
-    background-color: rgba(217, 217, 217, 0.2);
+    background-color: $colors--dark-theme--border-low-contrast;
   }
 }
 
