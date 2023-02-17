@@ -45,7 +45,10 @@ from webapp.context import (
 
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cred.views import (
+    activate_activation_key,
+    cred_redeem_code,
     cred_self_study,
+    cred_shop,
     cred_submit_form,
     cred_syllabus_data,
     cred_sign_up,
@@ -56,6 +59,8 @@ from webapp.shop.cred.views import (
     cred_assessments,
     cred_exam,
     cred_provision,
+    get_activation_keys,
+    rotate_activation_key,
 )
 
 from webapp.views import (
@@ -121,6 +126,7 @@ from webapp.shop.advantage.views import (
     cancel_advantage_subscriptions,
     get_account_offers,
     get_user_subscriptions,
+    get_annotated_subscriptions,
     get_contract_token,
     cancel_trial,
     get_account_users,
@@ -328,6 +334,9 @@ app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
+app.add_url_rule(
+    "/pro/subscriptions.json", view_func=get_annotated_subscriptions
+)
 app.add_url_rule(
     "/pro/contracts/<contract_id>/token", view_func=get_contract_token
 )
@@ -970,6 +979,31 @@ app.add_url_rule(
     "/credentials/provision",
     view_func=cred_provision,
     methods=["GET", "POST"],
+)
+app.add_url_rule("/credentials/shop/", view_func=cred_shop)
+app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
+app.add_url_rule(
+    "/credentials/redeem", view_func=cred_redeem_code, methods=["GET", "POST"]
+)
+app.add_url_rule(
+    "/credentials/redeem/<code>",
+    view_func=cred_redeem_code,
+    methods=["GET", "POST"],
+)
+app.add_url_rule(
+    "/credentials/keys/list",
+    view_func=get_activation_keys,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/keys/rotate/<activation_key>",
+    view_func=rotate_activation_key,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/keys/activate",
+    view_func=activate_activation_key,
+    methods=["POST"],
 )
 
 # Charmed OpenStack docs

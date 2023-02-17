@@ -41,14 +41,12 @@ def pro_page_view(advantage_mapper, **kwargs):
     subscriptions so we can display a contact form, otherwise renders the page
     without any form. Anonymous requests don't see the form either.
     """
-
     show_beta_request = False
-
     user = user_info(flask.session)
     if user:
         try:
             subscriptions = advantage_mapper.get_user_subscriptions(
-                user["email"]
+                email=None, marketplaces=["canonical-ua"]
             )
             for subscription in subscriptions:
                 if (
@@ -57,12 +55,11 @@ def pro_page_view(advantage_mapper, **kwargs):
                 ):
                     show_beta_request = True
                     break
-        except Exception as exception:
+        except Exception:
             flask.current_app.extensions["sentry"].captureException(
-                exception,
                 extra={
                     "message": "Could not get user subscriptions on pro page"
-                },
+                }
             )
 
     return flask.render_template(
@@ -93,6 +90,15 @@ def get_user_subscriptions(advantage_mapper, **kwargs):
     email = kwargs.get("email")
     user_subscriptions = advantage_mapper.get_user_subscriptions(email)
     return flask.jsonify(to_dict(user_subscriptions))
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
+@use_kwargs({"email": String()}, location="query")
+def get_annotated_subscriptions(advantage_mapper: AdvantageMapper, **kwargs):
+    email = kwargs.get("email")
+    subscriptions = advantage_mapper.get_annotated_subscriptions(email)
+
+    return flask.jsonify(to_dict(subscriptions))
 
 
 @shop_decorator(area="advantage", permission="user", response="json")

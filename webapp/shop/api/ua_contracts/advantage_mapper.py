@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.models import (
 )
 from webapp.shop.api.ua_contracts.primitives import (
     Account,
+    AnnotatedContractItem,
     Contract,
     Subscription,
     User,
@@ -29,6 +30,7 @@ from webapp.shop.api.ua_contracts.parsers import (
     parse_offers,
 )
 from webapp.shop.api.ua_contracts.schema import (
+    AnnotatedContractItemsSchema,
     PurchaseSchema,
     AccountSchema,
     InvoiceSchema,
@@ -53,6 +55,20 @@ class AdvantageMapper:
     ) -> List[Contract]:
         response = self.ua_contracts_api.get_account_contracts(
             account_id, product_tags, include_active_machines
+        )
+        contracts = response.get("contracts", [])
+
+        return parse_contracts(contracts)
+
+    def get_all_account_contracts(self, account_id: str) -> List[Contract]:
+        response = self.ua_contracts_api.get_all_account_contracts(account_id)
+        contracts = response.get("contracts", [])
+
+        return parse_contracts(contracts)
+
+    def get_activation_key_contracts(self, account_id: str) -> List[Contract]:
+        response = self.ua_contracts_api.get_activation_key_contracts(
+            account_id
         )
         contracts = response.get("contracts", [])
 
@@ -233,6 +249,14 @@ class AdvantageMapper:
             )
 
         return build_user_subscriptions(user_summary, listings)
+
+    def get_annotated_subscriptions(
+        self, email: str
+    ) -> List[AnnotatedContractItem]:
+        resp = self.ua_contracts_api.get_annotated_contract_items(email=email)
+        items = AnnotatedContractItemsSchema(many=True).load(resp)
+
+        return items
 
     def get_or_create_user_account(
         self, marketplace, customer_info, captcha_value

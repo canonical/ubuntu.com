@@ -9,7 +9,8 @@
     <div class="col-8">
       <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
         <fieldset class="u-no-margin--bottom">
-          <h3>About you</h3>
+          <legend class="u-off-screen">About you</legend>
+          <h2 class="p-heading--3">About you</h2>
           <ul class="p-list">
             <li class="p-list__item">
               <label for="firstName">First name:</label>
@@ -30,9 +31,10 @@
             {% include "shared/forms/_country.html" %}
           </ul>
         </fieldset>
-        
+
         <fieldset class="u-no-margin--bottom">
-          <h3>About your company</h3>
+          <legend class="u-off-screen">About your company</legend>
+          <h2 class="p-heading--3">About your company</h2>
           <ul class="p-list">
             <li class="p-list__item">
               <label for="company">Company name:</label>
@@ -42,12 +44,13 @@
               <label for="job-title">Job title:</label>
               <input required id="job-title" name="title" maxlength="255" type="text" />
             </li>
-            
+
           </ul>
         </fieldset>
-        
+
         <fieldset class="u-no-margin--bottom">
-          <h3>Your comments</h3>
+          <legend class="u-off-screen">Your comments</legend>
+          <h2 class="p-heading--3">Your comments</h2>
           <ul class="p-list">
             <li class="p-list__item">
               <label for="Comments_from_lead__c">What would you like to talk to us about?</label>

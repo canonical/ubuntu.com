@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from requests.exceptions import HTTPError
 
@@ -332,6 +332,44 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
+    def get_exam_contracts(self) -> dict:
+        return self._request(
+            method="get",
+            path="web/annotated-contract-items?productTags=cue",
+            error_rules=["default"],
+        ).json()
+
+    def post_assessment_reservation(
+        self,
+        contract_item_id,
+        first_name,
+        last_name,
+        timezone,
+        starts_at,
+        country_code,
+    ) -> dict:
+        return self._request(
+            method="get",
+            path="v1/cue/schedule",
+            json={
+                "contractItemID": int(contract_item_id),
+                "firstName": first_name,
+                "lastName": last_name,
+                "timezone": timezone,
+                "startsAt": starts_at,
+                "countryCode": country_code,
+            },
+            error_rules=["default"],
+        ).json()
+
+    def delete_assessment_reservation(self, contract_item_id) -> dict:
+        self._request(
+            method="delete",
+            path=f"v1/cue/item/{contract_item_id}",
+            error_rules=["default"],
+        )
+        return {}
+
     def post_magic_attach(self, request_body: dict, headers: dict) -> dict:
         self._request(
             method="post",
@@ -341,6 +379,60 @@ class UAContractsAPI:
             headers=headers,
         )
         return {"success": "true"}
+
+    def get_all_account_contracts(self, account_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/accounts/{account_id}/contracts",
+            error_rules=["default"],
+        ).json()
+
+    def get_activation_key_contracts(self, account_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=(f"v1/accounts/{account_id}/contracts?productTags=key"),
+            error_rules=["default"],
+        ).json()
+
+    def list_activation_keys(self, contract_id: str) -> dict:
+        return self._request(
+            method="get",
+            path=f"v1/keys/list/{contract_id}",
+            error_rules=["default"],
+        ).json()
+
+    def rotate_activation_key(self, request_body: dict) -> dict:
+        return self._request(
+            method="put",
+            path="v1/keys/rotate",
+            json=request_body,
+            error_rules=["default"],
+        ).json()
+
+    def activate_activation_key(self, request_body: dict) -> dict:
+        self._request(
+            method="post",
+            path="v1/keys/activate",
+            json=request_body,
+            error_rules=["default"],
+        )
+
+        return {}
+
+    def get_annotated_contract_items(
+        self, email: str = "", product_tags: List[str] = []
+    ) -> List[dict]:
+        params = {"email": email}
+
+        if product_tags:
+            params["productTags"] = product_tags
+
+        return self._request(
+            method="get",
+            path="/web/annotated-contract-items",
+            params=params,
+            error_rules=["default"],
+        ).json()
 
     def handle_error(self, error, error_rules=None):
         if not error_rules:

@@ -112,14 +112,17 @@ meta_copydoc %}
       <p>I can see that I am running version 27.13.1, so no need to update. If you run a previous version of the client,
         you have two options:</p>
       <ul class="p-list--divided has-bullets">
-        <li class="p-list__item">You could wait for the pro client update, which is now released and phased to get to
-          all Ubuntu machines, or
+        <li class="p-list__item">You could wait for the pro client update, which is now released and phased to get to all Ubuntu machines, or
         </li>
-        <li class="p-list__item">Consider bypassing the update phasing and install the client version 27.13.1 using the
-          following command:
+        <li class="p-list__item">Consider bypassing the update phasing and install the latest client version using the following command:
           <div class="p-code-snippet">
-            <pre
-              class="p-code-snippet__block">$ sudo apt install ubuntu-advantage-tools=27.13.1~$(lsb_release -rs).1</pre>
+            <pre class="p-code-snippet__block">$ sudo apt install ubuntu-advantage-tools</pre>
+          </div>
+        </li>
+        <li class="p-list__item">
+          <p>When you get the latest client, run apt update again to make sure all package data is up to date.</p>
+          <div class="p-code-snippet">
+            <pre class="p-code-snippet__block">$ sudo apt update</pre>
           </div>
         </li>
       </ul>
@@ -194,7 +197,7 @@ Try Ubuntu Pro with a free personal subscription on up to 5 machines.</pre>
       </p>
       <div class="p-code-snippet">
         <pre class="p-code-snippet__block">
-$ pro security-status -esm-apps
+$ pro security-status --esm-apps
 1919 packages installed:
 	10 packages from Ubuntu Universe/Multiverse repository
 
