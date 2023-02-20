@@ -10,8 +10,8 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
 
 {% block content %}
 
-<section class="p-strip--suru-shape-dark">
-  <div class="u-fixed-width p-strip is-shallow">
+<section class="p-strip--suru-shape-dark is-deep">
+  <div class="u-fixed-width">
     <h1>
       <img src="https://assets.ubuntu.com/v1/cf49340a-Ubuntu+Pro+hero+typography.svg" style="min-width: 100%;"
         alt="Ubuntu Pro" />
@@ -20,53 +20,148 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
     <a href="/pro/subscribe" class="p-button--positive">Get Ubuntu Pro now</a>
   </div>
 </section>
-<section class="p-strip is-x-deep u-no-padding--bottom">
-  <div class="p-strip u-no-padding--top">
-    <div class="row">
-      <div class="col-6 col-medium-3">
-        <h2>Same great OS.<br />More security updates.</h2>
-      </div>
-      <div class="col-6 col-medium-3">
-        <p>
-          <strong>Reduce your average CVE exposure time from 98 days to 1 day</strong>
-          <br />
-          with expanded CVE patching, ten-years security maintenance, optional support and operations for the full stack
-          of open-source applications.
-        </p>
-      </div>
+
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-6 col-medium-3">
+      <h2>Same great OS.<br />More security updates.</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>
+        <strong>Reduce your average CVE exposure time from 98 days to 1 day</strong>
+        <br />
+        with expanded CVE patching, ten-years security maintenance, optional support and operations for the full stack
+        of open-source applications.
+      </p>
     </div>
   </div>
-  <hr class="is-fixed-width">
-  <div class="p-strip">
-    <div class="u-fixed-width">
-      <div class="row">
-        <h2 class="p-text--x-small-capitalised">Security coverage compared</h2>
+</section>
+
+<div class="u-fixed-width u-sv1">
+  <hr class="p-separator u-no-margin--top u-no-margin--bottom"/>
+</div>
+
+<section class="p-strip is-deep u-no-padding--top">
+  <div class="row">
+    <h2 class="p-text--x-small-capitalised">Security coverage compared</h2>
+  </div>
+
+  <div class="row pro-card-container">
+    <div class="col-3 col-medium-2 pro-card bg-light">
+      <p class="p-heading--5 u-no-padding--top">LTS</p>
+      <hr class="u-fixed-width u-hide--large u-hide--medium"/>
+      <p class="p-heading--2">
+        Main:<br class="u-hide--small u-hide--medium"/>5 years
+      </p>
+      <p>2,300 packages in the Ubuntu Main repo supported for 5 years</p>
+    </div>
+    <div class="col-3 col-medium-2 pro-card bg-mid-dark">
+      <p class="p-heading--5 u-no-padding--top">Pro (Infra-Only)</p>
+      <hr class="u-fixed-width u-hide--large u-hide--medium"/>
+      <p class="p-heading--2">
+        Main:<br class="u-hide--small u-hide--medium"/>10 years
+      </p>
+      <p>2,300 packages in the Ubuntu Main repo supported for 10 years</p>
+    </div>
+    <div class="col-6 col-medium-2 pro-card bg-dark">
+      <p class="p-heading--5 u-no-padding--top">Pro</p>
+      <hr class="u-fixed-width u-hide--large u-hide--medium"/>
+      <p class="p-heading--2">
+        Main + Universe:<br />10 years
+      </p>
+      <p>
+        2,300 packages in the Ubuntu Main repo included in Infra-only, plus an additional 23,000+ packages in the
+        Ubuntu Universe repository for 10 years
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="u-fixed-width u-sv1">
+  <hr class="p-separator u-no-margin--top u-no-margin--bottom"/>
+</div>
+
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <p>A few of the 2,300 packages included in Ubuntu Main:</p>
+    <div class="row" style="padding: 1rem 0">
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/7dcc10d3-Systemd.png",
+        alt="",
+        width="280",
+        height="280",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
       </div>
-      <div class="row p-tiered-cards">
-        <div class="col-3 col-medium-3 p-tiered-card--low">
-          <p class="p-heading--5">LTS</p>
-          <p class="p-heading--1">
-            Main:<br />5 years
-          </p>
-          <p>2,300 packages in the Ubuntu Main repo supported for 5 years</p>
-        </div>
-        <div class="col-3 col-medium-3 p-tiered-card--medium">
-          <p class="p-heading--5">Pro (Infra-Only)</p>
-          <p class="p-heading--1">
-            Main:<br />10 years
-          </p>
-          <p>2,300 packages in the Ubuntu Main repo supported for 10 years</p>
-        </div>
-        <div class="col-6 col-medium-6 p-tiered-card--high">
-          <p class="p-heading--5">Pro</p>
-          <p class="p-heading--1">
-            Main + Universe:<br />10 years
-          </p>
-          <p>
-            2,300 packages in the Ubuntu Main repo included in Infra-only, plus an additional 23,000+ packages in the
-            Ubuntu Universe repository for 10 years
-          </p>
-        </div>
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/94340492-logo-ruby.png",
+        alt="",
+        width="280",
+        height="280",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
+      </div>
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/a3e33ca1-RabbitMQ.png",
+        alt="",
+        width="144",
+        height="144",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
+      </div>
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/8b428ac2-php+logo.png",
+        alt="P H P",
+        attrs={"class":"p-logo-section__logo"},
+        width="280",
+        height="280",
+        hi_def=False,
+        loading="lazy"
+        ) | safe
+        }}
+      </div>
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/ff1530cc-OpenSSL.png",
+        alt="",
+        width="280",
+        height="280",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
+      </div>
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/55e1eab0-Nginx.png",
+        alt="",
+        width="280",
+        height="280",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
+      </div>
+      <div class="col-small-1 col-medium-1 col-1">
+        {{ image (
+        url="https://assets.ubuntu.com/v1/343dc96b-MySQL.png",
+        alt="",
+        width="280",
+        height="280",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+        }}
       </div>
     </div>
   </div>
@@ -74,100 +169,16 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
 </section>
 <section class="p-strip u-no-padding--top u-no-padding--bottom">
   <div class="row">
-    <p>A few of the 2,300 packages included in Ubuntu Main:</p>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/7dcc10d3-Systemd.png",
-      alt="",
-      width="280",
-      height="280",
-      hi_def=True,
-      loading="auto|lazy"
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/94340492-logo-ruby.png",
-      alt="",
-      width="280",
-      height="280",
-      hi_def=True,
-      loading="auto|lazy"
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/a3e33ca1-RabbitMQ.png",
-      alt="",
-      width="144",
-      height="144",
-      hi_def=True,
-      loading="auto|lazy"
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/8b428ac2-php+logo.png",
-      alt="P H P",
-      attrs={"class":"p-logo-section__logo"},
-      width="280",
-      height="280",
-      hi_def=False,
-      loading="lazy",
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/ff1530cc-OpenSSL.png",
-      alt="",
-      width="280",
-      height="280",
-      hi_def=True,
-      loading="auto|lazy"
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/55e1eab0-Nginx.png",
-      alt="",
-      width="280",
-      height="280",
-      hi_def=True,
-      loading="auto|lazy"
-      ) | safe
-      }}
-    </div>
-    <div class="col-small-1 col-medium-1 col-1">
-      {{ image (
-      url="https://assets.ubuntu.com/v1/343dc96b-MySQL.png",
-      alt="",
-      width="280",
-      height="280",
-      hi_def=True,
-      loading="auto|lazy"
-      ) | safe
-      }}
-    </div>
-  </div>
-  <hr class="is-fixed-width" />
-</section>
-<section class="p-strip u-no-padding--top">
-  <div class="row">
     <p>A few of the 23,000 packages included in Ubuntu Universe:</p>
     <div class="col-small-1 col-medium-1 col-1">
       {{ image (
       url="https://assets.ubuntu.com/v1/ab22825a-ansible+logo.png",
       alt="Ansible",
-      attrs={"class":"p-logo-section__logo"},
+      
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -176,11 +187,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       image (
       url="https://assets.ubuntu.com/v1/df2c8fa0-apache+tomcat+logo.png",
       alt="Apache Tomcat",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -188,11 +198,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/fad485a5-docker+logo.png",
       alt="Docker",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -200,11 +209,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/810bed2f-etcd+logo.png",
       alt="E T C D",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -212,11 +220,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/ebff661c-glusterfs+logo.png",
       alt="Gluster",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -224,11 +231,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/71547ec1-perl+logo.png",
       alt="Perl",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -236,11 +242,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/75484ed4-pg-bouncer+logo.png",
       alt="P G Bouncecr",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -248,11 +253,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/1dfdcd1c-powerdns+logo.png",
       alt="Power D N S",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -260,11 +264,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/fbaf6348-puppet+logo.png",
       alt="Puppet",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -272,11 +275,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/f2803dcb-python+logo.png",
       alt="Python",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -284,11 +286,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/2f883d00-go+logo.png",
       alt="GoLang",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -298,11 +299,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/d00a6ac1-nagios+logo.png",
       alt="Nagios",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -310,11 +310,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/2dfa0b07-nginex+logo.png",
       alt="nginex",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -322,11 +321,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/2303838b-node-logo.png",
       alt="Node J S",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -334,11 +332,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/c9baeb67-openjdk+logo.png",
       alt="Open J D K",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -346,11 +343,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/7b5c7032-redis+logo.png",
       alt="Redis",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -358,11 +354,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/bc7ceb58-ruby-rails+logo.png",
       alt="Ruby on Rails",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -370,11 +365,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/fd0e15fd-rust+logo.png",
       alt="Rust",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -382,11 +376,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/62c2f466-vagrant+logo.png",
       alt="Vagrant",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -394,11 +387,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/12295113-wordpress+logo.png",
       alt="Wordpress",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -406,11 +398,10 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {{ image (
       url="https://assets.ubuntu.com/v1/6b559369-zookeeper+logo.png",
       alt="Apache Zookeper",
-      attrs={"class":"p-logo-section__logo"},
       width="280",
       height="280",
       hi_def=False,
-      loading="lazy",
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -423,99 +414,91 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
     </h2>
   </div>
 </section>
-<section class="p-strip is-x-deep u-no-padding--top u-no-padding--bottom">
-  <div class="row">
-    <h2>What's new with Ubuntu Pro plans?</h2>
-    <div class="p-strip">
-      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Security patching">
-        <thead>
-          <tr>
-            <th class="u-no-padding--left" style="width: 50%;">
-              Security patching
-              <p class="p-text--small u-text--muted u-no-margin--bottom"
-                style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br /> and selected
-                medium CVEs)</p>
-            </th>
-
-            <th style="width: 15%;">Ubuntu LTS</th>
-            <th style="width: 20%;">
-              Ubuntu Pro (Infra-only)<br />
-              <p class="p-text--small u-text--muted u-no-margin--bottom"
-                style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for
-                Infrastructure")</p>
-            </th>
-            <th style="width: 15%;">Ubuntu Pro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Security patching">Over 2,300 packages in Ubuntu Main
-              repository</td>
-            <td data-heading="Ubuntu LTS">5 years</td>
-            <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">10 years</td>
-            <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Security patching">Over 23,000 packages in Ubuntu Universe
-              repository</td>
-            <td data-heading="Ubuntu LTS">Best effort</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
-            <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Security patching"><a href="/support">Optional phone/ticket
-                support</a></td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">Yes</td>
-            <td data-heading="Ubuntu Pro" class="bg-dark">Yes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="p-strip is-shallow u-no-padding--top">
-      <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Compliance and hardening">
-        <thead>
-          <tr>
-            <th class="u-no-padding--left" style="width: 50%;"><a
-                href="/security/certifications">Compliance and hardening</a></th>
-            <th style="width: 15%;">Ubuntu LTS</th>
-            <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
-            <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Compliance and hardening">NIST-certified FIPS crypto-modules
-            </td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Compliance and hardening">USG hardening with CIS and DISA-STIG
-              profiles</td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-          </tr>
-          <tr>
-            <td class="u-no-padding--left" data-heading="Compliance and hardening">Common Criteria EAL2</td>
-            <td data-heading="Ubuntu LTS">No</td>
-            <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
-            <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <table class="p-table--mobile-card u-no-margin--bottom" aria-label="Pro vs Advantage - Other features">
+<div class="u-fixed-width u-sv1">
+  <hr class="p-separator u-no-margin--top u-no-margin--bottom"/>
+</div>
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">What's new with Ubuntu Pro plans?</h2>
+    <table class="pro-table p-table--mobile-card u-sv1" aria-label="Pro vs Advantage - Security patching" >
+      <thead>
+        <tr>
+          <th style="width: 50%;">
+            Security patching
+            <p class="p-text--small u-text--muted u-no-margin--bottom"
+              style="text-transform: initial; font-weight: 300">(Coverage for both critical, high<br /> and selected
+              medium CVEs)</p>
+          </th>
+          <th style="width: 16.7%;">Ubuntu LTS</th>
+          <th style="width: 16.7%;">
+            Ubuntu Pro<br/>(Infra-only)<br />
+            <p class="p-text--small u-text--muted u-no-margin--bottom"
+              style="text-transform: initial; font-weight: 300">(Previously known as "Ubuntu Advantage for Infrastructure")</p>
+          </th>
+          <th style="width: 16.6%;">Ubuntu Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-heading="Security patching">Over 2,300 packages in Ubuntu Main repository</td>
+          <td data-heading="Ubuntu LTS">5 years</td>
+          <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">10 years</td>
+          <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
+        </tr>
+        <tr>
+          <td data-heading="Security patching">Over 23,000 packages in Ubuntu Universe repository</td>
+          <td data-heading="Ubuntu LTS">Best effort</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Best effort</td>
+          <td data-heading="Ubuntu Pro" class="bg-dark">10 years</td>
+        </tr>
+        <tr>
+          <td data-heading="Security patching"><a href="/support">Optional phone/ticket support</a></td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)" class="bg-mid-dark">Yes</td>
+          <td data-heading="Ubuntu Pro" class="bg-dark">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="p-table--mobile-card u-sv1" aria-label="Pro vs Advantage - Compliance and hardening" style="border-top: 1px solid rgba(0,0,0,.15);">
+      <thead>
+        <tr>
+          <th class="u-no-padding--left" style="width: 50%;"><a
+              href="https://ubuntu.com/security/certifications">Compliance and hardening</a></th>
+          <th style="width: 16.7%;">Ubuntu LTS</th>
+          <th style="width: 16.7%;">Ubuntu Pro (Infra-only)</th>
+          <th class="u-no-padding--right" style="width: 16.6%;">Ubuntu Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Compliance and hardening">NIST-certified FIPS crypto-modules
+          </td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Compliance and hardening">USG hardening with CIS and DISA-STIG
+            profiles</td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+        <tr>
+          <td class="u-no-padding--left" data-heading="Compliance and hardening">Common Criteria EAL2</td>
+          <td data-heading="Ubuntu LTS">No</td>
+          <td data-heading="Ubuntu Pro (Infra-only)">Yes</td>
+          <td class="u-no-padding--right" data-heading="Ubuntu Pro">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="p-table--mobile-card" aria-label="Pro vs Advantage - Other features">
       <thead>
         <tr>
           <th class="u-no-padding--left" style="width: 50%;">Other features</th>
-          <th style="width: 15%;">Ubuntu LTS</th>
-          <th style="width: 20%;">Ubuntu Pro (Infra-only)</th>
-          <th class="u-no-padding--right" style="width: 15%;">Ubuntu Pro</th>
+          <th style="width: 16.7%;">Ubuntu LTS</th>
+          <th style="width: 16.7%;">Ubuntu Pro (Infra-only)</th>
+          <th class="u-no-padding--right" style="width: 16.6%;">Ubuntu Pro</th>
         </tr>
       </thead>
       <tbody>
@@ -542,6 +525,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
         </tr>
       </tbody>
     </table>
+  </div>
 </section>
 <section class="p-strip is-x-deep">
   <div class="u-fixed-width">
@@ -553,7 +537,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
     <h2 class="p-text--x-small-capitalised">Upgrade to Ubuntu Pro today</h2>
   </div>
   <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row p-strip is-shallow u-no-padding--top">
+  <div class="row u-no-padding--top u-sv3">
     <div class="col-6 col-medium-3">
       <h3 class="p-heading--2">Become a customer</h3>
     </div>
@@ -566,7 +550,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
     </div>
   </div>
   <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row p-strip is-shallow u-no-padding--top">
+  <div class="row u-no-padding--top u-sv3">
     <div class="col-6 col-medium-3">
       <h3 class="p-heading--2">Free for personal use</h3>
     </div>
@@ -576,9 +560,8 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       <a href="/pro/dashboard" class="p-button">Register</a>
     </div>
   </div>
-
   <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="row p-strip is-shallow u-no-padding--top">
+  <div class="row u-no-padding--top">
     <div class="col-6 col-medium-3">
       <h3 class="p-heading--2">Trial at no extra cost for existing Ubuntu Advantage customers</h3>
     </div>
@@ -618,39 +601,37 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       {% endif %}
     </div>
 </section>
-<section class="p-strip is-x-deep u-no-padding--bottom">
+<section class="p-strip is-deep u-no-padding--bottom">
   <hr class="is-fixed-width u-no-margin--bottom">
-  <div class="u-fixed-width">
-    <div class="row">
-      <div class="col-8 col-medium-6">
-        <h2>Curious to know how much Ubuntu Pro can do for you? Try this:</h2>
-      </div>
+  <div class="row">
+    <div class="col-7">
+      <h2>Curious to know how much Ubuntu Pro can do for you? Try this:</h2>
     </div>
-    <div class="row">
-      <pre tabindex="0"><code>
-        user@xenial-machine:~$ pro security-status
-        645 packages installed:
-              639 packages from Ubuntu Main/Restricted repository
-              3 packages from Ubuntu Universe/Multiverse repository
-              1 package from a third party
-              2 packages no longer available for download
+    <div class="u-fixed-width">
+      <div class="p-code-snippet">
+        <pre class="p-code-snippet__block"><code>user@xenial-machine:~$ pro security-status
+645 packages installed:
+      639 packages from Ubuntu Main/Restricted repository
+      3 packages from Ubuntu Universe/Multiverse repository
+      1 package from a third party
+      2 packages no longer available for download
 
-        To get more information about the packages, run
-              pro security-status --help
-        for a list of available options.
+To get more information about the packages, run
+      pro security-status --help
+for a list of available options.
 
-        This machine is NOT receiving security patches because the LTS period has ended and esm-infra is not enabled.
-        This machine is NOT attached to an Ubuntu Pro subscription.
+This machine is NOT receiving security patches because the LTS period has ended and esm-infra is not enabled.
+This machine is NOT attached to an Ubuntu Pro subscription.
 
-        Ubuntu Pro with 'esm-infra' enabled provides security updates for
-        Main/Restricted packages until 2026 and has 5 pending security updates.
+Ubuntu Pro with 'esm-infra' enabled provides security updates for
+Main/Restricted packages until 2026 and has 5 pending security updates.
 
-        Ubuntu Pro with 'esm-apps' enabled provides security updates for
-        Universe/Multiverse packages until 2026 and has 1 pending security update.
+Ubuntu Pro with 'esm-apps' enabled provides security updates for
+Universe/Multiverse packages until 2026 and has 1 pending security update.
 
-        Try Ubuntu Pro with a free personal subscription on up to 5 machines.
-        Learn more at /pro
-      </code></pre>
+Try Ubuntu Pro with a free personal subscription on up to 5 machines.
+Learn more at https://ubuntu.com/pro</code></pre>
+      </div>
     </div>
   </div>
 </section>
@@ -672,7 +653,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       width="158",
       height="40",
       hi_def=True,
-      loading="auto|lazy"
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -704,7 +685,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
       width="158",
       height="40",
       hi_def=True,
-      loading="auto|lazy"
+      loading="lazy"
       ) | safe
       }}
     </div>
@@ -761,7 +742,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
             width="158",
             height="40",
             hi_def=True,
-            loading="auto|lazy"
+            loading="lazy"
             ) | safe
             }}
           </div>
@@ -800,7 +781,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
             width="158",
             height="40",
             hi_def=True,
-            loading="auto|lazy"
+            loading="lazy"
             ) | safe
             }}
           </div>
@@ -832,7 +813,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
           width="158",
           height="40",
           hi_def=True,
-          loading="auto|lazy"
+          loading="lazy"
           ) | safe
           }}
         </div>
@@ -863,7 +844,7 @@ https://docs.google.com/document/d/1In4NSnckAtL51_7D_AZCHa6TPnPGXqctXo-5rE77_aY/
           width="158",
           height="40",
           hi_def=True,
-          loading="auto|lazy"
+          loading="lazy"
           ) | safe
           }}
         </div>
