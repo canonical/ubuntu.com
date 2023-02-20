@@ -402,6 +402,48 @@ summary {
   }
 }
 
+.pro-card-container {
+  grid-gap: 0;
+  .pro-card {
+    padding: calc(#{$spv--large} - 1px) calc(#{$spv--large} - 1px)
+      $spv--strip-deep * 0.5;
+    @media (min-width: $breakpoint-small) {
+      padding: calc(#{$spv--small} - 1px) calc(#{$spv--large} - 1px)
+        $spv--strip-deep;
+    }
+  }
+}
+.bg-light {
+  background-color: $color-light;
+}
+
+.bg-mid-dark {
+  background-color: $color-mid-dark;
+  color: $color-x-light;
+  hr {
+    background-color: $colors--dark-theme--border-low-contrast;
+  }
+}
+
+.bg-dark {
+  background-color: $color-x-dark;
+  color: $color-x-light;
+  hr {
+    background-color: $colors--dark-theme--border-low-contrast;
+  }
+}
+
+.pro-table {
+  @media (max-width: $threshold-6-12-col - 1) {
+    tr {
+      padding: 0;
+    }
+    td {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
 .subscribe-section {
   @media (min-width: $breakpoint-medium) {
     margin-left: 4rem !important;
