@@ -98,6 +98,30 @@
     </aside>
 
     <main class="col-9">
+      {% if document.headings_map %}
+        <p><strong>Contents:</strong></p>
+        <ol class="p-list--nested-counter">
+          {% for heading in document.headings_map %}
+          <li>
+            <a href="#{{heading.heading_slug}}">
+              {{ heading.heading_text }}
+            </a>
+            {% if heading.children %}
+              <ol>
+                {% for sub_heading in heading.children %}
+                  <li>
+                    <a href="#{{sub_heading.heading_slug}}">
+                      {{ sub_heading.heading_text }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ol>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ol>
+      {% endif %}
+
       {{ document.body_html | safe }}
 
       <div class="p-strip">
