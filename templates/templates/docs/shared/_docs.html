@@ -98,8 +98,9 @@
     </aside>
 
     <main class="col-9">
+      <h1>{{ document.title }}</h1>
+
       {% if document.headings_map %}
-        <h1>{{ document.title }}</h1>
         <ol class="p-list--nested-counter">
           {% for heading in document.headings_map %}
           <li>
