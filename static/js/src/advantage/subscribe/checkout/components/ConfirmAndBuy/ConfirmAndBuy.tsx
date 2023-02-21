@@ -13,7 +13,8 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
   const { values, setFieldValue } = useFormikContext<FormValues>();
 
   const onCaptchaChange = (value: string | null) => {
-    setFieldValue("captchaValue", value);
+    window.captcha = value;
+    setFieldValue("captchaValue", window.captcha);
   };
 
   const { termsLabel, descriptionLabel, marketingLabel } = getLabels(

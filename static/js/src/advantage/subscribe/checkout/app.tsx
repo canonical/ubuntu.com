@@ -43,6 +43,7 @@ declare global {
     canTrial?: boolean;
     currentPaymentId: string;
     invoiceId: string;
+    captcha: string | null;
     previousPurchaseIds?: { monthly: string; yearly: string };
     GAFriendlyProduct?: {
       id: string;
@@ -68,6 +69,7 @@ window.canTrial = undefined;
 window.currentPaymentId = "";
 window.invoiceId = "";
 window.accountId = "";
+window.captcha = null;
 
 window.marketplace = product.marketplace;
 window.GAFriendlyProduct = {

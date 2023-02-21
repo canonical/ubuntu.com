@@ -329,6 +329,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
                     );
                   }
                   setIsEditing(false);
+                  setTaxSaved(true);
                 }}
               >
                 Cancel

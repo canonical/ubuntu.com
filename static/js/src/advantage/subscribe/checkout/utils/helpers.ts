@@ -50,7 +50,7 @@ export function getInitialFormValues(
     usState: userInfo?.customerInfo?.address?.state ?? "",
     caProvince: userInfo?.customerInfo?.address?.state ?? "",
     VATNumber: userInfo?.customerInfo?.taxID?.value ?? "",
-    captchaValue: null,
+    captchaValue: window.captcha,
     TermsAndConditions: false,
     MarketingOptIn: false,
     Description: false,
