@@ -1,4 +1,7 @@
-import { marketplace } from "./../../../../PurchaseModal/utils/utils";
+import {
+  UserSubscriptionMarketplace,
+  UserSubscriptionPeriod,
+} from "advantage/api/enum";
 
 export enum Support {
   unset = "unset",
@@ -17,7 +20,7 @@ export type Product = {
   canBeTrialled: boolean;
   longId: string;
   name: string;
-  period: Periods;
+  period: UserSubscriptionPeriod;
   price: {
     value: number;
     currency: string;
@@ -25,7 +28,7 @@ export type Product = {
   private: boolean;
   id: ProductIDs;
   productID: string;
-  marketplace: marketplace;
+  marketplace: UserSubscriptionMarketplace;
 };
 
 export type ProductListings = {

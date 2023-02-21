@@ -1,0 +1,45 @@
+@mixin ubuntu-p-checkout {
+  .checkout-container {
+    .p-stepped-list--detailed {
+      margin-left: 0;
+    }
+
+    .p-stepped-list__title {
+      //TODO: remove this once this issue is fixed {@albert insert react issue on vanilla here}
+      @extend %vf-heading-2;
+
+      padding-left: 2.5rem;
+
+      $i: 2;
+      $bullet-width: map-get($line-heights, default-text);
+      $bullet-width-mobile: map-get($line-heights, default-text);
+      $bullet-margin: calc((map-get($line-heights, h#{$i}) - $bullet-width) / 2) +
+        map-get($nudges, h#{$i}) - 0.25rem;
+      $moblie-hight: (
+        map-get($line-heights, h#{$i}-mobile) - $bullet-width-mobile
+      );
+      $bullet-margin-mobile: calc($moblie-hight / 2) + map-get($nudges, h#{$i}) -
+        0.25rem;
+
+      &::before {
+        // Need to account for the 1px border:
+        line-height: calc($bullet-width-mobile - 2px);
+        margin-right: $sph--large;
+        margin-top: $bullet-margin-mobile;
+        width: $bullet-width-mobile;
+
+        @media (min-width: $breakpoint-heading-threshold) {
+          // Need to account for the 1px border:
+          line-height: calc($bullet-width - 2px);
+          margin-top: $bullet-margin;
+          width: $bullet-width;
+        }
+      }
+    }
+
+    .email-field {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
 import { postRenewalIDToProcessPayment } from "../../api/contracts";
 
-const useRenewal = () => {
-  const mutation = useMutation(async (renewalID: string | null) => {
+const useRenewal = (renewalID: string | null) => {
+  const mutation = useMutation(async () => {
     if (!renewalID) {
       throw new Error("RenewalID is missing");
     }

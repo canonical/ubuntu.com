@@ -1,4 +1,4 @@
-import { marketplace } from "../../PurchaseModal/utils/utils";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 
 export type Item = {
   allowance: number;
@@ -13,6 +13,6 @@ export type Offer = {
   created_at: string;
   id: string;
   items: Item[];
-  marketplace: marketplace;
+  marketplace: UserSubscriptionMarketplace;
   total: number;
 };

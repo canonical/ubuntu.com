@@ -165,7 +165,7 @@ export function parseForErrorObject(data) {
     data.message.includes("please login")
   ) {
     errorObject = {
-      message: `An Ubuntu One account with this email address exists. Please <a href='/login'>sign in</a> to your account first.`,
+      message: `An Ubuntu Pro account with this email address exists. Please <a href='/login'>sign in</a> or <a href='/login'>register</a> with your Ubuntu One account.`,
       type: "notification",
     };
   } else {

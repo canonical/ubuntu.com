@@ -1,9 +1,9 @@
-import { onLoginClick } from "advantage/ecom-events";
 import React from "react";
-import useStripeCustomerInfo from "../../../../../PurchaseModal/hooks/useStripeCustomerInfo";
+import { onLoginClick } from "advantage/ecom-events";
+import useCustomerInfo from "advantage/subscribe/checkout/hooks/useCustomerInfo";
 
 export default function Heading() {
-  const { data: userInfo } = useStripeCustomerInfo();
+  const { data: userInfo } = useCustomerInfo();
 
   return (
     <section className="p-strip--suru-topped js-shop-hero u-no-padding--bottom">

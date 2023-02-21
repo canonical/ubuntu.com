@@ -638,3 +638,10 @@ export const productListFixture = {
     marketplace: "canonical-ua",
   },
 };
+
+export const taxes = {
+  currency: "USD",
+  subtotal: 16700,
+  tax: 1670,
+  total: 18370,
+};

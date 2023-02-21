@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Button, Col, Row } from "@canonical/react-components";
-import { RadioInput } from "@canonical/react-components";
+import { Button, Col, RadioInput, Row } from "@canonical/react-components";
+import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 import {
   IoTDevices,
   isIoTDevice,
@@ -8,7 +8,6 @@ import {
   ProductTypes,
   PublicClouds,
 } from "advantage/subscribe/react/utils/utils";
-import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const PublicCloudInfo = {
   [PublicClouds.aws]: {
