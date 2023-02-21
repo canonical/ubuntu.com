@@ -123,9 +123,7 @@ context("Checkout - Step 1", () => {
     cy.findByLabelText("Country/Region:").select("Afghanistan");
 
     // Click 1st Save button
-    cy.get(
-      ":nth-child(1) > .p-stepped-list__content > :nth-child(1) > .u-align--right > .p-action-button"
-    ).click();
+    cy.get(".u-align--right > :nth-child(2)").click();
     cy.wait("@preview");
 
     // Assert
@@ -157,12 +155,9 @@ context("Checkout - Step 1", () => {
       ":nth-child(1) > .p-stepped-list__content > .row > .u-align--right > .p-action-button"
     ).click();
     cy.findByLabelText("Country/Region:").select(4); // United Kingdom
-    cy.findByLabelText("VAT number:").clear().type("GB0033224455");
 
     // Click 1st Save button
-    cy.get(
-      ":nth-child(1) > .p-stepped-list__content > :nth-child(1) > .u-align--right > .p-action-button"
-    ).click();
+    cy.get(".u-align--right > :nth-child(2)").click();
     cy.wait("@preview");
 
     // Assert
@@ -401,7 +396,7 @@ context("Checkout purchase", () => {
 });
 
 context("Checkout purchase errors", () => {
-  it.only("guest: should get card error when purchasing with invalid card and retrying", () => {
+  it("guest: should get card error when purchasing with invalid card and retrying", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();
