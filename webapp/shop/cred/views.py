@@ -27,10 +27,11 @@ TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
 EXAM_NAMES = {"cue-test": "CUE: Linux Beta"}
 
-EXAM_STATES = {
+RESERVATION_STATES = {
+    "created": "Scheduled",
     "scheduled": "Scheduled",
-    "canceled": "Cancelled",
     "processed": "Complete",
+    "canceled": "Cancelled",
 }
 
 
@@ -58,7 +59,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=7)).strftime("%Y-%m-%d")
+    max_date = (now + timedelta(days=42)).strftime("%Y-%m-%d")
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -164,7 +165,8 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                 actions = []
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
-                end = starts_at + timedelta(hours=6)
+                end = starts_at + timedelta(minutes=75)
+                state = RESERVATION_STATES.get(r["state"], r["state"])
 
                 if assessment_id and now > starts_at and now < end:
                     actions.extend(
@@ -177,6 +179,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                             }
                         ]
                     )
+                    state = "In progress"
 
                 if r["state"] == "scheduled":
                     actions.extend(
@@ -191,7 +194,6 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         ]
                     )
 
-                state = EXAM_STATES.get(r["state"], r["state"])
                 exams.append(
                     {
                         "name": name,
@@ -221,6 +223,14 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                 exams.append(
                     {"name": name, "state": "Not taken", "actions": actions}
                 )
+
+    exams = (
+        [exam for exam in exams if exam["state"] == "In progress"]
+        + [exam for exam in exams if exam["state"] == "Scheduled"]
+        + [exam for exam in exams if exam["state"] == "Not taken"]
+        + [exam for exam in exams if exam["state"] == "Complete"]
+        + [exam for exam in exams if exam["state"] == "Cancelled"]
+    )
 
     response = flask.make_response(
         flask.render_template(
