@@ -29,7 +29,7 @@ const PublicCloudInfo = {
     name: "Google Compute Engine",
     CTAName: "GCE marketplace",
     link:
-      "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro%20canonical",
+      "https://console.cloud.google.com/marketplace/browse?q=ubuntu%20pro&filter=partner:Canonical%20Group&authuser=1",
   },
   [PublicClouds.oracle]: {
     title: "Oracle",
