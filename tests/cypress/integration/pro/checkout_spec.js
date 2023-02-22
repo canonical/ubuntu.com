@@ -14,7 +14,7 @@ const ENDPOINTS = {
   postInvoice: "/account/purchase/*/invoices/*",
 };
 
-context("Checkout - Step 1", () => {
+context("Checkout - Region and taxes", () => {
   it("guest: it should show correct non-VAT price", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
@@ -163,6 +163,122 @@ context("Checkout - Step 1", () => {
     // Assert
     cy.get('[data-testid="tax"]').should("exist");
     cy.get('[data-testid="total"]').should("exist");
+  });
+
+  it("user: clicks cancel should reset fields", () => {
+    cy.visit("/pro/subscribe");
+    cy.acceptCookiePolicy();
+    cy.selectProducts();
+
+    cy.login();
+    cy.wait(2000);
+
+    cy.scrollTo("bottom");
+    cy.findByRole("button", { name: "Buy now" }).click();
+
+    // Redirected to checkout
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.equal("/account/checkout");
+    });
+
+    cy.wait(2000);
+
+    // Click 1st Edit button
+    cy.get(
+      ":nth-child(1) > .p-stepped-list__content > .row > .u-align--right > .p-action-button"
+    ).click();
+    cy.findByLabelText("Country/Region:").select(1); // France
+    cy.findByLabelText("VAT number:").clear().type("ABDCDEFG");
+
+    // Click cancel button
+    cy.get(
+      ":nth-child(1) > .p-stepped-list__content > :nth-child(1) > .u-align--right > :nth-child(1)"
+    ).click();
+
+    cy.get('[data-testid="country"]').should("have.text", "United Kingdom");
+    cy.get('[data-testid="vat-number"]').should("have.text", "None");
+
+    // Click 1st Edit button
+    cy.get(
+      ":nth-child(1) > .p-stepped-list__content > .row > .u-align--right > .p-action-button"
+    ).click();
+    cy.findByLabelText("Country/Region:").select(5); // USA
+    cy.findByLabelText("State:").select("Alabama");
+
+    // Click cancel button
+    cy.get(
+      ":nth-child(1) > .p-stepped-list__content > :nth-child(1) > .u-align--right > :nth-child(1)"
+    ).click();
+
+    cy.get('[data-testid="country"]').should("have.text", "United Kingdom");
+    cy.get('[data-testid="vat-number"]').should("have.text", "None");
+
+    // Click 1st Edit button
+    cy.get(
+      ":nth-child(1) > .p-stepped-list__content > .row > .u-align--right > .p-action-button"
+    ).click();
+    cy.findByLabelText("Country/Region:").select("Canada");
+    cy.findByLabelText("Province:").select("Alberta");
+
+    // Click cancel button
+    cy.get(
+      ":nth-child(1) > .p-stepped-list__content > :nth-child(1) > .u-align--right > :nth-child(1)"
+    ).click();
+
+    cy.get('[data-testid="country"]').should("have.text", "United Kingdom");
+    cy.get('[data-testid="vat-number"]').should("have.text", "None");
+  });
+});
+
+context("Checkout - Your information", () => {
+  it("user: clicks cancel should reset fields", () => {
+    cy.visit("/pro/subscribe");
+    cy.acceptCookiePolicy();
+    cy.selectProducts();
+
+    cy.login();
+    cy.wait(2000);
+
+    cy.scrollTo("bottom");
+    cy.findByRole("button", { name: "Buy now" }).click();
+
+    // Redirected to checkout
+    cy.location().should((loc) => {
+      expect(loc.pathname).to.equal("/account/checkout");
+    });
+
+    cy.wait(2000);
+
+    // Click 1st Edit button
+    cy.get(
+      ":nth-child(3) > .p-stepped-list__content > :nth-child(1) > .u-align--right > .p-action-button"
+    ).click();
+
+    cy.findByLabelText("Name:").type("Abcd", { force: true });
+    cy.findByLabelText("Organisation:").type("Abcd");
+    cy.findByLabelText("Address:").type("Abcd");
+    cy.findByLabelText("City:").type("Abcd");
+    cy.findByLabelText("Postal code:").type("Abcd");
+
+    // Click cancel button
+    cy.get(
+      ":nth-child(3) > .p-stepped-list__content > :nth-child(1) > .u-align--right > :nth-child(1)"
+    ).click();
+
+    cy.get('[data-testid="customer-name"]').should("have.text", "Peter");
+    cy.get('[data-testid="organisation-name"]').should(
+      "have.text",
+      "Canonical"
+    );
+    cy.get('[data-testid="customer-address"]').should(
+      "have.text",
+      "Address Road"
+    );
+    cy.get('[data-testid="customer-city"]').should("have.text", "London");
+    cy.get('[data-testid="customer-postal-code"]').should(
+      "have.text",
+      "Post Code"
+    );
   });
 });
 

@@ -68,14 +68,6 @@ Cypress.Commands.add("fillInCustomerInfo", () => {
   cy.findByLabelText("City:").type("Citty");
 });
 
-Cypress.Commands.add("fillInCustomerInfo", () => {
-  cy.findByLabelText("Name:").type("Joe Doe", { force: true });
-  cy.findByLabelText("Organisation:").type("AB Studios");
-  cy.findByLabelText("Address:").type("Address Road");
-  cy.findByLabelText("Postal code:").type("AB0 0AB");
-  cy.findByLabelText("City:").type("Citty");
-});
-
 Cypress.Commands.add("acceptTerms", () => {
   cy.findByLabelText(/I agree to the Ubuntu Pro service terms/).click({
     // Need to use { force: true } because the actual input element (radio button)
