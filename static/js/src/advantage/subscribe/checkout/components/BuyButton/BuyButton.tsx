@@ -55,7 +55,9 @@ const BuyButton = ({
       isLoading ||
       (values.country === "US" && !values.usState) ||
       (values.country === "CA" && !values.caProvince) ||
-      (values.buyingFor === "organisation" && !values.organisationName)
+      (values.buyingFor === "organisation" && !values.organisationName) ||
+      (values.buyingFor === "organisation" &&
+        values.name === values.organisationName)
     ) {
       setIsButtonDisabled(true);
     } else {

@@ -152,6 +152,11 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
     let errorMessage;
     if (!value && values.buyingFor === "organisation") {
       errorMessage = "This field is required.";
+    } else if (
+      values.buyingFor === "organisation" &&
+      values.organisationName === values.name
+    ) {
+      errorMessage = 'Please select "I\'m buying for: Myself" option above.';
     }
     return errorMessage;
   };
