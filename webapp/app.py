@@ -221,6 +221,15 @@ def deleted_error(error):
     return flask.render_template("410.html", message=error.description), 410
 
 
+@app.errorhandler(429)
+def too_many_requests(error):
+    """
+    Endpoint abuse error
+    """
+    custom_error = f"{error.description}. Please try again tomorrow."
+    return flask.render_template("429.html", message=custom_error), 429
+
+
 @app.errorhandler(SecurityAPIError)
 def security_api_error(error):
     return (
@@ -548,6 +557,7 @@ app.add_url_rule(
         search_engine_id=search_engine_id,
     ),
 )
+
 app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"
