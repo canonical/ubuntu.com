@@ -30,13 +30,10 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const [isTaxSaved, setTaxSaved] = useState<boolean>(false);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const isGuest = !userInfo?.customerInfo?.email;
-
-  const initialValues = getInitialFormValues(
-    product,
-    action,
-    userInfo,
-    window.accountId
-  );
+  const userCanTrial = window.canTrial;
+  const productCanBeTrialled = product?.canBeTrialled;
+  const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
+  const initialValues = getInitialFormValues(product, canTrial, userInfo);
 
   return (
     <>
@@ -117,7 +114,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                         />
                       ),
                     },
-                    ...(canBeTrialled(product, action)
+                    ...(canTrial
                       ? [
                           {
                             title: "Free trial",
