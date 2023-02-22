@@ -333,7 +333,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
 
     if not reservation_uuid:
         tz_info = pytz.timezone("UTC")
-        starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=70))
+        starts_at = tz_info.localize(datetime.utcnow() + timedelta(minutes=10))
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
 
         response = ua_contracts_api.post_assessment_reservation(
