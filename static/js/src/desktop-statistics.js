@@ -828,7 +828,7 @@ function buildCharts() {
         top: 20,
         right: 20,
         bottom: 70,
-        left: -5,
+        left: 0,
       },
     });
   } else {
@@ -843,7 +843,7 @@ function buildCharts() {
           top: 20,
           right: 40,
           bottom: 20,
-          left: 200,
+          left: 240,
         },
       }
     );
@@ -852,7 +852,13 @@ function buildCharts() {
       dummyData.languageList.dataset,
       {
         sort: "ascending",
-      }
+        margin: {
+          top: 20,
+          right: 50,
+          bottom: 20,
+          left: 100,
+        },
+      },
     );
   }
 }
