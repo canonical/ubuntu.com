@@ -858,7 +858,7 @@ function buildCharts() {
           bottom: 20,
           left: 100,
         },
-      },
+      }
     );
   }
 }
