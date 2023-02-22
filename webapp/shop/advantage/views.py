@@ -91,12 +91,27 @@ def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
 @use_kwargs({"email": String()}, location="query")
 def get_user_subscriptions(advantage_mapper, is_in_maintenance, **kwargs):
     email = kwargs.get("email")
+<<<<<<< HEAD
 
     user_subscriptions = advantage_mapper.get_user_subscriptions(
         email=email,
         is_in_maintenance=is_in_maintenance,
     )
 
+=======
+    launchpad = Launchpad.login_anonymously(
+        "ubuntu.com/pro", "production", version="devel"
+    )
+    sso_user = user_info(flask.session)
+    lp_user = launchpad.people.getByEmail(email=sso_user["email"])
+    community_members = launchpad.people("ubuntumembers").members
+    if lp_user in community_members:
+        user_subscriptions = advantage_mapper.get_user_subscriptions(
+            email, community_user=True
+        )
+    else:
+        user_subscriptions = advantage_mapper.get_user_subscriptions(email)
+>>>>>>> 69aa56e21 (changes suggested by Albert)
     return flask.jsonify(to_dict(user_subscriptions))
 
 

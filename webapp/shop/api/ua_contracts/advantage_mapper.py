@@ -242,7 +242,11 @@ class AdvantageMapper:
                         marketplace=marketplace,
                     )
                     subscriptions.extend(market_subscriptions)
-
+            if community_user:
+                for contract in contracts:
+                    if contract.product_id == "free":
+                        print(contract)
+                        contract.items[0].value = 50
             user_summary.append(
                 {
                     "account": account,
