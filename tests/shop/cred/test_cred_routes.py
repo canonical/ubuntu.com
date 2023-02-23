@@ -22,21 +22,6 @@ logging.getLogger("talisker.context").disabled = True
 
 
 class TestCredRoutes(VCRTestCase):
-    def _get_vcr_kwargs(self):
-        """
-        This removes the authorization header
-        from VCR so we don't record auth parameters
-        """
-        return {
-            "filter_headers": [
-                "Authorization",
-                "Cookie",
-                "Api-Key",
-                "Api-Username",
-            ],
-            "filter_query_parameters": ["key"],
-        }
-
     def setUp(self):
         """
         Set up Flask app for testing
@@ -61,6 +46,24 @@ class TestCredRoutes(VCRTestCase):
         """
         self.assertEqual(
             self.client.get("/credentials/your-exams").status_code, 302
+        )
+
+    def test_syllabus(self):
+        """
+        When given the syllabus URL,
+        we should return a 200 status code
+        """
+        self.assertEqual(
+            self.client.get("/credentials/syllabus").status_code, 200
+        )
+
+    def test_self_study(self):
+        """
+        When given the self study URL,
+        we should return a 200 status code
+        """
+        self.assertEqual(
+            self.client.get("/credentials/self-study").status_code, 200
         )
 
 
