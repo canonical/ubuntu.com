@@ -69,17 +69,18 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
   const onSaveClick = () => {
     setIsEditing(false);
     if (isGuest || !window.accountId) {
-      taxMutation.mutate(undefined, {
-        onSuccess: (data) => {
-          queryClient.setQueryData("taxCalulations", data);
-        },
-        onError: (error) => {
-          setFieldValue("Description", false);
-          setFieldValue("TermsAndConditions", false);
-          document.querySelector("h1")?.scrollIntoView();
-          Sentry.captureException(error);
-        },
-      });
+      queryClient.invalidateQueries("calculate");
+      // taxMutation.mutate(undefined, {
+      //   onSuccess: (data) => {
+      //     queryClient.setQueryData("taxCalulations", data);
+      //   },
+      //   onError: (error) => {
+      //     setFieldValue("Description", false);
+      //     setFieldValue("TermsAndConditions", false);
+      //     document.querySelector("h1")?.scrollIntoView();
+      //     Sentry.captureException(error);
+      //   },
+      // });
       setTaxSaved(true);
     } else {
       postCustomerTaxInfoMutation.mutate(
