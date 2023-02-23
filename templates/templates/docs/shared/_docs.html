@@ -164,6 +164,7 @@
 
   selectField.changed = false;
   selectField.onfocus = selectFocussed;
+  selectField.onblur = selectUnFocussed;
   selectField.onchange = selectChanged;
   selectField.onkeyup = selectKeyed;
   selectField.onclick = selectClicked;
@@ -195,7 +196,15 @@ function selectFocussed() {
   this.initValue = this.value;
 }
 
+function selectUnFocussed() {
+  if (this.value != this.initValue) {
+    this.changed = true;
+		selectChanged(this);
+  }
+}
+
 function selectKeyed(e) {
+  e.preventDefault();
 	var theKeyPressed;
   var validConfirmKeys = [9, "Tab", 13, "Enter"]
   var validCancleKeys = [27, "Escape", "esc"]
@@ -205,7 +214,6 @@ function selectKeyed(e) {
   } else {
     return false;
   }
-
 	if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
 		this.changed = true;
 		selectChanged(this);
