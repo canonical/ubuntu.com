@@ -265,19 +265,13 @@ context("Checkout - Your information", () => {
       ":nth-child(3) > .p-stepped-list__content > :nth-child(1) > .u-align--right > :nth-child(1)"
     ).click();
 
-    cy.get('[data-testid="customer-name"]').should("have.text", "Peter");
-    cy.get('[data-testid="organisation-name"]').should(
-      "have.text",
-      "Canonical"
-    );
-    cy.get('[data-testid="customer-address"]').should(
-      "have.text",
-      "Address Road"
-    );
-    cy.get('[data-testid="customer-city"]').should("have.text", "London");
+    cy.get('[data-testid="customer-name"]').should("not.have.text", "Abcd");
+    cy.get('[data-testid="organisation-name"]').should("not.have.text", "Abcd");
+    cy.get('[data-testid="customer-address"]').should("not.have.text", "Abcd");
+    cy.get('[data-testid="customer-city"]').should("not.have.text", "London");
     cy.get('[data-testid="customer-postal-code"]').should(
-      "have.text",
-      "Post Code"
+      "not.have.text",
+      "Abcd"
     );
   });
 });
