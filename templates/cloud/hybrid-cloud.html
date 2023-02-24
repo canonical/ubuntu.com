@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-7">
       <h1>What is hybrid cloud?</h1>
-      <p>Hybrid cloud is a cloud computing architecture that consists of at least one public cloud, at least one private cloud and a hybrid cloud manager (HCM). It is one of the most popular trends in the IT industry, used by 62% of enterprises according to the <a href="https://go.451research.com/2020-mi-cloud-trends-year-of-complexity-and-its-management.html">451 Research report from 2020</a>.</p>
+      <p>Hybrid cloud is a <a href="/cloud/cloud-computing">cloud computing</a> architecture that consists of at least one public cloud, at least one private cloud and a hybrid cloud manager (HCM). It is one of the most popular trends in the IT industry, used by 82% of enterprises according to the <a href="https://www.cisco.com/c/en/us/solutions/hybrid-cloud/2022-trends.html">Cisco 2022 Global Hybrid Cloud Trends Report</a>.</p>
       <p>Hybrid clouds enable organisations to optimise their infrastructure costs by always running their workloads where it makes more sense from an economical standpoint.</p>
       <p>
         <a href="/engage/hybrid-cloud-business-guide">Read the whitepaper - “A business guide to hybrid cloud”&nbsp;&rsaquo;</a>
@@ -379,29 +379,41 @@
   </div>
   <div class="row u-equal-height">
     <div class="p-card col-6">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/623e36f9-OpenStack_Logo_Mark+%281%29.svg" alt="OpenStack" width="32" height="32" />
-          <h4 class="p-heading-icon__title">Charmed OpenStack</h4>
-        </div>
+      <div class="p-card__image">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/8c223290-Canonical-OpenStack-2022-LRG.png",
+          alt="",
+          width="300",
+          height="92",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
       <hr/>
       <div class="p-card__content">
-        <p>Charmed OpenStack is a pure upstream OpenStack distribution engineered for the best price-performance with full enterprise support for your production-grade private cloud.</p>
-        <p><a href="/openstack/features">Learn more about Charmed OpenStack&nbsp;&rsaquo;</a></p>
+        <p>Canonical OpenStack is an enterprise cloud platform engineered for price-performance that serves as a cost-effective extension to hyperscale infrastructure.</p>
+        <p><a href="/openstack/">Learn more about Canonical OpenStack&nbsp;&rsaquo;</a></p>
       </div>
     </div>
     <div class="p-card col-6">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/31c507a5-image-juju.svg" alt="Juju Logo" width="32" height="32" />
-          <h4 class="p-heading-icon__title">Juju</h4>
-        </div>
+      <div class="p-card__image">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/3c4a2ba6-Canonical-Charmhub-2022.svg",
+          alt="",
+          width="300",
+          height="92",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
       <hr/>
       <div class="p-card__content">
-        <p>Juju is a Charmed Operator Lifecycle Manager (OLM) that deploys, integrates, and manages Kubernetes, container and VM-native applications seamlessly across hybrid clouds.</p>
-        <p><a href="https://juju.is">Learn more about Juju</a></p>
+        <p>Charmed Operators are small artefacts which package common maintenance functions, to turn Day 0 to Day 2 operations into repeatable and reliable code.</p>
+        <p><a href="https://charmhub.io/">Learn more about Charmed Operators&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>
