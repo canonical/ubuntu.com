@@ -11,6 +11,7 @@ from webapp.shop.api.ua_contracts.api import (
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
 from webapp.login import user_info
+from webapp.views import get_user_country_by_ip
 
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -186,6 +187,7 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                             },
                         ]
                     )
+
                 exams.append(
                     {
                         "name": name,
@@ -203,8 +205,14 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "text": "Schedule",
                         "href": "/credentials/schedule?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button",
-                    }
+                        "button_class": "p-button--positive",
+                    },
+                    {
+                        "text": "Take now",
+                        "href": "/credentials/provision?"
+                        f"contractItemID={contract_item_id}",
+                        "button_class": "p-button--positive",
+                    },
                 ]
                 exams.append({"name": name, "actions": actions})
 
@@ -293,63 +301,48 @@ def cred_exam(trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 @canonical_staff()
-def cred_provision(trueability_api, **_):
-    sso_user = user_info(flask.session)
-    sso_user_email = sso_user["email"]
-    ability_screen_id = 4194
+def cred_provision(ua_contracts_api, trueability_api, **_):
+    contract_item_id = flask.request.args.get("contractItemID", type=int)
 
-    reservation_uuid = flask.session.get("_assessment_reservation_uuid")
+    if contract_item_id is None:
+        return flask.redirect("/credentials/your-exams")
+
+    sso_user = user_info(flask.session)
+    country_code = get_user_country_by_ip().json["country_code"] or "GB"
+
+    reservation_uuid = None
     assessment = None
     reservation = None
     error = None
 
+    exam_contracts = ua_contracts_api.get_exam_contracts()
+
+    exam_contract = None
+    for item in exam_contracts:
+        if contract_item_id == item["id"]:
+            exam_contract = item
+            break
+
+    if exam_contract:
+        if "reservation" in exam_contract["cueContext"]:
+            reservation_uuid = exam_contract["cueContext"]["reservation"][
+                "IDs"
+            ][-1]
+    else:
+        error = "Exam not found"
+
     if not reservation_uuid:
-        response = trueability_api.paginate(
-            trueability_api.get_assessment_reservations,
-            "assessment_reservations",
-            ability_screen_id=ability_screen_id,
-        )
-
-        for response_reservation in response["assessment_reservations"]:
-            if (
-                response_reservation.get("user", {}).get("email")
-                != sso_user_email
-            ):
-                continue
-
-            if response_reservation.get("state") in [
-                "created",
-                "scheduled",
-                "processed",
-            ]:
-                reservation_uuid = response_reservation["uuid"]
-                flask.session[
-                    "_assessment_reservation_uuid"
-                ] = reservation_uuid
-                break
-
-    if reservation_uuid:
-        response = trueability_api.get_assessment_reservation(reservation_uuid)
-
-        if "error" in response:
-            error = response.get(
-                "message", "An error occurred while fetching your exam."
-            )
-        else:
-            reservation = response["assessment_reservation"]
-            assessment = reservation["assessment"]
-
-    elif flask.request.method == "POST":
-        starts_at = datetime.utcnow() + timedelta(seconds=70)
+        tz_info = pytz.timezone("UTC")
+        starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=20))
         first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
-        response = trueability_api.post_assessment_reservation(
-            ability_screen_id,
-            starts_at.isoformat(),
-            sso_user_email,
+
+        response = ua_contracts_api.post_assessment_reservation(
+            contract_item_id,
             first_name,
             last_name,
-            "UTC",
-            "DE",
+            tz_info.zone,
+            starts_at.isoformat(),
+            country_code,
         )
 
         if "error" in response:
@@ -357,12 +350,29 @@ def cred_provision(trueability_api, **_):
                 "message", "An error occurred while creating your exam."
             )
         else:
+            reservation_uuid = response.get("reservation", {}).get("IDs", [])[
+                -1
+            ]
+
+    if reservation_uuid:
+        response = trueability_api.get_assessment_reservation(reservation_uuid)
+
+        if "error" in response:
+            error = response.get("message", "No exam booking could be found.")
+        else:
             reservation = response["assessment_reservation"]
             assessment = reservation["assessment"]
-            flask.session["_assessment_reservation_uuid"] = reservation["uuid"]
+
+    if assessment and assessment.get("state") in [
+        "notified",
+        "released",
+        "in_progress",
+    ]:
+        return flask.redirect(f"/credentials/exam?id={ assessment['id'] }")
 
     return flask.render_template(
         "/credentials/provision.html",
+        contract_item_id=contract_item_id,
         assessment=assessment,
         reservation=reservation,
         error=error,
