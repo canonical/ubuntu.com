@@ -25,6 +25,15 @@ TIMEZONE_COUNTRIES = {
 }
 TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
+EXAM_NAMES = {"cue-test": "CUE: Linux Beta"}
+
+RESERVATION_STATES = {
+    "created": "Scheduled",
+    "scheduled": "Scheduled",
+    "processed": "Complete",
+    "canceled": "Cancelled",
+}
+
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
 def cred_home(**_):
@@ -50,7 +59,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
     min_date = (now + timedelta(days=1)).strftime("%Y-%m-%d")
-    max_date = (now + timedelta(days=7)).strftime("%Y-%m-%d")
+    max_date = (now + timedelta(days=42)).strftime("%Y-%m-%d")
 
     if flask.request.method == "POST":
         data = flask.request.form
@@ -131,11 +140,16 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_your_exams(ua_contracts_api, trueability_api, **_):
     exam_contracts = ua_contracts_api.get_exam_contracts()
-    exams = []
+    exams_in_progress = []
+    exams_scheduled = []
+    exams_not_taken = []
+    exams_complete = []
+    exams_cancelled = []
 
     if exam_contracts:
         for exam_contract in exam_contracts:
             name = exam_contract["cueContext"]["courseID"]
+            name = EXAM_NAMES.get(name, name)
             contract_item_id = exam_contract["id"]
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
@@ -155,7 +169,8 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                 actions = []
                 utc = pytz.timezone("UTC")
                 now = utc.localize(datetime.utcnow())
-                end = starts_at + timedelta(hours=6)
+                end = starts_at + timedelta(minutes=75)
+                state = RESERVATION_STATES.get(r["state"], r["state"])
 
                 if assessment_id and now > starts_at and now < end:
                     actions.extend(
@@ -169,7 +184,19 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         ]
                     )
 
-                if r["state"] == "scheduled":
+                    exams_in_progress.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": "In progress",
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+
+                elif state == "Scheduled":
                     actions.extend(
                         [
                             {
@@ -179,26 +206,44 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                                 f"&uuid={r['uuid']}",
                                 "button_class": "p-button",
                             },
-                            {
-                                "text": "Cancel",
-                                "href": "/credentials/cancel-exam?"
-                                f"contractItemID={contract_item_id}",
-                                "button_class": "p-button--negative",
-                            },
                         ]
                     )
 
-                exams.append(
-                    {
-                        "name": name,
-                        "date": starts_at.strftime("%d %b %Y"),
-                        "time": starts_at.strftime("%I:%M %p %Z"),
-                        "timezone": timezone,
-                        "state": r["state"],
-                        "uuid": r["uuid"],
-                        "actions": actions,
-                    }
-                )
+                    exams_scheduled.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": state,
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+                elif state == "Complete":
+                    exams_complete.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": state,
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+                elif state == "Cancelled":
+                    exams_cancelled.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": state,
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
             else:
                 actions = [
                     {
@@ -214,7 +259,17 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "button_class": "p-button--positive",
                     },
                 ]
-                exams.append({"name": name, "actions": actions})
+                exams_not_taken.append(
+                    {"name": name, "state": "Not taken", "actions": actions}
+                )
+
+    exams = (
+        exams_in_progress
+        + exams_scheduled
+        + exams_not_taken
+        + exams_complete
+        + exams_cancelled
+    )
 
     response = flask.make_response(
         flask.render_template(
