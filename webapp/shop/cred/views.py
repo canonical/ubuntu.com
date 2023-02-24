@@ -205,13 +205,13 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "text": "Schedule",
                         "href": "/credentials/schedule?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button",
+                        "button_class": "p-button--positive",
                     },
                     {
                         "text": "Take now",
                         "href": "/credentials/provision?"
                         f"contractItemID={contract_item_id}",
-                        "button_class": "p-button",
+                        "button_class": "p-button--positive",
                     },
                 ]
                 exams.append({"name": name, "actions": actions})
