@@ -309,6 +309,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             value="myself"
             label="Myself"
             defaultChecked={values.buyingFor === "myself"}
+            disabled={window.accountId && userInfo?.accountInfo}
           />
           <Field
             as={RadioInput}
@@ -316,6 +317,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             value="organisation"
             label="An organisation"
             defaultChecked={values.buyingFor === "organisation"}
+            disabled={window.accountId && userInfo?.accountInfo}
           />
         </div>
       </FormRow>
@@ -325,7 +327,10 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         type="text"
         id="organisationName"
         name="organisationName"
-        disabled={values.buyingFor === "myself"}
+        disabled={
+          values.buyingFor === "myself" ||
+          (window.accountId && userInfo?.accountInfo)
+        }
         label="Organisation:"
         stacked
         validate={validateOrganisationName}
