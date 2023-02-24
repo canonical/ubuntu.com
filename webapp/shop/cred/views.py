@@ -140,7 +140,11 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_your_exams(ua_contracts_api, trueability_api, **_):
     exam_contracts = ua_contracts_api.get_exam_contracts()
-    exams = []
+    exams_in_progress = []
+    exams_scheduled = []
+    exams_not_taken = []
+    exams_complete = []
+    exams_cancelled = []
 
     if exam_contracts:
         for exam_contract in exam_contracts:
@@ -179,9 +183,20 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                             }
                         ]
                     )
-                    state = "In progress"
 
-                if r["state"] == "scheduled":
+                    exams_in_progress.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": "In progress",
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+
+                elif state == "Scheduled":
                     actions.extend(
                         [
                             {
@@ -194,17 +209,41 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         ]
                     )
 
-                exams.append(
-                    {
-                        "name": name,
-                        "date": starts_at.strftime("%d %b %Y"),
-                        "time": starts_at.strftime("%I:%M %p %Z"),
-                        "timezone": timezone,
-                        "state": state,
-                        "uuid": r["uuid"],
-                        "actions": actions,
-                    }
-                )
+                    exams_scheduled.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": state,
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+                elif state == "Complete":
+                    exams_complete.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": state,
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
+                elif state == "Cancelled":
+                    exams_cancelled.append(
+                        {
+                            "name": name,
+                            "date": starts_at.strftime("%d %b %Y"),
+                            "time": starts_at.strftime("%I:%M %p %Z"),
+                            "timezone": timezone,
+                            "state": state,
+                            "uuid": r["uuid"],
+                            "actions": actions,
+                        }
+                    )
             else:
                 actions = [
                     {
@@ -220,16 +259,16 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                         "button_class": "p-button--positive",
                     },
                 ]
-                exams.append(
+                exams_not_taken.append(
                     {"name": name, "state": "Not taken", "actions": actions}
                 )
 
     exams = (
-        [exam for exam in exams if exam["state"] == "In progress"]
-        + [exam for exam in exams if exam["state"] == "Scheduled"]
-        + [exam for exam in exams if exam["state"] == "Not taken"]
-        + [exam for exam in exams if exam["state"] == "Complete"]
-        + [exam for exam in exams if exam["state"] == "Cancelled"]
+        exams_in_progress
+        + exams_scheduled
+        + exams_not_taken
+        + exams_complete
+        + exams_cancelled
     )
 
     response = flask.make_response(
