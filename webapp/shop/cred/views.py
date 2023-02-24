@@ -308,7 +308,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         return flask.redirect("/credentials/your-exams")
 
     sso_user = user_info(flask.session)
-    country_code = get_user_country_by_ip().json["country_code"] or "DE"
+    country_code = get_user_country_by_ip().json["country_code"] or "GB"
 
     reservation_uuid = None
     assessment = None
