@@ -26,8 +26,9 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
       - name: Run Playwright tests
-        build: yarn run build
-        serve: yarn run serve
+        with:
+          build: yarn run build
+          serve: yarn run serve
         run: yarn playwright test
       - uses: actions/upload-artifact@v3
         if: always()
