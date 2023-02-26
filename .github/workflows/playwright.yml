@@ -1,27 +1,33 @@
 name: Playwright Tests
-on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+env:
+  SECRET_KEY: insecure_test_key
+  PORT: 8001
+  CONTRACTS_API_URL: https://contracts.staging.canonical.com
+  STRIPE_PUBLISHABLE_KEY: pk_test_yndN9H0GcJffPe0W58Nm64cM00riYG4N46
+  CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+  MARKETO_API_CLIENT: ${{secrets.MARKETO_API_CLIENT}}
+  MARKETO_API_SECRET: ${{secrets.MARKETO_API_SECRET}}
+on: pull_request
 jobs:
-  test:
+  test-playwright:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    - name: Install dependencies
-      run: yarn
-    - name: Install Playwright Browsers
-      run: yarn playwright install --with-deps
-    - name: Run Playwright tests
-      run: yarn playwright test
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: yarn
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
+      - name: Run Playwright tests
+        build: yarn run build
+        serve: yarn run serve
+        run: yarn playwright test
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
