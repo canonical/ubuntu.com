@@ -7,7 +7,11 @@ env:
   CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
   MARKETO_API_CLIENT: ${{secrets.MARKETO_API_CLIENT}}
   MARKETO_API_SECRET: ${{secrets.MARKETO_API_SECRET}}
-on: [push, pull_request]
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 jobs:
   test-playwright:
     timeout-minutes: 60
