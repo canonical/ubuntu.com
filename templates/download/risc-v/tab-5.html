@@ -1,47 +1,40 @@
-<div tabindex="0" role="tabpanel" id="live-installer-tab" aria-labelledby="live-installer" aria-hidden="true">
+<div tabindex="0" role="tabpanel" id="microchip-polarfire-soc-fpga-icicle-kit-tab" aria-labelledby="live-installer" aria-hidden="true">
 	<div class="row u-vertically-center u-no-padding">
 		<div class="col-6">
-			<h2>Download Ubuntu Server Live Installer</h2>
-			<h3 class="p-heading--4">Ubuntu Server 22.10</h3>
-			<div class="p-notification--information is-inline">
-				<div class="p-notification__content">
-					<h4 class="p-notification__title">Note:</h4>
-					<p class="p-notification__message">It is an early RISC-V developer access through Ubuntu 22.10. This image works on the SiFive Unmatched Board and on QEMU.</p>
-				</div>
-			</div>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/22.10/release/ubuntu-22.10-live-server-riscv64.img.gz">Download 64-bit</a>
-			</p>			
+			<h2>Download Ubuntu Server</h2>
 			<h3 class="p-heading--4">Ubuntu Server 22.04.2</h3>
 			<div class="p-notification--information is-inline">
 				<div class="p-notification__content">
 					<h4 class="p-notification__title">Note:</h4>
-					<p class="p-notification__message">It is an early RISC-V developer access through Ubuntu 22.04.2. This image works on the SiFive Unmatched Board and on QEMU.</p>
+					<p class="p-notification__message">It is an early RISC-V developer access through Ubuntu 22.04.2.</p>
 				</div>
 			</div>
 			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 64-bit</a>
-			</p>
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+icicle.img.xz">Download 64-bit</a>
+			</p>			
 			<p>Works on:</p>
 			<ul class="p-list">
-				<li class="p-list__item is-ticked">The Unmatched board</li>
-				<li class="p-list__item is-ticked">QEMU</li>
+				<li class="p-list__item is-ticked">The Microchip Polarfire SoC FPGA Icicle Kit with <a href="https://github.com/polarfire-soc/hart-software-services/releases/tag/v2022.10">HSS v2022.10</a></li>
 			</ul>
 		</div>
-		<div class="col-6 u-hide--medium u-hide--small u-align--center">
-			{{ image (
-				url="https://assets.ubuntu.com/v1/37c094a9-SiFive+Unmatched+Board.jpg",
+		<div class="col-2 u-hide--medium u-hide--small">&nbsp;</div>
+		<div class="col-4 u-hide--medium u-hide--small u-align--center">
+			{{
+				image (
+				url="https://assets.ubuntu.com/v1/40eacb41-Microchip+PolarFire.png",
 				alt="",
-				width="720",
-				height="480",
+				width="800",
+				height="414",
 				hi_def=True,
-				loading="auto"
+				loading="lazy"
 				) | safe
-			}}
+			  }}
 		</div>
 	</div>
-	<div class="u-fixed-width">
-		<h4>First time installing Ubuntu on QEMU/Unmatched?</h4>
-		<p>Please see the <a href="https://discourse.ubuntu.com/t/ubuntu-installation-on-the-sifive-hifive-unmatched-board-using-a-server-install-image/27804">Ubuntu installation on the SiFive HiFive Unmatched board using a server install image - RISC-V-docs</a> and <a href="https://discourse.ubuntu.com/t/ubuntu-installation-on-a-risc-v-virtual-machine-using-a-server-install-image-and-qemu/27636">Ubuntu installation on a RISC-V virtual machine using a server install image and QEMU</a> for more information.</p>
+	<div class="row u-vertically-center u-no-padding">
+		<div class="col-6">
+			<h4>First time installing Ubuntu on the Microchip Polarfire SoC FPGA Icicle Kit?</h4>
+			<p>Please see <a href="https://wiki.ubuntu.com/RISC-V/PolarFire%20SoC%20FPGA%20Icicle%20Kit">How to install Ubuntu on the Microchip Polarfire SoC FPGA Icicle Kit</a> for more information.</p>
+		</div>
 	</div>
 </div>
