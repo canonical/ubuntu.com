@@ -93,7 +93,7 @@ const Offer = ({ offer }: Props) => {
             </Col>
             <Col size={3} small={1} medium={2}>
               <p className="col-3">
-                {currencyFormatter.format((total * (discount / 100)) / 100)} (
+                - {currencyFormatter.format((total * (discount / 100)) / 100)} (
                 {discount}%)
               </p>
             </Col>
