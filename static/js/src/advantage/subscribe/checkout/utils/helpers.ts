@@ -15,6 +15,7 @@ export function getInitialFormValues(
     name: customerName ?? "",
     buyingFor: buyingFor,
     organisationName: accountName ?? "",
+    defaultPaymentMethod: userInfo?.customerInfo?.defaultPaymentMethod,
     address: userInfo?.customerInfo?.address?.line1 ?? "",
     postalCode: userInfo?.customerInfo?.address?.postal_code ?? "",
     country: userInfo?.customerInfo?.address?.country ?? "",

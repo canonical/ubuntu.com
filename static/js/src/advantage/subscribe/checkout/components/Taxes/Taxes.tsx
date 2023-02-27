@@ -18,7 +18,6 @@ import {
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
 import useCalculateTaxes from "../../hooks/useCalculateTaxes";
-import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { FormValues, Product } from "../../utils/types";
 
 type TaxesProps = {
@@ -31,18 +30,15 @@ type TaxesProps = {
 const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
   const {
     values,
+    initialValues,
     errors,
     touched,
     setFieldValue,
     setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
-  const [isEditing, setIsEditing] = useState(!values.country);
-
+  const [isEditing, setIsEditing] = useState(!initialValues.country);
   const queryClient = useQueryClient();
-  const { data: userInfo } = useCustomerInfo();
-
-  const savedCountry = !!userInfo?.customerInfo?.address?.country;
-  const isGuest = !userInfo?.customerInfo?.email;
+  const isGuest = !initialValues.email;
 
   useEffect(() => {
     if (errors.VATNumber) {
@@ -52,11 +48,13 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
   }, [errors]);
 
   useEffect(() => {
+    const savedCountry = !!initialValues.country;
+
     if (savedCountry) {
       setIsEditing(!savedCountry);
       setTaxSaved(savedCountry);
     }
-  }, [savedCountry]);
+  }, [initialValues]);
 
   const taxMutation = useCalculateTaxes({
     marketplace: values.marketplace,
@@ -183,7 +181,9 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
         </Col>
         <Col size={8}>
           <p>
-            <strong>{getLabel(values.country ?? "", countries)}</strong>
+            <strong data-testid="country">
+              {getLabel(values.country ?? "", countries)}
+            </strong>
           </p>
         </Col>
       </Row>
@@ -196,7 +196,9 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
             </Col>
             <Col size={8}>
               <p>
-                <strong>{getLabel(values.usState, USStates)}</strong>
+                <strong data-testid="us-state">
+                  {getLabel(values.usState, USStates)}
+                </strong>
               </p>
             </Col>
           </Row>
@@ -211,7 +213,9 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
             </Col>
             <Col size={8}>
               <p>
-                <strong>{getLabel(values.caProvince, caProvinces)}</strong>
+                <strong data-testid="ca-province">
+                  {getLabel(values.caProvince, caProvinces)}
+                </strong>
               </p>
             </Col>
           </Row>
@@ -226,7 +230,9 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
             </Col>
             <Col size={8}>
               <p>
-                <strong>{values.VATNumber ? values.VATNumber : "None"}</strong>
+                <strong data-testid="vat-number">
+                  {values.VATNumber ? values.VATNumber : "None"}
+                </strong>
               </p>
             </Col>
           </Row>
@@ -265,6 +271,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
       )}
       {values.country === "CA" && (
         <Field
+          data-testid="select-ca-province"
           as={Select}
           id="caProvinces"
           name="caProvince"
@@ -278,6 +285,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
       )}
       {vatCountries.includes(values.country ?? "") && (
         <Field
+          data-testid="field-vat-number"
           as={Input}
           type="text"
           id="VATNumber"
@@ -304,30 +312,10 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
             {window.accountId ? (
               <ActionButton
                 onClick={() => {
-                  if (touched?.country) {
-                    setFieldValue(
-                      "country",
-                      userInfo?.customerInfo?.address?.country
-                    );
-                  }
-                  if (touched?.usState) {
-                    setFieldValue(
-                      "usState",
-                      userInfo?.customerInfo?.address?.state
-                    );
-                  }
-                  if (touched?.caProvince) {
-                    setFieldValue(
-                      "caProvince",
-                      userInfo?.customerInfo?.address?.state
-                    );
-                  }
-                  if (touched?.VATNumber) {
-                    setFieldValue(
-                      "VATNumber",
-                      userInfo?.customerInfo?.taxID?.value
-                    );
-                  }
+                  setFieldValue("country", initialValues.country);
+                  setFieldValue("usState", initialValues.usState);
+                  setFieldValue("caProvince", initialValues.caProvince);
+                  setFieldValue("VATNumber", initialValues.VATNumber);
                   setIsEditing(false);
                   setTaxSaved(true);
                 }}

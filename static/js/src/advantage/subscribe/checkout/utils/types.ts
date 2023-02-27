@@ -35,6 +35,7 @@ export interface FormValues {
   name?: string;
   buyingFor?: "organisation" | "myself";
   organisationName?: string;
+  defaultPaymentMethod?: DefaultPaymentMethod;
   address?: string;
   postalCode?: string;
   country?: string;

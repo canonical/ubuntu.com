@@ -4,11 +4,10 @@ import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { fireEvent, render, screen } from "@testing-library/react";
-import * as useCustomerInfo from "../../hooks/useCustomerInfo";
 import { UAProduct } from "../../utils/test/Mocks";
 import Taxes from "./Taxes";
 
-describe("PaymentMethodSummary", () => {
+describe("TaxesTests", () => {
   let queryClient: QueryClient;
   const stripePromise = loadStripe(window.stripePublishableKey ?? "");
 
@@ -107,25 +106,16 @@ describe("PaymentMethodSummary", () => {
   });
 
   it("sets status right if country is stored", () => {
-    jest.spyOn(useCustomerInfo, "default").mockImplementation(() => {
-      return {
-        isLoading: false,
-        data: {
-          customerInfo: {
-            address: {
-              country: "GB",
-            },
-          },
-        },
-        isError: false,
-        isSuccess: true,
-        error: undefined,
-      };
-    });
+    global.window = Object.create(window);
+    Object.defineProperty(window, "accountId", { value: "ABCDEF" });
+
+    const intialValues = {
+      country: "GB",
+    };
 
     render(
       <QueryClientProvider client={queryClient}>
-        <Formik initialValues={{}} onSubmit={jest.fn()}>
+        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
             <Taxes
               product={UAProduct}
@@ -142,16 +132,6 @@ describe("PaymentMethodSummary", () => {
   });
 
   it("sets status right if country is not stored", () => {
-    jest.spyOn(useCustomerInfo, "default").mockImplementation(() => {
-      return {
-        isLoading: false,
-        data: undefined,
-        isError: false,
-        isSuccess: true,
-        error: undefined,
-      };
-    });
-
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
@@ -168,5 +148,63 @@ describe("PaymentMethodSummary", () => {
     );
 
     expect(screen.getByRole("button", { name: "Save" })).toBeInTheDocument();
+  });
+
+  it("cancel button resets tax step values", () => {
+    global.window = Object.create(window);
+    Object.defineProperty(window, "accountId", { value: "ABCDEF" });
+
+    const intialValues = {
+      country: "GB",
+      VATNumber: "GB123123123",
+    };
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Formik initialValues={intialValues} onSubmit={jest.fn()}>
+          <Elements stripe={stripePromise}>
+            <Taxes
+              product={UAProduct}
+              quantity={1}
+              setError={jest.fn()}
+              setTaxSaved={jest.fn()}
+            />
+          </Elements>
+        </Formik>
+      </QueryClientProvider>
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+    fireEvent.change(screen.getByTestId("select-country"), {
+      target: { value: "FR" },
+    });
+    fireEvent.change(screen.getByTestId("field-vat-number"), {
+      target: { value: "FR123123123" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
+    expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
+
+    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+    fireEvent.change(screen.getByTestId("select-country"), {
+      target: { value: "US" },
+    });
+    fireEvent.change(screen.getByTestId("select-state"), {
+      target: { value: "AL" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
+    expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
+
+    fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+    fireEvent.change(screen.getByTestId("select-country"), {
+      target: { value: "CA" },
+    });
+    fireEvent.change(screen.getByTestId("select-ca-province"), {
+      target: { value: "AL" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    expect(screen.getByTestId("country")).toHaveTextContent("United Kingdom");
+    expect(screen.getByTestId("vat-number")).toHaveTextContent("GB123123123");
   });
 });

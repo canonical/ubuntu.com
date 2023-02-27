@@ -13,7 +13,6 @@ import { CardElement } from "@stripe/react-stripe-js";
 import { checkoutEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
 import registerPaymentMethod from "../../hooks/postCustomerInfo";
-import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { FormValues } from "../../utils/types";
 import FormRow from "../FormRow";
 import PaymentMethodSummary from "./PaymentMethodSummary";
@@ -34,16 +33,15 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
     errors,
     touched,
     values,
+    initialValues,
     setErrors: setFormikErrors,
     setFieldValue,
     isSubmitting,
   } = useFormikContext<FormValues>();
   const queryClient = useQueryClient();
-  const { data: userInfo } = useCustomerInfo();
-  const defaultPaymentMethod = userInfo?.customerInfo?.defaultPaymentMethod;
   const paymentMethodMutation = registerPaymentMethod();
   const [isEditing, setIsEditing] = useState(
-    !window.accountId || !defaultPaymentMethod
+    !window.accountId || !initialValues.defaultPaymentMethod
   );
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
@@ -58,7 +56,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
   };
 
   useEffect(() => {
-    if (defaultPaymentMethod && !isEditing) {
+    if (initialValues.defaultPaymentMethod && !isEditing) {
       setCardValid(true);
     } else {
       setCardValid(false);
@@ -169,7 +167,9 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             </Col>
             <Col size={8}>
               <p>
-                <strong>{values.organisationName}</strong>
+                <strong data-testid="organisation-name">
+                  {values.organisationName}
+                </strong>
               </p>
             </Col>
           </Row>
@@ -182,7 +182,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         </Col>
         <Col size={8}>
           <p>
-            <strong>{values.name}</strong>
+            <strong data-testid="customer-name">{values.name}</strong>
           </p>
         </Col>
       </Row>
@@ -193,7 +193,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         </Col>
         <Col size={8}>
           <p>
-            <strong>{values.address}</strong>
+            <strong data-testid="customer-address">{values.address}</strong>
           </p>
         </Col>
       </Row>
@@ -204,7 +204,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         </Col>
         <Col size={8}>
           <p>
-            <strong>{values.city}</strong>
+            <strong data-testid="customer-city">{values.city}</strong>
           </p>
         </Col>
       </Row>
@@ -215,7 +215,9 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         </Col>
         <Col size={8}>
           <p>
-            <strong>{values.postalCode}</strong>
+            <strong data-testid="customer-postal-code">
+              {values.postalCode}
+            </strong>
           </p>
         </Col>
       </Row>
@@ -284,6 +286,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         </div>
       </FormRow>
       <Field
+        data-testid="field-customer-name"
         as={Input}
         type="text"
         id="name"
@@ -312,6 +315,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         </div>
       </FormRow>
       <Field
+        data-testid="field-org-name"
         as={Input}
         type="text"
         id="organisationName"
@@ -327,6 +331,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         }
       />
       <Field
+        data-testid="field-address"
         as={Input}
         type="text"
         id="address"
@@ -337,6 +342,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         error={touched?.address && errors?.address}
       />
       <Field
+        data-testid="field-city"
         as={Input}
         type="text"
         id="city"
@@ -347,6 +353,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
         error={touched?.city && errors?.city}
       />
       <Field
+        data-testid="field-post-code"
         as={Input}
         type="text"
         id="postalCode"
@@ -362,7 +369,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
   return (
     <Row>
       {isEditing ? editMode : displayMode}
-      {window.accountId && defaultPaymentMethod ? (
+      {window.accountId && initialValues.defaultPaymentMethod ? (
         <>
           <hr />
           <div
@@ -372,39 +379,15 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             {isEditing ? (
               <ActionButton
                 onClick={() => {
-                  if (touched?.buyingFor) {
-                    setFieldValue(
-                      "buyingFor",
-                      userInfo?.accountInfo?.name ? "organisation" : "myself"
-                    );
-                  }
-                  if (touched?.organisationName) {
-                    setFieldValue(
-                      "organisationName",
-                      userInfo?.accountInfo?.name
-                    );
-                  }
-                  if (touched?.name) {
-                    setFieldValue("name", userInfo?.customerInfo?.name);
-                  }
-                  if (touched?.address) {
-                    setFieldValue(
-                      "address",
-                      userInfo?.customerInfo?.address?.line1
-                    );
-                  }
-                  if (touched?.city) {
-                    setFieldValue(
-                      "city",
-                      userInfo?.customerInfo?.address?.city
-                    );
-                  }
-                  if (touched?.postalCode) {
-                    setFieldValue(
-                      "postalCode",
-                      userInfo?.customerInfo?.address?.postal_code
-                    );
-                  }
+                  setFieldValue("buyingFor", initialValues.buyingFor);
+                  setFieldValue(
+                    "organisationName",
+                    initialValues.organisationName
+                  );
+                  setFieldValue("name", initialValues.name);
+                  setFieldValue("address", initialValues.address);
+                  setFieldValue("city", initialValues.city);
+                  setFieldValue("postalCode", initialValues.postalCode);
                   setIsEditing(false);
                 }}
               >
