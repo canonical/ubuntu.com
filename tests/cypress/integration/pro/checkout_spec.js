@@ -255,7 +255,6 @@ context("Checkout - Your information", () => {
     ).click();
 
     cy.findByLabelText("Name:").type("Abcd", { force: true });
-    cy.findByLabelText("Organisation:").type("Abcd");
     cy.findByLabelText("Address:").type("Abcd");
     cy.findByLabelText("City:").type("Abcd");
     cy.findByLabelText("Postal code:").type("Abcd");
@@ -266,9 +265,8 @@ context("Checkout - Your information", () => {
     ).click();
 
     cy.get('[data-testid="customer-name"]').should("not.have.text", "Abcd");
-    cy.get('[data-testid="organisation-name"]').should("not.have.text", "Abcd");
     cy.get('[data-testid="customer-address"]').should("not.have.text", "Abcd");
-    cy.get('[data-testid="customer-city"]').should("not.have.text", "London");
+    cy.get('[data-testid="customer-city"]').should("not.have.text", "Abcd");
     cy.get('[data-testid="customer-postal-code"]').should(
       "not.have.text",
       "Abcd"
