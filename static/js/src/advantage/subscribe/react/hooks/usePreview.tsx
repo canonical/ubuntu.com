@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
-import { postPurchasePreviewData } from "../../../api/contracts";
-import useStripeCustomerInfo from "../../../../PurchaseModal/hooks/useStripeCustomerInfo";
-import { Product as UAProduct } from "../utils/utils";
 import { Product as BlenderProduct } from "advantage/subscribe/blender/utils/utils";
+import useCustomerInfo from "advantage/subscribe/checkout/hooks/useCustomerInfo";
+import { postPurchasePreviewData } from "../../../api/contracts";
+import { Product as UAProduct } from "../utils/utils";
 
 type Props = {
   quantity: number;
@@ -10,7 +10,7 @@ type Props = {
 };
 
 const usePreview = ({ quantity, product }: Props) => {
-  const { isError: isUserInfoError } = useStripeCustomerInfo();
+  const { isError: isUserInfoError } = useCustomerInfo();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["preview", product],

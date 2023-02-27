@@ -60,7 +60,7 @@ account_purhcase = {
     "offer_id": String(),
     "renewal_id": String(),
     "previous_purchase_id": String(),
-    "captcha_value": String(),
+    "captcha_value": String(allow_none=True),
     "marketplace": String(
         validate=validate.OneOf(["canonical-ua", "canonical-cube", "blender"]),
         required=True,
@@ -126,6 +126,14 @@ ensure_purchase_account = {
     "account_name": String(),
     "captcha_value": String(),
     "marketplace": String(),
+}
+
+get_purchase_account_status = {
+    "marketplace": String(
+        validate=validate.OneOf(
+            ["", "canonical-ua", "canonical-cube", "blender"]
+        )
+    ),
 }
 
 invoice_view = {

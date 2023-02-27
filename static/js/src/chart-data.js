@@ -373,13 +373,13 @@ export var kernelReleases2004 = [
   {
     startDate: new Date("2022-08-11T00:00:00"),
     endDate: new Date("2025-04-22T00:00:00"),
-    taskName: "Ubuntu 20.04.5 LTS",
+    taskName: "Ubuntu 20.04.5 LTS (v5.15)",
     status: "LTS",
   },
   {
     startDate: new Date("2025-04-22T00:00:00"),
     endDate: new Date("2030-04-21T00:00:00"),
-    taskName: "Ubuntu 20.04.5 LTS",
+    taskName: "Ubuntu 20.04.5 LTS (v5.15)",
     status: "ESM",
   },
   {
@@ -805,13 +805,13 @@ export var kernelReleasesALL = [
   {
     startDate: new Date("2022-05-13T00:00:00"),
     endDate: new Date("2022-08-11T00:00:00"),
-    taskName: "Ubuntu 20.04.5 LTS",
+    taskName: "Ubuntu 20.04.5 LTS (v5.15)",
     status: "EARLY",
   },
   {
     startDate: new Date("2022-08-11T00:00:00"),
     endDate: new Date("2025-04-22T00:00:00"),
-    taskName: "Ubuntu 20.04.5 LTS",
+    taskName: "Ubuntu 20.04.5 LTS (v5.15)",
     status: "LTS",
   },
 ];
@@ -1030,13 +1030,13 @@ export var kernelReleasesLTS = [
   {
     startDate: new Date("2022-08-11T00:00:00"),
     endDate: new Date("2024-08-10T00:00:00"),
-    taskName: "Ubuntu 20.04.5 LTS",
+    taskName: "Ubuntu 20.04.5 LTS (v5.15)",
     status: "LTS",
   },
   {
     startDate: new Date("2024-08-10T00:00:00"),
     endDate: new Date("2025-04-22T00:00:00"),
-    taskName: "Ubuntu 20.04.5 LTS",
+    taskName: "Ubuntu 20.04.5 LTS (v5.15)",
     status: "CVE",
   },
 ];

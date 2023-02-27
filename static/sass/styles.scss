@@ -36,6 +36,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_buttons";
 @import "pattern_calculator";
 @import "pattern_card";
+@import "pattern_checkout";
 @import "pattern_certification-results";
 @import "pattern_chart";
 @import "pattern_component-details-table";
@@ -94,6 +95,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
 @include ubuntu-p-certification-results;
+@include ubuntu-p-checkout;
 @include ubuntu-p-contact-modal;
 @include ubuntu-p-contextual-footer;
 @include ubuntu-p-cube-animation;
@@ -402,6 +404,48 @@ summary {
   }
 }
 
+.pro-card-container {
+  grid-gap: 0;
+  .pro-card {
+    padding: calc(#{$spv--large} - 1px) calc(#{$spv--large} - 1px)
+      $spv--strip-deep * 0.5;
+    @media (min-width: $breakpoint-small) {
+      padding: calc(#{$spv--small} - 1px) calc(#{$spv--large} - 1px)
+        $spv--strip-deep;
+    }
+  }
+}
+.bg-light {
+  background-color: $color-light;
+}
+
+.bg-mid-dark {
+  background-color: $color-mid-dark;
+  color: $color-x-light;
+  hr {
+    background-color: $colors--dark-theme--border-low-contrast;
+  }
+}
+
+.bg-dark {
+  background-color: $color-x-dark;
+  color: $color-x-light;
+  hr {
+    background-color: $colors--dark-theme--border-low-contrast;
+  }
+}
+
+.pro-table {
+  @media (max-width: $threshold-6-12-col - 1) {
+    tr {
+      padding: 0;
+    }
+    td {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
 .subscribe-section {
   @media (min-width: $breakpoint-medium) {
     margin-left: 4rem !important;

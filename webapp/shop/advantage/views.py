@@ -347,11 +347,13 @@ def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
 @shop_decorator(area="advantage", response="json")
 @use_kwargs(account_purhcase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
-    account_id = kwargs.get("account_id")
+    account_id = kwargs.get("account_id") or flask.session.get(
+        "guest_account_id"
+    )
     customer_info = kwargs.get("customer_info")
     marketplace = kwargs.get("marketplace", "canonical-ua")
 
-    if account_id is None:
+    if not account_id:
         try:
             account = advantage_mapper.get_or_create_user_account(
                 marketplace, customer_info, kwargs.get("captcha_value")
@@ -359,6 +361,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
             account_id = account.id
             if account.token is not None:
                 flask.session["guest_authentication_token"] = account.token
+                flask.session["guest_account_id"] = account.id
         except AccessForbiddenError:
             response = {"error": "User has no permission to purchase"}
             return flask.jsonify(response), 403

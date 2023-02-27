@@ -96,6 +96,7 @@ from webapp.views import (
 
 from webapp.shop.views import (
     account_view,
+    get_purchase_account_status,
     invoices_view,
     download_invoice,
     payment_methods_view,
@@ -110,6 +111,7 @@ from webapp.shop.views import (
     get_last_purchase_ids,
     post_purchase_calculate,
     support,
+    checkout,
 )
 
 from webapp.shop.advantage.views import (
@@ -217,6 +219,15 @@ def forbidden_error(error):
 @app.errorhandler(410)
 def deleted_error(error):
     return flask.render_template("410.html", message=error.description), 410
+
+
+@app.errorhandler(429)
+def too_many_requests(error):
+    """
+    Endpoint abuse error
+    """
+    custom_error = f"{error.description}. Please try again tomorrow."
+    return flask.render_template("429.html", message=custom_error), 429
 
 
 @app.errorhandler(SecurityAPIError)
@@ -431,6 +442,11 @@ app.add_url_rule(
     view_func=account_view,
 )
 app.add_url_rule(
+    "/account/<marketplace>/purchase-account-status",
+    view_func=get_purchase_account_status,
+    methods=["GET"],
+)
+app.add_url_rule(
     "/account/invoices",
     view_func=invoices_view,
 )
@@ -505,6 +521,11 @@ app.add_url_rule(
     defaults={"preview": True},
 )
 app.add_url_rule(
+    "/account/checkout",
+    view_func=checkout,
+    methods=["GET"],
+)
+app.add_url_rule(
     "/account/<marketplace>/purchase/calculate",
     view_func=post_purchase_calculate,
     methods=["POST"],
@@ -536,6 +557,7 @@ app.add_url_rule(
         search_engine_id=search_engine_id,
     ),
 )
+
 app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"

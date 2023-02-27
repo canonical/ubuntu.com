@@ -8,7 +8,7 @@ import {
   ProductTypes,
 } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
-import PaymentModal from "../PaymentModal";
+import PaymentButton from "../PaymentButton";
 
 const ProductSummary = () => {
   const {
@@ -111,7 +111,7 @@ const ProductSummary = () => {
                 Free trial available
               </StatusLabel>
             ) : null}
-            <PaymentModal isHidden={isHidden} />
+            <PaymentButton />
           </Col>
         </Row>
       </section>
@@ -171,7 +171,7 @@ const ProductSummary = () => {
             </p>
           </Col>
           <Col size={12}>
-            <PaymentModal isHidden={isHidden} />
+            <PaymentButton />
           </Col>
           {product?.canBeTrialled ? (
             <Col size={12}>
