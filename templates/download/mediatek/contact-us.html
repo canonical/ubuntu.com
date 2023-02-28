@@ -13,7 +13,7 @@
       <p>By partnering to enable Ubuntu on the Genio, MediaTek and Canonical will allow developers, innovators and the embedded community to take advantage of this power-efficient, high-performance AIoT SoC. The collaboration ensures developers and enterprises can create reliable and secure devices, benefiting from up to 10 years of enterprise-grade Ubuntu support, security updates, and anywhere, anytime connectivity. Devices built on the MediaTek Genio and Ubuntu enjoy reliable and efficient over-the-air updates, enabling the next generation of secure, open and extensible IoT devices.</p>
       <p><strong>Please leave your contact details so that we can inform you once the optimised Ubuntu images are available to download and install on your Genio boards.</strong></p>
     </div>
-    <div class="col-4 u-vertically-center">
+    <div class="col-4 u-vertically-center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/0ebb345c-MediaTek_logo.svg",
         alt="",
@@ -78,19 +78,19 @@
           <h3 class="p-heading--4">Do you have a commercial project?</h3>
           <div class="row">
             <div class="col-2">
-              <label class="p-radio">
+              <label class="p-radio u-no-margin--bottom">
                 <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-yes" name="commercial-project" value="Yes">
                 <span class="p-radio__label" id="commercial-project-yes">Yes</span>
               </label>
             </div>
             <div class="col-2">
-              <label class="p-radio">
+              <label class="p-radio u-no-margin--bottom">
                 <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
                 <span class="p-radio__label" id="commercial-project-no">No</span>
               </label>
             </div>
             <div class="col-2 u-sv3">
-              <label class="p-radio">
+              <label class="p-radio u-no-margin--bottom">
                 <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-not-applicable" name="commercial-project" value="Not applicable">
                 <span class="p-radio__label" id="commercial-project-not-applicable">Not applicable</span>
               </label>
@@ -140,11 +140,11 @@
             </li>
             {# End of honey pots #}
             <li class="p-list__item">
-              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : 'MediaTek', 'eventValue' : undefined });">Submit</button>
+              <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'download contact-us', 'eventLabel' : 'MediaTek', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4644" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/thank-you" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/download/thank-you" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
