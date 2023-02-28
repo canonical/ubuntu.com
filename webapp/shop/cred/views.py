@@ -558,16 +558,6 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
-    if flask.request.method == "POST":
-        sso_user = user_info(flask.session)
-        account = advantage_mapper.ensure_purchase_account(
-            marketplace="canonical-cube",
-            email=sso_user["email"],
-            account_name=sso_user["fullname"],
-            captcha_value=flask.request.form["g-recaptcha-response"],
-        )
-        return flask.redirect("/credentials/redeem/" + kwargs.get("code"))
-
     activation_key = kwargs.get("code")
     try:
         activation_response = ua_contracts_api.activate_activation_key(
