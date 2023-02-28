@@ -570,13 +570,9 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
     activation_key = kwargs.get("code")
     try:
-        account = advantage_mapper.get_purchase_account("canonical-cube")
-        account_id = account.id
-
         activation_response = ua_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
-                "accountID": account_id,
             }
         )
         exam_contracts = ua_contracts_api.get_exam_contracts()
@@ -629,11 +625,8 @@ def rotate_activation_key(ua_contracts_api, **kwargs):
 def activate_activation_key(ua_contracts_api, **kwargs):
     data = flask.request.json
     activation_key = data["activationKey"]
-    account = ua_contracts_api.get_purchase_account("canonical-cube")
-    account_id = account["id"]
     return ua_contracts_api.activate_activation_key(
         {
             "activationKey": activation_key,
-            "accountID": account_id,
         }
     )
