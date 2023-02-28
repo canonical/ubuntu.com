@@ -54,7 +54,6 @@ def cred_sign_up(**_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
@@ -336,7 +335,6 @@ def cred_assessments(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_exam(trueability_api, **_):
     assessment_id = flask.request.args.get("id")
     assessment = trueability_api.get_assessment(assessment_id)
@@ -355,7 +353,6 @@ def cred_exam(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_provision(ua_contracts_api, trueability_api, **_):
     contract_item_id = flask.request.args.get("contractItemID", type=int)
 
@@ -561,27 +558,11 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
-    if flask.request.method == "POST":
-        sso_user = user_info(flask.session)
-        account = advantage_mapper.ensure_purchase_account(
-            marketplace="canonical-cube",
-            email=sso_user["email"],
-            account_name=sso_user["fullname"],
-            captcha_value=flask.request.form["g-recaptcha-response"],
-        )
-        return flask.redirect("/credentials/redeem/" + kwargs.get("code"))
-
     activation_key = kwargs.get("code")
     try:
-        account = advantage_mapper.get_purchase_account("canonical-cube")
-        account_id = account.id
-        product_id = kwargs.get("product_id", "cue-test")
-
         activation_response = ua_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
-                "accountID": account_id,
-                "productID": product_id,
             }
         )
         exam_contracts = ua_contracts_api.get_exam_contracts()
@@ -608,7 +589,6 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
-@canonical_staff()
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account()
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
@@ -623,7 +603,6 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
-@canonical_staff()
 def rotate_activation_key(ua_contracts_api, **kwargs):
     activation_key = kwargs.get("activation_key")
     new_activation_key = ua_contracts_api.rotate_activation_key(
@@ -636,13 +615,8 @@ def rotate_activation_key(ua_contracts_api, **kwargs):
 def activate_activation_key(ua_contracts_api, **kwargs):
     data = flask.request.json
     activation_key = data["activationKey"]
-    account = ua_contracts_api.get_purchase_account("canonical-cube")
-    account_id = account["id"]
-    product_id = data["productID"]
     return ua_contracts_api.activate_activation_key(
         {
             "activationKey": activation_key,
-            "accountID": account_id,
-            "productID": product_id,
         }
     )
