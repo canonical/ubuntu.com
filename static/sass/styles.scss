@@ -1143,3 +1143,18 @@ hr.p-separator.is-shallow {
 .no-border::after {
   content: none !important;
 }
+
+// Custom styles for /managed/index
+// Extend row with increaded row gap
+.row--r-gap3 {
+  @extend %vf-row;
+  @include vf-b-row-reset;
+
+  @supports (display: grid) {
+    row-gap: 2rem;
+
+    @media (max-width: $threshold-6-12-col) {
+      row-gap: 0rem;
+    }
+  }
+}
