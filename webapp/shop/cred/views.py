@@ -572,13 +572,11 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     try:
         account = advantage_mapper.get_purchase_account("canonical-cube")
         account_id = account.id
-        product_id = kwargs.get("product_id", "cue-test")
 
         activation_response = ua_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
                 "accountID": account_id,
-                "productID": product_id,
             }
         )
         exam_contracts = ua_contracts_api.get_exam_contracts()
@@ -633,11 +631,9 @@ def activate_activation_key(ua_contracts_api, **kwargs):
     activation_key = data["activationKey"]
     account = ua_contracts_api.get_purchase_account("canonical-cube")
     account_id = account["id"]
-    product_id = data["productID"]
     return ua_contracts_api.activate_activation_key(
         {
             "activationKey": activation_key,
             "accountID": account_id,
-            "productID": product_id,
         }
     )
