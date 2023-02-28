@@ -152,6 +152,11 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
     let errorMessage;
     if (!value && values.buyingFor === "organisation") {
       errorMessage = "This field is required.";
+    } else if (
+      values.buyingFor === "organisation" &&
+      values.organisationName === values.name
+    ) {
+      errorMessage = 'Please select "I\'m buying for: Myself" option above.';
     }
     return errorMessage;
   };
@@ -304,6 +309,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             value="myself"
             label="Myself"
             defaultChecked={values.buyingFor === "myself"}
+            disabled={window.accountId && initialValues.organisationName}
           />
           <Field
             as={RadioInput}
@@ -311,25 +317,33 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             value="organisation"
             label="An organisation"
             defaultChecked={values.buyingFor === "organisation"}
+            disabled={window.accountId && initialValues.organisationName}
           />
         </div>
       </FormRow>
-      <Field
-        data-testid="field-org-name"
-        as={Input}
-        type="text"
-        id="organisationName"
-        name="organisationName"
-        disabled={values.buyingFor === "myself"}
-        label="Organisation:"
-        stacked
-        validate={validateOrganisationName}
-        error={
-          values.buyingFor === "organisation" &&
-          touched?.organisationName &&
-          errors?.organisationName
-        }
-      />
+      {initialValues.buyingFor === "myself" &&
+      window.accountId &&
+      initialValues.organisationName ? null : (
+        <Field
+          data-testid="field-org-name"
+          as={Input}
+          type="text"
+          id="organisationName"
+          name="organisationName"
+          disabled={
+            values.buyingFor === "myself" ||
+            (window.accountId && initialValues.organisationName)
+          }
+          label="Organisation:"
+          stacked
+          validate={validateOrganisationName}
+          error={
+            values.buyingFor === "organisation" &&
+            touched?.organisationName &&
+            errors?.organisationName
+          }
+        />
+      )}
       <Field
         data-testid="field-address"
         as={Input}
