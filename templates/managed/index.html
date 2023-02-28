@@ -461,19 +461,20 @@
           <p><a class="p-button--positive" href="/kubernetes/managed">Managed Kubernetes</a></p>
         </div>
 
-        <div class="col-4 u-sv3">
-          {{
-          image (
-          url="https://assets.ubuntu.com/v1/e0461e14-ceph-dark.svg",
-          alt="",
-          width="324",
-          height="135",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class":"u-hide--small"},
-          ) | safe
-          }}
-          <h3 class="p-heading--4"><a href="/ceph/managed">Ceph</a></h3>
+        <div class="col-4 u-sv3 p-card">
+          <div class="u-sv1">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/dfd3bd7a-canonical-ceph.svg",
+              alt="Canonical Ceph",
+              width="199",
+              height="42",
+              hi_def=True,
+              loading="lazy",
+              ) | safe
+            }}
+          </div>
+          <hr />
           <p>As easy as the public cloud, just more economical. Fully managed open-source software-defined storage, with a proven reference architecture, that can be customised for your needs.</p>
           <p><a class="p-button--positive" href="/ceph/managed">Managed Ceph</a></p>
         </div>
