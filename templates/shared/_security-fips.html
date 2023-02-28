@@ -16,21 +16,21 @@
                 <input type="checkbox" aria-labelledby="security-fips-xenial" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-xenial">16.04 (Xenial)</span>
               </label>
-              
+
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="security-fips-bionic" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-bionic">18.04 (Bionic)</span>
               </label>
-              
+
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="security-fips-focal" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-focal">20.04 (Focal)</span>
               </label>
-              
+
             </div>
           </div>
         </fieldset>
@@ -42,7 +42,7 @@
                 <input type="checkbox" aria-labelledby="security-fips-tomcat" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-tomcat">tomcat</span>
               </label>
-              
+
               <div class="js-other-container">
                 <label class="p-checkbox">
                   <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="security-fips-other">
@@ -61,21 +61,21 @@
                 <input type="checkbox" aria-labelledby="security-fips-openjdk-8" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-openjdk-8">OpenJDK-8</span>
               </label>
-              
+
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="security-fips-openjdk-11" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-openjdk-11">OpenJDK-11</span>
               </label>
-              
+
             </div>
             <div class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="security-fips-openjdk-16" class="p-checkbox__input">
                 <span class="p-checkbox__label" id="security-fips-openjdk-16">OpenJDK-16</span>
               </label>
-              
+
             </div>
           </div>
         </fieldset>
@@ -148,20 +148,20 @@
         </fieldset>
       </form>
     </div>
-  </div>	
+  </div>
 </section>
 
 <script>
   var otherContainers = document.querySelectorAll(".js-other-container");
   var comment = document.querySelector("#Comments_from_lead__c");
-  
+
   otherContainers.forEach(function (otherContainer) {
     var checkbox = otherContainer.querySelector(
     ".js-other-container__checkbox"
     );
     var input = otherContainer.querySelector(".js-other-container__input");
     checkbox.addEventListener("change", function (e) {
-      
+
       if (e.target.checked) {
         input.style.visibility = "visible"
         input.focus();
@@ -171,29 +171,29 @@
       }
     });
   });
-  
+
   mktoForm_4208.addEventListener('submit', function(e) {
     e.preventDefault();
     comment.value = createMessage();
     this.submit();
   });
-  
-  
+
+
   // Concatinate the options selected into a string
   function createMessage() {
     var message = "";
-    
+
     var formFields = document.querySelectorAll(".fieldset");
-    
+
     formFields.forEach(function (formField) {
       var comma = "";
       var fieldTitle = formField.querySelector(".p-heading--5");
       var inputs = formField.querySelectorAll("input, textarea");
-      
+
       if (fieldTitle) {
         message += fieldTitle.innerText + "\r\n";
       }
-      
+
       inputs.forEach(function (input) {
         switch (input.type) {
           case "radio":
@@ -211,7 +211,7 @@
             if (subSection) {
               subSectionText = subSection.innerText + ": ";
             }
-            
+
             var label = formField.querySelector(
             "label[for=" + input.id + "]"
             );
@@ -245,7 +245,7 @@
         }
       });
     });
-    
+
     return message;
   }
 </script>

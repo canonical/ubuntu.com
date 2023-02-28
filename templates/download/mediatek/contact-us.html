@@ -30,7 +30,7 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-8">
-      <form action="/marketo/submit" method="post" id="mktoForm_4644">
+      <form action="/marketo/submit" method="post" onsubmit="buildCommentsForLead()" id="mktoForm_4644">
         <fieldset class="u-no-margin--bottom">
           <legend class="u-off-screen">About you</legend>
           <h2 class="p-heading--3">About you</h2>
@@ -62,7 +62,7 @@
           </ul>
         </fieldset>
 
-        <fieldset class="u-no-margin--bottom">
+        <fieldset class="u-no-margin--bottom js-formfield">
           <legend class="u-off-screen">About your company</legend>
           <h2 class="p-heading--3">About your company</h2>
           <p class="u-no-margin--bottom">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
@@ -77,24 +77,18 @@
           </label>
           <h3 class="p-heading--4">Do you have a commercial project?</h3>
           <div class="row">
-            <div class="col-2">
-              <label class="p-radio u-no-margin--bottom">
-                <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-yes" name="commercial-project" value="Yes">
-                <span class="p-radio__label" id="commercial-project-yes">Yes</span>
-              </label>
-            </div>
-            <div class="col-2">
-              <label class="p-radio u-no-margin--bottom">
-                <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
-                <span class="p-radio__label" id="commercial-project-no">No</span>
-              </label>
-            </div>
-            <div class="col-2 u-sv3">
-              <label class="p-radio u-no-margin--bottom">
-                <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-not-applicable" name="commercial-project" value="Not applicable">
-                <span class="p-radio__label" id="commercial-project-not-applicable">Not applicable</span>
-              </label>
-            </div>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-yes" name="commercial-project" value="Yes">
+              <span class="p-radio__label" id="commercial-project-yes">Yes</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-no" name="commercial-project" value="No">
+              <span class="p-radio__label" id="commercial-project-no">No</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="commercial-project-not-applicable" name="commercial-project" value="Not applicable">
+              <span class="p-radio__label" id="commercial-project-not-applicable">Not applicable</span>
+            </label>
           </div>
           <h3 class="p-heading--4">When do you need to ship?</h3>
           <label class="p-radio">
@@ -113,10 +107,8 @@
             <input class="p-radio__input" type="radio" aria-labelledby="when-do-you-ship-no-timeline" name="when-do-you-ship" value="No timeline - just researching">
             <span class="p-radio__label" id="when-do-you-ship-no-timeline">No timeline - just researching</span>
           </label>
-          <h3 class="p-heading--4">
-            Tell us more about your project
-          </h3>
-          <textarea name="tell-us-more-about-your-project" id="tell-us-more-about-your-project" aria-label="Tell us more about your project" rows="3" placeholder=""></textarea>
+          <label for="tell-us-about-your-project"><h3 class="p-heading--4">Tell us more about your project</h3></label>
+          <textarea id="tell-us-about-your-project" name="tell-us-about-your-project" rows="5" maxlength="2000"></textarea>
         </fieldset>
 
         <fieldset class="u-no-margin--bottom">
@@ -143,6 +135,12 @@
               <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'download contact-us', 'eventLabel' : 'MediaTek', 'eventValue' : undefined });">Submit</button>
             </li>
           </ul>
+          <div class="u-off-screen">
+            <label for="Comments_from_lead__c">
+              <h3 class="p-heading--4">Your comments</h3>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+            </label>
+          </div>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4644" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/download/thank-you" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
@@ -158,5 +156,7 @@
     </div>
   </div>
 </section>
+
+<script src="/static/js/src/generate-comments-for-lead.js"></script>
 
 {% endblock %}
