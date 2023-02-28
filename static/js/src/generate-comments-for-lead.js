@@ -13,7 +13,7 @@ function buildCommentsForLead() {
     }
 
     inputs.forEach(function (input) {
-      var question = input.name.split('-').join(' ');
+      var question = input.name.split("-").join(" ");
       switch (input.type) {
         case "radio":
           if (input.checked) {
