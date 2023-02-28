@@ -33,7 +33,6 @@ describe("Offer", () => {
       ],
       total: 340000,
     });
-    console.log("offer", offer);
     render(<Offer offer={offer} />);
     expect(screen.getByText("Test")).toBeInTheDocument();
     expect(screen.getByText("$400.00")).toBeInTheDocument();
