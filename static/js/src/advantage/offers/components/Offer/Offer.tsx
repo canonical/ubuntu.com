@@ -11,8 +11,7 @@ type Props = {
 };
 
 const Offer = ({ offer }: Props) => {
-  const { id, marketplace, items, total } = offer;
-
+  const { id, marketplace, items, total, discount } = offer;
   const names = items.map((item: Item) => {
     return `${item.allowance ?? 0} x ${item.name}`;
   });
@@ -33,7 +32,7 @@ const Offer = ({ offer }: Props) => {
     <Card data-testid="offer-card">
       <Row>
         <Col size={6} small={2} medium={2}>
-          <p className="p-text--x-small-capitalised">Contract item22</p>
+          <p className="p-text--x-small-capitalised">Contract item</p>
         </Col>
         <Col size={3} small={1} medium={2}>
           <p className="p-text--x-small-capitalised">Allowance</p>
@@ -77,6 +76,51 @@ const Offer = ({ offer }: Props) => {
           <p className="col-3">{currencyFormatter.format(total / 100)}</p>
         </Col>
       </Row>
+      {discount && (
+        <>
+          <Row>
+            <Col
+              size={3}
+              emptyLarge={7}
+              small={2}
+              emptySmall={2}
+              medium={2}
+              emptyMedium={3}
+            >
+              <p className="p-text--x-small-capitalised col-3 col-start-large-7">
+                Discount amount
+              </p>
+            </Col>
+            <Col size={3} small={1} medium={2}>
+              <p className="col-3">
+                - {currencyFormatter.format((total * (discount / 100)) / 100)} (
+                {discount}%)
+              </p>
+            </Col>
+          </Row>
+          <Row>
+            <Col
+              size={3}
+              emptyLarge={7}
+              small={2}
+              emptySmall={2}
+              medium={2}
+              emptyMedium={3}
+            >
+              <p className="p-text--x-small-capitalised col-3 col-start-large-7">
+                Total after discount
+              </p>
+            </Col>
+            <Col size={3} small={1} medium={2}>
+              <p className="col-3">
+                {currencyFormatter.format(
+                  (total - total * (discount / 100)) / 100
+                )}
+              </p>
+            </Col>
+          </Row>
+        </>
+      )}
       <Row>
         <Col size={12} className="u-align--right">
           <PaymentButton product={product} />

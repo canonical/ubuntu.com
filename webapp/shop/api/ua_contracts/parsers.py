@@ -265,6 +265,7 @@ def parse_offer_items(
 
 def parse_offer(raw_offer: Offer) -> Offer:
     items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
+    discount = raw_offer.get("discount", None)
 
     return Offer(
         id=raw_offer["id"],
@@ -274,6 +275,7 @@ def parse_offer(raw_offer: Offer) -> Offer:
         actionable=raw_offer["actionable"],
         total=sum(item.price for item in items),
         items=items,
+        discount=discount,
     )
 
 

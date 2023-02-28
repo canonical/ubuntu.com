@@ -15,4 +15,5 @@ export type Offer = {
   items: Item[];
   marketplace: UserSubscriptionMarketplace;
   total: number;
+  discount: number | null;
 };
