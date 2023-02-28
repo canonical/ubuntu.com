@@ -32,7 +32,7 @@ const Offer = ({ offer }: Props) => {
     <Card data-testid="offer-card">
       <Row>
         <Col size={6} small={2} medium={2}>
-          <p className="p-text--x-small-capitalised">Contract item22</p>
+          <p className="p-text--x-small-capitalised">Contract item</p>
         </Col>
         <Col size={3} small={1} medium={2}>
           <p className="p-text--x-small-capitalised">Allowance</p>
