@@ -54,7 +54,6 @@ def cred_sign_up(**_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_schedule(ua_contracts_api, trueability_api, **_):
     error = None
     now = datetime.utcnow()
@@ -336,7 +335,6 @@ def cred_assessments(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_exam(trueability_api, **_):
     assessment_id = flask.request.args.get("id")
     assessment = trueability_api.get_assessment(assessment_id)
@@ -355,7 +353,6 @@ def cred_exam(trueability_api, **_):
 
 
 @shop_decorator(area="cred", permission="user", response="html")
-@canonical_staff()
 def cred_provision(ua_contracts_api, trueability_api, **_):
     contract_item_id = flask.request.args.get("contractItemID", type=int)
 
@@ -608,7 +605,6 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
-@canonical_staff()
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account()
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
@@ -623,7 +619,6 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="cube", permission="user", response="json")
-@canonical_staff()
 def rotate_activation_key(ua_contracts_api, **kwargs):
     activation_key = kwargs.get("activation_key")
     new_activation_key = ua_contracts_api.rotate_activation_key(
