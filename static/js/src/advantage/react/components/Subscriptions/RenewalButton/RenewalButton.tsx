@@ -33,7 +33,7 @@ export default function RenewalButton({
 
   const shopCheckoutData = {
     product: product,
-    quantity: subscription.number_of_machines,
+    quantity: subscription.current_number_of_machines,
     action: action,
   };
 
