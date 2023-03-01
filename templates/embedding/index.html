@@ -306,4 +306,27 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/embedding" data-form-id="4482" data-lp-id="" data-return-url="/embedding" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
+<script>
+  function canonicalProducts() {
+    const productsQuestion = document.getElementById("canonicalProductsQuestion").outerText;
+    const optionYes = document.getElementById("selectionYes");
+    const optionNo = document.getElementById("selectionNo");
+    const textarea = document.getElementById("Comments_from_lead__c");
+    const extraCommentsText = document.getElementById("about-use-case");
+    const extraCommentsLabel = document.querySelector(`[for="about-use-case"]`).innerHTML;
+
+    if (optionYes.checked) {
+      const text = document.getElementById("canonicalProductsYes").outerText;
+      textarea.value = productsQuestion + ": " + text + " \r\n";
+    } else if (optionNo.checked) {
+      const text = document.getElementById("canonicalProductsNo").outerText;
+      textarea.value = productsQuestion + ": " + text + " \r\n";
+    }
+
+    if (extraCommentsText.value) {
+      textarea.value += extraCommentsLabel + " " + extraCommentsText.value
+    }
+}
+</script>
+
 {% endblock content %}

@@ -1,3 +1,23 @@
+
+otherContainers = document.querySelectorAll(".js-other-container")
+console.log(otherContainers)
+Array.prototype.forEach.call(otherContainers, function (otherContainer) {
+  console.log("here")
+  var checkbox = otherContainer.querySelector(
+    ".js-other-container__checkbox"
+  );
+  var input = otherContainer.querySelector(".js-other-container__input");
+  checkbox.addEventListener("change", function (e) {
+    if (e.target.checked) {
+      input.style.opacity = 1;
+      input.focus();
+    } else {
+      input.style.opacity = 0;
+      input.value = "";
+    }
+  });
+});
+
 function buildCommentsForLead() {
   var message = "";
   var commentsFromLead = document.querySelector("#Comments_from_lead__c");
