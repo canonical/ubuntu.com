@@ -138,6 +138,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_your_exams(ua_contracts_api, trueability_api, **_):
+    sso_user_email = user_info(flask.session)["email"]
     exam_contracts = ua_contracts_api.get_exam_contracts()
     exams_in_progress = []
     exams_scheduled = []
@@ -155,6 +156,10 @@ def cred_your_exams(ua_contracts_api, trueability_api, **_):
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
                 )
                 r = response["assessment_reservation"]
+
+                user_email = r.get("user", {}).get("email")
+                if user_email != sso_user_email:
+                    continue
 
                 timezone = r["user"]["time_zone"]
                 tz_info = pytz.timezone(timezone)
