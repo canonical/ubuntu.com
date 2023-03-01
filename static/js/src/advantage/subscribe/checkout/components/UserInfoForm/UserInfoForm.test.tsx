@@ -39,7 +39,7 @@ describe("UserInfoFormTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <UserInfoForm setError={jest.fn()} setCardValid={jest.fn()} />
+            <UserInfoForm setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>

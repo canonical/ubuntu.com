@@ -23,11 +23,10 @@ import { FormValues, Product } from "../../utils/types";
 type TaxesProps = {
   product: Product;
   quantity: number;
-  setTaxSaved: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
+const Taxes = ({ product, quantity, setError }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -43,7 +42,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
   useEffect(() => {
     if (errors.VATNumber) {
       setIsEditing(true);
-      setTaxSaved(false);
+      setFieldValue("isTaxSaved", false);
     }
   }, [errors]);
 
@@ -52,7 +51,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
 
     if (savedCountry) {
       setIsEditing(!savedCountry);
-      setTaxSaved(savedCountry);
+      setFieldValue("isTaxSaved", savedCountry);
     }
   }, [initialValues]);
 
@@ -80,7 +79,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
           Sentry.captureException(error);
         },
       });
-      setTaxSaved(true);
+      setFieldValue("isTaxSaved", true);
     } else {
       postCustomerTaxInfoMutation.mutate(
         {
@@ -128,13 +127,13 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
           },
         }
       );
-      setTaxSaved(true);
+      setFieldValue("isTaxSaved", true);
     }
   };
 
   const onEditClick = () => {
     setIsEditing(true);
-    setTaxSaved(false);
+    setFieldValue("isTaxSaved", false);
   };
 
   const validateRequired = (value: string) => {
@@ -317,7 +316,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
                   setFieldValue("caProvince", initialValues.caProvince);
                   setFieldValue("VATNumber", initialValues.VATNumber);
                   setIsEditing(false);
-                  setTaxSaved(true);
+                  setFieldValue("isTaxSaved", true);
                 }}
               >
                 Cancel

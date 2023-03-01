@@ -49,6 +49,8 @@ export interface FormValues {
   Description: boolean;
   marketplace: UserSubscriptionMarketplace;
   FreeTrial: string;
+  isTaxSaved: boolean;
+  isCardValid: boolean;
 }
 
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
