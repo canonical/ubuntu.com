@@ -136,3 +136,13 @@ def get_json_feed(url, offset=0, limit=None):
         return False
 
     return content[offset:end]
+
+
+def schedule_banner(start_date: str, end_date: str):
+    try:
+        end = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+        start = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+        present = datetime.datetime.now()
+        return start <= present < end
+    except ValueError:
+        return False

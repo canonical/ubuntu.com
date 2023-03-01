@@ -9,7 +9,7 @@
 {% block content %}
 
 <section class="p-strip--suru-topped is-dark is-bordered">
-  {% if not ("2022-09-06" | date_has_passed) %}
+  {% if schedule_banner("2023-03-08", "2023-03-22") %}
     {% include "shared/_charmed-kubeflow-beta-banner.html" %}
   {% endif %}
   <div class="row u-equal-height">
