@@ -32,9 +32,6 @@ const ProductSummary = () => {
     quantity < 1 ||
     (productType === ProductTypes.iotDevice && iotDevice === IoTDevices.core);
 
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const referrer = params.get("referrer");
   return (
     <>
       <section
@@ -114,7 +111,7 @@ const ProductSummary = () => {
                 Free trial available
               </StatusLabel>
             ) : null}
-            <PaymentButton referrer={referrer} />
+            <PaymentButton />
           </Col>
         </Row>
       </section>
@@ -174,7 +171,7 @@ const ProductSummary = () => {
             </p>
           </Col>
           <Col size={12}>
-            <PaymentButton referrer={referrer} />
+            <PaymentButton />
           </Col>
           {product?.canBeTrialled ? (
             <Col size={12}>
