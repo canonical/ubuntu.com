@@ -3,36 +3,36 @@ import { add, format } from "date-fns";
 import { Field, useFormikContext } from "formik";
 import { Col, RadioInput, Row } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
-import { FormValues } from "../../utils/types";
+import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
+import usePreview from "../../hooks/usePreview";
+import useCalculate from "../../hooks/useCalculate";
 
 type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  isTaxSaved: boolean;
 };
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
-const FreeTrial = ({ quantity, product, action, isTaxSaved }: Props) => {
+const FreeTrial = ({ quantity, product, action }: Props) => {
   const { values } = useFormikContext<FormValues>();
-  const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
+  const { data: calculate } = useCalculate({
     quantity: quantity,
     marketplace: product.marketplace,
     productListingId: product.longId,
     country: values.country,
     VATNumber: values.VATNumber,
-    isTaxSaved: isTaxSaved,
+    isTaxSaved: values.isTaxSaved,
   });
 
-  const { data: preview, isFetching: isPreviewFetching } = usePreview({
+  const { data: preview } = usePreview({
     quantity,
     product,
     action,
   });
-
-  const isSummaryLoading = isPreviewFetching || isCalculateFetching;
   const priceData: TaxInfo | undefined = preview || calculate;
+  const taxData = priceData;
 
   return (
     <Row>

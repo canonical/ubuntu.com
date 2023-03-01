@@ -13,10 +13,9 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  isTaxSaved: boolean;
 };
 
-function Summary({ quantity, product, action, isTaxSaved }: Props) {
+function Summary({ quantity, product, action }: Props) {
   const { values } = useFormikContext<FormValues>();
   const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
     quantity: quantity,
@@ -24,7 +23,7 @@ function Summary({ quantity, product, action, isTaxSaved }: Props) {
     productListingId: product.longId,
     country: values.country,
     VATNumber: values.VATNumber,
-    isTaxSaved: isTaxSaved,
+    isTaxSaved: values.isTaxSaved,
   });
 
   const { data: preview, isFetching: isPreviewFetching } = usePreview({

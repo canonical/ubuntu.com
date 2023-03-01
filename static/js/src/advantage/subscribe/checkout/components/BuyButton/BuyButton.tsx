@@ -15,18 +15,9 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
-  isCardValid: boolean;
-  isTaxSaved: boolean;
 };
 
-const BuyButton = ({
-  setError,
-  quantity,
-  product,
-  action,
-  isCardValid,
-  isTaxSaved,
-}: Props) => {
+const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -41,8 +32,8 @@ const BuyButton = ({
 
   useEffect(() => {
     if (
-      !isTaxSaved ||
-      !isCardValid ||
+      !values.isTaxSaved ||
+      !values.isCardValid ||
       !values.email ||
       !values.name ||
       !values.address ||
@@ -63,7 +54,7 @@ const BuyButton = ({
     } else {
       setIsButtonDisabled(false);
     }
-  }, [values, isLoading, isCardValid, isTaxSaved]);
+  }, [values, isLoading]);
 
   const sessionData = {
     gclid: getSessionData("gclid"),
