@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { render, screen } from "@testing-library/react";
-import * as useGetTaxAmount from "../../hooks/useGetTaxAmount";
+import * as useCalculate from "../../hooks/useCalculate";
 import * as usePreview from "../../hooks/usePreview";
 import { taxInfo, UAProduct } from "../../utils/test/Mocks";
 import Summary from "./Summary";
@@ -48,9 +48,14 @@ describe("Summary", () => {
       };
     });
 
-    jest.spyOn(useGetTaxAmount, "default").mockImplementation(() => {
+    jest.spyOn(useCalculate, "default").mockImplementation(() => {
       return {
+        isLoading: false,
         data: undefined,
+        isError: false,
+        isSuccess: true,
+        error: undefined,
+        isFetching: false,
       };
     });
 
