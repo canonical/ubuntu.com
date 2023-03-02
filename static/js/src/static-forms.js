@@ -1,4 +1,4 @@
-otherContainers = document.querySelectorAll(".js-other-container");
+var otherContainers = document.querySelectorAll(".js-other-container");
 Array.prototype.forEach.call(otherContainers, function (otherContainer) {
   var otherToggle = otherContainer.querySelector(
     ".js-other-container__other-toggle"
