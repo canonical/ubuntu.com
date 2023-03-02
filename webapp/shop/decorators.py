@@ -37,6 +37,7 @@ MARKETING_FLAGS = {
     "gbraid": "google-gbraid-id",
     "wbraid": "google-wbraid-id",
     "fbclid": "facebook-click-id",
+    "referrer": "referrer",
 }
 
 SERVICES = {
