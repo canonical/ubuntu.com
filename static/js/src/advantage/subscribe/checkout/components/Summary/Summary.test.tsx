@@ -44,6 +44,7 @@ describe("Summary", () => {
         isError: false,
         isSuccess: true,
         error: undefined,
+        isFetching: false,
       };
     });
 
@@ -92,6 +93,7 @@ describe("Summary", () => {
         isError: false,
         isSuccess: true,
         error: undefined,
+        isFetching: false,
       };
     });
     render(
@@ -121,6 +123,7 @@ describe("Summary", () => {
         isError: false,
         isSuccess: true,
         error: undefined,
+        isFetching: false,
       };
     });
     render(

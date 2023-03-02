@@ -110,7 +110,13 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       ? [
                           {
                             title: "Free trial",
-                            content: <FreeTrial />,
+                            content: (
+                              <FreeTrial
+                                quantity={quantity}
+                                product={product}
+                                action={action}
+                              />
+                            ),
                           },
                         ]
                       : []),

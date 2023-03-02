@@ -17,7 +17,6 @@ import {
 } from "advantage/countries-and-states";
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
-import useCalculateTaxes from "../../hooks/useCalculateTaxes";
 import { FormValues, Product } from "../../utils/types";
 
 type TaxesProps = {
@@ -26,7 +25,7 @@ type TaxesProps = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-const Taxes = ({ product, quantity, setError }: TaxesProps) => {
+const Taxes = ({ setError }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -55,31 +54,12 @@ const Taxes = ({ product, quantity, setError }: TaxesProps) => {
     }
   }, [initialValues]);
 
-  const taxMutation = useCalculateTaxes({
-    marketplace: values.marketplace,
-    country: values.country,
-    productListing: product?.longId || "",
-    quantity,
-    VATNumber: values.VATNumber,
-  });
-
   const postCustomerTaxInfoMutation = postCustomerTaxInfo();
 
   const onSaveClick = () => {
     setIsEditing(false);
     if (isGuest || !window.accountId) {
       queryClient.invalidateQueries("calculate");
-      // taxMutation.mutate(undefined, {
-      //   onSuccess: (data) => {
-      //     queryClient.setQueryData("taxCalulations", data);
-      //   },
-      //   onError: (error) => {
-      //     setFieldValue("Description", false);
-      //     setFieldValue("TermsAndConditions", false);
-      //     document.querySelector("h1")?.scrollIntoView();
-      //     Sentry.captureException(error);
-      //   },
-      // });
       setFieldValue("isTaxSaved", true);
     } else {
       postCustomerTaxInfoMutation.mutate(
