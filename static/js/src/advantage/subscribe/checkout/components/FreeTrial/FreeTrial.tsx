@@ -31,8 +31,7 @@ const FreeTrial = ({ quantity, product, action }: Props) => {
     product,
     action,
   });
-  const priceData: TaxInfo | undefined = preview || calculate;
-  const taxData = priceData;
+  const taxData: TaxInfo | undefined = preview || calculate;
 
   return (
     <Row>

@@ -55,11 +55,7 @@ const UserInfoForm = ({ setError }: Props) => {
   };
 
   useEffect(() => {
-    if (initialValues.defaultPaymentMethod && !isEditing) {
-      setFieldValue("isCardValid", true);
-    } else {
-      setFieldValue("isCardValid", false);
-    }
+    setFieldValue("isCardValid", !isEditing);
   }, [isEditing]);
 
   const onSaveClick = () => {
