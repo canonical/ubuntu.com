@@ -14,6 +14,7 @@
     }
   }
 
+/// temp style until this issue has been addressed: https:github.com/canonical/vanilla-framework/issues/4678
   .p-heading-icon__img--small {
     align-self: center;
     height: auto;
@@ -21,4 +22,18 @@
     margin-top: 0.25rem;
     max-width: 2rem;
   }
+
+  .p-heading-icon--long {
+    .p-heading-icon__img {
+      width: auto;
+      height: 2rem;
+    }
+
+    .p-heading-icon__title {
+      @extend .p-heading--5;
+      margin-top: 1.5rem;
+    }
+
+  }
+
 }
