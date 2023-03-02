@@ -1,11 +1,6 @@
-
-otherContainers = document.querySelectorAll(".js-other-container")
-console.log(otherContainers)
+otherContainers = document.querySelectorAll(".js-other-container");
 Array.prototype.forEach.call(otherContainers, function (otherContainer) {
-  console.log("here")
-  var checkbox = otherContainer.querySelector(
-    ".js-other-container__checkbox"
-  );
+  var checkbox = otherContainer.querySelector(".js-other-container__checkbox");
   var input = otherContainer.querySelector(".js-other-container__input");
   checkbox.addEventListener("change", function (e) {
     if (e.target.checked) {
