@@ -100,7 +100,7 @@
     <main class="col-9">
       <h1>{{ document.title }}</h1>
 
-      {% if document.headings_map and not document.metadata.disable_toc %}
+      {% if document.headings_map and document.metadata.enable_toc %}
         <ol class="p-list--nested-counter">
           {% for heading in document.headings_map %}
           <li>
