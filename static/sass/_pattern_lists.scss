@@ -10,6 +10,7 @@
   @include ubuntu-p-step-counter;
   @include ubuntu-p-list-ticked;
   @include ubuntu-p-list-horizontal-divided;
+  @include ubuntu-p-faq-stepped-list--detailed;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -372,6 +373,34 @@
           display: none;
         }
       }
+    }
+  }
+}
+
+@mixin ubuntu-p-faq-stepped-list--detailed {
+  .p-faq-stepped-list--detailed {
+    @extend .p-stepped-list--detailed;
+
+    .p-faq-stepped-list__item {
+      @extend .p-stepped-list__item;
+
+      padding-top: 0;
+    }
+
+    @supports (display: grid) {
+      .p-faq-stepped-list__content {
+        @media (min-width: $threshold-6-12-col) {
+          display: flex;
+          grid-column-end: span 12;
+          margin-top: 0;
+        }
+      }
+    }
+
+    // TODO : the accordion component needs to be fixed in vanilla. The issue was filed on https://github.com/canonical/vanilla-framework/issues/4563. This styles written locally needs to be removed after vanilla update.
+    .u-default-max-width {
+      display: inline-block;
+      max-width: $text-max-width;
     }
   }
 }

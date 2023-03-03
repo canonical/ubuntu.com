@@ -17,6 +17,7 @@
   @include ubuntu-p-strip-suru-square-suru;
   @include ubuntu-p-strip-x-deep;
   @include ubuntu-p-strip-suru-shape;
+  @include ubnutu-p-strip-suru-light-v2;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -1021,5 +1022,20 @@
     background-color: #2c2c2c;
     background-size: cover;
     color: $color-x-light;
+  }
+}
+
+@mixin ubnutu-p-strip-suru-light-v2 {
+  .p-strip--suru-light-v2 {
+    @extend %vf-strip;
+
+    background-color: #f7f7f7;
+
+    @media (min-width: $breakpoint-large) {
+      background-image: url("https://assets.ubuntu.com/v1/18717572-05_suru2_light_glow_8K_edited.png");
+      background-position: bottom 45% left 20%;
+      background-size: 120%;
+      background-repeat: no-repeat;
+    }
   }
 }
