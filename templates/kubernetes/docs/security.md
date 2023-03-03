@@ -14,7 +14,7 @@ toc: False
 ---
 
 This page provides an overview of various aspects of security to be considered
-when operation a **Charmed Kubernetes** cluster. To consider security properly,
+when operating a **Charmed Kubernetes** cluster. To consider security properly,
 this means not just aspects of Kubernetes itself, but also how and where
 it is installed and operated.
 
@@ -82,6 +82,7 @@ any of the methods and options described by the upstream
 -   [Using AWS IAM for auth][k8s-aws-iam]
 -   [Authentication with LDAP and Keystone][k8s-ldap]
 -   [Overview of certificates and trust in Charmed Kubernetes][k8s-trust]
+-   [Using the OPA Gatekeeper charm][k8s-gatekeeper]
 
 ## CIS Benchmark
 
@@ -108,3 +109,4 @@ To test your cluster, please see the
 [k8s-ldap]: /kubernetes/docs/ldap
 [k8s-trust]: /kubernetes/docs/certs-and-trust
 [k8s-vault]: /kubernetes/docs/using-vault
+[k8s-gatekeeper]: /kubernetes/docs/gatekeeper
