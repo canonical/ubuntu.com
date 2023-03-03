@@ -8,6 +8,7 @@ import os
 import talisker.requests
 import flask
 from datetime import datetime
+from webapp.context import schedule_banner
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 
@@ -325,6 +326,7 @@ def context():
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
         "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
+        "schedule_banner": schedule_banner,
     }
 
 
