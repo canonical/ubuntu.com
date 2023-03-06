@@ -69,10 +69,13 @@
               <input class="p-radio__input" type="radio" aria-labelledby="your-industry-is-public-sector" name="your-industry-is" value="Public sector">
               <span class="p-radio__label" id="your-industry-is-public-sector">Public sector</span>
             </label>
-            <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="your-industry-is-other" name="your-industry-is" value="Other">
-              <span class="p-radio__label" id="your-industry-is-other">Other</span>
-            </label>
+            <div class="js-other-container">
+              <label class="p-radio">
+                <input class="p-radio__input js-other-container__other-toggle" type="radio" aria-labelledby="your-industry-is-other" name="your-industry-is">
+                <span class="p-radio__label" id="your-industry-is-other">Other</span>
+              </label>
+              <input type="text" id="your-industry-is-other-specified" class="js-other-container__input u-hide" name="your-industry-is" placeholder="Please specify" style="margin-top: .25rem;" aria-label="Other industry specified">
+            </div>
             <h3 class="p-heading--4">Which architecture are you using?</h3>
             <label class="p-radio">
               <input class="p-radio__input" type="radio" aria-labelledby="architecture-using-arm" name="architecture-using" value="arm">
@@ -82,10 +85,13 @@
               <input class="p-radio__input" type="radio" aria-labelledby="architecture-using-x86" name="architecture-using" value="x86">
               <span class="p-radio__label" id="architecture-using-x86">x86</span>
             </label>
-            <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="architecture-using-other" name="architecture-using" value="Other">
-              <span class="p-radio__label" id="architecture-using-other">Other</span>
-            </label>
+            <div class="js-other-container">
+              <label class="p-radio">
+                <input class="p-radio__input js-other-container__other-toggle" type="radio" aria-labelledby="architecture-using-other" name="architecture-using">
+                <span class="p-radio__label" id="architecture-using-other">Other</span>
+              </label>
+              <input type="text" id="architecture-using-other-specified" class="js-other-container__input u-hide" name="architecture-using" placeholder="Please specify" style="margin-top: .25rem;" aria-label="Other architecture using specified">
+            </div>
             <h3 class="p-heading--4">How are you currently meeting your latency requirements?</h3>
             <label class="p-radio">
               <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-rtos" name="meeting-latency-requirements" value="RTOS">
@@ -103,10 +109,13 @@
               <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-no-solution" name="meeting-latency-requirements" value="No solution">
               <span class="p-radio__label" id="meeting-latency-requirements-no-solution">No solution</span>
             </label>
-            <label class="p-radio">
-              <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-other" name="meeting-latency-requirements" value="Other">
-              <span class="p-radio__label" id="meeting-latency-requirements-other">Other</span>
-            </label>
+            <div class="js-other-container">
+              <label class="p-radio">
+                <input class="p-radio__input js-other-container__other-toggle" type="radio" aria-labelledby="meeting-latency-requirements-other" name="meeting-latency-requirements">
+                <span class="p-radio__label" id="meeting-latency-requirements-other">Other</span>
+              </label>
+              <input type="text" id="meeting-latency-requirements-other-specified" class="js-other-container__input u-hide" name="meeting-latency-requirements" placeholder="Please specify" style="margin-top: .25rem;" aria-label="Other meeting latency specified">
+            </div>
             <label for="tell-us-about-your-project"><h3 class="p-heading--4">Tell us more about your project</h3></label>
             <textarea id="tell-us-about-your-project" name="tell-us-about-your-project" rows="5" maxlength="2000"></textarea>
           </div>
