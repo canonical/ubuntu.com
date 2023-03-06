@@ -20,16 +20,14 @@
       Download Ubuntu Server for Raspberry Pi&nbsp;&rsaquo;</a>
     </p>
   </div>
-      <div class="col-5 u-vertically-center u-align--center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/9f09965f-1+-+Download+and+install+Ubuntu+Server+on+Raspberry+Pi.svg",
-          alt="Raspberry-Pi",
-          height="180",
-          width="280",
-          hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
+    <div class="col-5 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/17387737-Ubuntu-server-on-raspberry-pi.png",
+        alt="",
+        width="234",
+        height="142",
+        hi_def=True,
+        loading="auto"
         ) | safe
       }}
     </div>
@@ -37,14 +35,14 @@
 </section>
 
 <section class="p-strip--light is-deep">
-  <div class="row u-equal-height">
+  <div class="row">
     <div class="col-7">
       <h2>ARM</h2>
       <p>
-        The ARM reduced instruction set is perfect for low power, embedded compute. ARMs price performance is accelerating adoption in the data centre and in workstations. Apps and organisations have to plan for ARM or risk losing out.  Developing or testing software on a Raspberry Pi with Ubuntu delivers compatibility at the edge and in emerging high performance ARM computing. 
+        The ARM reduced instruction set is perfect for low power, embedded compute. ARMs price performance is accelerating adoption in the data centre and in workstations. Apps and organisations have to plan for ARM or risk losing out.  Developing or testing software on a Raspberry Pi with Ubuntu delivers compatibility at the edge and in emerging high performance ARM computing.
       </p>
     </div>
-    <div class="col-5 u-align--center u-vertically-center">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{
         image(
           url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
@@ -52,17 +50,16 @@
           height="65",
           width="230",
           hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
+          loading="lazy",
         ) | safe
-      }} 
+      }}
     </div>
   </div>
 </section>
 
 <section class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-5 u-align--center u-vertically-center">
+  <div class="row">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{
         image(
           url="https://assets.ubuntu.com/v1/b3c24977-docker-small_v-trans.png",
@@ -70,32 +67,31 @@
           height="220",
           width="240",
           hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
+          loading="lazy",
         ) | safe
-      }} 
+      }}
     </div>
     <div class="col-7">
       <h2>Docker</h2>
       <p>
-        Docker containers package isolated and lightweight applications. Containerising apps bundles all the dependencies, minimises overhead and simplifies redeployment and continuous updates. Use Docker on Ubuntu on your Raspberry Pi to develop containers for the cloud, deploy applications on real hardware, simulate network failures or see how scaling affects your application without added infrastructure cost. 
+        Docker containers package isolated and lightweight applications. Containerising apps bundles all the dependencies, minimises overhead and simplifies redeployment and continuous updates. Use Docker on Ubuntu on your Raspberry Pi to develop containers for the cloud, deploy applications on real hardware, simulate network failures or see how scaling affects your application without added infrastructure cost.
       </p>
     </div>
   </div>
 </section>
 
 <section class="p-strip--light is-deep">
-  <div class="row u-equal-height">
+  <div class="row">
     <div class="col-7">
       <h2>Kubernetes on Raspberry Pi</h2>
       <p>
-        Kubernetes has become the container orchestration platform of choice from development to production. Running a local Kubernetes cluster on Raspberry Pi is a great way to gain experience managing and developing cloud technologies. On Raspberry Pi, use <a href="http://microk8s.io">MicroK8s</a> for your home network-attached storage, to build-your-own-cloud, to host a web server, or for web and cloud-native development. 
+        Kubernetes has become the container orchestration platform of choice from development to production. Running a local Kubernetes cluster on Raspberry Pi is a great way to gain experience managing and developing cloud technologies. On Raspberry Pi, use <a href="http://microk8s.io">MicroK8s</a> for your home network-attached storage, to build-your-own-cloud, to host a web server, or for web and cloud-native development.
       </p>
       <p>
       <a href="/tutorials/how-to-kubernetes-cluster-on-raspberry-pi">Get started&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-5 u-align--center u-vertically-center">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{
         image(
           url="https://assets.ubuntu.com/v1/9d785fad-Automatic+node+allocation.svg",
@@ -103,17 +99,16 @@
           height="200",
           width="210",
           hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
+          loading="lazy",
         ) | safe
-      }} 
+      }}
     </div>
   </div>
 </section>
 
 <section class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-5 u-align--center u-vertically-center">
+  <div class="row">
+    <div class="col-5 u-align--center u-vertically-center u-hide--small u-hide--medium">
       {{
         image(
           url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
@@ -121,15 +116,14 @@
           height="120",
           width="210",
           hi_def=True,
-          loading="auto",
-          attrs={"class": "u-hide--small"},
+          loading="lazy",
         ) | safe
-      }} 
+      }}
     </div>
     <div class="col-7">
       <h2>Amazon Graviton2</h2>
       <p>
-        The Raspberry Pis low-cost but performant capabilities make it the perfect place to assess scalability and performance of containerised applications on ARM processors. But when a Raspberry Pi inventor wants to take their application to the cloud, Amazon's Graviton2 with full Ubuntu support is the next step. Graviton2 is Amazon's next-generation cloud, delivering ARM instances for increased performance at a lower cost. With Graviton2 instance types users can increase application performance with additional low-latency and high speed storage.    
+        The Raspberry Pis low-cost but performant capabilities make it the perfect place to assess scalability and performance of containerised applications on ARM processors. But when a Raspberry Pi inventor wants to take their application to the cloud, Amazon's Graviton2 with full Ubuntu support is the next step. Graviton2 is Amazon's next-generation cloud, delivering ARM instances for increased performance at a lower cost. With Graviton2 instance types users can increase application performance with additional low-latency and high speed storage.
       </p>
       <p>
       <a href="/blog/ubuntu-aws-graviton2">Read more about AWS Graviton&nbsp;&rsaquo;</a>
