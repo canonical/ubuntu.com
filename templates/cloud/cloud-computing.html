@@ -1,0 +1,480 @@
+{% extends "cloud/_base-cloud.html" %}
+
+{% block title %}What is a cloud computing?{% endblock %}
+
+{% block meta_description %}Cloud computing is an on-demand delivery of IT resources over a network. The cloud resource provisioning process is fully automated, leading to increased agility and significant cost savings.{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1oIggNSXR5sfl0Ab35x2NIL7I858I7QdPCUXeQI8IIPc/edit#{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-cloud-computing">
+  <div class="row">
+    <div class="col-6">
+      <h1 class="p-heading--2">What is <br class="u-hide--small u-hide--medium" />cloud computing?</h1>
+    </div>
+    <div class="col-6">
+      <p>Cloud computing is the on-demand delivery of IT resources over a network. In traditional data centres, compute and storage resources used to be allocated manually by a dedicated IT team. In the cloud, this process is fully automated, leading to increased agility and significant cost savings.</p>
+      <p>Cloud computing is a <em>de facto</em> standard for modern data centre implementation and a foundation for <a href="/blog/what-is-cloud-native">cloud-native application</a> deployments. It is used by the majority of organisations worldwide. There is no reason why yours shouldn’t be next.</p>
+      <p>
+        <a href="/engage/a-business-guide-to-cloud-migration">Get ready for cloud migration&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>How does <br class="u-hide--small u-hide--medium" />cloud computing work?</h2>
+    </div>
+    <div class="col-6">
+      <h5>In essence, cloud computing is a modern way of delivering IT services for organisations and individuals. It hides the entire complexity of a data centre from an end user behind a self-service portal.</h5>
+      <p>The name "cloud computing" comes from a common practice of representing complex IT systems on diagrams as a cloud. Modern data centres are complex. They consist of racks, power devices, network devices, servers, storage arrays, cables and many other components. The end user does not need to understand all these intricacies. All they need are resources that can be consumed quickly and on demand. Cloud computing abstracts all these complexities, turning the data centre into a resource rental store.</p>
+      <p>Underneath, cloud computing uses numerous technologies, including <a href="/server/docs/virtualization-introduction">virtualisation</a>, <a href="/containers/what-are-containers">containerisation</a> and <a href="https://www.techtarget.com/searchitoperations/definition/IT-automation">automation</a>. At the heart of the cloud computing stack, there is <a href="/openstack/what-is-openstack">cloud management software</a>. This software manages compute, network and storage resources distributed across the entire data centre, aggregates them into pools and enables on-demand provisioning of resource chunks through a self-service portal. End users can request those resources to be provisioned in the form of virtual machines (VMs) or containers.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>Cloud computing <br class="u-hide--small u-hide--medium" />vs virtualisation</h2>
+    </div>
+    <div class="col-6">
+      <h5>Even though cloud computing uses virtualisation underneath, it is much more than that. While virtualisation is more like an engine, cloud computing is more like a car.</h5>
+      <p>People who are new to cloud computing often get confused with the cloud computing vs virtualisation dilemma. Virtualisation is a technology that divides the physical resources of a server, such as the central processing unit (CPU), random access memory (RAM), storage and network, into chunks. Those can further be aggregated into VMs, consisting of virtual resources and allocated to end users. Hardware virtualisation, VM creation and termination is handled by a dedicated software, firmware or hardware component called a <a href="/blog/kvm-hyphervisor">hypervisor</a>.</p>
+      <p>In turn, cloud computing expands the capabilities provided by the hypervisor. The cloud software manages all the hypervisors and automates the VM provisioning process. Whenever a cloud user requests a VM with specific parameters through the self-service portal, it tries to find the least utilised hypervisor (unless configured otherwise), schedules VM creation on this hypervisor and returns VM details back to the user. Likewise, it automates the creation of other types of virtual resources, such as block storage devices, virtual networks, and more.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Cloud computing benefits</h2>
+      <p class="u-sv3">Compared to legacy IT infrastructure based on mainframes, blades and "pet” servers, cloud computing transforms data centres into resource pools, providing end users with immediate access to hardware: <a href="https://maas.io">physical</a> or <a href="/openstack/features">virtual</a>. The primary benefits of cloud computing include:</p>
+    </div>
+  </div>
+  <div class="row u-equal-height p-strip u-no-padding--top">
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/0671a3ef-illustration-edge-cluster.svg",
+        alt="",
+        width="68",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Increased agility</h4>
+      <p class="u-sv3">In cloud computing, all resources are available on-demand. Users can get instant access to them whenever desired and terminate them when no longer needed.</p>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/fc8b59ed-illustration-enterprise-support.svg",
+        alt="",
+        width="68",
+        height="64",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      </div>
+      <h4>Significant time savings</h4>
+      <p class="u-sv3">In legacy IT infrastructure, the resource provisioning process takes days or even weeks due to numerous manual actions. In cloud computing environments, the resource provisioning process takes minutes, if not seconds.</p>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/2d1f16f3-illustration-safety-reliability.svg",
+          alt="",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Faster time to market</h4>
+      <p class="u-sv3">Building a data centre might take a lot of time. In turn, public clouds provide businesses with immediate access to theoretically infinite resources. This removes any constraints from developers and accelerates the time to market.</p>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/cf1b8768-FinancialServicesPage-ImpactFinServ_2020.svg",
+          alt="",
+          width="110",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Optimal resource consumption</h4>
+      <p class="u-sv3">In traditional data centres, physical resources are owned by dedicated entities leading to sub-optimal resource consumption. In the cloud, all resources are shared and equally distributed, leaving no single server underutilised.</p>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/a0f23d1b-Savings.svg",
+          alt="",
+          width="53",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Long-term cost savings</h4>
+      <p class="u-sv3">Cloud computing can deliver long-term cost savings for every organisation. The cloud enables executives to focus on the business strategy, developers to focus on business applications and IT staff to leverage automation rather than wasting time on manual processes.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Cloud computing challenges</h2>
+      <p class="u-sv3">While cloud computing brings a number of benefits, migrating to the cloud also entails a number of challenges. Those include: </p>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/077a4cdb-Investment.svg",
+          alt="",
+          width="83",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Migration cost</h4>
+      <p>While there are many migration-as-a-service tools available on the market which facilitate <a href="/engage/cloud-migration-strategy-lift-and-shift-or-rebuild">lift and shift migration</a>, moving production workloads to the cloud might still be challenging. Fortunately, various <a href="/engage/a-business-guide-to-cloud-migration">cloud migration strategies</a> exist which enable organisations to move to the cloud while ensuring the availability of their critical applications.</p>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/3bb96e34-LXD+containers.svg",
+          alt="",
+          width="115",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Redesigning workloads</h4>
+      <p>Even though it is possible to just lift and shift legacy workloads to the cloud, organisations often have to re-design their workloads in the long term to benefit from all advantages of the cloud. Some take it as an opportunity to standardise on a <a href="/blog/what-is-cloud-native">cloud-native architecture</a> which leads to higher granularity, better scalability and increased resiliency.</p>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/69adfdbf-illustration-security.svg",
+          alt="",
+          width="44",
+          height="65",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+      </div>
+      <h4>Digital sovereignty</h4>
+      <p>Moving all workloads and data to the cloud results in digital sovereignty risks. Moreover, in some parts of the world, it might be impossible due to local regulations. In response to this challenge, organisations can <a href="/openstack/consulting">build their own private cloud</a>, taking back control over privacy while benefiting from all the advantages that cloud computing brings.</p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-6">
+      <h2>Is cloud computing suitable<br/> for you?</h2>
+    </div>
+    <div class="col-6">
+      <p>Cloud computing proves to be the most economical way to run modern business applications. Therefore, it has been adopted by the majority of organisations all over the world. However, achieving cost optimisation in cloud environments is a non-trivial task. It involves adopting cloud cost optimisation best practices, running a cost analysis and making data-driven decisions regarding the placement of workloads. Only when following those strict guidelines, can organisations achieve true total cost of ownership (TCO) reduction compared to legacy IT infrastructure.</p>
+      <p><a href="/engage/cloud-cost-optimisation-best-practices">Discover cloud cost optimisation best practices&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Types of clouds</h2>
+      <p>Cloud types vary depending on who owns or operates them. It is also possible to use more than one cloud at a time in a hybrid or multi-cloud architecture.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/a3694a61-Public+Cloud.svg",
+          alt="",
+          width="94",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Public cloud</h4>
+        <p>Public clouds are owned and managed by a cloud service provider. All resources are shared between multiple tenants. Even though the public cloud market is dominated by three major players, hundreds of smaller public cloud providers exist all over the world and <a href="/engage/nayatel-casestudy-charmed-openstack">run their public cloud infrastructure on Ubuntu.</a></p>
+        <p><a href="/cloud/public-cloud">More about public clouds&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/a62acdbe-illustration-private-cloud.svg",
+          alt="",
+          width="98",
+          height="64",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+        <h4>Private cloud</h4>
+        <p>A private cloud is owned by an organisation or an individual. All resources are exclusively dedicated to a single entity or a service. It runs on the organisation's premises or in an external data centre. It is managed by the organisation's operations team or a <a href="/blog/what-is-a-managed-it-service">managed service provider</a>.</p>
+        <p><a href="/cloud/private-cloud">More about private clouds&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/3b176ef1-managed-private-cloud.svg",
+          alt="",
+          width="64",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Managed cloud</h4>
+        <p>Managed clouds are private clouds that are fully managed by a third-party organisation (aka managed service provider). The customer provides the hardware, but cloud operations and maintenance tasks are outsourced. The cloud can either run on the organisation's premises or in the managed service provider's data centre.</p>
+        <p><a href="/managed">More about managed clouds&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/2dc4373b-illustration-edge-cloud.svg",
+          alt="",
+          width="94",
+          height="64",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <h4>Micro cloud</h4>
+        <p>Micro clouds are a new class of infrastructure for on-demand computing at the edge. They differ from the internet-of-things (IoT), which uses thousands of single machines or sensors to gather data, yet they perform computing tasks. Micro clouds reuse proven cloud primitives but with the unattended, autonomous and clustering features that resolve typical edge computing challenges.</p>
+        <p><a href="/edge-computing">More about micro clouds&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/45120edb-Hybrid+Cloud.svg",
+          alt="",
+          width="82",
+          height="64",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+        <h4>Hybrid cloud</h4>
+        <p>Hybrid cloud is a cloud computing architecture that consists of at least one public cloud, at least one private cloud and a hybrid cloud manager (HCM). It is one of the most popular trends in the IT industry, adopted by 82% of IT leaders, according to the <a href="https://www.cisco.com/c/en/us/solutions/hybrid-cloud/2022-trends.html">Cisco 2022 Global Hybrid Cloud Trends Report</a>.</p>
+        <p><a href="/cloud/hybrid-cloud">More about hybrid clouds&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="col-4 col-medium-3">
+      <div class="u-sv1 u-hide--small">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/dd0465c8-Multi-Cloud.svg",
+          alt="",
+          width="113",
+          height="64",
+          hi_def=True,
+          loading="auto"
+          ) | safe
+        }}
+        <h4>Multi-cloud</h4>
+        <p>Multi-cloud (also referred to as multi cloud or multicloud) is a concept that refers to using multiple clouds from more than one cloud service provider at the same time. The term is also used to refer to the simultaneous running of bare metal, virtualised and containerised workloads.</p>
+        <p><a href="/cloud/multi-cloud">More about multi-cloud&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip u-no-padding--bottom">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2>Cloud computing models</h2>
+      <p class="u-sv3">Cloud computing services are usually available to end users in the form of three primary models. Those include infrastructure-as-a-service (IaaS), platform-as-a-service (PaaS) and software-as-a-service (SaaS). Some more specific use cases exist too, such as container-as-a-service (CaaS). However, in essence, they are a subset of the main three.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="p-card col-4">
+      <h4>IaaS</h4>
+      <p>In the IaaS model, you provision resources. Those include the number of virtual CPUs (vCPUs), the amount of RAM, storage, etc. They come in the form of VMs or containers with a pre-installed operating system (OS). You manage everything up from there. IaaS is the most common cloud computing model as it allows for more freedom.</p>
+    </div>
+    <div class="p-card col-4">
+      <h4>PaaS</h4>
+      <p>In the PaaS model, you provision workloads. While you are still responsible for delivering application code and data management, the PaaS platform takes care of scheduling resources (usually containers) and manages them, including the OS, middleware and runtime. The PaaS model has never been widely adopted due to its overall complexity.</p>
+    </div>
+    <div class="p-card col-4">
+      <h4>SaaS</h4>
+      <p>In the SaaS model, you provision applications. They are deployed from pre-defined templates and can be configured according to your needs. Everything is managed by the cloud provider. Interest in the SaaS model is constantly increasing as it allows for full automation from the ground up.</p>
+    </div>
+  </div>
+  <div class="p-strip p-table--cloud-computing">
+    <table aria-label="Model comparison matrix" style="table-layout: auto">
+      <thead>
+        <tr style="border: 0">
+          <td>&nbsp;</td>
+          <th>Legacy data centre</th>
+          <th>IaaS</th>
+          <th>Paas</th>
+          <th>Saas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border: 0">
+          <th style="border: none">Applications</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Data</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Runtime</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Middleware</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">O/S</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Virtualisation</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Servers</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Storage</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+        <tr style="border: 0">
+          <th style="border: none">Networking</th>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #d9d9d9">You manage</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+          <td class="u-align--center" style="border:0.5rem solid #fff; background-color: #333333; color: #fff;">Cloud provider</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-6">
+      <h2>How to get started with cloud computing?</h2>
+    </div>
+    <div class="col-6">
+      <p>The easiest way to get started with cloud computing is in a public cloud. All leading public cloud providers, including <a href="/blog/aws-pricing">Amazon</a>, <a href="/blog/azure-pricing">Azure</a> and <a href="/blog/gcp-pricing">Google</a>, provide a free tier for newcomers, enabling them to use cloud resources up to a specific limit free of charge. Canonical partners with all of them, ensuring a frictionless experience when running Ubuntu workloads in public clouds. It also provides <a href="/pro">Ubuntu Pro</a> images with an extra security advantage for running production workloads on Ubuntu with confidence.</p>
+
+      <p>However, public cloud costs tend to grow fast as the demand for workloads increases. As a result, organisations should consider adopting hybrid multi-cloud architecture when running cloud workloads in the long term and on a large scale. This involves building a <a href="/openstack">cost-effective private cloud platform</a> as an extension to hyperscaler infrastructure. Read <a href="/engage/cloud-pricing-report">Canonical's cloud pricing report</a> to learn more.</p>
+
+      <p>When it comes to private cloud implementation, Canonical provides a number of solutions to build a cloud platform tailored to your needs. Refer to the official <a href="/openstack/install">installation instructions</a> to get a fully functional private cloud platform up and running in a few minutes. More demanding customers can also leverage Canonical's commercial services, including <a href="/openstack/consulting">private cloud design & delivery</a>, full <a href="/openstack/support">commercial support</a> and <a href="/openstack/managed">fully-managed services</a>.</p>
+
+      <p><a href="/openstack/contact-us">Get in touch with Canonical for private cloud design and delivery&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row u-equal-height">
+    <div class="col-8">
+      <h2 class="u-sv2">All you need for your cloud computing</h2>
+    </div>
+  </div>
+  <div class="row u-equal-height">
+    <div class="p-card col-6">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/2cdf1c98-Canonical%20OpenStack.svg",
+        alt="",
+        width="219",
+        height="34",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "p-card__thumbnail"}
+        ) | safe
+      }}
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <p>Canonical OpenStack is an enterprise cloud platform engineered for price-performance that serves as a cost-effective extension to hyperscale infrastructure.</p>
+        <p><a href="/openstack">Learn more about Canonical OpenStack&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+    <div class="p-card col-6">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/db0c14a8-Ubuntu%20Pro.svg",
+        alt="",
+        width="131",
+        height="34",
+        hi_def=True,
+        loading="lazy",
+        attrs={"class": "p-card__thumbnail"}
+        ) | safe
+      }}
+      <hr class="u-sv1">
+      <div class="p-card__content">
+        <p>Ubuntu Pro is the most comprehensive Linux enterprise subscription, covering all aspects of open source, including 10 years of security updates and compliance for production workloads.</p>
+        <p><a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
