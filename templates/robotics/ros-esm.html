@@ -1,7 +1,7 @@
 {% extends "robotics/base_robotics.html" %}
 
 {% block title %}ROS Expanded Security Maintenance{% endblock %}
-{% block meta_description %}Delivered in partnership with Open Robotics, ROS ESM provides a hardened and long-term supported ROS environment for your robot and its applications.{% endblock meta_description %}
+{% block meta_description %}ROS ESM provides a hardened and long-term supported ROS environment for your robot and its applications.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1oiz_006n9U1Ya50wdSkKIyj_jsxSr92FdCpkDU4kpHs/edit{% endblock meta_copydoc %}
 
@@ -124,14 +124,95 @@
       </p>
     </div>
     <div class="p-logo-section__items u-align--left">
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/f2803dcb-python+logo.png" alt="Python"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/e41b7867-boost-logo.png" alt="Boost C++ libraries"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/3e883ac9-qt-software-logo.png" alt="QT"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/d540aea5-OpenCV-logo.png" alt="OpenCV"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/fc15ab31-pcl-logo.png" alt="PCL"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/bd09bcbf-Cython-logo-1.svg" alt="Cython"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/d73dbd10-GTK+no+background+%281%29.png" alt="GTK"></div>
-      <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/9e3f51a4-FFmpeg-Logo.svg" alt="FFmpeg"></div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/8449ec67-144px%20Python%20logo.svg",
+          alt="Python",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/ad800509-144px%20Boost%20logo.svg",
+          alt="Boost C++ libraries",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/98d2bf31-144px%20QT%20logo.svg",
+          alt="QT",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/2632bd00-144px%20OpenCV%20logo.svg",
+          alt="OpenCV",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/c1c372ec-144px%20pcl%20logo.svg",
+          alt="PCL",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/2bc804f3-144px%20Cython%20logo.svg",
+          alt="Cython",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/8be1ceef-144px%20GTK%20logo.svg",
+          alt="GTK",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}
+      </div>
+      <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/74ba014d-144px%20FFmpeg%20logo.svg",
+          alt="FFmpeg",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
     </div>
   </div>
 </section>
@@ -144,14 +225,94 @@
         A few of the 2,300 packages included in Ubuntu Main:
       </p>
       <div class="p-logo-section__items u-align--left">
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/ff1530cc-OpenSSL.png" alt="OpenSSL"></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/6395e783-what_is_openvpn.jpg" alt="OPENVPN"></div>
-        <div class="p-logo-section__item u-align--center"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/bc4339e8-NetworkManager.png" alt="NetworkManager" style="width: 64px; height: 64px;"></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/36e7bf8f-Curl-logo.svg" alt="Curl"></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/7dcc10d3-Systemd.png" alt="Systemd"></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/1aa2ab0e-udev-logo.jpeg" alt="udev"></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/e599a96c-Gnu-bash-logo.svg" alt="Bash"></div>
-        <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/044fb76c-gnu_logo_icon.png" alt="GNU"></div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/606d9b66-144px%20OpenSSL%20logo.svg",
+          alt="OpenSSL",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/3b0465cb-144px%20Open%20VNP%20logo.svg",
+          alt="OPENVPN",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/99751cde-144px%20Network%20Manager%20logo.svg",
+          alt="NetworkManager",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/e1495569-144px%20Curl%20logo.svg",
+          alt="Curl",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/214108e2-144px%20Systemd%20logo.svg",
+          alt="Systemd",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/ef50f623-144px%20UDEV%20logo.svg",
+          alt="udev",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/7a0175ca-144px%20Bash%20logo.svg",
+          alt="Bash",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
+        <div class="p-logo-section__item">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/cf7114a2-144px%20GNU%20logo.svg",
+          alt="GNU",
+          width="144",
+          height="144",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+        }}</div>
       </div>
     </div>
   </div>
@@ -261,8 +422,8 @@
     <div class="col-6 col-medium-3">
       <div class=" p-strip u-no-padding--top">
         <h3 class="p-heading--5">Small fleet of devices?</h3>
-        <p>If you have a few units to cover with ESM, we recommend you to purchase ROS ESM directly from the Ubuntu Pro store.</p>
-        <a href="/pro/subscribe" class="p-button">Go to the store</a>
+        <p>If you have a few units to cover with ESM, we recommend you to purchase ROS ESM directly by getting an Ubuntu Pro subscription.</p>
+        <a href="/pro/subscribe" class="p-button">Get Ubuntu Pro</a>
       </div>
       <hr class="is-fixed-width u-no-margin--bottom">
       <h3 class="p-heading--5">Large fleet of devices?</h3>
