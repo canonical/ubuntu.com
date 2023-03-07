@@ -1,4 +1,4 @@
-(function() {
+(function () {
   var otherContainers = document.querySelectorAll(".js-other-container");
   function updateOtherInputVisibility(textInput, e) {
     if (e.target.checked) {
@@ -14,7 +14,10 @@
       ".js-other-container__other-toggle"
     );
     var textInput = otherContainer.querySelector(".js-other-container__input");
-    otherToggle.addEventListener("change", updateOtherInputVisibility.bind(null, textInput));
+    otherToggle.addEventListener(
+      "change",
+      updateOtherInputVisibility.bind(null, textInput)
+    );
   });
 })();
 
