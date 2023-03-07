@@ -24,6 +24,7 @@ const Offer = ({ offer }: Props) => {
     name: names.join(", "),
     price: {
       value: Number(total),
+      discount: Number(discount),
     },
     canBeTrialled: false,
   };
