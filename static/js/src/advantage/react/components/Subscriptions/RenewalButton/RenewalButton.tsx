@@ -16,6 +16,9 @@ export default function RenewalButton({
   editing,
   action,
 }: Props) {
+  const price = subscription.renewal_id
+    ? Number(subscription.price) / subscription.current_number_of_machines
+    : Number(subscription.price) / subscription.number_of_machines;
   const product: Product = {
     longId: subscription.renewal_id ?? subscription.listing_id ?? "",
     period:
@@ -26,7 +29,7 @@ export default function RenewalButton({
     id: subscription.id,
     name: subscription.product_name ?? "",
     price: {
-      value: Number(subscription.price) / subscription.number_of_machines,
+      value: price,
     },
     canBeTrialled: false,
   };
