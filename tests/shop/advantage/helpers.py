@@ -171,6 +171,7 @@ def make_renewal(
     new_contract_start: str = None,
     price: int = None,
     currency: str = None,
+    number_of_machines: int = None,
 ) -> Renewal:
     return Renewal(
         id=id or "rAaBbCcDdEeFfGg",
@@ -182,6 +183,7 @@ def make_renewal(
         new_contract_start=new_contract_start or "2020-01-01T10:00:00Z",
         price=price or 10000,
         currency=currency or "USD",
+        number_of_machines=number_of_machines or 1,
     )
 
 

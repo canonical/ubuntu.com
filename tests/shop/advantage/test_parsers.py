@@ -327,7 +327,7 @@ class TestParsers(unittest.TestCase):
             new_contract_start="2021-01-01T00:00:00Z",
             price=11000,
             currency="USD",
-            number_of_machines=1,
+            number_of_machines=3,
         )
 
         self.assertEqual(to_dict(expectation), to_dict(parsed_renewal))
