@@ -61,7 +61,7 @@
       <select name="version-select" id="version-select" onChange="window.location.href=this.value">
       {% for version in versions %}
         {% set active = docs_version == version['path'] %}
-        <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>Version {{ version['version'] }}</option>
+        <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>{{ version['version'] }}</option>
       {% endfor %}
       <select>
       {% endif %}
