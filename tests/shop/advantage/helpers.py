@@ -196,6 +196,7 @@ def make_legacy_contract_item(
     reason: str = None,
     value: int = None,
     renewal: Renewal = None,
+    number_of_machines: int = None,
 ) -> ContractItem:
     default_renewal = Renewal(
         id="rAaBbCcDdEeFfGg",
@@ -207,6 +208,7 @@ def make_legacy_contract_item(
         new_contract_start="2020-01-01T10:00:00Z",
         price=10000,
         currency="USD",
+        number_of_machines=number_of_machines or 1,
     )
 
     return ContractItem(

@@ -412,7 +412,7 @@ class TestParsers(unittest.TestCase):
                     new_contract_start="2015-01-01T00:00:00Z",
                     price=5000,
                     currency="USD",
-                    number_of_machines=1,
+                    number_of_machines=5,
                 ),
             ),
         ]
