@@ -1,19 +1,25 @@
-var otherContainers = document.querySelectorAll(".js-other-container");
-Array.prototype.forEach.call(otherContainers, function (otherContainer) {
-  var otherToggle = otherContainer.querySelector(
-    ".js-other-container__other-toggle"
-  );
-  var textInput = otherContainer.querySelector(".js-other-container__input");
-  otherToggle.addEventListener("change", function (e) {
+(function () {
+  var otherContainers = document.querySelectorAll(".js-other-container");
+  function updateOtherInputVisibility(textInput, e) {
     if (e.target.checked) {
-      textInput.style.opacity = 1;
+      textInput.classList.remove("u-hide");
       textInput.focus();
     } else {
-      textInput.style.opacity = 0;
+      textInput.classList.add("u-hide");
       textInput.value = "";
     }
+  }
+  Array.prototype.forEach.call(otherContainers, function (otherContainer) {
+    var otherToggle = otherContainer.querySelector(
+      ".js-other-container__other-toggle"
+    );
+    var textInput = otherContainer.querySelector(".js-other-container__input");
+    otherToggle.addEventListener(
+      "change",
+      updateOtherInputVisibility.bind(null, textInput)
+    );
   });
-});
+})();
 
 function buildCommentsForLead() {
   var message = "";
