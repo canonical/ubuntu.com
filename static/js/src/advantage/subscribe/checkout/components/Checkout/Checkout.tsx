@@ -26,8 +26,6 @@ type Props = {
 
 const Checkout = ({ product, quantity, action }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
-  const [isCardValid, setCardValid] = useState<boolean>(false);
-  const [isTaxSaved, setTaxSaved] = useState<boolean>(false);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const isGuest = !userInfo?.customerInfo?.email;
   const userCanTrial = window.canTrial;
@@ -82,7 +80,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
                         <Taxes
                           product={product}
                           quantity={quantity}
-                          setTaxSaved={setTaxSaved}
                           setError={setError}
                         />
                       ),
@@ -107,18 +104,19 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       : []),
                     {
                       title: "Your information",
-                      content: (
-                        <UserInfoForm
-                          setCardValid={setCardValid}
-                          setError={setError}
-                        />
-                      ),
+                      content: <UserInfoForm setError={setError} />,
                     },
                     ...(canTrial
                       ? [
                           {
                             title: "Free trial",
-                            content: <FreeTrial />,
+                            content: (
+                              <FreeTrial
+                                quantity={quantity}
+                                product={product}
+                                action={action}
+                              />
+                            ),
                           },
                         ]
                       : []),
@@ -133,8 +131,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 product={product}
                                 quantity={quantity}
                                 action={action}
-                                isCardValid={isCardValid}
-                                isTaxSaved={isTaxSaved}
                                 setError={setError}
                               ></BuyButton>
                             </Col>

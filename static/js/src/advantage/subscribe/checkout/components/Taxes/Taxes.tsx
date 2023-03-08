@@ -17,17 +17,15 @@ import {
 } from "advantage/countries-and-states";
 import { getLabel } from "advantage/subscribe/react/utils/utils";
 import postCustomerTaxInfo from "../../hooks/postCustomerTaxInfo";
-import useCalculateTaxes from "../../hooks/useCalculateTaxes";
 import { FormValues, Product } from "../../utils/types";
 
 type TaxesProps = {
   product: Product;
   quantity: number;
-  setTaxSaved: React.Dispatch<React.SetStateAction<boolean>>;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
 };
 
-const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
+const Taxes = ({ setError }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -43,7 +41,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
   useEffect(() => {
     if (errors.VATNumber) {
       setIsEditing(true);
-      setTaxSaved(false);
+      setFieldValue("isTaxSaved", false);
     }
   }, [errors]);
 
@@ -52,35 +50,17 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
 
     if (savedCountry) {
       setIsEditing(!savedCountry);
-      setTaxSaved(savedCountry);
+      setFieldValue("isTaxSaved", savedCountry);
     }
   }, [initialValues]);
-
-  const taxMutation = useCalculateTaxes({
-    marketplace: values.marketplace,
-    country: values.country,
-    productListing: product?.longId || "",
-    quantity,
-    VATNumber: values.VATNumber,
-  });
 
   const postCustomerTaxInfoMutation = postCustomerTaxInfo();
 
   const onSaveClick = () => {
     setIsEditing(false);
     if (isGuest || !window.accountId) {
-      taxMutation.mutate(undefined, {
-        onSuccess: (data) => {
-          queryClient.setQueryData("taxCalulations", data);
-        },
-        onError: (error) => {
-          setFieldValue("Description", false);
-          setFieldValue("TermsAndConditions", false);
-          document.querySelector("h1")?.scrollIntoView();
-          Sentry.captureException(error);
-        },
-      });
-      setTaxSaved(true);
+      queryClient.invalidateQueries("calculate");
+      setFieldValue("isTaxSaved", true);
     } else {
       postCustomerTaxInfoMutation.mutate(
         {
@@ -128,13 +108,13 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
           },
         }
       );
-      setTaxSaved(true);
+      setFieldValue("isTaxSaved", true);
     }
   };
 
   const onEditClick = () => {
     setIsEditing(true);
-    setTaxSaved(false);
+    setFieldValue("isTaxSaved", false);
   };
 
   const validateRequired = (value: string) => {
@@ -317,7 +297,7 @@ const Taxes = ({ product, quantity, setTaxSaved, setError }: TaxesProps) => {
                   setFieldValue("caProvince", initialValues.caProvince);
                   setFieldValue("VATNumber", initialValues.VATNumber);
                   setIsEditing(false);
-                  setTaxSaved(true);
+                  setFieldValue("isTaxSaved", true);
                 }}
               >
                 Cancel

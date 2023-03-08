@@ -1,10 +1,11 @@
 import React from "react";
 import { add, format } from "date-fns";
-import { Col, Row } from "@canonical/react-components";
+import { useFormikContext } from "formik";
+import { Col, Row, Spinner } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
-import useGetTaxAmount from "../../hooks/useGetTaxAmount";
+import useCalculate from "../../hooks/useCalculate";
 import usePreview from "../../hooks/usePreview";
-import { Action, Product, TaxInfo } from "../../utils/types";
+import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
 
 const DATE_FORMAT = "dd MMMM yyyy";
 
@@ -15,11 +16,24 @@ type Props = {
 };
 
 function Summary({ quantity, product, action }: Props) {
-  const sanitisedQuanity = Number(quantity) ?? 0;
-  const { data: taxData } = useGetTaxAmount();
-  const { data: preview } = usePreview({ quantity, product, action });
+  const { values } = useFormikContext<FormValues>();
+  const { data: calculate, isFetching: isCalculateFetching } = useCalculate({
+    quantity: quantity,
+    marketplace: product.marketplace,
+    productListingId: product.longId,
+    country: values.country,
+    VATNumber: values.VATNumber,
+    isTaxSaved: values.isTaxSaved,
+  });
 
-  const priceData: TaxInfo | undefined = preview || taxData;
+  const { data: preview, isFetching: isPreviewFetching } = usePreview({
+    quantity,
+    product,
+    action,
+  });
+
+  const isSummaryLoading = isPreviewFetching || isCalculateFetching;
+  const priceData: TaxInfo | undefined = preview || calculate;
 
   const taxAmount = (priceData?.tax ?? 0) / 100;
   const total = (priceData?.total ?? 0) / 100;
@@ -37,7 +51,7 @@ function Summary({ quantity, product, action }: Props) {
         <p data-testid="subtotal">
           <strong>
             {currencyFormatter.format(
-              ((product?.price?.value ?? 0) * sanitisedQuanity) / 100
+              ((product?.price?.value ?? 0) * (Number(quantity) ?? 0)) / 100
             )}
           </strong>
         </p>
@@ -175,7 +189,14 @@ function Summary({ quantity, product, action }: Props) {
         )}
       </Row>
       <hr />
-      {totalSection}
+      {!isSummaryLoading ? (
+        totalSection
+      ) : (
+        <>
+          {" "}
+          <Spinner /> Loading&hellip;{" "}
+        </>
+      )}
     </section>
   );
 }

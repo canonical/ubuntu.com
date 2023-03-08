@@ -6,6 +6,7 @@ import { render, screen } from "@testing-library/react";
 import { taxes } from "advantage/subscribe/react/utils/test/Mocks";
 import { formatter } from "advantage/subscribe/react/utils/utils";
 import FreeTrial from "./FreeTrial";
+import { UAProduct } from "../../utils/test/Mocks";
 
 describe("FreeTrial", () => {
   let queryClient: QueryClient;
@@ -15,14 +16,14 @@ describe("FreeTrial", () => {
   });
 
   it("displays a message explaining the trial if free trial is selected", () => {
-    queryClient.setQueryData("taxCalulations", taxes);
+    queryClient.setQueryData("calculate", taxes);
     render(
       <QueryClientProvider client={queryClient}>
         <Formik
           initialValues={{ FreeTrial: "useFreeTrial" }}
           onSubmit={jest.fn()}
         >
-          <FreeTrial />
+          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} />
         </Formik>
       </QueryClientProvider>
     );
@@ -43,7 +44,7 @@ describe("FreeTrial", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
-          <FreeTrial />
+          <FreeTrial quantity={1} product={UAProduct} action={"purchase"} />
         </Formik>
       </QueryClientProvider>
     );

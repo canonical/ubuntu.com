@@ -25,10 +25,9 @@ type Error = {
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  setCardValid: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const UserInfoForm = ({ setError, setCardValid }: Props) => {
+const UserInfoForm = ({ setError }: Props) => {
   const {
     errors,
     touched,
@@ -56,11 +55,7 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
   };
 
   useEffect(() => {
-    if (initialValues.defaultPaymentMethod && !isEditing) {
-      setCardValid(true);
-    } else {
-      setCardValid(false);
-    }
+    setFieldValue("isCardValid", !isEditing);
   }, [isEditing]);
 
   const onSaveClick = () => {
@@ -278,10 +273,10 @@ const UserInfoForm = ({ setError, setCardValid }: Props) => {
             }}
             onChange={(e) => {
               if (e.complete && !e.error) {
-                setCardValid(true);
+                setFieldValue("isCardValid", true);
                 setCardFieldError(null);
               } else {
-                setCardValid(false);
+                setFieldValue("isCardValid", false);
                 if (e.error) {
                   setCardFieldError(e.error);
                 }

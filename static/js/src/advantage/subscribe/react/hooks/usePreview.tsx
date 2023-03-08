@@ -12,7 +12,7 @@ type Props = {
 const usePreview = ({ quantity, product }: Props) => {
   const { isError: isUserInfoError } = useCustomerInfo();
 
-  const { isLoading, isError, isSuccess, data, error } = useQuery(
+  const { isLoading, isError, isSuccess, data, error, isFetching } = useQuery(
     ["preview", product],
     async () => {
       if (!product) {
@@ -50,6 +50,7 @@ const usePreview = ({ quantity, product }: Props) => {
     isSuccess: isSuccess,
     data: data,
     error: error,
+    isFetching: isFetching,
   };
 };
 
