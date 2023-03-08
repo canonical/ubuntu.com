@@ -954,6 +954,9 @@ server/guide: /server/docs
 blog/topic/(?P<path>.*): /blog/topics/{path}
 blog/topic: /blog
 
+# Blog slug renames
+/blog/cloud-repatriation: /blog/cloud-repatriation-reasons
+
 # Move /securtiy/cve to /security/cves
 security/cve: /security/cves
 security/cve/sitemap(?P<suffix>.*).xml: /security/cves/sitemap{suffix}.xml
