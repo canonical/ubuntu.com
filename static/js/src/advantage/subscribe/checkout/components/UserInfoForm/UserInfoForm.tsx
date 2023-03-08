@@ -59,6 +59,12 @@ const UserInfoForm = ({ setError }: Props) => {
     setFieldValue("isCardValid", !isEditing);
   }, [isEditing]);
 
+  useEffect(() => {
+    if (!initialValues.email || !window.accountId) {
+      setFieldValue("isInfoSaved", true);
+    }
+  }, []);
+
   const onSaveClick = () => {
     checkoutEvent(window.GAFriendlyProduct, "2");
     setIsButtonDisabled(true);
