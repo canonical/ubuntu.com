@@ -33,13 +33,13 @@ const Offer = ({ offer }: Props) => {
     <Card data-testid="offer-card">
       <Row>
         <Col size={6} small={2} medium={2}>
-          <p className="p-text--x-small-capitalised">Contract item</p>
+          <p className="p-text--small-caps">Contract item</p>
         </Col>
         <Col size={3} small={1} medium={2}>
-          <p className="p-text--x-small-capitalised">Allowance</p>
+          <p className="p-text--small-caps">Allowance</p>
         </Col>
         <Col size={3} small={1} medium={2}>
-          <p className="p-text--x-small-capitalised">Price</p>
+          <p className="p-text--small-caps">Price</p>
         </Col>
       </Row>
       <hr />
@@ -69,7 +69,7 @@ const Offer = ({ offer }: Props) => {
           medium={2}
           emptyMedium={3}
         >
-          <p className="p-text--x-small-capitalised col-3 col-start-large-7">
+          <p className="p-text--small-caps col-3 col-start-large-7">
             Total before taxes
           </p>
         </Col>
@@ -88,7 +88,7 @@ const Offer = ({ offer }: Props) => {
               medium={2}
               emptyMedium={3}
             >
-              <p className="p-text--x-small-capitalised col-3 col-start-large-7">
+              <p className="p-text--small-caps col-3 col-start-large-7">
                 Discount amount
               </p>
             </Col>
@@ -108,7 +108,7 @@ const Offer = ({ offer }: Props) => {
               medium={2}
               emptyMedium={3}
             >
-              <p className="p-text--x-small-capitalised col-3 col-start-large-7">
+              <p className="p-text--small-caps col-3 col-start-large-7">
                 Total after discount
               </p>
             </Col>

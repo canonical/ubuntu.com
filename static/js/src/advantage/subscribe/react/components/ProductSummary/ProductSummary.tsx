@@ -41,16 +41,16 @@ const ProductSummary = () => {
         id="summary-section"
       >
         <Row className="u-sv3">
-          <Col size={6} className="p-text--x-small-capitalised">
+          <Col size={6} className="p-text--small-caps">
             Subscription
           </Col>
-          <Col size={2} className="u-align--right p-text--x-small-capitalised">
+          <Col size={2} className="u-align--right p-text--small-caps">
             Quantity
           </Col>
-          <Col size={2} className="p-text--x-small-capitalised">
+          <Col size={2} className="p-text--small-caps">
             Billing
           </Col>
-          <Col size={2} className="u-align--right p-text--x-small-capitalised">
+          <Col size={2} className="u-align--right p-text--small-caps">
             Total
           </Col>
           <hr />
