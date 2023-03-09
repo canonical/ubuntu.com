@@ -165,31 +165,13 @@
   selectField.changed = false;
   selectField.onfocus = selectFocussed;
   selectField.onblur = selectUnFocussed;
-  selectField.onchange = selectChanged;
   selectField.onkeyup = selectKeyed;
-  selectField.onclick = selectClicked;
+  selectField.onclick = updatePage;
 })();
 
-function selectChanged(theElement) {
-	var selectField;
-
-	if (theElement && theElement.value) {
-		selectField = theElement;
-	}
-	else {
-		selectField = this;
-	}
-
-	if (!selectField.changed) {
-		return false;
-	}
-
-	window.location.href = selectField.value;
-}
-
-function selectClicked() {
+function updatePage(e) {
 	this.changed = true;
-  window.location.href = this.value;
+  window.location.href =  e.target.value;
 }
 
 function selectFocussed() {
@@ -199,7 +181,7 @@ function selectFocussed() {
 function selectUnFocussed() {
   if (this.value != this.initValue) {
     this.changed = true;
-		selectChanged(this);
+		window.location.href = this.value;
   }
 }
 
@@ -214,9 +196,10 @@ function selectKeyed(e) {
   } else {
     return false;
   }
+
 	if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
 		this.changed = true;
-		selectChanged(this);
+		window.location.href = this.value;
 	} else if (validCancleKeys.includes(theKeyPressed)) {
 		this.value = this.initValue;
 	} else {
