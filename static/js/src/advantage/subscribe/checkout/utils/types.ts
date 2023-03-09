@@ -70,6 +70,7 @@ export interface Product {
   name: string;
   price: {
     value: number;
+    discount?: null | number;
   };
   canBeTrialled?: boolean;
 }
