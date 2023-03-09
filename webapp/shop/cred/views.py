@@ -484,8 +484,8 @@ def cred_submit_form(**_):
         "ExitSurveyBestThingAboutExam": "",
         "ExitSurveyWorstThingAboutExam": "",
         "ExitSurveyDifferenceInExperience": "",
-        "ExitSurveyPromoterPeer": "",
-        "ExitSurveyPromoterManager": "",
+        "ExitSurveyPromoterPeer": "5",
+        "ExitSurveyPromoterManager": "5",
         "formid": "",
         "returnURL": "",
         "Consent_to_Processing__c": "",
@@ -496,6 +496,12 @@ def cred_submit_form(**_):
         value = ", ".join(values)
         if value:
             form_fields[key] = value
+    form_fields["ExitSurveyPromoterManager"] = int(
+        form_fields["ExitSurveyPromoterManager"]
+    )
+    form_fields["ExitSurveyPromoterPeer"] = int(
+        form_fields["ExitSurveyPromoterPeer"]
+    )
     # Check honeypot values are not set
     honeypots = {}
     honeypots["name"] = flask.request.form.get("name")
