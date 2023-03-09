@@ -41,10 +41,13 @@ function Summary({ quantity, product, action }: Props) {
   const planType = action !== "offer" ? "Plan type" : "Products";
   const productName =
     action !== "offer" ? product?.name : product?.name.replace(", ", "<br>");
+  const discount =
+    (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
+  const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
 
   let totalSection = (
     <>
-      {priceData?.subtotal && action === "offer" && product?.price?.discount && (
+      {product?.price?.discount && (
         <>
           <Row>
             <Col size={4}>
@@ -52,13 +55,7 @@ function Summary({ quantity, product, action }: Props) {
             </Col>
             <Col size={8}>
               <p data-testid="discount">
-                <strong>
-                  &minus;{" "}
-                  {currencyFormatter.format(
-                    (product?.price?.value * (product?.price?.discount / 100)) /
-                      100
-                  )}
-                </strong>
+                <strong>&minus; {currencyFormatter.format(discount)}</strong>
               </p>
             </Col>
           </Row>
@@ -72,13 +69,9 @@ function Summary({ quantity, product, action }: Props) {
         <Col size={8}>
           <p data-testid="subtotal">
             <strong>
-              {priceData?.subtotal &&
-              action === "offer" &&
-              product?.price?.discount
+              {priceData
                 ? currencyFormatter.format(total)
-                : currencyFormatter.format(
-                    ((product?.price?.value ?? 0) * quantity) / 100
-                  )}
+                : currencyFormatter.format(defaultTotal)}
             </strong>
           </p>
         </Col>
@@ -89,7 +82,7 @@ function Summary({ quantity, product, action }: Props) {
   if (taxAmount && total) {
     totalSection = (
       <>
-        {priceData && action === "offer" && product?.price?.discount && (
+        {product?.price?.discount && (
           <>
             <Row>
               <Col size={4}>
@@ -97,14 +90,7 @@ function Summary({ quantity, product, action }: Props) {
               </Col>
               <Col size={8}>
                 <p data-testid="discount">
-                  <strong>
-                    &minus;{" "}
-                    {currencyFormatter.format(
-                      (product?.price?.value *
-                        (product?.price?.discount / 100)) /
-                        100
-                    )}
-                  </strong>
+                  <strong>&minus; {currencyFormatter.format(discount)}</strong>
                 </p>
               </Col>
             </Row>
