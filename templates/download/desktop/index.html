@@ -114,65 +114,22 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="col-1 u-hide--medium">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
-        alt="",
-        width="106",
-        height="150",
+    <div class="col-6">
+      <h2>Certified on hundreds of devices</h2>
+      <p>Many of the world's biggest PC manufacturers certify their laptops and desktops for Ubuntu, from ultra-portable laptops to high-end workstations. Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out-of-the-box. Our partners also offer select devices preloaded with optimised Ubuntu images.</p>
+      <p><a href="/certified">Read more&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/32b323db-certified-hardware-partners.svg",
+        alt="Ubuntu certified hardware partners (HP, Lenovo and Dell)",
+        width="476",
+        height="187",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
-    </div>
-    <div class="col-7 u-align--bottom">
-      <h2 style="margin-bottom: 0;">Certified on hundreds of devices</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
-      <p>Many of the world's biggest PC manufacturers certify their laptops and desktops for Ubuntu, from ultra-portable laptops to high-end workstations. Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out-of-the-box. Our partners also offer select devices preloaded with optimised Ubuntu images.</p>
-      <p><a href="/certified">Read more&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-4 u-vertically-center  u-hide--small u-hide--medium">
-      <div class="row">
-        <div class="col-small-1 col-medium-1 col-1">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/6d4d9322-logo-hp.png",
-            alt="",
-            width="61",
-            height="70",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="col-small-1 col-medium-1 col-1">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/f7b894a2-logo-dell.png",
-            alt="",
-            width="66",
-            height="70",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="col-small-1 col-medium-1 col-2">
-          {{
-            image (
-            url="https://assets.ubuntu.com/v1/c8a7ab19-Lenovo-partners.svg",
-            alt="",
-            width="165",
-            height="64",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -215,22 +172,20 @@
 </section>
 
 <section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h2>Ubuntu VMs on Linux, Mac or Windows</h2>
-  </div>
-  <div class="row">
-    <div class="col-8">
+  <div class="row p-divider">
+    <div class="col-8 p-divider__block">
+      <h2>Ubuntu VMs on Linux, Mac <br class="u-hide--medium u-hide--small"/>or Windows</h2>
       <h3>Mini-clouds on desktops with Multipass</h3>
       <p>With Multipass you can download, configure, and control Ubuntu Server virtual machines with the latest updates preinstalled. Set up a mini-cloud on your Linux, Windows, or macOS system.</p>
       <p><a href="https://multipass.run/#install" class="p-button--positive">Download for (macOS|Windows|Linux)</a></p>
       <p><a href="https://multipass.run">Learn more about Multipass&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
+    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium p-divider__block">
       {{ image (
-        url="https://assets.ubuntu.com/v1/ea34f006-Multipass+logomark_rgb.svg",
-        alt="",
-        width="150",
-        height="150",
+        url="https://assets.ubuntu.com/v1/ea3e125b-multipass-logo-45.svg",
+        alt="Canonical Multipass",
+        width="273",
+        height="45",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -263,19 +218,19 @@
   <div class="u-fixed-width">
     <hr class="p-separator">
   </div>
-  <div class="row">
-    <div class="col-8">
+  <div class="row p-divider">
+    <div class="col-8 p-divider__block">
       <h3>Run system containers with LXD</h3>
       <p>When running Linux on Linux, consider LXD system containers instead of VMs for optimizing resources. LXD runs a full OS inside containers, providing all the benefits of a VM without the usual overhead.</p>
       <p><a href="/lxd">Learn more about LXD&nbsp;&rsaquo;</a></p>
       <p><a href="https://linuxcontainers.org/lxd/try-it/">Try LXD with an online demo tool&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-vertically-center u-align--center u-hide--small u-hide--medium">
+    <div class="col-4 p-divider__block u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
-        url="https://assets.ubuntu.com/v1/459e1d4b-lxd_black-pictogram.svg",
-        alt="",
-        width="152",
-        height="150",
+        url="https://assets.ubuntu.com/v1/81c90cea-lxd-logo-45.svg",
+        alt="Canonical LXD",
+        width="209",
+        height="45",
         hi_def=True,
         loading="lazy"
         ) | safe
