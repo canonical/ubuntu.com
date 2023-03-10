@@ -665,6 +665,11 @@ engage_pages = EngagePages(
 app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
 )
+# Custom engage page in German
+app.add_url_rule(
+    "/engage/de/warum-openstack",
+    view_func=lambda: flask.render_template("engage/de_why-openstack.html"),
+)
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 app.add_url_rule(
     "/engage/<page>",
