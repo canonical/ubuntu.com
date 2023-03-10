@@ -30,7 +30,7 @@ const ListGroup = ({ children, title, marketplace }: Props): JSX.Element => {
           setRefReady(true);
         }}
       >
-        <span className="p-text--x-small-capitalised u-align-text--small-to-default u-no-margin--bottom">
+        <span className="p-text--small-caps u-align-text--small-to-default u-no-margin--bottom">
           {title}
         </span>
         {renewableSubscriptions?.length ?? 0 > 0 ? (
