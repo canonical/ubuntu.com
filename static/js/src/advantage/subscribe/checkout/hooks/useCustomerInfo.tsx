@@ -1,8 +1,5 @@
 import { useQuery } from "react-query";
-import {
-  getCustomerInfo,
-  getPurchaseAccountStatus,
-} from "advantage/api/contracts";
+import { getCustomerInfo } from "advantage/api/contracts";
 import { LoginSession, UserInfo } from "../utils/types";
 
 const useCustomerInfo = () => {
@@ -20,19 +17,6 @@ const useCustomerInfo = () => {
         }
 
         window.loginSession = response;
-        const accountStatusReq = await getPurchaseAccountStatus(
-          window.marketplace
-        );
-
-        if (!accountStatusReq.account) {
-          window.canTrial = true;
-        } else {
-          window.accountId = accountStatusReq.account.id;
-          const lastPurchaseIds = accountStatusReq.last_purchase_ids;
-          const canTrial = accountStatusReq.can_trial;
-          window.previousPurchaseIds = lastPurchaseIds?.[window.marketplace];
-          window.canTrial = canTrial;
-        }
       }
 
       if (window.accountId) {

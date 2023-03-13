@@ -8,6 +8,7 @@ import {
   Spinner,
 } from "@canonical/react-components";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
+import useAccountInfo from "../../hooks/useAccountInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
 import { Action, marketplaceDisplayName, Product } from "../../utils/types";
 import BuyButton from "../BuyButton";
@@ -26,12 +27,19 @@ type Props = {
 
 const Checkout = ({ product, quantity, action }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
+  const { data: accountInfo } = useAccountInfo();
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
+
   const isGuest = !userInfo?.customerInfo?.email;
   const userCanTrial = window.canTrial;
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
-  const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const initialValues = getInitialFormValues(
+    product,
+    canTrial,
+    userInfo,
+    accountInfo
+  );
 
   return (
     <>

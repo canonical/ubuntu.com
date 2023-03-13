@@ -1,9 +1,10 @@
-import { FormValues, Product, UserInfo } from "./types";
+import { AccountInfo, FormValues, Product, UserInfo } from "./types";
 
 export function getInitialFormValues(
   product: Product,
   canTrial: boolean,
-  userInfo?: UserInfo
+  userInfo?: UserInfo,
+  accountInfo?: AccountInfo
 ): FormValues {
   const accountName = userInfo?.accountInfo?.name;
   const customerName = userInfo?.customerInfo.name;

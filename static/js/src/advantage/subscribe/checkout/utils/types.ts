@@ -24,6 +24,12 @@ export interface UserInfo {
   };
 }
 
+export interface AccountInfo {
+  accountInfo?: {
+    name?: string;
+  };
+}
+
 export interface Data {
   accountId?: string;
   paymentMethod?: PaymentMethod.Card;

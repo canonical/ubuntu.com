@@ -59,7 +59,7 @@ export async function getCustomerInfo(accountId) {
   );
 
   let data = await response.json();
-  return data;
+  return data.customerInfo;
 }
 
 export async function getUserInfo() {
