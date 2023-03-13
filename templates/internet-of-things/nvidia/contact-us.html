@@ -35,7 +35,7 @@
       <form action="/marketo/submit" method="post" onsubmit="buildCommentsForLead()" id="mktoForm_4953">
         <fieldset class="u-no-margin--bottom">
           <div class="js-formfield">
-            <legend class="u-off-screen">Which NVIDIA Orin platforms are you interested in?</legend>
+            <legend class="u-off-screen">Tell us about your project</legend>
             <h2 class="p-heading--4" aria-hidden>Which NVIDIA Orin platforms are you interested in?</h2>
             <label class="p-checkbox">
               <input class="p-checkbox__input" type="checkbox" aria-labelledby="drive-orin" name="which-nvidia-orin-platforms" value="DRIVE Orin">
@@ -57,6 +57,8 @@
               <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nano" name="which-nvidia-orin-platforms" value="Jetson Orin Nano">
               <span class="p-checkbox__label" id="jetson-orin-nano">Jetson Orin Nano</span>
             </label>
+            <label for="tell-us-about-your-project"><h3 class="p-heading--4">Tell us more about your project</h3></label>
+            <textarea id="tell-us-about-your-project" name="tell-us-about-your-project" rows="4" maxlength="2000"></textarea>
           </div>
         </fieldset>
 
@@ -122,7 +124,7 @@
             </label>
           </div>
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4953" />
-          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/download/thank-you" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/internet-of-things/thank-you?product=nvidia" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
