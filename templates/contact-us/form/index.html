@@ -45,6 +45,16 @@
     returnURL="/contact-us/form/thank-you" %}
     {% include "shared/_pro-contact-us-form.html" %}
   {% endwith %}
+
+{% elif product == 'landscape' %}
+  {% with h1="Talk to our Landscape team",
+    intro_text="If you want to learn more about Landscape or our professional services options, meet with us and discuss your needs with one of our advisors.",
+    formid="4473",
+    lpId="",
+    returnURL="/landscape/pricing" %}
+    {% include "shared/_cloud-contact-us-form.html" %}
+  {% endwith %}
+
 {% else %}
 
 {% with h1="Contact Canonical",
