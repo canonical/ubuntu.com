@@ -51,6 +51,7 @@ const UserInfoForm = ({ setError }: Props) => {
       onSaveClick();
     } else {
       setIsEditing(true);
+      setFieldValue("isInfoSaved", false);
     }
   };
 
@@ -58,9 +59,16 @@ const UserInfoForm = ({ setError }: Props) => {
     setFieldValue("isCardValid", !isEditing);
   }, [isEditing]);
 
+  useEffect(() => {
+    if (!initialValues.email || !window.accountId) {
+      setFieldValue("isInfoSaved", true);
+    }
+  }, []);
+
   const onSaveClick = () => {
     checkoutEvent(window.GAFriendlyProduct, "2");
     setIsButtonDisabled(true);
+    setFieldValue("isInfoSaved", true);
 
     paymentMethodMutation.mutate(
       { formData: values },
@@ -398,6 +406,7 @@ const UserInfoForm = ({ setError }: Props) => {
                   setFieldValue("city", initialValues.city);
                   setFieldValue("postalCode", initialValues.postalCode);
                   setIsEditing(false);
+                  setFieldValue("isInfoSaved", true);
                 }}
               >
                 Cancel

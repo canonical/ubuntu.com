@@ -51,6 +51,7 @@ export interface FormValues {
   FreeTrial: string;
   isTaxSaved: boolean;
   isCardValid: boolean;
+  isInfoSaved: boolean;
 }
 
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";

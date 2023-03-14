@@ -32,6 +32,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
   useEffect(() => {
     if (
+      !values.isInfoSaved ||
       !values.isTaxSaved ||
       !values.isCardValid ||
       !values.email ||
