@@ -847,59 +847,59 @@ html {
     margin-right: auto;
     max-width: $grid-max-width;
 
-    @media (min-width: $threshold-4-6-col) {
+    @media (min-width: $breakpoint-x-small) {
       grid-gap: 0 map-get($grid-gutter-widths, default);
       grid-template-columns: repeat($grid-columns-medium, minmax(0, 1fr));
     }
 
-    @media (min-width: $threshold-6-12-col) {
+    @media (min-width: $breakpoint-small) {
       grid-gap: 0 map-get($grid-gutter-widths, default);
       grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
     }
   }
 
   .p-testimonial__logo {
-    @media (max-width: ($threshold-4-6-col - 1)) {
+    @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
 
-    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
-      grid-column: 1 / span 2;
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 2;
     }
 
-    @media (min-width: $threshold-6-12-col) {
-      grid-column: 1 / span 2;
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 3;
     }
   }
 
   .p-testimonial__author {
-    @media (max-width: ($threshold-4-6-col - 1)) {
+    @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 3 / span 2;
       grid-row: 2 / span 1;
     }
 
-    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
-      grid-column: 3 / span 1;
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 1;
     }
 
-    @media (min-width: $threshold-6-12-col) {
-      grid-column: 3 / span 3;
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 3;
     }
   }
 
   .p-testimonial__quote {
-    @media (max-width: ($threshold-4-6-col - 1)) {
+    @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 1 / span 4;
       grid-row: 1 / span 1;
     }
 
-    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
-      grid-column: 4 / span 3;
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 3;
     }
 
-    @media (min-width: $threshold-6-12-col) {
-      grid-column: 7 / span 6;
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 6;
     }
   }
 }
@@ -1177,4 +1177,110 @@ hr.p-separator.is-shallow {
   background-position: bottom right;
   background-repeat: no-repeat;
   background-size: 70%;
+}
+
+// silicon custom styles
+.p-heading--silicon-bold {
+  font-weight: $font-weight-bold;
+}
+
+.p-heading--silicon-light {
+  font-weight: $font-weight-display-heading;
+}
+
+.p-logo-section__separator {
+  margin-left: $sp-x-large;
+
+  @media (max-width: $breakpoint-small) {
+    margin-left: $sp-large;
+  }
+}
+
+.p-card--silicon-h-suru {
+  align-items: center;
+  aspect-ratio: 269/150;
+  background: #000 url("https://assets.ubuntu.com/v1/2923651d-background-1.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.p-card--silicon-v-suru {
+  align-items: center;
+  aspect-ratio: 2/3;
+  background: #000 url("https://assets.ubuntu.com/v1/8c04e56e-background-3.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.p-testimonials__silicon {
+  .p-testimonial__logo {
+    @media (max-width: ($breakpoint-x-small - 1)) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 1;
+    }
+
+    @media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
+      grid-column: auto / span 2;
+    }
+
+    @media (min-width: $breakpoint-medium) {
+      grid-column: auto / span 3;
+    }
+  }
+
+  .p-testimonial__author {
+    @media (max-width: ($breakpoint-x-small - 1)) {
+      grid-column: 3 / span 2;
+      grid-row: 2 / span 1;
+    }
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 2;
+    }
+
+    @media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
+      grid-column: auto / span 4;
+    }
+
+    @media (min-width: $breakpoint-medium) {
+      grid-column: auto / span 3;
+    }
+  }
+
+  .p-testimonial__quote {
+    @media (max-width: ($breakpoint-x-small - 1)) {
+      grid-column: 1 / span 4;
+      grid-row: 1 / span 1;
+    }
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 3;
+    }
+
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 6;
+    }
+  }
+}
+
+.p-list--silicon-ticked {
+  @extend .p-list--ticked;
+
+  .p-list__silicon-item {
+    @extend .p-list__item;
+
+    padding-bottom: $sp-medium;
+
+    &::before {
+      top: 0.6rem;
+    }
+  }
 }
