@@ -1,33 +1,372 @@
 {% extends "landscape/base_landscape.html" %}
 
 {% block title %}Install Landscape{% endblock %}
-{% block meta_description %}How to set up your self hosted Landscape server{% endblock meta_description %}
-{% block meta_copydoc %}https://docs.google.com/document/d/1tU1z9PUm_kSwGJEsopJibE4gI8Gfv_3Dw_qN2_io_ao/edit{% endblock meta_copydoc %}
+{% block meta_description %}How to set up a self hosted Landscape server{% endblock meta_description %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1tU1z9PUm_kSwGJEsopJibE4gI8Gfv_3Dw_qN2_io_ao/edit#{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip">
+<section class="p-strip--suru-shape-light">
   <div class="row">
     <div class="col-8">
-        <h2 class="u-sv4">Set up a self hosted Landscape Server on Ubuntu</h1>
+      <h1>Set up a self-hosted Landscape Server on Ubuntu</h1>
     </div>
   </div>
-  <div class="u-fixed-width">
-    <ol class="p-stepped-list--detailed">
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-          Add Landscape's repository
-        </h3>
-        <p class="p-stepped-list__content"><code>sudo add-apt-repository --update ppa:landscape/self-hosted-23.03</code></p>
-      </li>
+</section>
 
-      <li class="p-stepped-list__item">
-        <h3 class="p-stepped-list__title">
-          Install Landscape
-        </h3>
-        <p class="p-stepped-list__content"><code>sudo apt install landscape-server-quickstart</code></p>
-      </li>
-    </ol>
-    <p>For additional information, please reference the <a href="/landscape/docs/quickstart-deployment">Landscape Quickstart deployment documentation&nbsp;&rsaquo;</a></p>
+<section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="p-heading--5">Landscape's minimum requirements</h2>
+    </div>
+    <div class="col-6">
+
+      <ul class="p-list">
+        <li class="p-list__item"><strong>For hardware</strong>: a dual core 2 Ghz processor, 4 GB of RAM, and 10 GB of disk space</li>
+        <li class="p-list__item"><strong>For networking</strong>: an IP address and FQDN, with TCP communication allowed for SSH (typically port 22), HTTP (port 80), and HTTPS (port 443)</li>
+      </ul>
+      <p>Self-hosted Landscape consists of several parts: a database, application server, and message broker.</p>
+    </div>
   </div>
 </section>
+
+<section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="p-heading--5">The 3 ways of deploying landscape</h2>
+    </div>
+    <div class="col-6 col-start-large-7 u-hide--small">
+      <p style="margin-bottom:0;">Automated install using Juju</p>
+      <div class="install-config-chart">
+        <p class="install-time" style="--install-time: 5">
+          Install: 5h
+        </p>
+        <p class="config-time" style="--config-time: 3">
+          Config: 3h
+        </p>
+      </div>
+      <p style="margin-bottom:0;">Quickstart install</p>
+      <div class="install-config-chart">
+        <p class="install-time" style="--install-time: 3.5">
+          Install: 3.5h
+        </p>
+        <p class="config-time" style="--config-time: 6">
+          Config: 6h
+        </p>
+      </div>
+      <p style="margin-bottom:0;">Manual install</p>
+      <div class="install-config-chart">
+        <p class="install-time" style="--install-time: 10">
+          Install: 10h
+        </p>
+        <p class="config-time" style="--config-time: 6">
+          Config: 6h
+        </p>
+      </div>
+    </div>
+    <div class="u-fixed-width u-hide--large u-hide--medium">
+      <table>
+        <thead>
+          <tr>
+            <th>Installation type</th>
+            <th>Install time</th>
+            <th>Config time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Automated (Juju)</td>
+            <td>5h</td>
+            <td>3h</td>
+          </tr>
+          <tr>
+            <td>Quickstart</td>
+            <td>3.5h</td>
+            <td>6h</td>
+          </tr>
+          <tr>
+            <td>Manual</td>
+            <td>10h</td>
+            <td>6h</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
+  <div class="row">
+    <div class="col-6">
+      <h2 class="p-heading--5">Why Juju for Landscape</h2>
+    </div>
+    <div class="col-6">
+      <p>The goal of these installation guides is to provide the fastest installation and configuration experience possible. Juju provides the fastest path to a fully configured Landscape installation. Coincidentally, Juju is the preferred deployment method for more complex Landscape deployments, such as installations requiring high availability.</p>
+      <p>The automated and quickstart instructions assume you don't have a valid SSL certificate, and walks you through the steps of acquiring one through LetsEncrypt, using certbot. These steps are optional, if you already have a certificate. An automated install using Juju leverages HAProxy to serve web traffic to LXC containers, whereas the quickstart install leverages an Apache web server.</p>
+    </div>
+  </div>
+</section>
+
+<div class="js-tab-container">
+  <section class="p-strip">
+    <div class="u-fixed-width">
+
+      <div class="p-tabs">
+        <div class="p-tabs__list" role="tablist" aria-label="Landscape installations" style="margin-bottom:-1px;">
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="true" aria-controls="automated-tab" id="automated">Automated (Juju)</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="quickstart-tab" id="quickstart" tabindex="-1">Quickstart</button>
+          </div>
+          <div class="p-tabs__item">
+            <button class="p-tabs__link" role="tab" aria-selected="false" aria-controls="manual-tab" id="manual" tabindex="-1">Manual</button>
+          </div>
+        </div>
+
+        <div class="p-tabs__content" tabindex="0" role="tabpanel" id="automated-tab" aria-labelledby="automated" style="scroll-margin-top:86px;">
+          <ol class="p-stepped-list--detailed">
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Install Juju</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --classic</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Bootstrap Juju</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">State your CPU architecture</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju set-model-constraints arch=$(dpkg --print-architecture)</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Deploy Landscape</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-scalable</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Install certbot</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Get a valid SSL certificate for landscape.yourdomain.com</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d landscape.yourdomain.com --manual --preferred-challenges dns certonly</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Store certificates as strings in variables</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <p>Replace <strong>landscape.yourdomain.com</strong> the domain name pointing to your server.</p>
+                  <pre class="p-code-snippet__block is-wrapped"><code>FULLCHAIN=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/fullchain.pem)
+
+PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privkey.pem)</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Remove HAProxy with the self-signed certificate</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju remove-application haproxy --force --no-wait</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Deploy HAProxy with your certificate</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju deploy haproxy --config default_timeouts='queue 60000, connect 5000, client 120000, server 120000' --config services='' --config ssl_cert=$FULLCHAIN --config ssl_key=$PRIVKEY --config global_default_bind_options='no-tlsv10' --series focal</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Relate HAProxy and Landscape</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju relate landscape-server haproxy</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Expose HAProxy to the host machine's network</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>juju expose haproxy</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Identify your NIC</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Identify your NIC's IP</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE_IP=$(ip -o -4 addr list $INTERFACE | awk '{print $4}' | cut -d'/' -f1)</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Identify HAProxy's IP</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>CONTAINER_IP=$(juju run --unit haproxy/1 "network-get public --ingress-address=true")</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">HAProxy listens on Port 80</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>PORT=80 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">HAProxy listens on Port 443</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>PORT=443 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="quickstart-tab" aria-labelledby="quickstart" style="scroll-margin-top:86px;">
+          <ol class="p-stepped-list--detailed">
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Install Prerequisites</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y software-properties-common</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Set your FQDN</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo hostnamectl set-hostname landscape.yourdomain.com </code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Add the Landscape PPA</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository ppa:landscape/self-hosted-23.03 </code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Install Landscape</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install landscape-server-quickstart</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Install certbot</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
+                </div>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Get and install your certificate</h3>
+              <div class="p-stepped-list__content">
+                <div class="p-code-snippet">
+                  <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache</code></pre>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="manual-tab" aria-labelledby="manual">
+          <ol class="p-stepped-list--detailed">
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Set aside some time</h3>
+              <div class="p-stepped-list__content">
+                <p>Read the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
+              </div>
+            </li>
+            <li class="p-stepped-list__item">
+              <h3 class="p-stepped-list__title">Install Landscape</h3>
+              <div class="p-stepped-list__content">
+                <p>Follow the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
+
+
+<style>
+  .install-config-chart {
+    font-size: 0;
+  }
+
+  .install-config-chart p {
+    color: white;
+    font-size: 1rem;
+  }
+
+  .install-time {
+    background-color: #000000;
+    width: calc(33px * var(--install-time));
+    display: inline-block;
+    padding-left: 0.5rem;
+    padding-top: 0;
+    margin: 6.4px 0;
+  }
+
+  .config-time {
+    background: #666666;
+    width: calc(33px * var(--config-time));
+    display: inline-block;
+    padding-right: 0.5rem;
+    padding-top: 0;
+    margin: 6.4px 0;
+    text-align: right;
+  }
+</style>
+
 {% endblock content %}
