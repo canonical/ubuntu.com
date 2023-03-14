@@ -3,7 +3,7 @@
 // allow use of math.div
 @use "sass:math";
 
-//settings
+// settings
 @import "global-settings";
 @import "settings_colors";
 
@@ -223,6 +223,7 @@ select {
 fieldset {
   border: 1px solid $color-mid-light;
   border-radius: $sp-xx-small $sp-xx-small 0 0;
+  overflow: visible;
 }
 
 fieldset + fieldset {
