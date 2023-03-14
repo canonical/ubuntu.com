@@ -1,4 +1,4 @@
-export async function listAllKeys(contractId) {
+export async function listAllKeys() {
   let response = await fetch(`/credentials/keys/list`, {
     method: "GET",
     headers: {
