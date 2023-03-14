@@ -562,6 +562,14 @@ def cred_shop(**kwargs):
     return flask.render_template("credentials/shop/index.html")
 
 
+@shop_decorator(area="cred", permission="user", response="html")
+@canonical_staff()
+def cred_get_results(trueability_api, **kwargs):
+    ability_screen_id = kwargs.get("ability_screen_id")
+    results = trueability_api.get_results(ability_screen_id)
+    return flask.jsonify(results)
+
+
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
     activation_key = kwargs.get("code")

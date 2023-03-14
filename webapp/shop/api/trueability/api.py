@@ -165,8 +165,8 @@ class TrueAbilityAPI:
         return None
 
     def get_results(self, id: int = None):
-        uri = "/api/v1/results" + (f"/{id}" if id else "")
-        return self.make_request("GET", uri).json()
+        uri = "/api/v1/results" + (f"?ability_screen_id[]={id}" if id else "")
+        return self.make_request("GET", uri).json()["results"]
 
     def get_candidate_access_token_status(self, id: int):
         uri = f"/api/v1/candidate_access_tokens/{id}"
