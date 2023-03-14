@@ -1,6 +1,6 @@
 {% extends "internet-of-things/base_things.html" %}
 
-{% block title %}Contact us | NVIDIA{% endblock %}
+{% block title %}Contact us | Optimised Ubuntu on NVIDIA Orin platforms{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1znVFFLSyTmDwCplvloGAlEI3p_dpGH8v82hbYzVfz0o/edit#{% endblock meta_copydoc %}
 
 {% block content %}
@@ -35,62 +35,64 @@
       <form action="/marketo/submit" method="post" onsubmit="buildCommentsForLead()" id="mktoForm_4953">
         <fieldset class="u-no-margin--bottom">
           <div class="js-formfield">
-            <legend class="u-off-screen">Tell us about your project</legend>
-            <h2 class="p-heading--4" aria-hidden>Which NVIDIA Orin platforms are you interested in?</h2>
-            <label class="p-checkbox">
-              <input class="p-checkbox__input" type="checkbox" aria-labelledby="drive-orin" name="which-nvidia-orin-platforms" value="DRIVE Orin">
-              <span class="p-checkbox__label" id="drive-orin">DRIVE Orin</span>
-            </label>
-            <label class="p-checkbox">
-              <input class="p-checkbox__input" type="checkbox" aria-labelledby="igx-orin" name="which-nvidia-orin-platforms" value="IGX Orin">
-              <span class="p-checkbox__label" id="igx-orin">IGX Orin</span>
-            </label>
-            <label class="p-checkbox">
-              <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-agx-orin" name="which-nvidia-orin-platforms" value="Jetson AGX Orin">
-              <span class="p-checkbox__label" id="jetson-agx-orin">Jetson AGX Orin</span>
-            </label>
-            <label class="p-checkbox">
-              <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nx" name="which-nvidia-orin-platforms" value="Jetson Orin NX">
-              <span class="p-checkbox__label" id="jetson-orin-nx">Jetson Orin NX</span>
-            </label>
-            <label class="p-checkbox">
-              <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nano" name="which-nvidia-orin-platforms" value="Jetson Orin Nano">
-              <span class="p-checkbox__label" id="jetson-orin-nano">Jetson Orin Nano</span>
-            </label>
-            <label for="tell-us-about-your-project"><h3 class="p-heading--4">Tell us more about your project</h3></label>
+            <div role="group" aria-labelledby="which-nvidia-orin-platforms">
+              <h2 class="p-heading--5" id="which-nvidia-orin-platforms">Which NVIDIA Orin platforms are you interested in?</h2>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" type="checkbox" aria-labelledby="drive-orin" name="which-nvidia-orin-platforms" value="DRIVE Orin">
+                <span class="p-checkbox__label" id="drive-orin">DRIVE Orin</span>
+              </label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" type="checkbox" aria-labelledby="igx-orin" name="which-nvidia-orin-platforms" value="IGX Orin">
+                <span class="p-checkbox__label" id="igx-orin">IGX Orin</span>
+              </label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-agx-orin" name="which-nvidia-orin-platforms" value="Jetson AGX Orin">
+                <span class="p-checkbox__label" id="jetson-agx-orin">Jetson AGX Orin</span>
+              </label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nx" name="which-nvidia-orin-platforms" value="Jetson Orin NX">
+                <span class="p-checkbox__label" id="jetson-orin-nx">Jetson Orin NX</span>
+              </label>
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" type="checkbox" aria-labelledby="jetson-orin-nano" name="which-nvidia-orin-platforms" value="Jetson Orin Nano">
+                <span class="p-checkbox__label" id="jetson-orin-nano">Jetson Orin Nano</span>
+              </label>
+            </div>
+            <label for="tell-us-about-your-project"><h3 class="p-heading--5">Tell us more about your project</h3></label>
             <textarea id="tell-us-about-your-project" name="tell-us-about-your-project" rows="4" maxlength="2000"></textarea>
           </div>
         </fieldset>
 
         <fieldset class="u-no-margin--bottom">
-          <legend class="u-off-screen">Please leave your contact details so that we can inform you once the optimised Ubuntu images are available to download and install on your Tegra SoCs.</legend>
-          <p aria-hidden><strong>Please leave your contact details so that we can inform you once the optimised Ubuntu images are available to download and install on your Tegra SoCs.</strong></p>
-          <ul class="p-list">
+          <div role="group" aria-labelledby="please-leave-your-contact-details">
+            <h2 class="p-heading--5" id="please-leave-your-contact-details">Please leave your contact details so that we can inform you once the optimised Ubuntu images are available to download and install on your Tegra SoCs.</h2>
+            <ul class="p-list">
+              <li class="p-list__item">
+                <label class="is-required" for="firstName">First name:</label>
+                <input required id="firstName" name="firstName" maxlength="255" type="text" />
+              </li>
+              <li class="p-list__item">
+                <label class="is-required" for="lastName">Last name:</label>
+                <input required id="lastName" name="lastName" maxlength="255" type="text" />
+              </li>
             <li class="p-list__item">
-              <label class="is-required" for="firstName">First name:</label>
-              <input required id="firstName" name="firstName" maxlength="255" type="text" />
-            </li>
+                <label class="is-required" for="company">Company:</label>
+                <input required id="company" name="company" maxlength="255" type="text" />
+              </li>
             <li class="p-list__item">
-              <label class="is-required" for="lastName">Last name:</label>
-              <input required id="lastName" name="lastName" maxlength="255" type="text" />
-            </li>
-           <li class="p-list__item">
-              <label class="is-required" for="company">Company:</label>
-              <input required id="company" name="company" maxlength="255" type="text" />
-            </li>
-           <li class="p-list__item">
-              <label class="is-required" for="title">Title:</label>
-              <input required id="title" name="title" maxlength="255" type="text" />
-            </li>
-            <li class="p-list__item">
-              <label class="is-required" for="email">Email:</label>
-              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
-            </li>
-            <li class="p-list__item">
-              <label class="is-required" for="phone">Mobile/cell phone number:</label>
-              <input required id="phone" name="phone" maxlength="255" type="tel" />
-            </li>
-          </ul>
+                <label class="is-required" for="title">Job title:</label>
+                <input required id="title" name="title" maxlength="255" type="text" />
+              </li>
+              <li class="p-list__item">
+                <label class="is-required" for="email">Email:</label>
+                <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+              </li>
+              <li class="p-list__item">
+                <label class="is-required" for="phone">Mobile/cell phone number:</label>
+                <input required id="phone" name="phone" maxlength="255" type="tel" />
+              </li>
+            </ul>
+          </div>
         </fieldset>
 
         <fieldset>
