@@ -330,6 +330,9 @@ production:
           value: pk_live_68aXqowUeX574aGsVck8eiIE
 
   nginxConfigurationSnippet: |
+    if ($host = 'docs.ubuntu.com/landscape/en' ) {
+      rewrite ^ https://ubuntu.com/landscape/docs$request_uri? permanent;
+    }
     if ($host = 'apps.ubuntu.com' ) {
       rewrite ^ https://snapcraft.io/ permanent;
     }
