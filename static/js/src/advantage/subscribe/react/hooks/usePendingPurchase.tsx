@@ -1,7 +1,7 @@
-import { useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { getPurchase, postInvoiceID } from "../../../api/contracts";
+import { useStripe } from "@stripe/react-stripe-js";
+import { getPurchase, retryPurchase } from "../../../api/contracts";
 
 const usePendingPurchase = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState("");
@@ -25,7 +25,6 @@ const usePendingPurchase = () => {
 
       const {
         paymentStatus: { status, piClientSecret },
-        id: { IDs },
       } = res.invoice;
 
       if (status === "need_3ds_authorization") {
@@ -42,11 +41,7 @@ const usePendingPurchase = () => {
 
       //Card declined
       if (status === "need_another_payment_method") {
-        const invoiceRes = await postInvoiceID(
-          "purchase",
-          pendingPurchaseID,
-          IDs[0]
-        );
+        const invoiceRes = await retryPurchase(pendingPurchaseID);
         const error = {
           message: JSON.parse(invoiceRes.errors).decline_code,
           code: JSON.parse(invoiceRes.errors).decline_code,

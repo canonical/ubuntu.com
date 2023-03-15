@@ -1,77 +1,59 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useStripe } from "@stripe/react-stripe-js";
+import { getPurchase } from "advantage/api/contracts";
 
 const usePollPurchaseStatus = () => {
   const [pendingPurchaseID, setPendingPurchaseID] = useState("");
-
-  const queryString = window.location.search;
   const stripe = useStripe();
 
   const { isLoading, isError, isSuccess, data, error } = useQuery(
     ["pendingPurchase", pendingPurchaseID],
     async () => {
-      const response = await fetch(
-        `/account/purchases_v2/${pendingPurchaseID}${queryString}`,
-        {
-          cache: "no-store",
-        }
-      );
+      const purchase = await getPurchase(pendingPurchaseID);
 
-      const res = await response.json();
-
-      if (res.status === "done") {
-        return res;
+      if (purchase.status === "done") {
+        return purchase;
       }
 
-      if (!res.invoice) {
+      if (!purchase.invoice) {
         throw new Error("Missing invoice");
       }
 
-      window.invoiceId = res.invoice.id;
-
       const {
-        payment_status: { status, pi_client_secret },
-      } = res.invoice;
-      if (status === "need_3ds_authorization") {
-        if (!stripe) throw new Error("Stripe not initialized");
+        paymentStatus: { status, piClientSecret, lastPaymentError },
+      } = purchase.invoice;
 
-        const threeDSResponse = await stripe.confirmCardPayment(
-          pi_client_secret
-        );
+      if (status === "need_3ds_authorization") {
+        if (!stripe) {
+          throw new Error("Stripe not initialized");
+        }
+
+        const threeDSResponse = await stripe.confirmCardPayment(piClientSecret);
+
         if (threeDSResponse.error) {
           const error = {
             message: threeDSResponse.error.message,
             code: threeDSResponse.error.code,
             dontRetry: true,
           };
+
           throw error;
         }
       }
 
       if (status === "need_another_payment_method") {
-        const response = await fetch(
-          `/account/purchase/${pendingPurchaseID}/invoices/${res.invoice.id}${queryString}`,
-          {
-            cache: "no-store",
-            credentials: "include",
-            method: "POST",
-          }
-        );
-
-        const invoiceRes = await response.json();
         const error = {
-          message: JSON.parse(invoiceRes.errors).message,
-          code: JSON.parse(invoiceRes.errors).code,
+          message: "Payment failed",
+          code: lastPaymentError,
           dontRetry: true,
         };
+
         throw error;
       }
 
-      if (res.status === "done") {
-        return res;
-      } else {
-        throw new Error("Not done yet");
+      if (purchase.status !== "done") {
+        throw new Error("Keep looping");
       }
     },
     {

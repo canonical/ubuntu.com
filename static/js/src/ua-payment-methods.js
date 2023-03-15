@@ -1,6 +1,6 @@
 import {
   getPurchase,
-  postInvoiceID,
+  retryPurchase,
   setPaymentMethod,
 } from "./advantage/api/contracts.js";
 
@@ -186,21 +186,10 @@ if (cardElement) {
     return false;
   };
 
-  const postInvoice = (invoice, element) => {
-    postInvoiceID("purchase", window.pendingPurchaseId, invoice.id).then(
-      (data) => {
-        resetElement(element);
-
-        if (data.errors) {
-          handlePaymentMethodErrors("There was an error with the payment.");
-        } else {
-          handleSuccess("Payment successful");
-          setTimeout(function () {
-            location.reload();
-          }, 2000);
-        }
-      }
-    );
+  const postInvoice = (element) => {
+    retryPurchase(window.pendingPurchaseId).then((data) => {
+      resetElement(element);
+    });
   };
 
   const authenticate_3ds = (invoice, element) => {
@@ -219,7 +208,15 @@ if (cardElement) {
   };
 
   const retryPayment = (element) => {
+    postInvoice(element);
     getPurchase(window.pendingPurchaseId).then((purchase) => {
+      if (purchase.status === "done") {
+        handleSuccess("Payment successful");
+        setTimeout(function () {
+          location.reload();
+        }, 2000);
+      }
+
       let invoice;
 
       if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
@@ -231,8 +228,8 @@ if (cardElement) {
         return;
       }
 
-      if (invoice.pi_status === "requires_payment_method") {
-        postInvoice(invoice, element);
+      if (invoice.paymentStatus.status === "need_another_payment_method") {
+        handlePaymentMethodErrors("There was an error with the payment.");
         return;
       }
 

@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
+  retryPurchase,
 } from "advantage/api/contracts";
 import { Action, FormValues, PaymentPayload, Product } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
@@ -117,16 +118,7 @@ const useFinishPurchase = () => {
       }
 
       if (window.currentPaymentId) {
-        await fetch(
-          `/account/purchase/${window.currentPaymentId}/invoices/${window.invoiceId}`,
-          {
-            cache: "no-store",
-            credentials: "include",
-            method: "POST",
-          }
-        );
-
-        queryClient.invalidateQueries("pendingPurchase");
+        await retryPurchase(window.currentPaymentId);
 
         // prevent re-purchase attemp
         return window.currentPaymentId;

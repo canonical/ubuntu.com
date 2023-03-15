@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
 import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
 import { ActionButton } from "@canonical/react-components";
@@ -29,6 +30,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const { data: userInfo } = useCustomerInfo();
   const useFinishPurchaseMutation = useFinishPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (
@@ -87,8 +89,12 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       {
         onSuccess: (purchaseId: string) => {
           //start polling
-          setPendingPurchaseID(purchaseId);
-          window.currentPaymentId = purchaseId;
+          if (window.currentPaymentId) {
+            queryClient.invalidateQueries("pendingPurchase");
+          } else {
+            setPendingPurchaseID(purchaseId);
+            window.currentPaymentId = purchaseId;
+          }
         },
         onError: (error) => {
           setIsLoading(false);
