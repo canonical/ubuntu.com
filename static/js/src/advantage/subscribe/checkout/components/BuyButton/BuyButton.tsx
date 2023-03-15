@@ -10,15 +10,15 @@ import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
-
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   quantity: number;
   product: Product;
   action: Action;
+  formRef: any;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({ setError, quantity, product, action, formRef }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -73,104 +73,115 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   } = usePollPurchaseStatus();
 
   const onPayClick = () => {
-    // empty the product selector state persisted in the local storage
-    // after the user chooses to make a purchase
-    // to prevent page refreshes from causing accidental double purchasing
-    localStorage.removeItem("ua-subscribe-state");
-    setIsLoading(true);
+    if (isButtonDisabled) {
+      if (formRef.current) {
+        formRef.current.handleSubmit();
+      }
+    } else {
+      // empty the product selector state persisted in the local storage
+      // after the user chooses to make a purchase
+      // to prevent page refreshes from causing accidental double purchasing
+      localStorage.removeItem("ua-subscribe-state");
+      setIsLoading(true);
 
-    useFinishPurchaseMutation.mutate(
-      {
-        formData: values,
-        product,
-        quantity,
-        action: buyAction,
-      },
-      {
-        onSuccess: (purchaseId: string) => {
-          //start polling
-          if (window.currentPaymentId) {
-            queryClient.invalidateQueries("pendingPurchase");
-          } else {
-            setPendingPurchaseID(purchaseId);
-            window.currentPaymentId = purchaseId;
-          }
+      useFinishPurchaseMutation.mutate(
+        {
+          formData: values,
+          product,
+          quantity,
+          action: buyAction,
         },
-        onError: (error) => {
-          setIsLoading(false);
-          setFieldValue("Description", false);
-          setFieldValue("TermsAndConditions", false);
-          document.querySelector("h1")?.scrollIntoView();
-
-          if (error instanceof Error)
-            if (error.message === "email_already_exists") {
-              setFormikErrors({
-                email: "An Ubuntu Pro account with this email address exists.",
-              });
-              setError(
-                <>
-                  An Ubuntu Pro account with this email address exists. Please{" "}
-                  <a href="/login">sign in</a> or <a href="/login">register</a>{" "}
-                  with your Ubuntu One account.
-                </>
-              );
-            } else if (
-              error.message.includes("can only make one purchase at a time")
-            ) {
-              setError(
-                <>
-                  You already have a pending purchase. Please go to{" "}
-                  <a href="/account/payment-methods">payment methods</a> to
-                  retry.
-                </>
-              );
-            } else if (error.message.includes("tax_id_invalid")) {
-              setFormikErrors({
-                VATNumber:
-                  "That VAT number is invalid. Check the number and try again.",
-              });
-              setError(
-                <>That VAT number is invalid. Check the number and try again.</>
-              );
-            } else if (error.message.includes("tax_id_cannot_be_validated")) {
-              setFormikErrors({
-                VATNumber:
-                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
-              });
-              setError(
-                <>
-                  VAT number could not be validated at this time, please try
-                  again later or contact
-                  <a href="mailto:customersuccess@canonical.com">
-                    customer success
-                  </a>{" "}
-                  if the problem persists.
-                </>
-              );
+        {
+          onSuccess: (purchaseId: string) => {
+            //start polling
+            if (window.currentPaymentId) {
+              queryClient.invalidateQueries("pendingPurchase");
             } else {
-              const knownErrorMessage = getErrorMessage({
-                message: "",
-                code: error.message,
-              });
+              setPendingPurchaseID(purchaseId);
+              window.currentPaymentId = purchaseId;
+            }
+          },
+          onError: (error) => {
+            setIsLoading(false);
+            setFieldValue("Description", false);
+            setFieldValue("TermsAndConditions", false);
+            document.querySelector("h1")?.scrollIntoView();
 
-              // Tries to match the error with a known error code and defaults to a generic error if it fails
-              if (knownErrorMessage) {
-                setError(knownErrorMessage);
-              } else {
-                Sentry.captureException(error);
+            if (error instanceof Error)
+              if (error.message === "email_already_exists") {
+                setFormikErrors({
+                  email:
+                    "An Ubuntu Pro account with this email address exists.",
+                });
                 setError(
                   <>
-                    Sorry, there was an unknown error with your credit card.
-                    Check the details and try again. Contact{" "}
-                    <a href="https://ubuntu.com/contact-us">Canonical sales</a>{" "}
+                    An Ubuntu Pro account with this email address exists. Please{" "}
+                    <a href="/login">sign in</a> or{" "}
+                    <a href="/login">register</a> with your Ubuntu One account.
+                  </>
+                );
+              } else if (
+                error.message.includes("can only make one purchase at a time")
+              ) {
+                setError(
+                  <>
+                    You already have a pending purchase. Please go to{" "}
+                    <a href="/account/payment-methods">payment methods</a> to
+                    retry.
+                  </>
+                );
+              } else if (error.message.includes("tax_id_invalid")) {
+                setFormikErrors({
+                  VATNumber:
+                    "That VAT number is invalid. Check the number and try again.",
+                });
+                setError(
+                  <>
+                    That VAT number is invalid. Check the number and try again.
+                  </>
+                );
+              } else if (error.message.includes("tax_id_cannot_be_validated")) {
+                setFormikErrors({
+                  VATNumber:
+                    "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
+                });
+                setError(
+                  <>
+                    VAT number could not be validated at this time, please try
+                    again later or contact
+                    <a href="mailto:customersuccess@canonical.com">
+                      customer success
+                    </a>{" "}
                     if the problem persists.
                   </>
                 );
+              } else {
+                const knownErrorMessage = getErrorMessage({
+                  message: "",
+                  code: error.message,
+                });
+
+                // Tries to match the error with a known error code and defaults to a generic error if it fails
+                if (knownErrorMessage) {
+                  setError(knownErrorMessage);
+                } else {
+                  Sentry.captureException(error);
+                  setError(
+                    <>
+                      Sorry, there was an unknown error with your credit card.
+                      Check the details and try again. Contact{" "}
+                      <a href="https://ubuntu.com/contact-us">
+                        Canonical sales
+                      </a>{" "}
+                      if the problem persists.
+                    </>
+                  );
+                }
               }
-            }
-        },
-      }
-    );
+          },
+        }
+      );
+    }
   };
 
   useEffect(() => {
@@ -289,7 +300,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       appearance="positive"
       aria-label="Buy"
       style={{ marginTop: "calc(.5rem - 1.5px)" }}
-      disabled={isButtonDisabled}
       onClick={onPayClick}
       loading={isLoading}
     >

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Formik } from "formik";
+import React, { useRef, useState } from "react";
+import { Formik, FormikProps } from "formik";
 import {
   Col,
   List,
@@ -9,7 +9,12 @@ import {
 } from "@canonical/react-components";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
-import { Action, marketplaceDisplayName, Product } from "../../utils/types";
+import {
+  Action,
+  FormValues,
+  marketplaceDisplayName,
+  Product,
+} from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
 import FreeTrial from "../FreeTrial";
@@ -32,7 +37,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
-
+  const formRef = useRef<FormikProps<FormValues>>(null);
   return (
     <>
       <div className="p-strip">
@@ -65,6 +70,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
               onSubmit={() => {}}
               initialValues={initialValues}
               enableReinitialize={!error}
+              innerRef={formRef}
             >
               <>
                 <Col emptyLarge={7} size={6}>
@@ -132,6 +138,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 quantity={quantity}
                                 action={action}
                                 setError={setError}
+                                formRef={formRef}
                               ></BuyButton>
                             </Col>
                           </Row>
