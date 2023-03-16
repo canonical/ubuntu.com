@@ -47,7 +47,7 @@ from webapp.context import (
 from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cred.views import (
     activate_activation_key,
-    cred_get_results,
+    cred_get_all_results,
     cred_redeem_code,
     cred_self_study,
     cred_shop,
@@ -1010,7 +1010,7 @@ app.add_url_rule(
     view_func=cred_provision,
     methods=["GET", "POST"],
 )
-app.add_url_rule("/credentials/results", view_func=cred_get_results)
+app.add_url_rule("/credentials/results", view_func=cred_get_all_results)
 app.add_url_rule("/credentials/shop/", view_func=cred_shop)
 app.add_url_rule("/credentials/shop/<p>", view_func=cred_shop)
 app.add_url_rule(
