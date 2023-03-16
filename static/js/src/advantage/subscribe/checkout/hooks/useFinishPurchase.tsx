@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import {
   ensurePurchaseAccount,
@@ -19,7 +19,6 @@ const useFinishPurchase = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { data: userInfo } = useCustomerInfo();
-  const queryClient = useQueryClient();
 
   const mutation = useMutation(
     async ({ formData, product, quantity, action }: Props) => {
