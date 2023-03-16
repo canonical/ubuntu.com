@@ -570,7 +570,9 @@ def cred_get_all_results(trueability_api, **kwargs):
     result = trueability_api.get_results(",".join(ability_screen_id))
     while result["meta"]["next_page"] is not None:
         results.extend(result["results"])
-        result = trueability_api.get_results(",".join(ability_screen_id), result["meta"]["next_page"])
+        result = trueability_api.get_results(
+            ",".join(ability_screen_id), result["meta"]["next_page"]
+        )
     results.extend(result["results"])
     return flask.jsonify(results)
 
