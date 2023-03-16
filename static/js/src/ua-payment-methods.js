@@ -174,71 +174,56 @@ if (cardElement) {
     });
   };
 
-  const requiresAuthentication = (invoice) => {
-    if (invoice.pi_decline_code === "authentication_required") {
-      return true;
-    }
+  const authenticate_3ds = async (invoice, element) => {
+    const piClientSecret = invoice.paymentStatus.piClientSecret;
+    const threeDSResponse = await stripe.confirmCardPayment(piClientSecret);
 
-    if (invoice.pi_status === "requires_action" && invoice.pi_secret) {
-      return true;
-    }
+    resetElement(element);
 
-    return false;
-  };
-
-  const postInvoice = (element) => {
-    retryPurchase(window.pendingPurchaseId).then((data) => {
-      resetElement(element);
-    });
-  };
-
-  const authenticate_3ds = (invoice, element) => {
-    stripe.confirmCardPayment(invoice.pi_secret).then(function (data) {
-      resetElement(element);
-
-      if (data.error) {
-        handlePaymentMethodErrors("There was an error with the payment.");
-      } else {
-        handleSuccess("Payment successful");
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      }
-    });
-  };
-
-  const retryPayment = (element) => {
-    postInvoice(element);
-    getPurchase(window.pendingPurchaseId).then((purchase) => {
-      if (purchase.status === "done") {
-        handleSuccess("Payment successful");
-        setTimeout(function () {
-          location.reload();
-        }, 2000);
-      }
-
-      let invoice;
-
-      if (purchase.stripeInvoices && purchase.stripeInvoices.length > 0) {
-        invoice = purchase.stripeInvoices[0];
-      }
-
-      if (!invoice) {
-        handlePaymentMethodErrors("There was an error with the payment.");
-        return;
-      }
-
-      if (invoice.paymentStatus.status === "need_another_payment_method") {
-        handlePaymentMethodErrors("There was an error with the payment.");
-        return;
-      }
-
-      if (requiresAuthentication(invoice)) {
-        authenticate_3ds(invoice, element);
-        return;
-      }
-
+    if (threeDSResponse.error) {
       handlePaymentMethodErrors("There was an error with the payment.");
+    } else {
+      handleSuccess("Payment successful");
+      setTimeout(function () {
+        location.reload();
+      }, 2000);
+    }
+  };
+
+  const retryPayment = async (element) => {
+    retryPurchase(window.pendingPurchaseId).then((data) => {
+      setTimeout(function () {
+        resetElement(element);
+        getPurchase(window.pendingPurchaseId).then((purchase) => {
+          if (purchase.status === "done") {
+            handleSuccess("Payment successful");
+            setTimeout(function () {
+              location.reload();
+            }, 2000);
+
+            return;
+          }
+
+          if (!purchase.invoice) {
+            handlePaymentMethodErrors("There was an error with the payment.");
+            return;
+          }
+
+          const invoice = purchase.invoice;
+
+          if (invoice.paymentStatus.status === "need_another_payment_method") {
+            handlePaymentMethodErrors("There was an error with the payment.");
+            return;
+          }
+
+          if (invoice.paymentStatus.status === "need_3ds_authorization") {
+            authenticate_3ds(invoice, element);
+            return;
+          }
+
+          handlePaymentMethodErrors("There was an error with the payment.");
+        });
+      }, 5000);
     });
   };
 
