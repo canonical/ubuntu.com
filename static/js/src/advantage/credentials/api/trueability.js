@@ -1,5 +1,5 @@
 export async function listAllResults() {
-  let response = await fetch(`/credentials/results?ability_screen_id=4223`, {
+  let response = await fetch(`/credentials/results?ability_screen_id[]=4229`, {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -7,6 +7,7 @@ export async function listAllResults() {
     },
   });
   const data = await response.json();
+  console.log(data);
   for (let key in data) {
     data[key]["expires_at"] = new Date(data[key]["expires_at"]);
     data[key]["completed_at"] = new Date(data[key]["completed_at"]);

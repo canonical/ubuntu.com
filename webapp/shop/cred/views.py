@@ -566,19 +566,12 @@ def cred_shop(**kwargs):
 @canonical_staff()
 def cred_get_all_results(trueability_api, **kwargs):
     ability_screen_id = flask.request.args.getlist("ability_screen_id[]")
-    results = trueability_api.get_results(",".join(ability_screen_id))
-    return flask.jsonify(results)
-
-
-@shop_decorator(area="cred", permission="user", response="json")
-def cred_get_results(trueability_api, **kwargs):
-    ability_screen_id = flask.request.args.getlist("ability_screen_id[]")
     results = []
     result = trueability_api.get_results(",".join(ability_screen_id))
-    last_page = result["meta"]["total_pages"]
-    for page in range(2, last_page + 1):
+    while result["meta"]["next_page"] is not None:
         results.extend(result["results"])
-        result = trueability_api.get_results(",".join(ability_screen_id), page)
+        result = trueability_api.get_results(",".join(ability_screen_id), result["meta"]["next_page"])
+    results.extend(result["results"])
     return flask.jsonify(results)
 
 
