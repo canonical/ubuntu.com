@@ -597,12 +597,11 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account()
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
-    contract_id = None
+    keys = []
     for contract in contracts:
-        if contract.name == "CUE TEST key":
-            contract_id = contract.id
+        contract_id = contract.id
+        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
 
-    keys = ua_contracts_api.list_activation_keys(contract_id)
     return flask.jsonify(keys)
 
 
