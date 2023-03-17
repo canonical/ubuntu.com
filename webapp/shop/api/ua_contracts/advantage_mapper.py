@@ -208,7 +208,10 @@ class AdvantageMapper:
         return EnsurePurchaseAccountSchema().load(response)
 
     def get_user_subscriptions(
-        self, email: str, marketplaces: List = ["canonical-ua", "blender"]
+        self,
+        email: str,
+        marketplaces: List = ["canonical-ua", "blender"],
+        is_in_maintenance: bool = False,
     ) -> List[UserSubscription]:
         listings = {}
         product_tags = []
@@ -248,7 +251,17 @@ class AdvantageMapper:
                 }
             )
 
-        return build_user_subscriptions(user_summary, listings)
+        user_subscriptions = build_user_subscriptions(user_summary, listings)
+
+        # overrides
+        for user_subscription in user_subscriptions:
+            is_stripe_sub = user_subscription.type in ["yearly", "monthly"]
+            if is_stripe_sub and is_in_maintenance:
+                user_subscription.statuses["is_upsizeable"] = False
+                user_subscription.statuses["is_downsizeable"] = False
+                user_subscription.statuses["is_cancellable"] = False
+
+        return user_subscriptions
 
     def get_annotated_subscriptions(
         self, email: str

@@ -69,7 +69,7 @@ def pro_page_view(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def advantage_view(advantage_mapper, **kwargs):
+def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
     is_technical = False
     try:
         advantage_mapper.get_purchase_account("canonical-ua")
@@ -80,15 +80,22 @@ def advantage_view(advantage_mapper, **kwargs):
         is_technical = True
 
     return flask.render_template(
-        "advantage/index.html", is_technical=is_technical
+        "advantage/index.html",
+        is_technical=is_technical,
+        is_in_maintenance=is_in_maintenance,
     )
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
-def get_user_subscriptions(advantage_mapper, **kwargs):
+def get_user_subscriptions(advantage_mapper, is_in_maintenance, **kwargs):
     email = kwargs.get("email")
-    user_subscriptions = advantage_mapper.get_user_subscriptions(email)
+
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=email,
+        is_in_maintenance=is_in_maintenance,
+    )
+
     return flask.jsonify(to_dict(user_subscriptions))
 
 

@@ -4,9 +4,13 @@ image: prod-comms.docker-registry.canonical.com/ubuntu.com
 
 env:
   - name: STORE_MAINTENANCE
-    configMapKeyRef:
-      key: maintenance
-      name: ubuntu-com
+    value: false
+
+  - name: STORE_MAINTENANCE_START
+    value: 2023-03-18T21:00:00Z
+
+  - name: STORE_MAINTENANCE_END
+    value: 2023-03-19T00:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -407,9 +411,13 @@ staging:
 
   env:
     - name: STORE_MAINTENANCE
-      configMapKeyRef:
-        key: maintenance
-        name: ubuntu-com
+      value: false
+
+    - name: STORE_MAINTENANCE_START
+      value: 2023-03-18T21:00:00Z
+
+    - name: STORE_MAINTENANCE_END
+      value: 2023-03-19T00:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -749,9 +757,13 @@ staging:
 demo:
   env:
     - name: STORE_MAINTENANCE
-      configMapKeyRef:
-        key: maintenance
-        name: ubuntu-com
+      value: true
+
+    - name: STORE_MAINTENANCE_START
+      value: 2023-03-17T10:00:00Z
+
+    - name: STORE_MAINTENANCE_END
+      value: 2023-03-17T11:05:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
