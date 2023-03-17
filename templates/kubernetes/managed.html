@@ -56,7 +56,7 @@
       <h3 class="p-heading--4">
         Transfer control
       </h3>
-      <p>Our goal is to accelerate your Kubernetes adoption and help you optimise your operations. On request, we’ll give you back the keys when you want to drive. No hidden costs, no lock in. We can even provide training on demand to help get your team upskilled. Once you have control, we provide 24/7 enterprise support for your cloud.</p>
+      <p>Our goal is to accelerate your Kubernetes adoption and help you optimise your operations. On request, we'll give you back the keys when you want to drive. No hidden costs, no lock in. We can even provide training on demand to help get your team upskilled. Once you have control, we provide 24/7 enterprise support for your cloud.</p>
     </div>
     <hr class="p-separator"/>
     <a href="/pricing/infra">Read more about our pricing&nbsp;&rsaquo;</a>
@@ -290,6 +290,18 @@
         </div>
         <div class="p-logo-section__item">
           {{ image (
+            url="https://assets.ubuntu.com/v1/5daf7029-Openstack_logo.png",
+            alt="openstack logo",
+            width="292",
+            height="292",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{ image (
             url="https://assets.ubuntu.com/v1/0070b81e-aws-logo.png",
             alt="aws logo",
             width="158",
@@ -306,18 +318,6 @@
             alt="maas logo",
             width="158",
             height="158",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/5daf7029-Openstack_logo.png",
-            alt="openstack logo",
-            width="292",
-            height="292",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"},
