@@ -4,13 +4,13 @@ image: prod-comms.docker-registry.canonical.com/ubuntu.com
 
 env:
   - name: STORE_MAINTENANCE
-    value: true
+    value: false
 
   - name: STORE_MAINTENANCE_START
-    value: 2023-03-18T21:00:00Z
+    value: 2023-03-16T21:00:00Z
 
   - name: STORE_MAINTENANCE_END
-    value: 2023-03-19T01:00:00Z
+    value: 2023-03-17T01:00:00Z
 
   - name: SEARCH_API_KEY
     secretKeyRef:
@@ -310,13 +310,13 @@ production:
       memoryLimit: 512Mi
       env:
         - name: STORE_MAINTENANCE
-          value: true
+          value: false
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-03-18T21:00:00Z
+          value: 2023-03-16T21:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-03-19T01:00:00Z
+          value: 2023-03-17T01:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -420,13 +420,13 @@ staging:
 
   env:
     - name: STORE_MAINTENANCE
-      value: true
+      value: false
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-03-18T21:00:00Z
+      value: 2023-03-16T21:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-03-19T01:00:00Z
+      value: 2023-03-17T01:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
@@ -701,13 +701,13 @@ staging:
       memoryLimit: 512Mi
       env:
         - name: STORE_MAINTENANCE
-          value: true
+          value: false
 
         - name: STORE_MAINTENANCE_START
-          value: 2023-03-18T21:00:00Z
+          value: 2023-03-16T21:00:00Z
 
         - name: STORE_MAINTENANCE_END
-          value: 2023-03-19T01:00:00Z
+          value: 2023-03-17T01:00:00Z
 
         - name: SEARCH_API_KEY
           secretKeyRef:
@@ -775,13 +775,13 @@ staging:
 demo:
   env:
     - name: STORE_MAINTENANCE
-      value: true
+      value: false
 
     - name: STORE_MAINTENANCE_START
-      value: 2023-03-18T21:00:00Z
+      value: 2023-03-16T21:00:00Z
 
     - name: STORE_MAINTENANCE_END
-      value: 2023-03-19T01:00:00Z
+      value: 2023-03-17T01:00:00Z
 
     - name: SEARCH_API_KEY
       secretKeyRef:
