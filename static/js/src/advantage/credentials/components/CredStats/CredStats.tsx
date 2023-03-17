@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { ResponsiveContainer, PieChart, Pie } from "recharts";
 import { listAllResults } from "advantage/credentials/api/trueability";
+import { MainTable } from "@canonical/react-components";
 
 type Result = {
   id: string;
@@ -17,44 +17,68 @@ const CredStats = () => {
   const [filteredData, setFilteredData] = useState<Result[]>(data);
   const [startDate, setStartDate] = useState<Date>();
   const [endDate, setEndDate] = useState<Date>();
-  const filterDates = ()=>{
-    if(!startDate || !endDate){
+  const filterDates = () => {
+    if (!startDate || !endDate) {
       return;
     }
-    setFilteredData(data.filter((result:any)=>{return (result["started_at"]>=startDate && result["started_at"]<=endDate)}));
-  }
-  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>)=>{setStartDate(event.target.value)}
-  const handleEndDateChange = (event: ChangeEvent<HTMLInputElement>)=>{setEndDate(event.target.value)}
+    setFilteredData(
+      data.filter((result: any) => {
+        return (
+          result["started_at"] >= startDate && result["started_at"] <= endDate
+        );
+      })
+    );
+  };
+  const handleStartDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setStartDate(event.target.value);
+  };
+  const handleEndDateChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEndDate(event.target.value);
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     filterDates();
-  },[startDate,endDate])
-  useEffect(()=>{
+  }, [startDate, endDate]);
+  useEffect(() => {
     console.log(data);
     setFilteredData(data);
-  },[data])
+  }, [data]);
   return (
-    <div>
-      <ResponsiveContainer>
-        <PieChart>
-          <Pie dataKey="duration_in_minutes" data={filteredData} fill="#8884d8" label />
-        </PieChart>
-      </ResponsiveContainer>
-      <input type="date" onChange={handleStartDateChange}/>
-      <input type="date" onChange={handleEndDateChange}/>
-      <table>
-        <tbody>
-          {filteredData && filteredData.map((result:any)=>{
-            return (<tr>
-              <td>{result.id}</td>
-              <td>{result.user_email}</td>
-              <td>{result.user_full_name}</td>
-              <td>{result.started_at}</td>
-            </tr>)
-          })}
-        </tbody>
-      </table>
-    </div>   
+    <div className="u-fixed-width">
+      <div className="row">
+        <input type="date" className="col-6" onChange={handleStartDateChange} />
+        <input type="date" className="col-6" onChange={handleEndDateChange} />
+      </div>
+      <p>Total entries: {filteredData ? filteredData.length : 0}</p>
+      <MainTable
+        headers={[
+          { content: "ID", sortKey: "id" },
+          { content: "Email", sortKey: "email" },
+          { content: "Name", sortKey: "name" },
+          { content: "Started At", sortKey: "started_at" },
+        ]}
+        rows={
+          filteredData &&
+          filteredData.map((result: any) => {
+            return {
+              columns: [
+                {
+                  content: result.id,
+                },
+                { content: result.user_email },
+                { content: result.user_full_name },
+                { content: result.started_at }
+              ],
+              sortData: {
+                ...result
+              }
+            };
+          })
+        }
+        sortable
+        paginate={10}
+      />
+    </div>
   );
 };
 export default CredStats;
