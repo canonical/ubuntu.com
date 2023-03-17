@@ -1,5 +1,10 @@
 # Packages
+from distutils.util import strtobool
+import os
 import flask
+from datetime import datetime
+from dateutil.parser import parse
+import pytz
 from requests.exceptions import HTTPError
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 
@@ -358,4 +363,29 @@ def support(**kwargs):
 def checkout(**kwargs):
     return flask.render_template(
         "account/checkout.html",
+    )
+
+
+@shop_decorator(area="account", response="html")
+def get_shop_status_page(**kwargs):
+    maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
+    start_date = parse(os.getenv("STORE_MAINTENANCE_START"))
+    end_date = parse(os.getenv("STORE_MAINTENANCE_END"))
+    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+    is_in_timeframe = start_date <= time_now < end_date
+
+    return flask.render_template(
+        "account/status.html",
+        is_in_maintenance=(maintenance and is_in_timeframe),
+        maintenance_scheduled=(maintenance and (start_date > time_now)),
+        start_date=start_date.strftime("%-d %B %Y at %H:%M"),
+        end_date=end_date.strftime("%-d %B %Y at %H:%M"),
+        time_now=time_now.strftime("%-d %B %Y %H:%M"),
+    )
+
+
+@shop_decorator(area="account", response="html")
+def maintenance_check(**kwargs):
+    return flask.render_template(
+        "account/maintenance-check.html",
     )
