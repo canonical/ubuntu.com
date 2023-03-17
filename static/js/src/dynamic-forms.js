@@ -525,6 +525,17 @@ import setupIntlTelInput from "./intlTelInput.js";
       // Setup dial code dropdown options (intlTelInput.js)
       setupIntlTelInput(phoneInput);
 
+      function setpreferredLanguage() {
+        const preferredLanguage = navigator.language || navigator.userLanguage;
+        const preferredLanguageInput = contactModal.querySelector("#preferredLanguage");
+
+        if (preferredLanguageInput) {
+          preferredLanguageInput.value = preferredLanguage || "en-US";
+        }
+      }
+
+      setpreferredLanguage();
+
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");
         document.dispatchEvent(event);
