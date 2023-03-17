@@ -309,6 +309,15 @@ production:
       replicas: 3
       memoryLimit: 512Mi
       env:
+        - name: STORE_MAINTENANCE
+          value: false
+
+        - name: STORE_MAINTENANCE_START
+          value: 2023-03-16T21:00:00Z
+
+        - name: STORE_MAINTENANCE_END
+          value: 2023-03-17T00:00:00Z
+
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
@@ -691,6 +700,15 @@ staging:
       replicas: 2
       memoryLimit: 512Mi
       env:
+        - name: STORE_MAINTENANCE
+          value: false
+
+        - name: STORE_MAINTENANCE_START
+          value: 2023-03-16T21:00:00Z
+
+        - name: STORE_MAINTENANCE_END
+          value: 2023-03-17T00:00:00Z
+
         - name: SEARCH_API_KEY
           secretKeyRef:
             key: google-custom-search-key
