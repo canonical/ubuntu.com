@@ -59,7 +59,7 @@ SERVICES = {
 }
 
 MAINTENANCE_URLS = [
-    # "/pro/subscribe",
+    "/pro/subscribe",
     "/pro/maintenance-check",
 ]
 
@@ -150,7 +150,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
-                is_in_maintenance=False,  # temporarily hard-coded
+                is_in_maintenance=is_in_maintenance,
                 *args,
                 **kwargs,
             )
