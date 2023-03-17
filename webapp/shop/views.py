@@ -381,3 +381,10 @@ def get_shop_status_page(is_in_maintenance, **kwargs):
         end_date=end_date.strftime("%-d %B %Y at %H:%M"),
         time_now=time_now.strftime("%-d %B %Y %H:%M"),
     )
+
+
+@shop_decorator(area="account", response="html")
+def maintenance_check(**kwargs):
+    return flask.render_template(
+        "account/maintenance-check.html",
+    )

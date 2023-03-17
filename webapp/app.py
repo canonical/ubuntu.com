@@ -113,6 +113,7 @@ from webapp.shop.views import (
     support,
     checkout,
     get_shop_status_page,
+    maintenance_check,
 )
 
 from webapp.shop.advantage.views import (
@@ -536,6 +537,12 @@ app.add_url_rule(
     view_func=get_shop_status_page,
     methods=["GET"],
 )
+app.add_url_rule(
+    "/pro/maintenance-check",
+    view_func=maintenance_check,
+    methods=["GET"],
+)
+
 # end of shop
 
 app.add_url_rule(

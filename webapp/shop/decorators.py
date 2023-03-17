@@ -59,8 +59,8 @@ SERVICES = {
 }
 
 MAINTENANCE_URLS = [
-    # "/pro/status",
-    "/pro/subscribe",
+    # "/pro/subscribe",
+    "/pro/maintenance-check",
 ]
 
 
@@ -85,10 +85,18 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             # shop under maintenance
             maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
-            maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
-            maintenance_end = parse(os.getenv("STORE_MAINTENANCE_END"))
-            time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
-            is_in_timeframe = maintenance_start <= time_now < maintenance_end
+            is_in_timeframe = False
+            store_maintenance_start = os.getenv("STORE_MAINTENANCE_START")
+            store_maintenance_end = os.getenv("STORE_MAINTENANCE_END")
+
+            if store_maintenance_start and store_maintenance_end:
+                maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
+                maintenance_end = parse(os.getenv("STORE_MAINTENANCE_END"))
+                time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+                is_in_timeframe = (
+                    maintenance_start <= time_now < maintenance_end
+                )
+
             is_in_maintenance = maintenance and is_in_timeframe
 
             if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
@@ -142,7 +150,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
-                is_in_maintenance=is_in_maintenance,  # temporarily hard-coded
+                is_in_maintenance=False,  # temporarily hard-coded
                 *args,
                 **kwargs,
             )
