@@ -23,9 +23,10 @@ type TaxesProps = {
   product: Product;
   quantity: number;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  isSubmitted: boolean;
 };
 
-const Taxes = ({ setError }: TaxesProps) => {
+const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
   const {
     values,
     initialValues,
@@ -280,36 +281,51 @@ const Taxes = ({ setError }: TaxesProps) => {
   );
 
   return (
-    <Row>
-      {isEditing ? editMode : displayMode}
-      <hr />
-      <div
-        className="u-align--right"
-        style={{ marginTop: "calc(.5rem - 1.5px)" }}
-      >
-        {isEditing ? (
-          <>
-            {window.accountId ? (
-              <ActionButton
-                onClick={() => {
-                  setFieldValue("country", initialValues.country);
-                  setFieldValue("usState", initialValues.usState);
-                  setFieldValue("caProvince", initialValues.caProvince);
-                  setFieldValue("VATNumber", initialValues.VATNumber);
-                  setIsEditing(false);
-                  setFieldValue("isTaxSaved", true);
-                }}
+    <>
+      <Row>
+        {isEditing ? editMode : displayMode}
+        <hr />
+        <div
+          className="u-align--right"
+          style={{ marginTop: "calc(.5rem - 1.5px)" }}
+        >
+          {isEditing && values.country && isSubmitted && (
+            <div
+              className="p-form-validation is-error"
+              style={{ marginBottom: "1rem" }}
+            >
+              <div
+                className="p-form-validation__message"
+                style={{ display: "inline" }}
               >
-                Cancel
-              </ActionButton>
-            ) : null}
-            <ActionButton onClick={onSaveClick}>Save</ActionButton>
-          </>
-        ) : (
-          <ActionButton onClick={onEditClick}>Edit</ActionButton>
-        )}
-      </div>
-    </Row>
+                <strong>Error:</strong> This field needs to be saved.{" "}
+              </div>
+            </div>
+          )}
+          {isEditing ? (
+            <>
+              {window.accountId ? (
+                <ActionButton
+                  onClick={() => {
+                    setFieldValue("country", initialValues.country);
+                    setFieldValue("usState", initialValues.usState);
+                    setFieldValue("caProvince", initialValues.caProvince);
+                    setFieldValue("VATNumber", initialValues.VATNumber);
+                    setIsEditing(false);
+                    setFieldValue("isTaxSaved", true);
+                  }}
+                >
+                  Cancel
+                </ActionButton>
+              ) : null}
+              <ActionButton onClick={onSaveClick}>Save</ActionButton>
+            </>
+          ) : (
+            <ActionButton onClick={onEditClick}>Edit</ActionButton>
+          )}
+        </div>
+      </Row>
+    </>
   );
 };
 

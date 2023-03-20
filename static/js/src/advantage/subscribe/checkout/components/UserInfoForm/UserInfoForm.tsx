@@ -25,9 +25,10 @@ type Error = {
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
+  isSubmitted: boolean;
 };
 
-const UserInfoForm = ({ setError }: Props) => {
+const UserInfoForm = ({ setError, isSubmitted }: Props) => {
   const {
     errors,
     touched,
@@ -293,6 +294,16 @@ const UserInfoForm = ({ setError }: Props) => {
           />
         </div>
       </FormRow>
+      {!values.isCardValid && isSubmitted && (
+        <div className="p-form-validation is-error">
+          <div
+            className="p-form-validation__message"
+            id="exampleInputErrorMessage"
+          >
+            <strong>Error:</strong> This field is required.
+          </div>
+        </div>
+      )}
       <Field
         data-testid="field-customer-name"
         as={Input}

@@ -38,6 +38,8 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
   const formRef = useRef<FormikProps<FormValues>>(null);
+  const [isSubmitted, setSubmitted] = useState<boolean>(false);
+
   return (
     <>
       <div className="p-strip">
@@ -87,6 +89,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                           product={product}
                           quantity={quantity}
                           setError={setError}
+                          isSubmitted={isSubmitted}
                         />
                       ),
                     },
@@ -110,7 +113,12 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       : []),
                     {
                       title: "Your information",
-                      content: <UserInfoForm setError={setError} />,
+                      content: (
+                        <UserInfoForm
+                          setError={setError}
+                          isSubmitted={isSubmitted}
+                        />
+                      ),
                     },
                     ...(canTrial
                       ? [
@@ -130,7 +138,11 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       title: "Confirm and buy",
                       content: (
                         <>
-                          <ConfirmAndBuy product={product} action={action} />
+                          <ConfirmAndBuy
+                            product={product}
+                            action={action}
+                            isSubmitted={isSubmitted}
+                          />
                           <Row>
                             <Col emptyLarge={7} size={6}>
                               <BuyButton
@@ -139,6 +151,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 action={action}
                                 setError={setError}
                                 formRef={formRef}
+                                setSubmitted={setSubmitted}
                               ></BuyButton>
                             </Col>
                           </Row>

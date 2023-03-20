@@ -3,15 +3,14 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import { CheckboxInput, Col, Row } from "@canonical/react-components";
 import { Action, FormValues, Product } from "../../utils/types";
-
 type Props = {
   product: Product;
   action: Action;
+  isSubmitted: boolean;
 };
 
-const ConfirmAndBuy = ({ product, action }: Props) => {
+const ConfirmAndBuy = ({ product, action, isSubmitted }: Props) => {
   const { values, setFieldValue } = useFormikContext<FormValues>();
-
   const onCaptchaChange = (value: string | null) => {
     window.captcha = value;
     setFieldValue("captchaValue", window.captcha);
@@ -32,6 +31,17 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           checked={values.TermsAndConditions}
           defaultChecked={false}
         />
+        {!values.TermsAndConditions && isSubmitted && (
+          <div className="p-form-validation is-error">
+            <div
+              className="p-form-validation__message"
+              id="exampleInputErrorMessage"
+              style={{ marginTop: "0.5rem" }}
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
+          </div>
+        )}
       </Col>
       <Col size={12}>
         <Field
@@ -41,11 +51,23 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           checked={values.Description}
           defaultChecked={false}
         />
+        {!values.Description && isSubmitted && (
+          <div className="p-form-validation is-error">
+            <div
+              className="p-form-validation__message"
+              id="exampleInputErrorMessage"
+              style={{ marginTop: "0.5rem" }}
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
+          </div>
+        )}
       </Col>
       <Col size={12}>
         <Field
           as={CheckboxInput}
           name="MarketingOptIn"
+          id="MarketingOptIn"
           label={marketingLabel}
           defaultChecked={false}
         />
@@ -56,6 +78,16 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           onChange={onCaptchaChange}
         />
       </div>
+      {!window.captcha && isSubmitted && (
+        <div className="p-form-validation is-error">
+          <div
+            className="p-form-validation__message"
+            id="exampleInputErrorMessage"
+          >
+            <strong>Error:</strong> This field is required.
+          </div>
+        </div>
+      )}
       <hr />
     </Row>
   );

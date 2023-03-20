@@ -16,9 +16,17 @@ type Props = {
   product: Product;
   action: Action;
   formRef: any;
+  setSubmitted: any;
 };
 
-const BuyButton = ({ setError, quantity, product, action, formRef }: Props) => {
+const BuyButton = ({
+  setError,
+  quantity,
+  product,
+  action,
+  formRef,
+  setSubmitted,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -73,6 +81,8 @@ const BuyButton = ({ setError, quantity, product, action, formRef }: Props) => {
   } = usePollPurchaseStatus();
 
   const onPayClick = () => {
+    setSubmitted(true);
+
     if (isButtonDisabled) {
       if (formRef.current) {
         formRef.current.handleSubmit();
