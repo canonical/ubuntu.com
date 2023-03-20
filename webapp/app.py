@@ -107,7 +107,7 @@ from webapp.shop.views import (
     post_anonymised_customer_info,
     get_purchase,
     get_purchase_v2,
-    post_stripe_invoice_id,
+    post_retry_purchase,
     get_last_purchase_ids,
     post_purchase_calculate,
     support,
@@ -496,8 +496,8 @@ app.add_url_rule(
     methods=["GET"],
 )
 app.add_url_rule(
-    "/account/<tx_type>/<tx_id>/invoices/<invoice_id>",
-    view_func=post_stripe_invoice_id,
+    "/account/purchases/<purchase_id>/retry",
+    view_func=post_retry_purchase,
     methods=["POST"],
 )
 app.add_url_rule("/support", view_func=support)

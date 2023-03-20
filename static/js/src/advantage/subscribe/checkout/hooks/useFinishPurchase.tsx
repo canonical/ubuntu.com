@@ -1,8 +1,9 @@
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation } from "react-query";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import {
   ensurePurchaseAccount,
   postCustomerInfoToStripeAccount,
+  retryPurchase,
 } from "advantage/api/contracts";
 import { Action, FormValues, PaymentPayload, Product } from "../utils/types";
 import useCustomerInfo from "./useCustomerInfo";
@@ -18,7 +19,6 @@ const useFinishPurchase = () => {
   const stripe = useStripe();
   const elements = useElements();
   const { data: userInfo } = useCustomerInfo();
-  const queryClient = useQueryClient();
 
   const mutation = useMutation(
     async ({ formData, product, quantity, action }: Props) => {
@@ -117,16 +117,7 @@ const useFinishPurchase = () => {
       }
 
       if (window.currentPaymentId) {
-        await fetch(
-          `/account/purchase/${window.currentPaymentId}/invoices/${window.invoiceId}`,
-          {
-            cache: "no-store",
-            credentials: "include",
-            method: "POST",
-          }
-        );
-
-        queryClient.invalidateQueries("pendingPurchase");
+        await retryPurchase(window.currentPaymentId);
 
         // prevent re-purchase attemp
         return window.currentPaymentId;

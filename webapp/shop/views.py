@@ -287,12 +287,10 @@ def post_anonymised_customer_info(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="account", permission="user_or_guest", response="json")
-def post_stripe_invoice_id(ua_contracts_api, **kwargs):
-    tx_type = kwargs.get("tx_type")
-    tx_id = kwargs.get("tx_id")
-    invoice_id = kwargs.get("invoice_id")
+def post_retry_purchase(ua_contracts_api: UAContractsAPI, **kwargs):
+    purchase_id = kwargs.get("purchase_id")
 
-    return ua_contracts_api.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+    return ua_contracts_api.post_retry_purchase(purchase_id)
 
 
 @shop_decorator(area="account", permission="user_or_guest", response="json")

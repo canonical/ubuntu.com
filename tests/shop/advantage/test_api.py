@@ -550,51 +550,6 @@ class TestPutPaymentMethod(unittest.TestCase):
         self.assertEqual(session.request_kwargs, expected_args)
 
 
-class TestPostStripeInvoiceId(unittest.TestCase):
-    def test_errors(self):
-        cases = [
-            (500, False, UAContractsAPIError),
-            (500, True, UAContractsAPIErrorView),
-        ]
-
-        for code, is_for_view, expected_error in cases:
-            session = Session(response=Response(status_code=code, content={}))
-            client = make_client(session, is_for_view=is_for_view)
-
-            with self.assertRaises(expected_error):
-                client.post_stripe_invoice_id(
-                    tx_type="purchase",
-                    tx_id="pAaBbCcDdEeFfGg",
-                    invoice_id="in_aAbBbCcDdEe",
-                )
-
-    def test_success(self):
-        session = Session(
-            response=Response(
-                status_code=200,
-                content={},
-            )
-        )
-        make_client(session).post_stripe_invoice_id(
-            tx_type="purchase",
-            tx_id="pAaBbCcDdEeFfGg",
-            invoice_id="in_aAbBbCcDdEe",
-        )
-
-        expected_args = {
-            "headers": {"Authorization": "Macaroon secret-token"},
-            "json": None,
-            "method": "post",
-            "params": None,
-            "url": (
-                "https://1.2.3.4/v1"
-                "/purchase/pAaBbCcDdEeFfGg/payment/stripe/in_aAbBbCcDdEe"
-            ),
-        }
-
-        self.assertEqual(session.request_kwargs, expected_args)
-
-
 class TestGetAccountPurchases(unittest.TestCase):
     def test_errors(self):
         cases = [

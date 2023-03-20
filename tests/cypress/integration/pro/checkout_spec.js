@@ -10,8 +10,8 @@ const ENDPOINTS = {
   preview: "/pro/purchase/preview*",
   ensure: "/account/purchase-account*",
   customerInfo: "/account/customer-info*",
-  getPurchase: "/account/purchases_v2/*",
-  postInvoice: "/account/purchase/*/invoices/*",
+  getPurchase: "/account/purchases/*",
+  postInvoice: "/account/purchases/*/retry*",
 };
 
 context("Checkout - Region and taxes", () => {
@@ -633,9 +633,6 @@ context("Checkout purchase errors", () => {
     cy.wait("@getPurchase").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
-    cy.wait("@postInvoice").then((interception) => {
-      expect(interception.response.statusCode).to.equal(400);
-    });
 
     cy.scrollTo("top");
     cy.get(".p-notification--negative").should("be.visible");
@@ -650,10 +647,10 @@ context("Checkout purchase errors", () => {
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
-    cy.wait("@getPurchase").then((interception) => {
+    cy.wait("@postInvoice").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
-    cy.wait("@postInvoice").then((interception) => {
+    cy.wait("@getPurchase").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
 

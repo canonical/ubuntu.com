@@ -1,37 +1,36 @@
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useQueryClient } from "react-query";
+import usePortal from "react-useportal";
+import { Formik } from "formik";
+import { debounce } from "lodash";
+import * as Yup from "yup";
 import {
   ActionButton,
   Button,
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, useEffect, useState, useMemo } from "react";
-import usePortal from "react-useportal";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { debounce } from "lodash";
-
-import SubscriptionCancel from "../SubscriptionCancel";
-import FormikField from "../../FormikField";
-import { SelectedId } from "../Content/types";
+import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { UserSubscription } from "advantage/api/types";
 import {
+  usePreviewResizeContract,
   useResizeContract,
   useUserSubscriptions,
-  usePreviewResizeContract,
 } from "advantage/react/hooks";
+import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
+import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
-import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
-  isBlenderSubscription,
   currencyFormatter,
   formatDate,
   getNextCycleStart,
+  isBlenderSubscription,
 } from "advantage/react/utils";
-import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
-import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
-import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
-import { useQueryClient } from "react-query";
-import { UserSubscription } from "advantage/api/types";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import usePollPurchaseStatus from "advantage/subscribe/checkout/hooks/usePollPurchaseStatus";
+import FormikField from "../../FormikField";
+import { SelectedId } from "../Content/types";
+import SubscriptionCancel from "../SubscriptionCancel";
 
 type Props = {
   onClose: () => void;
@@ -216,7 +215,7 @@ const SubscriptionEdit = ({
     error: pendingPurchaseError,
     isLoading: isPendingPurchaseLoading,
     isSuccess: isPendingPurchaseSuccess,
-  } = usePendingPurchase();
+  } = usePollPurchaseStatus();
   const isResizing = resizeContract.isLoading || isPendingPurchaseLoading;
   const isResized = resizeContract.isSuccess && isPendingPurchaseSuccess;
   const error =
