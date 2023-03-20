@@ -86,6 +86,8 @@ const BuyButton = ({
     if (isButtonDisabled) {
       if (formRef.current) {
         formRef.current.handleSubmit();
+        setError(<>Please make sure all fields are filled in correctly.</>);
+        document.querySelector("h1")?.scrollIntoView();
       }
     } else {
       // empty the product selector state persisted in the local storage

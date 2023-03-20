@@ -293,17 +293,20 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
             }}
           />
         </div>
-      </FormRow>
-      {!values.isCardValid && isSubmitted && (
-        <div className="p-form-validation is-error">
+        {!values.isCardValid && isSubmitted && (
           <div
-            className="p-form-validation__message"
-            id="exampleInputErrorMessage"
+            className="p-form-validation is-error"
+            style={{ marginTop: "1.2rem" }}
           >
-            <strong>Error:</strong> This field is required.
+            <div
+              className="p-form-validation__message u-no-margin--bottom"
+              id="exampleInputErrorMessage"
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </FormRow>
       <Field
         data-testid="field-customer-name"
         as={Input}
