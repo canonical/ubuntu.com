@@ -135,15 +135,11 @@ class TrueAbilityAPI:
     def get_assessments(
         self,
         ability_screen_id: int = None,
-        uuid: str = None,
         page: int = 1,
-        per_page: int = 500,
     ):
         params = {
             "ability_screen_id": ability_screen_id,
-            "uuid": uuid,
             "page": page,
-            "per_page": per_page,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
         uri = "/api/v1/assessments?" + urlencode(filtered_params)

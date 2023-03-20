@@ -5,7 +5,7 @@ import { MainTable } from "@canonical/react-components";
 
 type Result = {
   id: string;
-  started_at: Date;
+  provisioned_at: Date;
   user_email: string;
   user_full_name: string;
 };
@@ -24,7 +24,7 @@ const CredStats = () => {
     setFilteredData(
       data.filter((result: any) => {
         return (
-          result["started_at"] >= startDate && result["started_at"] <= endDate
+          result["provisioned_at"] >= startDate && result["provisioned_at"] <= endDate
         );
       })
     );
@@ -55,7 +55,7 @@ const CredStats = () => {
           { content: "ID", sortKey: "id" },
           { content: "Email", sortKey: "email" },
           { content: "Name", sortKey: "name" },
-          { content: "Started At", sortKey: "started_at" },
+          { content: "Provisioned At", sortKey: "provisioned_at" },
         ]}
         rows={
           filteredData &&
@@ -65,9 +65,9 @@ const CredStats = () => {
                 {
                   content: result.id,
                 },
-                { content: result.user_email },
-                { content: result.user_full_name },
-                { content: result.started_at }
+                { content: result["user"]["email"] },
+                { content: result["user"]["full_name"] },
+                { content: result.provisioned_at }
               ],
               sortData: {
                 ...result

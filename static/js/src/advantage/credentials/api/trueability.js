@@ -1,5 +1,5 @@
 export async function listAllResults() {
-  let response = await fetch(`/credentials/results?ability_screen_id[]=4229`, {
+  let response = await fetch(`/credentials/assessments/4229`, {
     method: "GET",
     headers: {
       Accept: "application/json",
