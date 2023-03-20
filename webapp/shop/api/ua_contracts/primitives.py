@@ -16,6 +16,7 @@ class Renewal:
         new_contract_start: str,
         price: int,
         currency: str,
+        number_of_machines: int,
     ):
         self.id = id
         self.contract_id = contract_id
@@ -26,6 +27,7 @@ class Renewal:
         self.price = price
         self.currency = currency
         self.new_contract_start = new_contract_start
+        self.number_of_machines = number_of_machines
 
 
 class ContractItem:
