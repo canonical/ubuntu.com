@@ -12,7 +12,7 @@
   {% endwith %}
 
   <div class="row u-equal-height">
-    <div class="col-8">
+    <div class="col-6">
       <h1>What is ROS</h1>
       <p class="p-heading--4">ROS is powering the future of robotics in industry, in the enterprise and for developers</p>
       <p>Ubuntu has been the primary platform for ROS from the very beginning, thanks to its flexibility and user-friendliness.</p>
@@ -24,27 +24,15 @@
         </a>
       </p>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
+    <div class="col-6 u-hide--small u-hide--medium u-vertically-center u-align--center">
       <div>
         {{
           image(
-            url="https://assets.ubuntu.com/v1/8da00274-open-robotics.png",
-            alt="",
-            height="61",
-            width="214",
+            url="https://assets.ubuntu.com/v1/610cb685-canonical+open_robotics.svg",
+            alt="Canonical + Open Robotics",
+            height="273",
+            width="277",
             hi_def=True,
-            attrs={"style": "margin-bottom: 1rem;"},
-            loading="auto",
-          ) | safe
-        }}
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
-            alt="",
-            height="29",
-            width="214",
-            hi_def=True,
-            attrs={"style": "margin-top: 1rem;"},
             loading="auto",
           ) | safe
         }}
@@ -222,7 +210,7 @@
       <p><a class="p-button--positive" href="https://roscon.ros.org/2020/">Come to ROSCon</a></p>
       <p><a href="/robotics/community">Learn more about the community&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-hide--small">
+    <div class="col-4 u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/69237fec-ROS-10-years.png",
