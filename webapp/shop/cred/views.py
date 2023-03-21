@@ -565,15 +565,20 @@ def cred_shop(**kwargs):
 @shop_decorator(area="cred", permission="user", response="json")
 @canonical_staff()
 def cred_get_all_assessments(ability_screen_id, trueability_api, **kwargs):
-    assessments = []
-    assessment = trueability_api.get_assessments(ability_screen_id)
-    while assessment["meta"]["next_page"] is not None:
+    page = flask.request.args.get("page")
+    print(page)
+    if not page:
+        assessments = []
+        assessment = trueability_api.get_assessments(ability_screen_id)
+        while assessment["meta"]["next_page"] is not None:
+            assessments.extend(assessment["assessments"])
+            assessment = trueability_api.get_assessments(
+                ability_screen_id, assessment["meta"]["next_page"]
+            )
         assessments.extend(assessment["assessments"])
-        assessment = trueability_api.get_assessments(
-            ability_screen_id, assessment["meta"]["next_page"]
-        )
-    assessments.extend(assessment["assessments"])
-    return flask.jsonify(assessments)
+        return flask.jsonify(assessments)
+    assessment = trueability_api.get_assessments(ability_screen_id, page)
+    return flask.jsonify(assessment)
 
 
 @shop_decorator(area="cube", permission="user", response="html")

@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { listAllResults } from "advantage/credentials/api/trueability";
+import { listAllAssessments } from "advantage/credentials/api/trueability";
 import { MainTable } from "@canonical/react-components";
 
 type Result = {
@@ -12,7 +12,7 @@ type Result = {
 
 const CredStats = () => {
   const { isLoading, data } = useQuery(["Results"], async () => {
-    return listAllResults();
+    return listAllAssessments();
   });
   const [filteredData, setFilteredData] = useState<Result[]>(data);
   const [startDate, setStartDate] = useState<Date>();
@@ -40,7 +40,7 @@ const CredStats = () => {
     filterDates();
   }, [startDate, endDate]);
   useEffect(() => {
-    console.log(data);
+    console.log("new_data", data);
     setFilteredData(data);
   }, [data]);
   return (
