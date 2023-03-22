@@ -5,10 +5,10 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1tU1z9PUm_kSwGJEsopJibE4gI8Gfv_3Dw_qN2_io_ao/edit#{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="col-8 col-start-large-4">
-      <h1 class="p-heading--2">Set up a self-hosted Landscape Server on Ubuntu</h1>
+      <h1 class="p-heading--2"><strong>Set up a self-hosted Landscape Server<br class="u-hide--small u-hide--medium"> on Ubuntu</strong></h1>
     </div>
   </div>
 </section>
@@ -159,7 +159,7 @@
 <div class="js-tab-container">
   <section class="p-strip">
     <div class="row">
-      <div class="col-9 col-start-large-4">
+      <div class="col-9 col-start-large-4 col-start-medium-2">
         <div class="p-tabs">
           <div class="p-tabs__list" role="tablist" aria-label="Landscape installations" style="margin-bottom:-1px;">
             <div class="p-tabs__item">
@@ -176,209 +176,233 @@
       </div>
 
         <div class="p-tabs__content" tabindex="0" role="tabpanel" id="automated-tab" aria-labelledby="automated" style="scroll-margin-top:86px;">
-          <ol class="p-stepped-list--detailed-gap3">
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Install Juju</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --classic</code></pre>
-                </div>
+          <div class="p-stepped-list--grid">
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Install Juju</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --classic</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Bootstrap Juju</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Bootstrap Juju</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">State your CPU architecture</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju set-model-constraints arch=$(dpkg --print-architecture)</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">State your CPU architecture</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju set-model-constraints arch=$(dpkg --print-architecture)</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Deploy Landscape</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-scalable</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Deploy Landscape</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-scalable</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Install certbot</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Install certbot</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Get a valid SSL certificate for landscape.yourdomain.com</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d landscape.yourdomain.com --manual --preferred-challenges dns certonly</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Get a valid SSL certificate for landscape.yourdomain.com</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d landscape.yourdomain.com --manual --preferred-challenges dns certonly</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Store certificates as strings in variables</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <p>Replace <strong>landscape.yourdomain.com</strong> the domain name pointing to your server.</p>
-                  <pre class="p-code-snippet__block is-wrapped"><code>FULLCHAIN=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/fullchain.pem)
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Store certificates as strings in variables</p>
+              <div class="p-code-snippet">
+                <p>Replace <strong>landscape.yourdomain.com</strong> the domain name pointing to your server.</p>
+                <pre class="p-code-snippet__block is-wrapped"><code>FULLCHAIN=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/fullchain.pem)
 
 PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privkey.pem)</code></pre>
-                </div>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Remove HAProxy with the self-signed certificate</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju remove-application haproxy --force --no-wait</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Remove HAProxy with the self-signed certificate</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju remove-application haproxy --force --no-wait</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Deploy HAProxy with your certificate</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju deploy haproxy --config default_timeouts='queue 60000, connect 5000, client 120000, server 120000' --config services='' --config ssl_cert=$FULLCHAIN --config ssl_key=$PRIVKEY --config global_default_bind_options='no-tlsv10' --series focal</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Deploy HAProxy with your certificate</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju deploy haproxy --config default_timeouts='queue 60000, connect 5000, client 120000, server 120000' --config services='' --config ssl_cert=$FULLCHAIN --config ssl_key=$PRIVKEY --config global_default_bind_options='no-tlsv10' --series focal</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Relate HAProxy and Landscape</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju relate landscape-server haproxy</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Relate HAProxy and Landscape</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju relate landscape-server haproxy</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Expose HAProxy to the host machine's network</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>juju expose haproxy</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Expose HAProxy to the host machine's network</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>juju expose haproxy</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Identify your NIC</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Identify your NIC</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Identify your NIC's IP</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE_IP=$(ip -o -4 addr list $INTERFACE | awk '{print $4}' | cut -d'/' -f1)</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Identify your NIC's IP</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE_IP=$(ip -o -4 addr list $INTERFACE | awk '{print $4}' | cut -d'/' -f1)</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Identify HAProxy's IP</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>CONTAINER_IP=$(juju run --unit haproxy/1 "network-get public --ingress-address=true")</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Identify HAProxy's IP</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>CONTAINER_IP=$(juju run --unit haproxy/1 "network-get public --ingress-address=true")</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">HAProxy listens on Port 80</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>PORT=80 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">HAProxy listens on Port 80</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>PORT=80 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">HAProxy listens on Port 443</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>PORT=443 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">HAProxy listens on Port 443</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>PORT=443 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
               </div>
-            </li>
-          </ol>
+            </div>
+          </div>
         </div>
 
         <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="quickstart-tab" aria-labelledby="quickstart" style="scroll-margin-top:86px;">
-          <ol class="p-stepped-list--detailed-gap3">
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Install Prerequisites</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y software-properties-common</code></pre>
-                </div>
+          <div class="p-stepped-list--grid">
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Install Prerequisites</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y software-properties-common</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Set your FQDN</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo hostnamectl set-hostname landscape.yourdomain.com </code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Set your FQDN</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo hostnamectl set-hostname landscape.yourdomain.com </code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Add the Landscape PPA</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository ppa:landscape/self-hosted-23.03 </code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Add the Landscape PPA</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository ppa:landscape/self-hosted-23.03 </code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Install Landscape</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install landscape-server-quickstart</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Install Landscape</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install landscape-server-quickstart</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Install certbot</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Install certbot</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
               </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Get and install your certificate</p>
-              <div class="p-stepped-list__content">
-                <div class="p-code-snippet">
-                  <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache</code></pre>
-                </div>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Get and install your certificate</p>
+              <div class="p-code-snippet">
+                <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot --apache</code></pre>
               </div>
-            </li>
-          </ol>
+            </div>
+          </div>
         </div>
 
         <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="manual-tab" aria-labelledby="manual">
-          <ol class="p-stepped-list--detailed-gap3">
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Set aside some time</p>
-              <div class="p-stepped-list__content">
-                <p>Read the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
-              </div>
-            </li>
-            <li class="p-stepped-list__item">
-              <p class="p-stepped-list__title p-heading--5">Install Landscape</p>
-              <div class="p-stepped-list__content">
-                <p>Follow the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
-              </div>
-            </li>
-          </ol>
+          <div class="p-stepped-list--grid">
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Set aside some time</p>
+              <p>Read the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
+            </div>
+            <div class="col-3 col-medium-1">
+              <p class="p-step-counter"></p>
+            </div>
+            <div class="col-9 col-medium-5">
+              <p class="p-heading--5">Install Landscape</p>
+              <p>Follow the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

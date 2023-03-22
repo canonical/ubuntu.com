@@ -1286,13 +1286,21 @@ hr.p-separator.is-shallow {
   }
 }
 
-.p-stepped-list--detailed-gap3 {
-  @extend .p-stepped-list--detailed;
-  .p-stepped-list__title {
-    grid-column-end: span 3;
-  }
+.p-stepped-list--grid {
+  @extend .row;
 
-  .p-stepped-list__content {
-    grid-column-end: span 9;
+  counter-reset: count;
+
+  .p-step-counter {
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &::after {
+      content: counter(count);
+      counter-increment: count;
+      font-size: 1.3rem;
+      position: relative;
+      top: 1.14rem;
+    }
   }
 }
