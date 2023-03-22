@@ -1,7 +1,6 @@
 # Packages
 import json
 from typing import List
-from launchpadlib.launchpad import Launchpad
 
 import flask
 from webargs.fields import String

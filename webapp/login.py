@@ -5,6 +5,7 @@ import flask
 import flask_openid
 import talisker.requests
 from pymacaroons import Macaroon
+from launchpadlib.launchpad import Launchpad
 
 # Local
 from webapp.macaroons import (
@@ -23,6 +24,8 @@ open_id = flask_openid.OpenID(
 )
 session = talisker.requests.get_session()
 
+COMMUNITY_TEAM = "ubuntumembers"
+
 
 def user_info(user_session):
     """
@@ -35,6 +38,9 @@ def user_info(user_session):
             "fullname": user_session["openid"]["fullname"],
             "email": user_session["openid"]["email"],
             "authentication_token": user_session["authentication_token"],
+            "is_community_member": (
+                user_session["openid"]["is_community_member"]
+            ),
         }
     else:
         return None
@@ -105,12 +111,20 @@ def after_login(resp):
     if not resp.nickname:
         return flask.redirect(login_url)
 
+    launchpad = Launchpad.login_anonymously(
+        "ubuntu.com/pro", "production", version="devel"
+    )
+
+    lp_user = launchpad.people.getByEmail(email=resp.email)
+    is_community_member = lp_user in launchpad.people(COMMUNITY_TEAM).members
+
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
         "nickname": resp.nickname,
         "fullname": resp.fullname,
         "image": resp.image,
         "email": resp.email,
+        "is_community_member": is_community_member,
     }
 
     return flask.redirect(open_id.get_next_url())
