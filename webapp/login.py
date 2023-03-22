@@ -115,7 +115,7 @@ def after_login(resp):
         "ubuntu.com/pro", "production", version="devel"
     )
 
-    lp_user = launchpad.people(resp.nickname)
+    lp_user = launchpad.people.getByEmail(email=resp.email)
     community_members = launchpad.people(COMMUNITY_TEAM).members
     is_community_member = lp_user in community_members
 
