@@ -136,9 +136,11 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 user_token, guest_token, response, session
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
-            is_community_member = flask.session["openid"].get(
-                "is_community_member", False
-            )
+            is_community_member = False
+            if user_info(flask.session):
+                is_community_member = user_info(flask.session).get(
+                    "is_community_member", False
+                )
 
             return func(
                 badgr_issuer=os.getenv(
