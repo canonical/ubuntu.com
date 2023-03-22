@@ -39,7 +39,7 @@ def user_info(user_session):
             "email": user_session["openid"]["email"],
             "authentication_token": user_session["authentication_token"],
             "is_community_member": (
-                user_session["openid"]["is_community_member"]
+                user_session["openid"].get("is_community_member", False)
             ),
         }
     else:
@@ -115,8 +115,9 @@ def after_login(resp):
         "ubuntu.com/pro", "production", version="devel"
     )
 
-    lp_user = launchpad.people.getByEmail(email=resp.email)
-    is_community_member = lp_user in launchpad.people(COMMUNITY_TEAM).members
+    lp_user = launchpad.people(resp.nickname)
+    community_members = launchpad.people(COMMUNITY_TEAM).members
+    is_community_member = lp_user in community_members
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,

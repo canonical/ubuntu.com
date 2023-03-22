@@ -212,7 +212,7 @@ class AdvantageMapper:
         email: str,
         marketplaces: List = ["canonical-ua", "blender"],
         is_in_maintenance: bool = False,
-        is_community_user: bool = False,
+        is_community_member: bool = False,
     ) -> List[UserSubscription]:
         listings = {}
         product_tags = []
@@ -261,7 +261,7 @@ class AdvantageMapper:
                 user_subscription.statuses["is_upsizeable"] = False
                 user_subscription.statuses["is_downsizeable"] = False
                 user_subscription.statuses["is_cancellable"] = False
-            if is_community_user and user_subscription.type == "free":
+            if is_community_member and user_subscription.type == "free":
                 user_subscription.number_of_machines = 50
 
         return user_subscriptions

@@ -88,13 +88,14 @@ def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
-def get_user_subscriptions(advantage_mapper, is_in_maintenance, **kwargs):
-    email = kwargs.get("email")
-    sso_user = user_info(flask.session)
-    is_community_member = sso_user.get("is_community_member", False)
-
+def get_user_subscriptions(
+    advantage_mapper: AdvantageMapper,
+    is_in_maintenance: bool,
+    is_community_member: bool,
+    **kwargs,
+):
     user_subscriptions = advantage_mapper.get_user_subscriptions(
-        email=email,
+        email=kwargs.get("email"),
         is_in_maintenance=is_in_maintenance,
         is_community_member=is_community_member,
     )
