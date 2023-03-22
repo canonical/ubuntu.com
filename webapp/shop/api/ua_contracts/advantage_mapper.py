@@ -212,6 +212,7 @@ class AdvantageMapper:
         email: str,
         marketplaces: List = ["canonical-ua", "blender"],
         is_in_maintenance: bool = False,
+        is_community_user: bool = False,
     ) -> List[UserSubscription]:
         listings = {}
         product_tags = []
@@ -242,11 +243,7 @@ class AdvantageMapper:
                         marketplace=marketplace,
                     )
                     subscriptions.extend(market_subscriptions)
-            if community_user:
-                for contract in contracts:
-                    if contract.product_id == "free":
-                        print(contract)
-                        contract.items[0].value = 50
+
             user_summary.append(
                 {
                     "account": account,
@@ -264,6 +261,8 @@ class AdvantageMapper:
                 user_subscription.statuses["is_upsizeable"] = False
                 user_subscription.statuses["is_downsizeable"] = False
                 user_subscription.statuses["is_cancellable"] = False
+            if is_community_user and user_subscription.type == "free":
+                user_subscription.number_of_machines = 50
 
         return user_subscriptions
 
