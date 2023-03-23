@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
-import { Col, List, Row, StatusLabel } from "@canonical/react-components";
 import classNames from "classnames";
+import { Col, List, Row, StatusLabel } from "@canonical/react-components";
+import {
+  defaultValues,
+  FormContext,
+} from "advantage/subscribe/react/utils/FormContext";
 import {
   IoTDevices,
   isIoTDevice,
@@ -8,15 +12,12 @@ import {
   LTSVersions,
   ProductTypes,
 } from "advantage/subscribe/react/utils/utils";
-import {
-  defaultValues,
-  FormContext,
-} from "advantage/subscribe/react/utils/FormContext";
 
 const livepatch =
   "Kernel Livepatch  to apply kernel patches at run time without the need for an immediate reboot";
 const landscape = "Ubuntu systems management with Landscape";
 const knowledgeBase = "Access to the Knowledge base";
+const realtimeKernel = "Real-time kernel";
 const KVMDrivers = "Certified Windows Drivers for KVM guests";
 const CISBenchmark =
   "Certified CIS benchmark tooling and DISA-STIG configuration guide";
@@ -53,6 +54,7 @@ const PhysicalServerVersionDetails: {
     KVMDrivers,
     landscape,
     knowledgeBase,
+    realtimeKernel,
   ],
   [LTSVersions.focal]: [
     `${ESMEndDate} 2030`,
