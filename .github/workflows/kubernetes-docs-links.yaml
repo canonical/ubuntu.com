@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install linkchecker
         run: sudo pip install LinkChecker
@@ -29,7 +29,7 @@ jobs:
             https://res\.cloudinary\.com
             http://snap-proxy\.example\.com
             https://example\.com\/docker-registry
-            http://localhost\*
+            http://localhost*
             /q_auto
             c_fill
             /fl_sanitize

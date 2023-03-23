@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Install linkchecker
         run: sudo pip install LinkChecker
@@ -31,6 +31,7 @@ jobs:
             https://openstack\.org/projects
             https://openstack\.org/projects\/openstack-faq
             ^.*\.css
+            ^.*\.js
 
           [output]
           status=0

@@ -1,15 +1,15 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import {
-  getProduct,
-  ProductTypes,
-  LTSVersions,
-  Support,
-  Product,
   Features,
-  Periods,
-  SLA,
-  isMonthlyAvailable,
+  getProduct,
   IoTDevices,
+  isMonthlyAvailable,
+  LTSVersions,
+  Periods,
+  Product,
+  ProductTypes,
+  SLA,
+  Support,
 } from "./utils";
 
 interface FormContext {

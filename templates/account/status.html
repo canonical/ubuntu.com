@@ -1,0 +1,35 @@
+{% extends "templates/one-column.html" %}
+{% block title %}Ubuntu Pro for Infrastructure: maintenance{% endblock %}
+
+
+{% block content %}
+<div class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      {% if maintenance_scheduled or is_in_maintenance %}
+        <div class="p-notification--caution">
+          <div class="p-notification__content">
+            <h5 class="p-notification__title">Maintenance scheduled</h5>
+            <p class="p-notification__message">
+              From <strong>{{start_date}}</strong> to <strong>{{end_date}}</strong> (UTC) the shop will be down. <br> 
+              Current UTC time: <strong>{{time_now}}</strong>
+            </p>
+          </div>
+        </div>
+      {% endif %}
+      <h1 class="p-heading--2">Status</h1>
+      <ul class="p-list">
+        {% if not is_in_maintenance %}
+          <li class="p-list__item is-ticked">
+            Shop is up!
+          </li>
+        {% else %}
+          <li class="p-list__item">
+            Shop is down!
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}

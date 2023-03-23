@@ -27,13 +27,13 @@ endblock meta_copydoc %} {% block content %}
     {% for listing_id, listing in product_listings.items() %}
       "{{ listing.product.id }}-{{ listing.period }}": {
         id: "{{ listing.product.id }}-{{ listing.period }}",
+        longId: "{{ listing.id }}",
         name: "{{ listing.product.name }}",
         price: {
           value: {{ listing.price }},
           currency: "{{ listing.currency }}"
         },
         period: "{{ listing.period }}",
-        longId: "{{ listing.id }}",
         productID: "{{ listing.product.id }}",
         canBeTrialled: {% if listing.can_be_trialled %}true{% else %}false{% endif %},
         private: false,

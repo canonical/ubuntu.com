@@ -1,5 +1,10 @@
 # Packages
+from distutils.util import strtobool
+import os
 import flask
+from datetime import datetime
+from dateutil.parser import parse
+import pytz
 from requests.exceptions import HTTPError
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 
@@ -22,6 +27,7 @@ from webapp.shop.schemas import (
     post_customer_info,
     ensure_purchase_account,
     invoice_view,
+    get_purchase_account_status,
     post_payment_methods,
     post_purchase_calculate,
 )
@@ -35,6 +41,43 @@ def account_view(**kwargs):
         "account/index.html",
         email=email,
     )
+
+
+@shop_decorator(area="account", permission="user", response="json")
+@use_kwargs(get_purchase_account_status, location="query")
+def get_purchase_account_status(advantage_mapper: AdvantageMapper, **kwargs):
+    marketplace = kwargs.get("marketplace")
+    try:
+        account = advantage_mapper.get_purchase_account(marketplace)
+    except UAContractsUserHasNoAccount:
+        return flask.jsonify({}), 404
+    except AccessForbiddenError:
+        return flask.jsonify({"error": "access forbidden"}), 403
+
+    last_purchase_ids = {}
+    subscription_counter = 0
+    for marketplace in SERVICES:
+        if marketplace == "canonical-cube":
+            continue
+
+        subscriptions = advantage_mapper.get_account_subscriptions(
+            account_id=account.id,
+            marketplace=marketplace,
+        )
+
+        subscription_counter += len(subscriptions)
+
+        last_purchase_ids[marketplace] = extract_last_purchase_ids(
+            subscriptions
+        )
+
+    response = {
+        "account": to_dict(account),
+        "last_purchase_ids": last_purchase_ids,
+        "can_trial": subscription_counter == 0,
+    }
+
+    return flask.jsonify(response), 200
 
 
 @shop_decorator(area="account", permission="user", response="html")
@@ -244,12 +287,10 @@ def post_anonymised_customer_info(ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="account", permission="user_or_guest", response="json")
-def post_stripe_invoice_id(ua_contracts_api, **kwargs):
-    tx_type = kwargs.get("tx_type")
-    tx_id = kwargs.get("tx_id")
-    invoice_id = kwargs.get("invoice_id")
+def post_retry_purchase(ua_contracts_api: UAContractsAPI, **kwargs):
+    purchase_id = kwargs.get("purchase_id")
 
-    return ua_contracts_api.post_stripe_invoice_id(tx_type, tx_id, invoice_id)
+    return ua_contracts_api.post_retry_purchase(purchase_id)
 
 
 @shop_decorator(area="account", permission="user_or_guest", response="json")
@@ -313,4 +354,36 @@ def post_purchase_calculate(ua_contracts_api: UAContractsAPI, **kwargs):
 def support(**kwargs):
     return flask.render_template(
         "support/index.html",
+    )
+
+
+@shop_decorator(area="account", response="html")
+def checkout(**kwargs):
+    return flask.render_template(
+        "account/checkout.html",
+    )
+
+
+@shop_decorator(area="account", response="html")
+def get_shop_status_page(**kwargs):
+    maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
+    start_date = parse(os.getenv("STORE_MAINTENANCE_START"))
+    end_date = parse(os.getenv("STORE_MAINTENANCE_END"))
+    time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+    is_in_timeframe = start_date <= time_now < end_date
+
+    return flask.render_template(
+        "account/status.html",
+        is_in_maintenance=(maintenance and is_in_timeframe),
+        maintenance_scheduled=(maintenance and (start_date > time_now)),
+        start_date=start_date.strftime("%-d %B %Y at %H:%M"),
+        end_date=end_date.strftime("%-d %B %Y at %H:%M"),
+        time_now=time_now.strftime("%-d %B %Y %H:%M"),
+    )
+
+
+@shop_decorator(area="account", response="html")
+def maintenance_check(**kwargs):
+    return flask.render_template(
+        "account/maintenance-check.html",
     )

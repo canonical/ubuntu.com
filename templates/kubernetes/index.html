@@ -262,32 +262,19 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <div class="p-logo-section">
-      <h2 class="p-logo-section__title u-align--center">Fully-support Kubernetes clouds</h2>
+      <h2 class="p-logo-section__title u-align--left">Fully-support Kubernetes clouds</h2>
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          <a href="https://maas.io/">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f05bbf77-maas-logo.png",
-              alt="MAAS",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="auto",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </a>
-        </div>
-        <div class="p-logo-section__item">
           <a href="https://linuxcontainers.org/">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/0c374f1b-lxd-logo.png",
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/e375d3dc-lxd-logo-stacked.png",
               alt="LXD",
-              width="288",
-              height="288",
+              width="316",
+              height="316",
               hi_def=True,
               loading="auto",
               attrs={"class": "p-logo-section__logo"}
@@ -298,50 +285,13 @@
         <div class="p-logo-section__item">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/f7f8709c-logo-joyent.svg",
-            alt="Joyent",
-            width="146",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/ff936628-rackspace.svg",
-            alt="Rackspace",
-            width="136",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          <a href="/kubernetes/docs/equinix">
-            {{ 
-              image (
-              url="https://assets.ubuntu.com/v1/659a637a-Equinix+Metal+Vertical+RGB.svg",
-              alt="Equinix",
-              width="104",
-              height="94",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </a>
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/760109ef-CloudSigma_Logo_Full.png",
+            url="https://assets.ubuntu.com/v1/f57104bf-cloud-sigma-logo.png",
             alt="Cloud Sigma",
-            width="130",
+            width="316",
+            height="316",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
@@ -349,12 +299,69 @@
           <a href="/kubernetes/docs/openstack-integration">
             {{
               image(
-              url="https://assets.ubuntu.com/v1/314085ad-openstack.svg",
+              url="https://assets.ubuntu.com/v1/6d16204d-openstack-logomark-logo.png",
               alt="Openstack",
-              width="156",
+              width="316",
+              height="316",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </a>
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/1e4b07f8-joyent-logo.png",
+            alt="Joyent",
+            width="316",
+            height="316",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          <a href="/kubernetes/docs/equinix">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/c24d154b-equinix-logo.png",
+              alt="Equinix",
+              width="316",
+              height="316",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </a>
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/472e3d8a-rackspace-logo.png",
+            alt="Rackspace",
+            width="316",
+            height="316",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          <a href="https://maas.io/">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/505ecea2-maas-logo-stacked.png",
+              alt="MAAS",
+              width="316",
+              height="316",
+              hi_def=True,
+              loading="auto",
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </a>
@@ -363,12 +370,13 @@
           <a href="/kubernetes/docs/vsphere-integration">
             {{
               image(
-              url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
+              url="https://assets.ubuntu.com/v1/87b04c6a-vmware-logo.png",
               alt="VMWARE",
-              width="170",
+              width="316",
+              height="316",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-logo-section__logo"},
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </a>

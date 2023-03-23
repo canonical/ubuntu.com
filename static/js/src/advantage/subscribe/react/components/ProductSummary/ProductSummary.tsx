@@ -8,7 +8,7 @@ import {
   ProductTypes,
 } from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
-import PaymentModal from "../PaymentModal";
+import PaymentButton from "../PaymentButton";
 
 const ProductSummary = () => {
   const {
@@ -41,16 +41,16 @@ const ProductSummary = () => {
         id="summary-section"
       >
         <Row className="u-sv3">
-          <Col size={6} className="p-text--x-small-capitalised">
+          <Col size={6} className="p-text--small-caps">
             Subscription
           </Col>
-          <Col size={2} className="u-align--right p-text--x-small-capitalised">
+          <Col size={2} className="u-align--right p-text--small-caps">
             Quantity
           </Col>
-          <Col size={2} className="p-text--x-small-capitalised">
+          <Col size={2} className="p-text--small-caps">
             Billing
           </Col>
-          <Col size={2} className="u-align--right p-text--x-small-capitalised">
+          <Col size={2} className="u-align--right p-text--small-caps">
             Total
           </Col>
           <hr />
@@ -111,7 +111,7 @@ const ProductSummary = () => {
                 Free trial available
               </StatusLabel>
             ) : null}
-            <PaymentModal isHidden={isHidden} />
+            <PaymentButton />
           </Col>
         </Row>
       </section>
@@ -171,7 +171,7 @@ const ProductSummary = () => {
             </p>
           </Col>
           <Col size={12}>
-            <PaymentModal isHidden={isHidden} />
+            <PaymentButton />
           </Col>
           {product?.canBeTrialled ? (
             <Col size={12}>

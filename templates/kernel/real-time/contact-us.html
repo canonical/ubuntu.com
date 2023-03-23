@@ -1,0 +1,169 @@
+{% extends "kernel/base_kernel.html" %}
+
+{% block title %}Contact us{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1974sNirEiujc0I3OSBs_n9bb6vz4YorK7at8jK-Ljj8/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--light u-no-padding--bottom">
+  <div class="row">
+    <div class="col-8">
+      <h1>Run real-time Ubuntu in production</h1>
+      <p>Canonical announced the general availability of real-time Ubuntu 22.04 LTS. Enterprises in industrial, telecommunications, automotive, aerospace and defence, as well as public sector and retail, can now run their most demanding workloads and develop a wide range of time-sensitive applications on the most popular open-source OS. Register your interest below.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <form action="/marketo/submit" method="post" onsubmit="buildCommentsForLead()" id="mktoForm_4914">
+        <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">How should we get in touch?</legend>
+          <h2 class="p-heading--3">How should we get in touch?</h2>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label for="firstName">First name:</label>
+              <input required id="firstName" name="firstName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="lastName">Last name:</label>
+              <input required id="lastName" name="lastName" maxlength="255" type="text" />
+            </li>
+           <li class="p-list__item">
+              <label for="company">Company:</label>
+              <input required id="company" name="company" maxlength="255" type="text" />
+            </li>
+           <li class="p-list__item">
+              <label for="title">Job title:</label>
+              <input required id="title" name="title" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="email">Email address:</label>
+              <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+            </li>
+            <li class="p-list__item">
+              <label for="phone">Mobile/cell phone number:</label>
+              <input required id="phone" name="phone" maxlength="255" type="tel" />
+            </li>
+          </ul>
+
+
+          <div class="js-formfield">
+            <h2 class="p-heading--3">About your company</h2>
+            <p class="u-no-margin--bottom">Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
+            <h3 class="p-heading--4">In which industry do you operate?</h3>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="your-industry-is-industrial" name="your-industry-is" value="Industrial">
+              <span class="p-radio__label" id="your-industry-is-industrial">Industrial</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="your-industry-is-automotive" name="your-industry-is" value="Automotive">
+              <span class="p-radio__label" id="your-industry-is-automotive">Automotive</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="your-industry-is-telco" name="your-industry-is" value="Telco">
+              <span class="p-radio__label" id="your-industry-is-telco">Telco</span>
+            </label>
+            <label class="p-radio u-no-margin--bottom">
+              <input class="p-radio__input" type="radio" aria-labelledby="your-industry-is-public-sector" name="your-industry-is" value="Public sector">
+              <span class="p-radio__label" id="your-industry-is-public-sector">Public sector</span>
+            </label>
+            <div class="js-other-container">
+              <label class="p-radio">
+                <input class="p-radio__input js-other-container__other-toggle" type="radio" aria-labelledby="your-industry-is-other" name="your-industry-is" value="other">
+                <span class="p-radio__label" id="your-industry-is-other">Other</span>
+              </label>
+              <input type="text" id="your-industry-is-other-specified" class="js-other-container__input u-hide" name="your-industry-is" placeholder="Please specify" style="margin-top: .25rem;" aria-label="Other industry specified">
+            </div>
+            <h3 class="p-heading--4">Which architecture are you using?</h3>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="architecture-using-arm" name="architecture-using" value="arm">
+              <span class="p-radio__label" id="architecture-using-arm">arm</span>
+            </label>
+            <label class="p-radio u-no-margin--bottom">
+              <input class="p-radio__input" type="radio" aria-labelledby="architecture-using-x86" name="architecture-using" value="x86">
+              <span class="p-radio__label" id="architecture-using-x86">x86</span>
+            </label>
+            <div class="js-other-container">
+              <label class="p-radio">
+                <input class="p-radio__input js-other-container__other-toggle" type="radio" aria-labelledby="architecture-using-other" name="architecture-using" value="other">
+                <span class="p-radio__label" id="architecture-using-other">Other</span>
+              </label>
+              <input type="text" id="architecture-using-other-specified" class="js-other-container__input u-hide" name="architecture-using" placeholder="Please specify" style="margin-top: .25rem;" aria-label="Other architecture using specified">
+            </div>
+            <h3 class="p-heading--4">How are you currently meeting your latency requirements?</h3>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-rtos" name="meeting-latency-requirements" value="RTOS">
+              <span class="p-radio__label" id="meeting-latency-requirements-rtos">RTOS</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-commercially-supported-real-time-linux" name="meeting-latency-requirements" value="Commercially-supported real-time Linux">
+              <span class="p-radio__label" id="meeting-latency-requirements-commercially-supported-real-time-linux">Commercially-supported real-time Linux</span>
+            </label>
+            <label class="p-radio">
+              <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-patching-own-linux-kernel" name="meeting-latency-requirements" value="Patching own Linux kernel">
+              <span class="p-radio__label" id="meeting-latency-requirements-patching-own-linux-kernel">Patching own Linux kernel</span>
+            </label>
+            <label class="p-radio u-no-margin--bottom">
+              <input class="p-radio__input" type="radio" aria-labelledby="meeting-latency-requirements-no-solution" name="meeting-latency-requirements" value="No solution">
+              <span class="p-radio__label" id="meeting-latency-requirements-no-solution">No solution</span>
+            </label>
+            <div class="js-other-container">
+              <label class="p-radio">
+                <input class="p-radio__input js-other-container__other-toggle" type="radio" aria-labelledby="meeting-latency-requirements-other" name="meeting-latency-requirements"  value="other">
+                <span class="p-radio__label" id="meeting-latency-requirements-other">Other</span>
+              </label>
+              <input type="text" id="meeting-latency-requirements-other-specified" class="js-other-container__input u-hide" name="meeting-latency-requirements" placeholder="Please specify" style="margin-top: .25rem;" aria-label="Other meeting latency specified">
+            </div>
+            <label for="tell-us-about-your-project"><h3 class="p-heading--4">Tell us more about your project</h3></label>
+            <textarea id="tell-us-about-your-project" name="tell-us-about-your-project" rows="5" maxlength="2000"></textarea>
+          </div>
+
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+              </label>
+            </li>
+            <li class="p-list__item u-sv3">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+            <li class="p-list__item">
+              <button type="submit" class="p-button--positive">Submit</button>
+            </li>
+          </ul>
+          <div class="u-off-screen">
+            <label for="Comments_from_lead__c">
+              <h3 class="p-heading--4">Your comments</h3>
+              <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+            </label>
+          </div>
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="4644" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="/thank-you" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script src="/static/js/src/static-forms.js"></script>
+
+{% endblock %}

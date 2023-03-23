@@ -69,7 +69,7 @@ def pro_page_view(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def advantage_view(advantage_mapper, **kwargs):
+def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
     is_technical = False
     try:
         advantage_mapper.get_purchase_account("canonical-ua")
@@ -80,15 +80,22 @@ def advantage_view(advantage_mapper, **kwargs):
         is_technical = True
 
     return flask.render_template(
-        "advantage/index.html", is_technical=is_technical
+        "advantage/index.html",
+        is_technical=is_technical,
+        is_in_maintenance=is_in_maintenance,
     )
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
-def get_user_subscriptions(advantage_mapper, **kwargs):
+def get_user_subscriptions(advantage_mapper, is_in_maintenance, **kwargs):
     email = kwargs.get("email")
-    user_subscriptions = advantage_mapper.get_user_subscriptions(email)
+
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=email,
+        is_in_maintenance=is_in_maintenance,
+    )
+
     return flask.jsonify(to_dict(user_subscriptions))
 
 
@@ -347,11 +354,13 @@ def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
 @shop_decorator(area="advantage", response="json")
 @use_kwargs(account_purhcase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
-    account_id = kwargs.get("account_id")
+    account_id = kwargs.get("account_id") or flask.session.get(
+        "guest_account_id"
+    )
     customer_info = kwargs.get("customer_info")
     marketplace = kwargs.get("marketplace", "canonical-ua")
 
-    if account_id is None:
+    if not account_id:
         try:
             account = advantage_mapper.get_or_create_user_account(
                 marketplace, customer_info, kwargs.get("captcha_value")
@@ -359,6 +368,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
             account_id = account.id
             if account.token is not None:
                 flask.session["guest_authentication_token"] = account.token
+                flask.session["guest_account_id"] = account.id
         except AccessForbiddenError:
             response = {"error": "User has no permission to purchase"}
             return flask.jsonify(response), 403
@@ -692,11 +702,15 @@ def activate_magic_attach(advantage_mapper, **kwargs):
 
 
 @shop_decorator(area="advantage", permission="user", response="html")
-def magic_attach_view(advantage_mapper, **kwargs):
+@use_kwargs({"email": String(), "subscription": String()}, location="query")
+def magic_attach_view(advantage_mapper: AdvantageMapper, **kwargs):
+    email = kwargs.get("email")
+    selected_id = kwargs.get("subscription")
+
     user_subscriptions = advantage_mapper.get_user_subscriptions(
-        email=None, marketplaces=["canonical-ua"]
+        email=email, marketplaces=["canonical-ua"]
     )
-    selected_id = flask.request.args.get("subscription")
+
     return flask.render_template(
         "pro/attach/index.html",
         subscriptions=user_subscriptions,

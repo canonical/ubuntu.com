@@ -1,3 +1,4 @@
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Card,
   Notification,
@@ -11,9 +12,7 @@ import {
 import { useUserSubscriptions } from "advantage/react/hooks";
 import { useScrollIntoView } from "advantage/react/hooks/useScrollIntoView";
 import { sortSubscriptionsByStartDate } from "advantage/react/utils";
-import React, { useCallback, useEffect, useState } from "react";
-
-import ReBuyExpiredModal from "../ReBuyExpired";
+import { Product } from "advantage/subscribe/checkout/utils/types";
 import SubscriptionDetails from "../SubscriptionDetails";
 import SubscriptionList from "../SubscriptionList";
 import { SelectedId } from "./types";
@@ -89,22 +88,32 @@ const Content = () => {
       total,
       productName,
     ] = location.hash.split(",").slice(1);
-    return (
-      <ReBuyExpiredModal
-        repurchase={{
-          accountId: accountId,
-          listingId: listingId,
-          units: parseInt(units),
-          period: period as UserSubscriptionPeriod,
-          marketplace: marketplace as UserSubscriptionMarketplace,
-          total: parseInt(total),
-          productName: decodeURI(productName),
-        }}
-        closeModal={() => {
-          setShowRepurchase(false);
-        }}
-      />
+
+    window.accountId = accountId;
+    const price: number = parseInt(total) || 0;
+    const product: Product = {
+      canBeTrialled: false,
+      longId: listingId || "",
+      name: decodeURI(productName) || "",
+      period: period as UserSubscriptionPeriod,
+      price: {
+        value: price / parseInt(units),
+      },
+      id: "physical-uai-essential-weekday-yearly", // does not matter
+      marketplace: marketplace as UserSubscriptionMarketplace,
+    };
+
+    const shopCheckoutData = {
+      product: product,
+      quantity: parseInt(units),
+      action: "purchase",
+    };
+
+    localStorage.setItem(
+      "shop-checkout-data",
+      JSON.stringify(shopCheckoutData)
     );
+    location.href = "/account/checkout";
   }
 
   if (isLoading) {

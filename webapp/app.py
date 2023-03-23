@@ -3,11 +3,11 @@ A Flask application for ubuntu.com
 """
 
 # Packages
-from distutils.util import strtobool
 import os
 import talisker.requests
 import flask
 from datetime import datetime
+from webapp.context import schedule_banner
 from canonicalwebteam.flask_base.app import FlaskBase
 from canonicalwebteam.templatefinder import TemplateFinder
 
@@ -96,6 +96,7 @@ from webapp.views import (
 
 from webapp.shop.views import (
     account_view,
+    get_purchase_account_status,
     invoices_view,
     download_invoice,
     payment_methods_view,
@@ -106,10 +107,13 @@ from webapp.shop.views import (
     post_anonymised_customer_info,
     get_purchase,
     get_purchase_v2,
-    post_stripe_invoice_id,
+    post_retry_purchase,
     get_last_purchase_ids,
     post_purchase_calculate,
     support,
+    checkout,
+    get_shop_status_page,
+    maintenance_check,
 )
 
 from webapp.shop.advantage.views import (
@@ -219,6 +223,15 @@ def deleted_error(error):
     return flask.render_template("410.html", message=error.description), 410
 
 
+@app.errorhandler(429)
+def too_many_requests(error):
+    """
+    Endpoint abuse error
+    """
+    custom_error = f"{error.description}. Please try again tomorrow."
+    return flask.render_template("429.html", message=custom_error), 429
+
+
 @app.errorhandler(SecurityAPIError)
 def security_api_error(error):
     return (
@@ -313,7 +326,7 @@ def context():
         "utm_source": flask.request.args.get("utm_source", ""),
         "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
         "http_host": flask.request.host,
-        "is_maintenance": strtobool(os.getenv("STORE_MAINTENANCE", "false")),
+        "schedule_banner": schedule_banner,
     }
 
 
@@ -431,6 +444,11 @@ app.add_url_rule(
     view_func=account_view,
 )
 app.add_url_rule(
+    "/account/<marketplace>/purchase-account-status",
+    view_func=get_purchase_account_status,
+    methods=["GET"],
+)
+app.add_url_rule(
     "/account/invoices",
     view_func=invoices_view,
 )
@@ -478,8 +496,8 @@ app.add_url_rule(
     methods=["GET"],
 )
 app.add_url_rule(
-    "/account/<tx_type>/<tx_id>/invoices/<invoice_id>",
-    view_func=post_stripe_invoice_id,
+    "/account/purchases/<purchase_id>/retry",
+    view_func=post_retry_purchase,
     methods=["POST"],
 )
 app.add_url_rule("/support", view_func=support)
@@ -505,10 +523,26 @@ app.add_url_rule(
     defaults={"preview": True},
 )
 app.add_url_rule(
+    "/account/checkout",
+    view_func=checkout,
+    methods=["GET"],
+)
+app.add_url_rule(
     "/account/<marketplace>/purchase/calculate",
     view_func=post_purchase_calculate,
     methods=["POST"],
 )
+app.add_url_rule(
+    "/pro/status",
+    view_func=get_shop_status_page,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/pro/maintenance-check",
+    view_func=maintenance_check,
+    methods=["GET"],
+)
+
 # end of shop
 
 app.add_url_rule(
@@ -536,6 +570,7 @@ app.add_url_rule(
         search_engine_id=search_engine_id,
     ),
 )
+
 app.add_url_rule(
     (
         "/appliance/<regex('[a-z-]+'):appliance>/"
@@ -640,6 +675,11 @@ engage_pages = EngagePages(
 
 app.add_url_rule(
     "/openstack/resources", view_func=openstack_engage(engage_pages)
+)
+# Custom engage page in German
+app.add_url_rule(
+    "/engage/de/warum-openstack",
+    view_func=lambda: flask.render_template("engage/de_why-openstack.html"),
 )
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 app.add_url_rule(

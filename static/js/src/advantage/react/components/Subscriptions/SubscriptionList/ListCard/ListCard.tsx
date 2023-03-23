@@ -72,7 +72,7 @@ const ListCard = ({
           </h5>
           {subscription.type === UserSubscriptionType.Legacy ? null : (
             <span
-              className="p-text--x-small-capitalised u-text--muted p-subscriptions__list-card-period"
+              className="p-text--small-caps u-text--muted p-subscriptions__list-card-period"
               data-test="card-type"
             >
               {subscription.type}
@@ -105,7 +105,7 @@ const ListCard = ({
         </Row>
         {getFeaturesDisplay(subscription.entitlements).included.length > 0 ? (
           <List
-            className="p-subscriptions__list-card-features p-text--x-small-capitalised u-text--muted u-no-margin--bottom"
+            className="p-subscriptions__list-card-features p-text--small-caps u-text--muted u-no-margin--bottom"
             data-test="card-entitlements"
             inline
             items={getFeaturesDisplay(subscription.entitlements).included}

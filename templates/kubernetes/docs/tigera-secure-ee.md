@@ -143,9 +143,6 @@ Disable the built-in elasticsearch operator:
 juju config tigera-secure-ee enable-elasticsearch-operator=false
 ```
 
-Then follow this guide from Tigera:
-[Using your own ElasticSearch for logs][tigera byo-elasticsearch]
-
 ## Accessing cnx-manager
 
 The cnx-manager service is exposed as a NodePort on port 30003. Run the
@@ -226,7 +223,6 @@ juju config tigera-secure-ee registry=$REGISTRY
 
 [tigera-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/tigera-overlay.yaml
 [elasticsearch-operator]: https://github.com/upmc-enterprises/elasticsearch-operator
-[tigera byo-elasticsearch]: https://docs.tigera.io/v2.2/getting-started/kubernetes/installation/byo-elasticsearch
 [storage]: /kubernetes/docs/storage
 [private docker registry]: /kubernetes/docs/docker-registry
 

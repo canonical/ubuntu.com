@@ -1,14 +1,13 @@
 import React from "react";
-import { mount } from "enzyme";
-
-import * as contracts from "advantage/api/contracts";
-import Content from "./Content";
+import { act } from "react-dom/test-utils";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { mount } from "enzyme";
+import * as contracts from "advantage/api/contracts";
+import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
 import { userSubscriptionFactory } from "advantage/tests/factories/api";
-import { act } from "react-dom/test-utils";
-import { UserSubscriptionMarketplace } from "advantage/api/enum";
 import SubscriptionList from "../SubscriptionList";
+import Content from "./Content";
 
 describe("Content", () => {
   let queryClient: QueryClient;
@@ -131,5 +130,30 @@ describe("Content", () => {
     expect(wrapper.find(SubscriptionList).prop("selectedId")).toBe(
       subscriptions[1].id
     );
+  });
+
+  it("redirects user to checkout if repurchase parameter is set", () => {
+    global.window = Object.create(window);
+    const hash =
+      "#repurchase,aAaBbCcDd,lAaBbCcDdEe,12,yearly,canonical-ua,90000,Ubuntu%20Pro";
+
+    Object.defineProperty(window, "location", {
+      value: {
+        hash: hash,
+        href: "/old/url",
+      },
+    });
+
+    mount(
+      <QueryClientProvider client={queryClient}>
+        <Content />
+      </QueryClientProvider>
+    );
+
+    expect(window.accountId).toBe("aAaBbCcDd");
+    expect(localStorage.getItem("shop-checkout-data")).toBe(
+      '{"product":{"canBeTrialled":false,"longId":"lAaBbCcDdEe","name":"Ubuntu Pro","period":"yearly","price":{"value":7500},"id":"physical-uai-essential-weekday-yearly","marketplace":"canonical-ua"},"quantity":12,"action":"purchase"}'
+    );
+    expect(window.location.href).toBe("/account/checkout");
   });
 });

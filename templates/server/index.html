@@ -6,9 +6,9 @@
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1vxLhtbjgPs9PCNEhr7fbhEoErCPMXYFfU4UTKH7Kbq4/edit{% endblock meta_copydoc %}
 
-{% block content %} 
+{% block content %}
 
-<div class="p-strip--suru is-dark"> 
+<div class="p-strip--suru is-dark">
   <div class="row u-equal-height">
     <div class="col-7">
       <h1>Scale out with Ubuntu Server</h1>
@@ -229,9 +229,9 @@
       <a href="https://partners.ubuntu.com/programmes/software"> View all certified software partners&nbsp;&rsaquo; </a>
     </p>
   </div>
-</div> 
+</div>
 
-{% include "shared/_release_schedule.html" %} 
+{% include "shared/_release_schedule.html" %}
 
 <section class="p-strip is-bordered">
   <div class="row">
@@ -249,19 +249,19 @@
 <section class="p-strip--light is-deep is-bordered">
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
-          {{ image(
-            url="https://assets.ubuntu.com/v1/60bd6cf1-picto-juju.svg",
+      <div class="p-heading-icon--long">
+        <div class="p-heading-icon__header is-stacked">
+          {{ image (
+            url="https://assets.ubuntu.com/v1/6405175c-Canonical+Juju+dark+text.svg",
             alt="",
-            width="100",
-            height="100",
+            width="300",
+            height="65",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h3 class="p-heading-icon__title"> Juju &mdash; multi-cloud orchestration </h3>
+          <h3 class="p-heading-icon__title">Multi-cloud orchestration </h3>
         </div>
         <p> With the option of a command line or browser-based interface, Juju enables you to design and deploy entire workloads in just a few clicks. It works
           on public clouds like AWS and Microsoft Azure, private clouds built on OpenStack and even directly on bare metal, via MAAS. </p>
@@ -271,13 +271,13 @@
       </div>
     </div>
     <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
+      <div class="p-heading-icon--long">
+        <div class="p-heading-icon__header is-stacked">
           {{ image(
-            url="https://assets.ubuntu.com/v1/0de4fcd5-logo-maas-icon.svg",
+            url="https://assets.ubuntu.com/v1/477f8662-maas-logo-long.svg",
             alt="",
-            width="100",
-            height="100",
+            width="175",
+            height="34",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-heading-icon__img"},
@@ -293,13 +293,13 @@
       </div>
     </div>
     <div class="col-4 p-divider__block">
-      <div class="p-heading-icon">
-        <div class="p-heading-icon__header">
+      <div class="p-heading-icon--long">
+        <div class="p-heading-icon__header is-stacked">
           {{ image(
-            url="https://assets.ubuntu.com/v1/425efe3a-lxd.svg",
+            url="https://assets.ubuntu.com/v1/52b3819e-lxd-logo-long.svg",
             alt="LXD",
-            width="100",
-            height="100",
+            width="157",
+            height="34",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-heading-icon__img"},
@@ -362,7 +362,7 @@
       }}
     </div>
   </div>
-</section> 
+</section>
 
 {% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include
 "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}

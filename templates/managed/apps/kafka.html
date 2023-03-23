@@ -33,89 +33,7 @@
   </div>
 </section>
 
-<section class="p-strip is-deep">
-  <div class="row u-equal-height">
-    <div class="col-12">
-      <div class="p-logo-section">
-        <h2 class="p-logo-section__title u-align--center">Managed on:</h2>
-        <div class="p-logo-section__items">
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/11d594e7-K8s+logo+white+outline.svg",
-                alt="Kubernetes",
-                width="266",
-                height="259",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
-                alt="Google Cloud",
-                width="150",
-                height="125",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/8e5cc412-AWS.svg",
-                alt="AWS",
-                width="107",
-                height="64",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/01cfe6d9-profile-azure.svg",
-                alt="Microsoft Azure",
-                width="125",
-                height="100",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo is-wide"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/623e36f9-OpenStack_Logo_Mark+%281%29.svg",
-                alt="OpenStack",
-                width="60",
-                height="50",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo"},
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{
-              image(
-                url="https://assets.ubuntu.com/v1/244981d4-vmware_logo.svg",
-                alt="VMWare",
-                width="130",
-                height="21",
-                hi_def=True,
-                attrs={"class": "p-logo-section__logo is-wide"},
-              ) | safe
-            }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+{% include "managed/apps/_managed-apps-logo-section.html" %}
 
 <section class="p-strip--light">
   <div class="row u-equal-height">
@@ -168,7 +86,7 @@
               width="32",
               height="32",
               hi_def=True,
-              attrs={"class": "p-heading-icon__img"},
+              attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
             ) | safe
           }}
           <p class="p-heading--4">Webinar</p>
@@ -195,7 +113,7 @@
           width="274",
           height="200",
           hi_def=True,
-          attrs={"style":"height: 80px; width: auto;"},
+          attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},
         ) | safe
       }}
       <h4>Secure</h4>
@@ -212,7 +130,7 @@
           width="100",
           height="100",
           hi_def=True,
-          attrs={"style":"height: 80px; width: auto;"},
+          attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},
         ) | safe
       }}
       <h4>Reliable</h4>
@@ -229,7 +147,7 @@
           width="152",
           height="100",
           hi_def=True,
-          attrs={"style":"height: 80px; width: auto;"},
+          attrs={"style":"height: 80px; width: auto;", "class": "u-hide--small u-hide--medium"},
         ) | safe
       }}
       <h4>Optimised</h4>
@@ -258,7 +176,7 @@
                 height="100",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
+                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
                 ) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Regain focus</h4>
@@ -281,7 +199,7 @@
                 height="100",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
+                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
                 ) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Reliable and robust</h4>
@@ -304,7 +222,7 @@
                 height="100",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
+                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
                 ) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Predictable pricing</h4>
@@ -328,7 +246,7 @@
                 height="100",
                 hi_def=True,
                 loading="lazy",
-                attrs={"class": "p-heading-icon__img"},
+                attrs={"class": "p-heading-icon__img u-hide--small u-hide--medium"},
                 ) | safe
               }}
               <h4 class="p-heading-icon__title" style="padding-top: .5rem;">Accelerate to market</hh43>
@@ -377,7 +295,7 @@
             <a href="/engage/kafka-in-production">Watch the webinar&nbsp;&rsaquo;</a>
           </p>
         </div>
-        <div class="col-5 u-hide--small u-vertically-center u-align--center">
+        <div class="col-5 u-hide--small u-hide--medium u-vertically-center u-align--center">
           {{
             image(
             url="https://assets.ubuntu.com/v1/7cafcb2c-Managed-apps.svg",

@@ -97,9 +97,11 @@ def parse_renewal(raw_renewal: Dict = None) -> Renewal:
     renewal_items = raw_renewal.get("renewalItems")
     price = 0
     currency = "usd"
+    number_of_machines = 0
     for item in renewal_items:
         price = price + item.get("priceTotal").get("value")
         currency = item.get("priceTotal").get("currency")
+        number_of_machines = item.get("allowance").get("value")
 
     return Renewal(
         id=raw_renewal.get("id"),
@@ -111,6 +113,7 @@ def parse_renewal(raw_renewal: Dict = None) -> Renewal:
         new_contract_start=raw_renewal.get("newContractStart"),
         price=price,
         currency=currency,
+        number_of_machines=number_of_machines,
     )
 
 
@@ -265,6 +268,7 @@ def parse_offer_items(
 
 def parse_offer(raw_offer: Offer) -> Offer:
     items = parse_offer_items(raw_offer["items"], raw_offer["productListings"])
+    discount = raw_offer.get("discount", None)
 
     return Offer(
         id=raw_offer["id"],
@@ -274,6 +278,7 @@ def parse_offer(raw_offer: Offer) -> Offer:
         actionable=raw_offer["actionable"],
         total=sum(item.price for item in items),
         items=items,
+        discount=discount,
     )
 
 
