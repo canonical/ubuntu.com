@@ -5,26 +5,29 @@ import flask
 import flask_openid
 import talisker.requests
 from pymacaroons import Macaroon
-from launchpadlib.launchpad import Launchpad
 
 # Local
+from webapp.teams import (
+    TeamsRequest,
+    TeamsResponse,
+)
+
 from webapp.macaroons import (
     binary_serialize_macaroons,
     MacaroonRequest,
     MacaroonResponse,
 )
 
+COMMUNITY_TEAM = "ubuntumembers"
 
 login_url = os.getenv("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
 
 open_id = flask_openid.OpenID(
     store_factory=lambda: None,
     safe_roots=[],
-    extension_responses=[MacaroonResponse],
+    extension_responses=[MacaroonResponse, TeamsResponse],
 )
 session = talisker.requests.get_session()
-
-COMMUNITY_TEAM = "ubuntumembers"
 
 
 def user_info(user_session):
@@ -85,7 +88,10 @@ def login_handler():
         login_url,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
-        extensions=[openid_macaroon],
+        extensions=[
+            openid_macaroon,
+            TeamsRequest(query_membership=[COMMUNITY_TEAM]),
+        ],
     )
 
 
@@ -111,13 +117,9 @@ def after_login(resp):
     if not resp.nickname:
         return flask.redirect(login_url)
 
-    launchpad = Launchpad.login_anonymously(
-        "ubuntu.com/pro", "production", version="devel"
+    is_community_member = (
+        COMMUNITY_TEAM in resp.extensions["lp-teams"].is_member
     )
-
-    lp_user = launchpad.people.getByEmail(email=resp.email)
-    community_members = launchpad.people(COMMUNITY_TEAM).members
-    is_community_member = lp_user in community_members
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
