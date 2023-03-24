@@ -94,7 +94,7 @@ const generateDocLinks = (
         case EntitlementType.EsmApps:
         case EntitlementType.EsmInfra:
           link = {
-            label: "Ubuntu Pro (esm-apps --beta) tutorial",
+            label: "Ubuntu Pro (esm-apps) tutorial",
             url: "/pro/beta",
           };
           break;
@@ -147,25 +147,20 @@ const DetailsTabs = ({
   const featuresDisplay = filterAndFormatEntitlements(
     subscription.entitlements
   );
+
+  const isBlender = isBlenderSubscription(subscription);
+  const isFree = isFreeSubscription(subscription);
+
   const [activeTab, setActiveTab] = useState<ActiveTab>(
-    featuresDisplay.included.length > 0
+    !isFree && featuresDisplay.included.length > 0
       ? ActiveTab.FEATURES
       : ActiveTab.DOCUMENTATION
   );
+
   let content: ReactNode | null;
 
-  const isBlender = isBlenderSubscription(subscription);
-
-  const isFree = isFreeSubscription(subscription);
   // Display tutorial link for the free subscription.
-  const docs = isFree
-    ? [
-        {
-          label: "Ubuntu Pro (esm-apps --beta) tutorial",
-          url: "/pro/beta",
-        },
-      ]
-    : generateDocLinks(subscription.entitlements);
+  const docs = generateDocLinks(subscription.entitlements);
   const setTab = (tab: ActiveTab) => {
     setActiveTab(tab);
     sendAnalyticsEvent({
@@ -239,7 +234,7 @@ const DetailsTabs = ({
       <Tabs
         className="p-tabs--brand"
         links={[
-          ...(featuresDisplay.included.length > 0
+          ...(!isFree && featuresDisplay.included.length > 0
             ? // Don't show the Features tab if there are no included features.
               [
                 {

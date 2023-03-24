@@ -13,6 +13,7 @@ import {
   UserSubscriptionPeriod,
   UserSubscriptionMarketplace,
   UserSubscriptionType,
+  SupportLevel,
 } from "advantage/api/enum";
 
 export const userSubscriptionEntitlementFactory = Factory.define<UserSubscriptionEntitlement>(
@@ -87,7 +88,16 @@ export const freeSubscriptionFactory = Factory.define<UserSubscription>(
     contract_id: `mUuVO7AyCYZzvjY3JaBWF0x8vv5S684ZTeXMnJ${sequence}`,
     currency: "USD",
     end_date: null,
-    entitlements: [],
+    entitlements: [
+      {
+        type: EntitlementType.EsmApps,
+        is_available: true,
+        is_editable: true,
+        is_in_beta: false,
+        enabled_by_default: true,
+        support_level: SupportLevel.Standard,
+      },
+    ],
     listing_id: null,
     machine_type: UserSubscriptionMachineType.Physical,
     marketplace: UserSubscriptionMarketplace.Free,
