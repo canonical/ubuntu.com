@@ -228,7 +228,7 @@ def build_final_user_subscriptions(
 
         entitlements = (
             apply_entitlement_rules(contract.entitlements)
-            if marketplace == "canonical-ua"
+            if marketplace in ["canonical-ua", "free"]
             else []
         )
 
