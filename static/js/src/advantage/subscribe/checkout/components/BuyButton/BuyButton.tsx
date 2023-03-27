@@ -10,62 +10,29 @@ import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
+
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
   quantity: number;
   product: Product;
   action: Action;
-  formRef: any;
-  setSubmitted: any;
 };
 
-const BuyButton = ({
-  setError,
-  quantity,
-  product,
-  action,
-  formRef,
-  setSubmitted,
-}: Props) => {
+const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const {
     values,
     setFieldValue,
-    setErrors: setFormikErrors,
+    setFieldTouched,
+    setFieldError,
+    validateForm,
+    errors,
   } = useFormikContext<FormValues>();
   const { data: userInfo } = useCustomerInfo();
   const useFinishPurchaseMutation = useFinishPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
-
-  useEffect(() => {
-    if (
-      !values.isInfoSaved ||
-      !values.isTaxSaved ||
-      !values.isCardValid ||
-      !values.email ||
-      !values.name ||
-      !values.address ||
-      !values.postalCode ||
-      !values.city ||
-      !values.country ||
-      !values.captchaValue ||
-      !values.TermsAndConditions ||
-      !values.Description ||
-      isLoading ||
-      (values.country === "US" && !values.usState) ||
-      (values.country === "CA" && !values.caProvince) ||
-      (values.buyingFor === "organisation" && !values.organisationName) ||
-      (values.buyingFor === "organisation" &&
-        values.name === values.organisationName)
-    ) {
-      setIsButtonDisabled(true);
-    } else {
-      setIsButtonDisabled(false);
-    }
-  }, [values, isLoading]);
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -81,119 +48,126 @@ const BuyButton = ({
   } = usePollPurchaseStatus();
 
   const onPayClick = () => {
-    setSubmitted(true);
+    validateForm().then((errors) => {
+      const possibleErrors = Object.keys(errors);
 
-    if (isButtonDisabled) {
-      if (formRef.current) {
-        formRef.current.handleSubmit();
+      possibleErrors.forEach((error) => {
+        setFieldTouched(error, true);
+      });
+
+      console.log("err", errors);
+
+      if (errors) {
         setError(<>Please make sure all fields are filled in correctly.</>);
         document.querySelector("h1")?.scrollIntoView();
+
+        return;
       }
-    } else {
-      // empty the product selector state persisted in the local storage
-      // after the user chooses to make a purchase
-      // to prevent page refreshes from causing accidental double purchasing
-      localStorage.removeItem("ua-subscribe-state");
-      setIsLoading(true);
+    });
 
-      useFinishPurchaseMutation.mutate(
-        {
-          formData: values,
-          product,
-          quantity,
-          action: buyAction,
+    if (errors) {
+      return;
+    }
+
+    // empty the product selector state persisted in the local storage
+    // after the user chooses to make a purchase
+    // to prevent page refreshes from causing accidental double purchasing
+    localStorage.removeItem("ua-subscribe-state");
+    setIsLoading(true);
+
+    useFinishPurchaseMutation.mutate(
+      {
+        formData: values,
+        product,
+        quantity,
+        action: buyAction,
+      },
+      {
+        onSuccess: (purchaseId: string) => {
+          //start polling
+          if (window.currentPaymentId) {
+            queryClient.invalidateQueries("pendingPurchase");
+          } else {
+            setPendingPurchaseID(purchaseId);
+            window.currentPaymentId = purchaseId;
+          }
         },
-        {
-          onSuccess: (purchaseId: string) => {
-            //start polling
-            if (window.currentPaymentId) {
-              queryClient.invalidateQueries("pendingPurchase");
-            } else {
-              setPendingPurchaseID(purchaseId);
-              window.currentPaymentId = purchaseId;
-            }
-          },
-          onError: (error) => {
-            setIsLoading(false);
-            setFieldValue("Description", false);
-            setFieldValue("TermsAndConditions", false);
-            document.querySelector("h1")?.scrollIntoView();
+        onError: (error) => {
+          setIsLoading(false);
+          setFieldValue("Description", false);
+          setFieldValue("TermsAndConditions", false);
+          document.querySelector("h1")?.scrollIntoView();
 
-            if (error instanceof Error)
-              if (error.message === "email_already_exists") {
-                setFormikErrors({
-                  email:
-                    "An Ubuntu Pro account with this email address exists.",
-                });
+          if (error instanceof Error)
+            if (error.message === "email_already_exists") {
+              setFieldError(
+                "email",
+                "An Ubuntu Pro account with this email address exists."
+              );
+              setError(
+                <>
+                  An Ubuntu Pro account with this email address exists. Please{" "}
+                  <a href="/login">sign in</a> or <a href="/login">register</a>{" "}
+                  with your Ubuntu One account.
+                </>
+              );
+            } else if (
+              error.message.includes("can only make one purchase at a time")
+            ) {
+              setError(
+                <>
+                  You already have a pending purchase. Please go to{" "}
+                  <a href="/account/payment-methods">payment methods</a> to
+                  retry.
+                </>
+              );
+            } else if (error.message.includes("tax_id_invalid")) {
+              setFieldError(
+                "VATNumber",
+                "That VAT number is invalid. Check the number and try again."
+              );
+              setError(
+                <>That VAT number is invalid. Check the number and try again.</>
+              );
+            } else if (error.message.includes("tax_id_cannot_be_validated")) {
+              setFieldError(
+                "VATNumber",
+                "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+              );
+              setError(
+                <>
+                  VAT number could not be validated at this time, please try
+                  again later or contact
+                  <a href="mailto:customersuccess@canonical.com">
+                    customer success
+                  </a>{" "}
+                  if the problem persists.
+                </>
+              );
+            } else {
+              const knownErrorMessage = getErrorMessage({
+                message: "",
+                code: error.message,
+              });
+
+              // Tries to match the error with a known error code and defaults to a generic error if it fails
+              if (knownErrorMessage) {
+                setError(knownErrorMessage);
+              } else {
+                Sentry.captureException(error);
                 setError(
                   <>
-                    An Ubuntu Pro account with this email address exists. Please{" "}
-                    <a href="/login">sign in</a> or{" "}
-                    <a href="/login">register</a> with your Ubuntu One account.
-                  </>
-                );
-              } else if (
-                error.message.includes("can only make one purchase at a time")
-              ) {
-                setError(
-                  <>
-                    You already have a pending purchase. Please go to{" "}
-                    <a href="/account/payment-methods">payment methods</a> to
-                    retry.
-                  </>
-                );
-              } else if (error.message.includes("tax_id_invalid")) {
-                setFormikErrors({
-                  VATNumber:
-                    "That VAT number is invalid. Check the number and try again.",
-                });
-                setError(
-                  <>
-                    That VAT number is invalid. Check the number and try again.
-                  </>
-                );
-              } else if (error.message.includes("tax_id_cannot_be_validated")) {
-                setFormikErrors({
-                  VATNumber:
-                    "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
-                });
-                setError(
-                  <>
-                    VAT number could not be validated at this time, please try
-                    again later or contact
-                    <a href="mailto:customersuccess@canonical.com">
-                      customer success
-                    </a>{" "}
+                    Sorry, there was an unknown error with your credit card.
+                    Check the details and try again. Contact{" "}
+                    <a href="https://ubuntu.com/contact-us">Canonical sales</a>{" "}
                     if the problem persists.
                   </>
                 );
-              } else {
-                const knownErrorMessage = getErrorMessage({
-                  message: "",
-                  code: error.message,
-                });
-
-                // Tries to match the error with a known error code and defaults to a generic error if it fails
-                if (knownErrorMessage) {
-                  setError(knownErrorMessage);
-                } else {
-                  Sentry.captureException(error);
-                  setError(
-                    <>
-                      Sorry, there was an unknown error with your credit card.
-                      Check the details and try again. Contact{" "}
-                      <a href="https://ubuntu.com/contact-us">
-                        Canonical sales
-                      </a>{" "}
-                      if the problem persists.
-                    </>
-                  );
-                }
               }
-          },
-        }
-      );
-    }
+            }
+        },
+      }
+    );
   };
 
   useEffect(() => {

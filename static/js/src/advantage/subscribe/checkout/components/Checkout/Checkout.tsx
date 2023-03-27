@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { Formik, FormikProps } from "formik";
+import React, { useState } from "react";
+import { Formik } from "formik";
 import {
   Col,
   List,
@@ -9,12 +9,7 @@ import {
 } from "@canonical/react-components";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import { canBeTrialled, getInitialFormValues } from "../../utils/helpers";
-import {
-  Action,
-  FormValues,
-  marketplaceDisplayName,
-  Product,
-} from "../../utils/types";
+import { Action, marketplaceDisplayName, Product } from "../../utils/types";
 import BuyButton from "../BuyButton";
 import ConfirmAndBuy from "../ConfirmAndBuy";
 import FreeTrial from "../FreeTrial";
@@ -37,8 +32,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
-  const formRef = useRef<FormikProps<FormValues>>(null);
-  const [isSubmitted, setSubmitted] = useState<boolean>(false);
 
   return (
     <>
@@ -72,7 +65,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
               onSubmit={() => {}}
               initialValues={initialValues}
               enableReinitialize={!error}
-              innerRef={formRef}
             >
               <>
                 <Col emptyLarge={7} size={6}>
@@ -89,7 +81,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
                           product={product}
                           quantity={quantity}
                           setError={setError}
-                          isSubmitted={isSubmitted}
                         />
                       ),
                     },
@@ -113,12 +104,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       : []),
                     {
                       title: "Your information",
-                      content: (
-                        <UserInfoForm
-                          setError={setError}
-                          isSubmitted={isSubmitted}
-                        />
-                      ),
+                      content: <UserInfoForm setError={setError} />,
                     },
                     ...(canTrial
                       ? [
@@ -138,11 +124,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                       title: "Confirm and buy",
                       content: (
                         <>
-                          <ConfirmAndBuy
-                            product={product}
-                            action={action}
-                            isSubmitted={isSubmitted}
-                          />
+                          <ConfirmAndBuy product={product} action={action} />
                           <Row>
                             <Col emptyLarge={7} size={6}>
                               <BuyButton
@@ -150,8 +132,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 quantity={quantity}
                                 action={action}
                                 setError={setError}
-                                formRef={formRef}
-                                setSubmitted={setSubmitted}
                               ></BuyButton>
                             </Col>
                           </Row>

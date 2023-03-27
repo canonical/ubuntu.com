@@ -25,16 +25,16 @@ type Error = {
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  isSubmitted: boolean;
 };
 
-const UserInfoForm = ({ setError, isSubmitted }: Props) => {
+const UserInfoForm = ({ setError }: Props) => {
   const {
     errors,
     touched,
     values,
     initialValues,
-    setErrors: setFormikErrors,
+    setFieldError,
+    setFieldTouched,
     setFieldValue,
     isSubmitting,
   } = useFormikContext<FormValues>();
@@ -68,6 +68,7 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
 
   const onSaveClick = () => {
     checkoutEvent(window.GAFriendlyProduct, "2");
+    setFieldTouched("isInfoSaved", false);
     setIsButtonDisabled(true);
     setFieldValue("isInfoSaved", true);
 
@@ -96,18 +97,18 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
                 </>
               );
             } else if (error.message.includes("tax_id_invalid")) {
-              setFormikErrors({
-                VATNumber:
-                  "That VAT number is invalid. Check the number and try again.",
-              });
+              setFieldError(
+                "VATNumber",
+                "That VAT number is invalid. Check the number and try again."
+              );
               setError(
                 <>That VAT number is invalid. Check the number and try again.</>
               );
             } else if (error.message.includes("tax_id_cannot_be_validated")) {
-              setFormikErrors({
-                VATNumber:
-                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
-              });
+              setFieldError(
+                "VATNumber",
+                "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+              );
               setError(
                 <>
                   VAT number could not be validated at this time, please try
@@ -241,13 +242,6 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
       >
         <div
           id="card-element"
-          style={{
-            backgroundColor: "#F5F5F6",
-            borderBottom: "1.5px solid #111",
-            padding: "calc(.4rem - 1px)",
-            paddingLeft: "0.5rem",
-            paddingRight: "0.5rem",
-          }}
           className={`${cardFieldHasFocus ? "StripeElement--focus" : ""} ${
             cardFieldError ? "StripeElement--invalid" : ""
           }`}
@@ -293,19 +287,6 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
             }}
           />
         </div>
-        {!values.isCardValid && isSubmitted && (
-          <div
-            className="p-form-validation is-error"
-            style={{ marginTop: "1.2rem" }}
-          >
-            <div
-              className="p-form-validation__message u-no-margin--bottom"
-              id="exampleInputErrorMessage"
-            >
-              <strong>Error:</strong> This field is required.
-            </div>
-          </div>
-        )}
       </FormRow>
       <Field
         data-testid="field-customer-name"
@@ -402,6 +383,23 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
       {isEditing ? editMode : displayMode}
       {window.accountId && initialValues.defaultPaymentMethod ? (
         <>
+          <Col size={4}></Col>
+          <Col size={8}>
+            <Field
+              as={Input}
+              type="hidden"
+              id="isInfoSaved"
+              name="isInfoSaved"
+              validate={(value: string) => {
+                if (!value) {
+                  return "Step needs to be saved.";
+                }
+                return;
+              }}
+              required
+              error={touched?.isInfoSaved && errors?.isInfoSaved}
+            />
+          </Col>
           <hr />
           <div
             className="u-align--right"
@@ -421,6 +419,7 @@ const UserInfoForm = ({ setError, isSubmitted }: Props) => {
                   setFieldValue("postalCode", initialValues.postalCode);
                   setIsEditing(false);
                   setFieldValue("isInfoSaved", true);
+                  setFieldTouched("isInfoSaved", false);
                 }}
               >
                 Cancel

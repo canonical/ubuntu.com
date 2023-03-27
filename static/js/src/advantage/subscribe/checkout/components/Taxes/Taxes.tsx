@@ -23,17 +23,17 @@ type TaxesProps = {
   product: Product;
   quantity: number;
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
-  isSubmitted: boolean;
 };
 
-const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
+const Taxes = ({ setError }: TaxesProps) => {
   const {
     values,
     initialValues,
     errors,
     touched,
     setFieldValue,
-    setErrors: setFormikErrors,
+    setFieldTouched,
+    setFieldErrors,
   } = useFormikContext<FormValues>();
   const [isEditing, setIsEditing] = useState(!initialValues.country);
   const queryClient = useQueryClient();
@@ -51,7 +51,7 @@ const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
 
     if (savedCountry) {
       setIsEditing(!savedCountry);
-      setFieldValue("isTaxSaved", savedCountry);
+      setFieldValue("isTaxSaved", !!savedCountry);
     }
   }, [initialValues]);
 
@@ -59,6 +59,7 @@ const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
 
   const onSaveClick = () => {
     setIsEditing(false);
+    setFieldTouched("isTaxSaved", false);
     if (isGuest || !window.accountId) {
       queryClient.invalidateQueries("calculate");
       setFieldValue("isTaxSaved", true);
@@ -79,20 +80,20 @@ const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
             Sentry.captureException(error);
             if (error instanceof Error)
               if (error.message.includes("tax_id_invalid")) {
-                setFormikErrors({
-                  VATNumber:
-                    "That VAT number is invalid. Check the number and try again.",
-                });
+                setFieldErrors(
+                  "VATNumber",
+                  "That VAT number is invalid. Check the number and try again."
+                );
                 setError(
                   <>
                     That VAT number is invalid. Check the number and try again.
                   </>
                 );
               } else if (error.message.includes("tax_id_cannot_be_validated")) {
-                setFormikErrors({
-                  VATNumber:
-                    "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
-                });
+                setFieldErrors(
+                  "VATNumber",
+                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+                );
                 setError(
                   <>
                     VAT number could not be validated at this time, please try
@@ -284,24 +285,28 @@ const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
     <>
       <Row>
         {isEditing ? editMode : displayMode}
+        <Col size={4}></Col>
+        <Col size={8}>
+          <Field
+            as={Input}
+            type="hidden"
+            id="isTaxSaved"
+            name="isTaxSaved"
+            validate={(value: string) => {
+              if (values.country && !value) {
+                return "Step needs to be saved.";
+              }
+              return;
+            }}
+            required
+            error={touched?.isTaxSaved && errors?.isTaxSaved}
+          />
+        </Col>
         <hr />
         <div
           className="u-align--right"
           style={{ marginTop: "calc(.5rem - 1.5px)" }}
         >
-          {isEditing && values.country && isSubmitted && (
-            <div
-              className="p-form-validation is-error"
-              style={{ marginBottom: "1rem" }}
-            >
-              <div
-                className="p-form-validation__message"
-                style={{ display: "inline" }}
-              >
-                <strong>Error:</strong> This field needs to be saved.{" "}
-              </div>
-            </div>
-          )}
           {isEditing ? (
             <>
               {window.accountId ? (
@@ -313,12 +318,15 @@ const Taxes = ({ setError, isSubmitted }: TaxesProps) => {
                     setFieldValue("VATNumber", initialValues.VATNumber);
                     setIsEditing(false);
                     setFieldValue("isTaxSaved", true);
+                    setFieldTouched("isTaxSaved", false);
                   }}
                 >
                   Cancel
                 </ActionButton>
               ) : null}
-              <ActionButton onClick={onSaveClick}>Save</ActionButton>
+              <ActionButton onClick={onSaveClick} disabled={!values.country}>
+                Save
+              </ActionButton>
             </>
           ) : (
             <ActionButton onClick={onEditClick}>Edit</ActionButton>

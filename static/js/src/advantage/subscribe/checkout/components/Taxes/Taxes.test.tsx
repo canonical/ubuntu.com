@@ -20,12 +20,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -40,12 +35,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -62,12 +52,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -86,12 +71,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -117,12 +97,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -136,12 +111,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={{}} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
@@ -163,12 +133,7 @@ describe("TaxesTests", () => {
       <QueryClientProvider client={queryClient}>
         <Formik initialValues={intialValues} onSubmit={jest.fn()}>
           <Elements stripe={stripePromise}>
-            <Taxes
-              product={UAProduct}
-              quantity={1}
-              setError={jest.fn()}
-              isSubmitted={true}
-            />
+            <Taxes product={UAProduct} quantity={1} setError={jest.fn()} />
           </Elements>
         </Formik>
       </QueryClientProvider>
