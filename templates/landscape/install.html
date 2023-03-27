@@ -177,6 +177,7 @@
 
         <div class="p-tabs__content" tabindex="0" role="tabpanel" id="automated-tab" aria-labelledby="automated" style="scroll-margin-top:86px;">
           <div class="p-stepped-list--grid">
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -186,6 +187,7 @@
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --classic</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -195,6 +197,7 @@
                 <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -204,6 +207,7 @@
                 <pre class="p-code-snippet__block is-wrapped"><code>juju set-model-constraints arch=$(dpkg --print-architecture)</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -213,6 +217,7 @@
                 <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-scalable</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -222,6 +227,7 @@
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -231,6 +237,7 @@
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d landscape.yourdomain.com --manual --preferred-challenges dns certonly</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -243,6 +250,7 @@
 PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privkey.pem)</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -252,6 +260,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>juju remove-application haproxy --force --no-wait</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -261,6 +270,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>juju deploy haproxy --config default_timeouts='queue 60000, connect 5000, client 120000, server 120000' --config services='' --config ssl_cert=$FULLCHAIN --config ssl_key=$PRIVKEY --config global_default_bind_options='no-tlsv10' --series focal</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -270,6 +280,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>juju relate landscape-server haproxy</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -279,6 +290,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>juju expose haproxy</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -288,6 +300,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE=$(ip -4 route ls | grep default | grep -Po '(?<=dev )(\S+)' | head -1)</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -297,6 +310,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>INTERFACE_IP=$(ip -o -4 addr list $INTERFACE | awk '{print $4}' | cut -d'/' -f1)</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -306,6 +320,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>CONTAINER_IP=$(juju run --unit haproxy/1 "network-get public --ingress-address=true")</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -315,6 +330,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>PORT=80 && sudo -E bash -c "iptables -t nat -I PREROUTING -i $INTERFACE -p tcp -d $INTERFACE_IP --dport $PORT -j DNAT --to-destination $CONTAINER_IP:$PORT -m comment --comment haproxy"</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -329,6 +345,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
 
         <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="quickstart-tab" aria-labelledby="quickstart" style="scroll-margin-top:86px;">
           <div class="p-stepped-list--grid">
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -338,6 +355,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y software-properties-common</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -347,6 +365,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo hostnamectl set-hostname landscape.yourdomain.com </code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -356,6 +375,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo add-apt-repository ppa:landscape/self-hosted-23.03 </code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -365,6 +385,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install landscape-server-quickstart</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -374,6 +395,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
                 <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
               </div>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -388,6 +410,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
 
         <div class="p-tabs__content u-hide" tabindex="0" role="tabpanel" id="manual-tab" aria-labelledby="manual">
           <div class="p-stepped-list--grid">
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
@@ -395,6 +418,7 @@ PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privke
               <p class="p-heading--5">Set aside some time</p>
               <p>Read the <a href="/landscape/docs/manual-installation">Manual Installation</a> documentation</p>
             </div>
+            <hr>
             <div class="col-3 col-medium-1">
               <p class="p-step-counter"></p>
             </div>
