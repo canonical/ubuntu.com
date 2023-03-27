@@ -5,12 +5,7 @@ import flask
 import flask_openid
 import talisker.requests
 from pymacaroons import Macaroon
-
-# Local
-from webapp.teams import (
-    TeamsRequest,
-    TeamsResponse,
-)
+from django_openid_auth.teams import TeamsRequest, TeamsResponse
 
 from webapp.macaroons import (
     binary_serialize_macaroons,
@@ -90,7 +85,10 @@ def login_handler():
         ask_for_optional=["fullname"],
         extensions=[
             openid_macaroon,
-            TeamsRequest(query_membership=[COMMUNITY_TEAM]),
+            TeamsRequest(
+                query_membership=[COMMUNITY_TEAM],
+                lp_ns_uri="http://ns.launchpad.net/2007/openid-teams",
+            ),
         ],
     )
 
@@ -117,9 +115,7 @@ def after_login(resp):
     if not resp.nickname:
         return flask.redirect(login_url)
 
-    is_community_member = (
-        COMMUNITY_TEAM in resp.extensions["lp-teams"].is_member
-    )
+    is_community_member = COMMUNITY_TEAM in resp.extensions["lp"].is_member
 
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
