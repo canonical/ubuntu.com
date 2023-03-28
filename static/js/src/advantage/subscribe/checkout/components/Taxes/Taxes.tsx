@@ -33,7 +33,7 @@ const Taxes = ({ setError }: TaxesProps) => {
     touched,
     setFieldValue,
     setFieldTouched,
-    setFieldErrors,
+    setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
   const [isEditing, setIsEditing] = useState(!initialValues.country);
   const queryClient = useQueryClient();
@@ -80,20 +80,20 @@ const Taxes = ({ setError }: TaxesProps) => {
             Sentry.captureException(error);
             if (error instanceof Error)
               if (error.message.includes("tax_id_invalid")) {
-                setFieldErrors(
-                  "VATNumber",
-                  "That VAT number is invalid. Check the number and try again."
-                );
+                setFormikErrors({
+                  VATNumber:
+                    "That VAT number is invalid. Check the number and try again.",
+                });
                 setError(
                   <>
                     That VAT number is invalid. Check the number and try again.
                   </>
                 );
               } else if (error.message.includes("tax_id_cannot_be_validated")) {
-                setFieldErrors(
-                  "VATNumber",
-                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
-                );
+                setFormikErrors({
+                  VATNumber:
+                    "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
+                });
                 setError(
                   <>
                     VAT number could not be validated at this time, please try

@@ -55,15 +55,14 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         setFieldTouched(error, true);
       });
 
-      if (errors) {
+      if (!(possibleErrors.length === 0)) {
         setError(<>Please make sure all fields are filled in correctly.</>);
         document.querySelector("h1")?.scrollIntoView();
-
         return;
       }
     });
 
-    if (errors) {
+    if (!(Object.keys(errors).length === 0)) {
       return;
     }
 
