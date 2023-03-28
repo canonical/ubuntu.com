@@ -10,6 +10,7 @@ import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
+import { vatCountries } from "advantage/countries-and-states";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -46,6 +47,18 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     data: pendingPurchase,
     error: purchaseError,
   } = usePollPurchaseStatus();
+
+  useEffect(() => {
+    if (!vatCountries.includes(values.country ?? "")) {
+      setFieldValue("VATNumber", "");
+    }
+    if (values.country !== "US") {
+      setFieldValue("usState", "");
+    }
+    if (values.country !== "CA") {
+      setFieldValue("caProvince", "");
+    }
+  }, [values.country]);
 
   const onPayClick = () => {
     validateForm().then((errors) => {

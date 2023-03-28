@@ -143,18 +143,6 @@ const Taxes = ({ setError }: TaxesProps) => {
     return errorMessage;
   };
 
-  useEffect(() => {
-    if (!vatCountries.includes(values.country ?? "")) {
-      setFieldValue("VATNumber", "");
-    }
-    if (values.country !== "US") {
-      setFieldValue("usState", "");
-    }
-    if (values.country !== "CA") {
-      setFieldValue("caProvince", "");
-    }
-  }, [values.country]);
-
   const displayMode = (
     <>
       <Row>
