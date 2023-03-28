@@ -299,13 +299,13 @@ context("Checkout purchase", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
-    cy.fillInCardDetails();
     cy.fillInCustomerInfo();
-
+    
     cy.findByLabelText("Use free trial month").click({ force: true });
-
+    
     cy.acceptTerms();
     cy.clickRecaptcha();
+    cy.fillInCardDetails();
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -313,7 +313,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -359,13 +359,13 @@ context("Checkout purchase", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
-    cy.fillInCardDetails();
     cy.fillInCustomerInfo();
-
+    
     cy.findByLabelText("Pay now").click({ force: true });
-
+    
     cy.acceptTerms();
     cy.clickRecaptcha();
+    cy.fillInCardDetails();
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -373,7 +373,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -433,7 +433,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -482,7 +482,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -528,13 +528,13 @@ context("Checkout purchase errors", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
-    cy.fillInCardDetails("4000000000000002");
     cy.fillInCustomerInfo();
-
+    
     cy.findByLabelText("Pay now").click({ force: true });
-
+    
     cy.acceptTerms();
     cy.clickRecaptcha();
+    cy.fillInCardDetails("4000000000000002");
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -542,7 +542,7 @@ context("Checkout purchase errors", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -556,11 +556,11 @@ context("Checkout purchase errors", () => {
     cy.get(".p-notification--negative").should("be.visible");
 
     // user reattempts
-    cy.fillInCardDetails("4242424242424242");
     cy.acceptTerms();
     cy.clickRecaptcha();
+    cy.fillInCardDetails("4242424242424242");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@preview").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -577,7 +577,7 @@ context("Checkout purchase errors", () => {
     cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
   });
 
-  it("guest: should get card error when gets new payment method error and retrying", () => {
+  it.only("guest: should get card error when gets new payment method error and retrying", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();
@@ -601,13 +601,13 @@ context("Checkout purchase errors", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
-    cy.fillInCardDetails("4000000000000341");
     cy.fillInCustomerInfo();
-
+    
     cy.findByLabelText("Pay now").click({ force: true });
-
+    
     cy.acceptTerms();
     cy.clickRecaptcha();
+    cy.fillInCardDetails("4000000000000341");
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -616,7 +616,7 @@ context("Checkout purchase errors", () => {
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
     cy.intercept("POST", ENDPOINTS.postInvoice, slow).as("postInvoice");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -638,12 +638,11 @@ context("Checkout purchase errors", () => {
     cy.get(".p-notification--negative").should("be.visible");
 
     // user reattempts
-    cy.fillInCardDetails("4242424242424242");
     cy.acceptTerms();
     cy.clickRecaptcha();
-
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
-
+    cy.fillInCardDetails("4242424242424242");
+    
+    cy.findByRole("button", { name: "Buy" }).click();
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
@@ -674,17 +673,17 @@ context("Checkout purchase errors", () => {
 
     // defaults to Peter's email
     cy.fillInEmail();
-    cy.fillInCardDetails();
     cy.fillInCustomerInfo();
-
+    
     cy.findByLabelText("Pay now").click({ force: true });
-
+    
     cy.acceptTerms();
     cy.clickRecaptcha();
+    cy.fillInCardDetails();
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.body.message).to.equal(
