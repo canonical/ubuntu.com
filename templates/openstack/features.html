@@ -726,6 +726,36 @@
 
 <section class="p-strip--light">
   <div class="u-fixed-width">
+    <h2 class="u-sv2">OVN hardware offloading</h2>
+  </div>
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <p>In high-speed network topologies, such as those using 100 Gbps connections, network operations become a dominant factor. This creates high pressure on hypervisors' central processing units (CPUs).</p>
+      <p>With OVN hardware offloading all those computationally-expensive operations can be moved to SmartNICs and data processing units (DPUs). This frees up CPU cycles for the workloads and accelerates data plane network traffic.</p>
+      <p>What's included:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Fast path and slow path hardware offloading</li>
+        <li class="p-list__item is-ticked">Automated deployment and operations of Charmed OpenStack with OVN offloading capabilities to SmartNICs and DPUs</li>
+        <li class="p-list__item is-ticked">Joint commercial support by Canonical and NVIDIA</li>
+      </ul>
+      <a href="https://docs.nvidia.com/networking/display/public/SOL/RDG+for+Canonical+Charmed+OpenStack+with+NVIDIA+Networking+and+Accelerated+OVN+for+High+Performance+Workloads">Read NVIDIA's reference implementation&nbsp;&rsaquo;</a>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/aec863e2-Off+the+shelf.svg",
+        alt="",
+        width="395",
+        height="225",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
     <h2 class="u-sv2">Observability stack</h2>
   </div>
   <div class="row u-vertically-center">
@@ -749,34 +779,6 @@
         alt="Grafana",
         width="640",
         height="650",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
-  </div>
-</section>
-
-<section class="p-strip">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h2 class="u-sv2">Data protection</h2>
-      <p>With increasingly complex and critical OpenStack environments, companies and service providers need to look for the best ways to fully protect their business, while at the same time providing easier, faster and more reliable recovery.</p>
-      <p>TrilioVault's cloud-native design can dramatically reduce the amount of time organisations spend on restoration activities. It integrates with the OpenStack dashboard out-of-the-box to provide sysadmins with complete visibility into their private cloud operations in a single view.</p>
-      <p>What's included:</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Joint tested and validated solution</li>
-        <li class="p-list__item is-ticked">Automated deployment and operations of Charmed OpenStack with TrilioVault add-on</li>
-        <li class="p-list__item is-ticked">Support for native backup and recovery platform for OpenStack</li>
-      </ul>
-      <a href="/engage/trilio-backup-recovery">Watch a webinar about OpenStack data protection&nbsp;&rsaquo;</a>
-    </div>
-    <div class="col-6 u-align-center u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/ee3dd1b1-Openstack+diagram+11.03.21-01+%281%29.jpg",
-        alt="",
-        width="647",
-        height="396",
         hi_def=True,
         loading="lazy"
         ) | safe
