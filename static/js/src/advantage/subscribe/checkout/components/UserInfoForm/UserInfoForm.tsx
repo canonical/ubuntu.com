@@ -46,6 +46,7 @@ const UserInfoForm = ({ setError }: Props) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
+  const [showCardValidation, setShowCardValidation] = useState<boolean>(false);
 
   const toggleEditing = () => {
     if (isEditing) {
@@ -65,6 +66,18 @@ const UserInfoForm = ({ setError }: Props) => {
       setFieldValue("isInfoSaved", true);
     }
   }, []);
+  const validationElement: HTMLElement = document?.querySelector("#isCardValid")
+    ?.nextElementSibling as HTMLElement;
+  if (validationElement) {
+    validationElement.style.marginTop = "0.8rem";
+  }
+  useEffect(() => {
+    if (!values.isCardValid && cardFieldError === null) {
+      setShowCardValidation(true);
+    } else {
+      setShowCardValidation(false);
+    }
+  }, [values.isCardValid, cardFieldError, cardFieldHasFocus]);
 
   const onSaveClick = () => {
     checkoutEvent(window.GAFriendlyProduct, "2");
@@ -243,7 +256,9 @@ const UserInfoForm = ({ setError }: Props) => {
         <div
           id="card-element"
           className={`${cardFieldHasFocus ? "StripeElement--focus" : ""} ${
-            cardFieldError ? "StripeElement--invalid" : ""
+            cardFieldError || (validationElement && showCardValidation)
+              ? "StripeElement--invalid"
+              : ""
           }`}
         >
           <CardElement
@@ -258,7 +273,6 @@ const UserInfoForm = ({ setError }: Props) => {
                   fontSmoothing: "antialiased",
                   fontSize: "16px",
                   lineHeight: "24px",
-
                   "::placeholder": {
                     color: "#000",
                   },
@@ -275,6 +289,7 @@ const UserInfoForm = ({ setError }: Props) => {
               setCardFieldFocus(false);
             }}
             onChange={(e) => {
+              setShowCardValidation(false);
               if (e.complete && !e.error) {
                 setFieldValue("isCardValid", true);
                 setCardFieldError(null);
@@ -287,6 +302,20 @@ const UserInfoForm = ({ setError }: Props) => {
             }}
           />
         </div>
+        <Field
+          as={Input}
+          type="hidden"
+          id="isCardValid"
+          name="isCardValid"
+          validate={() => {
+            if (showCardValidation) {
+              return "This field is required.";
+            }
+            return;
+          }}
+          required
+          error={touched?.isCardValid && errors?.isCardValid}
+        />
       </FormRow>
       <Field
         data-testid="field-customer-name"

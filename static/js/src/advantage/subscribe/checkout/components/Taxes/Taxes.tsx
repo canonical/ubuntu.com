@@ -324,7 +324,14 @@ const Taxes = ({ setError }: TaxesProps) => {
                   Cancel
                 </ActionButton>
               ) : null}
-              <ActionButton onClick={onSaveClick} disabled={!values.country}>
+              <ActionButton
+                onClick={onSaveClick}
+                disabled={
+                  !values.country ||
+                  (values.country === "US" && !values.usState) ||
+                  (values.country === "CA" && !values.caProvince)
+                }
+              >
                 Save
               </ActionButton>
             </>

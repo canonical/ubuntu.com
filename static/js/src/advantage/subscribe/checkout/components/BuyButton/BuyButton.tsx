@@ -55,8 +55,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         setFieldTouched(error, true);
       });
 
-      console.log("err", errors);
-
       if (errors) {
         setError(<>Please make sure all fields are filled in correctly.</>);
         document.querySelector("h1")?.scrollIntoView();
