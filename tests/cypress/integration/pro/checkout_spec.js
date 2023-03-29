@@ -577,7 +577,7 @@ context("Checkout purchase errors", () => {
     cy.findByText(`We’ve sent your invoice to ${randomEmail}`);
   });
 
-  it.only("guest: should get card error when gets new payment method error and retrying", () => {
+  it("guest: should get card error when gets new payment method error and retrying", () => {
     cy.visit("/pro/subscribe");
     cy.acceptCookiePolicy();
     cy.selectProducts();
