@@ -527,10 +527,12 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       function setpreferredLanguage() {
         const preferredLanguage = navigator.language || navigator.userLanguage;
-        const preferredLanguageInput = contactModal.querySelector("#preferredLanguage");
+        const preferredLanguageInput = contactModal.querySelector(
+          "#preferredLanguage"
+        );
 
         if (preferredLanguageInput) {
-          preferredLanguageInput.value = preferredLanguage || "en-US";
+          preferredLanguageInput.value = preferredLanguage || "";
         }
       }
 

@@ -851,7 +851,9 @@ def marketo_submit():
         }
 
     if "preferredLanguage" in form_fields:
-        enrichment_fields["preferredLanguage"] = form_fields["preferredLanguage"]
+        enrichment_fields["preferredLanguage"] = form_fields[
+            "preferredLanguage"
+        ]
 
     try:
         ip_location = ip_reader.get(client_ip)
