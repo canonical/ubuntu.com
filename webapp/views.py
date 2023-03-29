@@ -850,6 +850,9 @@ def marketo_submit():
             "acquisition_url": referrer,
         }
 
+    if "preferredLanguage" in form_fields:
+        enrichment_fields["preferredLanguage"] = form_fields["preferredLanguage"]
+
     try:
         ip_location = ip_reader.get(client_ip)
         if ip_location and "country" in ip_location:
