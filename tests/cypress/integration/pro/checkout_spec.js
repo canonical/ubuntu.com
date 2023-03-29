@@ -299,13 +299,13 @@ context("Checkout purchase", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
+    cy.fillInCardDetails();
     cy.fillInCustomerInfo();
-    
+
     cy.findByLabelText("Use free trial month").click({ force: true });
-    
+
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails();
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -359,13 +359,13 @@ context("Checkout purchase", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
+    cy.fillInCardDetails();
     cy.fillInCustomerInfo();
-    
+
     cy.findByLabelText("Pay now").click({ force: true });
-    
+
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails();
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -528,13 +528,13 @@ context("Checkout purchase errors", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
+    cy.fillInCardDetails("4000000000000002");
     cy.fillInCustomerInfo();
-    
+
     cy.findByLabelText("Pay now").click({ force: true });
-    
+
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails("4000000000000002");
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -556,9 +556,9 @@ context("Checkout purchase errors", () => {
     cy.get(".p-notification--negative").should("be.visible");
 
     // user reattempts
+    cy.fillInCardDetails("4242424242424242");
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails("4242424242424242");
 
     cy.findByRole("button", { name: "Buy" }).click();
 
@@ -601,13 +601,13 @@ context("Checkout purchase errors", () => {
     const randomEmail = getRandomEmail();
     cy.fillInEmail(randomEmail);
 
+    cy.fillInCardDetails("4000000000000341");
     cy.fillInCustomerInfo();
-    
+
     cy.findByLabelText("Pay now").click({ force: true });
-    
+
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails("4000000000000341");
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
     cy.intercept("POST", ENDPOINTS.customerInfo, slow).as("customerInfo");
@@ -638,10 +638,10 @@ context("Checkout purchase errors", () => {
     cy.get(".p-notification--negative").should("be.visible");
 
     // user reattempts
+    cy.fillInCardDetails("4242424242424242");
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails("4242424242424242");
-    
+
     cy.findByRole("button", { name: "Buy" }).click();
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -673,13 +673,13 @@ context("Checkout purchase errors", () => {
 
     // defaults to Peter's email
     cy.fillInEmail();
+    cy.fillInCardDetails();
     cy.fillInCustomerInfo();
-    
+
     cy.findByLabelText("Pay now").click({ force: true });
-    
+
     cy.acceptTerms();
     cy.clickRecaptcha();
-    cy.fillInCardDetails();
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
 

@@ -1,4 +1,3 @@
-import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
 import { CheckboxInput, Col, Input, Row } from "@canonical/react-components";

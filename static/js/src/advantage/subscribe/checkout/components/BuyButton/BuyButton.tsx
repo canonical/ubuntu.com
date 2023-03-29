@@ -4,13 +4,13 @@ import { useFormikContext } from "formik";
 import { getSessionData } from "utils/getSessionData";
 import { ActionButton } from "@canonical/react-components";
 import * as Sentry from "@sentry/react";
+import { vatCountries } from "advantage/countries-and-states";
 import { purchaseEvent } from "advantage/ecom-events";
 import { getErrorMessage } from "advantage/error-handler";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
-import { vatCountries } from "advantage/countries-and-states";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
