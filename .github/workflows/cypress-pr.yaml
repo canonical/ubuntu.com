@@ -1,4 +1,4 @@
-name: Cypress checks / PR
+name: Cypress checks / all
 env:
   SECRET_KEY: insecure_test_key
   PORT: 8001
@@ -7,8 +7,13 @@ env:
   CAPTCHA_TESTING_API_KEY: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
   MARKETO_API_CLIENT: ${{secrets.MARKETO_API_CLIENT}}
   MARKETO_API_SECRET: ${{secrets.MARKETO_API_SECRET}}
+  UBUNTU_USERNAME: ${{secrets.UBUNTU_USERNAME}}
+  UBUNTU_PASSWORD: ${{secrets.UBUNTU_PASSWORD}}
 
-on: pull_request
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   run-cypress:
@@ -30,7 +35,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          env: UBUNTU_USERNAME=peter.makowski+cy@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq
+          env: UBUNTU_USERNAME=${{ secrets.UBUNTU_USERNAME }},UBUNTU_PASSWORD=${{ secrets.UBUNTU_PASSWORD }}
           build: yarn run build
           start: yarn run serve
           wait-on: "http://0.0.0.0:8001/_status/check"
