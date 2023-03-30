@@ -12,7 +12,16 @@ const Quantity = () => {
   const { quantity, setQuantity, productType, iotDevice } = useContext(
     FormContext
   );
-
+  const isDisabled = () => {
+    if (
+      isPublicCloud(productType) ||
+      (isIoTDevice(productType) && iotDevice === IoTDevices.core)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (Number(event.target.value) > 0) {
       setQuantity(Number(event.target.value));
@@ -28,9 +37,7 @@ const Quantity = () => {
   return (
     <div
       className={classNames({
-        "u-disable":
-          isPublicCloud(productType) ||
-          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
+        "u-disable": isDisabled(),
       })}
       data-testid="wrapper"
     >
@@ -50,6 +57,7 @@ const Quantity = () => {
             pattern="\d+"
             style={{ minWidth: "unset", width: "4rem" }}
             aria-label="For how many machines"
+            disabled={isDisabled()}
           />
         </Col>
       </Row>

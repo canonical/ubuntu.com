@@ -151,6 +151,17 @@ const Version = () => {
     FormContext
   );
 
+  const isDisabled = () => {
+    if (
+      isPublicCloud(productType) ||
+      (isIoTDevice(productType) && iotDevice === IoTDevices.core)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const versionDetails =
     productType === ProductTypes.desktop
       ? DesktopVersionDetails
@@ -180,6 +191,7 @@ const Version = () => {
                   JSON.stringify(key as LTSVersions)
                 );
               }}
+              disabled={isDisabled()}
             >
               {key} LTS
             </button>
@@ -192,9 +204,7 @@ const Version = () => {
   return (
     <div
       className={classNames({
-        "u-disable":
-          isPublicCloud(productType) ||
-          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
+        "u-disable": isDisabled(),
       })}
       data-testid="wrapper"
     >

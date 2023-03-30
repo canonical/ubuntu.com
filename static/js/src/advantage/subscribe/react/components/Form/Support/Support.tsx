@@ -32,7 +32,6 @@ const Support = () => {
       JSON.stringify(event.target.value as SupportEnum)
     );
   };
-
   const isInfraOnlyDisabled =
     productType === ProductTypes.desktop ||
     version === LTSVersions.trusty ||
@@ -43,13 +42,51 @@ const Support = () => {
     version === LTSVersions.trusty ||
     version === LTSVersions.xenial;
 
+  const isDisabled = (support?: string) => {
+    if (support === "infra") {
+      if (
+        isInfraOnlyDisabled ||
+        isPublicCloud(productType) ||
+        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (support === "full") {
+      if (
+        isFullSupportDisabled ||
+        isPublicCloud(productType) ||
+        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      if (
+        isPublicCloud(productType) ||
+        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+
+  const getTabIndex = (isDisabled: boolean) => {
+    if (isDisabled) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
   return (
     <div
       className={classNames({
         row: true,
-        "u-disable":
-          isPublicCloud(productType) ||
-          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
+        "u-disable": isDisabled(),
       })}
       data-testid="wrapper"
     >
@@ -59,23 +96,44 @@ const Support = () => {
             <strong>What&apos;s included?</strong>
           </div>
           <div className="support-row">
-            <a href="/support">Open source applications</a>
+            <a href="/support" tabIndex={getTabIndex(isDisabled())}>
+              Open source applications
+            </a>
           </div>
           <div className="support-row">
-            <a href="/server">Ubuntu base OS</a>
+            <a href="/server" tabIndex={getTabIndex(isDisabled())}>
+              Ubuntu base OS
+            </a>
           </div>
           <div className="support-row">
-            <a href="/kubernetes">Kubernetes</a>, <a href="/lxd">LXD</a>,{" "}
-            <a href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html">
+            <a href="/kubernetes" tabIndex={getTabIndex(isDisabled())}>
+              Kubernetes
+            </a>
+            ,{" "}
+            <a href="/lxd" tabIndex={getTabIndex(isDisabled())}>
+              LXD
+            </a>
+            ,{" "}
+            <a
+              href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html"
+              tabIndex={getTabIndex(isDisabled())}
+            >
               Charms
             </a>
           </div>
           <div className="support-row">
-            <a href="/openstack">OpenStack</a>,{" "}
-            <a href="https://maas.io/">MAAS</a>
+            <a href="/openstack" tabIndex={getTabIndex(isDisabled())}>
+              OpenStack
+            </a>
+            ,{" "}
+            <a href="https://maas.io/" tabIndex={getTabIndex(isDisabled())}>
+              MAAS
+            </a>
           </div>
           <div className="support-row">
-            <a href="/ceph">Ceph and Swift storage</a>
+            <a href="/ceph" tabIndex={getTabIndex(isDisabled())}>
+              Ceph and Swift storage
+            </a>
           </div>
         </Col>
         <Col size={2}>
@@ -94,6 +152,7 @@ const Support = () => {
                 value={SupportEnum.none}
                 checked={support === SupportEnum.none}
                 onChange={handleChange}
+                disabled={isDisabled()}
               />
               <span className="p-radio__label" id={`none-label`}>
                 <RadioInput
@@ -102,6 +161,8 @@ const Support = () => {
                   checked={support === SupportEnum.none}
                   value={SupportEnum.none}
                   onChange={handleChange}
+                  disabled={isDisabled()}
+                  tabIndex={getTabIndex(isDisabled())}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row not-supported">—</div>
@@ -117,7 +178,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.infra,
-              "u-disable": isInfraOnlyDisabled,
+              "u-disable": isDisabled("infra"),
             })}
             data-testid="infra-support"
           >
@@ -130,6 +191,7 @@ const Support = () => {
                 value={SupportEnum.infra}
                 checked={support === SupportEnum.infra}
                 onChange={handleChange}
+                disabled={isDisabled("infra")}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -138,6 +200,7 @@ const Support = () => {
                   checked={support === SupportEnum.infra}
                   value={SupportEnum.infra}
                   onChange={handleChange}
+                  disabled={isDisabled("infra")}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row">
@@ -161,7 +224,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.full,
-              "u-disable": isFullSupportDisabled,
+              "u-disable": isDisabled("full"),
             })}
             data-testid="full-support"
           >
@@ -174,6 +237,7 @@ const Support = () => {
                 value={SupportEnum.full}
                 checked={support === SupportEnum.full}
                 onChange={handleChange}
+                disabled={isDisabled("full")}
               />
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
@@ -182,6 +246,7 @@ const Support = () => {
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
                   onChange={handleChange}
+                  disabled={isDisabled("full")}
                 />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
@@ -254,7 +319,7 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.infra === support,
-            "u-disable": isInfraOnlyDisabled,
+            "u-disable": isDisabled("infra"),
           })}
           onClick={() => {
             setSupport(SupportEnum.infra);
@@ -269,6 +334,7 @@ const Support = () => {
             label="Infra Support"
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
+            disabled={isDisabled("infra")}
           />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
@@ -292,7 +358,7 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.full === support,
-            "u-disable": isFullSupportDisabled,
+            "u-disable": isDisabled("full"),
           })}
           onClick={() => {
             setSupport(SupportEnum.full);
@@ -307,6 +373,7 @@ const Support = () => {
             label="Full Support"
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
+            disabled={isDisabled("full")}
           />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
@@ -355,6 +422,7 @@ const Support = () => {
                     );
                   }}
                   style={{ textAlign: "justify" }}
+                  disabled={isDisabled()}
                 >
                   <span>Weekday</span>
                   <p className="p-text--small u-no-margin--bottom">
@@ -376,6 +444,7 @@ const Support = () => {
                     );
                   }}
                   style={{ textAlign: "justify" }}
+                  disabled={isDisabled()}
                 >
                   <span>24/7</span>
                   <p className="p-text--small u-no-margin--bottom">
