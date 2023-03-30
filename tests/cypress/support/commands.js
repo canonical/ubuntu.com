@@ -52,4 +52,5 @@ Cypress.Commands.add("clickRecaptcha", () => {
       .contentDocument.getElementById("recaptcha-token")
       .click();
   });
+  cy.wait(2000);
 });

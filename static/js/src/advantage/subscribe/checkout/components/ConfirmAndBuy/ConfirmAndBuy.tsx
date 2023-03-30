@@ -1,7 +1,7 @@
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Field, useFormikContext } from "formik";
-import { CheckboxInput, Col, Row } from "@canonical/react-components";
+import { CheckboxInput, Col, Input, Row } from "@canonical/react-components";
 import { Action, FormValues, Product } from "../../utils/types";
 
 type Props = {
@@ -10,8 +10,12 @@ type Props = {
 };
 
 const ConfirmAndBuy = ({ product, action }: Props) => {
-  const { values, setFieldValue } = useFormikContext<FormValues>();
-
+  const {
+    values,
+    touched,
+    errors,
+    setFieldValue,
+  } = useFormikContext<FormValues>();
   const onCaptchaChange = (value: string | null) => {
     window.captcha = value;
     setFieldValue("captchaValue", window.captcha);
@@ -31,7 +35,26 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           label={termsLabel}
           checked={values.TermsAndConditions}
           defaultChecked={false}
+          validate={(value: string) => {
+            if (!value) {
+              return "This field is required.";
+            }
+            return;
+          }}
+          required
+          error={touched?.TermsAndConditions && errors?.TermsAndConditions}
         />
+        {touched?.TermsAndConditions && errors?.TermsAndConditions && (
+          <div className="p-form-validation is-error">
+            <div
+              className="p-form-validation__message"
+              id="exampleInputErrorMessage"
+              style={{ marginTop: "0.5rem" }}
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
+          </div>
+        )}
       </Col>
       <Col size={12}>
         <Field
@@ -40,12 +63,32 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           label={descriptionLabel}
           checked={values.Description}
           defaultChecked={false}
+          validate={(value: string) => {
+            if (!value) {
+              return "This field is required.";
+            }
+            return;
+          }}
+          required
+          error={touched?.Description && errors?.Description}
         />
+        {touched?.Description && errors?.Description && (
+          <div className="p-form-validation is-error">
+            <div
+              className="p-form-validation__message"
+              id="exampleInputErrorMessage"
+              style={{ marginTop: "0.5rem" }}
+            >
+              <strong>Error:</strong> This field is required.
+            </div>
+          </div>
+        )}
       </Col>
       <Col size={12}>
         <Field
           as={CheckboxInput}
           name="MarketingOptIn"
+          id="MarketingOptIn"
           label={marketingLabel}
           defaultChecked={false}
         />
@@ -56,6 +99,20 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
           onChange={onCaptchaChange}
         />
       </div>
+      <Field
+        as={Input}
+        type="hidden"
+        id="captchaValue"
+        name="captchaValue"
+        validate={() => {
+          if (!window.captcha) {
+            return "Captch field is required.";
+          }
+          return;
+        }}
+        required
+        error={touched?.captchaValue && errors?.captchaValue}
+      />
       <hr />
     </Row>
   );

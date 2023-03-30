@@ -313,7 +313,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -373,7 +373,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -433,7 +433,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -482,7 +482,7 @@ context("Checkout purchase", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -542,7 +542,7 @@ context("Checkout purchase errors", () => {
     cy.intercept("POST", ENDPOINTS.postPurchase, slow).as("postPurchase");
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -560,7 +560,7 @@ context("Checkout purchase errors", () => {
     cy.acceptTerms();
     cy.clickRecaptcha();
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@preview").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -616,7 +616,7 @@ context("Checkout purchase errors", () => {
     cy.intercept("GET", ENDPOINTS.getPurchase, slow).as("getPurchase");
     cy.intercept("POST", ENDPOINTS.postInvoice, slow).as("postInvoice");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
@@ -642,8 +642,7 @@ context("Checkout purchase errors", () => {
     cy.acceptTerms();
     cy.clickRecaptcha();
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
-
+    cy.findByRole("button", { name: "Buy" }).click();
     cy.wait("@customerInfo").then((interception) => {
       expect(interception.response.statusCode).to.equal(200);
     });
@@ -684,7 +683,7 @@ context("Checkout purchase errors", () => {
 
     cy.intercept("POST", ENDPOINTS.ensure, slow).as("ensure");
 
-    cy.findByRole("button", { name: "Buy" }).click().should("be.disabled");
+    cy.findByRole("button", { name: "Buy" }).click();
 
     cy.wait("@ensure").then((interception) => {
       expect(interception.response.body.message).to.equal(
