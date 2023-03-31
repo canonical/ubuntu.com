@@ -142,9 +142,12 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 @shop_decorator(area="cred", permission="user", response="html")
 def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
     email = flask.request.args.get("email", None)
-    exam_contracts = ua_contracts_api.get_annotated_contract_items(
-        product_tags=["cue"], email=email
-    )
+    try:
+        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+            product_tags=["cue"], email=email
+        )
+    except UAContractsAPIErrorView:
+        exam_contracts = []
     exams_in_progress = []
     exams_scheduled = []
     exams_not_taken = []
