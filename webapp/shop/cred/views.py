@@ -51,7 +51,7 @@ def cred_self_study(**_):
 
 @shop_decorator(area="cred", permission="user_or_guest", response="html")
 def cred_sign_up(**_):
-    sign_up_open = False
+    sign_up_open = True
     return flask.render_template(
         "credentials/sign-up.html", sign_up_open=sign_up_open
     )
@@ -549,8 +549,8 @@ def cred_submit_form(**_):
     row = list(form_fields.values())
     sheet = service.spreadsheets()
     sheet.values().append(
-        spreadsheetId="1L-e0pKXmBo8y_Gv9_jy9P59xO-w4FnZdcTqbGJPMNg0",
-        range="Sheet2",
+        spreadsheetId="1MRqabZmRUH6DBSJofs5xWmdRAaS027nW8oO4stwyMNQ",
+        range="SignUps",
         valueInputOption="RAW",
         body={"values": [row]},
     ).execute()
