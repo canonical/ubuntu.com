@@ -417,7 +417,7 @@ class UAContractsAPI:
     def list_activation_keys(self, contract_id: str) -> dict:
         return self._request(
             method="get",
-            path=f"v1/keys/list/{contract_id}",
+            path=f"v1/contracts/{contract_id}/keys",
             error_rules=["default"],
         ).json()
 
