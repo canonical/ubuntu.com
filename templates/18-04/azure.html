@@ -6,42 +6,35 @@
 {% block meta_copydoc %}https://docs.google.com/document/d/1O7RApX5BNPH13-3j-Wq-31RWz-pdpciNFea7ixL3kJI/edit#{% endblock meta_copydoc %}
 
 {% block content %}
-<section class="p-strip--suru-topped">
-  <div class="row u-vertically-center">
-    <div class="col-6">
-      <h1>
-        Ubuntu 18.04 LTS <br class="u-hide--small"/>(Bionic Beaver) on Azure
-      </h1>
-      <p>
-        Ubuntu 18.04 LTS (Bionic Beaver) was released on 23 April 2018, introducing improved UEFI Secure Boot and broader Kernel Livepatch coverage for enhanced security on Azure.
-      </p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+<section class="p-strip">
+  <div class="row">
+    <div class="col-5 u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/bb580eec-Bionic+Beaver_18.04.svg",
         alt="Bionic Beaver 18.04",
-        width="269",
-        height="150",
+        width="793",
+        height="443",
         hi_def=True,
         loading="auto"
         ) | safe
       }}
-      <div>
-        <hr class="p-separator u-no-margin--bottom"/>
-        <p class="p-muted-heading hero-muted-heading u-align--left">
-          out of standard support, <br>upgrade to ubuntu support
-        </p>
-      </div>
+    </div>
+    <div class="col-6 col-start-large-7">
+      <h1 class="p-heading--2">
+        <strong>Ubuntu 18.04 LTS <br class="u-hide--small">(Bionic Beaver) on Azure</strong>
+      </h1>
+      <p class="p-heading--2">Out of standard support. <br class="u-hide--small">Upgrade to Ubuntu Pro</p>
+      <p>Ubuntu 18.04 LTS (Bionic Beaver) was released on 23 April 2018, introducing improved UEFI Secure Boot and broader Kernel Livepatch coverage for enhanced security on Azure.</p>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom">
     <div class="col-6">
-      <h2 class="p-heading--3">
-        Ubuntu 18.04 LTS will reach the end of <br class="u-hide--small" />standard support on 31 May 2023
+      <h2>
+        Reaching end of standard support on 31 May 2023
       </h2>
     </div>
     <div class="col-6">
@@ -53,9 +46,9 @@
     </div>
   </div>
   <div class="row">
-    <hr class="is-fixed-width" />
+    <hr class="is-muted u-no-margin--bottom" />
     <div class="col-6">
-      <h3 class="p-heading--3">What are your options?</h3>
+      <h2>What are your options?</h3>
     </div>
     <div class="col-6">
       <p>
@@ -68,13 +61,13 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom">
   </div>
   <div class="row">
     <div class="col-6">
-      <h2 class="p-heading--3">
+      <h2>
         Security updates for <br class="u-hide--small u-hide--medium" />Ubuntu 18.04 LTS, with Pro
       </h2>
     </div>
@@ -88,11 +81,11 @@
   </div>
 </section>
 
-<section class="p-strip--light">
-  <hr class="is-fixed-width" />
+<section class="p-strip u-no-padding--top">
   <div class="row">
+    <hr class="is-muted u-no-margin--bottom" />
     <div class="col-6">
-      <h2 class="p-heading--3">Upgrading to Ubuntu 20.04 LTS, or <br class="u-hide--small"/>Ubuntu 22.04 LTS fresh install</h2>
+      <h2>Upgrading to Ubuntu 20.04 LTS, <br class="u-hide--small"/>or Ubuntu 22.04 LTS fresh install</h2>
     </div>
     <div class="col-6">
       <p>
@@ -102,7 +95,7 @@
         There is no direct upgrade path from 18.04 LTS to Ubuntu 22.04 LTS, so you can either move to Ubuntu 20.04 LTS and then to Ubuntu 22.04 LTS, or directly install Ubuntu 22.04 LTS.
       </p>
       <p><a href="/server/docs/upgrade-introduction">Ubuntu Server upgrade guide&nbsp;&rsaquo;</a></p>
-      <hr class="is-fixed-width" />
+      <hr class="is-muted u-no-margin--bottom" />
       <h3 class="p-heading--5">Watch the 20.04 migration webinar:</h3>
       <p>
         This webinar explores all the factors that should be taken into account to deliver successful migration at the right pace, covering the most popular infrastructure components such as OpenStack, Kubernetes and Ceph.
@@ -122,13 +115,13 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom">
   </div>
   <div class="row">
     <div class="col-6">
-      <h2 class="p-heading--3">
+      <h2>
         Expanded Security Maintenance (ESM) for 18.04 LTS
       </h2>
     </div>
@@ -146,12 +139,12 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="is-muted u-no-margin--bottom">
     <div class="col-6">
-      <h2 class="p-heading--3">
-        What do you get with <br class="u-hide--small" />Ubuntu Pro for 18.04 LTS?
+      <h2>
+        What do you get with Ubuntu Pro <br class="u-hide--small" />for 18.04 LTS?
       </h2>
     </div>
     <div class="col-6">
@@ -167,7 +160,7 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4">
-      <hr class="is-fixed-width" />
+      <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-muted-heading">Support kernels</h3>
@@ -203,7 +196,7 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4">
-      <hr class="is-fixed-width" />
+      <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-muted-heading">Infrastructure packages</h3>
@@ -219,7 +212,7 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4">
-      <hr class="is-fixed-width" />
+      <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-muted-heading">Application packages</h3>
@@ -243,7 +236,7 @@
   </div>
   <div class="row">
     <div class="col-9 col-start-large-4">
-      <hr class="is-fixed-width" />
+      <hr class="is-muted u-no-margin--bottom" />
       <div class="row">
         <div class="col-3 col-medium-2">
           <h3 class="p-muted-heading">Upgrading to Ubuntu Pro on Azure</h3>
@@ -267,11 +260,14 @@
   </div>
 </section>
 
-{% with section_classes='p-strip is-bordered', heading_topic='Ubuntu 18.04 LTS', tag_name='ubuntu-18-04', tag_id='3486', limit='4' %}
-    {% include "shared/_latest_news_strip.html" %}
-{% endwith %}
+<hr class="is-fixed-width" />
 
-<!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/azure-1804" data-form-id="3870" data-lp-id="" data-return-url="https://ubuntu.com/azure/thank-you" data-lp-url="https://ubuntu.com/azure/contact-us">
-</div>
+<section class="p-strip is-deep">
+  <div class="row">
+    <div class="col-12">
+      <p class="p-heading--2">Latest Ubuntu 18.04 LTS news from <a href="/blog/tag/ubuntu-18-04">our blog&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
 {% endblock content %}
