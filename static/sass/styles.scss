@@ -1286,6 +1286,25 @@ hr.p-separator.is-shallow {
   }
 }
 
+.p-stepped-list--grid {
+  @extend .row;
+
+  counter-reset: count;
+
+  .p-step-counter {
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &::after {
+      content: counter(count);
+      counter-increment: count;
+      font-size: 1.3rem;
+      position: relative;
+      top: 1.14rem;
+    }
+  }
+}
+
 // XXX Pete 03/04/2023
 // Fixes bug with `is-split` on lists, remove when this vanilla issue is fixed:
 // https: //github.com/canonical/vanilla-framework/issues/4719
