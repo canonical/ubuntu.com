@@ -1285,3 +1285,10 @@ hr.p-separator.is-shallow {
     }
   }
 }
+
+// XXX Pete 03/04/2023
+// Fixes bug with `is-split` on lists, remove when this vanilla issue is fixed:
+// https: //github.com/canonical/vanilla-framework/issues/4719
+[class*=p-list].is-split .p-list__item {
+  display: inline-block;
+}
