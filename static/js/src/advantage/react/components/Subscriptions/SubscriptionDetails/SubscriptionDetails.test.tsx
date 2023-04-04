@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import { Notification } from "@canonical/react-components";
 import { UserSubscriptionType } from "advantage/api/enum";
 import { UserSubscription } from "advantage/api/types";
-import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
+import * as usePollPurchaseStatus from "advantage/subscribe/checkout/hooks/usePollPurchaseStatus";
 import {
   freeSubscriptionFactory,
   userSubscriptionFactory,
@@ -20,11 +20,11 @@ describe("SubscriptionDetails", () => {
   beforeEach(() => {
     queryClient = new QueryClient();
     // Mock the pending purchases hook so that stripe does not need to be set up.
-    const usePendingPurchaseSpy: jest.SpyInstance = jest.spyOn(
-      usePendingPurchase,
+    const usePollPurchaseStatusSpy: jest.SpyInstance = jest.spyOn(
+      usePollPurchaseStatus,
       "default"
     );
-    usePendingPurchaseSpy.mockImplementation(() => ({
+    usePollPurchaseStatusSpy.mockImplementation(() => ({
       setPendingPurchaseID: jest.fn(),
     }));
     contract = userSubscriptionFactory.build({

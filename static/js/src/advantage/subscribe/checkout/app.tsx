@@ -67,7 +67,6 @@ window.previousPurchaseIds = {
 };
 window.canTrial = undefined;
 window.currentPaymentId = "";
-window.invoiceId = "";
 window.accountId = "";
 window.captcha = null;
 

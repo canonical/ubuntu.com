@@ -177,10 +177,10 @@ class UAContractsAPI:
             error_rules=["default"],
         ).json()
 
-    def post_stripe_invoice_id(self, tx_type, tx_id, invoice_id) -> dict:
+    def post_retry_purchase(self, purchase_id) -> dict:
         self._request(
             method="post",
-            path=f"v1/{tx_type}/{tx_id}/payment/stripe/{invoice_id}",
+            path=f"v1/purchase/{purchase_id}/retry",
             error_rules=["default"],
         )
 

@@ -32,6 +32,7 @@ const Taxes = ({ setError }: TaxesProps) => {
     errors,
     touched,
     setFieldValue,
+    setFieldTouched,
     setErrors: setFormikErrors,
   } = useFormikContext<FormValues>();
   const [isEditing, setIsEditing] = useState(!initialValues.country);
@@ -50,7 +51,7 @@ const Taxes = ({ setError }: TaxesProps) => {
 
     if (savedCountry) {
       setIsEditing(!savedCountry);
-      setFieldValue("isTaxSaved", savedCountry);
+      setFieldValue("isTaxSaved", !!savedCountry);
     }
   }, [initialValues]);
 
@@ -58,6 +59,7 @@ const Taxes = ({ setError }: TaxesProps) => {
 
   const onSaveClick = () => {
     setIsEditing(false);
+    setFieldTouched("isTaxSaved", false);
     if (isGuest || !window.accountId) {
       queryClient.invalidateQueries("calculate");
       setFieldValue("isTaxSaved", true);
@@ -140,18 +142,6 @@ const Taxes = ({ setError }: TaxesProps) => {
     }
     return errorMessage;
   };
-
-  useEffect(() => {
-    if (!vatCountries.includes(values.country ?? "")) {
-      setFieldValue("VATNumber", "");
-    }
-    if (values.country !== "US") {
-      setFieldValue("usState", "");
-    }
-    if (values.country !== "CA") {
-      setFieldValue("caProvince", "");
-    }
-  }, [values.country]);
 
   const displayMode = (
     <>
@@ -280,36 +270,65 @@ const Taxes = ({ setError }: TaxesProps) => {
   );
 
   return (
-    <Row>
-      {isEditing ? editMode : displayMode}
-      <hr />
-      <div
-        className="u-align--right"
-        style={{ marginTop: "calc(.5rem - 1.5px)" }}
-      >
-        {isEditing ? (
-          <>
-            {window.accountId ? (
+    <>
+      <Row>
+        {isEditing ? editMode : displayMode}
+        <Col size={4}></Col>
+        <Col size={8}>
+          <Field
+            as={Input}
+            type="hidden"
+            id="isTaxSaved"
+            name="isTaxSaved"
+            validate={(value: string) => {
+              if (values.country && !value) {
+                return "Step needs to be saved.";
+              }
+              return;
+            }}
+            required
+            error={touched?.isTaxSaved && errors?.isTaxSaved}
+          />
+        </Col>
+        <hr />
+        <div
+          className="u-align--right"
+          style={{ marginTop: "calc(.5rem - 1.5px)" }}
+        >
+          {isEditing ? (
+            <>
+              {window.accountId ? (
+                <ActionButton
+                  onClick={() => {
+                    setFieldValue("country", initialValues.country);
+                    setFieldValue("usState", initialValues.usState);
+                    setFieldValue("caProvince", initialValues.caProvince);
+                    setFieldValue("VATNumber", initialValues.VATNumber);
+                    setIsEditing(false);
+                    setFieldValue("isTaxSaved", true);
+                    setFieldTouched("isTaxSaved", false);
+                  }}
+                >
+                  Cancel
+                </ActionButton>
+              ) : null}
               <ActionButton
-                onClick={() => {
-                  setFieldValue("country", initialValues.country);
-                  setFieldValue("usState", initialValues.usState);
-                  setFieldValue("caProvince", initialValues.caProvince);
-                  setFieldValue("VATNumber", initialValues.VATNumber);
-                  setIsEditing(false);
-                  setFieldValue("isTaxSaved", true);
-                }}
+                onClick={onSaveClick}
+                disabled={
+                  !values.country ||
+                  (values.country === "US" && !values.usState) ||
+                  (values.country === "CA" && !values.caProvince)
+                }
               >
-                Cancel
+                Save
               </ActionButton>
-            ) : null}
-            <ActionButton onClick={onSaveClick}>Save</ActionButton>
-          </>
-        ) : (
-          <ActionButton onClick={onEditClick}>Edit</ActionButton>
-        )}
-      </div>
-    </Row>
+            </>
+          ) : (
+            <ActionButton onClick={onEditClick}>Edit</ActionButton>
+          )}
+        </div>
+      </Row>
+    </>
   );
 };
 

@@ -1,3 +1,5 @@
+import React, { ReactNode } from "react";
+import classNames from "classnames";
 import {
   Button,
   CodeSnippet,
@@ -8,7 +10,7 @@ import {
   Spinner,
   Tooltip,
 } from "@canonical/react-components";
-import classNames from "classnames";
+import { UserSubscriptionType } from "advantage/api/enum";
 import { useContractToken, useUserSubscriptions } from "advantage/react/hooks";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
 import {
@@ -16,15 +18,12 @@ import {
   getMachineTypeDisplay,
   getPeriodDisplay,
   getSubscriptionCost,
-  isFreeSubscription,
   isBlenderSubscription,
+  isFreeSubscription,
 } from "advantage/react/utils";
 import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import React, { ReactNode } from "react";
-
-import DetailsTabs from "../DetailsTabs";
 import { SelectedId } from "../../Content/types";
-import { UserSubscriptionType } from "advantage/api/enum";
+import DetailsTabs from "../DetailsTabs";
 
 type Props = {
   selectedId?: SelectedId;
@@ -138,7 +137,7 @@ const DetailsContent = ({ selectedId, setHasUnsavedChanges }: Props) => {
             ? // Don't show the billing column for legacy subscriptions.
               []
             : [billingCol]),
-          ...(cost
+          ...(cost && subscription.type !== UserSubscriptionType.Legacy
             ? // Don't show the cost column if it's empty.
               [costCol]
             : []),

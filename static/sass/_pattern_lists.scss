@@ -3,7 +3,6 @@
   @include ubuntu-p-is-trisected;
   @include ubuntu-p-nested-counter-lists;
   @include ubuntu-p-inline-definition-list;
-  @include ubuntu-p-stepped-list;
   @include ubuntu-p-ordered-legal-list;
   @include ubuntu-p-list-small;
   @include ubuntu-p-form-list-ticked;
@@ -149,40 +148,6 @@
 
     &__item {
       margin: 0;
-    }
-  }
-}
-
-@mixin ubuntu-p-stepped-list {
-  // XXX Scott - 19 August 2019
-  // This block can be removed when the following issues are resolved:
-  // https://github.com/canonical-web-and-design/vanilla-framework/issues/2489
-  // https://github.com/canonical-web-and-design/vanilla-framework/issues/2518
-  h3.p-stepped-list__title, //sass-lint:disable-line no-qualifying-elements
-  p.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
-    display: inline-block;
-    padding-left: 2rem;
-    position: relative;
-
-    &::before {
-      display: inline-block;
-      left: 0;
-      position: absolute;
-    }
-  }
-
-  h3.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
-    padding-left: 3.5rem;
-  }
-
-  p.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
-    padding-left: 2rem;
-
-    &::before {
-      width: 1.5rem;
     }
   }
 }

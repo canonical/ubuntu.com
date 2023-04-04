@@ -31,6 +31,7 @@ export function getInitialFormValues(
     marketplace: product.marketplace,
     isTaxSaved: !!userInfo?.customerInfo?.address?.country,
     isCardValid: !!userInfo?.customerInfo?.defaultPaymentMethod,
+    isInfoSaved: !!userInfo?.customerInfo?.defaultPaymentMethod,
   };
 }
 

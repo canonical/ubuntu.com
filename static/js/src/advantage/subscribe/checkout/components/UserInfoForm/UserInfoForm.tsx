@@ -33,7 +33,8 @@ const UserInfoForm = ({ setError }: Props) => {
     touched,
     values,
     initialValues,
-    setErrors: setFormikErrors,
+    setFieldError,
+    setFieldTouched,
     setFieldValue,
     isSubmitting,
   } = useFormikContext<FormValues>();
@@ -45,12 +46,14 @@ const UserInfoForm = ({ setError }: Props) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [cardFieldHasFocus, setCardFieldFocus] = useState(false);
   const [cardFieldError, setCardFieldError] = useState<Error | null>(null);
+  const [showCardValidation, setShowCardValidation] = useState<boolean>(false);
 
   const toggleEditing = () => {
     if (isEditing) {
       onSaveClick();
     } else {
       setIsEditing(true);
+      setFieldValue("isInfoSaved", false);
     }
   };
 
@@ -58,9 +61,29 @@ const UserInfoForm = ({ setError }: Props) => {
     setFieldValue("isCardValid", !isEditing);
   }, [isEditing]);
 
+  useEffect(() => {
+    if (!initialValues.email || !window.accountId) {
+      setFieldValue("isInfoSaved", true);
+    }
+  }, []);
+  const validationElement: HTMLElement = document?.querySelector("#isCardValid")
+    ?.nextElementSibling as HTMLElement;
+  if (validationElement) {
+    validationElement.style.marginTop = "0.8rem";
+  }
+  useEffect(() => {
+    if (!values.isCardValid && cardFieldError === null) {
+      setShowCardValidation(true);
+    } else {
+      setShowCardValidation(false);
+    }
+  }, [values.isCardValid, cardFieldError, cardFieldHasFocus]);
+
   const onSaveClick = () => {
     checkoutEvent(window.GAFriendlyProduct, "2");
+    setFieldTouched("isInfoSaved", false);
     setIsButtonDisabled(true);
+    setFieldValue("isInfoSaved", true);
 
     paymentMethodMutation.mutate(
       { formData: values },
@@ -87,18 +110,18 @@ const UserInfoForm = ({ setError }: Props) => {
                 </>
               );
             } else if (error.message.includes("tax_id_invalid")) {
-              setFormikErrors({
-                VATNumber:
-                  "That VAT number is invalid. Check the number and try again.",
-              });
+              setFieldError(
+                "VATNumber",
+                "That VAT number is invalid. Check the number and try again."
+              );
               setError(
                 <>That VAT number is invalid. Check the number and try again.</>
               );
             } else if (error.message.includes("tax_id_cannot_be_validated")) {
-              setFormikErrors({
-                VATNumber:
-                  "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.",
-              });
+              setFieldError(
+                "VATNumber",
+                "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists."
+              );
               setError(
                 <>
                   VAT number could not be validated at this time, please try
@@ -232,15 +255,10 @@ const UserInfoForm = ({ setError }: Props) => {
       >
         <div
           id="card-element"
-          style={{
-            backgroundColor: "#F5F5F6",
-            borderBottom: "1.5px solid #111",
-            padding: "calc(.4rem - 1px)",
-            paddingLeft: "0.5rem",
-            paddingRight: "0.5rem",
-          }}
           className={`${cardFieldHasFocus ? "StripeElement--focus" : ""} ${
-            cardFieldError ? "StripeElement--invalid" : ""
+            cardFieldError || (validationElement && showCardValidation)
+              ? "StripeElement--invalid"
+              : ""
           }`}
         >
           <CardElement
@@ -255,7 +273,6 @@ const UserInfoForm = ({ setError }: Props) => {
                   fontSmoothing: "antialiased",
                   fontSize: "16px",
                   lineHeight: "24px",
-
                   "::placeholder": {
                     color: "#000",
                   },
@@ -272,6 +289,7 @@ const UserInfoForm = ({ setError }: Props) => {
               setCardFieldFocus(false);
             }}
             onChange={(e) => {
+              setShowCardValidation(false);
               if (e.complete && !e.error) {
                 setFieldValue("isCardValid", true);
                 setCardFieldError(null);
@@ -284,6 +302,20 @@ const UserInfoForm = ({ setError }: Props) => {
             }}
           />
         </div>
+        <Field
+          as={Input}
+          type="hidden"
+          id="isCardValid"
+          name="isCardValid"
+          validate={() => {
+            if (showCardValidation) {
+              return "This field is required.";
+            }
+            return;
+          }}
+          required
+          error={touched?.isCardValid && errors?.isCardValid}
+        />
       </FormRow>
       <Field
         data-testid="field-customer-name"
@@ -380,6 +412,23 @@ const UserInfoForm = ({ setError }: Props) => {
       {isEditing ? editMode : displayMode}
       {window.accountId && initialValues.defaultPaymentMethod ? (
         <>
+          <Col size={4}></Col>
+          <Col size={8}>
+            <Field
+              as={Input}
+              type="hidden"
+              id="isInfoSaved"
+              name="isInfoSaved"
+              validate={(value: string) => {
+                if (!value) {
+                  return "Step needs to be saved.";
+                }
+                return;
+              }}
+              required
+              error={touched?.isInfoSaved && errors?.isInfoSaved}
+            />
+          </Col>
           <hr />
           <div
             className="u-align--right"
@@ -398,6 +447,8 @@ const UserInfoForm = ({ setError }: Props) => {
                   setFieldValue("city", initialValues.city);
                   setFieldValue("postalCode", initialValues.postalCode);
                   setIsEditing(false);
+                  setFieldValue("isInfoSaved", true);
+                  setFieldTouched("isInfoSaved", false);
                 }}
               >
                 Cancel

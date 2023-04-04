@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.api import (
 )
 
 from webapp.shop.decorators import shop_decorator, canonical_staff
+from webapp.shop.utils import get_user_first_last_name
 from webapp.login import user_info
 from webapp.views import get_user_country_by_ip
 
@@ -25,7 +26,10 @@ TIMEZONE_COUNTRIES = {
 }
 TIMEZONE_COUNTRIES["Asia/Calcutta"] = "IN"
 
-EXAM_NAMES = {"cue-test": "CUE: Linux Beta"}
+EXAM_NAMES = {
+    "cue-test": "CUE: Linux Beta",
+    "cue-linux-essentials": "CUE.01: Linux",
+}
 
 RESERVATION_STATES = {
     "created": "Scheduled",
@@ -62,7 +66,6 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
 
     if flask.request.method == "POST":
         data = flask.request.form
-        sso_user = user_info(flask.session)
 
         timezone = data["timezone"]
         tz_info = pytz.timezone(timezone)
@@ -71,7 +74,7 @@ def cred_schedule(ua_contracts_api, trueability_api, **_):
             datetime.strptime(scheduled_time, "%Y-%m-%dT%H:%M")
         )
         contract_item_id = data["contractItemID"]
-        first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+        first_name, last_name = get_user_first_last_name()
         country_code = TIMEZONE_COUNTRIES[timezone]
 
         response = ua_contracts_api.post_assessment_reservation(
@@ -359,9 +362,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     if contract_item_id is None:
         return flask.redirect("/credentials/your-exams")
 
-    sso_user = user_info(flask.session)
     country_code = get_user_country_by_ip().json["country_code"] or "GB"
-
     reservation_uuid = None
     assessment = None
     reservation = None
@@ -386,7 +387,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     if not reservation_uuid:
         tz_info = pytz.timezone("UTC")
         starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=20))
-        first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+        first_name, last_name = get_user_first_last_name()
 
         response = ua_contracts_api.post_assessment_reservation(
             contract_item_id,
@@ -450,7 +451,7 @@ def cred_submit_form(**_):
 
     sso_user = user_info(flask.session)
     email = sso_user["email"]
-    first_name, last_name = sso_user["fullname"].rsplit(" ", maxsplit=1)
+    first_name, last_name = get_user_first_last_name()
 
     form_fields = {
         "firstName": first_name,
@@ -618,12 +619,11 @@ def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
     account = advantage_mapper.get_purchase_account()
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
-    contract_id = None
+    keys = []
     for contract in contracts:
-        if contract.name == "CUE TEST key":
-            contract_id = contract.id
+        contract_id = contract.id
+        keys.extend(ua_contracts_api.list_activation_keys(contract_id))
 
-    keys = ua_contracts_api.list_activation_keys(contract_id)
     return flask.jsonify(keys)
 
 

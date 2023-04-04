@@ -1,6 +1,9 @@
 from distutils.util import strtobool
 import os
 from functools import wraps
+from datetime import datetime
+from dateutil.parser import parse
+import pytz
 
 import flask
 import talisker.requests
@@ -55,6 +58,11 @@ SERVICES = {
     },
 }
 
+MAINTENANCE_URLS = [
+    "/pro/subscribe",
+    "/pro/maintenance-check",
+]
+
 
 def shop_decorator(area=None, permission=None, response="json", redirect=None):
     permission = permission if permission in PERMISSION_LIST else None
@@ -76,9 +84,22 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            if flask.request.path == "/pro/subscribe" and strtobool(
-                os.getenv("STORE_MAINTENANCE", "false")
-            ):
+            maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
+            is_in_timeframe = False
+            store_maintenance_start = os.getenv("STORE_MAINTENANCE_START")
+            store_maintenance_end = os.getenv("STORE_MAINTENANCE_END")
+
+            if store_maintenance_start and store_maintenance_end:
+                maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
+                maintenance_end = parse(os.getenv("STORE_MAINTENANCE_END"))
+                time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+                is_in_timeframe = (
+                    maintenance_start <= time_now < maintenance_end
+                )
+
+            is_in_maintenance = maintenance and is_in_timeframe
+
+            if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
                 return flask.render_template("advantage/maintenance.html")
 
             # if logged in, get rid of guest token
@@ -115,6 +136,11 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 user_token, guest_token, response, session
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
+            is_community_member = False
+            if user_info(flask.session):
+                is_community_member = user_info(flask.session).get(
+                    "is_community_member", False
+                )
 
             return func(
                 badgr_issuer=os.getenv(
@@ -129,6 +155,8 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
+                is_in_maintenance=is_in_maintenance,
+                is_community_member=is_community_member,
                 *args,
                 **kwargs,
             )

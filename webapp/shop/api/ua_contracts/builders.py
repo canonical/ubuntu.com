@@ -203,8 +203,10 @@ def build_final_user_subscriptions(
             get_current_number_of_machines(
                 subscriptions, subscription_id, listing
             )
-            if type in ["trial", "monthly", "yearly"]
-            else number_of_machines
+            if type != "legacy"
+            else (
+                renewal.number_of_machines if renewal else number_of_machines
+            )
         )
         price_info = get_price_info(number_of_machines, items, listing)
         product_name = (
@@ -226,7 +228,7 @@ def build_final_user_subscriptions(
 
         entitlements = (
             apply_entitlement_rules(contract.entitlements)
-            if marketplace == "canonical-ua"
+            if marketplace in ["canonical-ua", "free"]
             else []
         )
 

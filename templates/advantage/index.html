@@ -8,7 +8,7 @@
 
 {% if user_info %}
   <section class="p-strip--suru-topped u-no-padding--bottom">
-    {% if is_maintenance %}
+    {% if is_in_maintenance %}
     <div class="row">
       <div class="col-12">
         <div class="p-notification--caution">
@@ -38,7 +38,9 @@
       {% if not is_technical %}
         <div class="col-7 u-vertically-center u-align--right">
           <div>
-            <a class="p-button--positive" href="/pro/subscribe">Buy new subscription</a>
+            {% if not is_in_maintenance %}
+              <a class="p-button--positive" href="/pro/subscribe">Buy new subscription</a>
+            {% endif %}
             <a class="p-button" href="/account/invoices">Invoices</a>
             <a class="p-button" href="/account/payment-methods">Payment methods</a>
           </div>

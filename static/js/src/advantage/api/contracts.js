@@ -132,11 +132,11 @@ export async function getLastPurchaseIds(accountId) {
   return await response.json();
 }
 
-export async function postInvoiceID(transactionType, transactionID, invoiceID) {
+export async function retryPurchase(purchasesID) {
   const queryString = window.location.search; // Pass arguments to the flask backend
 
   let response = await fetch(
-    `/account/${transactionType}/${transactionID}/invoices/${invoiceID}${queryString}`,
+    `/account/purchases/${purchasesID}/retry${queryString}`,
     {
       cache: "no-store",
       credentials: "include",
