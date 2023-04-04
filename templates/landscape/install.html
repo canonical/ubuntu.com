@@ -35,11 +35,11 @@
           </div>
           <div class="col-6">
             <div class="install-config-chart">
-              <div class="install-time" style="--install-time: 5">
-                <p>Install: 5h</p>
+              <div class="install-time" style="--install-time: 15">
+                <p>Install 15 mins</p>
               </div>
-              <div class="config-time" style="--config-time: 3">
-                <p>Config: 3h</p>
+              <div class="config-time" style="--config-time: 15">
+                <p>Config 15 mins</p>
               </div>
             </div>
           </div>
@@ -52,11 +52,11 @@
           </div>
           <div class="col-6">
             <div class="install-config-chart">
-              <div class="install-time" style="--install-time: 3.5">
-                <p>Install: 3.5h</p>
+              <div class="install-time" style="--install-time: 15">
+                <p>Install 15 mins</p>
               </div>
-              <div class="config-time" style="--config-time: 6">
-                <p>Config: 6h</p>
+              <div class="config-time" style="--config-time: 30">
+                <p>Config 30 mins</p>
               </div>
             </div>
           </div>
@@ -69,11 +69,11 @@
           </div>
           <div class="col-6">
             <div class="install-config-chart">
-              <div class="install-time" style="--install-time: 10">
-                <p>Install: 10h</p>
+              <div class="install-time" style="--install-time: 30">
+                <p>Install 30 mins</p>
               </div>
-              <div class="config-time" style="--config-time: 6">
-                <p>Config: 6h</p>
+              <div class="config-time" style="--config-time: 30">
+                <p>Config 30 <em>hours</em></p>
               </div>
             </div>
           </div>
@@ -96,14 +96,14 @@
   .install-time {
     background-color: #000000;
     color: white;
-    width: calc(2rem * var(--install-time));
+    width: calc(0.55rem * var(--install-time));
     display: inline-block;
     padding: 0 0.5rem;
   }
 
   .config-time {
     background: #E5E5E5;
-    width: calc(2rem * var(--config-time));
+    width: calc(0.55rem * var(--config-time));
     display: inline-block;
     padding: 0 0.5rem;
     text-align: right;
@@ -126,18 +126,18 @@
         <tbody>
           <tr>
             <td>Automated (Juju)</td>
-            <td>5h</td>
-            <td>3h</td>
+            <td>15 minutes</td>
+            <td>15 minutes</td>
           </tr>
           <tr>
             <td>Quickstart</td>
-            <td>3.5h</td>
-            <td>6h</td>
+            <td>15 minutes</td>
+            <td>30 minutes</td>
           </tr>
           <tr>
             <td>Manual</td>
-            <td>10h</td>
-            <td>6h</td>
+            <td>30 minutes</td>
+            <td>30 <em>hours</em></td>
           </tr>
         </tbody>
       </table>
