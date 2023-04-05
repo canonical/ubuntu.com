@@ -141,6 +141,7 @@ from webapp.views import (
     show_template,
     sitemap_index,
     sixteen_zero_four,
+    spanish_why_openstack,
     subscription_centre,
     thank_you,
     unlisted_engage_page,
@@ -536,6 +537,10 @@ app.add_url_rule(
 app.add_url_rule(
     "/engage/fr/pourquoi-openstack",
     view_func=french_why_openstack,
+)
+app.add_url_rule(
+    "/engage/es/por-que-openstack",
+    view_func=spanish_why_openstack,
 )
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 app.add_url_rule(
