@@ -17,9 +17,10 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
+  error: any;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({ error, setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -30,10 +31,44 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     validateForm,
     errors,
   } = useFormikContext<FormValues>();
+
   const { data: userInfo } = useCustomerInfo();
   const useFinishPurchaseMutation = useFinishPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
+  useEffect(() => {
+    if (
+      error &&
+      error?.props?.children.includes(
+        "Please make sure all fields are filled in correctly"
+      ) &&
+      document.querySelector(".p-notification--negative")
+    ) {
+      document
+        .querySelector(".p-notification--negative")
+        ?.classList.add("u-hide");
+    } else if (
+      error &&
+      !error?.props?.children.includes(
+        "Please make sure all fields are filled in correctly"
+      ) &&
+      document.querySelector(".p-notification--negative u-hide")
+    ) {
+      document
+        .querySelector(".p-notification--negative u-hide")
+        ?.classList.remove("u-hide");
+    } else if (
+      error &&
+      error?.props?.children.includes(
+        "Please make sure all fields are filled in correctly"
+      ) &&
+      document.querySelector(".p-notification--negative u-hide")
+    ) {
+      document
+        .querySelector(".p-notification--negative u-hide")
+        ?.classList.remove("u-hide");
+    }
+  }, [values]);
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -70,6 +105,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
       if (!(possibleErrors.length === 0)) {
         setError(<>Please make sure all fields are filled in correctly.</>);
+        document
+          .querySelector(".p-notification--negative")
+          ?.classList.remove("u-hide");
         document.querySelector("h1")?.scrollIntoView();
         return;
       }
@@ -106,6 +144,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
           setIsLoading(false);
           setFieldValue("Description", false);
           setFieldValue("TermsAndConditions", false);
+          document
+            .querySelector(".p-notification--negative")
+            ?.classList.remove("u-hide");
           document.querySelector("h1")?.scrollIntoView();
 
           if (error instanceof Error)
@@ -186,6 +227,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       setIsLoading(false);
       setFieldValue("Description", false);
       setFieldValue("TermsAndConditions", false);
+      document
+        .querySelector(".p-notification--negative")
+        ?.classList.remove("u-hide");
       document.querySelector("h1")?.scrollIntoView();
 
       if (

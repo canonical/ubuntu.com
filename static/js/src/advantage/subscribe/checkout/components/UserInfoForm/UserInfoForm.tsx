@@ -98,6 +98,9 @@ const UserInfoForm = ({ setError }: Props) => {
           setFieldValue("Description", false);
           setFieldValue("TermsAndConditions", false);
           setIsButtonDisabled(false);
+          document
+            .querySelector(".p-notification--negative")
+            ?.classList.remove("u-hide");
           document.querySelector("h1")?.scrollIntoView();
 
           if (error instanceof Error)

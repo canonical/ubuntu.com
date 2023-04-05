@@ -32,7 +32,6 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
-
   return (
     <>
       <div className="p-strip">
@@ -132,6 +131,7 @@ const Checkout = ({ product, quantity, action }: Props) => {
                                 quantity={quantity}
                                 action={action}
                                 setError={setError}
+                                error={error}
                               ></BuyButton>
                             </Col>
                           </Row>

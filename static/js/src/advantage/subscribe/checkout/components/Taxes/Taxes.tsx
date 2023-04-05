@@ -72,11 +72,20 @@ const Taxes = ({ setError }: TaxesProps) => {
           onSuccess: () => {
             queryClient.invalidateQueries("preview");
             queryClient.invalidateQueries("customerInfo");
+            if (document.querySelector(".p-notification--negative")) {
+              document
+                .querySelector(".p-notification--negative")
+                ?.classList.add("u-hide");
+            }
           },
           onError: (error) => {
             setFieldValue("Description", false);
             setFieldValue("TermsAndConditions", false);
+            document
+              .querySelector(".p-notification--negative")
+              ?.classList.remove("u-hide");
             document.querySelector("h1")?.scrollIntoView();
+
             Sentry.captureException(error);
             if (error instanceof Error)
               if (error.message.includes("tax_id_invalid")) {
@@ -307,6 +316,11 @@ const Taxes = ({ setError }: TaxesProps) => {
                     setIsEditing(false);
                     setFieldValue("isTaxSaved", true);
                     setFieldTouched("isTaxSaved", false);
+                    if (document.querySelector(".p-notification--negative")) {
+                      document
+                        .querySelector(".p-notification--negative")
+                        ?.classList.add("u-hide");
+                    }
                   }}
                 >
                   Cancel
