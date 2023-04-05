@@ -1,4 +1,4 @@
-import "inferPreferredLanguage.js";
+import "infer-preferred-language.js";
 import setupIntlTelInput from "./intlTelInput.js";
 
 (function () {
