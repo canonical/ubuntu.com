@@ -75,6 +75,8 @@ from webapp.views import (
     download_thank_you,
     appliance_install,
     appliance_portfolio,
+    french_why_openstack,
+    german_why_openstack,
     releasenotes_redirect,
     show_template,
     build_engage_index,
@@ -690,7 +692,11 @@ app.add_url_rule(
 # Custom engage page in German
 app.add_url_rule(
     "/engage/de/warum-openstack",
-    view_func=lambda: flask.render_template("engage/de_why-openstack.html"),
+    view_func=german_why_openstack,
+)
+app.add_url_rule(
+    "/engage/fr/pourquoi-openstack",
+    view_func=french_why_openstack,
 )
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 app.add_url_rule(

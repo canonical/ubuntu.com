@@ -676,6 +676,14 @@ def openstack_engage(engage_pages):
     return openstack_resource_data
 
 
+def german_why_openstack():
+    return flask.render_template("engage/de_why-openstack.html")
+
+
+def french_why_openstack():
+    return flask.render_template("engage/fr_why-openstack.html")
+
+
 def build_tutorials_query(tutorials_docs):
     def tutorials_query():
         topic = flask.request.args.get("topic", default="", type=str)
