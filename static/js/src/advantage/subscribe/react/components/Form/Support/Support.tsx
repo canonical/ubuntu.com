@@ -42,8 +42,8 @@ const Support = () => {
     version === LTSVersions.trusty ||
     version === LTSVersions.xenial;
 
-  const isDisabled = (support?: string) => {
-    if (support === "infra") {
+  const isDisabled = (support: SupportEnum) => {
+    if (support === SupportEnum.infra) {
       if (
         isInfraOnlyDisabled ||
         isPublicCloud(productType) ||
@@ -53,7 +53,7 @@ const Support = () => {
       } else {
         return false;
       }
-    } else if (support === "full") {
+    } else if (support === SupportEnum.full) {
       if (
         isFullSupportDisabled ||
         isPublicCloud(productType) ||
@@ -76,17 +76,14 @@ const Support = () => {
   };
 
   const getTabIndex = (isDisabled: boolean) => {
-    if (isDisabled) {
-      return -1;
-    } else {
-      return 0;
-    }
+    return isDisabled ? -1 : 0;
   };
+
   return (
     <div
       className={classNames({
         row: true,
-        "u-disable": isDisabled(),
+        "u-disable": isDisabled(SupportEnum.none),
       })}
       data-testid="wrapper"
     >
@@ -96,42 +93,60 @@ const Support = () => {
             <strong>What&apos;s included?</strong>
           </div>
           <div className="support-row">
-            <a href="/support" tabIndex={getTabIndex(isDisabled())}>
+            <a
+              href="/support"
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
+            >
               Open source applications
             </a>
           </div>
           <div className="support-row">
-            <a href="/server" tabIndex={getTabIndex(isDisabled())}>
+            <a
+              href="/server"
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
+            >
               Ubuntu base OS
             </a>
           </div>
           <div className="support-row">
-            <a href="/kubernetes" tabIndex={getTabIndex(isDisabled())}>
+            <a
+              href="/kubernetes"
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
+            >
               Kubernetes
             </a>
             ,{" "}
-            <a href="/lxd" tabIndex={getTabIndex(isDisabled())}>
+            <a href="/lxd" tabIndex={getTabIndex(isDisabled(SupportEnum.none))}>
               LXD
             </a>
             ,{" "}
             <a
               href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html"
-              tabIndex={getTabIndex(isDisabled())}
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
             >
               Charms
             </a>
           </div>
           <div className="support-row">
-            <a href="/openstack" tabIndex={getTabIndex(isDisabled())}>
+            <a
+              href="/openstack"
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
+            >
               OpenStack
             </a>
             ,{" "}
-            <a href="https://maas.io/" tabIndex={getTabIndex(isDisabled())}>
+            <a
+              href="https://maas.io/"
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
+            >
               MAAS
             </a>
           </div>
           <div className="support-row">
-            <a href="/ceph" tabIndex={getTabIndex(isDisabled())}>
+            <a
+              href="/ceph"
+              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
+            >
               Ceph and Swift storage
             </a>
           </div>
@@ -152,7 +167,7 @@ const Support = () => {
                 value={SupportEnum.none}
                 checked={support === SupportEnum.none}
                 onChange={handleChange}
-                disabled={isDisabled()}
+                disabled={isDisabled(SupportEnum.none)}
               />
               <span className="p-radio__label" id={`none-label`}>
                 <RadioInput
@@ -161,8 +176,8 @@ const Support = () => {
                   checked={support === SupportEnum.none}
                   value={SupportEnum.none}
                   onChange={handleChange}
-                  disabled={isDisabled()}
-                  tabIndex={getTabIndex(isDisabled())}
+                  disabled={isDisabled(SupportEnum.none)}
+                  tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row not-supported">—</div>
@@ -178,7 +193,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.infra,
-              "u-disable": isDisabled("infra"),
+              "u-disable": isDisabled(SupportEnum.infra),
             })}
             data-testid="infra-support"
           >
@@ -191,7 +206,7 @@ const Support = () => {
                 value={SupportEnum.infra}
                 checked={support === SupportEnum.infra}
                 onChange={handleChange}
-                disabled={isDisabled("infra")}
+                disabled={isDisabled(SupportEnum.infra)}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -200,7 +215,7 @@ const Support = () => {
                   checked={support === SupportEnum.infra}
                   value={SupportEnum.infra}
                   onChange={handleChange}
-                  disabled={isDisabled("infra")}
+                  disabled={isDisabled(SupportEnum.infra)}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row">
@@ -224,7 +239,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.full,
-              "u-disable": isDisabled("full"),
+              "u-disable": isDisabled(SupportEnum.full),
             })}
             data-testid="full-support"
           >
@@ -237,7 +252,7 @@ const Support = () => {
                 value={SupportEnum.full}
                 checked={support === SupportEnum.full}
                 onChange={handleChange}
-                disabled={isDisabled("full")}
+                disabled={isDisabled(SupportEnum.full)}
               />
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
@@ -246,7 +261,7 @@ const Support = () => {
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
                   onChange={handleChange}
-                  disabled={isDisabled("full")}
+                  disabled={isDisabled(SupportEnum.full)}
                 />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
@@ -319,7 +334,7 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.infra === support,
-            "u-disable": isDisabled("infra"),
+            "u-disable": isDisabled(SupportEnum.infra),
           })}
           onClick={() => {
             setSupport(SupportEnum.infra);
@@ -334,7 +349,7 @@ const Support = () => {
             label="Infra Support"
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
-            disabled={isDisabled("infra")}
+            disabled={isDisabled(SupportEnum.infra)}
           />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
@@ -358,7 +373,7 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.full === support,
-            "u-disable": isDisabled("full"),
+            "u-disable": isDisabled(SupportEnum.full),
           })}
           onClick={() => {
             setSupport(SupportEnum.full);
@@ -373,7 +388,7 @@ const Support = () => {
             label="Full Support"
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
-            disabled={isDisabled("full")}
+            disabled={isDisabled(SupportEnum.full)}
           />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
@@ -422,7 +437,7 @@ const Support = () => {
                     );
                   }}
                   style={{ textAlign: "justify" }}
-                  disabled={isDisabled()}
+                  disabled={isDisabled(SupportEnum.none)}
                 >
                   <span>Weekday</span>
                   <p className="p-text--small u-no-margin--bottom">
@@ -444,7 +459,7 @@ const Support = () => {
                     );
                   }}
                   style={{ textAlign: "justify" }}
-                  disabled={isDisabled()}
+                  disabled={isDisabled(SupportEnum.none)}
                 >
                   <span>24/7</span>
                   <p className="p-text--small u-no-margin--bottom">

@@ -7,6 +7,7 @@ import {
   isIoTDevice,
   isPublicCloud,
   ProductTypes,
+  Support as SupportEnum,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
@@ -25,8 +26,8 @@ const Feature = () => {
 
   const infraOnlyDisabled = ProductTypes.desktop === productType;
 
-  const isDisabled = (support?: string) => {
-    if (support === "infra") {
+  const isDisabled = (support: SupportEnum) => {
+    if (support === SupportEnum.infra) {
       if (
         infraOnlyDisabled ||
         isPublicCloud(productType) ||
@@ -53,7 +54,7 @@ const Feature = () => {
       className={classNames({
         row: true,
         "p-divider": true,
-        "u-disable": isDisabled(),
+        "u-disable": isDisabled(SupportEnum.none),
       })}
       data-testid="wrapper"
     >
@@ -153,7 +154,7 @@ const Feature = () => {
                 value={Features.pro}
                 checked={feature === Features.pro}
                 onChange={handleChange}
-                disabled={isDisabled()}
+                disabled={isDisabled(SupportEnum.none)}
               />
               <span className="p-radio__label" id={`pro-label`}>
                 <RadioInput
@@ -162,7 +163,7 @@ const Feature = () => {
                   checked={feature === Features.pro}
                   value={Features.pro}
                   onChange={handleChange}
-                  disabled={isDisabled()}
+                  disabled={isDisabled(SupportEnum.none)}
                 />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
@@ -179,7 +180,7 @@ const Feature = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": feature === Features.infra,
-              "u-disable": isDisabled("infra"),
+              "u-disable": isDisabled(SupportEnum.infra),
             })}
             data-testid="infra-only"
           >
@@ -192,7 +193,7 @@ const Feature = () => {
                 value={Features.infra}
                 checked={feature === Features.infra}
                 onChange={handleChange}
-                disabled={isDisabled("infra")}
+                disabled={isDisabled(SupportEnum.infra)}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -201,7 +202,7 @@ const Feature = () => {
                   checked={feature === Features.infra}
                   value={Features.infra}
                   onChange={handleChange}
-                  disabled={isDisabled("infra")}
+                  disabled={isDisabled(SupportEnum.infra)}
                 />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
@@ -220,14 +221,14 @@ const Feature = () => {
           value={Features.pro}
           checked={feature === Features.pro}
           onChange={handleChange}
-          disabled={isDisabled()}
+          disabled={isDisabled(SupportEnum.none)}
         />
         <RadioInput
           label="Ubuntu Pro (Infra-only)"
           value={Features.infra}
           checked={feature === Features.infra}
           onChange={handleChange}
-          disabled={isDisabled("infra")}
+          disabled={isDisabled(SupportEnum.infra)}
         />
       </Col>
       <Col
