@@ -634,40 +634,14 @@ meta_copydoc %}
   </div>
 </section>
 <section class="p-strip--light">
-  <div class="row u-vertically-center">
-    <div class="col-7">
-      <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
-      <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling,
-        and extended support for developers and organisations.</p>
-      <ul class="p-list">
-        <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a></li>
-        <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a>
-          and LDAP integration</li>
-        <li class="p-list__item is-ticked">Estate <a
-            href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
-        <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and
-          <a href="/security/certifications#cis">CIS hardening</a>
-        </li>
-        <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
-        <li class="p-list__item is-ticked">Optional weekday or 24x7 support tiers</li>
-      </ul>
-      <p class="p-heading--4">Free for personal use on up to five machines</p>
-      <p>Secure your open source stack with a personal Ubuntu Pro license and get access to security patching for over
-        23,000 packages in the Ubuntu Universe repository.</p>
-      <p><a href="/pro">Get started with a free subscription&nbsp;&rsaquo;</a></p>
-      <p><a href="/desktop/organisations">Ubuntu Desktop for organisations&nbsp;&rsaquo;</a></p>
-    </div>
-    <div class="col-5 u-align--center u-hide--medium u-hide--small">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
-        alt="",
-        width="250",
-        height="270",
-        hi_def=True,
-        loading="lazy"
-        ) | safe
-      }}
-    </div>
+  {% include "shared/_pro_strip.html" %}
+  <div class="u-fixed-width">
+    <p class="p-heading--4">Free for personal use on up to five machines</p>
+    <p>Secure your open source stack with a personal Ubuntu Pro license and get access to security patching for over
+      23,000 packages in the Ubuntu Universe repository.</p>
+    <p><a href="/pro">Get started with a free subscription&nbsp;&rsaquo;</a></p>
+    <p><a href="/desktop/organisations">Ubuntu Desktop for organisations&nbsp;&rsaquo;</a></p>
+  </div>
   </div>
 </section>
 
