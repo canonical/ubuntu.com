@@ -14,7 +14,7 @@ RUN --mount=type=cache,target=/root/.cache/pip pip3 install --user --requirement
 FROM node:18 AS yarn-dependencies
 WORKDIR /srv
 ADD package.json yarn.lock .
-RUN --mount=type=cache,target=/usr/local/share/.cache/yarn yarn install --production
+RUN --mount=type=cache,target=/usr/local/share/.cache/yarn PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1 yarn install --production
 
 
 # Build stage: Run "yarn run build-js"
