@@ -6,10 +6,10 @@
 
 {% block content %}
 
-<section class="p-strip--suru-shape-light">
+<section class="p-strip--suru-shape-light is-deep">
   <div class="row">
     <div class="col-6">
-      <h1>Secure, compliant open source for Healthcare</h1>
+      <h1 class="p-heading--2"><strong>Secure, compliant open source for Healthcare</strong></h1>
     </div>
     <div class="col-6">
       <p>Healthcare businesses must leverage modern technologies to automate compliance and reduce costs. Enable researchers, clinicians, and administrators with certified and compliant Ubuntu.</p>
@@ -18,31 +18,46 @@
   </div>
 </section>
 
-<section class="p-strip">
+<section class="p-strip is-deep u-no-padding--bottom">
   <hr class="is-fixed-width">
   <div class="row">
     <div class="col-6">
-      <h2 class="p-heading--3">Secure</h2>
+      <h2>Secure</h2>
     </div>
     <div class="col-6">
       <p>Ubuntu is a secure Linux OS distribution &ndash; whether used in <a href="/security/docker-images">containers</a>, virtualised servers, on premises or in the <a href="/public-cloud">public cloud</a>. Our solutions provide enterprise-grade security and support for mission-critical applications and workloads in production.</p>
-      <p><a href="/security">Learn more about our security practises&nbsp;&rsaquo;</a></p>
+      <p><a href="/security">Learn more about our security practices&nbsp;&rsaquo;</a></p>
     </div>
   </div>
+</section>
+
+<section class="p-strip is-deep u-no-padding--bottom">
   <hr class="is-fixed-width">
   <div class="row">
     <div class="col-6">
-      <h2 class="p-heading--3">Compliant</h2>
-    </div>
-    <div class="col-6">
+      <h2>Compliant</h2>
       <p>We have your critical healthcare  IT certifications covered. Ubuntu Pro lets you access hardening and compliance profiles, including NIST, HIPAA, <a href="/security/fips">FIPS 140-2</a>, Common Criteria EAL2, SOC 2, CIS and more.</p>
       <p><a href="/security/certifications">View our certifications&nbsp;&rsaquo;</a></p>
     </div>
+    <div class="col-6">
+      <ul class="p-list--divided no-top-border">
+        <li class="p-list__item is-ticked">NIST</li>
+        <li class="p-list__item is-ticked">HIPAA</li>
+        <li class="p-list__item is-ticked"><a href="/security/fips">FIPS 140-2</a></li>
+        <li class="p-list__item is-ticked">Common Criteria EAL2</li>
+        <li class="p-list__item is-ticked">SOC 2</li>
+        <li class="p-list__item is-ticked">CIS</li>
+        <li class="p-list__item is-ticked">and many more...</li>
+      </ul>
+    </div>
   </div>
+</section>
+
+<section class="p-strip is-deep">
   <hr class="is-fixed-width">
   <div class="row">
     <div class="col-6">
-      <h2 class="p-heading--3">One source for open source</h2>
+      <h2>One source<br class="u-hide--small u-hide--medium"> for open source</h2>
     </div>
     <div class="col-6">
       <p>From the <a href="/cloud">cloud</a>, to <a href="/core">embedded devices</a>, to bare metal, we provide secure IT solutions to cover your full technology stack.</p>
@@ -51,10 +66,17 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow">
-  <div class="u-fixed-width">
-    <h2>Connect with an open source expert</h2>
-    <p><a href="" class="p-button--positive">Get in touch</a></p>
+<section class="p-strip--light is-deep">
+  <div class="p-strip">
+    <div class="row">
+      <div class="col-6">
+      </div>
+      <div class="col-6">
+        <h2>Innovate at lower cost with Canonical</h2>
+        <p>The experts in open source operations, from cloud to devices, are waiting to help you on your digital transformation journey.</p>
+        <p><a href="" class="p-button--positive">Contact us</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -62,29 +84,15 @@
   <hr class="is-fixed-width">
   <div class="row">
     <div class="col-6">
-      <h2 class="p-heading--3">FIPS certification and CIS compliance with Ubuntu</h2>
-      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our webinar to ensure you and your team are, and remain, compliant.</p>
+      <h2>FIPS certification and CIS compliance with Ubuntu</h2>
     </div>
     <div class="col-6">
       <div class="u-embedded-media">
         <iframe title="Ubuntu on Azure" class="u-embedded-media__element" src="https://www.youtube.com/embed/nkH7Mu1lZU8" allowfullscreen="" frameborder="0"></iframe>
       </div>
+      <p>Learn about Ubuntu CIS and FIPS certified components to enable operating under compliance regimes like FedRAMP, HIPAA, PCI and ISO. Get all of your compliance questions answered in our webinar to ensure you and your team are, and remain, compliant.</p>
     </div>
   </div>
 </section>
-
-<section class="p-strip is-shallow">
-  <hr class="is-fixed-width">
-  <div class="row">
-    <div class="col-6">
-      <h2 class="p-heading--3">Innovate at lower cost with Canonical</h2>
-    </div>
-    <div class="col-6">
-      <p>The experts in open source operations, from cloud to devices are waiting to help you on your digital transformation journey.</p>
-      <p><a href="" class="p-button--positive">Get in touch</a></p>
-    </div>
-  </div>
-</section>
-
 
 {% endblock content %}

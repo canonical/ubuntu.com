@@ -1311,3 +1311,10 @@ hr.p-separator.is-shallow {
 [class*="p-list"].is-split .p-list__item {
   display: inline-block;
 }
+
+// Remove the border on the first item of a divided list, for use when there is a <hr> directly above
+.p-list--divided.no-top-border {
+  .p-list__item:first-child {
+    box-shadow: none;
+  }
+}
