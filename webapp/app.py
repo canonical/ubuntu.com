@@ -2,151 +2,181 @@
 A Flask application for ubuntu.com
 """
 
+# Packages
 import os
-
-import flask
 import talisker.requests
-from canonicalwebteam.blog import BlogAPI, BlogViews, build_blueprint
-from canonicalwebteam.discourse import (
-    DiscourseAPI,
-    DocParser,
-    Docs,
-    EngagePages,
-    TutorialParser,
-    Tutorials,
-)
+import flask
+from datetime import datetime
+from webapp.context import schedule_banner
 from canonicalwebteam.flask_base.app import FlaskBase
-from canonicalwebteam.search import build_search_view
 from canonicalwebteam.templatefinder import TemplateFinder
 
-from webapp.certified.views import (
-    certified_component_details,
-    certified_desktops,
-    certified_devices,
-    certified_hardware_details,
-    certified_home,
-    certified_laptops,
-    certified_model_details,
-    certified_servers,
-    certified_socs,
-    certified_vendors,
-    certified_why,
+from canonicalwebteam.search import build_search_view
+from canonicalwebteam import image_template
+from canonicalwebteam.blog import build_blueprint, BlogViews, BlogAPI
+from canonicalwebteam.discourse import (
+    DiscourseAPI,
+    Docs,
+    DocParser,
+    EngagePages,
+    Tutorials,
+    TutorialParser,
 )
-from webapp.handlers import init_handlers
-from webapp.login import login_handler, logout
-from webapp.security.views import (
-    cve,
-    cve_index,
-    cves_sitemap,
-    notice,
-    notices,
-    notices_feed,
-    notices_sitemap,
-    single_cves_sitemap,
-    single_notices_sitemap,
+
+# Local
+from webapp.shop.api.ua_contracts.api import (
+    UAContractsAPIError,
+    UAContractsAPIErrorView,
+    UnauthorizedError,
+    UnauthorizedErrorView,
 )
-from webapp.shop.advantage.views import (
-    accept_renewal,
-    activate_magic_attach,
-    advantage_account_users_view,
-    advantage_shop_view,
-    advantage_thanks_view,
-    advantage_view,
-    blender_shop_view,
-    blender_thanks_view,
-    cancel_advantage_subscriptions,
-    cancel_trial,
-    delete_account_user_role,
-    get_account_offers,
-    get_account_users,
-    get_advantage_offers,
-    get_annotated_subscriptions,
-    get_contract_token,
-    get_renewal,
-    get_user_subscriptions,
-    magic_attach_view,
-    post_account_user_role,
-    post_advantage_purchase,
-    post_advantage_subscriptions,
-    post_auto_renewal_settings,
-    post_offer,
-    pro_page_view,
-    put_account_user_role,
-    put_contract_entitlements,
+from webapp.security.api import SecurityAPIError
+from webapp.context import (
+    current_year,
+    descending_years,
+    format_date,
+    get_json_feed,
+    modify_query,
+    month_name,
+    months_list,
+    get_navigation,
+    releases,
 )
+
+from webapp.shop.flaskparser import UAContractsValidationError
 from webapp.shop.cred.views import (
     activate_activation_key,
-    cred_assessments,
-    cred_cancel_exam,
-    cred_exam,
-    cred_home,
-    cred_provision,
     cred_redeem_code,
-    cred_schedule,
     cred_self_study,
     cred_shop,
-    cred_sign_up,
     cred_submit_form,
     cred_syllabus_data,
+    cred_sign_up,
+    cred_home,
+    cred_schedule,
     cred_your_exams,
+    cred_cancel_exam,
+    cred_assessments,
+    cred_exam,
+    cred_provision,
     get_activation_keys,
     rotate_activation_key,
 )
-from webapp.shop.views import (
-    account_view,
-    checkout,
-    download_invoice,
-    ensure_purchase_account,
-    get_customer_info,
-    get_last_purchase_ids,
-    get_purchase,
-    get_purchase_account_status,
-    get_purchase_v2,
-    get_shop_status_page,
-    invoices_view,
-    maintenance_check,
-    payment_methods_view,
-    post_anonymised_customer_info,
-    post_customer_info,
-    post_payment_methods,
-    post_purchase_calculate,
-    post_retry_purchase,
-    support,
-)
+
 from webapp.views import (
     BlogCustomGroup,
     BlogCustomTopic,
     BlogRedirects,
     BlogSitemapIndex,
     BlogSitemapPage,
-    account_query,
-    appliance_install,
-    appliance_portfolio,
-    build_engage_index,
     build_engage_page,
     build_tutorials_index,
-    build_tutorials_query,
     download_server_steps,
     download_thank_you,
-    engage_thank_you,
-    french_why_openstack,
-    german_why_openstack,
-    get_user_country_by_ip,
-    json_asset_query,
-    marketo_submit,
-    mirrors_query,
-    openstack_engage,
-    openstack_install,
+    appliance_install,
+    appliance_portfolio,
     releasenotes_redirect,
     show_template,
-    sitemap_index,
-    sixteen_zero_four,
-    spanish_why_openstack,
-    subscription_centre,
-    thank_you,
+    build_engage_index,
+    engage_thank_you,
     unlisted_engage_page,
+    sitemap_index,
+    account_query,
+    json_asset_query,
+    sixteen_zero_four,
+    openstack_install,
+    marketo_submit,
+    thank_you,
+    mirrors_query,
+    build_tutorials_query,
+    openstack_engage,
+    get_user_country_by_ip,
+    subscription_centre,
 )
 
+from webapp.shop.views import (
+    account_view,
+    get_purchase_account_status,
+    invoices_view,
+    download_invoice,
+    payment_methods_view,
+    post_payment_methods,
+    ensure_purchase_account,
+    get_customer_info,
+    post_customer_info,
+    post_anonymised_customer_info,
+    get_purchase,
+    get_purchase_v2,
+    post_retry_purchase,
+    get_last_purchase_ids,
+    post_purchase_calculate,
+    support,
+    checkout,
+    get_shop_status_page,
+    maintenance_check,
+)
+
+from webapp.shop.advantage.views import (
+    accept_renewal,
+    activate_magic_attach,
+    advantage_view,
+    advantage_account_users_view,
+    advantage_shop_view,
+    advantage_thanks_view,
+    get_renewal,
+    magic_attach_view,
+    post_advantage_subscriptions,
+    post_auto_renewal_settings,
+    cancel_advantage_subscriptions,
+    get_account_offers,
+    get_user_subscriptions,
+    get_annotated_subscriptions,
+    get_contract_token,
+    cancel_trial,
+    get_account_users,
+    delete_account_user_role,
+    post_account_user_role,
+    pro_page_view,
+    put_account_user_role,
+    put_contract_entitlements,
+    blender_thanks_view,
+    blender_shop_view,
+    post_offer,
+    get_advantage_offers,
+    post_advantage_purchase,
+)
+
+from webapp.login import login_handler, logout, user_info, empty_session
+from webapp.security.views import (
+    notice,
+    notices,
+    notices_feed,
+    cve_index,
+    cve,
+    single_notices_sitemap,
+    notices_sitemap,
+    single_cves_sitemap,
+    cves_sitemap,
+)
+
+from webapp.certified.views import (
+    certified_home,
+    certified_model_details,
+    certified_hardware_details,
+    certified_component_details,
+    certified_vendors,
+    certified_desktops,
+    certified_laptops,
+    certified_servers,
+    certified_devices,
+    certified_socs,
+    certified_why,
+)
+
+
+CAPTCHA_TESTING_API_KEY = os.getenv(
+    "CAPTCHA_TESTING_API_KEY", "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if"
+)
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
@@ -166,6 +196,7 @@ app = FlaskBase(
 )
 
 sentry = app.extensions["sentry"]
+
 session = talisker.requests.get_session()
 discourse_api = DiscourseAPI(
     base_url="https://discourse.ubuntu.com/",
@@ -186,7 +217,134 @@ charmhub_discourse_api = api=DiscourseAPI(
 # Web tribe websites custom search ID
 search_engine_id = "adb2397a224a1fe55"
 
-init_handlers(app, sentry)
+
+# Error pages
+@app.errorhandler(400)
+def bad_request_error(error):
+    return flask.render_template("400.html", message=error.description), 400
+
+
+@app.errorhandler(403)
+def forbidden_error(error):
+    return flask.render_template("403.html", message=error.description), 403
+
+
+@app.errorhandler(410)
+def deleted_error(error):
+    return flask.render_template("410.html", message=error.description), 410
+
+
+@app.errorhandler(429)
+def too_many_requests(error):
+    """
+    Endpoint abuse error
+    """
+    custom_error = f"{error.description}. Please try again tomorrow."
+    return flask.render_template("429.html", message=custom_error), 429
+
+
+@app.errorhandler(SecurityAPIError)
+def security_api_error(error):
+    return (
+        flask.render_template(
+            "security-error-500.html",
+            message=error.response.json().get("message"),
+        ),
+        500,
+    )
+
+
+@app.errorhandler(UAContractsValidationError)
+def ua_contracts_validation_error(error):
+    sentry.captureException(
+        extra={
+            "user_info": user_info(flask.session),
+            "request_url": error.request.url,
+            "request_body": error.request.json,
+            "response_body": error.response.messages,
+        }
+    )
+
+    return flask.jsonify({"errors": error.response.messages}), 422
+
+
+@app.errorhandler(UAContractsAPIError)
+@app.errorhandler(UnauthorizedError)
+def ua_contracts_api_error(error):
+    sentry.captureException(
+        extra={
+            "user_info": user_info(flask.session),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+        }
+    )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
+
+    return (
+        flask.jsonify({"errors": error.response.json()["message"]}),
+        error.response.status_code or 500,
+    )
+
+
+@app.errorhandler(UAContractsAPIErrorView)
+@app.errorhandler(UnauthorizedErrorView)
+def ua_contracts_api_error_view(error):
+    sentry.captureException(
+        extra={
+            "user_info": user_info(flask.session),
+            "request_url": error.request.url,
+            "request_headers": error.request.headers,
+            "response_headers": error.response.headers,
+            "response_body": error.response.json(),
+        }
+    )
+
+    if error.response.status_code == 401:
+        empty_session(flask.session)
+
+        return flask.redirect(flask.request.url)
+
+    return flask.render_template("500.html"), 500
+
+
+# Template context
+@app.context_processor
+def context():
+    return {
+        "current_year": current_year,
+        "descending_years": descending_years,
+        "format_date": format_date,
+        "get_json_feed": get_json_feed,
+        "modify_query": modify_query,
+        "month_name": month_name,
+        "months_list": months_list,
+        "get_navigation": get_navigation,
+        "get_stripe_publishable_key": os.getenv(
+            "STRIPE_PUBLISHABLE_KEY",
+            "pk_live_68aXqowUeX574aGsVck8eiIE",
+        ),
+        "product": flask.request.args.get("product", ""),
+        "request": flask.request,
+        "releases": releases(),
+        "user_info": user_info(flask.session),
+        "utm_campaign": flask.request.args.get("utm_campaign", ""),
+        "utm_content": flask.request.args.get("utm_content", ""),
+        "utm_medium": flask.request.args.get("utm_medium", ""),
+        "utm_source": flask.request.args.get("utm_source", ""),
+        "CAPTCHA_TESTING_API_KEY": CAPTCHA_TESTING_API_KEY,
+        "http_host": flask.request.host,
+        "schedule_banner": schedule_banner,
+    }
+
+
+@app.context_processor
+def utility_processor():
+    return {"image": image_template}
+
 
 # Routes
 # ===
@@ -532,15 +690,7 @@ app.add_url_rule(
 # Custom engage page in German
 app.add_url_rule(
     "/engage/de/warum-openstack",
-    view_func=german_why_openstack,
-)
-app.add_url_rule(
-    "/engage/fr/pourquoi-openstack",
-    view_func=french_why_openstack,
-)
-app.add_url_rule(
-    "/engage/es/por-que-openstack",
-    view_func=spanish_why_openstack,
+    view_func=lambda: flask.render_template("engage/de_why-openstack.html"),
 )
 app.add_url_rule(engage_path, view_func=build_engage_index(engage_pages))
 app.add_url_rule(
@@ -1089,32 +1239,6 @@ app.add_url_rule(
 
 landscape_docs.init_app(app)
 
-# Robotics docs
-robotics_docs = Docs(
-    parser=DocParser(
-        api=discourse_api,
-        index_topic_id=34683,
-        url_prefix="/robotics/docs",
-    ),
-    document_template="/robotics/docs/document.html",
-    url_prefix="/robotics/docs",
-    blueprint_name="robotics-docs",
-)
-
-# Robotics search
-app.add_url_rule(
-    "/robotics/docs/search",
-    "robotics-docs-search",
-    build_search_view(
-        session=session,
-        site="ubuntu.com/robotics/docs",
-        template_path="/robotics/docs/search-results.html",
-        search_engine_id=search_engine_id,
-    ),
-)
-
-robotics_docs.init_app(app)
-
 app.add_url_rule("/certified", view_func=certified_home)
 app.add_url_rule(
     "/certified/<canonical_id>",
@@ -1169,3 +1293,36 @@ app.add_url_rule(
     view_func=subscription_centre,
     methods=["GET", "POST"],
 )
+
+
+@app.after_request
+def cache_headers(response):
+    """
+    Set cache expiry to 60 seconds for homepage and blog page
+    """
+
+    disable_cache_on = (
+        "/account",
+        "/advantage",
+        "/pro",
+        "/credentials",
+        "/core/build",
+        "/account.json",
+    )
+
+    if flask.request.path.startswith(disable_cache_on):
+        response.cache_control.no_store = True
+
+    return response
+
+
+def date_has_passed(date_str):
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+        present = datetime.now()
+        return present > date
+    except ValueError:
+        return False
+
+
+app.add_template_filter(date_has_passed)
