@@ -1,0 +1,60 @@
+{% extends "data/base_data.html" %}
+
+{% block title %}Canonical Charmed Data Platform{% endblock %}
+
+{% block meta_description %}Canonical Data Fabric - documentation hub. Innovate at scale on any cloud{% endblock meta_description %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1sM8pgyM-N8VK8fyHgMsW21PdXUiqYrdRkPkipIljNd0/edit{% endblock meta_copydoc %}
+
+{% block content %}
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h1 class="u-sv3">
+      Canonical Data Fabric documentation hub
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <div class="p-card">
+        <h2 class="p-card__title">Charmed Spark</h2>
+        <p class="p-card__content u-sv3">Access resources for deploying, operating and using Apache Spark on Kubernetes with Charmed Spark.</p>
+	<p class="p-card__content"><a href="/data/docs/spark-k8s" class="p-button--positive">Access docs</a></p>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-card">
+        <h2 class="p-card__title">Charmed PostgreSQL</h2>
+        <p class="p-card__content u-sv3">Access resources for deploying and operating PostgreSQL on Kubernetes with Charmed PostgreSQL.</p>
+	<p class="p-card__content"><a href="/data/docs/postgresql-k8s" class="p-button--positive">Access docs</a></p>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="p-card">
+        <h2 class="p-card__title">Charmed MongoDB</h2>
+        <p class="p-card__content u-sv3">Access resources for deploying and operating the MongoDB database on IaaS using Charmed MongoDB.</p>
+        <p class="p-card__content"><a href="/data/docs/mongodb-vm" class="p-button--positive">Access docs</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-7">
+      <p>Apache<sup>&reg;</sup>, Apache Spark, Spark<sup>&reg;</sup>, and the Spark logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <p>Apache<sup>&reg;</sup>, Apache Kafka, Kafka<sup>&reg;</sup>, and the Kafka logo are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% with
+  document=document,
+  nav_items=nav_items,
+  search_action="/data/docs/mongodb/search",
+  siteSearch="https://ubuntu.com/data/docs/mongodb",
+  placeholder="Search Charmed MongoDB on IaaS docs",
+  navigation=navigation
+%}
+  {% include "templates/docs/shared/_docs.html" %}
+{% endwith %}

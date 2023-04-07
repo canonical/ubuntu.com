@@ -807,6 +807,93 @@ app.add_url_rule(
 
 server_docs.init_app(app)
 
+# Data Platform Spark on K8s docs
+data_spark_k8s_docs = Docs(
+    parser=DocParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.charmhub.io/",
+            session=session,
+        ),
+        index_topic_id=8963,
+        url_prefix="/data/docs/spark-k8s",
+    ),
+    document_template="/data/docs/spark-k8s/document.html",
+    url_prefix="/data/docs/spark-k8s",
+    blueprint_name="data-docs-spark-k8s",
+)
+
+# Data Platform Spark on K8s docs search
+app.add_url_rule(
+    "/data/docs/spark-k8s/search",
+    "data-docs-spark-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/spark-k8s",
+        template_path="/data/docs/spark-k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+data_spark_k8s_docs.init_app(app)
+
+# Data Platform MongoDB on IaaS docs
+data_mongodb_vm_docs = Docs(
+    parser=DocParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.charmhub.io/",
+            session=session,
+        ),
+        index_topic_id=7663,
+        url_prefix="/data/docs/mongodb-vm",
+    ),
+    document_template="/data/docs/mongodb-vm/document.html",
+    url_prefix="/data/docs/mongodb-vm",
+    blueprint_name="data-docs-mongodb-vm",
+)
+
+# Data Platform MongoDB on IaaS docs search
+app.add_url_rule(
+    "/data/docs/mongodb-vm/search",
+    "data-docs-mongodb-vm-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/mongodb-vm",
+        template_path="/data/docs/mongodb-vm/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+data_mongodb_vm_docs.init_app(app)
+
+# Data Platform PosgreSQL on K8s docs
+data_postgresql_k8s_docs = Docs(
+    parser=DocParser(
+        api=DiscourseAPI(
+            base_url="https://discourse.charmhub.io/",
+            session=session,
+        ),
+        index_topic_id=9307,
+        url_prefix="/data/docs/postgresql-k8s",
+    ),
+    document_template="/data/docs/postgresql-k8s/document.html",
+    url_prefix="/data/docs/postgresql-k8s",
+    blueprint_name="data-docs-postgresql-k8s",
+)
+
+# Data Platform PostgreSQL on K8s docs search
+app.add_url_rule(
+    "/data/docs/postgresql-k8s/search",
+    "data-docs-postgresql-k8s-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/data/docs/postgresql-k8s",
+        template_path="/data/docs/postgresql-k8s/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+data_postgresql_k8s_docs.init_app(app)
+
 # Community docs
 url_prefix = "/community"
 community_docs = Docs(
