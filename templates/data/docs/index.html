@@ -8,28 +8,43 @@
 
 {% block content %}
 
-<section class="p-strip--light">
-  <div class="u-fixed-width">
-    <h1 class="u-sv3">
-      Canonical Data Fabric documentation hub
-    </h1>
+<div class="p-strip--suru is-dark">
+  <div class="row u-equal-height">
+    <div class="col-7">
+      <h1 class="u-sv3">
+        Canonical Data Fabric documentation hub
+      </h1>
+      <p>Canonical's Data Fabric suite has been engineered to deliver a rock solid operational foundation for your critical data infrastructure.</p>
+      <p class="u-sv3">Together with comprehensive and flexible support for your database server and other data fabric enablers, with up to 10 years of software maintenance and break-fix support on selected releases, the Canonical Data Fabric suite is a comprehensive offering for reliable data processing at any scale.</p>
+    </div>
+    <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{ image(
+        url="https://assets.ubuntu.com/v1/55eda3ae-Servers+-white.svg",
+        alt="",
+        width="350",
+        height="121",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
   </div>
   <div class="row">
-    <div class="col-4">
+    <div class="col-4 u-equal-height">
       <div class="p-card">
         <h2 class="p-card__title">Charmed Spark</h2>
         <p class="p-card__content u-sv3">Access resources for deploying, operating and using Apache Spark on Kubernetes with Charmed Spark.</p>
 	<p class="p-card__content"><a href="/data/docs/spark-k8s" class="p-button--positive">Access docs</a></p>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 u-equal-height">
       <div class="p-card">
         <h2 class="p-card__title">Charmed PostgreSQL</h2>
         <p class="p-card__content u-sv3">Access resources for deploying and operating PostgreSQL on Kubernetes with Charmed PostgreSQL.</p>
 	<p class="p-card__content"><a href="/data/docs/postgresql-k8s" class="p-button--positive">Access docs</a></p>
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 u-equal-height">
       <div class="p-card">
         <h2 class="p-card__title">Charmed MongoDB</h2>
         <p class="p-card__content u-sv3">Access resources for deploying and operating the MongoDB database on IaaS using Charmed MongoDB.</p>
@@ -37,7 +52,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 {% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
