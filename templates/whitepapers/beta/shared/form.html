@@ -1,0 +1,242 @@
+<!-- MARKETO FORM -->
+<script src="//assets.ubuntu.com/v1/37b1db88-jquery.min.js"></script>
+<script  src="//assets.ubuntu.com/v1/d55f58bb-jquery.validate.js"></script>
+<script src="//assets.ubuntu.com/v1/6ce35d3e-jquery-ui.min.js"></script>‌​
+
+<form action="https://pages.ubuntu.com/index.php/leadCapture/save" method="post" id="mktoForm_3261" class="marketo-form" style="margin-top: -1rem;">
+<fieldset class="u-no-padding--top" style="border-bottom-width: 1px;">
+  <ul class="p-list">
+    <li class="mktFormReq mktField p-list__item">
+      <label for="FirstName" class="mktoLabel " >First Name:</label>
+      <input required  id="FirstName" name="FirstName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+    </li>
+    <li  class="mktFormReq mktField p-list__item">
+      <label for="LastName" class="mktoLabel " >Last Name:</label>
+      <input required  id="LastName" name="LastName" maxlength="255" type="text" class="mktoField   mktoRequired" >
+    </li>
+    <li  class="mktFormReq mktField p-list__item">
+      <label for="Email" class="mktoLabel " >Work email:</label>
+      <input required  id="Email" name="Email" maxlength="255" type="email" class="mktoField mktoEmailField  mktoRequired" >
+    </li>
+    <li  class="mktFormReq mktField p-list__item">
+      <label for="Company" class="mktoLabel " >Company Name:</label>
+      <input required  id="Company" name="Company" maxlength="255" type="text" class="mktoField   mktoRequired mktoInvalid" >
+    </li>
+    <li  class="mktFormReq mktField p-list__item">
+      <label for="Title" class="mktoLabel " >Job Title:</label>
+      <input required  id="Title" name="Title" maxlength="255" type="text" class="mktoField   mktoRequired" >
+    </li>
+    <li  class="mktFormReq mktField p-list__item">
+      <label for="Phone" class="mktoLabel " >Phone Number:</label>
+      <input required  id="Phone" name="Phone" maxlength="255" type="tel" class="mktoField mktoTelField  mktoRequired" >
+    </li>
+    <li  class="mktField p-list__item">
+      <input type="hidden" name="utm_campaign" aria-label="utm_campaign" class="mktoField  mktoFormCol" value="" >
+    </li>
+    <li  class="mktField p-list__item">
+      <input type="hidden" name="utm_medium" aria-label="utm_medium" class="mktoField  mktoFormCol" value="" >
+    </li>
+    <li  class="mktField p-list__item">
+      <input type="hidden" name="utm_source" aria-label="utm_source" class="mktoField  mktoFormCol" value="" >
+    </li>
+    <li  class="mktField p-list__item">
+      <p><input name="canonicalUpdatesOptIn" id="canonicalUpdatesOptIn" type="checkbox" value="yes" class="mktoField"><label for="canonicalUpdatesOptIn" class="mktoLabel">I agree to receive information about Canonical’s products and services.</label>
+      </p>
+    </li>
+    <li  class="mktField p-list__item">
+      <p>In submitting this form, I confirm that I have read and agree to <a href="https://www.ubuntu.com/legal/dataprivacy" target="_blank" class="mchNoDecorate" id="">Canonical's Privacy Policy</a></p>
+      <input type="hidden" name="RichText" aria-label="RichText">
+    </li>
+    <li  class="mktField p-list__item">
+      <input type="hidden" name="Consent_to_Processing__c" class="mktoField mktoFormCol" aria-label="Consent_to_Processing__c" value="Yes" >
+    </li>
+    <li class="mktField p-list__item">
+      <button type="submit" class="mktoButton u-no-margin--bottom">Continue reading</button>
+      <input type="hidden" name="formid" aria-label="formid" class="mktoField " value="3261">
+      <input type="hidden" name="formVid" aria-label="formVid" class="mktoField " value="3261">
+      <input type="hidden" name="munchkinId" aria-label="munchkinId" class="mktoField" value="066-EOV-335">
+    </li>
+  </ul>
+</fieldset>
+
+<input type="hidden" name="returnURL"  aria-label="returnURL" value="https://pages.ubuntu.com/OSconsideration_TY.html" />
+<input type="hidden" name="retURL" aria-label="retURL" value="https://pages.ubuntu.com/OSconsideration_TY.html" />
+</form>
+<script>
+  $("#mktoForm_3261").validate({
+      errorElement: "span",
+      errorClass: "mktFormMsg mktError",
+      onkeyup: false,
+      onclick: false,
+      onblur: false
+  });
+
+
+  $(function(){$("#comments").hide()});
+
+  $('#Ubuntu_User__c').on('change',function(){
+
+   var selection = $(this).val();
+   if(selection == 'Commercially only') {
+      $('#comments').show();
+   } else {
+      $('#comments').hide();
+   }
+  });
+
+</script>
+<script  src="//assets.ubuntu.com/v1/f97fa297-stateCountry.js"></script>
+
+<!-- /MARKETO FORM -->
+
+
+<!-- dependencies -->
+<script src="//assets.ubuntu.com/v1/ec520d10-XMLHttpRequest.min.js"></script>
+<script src="//assets.ubuntu.com/v1/4176b39e-serialize.js"></script>
+<script src="//assets.ubuntu.com/v1/6b7597df-event-listener-polyfill.js"></script>
+<!-- script -->
+<script>
+
+  var hiddenContent = false;
+
+  /**
+  * Given a form element, extract its data and its "action" target URL
+  * and submit the form using Ajax
+  */
+  backgroundSubmit = function(formElement, submitCallback) {
+    var request = new XMLHttpRequest();
+    var submitUrl = formElement.getAttribute('action');
+    var formData = serialize(formElement)
+
+    request.open("POST", submitUrl, true);
+
+    //Send the proper header information along with the request
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // When request has finished, call the callback function
+    if (submitCallback) {
+      request.addEventListener(
+      'readystatechange',
+      function() {
+        if (this.readyState == 4) {
+          // Pass context and arguments on to submitCallback
+          submitCallback.apply(this, arguments);
+        }
+      }
+      );
+    }
+
+    // Send off the POST request
+    request.send(formData);
+  }
+
+  // After submit has happened set a cookie and reveal the content
+  afterSubmit = function() {
+    setCookie(getCookieName(), 'true', 30);
+    revealContent();
+    window.location.hash = '#wp-introduction';
+  }
+
+  /**
+  * Handler for a form submit event
+  * to disable the normal submit, and instead use backgroundSubmit
+  */
+
+  backgroundSubmitHandlerClosure = function($) {
+    return function(submitEvent) {
+      // Prevent normal submit
+      submitEvent.preventDefault ? submitEvent.preventDefault() : submitEvent.returnValue = false;
+
+      marketoForm = document.getElementById(submitEvent.target.id);
+      // Check form is valid
+      if ($(marketoForm).valid()) {
+        // Change the submit location
+        marketoForm.action = "https://app-sjg.marketo.com/index.php/leadCapture/save2"
+        // Submit the form in the background
+        backgroundSubmit(marketoForm, afterSubmit);
+      }
+    }
+  }
+
+  // Attach the submit handler to the form
+  document.querySelectorAll('.marketo-form').forEach(function(form) {
+    form.addEventListener('submit', backgroundSubmitHandlerClosure(jQuery));
+  });
+
+  // Returns a unique cookie name for this URL path
+  function getCookieName() {
+    var encodedPath = window.location.pathname.split('/').join('-');
+    return 'formFilled' + encodedPath;
+  }
+
+  function revealContent() {
+    // Reveal the obfuscated content
+    if (hiddenContent) {
+      var content = document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li');
+      content.forEach(function(contentItem) {
+        contentItem.innerHTML = reverseContent(contentItem.innerText);
+      });
+      hiddenContent = false;
+    }
+
+    // Remove the obfuscating styling
+    var obfuscateItems = document.querySelectorAll('.u-obfuscate');
+    obfuscateItems.forEach(function(obfuscateItem) {
+      obfuscateItem.classList.remove('u-obfuscate');
+    });
+
+    // Hide the sign up form
+    var formElement = document.querySelector('.signup-form');
+    if (formElement) {
+      formElement.classList.add("u-hide");
+    }
+  }
+
+  function hideContent() {
+    hiddenContent = true;
+    // Baffle to obfucast the text
+    var content = document.querySelectorAll('.u-obfuscate p', '.u-obfuscate li');
+    content.forEach(function(contentItem) {
+      console.log(contentItem.innerHTML);
+      contentItem.innerText = reverseContent(contentItem.innerHTML);
+    });
+  }
+
+  function reverseContent(contentString) {
+    var splitContent = contentString.split('');
+    var reverseArray = splitContent.reverse();
+    var reversedString = reverseArray.join('');
+    return reversedString;
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return null;
+  }
+
+  window.onload = function() {
+
+    if (getCookie(getCookieName())) {
+      revealContent();
+    } else {
+      hideContent();
+    }
+  };
+</script>

@@ -1,0 +1,178 @@
+{% extends "whitepapers/base_whitepapers.html" %}
+
+{% block title %}Key considerations when choosing a robot's operating system{% endblock %}
+
+{% block meta_description %}Robots have been the subject of science fiction films for decades, but with technological advances, including the rise of internet connected devices, a real robotic revolution is beginning to emerge.{% endblock %}
+
+{% block meta_copydoc %}{% endblock meta_copydoc %}
+
+
+{% block content %}
+<section id="key" class="p-strip--suru-shape-light is-deep">
+  <div class="row">
+    <div class="col-11">
+      <h1 class="u-text--accent">
+        Key considerations when choosing a robot's operating system
+      </h1>
+      <h4>
+        A real robotic revolution is beginning to emerge.
+      </h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 u-vertically-center">
+      <p><small>August 2018</small></p>
+    </div>
+    <div class="col-5 u-align--right u-vertically-center">
+      <ul class="p-inline-list-icons u-no-padding--left u-no-margin--left">
+        <li class="p-inline-list__item">
+          <small>Share on:</small>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-icon--facebook" title="Share on Facebook" href="http://www.facebook.com/sharer.php?s=100&p[url]=https%3A%2F%2Fwww.ubuntu.com%2Fwhitepapers%2Frobotics&amp;p[title]=Key+considerations+when+choosing+a+robot%E2%80%99s+operating+system[summary]=Robots+have+been+the+subject+of+science+fiction+films+for+decades%2C+but+with+technological+advances%2C+including+the+rise+of+internet+connected+devices%2C+a+real+robotic+revolution+is+beginning+to+emerge.">
+            Facebook
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-icon--twitter" title="Share on Twitter" href="http://twitter.com/share?text=Key+considerations+when+choosing+a+robot%E2%80%99s+operating+system&url=https%3A%2F%2Fwww.ubuntu.com%2Fwhitepapers%2Frobotics&hashtags=robotics">
+            Twitter
+          </a>
+        </li>
+        <li class="p-inline-list__item">
+          <a class="p-icon--linkedin" title="Share on LinkedIn" href="http://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.ubuntu.com%2Fwhitepapers%2Frobotics&title=Key+considerations+when+choosing+a+robot%E2%80%99s+operating+system">
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-3 p-sticky-nav" style="border: 0;">
+      <aside class="p-sidebar" id="navigation">
+        <div class="p-sidebar__banner u-hide--medium u-hide--large">
+          <i class="p-sidebar__toggle p-icon--menu"></i>
+        </div>
+        <div class="p-sidebar__content u-hide--small">
+          <nav class="p-sidebar-nav" style="margin-top: 0.25rem;">
+            <h5>Table of contents</h5>
+            <ul class="p-sidebar-nav__list" id="docs-list-unsorted">
+              <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#introduction">Introduction</a></li>
+              <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#development-factors">Development factors</a>
+                <ul class="p-sidebar-nav__list">
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#software-stack">Software stack compatibility</a></li>
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#hardware">Hardware compatibility</a></li>
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#development">Development team familiarity</a></li>
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#ease">Ease of system integration</a></li>
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#support">Support availability</a></li>
+                </ul>
+              </li>
+              <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#production">Production factors</a>
+                <ul class="p-sidebar-nav__list">
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#software-update">Software update process</a></li>
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#long-term">Long-term support</a></li>
+                  <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#ensuring">Ensuring a profitable lifespan</a></li>
+                </ul>
+              </li>
+              <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#conclusion">Conclusion</a></li>
+              <li class="p-sidebar-nav__item"><a class="p-link--soft js-sticky-tab" href="#further-reading">Further reading</a></li>
+            </ul>
+          </nav>
+        </div>
+        <script>
+          // Toggle mobile sidebar nav
+          var toggle = document.querySelector('.p-sidebar__toggle');
+          var sidebarContent = document.querySelector('.p-sidebar__content');
+
+          toggle.addEventListener('click', function(e) {
+            toggle.classList.toggle('p-icon--menu');
+            toggle.classList.toggle('p-icon--close');
+            sidebarContent.classList.toggle('u-hide--small');
+          });
+        </script>
+      </aside>
+
+    </div>
+    <div class="col-9 p-keyline">
+      <section id="introduction" class="p-strip is-shallow u-no-padding--top u-hidden-anchor">
+        <div class="row">
+          <div class="col-start-large-2">
+            <p>
+              Converging with the growth of artificial intelligence and machine learning, robots are being adopted in every sector imaginable, including consumer, industrial, healthcare, and retail.
+              According to <a href="https://www.idc.com/getdoc.jsp?containerId=prUS42880417">IDC</a>, worldwide robotic spending, encompassing hardware, software and related services, is set to reach US$230.7bn by 2021.
+            </p>
+            <p>
+              Due to the sizeable market potential, demand, and evolution of technology, companies are seizing the opportunity to build robots. However as with many other initiatives in the wider Internet of Things (IoT) industry, there are key decisions that robotic manufacturers need to make from the development stage onwards to ensure they are building a sustainable, future-proof, and secure robot.
+            </p>
+            <p>
+              One of the most important decisions to be made is that of the robot's operating system. Unfortunately, this importance is not always obvious until the company is too invested to change it, which can lead to a slew of delays or issues to overcome. The operating system that's perfect for hacking things together may be impossible to maintain once the robot reaches production.
+            </p>
+            <p>
+              Similarly, the build-your-own option means maintaining the entire operating system (backporting upstream security updates, etc.) for the lifetime of the robot. The rock-solid, stable option may end up having versions of dependencies that are too old to use. That snazzy new one created by a niche startup that seems to tick all the boxes is less appealing if they suddenly go out of business.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="signup-form col-start-large-2">
+            <div class="col-6">
+              <h3>Continue to read for free</h3>
+              {% include "whitepapers/shared/form.html" %}
+            </div>
+          </div>
+        </div>
+        <div class="l-content"></div>
+      </section>
+
+      <section id="wp-further-reading" class="p-strip--light u-hidden-anchor">
+        <div class="row">
+          <div class="col-start-large-2">
+            <h4>
+              More on this topic:
+            </h4>
+
+            <p>
+              Webinar:<br />
+              <a href="https://www.brighttalk.com/webcast/6793/268763/building-a-commercial-robot-with-open-source" class="p-link--external">
+                Building a commercial robot with Open Source
+              </a>
+            </p>
+            <p>
+              Blog series:<br />
+              <a href="/blog/from-ros-prototype-to-production-on-ubuntu-core" class="p-link--external">
+                From ROS prototype to production on Ubuntu Core
+              </a>
+            </p>
+            <p>
+              Case study:<br />
+              <a href="/blog/botsandus-build-a-social-robot-on-ubuntu" class="p-link--external">
+                BotsAndUs: Building a social robot
+              </a>
+            </p>
+            <p>
+              Case study:<br />
+              <a href="/blog/robotcheers-uses-ubuntu-to-create-hospitality-robots" class="p-link--external">
+                RobotCheers uses Ubuntu to create hospitality robots
+              </a>
+            </p>
+            <p>
+              Blogs:<br />
+              <a href="/blog/creating-the-worlds-first-robotic-tennis-ball-collector-with-ubuntu" class="p-link--external">
+                Tennibot: Creating the world's first robotic tennis ball collector
+              </a><br />
+              <a href="/blog/using-snaps-to-advance-robotics-development"  class="p-link--external">
+                SeaMachines: Using snaps to advance robotics development
+              </a>
+            </p>
+            <p style="padding-top: 2rem;">
+              If you're interested to learn more about running your robot on Ubuntu, please <a href="/internet-of-things/robotics#get-in-touch" class="p-button">get in touch</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
