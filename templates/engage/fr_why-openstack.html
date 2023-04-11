@@ -1,0 +1,162 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}Pourquoi OpenStack ? | Ubuntu{% endblock %}
+{% block meta_lang %}fr{% endblock %}
+
+{% block meta_description %}
+OpenStack est la première plate-forme cloud open source au monde pour la construction d'infrastructures rentables. Découvrez par où commencer à utiliser OpenStack pour votre organisation.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+https://docs.google.com/document/d/1Nvam2qif5UPjTyUPWxhJo1XPiFDM-Eb5FxfSWCbNX8c
+{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-7">
+      <h1>OpenStack : qu'est-ce que c'est et pourquoi en avez-vous besoin ?</h1>
+      <p>Il est difficile d'optimiser les coûts de maintenance du cloud de votre organisation et de construire une infrastructure compétitive alternative aux plateformes publiques.</p>
+      <p>OpenStack &ndash; la première plate-forme cloud open source au monde &ndash; permet d'économiser jusqu'à 65 % par rapport aux hyperscalers.</p>
+      <p>Il est soutenu par les principaux acteurs de l'industrie et utilisé avec succès par des milliers d'organisations dans le monde entier.</p>
+      <p>Vous ne savez pas par où commencer ?</p>
+      <p>
+        <a class="p-button--positive js-invoke-modal" href="/openstack/contact-us">Entrer en contact</a>
+        Formulaire en anglais
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3409bb95-OpenStack-Logo-Vertical-white.svg",
+        alt="",
+        width="300",
+        height="145",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/168111aa-Cloud+migration.svg",
+        alt="",
+        width="200",
+        height="200",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-8">
+      <h2>Un guide commercial sur la migration vers le cloud</h2>
+      <p class="p-heading--4">Savoir par où commencer</p>
+      <p>La technologie cloud étant devenue la norme pour les infrastructures informatiques modernes, toutes les entreprises devront migrer vers celle-ci tôt ou tard. Mais certaines choses sont plus faciles à dire qu'à faire, surtout si vous cherchez à maintenir la disponibilité, à vous intégrer aux systèmes existants et à garder le contrôle de votre budget pendant cette migration.</p>
+      <p>Quelle architecture cloud convient le mieux à votre organisation ? Quels sont les modèles typiques de cloud computing ? Comment migrer vers le cloud avec peu d'interférences ?</p>
+      <p>
+        <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/FR_Business_guide_hybrid_multi_cloud_14.11.22.pdf">Téléchargez le livre blanc pour en savoir plus&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Une introduction à OpenStack</h2>
+      <p class="p-heading--4">Pourquoi maîtriser OpenStack est si important aujourd'hui ?</p>
+      <p>30 % des organisations dans le monde ont recours à l'utilisation d'OpenStack en production.</p>
+      <p>Il est largement utilisé pour construire une infrastructure locale de cloud privé et public. Les environnements multi-cloud Edge et hybrides montrent également une adoption plus poussée d'OpenStack.</p>
+      <p>OpenStack est devenu la norme de facto pour la mise en œuvre d'infrastructures ouvertes, avec le noyau Linux et l'hyperviseur de machines virtuelles basées sur le noyau (KVM).</p>
+      <p>
+        <a href="/engage/une-introduction-a-openStack">Lisez le livre blanc pour en savoir plus &nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/669390e0-openstack-cloud.svg",
+        alt="",
+        width="263",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Support Openstack auquel vous pouvez faire confiance</h2>
+      <p>Le cycle de publication d'<a href="/openstack">OpenStack</a> suit le cycle de publication d'Ubuntu. Cela signifie qu'une nouvelle version d'OpenStack est publiée deux fois par an : en avril et en octobre. Ceux-ci sont livrés avec les nouvelles versions d'Ubuntu sous forme de packages dans <a href="https://packages.ubuntu.com/">les archives Ubuntu</a>.</p>
+      <p>Le cycle de vie de la prise en charge d'OpenStack sur Ubuntu peut être représenté de la manière suivante :</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+      {% include "/about/openstack-release-cycle.html" %}
+    <p>
+      <a href="/about/release-cycle#openstack-release-cycle">Apprendre encore plus&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>Combattre l'inflation grâce à l'optimisation des coûts du cloud</h2>
+      <p>Découvrez des techniques prouvées pour réduire le TCO dans les environnements multi-cloud publics, privés et hybrides dans ce webinaire.</p>
+      <p>Découvrez les meilleures pratiques d'optimisation des coûts du cloud de Canonical et découvrez comment réduire jusqu'à deux tiers vos dépenses liées au cloud en 2023.</p>
+      <p>
+        <a href="/engage/cloud-cost-management" class="p-button">Inscrivez-vous au webinaire</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/7281d2f3-Private+Cloud+Build.svg",
+        alt="",
+        width="233",
+        height="170",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>Entrer en contact</h2>
+      <p>Travaillons ensemble pour étendre les avantages de l'utilisation de Charmed OpenStack dans votre organisation.</p>
+      <p>
+        <a href="/openstack/contact-us" class="p-button--positive js-invoke-modal">Entrer en contact</a>
+        Formulaire en anglais
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+        alt="",
+        width="240",
+        height="171",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="4578" data-lp-id="2086" data-return-url="https://ubuntu.com/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+{% endblock content %}
