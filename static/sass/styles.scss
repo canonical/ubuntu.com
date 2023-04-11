@@ -1305,9 +1305,37 @@ hr.p-separator.is-shallow {
   }
 }
 
+.p-strip--white{
+  @extend %vf-strip;
+
+  background-color: $color-x-light;
+}
+
+// suru paper bottom strip styles
+.p-strip--suru-shape-paper {
+  @extend %vf-strip;
+
+  background: url("https://assets.ubuntu.com/v1/5b7f24e2-Suru_10_Paper.png"),
+    #f7f7f7;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 // XXX Pete 03/04/2023
 // Fixes bug with `is-split` on lists, remove when this vanilla issue is fixed:
 // https: //github.com/canonical/vanilla-framework/issues/4719
 [class*="p-list"].is-split .p-list__item {
   display: inline-block;
+}
+
+// XXX Ochuko 11/04/2023
+// Removed separator from the first item on the list. This is a temporary fix
+// this is used on the /data/mongodb page
+.p-list--articles {
+  @extend .p-list--divided;
+
+  .p-list__item:first-child {
+    box-shadow: none;
+  }
 }
