@@ -6,64 +6,42 @@ endblock meta_description %} {% block meta_copydoc %}
 https://docs.google.com/document/d/1sM8pgyM-N8VK8fyHgMsW21PdXUiqYrdRkPkipIljNd0/edit{%
 endblock meta_copydoc %} {% block content %}
 
-<section class="p-strip--light u-no-padding--top u-no-padding--bottom">
+<section class="p-strip">
   <div class="row" >
-    <div class="p-strip--suru-shape-paper">
-      <div class="p-strip is-deep u-no-padding--top">
-        <div class="p-strip is-deep u-no-padding--top">
-          <div class="row">
-            <hr />
-            <div class="col-3">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/7ba3448b-Canonical Charmed MongoDB.png",
-                alt="",
-                width="211",
-                height="34",
-                hi_def=True,
-                loading="auto"
-                ) | safe
-              }}
-            </div>
-            <div class="col-9">
-              <h1 class="p-heading--2 p-heading--silicon-bold">
-                MongoDB database <br class="u-hide--small u-hide--medium" />operations, simplified
-              </h1>
-              <p>
-                Focus more on building apps, and less on maintaining the database <br class="u-hide--small" />with
-                Canonical’s Charmed MongoDB solutions.
-              </p>
-              <p>
-                <a
-                  href="/data/mongodb#get-in-touch"
-                  class="p-button--positive js-invoke-modal"
-                  data-testid="interactive-form-link"
-                >
-                  Get in touch
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h1 class="p-heading--2 p-heading--silicon-bold">
+      MongoDB database operations, <br class="u-hide--small u-hide--medium" />simplified
+    </h1>
+    <p>
+      Focus more on building apps, and less on maintaining the database <br class="u-hide--small" />with
+      Canonical’s Charmed MongoDB solutions.
+    </p>
+    <p>
+      <a
+        href="/data/mongodb#get-in-touch"
+        class="p-button--positive js-invoke-modal"
+        data-testid="interactive-form-link"
+      >
+        Get in touch
+      </a>
+    </p>
   </div>
 </section>
 
-<section class="p-strip--light u-no-margin--bottom">
+<section class="p-strip u-no-margin--bottom u-no-padding--top">
   <div class="row">
     <hr />
-    <div class="col-6">
+    <div class="col-medium-3">
       <h2>
-        Streamline your MongoDB <br class="u-hide--small u-hide--medium" />deployment and maintenance <br class="u-hide--small u-hide--medium" />with Canonical
+        Streamline your MongoDB deployment <br class="u-hide--small u-hide--medium" />and maintenance with Canonical
       </h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-start-large-7 col-medium-3">
       <p>
         MongoDB is a document database known for its performance, resilience and security. It’s ideal for a variety of use cases. Canonical helps you simplify MongoDB operations so you can speed up innovation.
       </p>
       <ul class="p-list--divided">
         <li class="p-list__item has-bullet">World-class MongoDB consulting services</li>
-        <li class="p-list__item has-bullet">Automate operations with our free Charmed MongoDB operator</li>
+        <li class="p-list__item has-bullet">Automate operations with our Charmed MongoDB operator</li>
         <li class="p-list__item has-bullet">Get assistance with deployment and troubleshooting</li>
         <li class="p-list__item has-bullet">
           Security patching for critical and high severity Common Vulnerabilities and Exposures (CVEs)
@@ -77,10 +55,10 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr />
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>Consulting services</h2>
       <p>
         Our team of experts is here to help you get started with your database, providing guidance for new data-related projects, database builds and assistance migrating your application.
@@ -96,15 +74,15 @@ endblock meta_copydoc %} {% block content %}
       </p>
     </div>
     <div
-      class="col-6 u-hide--medium u-hide--small"
+      class="col-6 col-medium-3 u-hide--small"
     >
-      <div class="p-strip--white u-align--center u-vertically-center">
+      <div class="p-strip--light u-align--center u-vertically-center" style="margin-top: 0.5rem;">
         {{ 
           image (
             url="https://assets.ubuntu.com/v1/c0bf7b88-opensearch-consulting-services-illustration.svg",
             alt="", 
-            width="350", 
-            height="200", 
+            width="240", 
+            height="137",
             hi_def=True, 
             loading="lazy" 
           ) | safe 
@@ -114,13 +92,13 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="u-no-margin--bottom" />
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>Fully automated database <br class="u-hide--small u-hide--medium" />operations with Charmed <br class="u-hide--small u-hide--medium" />MongoDB</h2>
     </div>
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <p>
         The Charmed MongoDB Operator delivers automated operations management from day 0 to day 2 on the MongoDB document database. Charmed MongoDB is an enhanced, open source and fully-compatible, drop-in replacement for the MongoDB Community Edition with advanced MongoDB enterprise features.
       </p>
@@ -132,13 +110,13 @@ endblock meta_copydoc %} {% block content %}
           Charmed MongoDB Technical Documentation&nbsp;&rsaquo;
         </a>
       </p>
-      <div class="p-strip--white u-align--center u-vertically-center">
+      <div class="p-strip--light u-align--center u-vertically-center u-hide--small">
         {{ 
           image (
             url="https://assets.ubuntu.com/v1/a8147e27-charmed-opensearch-application-operations.svg",
             alt="", 
-            width="320", 
-            height="206", 
+            width="230", 
+            height="148", 
             hi_def=True, 
             loading="lazy" 
           ) | safe
@@ -148,21 +126,21 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr />
     <div class="col-6">
       <div class="p-strip is-shallow u-no-padding--top">
-        <h3 class="p-heading--2">Why use <br class="u-hide--small u-hide--medium" />Charmed MongoDB?</h3>
+        <h3 class="p-heading--2">Why use <br class="u-hide--small" />Charmed MongoDB?</h3>
       </div>
     </div>
     <div class="col-9 col-start-large-4">
       <hr class="u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-3">
           <h4 class="p-heading--5">Open source</h4>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>
             Get started fast - the open source operator runs on any environment - bare metal, public and private cloud.
           </p>
@@ -173,10 +151,10 @@ endblock meta_copydoc %} {% block content %}
       </div>
       <hr class="u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-3">
           <h4 class="p-heading--5">Deployment service</h4>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>
             Need help deploying your MongoDB database using the Charmed operator? Our team can provide a production-grade deployment cluster, infrastructure recommendations and data application integration capabilities as a service.
           </p>
@@ -187,10 +165,10 @@ endblock meta_copydoc %} {% block content %}
       </div>
       <hr class="u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
-          <h4 class="p-heading--5">Bug fixing <br class="u-hide--small u-hide--medium" />and troubleshooting</h4>
+        <div class="col-3 col-medium-3">
+          <h4 class="p-heading--5">Bug fixing <br class="u-hide--small" />and troubleshooting</h4>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>
             Managing your database can be tiring and daunting. However, our experts offer support for bug fixes and troubleshooting to help you every step of the way.
           </p>
@@ -203,21 +181,21 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr />
     <div class="col-6">
       <div class="p-strip is-shallow u-no-padding--top">
-        <h2>Stand-alone <br class="u-hide--small u-hide--medium" />MongoDB Canonical services</h2>
+        <h2>Stand-alone <br class="u-hide--small" />MongoDB Canonical services</h2>
       </div>
     </div>
     <div class="col-9 col-start-large-4">
       <hr class="u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5">Security patching</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>
             Security patching for your MongoDB application for critical and high severity Common Vulnerabilities and Exposures (CVEs) for your Charmed MongoDB software.
           </p>
@@ -225,10 +203,10 @@ endblock meta_copydoc %} {% block content %}
       </div>
       <hr class="u-no-margin--bottom" />
       <div class="row">
-        <div class="col-3 col-medium-2">
+        <div class="col-3 col-medium-3">
           <h3 class="p-heading--5">Support</h3>
         </div>
-        <div class="col-6 col-medium-4">
+        <div class="col-6 col-medium-3">
           <p>
             N24/7 support and professional services ensure your initiatives are always on track. This includes bug-fixes and operational support for your MongoDB cluster using Charmed MongoDB software.
           </p>
@@ -238,14 +216,14 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
     <hr />
-    <div class="col-6">
-      <h2>Secure and scale your <br class="u-hide--small u-hide--medium" />open-source data applications</h2>
+    <div class="col-6 col-medium-3">
+      <h2>Secure and scale your <br class="u-hide--small" />open-source data applications</h2>
     </div>
     <div
-      class="col-6"
+      class="col-6 col-medium-3"
     >
       <p>
         Unlock the potential of your data with an integrated, open source platform for applications and infrastructure. Canonical also offers enterprise solutions for data applications such as <a href="https://ubuntu.com/data/opensearch">OpenSearch</a>, <a href="https://ubuntu.com/data/spark">Spark</a> and <a href="https://ubuntu.com/data/spark">Kafka</a>.
@@ -263,13 +241,13 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row">
     <hr class="u-no-margin--bottom" />
-    <div class="col-3">
+    <div class="col-3 col-medium-3">
       <h2 class="p-heading--2">Resources</h2>
     </div>
-    <div class="col-9">
+    <div class="col-9 col-medium-3">
       <div class="row">
         <div class="col-3">
           <h3 class="p-text--small-caps">Ubuntu Pro</h3>
@@ -302,16 +280,17 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--top">
+<section class="p-strip u-no-padding--top">
   <div class="row">
+    <hr class="u-no-margin--bottom" />
     <p>
-      MongoDB is a trademark or registered trademark of MongoDB Inc. <br class="u-hide--small" />Other trademarks are property of their respective owners.
+      "MongoDB" is a trademark or registered trademark of MongoDB Inc. <br class="u-hide--small" />Other trademarks are property of their respective owners. Charmed MongoDB is not sponsored, endorsed, or affiliated with MongoDB, Inc.
     </p>
   </div>
 </section>
 
 <template style="display:none" id="mongodb-template">
-  <li class="p-list__item">
+  <li class="p-list__item u-no-padding--top u-no-padding--bottom">
     <div class="p-strip u-no-padding--top">
       <a class="article-link article-title p-heading--2"></a>
     </div>
