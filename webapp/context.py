@@ -146,3 +146,12 @@ def schedule_banner(start_date: str, end_date: str):
         return start <= present < end
     except ValueError:
         return False
+
+
+def date_has_passed(date_str):
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+        present = datetime.now()
+        return present > date
+    except ValueError:
+        return False
