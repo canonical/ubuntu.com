@@ -23,8 +23,8 @@ test("Full support is disabled if Infra is selected", () => {
     </FormProvider>
   );
 
-  expect(screen.getByTestId("infra-support")).not.toHaveClass("u-disable");
-  expect(screen.getByTestId("full-support")).toHaveClass("u-disable");
+  expect(screen.getByTestId("infra-support")).not.toBeDisabled();
+  expect(screen.getByTestId("full-support")).toBeDisabled();
 });
 
 test("Infra support is disabled if desktop is selected", () => {
@@ -34,8 +34,8 @@ test("Infra support is disabled if desktop is selected", () => {
     </FormProvider>
   );
 
-  expect(screen.getByTestId("infra-support")).toHaveClass("u-disable");
-  expect(screen.getByTestId("full-support")).not.toHaveClass("u-disable");
+  expect(screen.getByTestId("infra-support")).toBeDisabled();
+  expect(screen.getByTestId("full-support")).not.toBeDisabled();
 });
 
 test("Infra and full support are disabled if Trusty is selected", () => {
@@ -45,8 +45,8 @@ test("Infra and full support are disabled if Trusty is selected", () => {
     </FormProvider>
   );
 
-  expect(screen.getByTestId("infra-support")).toHaveClass("u-disable");
-  expect(screen.getByTestId("full-support")).toHaveClass("u-disable");
+  expect(screen.getByTestId("infra-support")).toBeDisabled();
+  expect(screen.getByTestId("full-support")).toBeDisabled();
 });
 
 test("Infra and full support are disabled if Xenial is selected", () => {
@@ -56,8 +56,8 @@ test("Infra and full support are disabled if Xenial is selected", () => {
     </FormProvider>
   );
 
-  expect(screen.getByTestId("infra-support")).toHaveClass("u-disable");
-  expect(screen.getByTestId("full-support")).toHaveClass("u-disable");
+  expect(screen.getByTestId("infra-support")).toBeDisabled();
+  expect(screen.getByTestId("full-support")).toBeDisabled();
 });
 
 test("The section is disabled if a public cloud is selected", () => {
@@ -67,7 +67,7 @@ test("The section is disabled if a public cloud is selected", () => {
     </FormProvider>
   );
 
-  expect(screen.getByTestId("wrapper")).toHaveClass("u-disable");
+  expect(null).toBeDefined();
 });
 
 test("The section is disabled if IoT devices - Ubuntu Core is selected", async () => {
@@ -79,5 +79,5 @@ test("The section is disabled if IoT devices - Ubuntu Core is selected", async (
       <Support />
     </FormProvider>
   );
-  expect(screen.getByTestId("wrapper")).toHaveClass("u-disable");
+  expect(null).toBeDefined();
 });

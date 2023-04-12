@@ -1,27 +1,10 @@
 import React, { useContext } from "react";
-import classNames from "classnames";
 import { Col, Input, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
-import {
-  IoTDevices,
-  isIoTDevice,
-  isPublicCloud,
-} from "advantage/subscribe/react/utils/utils";
 
 const Quantity = () => {
-  const { quantity, setQuantity, productType, iotDevice } = useContext(
-    FormContext
-  );
-  const isDisabled = () => {
-    if (
-      isPublicCloud(productType) ||
-      (isIoTDevice(productType) && iotDevice === IoTDevices.core)
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const { quantity, setQuantity } = useContext(FormContext);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (Number(event.target.value) > 0) {
       setQuantity(Number(event.target.value));
@@ -35,12 +18,7 @@ const Quantity = () => {
   };
 
   return (
-    <div
-      className={classNames({
-        "u-disable": isDisabled(),
-      })}
-      data-testid="wrapper"
-    >
+    <div data-testid="wrapper">
       <Row>
         <Col size={2}>
           <Input
@@ -57,7 +35,6 @@ const Quantity = () => {
             pattern="\d+"
             style={{ minWidth: "unset", width: "4rem" }}
             aria-label="For how many machines"
-            disabled={isDisabled()}
           />
         </Col>
       </Row>

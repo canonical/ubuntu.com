@@ -2,14 +2,11 @@ import React, { useContext } from "react";
 import classNames from "classnames";
 import { Row, Col, RadioInput } from "@canonical/react-components";
 import {
-  isPublicCloud,
   Features,
   ProductTypes,
   SLA,
   Support as SupportEnum,
   LTSVersions,
-  IoTDevices,
-  isIoTDevice,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
@@ -22,7 +19,6 @@ const Support = () => {
     setSupport,
     productType,
     version,
-    iotDevice,
   } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +28,7 @@ const Support = () => {
       JSON.stringify(event.target.value as SupportEnum)
     );
   };
+
   const isInfraOnlyDisabled =
     productType === ProductTypes.desktop ||
     version === LTSVersions.trusty ||
@@ -42,48 +39,10 @@ const Support = () => {
     version === LTSVersions.trusty ||
     version === LTSVersions.xenial;
 
-  const isDisabled = (support: SupportEnum) => {
-    if (support === SupportEnum.infra) {
-      if (
-        isInfraOnlyDisabled ||
-        isPublicCloud(productType) ||
-        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    } else if (support === SupportEnum.full) {
-      if (
-        isFullSupportDisabled ||
-        isPublicCloud(productType) ||
-        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      if (
-        isPublicCloud(productType) ||
-        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  };
-
-  const getTabIndex = (isDisabled: boolean) => {
-    return isDisabled ? -1 : 0;
-  };
-
   return (
     <div
       className={classNames({
         row: true,
-        "u-disable": isDisabled(SupportEnum.none),
       })}
       data-testid="wrapper"
     >
@@ -93,62 +52,23 @@ const Support = () => {
             <strong>What&apos;s included?</strong>
           </div>
           <div className="support-row">
-            <a
-              href="/support"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
-              Open source applications
-            </a>
+            <a href="/support">Open source applications</a>
           </div>
           <div className="support-row">
-            <a
-              href="/server"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
-              Ubuntu base OS
-            </a>
+            <a href="/server">Ubuntu base OS</a>
           </div>
           <div className="support-row">
-            <a
-              href="/kubernetes"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
-              Kubernetes
-            </a>
-            ,{" "}
-            <a href="/lxd" tabIndex={getTabIndex(isDisabled(SupportEnum.none))}>
-              LXD
-            </a>
-            ,{" "}
-            <a
-              href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
+            <a href="/kubernetes">Kubernetes</a>, <a href="/lxd">LXD</a>,{" "}
+            <a href="https://docs.openstack.org/charm-guide/latest/project/openstack-charms.html">
               Charms
             </a>
           </div>
           <div className="support-row">
-            <a
-              href="/openstack"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
-              OpenStack
-            </a>
-            ,{" "}
-            <a
-              href="https://maas.io/"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
-              MAAS
-            </a>
+            <a href="/openstack">OpenStack</a>,{" "}
+            <a href="https://maas.io/">MAAS</a>
           </div>
           <div className="support-row">
-            <a
-              href="/ceph"
-              tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
-            >
-              Ceph and Swift storage
-            </a>
+            <a href="/ceph">Ceph and Swift storage</a>
           </div>
         </Col>
         <Col size={2}>
@@ -167,7 +87,6 @@ const Support = () => {
                 value={SupportEnum.none}
                 checked={support === SupportEnum.none}
                 onChange={handleChange}
-                disabled={isDisabled(SupportEnum.none)}
               />
               <span className="p-radio__label" id={`none-label`}>
                 <RadioInput
@@ -176,8 +95,6 @@ const Support = () => {
                   checked={support === SupportEnum.none}
                   value={SupportEnum.none}
                   onChange={handleChange}
-                  disabled={isDisabled(SupportEnum.none)}
-                  tabIndex={getTabIndex(isDisabled(SupportEnum.none))}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row not-supported">—</div>
@@ -193,12 +110,11 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.infra,
-              "u-disable": isDisabled(SupportEnum.infra),
             })}
-            data-testid="infra-support"
           >
             <label className="p-radio u-align-text--center">
               <input
+                data-testid="infra-support"
                 className="p-radio__input"
                 autoComplete="off"
                 type="radio"
@@ -206,7 +122,7 @@ const Support = () => {
                 value={SupportEnum.infra}
                 checked={support === SupportEnum.infra}
                 onChange={handleChange}
-                disabled={isDisabled(SupportEnum.infra)}
+                disabled={isInfraOnlyDisabled}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -215,7 +131,7 @@ const Support = () => {
                   checked={support === SupportEnum.infra}
                   value={SupportEnum.infra}
                   onChange={handleChange}
-                  disabled={isDisabled(SupportEnum.infra)}
+                  disabled={isInfraOnlyDisabled}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row">
@@ -239,9 +155,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.full,
-              "u-disable": isDisabled(SupportEnum.full),
             })}
-            data-testid="full-support"
           >
             <label className="p-radio u-align-text--center">
               <input
@@ -252,7 +166,8 @@ const Support = () => {
                 value={SupportEnum.full}
                 checked={support === SupportEnum.full}
                 onChange={handleChange}
-                disabled={isDisabled(SupportEnum.full)}
+                disabled={isFullSupportDisabled}
+                data-testid="full-support"
               />
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
@@ -261,7 +176,7 @@ const Support = () => {
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
                   onChange={handleChange}
-                  disabled={isDisabled(SupportEnum.full)}
+                  disabled={isFullSupportDisabled}
                 />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
@@ -334,7 +249,6 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.infra === support,
-            "u-disable": isDisabled(SupportEnum.infra),
           })}
           onClick={() => {
             setSupport(SupportEnum.infra);
@@ -349,7 +263,7 @@ const Support = () => {
             label="Infra Support"
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
-            disabled={isDisabled(SupportEnum.infra)}
+            disabled={isInfraOnlyDisabled}
           />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
@@ -373,7 +287,6 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.full === support,
-            "u-disable": isDisabled(SupportEnum.full),
           })}
           onClick={() => {
             setSupport(SupportEnum.full);
@@ -388,7 +301,7 @@ const Support = () => {
             label="Full Support"
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
-            disabled={isDisabled(SupportEnum.full)}
+            disabled={isFullSupportDisabled}
           />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
@@ -437,7 +350,6 @@ const Support = () => {
                     );
                   }}
                   style={{ textAlign: "justify" }}
-                  disabled={isDisabled(SupportEnum.none)}
                 >
                   <span>Weekday</span>
                   <p className="p-text--small u-no-margin--bottom">
@@ -459,7 +371,6 @@ const Support = () => {
                     );
                   }}
                   style={{ textAlign: "justify" }}
-                  disabled={isDisabled(SupportEnum.none)}
                 >
                   <span>24/7</span>
                   <p className="p-text--small u-no-margin--bottom">
