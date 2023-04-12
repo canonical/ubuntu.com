@@ -1,14 +1,20 @@
-{% extends "data/base_data.html" %} {% block title %}Canonical Charmed MongoDB{%
-endblock %} {% block meta_description %} Enterprise-grade NoSQL database with
-high performance, scalability, and security. It is ideal for businesses that
-need a reliable and robust database for their mission-critical applications. {%
-endblock meta_description %} {% block meta_copydoc %}
-https://docs.google.com/document/d/1sM8pgyM-N8VK8fyHgMsW21PdXUiqYrdRkPkipIljNd0/edit{%
-endblock meta_copydoc %} {% block content %}
+{% extends "data/base_data.html" %} 
+
+{% block title %}Canonical Charmed MongoDB{% endblock %} 
+
+{% block meta_description %} 
+  Enterprise-grade NoSQL database with high performance, scalability, and security. It is ideal for businesses that need a reliable and robust database for their mission-critical applications. 
+{% endblock meta_description %} 
+
+{% block meta_copydoc %}
+  https://docs.google.com/document/d/1sM8pgyM-N8VK8fyHgMsW21PdXUiqYrdRkPkipIljNd0/edit
+{% endblock meta_copydoc %} 
+
+{% block content %}
 
 <section class="p-strip">
   <div class="row" >
-    <h1 class="p-heading--2 p-heading--silicon-bold">
+    <h1 class="p-heading--2 p-heading--bold">
       MongoDB database operations, <br class="u-hide--small u-hide--medium" />simplified
     </h1>
     <p>
@@ -37,7 +43,7 @@ endblock meta_copydoc %} {% block content %}
     </div>
     <div class="col-6 col-start-large-7 col-medium-3">
       <p>
-        MongoDB is a document database known for its performance, resilience and security. It’s ideal for a variety of use cases. Canonical helps you simplify MongoDB operations so you can speed up innovation.
+        MongoDB is a document database known for its performance, resilience and security. Canonical helps you simplify MongoDB operations so you can speed up innovation.
       </p>
       <ul class="p-list--divided">
         <li class="p-list__item has-bullet">World-class MongoDB consulting services</li>
@@ -73,10 +79,8 @@ endblock meta_copydoc %} {% block content %}
         </a>
       </p>
     </div>
-    <div
-      class="col-6 col-medium-3 u-hide--small"
-    >
-      <div class="p-strip--light u-align--center u-vertically-center" style="margin-top: 0.5rem;">
+    <div class="col-6 col-medium-3 u-hide--small" style="padding-top: 0.5rem;">
+      <div class="p-strip--light u-align--center u-vertically-center">
         {{ 
           image (
             url="https://assets.ubuntu.com/v1/c0bf7b88-opensearch-consulting-services-illustration.svg",
@@ -208,7 +212,7 @@ endblock meta_copydoc %} {% block content %}
         </div>
         <div class="col-6 col-medium-3">
           <p>
-            N24/7 support and professional services ensure your initiatives are always on track. This includes bug-fixes and operational support for your MongoDB cluster using Charmed MongoDB software.
+            24/7 support and professional services ensure your initiatives are always on track. This includes bug-fixes and operational support for your MongoDB cluster using Charmed MongoDB software.
           </p>
         </div>
       </div>
@@ -226,7 +230,7 @@ endblock meta_copydoc %} {% block content %}
       class="col-6 col-medium-3"
     >
       <p>
-        Unlock the potential of your data with an integrated, open source platform for applications and infrastructure. Canonical also offers enterprise solutions for data applications such as <a href="https://ubuntu.com/data/opensearch">OpenSearch</a>, <a href="https://ubuntu.com/data/spark">Spark</a> and <a href="https://ubuntu.com/data/spark">Kafka</a>.
+        Unlock the potential of your data with an integrated, open source platform for applications and infrastructure. Canonical also offers enterprise solutions for data applications such as <a href="https://ubuntu.com/data/opensearch">OpenSearch</a>, <a href="https://ubuntu.com/data/spark">Spark</a> and <a href="https://ubuntu.com/data/kafka">Kafka</a>.
       </p>
       <p>
         <a
@@ -241,7 +245,7 @@ endblock meta_copydoc %} {% block content %}
   </div>
 </section>
 
-<section class="p-strip u-no-padding--top">
+<section>
   <div class="row">
     <hr class="u-no-margin--bottom" />
     <div class="col-3 col-medium-3">
@@ -250,7 +254,7 @@ endblock meta_copydoc %} {% block content %}
     <div class="col-9 col-medium-3">
       <div class="row">
         <div class="col-3">
-          <h3 class="p-text--small-caps">Ubuntu Pro</h3>
+          <h3 class="p-heading--5">Ubuntu Pro</h3>
         </div>
         <div class="col-6">
           <p>
@@ -271,7 +275,7 @@ endblock meta_copydoc %} {% block content %}
       <hr class="u-no-margin--bottom" />
       <div class="row">
         <div class="col-3">
-          <h3 class="p-text--small-caps">From our blog</h3>
+          <h3 class="p-heading--5">From our blog</h3>
         </div>
         <ul class="col-6 p-list--articles" id="mongodb-articles">
           <div><i class="p-icon--spinner u-animation--spin">Loading...</i></div>
@@ -291,9 +295,9 @@ endblock meta_copydoc %} {% block content %}
 
 <template style="display:none" id="mongodb-template">
   <li class="p-list__item u-no-padding--top u-no-padding--bottom">
-    <div class="p-strip u-no-padding--top">
+    <section class="p-strip is-shallow u-no-padding--top">
       <a class="article-link article-title p-heading--2"></a>
-    </div>
+    </section>
   </li>
 </template>
 
