@@ -1,20 +1,11 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 import { Col, RadioInput, Row } from "@canonical/react-components";
-import {
-  Features,
-  IoTDevices,
-  isIoTDevice,
-  isPublicCloud,
-  ProductTypes,
-  Support as SupportEnum,
-} from "advantage/subscribe/react/utils/utils";
+import { Features, ProductTypes } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
-  const { productType, feature, setFeature, iotDevice } = useContext(
-    FormContext
-  );
+  const { productType, feature, setFeature } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFeature(event.target.value as Features);
@@ -26,35 +17,11 @@ const Feature = () => {
 
   const infraOnlyDisabled = ProductTypes.desktop === productType;
 
-  const isDisabled = (support: SupportEnum) => {
-    if (support === SupportEnum.infra) {
-      if (
-        infraOnlyDisabled ||
-        isPublicCloud(productType) ||
-        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      if (
-        isPublicCloud(productType) ||
-        (isIoTDevice(productType) && iotDevice === IoTDevices.core)
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  };
-
   return (
     <div
       className={classNames({
         row: true,
         "p-divider": true,
-        "u-disable": isDisabled(SupportEnum.none),
       })}
       data-testid="wrapper"
     >
@@ -154,7 +121,6 @@ const Feature = () => {
                 value={Features.pro}
                 checked={feature === Features.pro}
                 onChange={handleChange}
-                disabled={isDisabled(SupportEnum.none)}
               />
               <span className="p-radio__label" id={`pro-label`}>
                 <RadioInput
@@ -163,7 +129,6 @@ const Feature = () => {
                   checked={feature === Features.pro}
                   value={Features.pro}
                   onChange={handleChange}
-                  disabled={isDisabled(SupportEnum.none)}
                 />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
@@ -180,12 +145,11 @@ const Feature = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": feature === Features.infra,
-              "u-disable": isDisabled(SupportEnum.infra),
             })}
-            data-testid="infra-only"
           >
             <label className="p-radio u-align-text--center">
               <input
+                data-testid="infra-only"
                 className="p-radio__input"
                 autoComplete="off"
                 type="radio"
@@ -193,7 +157,7 @@ const Feature = () => {
                 value={Features.infra}
                 checked={feature === Features.infra}
                 onChange={handleChange}
-                disabled={isDisabled(SupportEnum.infra)}
+                disabled={infraOnlyDisabled}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -202,7 +166,7 @@ const Feature = () => {
                   checked={feature === Features.infra}
                   value={Features.infra}
                   onChange={handleChange}
-                  disabled={isDisabled(SupportEnum.infra)}
+                  disabled={infraOnlyDisabled}
                 />
                 <div className="included">
                   <i className="p-icon--success"></i>Included
@@ -221,14 +185,13 @@ const Feature = () => {
           value={Features.pro}
           checked={feature === Features.pro}
           onChange={handleChange}
-          disabled={isDisabled(SupportEnum.none)}
         />
         <RadioInput
           label="Ubuntu Pro (Infra-only)"
           value={Features.infra}
           checked={feature === Features.infra}
           onChange={handleChange}
-          disabled={isDisabled(SupportEnum.infra)}
+          disabled={infraOnlyDisabled}
         />
       </Col>
       <Col
