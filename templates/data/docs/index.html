@@ -1,24 +1,25 @@
 {% extends "data/base_data.html" %}
 
-{% block title %}Canonical Charmed Data Platform{% endblock %}
+{% block title %}Canonical Charmed Data Fabric Suite{% endblock %}
 
-{% block meta_description %}Canonical Data Fabric - Documentation Hub. Innovate at scale on any cloud. Advanced open source solutions for data on IaaS and Kubernetes with flexible, enterprise-grade support.{% endblock meta_description %}
+{% block meta_description %}Canonical Data Fabric Suite - Documentation Hub. Innovate at scale on any cloud. Advanced open source solutions for data on IaaS and Kubernetes with flexible, enterprise-grade support.{% endblock meta_description %}
 
 {% block meta_copydoc %}https://docs.google.com/document/d/1zidLwSBOsNPIznRO2DfFGU1N3xxnCBKRmQku-X-fc_U/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
+<section>
 <div class="p-strip--suru is-dark">
   <div class="row u-equal-height">
     <div class="col-7">
       <h1>
-        Canonical Data Fabric
+        Canonical Data Fabric Suite
       </h1>
       <h2 class="u-sv3">
         Documentation Hub
       </h2>
-      <p>Canonical's Data Fabric suite has been engineered to deliver a rock solid operational foundation for your critical data infrastructure.</p>
-      <p class="u-sv3">It offers flexible support for your database servers and other data fabric enablers, with up to 10 years of software maintenance and break-fix support on selected releases. The Canonical Data Fabric suite is a comprehensive offering for reliable data processing at any scale.</p>
+      <p>Canonical's Data Fabric Suite has been engineered to deliver a rock solid operational foundation for your critical data infrastructure.</p>
+      <p class="u-sv3">It offers flexible support for your database servers and other data fabric enablers, with up to 10 years of software maintenance and break-fix support on selected releases. The Canonical Data Fabric Suite is a comprehensive offering for reliable data processing at any scale.</p>
     </div>
     <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
       {{ image(
@@ -36,7 +37,7 @@
     <div class="col-4 u-equal-height">
       <div class="p-card">
         <h2 class="p-card__title p-heading--3">Charmed Spark</h2>
-        <p class="p-card__content u-sv3">Access resources for deploying, operating and using Apache Spark on Kubernetes with Charmed Spark.</p>
+        <p class="p-card__content u-sv3">Access resources for deploying, operating and using Apache Spark<sup>&reg;</sup> on Kubernetes with Charmed Spark.</p>
 	<p class="p-card__content"><a href="/data/docs/spark-k8s" class="p-button--positive">Access docs</a></p>
       </div>
     </div>
@@ -56,8 +57,9 @@
     </div>
   </div>
 </div>
+</section>
 
-<div class="p-strip--light">
+<section class="p-strip--light">
   <div class="row">
     <div class="col7">
       <h2>Enterprise-class Support</h2>
@@ -65,7 +67,7 @@
       <p><a href="#get-in-touch" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Get in touch</a></p>
     </div>
   </div>
-</div>
+</section>
 
 
 {% with first_item="_server_download", second_item="_server_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
