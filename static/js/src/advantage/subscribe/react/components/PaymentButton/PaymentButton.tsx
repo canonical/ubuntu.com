@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Button } from "@canonical/react-components";
 import { FormContext } from "../../utils/FormContext";
+import { VButton } from "@canonical/vanilla-web-components/react-components";
 
 export default function PaymentButton() {
   const { quantity, product } = useContext(FormContext);
@@ -13,7 +13,7 @@ export default function PaymentButton() {
 
   return (
     <>
-      <Button
+      <VButton
         appearance="positive"
         onClick={(e) => {
           e.preventDefault();
@@ -25,7 +25,7 @@ export default function PaymentButton() {
         }}
       >
         Buy now
-      </Button>
+      </VButton>
     </>
   );
 }

@@ -556,229 +556,65 @@
       <h2 class="u-sv3">
         Kubernetes glossary
       </h2>
-      <aside class="p-accordion">
-        <ul class="p-accordion__list">
-          <li class="p-accordion__group">
-            <div type="button" role="heading" aria-level="3" class="p-accordion__heading">
-              <button class="p-accordion__tab" id="tab1" aria-controls="tab1-section" aria-expanded="false">
-                Node
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab1-section" aria-hidden="true" aria-labelledby="tab1">
-              <p>
-                A virtual or physical machine, depending on the cluster setup. Each node is managed by the control plane and contains the services necessary to run pods.
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab2" aria-controls="tab2-section" aria-expanded="false">
-                Pod
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab2-section" aria-hidden="true" aria-labelledby="tab2">
-              <p>
-                The smallest unit in the Kubernetes object model that is used to host containers.
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab3" aria-controls="tab3-section" aria-expanded="false">
-                Container
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab3-section" aria-hidden="true" aria-labelledby="tab3">
-              <p>
-                A standard unit of software that packages up code and all its dependencies, making it portable across different compute environments. <a href="/containers/what-are-containers">Learn more about containers&nbsp;&rsaquo;</a>
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab4" aria-controls="tab4-section" aria-expanded="false">
-                Control plane
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab4-section" aria-hidden="true" aria-labelledby="tab4">
-              <p>
-                The orchestration layer that provides interfaces to define, deploy, and manage the lifecycle of containers.
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab5" aria-controls="tab5-section" aria-expanded="false">
-                Worker nodes
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab5-section" aria-hidden="true" aria-labelledby="tab5">
-              <p>
-                Every worker node can host applications as containers. A Kubernetes cluster usually has multiple worker nodes, but minimum one.
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab6" aria-controls="tab6-section" aria-expanded="false">
-                API server
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab6-section" aria-hidden="true" aria-labelledby="tab6">
-              <p>
-                The primary control plane component, which exposes the Kubernetes API, enabling communications between cluster components.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab7" aria-controls="tab7-section" aria-expanded="false">
-                Controller-manager
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab7-section" aria-hidden="true" aria-labelledby="tab7">
-              <p>
-                A control plane daemon that monitors the state of the cluster and makes all necessary changes for the cluster to reach its desired state.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab8" aria-controls="tab8-section" aria-expanded="false">
-                Services
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab8-section" aria-hidden="true" aria-labelledby="tab8">
-              <p>
-                A logical abstraction that groups multiple pods and provides network policies that define how the pods can be accessed.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab9" aria-controls="tab9-section" aria-expanded="false">
-                Resources
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab9-section" aria-hidden="true" aria-labelledby="tab9">
-              <p>
-                Kubernetes is based on the principles of control theory. It allows users to manage their applications lifecycle by creating, modifying or deleting resources that are tracked by controllers, thus regulating the state of the entire system. In the Kubernetes API, every resource corresponds to a specific endpoint.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab10" aria-controls="tab10-section" aria-expanded="false">
-                Custom resources
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab10-section" aria-hidden="true" aria-labelledby="tab10">
-              <p>
-                A customization of a particular Kubernetes installation. They allow users to extend the Kubernetes API, beyond its default supported behaviour, addressing more complicated use cases and making the platform more modular.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab11" aria-controls="tab11-section" aria-expanded="false">
-                Etcd
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab11-section" aria-hidden="true" aria-labelledby="tab11">
-              <p>
-                The control plane database, a reliable key-value store, used to store the state of the cluster, capturing details such as deployment status of containers, pod metrics and logs, network configuration, cluster certificates etc.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab14" aria-controls="tab14-section" aria-expanded="false">
-                Ingress
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab14-section" aria-hidden="true" aria-labelledby="tab14">
-              <p>
-                A way to manage external access to the services in a cluster by exposing network routes through the Kubernetes API.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab15" aria-controls="tab15-section" aria-expanded="false">
-                Kubelet
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab15-section" aria-hidden="true" aria-labelledby="tab15">
-              <p>
-                An agent that runs on each worker node in the cluster and ensures that containers are running in a pod.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab16" aria-controls="tab16-section" aria-expanded="false">
-                Kubeproxy
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab16-section" aria-hidden="true" aria-labelledby="tab16">
-              <p>
-                Enables communication between worker nodes, by maintaining network rules on the nodes.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab17" aria-controls="tab17-section" aria-expanded="false">
-                Container runtime/ CRI
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab17-section" aria-hidden="true" aria-labelledby="tab17">
-              <p>
-                The software responsible for running containers, by coordinating the use of system resources across containers. Kubernetes can use different container runtimes (e.g. containerd, CRI-O) through the container runtime interface (CRI).              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab18" aria-controls="tab18-section" aria-expanded="false">
-                CNI
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab18-section" aria-hidden="true" aria-labelledby="tab18">
-              <p>
-                The Container Network Interface is a specification and a set of tools to define networking interfaces between network providers and Kubernetes.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab19" aria-controls="tab19-section" aria-expanded="false">
-                CSI
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab19-section" aria-hidden="true" aria-labelledby="tab19">
-              <p>
-                The Container Storage Interface is a specification for data storage tools and applications to integrate with Kubernetes clusters.              
-              </p>
-            </section>
-          </li>
-          <li class="p-accordion__group">
-            <div>
-              <button type="button" class="p-accordion__tab" id="tab20" aria-controls="tab20-section" aria-expanded="false">
-                Kubectl
-              </button>
-            </div>
-            <section class="p-accordion__panel" id="tab20-section" aria-hidden="true" aria-labelledby="tab20">
-              <p>
-                A command-line tool for controlling Kubernetes clusters.              
-              </p>
-            </section>
-          </li>
-        </ul>
-      </aside>
-      </div>
+      <v-accordion>
+        <v-accordion-section section-title="Node">
+          <p>A virtual or physical machine, depending on the cluster setup. Each node is managed by the control plane and contains the services necessary to run pods.</p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Pod">
+          <p>The smallest unit in the Kubernetes object model that is used to host containers.</p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Container">
+          <p>A standard unit of software that packages up code and all its dependencies, making it portable across different compute environments. <a href="/containers/what-are-containers">Learn more about containers&nbsp;&rsaquo;</a></p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Control plane">
+          <p>The orchestration layer that provides interfaces to define, deploy, and manage the lifecycle of containers.</p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Worker nodes">
+          <p>Every worker node can host applications as containers. A Kubernetes cluster usually has multiple worker nodes, but minimum one.</p>
+        </v-accordion-section>
+        <v-accordion-section section-title="API server">
+          <p>The primary control plane component, which exposes the Kubernetes API, enabling communications between cluster components.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Controller-manager">
+          <p>A control plane daemon that monitors the state of the cluster and makes all necessary changes for the cluster to reach its desired state.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Services">
+          <p>A logical abstraction that groups multiple pods and provides network policies that define how the pods can be accessed.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Resources">
+          <p>Kubernetes is based on the principles of control theory. It allows users to manage their applications lifecycle by creating, modifying or deleting resources that are tracked by controllers, thus regulating the state of the entire system. In the Kubernetes API, every resource corresponds to a specific endpoint.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Custom resources">
+          <p>A customization of a particular Kubernetes installation. They allow users to extend the Kubernetes API, beyond its default supported behaviour, addressing more complicated use cases and making the platform more modular.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Etcd">
+          <p>The control plane database, a reliable key-value store, used to store the state of the cluster, capturing details such as deployment status of containers, pod metrics and logs, network configuration, cluster certificates etc.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Ingress">
+          <p>A way to manage external access to the services in a cluster by exposing network routes through the Kubernetes API.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Kubelet">
+          <p>An agent that runs on each worker node in the cluster and ensures that containers are running in a pod.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Kubeproxy">
+          <p>Enables communication between worker nodes, by maintaining network rules on the nodes.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Container runtime/ CRI">
+          <p>The software responsible for running containers, by coordinating the use of system resources across containers. Kubernetes can use different container runtimes (e.g. containerd, CRI-O) through the container runtime interface (CRI).              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="CNI">
+          <p>The Container Network Interface is a specification and a set of tools to define networking interfaces between network providers and Kubernetes.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="CSI">
+          <p>The Container Storage Interface is a specification for data storage tools and applications to integrate with Kubernetes clusters.              </p>
+        </v-accordion-section>
+        <v-accordion-section section-title="Kubectl">
+          <p>A command-line tool for controlling Kubernetes clusters.</p>
+        </v-accordion-section>
+      </v-accordion>
     </div>
-  </section>
+  </div>
+</section>
 
   <section class="p-strip is-deep">
     <div class="row">
