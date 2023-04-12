@@ -6,6 +6,7 @@ context:
   update_date: "Version - February 2019"
   copydoc: https://docs.google.com/document/d/1CqJbwC3KpEJeJaCUVjAIN0y6ZLmoc7gVlFyc-BeFMYw/edit#
 ---
+
 # Partner Portal terms and conditions
 
 ## Intellectual property
