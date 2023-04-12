@@ -1305,17 +1305,6 @@ hr.p-separator.is-shallow {
   }
 }
 
-// suru paper bottom strip styles
-.p-strip--suru-shape-paper {
-  @extend %vf-strip;
-
-  background: url("https://assets.ubuntu.com/v1/5b7f24e2-Suru_10_Paper.png"),
-    #f7f7f7;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 // XXX Pete 03/04/2023
 // Fixes bug with `is-split` on lists, remove when this vanilla issue is fixed:
 // https: //github.com/canonical/vanilla-framework/issues/4719
