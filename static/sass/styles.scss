@@ -1180,11 +1180,11 @@ hr.p-separator.is-shallow {
   background-size: 70%;
 }
 
-// silicon custom styles
-.p-heading--silicon-bold {
+.p-heading--bold {
   font-weight: $font-weight-bold;
 }
 
+// silicon custom styles
 .p-heading--silicon-light {
   font-weight: $font-weight-display-heading;
 }
@@ -1310,4 +1310,15 @@ hr.p-separator.is-shallow {
 // https: //github.com/canonical/vanilla-framework/issues/4719
 [class*="p-list"].is-split .p-list__item {
   display: inline-block;
+}
+
+// XXX Ochuko 11/04/2023
+// Removed separator from the first item on the list. This is a temporary fix
+// this is used on the /data/mongodb page
+.p-list--articles {
+  @extend .p-list--divided;
+
+  .p-list__item:first-child {
+    box-shadow: none;
+  }
 }
