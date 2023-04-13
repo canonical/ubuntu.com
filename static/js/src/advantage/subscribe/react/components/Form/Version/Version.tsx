@@ -161,7 +161,7 @@ const Version = () => {
           return (
             <button
               key={key}
-              className="p-segmented-control__button"
+              className={`p-segmented-control__button plausible-event-name=pro+selector+version+${key}+lts`}
               role="tab"
               aria-selected={version === key}
               aria-controls={key}

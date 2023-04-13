@@ -68,7 +68,7 @@ const ProductType = () => {
           aria-label="Public cloud options"
         >
           <button
-            className="p-segmented-control__button"
+            className="p-segmented-control__button plausible-event-name=pro+selector+public+cloud+aws"
             role="tab"
             aria-selected={publicCloud === PublicClouds.aws}
             aria-controls={PublicClouds.aws}
@@ -85,7 +85,7 @@ const ProductType = () => {
             {PublicCloudInfo[PublicClouds.aws].title}
           </button>
           <button
-            className="p-segmented-control__button"
+            className="p-segmented-control__button plausible-event-name=pro+selector+public+cloud+azure"
             role="tab"
             aria-selected={publicCloud === PublicClouds.azure}
             aria-controls={PublicClouds.azure}
@@ -102,7 +102,7 @@ const ProductType = () => {
             {PublicCloudInfo[PublicClouds.azure].title}
           </button>
           <button
-            className="p-segmented-control__button"
+            className="p-segmented-control__button plausible-event-name=pro+selector+public+cloud+gcp"
             role="tab"
             aria-selected={publicCloud === PublicClouds.gcp}
             aria-controls={PublicClouds.gcp}
@@ -148,7 +148,7 @@ const ProductType = () => {
           aria-label="IoT device options"
         >
           <button
-            className="p-segmented-control__button"
+            className="p-segmented-control__button plausible-event-name=pro+selector+iot+device+ubuntu+classic"
             role="tab"
             aria-selected={iotDevice === IoTDevices.classic}
             aria-controls={IoTDevices.classic}
@@ -166,7 +166,7 @@ const ProductType = () => {
           </button>
           <dfn></dfn>
           <button
-            className="p-segmented-control__button"
+            className="p-segmented-control__button plausible-event-name=pro+selector+iot+device+ubuntu+core"
             role="tab"
             aria-selected={iotDevice === IoTDevices.core}
             aria-controls={IoTDevices.core}
@@ -211,6 +211,7 @@ const ProductType = () => {
             value={ProductTypes.physical}
             onChange={handleProductTypeChange}
             checked={productType === ProductTypes.physical}
+            labelClassName="plausible-event-name=pro+selector+physical+servers"
           />
         </Col>
         {productType === "physical" && (
@@ -233,6 +234,7 @@ const ProductType = () => {
             value={ProductTypes.publicCloud}
             onChange={handleProductTypeChange}
             checked={productType == ProductTypes.publicCloud}
+            labelClassName="plausible-event-name=pro+selector+public+cloud"
           />
         </Col>
         <Col size={12} style={{ marginLeft: "35px" }}>
@@ -245,6 +247,7 @@ const ProductType = () => {
             value={ProductTypes.desktop}
             onChange={handleProductTypeChange}
             checked={productType === ProductTypes.desktop}
+            labelClassName="plausible-event-name=pro+selector+desktop"
           />
         </Col>
         <Col size={12}>
@@ -254,6 +257,7 @@ const ProductType = () => {
             value={ProductTypes.iotDevice}
             onChange={handleProductTypeChange}
             checked={productType === ProductTypes.iotDevice}
+            labelClassName="plausible-event-name=pro+selector+iot+device"
           />
         </Col>
         <Col size={12} style={{ marginLeft: "35px" }}>

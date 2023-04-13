@@ -23,6 +23,7 @@ export default function PaymentButton() {
           );
           location.href = "/account/checkout";
         }}
+        className="plausible-event-name=payment+button"
       >
         Buy now
       </Button>

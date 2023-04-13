@@ -35,6 +35,7 @@ const Quantity = () => {
             pattern="\d+"
             style={{ minWidth: "unset", width: "4rem" }}
             aria-label="For how many machines"
+            className="plausible-event-name=pro+selector+quantity"
           />
         </Col>
       </Row>

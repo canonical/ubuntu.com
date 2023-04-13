@@ -124,7 +124,7 @@ const Feature = () => {
               />
               <span className="p-radio__label" id={`pro-label`}>
                 <RadioInput
-                  labelClassName="inner-label"
+                  labelClassName="inner-label plausible-event-name=pro+selector+feature+ubuntu+pro"
                   label={"Ubuntu Pro"}
                   checked={feature === Features.pro}
                   value={Features.pro}
@@ -161,7 +161,7 @@ const Feature = () => {
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
-                  labelClassName="inner-label"
+                  labelClassName="inner-label plausible-event-name=pro+selector+feature+ubuntu+pro+infra+only"
                   label={"Ubuntu Pro (Infra-only)"}
                   checked={feature === Features.infra}
                   value={Features.infra}
@@ -182,12 +182,14 @@ const Feature = () => {
       <Col className="u-hide u-show--small" size={12} small={4}>
         <RadioInput
           label="Ubuntu Pro"
+          labelClassName="plausible-event-name=pro+selector+feature+ubuntu+pro"
           value={Features.pro}
           checked={feature === Features.pro}
           onChange={handleChange}
         />
         <RadioInput
           label="Ubuntu Pro (Infra-only)"
+          labelClassName="plausible-event-name=pro+selector+feature+ubuntu+pro+infra+only"
           value={Features.infra}
           checked={feature === Features.infra}
           onChange={handleChange}
