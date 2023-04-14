@@ -838,17 +838,6 @@ def marketo_submit():
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
-    payload = {
-        "formId": form_fields.pop("formid"),
-        "input": [
-            {
-                "leadFormFields": form_fields,
-                "visitorData": visitor_data,
-                "cookie": flask.request.args.get("mkt"),
-            }
-        ],
-    }
-
     enrichment_fields = None
 
     if "email" in form_fields:
@@ -862,6 +851,18 @@ def marketo_submit():
         enrichment_fields["preferredLanguage"] = form_fields[
             "preferredLanguage"
         ]
+        form_fields.pop("preferredLanguage")
+
+    payload = {
+        "formId": form_fields.pop("formid"),
+        "input": [
+            {
+                "leadFormFields": form_fields,
+                "visitorData": visitor_data,
+                "cookie": flask.request.args.get("mkt"),
+            }
+        ],
+    }
 
     try:
         ip_location = ip_reader.get(client_ip)
