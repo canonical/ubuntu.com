@@ -103,6 +103,16 @@ env:
       key: api-key
       name: trueability
 
+  - name: CHARMHUB_DISCOURSE_API_KEY
+    secretKeyRef:
+      key: charmhub-api-key
+      name: discourse-api
+
+  - name: CHARMHUB_DISCOURSE_API_USERNAME
+    secretKeyRef:
+      key: charmhub-api-username
+      name: discourse-api
+
 memoryLimit: 512Mi
 
 extraHosts:
