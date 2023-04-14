@@ -180,6 +180,9 @@ CAPTCHA_TESTING_API_KEY = os.getenv(
 DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
 DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
 
+CHARMHUB_DISCOURSE_API_KEY = os.getenv("DISCOURSE_API_KEY")
+CHARMHUB_DISCOURSE_API_USERNAME = os.getenv("DISCOURSE_API_USERNAME")
+
 # Set up application
 # ===
 
@@ -200,6 +203,14 @@ discourse_api = DiscourseAPI(
     session=session,
     api_key=DISCOURSE_API_KEY,
     api_username=DISCOURSE_API_USERNAME,
+    get_topics_query_id=2,
+)
+
+charmhub_discourse_api = api=DiscourseAPI(
+    base_url="https://discourse.charmhub.io/",
+    session=session,
+    api_key=CHARMHUB_DISCOURSE_API_KEY,
+    api_username=CHARMHUB_DISCOURSE_API_USERNAME,
     get_topics_query_id=2,
 )
 
@@ -810,10 +821,7 @@ server_docs.init_app(app)
 # Data Platform Spark on K8s docs
 data_spark_k8s_docs = Docs(
     parser=DocParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.charmhub.io/",
-            session=session,
-        ),
+        api=charmhub_discourse_api,
         index_topic_id=8963,
         url_prefix="/data/docs/spark-k8s",
     ),
@@ -839,10 +847,7 @@ data_spark_k8s_docs.init_app(app)
 # Data Platform MongoDB on IaaS docs
 data_mongodb_vm_docs = Docs(
     parser=DocParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.charmhub.io/",
-            session=session,
-        ),
+        api=charmhub_discourse_api,
         index_topic_id=7663,
         url_prefix="/data/docs/mongodb-vm",
     ),
@@ -868,10 +873,7 @@ data_mongodb_vm_docs.init_app(app)
 # Data Platform PosgreSQL on K8s docs
 data_postgresql_k8s_docs = Docs(
     parser=DocParser(
-        api=DiscourseAPI(
-            base_url="https://discourse.charmhub.io/",
-            session=session,
-        ),
+        api=charmhub_discourse_api,
         index_topic_id=9307,
         url_prefix="/data/docs/postgresql-k8s",
     ),
