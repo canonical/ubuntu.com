@@ -25,6 +25,32 @@ function setupIntlTelInput(phoneInput) {
       success(countryCode);
     },
   });
+  
+  // add validation
+  function reset() {
+    phoneInput.style.backgroundColor = "#f5f5f5";
+  }
+
+  function isValidNumber(number) {
+    const pattern = /^[0-9]*$/;
+    return number.length >= 10 && number.length <= 20 && pattern.test(number);
+  }
+
+  // on blur: validate
+  phoneInput.addEventListener("blur", function () {
+    reset();
+    if (phoneInput.value.trim()) {
+      if (isValidNumber(phoneInput.value.trim())) {
+        reset();
+      } else {
+        phoneInput.style.backgroundColor = "rgba(225, 35, 35, 0.25)";
+      }
+    }
+  });
+
+  // on keyup / change flag: reset
+  phoneInput.addEventListener("change", reset);
+  phoneInput.addEventListener("keyup", reset);
 }
 
 const targetPhoneInput = document.querySelector("input#phone");
