@@ -63,7 +63,7 @@
           </div>
         </div>
       </fieldset>
-        
+
       <form action="/marketo/submit" method="post" id="mktoForm_4479">
         <fieldset class="u-no-margin--bottom">
           <h3>About you</h3>
@@ -79,7 +79,7 @@
             <li class="p-list__item">
               <label for="company">Company:</label>
               <input required id="company" name="company" maxlength="255" type="text" />
-            </li>            
+            </li>
             <li class="p-list__item">
               <label for="email">Email:</label>
               <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
@@ -90,7 +90,7 @@
             </li>
           </ul>
         </fieldset>
-        
+
         <fieldset class="u-no-margin--bottom">
           <ul class="p-list">
             <li class="p-list__item u-hide">
@@ -128,6 +128,7 @@
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
         </fieldset>
       </form>
     </div>
@@ -146,7 +147,7 @@
       if (fieldTitle) {
       message += fieldTitle.innerText + "\r\n";
       }
-      
+
       inputs.forEach(function (input) {
         if (input.checked) {
           message += comma + input.value + "\r\n\r\n";
@@ -175,7 +176,7 @@
       }, delayInMilliseconds);
     }
   }
-  
+
   (function init() {
     handleSuccessNotification();
     var formElement = document.getElementById("mktoForm_4479");
