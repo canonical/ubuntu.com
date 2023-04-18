@@ -90,7 +90,7 @@ const Support = () => {
               />
               <span className="p-radio__label" id={`none-label`}>
                 <RadioInput
-                  labelClassName="inner-support-label plausible-event-name=proSelector plausible-event-selector=support+no+thank+you"
+                  labelClassName="inner-support-label plausible-event-name=pro-selector"
                   label={"No, thank you"}
                   checked={support === SupportEnum.none}
                   value={SupportEnum.none}
@@ -126,7 +126,7 @@ const Support = () => {
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
-                  labelClassName="inner-support-label plausible-event-name=proSelector plausible-event-selector=support+infra"
+                  labelClassName="inner-support-label plausible-event-name=pro-selector"
                   label={"Infra Support"}
                   checked={support === SupportEnum.infra}
                   value={SupportEnum.infra}
@@ -171,7 +171,7 @@ const Support = () => {
               />
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
-                  labelClassName="inner-support-label plausible-event-name=proSelector plausible-event-selector=support+full"
+                  labelClassName="inner-support-label plausible-event-name=pro-selector"
                   label={"Full Support"}
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
@@ -222,7 +222,7 @@ const Support = () => {
             label="No, thank you"
             value={SupportEnum.none}
             checked={support === SupportEnum.none}
-            labelClassName="plausible-event-name=proSelector plausible-event-selector=support+no+thank+you"
+            labelClassName="plausible-event-name=pro-selector"
           />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
@@ -265,7 +265,7 @@ const Support = () => {
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
             disabled={isInfraOnlyDisabled}
-            labelClassName="plausible-event-name=proSelector plausible-event-selector=support+infra"
+            labelClassName="plausible-event-name=pro-selector"
           />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
@@ -304,7 +304,7 @@ const Support = () => {
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
             disabled={isFullSupportDisabled}
-            labelClassName="plausible-event-name=proSelector plausible-event-selector=support+full"
+            labelClassName="plausible-event-name=pro-selector"
           />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
@@ -339,7 +339,7 @@ const Support = () => {
                 aria-label="LTS version options"
               >
                 <button
-                  className="p-segmented-control__button plausible-event-name=proSelector plausible-event-selector=support+week+day"
+                  className="p-segmented-control__button plausible-event-name=pro-selector"
                   role="tab"
                   aria-selected={SLA.weekday === sla}
                   aria-controls="Weekday"
@@ -360,7 +360,7 @@ const Support = () => {
                   </p>
                 </button>
                 <button
-                  className="p-segmented-control__button plausible-event-name=proSelector plausible-event-selector=support+every+day"
+                  className="p-segmented-control__button plausible-event-name=pro-selector"
                   role="tab"
                   aria-selected={SLA.everyday === sla}
                   aria-controls="24/7"

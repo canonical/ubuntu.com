@@ -26,9 +26,9 @@ export default function PaymentButton() {
         appearance="positive"
         onClick={(e) => {
           e.preventDefault();
-          window.plausible("proSelector", {
+          window.plausible("pro-selector", {
             props: {
-              productType: productType,
+              "product-type": productType,
               quantity: quantity,
               version: version,
               feature: feature,
