@@ -684,6 +684,33 @@ app.add_url_rule(
 
 community_docs.init_app(app)
 
+# Sunbeam docs
+url_prefix = "/sunbeam"
+sunbeam_docs = Docs(
+    parser=DocParser(
+        api=discourse_api,
+        index_topic_id=35218,
+        url_prefix=url_prefix,
+    ),
+    document_template="/community/docs/document.html",
+    url_prefix=url_prefix,
+    blueprint_name="sunbeam-docs",
+)
+
+# Community docs search
+app.add_url_rule(
+    "/sunbeam/search",
+    "sunbeam-search",
+    build_search_view(
+        session=session,
+        site="ubuntu.com/sunbeam",
+        template_path="/community/docs/search-results.html",
+        search_engine_id=search_engine_id,
+    ),
+)
+
+sunbeam_docs.init_app(app)
+
 # Allow templates to be queried from discourse.ubuntu.com
 app.add_url_rule(
     "/templates/<filename>",
