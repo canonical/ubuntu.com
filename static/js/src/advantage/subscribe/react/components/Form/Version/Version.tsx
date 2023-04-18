@@ -1,14 +1,10 @@
 import React, { useContext } from "react";
-import classNames from "classnames";
 import { Col, List, Row, StatusLabel } from "@canonical/react-components";
 import {
   defaultValues,
   FormContext,
 } from "advantage/subscribe/react/utils/FormContext";
 import {
-  IoTDevices,
-  isIoTDevice,
-  isPublicCloud,
   LTSVersions,
   ProductTypes,
 } from "advantage/subscribe/react/utils/utils";
@@ -147,9 +143,7 @@ const DesktopVersionDetails: {
 };
 
 const Version = () => {
-  const { version, setVersion, productType, iotDevice } = useContext(
-    FormContext
-  );
+  const { version, setVersion, productType } = useContext(FormContext);
 
   const versionDetails =
     productType === ProductTypes.desktop
@@ -190,14 +184,7 @@ const Version = () => {
   );
 
   return (
-    <div
-      className={classNames({
-        "u-disable":
-          isPublicCloud(productType) ||
-          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
-      })}
-      data-testid="wrapper"
-    >
+    <div data-testid="wrapper">
       <Row>
         <Col size={12}>{versionsSegmentedControl}</Col>
       </Row>

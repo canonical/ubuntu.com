@@ -2,14 +2,11 @@ import React, { useContext } from "react";
 import classNames from "classnames";
 import { Row, Col, RadioInput } from "@canonical/react-components";
 import {
-  isPublicCloud,
   Features,
   ProductTypes,
   SLA,
   Support as SupportEnum,
   LTSVersions,
-  IoTDevices,
-  isIoTDevice,
 } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
@@ -22,7 +19,6 @@ const Support = () => {
     setSupport,
     productType,
     version,
-    iotDevice,
   } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +43,6 @@ const Support = () => {
     <div
       className={classNames({
         row: true,
-        "u-disable":
-          isPublicCloud(productType) ||
-          (isIoTDevice(productType) && iotDevice === IoTDevices.core),
       })}
       data-testid="wrapper"
     >
@@ -117,12 +110,11 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.infra,
-              "u-disable": isInfraOnlyDisabled,
             })}
-            data-testid="infra-support"
           >
             <label className="p-radio u-align-text--center">
               <input
+                data-testid="infra-support"
                 className="p-radio__input"
                 autoComplete="off"
                 type="radio"
@@ -130,6 +122,7 @@ const Support = () => {
                 value={SupportEnum.infra}
                 checked={support === SupportEnum.infra}
                 onChange={handleChange}
+                disabled={isInfraOnlyDisabled}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -138,6 +131,7 @@ const Support = () => {
                   checked={support === SupportEnum.infra}
                   value={SupportEnum.infra}
                   onChange={handleChange}
+                  disabled={isInfraOnlyDisabled}
                 />
                 <div className="support-row not-supported">—</div>
                 <div className="support-row">
@@ -161,9 +155,7 @@ const Support = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": support === SupportEnum.full,
-              "u-disable": isFullSupportDisabled,
             })}
-            data-testid="full-support"
           >
             <label className="p-radio u-align-text--center">
               <input
@@ -174,6 +166,8 @@ const Support = () => {
                 value={SupportEnum.full}
                 checked={support === SupportEnum.full}
                 onChange={handleChange}
+                disabled={isFullSupportDisabled}
+                data-testid="full-support"
               />
               <span className="p-radio__label" id={`full-label`}>
                 <RadioInput
@@ -182,6 +176,7 @@ const Support = () => {
                   checked={support === SupportEnum.full}
                   value={SupportEnum.full}
                   onChange={handleChange}
+                  disabled={isFullSupportDisabled}
                 />
                 <div className="support-row">
                   <i className="p-icon--success"></i>Included
@@ -254,7 +249,6 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.infra === support,
-            "u-disable": isInfraOnlyDisabled,
           })}
           onClick={() => {
             setSupport(SupportEnum.infra);
@@ -269,6 +263,7 @@ const Support = () => {
             label="Infra Support"
             value={SupportEnum.infra}
             checked={support === SupportEnum.infra}
+            disabled={isInfraOnlyDisabled}
           />
           <span>
             <i className="p-icon--error"></i> Open Source Applications
@@ -292,7 +287,6 @@ const Support = () => {
           className={classNames({
             "p-card--radio--column": true,
             "is-selected": SupportEnum.full === support,
-            "u-disable": isFullSupportDisabled,
           })}
           onClick={() => {
             setSupport(SupportEnum.full);
@@ -307,6 +301,7 @@ const Support = () => {
             label="Full Support"
             value={SupportEnum.full}
             checked={support === SupportEnum.full}
+            disabled={isFullSupportDisabled}
           />
           <span>
             <i className="p-icon--success"></i> Open Source Applications
