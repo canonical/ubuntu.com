@@ -11,6 +11,7 @@ import talisker.requests
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
+from webapp.shop.api.credly.api import CredlyAPI
 from webapp.shop.api.trueability.api import TrueAbilityAPI
 from webapp.login import user_info
 from requests import Session
@@ -72,6 +73,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
     session = talisker.requests.get_session()
     badgr_session = init_badgr_session(area)
     trueability_session = init_trueability_session(area)
+    credly_session = init_credly_session(area)
 
     def decorator(func):
         @wraps(func)
@@ -155,6 +157,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
+                credly_api=get_credly_api_instance(area, credly_session),
                 is_in_maintenance=is_in_maintenance,
                 is_community_member=is_community_member,
                 *args,
@@ -194,6 +197,16 @@ def init_badgr_session(area) -> Session:
     return badgr_session
 
 
+def init_credly_session(area) -> Session:
+    if area != "cred":
+        return None
+
+    credly_session = Session()
+    talisker.requests.configure(credly_session)
+
+    return credly_session
+
+
 def init_trueability_session(area) -> Session:
     if area != "cred":
         return None
@@ -223,6 +236,20 @@ def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
         os.getenv("BAGDR_USER"),
         os.getenv("BADGR_PASSWORD"),
         badgr_session,
+    )
+
+
+def get_credly_api_instance(area, credly_session) -> CredlyAPI:
+    if area != "cred":
+        return None
+
+    return CredlyAPI(
+        os.getenv("CREDLY_SANDBOX_URL", "https://sandbox-api.credly.com/v1"),
+        os.getenv("CREDLY_TOKEN", "dO26vW6KiCFv1sZHg1xWt5IhrehfKeYVfNrW"),
+        os.getenv(
+            "CREDLY_ORGANIZATION_ID", "069adc37-b51e-45ee-8c9d-4a2c89ce6622"
+        ),
+        credly_session,
     )
 
 

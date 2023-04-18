@@ -218,3 +218,26 @@ class TrueAbilityAPI:
     def get_system_status(self):
         uri = "/api/v1/system_status"
         return self.make_request("GET", uri).json()
+
+    def get_webhook_responses(self, webhook_id: int):
+        uri = f"/api/v1/webhook_responses/{webhook_id}"
+        return self.make_request("GET", uri).json()
+
+    def get_filtered_webhook_responses(
+        self,
+        only_failed_response_statuses: str = "false",
+        on_transition_to: str = None,
+        webhook_id: int = None,
+        ability_screen_id: str = None,
+    ):
+        params = {
+            "ability_screen_id": int(ability_screen_id),
+            "only_failed_response_statuses": only_failed_response_statuses,
+            "on_transition_to": on_transition_to,
+            "webhook_id": webhook_id,
+        }
+        filtered_params = {k: v for k, v in params.items() if v is not None}
+        uri = "/api/v1/webhook_responses?" + urlencode(filtered_params)
+        print(urlencode(filtered_params))
+        req = self.make_request("GET", uri)
+        return req.json()
