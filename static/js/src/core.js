@@ -5,7 +5,7 @@ import { cookiePolicy } from "@canonical/cookie-policy";
 createNav({
   showLogins: false,
   hiring: "https://canonical.com/careers/start",
-  maxWidth: "72rem",
+  maxWidth: "80rem",
 });
 
 // Initalise the cookie policy notification.
