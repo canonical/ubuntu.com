@@ -9,10 +9,14 @@
 <section class="u-hide {% if section_classes %}{{ section_classes }}{% else %}p-strip{% endif %}" data-js="latest-news">
   <div class="row">
     <h3>
-      Latest {{ heading_topic }} news from
-      <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
-        our blog&nbsp;&rsaquo;
-      </a>
+      {% if request.path == "/observability" %}
+        More about {{ heading_topic }} in
+      {% else %}
+        Latest {{ heading_topic }} news from
+      {% endif %}
+        <a href="/blog{% if tag_name %}/tag/{{ tag_name }}{% endif %}" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'blog', 'eventAction' : 'clicks blog feed link', 'eventLabel' : 'ubuntu.com{% if tag_name %}/{{ tag_name }}{% else %} homepage{% endif %}', 'eventValue' : undefined });">
+          our blog&nbsp;&rsaquo;
+        </a>
     </h3>
   </div>
   <div class="row p-divider">
