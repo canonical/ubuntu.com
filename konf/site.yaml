@@ -532,6 +532,16 @@ staging:
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
 
+    - name: CHARMHUB_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: charmhub-api-key
+        name: discourse-api
+
+    - name: CHARMHUB_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: charmhub-api-username
+        name: discourse-api
+
   routes:
     - paths: [/blog]
       name: ubuntu-com-blog
@@ -876,3 +886,13 @@ demo:
 
     - name: CANONICAL_LOGIN_URL
       value: https://login.ubuntu.com/
+
+    - name: CHARMHUB_DISCOURSE_API_KEY
+      secretKeyRef:
+        key: charmhub-api-key
+        name: discourse-api
+
+    - name: CHARMHUB_DISCOURSE_API_USERNAME
+      secretKeyRef:
+        key: charmhub-api-username
+        name: discourse-api
