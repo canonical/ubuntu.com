@@ -144,7 +144,7 @@
             height="150",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-heading-icon__img--small"}
+            attrs={"class": "p-heading-icon__img p-heading-icon__img--small"}
             ) | safe
           }}
           <h4 class="p-heading-icon__title">Tutorial</h4>
@@ -210,10 +210,10 @@
       </div>
     </div>
   </div>
-</section> 
+</section>
 
-{% with section_classes='p-strip--light is-bordered', heading_topic='Raspberry Pi', tag_name='raspberry-pi', tag_id='1672', limit='4' %} 
-  {% include "shared/_latest_news_strip.html" %} 
+{% with section_classes='p-strip--light is-bordered', heading_topic='Raspberry Pi', tag_name='raspberry-pi', tag_id='1672', limit='4' %}
+  {% include "shared/_latest_news_strip.html" %}
 {% endwith %}
 
 {% endblock %}

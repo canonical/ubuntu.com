@@ -372,6 +372,7 @@
   </div>
   <div class="row p-divider">
     <div class="col-4 p-divider__block">
+      <!-- TODO: add missing img and title classes -->
       <div class="p-heading-icon--muted">
         <div class="p-heading-icon__header">
           {{
@@ -382,9 +383,10 @@
                 height="28",
                 hi_def=True,
                 loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
               ) | safe
           }}
-          <h4>Data sheet</h4>
+          <h4 class="p-heading-icon__title">Data sheet</h4>
         </div>
       </div>
       <p class="p-heading--4"><a href="https://assets.ubuntu.com/v1/b5f9ae49-Enterprise_Kubernetes_Datasheet.pdf">Kubernetes for the enterprise</a></p>
@@ -401,9 +403,10 @@
                 height="28",
                 hi_def=True,
                 loading="lazy",
+                attrs={"class": "p-heading-icon__img"},
               ) | safe
           }}
-          <h4>Webinar on demand</h4>
+          <h4 class="p-heading-icon__title">Webinar on demand</h4>
         </div>
       </div>
       <p class="p-heading--4"><a href="https://www.brighttalk.com/webcast/6793/435999/how-to-accelerate-kubernetes-deployment-in-the-enterprise">How to accelerate Kubernetes deployment in the enterprise</a></p>
@@ -419,10 +422,11 @@
             width="171",
             height="150",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h4>Case study</h4>
+          <h4 class="p-heading-icon__title">Case study</h4>
         </div>
       </div>
       <p class="p-heading--4"><a href="/engage/atresmedia-charmed-kubernetes-case-study">Atresmedia dominates Spain's OTT media market with Charmed Kubernetes</a></p>
