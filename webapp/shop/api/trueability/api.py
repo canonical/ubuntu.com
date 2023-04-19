@@ -1,5 +1,8 @@
 from urllib.parse import urlencode
 from requests import Session
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 
 class TrueAbilityAPI:
@@ -237,7 +240,6 @@ class TrueAbilityAPI:
             "webhook_id": webhook_id,
         }
         filtered_params = {k: v for k, v in params.items() if v is not None}
-        uri = "/api/v1/webhook_responses?" + urlencode(filtered_params)
-        print(urlencode(filtered_params))
-        req = self.make_request("GET", uri)
-        return req.json()
+        uri = "/api/v1/webhook_responses"
+        # print(urlencode(filtered_params))
+        return self.make_request("GET", uri).json()

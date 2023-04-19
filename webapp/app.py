@@ -899,7 +899,6 @@ app.add_url_rule(
 app.add_url_rule(
     "/credentials/webhook_responses",
     view_func=webhook_responses,
-    methods=["GET"],
 )
 
 # Charmed OpenStack docs
