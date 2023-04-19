@@ -88,37 +88,35 @@
       </div>
     </div>
   </div>
-  <div class="p-strip is-shallow u-no-padding-bottom u-hide--large u-hide--medium">
-    <div class="row">
-      <hr class="is-fixed-width">
-      <div class="u-fixed-width">
-        <table>
-          <thead>
-            <tr>
-              <th>Installation type</th>
-              <th>Install time</th>
-              <th>Config time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Juju (Recommended)</td>
-              <td>15 minutes</td>
-              <td>15 minutes</td>
-            </tr>
-            <tr>
-              <td>Quickstart</td>
-              <td>15 minutes</td>
-              <td>30 minutes</td>
-            </tr>
-            <tr>
-              <td>Manual</td>
-              <td>30 minutes</td>
-              <td>30 <em>hours</em></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="p-strip is-shallow u-no-padding--bottom u-hide--large u-hide--medium">
+    <hr class="is-fixed-width">
+    <div class="u-fixed-width">
+      <table>
+        <thead>
+          <tr>
+            <th>Installation type</th>
+            <th>Install time</th>
+            <th>Config time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Juju (Recommended)</td>
+            <td>15 minutes</td>
+            <td>15 minutes</td>
+          </tr>
+          <tr>
+            <td>Quickstart</td>
+            <td>15 minutes</td>
+            <td>30 minutes</td>
+          </tr>
+          <tr>
+            <td>Manual</td>
+            <td>30 minutes</td>
+            <td>30 <em>hours</em></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="row">
@@ -293,7 +291,7 @@
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install Certbot</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install --classic certbot</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
                   </div>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Get a valid SSL certificate for the FQDN of your server: landscape.yourdomain.com</p>
@@ -377,9 +375,9 @@ SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
             <div class="p-strip u-no-padding--top">
               <ol class="p-list--divided">
                 <li class="p-list__item">
-                  <p class="u-no-padding--top">Install Prerequisites</p>
+                  <p class="u-no-padding--top">Install prerequisites</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y software-properties-common</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y curl software-properties-common</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -762,15 +760,15 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
             <div class="p-code-snippet">
               <pre class="p-code-snippet__block is-wrapped"><code># LANDSCAPE_ACCOUNT_NAME: self-hosted Landscape users can leave this as `standalone`
 # Landscape SaaS users can find the account name here: https://landscape.canonical.com/settings
-{% set LANDSCAPE_ACCOUNT_NAME = 'standalone' %}
+{% raw %}{% set LANDSCAPE_ACCOUNT_NAME = 'standalone' %}{% endraw %}
 
 # LANDSCAPE_FQDN: `landscape.canonical.com` is only for Landscape SaaS users
 # Fully Qualified Domain Name of your Landscape instance
-{% set LANDSCAPE_FQDN = 'landscape.canonical.com' %}
+{% raw %}{% set LANDSCAPE_FQDN = 'landscape.canonical.com' %}{% endraw %}
 
 # LANDSCAPE_COMPUTER_TITLE: default value is fine
 # human readable name in Landscape
-{% set LANDSCAPE_COMPUTER_TITLE = "dedicated server" %}</code></pre>
+{% raw %}{% set LANDSCAPE_COMPUTER_TITLE = "dedicated server" %}{% endraw %}</code></pre>
             </div>
           </div>
           <hr class="u-no-margin--bottom u-hide--small">
@@ -780,7 +778,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
           <div class="col-9 col-medium-5">
             <p class="p-heading--5">Install within the runcmd section of Cloud Init</p>
             <div class="p-code-snippet">
-              <pre class="p-code-snippet__block is-wrapped"><code>landscape-config --silent --account-name='{{ LANDSCAPE_ACCOUNT_NAME }}' --computer-title="{{ LANDSCAPE_COMPUTER_TITLE }}" --tags="{{ VPROJECT }}" --script-users='nobody,landscape,root' --ping-url="http://{{ LANDSCAPE_FQDN }}/ping" --url="https://{{ LANDSCAPE_FQDN }}/message-system"</code></pre>
+              <pre class="p-code-snippet__block is-wrapped"><code>{% raw %}landscape-config --silent --account-name='{{ LANDSCAPE_ACCOUNT_NAME }}' --computer-title="{{ LANDSCAPE_COMPUTER_TITLE }}" --tags="{{ VPROJECT }}" --script-users='nobody,landscape,root' --ping-url="http://{{ LANDSCAPE_FQDN }}/ping" --url="https://{{ LANDSCAPE_FQDN }}/message-system"{% endraw %}</code></pre>
             </div>
           </div>
         </div>
