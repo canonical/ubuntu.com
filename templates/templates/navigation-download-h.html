@@ -5,8 +5,7 @@
         <div class="col-3">
           <h4 class="p-heading-four is-dense"><a href='/download/desktop'>Ubuntu Desktop&nbsp;&rsaquo;</a></h4>
           <p class="p-p--small">Download Ubuntu desktop and replace your current operating system whether it's Windows or Mac OS, or, run Ubuntu alongside it.</p>
-          <a class="p-button--positive p-button--small" href="/download/desktop/thank-you?version={{ releases.lts.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.lts.short_version }}', 'eventValue' : undefined });">{{ releases.lts.short_version }} LTS</a>
-          {% if releases.latest.short_version > releases.lts.short_version %}<a class="p-button p-button--small" href="/download/desktop/thank-you?version={{ releases.latest.full_version }}&amp;architecture=amd64" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : '{{ releases.latest.short_version }}', 'eventValue' : undefined });">{{ releases.latest.short_version }}</a>{% endif %}
+          <a class="p-button--positive p-button--small" href="/download/desktop/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Download', 'eventAction' : 'Desktop', 'eventLabel' : 'Get Ubuntu Desktop', 'eventValue' : undefined });">Get Ubuntu Desktop</a>
         </div>
         <div class="col-3">
           <h4 class="p-heading-four is-dense"><a href='/download/server'>Ubuntu Server&nbsp;&rsaquo;</a></h4>
