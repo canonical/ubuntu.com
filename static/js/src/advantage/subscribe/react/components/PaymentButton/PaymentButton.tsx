@@ -3,7 +3,16 @@ import { Button } from "@canonical/react-components";
 import { FormContext } from "../../utils/FormContext";
 
 export default function PaymentButton() {
-  const { quantity, product } = useContext(FormContext);
+  const {
+    quantity,
+    product,
+    productType,
+    version,
+    support,
+    feature,
+    sla,
+    period,
+  } = useContext(FormContext);
 
   const shopCheckoutData = {
     product: product,
@@ -17,6 +26,17 @@ export default function PaymentButton() {
         appearance="positive"
         onClick={(e) => {
           e.preventDefault();
+          window.plausible("pro-selector", {
+            props: {
+              "product-type": productType,
+              quantity: quantity,
+              version: version,
+              feature: feature,
+              support: support,
+              sla: sla,
+              period: period,
+            },
+          });
           localStorage.setItem(
             "shop-checkout-data",
             JSON.stringify(shopCheckoutData)
