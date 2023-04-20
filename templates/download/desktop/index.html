@@ -5,11 +5,9 @@
 
 {% block content %}
 
-<section class="p-strip--suru-topped">
+<section class="p-strip--suru-shape-light is-deep">
   <div class="u-fixed-width">
-    <h1>
-      Download Ubuntu Desktop
-    </h1>
+    <h1 class="p-heading--2 u-no-margin--bottom"><strong>Download Ubuntu Desktop</strong></h1>
     <p>The open-source desktop operating system that powers millions of PCs and laptops around the world. Find out more about Ubuntu's features and how we support developers and organisations below.</p>
     <p>
       <a href="/desktop" class="p-button--positive">Ubuntu Desktop homepage</a>
@@ -18,7 +16,7 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
   <div class="row">
 
     <div class="col-8 p-divider__block">
@@ -55,9 +53,9 @@
   </div>
 </section>
 
-<section class="p-strip--light">
+<section class="p-strip">
+  <hr class="is-fixed-width" />
   <div class="row">
-
     <div class="col-8 p-divider__block">
       <h2>Ubuntu {{ releases.latest.full_version }}</h2>
       <p class="u-no-padding--top">The latest version of the Ubuntu operating system for desktop PCs and laptops, Ubuntu {{ releases.latest.short_version }} comes with nine months of security and maintenance updates, until {{ releases.latest.eol }}.</p>
@@ -90,6 +88,7 @@
 </section>
 
 <section class="p-strip">
+  <hr class="is-fixed-width" />
   <div class="u-fixed-width">
     <h2>How to install Ubuntu Desktop</h2>
   </div>
