@@ -111,33 +111,27 @@ export var serverAndDesktopReleases = [
     status: "ESM",
   },
   {
-    startDate: new Date("2020-10-01T00:00:00"),
-    endDate: new Date("2021-07-07T00:00:00"),
-    taskName: "20.10 (Groovy Gorilla)",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2021-10-01T00:00:00"),
-    endDate: new Date("2022-07-07T00:00:00"),
-    taskName: "21.10 (Impish Indri)",
-    status: "INTERIM_RELEASE",
-  },
-  {
-    startDate: new Date("2021-04-01T00:00:00"),
-    endDate: new Date("2022-01-05T00:00:00"),
-    taskName: "21.04 (Hirsute Hippo)",
-    status: "INTERIM_RELEASE",
-  },
-  {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
+    startDate: new Date("2027-04-01T00:00:00"),
+    endDate: new Date("2032-04-01T00:00:00"),
+    taskName: "22.04 LTS (Jammy Jellyfish)",
+    status: "ESM",
+  },
+  {
     startDate: new Date("2022-10-20T00:00:00"),
     endDate: new Date("2023-07-20T00:00:00"),
     taskName: "22.10 (Kinetic Kudu)",
+    status: "INTERIM_RELEASE",
+  },
+  {
+    startDate: new Date("2023-04-20T00:00:00"),
+    endDate: new Date("2024-01-20T00:00:00"),
+    taskName: "23.04 (Lunar Lobster)",
     status: "INTERIM_RELEASE",
   },
 ];
@@ -1444,11 +1438,9 @@ export var smallReleaseNames = [
 ];
 
 export var desktopServerReleaseNames = [
+  "23.04 (Lunar Lobster)",
   "22.10 (Kinetic Kudu)",
   "22.04 LTS (Jammy Jellyfish)",
-  "21.10 (Impish Indri)",
-  "21.04 (Hirsute Hippo)",
-  "20.10 (Groovy Gorilla)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",
   "16.04 LTS (Xenial Xerus)",
