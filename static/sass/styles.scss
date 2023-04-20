@@ -511,7 +511,8 @@ summary {
 // Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
 .p-heading-icon__header {
   .lazyloaded {
-    @extend .p-heading-icon__img;
+    // make sure icon is not squashed, replicating the behaviour of the .p-heading-icon__img class
+    flex-shrink: 0;
   }
 }
 

@@ -659,18 +659,18 @@ https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            <div>
-              {{ image (
+            {{ image (
               url="https://assets.ubuntu.com/v1/574aaef4-whitepaper-white.svg",
               alt="",
               width="171",
               height="150",
               hi_def=True,
-              loading="lazy" ) |
-              safe }}
-            </div>
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"},
+            ) |
+            safe }}
             <h4 class="p-heading-icon__title" style="color: #fff">
-              WHITEPAPER
+              Whitepaper
             </h4>
           </div>
           <h3 class="p-heading--4">
@@ -686,17 +686,16 @@ https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            <div>
-              {{ image (
+            {{ image (
               url="https://assets.ubuntu.com/v1/005c3416-webinar-white.svg",
               alt="",
               width="171",
               height="150",
               hi_def=True,
-              loading="lazy" ) |
-              safe }}
-            </div>
-            <h4 class="p-heading-icon__title" style="color: #fff">WEBINAR</h4>
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"}, ) |
+            safe }}
+            <h4 class="p-heading-icon__title" style="color: #fff">Webinar</h4>
           </div>
           <h3 class="p-heading--4">
             <a
@@ -710,17 +709,16 @@ https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/
       <div class="col-4 p-divider__block">
         <div class="p-heading-icon--muted">
           <div class="p-heading-icon__header">
-            <div>
-              {{ image (
+            {{ image (
               url="https://assets.ubuntu.com/v1/30037eac-datasheet-white.svg",
               alt="",
               width="171",
               height="150",
               hi_def=True,
-              loading="lazy" ) |
-              safe }}
-            </div>
-            <h4 class="p-heading-icon__title" style="color: #fff">DATASHEET</h4>
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"}, ) |
+            safe }}
+            <h4 class="p-heading-icon__title" style="color: #fff">Datasheet</h4>
           </div>
           <h3 class="p-heading--4">
             <a
@@ -749,7 +747,8 @@ https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/
           width="50",
           height="50",
           hi_def=True,
-          loading="lazy" ) |
+          loading="lazy",
+          attrs={"class": "p-heading-icon__img"}, ) |
           safe }}
           <h3 class="col-10 p-card__title p-heading--3">
             Charmed OpenStack
@@ -774,7 +773,8 @@ https://docs.google.com/document/d/15xrgIq_KUwHaCyFoI7-yS_JmBbsoyXJ4GpRMFAa7_is/
           width="50",
           height="50",
           hi_def=True,
-          loading="lazy" ) |
+          loading="lazy",
+          attrs={"class": "p-heading-icon__img"}, ) |
           safe }}
           <h3 class="col-10 p-card__title p-heading--3">Ubuntu Server</h3>
         </div>
