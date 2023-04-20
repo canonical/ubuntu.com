@@ -90,8 +90,8 @@ from webapp.shop.cred.views import (
     cred_syllabus_data,
     cred_your_exams,
     get_activation_keys,
+    get_filtered_webhook_responses,
     rotate_activation_key,
-    webhook_responses,
 )
 from webapp.shop.views import (
     account_view,
@@ -897,8 +897,9 @@ app.add_url_rule(
     methods=["POST"],
 )
 app.add_url_rule(
-    "/credentials/webhook_responses",
-    view_func=webhook_responses,
+    "/credentials/get_filtered_webhook_responses",
+    view_func=get_filtered_webhook_responses,
+    methods=["GET"],
 )
 
 # Charmed OpenStack docs

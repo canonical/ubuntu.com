@@ -1,5 +1,4 @@
 from requests.auth import HTTPBasicAuth
-from urllib.parse import urlencode
 from requests import Session
 import datetime
 

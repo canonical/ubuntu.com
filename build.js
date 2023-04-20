@@ -39,7 +39,9 @@ const isDev = process && process.env && process.env.NODE_ENV === "development";
 const captchaKey =
   (process && process.env && process.env.CAPTCHA_TESTING_API_KEY) ||
   "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if";
-
+const trueabilityAPIKey =
+  (process && process.env && process.env.TRUEABILITY_API_KEY) ||
+  "6LfYBloUAAAAAINm0KzbEv6TP0boLsTEzpdrB8if";
 for (const [key, value] of Object.entries(entries)) {
   const options = {
     entryPoints: [value],
@@ -55,6 +57,7 @@ for (const [key, value] of Object.entries(entries)) {
         // 'production' in all other cases.
         isDev ? '"development"' : '"production"',
       "process.env.CAPTCHA_TESTING_API_KEY": `"${captchaKey}"`,
+      "process.env.TRUEABILITY_API_KEY": `"${trueabilityAPIKey}"`
     },
   };
 
