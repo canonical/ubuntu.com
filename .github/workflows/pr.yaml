@@ -145,6 +145,10 @@ jobs:
         with:
           fetch-depth: 0 # fetch all history for codecov
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
       - name: Install dependencies
         run: yarn install --immutable
 
