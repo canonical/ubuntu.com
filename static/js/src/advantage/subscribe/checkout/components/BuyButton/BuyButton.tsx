@@ -11,6 +11,7 @@ import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
+import { currencyFormatter } from "advantage/react/utils";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -78,6 +79,18 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
     if (!(Object.keys(errors).length === 0)) {
       return;
     }
+
+    window.plausible("pro-purchase", {
+      props: {
+        country: values.country,
+        product: product?.name,
+        quantity: quantity,
+        total: currencyFormatter.format(product?.price?.value / 100),
+        VAT: values.VATNumber,
+        "buying-for": values.buyingFor,
+        action: buyAction,
+      },
+    });
 
     // empty the product selector state persisted in the local storage
     // after the user chooses to make a purchase
