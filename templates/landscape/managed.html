@@ -1,0 +1,185 @@
+{% extends "landscape/base_landscape.html" %}
+
+{% block title %}Install Landscape{% endblock %}
+{% block meta_description %} Managed Landscape is for customers that need the flexibility of self-hosted Landscape, and the convenience and assurance of a software as a service solution. {% endblock meta_description %}
+{% block meta_copydoc %} https://docs.google.com/document/d/1MycPWcmMveCZxrGtn7ASc0myWNxPzLTciHfQIA6kPZ4/edit# {% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h1><strong>Managed Landscape</strong></h1>
+    <p class="p-heading--2">Software as a service convenience, <br class="u-hide--small">in an environment you control</p>
+    <p>Manage machines at scale without worrying about tooling. Let Canonical handle Landscape's installation, patching, scaling and maintenance.</p>
+    <p>
+      <a class="p-button--positive js-invoke-modal" href="/landscape#get-in-touch">Contact us</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--top">
+  <div class="u-fixed-width">
+    <hr class="u-no-margin--bottom">
+    <h2>We take care of the installation and mantenance</h2>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/6d8a72cb-Agile+development.svg",
+        alt="",
+        width="175",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">Up to 99.9% uptime</p>
+      <p>Backed by an SLA.</p>
+    </div>
+    <div class="col-4">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg",
+        alt="",
+        width="150",
+        height="150",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">24/7 monitoring</p>
+      <p>Active management and break/fix response by Canonical engineers</p>
+    </div>
+    <div class="col-4">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/85af7f76-servers-wht-grey.png",
+        alt="",
+        width="664",
+        height="307",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+      <p class="p-heading--4">High availability</p>
+      <p>Fault-tolerant and ready for real-world challenges</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="u-no-margin--bottom">
+    <div class="col-6 col-medium-3">
+      <h2>Any-cloud ready</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Managed Landscape can be deployed in high availability across multiple machines, anywhere. Whether you are running your workloads across multiple clouds or a hybrid cloud with your own infrastructure, Managed Landscape can easily provide a scalable and reliable service to maintain your Ubuntu environment.</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg" alt="Google Cloud Platform"></div>
+          <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg" alt="Amazon Web Services"></div>
+          <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/8c88ad4e-azure+logo.png" alt="Microsoft Azure"></div>
+          <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/53da813f-openstack-logomark-logo.svg" alt="OpenStack"></div>
+          <div class="p-logo-section__item"><img class="p-logo-section__logo" src="https://assets.ubuntu.com/v1/87b04c6a-vmware-logo.png" alt="VMWare"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="u-no-margin--bottom">
+    <div class="col-6 col-medium-3">
+      <h2>Bring your own identity and access management platform</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Landscape supports OpenID Connect (OIDC) to authenticate users, and integrates enterprise identity providers like Azure AD, Google, Okta, IBM, and more.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="u-no-margin--bottom">
+    <div class="col-6 col-medium-3">
+      <h2>Mirror Canonical's repositories. Host private repositories</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Landscape simplifies the task of scheduling software updates, and provides a mirroring mechanism to deliver software updates at scale, over your local network (LAN).</p>
+      <p>Organisations developing proprietary software on Ubuntu benefit from Managed Landscape's support for private repositories.</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="u-no-margin--bottom">
+    <div class="col-6 col-medium-3">
+      <h2>Pricing that is clear and transparent</h2>
+    </div>
+    <div class="col-6 col-medium-3">
+      <p>Our Field Engineering team can recommend the number and type of machines your Managed Landscape deployment would need.</p>
+      <p>
+        <a>Get started with a free quote and architecture assessment</a>
+      </p>
+    </div>
+  </div>
+  <div class="p-strip u-no-padding--bottom">
+    <div class="u-fixed-width">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Per Landscpae virtual machine/year</th>
+            <th>Per Landscape physical machine/year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Managed Landscape on public clouds, VMware, OpenStack or LXD</th>
+            <td>$3,099</td>
+            <td>$6,861</td>
+          </tr>
+          <tr>
+            <th>Managed Landscape on bare metal</th>
+            <td>N/A</td>
+            <td>$9,470</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="u-no-margin--bottom">
+    <div class="col-6 col-medium-3 u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3323bfba-contact-us-question.png",
+        alt="",
+        width="236",
+        height="239",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    <div class="col-6 col-medium-3">
+      <h3>Got questions?</h3>
+      <p>Landscape's API can bridge any requirements our dashboard may not natively address. Contact us to evaluate your needs.</p>
+      <p>
+        <a href="/landscape#get-in-touch">Contact us about your unique requirements</a>
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape" data-form-id="4473" data-lp-id="" data-return-url="/landscape" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
