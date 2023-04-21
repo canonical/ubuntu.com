@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
-
     steps:
       - uses: actions/checkout@v3
 
@@ -171,7 +170,7 @@ jobs:
           yarn lint-js
 
   lint-ts:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v3
