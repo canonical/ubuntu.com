@@ -56,7 +56,7 @@ juju integrate kubevirt:kube-control kubernetes-control-plane
 **operator-release**
 - defaults: auto
 - Specifies the version of KubeVirt as defined by the release
-  tags of https://github.com/kubevirt/kubevirt/releases/tags
+  tags of https://github.com/kubevirt/kubevirt/releases
 
   The charm has a fixed set of supported versions which can be queried with:
   ```bash

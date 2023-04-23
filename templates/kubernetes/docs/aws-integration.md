@@ -365,7 +365,7 @@ If you are an AWS user, you may also be interested in how to
 <!-- LINKS -->
 
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
-[asset-aws-storage-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-stroage-overlay.yaml
+[asset-aws-storage-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-storage-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/
