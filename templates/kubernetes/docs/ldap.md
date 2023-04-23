@@ -51,7 +51,7 @@ You should now add a relation for the kubernetes-control-plane nodes to accept K
 credentials:
 
 ```bash
-juju add-relation keystone:identity-credentials kubernetes-control-plane:keystone-credentials
+juju integrate keystone:identity-credentials kubernetes-control-plane:keystone-credentials
 ```
 
 You can check that the new applications have deployed and are running with:
@@ -97,7 +97,7 @@ juju trust openstack-integrator
 Finally add a relation between `kubernetes-control-plane` and `openstack-integrator`
 
 ```bash
-juju add-relation kubernetes-control-plane:keystone-credentials openstack-integrator:credentials
+juju integrate kubernetes-control-plane:keystone-credentials openstack-integrator:credentials
 ```
 
 ## Fetch the Keystone script
@@ -142,7 +142,7 @@ named `admin` with a randomly-generated password. You can find the admin passwor
 with:
 
 ```bash
-juju run --unit keystone/0 leader-get admin_passwd
+juju exec --unit keystone/0 leader-get admin_passwd
 ```
 
 ### Create the domain for Kubernetes
@@ -231,7 +231,7 @@ support LDAP.
 
 ```bash
 juju deploy keystone-ldap
-juju add-relation keystone-ldap keystone
+juju integrate keystone-ldap keystone
 ```
 
 Now you need to add configuration to point to the LDAP server. For example:

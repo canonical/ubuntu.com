@@ -28,7 +28,7 @@ dynamically create, for example, storage.
 ### Installing using the Out-of-Tree Providers
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install],
-you can add the azure-cloud-provider at the same time by using the following
+you can add the `azure-cloud-provider` charm at the same time by using the following
 overlay file ([download it here][asset-azure-cloud-overlay]):
 
 ```yaml
@@ -46,14 +46,10 @@ applications:
     charm: azure-cloud-provider
 
 relations:
-- - azure-cloud-provider:certificates
-  - easyrsa:client   # or whichever application supplies cluster certs
-- - azure-cloud-provider:kube-control
-  - kubernetes-control-plane:kube-control
-- - azure-cloud-provider:external-cloud-provider
-  - kubernetes-control-plane:external-cloud-provider
-- - azure-cloud-provider:azure-integration
-  - azure-integrator:clients
+- [ 'azure-cloud-provider:certificates', 'easyrsa:client' ]   # or whichever application supplies cluster certs
+- [ 'azure-cloud-provider:kube-control', 'kubernetes-control-plane:kube-control' ]
+- [ 'azure-cloud-provider:azure-integration', 'azure-integrator:clients' ]
+- [ 'azure-cloud-provider:external-cloud-provider', 'kubernetes-control-plane:external-cloud-provider' ]
 ```
 
 To use this overlay with the **Charmed Kubernetes** bundle, it is specified
@@ -62,6 +58,15 @@ during deploy like this:
 ```bash
 juju deploy charmed-kubernetes --overlay azure-cloud-overlay.yaml --trust
 ```
+
+... and remember to fetch the configuration file!
+
+```bash
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
+```
+
+For more configuration options and details of the permissions which the
+integrator uses, please see the [charm readme][azure-integrator].
 
 ### Installing using In-Tree Providers
 
@@ -101,7 +106,7 @@ juju deploy charmed-kubernetes --overlay azure-overlay.yaml --trust
 After installation, remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 <div class="p-notification--information">

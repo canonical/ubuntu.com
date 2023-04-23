@@ -68,12 +68,12 @@ kubectl get constraints
 
 Or with the juju command:
 ```console
-juju run-action {unit_name} -m {model_name} --wait list-violations
+juju run {unit_name} -m {model_name} list-violations
 ```
 
 And then to get the violations for a specific constraint run:
 ```console
-juju run-action {unit_name} -m {model_name} --wait get-violation constraint-template={constraint_template} constraint={constraint}
+juju run {unit_name} -m {model_name} get-violation constraint-template={constraint_template} constraint={constraint}
 ```
 
 ## Configuration
@@ -103,8 +103,8 @@ the [grafana-agent-k8s][grafana-agent-k8s] charms.
 If you have those two charms deployed, you can integrate them with gatekeeper simply by running:
 
 ```bash
-juju relate grafana-agent-k8s gatekeeper-controller-manager
-juju relate grafana-agent-k8s:send-remote-write prometheus-k8s:receive-remote-write
+juju integrate grafana-agent-k8s gatekeeper-controller-manager
+juju integrate grafana-agent-k8s:send-remote-write prometheus-k8s:receive-remote-write
 ```
 
 This will provide you with metrics such as how many requests were denied, how many were processed,
@@ -119,7 +119,7 @@ it will cause all of the resources to be deleted.
 In that scenario you will need to reconcile (recreate) the resources by running:
 
 ```console
-juju run-action {unit_name} -m {model_name} reconcile-resources --wait
+juju run {unit_name} -m {model_name} reconcile-resources
 ```
 
 <div class="p-notification--caution">

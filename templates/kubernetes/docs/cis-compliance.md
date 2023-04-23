@@ -93,7 +93,7 @@ configure, and run the benchmark on the respective components. Run this
 action on the units you wish to test with the following:
 
 ```bash
-juju run-action --wait etcd/0 cis-benchmark
+juju run etcd/0 cis-benchmark
 ```
 
 By default, the action will display a summary of any issues found as well as
@@ -144,7 +144,7 @@ Run the CIS benchmark on the `kubernetes-worker` charm using a custom
 configuration archive:
 
 ```bash
-juju run-action --wait kubernetes-worker/0 cis-benchmark \
+juju run kubernetes-worker/0 cis-benchmark \
   config='https://github.com/charmed-kubernetes/kube-bench-config/archive/cis-1.5.zip'
 ```
 
@@ -166,7 +166,7 @@ Attempt to apply all known fixes to the failing benchmark tests using the same
 configuration archive:
 
 ```bash
-juju run-action --wait kubernetes-worker/0 cis-benchmark \
+juju run kubernetes-worker/0 cis-benchmark \
   apply='dangerous' \
   config='https://github.com/charmed-kubernetes/kube-bench-config/archive/cis-1.5.zip'
 ```
@@ -183,7 +183,7 @@ status: completed
 Re-run the earlier action to verify previous failures have been fixed:
 
 ```bash
-juju run-action --wait kubernetes-worker/0 cis-benchmark \
+juju run kubernetes-worker/0 cis-benchmark \
   config='https://github.com/charmed-kubernetes/kube-bench-config/archive/cis-1.5.zip'
 ```
 
@@ -208,8 +208,7 @@ applies. However, it does support removing all configuration that it may have
 set on a unit. To clear this data, set the `apply` parameter to `reset`:
 
 ```bash
-juju run-action --wait kubernetes-worker/0 cis-benchmark \
-  apply='reset'
+juju run kubernetes-worker/0 cis-benchmark apply='reset'
 ```
 
 ```yaml

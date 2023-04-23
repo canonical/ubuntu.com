@@ -135,7 +135,7 @@ juju deploy charmed-kubernetes --overlay vsphere-overlay.yaml --trust
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 <div class="p-notification--caution is-inline">
@@ -200,13 +200,29 @@ vSphere's PersistentDisk as an example.
 
 
 ### 1. Create a storage class using the `csi.vsphere.vmware.com` provisioner:
+* If the `vsphere-cloud-provider` charm is installed, skip this step since
+  it creates the StorageClass `csi-vsphere-default`.
+```bash
+SC_NAME=csi-vsphere-default
+kubectl get sc $SC_NAME
+```
+```
+NAME                            PROVISIONER              RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+csi-vsphere-default (default)   csi.vsphere.vmware.com   Delete          Immediate           false                  0s
+```
+
+* Without the `vsphere-cloud-provider` charm, one will need to create a
+storage class which can be used by Kubernetes against the `csi.vsphere.vmware.com`
+provisioner.
 
 ```bash
+SC_NAME=mystorage
+
 kubectl create -f - <<EOY
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
 metadata:
-  name: mystorage
+  name: ${SC_NAME}
 provisioner: csi.vsphere.vmware.com
 EOY
 ```
@@ -225,7 +241,7 @@ spec:
   resources:
     requests:
       storage: 100Mi
-  storageClassName: mystorage
+  storageClassName: ${SC_NAME}
 EOY
 ```
 

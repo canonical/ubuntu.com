@@ -57,7 +57,7 @@ the configurations rather than replacing it. The following command fetches the
 config file for `kubectl` from the Kubernetes cluster and saves it to the default location:
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 #### 4. Add the Kubernetes cluster to Juju
@@ -206,7 +206,7 @@ application in the model can then be related to it as thought it were a local mo
 resource. In this case you want to connect it to the kubernetes-control-plane:
 
 ```bash
-juju relate -m ck-model coredns kubernetes-control-plane
+juju integrate -m ck-model coredns kubernetes-control-plane
 ```
 
 Once everything settles, new or restarted pods will use the CoreDNS
@@ -277,7 +277,7 @@ juju deploy kube-state-metrics --trust
 If you have a prometheus application running in the same model, it can also be related to this:
 
 ```bash
-juju relate kube-state-metrics prometheus 
+juju integrate kube-state-metrics prometheus 
 ```
 
 

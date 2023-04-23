@@ -267,7 +267,7 @@ This is caused by the API load balancer not forwarding ports in the context of t
     If you want to access this data programmatically you can use the JSON output:
 
     ```bash
-    juju show-status kubernetes-control-plane --format json | jq --raw-output '.applications."kubernetes-control-plane".units | keys[]'
+    juju status --format json | jq -r '.applications."kubernetes-control-plane".units | to_entries[] | [.value."public-address"] | @tsv'
     54.210.100.102
     ```
 
@@ -482,7 +482,7 @@ easiest thing to do here is to look at the log for the API server for interestin
 such as timeouts or errors with the webhook.
 
 ```bash
-juju run --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver.daemon.service
+juju exec --unit kubernetes-control-plane/0 -- journalctl -u snap.kube-apiserver.daemon.service
 ```
 
 <!-- FEEDBACK -->

@@ -353,7 +353,7 @@ docker.io/calico/kube-controllers:v3.6.1
 And configure Calico to use the registry:
 
 ```bash
-export IP=`juju run --unit docker-registry/0 'network-get website --ingress-address'`
+export IP=`juju exec --unit docker-registry/0 'network-get website --ingress-address'`
 export PORT=`juju config docker-registry registry-port`
 export REGISTRY=$IP:$PORT
 juju config calico \

@@ -30,7 +30,7 @@ configured as follows:
 
 1. Relate `keepalived` to `kubeapi-load-balancer`:
     ```bash
-    juju add-relation keepalived:juju-info kubeapi-load-balancer:juju-info
+    juju integrate keepalived:juju-info kubeapi-load-balancer:juju-info
     ```
 
 1. Configure the keepalived application. You should substitute a suitable IP address and

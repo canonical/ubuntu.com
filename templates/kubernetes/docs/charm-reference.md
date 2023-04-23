@@ -27,6 +27,8 @@ linked below for specific usage and configuration.
 
 [canal](https://charmhub.io/canal)
 
+[cilium](https://charmhub.io/cilium)
+
 [containerd](https://charmhub.io/containerd)
 
 [docker-registry](https://charmhub.io/docker-registry)
