@@ -1,46 +1,40 @@
 <div tabindex="0" role="tabpanel" id="quemu-sifive-image-tab" aria-labelledby="quemu-sifive-image">
-	<div class="row u-vertically-center u-no-padding">
-		<div class="col-6">
-			<h2>SiFive Unmatched</h2>
-			<h3 class="p-heading--4">Ubuntu Server preinstalled image</h3>
-			<div class="p-notification--information is-inline">
-				<div class="p-notification__content">
-					<h4 class="p-notification__title">Note:</h4>
-					<p class="p-notification__message">If you have an NVMe drive, we advise you to use the Ubuntu Server live installer.</p>
-				</div>
-			</div>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
-			</p>
-			<h3 class="p-heading--4">Ubuntu Server live installer</h3>
+  <div class="row">
+    <div class="col-6">
+      <h2>Ubuntu Server <br class="u-hide--small">preinstalled image</h2>
+      <div class="p-notification--information is-inline">
+        <div class="p-notification__content">
+          <h4 class="p-notification__title">Note:</h4>
+          <p class="p-notification__message">If you have an NVMe drive, we advise you to use the Ubuntu Server live installer.</p>
+        </div>
+      </div>
+      <p class="u-sv3">
+        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
+        <a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
+      </p>
+    </div>
+    <div class="col-3 u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/37c094a9-SiFive+Unmatched+Board.jpg",
+        alt="",
+        width="720",
+        height="480",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+        }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <hr class="u-no-margin--bottom">
+      <h3 class="p-heading--2 u-sv3">Ubuntu Server live installer</h3>
 			<p>
 				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04 live installer</a>
 				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2 live installer</a>
 			</p>
-			<p>Works on:</p>
-			<ul class="p-list">
-				<li class="p-list__item is-ticked">The Unmatched board</li>
-				<li class="p-list__item is-ticked">QEMU</li>
-			</ul>
-		</div>
-		<div class="col-2 u-hide--medium u-hide--small">&nbsp;</div>
-		<div class="col-4 u-hide--medium u-hide--small u-align--center u-vertically-center">
-			{{ image (
-				url="https://assets.ubuntu.com/v1/37c094a9-SiFive+Unmatched+Board.jpg",
-				alt="",
-				width="720",
-				height="480",
-				hi_def=True,
-				loading="auto"
-				) | safe
-			  }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-6 u-vertically-center u-no-padding">
 			<h4>First time installing Ubuntu on QEMU/Unmatched?</h4>
-			<p>Please see <a href="https://wiki.ubuntu.com/RISC-V/SiFive%20HiFive%20Unmatched">How to install Ubuntu on SiFive HiFive Unmatched</a> for more information.</p>
+			<p><a href="https://wiki.ubuntu.com/RISC-V/SiFive%20HiFive%20Unmatched">How to install Ubuntu on SiFive HiFive Unmatched</a></p>
 		</div>
 	</div>
 </div>
