@@ -10,10 +10,8 @@ import { getErrorMessage } from "advantage/error-handler";
 import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
-import { Action, FormValues, Product, TaxInfo } from "../../utils/types";
+import { Action, FormValues, Product } from "../../utils/types";
 import { currencyFormatter } from "advantage/react/utils";
-import usePreview from "../../hooks/usePreview";
-import useCalculate from "../../hooks/useCalculate";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -37,25 +35,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const useFinishPurchaseMutation = useFinishPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
-  const { data: calculate } = useCalculate({
-    quantity: quantity,
-    marketplace: product.marketplace,
-    productListingId: product.longId,
-    country: values.country,
-    VATNumber: values.VATNumber,
-    isTaxSaved: values.isTaxSaved,
-  });
-
-  const { data: preview } = usePreview({
-    quantity,
-    product,
-    action,
-  });
-  const priceData: TaxInfo | undefined = preview || calculate;
-  const discount =
-    (product?.price?.value * ((product?.price?.discount ?? 0) / 100)) / 100;
-  const total = (priceData?.total ?? 0) / 100;
-  const defaultTotal = (product?.price?.value * quantity) / 100 - discount;
 
   const sessionData = {
     gclid: getSessionData("gclid"),
@@ -106,9 +85,9 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         country: values.country,
         product: product?.name,
         quantity: quantity,
-        total: priceData
-          ? currencyFormatter.format(total)
-          : currencyFormatter.format(defaultTotal),
+        total:
+          values.totalPrice &&
+          currencyFormatter.format(values?.totalPrice / 100),
         "buying-for": values.buyingFor,
         action: buyAction,
       },
