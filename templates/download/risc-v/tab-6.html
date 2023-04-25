@@ -1,25 +1,13 @@
 <div tabindex="0" role="tabpanel" id="qemu-tab" aria-labelledby="qemu" aria-hidden="true">
-	<div class="row u-vertically-center u-no-padding">
+	<div class="row">
 		<div class="col-6">
-			<h2>QEMU emulator</h2>
-			<h3 class="p-heading--4">Ubuntu Server preinstalled image</h3>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2</a>
+			<h3 class="p-heading--2 u-sv3">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+			<p class="u-sv3">
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
+				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
 			</p>
-			<h3 class="p-heading--4">Ubuntu Server live installer</h3>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04 live installer</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2 live installer</a>
-			</p>
-			<p>Works on:</p>
-			<ul class="p-list">
-				<li class="p-list__item is-ticked">The Unmatched board</li>
-				<li class="p-list__item is-ticked">QEMU</li>
-			</ul>
-		</div>
-		<div class="col-2 u-hide--medium u-hide--small">&nbsp;</div>
-		<div class="col-4 u-hide--medium u-hide--small u-align--center">
+    </div>
+		<div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
 			{{
 				image (
 				url="https://assets.ubuntu.com/v1/308d48cd-Qemu-logo.png",
@@ -32,10 +20,15 @@
 			  }}
 		</div>
 	</div>
-	<div class="row u-vertically-center u-no-padding">
+	<div class="row">
 		<div class="col-6">
-			<h4>First time installing Ubuntu on QEMU/Unmatched?</h4>
-			<p>Please see the <a href="https://wiki.ubuntu.com/RISC-V/QEMU">How to install Ubuntu on QEMU RISC-V</a> for more information.</p>
+      <hr class="u-no-margin--bottom">
+      <h3 class="p-heading--2 u-sv3">Ubuntu Server live installer</h3>
+			<p>
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04 live installer</a>
+				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2 live installer</a>
+			</p>
+			<p><a href="https://wiki.ubuntu.com/RISC-V/QEMU">How to install Ubuntu on QEMU RISC-V</a></p>
 		</div>
 	</div>
 </div>

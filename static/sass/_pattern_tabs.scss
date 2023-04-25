@@ -54,6 +54,17 @@
         @include vf-highlight-bar($color-brand, left);
       }
     }
+
+    &.is-risc-v {
+      margin-left: 0;
+      padding-left: 0;
+
+      .p-tabs__item {
+        &[aria-selected="true"] {
+          @include vf-highlight-bar($color-dark, left);
+        }
+      }
+    }
   }
 
   // Override the highlighted tab colour for pages that need to use the brand
