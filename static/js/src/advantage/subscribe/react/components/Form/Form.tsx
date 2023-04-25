@@ -68,7 +68,7 @@ const Form = () => {
           </Row>
           <Strip includeCol={false}>
             <Col size={12}>
-              <h2>Do you need phone and ticket support?</h2>
+              <h2>Do you also need phone and ticket support?</h2>
             </Col>
             <Col size={12}>
               <Support />
