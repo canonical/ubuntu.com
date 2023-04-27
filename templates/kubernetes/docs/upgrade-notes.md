@@ -206,7 +206,7 @@ juju add-relation docker kubernetes-worker
 Now, pause the existing workers, which will move pods to the temporary workers.
 
 ```bash
-juju run-action [unit] pause --wait
+juju run-action [unit] pause
 ```
 
 For example:

@@ -32,7 +32,6 @@ make use of them.
   </div>
 </div>
 
-
 ## APT package repository
 
 Access to a repository is required for installing software which is not yet available
@@ -133,16 +132,17 @@ has access to public repositories. The shrinkwrap tool also gathers all the nece
 images for a specific release into one "containers" folder of the resulting tar.gz 
 ready for installation.
 
-When using the Juju docker-registry charm, the image archives can be copied to the running unit
-added to the registry. Note that if the `docker-registry` charm itself has been deployed offline,
-you will also need to fetch the registry image:
+When using the Juju docker-registry charm, the image archives can be copied to the
+running unit added to the registry. Note that if the `docker-registry` charm itself
+has been deployed offline, you will also need to fetch the registry image:
 
 ```bash
 docker pull registry
 docker save registry | gzip > registry.tgz
 ```
 
-The local image files can then be copied to the unit running the docker-registry and loaded:
+The local image files can then be copied to the unit running the docker-registry and 
+loaded:
 
 ```bash
 juju scp *.tgz docker-registry/0:
@@ -155,7 +155,7 @@ exit
 You can confirm the images are present by running the action:
 
 ```bash
-juju run-action --wait docker-registry/0 images
+juju run docker-registry/0 images
 ```
 
 ## OS images
@@ -209,15 +209,20 @@ from an internet connected machine:
 1. Download the installable bundles, charms, snaps, and containers using [Shrinkwrap][cdk-shrinkwrap]
 1. Pull the archive for the deployment
 
-```bash
-git clone https://github.com/charmed-kubernetes/cdk-shrinkwrap.git /tmp/.shrinkwrap
-cd /tmp/.shrinkwrap
-BUNDLE=cs:charmed-kubernetes-862       # Choose a deployment bundle (example is 1.23.x)
-./shrinkwrap-lxc.sh $BUNDLE 
-ls /tmp/.shrinkwrap/build/
-```
+   ```bash
+   git clone https://github.com/charmed-kubernetes/cdk-shrinkwrap.git /tmp/.shrinkwrap
+   cd /tmp/.shrinkwrap
+   BUNDLE='charmed-kubernetes --channel=1.26/stable'       # Choose a deployment bundle (example is 1.26.x)
+   ./shrinkwrap-lxc.sh $BUNDLE 
+   ls /tmp/.shrinkwrap/build/
+   ```
 
-In air-gapped environment with access to the Juju controller, 
+   The shrinkwrap script will create a tar archive named after the channel and
+   the date, and stored in a directory named after the bundle and version (e.g
+   in this case 'kcharmed-kubernetes-1.26).
+
+
+In the air-gapped environment with access to the Juju controller:
 1. Extract the tar.gz file
 1. Print Available instructions from the deploy.sh
    1. Push the snaps to the snap-store-proxy
@@ -225,15 +230,19 @@ In air-gapped environment with access to the Juju controller,
 1. Ensure the Juju environment is configured to pull from the snap-store-proxy and container registry
    1. This will require configuration changes on the `containerd` application and `kubernetes-control-plane` application in the `./bundle.yaml`
    1. Ensure `applications.containerd.options` includes `custom_registries` settings
-1. Finally, deploy the Juju charms and resources from the provided local bundle.
-```bash
-tar -xvf cs:charmed-kubernetes-862-stable-*.tar.gz --force-local
-cd cs:charmed-kubernetes-862-stable-*/
-./deploy.sh
-# examine provided instructions
-# ensure necessary modifications are considered
-juju deploy ...
-```
+1. Finally, deploy the Juju charms and resources from the provided local bundle:
+
+   ```bash
+   tar -xvf charmed-kubernetes-*/*.tar.gz --force-local
+   cd charmed-kubernetes-*/
+   ./deploy.sh
+   ```
+   
+   Examine the provided instructions and ensure necessary modifications are considered and made. Then...
+
+   ```
+   juju deploy ...
+   ```
 
 
 ### Configuring Charmed Kubernetes to work with proxies
@@ -288,4 +297,3 @@ is covered in the [proxy documentation][].
     <a href="https://github.com/charmed-kubernetes/kubernetes-docs/issues/new" >file a bug here</a>.</p>
   </div>
 </div>
-

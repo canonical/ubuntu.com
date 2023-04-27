@@ -92,7 +92,7 @@ To open the dashboard in your browser you will need to know the URL and login
 credentials for Grafana. These can be retrieved with the following command:
 
 ```bash
-juju run-action --wait grafana/0 get-login-info
+juju run grafana/0 get-login-info
 ```
 
 This will return the connection and login information, like the following:
@@ -169,7 +169,7 @@ juju expose nagios
 Connect **Nagios** to NRPE:
 
 ```bash
-juju add-relation nagios nrpe
+juju integrate nagios nrpe
 ```
 
 Now add relations to NRPE for all the applications you wish to monitor, for
@@ -177,11 +177,11 @@ example kubernetes-control-plane, kubernetes-worker, etcd, easyrsa, and
 kubeapi-load-balancer.
 
 ```bash
-juju add-relation nrpe kubernetes-control-plane
-juju add-relation nrpe kubernetes-worker
-juju add-relation nrpe etcd
-juju add-relation nrpe easyrsa
-juju add-relation nrpe kubeapi-load-balancer
+juju integrate nrpe kubernetes-control-plane
+juju integrate nrpe kubernetes-worker
+juju integrate nrpe etcd
+juju integrate nrpe easyrsa
+juju integrate nrpe kubeapi-load-balancer
 ```
 
 To connect to the Nagios server, you will need its IP address:

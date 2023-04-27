@@ -149,7 +149,7 @@ The cnx-manager service is exposed as a NodePort on port 30003. Run the
 following command to open port 30003 on the workers:
 
 ```bash
-juju run --application kubernetes-worker open-port 30003
+juju exec --application kubernetes-worker open-port 30003
 ```
 
 Then connect to `https://<kubernetes-worker-ip>:30003` in your web browser. Use
@@ -162,7 +162,7 @@ The kibana service is exposed as a NodePort on port 30601. Run the following
 command to open port 30601 on the workers:
 
 ```bash
-juju run --application kubernetes-worker open-port 30601
+juju exec --application kubernetes-worker open-port 30601
 ```
 
 <div class="p-notification--caution is-inline">
@@ -213,7 +213,7 @@ docker.io/alpine:3.7
 And configure Tigera Secure EE to use the registry with this shell script:
 
 ```bash
-export IP=`juju run --unit docker-registry/0 'network-get website --ingress-address'`
+export IP=`juju exec --unit docker-registry/0 'network-get website --ingress-address'`
 export PORT=`juju config docker-registry registry-port`
 export REGISTRY=$IP:$PORT
 juju config tigera-secure-ee registry=$REGISTRY

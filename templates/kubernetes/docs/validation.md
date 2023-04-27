@@ -53,9 +53,9 @@ Finally we relate the charm to `easyrsa` and `kubernetes-control-plane`:
 
 ```bash
 juju config kubernetes-control-plane allow-privileged=true
-juju add-relation kubernetes-e2e easyrsa
-juju add-relation kubernetes-e2e:kubernetes-control-plane kubernetes-control-plane:kube-api-endpoint
-juju add-relation kubernetes-e2e:kube-control kubernetes-control-plane:kube-control
+juju integrate kubernetes-e2e easyrsa
+juju integrate kubernetes-e2e kubernetes-control-plane:kube-api-endpoint
+juju integrate kubernetes-e2e:kube-control kubernetes-control-plane:kube-control
 ```
 
 It may take some moments for these relations to establish. Once the connections are made, the charm will update its status to "Ready to test."
@@ -65,11 +65,17 @@ It may take some moments for these relations to establish. Once the connections 
 The tests are configured as a **Juju** _action_. To run the default tests:
 
 ```bash
-juju run-action kubernetes-e2e/0 test
+juju run kubernetes-e2e/0 test --background
 ```
 
-The command will return with a uuid for that specific test run. See the section
-on _Test output_ below for details.
+The command will return with a number for that specific action operation. 
+```console
+Scheduled operation 25 with task 26
+Check operation status with 'juju show-operation 25'
+Check task status with 'juju show-task 26'
+```
+
+See the section on _Test output_ below for details.
 
 ## Running specific tests
 
@@ -82,7 +88,7 @@ By default, the standard tests marked `[Flaky]` or `[Serial]` are skipped. To
 also omit the tests marked as `[Slow]`, you could run:
 
 ```bash
-juju run-action kubernetes-e2e/0 test skip='\[(Flaky|Slow|Serial)\]'
+juju run kubernetes-e2e/0 test skip='\[(Flaky|Slow|Serial)\]'  --background
 ```
 
 Note that the brackets for the regex need to be escaped as shown.
@@ -94,39 +100,60 @@ Running this command will return a uuid for that specific test run, as with the 
 You can check on the current status of the test by running:
 
 ```bash
-juju show-action-status 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
+juju show-operation 25
 ```
 
-where `8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9` is the uuid of the action returned
-when we initiated the test. This will return YAML output indicating the current
-status, which can be either `running`, `completed` or `failed`.
+where `25` is the id of the scheduled operation when the test was initiated.
+This will return YAML output indicating the current status, 
+which can be either `running`, `completed` or `failed`.
 
 ```yaml
-actions:
-- action: test
-  completed at: n/a
-  id: 8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
-  status: running
-  unit: e2e/0
+summary: test run on unit-kubernetes-e2e-0
+status: running
+action:
+  name: test
+  parameters: {}
+timing:
+  enqueued: 2023-03-13 11:01:34 -0500 CDT
+  started: 2023-03-13 11:01:34 -0500 CDT
+tasks:
+  "26":
+    host: kubernetes-e2e/0
+    status: running
+    timing:
+      enqueued: 2023-03-13 11:01:34 -0500 CDT
+      started: 2023-03-13 11:01:34 -0500 CDT
 ```
 
 Once completed, you can see more detail on the timing by running:
 
 ```bash
-juju show-action-status  8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9
+juju show-operation 25
 ```
 
 Which will return output similar to:
 
 ```yaml
-results:
-  junit: /home/ubuntu/8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9-junit.tar.gz
-  log: /home/ubuntu/8f8ec748-6ca7-4bbb-86f8-f37e44ba46f9.log.tar.gz
-status: completed
+summary: test run on unit-kubernetes-e2e-0
+status: running
+action:
+  name: test
+  parameters: {}
 timing:
-  completed: 2018-10-06 18:33:15 +0000 UTC
-  enqueued: 2018-10-06 18:25:30 +0000 UTC
-  started: 2018-10-06 18:25:30 +0000 UTC
+  enqueued: 2023-03-13 11:01:34 -0500 CDT
+  started: 2023-03-13 11:01:34 -0500 CDT
+  completed: 2023-03-13 11:10:15 -0500 CDT
+tasks:
+  "26":
+    host: kubernetes-e2e/0
+    status: completed
+    timing:
+      enqueued: 2023-03-13 11:01:34 -0500 CDT
+      started: 2023-03-13 11:01:34 -0500 CDT
+      completed: 2023-03-13 11:10:15 -0500 CDT
+    results:
+      junit: /home/ubuntu/26-junit.tar.gz
+      log: /home/ubuntu/26.log.tar.gz
 ```
 
 If the tests fail, or you want to look through the detail of each test, you can examine the
@@ -135,7 +162,7 @@ detailed log.
 ## Viewing test logs
 
 The test logfile is stored as a file on the test instance. The filename
-corresponds to the uuid of the action which created it, with a '.log'
+corresponds to the id of the action which created it, with a '.log'
 extension, and it is stored in the `/home/ubuntu/` directory of the machine
 where the tests are running. A compressed version is also stored with the
 extension `.log.tar.gz`
@@ -143,7 +170,7 @@ extension `.log.tar.gz`
 This log can be copied to your local machine for easier viewing:
 
 ```bash
-juju scp kubernetes-e2e/0:4ceed33a-d96d-465a-8f31-20d63442e51b.log  .
+juju scp kubernetes-e2e/0:26.log  .
 ```
 
 Note that the captured test logfile uses ANSI output, and is best viewed with
@@ -167,7 +194,8 @@ echo -ne $(cat $fn | sed  's/$/\\n/' | sed 's/\x1B\[[0-9]*\w//g')
 When an update is available, the `kubernetes-e2e` charm can be upgraded with the command:
 
 ```bash
-juju upgrade-charm kubernetes-e2e
+release=(juju status kubernetes-worker -m charmed-kubernetes --format json | jq -r '.applications["kubernetes-worker"]["charm-channel"]')
+juju refresh kubernetes-e2e --channel=${release}
 ```
 
 <!--LINKS -->

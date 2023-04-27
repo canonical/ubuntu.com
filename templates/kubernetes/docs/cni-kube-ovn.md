@@ -196,7 +196,7 @@ kubernetes-control-plane is configured to use. If needed, you can override
 the Kube-OVN image registry by setting the image-registry config:
 
 ```bash
-export IP=`juju run --unit docker-registry/0 'network-get website --ingress-address'`
+export IP=`juju exec --unit docker-registry/0 'network-get website --ingress-address'`
 export PORT=`juju config docker-registry registry-port`
 export REGISTRY=$IP:$PORT
 juju config kube-ovn image-registry=$REGISTRY

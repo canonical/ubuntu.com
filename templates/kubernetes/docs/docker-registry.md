@@ -42,7 +42,7 @@ follows.
 
 ```bash
 juju deploy docker-registry
-juju add-relation docker-registry easyrsa:client
+juju integrate docker-registry easyrsa:client
 juju config docker-registry \
   auth-basic-user='admin' \
   auth-basic-password='password'
@@ -85,7 +85,7 @@ create a highly available registry as follows:
 juju deploy haproxy
 juju add-unit docker-registry
 juju remove-relation docker-registry easyrsa:client
-juju add-relation docker-registry haproxy:reverseproxy
+juju integrate docker-registry haproxy:reverseproxy
 ```
 
 <div class="p-notification--information is-inline">
@@ -126,13 +126,13 @@ and allows your registry to be used by the cluster to pull images for pods.
 ### Containerd
 
 ```bash
-juju add-relation docker-registry containerd
+juju integrate docker-registry containerd
 ```
 
 ### Docker
 
 ```bash
-juju add-relation docker-registry docker
+juju integrate docker-registry docker
 ```
 
 ## Kubernetes images
@@ -153,11 +153,10 @@ pushed. As an example, push the `defaultbackend-amd64` image to
 `docker-registry`:
 
 ```bash
-juju run-action docker-registry/0 \
+juju run docker-registry/0 \
   push \
   image=k8s.gcr.io/defaultbackend-amd64:1.5 \
   tag=$REGISTRY/defaultbackend-amd64:1.5 \
-  --wait
 ...
   results:
     outcome: success

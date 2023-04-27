@@ -45,6 +45,13 @@ GCP. Using the credentials provided to Juju, it acts as a proxy between
 **Charmed Kubernetes** and the underlying cloud, granting permissions to
 dynamically create, for example, storage volumes.
 
+## GCP K8S Storage
+
+The `gcp-k8s-storage` charm moves the GCP specific functions of the PD csi-driver
+out-of-tree. Using this charm, the drivers are installed as workloads in the kubernetes
+cluster instead of as natural code paths of the kubernetes binaries.
+
+
 ### Installing
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install], you can add the
@@ -55,9 +62,6 @@ it here][asset-gcp-overlay]):
 description: Charmed Kubernetes overlay to add native GCP support.
 applications:
   gcp-integrator:
-    annotations:
-      gui-x: "600"
-      gui-y: "300"
     charm: gcp-integrator
     num_units: 1
     trust: true
@@ -66,17 +70,40 @@ relations:
   - ['gcp-integrator', 'kubernetes-worker']
   ```
 
-To use this overlay with the **Charmed Kubernetes** bundle, it is specified
+As well as the storage overlay file ([download it here][asset-gcp-storage-overlay]):
+
+```yaml
+description: Charmed Kubernetes overlay to add native GCP storage support.
+applications:
+  kubernetes-control-plane:
+    options:
+      allow-privileged: "true"
+  gcp-integrator:
+    charm: gcp-integrator
+    num_units: 1
+    trust: true
+  gcp-k8s-storage:
+    charm: gcp-k8s-storage
+    trust: true
+    options:
+      image-registry: k8s.gcr.io
+relations:
+- ['gcp-k8s-storage:certificates', 'easyrsa:client']
+- ['gcp-k8s-storage:kube-control', 'kubernetes-control-plane:kube-control']
+- ['gcp-k8s-storage:gcp-integration', 'gcp-integrator:gcp']
+```
+
+To use these overlays with the **Charmed Kubernetes** bundle, it is specified
 during deploy like this:
 
 ```bash
-juju deploy charmed-kubernetes --overlay ~/path/gcp-overlay.yaml --trust
+juju deploy charmed-kubernetes --overlay ~/path/gcp-overlay.yaml --overlay ~/path/gcp-storage-overlay.yaml --trust
 ```
 
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the
@@ -92,6 +119,33 @@ GCP storage types.
 GCP storage currently comes in two types - SSD (pd-ssd) or
 'standard'(pd-standard). To use these, we need to create a storage classes in
 Kubernetes.
+
+#### Beginning in Kubernetes 1.25
+
+The `gcp-k8s-storage` charm will need to be installed to make use of PD Volumes.
+Google removed CSIMigration away from the in-tree binaries but made them available
+as container workload in the cluster. This charm installs and relates to the
+existing integrator charm.
+
+A StorageClass will be created by this charm named `csi-gce-pd-default`
+
+You can confirm this has been added by running:
+
+```bash
+kubectl get sc
+```
+
+which should return:
+```bash
+NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+csi-gce-pd-default   pd.csi.storage.gke.io   Delete          WaitForFirstConsumer   false                  4h19m
+```
+
+#### Prior to Kubernetes 1.25
+
+First we need to create a storage class which can be used by Kubernetes.
+To start with, we will create one for the 'General Purpose SSD' type of EBS
+storage:
 
 For the standard disks:
 
@@ -133,6 +187,8 @@ NAME           PROVISIONER            AGE
 gcp-ssd        kubernetes.io/gce-pd   9s
 gcp-standard   kubernetes.io/gce-pd   45s
 ```
+
+#### Creating a PVC
 
 To actually create storage using this new class, you can make a Persistent Volume Claim:
 
@@ -281,14 +337,18 @@ curl 34.76.144.215:8080
 Hello Kubernetes!
 ```
 
-### Upgrading the integrator-charm
+### Upgrading the charms
 
-The gcp-integrator is not specifically tied to the version of **Charmed Kubernetes** installed and may
-generally be upgraded at any time with the following command:
+The charm `gcp-integrator` and `gcp-k8s-storage`
+can be refreshed within the current charm channel without concern and
+can be upgraded at any time with the following command,
 
 ```bash
-juju upgrade-charm gcp-integrator
+juju refresh gcp-integrator
+juju refresh gcp-k8s-storage
 ```
+
+It isn't recommended to switch charm channels unless a full charm upgrade is planned.
 
 ### Troubleshooting
 
@@ -313,10 +373,11 @@ juju debug-log --replay --include gcp-integrator/0
 [owner]: https://console.cloud.google.com/iam-admin/iam
 [iam-roles]: https://cloud.google.com/compute/docs/access/iam
 [asset-gcp-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/gcp-overlay.yaml
+[asset-gcp-storage-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/gcp-storage-overlay.yaml
 [operations]: https://console.cloud.google.com/compute/operations
 [storage]: /kubernetes/docs/storage
 [bugs]: https://bugs.launchpad.net/charmed-kubernetes
-[gcp-integrator-readme]: https://charmhub.io/containers-gcp-integrator/
+[gcp-integrator-readme]: https://charmhub.io/gcp-integrator/
 [target-pool]: https://cloud.google.com/load-balancing/docs/target-pools
 [install]: /kubernetes/docs/install-manual
 

@@ -118,7 +118,7 @@ The following endpoints are available for use in bindings:
 | kubernetes-worker | kube-control | Traffic to kubelet, from kube-apiserver (health checks) |
 
 You can read more about bindings in the Juju documentation here:
-[Binding endpoints within a bundle](https://juju.is/docs/sdk/bundles)
+[Binding endpoints within a bundle](https://juju.is/docs/sdk/bind-endpoints-within-a-bundle)
 
 
 <!-- FEEDBACK -->

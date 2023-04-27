@@ -121,7 +121,7 @@ Should workloads reduce, it is also possible to scale down the number of worker 
 In order to do this safely, the node to be removed can be paused.
 
 ```bash
-juju run-action kubernetes-worker/3 pause --wait
+juju run kubernetes-worker/3 pause
 ```
 
 Pausing the worker will indicate to **Kubernetes** that it is out of service. Any

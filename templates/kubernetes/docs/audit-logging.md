@@ -156,10 +156,10 @@ Please refer to the upstream
 information about the audit webhook config format and related options.
 
 <!-- LINKS -->
-[k8s-audit]: https://kubernetes.io/docs/tasks/debug-application-cluster/audit/
-[k8s-audit-policy]: https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#policy
-[k8s-audit-log]: https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#log-backend
-[k8s-audit-backend]: https://kubernetes.io/docs/tasks/debug-application-cluster/audit/#webhook-backend
+[k8s-audit]: https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/
+[k8s-audit-policy]: https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/#policy
+[k8s-audit-log]: https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/#log-backend
+[k8s-audit-backend]: https://kubernetes.io/docs/tasks/debug/debug-cluster/audit/#webhook-backend
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">
