@@ -1,0 +1,39 @@
+{% extends "security/base_security.html" %}
+
+{% block title %}Ubuntu Oval | Security{% endblock %}
+
+{% block meta_description %}Parameters and methods for consuming Ubuntu OVAL data. OVAL is used by the Ubuntu Security Team for CVE tracking and management.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1hBG6NIfBIrixIV753fsOiEymmeuFIF-KOhiDkV68PRY/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-bottomed">
+  <div class="row u-equal-height">
+    <div class="col-7 u-vertically-center">
+      <h1>
+        Ubuntu OVAL files
+      </h1>
+      <p>
+        <ul>
+          {% for name, url in oval_files.items() %}
+            <li><a href="{{ url }}">{{ name }}</a></li>
+          {% endfor %}
+        </ul>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{
+        image(
+        url="https://assets.ubuntu.com/v1/eb653b8e-oval_logo.png",
+        alt="",
+        width="250",
+        height="164",
+        hi_def=True,
+        loading="auto",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

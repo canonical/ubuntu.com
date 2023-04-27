@@ -137,6 +137,7 @@ from webapp.views import (
     mirrors_query,
     openstack_engage,
     openstack_install,
+    oval_files,
     releasenotes_redirect,
     show_template,
     sitemap_index,
@@ -454,6 +455,9 @@ app.add_url_rule(
     view_func=BlogRedirects.as_view("blog_redirects", blog_views=blog_views),
 )
 app.register_blueprint(build_blueprint(blog_views), url_prefix="/blog")
+
+# OVAL files
+app.add_url_rule("/security/oval/files", view_func=oval_files)
 
 # usn section
 app.add_url_rule("/security/notices", view_func=notices)

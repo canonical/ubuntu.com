@@ -1075,3 +1075,13 @@ def subscription_centre_submit(sfdcLeadId, unsubscribe):
         return response
     except HTTPError:
         flask.current_app.extensions["sentry"].captureException()
+
+
+def oval_files():
+    with open("oval-files.yaml") as oval_files_fh:
+        oval_files = yaml.load(oval_files_fh, Loader=yaml.FullLoader)
+
+    return flask.render_template(
+        "security/oval/files.html",
+        oval_files=oval_files,
+    )
