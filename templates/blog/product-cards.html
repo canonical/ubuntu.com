@@ -1,6 +1,10 @@
 <div id="product-card">
+    {# Real-time Linux tag cards #}
+  {% if article.tags and 4296 in article.tags %}
+    {% include "blog/product-cards/_real-time_linux.html" %}
+
     {# Multi-cloud tag cards #}
-  {% if article.tags and 2976 in article.tags %}
+  {% elif article.tags and 2976 in article.tags %}
     {% include "blog/product-cards/_multi_cloud.html" %}
 
     {# Hybrid-cloud tag cards #}
