@@ -15,7 +15,7 @@
         <p class="p-heading--2">Software as a service convenience, <br class="u-hide--small">in an environment you control</p>
         <p>Manage machines at scale without worrying about tooling. Let Canonical handle Landscape's installation, patching, scaling and maintenance.</p>
         <p>
-          <a class="p-button--positive js-invoke-modal" href="/landscape#get-in-touch">Contact us</a>
+          <a class="p-button--positive js-invoke-modal" href="/landscape/managed#get-in-touch">Contact us</a>
         </p>
       </div>
     </div>
@@ -95,7 +95,7 @@
       <div class="col-6 col-medium-3">
         <p>Our Field Engineering team can recommend the number and type of machines your Managed Landscape deployment would need.</p>
         <p>
-          <a>Get started with a free quote and architecture assessment</a>
+          <a href="/landscape/managed#get-in-touch">Get started with a free quote and architecture assessment</a>
         </p>
       </div>
     </div>
@@ -133,14 +133,16 @@
       <div class="col-6 col-medium-3">
         <p>Landscape's API can bridge any requirements our dashboard may not natively address. Contact us to evaluate your needs.</p>
         <p>
-          <a href="/landscape#get-in-touch">Contact us about your unique requirements</a>
+          <a href="/landscape/managed#get-in-touch">Contact us about your unique requirements</a>
         </p>
       </div>
     </div>
   </section>
 </article>
-{% endblock content %}
 
 <!-- Set default Marketo information for contact form below-->
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape" data-form-id="4473" data-lp-id="" data-return-url="/landscape" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape-managed" data-form-id="5054" data-lp-id="" data-return-url="/landscape/managed#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
+
+<script src="/static/js/src/landscape-form.js"></script>
+{% endblock content %}
