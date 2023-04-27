@@ -410,6 +410,7 @@ app.add_url_rule(
         session=session,
         template_path="search.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -652,6 +653,7 @@ app.add_url_rule(
         site="ubuntu.com/server/docs",
         template_path="/server/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -679,6 +681,7 @@ app.add_url_rule(
         site="ubuntu.com/community",
         template_path="/community/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -732,6 +735,7 @@ app.add_url_rule(
         site="ubuntu.com/ceph/docs",
         template_path="ceph/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -753,6 +757,7 @@ app.add_url_rule(
         site="ubuntu.com/core/docs",
         template_path="/core/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 core_docs.init_app(app)
@@ -917,6 +922,7 @@ app.add_url_rule(
         site="ubuntu.com/openstack/docs",
         template_path="openstack/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -943,6 +949,7 @@ app.add_url_rule(
         site="ubuntu.com/security/livepatch/docs",
         template_path="/security/livepatch/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -969,6 +976,7 @@ app.add_url_rule(
         site="ubuntu.com/security/certifications/docs",
         template_path="/security/certifications/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -995,6 +1003,7 @@ app.add_url_rule(
         site="ubuntu.com/landscape/docs",
         template_path="/landscape/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
@@ -1021,6 +1030,7 @@ app.add_url_rule(
         site="ubuntu.com/robotics/docs",
         template_path="/robotics/docs/search-results.html",
         search_engine_id=search_engine_id,
+        request_limit="2000/day",
     ),
 )
 
