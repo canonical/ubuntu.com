@@ -3,6 +3,7 @@ import math
 import os
 import re
 import html
+import datetime
 
 # Packages
 import dateutil
@@ -729,6 +730,37 @@ class BlogRedirects(BlogView):
         group = context["article"].get("group")
         if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
+
+        # Set blog notice date
+        blog_notice = {}
+        created_at, updated_at = dateutil.parser.parse(
+            context["article"]["date_gmt"]
+        ), dateutil.parser.parse(context["article"]["modified_gmt"])
+
+        date_now = datetime.datetime.now()
+
+        created_at_difference = dateutil.relativedelta.relativedelta(
+            date_now, created_at
+        ).years
+
+        updated_at_difference = dateutil.relativedelta.relativedelta(
+            date_now, updated_at
+        ).years
+
+        # Check if date was published or updated over a year
+        if created_at_difference >= 1 and updated_at_difference >= 1:
+            #  Decide whether to show updated or published date difference
+            if (
+                updated_at
+                > dateutil.relativedelta.relativedelta(days=+1) + created_at
+            ):
+                blog_notice["updated"] = True
+                blog_notice["difference_in_years"] = updated_at_difference
+            else:
+                blog_notice["updated"] = False
+                blog_notice["difference_in_years"] = created_at_difference
+
+        context["blog_notice"] = blog_notice
 
         return flask.render_template("blog/article.html", **context)
 
