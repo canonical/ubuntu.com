@@ -144,5 +144,14 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape-managed" data-form-id="5054" data-lp-id="" data-return-url="/landscape/managed#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>
 
-<script src="/static/js/src/landscape-form.js"></script>
+<script>
+  function commentSummary(){
+    const textarea = document.getElementById("Comments_from_lead__c");
+    const contentSummary = document.getElementById("contentSummary");
+
+    if (contentSummary.value) {
+      textarea.value = contentSummary.value;
+    }
+  }
+</script>
 {% endblock content %}

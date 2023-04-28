@@ -9,7 +9,7 @@
           <h3 class="p-heading--5">Discuss your needs with an advisor</h3>
           <div class="row u-no-padding">
             <div class="col-6">
-              <form action="/marketo/submit" onsubmit="contactPrefrence()" method="post" id="mktoForm_%% formid %%" class="modal-form" id="landscape-form">
+              <form action="/marketo/submit" onsubmit=commentSummary() method="post" id="mktoForm_%% formid %%" class="modal-form" id="landscape-form">
                 <ul class="p-list">
                   <li class="p-list__item">
                     <label for="firstName">First name:</label>
@@ -28,21 +28,21 @@
                     <input required id="phone" name="phone" maxlength="255" type="tel" />
                   </li>
                   <li class="p-list__item">
-                    <label for="contant-summary">Summary of what you would like to discuss (optional field): </label>
-                    <textarea id="contant-summary" name="contant-summary" aria-label="What can we help you with?" maxlength="2000" rows="3"></textarea>
+                    <label for="contentSummary">Summary of what you would like to discuss (optional field): </label>
+                    <textarea id="contentSummary"  aria-label="What can we help you with?" maxlength="2000" rows="3"></textarea>
                   </li>
                   <li class="p-list__item u-sv3">
                     <p>I prefer to be reached via:</p>
                     <div class="row">
                       <div class="col-3">
-                        <label class="p-radio--inline">
-                          <input type="radio" class="p-radio__input" id="telephonePreferred" name="preferredContact" aria-labelledby="preferredContactTelephone" required>
+                        <label class="p-radio--inline" >
+                          <input type="radio" class="p-radio__input" id="telephonePreferred" name="preferredContact" aria-labelledby="preferredContactTelephone" value="Telephone" required>
                           <span class="p-radio__label" id="preferredContactTelephone">Telephone</span>
                         </label>
                       </div>
                       <div class="col-3">
                         <label class="p-radio--inline u-align--right">
-                          <input type="radio" class="p-radio__input" id="emailPreferred" name="preferredContact" aria-labelledby="preferredContactEmail" checked="" required>
+                          <input type="radio" class="p-radio__input" id="emailPreferred" name="preferredContact" aria-labelledby="preferredContactEmail" value="Email" checked="" required>
                           <span class="p-radio__label" id="preferredContactEmail">Email</span>
                         </label>
                       </div>
@@ -86,7 +86,7 @@
                   <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
                   <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
                   <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
-                </div>
+                </div>  
   
                 <div class="pagination">
                   <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
