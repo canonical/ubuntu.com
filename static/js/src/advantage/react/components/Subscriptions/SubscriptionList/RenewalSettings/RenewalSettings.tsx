@@ -1,23 +1,22 @@
+import React, { ReactNode, RefObject, useCallback, useState } from "react";
+import { Formik } from "formik";
 import {
   ContextualMenu,
   Notification,
   NotificationSeverity,
   Spinner,
 } from "@canonical/react-components";
-import React, { ReactNode, RefObject, useCallback, useState } from "react";
-import { Formik } from "formik";
-import FormikField from "advantage/react/components/FormikField";
-import { currencyFormatter, formatDate } from "advantage/react/utils";
-
-import { useSetAutoRenewal, useUserSubscriptions } from "advantage/react/hooks";
-import { selectAutoRenewableSubscriptionsByMarketplace } from "advantage/react/hooks/useUserSubscriptions";
-import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
   UserSubscriptionMarketplace,
   UserSubscriptionPeriod,
 } from "advantage/api/enum";
-import RenewalSettingsForm from "./RenewalSettingsForm";
 import { UserSubscription } from "advantage/api/types";
+import FormikField from "advantage/react/components/FormikField";
+import { useSetAutoRenewal, useUserSubscriptions } from "advantage/react/hooks";
+import { selectAutoRenewableSubscriptionsByMarketplace } from "advantage/react/hooks/useUserSubscriptions";
+import { currencyFormatter, formatDate } from "advantage/react/utils";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import RenewalSettingsForm from "./RenewalSettingsForm";
 
 type AutoRenewalLabelProps = {
   period: UserSubscriptionPeriod;
@@ -114,7 +113,10 @@ function generateAutoRenewalToggles(
       const products: string[] = [];
 
       filteredBillingSubscriptions.forEach((subscription) => {
-        total += (subscription.price ?? 0) / 100;
+        total +=
+          ((subscription.price ?? 0) *
+            subscription.current_number_of_machines) /
+          (100 * subscription.number_of_machines);
         products.push(
           `${subscription.current_number_of_machines}x ${subscription.product_name}`
         );
