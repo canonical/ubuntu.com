@@ -15,6 +15,6 @@ function contactPreference() {
   }
 
   if (contentSummary.value) {
-    textarea.value = textarea.value + "Comments" + ": " + contentSummary.value; 
+    textarea.value = textarea.value + "Comments" + ": " + contentSummary.value;
   }
 }
