@@ -9,7 +9,7 @@
           <h3 class="p-heading--5">Discuss your needs with an advisor</h3>
           <div class="row u-no-padding">
             <div class="col-6">
-              <form action="/marketo/submit" onsubmit=commentSummary() method="post" id="mktoForm_%% formid %%" class="modal-form" id="landscape-form">
+              <form action="/marketo/submit" onsubmit="contactPreference()" method="post" id="mktoForm_%% formid %%" class="modal-form" id="landscape-form">
                 <ul class="p-list">
                   <li class="p-list__item">
                     <label for="firstName">First name:</label>
@@ -28,8 +28,8 @@
                     <input required id="phone" name="phone" maxlength="255" type="tel" />
                   </li>
                   <li class="p-list__item">
-                    <label for="contentSummary">Summary of what you would like to discuss (optional field): </label>
-                    <textarea id="contentSummary"  aria-label="What can we help you with?" maxlength="2000" rows="3"></textarea>
+                    <label for="contentSummary" >Summary of what you would like to discuss (optional field): </label>
+                    <textarea id="contentSummary" aria-label="What can we help you with?" maxlength="2000" rows="3"></textarea>
                   </li>
                   <li class="p-list__item u-sv3">
                     <p>I prefer to be reached via:</p>
