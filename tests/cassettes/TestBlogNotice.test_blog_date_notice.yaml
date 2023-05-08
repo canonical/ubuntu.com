@@ -1,9 +1,17 @@
 interactions:
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&slug=lxd-5-0-lts-is-now-available&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?slug=lxd-5-0-lts-is-now-available&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&_embed=true
   response:
     body:
       string: '[{"id":107834,"date":"2022-04-26T12:46:09","date_gmt":"2022-04-26T12:46:09","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=107834"},"modified":"2022-04-26T13:47:11","modified_gmt":"2022-04-26T13:47:11","slug":"lxd-5-0-lts-is-now-available","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2022\/04\/26\/lxd-5-0-lts-is-now-available\/","title":{"rendered":"LXD
@@ -89,10 +97,14 @@ interactions:
       - X-WP-Total, X-WP-TotalPages
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:19:42 GMT
+      - Mon, 08 May 2023 14:14:25 GMT
+      Keep-Alive:
+      - timeout=5, max=100
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/>; rel="https://api.w.org/"
       Server:
@@ -102,11 +114,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - MISS from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - HIT from juju-prod45-is-insights-blog-machine-4:8080
+      - HIT from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -122,12 +134,132 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&exclude=107834&page=1&per_page=30&tags=4291%2C1301%2C1743&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags=4291%2C1301%2C1743&per_page=30&page=1&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&exclude=107834&_embed=true
   response:
     body:
-      string: '[{"id":112221,"date":"2023-01-18T09:00:02","date_gmt":"2023-01-18T09:00:02","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=112221"},"modified":"2023-01-11T16:40:52","modified_gmt":"2023-01-11T16:40:52","slug":"containerization-vs-virtualization","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/01\/18\/containerization-vs-virtualization\/","title":{"rendered":"Containerization
+      string: '[{"id":114552,"date":"2023-05-08T10:00:06","date_gmt":"2023-05-08T10:00:06","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=114552"},"modified":"2023-05-08T13:27:39","modified_gmt":"2023-05-08T13:27:39","slug":"spring-news-from-the-lxd-team","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/05\/08\/spring-news-from-the-lxd-team\/","title":{"rendered":"Spring
+        news from the LXD team"},"content":{"rendered":"\n<figure class=\"wp-block-image\"><img
+        src=\"https:\/\/admin.insights.ubuntu.com\/wp-content\/uploads\/73b6\/markus-spiske-vrbZVyX2k4I-unsplash1.jpg\"
+        alt=\"An image of sprouting plants\" class=\"wp-image-114553\"\/><figcaption>Photo
+        by <a href=\"https:\/\/unsplash.com\/@markusspiske?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText\">Markus
+        Spiske<\/a> on <a href=\"https:\/\/unsplash.com\/photos\/vrbZVyX2k4I?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText\">Unsplash<\/a><\/figcaption><\/figure>\n\n\n\n<p>In
+        addition to having an LTS release every two years (following the Ubuntu release
+        cadence), LXD also has monthly feature releases. While LTS releases are recommended
+        for production environments, monthly releases are the ones to use in order
+        to get access to the latest features our team is continuously working on.
+        Monthly releases are available in the default snap channel, while the LTS
+        releases are available on the stable channel (&#8211;channel=5.0\/stable).
+        More information on how to access different snap channels and how to manage
+        the LXD snap is available <a href=\"https:\/\/discuss.linuxcontainers.org\/t\/managing-the-lxd-snap\/8178\">in
+        the LXD forum<\/a>.<br><\/p>\n\n\n\n<p>In this blog, we will go through some
+        of the most significant features we have included in our monthly releases
+        so far this year. Links to each of the release announcements are linked for
+        detailed information.<br><\/p>\n\n\n\n<h1>LXD 5.10 &#8211; Instance and server
+        documentation improvements; Network charts in Grafana<\/h1>\n\n\n\n<p>As the
+        first release following the holidays, LXD 5.10 was light on features in comparison
+        to regular monthly releases.&nbsp;<br><\/p>\n\n\n\n<ul><li>It included restructuring
+        the <strong>Instance and server documentation sections<\/strong>, breaking
+        them down into subsections that are easier to navigate and link to.&nbsp;<\/li><li><strong>The
+        Grafana dashboard<\/strong> was expanded to cover network usage with four
+        new charts covering top transmit traffic, top receive traffic as well as top
+        transmit packets and top receive packages.<\/li><li>A new configuration key
+        was added allowing for increasing or decreasing <strong>network transmit queue
+        length on NIC devices<\/strong><\/li><\/ul>\n\n\n\n<p>Read the <a href=\"https:\/\/discuss.linuxcontainers.org\/t\/lxd-5-10-has-been-released\/16143\">full
+        release announcement<\/a> for more details, or watch the <a href=\"https:\/\/www.youtube.com\/watch?v=aegbMkkyKnU\">release
+        live stream<\/a>.<br><\/p>\n\n\n\n<h1>LXD 5.11 &#8211; Instance placement
+        scriptlet and block storage mode on ZFS pools<\/h1>\n\n\n\n<p>LXD 5.11 includes
+        several feature highlights, as well as performance improvements and bug fixes<\/p>\n\n\n\n<ul><li><strong>Instance
+        placement scriptlet<\/strong> was added enabling a better alternative to LXD\u2019s
+        default placement algorithms. Instead of the default behaviour of placing
+        a new instance to whatever node in the cluster hosting the fewest instances,
+        this feature allows users to make a more deliberate choice. Now users can
+        provide a Starlark scriptlet that decides on a target cluster based on information
+        about the new requested instance as well as a list of candidate members. Importantly,
+        while scriptlets are able to access certain information about the instance
+        and the cluster, they cannot access any local data, hit the network or even
+        perform complex time-consuming actions. Read more about it in the <a href=\"https:\/\/discuss.linuxcontainers.org\/t\/lxd-scriptlet-based-instance-placement-scheduler\/15728\">specification<\/a>.&nbsp;<\/li><li><strong>We
+        included support for ZFS volumes<\/strong> (Zvol), in addition to the ZFS
+        filesystem we\u2019ve had for a long time. This is something that was requested
+        by the community and is finally available to users. It results in an experience
+        that\u2019s very similar to LVM or Ceph but on the very capable ZFS backend.
+        It can also be used to mix and match, having some specific custom volumes
+        use Zvol while the rest of the data use datasets.<\/li><\/ul>\n\n\n\n<p>For
+        the rest of the features and a complete changelog, please check the <a href=\"https:\/\/discuss.linuxcontainers.org\/t\/lxd-5-11-has-been-released\/16443\">5.11
+        release announcement<\/a>, or <a href=\"https:\/\/www.youtube.com\/watch?v=iMLiK1fX4I0\">this
+        youtube video<\/a> for demos of the features.&nbsp;<br><\/p>\n\n\n\n<h1>LXD
+        5.12 &#8211; Fixes related to storage and instance migration<\/h1>\n\n\n\n<p>Rather
+        than big features, the 5.12 release contains a lot of smaller fixes, especially
+        around storage and instance migration.<br><\/p>\n\n\n\n<ul><li>It\u2019s now
+        possible to instruct LXD to <strong>wipe the <\/strong><strong>source<\/strong><strong>
+        device of a storage pool <\/strong>prior to creation. While needed for specific
+        use cases, this should be used with extreme care as setting the wrong source
+        value will cause the disk in question to have its header wiped clean by LXD.<\/li><li>LXD
+        now also implements <strong>VM generation IDs<\/strong>. This is purely an
+        additional security feature that the guest OS may or may not use.&nbsp;<\/li><li>A
+        new disk configuration option has been added to enable <strong>control of
+        the caching behaviour for the disk in virtual machines<\/strong>.<\/li><\/ul>\n\n\n\n<p>You
+        can access the complete change log in the <a href=\"https:\/\/discuss.linuxcontainers.org\/t\/lxd-5-12-has-been-released\/16731\">release
+        announcement<\/a>, or watch <a href=\"https:\/\/www.youtube.com\/watch?v=9NO04i68kZQ\">the
+        video<\/a> introducing the changes.&nbsp;<br><\/p>\n\n\n\n<h1>LXD 5.13 &#8211;
+        Live VM migration, AMD SEV support for VMs, OpenID Connect authentication<\/h1>\n\n\n\n<p>5.13
+        is quite a jam-packed release featuring a lot of useful features, including
+        many networking and VM improvements.&nbsp;<br><\/p>\n\n\n\n<ul><li>This release
+        enables a much-improved <strong>VM live migration<\/strong> process, eliminating
+        any perceivable downtime. Previously, LXD relied on the stateful stop function,
+        which is the ability to write down all the memory and CPU state to disk, then
+        fully stop the virtual machine but with the ability to start it back up exactly
+        where it left off. The improved functionality, on the other hand, allows the
+        source and target servers to communicate right from the start of the migration.
+        This allows for performing any disk state transfer in the background while
+        the VM is still running, then transferring any remaining disk changes as well
+        as the memory through multiple iterations of the migration logic and finally
+        cutting over to the target system.<\/li><li>LXD now supports <strong>AMD SEV
+        for memory encryption of virtual machines<\/strong>. On compatible systems
+        (AMD EPYC with firmware and kernel support enabled), setting security.sev
+        to true will have the VM get its memory encrypted with a per-VM key handled
+        by the firmware. Systems supporting AMD SEV-ES can then turn on security.sev.es
+        to also have the CPU state encrypted for extra security.<\/li><li>As a first
+        step to providing a more industry-standard solution to authentication and
+        authorisation in LXD, <strong>OpenID Connect<\/strong> can now be used for
+        <strong>authentication<\/strong>. LXD uses the Device Code flow for authentication
+        with our CLI tool triggering the browser-based authentication flow, then getting
+        and storing the access and refresh tokens and providing those to LXD on all
+        interactions. Only authentication is supported at this stage. Any user that\u2019s
+        approved by the OIDC Identity Provider configured in LXD will get full access
+        to LXD, comparable to that of being in the lxd group.<\/li><li>This release
+        adds <strong>VDPA for network acceleration on OVN. <\/strong>In addition to
+        SR-IOV-based accelerated NICs on OVN networks, users can now use VDPA acceleration
+        as well. With VDPA, the guest doesn\u2019t get to know what the physical NIC
+        is. Instead, the guest sees a perfectly normal virtio-net device, the same
+        as non-accelerated networking. Behind the scenes, that virtio-net device actually
+        has its RX\/TX queues mapped to a VF which is then connected into OpenVswitch
+        and OVN the same way as would be done for SR-IOV. Now, no drivers are needed
+        in the guest and the NIC can theoretically be remapped to a standard non-accelerated
+        virtio-net device prior to migration, allowing for live migration.<\/li><li>Several
+        other networking improvements have been made, including <strong>layer 3 support
+        on OVN<\/strong>, <strong>nested NIC support on OVN<\/strong>, as well as
+        <strong>per user bridge in multi-user setups<\/strong>.&nbsp;<\/li><\/ul>\n\n\n\n<p>For
+        a detailed explanation of each of these features please refer to the <a href=\"https:\/\/discuss.linuxcontainers.org\/t\/lxd-5-13-has-been-released\/16949\">announcement<\/a>,
+        or watch <a href=\"https:\/\/www.youtube.com\/watch?v=NCEYu7DbRbg\">this video<\/a>
+        to see them in action.&nbsp;<\/p>\n\n\n\n<p><\/p>\n","protected":false},"excerpt":{"rendered":"<p>In
+        this blog, we will go through some of the most significant features we have
+        included in our monthly releases so far this year. Links to each of the release
+        announcements are linked for detailed information.<\/p>\n","protected":false},"author":743,"featured_media":114553,"comment_status":"open","ping_status":"closed","sticky":false,"template":"","format":"standard","meta":[],"categories":[1453],"tags":[1539,1743,4499,1342],"topic":[1477],"group":[1706],"_event_location":"","_event_venue":"","_event_registration":"","_start_day":"03","_start_month":"05","_start_year":"2023","_end_day":"03","_end_month":"05","_end_year":"2023","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts\/114552"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/types\/post"}],"author":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users\/743"}],"replies":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/comments?post=114552"}],"version-history":[{"count":2,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts\/114552\/revisions"}],"predecessor-version":[{"id":114612,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts\/114552\/revisions\/114612"}],"wp:featuredmedia":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media\/114553"}],"wp:attachment":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?parent=114552"}],"wp:term":[{"taxonomy":"category","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories?post=114552"},{"taxonomy":"post_tag","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags?post=114552"},{"taxonomy":"topic","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic?post=114552"},{"taxonomy":"group","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group?post=114552"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]},"_embedded":{"author":[{"id":743,"name":"Miona
+        Aleksic","url":"https:\/\/login.ubuntu.com\/+id\/XcXrpd6","description":"","link":"https:\/\/admin.insights.ubuntu.com\/author\/mionaalex\/","slug":"mionaalex","avatar_urls":{"24":"https:\/\/secure.gravatar.com\/avatar\/1c261dfd437053c1a080d3091608dd75?s=24&d=mm&r=g","48":"https:\/\/secure.gravatar.com\/avatar\/1c261dfd437053c1a080d3091608dd75?s=48&d=mm&r=g","96":"https:\/\/secure.gravatar.com\/avatar\/1c261dfd437053c1a080d3091608dd75?s=96&d=mm&r=g"},"user_job_title":"Product
+        Manager","user_website_title":"","user_google":"","user_twitter":"","user_facebook":"","user_photo":"","user_location":"","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users\/743"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users"}]}}],"wp:featuredmedia":[{"id":114553,"date":"2023-05-03T08:09:26","slug":"markus-spiske-vrbzvyx2k4i-unsplash1","type":"attachment","link":"https:\/\/admin.insights.ubuntu.com\/2023\/05\/08\/spring-news-from-the-lxd-team\/markus-spiske-vrbzvyx2k4i-unsplash1\/","title":{"rendered":"markus-spiske-vrbZVyX2k4I-unsplash(1)"},"author":743,"caption":{"rendered":"<p>Spring
+        plants sprouting<\/p>\n"},"alt_text":"Spring plants sprouting","media_type":"image","mime_type":"image\/jpeg","media_details":{"width":2400,"height":1600,"file":"markus-spiske-vrbZVyX2k4I-unsplash1.jpg","image_meta":{"aperture":"0","credit":"","camera":"","caption":"","created_timestamp":"0","copyright":"","focal_length":"0","iso":"0","shutter_speed":"0","title":"","orientation":"0","keywords":[]},"sizes":{}},"source_url":"https:\/\/admin.insights.ubuntu.com\/wp-content\/uploads\/73b6\/markus-spiske-vrbZVyX2k4I-unsplash1.jpg","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media\/114553"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/types\/attachment"}],"author":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users\/743"}],"replies":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/comments?post=114553"}],"wp:term":[{"taxonomy":"topic","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic?post=114553"},{"taxonomy":"group","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group?post=114553"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],"wp:term":[[{"id":1453,"link":"https:\/\/admin.insights.ubuntu.com\/category\/articles\/","name":"Articles","slug":"articles","taxonomy":"category","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories\/1453"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?categories=1453"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?categories=1453"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":1539,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/cloud\/","name":"cloud","slug":"cloud","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1539"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1539"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1539"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1743,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/lxd\/","name":"LXD","slug":"lxd","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1743"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1743"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1743"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":4499,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/microcloud\/","name":"microcloud","slug":"microcloud","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/4499"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=4499"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=4499"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1342,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/private-cloud\/","name":"Private
+        cloud","slug":"private-cloud","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1342"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1342"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1342"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":1477,"link":"https:\/\/admin.insights.ubuntu.com\/topic\/cloud\/","name":"Cloud","slug":"cloud","taxonomy":"topic","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic\/1477"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/topic"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?topic=1477"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?topic=1477"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?topic=1477"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":1706,"link":"https:\/\/admin.insights.ubuntu.com\/group\/cloud-and-server\/","name":"Cloud
+        and server","slug":"cloud-and-server","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/1706"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=1706"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=1706"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=1706"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]]}},{"id":112221,"date":"2023-01-18T09:00:02","date_gmt":"2023-01-18T09:00:02","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=112221"},"modified":"2023-01-11T16:40:52","modified_gmt":"2023-01-11T16:40:52","slug":"containerization-vs-virtualization","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/01\/18\/containerization-vs-virtualization\/","title":{"rendered":"Containerization
         vs. Virtualization : understand the differences"},"content":{"rendered":"\n<p>Over
         the last couple of decades, a lot has changed in terms of how companies are
         running their infrastructure. The days of dedicated physical servers are long
@@ -2969,67 +3101,7 @@ interactions:
         XPS","slug":"dell-xps","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/2186"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=2186"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=2186"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1301,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/lts\/","name":"LTS","slug":"lts","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1301"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1301"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1301"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":3789,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/ubuntu-20-04\/","name":"Ubuntu
         20.04","slug":"ubuntu-20-04","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/3789"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=3789"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=3789"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":2099,"link":"https:\/\/admin.insights.ubuntu.com\/topic\/canonical-announcements\/","name":"Canonical
         announcements","slug":"canonical-announcements","taxonomy":"topic","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic\/2099"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/topic"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?topic=2099"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?topic=2099"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?topic=2099"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":2100,"link":"https:\/\/admin.insights.ubuntu.com\/group\/canonical-announcements\/","name":"Canonical
-        announcements","slug":"canonical-announcements","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/2100"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=2100"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=2100"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=2100"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1479,"link":"https:\/\/admin.insights.ubuntu.com\/group\/desktop\/","name":"Desktop","slug":"desktop","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/1479"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=1479"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=1479"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=1479"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]]}},{"id":96351,"date":"2020-06-15T15:12:46","date_gmt":"2020-06-15T15:12:46","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=96351"},"modified":"2022-09-12T15:28:12","modified_gmt":"2022-09-12T15:28:12","slug":"ovhcloud-drives-flash-storage-strategy-with-lxd","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2020\/06\/15\/ovhcloud-drives-flash-storage-strategy-with-lxd\/","title":{"rendered":"OVHcloud
-        drives flash storage strategy with LXD"},"content":{"rendered":"\n<figure
-        class=\"wp-block-image\"><img src=\"https:\/\/admin.insights.ubuntu.com\/wp-content\/uploads\/2f84\/LXD.png\"
-        alt=\"\" class=\"wp-image-84352\"\/><\/figure>\n\n\n\n<p>With more than 1.5
-        million global customers \u2013 including Sainsburys and Michelin \u2013 <a
-        href=\"https:\/\/www.ovhcloud.com\/en-gb\/\">OVHcloud<\/a> is Europe\u2019s
-        largest cloud computing provider, and the third largest web hosting company
-        in the world. It goes without saying that storage is mission critical for
-        an organisation like OVHcloud, but finding a solution that was compatible
-        with their existing software environment was a challenge until they discovered
-        LXD.&nbsp;<br><\/p>\n\n\n\n<p><strong>The systemd challenge<\/strong><\/p>\n\n\n\n<p>OVHcloud
-        offers a wide range of cloud-based services, and two of them \u2013 Public
-        Cloud Block Storage, and Cloud Disk Array \u2013 rely on Ceph. About a year
-        and a half ago, the company set its sights on creating a next-generation Ceph
-        solution with all flash storage. However, this kind of solution would require
-        newer versions of Ceph \u2013 versions that OVHcloud\u2019s existing software
-        environment could not support.&nbsp;<\/p>\n\n\n\n<p>Filip Dorosz, DevOps Engineer
-        at OVHcloud, explains: \u201cWe quickly realised that it would be impossible
-        to run newer Ceph releases on our legacy software because they required systemd,
-        and we didn\u2019t run systemd at all: neither inside the containers nor on
-        the hosts.\u201d<\/p>\n\n\n\n<p>OVHcloud effectively uses containers as lightweight
-        VMs and, at the time, it utilised Docker as an entry point. But this was an
-        unusual use case for Docker, and not one that it was well-suited for in the
-        long-term. It became clear that the company needed a new solution, with systemd
-        support, that was designed for running a complete operating system within
-        a container.&nbsp;<br><\/p>\n\n\n\n<p><strong>Search for solutions<\/strong><\/p>\n\n\n\n<p>\u201cWe
-        initially considered packaging Ceph ourselves and removing systemd,\u201d
-        continues Filip Dorosz. \u201cBut that would have been a lot of work for minimal
-        value, and we would have lost the benefit of community-tested Ceph packages.\u201d<\/p>\n\n\n\n<p>Next,
-        OVHcloud evaluated LXC. First launched as an open source project back in 2008,
-        LXC has long been a staple for operating-system-level virtualisation. Since
-        the company already used LXC as its Docker backend, it seemed like a natural
-        choice; and it offered all the features that OVHcloud needed. The downside
-        was ease-of-use. With LXC, OVHcloud would have had to code all of the container-related
-        automation itself, which would have been an immense undertaking.<\/p>\n\n\n\n<p>This
-        is where LXD came in.<\/p>\n\n\n\n<p>Founded and led by Canonical, LXD builds
-        on top of LXC to deliver an enhanced, more intuitive user experience that
-        represents the next step in system container management. It offers all the
-        same capabilities as LXC, while enabling users to manage containers over the
-        network through a REST API using a single command line. And just like LXC,
-        it is free, open source software.<\/p>\n\n\n\n<p>\u201cI installed Ubuntu
-        on my developer servers and then installed LXD,\u201d says Filip Dorosz. \u201cIn
-        just a few hours, I successfully set up a Ceph cluster running Mimic inside
-        LXD containers. It was that easy.\u201d<br><\/p>\n\n\n\n<p><strong>LXD at
-        scale<\/strong><\/p>\n\n\n\n<p>LXD had emerged as the ideal solution, and
-        now all that remained was to industrialise it for use on the enterprise scale.
-        OVHcloud\u2019s key requirement was a Puppet module for LXD so that it could
-        manage containers via the host. At the time, there was no such module, so
-        OVHcloud decided to build one itself \u2013 and it has recently open sourced
-        the module on <a href=\"https:\/\/github.com\/ovh\/lxd-puppet-module\">GitHub<\/a>.&nbsp;<\/p>\n\n\n\n<p>The
-        company is now moving to production with the new solution, enabling the switch
-        to all flash storage with no HDDs.&nbsp;<\/p>\n\n\n\n<p>Filip Dorosz concludes:
-        \u201cOur plan is to migrate our entire legacy infrastructure \u2013 more
-        than 50PB spanning 2,000 dedicated servers \u2013 to the LXD-based solution.\u201d<br><\/p>\n\n\n\n<p>To
-        learn more about LXD, or to try it for yourself, visit <a href=\"https:\/\/linuxcontainers.org\/\">linuxcontainers.org<\/a>.<br><\/p>\n","protected":false},"excerpt":{"rendered":"<p>With
-        more than 1.5 million global customers \u2013 including Sainsburys and Michelin
-        \u2013 OVHcloud is Europe\u2019s largest cloud computing provider, and the
-        third largest web hosting company in the world. It goes without saying that
-        storage is mission critical for an organisation like OVHcloud, but finding
-        a solution that was compatible with their existing software [&hellip;]<\/p>\n","protected":false},"author":217,"featured_media":84352,"comment_status":"open","ping_status":"closed","sticky":false,"template":"","format":"standard","meta":[],"categories":[1453],"tags":[1780,3246,1743,1774],"topic":[3676,1477],"group":[3677,1706],"_event_location":"","_event_venue":"","_event_registration":"","_start_day":"12","_start_month":"06","_start_year":"2020","_end_day":"12","_end_month":"06","_end_year":"2020","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts\/96351"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/types\/post"}],"author":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users\/217"}],"replies":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/comments?post=96351"}],"version-history":[{"count":1,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts\/96351\/revisions"}],"predecessor-version":[{"id":96352,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts\/96351\/revisions\/96352"}],"wp:featuredmedia":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media\/84352"}],"wp:attachment":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?parent=96351"}],"wp:term":[{"taxonomy":"category","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories?post=96351"},{"taxonomy":"post_tag","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags?post=96351"},{"taxonomy":"topic","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic?post=96351"},{"taxonomy":"group","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group?post=96351"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]},"_embedded":{"author":[{"id":217,"name":"Canonical","url":"","description":"","link":"https:\/\/admin.insights.ubuntu.com\/author\/canonical\/","slug":"canonical","avatar_urls":{"24":"https:\/\/secure.gravatar.com\/avatar\/9d1f43af7ce4c818a532e9bb30f509e2?s=24&d=mm&r=g","48":"https:\/\/secure.gravatar.com\/avatar\/9d1f43af7ce4c818a532e9bb30f509e2?s=48&d=mm&r=g","96":"https:\/\/secure.gravatar.com\/avatar\/9d1f43af7ce4c818a532e9bb30f509e2?s=96&d=mm&r=g"},"user_job_title":"","user_website_title":"","user_google":"","user_twitter":"","user_facebook":"","user_photo":"","user_location":"","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users\/217"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users"}]}}],"wp:featuredmedia":[{"id":84352,"date":"2018-04-11T02:39:10","slug":"lxd-3","type":"attachment","link":"https:\/\/admin.insights.ubuntu.com\/2018\/05\/03\/lxd-clusters-a-primer\/lxd-3\/","title":{"rendered":"LXD"},"author":571,"caption":{"rendered":""},"alt_text":"","media_type":"image","mime_type":"image\/png","media_details":{"width":1682,"height":944,"file":"LXD.png","image_meta":{"aperture":"0","credit":"","camera":"","caption":"","created_timestamp":"0","copyright":"","focal_length":"0","iso":"0","shutter_speed":"0","title":"","orientation":"0","keywords":[]},"sizes":{}},"source_url":"https:\/\/admin.insights.ubuntu.com\/wp-content\/uploads\/2f84\/LXD.png","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media\/84352"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/types\/attachment"}],"author":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/users\/571"}],"replies":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/comments?post=84352"}],"wp:term":[{"taxonomy":"topic","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic?post=84352"},{"taxonomy":"group","embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group?post=84352"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],"wp:term":[[{"id":1453,"link":"https:\/\/admin.insights.ubuntu.com\/category\/articles\/","name":"Articles","slug":"articles","taxonomy":"category","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories\/1453"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?categories=1453"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?categories=1453"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":1780,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/ceph\/","name":"ceph","slug":"ceph","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1780"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1780"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1780"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":3246,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/data\/","name":"data","slug":"data","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/3246"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=3246"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=3246"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1743,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/lxd\/","name":"LXD","slug":"lxd","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1743"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1743"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1743"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1774,"link":"https:\/\/admin.insights.ubuntu.com\/tag\/storage\/","name":"Storage","slug":"storage","taxonomy":"post_tag","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags\/1774"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/tags"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/post_tag"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?tags=1774"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?tags=1774"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":3676,"link":"https:\/\/admin.insights.ubuntu.com\/topic\/cloud\/ceph\/","name":"Ceph","slug":"ceph","taxonomy":"topic","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic\/3676"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/topic"}],"up":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic\/1477"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?topic=3676"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?topic=3676"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?topic=3676"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1477,"link":"https:\/\/admin.insights.ubuntu.com\/topic\/cloud\/","name":"Cloud","slug":"cloud","taxonomy":"topic","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic\/1477"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/topic"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/topic"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?topic=1477"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?topic=1477"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?topic=1477"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}],[{"id":3677,"link":"https:\/\/admin.insights.ubuntu.com\/group\/cloud-and-server\/ceph\/","name":"Ceph","slug":"ceph","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/3677"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"up":[{"embeddable":true,"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/1706"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=3677"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=3677"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=3677"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1706,"link":"https:\/\/admin.insights.ubuntu.com\/group\/cloud-and-server\/","name":"Cloud
-        and server","slug":"cloud-and-server","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/1706"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=1706"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=1706"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=1706"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]]}}]'
+        announcements","slug":"canonical-announcements","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/2100"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=2100"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=2100"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=2100"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}},{"id":1479,"link":"https:\/\/admin.insights.ubuntu.com\/group\/desktop\/","name":"Desktop","slug":"desktop","taxonomy":"group","_links":{"self":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group\/1479"}],"collection":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/group"}],"about":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/taxonomies\/group"}],"wp:post_type":[{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/posts?group=1479"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/media?group=1479"},{"href":"https:\/\/admin.insights.ubuntu.com\/wp-json\/wp\/v2\/event?group=1479"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]]}}]'
     headers:
       Access-Control-Allow-Headers:
       - Authorization, Content-Type
@@ -3037,10 +3109,14 @@ interactions:
       - X-WP-Total, X-WP-TotalPages
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:19:58 GMT
+      - Mon, 08 May 2023 14:14:36 GMT
+      Keep-Alive:
+      - timeout=5, max=99
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=4291&tags%5B1%5D=1301&tags%5B2%5D=1743&per_page=30&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=107834&_embed=true>;
         rel="next"
@@ -3051,11 +3127,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - MISS from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - HIT from juju-prod45-is-insights-blog-machine-4:8080
+      - HIT from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -3063,7 +3139,7 @@ interactions:
       X-Robots-Tag:
       - noindex
       X-WP-Total:
-      - '178'
+      - '179'
       X-WP-TotalPages:
       - '6'
     status:
@@ -3071,9 +3147,17 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&slug=tutorials-for-everyone-from-everyone&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?slug=tutorials-for-everyone-from-everyone&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&_embed=true
   response:
     body:
       string: '[{"id":94320,"date":"2020-03-11T08:58:07","date_gmt":"2020-03-11T08:58:07","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=94320"},"modified":"2020-03-17T10:18:27","modified_gmt":"2020-03-17T10:18:27","slug":"tutorials-for-everyone-from-everyone","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2020\/03\/11\/tutorials-for-everyone-from-everyone\/","title":{"rendered":"Tutorials
@@ -3160,14 +3244,16 @@ interactions:
       - Authorization, Content-Type
       Access-Control-Expose-Headers:
       - X-WP-Total, X-WP-TotalPages
-      Age:
-      - '444'
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:12:39 GMT
+      - Mon, 08 May 2023 14:14:42 GMT
+      Keep-Alive:
+      - timeout=5, max=98
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/>; rel="https://api.w.org/"
       Server:
@@ -3177,11 +3263,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - HIT from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - HIT from juju-prod45-is-insights-blog-machine-4:8080
+      - MISS from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -3197,9 +3283,17 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&exclude=94320&page=1&per_page=30&tags=1227%2C1239%2C3329&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags=1227%2C1239%2C3329&per_page=30&page=1&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&exclude=94320&_embed=true
   response:
     body:
       string: '[{"id":113751,"date":"2023-04-06T05:13:14","date_gmt":"2023-04-06T05:13:14","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113751"},"modified":"2023-04-10T13:24:19","modified_gmt":"2023-04-10T13:24:19","slug":"expanding-the-spice-rack","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/06\/expanding-the-spice-rack\/","title":{"rendered":"Expanding
@@ -6379,14 +6473,16 @@ interactions:
       - Authorization, Content-Type
       Access-Control-Expose-Headers:
       - X-WP-Total, X-WP-TotalPages
-      Age:
-      - '447'
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:12:39 GMT
+      - Mon, 08 May 2023 14:14:42 GMT
+      Keep-Alive:
+      - timeout=5, max=97
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=1227&tags%5B1%5D=1239&tags%5B2%5D=3329&per_page=30&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=94320&_embed=true>;
         rel="next"
@@ -6397,11 +6493,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - HIT from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - HIT from juju-prod45-is-insights-blog-machine-4:8080
+      - MISS from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -6417,9 +6513,17 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&slug=top-6-projects-from-our-hackathon&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?slug=top-6-projects-from-our-hackathon&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&_embed=true
   response:
     body:
       string: '[{"id":104681,"date":"2021-10-12T15:56:13","date_gmt":"2021-10-12T15:56:13","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=104681"},"modified":"2022-10-14T09:15:47","modified_gmt":"2022-10-14T09:15:47","slug":"top-6-projects-from-our-hackathon","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2021\/10\/12\/top-6-projects-from-our-hackathon\/","title":{"rendered":"Top
@@ -6565,14 +6669,16 @@ interactions:
       - Authorization, Content-Type
       Access-Control-Expose-Headers:
       - X-WP-Total, X-WP-TotalPages
-      Age:
-      - '440'
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:12:43 GMT
+      - Mon, 08 May 2023 14:14:51 GMT
+      Keep-Alive:
+      - timeout=5, max=96
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/>; rel="https://api.w.org/"
       Server:
@@ -6582,11 +6688,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - HIT from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - HIT from juju-prod45-is-insights-blog-machine-4:8080
+      - MISS from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -6602,9 +6708,17 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&exclude=104681&page=1&per_page=30&tags=1239%2C4180%2C4181%2C3280%2C2412&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags=1239%2C4180%2C4181%2C3280%2C2412&per_page=30&page=1&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&exclude=104681&_embed=true
   response:
     body:
       string: '[{"id":113481,"date":"2023-03-28T11:04:54","date_gmt":"2023-03-28T11:04:54","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113481"},"modified":"2023-03-31T08:02:49","modified_gmt":"2023-03-31T08:02:49","slug":"how-to-create-a-vscode-linux-remote-environment","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/03\/28\/how-to-create-a-vscode-linux-remote-environment\/","title":{"rendered":"How
@@ -10481,14 +10595,16 @@ interactions:
       - Authorization, Content-Type
       Access-Control-Expose-Headers:
       - X-WP-Total, X-WP-TotalPages
-      Age:
-      - '451'
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:12:44 GMT
+      - Mon, 08 May 2023 14:14:41 GMT
+      Keep-Alive:
+      - timeout=5, max=95
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=1239&tags%5B1%5D=4180&tags%5B2%5D=4181&tags%5B3%5D=3280&tags%5B4%5D=2412&per_page=30&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=104681&_embed=true>;
         rel="next"
@@ -10499,11 +10615,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - HIT from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - HIT from juju-prod45-is-insights-blog-machine-4:8080
+      - MISS from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -10519,9 +10635,17 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&slug=kubeflow-appliance-aws&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?slug=kubeflow-appliance-aws&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&_embed=true
   response:
     body:
       string: '[{"id":113667,"date":"2023-04-12T12:11:17","date_gmt":"2023-04-12T12:11:17","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=113667"},"modified":"2023-04-12T13:17:11","modified_gmt":"2023-04-12T13:17:11","slug":"kubeflow-appliance-aws","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/12\/kubeflow-appliance-aws\/","title":{"rendered":"Charmed
@@ -10630,10 +10754,14 @@ interactions:
       - X-WP-Total, X-WP-TotalPages
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:19:53 GMT
+      - Mon, 08 May 2023 14:15:00 GMT
+      Keep-Alive:
+      - timeout=5, max=94
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/>; rel="https://api.w.org/"
       Server:
@@ -10643,11 +10771,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - MISS from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - MISS from juju-prod45-is-insights-blog-machine-4:8080
+      - MISS from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
@@ -10663,9 +10791,17 @@ interactions:
       message: OK
 - request:
     body: null
-    headers: {}
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.2
     method: GET
-    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?_embed=true&exclude=113667&page=1&per_page=30&tags=4062%2C1205%2C3589%2C2609%2C4018%2C1350&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491
+    uri: https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags=4062%2C1205%2C3589%2C2609%2C4018%2C1350&per_page=30&page=1&tags_exclude=3184%2C3265%2C3408%2C3960%2C4491&exclude=113667&_embed=true
   response:
     body:
       string: '[{"id":114518,"date":"2023-04-28T20:30:24","date_gmt":"2023-04-28T20:30:24","guid":{"rendered":"https:\/\/admin.insights.ubuntu.com\/?p=114518"},"modified":"2023-04-28T20:30:25","modified_gmt":"2023-04-28T20:30:25","slug":"upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws","status":"publish","type":"post","link":"https:\/\/admin.insights.ubuntu.com\/2023\/04\/28\/upgrade-your-existing-ubuntu-lts-instances-to-ubuntu-pro-in-aws\/","title":{"rendered":"Upgrade
@@ -13840,10 +13976,14 @@ interactions:
       - X-WP-Total, X-WP-TotalPages
       Allow:
       - GET
+      Connection:
+      - Keep-Alive
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Thu, 04 May 2023 09:20:04 GMT
+      - Mon, 08 May 2023 14:15:01 GMT
+      Keep-Alive:
+      - timeout=5, max=93
       Link:
       - <https://admin.insights.ubuntu.com/wp-json/wp/v2/posts?tags%5B0%5D=4062&tags%5B1%5D=1205&tags%5B2%5D=3589&tags%5B3%5D=2609&tags%5B4%5D=4018&tags%5B5%5D=1350&per_page=30&page=2&tags_exclude%5B0%5D=3184&tags_exclude%5B1%5D=3265&tags_exclude%5B2%5D=3408&tags_exclude%5B3%5D=3960&tags_exclude%5B4%5D=4491&exclude%5B0%5D=113667&_embed=true>;
         rel="next"
@@ -13854,11 +13994,11 @@ interactions:
       Vary:
       - Origin,Cookie
       Via:
-      - 1.1 juju-prod45-is-insights-blog-machine-4 (squid/3.3.8)
+      - 1.1 juju-prod45-is-insights-blog-machine-16 (squid/3.3.8)
       X-Cache:
-      - MISS from juju-prod45-is-insights-blog-machine-4
+      - MISS from juju-prod45-is-insights-blog-machine-16
       X-Cache-Lookup:
-      - MISS from juju-prod45-is-insights-blog-machine-4:8080
+      - MISS from juju-prod45-is-insights-blog-machine-16:8080
       X-Content-Type-Options:
       - nosniff
       X-Powered-By:
