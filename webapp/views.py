@@ -844,8 +844,8 @@ def marketo_submit():
 
     enrichment_fields = None
 
+    # Enrichment data for global enrichment form (id:4198)
     if "email" in form_fields:
-        # Enrichment data for global enrichment form (id:4198)
         enrichment_fields = {
             "email": form_fields["email"],
             "acquisition_url": referrer,
@@ -856,6 +856,12 @@ def marketo_submit():
             "preferredLanguage"
         ]
         form_fields.pop("preferredLanguage")
+    
+    if "country" in form_fields:
+        enrichment_fields["country"] = form_fields[
+            "country"
+        ]
+        form_fields.pop("country")
 
     payload = {
         "formId": form_fields.pop("formid"),
