@@ -1,25 +1,35 @@
-<div tabindex="0" role="tabpanel" id="starfive-visionfive-2-tab" aria-labelledby="starfive-visionfive-2" aria-hidden="true">
+<div tabindex="0" role="tabpanel" id="qemu-tab" aria-labelledby="qemu" aria-hidden="true">
 	<div class="row">
 		<div class="col-6">
-			<div class="p-strip is-shallow u-no-padding--top">
-				<h3 class="p-heading--2">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
-			</div>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+visionfive2.img.xz">Download 23.04</a>
+      <h2>QEMU emulator</h2>
+			<h3 class="u-sv3">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+			<p class="u-sv3">
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
+				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
 			</p>
-			<h4>First time installing Ubuntu on StarFive VisionFive?</h4>
-			<p><a href="https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive%202">Check out how to install Ubuntu on the VisionFive 2</a></p>
-		</div>
+    </div>
 		<div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
-            {{ image (
-                url="https://assets.ubuntu.com/v1/3579cbd3-starfive-visionfive-2.jpg",
-                alt="",
-                width="500",
-                height="400",
-                hi_def=True,
-                loading="lazy"
-                ) | safe
-              }}
+			{{
+				image (
+				url="https://assets.ubuntu.com/v1/308d48cd-Qemu-logo.png",
+				alt="",
+				width="377",
+				height="120",
+				hi_def=True,
+				loading="lazy"
+				) | safe
+			  }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+      <hr class="u-no-margin--bottom">
+      <h3 class="u-sv3">Ubuntu Server live installer</h3>
+			<p>
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04 live installer</a>
+				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2 live installer</a>
+			</p>
+			<p><a href="https://wiki.ubuntu.com/RISC-V/QEMU">How to install Ubuntu on QEMU RISC-V</a></p>
 		</div>
 	</div>
 </div>
