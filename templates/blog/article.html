@@ -106,6 +106,20 @@
   <section class="p-strip is-shallow" style="overflow-x: initial;">
     <div class="row u-equal-height">
       <div class="col-8">
+        {% if 'difference_in_years' in blog_notice %}
+          <div class="p-notification--information is-borderless is-inline u-no-margin--bottom">
+            <div class="p-notification__content">
+              <p class="p-notification__message u-text--muted" id="date-notice">
+                {% if blog_notice.updated %}
+                  This article was last updated <strong>{{ blog_notice.difference_in_years }} year{% if blog_notice.difference_in_years > 1 %}s{% endif %} ago.</strong>
+                {% else %}
+                  This article is more than <strong>{{ blog_notice.difference_in_years }} year{% if blog_notice.difference_in_years > 1 %}s{% endif %} old.</strong>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+          <hr class="is-muted"/>
+        {% endif %}
         <div class="p-post__content">
           {{ article.content.rendered|safe }}
         </div>
