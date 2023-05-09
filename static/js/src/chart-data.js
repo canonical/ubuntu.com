@@ -1064,6 +1064,36 @@ export var kernelReleaseSchedule = [
 
 export var openStackReleases = [
   {
+    startDate: new Date("2024-04-01T00:00:00"),
+    endDate: new Date("2027-04-01T00:00:00"),
+    taskName: "OpenStack C",
+    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
+  },
+  {
+    startDate: new Date("2023-10-01T00:00:00"),
+    endDate: new Date("2025-04-01T00:00:00"),
+    taskName: "OpenStack Bobcat",
+    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
+  },
+  {
+    startDate: new Date("2023-04-01T00:00:00"),
+    endDate: new Date("2024-10-01T00:00:00"),
+    taskName: "OpenStack Antelope",
+    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
+  },
+  {
+    startDate: new Date("2024-10-01T00:00:00"),
+    endDate: new Date("2026-04-01T00:00:00"),
+    taskName: "OpenStack Antelope",
+    status: "EXTENDED_SUPPORT_FOR_CUSTOMERS",
+  },
+  {
+    startDate: new Date("2022-10-01T00:00:00"),
+    endDate: new Date("2024-04-01T00:00:00"),
+    taskName: "OpenStack Zed",
+    status: "MATCHING_OPENSTACK_RELEASE_SUPPORT",
+  },
+  {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
     taskName: "OpenStack Yoga LTS",
@@ -1594,6 +1624,10 @@ export var kernelReleaseNamesLTS = [
 ];
 
 export var openStackReleaseNames = [
+  "OpenStack C",
+  "OpenStack Bobcat",
+  "OpenStack Antelope",
+  "OpenStack Zed",
   "OpenStack Yoga LTS",
   "Ubuntu 22.04 LTS",
   "OpenStack Yoga",
