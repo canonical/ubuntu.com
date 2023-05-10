@@ -25,14 +25,20 @@ function setupIntlTelInput(phoneInput) {
       success(countryCode);
     },
   });
-  
+
   // add validation
+  const phoneValidationList = document.getElementById("phone-validation-list");
+  const phoneValidationMsg = document.getElementById(
+    "phone-validation-message"
+  );
+
   function reset() {
-    phoneInput.style.backgroundColor = "#f5f5f5";
+    phoneValidationList.classList.remove("is-error");
+    phoneValidationMsg.style.display = "none";
   }
 
   function isValidNumber(number) {
-    const pattern = /^[0-9]*$/;
+    const pattern = /^[\d\s\.\-\(\)\/,]{4,}$/;
     return number.length >= 10 && number.length <= 20 && pattern.test(number);
   }
 
@@ -43,7 +49,8 @@ function setupIntlTelInput(phoneInput) {
       if (isValidNumber(phoneInput.value.trim())) {
         reset();
       } else {
-        phoneInput.style.backgroundColor = "rgba(225, 35, 35, 0.25)";
+        phoneValidationList.classList.add("is-error");
+        phoneValidationMsg.style.display = "block";
       }
     }
   });

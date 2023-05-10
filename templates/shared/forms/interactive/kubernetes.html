@@ -34,9 +34,10 @@
                 <label for="email">Work email:</label>
                 <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
               </li>
-              <li class="p-list__item">
+              <li id="phone-validation-list" class="p-form-validation">
                 <label for="phone">Mobile/cell phone number:</label>
-                <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+                <input class="p-form-validation__input" required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+                <p class="p-form-validation__message" style="display:none" id="phone-validation-message">Please enter a valid number.</p>
               </li>
               <li class="p-list__item">
                 <label class="p-checkbox">
