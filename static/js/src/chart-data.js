@@ -138,6 +138,27 @@ export var serverAndDesktopReleases = [
 
 export var kernelReleases = [
   {
+    startDate: new Date('2023-02-01T00:00:00'),
+    endDate: new Date('2027-04-01T00:00:00'),
+    taskName: 'Ubuntu 22.04.2 LTS',
+    taskVersion: 'Kernel version',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-10-01T00:00:00'),
+    endDate: new Date('2023-07-01T00:00:00'),
+    taskName: 'Ubuntu 22.10',
+    taskVersion: '',
+    status: 'INTERIM_RELEASE'
+  },
+  {
+    startDate: new Date('2022-08-01T00:00:00'),
+    endDate: new Date('2027-04-01T00:00:00'),
+    taskName: 'Ubuntu 22.04.1 LTS',
+    taskVersion: '',
+    status: 'LTS'
+  },
+  {
     startDate: new Date("2022-08-01T00:00:00"),
     endDate: new Date("2025-04-30T00:00:00"),
     taskName: "Ubuntu 20.04.5 LTS",
@@ -362,6 +383,37 @@ export var kernelReleases = [
     status: "ESM",
   },
 ];
+
+export var kernelReleases2204 = [
+  {
+    startDate: new Date('2023-02-01T00:00:00'),
+    endDate: new Date('2027-04-01T00:00:00'),
+    taskName: 'Ubuntu 22.04.2 LTS',
+    taskVersion: 'Kernel version',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-08-01T00:00:00'),
+    endDate: new Date('2027-04-01T00:00:00'),
+    taskName: 'Ubuntu 22.04.1 LTS',
+    taskVersion: '',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2022-04-01T00:00:00'),
+    endDate: new Date('2027-04-01T00:00:00'),
+    taskName: 'Ubuntu 22.04.0 LTS',
+    taskVersion: '',
+    status: 'LTS'
+  },
+  {
+    startDate: new Date('2027-04-01T00:00:00'),
+    endDate: new Date('2032-03-30T00:00:00'),
+    taskName: 'Ubuntu 22.04.0 LTS',
+    taskVersion: '',
+    status: 'ESM'
+  },
+]
 
 export var kernelReleases2004 = [
   {
@@ -1552,6 +1604,9 @@ export var kernelReleaseNamesALL = [
   "Ubuntu 20.04.3 LTS (v5.11)",
   "Ubuntu 20.04.4 LTS (v5.13)",
   "Ubuntu 20.04.5 LTS (v5.15)",
+  "Ubuntu 22.04.0 LTS (v5.15)",
+  "Ubuntu 22.04.1 LTS (v5.15)",
+  "Ubuntu 22.04.2 LTS (v5.19)"
 ];
 
 export var kernelReleaseNamesLTS = [
