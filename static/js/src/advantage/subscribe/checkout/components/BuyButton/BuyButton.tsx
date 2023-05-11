@@ -36,37 +36,15 @@ const BuyButton = ({ error, setError, quantity, product, action }: Props) => {
   const useFinishPurchaseMutation = useFinishPurchase();
   const buyAction = values.FreeTrial === "useFreeTrial" ? "trial" : action;
   const queryClient = useQueryClient();
+  const errorNotification = document.querySelector(".p-notification--negative");
+
   useEffect(() => {
     if (
       error &&
-      error?.props?.children.includes(
-        "Please make sure all fields are filled in correctly"
-      ) &&
-      document.querySelector(".p-notification--negative")
+      errorNotification &&
+      !errorNotification.classList.contains("u-hide")
     ) {
-      document
-        .querySelector(".p-notification--negative")
-        ?.classList.add("u-hide");
-    } else if (
-      error &&
-      !error?.props?.children.includes(
-        "Please make sure all fields are filled in correctly"
-      ) &&
-      document.querySelector(".p-notification--negative u-hide")
-    ) {
-      document
-        .querySelector(".p-notification--negative u-hide")
-        ?.classList.remove("u-hide");
-    } else if (
-      error &&
-      error?.props?.children.includes(
-        "Please make sure all fields are filled in correctly"
-      ) &&
-      document.querySelector(".p-notification--negative u-hide")
-    ) {
-      document
-        .querySelector(".p-notification--negative u-hide")
-        ?.classList.remove("u-hide");
+      errorNotification.classList.add("u-hide");
     }
   }, [values]);
 

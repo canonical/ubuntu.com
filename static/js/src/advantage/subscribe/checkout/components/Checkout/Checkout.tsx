@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Formik } from "formik";
 import {
   Col,
@@ -32,6 +32,18 @@ const Checkout = ({ product, quantity, action }: Props) => {
   const productCanBeTrialled = product?.canBeTrialled;
   const canTrial = canBeTrialled(productCanBeTrialled, userCanTrial);
   const initialValues = getInitialFormValues(product, canTrial, userInfo);
+  const errorNotification = document.querySelector(".p-notification--negative");
+
+  useEffect(() => {
+    if (
+      error &&
+      errorNotification &&
+      errorNotification.classList.contains("u-hide")
+    ) {
+      errorNotification.classList.remove("u-hide");
+    }
+  }, [error]);
+
   return (
     <>
       <div className="p-strip">
