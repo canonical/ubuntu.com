@@ -27,7 +27,10 @@
         <label for="phone">Mobile/cell phone number:</label>
         <input required id="phone" name="phone" maxlength="255" type="tel">
       </li>
+
+      {% include "shared/forms/_country.html" %}
       <li>
+        
         <label class="p-checkbox">
           <input class="p-checkbox__input" name="canonicalUpdatesOptIn" aria-labelledby="canonicalUpdatesOptIn" value="yes" type="checkbox">
           <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
