@@ -117,6 +117,12 @@ export var serverAndDesktopReleases = [
     status: "HARDWARE_AND_MAINTENANCE_UPDATES",
   },
   {
+    startDate: new Date("2022-04-01T00:00:00"),
+    endDate: new Date("2027-04-01T00:00:00"),
+    taskName: "22.04 LTS (Jammy Jellyfish)",
+    status: "MAIN_UNIVERSE",
+  },
+  {
     startDate: new Date("2027-04-01T00:00:00"),
     endDate: new Date("2032-04-01T00:00:00"),
     taskName: "22.04 LTS (Jammy Jellyfish)",
