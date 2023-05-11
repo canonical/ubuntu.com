@@ -11,7 +11,7 @@ import {
 import { currencyFormatter } from "advantage/react/utils";
 
 const CredShop = () => {
-  const CUEExamKey: Product = {
+  const CUEExamKey = {
     id: "cue-activation-key",
     longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
     name: "CUE Activation Key",
@@ -21,7 +21,10 @@ const CredShop = () => {
     private: false,
     marketplace: "canonical-ua",
   };
-  const [quantity, setQuantity] = useState(1);
+  const checkoutData = localStorage.getItem("shop-checkout-data") || "";
+  const parsedCheckoutData = JSON.parse(checkoutData);
+  const initQuantity: number = parsedCheckoutData?.quantity;
+  const [quantity, setQuantity] = useState(initQuantity ?? 1);
   const handleChange: React.ChangeEventHandler = (event: React.ChangeEvent) => {
     event.preventDefault();
     setQuantity(event.target.value);
