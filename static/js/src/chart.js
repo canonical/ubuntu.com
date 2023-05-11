@@ -51,10 +51,18 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
     })
     .attr("y", 0)
     .attr("transform", function (d) {
+      if (d.status === "MAIN_UNIVERSE") {
+        return (
+          "translate(" +
+          x(d.startDate) +
+          "," +
+          (y(d.taskName) - y.bandwidth()) +
+          ")"
+        );
+      }
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
     .attr("height", function () {
-      console.log(y)
       return y.bandwidth();
     })
     .attr("width", function (d) {
@@ -124,7 +132,6 @@ function cleanUpChart(svg) {
 function emboldenLTSLabels(svg) {
   svg.selectAll(".tick text").select(function () {
     var text = this.textContent;
-
     if (text.includes("LTS")) {
       this.classList.add("chart__label--bold");
     }
@@ -154,12 +161,8 @@ function highlightChartRow(svg, highlightVersion) {
  */
 function setVersionAxisLabels(svg, taskVersions) {
   svg.selectAll(".version .tick text").select(function (tickLabel, index) {
-    console.log(taskVersions[index])
-    if(!taskVersions[index].includes("Pro")){
-      this.textContent = taskVersions[index];
-    }
+    this.textContent = taskVersions[index];
   });
-
 }
 
 /**
@@ -288,7 +291,7 @@ export function createChart(
     bottom: 20,
   };
   margin.left = calculateYAxisWidth(taskTypes);
-  var rowHeight = 24;
+  var rowHeight = 34;
   var timeDomainStart;
   var timeDomainEnd;
   if (removePadding) {
@@ -323,13 +326,13 @@ export function createChart(
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.5);
+    .padding(0.6);
 
   var version = d3
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.5);
+    .padding(0.4);
 
   var xAxis = d3.axisBottom(x);
 
@@ -369,8 +372,8 @@ export function createChart(
   addYAxis(svg, yAxis);
 
   if (taskVersions) {
-    // addVersionAxis(svg, versionAxis);
-    // setVersionAxisLabels(svg, taskVersions);
+    addVersionAxis(svg, versionAxis);
+    setVersionAxisLabels(svg, taskVersions);
   }
 
   addXAxisVerticalLines(svg, height);
@@ -380,5 +383,5 @@ export function createChart(
   setTimeout(function () {
     emboldenLTSLabels(svg);
     highlightChartRow(svg, highlightVersion);
-  }, 500);
+  }, 0);
 }
