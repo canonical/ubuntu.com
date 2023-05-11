@@ -226,14 +226,22 @@ function formatKeyLabel(key) {
   formattedKey = formattedKey.replace("kub", "Kub");
   formattedKey = formattedKey.replace(
     "Interim release",
-    "Interim release Standard Support"
+    "Interim release Standard Support (9 months)"
   );
   formattedKey = formattedKey.replace(
     "Esm",
-    "Extended Security Maintenance (ESM)"
+    "LTS expanded support for Ubuntu Main (5 years)"
   );
   formattedKey = formattedKey.replace("Cve", "CVE/Critical fixes only");
   formattedKey = formattedKey.replace("Early", "Early preview");
+  formattedKey = formattedKey.replace(
+    "Hardware and maintenance updates",
+    "LTS standard support for Ubuntu Main"
+  );
+  formattedKey = formattedKey.replace(
+    "Main universe",
+    "LTS expanded support for Ubuntu Universe (10 years)"
+  );
   return formattedKey;
 }
 
