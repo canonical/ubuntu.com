@@ -856,11 +856,9 @@ def marketo_submit():
             "preferredLanguage"
         ]
         form_fields.pop("preferredLanguage")
-    
+
     if "country" in form_fields:
-        enrichment_fields["country"] = form_fields[
-            "country"
-        ]
+        enrichment_fields["country"] = form_fields["country"]
         form_fields.pop("country")
 
     payload = {
