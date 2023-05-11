@@ -119,7 +119,7 @@ export var serverAndDesktopReleases = [
   {
     startDate: new Date("2022-04-01T00:00:00"),
     endDate: new Date("2027-04-01T00:00:00"),
-    taskName: "22.04 LTS (Jammy Jellyfish)",
+    taskName: "22.04 LTS (Jammy Jellyfish) Pro",
     status: "MAIN_UNIVERSE",
   },
   {
@@ -1459,6 +1459,7 @@ export var smallReleaseNames = [
 export var desktopServerReleaseNames = [
   "23.04 (Lunar Lobster)",
   "22.10 (Kinetic Kudu)",
+  "22.04 LTS (Jammy Jellyfish) Pro",
   "22.04 LTS (Jammy Jellyfish)",
   "20.04 LTS (Focal Fossa)",
   "18.04 LTS (Bionic Beaver)",

@@ -54,6 +54,7 @@ function addBarsToChart(svg, tasks, taskStatus, x, y, highlightVersion) {
       return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
     })
     .attr("height", function () {
+      console.log(y)
       return y.bandwidth();
     })
     .attr("width", function (d) {
@@ -153,8 +154,12 @@ function highlightChartRow(svg, highlightVersion) {
  */
 function setVersionAxisLabels(svg, taskVersions) {
   svg.selectAll(".version .tick text").select(function (tickLabel, index) {
-    this.textContent = taskVersions[index];
+    console.log(taskVersions[index])
+    if(!taskVersions[index].includes("Pro")){
+      this.textContent = taskVersions[index];
+    }
   });
+
 }
 
 /**
@@ -283,7 +288,7 @@ export function createChart(
     bottom: 20,
   };
   margin.left = calculateYAxisWidth(taskTypes);
-  var rowHeight = 32;
+  var rowHeight = 24;
   var timeDomainStart;
   var timeDomainEnd;
   if (removePadding) {
@@ -318,13 +323,13 @@ export function createChart(
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.1);
+    .padding(0.5);
 
   var version = d3
     .scaleBand()
     .domain(taskTypes)
     .rangeRound([0, height - margin.top - margin.bottom])
-    .padding(0.1);
+    .padding(0.5);
 
   var xAxis = d3.axisBottom(x);
 
@@ -364,8 +369,8 @@ export function createChart(
   addYAxis(svg, yAxis);
 
   if (taskVersions) {
-    addVersionAxis(svg, versionAxis);
-    setVersionAxisLabels(svg, taskVersions);
+    // addVersionAxis(svg, versionAxis);
+    // setVersionAxisLabels(svg, taskVersions);
   }
 
   addXAxisVerticalLines(svg, height);
