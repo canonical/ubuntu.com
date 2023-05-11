@@ -34,7 +34,7 @@
     });
     panelElement.classList.remove("u-hide");
     // Hack to fix a graph sizing bug:
-    // The size is defined by the container, but on hidden tabs it falls back 
+    // The size is defined by the container, but on hidden tabs it falls back
     // on the next parent which is smaller than the container it is in when
     // not hidden
     if (panelElement.querySelector("svg[class='chart']")) {
