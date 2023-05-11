@@ -57,23 +57,7 @@ declare global {
   }
 }
 const checkoutData = localStorage.getItem("shop-checkout-data") || "";
-// console.log(checkoutData);
 const parsedCheckoutData = JSON.parse(checkoutData);
-// const parsedCheckoutData = {
-//   product: {
-//     id: "cue-activation-key",
-//     longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
-//     name: "CUE Activation Key",
-//     price: { value: "4900", currency: "USD" },
-//     period: "monthly",
-//     productID: "cue-activation-key",
-//     canBeTrialled: false,
-//     private: "false",
-//     marketplace: "canonical-ua",
-//   },
-//   quantity: 3,
-//   action: "purchase",
-// };
 const stripePromise = loadStripe(window.stripePublishableKey || "");
 const product: Product = parsedCheckoutData?.product;
 const quantity: number = parsedCheckoutData?.quantity;

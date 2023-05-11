@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Product } from "advantage/subscribe/react/utils/utils";
 import {
   Button,
   Col,
