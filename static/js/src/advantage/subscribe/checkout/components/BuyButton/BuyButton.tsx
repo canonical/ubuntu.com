@@ -18,9 +18,16 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
+  redirectURL: string;
 };
 
-const BuyButton = ({ setError, quantity, product, action }: Props) => {
+const BuyButton = ({
+  setError,
+  quantity,
+  product,
+  action,
+  redirectURL,
+}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -325,7 +332,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
               email
             )}`;
           } else {
-            location.pathname = "/pro/dashboard";
+            location.pathname = redirectURL;
           }
         }
       };

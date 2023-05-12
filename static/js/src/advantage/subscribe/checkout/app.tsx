@@ -83,7 +83,12 @@ const App = () => {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Elements stripe={stripePromise}>
-          <Checkout product={product} quantity={quantity} action={action} />
+          <Checkout
+            product={product}
+            quantity={quantity}
+            action={action}
+            redirectURL="/pro/dashboard"
+          />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>

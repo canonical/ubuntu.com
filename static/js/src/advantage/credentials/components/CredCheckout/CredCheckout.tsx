@@ -85,7 +85,12 @@ const CredCheckout = () => {
     <Sentry.ErrorBoundary>
       <QueryClientProvider client={queryClient}>
         <Elements stripe={stripePromise}>
-          <Checkout product={product} quantity={quantity} action={action} />
+          <Checkout
+            product={product}
+            quantity={quantity}
+            action={action}
+            redirectURL="/credentials/your-exams"
+          />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
