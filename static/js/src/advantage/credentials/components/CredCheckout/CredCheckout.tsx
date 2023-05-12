@@ -56,7 +56,7 @@ declare global {
     };
   }
 }
-const checkoutData = localStorage.getItem("shop-checkout-data") || "";
+const checkoutData = localStorage.getItem("shop-checkout-data") || "{}";
 const parsedCheckoutData = JSON.parse(checkoutData);
 const stripePromise = loadStripe(window.stripePublishableKey || "");
 const product: Product = parsedCheckoutData?.product;
@@ -72,7 +72,7 @@ window.currentPaymentId = "";
 window.accountId = "";
 window.captcha = null;
 
-window.marketplace = product.marketplace;
+window.marketplace = product?.marketplace;
 window.GAFriendlyProduct = {
   id: product?.id,
   name: product?.name,
@@ -89,7 +89,7 @@ const CredCheckout = () => {
             product={product}
             quantity={quantity}
             action={action}
-            redirectURL="/credentials/your-exams"
+            redirectURL={`/credentials/shop/order-thank-you?productName=${product.name}&quantity=${quantity}`}
           />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
