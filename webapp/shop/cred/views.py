@@ -571,14 +571,23 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
-    activation_key = kwargs.get("code")
+    if flask.request.method == "POST":
+        activation_key = flask.request.form.get("activation-key")
+    else:
+        activation_key = kwargs.get("code")
+
+    if not activation_key:
+        return flask.render_template("/credentials/redeem_with_form.html")
+
     try:
         activation_response = ua_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
             }
         )
-        exam_contracts = ua_contracts_api.get_exam_contracts()
+        exam_contracts = ua_contracts_api.get_annotated_contract_items(
+            product_tags=["cue"],
+        )
         contract_id = exam_contracts[-1]["id"]
         if flask.request.args.get("action") == "schedule":
             return flask.redirect(
@@ -603,7 +612,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
 
 @shop_decorator(area="cube", permission="user", response="json")
 def get_activation_keys(ua_contracts_api, advantage_mapper, **kwargs):
-    account = advantage_mapper.get_purchase_account()
+    account = advantage_mapper.get_purchase_account("canonical-ua")
     contracts = advantage_mapper.get_activation_key_contracts(account.id)
 
     keys = []
