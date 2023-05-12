@@ -1,22 +1,9 @@
 <div tabindex="0" role="tabpanel" id="quemu-sifive-image-tab" aria-labelledby="quemu-sifive-image">
-  <div class="row">
-    <div class="col-6">
-      <div class="p-strip is-shallow u-no-padding--top">
-        <h2>SiFive Unmatched</h2>
-        <h3>Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
-      </div>
-      <div class="p-notification--information is-inline">
-        <div class="p-notification__content">
-          <p class="p-notification__title">Note:</p>
-          <p class="p-notification__message">If you have an NVMe drive, we advise you to use the Ubuntu Server live installer.</p>
-        </div>
-      </div>
-      <p class="u-sv3">
-        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
-        <a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
-      </p>
+  <div class="row p-strip--light is-shallow" style="margin-top: 3.5rem;">
+    <div class="col-3 u-vertically-center">
+      <h2 style="padding-left: 10%;">SiFive Unmatched</h2> 
     </div>
-    <div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
+    <div class="col-6 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom u-vertically-center">
       {{ image (
         url="https://assets.ubuntu.com/v1/37c094a9-SiFive+Unmatched+Board.jpg",
         alt="",
@@ -28,14 +15,32 @@
         }}
     </div>
   </div>
-  <div class="row">
+  <div class="row p-strip is-shallow">
+    <hr class="is-fixed-width u-no-margin--bottom col-9">
+    <div class="col-3">
+      <div class="p-strip is-shallow u-no-padding--top">
+        <h3 class="p-heading--5">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+      </div>
+    </div>
     <div class="col-6">
-      <hr class="u-no-margin--bottom">
-      <h3 class="u-sv3">Ubuntu Server live installer</h3>
+      <p class="p-notification__message"><i class="p-icon--information"></i> If you have an NVMe drive, we advise you to use the Ubuntu Server live installer.</p>
+      <p class="u-sv3">
+        <a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
+        <a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <hr class="u-fixed-width col-9">
+    <div class="col-3">
+      <h3 class="u-no-padding--top p-heading--5">Ubuntu Server live installer</h3>
+    </div>
+    <div class="col-6">
 			<p>
 				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04 live installer</a>
 				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2 live installer</a>
 			</p>
+      <hr class="u-no-margin--bottom">
 			<p><a href="https://wiki.ubuntu.com/RISC-V/SiFive%20HiFive%20Unmatched">How to install Ubuntu on SiFive HiFive Unmatched</a></p>
 		</div>
 	</div>
