@@ -64,7 +64,9 @@ const Checkout = ({ product, quantity, action }: Props) => {
             <Formik
               onSubmit={() => {}}
               initialValues={initialValues}
-              enableReinitialize={!error}
+              enableReinitialize={
+                !isGuest && !!userInfo?.customerInfo?.defaultPaymentMethod
+              }
             >
               <>
                 <Col emptyLarge={7} size={6}>
