@@ -20,7 +20,7 @@ const CredShop = () => {
     private: false,
     marketplace: "canonical-ua",
   };
-  const checkoutData = localStorage.getItem("shop-checkout-data") || "";
+  const checkoutData = localStorage.getItem("shop-checkout-data") || "{}";
   const parsedCheckoutData = JSON.parse(checkoutData);
   const initQuantity: number = parsedCheckoutData?.quantity;
   const [quantity, setQuantity] = useState(initQuantity ?? 1);
@@ -40,6 +40,7 @@ const CredShop = () => {
               <Input
                 type="number"
                 id="keyQuantity"
+                min="1"
                 value={quantity}
                 onChange={handleChange}
               />
