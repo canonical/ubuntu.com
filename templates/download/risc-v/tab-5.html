@@ -1,24 +1,32 @@
-<div tabindex="0" role="tabpanel" id="sipeed-licheerv-dock-tab" aria-labelledby="allwinner-nezha" aria-hidden="true">
-	<div class="row p-strip--light is-shallow" style="margin-top: 3.5rem;">
-		<div class="col-3 u-vertically-center">
-			<h2>Sipeed LicheeRV Dock</h2>
-			<h3 class="u-sv3">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
-			<p>
+<div tabindex="0" role="tabpanel" id="sipeed-licheerv-dock-tab" aria-labelledby="sipeed-licheerv-dock" aria-hidden="true">
+	<div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-3">
+      <h2>Sipeed LicheeRV Dock</h2>
+    </div>
+    <div class="col-6 p-strip--light is-shallow u-vertically-center u-align--center">
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/4c609299-Sipeed+LicheeRV+-+Edited.png",
+        alt="",
+        width="400",
+        height="400",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <hr class="is-fixed-width col-9">
+    <div class="col-3">
+      <h3 class="p-heading--5 u-no-padding--top">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+    </div>
+    <div class="col-6">
+      <p>
 				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+licheerv.img.xz">Download 23.04</a>
 				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+licheerv.img.xz">Download 22.04.2</a>
 			</p>
 			<p><a href="https://wiki.ubuntu.com/RISC-V/LicheeRV">How to install Ubuntu on the LicheeRV Dock</a></p>
-		</div>
-		<div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
-			{{ image (
-				url="https://assets.ubuntu.com/v1/b151abd7-Sipeed+LicheeRV+-+Edited-2.png",
-				alt="",
-				width="900",
-				height="700",
-				hi_def=True,
-				loading="auto"
-				) | safe
-			}}
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

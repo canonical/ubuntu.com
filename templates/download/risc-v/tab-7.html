@@ -1,35 +1,31 @@
-<div tabindex="0" role="tabpanel" id="qemu-tab" aria-labelledby="qemu" aria-hidden="true">
-	<div class="row p-strip--light is-shallow" style="margin-top: 3.5rem;">
-		<div class="col-6">
-      <h2>QEMU emulator</h2>
-			<h3 class="u-sv3">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
-			<p class="u-sv3">
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+unmatched.img.xz">Download 23.04</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-preinstalled-server-riscv64+unmatched.img.xz">Download 22.04.2</a>
-			</p>
+<div tabindex="0" role="tabpanel" id="starfive-visionfive-2-tab" aria-labelledby="starfive-visionfive-2" aria-hidden="true">
+	<div class="row p-strip is-shallow u-no-padding--top">
+    <div class="col-3">
+      <h2>StarFive VisionFive 2</h2>
     </div>
-		<div class="col-3 u-hide--medium u-hide--small p-strip is-shallow u-no-padding--bottom">
-			{{
-				image (
-				url="https://assets.ubuntu.com/v1/308d48cd-Qemu-logo.png",
-				alt="",
-				width="377",
-				height="120",
-				hi_def=True,
-				loading="lazy"
-				) | safe
-			  }}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-6">
+    <div class="col-6 p-strip--light is-shallow u-vertically-center u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/f63441ac-risc-v_star-five-board.png",
+        alt="",
+        width="500",
+        height="400",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="row p-strip is-shallow u-no-padding--top">
+    <hr class="is-fixed-width col-9">
+    <div class="col-3">
+      <h3 class="p-heading--5">Ubuntu Server <br class="u-hide--small">preinstalled image</h3>
+    </div>
+    <div class="col-6">
+      <p>
+				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-preinstalled-server-riscv64+visionfive2.img.xz">Download 23.04</a>
+      </p>
       <hr class="u-no-margin--bottom">
-      <h3 class="u-sv3">Ubuntu Server live installer</h3>
-			<p>
-				<a class="p-button--positive" href="https://cdimage.ubuntu.com/releases/23.04/release/ubuntu-23.04-live-server-riscv64.img.gz">Download 23.04 live installer</a>
-				<a class="p-button" href="https://cdimage.ubuntu.com/releases/22.04.2/release/ubuntu-22.04.2-live-server-riscv64.img.gz">Download 22.04.2 live installer</a>
-			</p>
-			<p><a href="https://wiki.ubuntu.com/RISC-V/QEMU">How to install Ubuntu on QEMU RISC-V</a></p>
-		</div>
-	</div>
+      <p><a href="https://wiki.ubuntu.com/RISC-V/StarFive%20VisionFive%202">How to install Ubuntu on the VisionFive</a></p>
+    </div>
+  </div>
 </div>
