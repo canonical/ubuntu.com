@@ -281,6 +281,7 @@ context("engage forms", () => {
       force: true,
     });
     cy.findByLabelText(/Mobile\/cell phone number:/).type("07777777777");
+    cy.findByLabelText(/Country:/).select("Colombia");
     cy.findByLabelText(/I agree to receive information/).click({
       force: true,
     });
