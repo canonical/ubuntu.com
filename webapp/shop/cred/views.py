@@ -631,13 +631,17 @@ def activate_activation_key(ua_contracts_api, **kwargs):
 @shop_decorator(area="cred", permission="user", response=json)
 def get_filtered_webhook_responses(trueability_api, **kwargs):
     ability_screen_id = flask.request.args.get("ability_screen_id", None)
-    # only_failed_response_statuses = flask.request.args.get(
-    #     "only_failed_response_statuses", None
-    # )
-    # on_transition_to = flask.request.args.get("on_transition_to", None)
-    # webhook_id = flask.request.args.get("webhook_id", None)
     webhook_responses = trueability_api.get_filtered_webhook_responses(
         ability_screen_id=ability_screen_id,
+    )
+    return flask.jsonify(webhook_responses)
+
+
+@shop_decorator(area="cred", permission="user", response=json)
+def get_webhook_response(trueability_api, **kwargs):
+    webhook_id = flask.request.args.get("webhook_id", None)
+    webhook_responses = trueability_api.get_webhook_response(
+        webhook_id=webhook_id,
     )
     return flask.jsonify(webhook_responses)
 

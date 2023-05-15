@@ -91,6 +91,7 @@ from webapp.shop.cred.views import (
     cred_your_exams,
     get_activation_keys,
     get_filtered_webhook_responses,
+    get_webhook_response,
     rotate_activation_key,
 )
 from webapp.shop.views import (
@@ -899,6 +900,11 @@ app.add_url_rule(
 app.add_url_rule(
     "/credentials/get_filtered_webhook_responses",
     view_func=get_filtered_webhook_responses,
+    methods=["GET"],
+)
+app.add_url_rule(
+    "/credentials/get_webhook_response",
+    view_func=get_webhook_response,
     methods=["GET"],
 )
 

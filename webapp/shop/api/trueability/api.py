@@ -3,6 +3,10 @@ from requests import Session
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
+logging.getLogger().setLevel(logging.DEBUG)
+requests_log = logging.getLogger("requests.packages.urllib3")
+requests_log.setLevel(logging.DEBUG)
+requests_log.propagate = True
 
 
 class TrueAbilityAPI:
@@ -231,6 +235,12 @@ class TrueAbilityAPI:
         ability_screen_id: str = None,
     ):
         uri = (
-            f"/api/v1/webhook_responses?ability_screen_id={ability_screen_id}"
+            f"{self.base_url}"
+            "/api/v1/webhook_responses"
+            f"?ability_screen_id={ability_screen_id}"
         )
-        return self.make_request("GET", uri).json()
+        headers = {"X-API_KEY": self.api_key}
+        response = self.session.request(
+            method="GET", url=uri, headers=headers
+        ).json()
+        return response
