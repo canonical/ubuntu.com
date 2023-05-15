@@ -1,9 +1,5 @@
 # ![ubuntu](https://assets.ubuntu.com/v1/9f61b97f-logo-ubuntu.svg "Ubuntu").com codebase
 
-master
-www.websitename.com/master
-www.websitename.com/master/helloworld
-
 [![Code coverage](https://codecov.io/gh/canonical-web-and-design/ubuntu.com/branch/master/graph/badge.svg)](https://codecov.io/gh/canonical-web-and-design/ubuntu.com)
 [![Cypress checks](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions?query=workflow%3A%22Cypress+checks%22)
 [![Cypress checks / main](https://github.com/canonical-web-and-design/ubuntu.com/workflows/Cypress%20main%20checks/badge.svg)](https://github.com/canonical-web-and-design/ubuntu.com/actions/workflows/cypress-main.yaml?query=workflow%3A%22Cypress+checks%22)
