@@ -55,7 +55,7 @@
       }
     }
 
-    &.is-risc-v {
+    &.is-black {
       margin-left: 0;
       padding-left: 0;
 
@@ -64,6 +64,18 @@
           @include vf-highlight-bar($color-dark, left);
         }
       }
+    }
+
+    &.on-paper {
+      .p-tabs__item {
+        background-color: #f7f7f7;
+
+        &[aria-selected="true"] {
+          @include vf-highlight-bar($color-brand, left);
+          background-color: white;
+        }
+      }
+
     }
   }
 

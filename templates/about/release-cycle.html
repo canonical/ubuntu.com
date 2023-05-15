@@ -420,7 +420,6 @@
       <p>The release cycles of Charmed Kubernetes and MicroK8s are tightly synchronised to the release of upstream Kubernetes<sup>&reg;</sup>. The current release and two prior releases are supported (N-2), subject to changes in the upstream release cycle. Canonical also provides expanded security maintenance (ESM) for N-4 Kubernetes releases in the stable release channel.</p>
 
       <p>For <a href="/support">Ubuntu Advantage</a> support, users must upgrade to remain in the N-2 support window.</p>
-
       <p>ESM support includes fixes to high and critical CVEs related to Kubernetes charms, limited to the LTS Ubuntu releases in the current N-4 support window. Upstream updates and fixes to Kubernetes binaries or container images are absorbed by Charmed Kubernetes and Microk8s.</p>
 
       <p>The Canonical Kubernetes support lifecycle can be represented this way:</p>
@@ -537,29 +536,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
 <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
-
-<script>
-  const tabs = document.querySelectorAll('.p-tabs__link');
-
-  // If a chart is on a tab that isn't visible, it isn't built,
-  // because its width depends on a parent element's width, which
-  // is zero when the tab is not visible.
-  //
-  // Charts aren't responsive and need to be redrawn if the window
-  // is resized, so they listen for that event and trigger the redraw
-  // when it fires.
-  //
-  // By triggering that same event, we can force the charts to be redrawn
-  // when a tab is made visible.
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      window.dispatchEvent(new Event('resize'));
-    })
-
-    tab.addEventListener('focus', () => {
-      window.dispatchEvent(new Event('resize'));
-    })
-  })
-</script>
 
 {% endblock content %}

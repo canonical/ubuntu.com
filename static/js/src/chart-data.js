@@ -1556,6 +1556,9 @@ export var desktopServerReleaseNames = [
 ];
 
 export var kernelReleaseNames = [
+  "Ubuntu 22.04.2 LTS",
+  "Ubuntu 22.10",
+  "Ubuntu 22.04.1 LTS",
   "Ubuntu 20.04.5 LTS",
   "Ubuntu 22.04.0 LTS",
   "Ubuntu 20.04.4 LTS",
@@ -1578,7 +1581,10 @@ export var kernelReleaseNames = [
 ];
 
 export var kernelVersionNames = [
+  "5.19 kernel",
+  "",
   "5.15 kernel",
+  "",
   "",
   "5.13 kernel",
   "",
