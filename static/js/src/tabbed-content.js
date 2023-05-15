@@ -112,7 +112,7 @@
       tabContent.forEach((content) => {
         if (tabElement === tab) {
           tabElement.setAttribute("aria-selected", true);
-          content.classList.remove("u-hide");   
+          content.classList.remove("u-hide");
           if (triggerReload) {
             window.dispatchEvent(new Event("resize"));
           }
@@ -159,7 +159,6 @@
     });
   };
 
-
   /**
     Check to see if a given script has been loaded on the page.
   
@@ -176,15 +175,15 @@
   */
   const isScriptIncluded = (scriptName) => {
     var scripts = document.scripts;
-    
+
     for (var i = 0; i < scripts.length; i++) {
       if (scripts[i].src.includes(scriptName)) {
         return true;
       }
     }
-    
+
     return false;
-  }
+  };
   const targetScript = "release-chart.js";
   const triggerReload = isScriptIncluded(targetScript);
 
