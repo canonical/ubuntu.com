@@ -29,7 +29,7 @@ function setupIntlTelInput(phoneInput) {
   // create error message node
   const mobileInput = document.querySelector(".iti");
   mobileInput.parentNode.classList.add("p-form-validation");
-  phoneInput.classList.add("p-form-validation__input")
+  phoneInput.classList.add("p-form-validation__input");
   const errorElement = document.createElement("div");
   errorElement.classList.add("p-form-validation__message");
   errorElement.style.marginTop = "1rem";
@@ -42,7 +42,7 @@ function setupIntlTelInput(phoneInput) {
   }
 
   function isValidNumber(number) {
-    const pattern = "^[0-9\s.\-/(),]+$";
+    const pattern = "^[0-9s.-/(),]+$";
     return number.length >= 4 && number.length <= 25 && pattern.test(number);
   }
 
@@ -54,7 +54,10 @@ function setupIntlTelInput(phoneInput) {
         reset();
       } else {
         mobileInput.parentNode.classList.add("is-error");
-        mobileInput.parentNode.insertBefore(errorElement, mobileInput.nextSibling);
+        mobileInput.parentNode.insertBefore(
+          errorElement,
+          mobileInput.nextSibling
+        );
       }
     }
   });
