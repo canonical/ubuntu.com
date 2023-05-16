@@ -42,11 +42,7 @@ function App() {
             <Route path="/manage" element={<CredManage />} />
             <Route
               path="/webhook_responses"
-              element={
-                <CredWebhookResponses
-                  API_KEY={process.env.TRUEABILITY_API_KEY ?? ""}
-                />
-              }
+              element={<CredWebhookResponses />}
             />
           </Routes>
         </Router>

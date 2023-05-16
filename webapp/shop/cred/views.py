@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import math
 import pytz
 import flask
 import json
@@ -631,10 +632,35 @@ def activate_activation_key(ua_contracts_api, **kwargs):
 @shop_decorator(area="cred", permission="user", response=json)
 def get_filtered_webhook_responses(trueability_api, **kwargs):
     ability_screen_id = flask.request.args.get("ability_screen_id", None)
+    page = flask.request.args.get("page", 1)
+    page = int(page)
+    per_page = flask.request.args.get("per_page", 10)
+    per_page = int(per_page)
+    ta_results_per_page = 100
+    ta_page = math.ceil(page * per_page // ta_results_per_page)
     webhook_responses = trueability_api.get_filtered_webhook_responses(
         ability_screen_id=ability_screen_id,
+        page=ta_page,
     )
-    return flask.jsonify(webhook_responses)
+    ta_webhook_responses = webhook_responses["webhook_responses"]
+    ta_webhook_responses = ta_webhook_responses[
+        page * per_page % ta_results_per_page
+        - per_page : page * per_page % ta_results_per_page
+    ]
+    page_metadata = {}
+    page_metadata["current_page"] = page
+    page_metadata["total_pages"] = (
+        webhook_responses["meta"]["total_count"] // per_page
+    ) + 1
+    page_metadata["total_count"] = webhook_responses["meta"]["total_count"]
+    page_metadata["next_page"] = (
+        page + 1 if page < page_metadata["total_pages"] else None
+    )
+    page_metadata["prev_page"] = page - 1 if page > 1 else None
+
+    return flask.jsonify(
+        {"webhook_responses": ta_webhook_responses, "meta": page_metadata}
+    )
 
 
 @shop_decorator(area="cred", permission="user", response=json)

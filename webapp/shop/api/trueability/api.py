@@ -231,13 +231,13 @@ class TrueAbilityAPI:
         return self.make_request("GET", uri).json()
 
     def get_filtered_webhook_responses(
-        self,
-        ability_screen_id: str = None,
+        self, ability_screen_id: str = None, page: int = 1
     ):
         uri = (
             f"{self.base_url}"
             "/api/v1/webhook_responses"
             f"?ability_screen_id={ability_screen_id}"
+            f"&page={page}"
         )
         headers = {"X-API_KEY": self.api_key}
         response = self.session.request(
