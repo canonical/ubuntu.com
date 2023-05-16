@@ -2,7 +2,7 @@ import { MainTable } from "@canonical/react-components";
 import { getFilteredWebhookResponses } from "advantage/credentials/api/trueability";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 type Webhook = {
   ability_screen_id: string;
@@ -13,6 +13,7 @@ type WebhookResponse = {
   created_at: Date;
   sent_at: Date;
   webhook: Webhook;
+  response_status: string;
 };
 
 const CredWebhookResponses = () => {
@@ -39,6 +40,7 @@ const CredWebhookResponses = () => {
           { content: "Id", sortKey: "id" },
           { content: "Sent At", sortKey: "sent_at" },
           { content: "Ability Screen Id", sortKey: "ability_screen_id" },
+          { content: "Response Status", sortKey: "response_status" },
           { content: "Transition", sortKey: "on_transition_to" },
         ]}
         rows={
@@ -57,6 +59,9 @@ const CredWebhookResponses = () => {
                 },
                 {
                   content: keyitem.webhook.ability_screen_id,
+                },
+                {
+                  content: keyitem.response_status,
                 },
                 {
                   content: keyitem.webhook.on_transition_to,
