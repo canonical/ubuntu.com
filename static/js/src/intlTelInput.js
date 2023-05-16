@@ -26,20 +26,24 @@ function setupIntlTelInput(phoneInput) {
     },
   });
 
-  // add validation
-  const phoneValidationList = document.getElementById("phone-validation-list");
-  const phoneValidationMsg = document.getElementById(
-    "phone-validation-message"
-  );
+  // create error message node
+  const mobileInput = document.querySelector(".iti");
+  mobileInput.parentNode.classList.add("p-form-validation");
+  phoneInput.classList.add("p-form-validation__input")
+  const errorElement = document.createElement("div");
+  errorElement.classList.add("p-form-validation__message");
+  errorElement.style.marginTop = "1rem";
+  const errorMessage = document.createTextNode("Please enter a valid number.");
+  errorElement.appendChild(errorMessage);
 
   function reset() {
-    phoneValidationList.classList.remove("is-error");
-    phoneValidationMsg.style.display = "none";
+    mobileInput.parentNode.classList.remove("is-error");
+    errorElement.remove();
   }
 
   function isValidNumber(number) {
-    const pattern = /^[\d\s\.\-\(\)\/,]{4,}$/;
-    return number.length >= 10 && number.length <= 20 && pattern.test(number);
+    const pattern = "^[0-9\s.\-/(),]+$";
+    return number.length >= 4 && number.length <= 25 && pattern.test(number);
   }
 
   // on blur: validate
@@ -49,8 +53,8 @@ function setupIntlTelInput(phoneInput) {
       if (isValidNumber(phoneInput.value.trim())) {
         reset();
       } else {
-        phoneValidationList.classList.add("is-error");
-        phoneValidationMsg.style.display = "block";
+        mobileInput.parentNode.classList.add("is-error");
+        mobileInput.parentNode.insertBefore(errorElement, mobileInput.nextSibling);
       }
     }
   });
