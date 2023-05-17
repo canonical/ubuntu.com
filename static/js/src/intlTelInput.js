@@ -35,6 +35,12 @@ function setupIntlTelInput(phoneInput) {
   errorElement.style.marginTop = "1rem";
   const errorMessage = document.createTextNode("Please enter a valid number.");
   errorElement.appendChild(errorMessage);
+  // accessibility improvements
+  const countryCodeDropdown = mobileInput.querySelector(".iti__selected-flag");
+  countryCodeDropdown.setAttribute("aria-label", "Dial code list")
+  phoneInput.setAttribute("aria-describedby", "invalid-number-message")
+  errorElement.setAttribute("id", "invalid-number-message");
+  errorElement.setAttribute("role", "alert");
 
   function reset() {
     mobileInput.parentNode.classList.remove("is-error");
@@ -42,8 +48,8 @@ function setupIntlTelInput(phoneInput) {
   }
 
   function isValidNumber(number) {
-    const pattern = "^[0-9s.-/(),]+$";
-    return number.length >= 4 && number.length <= 25 && pattern.test(number);
+    const pattern = /^(?=[^a-zA-Z]*$)[0-9\s.\-()/,]{4,25}$/;
+    return pattern.test(number)
   }
 
   // on blur: validate
