@@ -219,7 +219,7 @@ function clearCharts() {
   }
 }
 
-var mediumBreakpoint = 875;
+var mediumBreakpoint = 620;
 
 // A bit of a hack, but chart doesn't load with full year axis on first load,
 // It has to be loaded once, and then again
