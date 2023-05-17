@@ -264,10 +264,26 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
       proSelectorStates.forEach((state) => localStorage.removeItem(state));
 
+      const address = userInfo
+        ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`
+        : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
+
       const request = new XMLHttpRequest();
       const formData = new FormData();
       formData.append("formid", "3756");
-      formData.append("email", userInfo?.customerInfo?.email ?? "");
+      formData.append(
+        "name",
+        (userInfo?.customerInfo?.name || values.organisationName) ?? ""
+      );
+      formData.append(
+        "email",
+        (userInfo?.customerInfo?.email || values.email) ?? ""
+      );
+      formData.append(
+        "company",
+        (userInfo?.accountInfo?.name || values.name) ?? ""
+      );
+      formData.append("address", address ?? "");
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
