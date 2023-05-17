@@ -571,8 +571,11 @@ def cred_shop(**kwargs):
 
 @shop_decorator(area="cube", permission="user", response="html")
 def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
+    exam = None
+
     if flask.request.method == "POST":
         activation_key = flask.request.form.get("activation-key")
+        exam = flask.request.form.get("exam")
     else:
         activation_key = kwargs.get("code")
 
@@ -583,6 +586,7 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
         activation_response = ua_contracts_api.activate_activation_key(
             {
                 "activationKey": activation_key,
+                "productID": exam,
             }
         )
         exam_contracts = ua_contracts_api.get_annotated_contract_items(
