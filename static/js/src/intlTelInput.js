@@ -37,8 +37,8 @@ function setupIntlTelInput(phoneInput) {
   errorElement.appendChild(errorMessage);
   // accessibility improvements
   const countryCodeDropdown = mobileInput.querySelector(".iti__selected-flag");
-  countryCodeDropdown.setAttribute("aria-label", "Dial code list")
-  phoneInput.setAttribute("aria-describedby", "invalid-number-message")
+  countryCodeDropdown.setAttribute("aria-label", "Dial code list");
+  phoneInput.setAttribute("aria-describedby", "invalid-number-message");
   errorElement.setAttribute("id", "invalid-number-message");
   errorElement.setAttribute("role", "alert");
 
@@ -49,7 +49,7 @@ function setupIntlTelInput(phoneInput) {
 
   function isValidNumber(number) {
     const pattern = /^(?=[^a-zA-Z]*$)[0-9\s.\-()/,]{4,25}$/;
-    return pattern.test(number)
+    return pattern.test(number);
   }
 
   // on blur: validate
