@@ -35,6 +35,9 @@
                 <label for="phone">Mobile/cell phone number:</label>
                 <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
               </li>
+
+              {% include "shared/forms/_country.html" %}
+              
               <li class="p-list__item">
                 <label class="p-checkbox">
                   <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
