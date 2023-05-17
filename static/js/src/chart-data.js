@@ -1522,7 +1522,7 @@ export var desktopServerStatus = {
   HARDWARE_AND_MAINTENANCE_UPDATES: "chart__bar--orange",
   MAINTENANCE_UPDATES: "chart__bar--orange-light",
   ESM: "chart__bar--aubergine",
-  MAIN_UNIVERSE: "chart__bar--violet",
+  MAIN_UNIVERSE: "chart__bar--charcoal",
   INTERIM_RELEASE: "chart__bar--grey",
 };
 
