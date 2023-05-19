@@ -290,7 +290,7 @@ const BuyButton = ({
               email
             )}`;
           } else {
-            location.pathname = redirectURL;
+            location.href = redirectURL;
           }
         }
       };
