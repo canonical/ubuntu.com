@@ -18,7 +18,7 @@ const CredShop = () => {
     productID: "cue-activation-key",
     canBeTrialled: false,
     private: false,
-    marketplace: "canonical-ua",
+    marketplace: "canonical-cube",
   };
   const checkoutData = localStorage.getItem("shop-checkout-data") || "{}";
   const parsedCheckoutData = JSON.parse(checkoutData);
