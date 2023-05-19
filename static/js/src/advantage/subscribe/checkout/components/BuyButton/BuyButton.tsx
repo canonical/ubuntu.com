@@ -80,19 +80,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       return;
     }
 
-    window.plausible("pro-purchase", {
-      props: {
-        country: values.country,
-        product: product?.name,
-        quantity: quantity,
-        total:
-          values.totalPrice &&
-          currencyFormatter.format(values?.totalPrice / 100),
-        "buying-for": values.buyingFor,
-        action: buyAction,
-      },
-    });
-
     // empty the product selector state persisted in the local storage
     // after the user chooses to make a purchase
     // to prevent page refreshes from causing accidental double purchasing
@@ -115,6 +102,19 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
             setPendingPurchaseID(purchaseId);
             window.currentPaymentId = purchaseId;
           }
+
+          window.plausible("pro-purchase", {
+            props: {
+              country: values.country,
+              product: product?.name,
+              quantity: quantity,
+              total:
+                values.totalPrice &&
+                currencyFormatter.format(values?.totalPrice / 100),
+              "buying-for": values.buyingFor,
+              action: buyAction,
+            },
+          });
         },
         onError: (error) => {
           setIsLoading(false);
