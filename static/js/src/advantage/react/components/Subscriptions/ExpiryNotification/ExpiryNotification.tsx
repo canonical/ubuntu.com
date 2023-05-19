@@ -64,8 +64,6 @@ const MESSAGES: Messages = {
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
         [UserSubscriptionType.Yearly]:
           "Enable auto-renewals via the renewal settings menu to ensure service continuity.",
-        [UserSubscriptionType.Trial]:
-          "Click on renew subscription to ensure service continuity.",
       },
       title: "Your subscription is about to expire.",
     },
@@ -95,9 +93,6 @@ const MESSAGES: Messages = {
             clicking the <strong>Renew Subscription</strong> button. Your token
             will remain the same.
           </>
-        ),
-        [UserSubscriptionType.Trial]: (
-          <>Click on renew subscription to ensure service continuity.</>
         ),
       },
       title: "Your subscription has expired.",
