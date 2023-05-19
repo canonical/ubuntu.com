@@ -89,7 +89,9 @@ const CredCheckout = () => {
             product={product}
             quantity={quantity}
             action={action}
-            redirectURL={`/credentials/shop/order-thank-you?productName=${product.name}&quantity=${quantity}`}
+            redirectURL={`/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+              product.name
+            )}&quantity=${encodeURIComponent(quantity)}`}
           />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />
