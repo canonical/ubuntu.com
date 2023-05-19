@@ -11,6 +11,7 @@ import useCustomerInfo from "../../hooks/useCustomerInfo";
 import useFinishPurchase from "../../hooks/useFinishPurchase";
 import usePollPurchaseStatus from "../../hooks/usePollPurchaseStatus";
 import { Action, FormValues, Product } from "../../utils/types";
+import { currencyFormatter } from "advantage/react/utils";
 
 type Props = {
   setError: React.Dispatch<React.SetStateAction<React.ReactNode>>;
@@ -101,6 +102,19 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
             setPendingPurchaseID(purchaseId);
             window.currentPaymentId = purchaseId;
           }
+
+          window.plausible("pro-purchase", {
+            props: {
+              country: values.country,
+              product: product?.name,
+              quantity: quantity,
+              total:
+                values.totalPrice &&
+                currencyFormatter.format(values?.totalPrice / 100),
+              "buying-for": values.buyingFor,
+              action: buyAction,
+            },
+          });
         },
         onError: (error) => {
           setIsLoading(false);

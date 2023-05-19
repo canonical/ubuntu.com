@@ -52,6 +52,7 @@ export interface FormValues {
   isTaxSaved: boolean;
   isCardValid: boolean;
   isInfoSaved: boolean;
+  totalPrice: undefined | number;
 }
 
 export type marketplace = "canonical-ua" | "canonical-cube" | "blender";
