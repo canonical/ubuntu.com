@@ -41,7 +41,7 @@
   <div class="row">
     <div class="col-3 col-medium-2">
       <div class="p-strip is-shallow u-no-padding--top"><h2 class="p-text--small-caps">Choose a board</h2></div>
-      <ul class="js-tabbed-content p-tabs--vertical is-balck" role="tablist" aria-label="Robotics features">
+      <ul class="js-tabbed-content p-tabs--vertical is-risc-v u-hide--small" role="tablist" aria-label="Robotics features">
         <li><button class="p-tabs__item" id="allwinner-nezha" role="tab" aria-selected="true" aria-controls="allwinner-nezha-tab">AllWinner Nezha</button></li>
         <li><button class="p-tabs__item" id="microchip-polarfire-soc-fpga-icicle-kit" role="tab" aria-selected="false" aria-controls="microchip-polarfire-soc-fpga-icicle-kit-tab">Polarfire SoC FPGA Icicle</button></li>
         <li><button class="p-tabs__item" id="qemu" role="tab" aria-selected="false" aria-controls="qemu-tab">QEMU emulator</button></li>
@@ -50,6 +50,17 @@
         <li><button class="p-tabs__item" id="starfive-visionfive-board" role="tab" aria-selected="false" aria-controls="starfive-visionfive-board-tab">StarFive VisionFive</button></li>
         <li><button class="p-tabs__item" id="starfive-visionfive-2" role="tab" aria-selected="false" aria-controls="starfive-visionfive-2-tab">StarFive VisionFive 2</button></li>
       </ul>
+      <form class="u-hide--large u-hide--medium">
+        <select name="boardSelect" id="boardSelect">
+          <option value="" disabled="disabled" selected="">AllWinner Nezha</option>
+          <option value="1">Polarfire SoC FPGA Icicle</option>
+          <option value="2">QEMU emulator</option>
+          <option value="3">SiFive Unmatched</option>
+          <option value="4">Sipeed LicheeRV Dock</option>
+          <option value="4">StarFive VisionFive</option>
+          <option value="4">StarFive VisionFive 2</option>
+        </select>
+      </form>
     </div>
     <div class="col-9 col-medium-4">
       {% include "download/risc-v/tab-1.html" %}
@@ -67,5 +78,16 @@
 <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/risc-v" data-form-id="4532" data-lp-id="" data-return-url="https://ubuntu.com/contact-us/form/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html"></div>
 
 <script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>
+
+<script>
+  
+    const options = document.querySelectorAll("option");
+    options.forEach(option => {
+      console.log(option.innerHTML)
+    })
+
+
+  
+</script>
 
 {% endblock content %}

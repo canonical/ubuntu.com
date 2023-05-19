@@ -58,6 +58,7 @@
       @param {Array} tabs an array of tabs within a container
     */
   const attachEvents = (tabs, persistURLHash) => {
+    console.log(tabs)
     tabs.forEach(function (tab, index) {
       tab.addEventListener("keyup", function (e) {
         let compatibleKeys = IEKeys;
@@ -105,6 +106,7 @@
       @param {Array} tabs an array of tabs within a container
     */
   const setActiveTab = (tab, tabs) => {
+    console.log(tab)
     tabs.forEach((tabElement) => {
       var tabContent = document.querySelectorAll(
         "#" + tabElement.getAttribute("aria-controls")
