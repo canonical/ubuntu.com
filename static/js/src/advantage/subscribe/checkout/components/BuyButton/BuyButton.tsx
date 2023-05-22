@@ -274,6 +274,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
           formData.append("firstName", name.split(" ")[0] ?? "");
           formData.append("lastName", name.split(" ")[1] ?? "");
         } else {
+          formData.append("firstName", "");
           formData.append("lastName", name ?? "");
         }
       };
@@ -290,7 +291,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         "company",
         (userInfo?.accountInfo?.name || values?.organisationName) ?? ""
       );
-      formData.append("address", address ?? "");
+      formData.append("street", address ?? "");
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
