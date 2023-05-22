@@ -193,7 +193,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       }
     );
   };
-  console.log("userInfo", userInfo);
+
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError) {
@@ -269,26 +269,12 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
 
       const getName = () => {
-        if (userInfo?.customerInfo?.name) {
-          if (userInfo?.customerInfo?.name.split(" ").length === 2) {
-            formData.append(
-              "fisrtName",
-              userInfo?.customerInfo?.name.split(" ")[0] ?? ""
-            );
-            formData.append(
-              "lastName",
-              userInfo?.customerInfo?.name.split(" ")[1] ?? ""
-            );
-          } else {
-            formData.append("lastName", userInfo?.customerInfo?.name ?? "");
-          }
+        const name = userInfo?.customerInfo?.name || values?.name;
+        if (name && name.split(" ").length === 2) {
+          formData.append("firstName", name.split(" ")[0] ?? "");
+          formData.append("lastName", name.split(" ")[1] ?? "");
         } else {
-          if (values?.name && values?.name.split(" ").length === 2) {
-            formData.append("firstName", values.name.split(" ")[0] ?? "");
-            formData.append("lastName", values.name.split(" ")[1] ?? "");
-          } else {
-            formData.append("lastName", values?.name ?? "");
-          }
+          formData.append("lastName", name ?? "");
         }
       };
 
