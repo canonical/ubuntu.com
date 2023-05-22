@@ -193,7 +193,7 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
       }
     );
   };
-
+  console.log("userInfo", userInfo);
   useEffect(() => {
     // the initial call was successful but it returned an error while polling the purchase status
     if (purchaseError) {
@@ -268,20 +268,41 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`
         : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
 
+      const getName = () => {
+        if (userInfo?.customerInfo?.name) {
+          if (userInfo?.customerInfo?.name.split(" ").length === 2) {
+            formData.append(
+              "fisrtName",
+              userInfo?.customerInfo?.name.split(" ")[0] ?? ""
+            );
+            formData.append(
+              "lastName",
+              userInfo?.customerInfo?.name.split(" ")[1] ?? ""
+            );
+          } else {
+            formData.append("lastName", userInfo?.customerInfo?.name ?? "");
+          }
+        } else {
+          if (values?.name && values?.name.split(" ").length === 2) {
+            formData.append("firstName", values.name.split(" ")[0] ?? "");
+            formData.append("lastName", values.name.split(" ")[1] ?? "");
+          } else {
+            formData.append("lastName", values?.name ?? "");
+          }
+        }
+      };
+
       const request = new XMLHttpRequest();
       const formData = new FormData();
       formData.append("formid", "3756");
-      formData.append(
-        "name",
-        (userInfo?.customerInfo?.name || values.organisationName) ?? ""
-      );
+      getName();
       formData.append(
         "email",
         (userInfo?.customerInfo?.email || values.email) ?? ""
       );
       formData.append(
         "company",
-        (userInfo?.accountInfo?.name || values.name) ?? ""
+        (userInfo?.accountInfo?.name || values?.organisationName) ?? ""
       );
       formData.append("address", address ?? "");
       formData.append("Consent_to_Processing__c", "yes");
