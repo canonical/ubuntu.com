@@ -49,8 +49,8 @@ const CredShop = () => {
         </Row>
         <Row>
           <p>
-            Each exam attempt allows you to register for one of the following
-            certifications:
+            Each exam attempt allows you to register for one or more of the
+            following certifications:
             <ul>
               <li>CUE.01: Linux</li>
               <li>CUE.02: Desktop</li>

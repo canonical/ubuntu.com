@@ -17,13 +17,13 @@ const CredPurchaseConfirmation = () => {
       </Row>
       <Row>
         <Col size={8} className="col-start-large-2">
-          <h3>Log in to /credentials/activate</h3>
+          <h3>Log in to /credentials/redeem</h3>
           <p>
-            Enter your key on /credentials/activate to redeem your exam attempt.
+            Enter your key on /credentials/redeem to redeem your exam attempt.
             After activation, you will be able to take your exam right away or
             schedule it for another day.
           </p>
-          <a href="/credentials/activate">
+          <a href="/credentials/redeem">
             <Button appearance="positive">Activate your exam attempt</Button>
           </a>
           <h3>Manage Your Keys</h3>
