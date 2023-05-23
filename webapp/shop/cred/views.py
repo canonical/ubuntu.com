@@ -601,12 +601,19 @@ def cred_redeem_code(ua_contracts_api, advantage_mapper, **kwargs):
             return flask.redirect(
                 f"/credentials/provision?contractItemID={contract_id}"
             )
-        return flask.redirect("/credentials/your-exams")
-    except UAContractsAPIErrorView as error:
-        activation_response = json.loads(error.response.text)
         return flask.render_template(
             "/credentials/redeem.html",
-            activation_response=activation_response,
+            notification_class="positive",
+            notification_title="Success",
+            notification_message="Your exam has been activated.",
+        )
+    except UAContractsAPIErrorView as error:
+        activation_response = json.loads(error.response.text).get("message")
+        return flask.render_template(
+            "/credentials/redeem.html",
+            notification_class="negative",
+            notification_title="Something went wrong",
+            notification_message=activation_response,
         )
     except UAContractsUserHasNoAccount:
         return flask.render_template(
