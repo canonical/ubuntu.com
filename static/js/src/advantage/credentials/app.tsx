@@ -7,7 +7,6 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CredManage from "./components/CredManage";
 import CredShop from "./components/CredShop";
-import CredCheckout from "./components/CredCheckout";
 import CredPurchaseConfirmation from "./components/CredPurchaseConfirmation/CredPurchaseConfirmation";
 
 const oneHour = 1000 * 60 * 60;
@@ -41,7 +40,6 @@ function App() {
           <Routes>
             <Route path="/" element={<CredShop />} />
             <Route path="/manage" element={<CredManage />} />
-            <Route path="/checkout" element={<CredCheckout />} />
             <Route
               path="/order-thank-you"
               element={<CredPurchaseConfirmation />}
