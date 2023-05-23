@@ -12,7 +12,7 @@
     <div class="col-8">
       <h1>Security Certifications & Hardening</h1>
       <h2 class="p-heading--3">Run regulated and high security workloads on Ubuntu</h2>
-      <p>Whatever cybersecurity framework you have chosen, including ISO 27000, NIST, PCI or CIS Controls, <a href="/cloud/public-cloud">Ubuntu Pro</a> and <a href="/pro">Ubuntu Advantage</a> enable your compliance and reduce your operational risk. Access automation for hardening and compliance profiles, such as CIS and DISA-STIG as well as the FIPS 140-2 and Common Criteria certifications.</p>
+      <p>Whatever cybersecurity framework you have chosen, including ISO 27000, NIST, PCI or CIS Controls, <a href="/pro">Ubuntu Pro on-premise</a> or on <a href="/public-cloud">public clouds</a> enables your compliance and reduces your operational risk. Access automation for hardening and compliance profiles, such as CIS and DISA-STIG as well as the FIPS 140-2 and Common Criteria certifications.</p>
       <p>
         <a class="p-button--positive js-invoke-modal" href="/security/contact-us">Contact us</a>
         <a href="/security/certifications/docs">Read the documentation&nbsp;&rsaquo;</a>
@@ -38,7 +38,7 @@
  <div class="row p-divider">
    <div class="col-4 p-divider__block">
      <h3>Comply with established security baselines</h3>
-     <p>The default configuration of Ubuntu balances usability and security. However, systems carrying dedicated workloads can be further hardened to reduce their attack surface. Canonical works with DISA to ensure STIG guides are available for Ubuntu, as well as provides OpenSCAP tooling and automation for the Industry accepted CIS benchmark. Available with <a href="/pro">Ubuntu Advantage</a> and <a href="/cloud/public-cloud">Ubuntu Pro</a>.</p>
+     <p>The default configuration of Ubuntu balances usability and security. However, systems carrying dedicated workloads can be further hardened to reduce their attack surface. Canonical works with DISA to ensure STIG guides are available for Ubuntu, as well as provides OpenSCAP tooling and automation for the Industry accepted CIS benchmark. Available with <a href="/pro">Ubuntu Pro on-premise</a> or on <a href="/public-cloud">Public Clouds</a>.</p>
      <a class="p-button" href="#compliance-profiles">See our compliance profiles</a>
    </div>
    <div class="col-4 p-divider__block">
@@ -48,7 +48,7 @@
    </div>
    <div class="col-4 p-divider__block">
      <h3>Access certifications for high security environments</h3>
-     <p>Access certification artifacts as well as the necessary tooling for regulated and high security environments. <a href="/pro">Ubuntu Advantage</a> and <a href="/cloud/public-cloud">Ubuntu Pro</a> provide access to FIPS 140-2 certified cryptographic packages, allowing you to deploy workloads that need to operate under compliance regimes like FedRAMP, HIPAA, and PCI-DSS. Additionally, Ubuntu versions have been certified under Common Criteria, providing 3rd party attestation of the security mechanisms in the operating system.</p>
+     <p>Access certification artifacts as well as the necessary tooling for regulated and high security environments. <a href="/pro">Ubuntu Pro</a> provides access to FIPS 140-2 certified cryptographic packages, allowing you to deploy workloads that need to operate under compliance regimes like FedRAMP, HIPAA, and PCI-DSS. Additionally, some Ubuntu versions have been certified under Common Criteria, providing 3rd party attestation of the security mechanisms in the operating system.</p>
      <a class="p-button" href="#security-certifications">See our certifications</a>
    </div>
  </div>
@@ -58,7 +58,7 @@
   <div class="row p-divider">
     <div class="col-3 p-divider__block">
       <h2 class="p-heading--3">FIPS</h2>
-      <p>A US and Canada government cryptographic module certification of compliance with the FIPS140-2 information processing standard</p>
+      <p>A US and Canada government cryptographic module certification of compliance with the FIPS 140 information processing standard</p>
       <a href="/security/fips">Learn more&nbsp;&rsaquo;</a>
     </div>
 
@@ -107,77 +107,61 @@
 </section>
 
 <section class="p-strip" id="compliance-profiles">
- <div class="u-fixed-width">
-   <h2>Ubuntu compliance & hardening profiles</h2>
-   <p class="u-sv2">The default configuration of Ubuntu LTS releases, balances between usability, performance and security. However, non general purpose systems can be further hardened to reduce their attack surface. Reducing the attack surface is often part of the compliance with the organization’s cybersecurity framework, but is also a widely accepted security best practice. We recommend using the industry accepted benchmarks below. Click on each benchmark for more detailed information.</p>
-   <table class="p-table--compliance-profiles">
-     <thead>
-       <th class="u-hide--small"></th>
-       <th></th>
-       <th class="u-align--center">Ubuntu 16.04 LTS</th>
-       <th class="u-align--center">Ubuntu 18.04 LTS</th>
-       <th class="u-align--center">Ubuntu 20.04 LTS</th>
-     </thead>
-     <tbody>
-       <tr>
-         <td class="u-hide--small">
-         {{ image (
-           url="https://assets.ubuntu.com/v1/f98af83d-cis-logo-removebg-preview.png",
-           alt="CIS logo",
-           width="50",
-           height="50",
-           hi_def=True,
-           loading="lazy"
-           ) | safe
-         }}
-         </td>
-         <td>
-           <a href="/security/cis">Center for Internet Security (CIS) certified benchmarks for Ubuntu systems</a>
-         </td>
-         <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/aeec264b-green-tick.svg", alt="Yes: Tooling and automation", width="14", height="14", hi_def=True, loading="lazy",) | safe }}</td>
-         <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/aeec264b-green-tick.svg", alt="Yes: Tooling and automation", width="14", height="14", hi_def=True, loading="lazy",) | safe }}</td>
-         <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/aeec264b-green-tick.svg", alt="Yes: Tooling and automation", width="14", height="14", hi_def=True, loading="lazy",) | safe }}</td>
-       </tr>
-       <tr>
-         <td class="u-hide--small">
-         {{ image (
-           url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
-           alt="DISA logo",
-           width="136",
-           height="50",
-           hi_def=True,
-           attrs={"style": "vertical-align: middle;"},
-           loading="lazy"
-           ) | safe
-         }}
-         </td>
-         <td>
-           <a href="/security/disa-stig">Defence Information System Agency (DISA) Security Technical Implementation Guides (STIGs)</a>
-         </td>
-         <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/2ccda8d7-tick-orange.svg", alt="Yes: STIG content", width="14", height="14", hi_def=True, loading="lazy",) | safe }}</td>
-         <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/2ccda8d7-tick-orange.svg", alt="Yes: STIG content", width="14", height="14", hi_def=True, loading="lazy",) | safe }}</td>
-         <td class="u-align--center">{{ image(url="https://assets.ubuntu.com/v1/aeec264b-green-tick.svg", alt="Yes: Tooling and automation", width="14", height="14", hi_def=True, loading="lazy",) | safe }}</td>
-       </tr>
-     </tbody>
-   </table>
-   <ul class="p-inline-list" aria-label="key">
-     <li class="p-inline-list__item">
-       <i class="p-icon--success">Yes</i>
-       <small>Tooling & automation</small>
-     </li>
-     <li class="p-inline-list__item">
-       <img src="https://assets.ubuntu.com/v1/2ccda8d7-tick-orange.svg" alt="Yes: STIG content" style="height: 14px; vertical-align: middle; width: 14px;">
-       <small> Configuration guide</small>
-     </li>
-   </ul>
-   <a href="/security/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
- </div>
+  <div class="u-fixed-width">
+    <h2>Ubuntu compliance &amp; hardening profiles</h2>
+    <p class="u-sv2">The default configuration of Ubuntu LTS releases, balances between usability, performance and security. However, non general purpose systems can be further hardened to reduce their attack surface. Reducing the attack surface is often part of the compliance with the organization’s cybersecurity framework, but is also a widely accepted security best practice. We recommend using the industry accepted benchmarks below. Click on each benchmark for more detailed information.</p>
+    <div class="row p-divider">
+      <div class="col-6 p-divider__block">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/f98af83d-cis-logo-removebg-preview.png",
+          alt="CIS logo",
+          width="50",
+          height="50",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
+        <p><a href="/security/cis">Center for Internet Security (CIS) certified benchmarks for Ubuntu systems</a></p>
+        <p class="p-text--small-caps">Tooling &amp; automation for</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+          <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+          <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+          <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+        </ul>
+      </div>
+      <div class="col-6 p-divider__block">
+        {{ image (
+          url="https://assets.ubuntu.com/v1/ef01809f-DISA-logo-transparent.png",
+          alt="DISA logo",
+          width="136",
+          height="50",
+          hi_def=True,
+          attrs={"style": "vertical-align: middle;"},
+          loading="lazy"
+          ) | safe
+        }}
+        <p><a href="https://ubuntu.com/security/disa-stig">Defence Information System Agency (DISA) Security Technical Implementation Guides (STIGs)</a></p>
+        <p class="p-text--small-caps">Tooling &amp; automation for</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Ubuntu 22.04 LTS</li>
+          <li class="p-list__item is-ticked">Ubuntu 20.04 LTS</li>
+        </ul>
+        <p class="p-text--small-caps">Configuration guides for</p>
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Ubuntu 18.04 LTS</li>
+          <li class="p-list__item is-ticked">Ubuntu 16.04 LTS</li>
+        </ul>
+      </div>
+    </div>
+    <a href="/security/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
+  </div>
 </section>
 
 <section class="p-strip--light" id="security-certifications">
  <div class="u-fixed-width">
    <h2>Ubuntu security certifications</h2>
-   <p class="u-sv2">We strive to make Ubuntu the platform of choice in regulated and high security environments. Ubuntu Advantage enables access to the certification artifacts as well as the necessary tooling for such environments. The following is a list of the certifications available with <a href="/pro">Ubuntu Advantage</a> and <a href="/cloud/public-cloud">Ubuntu Pro</a> on public clouds. Click on each for more detailed information.</p>
+   <p class="u-sv2">We strive to make Ubuntu the platform of choice in regulated and high security environments. Ubuntu Advantage enables access to the certification artifacts as well as the necessary tooling for such environments. The following is a list of the certifications available with<a href="/pro">Ubuntu Pro</a>. Click on each for more detailed information.</p>
    <table class="p-table--security-certifications">
      <thead>
        <th></th>
@@ -188,7 +172,7 @@
      <tbody>
        <tr>
          <td>
-           <a href="/security/fips">FIPS 140-2 Level 1 certification</a>: A US and Canada government cryptographic module certification of compliance with the FIPS140-2 data protection standard. US agencies, their service providers or other institutions that comply with similar requirements (e.g., HIPAA, PCI-DSS) are required to comply with FIPS 140-2.
+           <a href="/security/fips">FIPS 140-2 Level 1 certification</a>: A US and Canada government cryptographic module certification of compliance with the FIPS 140 data protection standard. US agencies, their service providers or other institutions that comply with similar requirements (e.g., HIPAA, PCI-DSS) are required to comply with FIPS 140.
          </td>
          <td class="u-align--center">
            <div class="u-sv2">
