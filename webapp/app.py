@@ -46,6 +46,7 @@ from webapp.shop.advantage.views import (
     cancel_advantage_subscriptions,
     cancel_trial,
     delete_account_user_role,
+    get_activate_view,
     get_account_offers,
     get_account_users,
     get_advantage_offers,
@@ -196,6 +197,7 @@ app.add_url_rule("/account.json", view_func=account_query)
 app.add_url_rule("/mirrors.json", view_func=mirrors_query)
 app.add_url_rule("/marketo/submit", view_func=marketo_submit, methods=["POST"])
 app.add_url_rule("/thank-you", view_func=thank_you)
+app.add_url_rule("/pro/activate", view_func=get_activate_view)
 app.add_url_rule("/pro/dashboard", view_func=advantage_view)
 app.add_url_rule("/pro/user-subscriptions", view_func=get_user_subscriptions)
 app.add_url_rule(

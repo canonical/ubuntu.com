@@ -34,6 +34,19 @@ from webapp.shop.schemas import (
 )
 
 
+@shop_decorator(area="advantage", permission="user", response="html")
+def get_activate_view(advantage_mapper, **kwargs):
+    try:
+        advantage_mapper.get_purchase_account("canonical-ua")
+
+    except AccessForbiddenError:
+        return flask.render_template("account/forbidden.html")
+
+    return flask.render_template(
+        "pro/activate.html",
+    )
+
+
 @shop_decorator(area="advantage", response="html")
 def pro_page_view(advantage_mapper, **kwargs):
     """
