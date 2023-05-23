@@ -85,7 +85,7 @@ const CredShop = () => {
                     action: "purchase",
                   })
                 );
-                location.href = "/credentials/shop/checkout";
+                location.href = "/account/checkout";
               }}
             >
               Buy Now

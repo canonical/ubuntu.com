@@ -87,7 +87,6 @@ const App = () => {
             product={product}
             quantity={quantity}
             action={action}
-            redirectURL="/pro/dashboard"
           />
         </Elements>
         <ReactQueryDevtools initialIsOpen={false} />

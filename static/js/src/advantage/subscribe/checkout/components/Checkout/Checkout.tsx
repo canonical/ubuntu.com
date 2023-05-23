@@ -23,10 +23,9 @@ type Props = {
   product: Product;
   quantity: number;
   action: Action;
-  redirectURL: string;
 };
 
-const Checkout = ({ product, quantity, action, redirectURL }: Props) => {
+const Checkout = ({ product, quantity, action }: Props) => {
   const [error, setError] = useState<React.ReactNode>(null);
   const { data: userInfo, isLoading: isUserInfoLoading } = useCustomerInfo();
   const isGuest = !userInfo?.customerInfo?.email;
@@ -140,7 +139,6 @@ const Checkout = ({ product, quantity, action, redirectURL }: Props) => {
                                 quantity={quantity}
                                 action={action}
                                 setError={setError}
-                                redirectURL={redirectURL}
                               ></BuyButton>
                             </Col>
                           </Row>

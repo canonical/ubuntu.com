@@ -18,16 +18,9 @@ type Props = {
   quantity: number;
   product: Product;
   action: Action;
-  redirectURL: string;
 };
 
-const BuyButton = ({
-  setError,
-  quantity,
-  product,
-  action,
-  redirectURL,
-}: Props) => {
+const BuyButton = ({ setError, quantity, product, action }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -320,19 +313,22 @@ const BuyButton = ({
       request.onreadystatechange = () => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
-          if (!window.loginSession) {
+          if (product.marketplace == "canonical-cube") {
+            console.log("Reaches here 1");
+            location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
+              product.name
+            )}&quantity=${quantity}`;
+          } else if (!window.loginSession) {
             const email = userInfo?.customerInfo?.email || values.email || "";
-
             let urlBase = "/pro/subscribe";
             if (product.marketplace == "blender") {
               urlBase = "/pro/subscribe/blender";
             }
-
             location.href = `${urlBase}/thank-you?email=${encodeURIComponent(
               email
             )}`;
           } else {
-            location.href = redirectURL;
+            location.href = "/pro/dashboard";
           }
         }
       };
