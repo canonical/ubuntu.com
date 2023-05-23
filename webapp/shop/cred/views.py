@@ -374,7 +374,9 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
     reservation = None
     error = None
 
-    exam_contracts = ua_contracts_api.get_exam_contracts()
+    exam_contracts = ua_contracts_api.get_annotated_contract_items(
+        product_tags=["cue"],
+    )
 
     exam_contract = None
     for item in exam_contracts:
@@ -395,23 +397,25 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
         starts_at = tz_info.localize(datetime.utcnow() + timedelta(seconds=20))
         first_name, last_name = get_user_first_last_name()
 
-        response = ua_contracts_api.post_assessment_reservation(
-            contract_item_id,
-            first_name,
-            last_name,
-            tz_info.zone,
-            starts_at.isoformat(),
-            country_code,
-        )
-
-        if "error" in response:
-            error = response.get(
-                "message", "An error occurred while creating your exam."
+        try:
+            response = ua_contracts_api.post_assessment_reservation(
+                contract_item_id,
+                first_name,
+                last_name,
+                tz_info.zone,
+                starts_at.isoformat(),
+                country_code,
             )
-        else:
+
             reservation_uuid = response.get("reservation", {}).get("IDs", [])[
                 -1
             ]
+
+        except UAContractsAPIErrorView:
+            error = (
+                "An error occurred while reserving your exam. "
+                + "Please try refreshing the page."
+            )
 
     if reservation_uuid:
         response = trueability_api.get_assessment_reservation(reservation_uuid)
