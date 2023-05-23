@@ -264,10 +264,34 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
 
       proSelectorStates.forEach((state) => localStorage.removeItem(state));
 
+      const address = userInfo
+        ? `${userInfo?.customerInfo?.address?.line1} ${userInfo?.customerInfo?.address?.line2} ${userInfo?.customerInfo?.address?.city} ${userInfo?.customerInfo?.address?.postal_code} ${userInfo?.customerInfo?.address?.state} ${userInfo?.customerInfo?.address?.country}`
+        : `${values?.address} ${values?.postalCode} ${values?.city} ${values?.usState} ${values?.caProvince} ${values?.country}`;
+
+      const getName = () => {
+        const name = userInfo?.customerInfo?.name || values?.name;
+        if (name && name.split(" ").length === 2) {
+          formData.append("firstName", name.split(" ")[0] ?? "");
+          formData.append("lastName", name.split(" ")[1] ?? "");
+        } else {
+          formData.append("firstName", "");
+          formData.append("lastName", name ?? "");
+        }
+      };
+
       const request = new XMLHttpRequest();
       const formData = new FormData();
       formData.append("formid", "3756");
-      formData.append("email", userInfo?.customerInfo?.email ?? "");
+      getName();
+      formData.append(
+        "email",
+        (userInfo?.customerInfo?.email || values.email) ?? ""
+      );
+      formData.append(
+        "company",
+        (userInfo?.accountInfo?.name || values?.organisationName) ?? ""
+      );
+      formData.append("street", address ?? "");
       formData.append("Consent_to_Processing__c", "yes");
       formData.append("GCLID__c", sessionData?.gclid || "");
       formData.append("utm_campaign", sessionData?.utm_campaign || "");
