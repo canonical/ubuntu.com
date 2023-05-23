@@ -4,8 +4,8 @@ markdown_includes:
   nav: "kubernetes/docs/shared/_side-navigation.md"
 context:
   title: "Release notes"
-  description: Release notes for CDK
-keywords: kubernetes,  release, notes
+  description: Release notes for Charmed Kubernetes
+keywords: kubernetes, release, notes
 tags: [news]
 sidebar: k8smain-sidebar
 permalink: release-notes.html
@@ -15,13 +15,378 @@ toc: False
 
 <!-- AUTOGENERATE RELEASE NOTES HERE -->
 
-## 1.25+ck2 Bugfix release 
+# 1.27
 
-#### September 30, 2022 - `charmed-kubernetes --channel 1.25/stable`
+### April 21, 2023 - `charmed-kubernetes --channel 1.27/stable`
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.27/bundle.yaml).
+
+## What's new
+
+### Cilium CNI
+
+We are excited to announce the inclusion of Cilium in our portfolio of
+Container Network Interface solutions for Charmed Kubernetes. Cilium is a
+powerful CNI, network security and observability solution which provides
+enhanced performance and improved security for containerised applications.
+The current version of Cilium shipped within the charm is 1.12.5. It also
+comes bundled with Hubble: a networking and security observability solution
+that offers real time insights of the network and the security state of the
+cluster with little performance impact.
+
+### Cloud Providers and Cloud Storage
+
+Operator charms for external cloud providers have been expanded and now
+include AWS, Azure, GCP, and vSphere. Previously, cloud-specific features
+such as load balancing and storage were managed by Kubernetes in-tree solutions.
+Today, cloud provider charms offer flexible management of these features
+decoupled from any specific Kubernetes release.
+
+### NVIDIA Network Operator
+
+The NVIDIA network operator charm is a new addition to the Charmed Kubernetes
+ecosystem. It simplifies the deployment, operation, and management of NVIDIA
+networking resources for Kubernetes.
+
+### Support for Juju 3.1
+
+With this release, Charmed Kubernetes can be deployed with a
+juju 2.9, 3.0 or 3.1 controller. This release is intended to serve
+as a migration point away from juju 2.9 deployments which is why we
+offer a tested strategy of our charms on both 2.9 and 3.1 releases.
+
+## Technical Previews
+
+### KubeVirt
+
+Offered as a technical preview, the KubeVirt charm offers an opinionated
+deployment of KubeVirt on Charmed Kubernetes such that virtual machines can be
+launched within your Kubernetes cluster.  Charmed Kubernetes on metal will
+deploy KubeVirt in such a way to use faster, native hardware virtualization,
+but KubeVirt also supports software emulation for cases where accelerated
+hardware support is not available.
+
+### Volcano Scheduler
+
+Offered as a technical preview, the suite of Volcano charms deploys on either
+MicroK8s or Charmed Kubernetes, and can be used to more effectively schedule
+ML/AI workloads which need to ensure effective queuing of jobs requiring GPU
+resources. The charm ships with v1.7.0 of Volcano and will follow future
+upstream releases. See the [Volcano documentation](/kubernetes/docs/volcano) for more information.
+
+
+### Cluster API Providers
+
+Cluster API providers for deploying Charmed Kubernetes are available as
+technical previews. These providers consist of the Juju Infrastructure
+Provider, the CharmedK8s Control Plane Provider, and the CharmedK8s Bootstrap
+Provider.
+
+The infrastructure provider is responsible for Juju model management and
+machine deployment. The control plane provider handles control plane management,
+kubeconfig management, and control plane status reporting. The bootstrap
+provider controls what charms are deployed to the machines provisioned by the
+infrastructure provider.
+
+While the user experience surrounding certain Juju-related interactions is still
+being improved, Charmed Kubernetes can be deployed using the familiar Cluster
+API workflow using the providers in their current state. For the current 
+instructions, see the [Juju cluster API provider repository](https://github.com/charmed-kubernetes/cluster-api-provider-juju).
+
+## Component Versions
+
+### Charm/Addons pinned versions
+
+- kube-ovn 1.10.4
+- calico 3.21.4
+- cephcsi 3.7.2
+- cinder-csi-plugin 1.26.2
+- coredns 1.9.4 / 1.10.0
+- ingress-nginx 1.6.4
+- k8s-keystone-auth 1.26.2
+- kube-state-metrics 2.8.2
+- kubernetes-dashboard 2.7.0
+- openstack-cloud-controller-manager 1.26.2
+
+### Charm default versions
+
+- cloud-provider-vsphere 1.26
+- vsphere-csi-driver 3.0.0
+- cloud-provider-azure 1.25.0
+- azuredisk-csi-driver 1.23.0
+- cloud-provider-aws 1.26.1
+- aws-ebs-csi-driver 1.12.0
+- gcp-compute-persistent-disk-csi-driver 1.8.0
+
+
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.27](https://launchpad.net/charmed-kubernetes/+milestone/1.27).
+
+## Notes and Known Issues
+
+- Cilium on AWS and OpenStack [LP#2016905](https://bugs.launchpad.net/charm-cilium/+bug/2016905)
+
+  Deploying Cilium on AWS or Openstack can cause inter-node communication
+  failures due to the Fan networking that Juju enables by default in those
+  environments. To work around this issue, set model configuration prior
+  to deployment:
+
+  `juju model-config cluster-networking-mode=local`
+
+- Known issues scheduled to be resolved in the first 1.27 maintenance
+  release can be found at [the launchpad milestone page for 1.27+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.27+ck1).
+
+## Deprecations and API changes
+
+- Upstream
+
+For details of other deprecation notices and API changes for
+Kubernetes 1.27, please see the relevant sections of the
+[upstream release notes][upstream-changelog-1.27].
+
+[upstream-changelog-1.27]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.27.md#deprecation
+
+<!-- AUTOGENERATED RELEASE 1.27 ABOVE -->
+
+# 1.26+ck3 Bugfix release
+
+### March 20, 2023 - `charmed-kubernetes --channel 1.26/stable`
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane [LP#1989362](https://bugs.launchpad.net/bugs/1989362)
+
+  Resolves a hook error when related to vault but the vault api endpoint is not ready
+
+- Kubernetes Control Plane [LP#1999542](https://bugs.launchpad.net/bugs/1999542)
+
+  Resolves an issue where the charm incorrectly presumes a one-time vault token has
+  been used successfully to create a secret.
+
+- ETCD [LP#2008267](https://bugs.launchpad.net/bugs/2008267)
+
+  Resolves a race-condition which occurs when etcd sends cluster information
+  before its api endpoint is available, causing both it and calico to stall
+  during deployment.
+
+- Vsphere Cloud Provider [LP#2010233](https://bugs.launchpad.net/bugs/2010233)
+
+  Resolves an issue where the sync-manifest action could result in pods described
+  with the wrong image.
+
+- Vsphere Cloud Provider [LP#2009965](https://bugs.launchpad.net/bugs/2009965)
+
+  Resolves an issue where the charm is stuck in Maintenance state after running
+  a sync-manifest action.
+
+
+# 1.26+ck2 Bugfix release
+
+### February 27, 2023 - `charmed-kubernetes --channel 1.26/stable`
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Autoscaler [LP#2007182](https://bugs.launchpad.net/charm-kubernetes-autoscaler/+bug/2007182)
+
+  Update the autoscaler image for use with newer Juju controllers.
+
+- Etcd [LP#1997531](https://bugs.launchpad.net/charm-etcd/+bug/1997531)
+
+  Restrict non-root access to etcd snap data directory.
+
+- Kubernetes Control Plane LP#2007174
+
+  Restrict non-root access to the script responsible for synchronizing control-plane leader files to followers.
+
+- Bundles [LP#2008582](https://bugs.launchpad.net/charmed-kubernetes-bundles/+bug/2008582)
+
+  Add missing bundle overlays for AWS/GCE cloud storage providers.
+
+
+# 1.26+ck1 Bugfix release
+
+### January 16, 2022 - `charmed-kubernetes --channel 1.26/stable` 
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
+
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane / Octavia [LP#1990494](https://bugs.launchpad.net/bugs/1990494)
+
+  Resolves an issue which made it impossible to delete a kubernetes service when octavia loadbalancers are detected
+
+- Kubernetes Control Plane / Octavia [LP#1995746](https://bugs.launchpad.net/bugs/1995746)
+
+  Adds support to disable openstack loadbalancer integration
+
+- Kubernetes Control Plane / Ceph [LP#1998257](https://bugs.launchpad.net/bugs/1998257)
+
+  Resolves an issue where the `csi-rbdplugin` pod cannot start if the control-plane unit is running in a LXD machine.
+
+- Containerd [#LP2002593](https://bugs.launchpad.net/bugs/2002593)
+  
+  Resolves issue with flooding `/var/log/syslog` with messages about a deprecation of `io.containerd.runc.v1`
+
+- CoreDNS [LP#2002698](https://bugs.launchpad.net/bugs/2002698)
+
+  Upgrade of the coredns image from `1.6.7` to `1.10.0`
+
+- ops.lib-manifest library [LP#1999427](https://bugs.launchpad.net/bugs/1999427)
+
+  Resolves an issue where a charm hook fails rather than retrying when the kubernetes-api is available.
+
+- SRIOV CNI/Network Device Plugin [LP#2002186](https://bugs.launchpad.net/bugs/2002186)
+
+  Add support for control-plane node toleration for SRIOV daemonsets
+
+# 1.26
+
+### December 15, 2022 - `charmed-kubernetes --channel 1.26/stable` 
+
+The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.26/bundle.yaml).
+
+## What's new
+
+- Ubuntu 22.04 default series
+
+Ubuntu 22.04 is now the default series for new deployments of Charmed
+Kubernetes.
+
+Ubuntu 20.04 remains fully supported, but is no longer the default series.
+
+Ubuntu 18.04 is no longer supported. For existing clusters still running Ubuntu
+18.04, it is recommended to perform a series upgrade to Ubuntu 20.04 before
+upgrading to Charmed Kubernetes 1.26.
+
+- Kube-OVN BGP support
+
+The Kube-OVN charm's new `bgp-speakers` config option makes it possible to peer
+Kubernetes nodes with external BGP routers and exchange routing information for
+Kube-OVN subnets. This makes it possible to access pod IPs directly from
+external networks.
+
+- Kube-OVN traffic mirroring
+
+The new `enable-global-mirror` and `mirror-iface` config options make it
+possible to configure traffic mirroring for Kube-OVN. When configured, Kube-OVN
+will mirror pod network traffic to a network interface on each Kubernetes node,
+making it easier to observe pod network traffic with tools such as tcpdump.
+
+- MetalLB enhancements
+
+The metallb-controller and metallb-speaker charms have been upgraded to
+v0.12 and can now run on amd64, arm, arm64, ppc64le, and s390x hosts.
+
+## Component Versions
+
+### Charm/Addons pinned versions
+- kube-ovn 1.10.4
+- calico 3.21.4
+- cephcsi 3.7.2
+- cinder-csi-plugin 1.25.3
+- coredns 1.9.4
+- ingress-nginx 1.2.0
+- k8s-keystone-auth 1.25.3
+- kube-state-metrics 2.6.0
+- kubernetes-dashboard 2.7.0
+- openstack-cloud-controller-manager 1.25.3
+
+### Charm default versions
+- cloud-provider-vsphere 1.24
+- vsphere-csi-driver 2.6.0
+- cloud-provider-azure 1.25.0
+- azuredisk-csi-driver 1.23.0
+ 
+## Fixes
+
+A list of bug fixes and other minor feature updates in this release can be found at
+[the launchpad milestone page for 1.26](https://launchpad.net/charmed-kubernetes/+milestone/1.26).
+
+
+## Notes and Known Issues
+
+A list of issues to be fixed in the first 1.26 maintenance release can be found at
+[the launchpad milestone page for 1.26+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.26+ck1).
+
+* [LP1999427](https://launchpad.net/bugs/1999427)
+  Charm errors during update-status hook with 502 Gateway Error
+
+  The charm's status may appear like this:
+  ```
+    aws-k8s-storage/0*         error        idle                54.80.73.214                    hook failed: "update-status"
+  ```
+
+  When the affected charms are deployed on a cloud with a `kube-api-loadbalancer`, the load-balancer
+  can respond to client requests with a 502 Gateway Error, amongst other error statuses not produced
+  by the API server itself.  The charm's kubernetes client library raises an unhandled exception in
+  this case. This results is the charm being in an error state which is easily resolved by running
+
+  ```bash
+  juju resolve <charm/unit>
+  ```
+
+## Deprecations and API changes
+
+- Upstream
+
+For details of other deprecation notices and API changes for Kubernetes 1.26, please see the
+relevant sections of the [upstream release notes][upstream-changelog-1.26].
+
+[upstream-changelog-1.26]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.26.md#deprecation
+<!-- AUTOGENERATED RELEASE 1.26 ABOVE -->
+
+# 1.25+ck3 Bugfix release
+
+### December 1, 2022
+
+## Additions
+
+Notable additions in this release include:
+
+- Kubernetes Control Plane [LP#1991957](https://bugs.launchpad.net/bugs/1991957)
+
+  Resolves an issue deploying the charm on Bionic, constituting the last supported release
+  of this charm into this ubuntu series.
+
+- Kubernetes Control Plane [LP#1994203](https://bugs.launchpad.net/bugs/1994203)
+
+  Resolves an issue deploying the charm into a jammy lxd container, where a missing
+  path definition to `/etc/fstab` interrupted the configure kubelet hook.
+
+- AwsEbs in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1988186](https://bugs.launchpad.net/bugs/1988186)
+
+  With the pinning of [CSIMigrationAWS=True](https://github.com/kubernetes/kubernetes/pull/111479) in 
+  Kubernetes 1.25, the charm must not allow these to be set `False`.  This means that in-tree storage
+  provided by AWS is only supported in 1.25 and beyond with an [out-of-tree deployment](https://github.com/kubernetes-sigs/aws-ebs-csi-driver/).
+
+  [aws-k8s-storage](https://charmhub.io/aws-k8s-storage) provides the out-of-tree deployment as a charm.
+
+- GCE in Kubernetes-Control-Plane / Kubernetes-Worker [LP#1988186](https://bugs.launchpad.net/bugs/1988186)
+
+  With the pinning of [CSIMigrationGCE=True](https://github.com/kubernetes/kubernetes/pull/111301) in 
+  Kubernetes 1.25, the charm must not allow these to be set `False`.  This means that in-tree storage
+  provided by GCE is only supported in 1.25 and beyond with an [out-of-tree deployment](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver).
+
+  [gcp-k8s-storage](https://charmhub.io/gcp-k8s-storage) provides the out-of-tree deployment as a charm.
+
+
+
+# 1.25+ck2 Bugfix release 
+
+### September 30, 2022 - `charmed-kubernetes --channel 1.25/stable`
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
 
-### Fixes
+## Fixes
 
 Notable fixes in this release include:
 
@@ -50,13 +415,13 @@ A list of bug fixes and other minor feature updates in this release can be found
 [the launchpad milestone page for 1.25+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.25+ck2).
 
 
-## 1.25+ck1 Bugfix release 
+# 1.25+ck1 Bugfix release 
 
-#### September 19, 2022 - `charmed-kubernetes --channel 1.25/stable`
+### September 19, 2022 - `charmed-kubernetes --channel 1.25/stable`
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
 
-### Fixes
+## Fixes
 
 Notable fixes in this release include:
 
@@ -80,13 +445,14 @@ Notable fixes in this release include:
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page for 1.25+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.25+ck1).
 
-## 1.25
 
-#### September 1, 2022 - `charmed-kubernetes --channel 1.25/stable` 
+# 1.25
+
+### September 1, 2022 - `charmed-kubernetes --channel 1.25/stable` 
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml).
 
-### What's new
+## What's new
 
 - Telco-ready CNI
 
@@ -117,9 +483,9 @@ This provides a range of benefits, from individual build processes to versioning
 
 All the components of Charmed Kubernetes can now run on the newest Ubuntu release for the very latest kernel features and security enhancements.
 
-### Component Versions
+## Component Versions
 
-#### Charm/Addons pinned versions
+### Charm/Addons pinned versions
 - kube-ovn 1.10.4
 - calico 3.21.4
 - cephcsi 3.5.1
@@ -131,14 +497,14 @@ All the components of Charmed Kubernetes can now run on the newest Ubuntu releas
 - kubernetes-dashboard 2.5.1
 - openstack-cloud-controller-manager 1.23.0
 
-#### Charm default versions
+### Charm default versions
 - cloud-provider-vsphere 1.24
 - vsphere-csi-driver v2.6.0
 - cloud-provider-azure v1.24.0
 - azuredisk-csi-driver v1.21.0
 
-
-### Fixes
+ 
+## Fixes
 
 Notable fixes in this release include:
 
@@ -156,28 +522,23 @@ A full list of bug fixes and updates since Charmed Kubernetes 1.24 can be found 
 - [1.25 milestone](https://launchpad.net/charmed-kubernetes/+milestone/1.25)
 
 
-### Notes and Known Issues
-
-<div class="p-notification--caution">
-  <p markdown="1" class="p-notification__response">
-    <span class="p-notification__status">Warning!:</span>
-    do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the issues below
-</p></div>
+## Notes and Known Issues
 
 * [LP1988186](https://bugs.launchpad.net/bugs/1988186)
   Storage Components on AWS and Google Cloud
 
-  Beginning in 1.25 `CSIMigrationAWS` and `CSIMigrationGCE` have been locked to `true` resulting this release being unable to support storage volume mounting in AWS or Google Cloud without the use of those providers' out-of-tree csi-drivers. No charms yet exist for these two cloud platforms but will soon be addressed. Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to address:
+  Beginning in 1.25 `CSIMigrationAWS` and `CSIMigrationGCE` have been locked to `true` resulting this release being unable to support storage volume mounting in AWS or Google Cloud without the use of those providers' out-of-tree csi-drivers. No charms yet exist for these two cloud platforms but will soon be addressed.
+  
+  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` unless your cluster has taken steps to mitigate the lack of built-in storage such as:
   * Not using storage
   * Using alternative storage like `ceph-csi`
   * Manually configuring the out-of-tree storage provisioner
 
 * PodSecurityPolicy Removed
-
   PodSecurityPolicy has been removed in 1.25. Please see the [PodSecurityPolicy Migration Guide](https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/) if you have deployed pod security policies in your cluster. 
-  Do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
+  :warning: do not set `channel=1.25` on charm config `kubernetes-control-plane` and `kubernetes-worker` until your policies have been migrated. 
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 - CSIMigration
 The CSIMigration feature is generally available, and its feature flag was locked to enable.
@@ -192,16 +553,15 @@ For details of other deprecation notices and API changes for Kubernetes 1.25, pl
 relevant sections of the [upstream release notes][upstream-changelog-1.25].
 
 [upstream-changelog-1.25]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.25.md#deprecation
-
 <!-- AUTOGENERATED RELEASE 1.25 ABOVE -->
 
-## 1.24+ck1 Bugfix release 
+# 1.24+ck1 Bugfix release 
 
-#### August 5, 2022 - `charmed-kubernetes --channel 1.24/stable` 
+### August 5, 2022 - `charmed-kubernetes --channel 1.24/stable` 
 
 The release bundle can also be [downloaded here](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.24/bundle.yaml).
 
-### What's new
+## What's new
 
 - Jammy Jellyfish (22.04) Support
 
@@ -233,19 +593,19 @@ Exposes docker registry `cache-*` settings to configure it as a pull-through cac
 Limits the set of TLS ciphers to remove weaker ones.
  
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page for 1.24+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.24+ck1).
 
-## 1.24
+# 1.24
 
 ### May 6th, 2022 - `charmed-kubernetes --channel 1.24/stable`
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 Specific instructions for the 1.23 => 1.24 upgrade can be found [here](/kubernetes/docs/1.24/upgrading).
 
-### What's new
+## What's new
 
 - Transition to Charmhub
 
@@ -292,7 +652,7 @@ new and existing deployments that use Flannel as well.
 The default container runtime in Charmed Kubernetes has been containerd for 
 some time. The Docker container runtime is no longer supported.
 
-### Component upgrades
+## Component upgrades
 
 - calico 3.21.4
 - cephcsi 3.5.1
@@ -304,7 +664,7 @@ some time. The Docker container runtime is no longer supported.
 - kubernetes-dashboard 2.5.1
 - openstack-cloud-controller-manager 1.23.0
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.24).
@@ -318,7 +678,7 @@ This happens when the version of `snapd` on the host does not match the version 
 container. As a workaround, ensure the same version of `snapd` is installed on the host and
 in LXD containers.
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 - Upstream
 
@@ -326,11 +686,11 @@ For details of other deprecation notices and API changes for Kubernetes 1.24, pl
 relevant sections of the [upstream release notes][upstream-changelog-1.24].
 
 
-## 1.23
+# 1.23
 
-#### December 15, 2021 - [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml)
+### December 15, 2021 - [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml)
 
-### What's new
+## What's new
 
 - CNI support added to kubernetes-master
 
@@ -345,12 +705,12 @@ The etcd charm can now be related to the Prometheus and Grafana charms. When
 doing so, a new Grafana dashboard will be created that makes it easier to monitor
 the performance characteristics of etcd.
 
-### Component upgrades
+## Component upgrades
 
 - kube-dns 1.21.1 (note: coredns 1.8.3 is the default DNS provider)
 - metrics-server 0.5.1
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.23).
@@ -377,7 +737,7 @@ to match the systemctl service name.
   If the [`filebeat`](https://charmhub.io/filebeat) charm is related to kubernetes-master,
 ensure that its logpath include this new path ( e.g. `juju config filebeat logpath='/var/log/kubernetes/*.log'` )
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 - Upstream
 
@@ -385,21 +745,21 @@ For details of other deprecation notices and API changes for Kubernetes 1.23, pl
 relevant sections of the [upstream release notes][upstream-changelog-1.23].
 
 
-## 1.22+ck2 Bugfix release
+# 1.22+ck2 Bugfix release
 
-#### October 27, 2021 - charmed-kubernetes-814
+### October 27, 2021 - charmed-kubernetes-814
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page for 1.22+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck2).
 
 
-## 1.22+ck1 Bugfix release
+# 1.22+ck1 Bugfix release
 
-#### October 21, 2021 - charmed-kubernetes-807
+### October 21, 2021 - charmed-kubernetes-807
 
-### What's new
+## What's new
 
 - Configurable default PodSecurityPolicy
 
@@ -423,17 +783,17 @@ are properly detected a short time after they change. To expedite this process,
 you can use the new openstack-integrator charm's new `refresh-credentials`
 action to force a recheck immediately.
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page for 1.22+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.22+ck1).
 
 
-## 1.22
+# 1.22
 
-#### September 1, 2021 - charmed-kubernetes-761
+### September 1, 2021 - charmed-kubernetes-761
 
-### What's new
+## What's new
 
 - Calico BGP Service IP Advertisement
 
@@ -449,19 +809,19 @@ This change adds support for Azure native load balancers for the Kubernetes cont
 plane, and improves LB configurability while still simplifying the relations needed
 between the various components of the cluster.
 
-### Component upgrades
+## Component upgrades
 
 - cephcsi 3.3.1 (note: see [upstream notes][cephcsi-upgrade] if upgrading from a previous release)
 - kube-dns 1.17.3 (note: coredns 1.8.3 is the default DNS provider)
 - nginx-ingress 1.0.0-beta.3
 - metrics-server 0.5.0
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.22).
 
-### Notes and Known Issues
+## Notes and Known Issues
 
 - [LP 1935992](https://bugs.launchpad.net/charm-kubernetes-worker/+bug/1935992) Code cleanup
 
@@ -488,51 +848,51 @@ This happens when the version of `snapd` on the host does not match the version 
 container. As a workaround, ensure the same version of `snapd` is installed on the host and
 in LXD containers.
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 - Upstream
 
   For details of other deprecation notices and API changes for Kubernetes 1.22, please see the
 relevant sections of the [upstream release notes][upstream-changelog].
 
-### Previous releases
+## Previous releases
 
 Please see [this page][rel] for release notes of earlier versions.
 
-## 1.21+ck3 Bugfix release
+# 1.21+ck3 Bugfix release
 
-#### August 02, 2021 - charmed-kubernetes-733
+### August 02, 2021 - charmed-kubernetes-733
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck3).
 
 
-## 1.21+ck2 Bugfix release
+# 1.21+ck2 Bugfix release
 
-#### May 28, 2021 - charmed-kubernetes-679
+### May 28, 2021 - charmed-kubernetes-679
 ## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck2).
 
 
-## 1.21+ck1 Bugfix release
+# 1.21+ck1 Bugfix release
 
-#### May 04, 2021 - charmed-kubernetes-655
+### May 04, 2021 - charmed-kubernetes-655
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21+ck1).
 
 
-## 1.21
+# 1.21
 
-#### April 15, 2021 - charmed-kubernetes-632
+### April 15, 2021 - charmed-kubernetes-632
 
-### What's new
+## What's new
 
 - Azure Arc conformance
 
@@ -548,7 +908,7 @@ Kubernetes release process now publishes a
 [list of required images per-release][images-per-release] for administrators
 to easily determine what registry changes are needed prior to an upgrade.
 
-### Component upgrades
+## Component upgrades
 
 - cloud-provider-openstack 1.20.0
 - coredns 1.8.3
@@ -557,7 +917,7 @@ to easily determine what registry changes are needed prior to an upgrade.
 - nginx-ingress 0.44.0
 - pause 3.4.1
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.21).
@@ -567,7 +927,7 @@ A list of bug fixes and other minor feature updates in this release can be found
 - [LP 1920216](https://bugs.launchpad.net/operator-metallb/+bug/1920216) MetalLB
 speaker pod logs error with "selfLink was empty, can't make reference".
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 - Private container registry action
 
@@ -581,7 +941,7 @@ documentation for using a custom registry with Charmed Kubernetes.
 For details of other deprecation notices and API changes for Kubernetes 1.21, please see the
 relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.21.md#deprecation)
 
-### Previous releases
+## Previous releases
 
 Please see [this page][rel] for release notes of earlier versions.
 
@@ -592,16 +952,16 @@ Please see [this page][rel] for release notes of earlier versions.
 [arc-docs]: https://github.com/Azure/azure-arc-validation/blob/main/README.md
 
 
-## 1.20+ck1 Bugfix release
+# 1.20+ck1 Bugfix release
 
-#### February 23rd, 2021 - [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml)
+### February 23rd, 2021 - [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml)
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [the launchpad milestone page](https://launchpad.net/charmed-kubernetes/+milestone/1.20+ck1)
 
-### Notes / Known Issues
+## Notes / Known Issues
 
 - Secret names
 
@@ -621,10 +981,10 @@ Workaround this by disabling FAN configuration for Google cloud models:
 
 
 
-## 1.20
+# 1.20
 
-#### December 16th, 2020 - charmed-kubernetes-559
-### What's new
+### December 16th, 2020 - charmed-kubernetes-559
+## What's new
 
 - Calico VXLAN support
 
@@ -652,45 +1012,45 @@ and easier contribution of bug fixes or upgrades to that component.
 
 Details on how to set this up can be found in the [Kubernetes Dashboard section of the Addons page][dashboard].
 
-### Component upgrades
+## Component upgrades
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.20](https://launchpad.net/charmed-kubernetes/+milestone/1.20).
 
 
-### Notes / Known Issues
+## Notes / Known Issues
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 For details of deprecation notices and API changes for Kubernetes 1.20, please see the
 relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.20.md#deprecation)
 
 
-## 1.19+ck2 Bugfix release
+# 1.19+ck2 Bugfix release
 
-#### November 27th, 2020 - charmed-kubernetes-545
+### November 27th, 2020 - charmed-kubernetes-545
 
-### Fixes
+## Fixes
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck2](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck2).
 
-## 1.19+ck1 Bugfix release
+# 1.19+ck1 Bugfix release
 
-#### November 20th, 2020 - charmed-kubernetes-541
+### November 20th, 2020 - charmed-kubernetes-541
 
-### Fixes
+## Fixes
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1).
 
-## 1.19
+# 1.19
 
-#### September 30th, 2020 - charmed-kubernetes-519
+### September 30th, 2020 - charmed-kubernetes-519
 
 Before upgrading, please read the [upgrade notes](/kubernetes/docs/upgrade-notes).
 
-### What's new
+## What's new
 
 - IPv6 support
 
@@ -758,7 +1118,7 @@ the new [SR-IOV CNI documentation][cni-sriov].
 For a full list of the changes introduced in Kubernetes 1.19, please see the
 [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md)
 
-### Component upgrades
+## Component upgrades
 
 - addon-resizer 1.8.9
 - ceph-csi 2.1.2
@@ -768,12 +1128,12 @@ For a full list of the changes introduced in Kubernetes 1.19, please see the
 - kubernetes-dashboard 2.0.1
 - nginx-ingress 0.31.1
 
-### Fixes
+## Fixes
 
 A list of bug fixes and other minor feature updates in this release can be found at
 [https://launchpad.net/charmed-kubernetes/+milestone/1.19](https://launchpad.net/charmed-kubernetes/+milestone/1.19).
 
-### Notes / Known Issues
+## Notes / Known Issues
 
 - The `insecure-bind-address` and `insecure-port` options to `kube-apiserver` have
 been removed in this release. Using `juju run` with `kubectl` to interact with the
@@ -790,29 +1150,22 @@ kubernetes-master unit. Ensure this port is available prior to upgrading.
 
 - Additional known issues scheduled for the first 1.19 bugfix release can be found at [https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1](https://launchpad.net/charmed-kubernetes/+milestone/1.19+ck1)
 
-### Deprecations and API changes
+## Deprecations and API changes
 
 For details of deprecation notices and API changes for Kubernetes 1.19, please see the
 relevant sections of the [upstream release notes](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG/CHANGELOG-1.19.md#deprecation)
 
-### Previous releases
-
-Please see [this page][historic] for release notes of earlier versions.
-
-<!--LINKS-->
-
-
-
 ## Previous releases
 
 Please see [this page][historic] for release notes of earlier versions.
+
 
 <!--LINKS-->
 [cis-benchmark]: /kubernetes/docs/cis-compliance
 [ipv6]: /kubernetes/docs/ipv6
 [cni-sriov]: /kubernetes/docs/cni-sriov
 [authn]: /kubernetes/docs/auth#authn
-[veth-mtu]: https://docs.projectcalico.org/networking/mtu
+[veth-mtu]: https://docs.tigera.io/calico/3.25/networking/configuring/mtu
 [1.19-calico]: /kubernetes/docs/1.19/charm-calico
 [upgrade-notes]: /kubernetes/docs/upgrade-notes
 [historic]: /kubernetes/docs/release-notes-historic

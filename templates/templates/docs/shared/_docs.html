@@ -57,8 +57,8 @@
   <div class="row">
     <aside class="col-3">
       {% if versions | length > 1 %}
-      <label for="version-select" class="u-hide">Version</label>
-      <select name="version-select" id="version-select" onChange="window.location.href=this.value">
+      <label for="version-select" class="u-off-screen">Version selection</label>
+      <select name="version-select" id="version-select">
       {% for version in versions %}
         {% set active = docs_version == version['path'] %}
         <option value="{{ version_paths[version['path']] }}"{% if active %} selected{% endif %}>Version {{ version['version'] }}</option>
@@ -98,6 +98,8 @@
     </aside>
 
     <main class="col-9">
+      <h1>{{ document.title }}</h1>
+
       {{ document.body_html | safe }}
 
       <div class="p-strip">
@@ -157,4 +159,54 @@
   </div>
 </div>
 
+<script>
+// Allows the 'onchange' listener to be used on a select field, while still being accessible.
+(function initSelect() {
+	var selectField = document.querySelector("#version-select");
+
+  selectField.changed = false;
+  selectField.onfocus = selectFocussed;
+  selectField.onblur = selectUnFocussed;
+  selectField.onkeyup = selectKeyed;
+  selectField.onchange = updatePage;
+})();
+
+function updatePage(e) {
+	this.changed = true;
+  window.location.href =  e.target.value;
+}
+
+function selectFocussed() {
+  this.initValue = this.value;
+}
+
+function selectUnFocussed() {
+  if (this.value != this.initValue) {
+    this.changed = true;
+		window.location.href = this.value;
+  }
+}
+
+function selectKeyed(e) {
+  e.preventDefault();
+	var theKeyPressed;
+  var validConfirmKeys = [9, "Tab", 13, "Enter"]
+  var validCancleKeys = [27, "Escape", "esc"]
+
+	if (e) {
+    theKeyPressed = e.key || e.keyCode;
+  } else {
+    return false;
+  }
+
+	if (validConfirmKeys.includes(theKeyPressed) &&  this.value != this.initValue) {
+		this.changed = true;
+		window.location.href = this.value;
+	} else if (validCancleKeys.includes(theKeyPressed)) {
+		this.value = this.initValue;
+	} else {
+		this.changed = false;
+	}
+}
+</script>
 {% endblock %}

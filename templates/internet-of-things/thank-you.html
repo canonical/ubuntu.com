@@ -20,7 +20,10 @@
   {% with thanks_context="your interest in Ubuntu for your networking project", thanks_message="A member of our team will follow up with you shortly." %}{% include "shared/_thank_you.html" %}{% endwith %}
 
 {% elif product == 'management' %}
-  {% with thanks_context="your interest in IoT device management!", thanks_message="A member of our team will follow up with you shortly." %}{% include "shared/_thank_you.html" %}{% endwith %} 
+  {% with thanks_context="your interest in IoT device management!", thanks_message="A member of our team will follow up with you shortly." %}{% include "shared/_thank_you.html" %}{% endwith %}
+
+{% elif product == 'nvidia' %}
+  {% with thanks_context="your interest in NVIDIA Orin!", thanks_message="A member of our team will follow up with you shortly." %}{% include "shared/_thank_you.html" %}{% endwith %}
 
 {% else %}
   {% with thanks_context="your interest in Ubuntu for the Internet of Things", thanks_message="A member of our team will follow up with you shortly. In the meantime, explore <a href='/appliance'>Ubuntu Appliances</a>, where vendors and the open source community collaborate to deliver great software, securely, to a wide range of devices and cloud." %}{% include "shared/_thank_you.html" %}{% endwith %}

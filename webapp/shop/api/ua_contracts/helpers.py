@@ -1,5 +1,3 @@
-from distutils.util import strtobool
-import os
 from datetime import datetime
 from typing import Dict, List, Optional
 
@@ -227,7 +225,7 @@ def get_user_subscription_statuses(
         statuses["has_access_to_support"] = True
         statuses["has_access_to_token"] = True
 
-    if type == "free" or strtobool(os.getenv("STORE_MAINTENANCE", "false")):
+    if type == "free":
         return statuses
 
     if renewal is None or (renewal and renewal.status != "closed"):
@@ -582,7 +580,7 @@ def to_dict(structure, class_key=None):
         return data
     elif isinstance(structure, dict):
         data = {}
-        for (key, value) in structure.items():
+        for key, value in structure.items():
             data[key] = to_dict(value, class_key)
         return data
     elif hasattr(structure, "__dict__"):

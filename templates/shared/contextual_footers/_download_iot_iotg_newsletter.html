@@ -1,11 +1,11 @@
 <div class="col-6 p-divider__block">
   <!-- MARKETO FORM -->
-  <form action="/marketo/submit" method="post" id="mktoForm_4214"> 
+  <form action="/marketo/submit" method="post" id="mktoForm_4214">
     <h3>Sign up to receive information about product updates</h3>
     <ul class="p-list u-clearfix">
       <li class="p-list__item">
-        <label for="Email" id="email">Your email:</label>
-        <input id="email" name="email" maxlength="255" aria-labelledby="LblEmail InstructEmail" type="email"  aria-required="true" >
+        <label for="email">Your email:</label>
+        <input id="email" name="email" maxlength="255" type="email"  aria-required="true" >
       </li>
       <li class="p-list__item">
         <label class="p-checkbox">
@@ -40,6 +40,7 @@
       <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
       <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
       <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+      <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
       <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Subscribe now</button>
   </form>
 <!-- /MARKETO FORM -->

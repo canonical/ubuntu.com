@@ -9,6 +9,7 @@
     <div class="col-8">
       <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
         <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">What is your main business?</legend>
           <h3 class="p-heading--5">What is your main business?</h3>
           <ul class="row u-no-padding">
             <li class="col-4 u-sv3">
@@ -16,54 +17,55 @@
                 <input type="checkbox" aria-labelledby="telecomOperator" class="p-checkbox__input" name="main-business" value="Telecom operator">
                 <span class="p-checkbox__label" id="telecomOperator">Telecom operator</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="networkEquipmentProvider" class="p-checkbox__input" name="main-business" value="Network equipment provider">
                 <span class="p-checkbox__label" id="networkEquipmentProvider">Network equipment provider</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="softwareProvider" class="p-checkbox__input" name="main-business" value="Telecom specific software provider">
                 <span class="p-checkbox__label" id="softwareProvider">Telecom specific software provider</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="servicesProvider" class="p-checkbox__input" name="main-business" value="Telecom specific services provider">
                 <span class="p-checkbox__label" id="servicesProvider">Telecom specific services provider</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="systemIntegrator" class="p-checkbox__input" name="main-business" value="System integrator">
                 <span class="p-checkbox__label" id="systemIntegrator">System integrator</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="cloudProvider" class="p-checkbox__input" name="main-business" value="Public cloud provider">
                 <span class="p-checkbox__label" id="cloudProvider">Public cloud provider</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="other" class="p-checkbox__input" name="main-business" value="Other">
-                <span class="p-checkbox__label" id="other">Other</span>
+                <input type="checkbox" aria-labelledby="other-business" class="p-checkbox__input" name="main-business" value="Other">
+                <span class="p-checkbox__label" id="other-business">Other</span>
               </label>
-              
+
             </li>
           </ul>
         </fieldset>
-        
+
         <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">What are the priority use cases you want to talk about?</legend>
           <h3 class="p-heading--5">What are the priority use cases you want to talk about?</h3>
           <ul class="row u-no-padding">
             <li class="col-4 u-sv3">
@@ -71,90 +73,92 @@
                 <input type="checkbox" aria-labelledby="kubernetesInfrastructure" class="p-checkbox__input" name="priority-cases" value="Kubernetes infrastructure">
                 <span class="p-checkbox__label" id="kubernetesInfrastructure">Kubernetes infrastructure</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="edgeMEC" class="p-checkbox__input" name="priority-cases" value="Edge / MEC">
                 <span class="p-checkbox__label" id="edgeMEC">Edge / MEC</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="5G" class="p-checkbox__input" name="priority-cases" value="5G">
                 <span class="p-checkbox__label" id="5G">5G</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="RAN-ORAN" class="p-checkbox__input" name="priority-cases" value="RAN / ORAN">
                 <span class="p-checkbox__label" id="RAN-ORAN">RAN / ORAN</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="5Gnetwork" class="p-checkbox__input" name="priority-cases" value="Private LTE / 5G network">
                 <span class="p-checkbox__label" id="5Gnetwork">Private LTE / 5G network</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="IMS" class="p-checkbox__input" name="priority-cases" value="IMS">
                 <span class="p-checkbox__label" id="IMS">IMS</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="packetCore" class="p-checkbox__input" name="priority-cases" value="Packet core">
                 <span class="p-checkbox__label" id="packetCore">Packet core</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="subscriberData" class="p-checkbox__input" name="priority-cases" value="Subscriber data management">
                 <span class="p-checkbox__label" id="subscriberData">Subscriber data management</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="OSS-BSS" class="p-checkbox__input" name="priority-cases" value="OSS/BSS">
                 <span class="p-checkbox__label" id="OSS-BSS">OSS/BSS</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
                 <input type="checkbox" aria-labelledby="ITUseCase" class="p-checkbox__input" name="priority-cases" value="General IT use case">
                 <span class="p-checkbox__label" id="ITUseCase">General IT use case</span>
               </label>
-              
+
             </li>
             <li class="col-4 u-sv3">
               <label class="p-checkbox">
-                <input type="checkbox" aria-labelledby="other" class="p-checkbox__input" name="priority-cases" value="Other">
-                <span class="p-checkbox__label" id="other">Other</span>
+                <input type="checkbox" aria-labelledby="other-cases" class="p-checkbox__input" name="priority-cases" value="Other">
+                <span class="p-checkbox__label" id="other-cases">Other</span>
               </label>
-              
+
             </li>
           </ul>
         </fieldset>
-        
+
         <fieldset>
+          <legend class="u-off-screen">Tell us about you and your team (Optional)</legend>
           <h3 class="p-heading--5">Tell us about you and your team (Optional)</h3>
           <textarea id="tellUsMore" aria-label="Tell us more about you and your team?" rows="3" placeholder="What are you working on right now? What is your underlying infrastructure? How advanced are you with cloud native network functions? Do you use Ubuntu?"></textarea>
         </div>
       </fieldset>
-      
+
       <div class="row">
         <div class="col-8">
           <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">How should we get in touch?</legend>
             <h3 class="p-heading--5">How should we get in touch?</h3>
             <div class="row u-no-padding">
               <div class="col-6">
@@ -175,13 +179,6 @@
                     <label for="Phone">Mobile/cell phone number:</label>
                     <input required id="Phone" name="phone" maxlength="255" type="tel" required="required" />
                   </li>
-                  <li class="p-list__item">
-                    <label class="p-checkbox">
-                      <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox" />
-                      <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
-                    </label>
-                  </li>
-                  <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
                   {# These are honey pot fields to catch bots #}
                   <li class="u-off-screen">
                     <label class="website" for="website">Website:</label>
@@ -196,8 +193,9 @@
               </div>
             </div>
           </fieldset>
-          
+
           <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">Your comments and privacy policy</legend>
             <h3>Your comments</h3>
             <ul class="p-list">
               <li class="p-list__item">
@@ -211,16 +209,6 @@
                 </label>
               </li>
               <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
-              {# These are honey pot fields to catch bots #}
-              <li class="u-off-screen">
-                <label class="website" for="website">Website:</label>
-                <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
-              </li>
-              <li class="u-off-screen">
-                <label class="name" for="name">Name:</label>
-                <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
-              </li>
-              {# End of honey pots #}
               <li class="p-list__item">
                 <button type="submit" class="p-button--positive" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'iot contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
               </li>
@@ -236,6 +224,7 @@
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
             <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+            <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
           </fieldset>
         </div>
       </div>

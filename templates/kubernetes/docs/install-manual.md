@@ -26,8 +26,8 @@ customise the install:
 
 ## What you will need
 
-The rest of this page assumes you already have Juju installed and  have added
-credentials for a cloud and bootstrapped a controller.
+The rest of this page assumes you already have Juju installed and have added
+[credentials][] for a cloud and bootstrapped a controller.
 
 If you still need to do this, please take a look at the [quickstart
 instructions][quickstart], or, for custom clouds (OpenStack, MAAS), please
@@ -37,27 +37,26 @@ To install **Charmed Kubernetes** entirely on your local machine (using
 containers to create a cluster), please see the separate
 [Localhost instructions][localhost].
 
-
 ## Quick custom installs
 
 Bundle overlays facilitate common, quick customisations for components such as
 networking and cloud integration.
 
-Overlay files can be applied when deploying Charmed Kubernetes by specifying them along with the deploy command:
+Overlay files can be applied when deploying Charmed Kubernetes by specifying
+them along with the deploy command:
 
 ```bash
 juju deploy charmed-kubernetes --overlay your-overlay.yaml
 ```
 
 Sample overlay files are available to download directly from
-the links shown here. Be advised that you should use only **one** overlay from
-each category!
+the links here which function with the latest stable charm release.
+Be advised that you should use only **one** overlay from each category!
 
 
 #### Networking
 
 ---
-
 
 <div class="CNI">
  <div class="row">
@@ -83,6 +82,19 @@ each category!
  </div>
  <div class="col-3">
    <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/canal-overlay.yaml" class="p-button--positive">Download canal-overlay.yaml</a></span>
+ </div>
+</div>
+<br>
+
+<div class="row">
+<div class="col-2">
+  <span>Cilium</span>
+</div>
+ <div class="col-4">
+  <span>Cilium is a CNI that leverages eBPF to provide advanced networking, security, and observability.<a href="/kubernetes/docs/cni-cilium"> Read more...</a></span>
+ </div>
+ <div class="col-3">
+   <span class="u-vertically-center"><a href="https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/cilium-overlay.yaml" class="p-button--positive">Download cilium-overlay.yaml</a></span>
  </div>
 </div>
 <br>
@@ -129,7 +141,7 @@ each category!
 <div class="integration">
  <div class="row">
  <div class="col-2 ">
-   <span>AWS integrator</span>
+   <span>AWS integration</span>
  </div>
   <div class="col-4 ">
    <span>Enables support for EBS storage and ELB load balancers. <a href="/kubernetes/docs/aws-integration"> Read more...</a></span>
@@ -141,7 +153,7 @@ each category!
 <br>
 <div class="row">
 <div class="col-2 u-vertically-center">
-  <span>Azure integrator</span>
+  <span>Azure integration</span>
 </div>
  <div class="col-4 u-vertically-center">
   <span>Enables support for Azure's native Disk Storage and load balancers.</span>
@@ -153,7 +165,7 @@ each category!
 <br>
 <div class="row">
 <div class="col-2">
-  <span>GCP integrator</span>
+  <span>GCP integration</span>
 </div>
  <div class="col-4">
   <span>Integrates with GCP for storage and loadbalancing. <a href="/kubernetes/docs/gcp-integration"> Read more...</a></span>
@@ -177,7 +189,7 @@ each category!
 <br>
  <div class="row">
   <div class="col-2">
-   <span>vSphere integrator</span>
+   <span>vSphere integration</span>
  </div>
   <div class="col-4">
    <span>Provides support for native storage in vSphere. </span>
@@ -187,10 +199,6 @@ each category!
   </div>
 </div>
 </div>
-
-
-
-
 
 
 You can use multiple overlays (of different types) if required.  Note that all
@@ -208,53 +216,61 @@ For more detail on overlays and how they work, see the section [below](#overlay)
 ## Deploying a specific Charmed Kubernetes bundle
 
 **Charmhub.io** hosts the **Charmed Kubernetes** bundles as well as
-individual charms. To deploy the latest, stable bundle, run the command:
+individual charms. To deploy the latest stable bundle, run the command:
 
 ```bash
 juju deploy charmed-kubernetes
 ```
 
-It is also possible to deploy a specific version of the bundle by including the
-revision number. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.24
-release, you could run:
+It is also possible to deploy a specific version of the bundle by including the `channel` argument to select the desired version and risk level. For example, to deploy the **Charmed Kubernetes** bundle for the Kubernetes 1.25 release, you could run:
 
 ```bash
-juju deploy cs:charmed-kubernetes-1154
+juju deploy charmed-kubernetes --channel=1.25/stable
 ```
 
-The revision numbers for bundles are generated automatically when the bundle is
-updated, including for testing and beta versions, so it isn't always the case
-that a higher revision number is 'better'. The revision numbers for the release
-versions of the **Charmed Kubernetes** bundle are shown in the table below:
+This also applies to channels which have not yet had a stable release, for example:
 
-<a  id="table"></a>
+```bash
+juju deploy charmed-kubernetes --channel=1.27/beta
+```
 
-<!-- AUTOGENERATED BUNDLE TABLE BEGIN  -->
+## Deploying an older Kubernetes version with newer charms
 
-| Kubernetes version | Charmed Kubernetes bundle |
-| --- | --- |
-| 1.25.x    | [charmed-kubernetes-1185](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.25/bundle.yaml) |
-| 1.24.x    | [charmed-kubernetes-1154](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.24/bundle.yaml) |
-| 1.23.x    | [charmed-kubernetes-862](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.23/bundle.yaml) |
-| 1.22.x    | [charmed-kubernetes-814](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.22/bundle.yaml) |
-| 1.21.x    | [charmed-kubernetes-733](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.21/bundle.yaml) |
-| 1.20.x    | [charmed-kubernetes-596](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.20/bundle.yaml) |
-| 1.19.x    | [charmed-kubernetes-545](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.19/bundle.yaml) |
-| 1.18.x    | [charmed-kubernetes-485](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.18/bundle.yaml) |
-| 1.17.x    | [charmed-kubernetes-410](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.17/bundle.yaml) |
-| 1.16.x    | [charmed-kubernetes-316](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.16/bundle.yaml) |
-| 1.15.x    | [charmed-kubernetes-209](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.15/bundle.yaml) |
-| 1.14.x    | [charmed-kubernetes-124](https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/releases/1.14/bundle.yaml) |
+Each Charmed Kubernetes release supports N-2 kubernetes releases.
+For example, Charmed Kubernetes 1.26 supports 1.26, 1.25, and 1.24 binary
+versions. Therefore, if you wish to install an older version of Kubernetes
+you may still be able to do so with the latest stable charms. 
 
-<!-- AUTOGENERATED BUNDLE TABLE END  -->
+Let's say, your project requires Kubernetes 1.24. Build an overlay which adjusts
+the charm configuration for that revision
+
+```yaml
+applications:
+  kubernetes-control-plane:
+    options:
+      channel: 1.24/stable
+  kubernetes-worker:
+    options:
+      channel: 1.24/stable
+```
+
+and deploy with the 1.26/stable charm bundle
+
+```bash
+juju deploy charmed-kubernetes --channel=1.26/stable --overlay=1.24_overlay.yaml
+```
+
+It is still possible to deploy older, unsupported versions of Charmed Kubernetes.
+Older bundle files are available for download in the [releases][] directory of the
+Charmed Kubernetes repository. These can be downloaded and deployed with Juju as
+with any local bundle file.
 
 <div class="p-notification--caution">
   <p markdown="1" class="p-notification__response">
     <span class="p-notification__status">Note:</span>
-Only the latest three versions of Charmed Kubernetes are supported at any time.
+Only the latest three stable versions of Charmed Kubernetes are supported at any time.
   </p>
 </div>
-
 
 ## Customising the bundle install
 
@@ -282,7 +298,7 @@ Both methods are described below.
 A _bundle overlay_ is a fragment of valid YAML which is dynamically merged on
 top of a bundle before deployment, rather like a patch file. The fragment can
 contain any additional or alternative YAML which is intelligible to **Juju**. For
-example, to replicate the steps to deploy and connect the
+example, to replicate the steps to deploy and connect only the
 `aws-integrator` charm, the following fragment could be used:
 
 ```yaml
@@ -295,8 +311,6 @@ relations:
   - ['aws-integrator', 'kubernetes-control-plane']
   - ['aws-integrator', 'kubernetes-worker']
   ```
-
-You can also [download the fragment here][asset-aws-overlay].
 
 **Juju**'s bundle format, and valid YAML are discussed more fully in the
 [Juju documentation][juju-bundle]. In this example it merely adds a new application,
@@ -372,6 +386,7 @@ values:
 juju config containerd https_proxy=https://proxy.example.com
 juju config kubernetes-worker snap_proxy=https://snap-proxy.example.com
 ```
+
 ... we can instead use the following YAML fragment as an overlay:
 
 ```yaml
@@ -434,7 +449,6 @@ For more information on the Juju GUI, see the [Juju documentation][juju-gui].
 Now you have a cluster up and running, check out the
 [Operations guide][operations] for how to use it!
 
-
 <!-- IMAGES -->
 
 [image-gui]: https://assets.ubuntu.com/v1/19f13565-bundle-export.png
@@ -448,7 +462,7 @@ Now you have a cluster up and running, check out the
 [credentials]: https://juju.is/docs/olm/credentials
 [quickstart]: /kubernetes/docs/quickstart
 [juju-bundle]: https://juju.is/docs/sdk/bundles
-[juju-gui]: https://juju.is/docs/olm/accessing-juju%E2%80%99s-web-interface
+[juju-gui]: https://juju.is/docs/olm/manage-the-juju-dashboard
 [juju-constraints]: https://juju.is/docs/olm/constraints
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
 [charm-kworker]: https://charmhub.io/containers-kubernetes-worker
@@ -458,6 +472,7 @@ Now you have a cluster up and running, check out the
 [gcp-docs]: /kubernetes/docs/gcp-integration
 [operations]: /kubernetes/docs/operations
 [localhost]: /kubernetes/docs/install-local
+[releases]: https://github.com/charmed-kubernetes/bundle/tree/main/releases
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

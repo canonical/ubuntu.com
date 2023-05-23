@@ -3,7 +3,7 @@
 // allow use of math.div
 @use "sass:math";
 
-//settings
+// settings
 @import "global-settings";
 @import "settings_colors";
 
@@ -36,12 +36,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_buttons";
 @import "pattern_calculator";
 @import "pattern_card";
+@import "pattern_checkout";
 @import "pattern_certification-results";
 @import "pattern_chart";
 @import "pattern_component-details-table";
 @import "pattern_component-table";
 @import "pattern_contact-modal";
-@import "pattern_contextual-footer";
 @import "pattern_cube-animation";
 @import "pattern_cube-image";
 @import "pattern_cube-progression";
@@ -76,6 +76,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_table";
 @import "pattern_tco-calculator";
 @import "pattern_ubuntu_intro";
+@import "pattern_dell";
 @import "takeovers/financial-services";
 @import "utility_animations";
 @import "utility_crop";
@@ -95,8 +96,8 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-calculator;
 @include ubuntu-p-cards;
 @include ubuntu-p-certification-results;
+@include ubuntu-p-checkout;
 @include ubuntu-p-contact-modal;
-@include ubuntu-p-contextual-footer;
 @include ubuntu-p-cube-animation;
 @include ubuntu-p-cube-progression;
 @include ubuntu-p-cve;
@@ -133,8 +134,12 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include ubuntu-p-tabs;
 @include ubuntu-u-animations;
 @include ubuntu-u-vertically-center;
+@include ubuntu-p-dell;
 @include p-takeover-financial-services;
 @include vf-p-icon-success-grey;
+@include vf-p-icon-restart;
+@include vf-p-icon-begin-downloading;
+@include vf-p-icon-video-play;
 
 // Layouts:
 @import "layout-legal-pages";
@@ -221,6 +226,7 @@ select {
 fieldset {
   border: 1px solid $color-mid-light;
   border-radius: $sp-xx-small $sp-xx-small 0 0;
+  overflow: visible;
 }
 
 fieldset + fieldset {
@@ -403,6 +409,48 @@ summary {
   }
 }
 
+.pro-card-container {
+  grid-gap: 0;
+  .pro-card {
+    padding: calc(#{$spv--large} - 1px) calc(#{$spv--large} - 1px)
+      $spv--strip-deep * 0.5;
+    @media (min-width: $breakpoint-small) {
+      padding: calc(#{$spv--small} - 1px) calc(#{$spv--large} - 1px)
+        $spv--strip-deep;
+    }
+  }
+}
+.bg-light {
+  background-color: $color-light;
+}
+
+.bg-mid-dark {
+  background-color: $color-mid-dark;
+  color: $color-x-light;
+  hr {
+    background-color: $colors--dark-theme--border-low-contrast;
+  }
+}
+
+.bg-dark {
+  background-color: $color-x-dark;
+  color: $color-x-light;
+  hr {
+    background-color: $colors--dark-theme--border-low-contrast;
+  }
+}
+
+.pro-table {
+  @media (max-width: $threshold-6-12-col - 1) {
+    tr {
+      padding: 0;
+    }
+    td {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
 .subscribe-section {
   @media (min-width: $breakpoint-medium) {
     margin-left: 4rem !important;
@@ -466,7 +514,8 @@ summary {
 // Bug: https://github.com/canonical-web-and-design/canonicalwebteam.image-template/issues/43
 .p-heading-icon__header {
   .lazyloaded {
-    @extend .p-heading-icon__img;
+    // make sure icon is not squashed, replicating the behaviour of the .p-heading-icon__img class
+    flex-shrink: 0;
   }
 }
 
@@ -565,6 +614,12 @@ td.p-accordion {
   background-image: url("#{$assets-path}f1a7515d-tick-darkaubergine.svg");
 }
 
+// Prevent the page from jumping as the global nav loads
+.global-nav__header {
+  background-color: #262626;
+  height: 32px;
+}
+
 .article-title {
   -webkit-box-orient: vertical;
   display: -webkit-box;
@@ -636,6 +691,7 @@ td.p-accordion {
     map-get($animation-easing, "in");
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
+
   &.is-loaded {
     animation-delay: 0s !important;
 
@@ -736,6 +792,25 @@ td.p-accordion {
   z-index: 10;
 }
 
+#updated {
+  display: none;
+}
+
+#updated:target {
+  display: block;
+  z-index: 10;
+}
+
+#unsubscribed {
+  display: none;
+  position: absolute;
+}
+
+#unsubscribed:target {
+  display: block;
+  z-index: 10;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -781,53 +856,59 @@ html {
     margin-right: auto;
     max-width: $grid-max-width;
 
-    @media (min-width: $threshold-4-6-col) {
+    @media (min-width: $breakpoint-x-small) {
       grid-gap: 0 map-get($grid-gutter-widths, default);
       grid-template-columns: repeat($grid-columns-medium, minmax(0, 1fr));
     }
 
-    @media (min-width: $threshold-6-12-col) {
+    @media (min-width: $breakpoint-small) {
       grid-gap: 0 map-get($grid-gutter-widths, default);
       grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
     }
   }
 
   .p-testimonial__logo {
-    @media (max-width: ($threshold-4-6-col - 1)) {
+    @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 1 / span 2;
       grid-row: 2 / span 1;
     }
-    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
-      grid-column: 1 / span 2;
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 2;
     }
-    @media (min-width: $threshold-6-12-col) {
-      grid-column: 1 / span 2;
+
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 3;
     }
   }
 
   .p-testimonial__author {
-    @media (max-width: ($threshold-4-6-col - 1)) {
+    @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 3 / span 2;
       grid-row: 2 / span 1;
     }
-    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
-      grid-column: 3 / span 1;
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 1;
     }
-    @media (min-width: $threshold-6-12-col) {
-      grid-column: 3 / span 3;
+
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 3;
     }
   }
 
   .p-testimonial__quote {
-    @media (max-width: ($threshold-4-6-col - 1)) {
+    @media (max-width: ($breakpoint-x-small - 1)) {
       grid-column: 1 / span 4;
       grid-row: 1 / span 1;
     }
-    @media (min-width: $threshold-4-6-col) and (max-width: ($threshold-6-12-col - 1)) {
-      grid-column: 4 / span 3;
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 3;
     }
-    @media (min-width: $threshold-6-12-col) {
-      grid-column: 7 / span 6;
+
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 6;
     }
   }
 }
@@ -868,17 +949,21 @@ a:hover {
     text-overflow: initial;
   }
 }
+
 .u-pro-support {
   display: flex;
   justify-content: space-between;
+
   .u-pro-support__logos {
     flex: 0 0 10%;
   }
 }
-.u-table-border-top {
+
+.u-table-border--top {
   border-top: 1px solid $color-mid-light;
 }
-.u-table-border-bottom {
+
+.u-table-border--bottom {
   border-bottom: 1px solid $color-mid-light;
 }
 
@@ -891,4 +976,367 @@ a:hover {
     right: 1rem !important;
     top: 1.25rem !important;
   }
+}
+// Style for a shallow p-separator
+hr.p-separator.is-shallow {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.u-table-border--right {
+  border-right: 1px solid $color-mid-light;
+}
+
+.u-esm-overflow-table {
+  @media only screen and (max-width: $breakpoint-medium) {
+    overflow-x: scroll;
+
+    .p-table {
+      min-width: $breakpoint-medium;
+    }
+  }
+}
+
+.p-table--esm-chart {
+  border-spacing: 0;
+
+  @media only screen and (min-width: $breakpoint-medium) {
+    td:nth-child(1) {
+      padding-left: 0;
+    }
+
+    th:nth-child(1) {
+      width: 5.8%;
+    }
+
+    th:nth-child(2) {
+      width: 19%;
+    }
+
+    th:nth-child(3) {
+      width: 70.5%;
+    }
+  }
+
+  @media only screen and (max-width: $breakpoint-small) {
+    td:nth-child(1) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    th:nth-child(1) {
+      width: 7%;
+    }
+
+    th:nth-child(2) {
+      width: 19%;
+    }
+
+    th:nth-child(3) {
+      width: 68.5%;
+    }
+  }
+}
+
+.p-esm-chart {
+  .p-esm-chart__right-col-axis {
+    border-top: 1px solid $colors--light-theme--border-low-contrast;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .p-esm-chart__axis-tick {
+    border-right: 1px solid $colors--light-theme--border-low-contrast;
+    flex: 1 1 auto;
+    text-align: right;
+    width: 10%;
+  }
+
+  .p-esm-chart__label {
+    display: flex;
+    flex: 1 1 auto;
+    gap: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .p-esm-chart__label-numbers {
+    display: inline-block;
+    flex: 0 0 auto;
+    text-align: right;
+    width: 3rem;
+  }
+
+  .p-esm-chart__label-text {
+    @extend %muted-text;
+
+    display: inline-block;
+
+    @media (max-width: $threshold-6-12-col) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .p-esm-chart__left-col {
+    grid-column: auto / span 3;
+    padding: 0 0 0 0.5rem;
+  }
+
+  .p-esm-chart__right-col {
+    grid-column: auto / span 9;
+  }
+
+  .p-esm-chart__right-col--Ubuntu-Pro {
+    background-color: $color-x-dark;
+    color: $color-x-light;
+    font-weight: $font-weight-bold;
+  }
+
+  .p-esm-chart__right-col-lts {
+    background: #e95420;
+    color: $color-x-light;
+    font-weight: $font-weight-bold;
+    width: 50%;
+  }
+
+  .p-esm-chart__row {
+    @extend %vf-row;
+    @include vf-b-row-reset;
+
+    @supports (display: grid) {
+      grid-gap: 0;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+
+      @media (min-width: $threshold-4-6-col) {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+
+      @media (min-width: $threshold-6-12-col) {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+      }
+    }
+
+    p {
+      padding-left: $sph--small;
+      padding-right: $sph--small;
+    }
+  }
+}
+
+.p-img-cta {
+  .p-img-cta__image {
+    @extend %vf-strip;
+
+    background-color: $color-light;
+  }
+
+  &:hover {
+    .p-img-cta__image {
+      background-color: $colors--light-theme--background-active;
+    }
+  }
+}
+
+// Extend p-lists--divided with bullets
+.p-list--divided-bulleted {
+  @extend .p-list--divided;
+
+  list-style: inherit;
+  margin-left: 1.5rem;
+  .p-list__item::after {
+    margin-left: -1.5rem !important;
+  }
+}
+
+// Remove borders for p-lists on /nvidia
+.no-border::after {
+  content: none !important;
+}
+
+// Custom styles for /managed/index
+// Extend row with increased row gap
+.row--r-gap3 {
+  @extend %vf-row;
+  @include vf-b-row-reset;
+
+  @supports (display: grid) {
+    row-gap: 2rem;
+
+    @media (max-width: $threshold-6-12-col) {
+      row-gap: 0;
+    }
+  }
+}
+
+// /cloud/cloud-computing table
+.p-table--cloud-computing {
+  margin-bottom: 0;
+  overflow: auto;
+
+  @media screen and (min-width: 601px) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 850px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    width: 100%;
+  }
+}
+
+.p-strip--suru-cloud-computing {
+  @extend %vf-strip;
+
+  background-color: #f2f2f2;
+  background-image: url("https://assets.ubuntu.com/v1/b5350d69-05_suru2_light_glow_8K_edited.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: 70%;
+}
+
+.p-heading--bold {
+  font-weight: $font-weight-bold;
+}
+
+// silicon custom styles
+.p-heading--silicon-light {
+  font-weight: $font-weight-display-heading;
+}
+
+.p-logo-section__separator {
+  margin-left: $sp-x-large;
+
+  @media (max-width: $breakpoint-small) {
+    margin-left: $sp-large;
+  }
+}
+
+.p-card--silicon-h-suru {
+  align-items: center;
+  aspect-ratio: 269/150;
+  background: #000 url("https://assets.ubuntu.com/v1/2923651d-background-1.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.p-card--silicon-v-suru {
+  align-items: center;
+  aspect-ratio: 2/3;
+  background: #000 url("https://assets.ubuntu.com/v1/8c04e56e-background-3.png");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.p-testimonials__silicon {
+  .p-testimonial__logo {
+    @media (max-width: ($breakpoint-x-small - 1)) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+    }
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 1;
+    }
+
+    @media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
+      grid-column: auto / span 2;
+    }
+
+    @media (min-width: $breakpoint-medium) {
+      grid-column: auto / span 3;
+    }
+  }
+
+  .p-testimonial__author {
+    @media (max-width: ($breakpoint-x-small - 1)) {
+      grid-column: 3 / span 2;
+      grid-row: 2 / span 1;
+    }
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 2;
+    }
+
+    @media (min-width: $breakpoint-small) and (max-width: ($breakpoint-medium - 1)) {
+      grid-column: auto / span 4;
+    }
+
+    @media (min-width: $breakpoint-medium) {
+      grid-column: auto / span 3;
+    }
+  }
+
+  .p-testimonial__quote {
+    @media (max-width: ($breakpoint-x-small - 1)) {
+      grid-column: 1 / span 4;
+      grid-row: 1 / span 1;
+    }
+
+    @media (min-width: $breakpoint-x-small) and (max-width: ($breakpoint-small - 1)) {
+      grid-column: auto / span 3;
+    }
+
+    @media (min-width: $breakpoint-small) {
+      grid-column: auto / span 6;
+    }
+  }
+}
+
+.p-list--silicon-ticked {
+  @extend .p-list--ticked;
+
+  .p-list__silicon-item {
+    @extend .p-list__item;
+
+    padding-bottom: $sp-medium;
+
+    &::before {
+      top: 0.6rem;
+    }
+  }
+}
+
+.p-stepped-list--grid {
+  @extend .row;
+
+  counter-reset: count;
+
+  .p-step-counter {
+    height: 2.5rem;
+    width: 2.5rem;
+
+    &::after {
+      content: counter(count);
+      counter-increment: count;
+      font-size: 1.3rem;
+      position: relative;
+      top: 1.14rem;
+    }
+  }
+}
+
+// XXX Ochuko 11/04/2023
+// Removed separator from the first item on the list. This is a temporary fix
+// this is used on the /data/mongodb and /data/opensearch pages
+.p-list--articles {
+  @extend .p-list--divided;
+
+  .p-list__item:first-child {
+    box-shadow: none;
+  }
+}
+
+// XXX Ochuko 13/04/2023
+// Custom styles for 2 by 3 aspect ratio containers
+// will propose to Vanilla to add this to the framework
+.u-aspect-ratio--3-2 {
+  aspect-ratio: 3/2;
 }

@@ -353,7 +353,7 @@ docker.io/calico/kube-controllers:v3.6.1
 And configure Calico to use the registry:
 
 ```bash
-export IP=`juju run --unit docker-registry/0 'network-get website --ingress-address'`
+export IP=`juju exec --unit docker-registry/0 'network-get website --ingress-address'`
 export PORT=`juju config docker-registry registry-port`
 export REGISTRY=$IP:$PORT
 juju config calico \
@@ -383,7 +383,7 @@ For additional troubleshooting pointers, please see the [dedicated troubleshooti
 [Creating an AWS VPC]: https://old-docs.jujucharms.com/2.5/en/charms-fan-aws-vpc
 [Disabling Source/Destination Checks]: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html#EIP_Disable_SrcDestCheck
 [private docker registry]: /kubernetes/docs/docker-registry
-[bgp]: https://docs.projectcalico.org/v3.7/networking/service-advertisement#about-advertising-kubernetes-services-over-bgp
+[bgp]: https://docs.tigera.io/calico/3.25/networking/configuring/bgp
 [Calico]: https://www.projectcalico.org/
 [troubleshooting]: /kubernetes/docs/troubleshooting
 [quickstart]:  /kubernetes/docs/quickstart

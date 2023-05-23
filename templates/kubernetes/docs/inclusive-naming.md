@@ -36,7 +36,7 @@ inclusive-naming changes, and take care to make non-breaking adjustments.
 
 
 
-## [Kubernetes Control Plane](kubernetes-control-plane) charm
+## [Kubernetes Control Plane][kubernetes-control-plane] charm
 
 Ending with the charms release 1.23, Charmed Kubernetes is replacing the charm
 `kubernetes-master` with `kubernetes-control-plane`. This charm has always

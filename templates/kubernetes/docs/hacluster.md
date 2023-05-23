@@ -40,7 +40,7 @@ juju deploy charmed-kubernetes
 juju add-unit -n 2 kubeapi-load-balancer
 juju deploy hacluster
 juju config kubeapi-load-balancer ha-cluster-vip="192.168.0.1 192.168.0.2"
-juju relate kubeapi-load-balancer hacluster
+juju integrate kubeapi-load-balancer hacluster
 ```
 
 ### Without Load Balancer
@@ -50,7 +50,7 @@ juju deploy kubernetes-core
 juju add-unit -n 2 kubernetes-control-plane
 juju deploy hacluster
 juju config kubernetes-control-plane ha-cluster-vip="192.168.0.1 192.168.0.2"
-juju relate kubernetes-control-plane hacluster
+juju integrate kubernetes-control-plane hacluster
 ```
 
 ## Validation
@@ -60,7 +60,7 @@ kubeconfig file will be created containing the virtual IP addresses. You will
 need to replace your kubeconfig with the new one:
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 <!-- LINKS -->

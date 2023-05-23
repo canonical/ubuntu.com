@@ -1,0 +1,94 @@
+{% extends "engage/base_engage.html" %}
+
+{% block title %}Download {{ resource_name }} {% endblock %}
+
+{% block head_extra%}<meta name="robots" content="noindex" />{% endblock %}
+
+{% block content %}
+<style>
+  .global-nav .global-nav__header-logo-anchor {
+    padding-left: 0 !important;
+  }
+</style>
+<section class="p-strip p-engage-banner--grad">
+  <div class="u-fixed-width navigation-logo-engage">
+    <a href="/">
+      {{
+        image(
+            url="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg",
+            alt="Ubuntu",
+            width="143",
+            height="32",
+            hi_def=True,
+            loading="auto",
+        ) | safe
+      }}
+    </a>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h1>
+        Thank you
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+  {% if 'pages.ubuntu.com' or 'assets.ubuntu.com' in resource_url %}
+    {% if form_details and "access_to_content" in metadata and metadata.access_to_content == "true" %}
+    
+      <h3>We've emailed a copy of {{ resource_name }} to {{ form_details.email }}</h3>
+      <p>
+        <a class="p-button--positive" href="{{ request_url }}">Back to last page</a>
+        <a class="p-button" href="/contact-us">Contact us</a>
+      </p>
+      <p>
+        Not received it? Check your spam folder and that you've used the right email address.
+      </p>
+      <p>
+        <a href="{{ request_url }}">Or try resending it</a>
+      </p>
+
+    {% else %}
+      {% if "thank_you_text" in metadata %}
+        <p>{{ metadata["thank_you_text"] }}</p>
+      {% else %}
+        <p>The {{ resource_name }} is now ready to download.</p>
+      {% endif %}
+      {% if "contact_form_only" not in metadata and metadata.contact_form_only != "true" or ("access_to_content" in metadata and metadata.access_to_content == "true") %}
+        <p>
+          <a class="p-button--positive" href="{{ resource_url }}">Download</a>
+        </p>
+      {% endif %}
+    {% endif %}
+      
+  {% else %}
+    <p>
+      Sorry, we do not recognise this download request.  Please let us know by <a href="https://github.com/canonical-websites/www.ubuntu.com/issues/new?body=Bad+resource+download+link+from {{ request.url | urlencode }}">filing and issue on GitHub</a>. And let us know what you excepted to download.
+    </p>
+  {% endif %}
+  </div>
+</section>
+
+{% if related | length > 0 %}
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2 class="p-heading--3">You may also be interested in &hellip;</h2>
+    </div>
+  </div>
+  <div class="row p-divider">
+    {% for page in related %}
+    <div class="col-4 p-divider__block">
+      <!-- THREE ADDITIONAL CTAs -->
+      <h4>{{page["topic_name"]}}</h4>
+      <p>{{page["subtitle"]}}</p>
+      <p><a href="{{page['path']}}">See more&nbsp;&rsaquo;</a></p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock content %}

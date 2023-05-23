@@ -1,668 +1,700 @@
-  {% extends "desktop/base_desktop.html" %}
+{% extends "desktop/base_desktop.html" %}
 
-  {% block title %}Desktop for developers{% endblock %}
-  {% block meta_description %}Learn why Ubuntu is the ideal platform for developers.{% endblock %}
-  {% block meta_copydoc %}https://docs.google.com/document/d/1VJ3xT2ViC-CvL0UmsAUzpYFmvpuqUP4AbpnlPm8tqOA{% endblock meta_copydoc %}
+{% block title %}Desktop for developers{% endblock %}
+{% block meta_description %}Learn why Ubuntu is the ideal platform for developers.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1VJ3xT2ViC-CvL0UmsAUzpYFmvpuqUP4AbpnlPm8tqOA{% endblock
+meta_copydoc %}
 
-  {% block content %}
-  <style>          
-    .axis {
-      font-size: 13px;
-    }
-    .axis path,
-    .axis line {
-      fill: none;
-      display: none;
-    }
-    .label {
-      font-size: 13px;
-    }
-  </style>
-  <section class="u-image-position p-strip--suru-topped is-bordered">
-    <div class="row u-vertically-center">
-      <div class="col-6">
-        <h1>Ubuntu Desktop for developers</h1>
-        <p>Whether you're an app or web developer, engineering manager, data scientist, or AI/ML researcher &mdash; Ubuntu is your ideal workstation.</p>
-        <p><a href="/download/desktop" class="p-button--positive">Get Ubuntu now</a></p>
-      </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center">
+{% block content %}
+<style>
+  .axis {
+    font-size: 13px;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    display: none;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+</style>
+<section class="u-image-position p-strip--suru-topped is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h1>Ubuntu Desktop for developers</h1>
+      <p>Whether you're an app or web developer, engineering manager, data scientist, or AI/ML researcher &mdash; Ubuntu
+        is your ideal workstation.</p>
+      <p><a href="/download/desktop" class="p-button--positive">Get Ubuntu now</a></p>
+    </div>
+    <div class="col-6 u-hide--medium u-hide--small u-align--center">
+      {{ image (
+      url="https://assets.ubuntu.com/v1/676d7b5d-xs9320nt-xnb-shot-15-2-sl-min.png",
+      alt="",
+      width="3677",
+      height="2589",
+      hi_def=True,
+      loading="auto"
+      ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Why choose Ubuntu for Desktop?</h2>
+  </div>
+  <div class="row">
+    <div class="col-6 u-vertically-center">
+      <h3>The developers' choice</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Using Ubuntu Desktop provides a common platform for development, test, and
+          production environments.
+        </li>
+        <li class="p-list__item is-ticked">Tools, such as <a href="https://juju.is/">Juju</a>, <a
+            href="https://microk8s.io/">Microk8s</a>, and <a href="https://multipass.run/">Multipass</a> make
+          developing, testing, and cross-building easy and affordable.
+        </li>
+        <li class="p-list__item is-ticked"><strong>Long term support (LTS)</strong> releases are delivered every
+          2-years, with 5 years of standard support extended to 10 years with an Ubuntu Pro Desktop subscription.
+        </li>
+        <li class="p-list__item is-ticked">New Developer editions of Ubuntu Desktop are released every 6-months, with
+          9-months of support and access to the latest kernel, libraries, and new upstream OS features.</li>
+      </ul>
+      <p>
+        <a href="/about/release-cycle">The Ubuntu release cycle&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center">
+      <div class="u-hide--small u-hide--medium">
         {{ image (
-          url="https://assets.ubuntu.com/v1/676d7b5d-xs9320nt-xnb-shot-15-2-sl-min.png",
-          alt="",
-          width="3677",
-          height="2589",
-          hi_def=True,
-          loading="auto"
-          ) | safe
+        url="https://assets.ubuntu.com/v1/ff736e6a-Screenshot+2022-07-11+at+11.19.37+am.png",
+        alt="",
+        width="698",
+        height="164",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
         }}
       </div>
+      <div class="u-hide--small" id="server-desktop-eol"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Standard Support</th>
+            <th scope="col">End of Life</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>10.04 LTS (Lucid Lynx)</strong></td>
+            <td>Apr 2010</td>
+            <td>Apr 2015</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>12.04 LTS (Precise Pangolin)</strong></td>
+            <td>Apr 2012</td>
+            <td>Apr 2017</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
+            <td>Apr 2014</td>
+            <td>Apr 2019</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+            <td>Apr 2026</td>
+          </tr>
+          <tr>
+            <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td><strong>20.04 LTS (Focal Fossa)</strong></td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td>20.10 (Groovy Gorilla)</td>
+            <td>Oct 2020</td>
+            <td>Jul 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>21.04 (Hirsute Hippo)</td>
+            <td>Apr 2021</td>
+            <td>Jan 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>21.10 (Impish Indri)</td>
+            <td>Oct 2021</td>
+            <td>Jul 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>Apr 2032</td>
+          </tr>
+          <tr>
+            <td><strong>22.10 (Kinetic Kudu)</strong></td>
+            <td>Apr 2022</td>
+            <td>Jul 2023</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </section>
-
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2>Why choose Ubuntu for Desktop?</h2>
-    </div>
-    <div class="row">
-      <div class="col-6 u-vertically-center">
-        <h3>The developers' choice</h3>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Using Ubuntu Desktop provides a common platform for development, test, and production environments.
-          </li>
-          <li class="p-list__item is-ticked">Tools, such as <a href="https://juju.is/">Juju</a>, <a href="https://microk8s.io/">Microk8s</a>, and <a href="https://multipass.run/">Multipass</a> make developing, testing, and cross-building easy and affordable.
-          </li>
-          <li class="p-list__item is-ticked"><strong>Long term support (LTS)</strong> releases are delivered every 2-years, with 5 years of standard support extended to 10 years with an Ubuntu Pro Desktop subscription.
-          </li>
-          <li class="p-list__item is-ticked">New Developer editions of Ubuntu Desktop are released every 6-months, with 9-months of support and access to the latest kernel, libraries, and new upstream OS features.</li>
-        </ul>
-        <p>
-          <a href="/about/release-cycle">The Ubuntu release cycle&nbsp;&rsaquo;</a>
-        </p>
-      </div>
-      <div class="col-6 u-align--center u-vertically-center">
-        <div class="u-hide--small u-hide--medium">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/ff736e6a-Screenshot+2022-07-11+at+11.19.37+am.png",
-            alt="",
-            width="698",
-            height="164",
-            hi_def=True,
-            loading="lazy"
-            ) | safe
-          }}
-        </div>
-        <div class="u-hide--small" id="server-desktop-eol"></div>
-        <table class="u-hide--medium u-hide--large">
-          <thead>
-            <tr>
-              <td>&nbsp;</td>
-              <th scope="col">Released</th>
-              <th scope="col">End of Standard Support</th>
-              <th scope="col">End of Life</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>10.04 LTS (Lucid Lynx)</strong></td>
-              <td>Apr 2010</td>
-              <td>Apr 2015</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>12.04 LTS (Precise Pangolin)</strong></td>
-              <td>Apr 2012</td>
-              <td>Apr 2017</td>
-              <td>Apr 2019</td>
-            </tr>
-            <tr>
-              <td><strong>14.04 LTS (Trusty Tahr)</strong></td>
-              <td>Apr 2014</td>
-              <td>Apr 2019</td>
-              <td>Apr 2024</td>
-            </tr>
-            <tr>
-              <td><strong>16.04 LTS (Xenial Xerus)</strong></td>
-              <td>Apr 2016</td>
-              <td>Apr 2021</td>
-              <td>Apr 2026</td>
-            </tr>
-            <tr>
-              <td><strong>18.04 LTS (Bionic Beaver)</strong></td>
-              <td>Apr 2018</td>
-              <td>Apr 2023</td>
-              <td>Apr 2028</td>
-            </tr>
-            <tr>
-              <td><strong>20.04 LTS (Focal Fossa)</strong></td>
-              <td>Apr 2020</td>
-              <td>Apr 2025</td>
-              <td>Apr 2030</td>
-            </tr>
-            <tr>
-              <td>20.10 (Groovy Gorilla)</td>
-              <td>Oct 2020</td>
-              <td>Jul 2021</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>21.04 (Hirsute Hippo)</td>
-              <td>Apr 2021</td>
-              <td>Jan 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>21.10 (Impish Indri)</td>
-              <td>Oct 2021</td>
-              <td>Jul 2022</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td><strong>22.04 LTS (Jammy Jellyfish)</strong></td>
-              <td>Apr 2022</td>
-              <td>Apr 2027</td>
-              <td>Apr 2032</td>
-            </tr>
-            <tr>
-              <td><strong>22.10 (Kinetic Kudu)</strong></td>
-              <td>Apr 2022</td>
-              <td>Jul 2023</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <hr class="p-separator" />
-    </div>
-    <div class="row">
-      <div class="col-6 u-vertically-center">
-        <div class="p-logo-section">
-          <div class="p-logo-section__items">
-            <div class="p-logo-section__item u-align--center" style="padding:25px">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/1d1d6362-AI_sml.svg",
-                alt="",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item ">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/1bc694f0-nvidia-cuda-logo.png",
-                alt="",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item "> 
-              {{ image (
-                url="https://assets.ubuntu.com/v1/eea32cc5-jupyter-logo.png",
-                alt="",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item ">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/462ef9f5-keras-logo.png",
-                alt="",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">   
-              {{ image (
-                url="https://assets.ubuntu.com/v1/c1fd7abe-scikit-learn-logo.png",
-                alt="",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item"> 
-              {{ image (
-                url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
-                alt="",
-                width="145",
-                height="145",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/f41c87c6-pytorch-logo.png",
-                alt="",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <h2>Access to cutting-edge hardware and software</h2>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Ubuntu ships with the latest toolchains for Python, Rust, Ruby, Go, PHP and Perl, and users get first access to the latest updates for key libraries and packages.</li>
-          <li class="p-list__item is-ticked">Ubuntu is the OS of choice for data science and machine learning, with support for popular frameworks like <a href="https://opencv.org/">OpenCV</a>, <a href="https://www.tensorflow.org/">TensorFlow</a>, <a href="https://keras.io/">Keras</a>, <a href="https://pytorch.org/">PyTorch</a> and <a href="https://www.kubeflow.org/">Kubeflow</a>.</li>
-          <li class="p-list__item is-ticked">Ubuntu is the target platform for the <a href="https://github.com/NVIDIA/data-science-stack">NVIDIA data science stack</a>, which enables GPU accelerated data science workloads to be run locally before deploying to the cloud.</li>
-       </ul>
-       <p>
-         <a href="/ai">How Ubuntu enables AI innovation&nbsp;&rsaquo;</a>
-       </p>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <hr class="p-separator" />
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <h3>A rich ecosystem</h3>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">With a <a href="https://snapcraft.io/store">Snap Store</a> of over 7,000 applications in addition to the Ubuntu repository, it's easy to tailor Ubuntu desktop to your needs.</li>
-          <li class="p-list__item is-ticked">Development tools include Visual Studio Code, IntelliJ, GitKraken, Unity and Blender.</li>
-          <li class="p-list__item is-ticked">Office productivity tools include Slack, Microsoft Teams, Dropbox, and Zoom as well as the Microsoft-compatible LibreOffice.</li>
-          <li class="p-list__item is-ticked">Media, gaming, and content creation apps include Spotify, Steam, Discord and OBS Studio.</li>
-       </ul>
-       <p>
-         <a href="https://snapcraft.io">Learn more about Snapcraft&nbsp;&rsaquo;</a>
-       </p>
-      </div>
-    </div>
-    <div class="u-fixed-width">
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6 u-vertically-center">
       <div class="p-logo-section">
         <div class="p-logo-section__items">
-          <div class="p-logo-section__item ">
+          <div class="p-logo-section__item u-align--center" style="padding:25px">
             {{ image (
-              url="https://assets.ubuntu.com/v1/a8d0ab5b-slack-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item "> 
-            {{ image (
-              url="https://assets.ubuntu.com/v1/e850e108-dropbox-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/df56b8a5-libreoffice-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/c7dae67a-zoom-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div> 
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/2abedabb-google-chrome-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/60c97798-unity-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/b8c1f574-intellij-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/3294f6e8-vs-code-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/982a200a-blender-notext-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item ">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/aa55fac4-microsoft-teams-logo.png",
-              alt="",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-        </div>
-     </div>
-    </div>
-    <div class="u-fixed-width">
-      <hr class="p-separator" />
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <div class="p-logo-section">
-          <div class="p-logo-section__items">
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/11814428-hp-logo.png",
-                alt="Hewlett Packard",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/c70b529e-lenovo-logo.png",
-                alt="Lenovo",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/987acdaa-dell-logo.png",
-                alt="Dell",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
-                alt="AMD",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-              url="https://assets.ubuntu.com/v1/67f81bfe-intel-new-logo.png",
-              alt="Intel",
-              width="288",
-              height="288",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/711be910-arm-logo.png",
-                alt="ARM",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-            <div class="p-logo-section__item">
-              {{ image (
-                url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
-                alt="Nvidia",
-                width="288",
-                height="288",
-                hi_def=True,
-                loading="lazy",
-                attrs={"class": "p-logo-section__logo"}
-                ) | safe
-              }}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <h3>Certified hardware</h3>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Streamline deployment of Ubuntu Desktop with <a href="/certified">certified hardware</a> from OEMs including Dell, Lenovo, and HP &mdash; no additional configuration required.</li>
-          <li class="p-list__item is-ticked">Ubuntu performs out of the box across a wide range of laptops, desktops, and workstations, including the HP Z series and Dell XPS and Precision lines.</li>
-          <li class="p-list__item is-ticked"><a href="/desktop/partners">Strategic partnerships</a> extend to component manufacturers and Ubuntu is certified to work with the full range of NVIDIA GPUs.</li>
-       </ul>
-       <p>
-         <a href="/certified">Ubuntu certified hardware&nbsp;&rsaquo;</a>
-       </p>
-      </div>
-    </div>
-  </section>
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-8">
-        <h2>What's new in Ubuntu {{ releases.latest.short_version }}</h2>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Linux 5.19 kernel</li>
-        <li class="p-list__item is-ticked">GNOME 43 desktop environment
-          <ul>
-            <li>New quick settings interface</li>
-            <li>New spread effect for multitasking</li>
-            <li>Dynamic UI for the file manager</li>
-          </ul>
-        </li>
-        <li class="p-list__item is-ticked">Pipewire as the default audio system delivering improve bluetooth performance</li>
-        <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.1, Perl 5.34, Go 1.19, GCC 12.2, Rust 1.61</li>
-        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.4, Thunderbird 102, and Firefox 105</li>
-        <li class="p-list__item is-ticked">Multi-threaded CPU squashfs decompression for faster Snap startup</li>
-      </ul>
-    </div>
-    <div class="u-fixed-width">
-      <p><a href="{{ releases.latest.release_notes_url }}">Read the full release notes&nbsp;&rsaquo;</a></p>
-    </div>
-  </section>
-  <section class="p-strip--suru">
-    <div class="row">
-      <div class="col-8">
-        <h2>What's new in Ubuntu {{ releases.lts.short_version }}</h2>
-      </div>
-    </div>
-    <div class="u-fixed-width">
-      <ul class="p-list is-split">
-        <li class="p-list__item is-ticked">Linux 5.15 kernel</li>
-        <li class="p-list__item is-ticked">New Ubuntu theme with accent colors, improved integration for snaps and system-wide dark style preference support</li>
-        <li class="p-list__item is-ticked">GNOME Shell and most GNOME libraries updated to the 42 release
-          <ul>
-            <li>Streamlined user interface and workspace transitions</li>
-            <li>Compact and modern on-screen display notifications</li>
-            <li>New screenshot/screen recording interface</li>
-            <li>New power profile selection</li>
-            <li>Improved multi-monitor support</li>
-          </ul>
-        </li>
-        <li class="p-list__item is-ticked">GNOME desktop performance improvements
-          <ul>
-            <li>Up to 2x improvement in frame rates with Intel and Raspberry Pi graphics drivers</li>
-            <li>Significant improvements for AMD and NVIDIA</li>
-          </ul>
-        </li>
-        <li class="p-list__item is-ticked">Wayland as the default display server for most systems whilst X11 remains the default for those with an NVIDIA discrete GPU</li>
-        <li class="p-list__item is-ticked">Latest PulseAudio support for LDAC and AptX bluetooth codecs, HFP bluetooth profiles and bluetooth device battery level reporting</li>
-        <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.0, Perl 5.34, Go 1.18, GCC 11.2, Rust 1.58.1</li>
-        <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.3.2, Thunderbird 91.8, and Firefox 99 which is now included as a snap
-        </li>
-        <li class="p-list__item is-ticked">Active Directory integration with the Ubuntu installer</li>
-        <li class="p-list__item is-ticked">Policy-based administration using Microsoft Active Directory Group Policy (GPO) and advanced policy support for Ubuntu Pro Desktop users</li>
-        <li class="p-list__item is-ticked">Raspberry Pi 4 2GB Desktop support as a result of various performance improvements</li>
-        <li class="p-list__item is-ticked">Better power management for NVIDIA dGPUs</li>
-        <li class="p-list__item is-ticked">Wifi 6E support</li>
-      </ul>
-    </div>
-    <div class="u-fixed-width">
-      <p><a class="p-link--inverted" href="{{ releases.lts.release_notes_url }}">Read the full release notes&nbsp;&rsaquo;</a></p>
-    </div>
-  </section>
-  <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2 class="u-sv3">Developers love Ubuntu, organisations trust it</h2>
-    </div>
-    <div class="row">
-      <div class="col-6">
-        <h3 class="u-sv2 p-heading--4">Operating systems developers prefer</h3>
-        <p>Multiple choice poll<p>
-        <p>Source: <a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020 HackerEarth Developer Survey</a></p>
-        <div>
-          <figure id="hackerearth-chart" class="hackerearth-chart"></figure>
-        </div>
-      </div>
-      <div class="col-6">
-        <h3 class="p-heading--4">Which of these open source technologies does your organisation use today to support your software infrastructure?</h3>
-        <p>Source: <a href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The 2022 State of Open Source Report &ndash; OpenLogic</a></p>
-        <div>
-          <figure id="opensource-chart" class="opensource-chart"></figure>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="p-strip--light">
-    <div class="row u-vertically-center">
-      <div class="col-7">
-        <h2>Secure enterprise management with Ubuntu Pro Desktop</h2>
-        <p>Ubuntu Pro Desktop is a comprehensive subscription delivering enterprise-grade security, management tooling, and extended support for developers and organisations.</p>
-        <ul class="p-list">
-          <li class="p-list__item is-ticked">Security updates for the <a href="/esm">full open source stack</a> (beta)</li>
-          <li class="p-list__item is-ticked">Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration</li>
-          <li class="p-list__item is-ticked">Estate <a href="https://landscape.canonical.com/landscape-features">monitoring and management</a></li>
-          <li class="p-list__item is-ticked"><a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a></li>
-          <li class="p-list__item is-ticked">Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a></li>
-          <li class="p-list__item is-ticked">Optional weekday or 24x7 support tiers</li>
-        </ul>
-        <p class="p-heading--4">Free for personal use on up to five machines</p>
-        <p>Secure your open source stack with a personal Ubuntu Pro license and get beta access security patching for over 23,000 packages in the Ubuntu Universe repository.</p>
-        <p><a href="/pro">Get started with a free subscription&nbsp;&rsaquo;</a></p>
-        <p><a href="/desktop/organisations">Ubuntu Desktop for organisations&nbsp;&rsaquo;</a></p>
-      </div>
-      <div class="col-5 u-align--center u-hide--medium u-hide--small">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+            url="https://assets.ubuntu.com/v1/1d1d6362-AI_sml.svg",
             alt="",
-            height="350",
-            width="350",
+            width="288",
+            height="288",
             hi_def=True,
-            loading="lazy"
-          ) | safe
-        }}
+            loading="lazy",
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/1bc694f0-nvidia-cuda-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/eea32cc5-jupyter-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item ">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/462ef9f5-keras-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/c1fd7abe-scikit-learn-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/57dd2115-TensorFlow-logo.svg",
+            alt="",
+            width="145",
+            height="145",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/f41c87c6-pytorch-logo.png",
+            alt="",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-
-  <section class="p-strip is-bordered">
-    <div class="u-fixed-width">
-      <h2>Get started today</h2>
-    </div>
-    <div class="row">
-      <div class="col-4">
-       <h3>Download and install</h3>
-       <p>Download Ubuntu Desktop and replace your current operating system. It's easy to install on Windows or macOS, or run Ubuntu alongside it.</p>
-       <p><a href="/download/desktop">Download now</a></p>
-      </div>
-      <div class="col-4">
-       <h3>Buy it pre-installed</h3>
-       <p>Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers including Dell, HP, and Lenovo.</p>
-       <p><a href="https://canonical.com/partners/desktop">Find out more about our retail partners</a></p>
-      </div>
-      <div class="col-4">
-       <h3>Join our community</h3>
-       <p>Share ideas, write code, and get advice and help from our large, active community of IT professionals.</p>
-       <ul class="p-list is-split">
-        <li class="p-list__item"><a href="https://discourse.ubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu Discourse', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Ubuntu Discourse</a></li>
-        <li class="p-list__item"><a href="https://askubuntu.com/" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'askubuntu', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Ask Ubuntu</a></li>
-        <li class="p-list__item"><a href="https://lists.ubuntu.com" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'mailing lists', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Mailing lists</a></li>
-        <li class="p-list__item"><a href="https://answers.launchpad.net/ubuntu" onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Launchpad Answers', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Launchpad Answers</a></li>
+    <div class="col-6">
+      <h2>Access to cutting-edge hardware and software</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Ubuntu ships with the latest toolchains for Python, Rust, Ruby, Go, PHP and
+          Perl, and users get first access to the latest updates for key libraries and packages.</li>
+        <li class="p-list__item is-ticked">Ubuntu is the OS of choice for data science and machine learning, with
+          support for popular frameworks like <a href="https://opencv.org/">OpenCV</a>, <a
+            href="https://www.tensorflow.org/">TensorFlow</a>, <a href="https://keras.io/">Keras</a>, <a
+            href="https://pytorch.org/">PyTorch</a> and <a href="https://www.kubeflow.org/">Kubeflow</a>.</li>
+        <li class="p-list__item is-ticked">Ubuntu is the target platform for the <a
+            href="https://github.com/NVIDIA/data-science-stack">NVIDIA data science stack</a>, which enables GPU
+          accelerated data science workloads to be run locally before deploying to the cloud.</li>
       </ul>
+      <p>
+        <a href="/ai">How Ubuntu enables AI innovation&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <h3>A rich ecosystem</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">With a <a href="https://snapcraft.io/store">Snap Store</a> of over 7,000
+          applications in addition to the Ubuntu repository, it's easy to tailor Ubuntu desktop to your needs.</li>
+        <li class="p-list__item is-ticked">Development tools include Visual Studio Code, IntelliJ, GitKraken, Unity and
+          Blender.</li>
+        <li class="p-list__item is-ticked">Office productivity tools include Slack, Microsoft Teams, Dropbox, and Zoom
+          as well as the Microsoft-compatible LibreOffice.</li>
+        <li class="p-list__item is-ticked">Media, gaming, and content creation apps include Spotify, Steam, Discord and
+          OBS Studio.</li>
+      </ul>
+      <p>
+        <a href="https://snapcraft.io">Learn more about Snapcraft&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <div class="p-logo-section">
+      <div class="p-logo-section__items">
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/a8d0ab5b-slack-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/e850e108-dropbox-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/df56b8a5-libreoffice-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/c7dae67a-zoom-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/2abedabb-google-chrome-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/60c97798-unity-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/b8c1f574-intellij-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/3294f6e8-vs-code-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/982a200a-blender-notext-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item ">
+          {{ image (
+          url="https://assets.ubuntu.com/v1/aa55fac4-microsoft-teams-logo.png",
+          alt="",
+          width="288",
+          height="288",
+          hi_def=True,
+          loading="lazy",
+          attrs={"class": "p-logo-section__logo"}
+          ) | safe
+          }}
+        </div>
       </div>
-     </div>
-  </section>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <div class="p-logo-section">
+        <div class="p-logo-section__items">
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/11814428-hp-logo.png",
+            alt="Hewlett Packard",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/c70b529e-lenovo-logo.png",
+            alt="Lenovo",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/987acdaa-dell-logo.png",
+            alt="Dell",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/6079d02b-amd-logo.png",
+            alt="AMD",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/67f81bfe-intel-new-logo.png",
+            alt="Intel",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/711be910-arm-logo.png",
+            alt="ARM",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+            url="https://assets.ubuntu.com/v1/cd765ccc-nvidia-logo.png",
+            alt="Nvidia",
+            width="288",
+            height="288",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3>Certified hardware</h3>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Streamline deployment of Ubuntu Desktop with <a href="/certified">certified
+            hardware</a> from OEMs including Dell, Lenovo, and HP &mdash; no additional configuration required.</li>
+        <li class="p-list__item is-ticked">Ubuntu performs out of the box across a wide range of laptops, desktops, and
+          workstations, including the HP Z series and Dell XPS and Precision lines.</li>
+        <li class="p-list__item is-ticked"><a href="/desktop/partners">Strategic partnerships</a> extend to component
+          manufacturers and Ubuntu is certified to work with the full range of NVIDIA GPUs.</li>
+      </ul>
+      <p>
+        <a href="/certified">Ubuntu certified hardware&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-8">
+      <h2>What's new in Ubuntu {{ releases.latest.short_version }}</h2>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Linux 6.2 kernel</li>
+      <li class="p-list__item is-ticked">GNOME 44 desktop environment
+        <ul>
+          <li>New quick settings UI for bluetooth devices and dark mode</li>
+        </ul>
+      </li>
+      <li class="p-list__item is-ticked">Up to date toolchains including .Net 7, Java 17, Go 1.20,
+        Rust 1.67, Python 3.11, GCC 12.3, Ruby 3.1</li>
+      <li class="p-list__item is-ticked">New installer built on Subiquity with a refreshed user experience</li>
+      <li class="p-list__item is-ticked">Snap refresh awareness for improved update management</li>
+      <li class="p-list__item is-ticked">Support for user authentication with Azure Active Directory</li>
+      <li class="p-list__item is-ticked">New ADsys features:
+        <ul>
+          <li>Winbind support in addition to SSSD</li>
+          <li>Group Policy Object support for network shares and app confinement</li>
+        </ul>
+      </li>
+      <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.5.2, Thunderbird 102.9.0 and Firefox 111</li>
+    </ul>
+  </div>
+  <div class="u-fixed-width">
+    <p><a href="{{ releases.latest.release_notes_url }}">Read the full release notes&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+<section class="p-strip--suru">
+  <div class="row">
+    <div class="col-8">
+      <h2>What's new in Ubuntu {{ releases.lts.short_version }}</h2>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <ul class="p-list is-split">
+      <li class="p-list__item is-ticked">Linux 5.15 kernel</li>
+      <li class="p-list__item is-ticked">New Ubuntu theme with accent colors, improved integration for snaps and
+        system-wide dark style preference support</li>
+      <li class="p-list__item is-ticked">GNOME Shell and most GNOME libraries updated to the 42 release
+        <ul>
+          <li>Streamlined user interface and workspace transitions</li>
+          <li>Compact and modern on-screen display notifications</li>
+          <li>New screenshot/screen recording interface</li>
+          <li>New power profile selection</li>
+          <li>Improved multi-monitor support</li>
+        </ul>
+      </li>
+      <li class="p-list__item is-ticked">GNOME desktop performance improvements
+        <ul>
+          <li>Up to 2x improvement in frame rates with Intel and Raspberry Pi graphics drivers</li>
+          <li>Significant improvements for AMD and NVIDIA</li>
+        </ul>
+      </li>
+      <li class="p-list__item is-ticked">Wayland as the default display server for most systems whilst X11 remains the
+        default for those with an NVIDIA discrete GPU</li>
+      <li class="p-list__item is-ticked">Latest PulseAudio support for LDAC and AptX bluetooth codecs, HFP bluetooth
+        profiles and bluetooth device battery level reporting</li>
+      <li class="p-list__item is-ticked">Up-to-date toolchains, including Python 3.10, PHP 8.1, Ruby 3.0, Perl 5.34, Go
+        1.18, GCC 11.2, Rust 1.58.1</li>
+      <li class="p-list__item is-ticked">Core productivity apps LibreOffice 7.3.2, Thunderbird 91.8, and Firefox 99
+        which is now included as a snap
+      </li>
+      <li class="p-list__item is-ticked">Active Directory integration with the Ubuntu installer</li>
+      <li class="p-list__item is-ticked">Policy-based administration using Microsoft Active Directory Group Policy (GPO)
+        and advanced policy support for Ubuntu Pro Desktop users</li>
+      <li class="p-list__item is-ticked">Raspberry Pi 4 2GB Desktop support as a result of various performance
+        improvements</li>
+      <li class="p-list__item is-ticked">Better power management for NVIDIA dGPUs</li>
+      <li class="p-list__item is-ticked">Wifi 6E support</li>
+    </ul>
+  </div>
+  <div class="u-fixed-width">
+    <p><a class="p-link--inverted" href="{{ releases.lts.release_notes_url }}">Read the full release
+        notes&nbsp;&rsaquo;</a></p>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="u-sv3">Developers love Ubuntu, organisations trust it</h2>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3 class="u-sv2 p-heading--4">Operating systems developers prefer</h3>
+      <p>Multiple choice poll
+      <p>
+      <p>Source: <a
+          href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf">The 2020
+          HackerEarth Developer Survey</a></p>
+      <div>
+        <figure id="hackerearth-chart" class="hackerearth-chart"></figure>
+      </div>
+    </div>
+    <div class="col-6">
+      <h3 class="p-heading--4">Which of these open source technologies does your organisation use today to support your
+        software infrastructure?</h3>
+      <p>Source: <a
+          href="https://www.openlogic.com/system/files/ebook-openlogic-the-2022-state-of-open-source-report.pdf">The
+          2022 State of Open Source Report &ndash; OpenLogic</a></p>
+      <div>
+        <figure id="opensource-chart" class="opensource-chart"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  {% include "shared/_pro_strip.html" %}
+  <div class="u-fixed-width">
+    <p class="p-heading--4">Free for personal use on up to five machines</p>
+    <p>Secure your open source stack with a personal Ubuntu Pro license and get access to security patching for over
+      23,000 packages in the Ubuntu Universe repository.</p>
+    <p><a href="/pro">Get started with a free subscription&nbsp;&rsaquo;</a></p>
+    <p><a href="/desktop/organisations">Ubuntu Desktop for organisations&nbsp;&rsaquo;</a></p>
+  </div>
+  </div>
+</section>
 
-{% with section_classes='p-strip', heading_topic='Ubuntu Desktop', tag_name='ubuntu-desktop', tag_id='1920', limit='4' %}
-  {% include "shared/_latest_news_strip.html" %}
+<section class="p-strip is-bordered">
+  <div class="u-fixed-width">
+    <h2>Get started today</h2>
+  </div>
+  <div class="row">
+    <div class="col-4">
+      <h3>Download and install</h3>
+      <p>Download Ubuntu Desktop and replace your current operating system. It's easy to install on Windows or macOS, or
+        run Ubuntu alongside it.</p>
+      <p><a href="/download/desktop">Download now</a></p>
+    </div>
+    <div class="col-4">
+      <h3>Buy it pre-installed</h3>
+      <p>Ubuntu is available on a huge range of devices from the world's largest hardware manufacturers, including Dell,
+        HP, and Lenovo.</p>
+      <p><a href="https://canonical.com/partners/desktop">Find out more about our retail partners</a></p>
+    </div>
+    <div class="col-4">
+      <h3>Join our community</h3>
+      <p>Share ideas, write code, and get advice and help from our large, active community of IT professionals.</p>
+      <ul class="p-list is-split">
+        <li class="p-list__item"><a href="https://discourse.ubuntu.com/"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Ubuntu Discourse', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Ubuntu
+            Discourse</a></li>
+        <li class="p-list__item"><a href="https://askubuntu.com/"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'askubuntu', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Ask
+            Ubuntu</a></li>
+        <li class="p-list__item"><a href="https://lists.ubuntu.com"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'mailing lists', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Mailing
+            lists</a></li>
+        <li class="p-list__item"><a href="https://answers.launchpad.net/ubuntu"
+            onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Contextual footer link', 'eventAction' : 'Launchpad Answers', 'eventLabel' : 'Join our community', 'eventValue' : undefined });">Launchpad
+            Answers</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% with section_classes='p-strip', heading_topic='Ubuntu Desktop', tag_name='ubuntu-desktop', tag_id='1920', limit='4'
+%}
+{% include "shared/_latest_news_strip.html" %}
 {% endwith %}
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
-  <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
-  <script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
-  <script src="{{ versioned_static('js/src/developer-chart.js')}}"></script>
-  
-  {% endblock content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+<script src="https://assets.ubuntu.com/v1/3c99518b-d3-version3.5.6.min.js"></script>
+<script src="{{ versioned_static('js/src/developer-chart.js')}}"></script>
+
+{% endblock content %}

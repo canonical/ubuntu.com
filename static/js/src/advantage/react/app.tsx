@@ -15,6 +15,7 @@ declare global {
   interface Window {
     // This key is added to the window in the template.
     stripePublishableKey?: StripePublishableKey;
+    plausible: any;
   }
 }
 

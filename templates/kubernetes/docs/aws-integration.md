@@ -14,8 +14,8 @@ toc: False
 ---
 
 **Charmed Kubernetes** will run seamlessly on AWS.  With the addition of the
-`aws-integrator`, your cluster will also be able to directly use AWS native
-features.
+`aws-integrator` and its companion charms, your cluster will also be able
+to directly use AWS native features.
 
 
 ## AWS integrator
@@ -25,37 +25,95 @@ AWS. Using the credentials provided to **Juju**, it acts as a proxy between
 Charmed Kubernetes and the underlying cloud, granting permissions to
 dynamically create, for example, EBS volumes.
 
+## AWS K8S Storage
+
+The `aws-k8s-storage` charm moves the AWS specific functions of the EBS csi-driver
+out-of-tree. Using this charm, the drivers are installed as workloads in the Kubernetes
+cluster instead of as natural code paths of the Kubernetes binaries.
+
+## AWS Cloud Provider
+
+The `aws-cloud-provider` moves the AWS specific functions of the cloud-provider
+out-of-tree. The AWS cloud provider provides the interface between a Kubernetes cluster
+and AWS service APIs. This project allows a Kubernetes cluster to provision,
+monitor and remove AWS resources necessary for operation of the cluster.
+
+### Version support
+
+#### From Kubernetes 1.27
+
+The in-tree cloud-provider is no longer available, and must be deployed 
+as container workloads in the cluster.  Charmed Kubernetes recommends
+using the `aws-cloud-provider` charm to access AWS Service APIs.
+
+#### Prior to Kubernetes 1.27
+
+The in-tree cloud-provider is natively available in Kubernetes until the 1.27
+release, and it is not necessary to deploy the `aws-cloud-provider` charm as in the
+above overlay.
+
+
 ### Installing
 
 If you install **Charmed Kubernetes** [using the Juju bundle][install], you can add the
-aws-integrator at the same time by using the following overlay file ([download
+aws-integrator at the same time by using the following cloud-provider overlay file ([download
 it here][asset-aws-overlay]):
 
 ```yaml
 description: Charmed Kubernetes overlay to add native AWS support.
 applications:
   aws-integrator:
-    annotations:
-      gui-x: "600"
-      gui-y: "300"
     charm: aws-integrator
     num_units: 1
     trust: true
+  aws-cloud-provider:
+    charm: aws-cloud-provider
 relations:
   - ['aws-integrator', 'kubernetes-control-plane']
   - ['aws-integrator', 'kubernetes-worker']
-  ```
+  - ["aws-cloud-provider:certificates",            "easyrsa"]
+  - ["aws-cloud-provider:kube-control",            "kubernetes-control-plane"]
+  - ["aws-cloud-provider:external-cloud-provider", "kubernetes-control-plane"]
+  - ["aws-cloud-provider:aws-integration",         "aws-integrator"]
+```
 
-To use this overlay with the **Charmed Kubernetes** bundle, it is specified during deploy like this:
+As well as the storage overlay file ([download it here][asset-aws-storage-overlay]):
+
+```yaml
+description: Charmed Kubernetes overlay to add native AWS support.
+applications:
+  kubernetes-control-plane:
+    options:
+      allow-privileged: "true"
+  aws-integrator:
+    charm: aws-integrator
+    num_units: 1
+    trust: true
+  aws-k8s-storage:
+    charm: aws-k8s-storage
+    trust: true
+    options:
+      image-registry: public.ecr.aws
+relations:
+- ['aws-k8s-storage:certificates', 'easyrsa:client']
+- ['aws-k8s-storage:kube-control', 'kubernetes-control-plane:kube-control']
+- ['aws-k8s-storage:aws-integration', 'aws-integrator:aws']
+# Include the following relations if not using the aws-cloud-provider charm
+# - ['aws-integrator', 'kubernetes-control-plane']
+# - ['aws-integrator', 'kubernetes-worker']
+```
+
+To use these overlays with the **Charmed Kubernetes** bundle, it is specified
+during deploy like this:
 
 ```bash
-juju deploy charmed-kubernetes  --overlay ~/path/aws-overlay.yaml --trust
+juju deploy charmed-kubernetes --overlay ~/path/aws-overlay.yaml --overlay ~/path/aws-storage-overlay.yaml --trust
 ```
 
 ... and remember to fetch the configuration file!
 
 ```bash
-juju scp kubernetes-control-plane/0:config ~/.kube/config
+juju ssh kubernetes-control-plane/leader -- cat config > ~/.kube/config
 ```
 
 For more configuration options and details of the permissions which the integrator uses,
@@ -63,14 +121,38 @@ please see the [charm readme][aws-integrator-readme].
 
 ### Using EBS volumes
 
-Many  pods you may wish to deploy will require storage. Although you can use
+Many pods you may wish to deploy will require storage. Although you can use
 any type of storage supported by Kubernetes (see the
 [storage documentation][storage]), you also have the option to use the native
 AWS storage, Elastic Block Store (EBS).
 
+#### Beginning in Kubernetes 1.25
+
+The `aws-k8s-storage` charm will need to be installed to make use of EBS Volumes.
+Amazon removed CSIMigration away from the in-tree binaries but made them available
+as container workload in the cluster. This charm installs and relates to the
+existing integrator charm.
+
+A StorageClass will be created by this charm named `csi-aws-ebs-default`
+
+You can confirm this has been added by running:
+
+```bash
+kubectl get sc
+```
+
+which should return:
+```bash
+NAME                  PROVISIONER       RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+csi-aws-ebs-default   ebs.csi.aws.com   Delete          WaitForFirstConsumer   false                  9s
+```
+
+#### Prior to Kubernetes 1.25
+
 First we need to create a storage class which can be used by Kubernetes.
 To start with, we will create one for the 'General Purpose SSD' type of EBS
 storage:
+
 
 ```bash
 kubectl create -f - <<EOY
@@ -100,6 +182,8 @@ You can create additional storage classes for the other types of EBS storage if
 needed, simply give them a different name and replace the 'type: gp2' with a
 different type (See the [AWS website][ebs-info] for more information on the
 available types).
+
+#### Creating a PVC
 
 To actually create storage using this new class, you can make a Persistent Volume Claim:
 
@@ -243,14 +327,19 @@ Hello Kubernetes!
   </div>
 </div>
 
-### Upgrading the integrator-charm
+### Upgrading the charms
 
-The aws-integrator is not specifically tied to the version of Charmed Kubernetes installed and may
-generally be upgraded at any time with the following command:
+The charm `aws-integrator`, `aws-cloud-provider` and `aws-k8s-storage`
+can be refreshed within the current charm channel without concern and 
+can be upgraded at any time with the following command,
 
 ```bash
-juju upgrade-charm aws-integrator
+juju refresh aws-integrator
+juju refresh aws-cloud-provider
+juju refresh aws-k8s-storage
 ```
+
+It isn't recommended to switch charm channels unless a full charm upgrade is planned.
 
 ### Troubleshooting
 
@@ -276,6 +365,7 @@ If you are an AWS user, you may also be interested in how to
 <!-- LINKS -->
 
 [asset-aws-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-overlay.yaml
+[asset-aws-storage-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/aws-storage-overlay.yaml
 [quickstart]: /kubernetes/docs/quickstart
 [storage]: /kubernetes/docs/storage
 [ebs-info]: https://aws.amazon.com/ebs/features/

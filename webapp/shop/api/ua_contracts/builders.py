@@ -199,8 +199,14 @@ def build_final_user_subscriptions(
         aggregated_values = get_items_aggregated_values(items, type)
         number_of_machines = aggregated_values.get("number_of_machines")
         end_date = aggregated_values.get("end_date")
-        current_number_of_machines = get_current_number_of_machines(
-            subscriptions, subscription_id, listing
+        current_number_of_machines = (
+            get_current_number_of_machines(
+                subscriptions, subscription_id, listing
+            )
+            if type != "legacy"
+            else (
+                renewal.number_of_machines if renewal else number_of_machines
+            )
         )
         price_info = get_price_info(number_of_machines, items, listing)
         product_name = (
@@ -222,7 +228,7 @@ def build_final_user_subscriptions(
 
         entitlements = (
             apply_entitlement_rules(contract.entitlements)
-            if marketplace == "canonical-ua"
+            if marketplace in ["canonical-ua", "free"]
             else []
         )
 

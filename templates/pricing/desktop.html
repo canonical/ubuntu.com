@@ -1,0 +1,287 @@
+{% extends "pricing/base_pricing.html" %}
+
+{% block title %}Devices | plans and pricing{% endblock %}
+
+{% block meta_description %}Ubuntu Desktop Enterprise Services provide day zero support for Ubuntu Desktop deployment, compliance and custom configuration.{% endblock %}
+
+{% block meta_copydoc %}https://docs.google.com/document/d/1xVtaZ7wr5sdBqye3Gc-XWXEpNqXaol8uDdMwJ_KyOO8/edit{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-8">
+      <h1>Ubuntu Desktop <br/> Enterprise Services</h1>
+      <p>Day zero support for Ubuntu Desktop deployment, compliance and custom configuration.</p>
+      <a class="p-button" href="https://assets.ubuntu.com/v1/65ca4536-Ubuntu+Desktop+DS+06.09.22.pdf">Download the datasheet</a>
+      <a href="/desktop/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="u-fixed-width">
+    <h2>Get your team up and running with Ubuntu</h2>
+    <p>Ubuntu Desktop Enterprise Services are designed to help your developers get up and running on Ubuntu as quickly as possible. Canonical engineers partner with you to deliver a solution tailored to your needs, from custom images and Snap Store proxies to Active Directory integration and fleet management through Landscape.</p>
+  </div>
+  <div class="row">
+    <div class="col-6 p-card">
+      <h2 class="p-heading--4">Deployment Steps</h2>
+      <ol class="p-stepped-list">
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Requirements gathering
+          </p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Design documentation and deployment guide
+          </p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Custom image creation
+          </p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Landscape deployment and registration
+          </p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Post-deployment automation
+          </p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Active Directory integration
+          </p>
+        </li>
+        <li class="p-stepped-list__item u-no-padding--bottom">
+          <p class="p-stepped-list__title">
+            Security configuration (hardening, encryption, PKI)
+          </p>
+        </li>
+      </ol>
+    </div>
+    <div class="col-6 p-card">
+      <h2 class="p-heading--4">Additional benefits for Enterprise Services Plus</h2>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">Additional image customization</li>
+        <li class="p-list__item is-ticked">CIS Security Benchmark</li>
+        <li class="p-list__item is-ticked">DISA STIG Hardening</li>
+        <li class="p-list__item is-ticked">Customised Snap Store proxy</li>
+        <li class="p-list__item is-ticked">CIFS/SMB file systems support</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-sv3">
+    <div class="col-7">
+      <h2>Service requirements</h2>
+      <p>To ensure full compatibility with Ubuntu Desktop, we ask customers to ensure that they use certified hardware.</p>
+      <p class="u-sv3"><a href="/certified">Find out more about the wide range of Ubuntu certified desktops&nbsp;&rsaquo;</a></p>
+    </div>
+    <div class="col-5 u-hide--small u-hide--medium u-align--center u-vertically-center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
+        alt="",
+        width="100",
+        height="142",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <table aria-label="ubuntu desktop">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Ubuntu Desktop Enterprise Services</th>
+          <th>Ubuntu Desktop Enterprise Services Plus</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Cost</th>
+          <td><strong>$45,000</strong></td>
+          <td><strong>$95,000</strong></td>
+        </tr>
+        <tr>
+          <th>Landscape configuration</th>
+          <td>
+            <p>Machine registration and monitoring via Landscape SaaS or on-prem</p>
+            <p>Ubuntu configuration and installation/configuration of third-party tooling</p>
+          </td>
+          <td>
+            <p>Machine registration and monitoring via Landscape SaaS or on-prem</p>
+            <p>Ubuntu configuration and installation/configuration of third-party tooling</p>
+          </td>
+        </tr>
+        <tr>
+          <th>Active Directory integration</th>
+          <td>
+            <p>Configuration and connection</p>
+            <p>Group Policy Object (GPO) Integration</p>
+          </td>
+          <td>
+            <p>Configuration and connection</p>
+            <p>Group Policy Object (GPO) Integration</p>
+          </td>
+        </tr>
+        <tr>
+          <th>Third-party product integrations</th>
+          <td>
+            <ul class="p-list">
+              <li>Google Chrome</li>
+              <li>Microsoft Defender</li>
+              <li>McAfee Enterprise </li>
+              <li>F5 VPN Client</li>
+              <li>Cisco AnyConnect VPN Client</li>
+              <li>OpenConnect VPN Client</li>
+              <li>Meta Networks VPN Client</li>
+              <li>SNOW</li>
+              <li>Rapid7</li>
+              <li>Endpoint Protector (EPP)</li>
+              <li>Crowdstrike Falcon Sensor</li>
+              <li>Tenable Nessus Scanner</li>
+              <li>ZScaler Proxy (PAC)</li>
+              <li>Blender</li>
+              <li>Papercut (printing)</li>
+              <li>CUPS (printing)</li>
+              <li><i>Additional third-party products can be installed and automatically configured depending on the requirements.</i></li>
+            </ul>
+          </td>
+          <td>
+            <ul class="p-list">
+              <li>Google Chrome</li>
+              <li>Microsoft Defender</li>
+              <li>McAfee Enterprise </li>
+              <li>F5 VPN Client</li>
+              <li>Cisco AnyConnect VPN Client</li>
+              <li>OpenConnect VPN Client</li>
+              <li>Meta Networks VPN Client</li>
+              <li>SNOW</li>
+              <li>Rapid7</li>
+              <li>Endpoint Protector (EPP)</li>
+              <li>Crowdstrike Falcon Sensor</li>
+              <li>Tenable Nessus Scanner</li>
+              <li>ZScaler Proxy (PAC)</li>
+              <li>Blender</li>
+              <li>Papercut (printing)</li>
+              <li>CUPS (printing)</li>
+              <li><i>Additional third-party products can be installed and automatically configured depending on the requirements.</i></li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>CIS Benchmarking</th>
+          <td></td>
+          <td>
+            <p>CIS Benchmark configuration and support</p>
+          </td>
+        </tr>
+        <tr>
+          <th>Snap Store configuration</th>
+          <td></td>
+          <td>
+            <p>Snap Store proxy deployment and local snap package repository.</p>
+          </td>
+        </tr>
+        <tr>
+          <th>CIFS/SMB configuration</th>
+          <td></td>
+          <td>
+            <p>Workstations configured to mount CIFS/SMB file systems from a third-party source</p>
+          </td>
+        </tr>
+        <tr>
+          <th>Security Configuration</th>
+          <td>
+            <p>Installed software audit</p>
+            <p>Firewall automatic enablement</p>
+            <p>Security policy enforcement</p>
+            <p>Anti-virus/anti-malware solution support</p>
+          </td>
+          <td>
+            <p>Installed software audit</p>
+            <p>Firewall automatic enablement</p>
+            <p>Security policy enforcement</p>
+            <p>Anti-virus/anti-malware solution support</p>
+          </td>
+        </tr>
+        <tr>
+          <th>Encrypted Volume Support</th>
+          <td></td>
+          <td>
+            <p>Third party encryption support</p>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+    <p>
+      <a class="p-button" href="https://assets.ubuntu.com/v1/65ca4536-Ubuntu+Desktop+DS+06.09.22.pdf">Download the datasheet</a>
+      <a href="/desktop/contact-us" class="p-button--positive js-invoke-modal">Get in touch</a>
+    </p>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row u-vertically-center">
+    <div class="col-7">
+      <h2>Power to developers. Peace of mind for IT. Get Ubuntu Pro Desktop.</h2>
+      <p>Ubuntu Pro Desktop is a comprehensive subscription for secure enterprise Linux adoption. It provides security, management tooling and support for your Ubuntu Desktop fleet.</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">
+          Security updates for the <a href="/esm">full open source stack</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Advanced <a href="/engage/microsoft-active-directory">Active Directory</a> and LDAP integration
+        </li>
+        <li class="p-list__item is-ticked">
+          Estate <a href="https://landscape.canonical.com/landscape-features">monitoring and management</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/security/certifications#fips">FIPS 140-2 certified modules</a> and <a href="/security/certifications#cis">CIS hardening</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Minimise rolling reboots with <a href="/livepatch">Kernel Livepatch</a>
+        </li>
+        <li class="p-list__item is-ticked">
+          Optional weekday or 24x7 support tiers
+        </li>
+      </ul>
+      <p>For more information, download our whitepaper:</p>
+      <p>
+        <a href="/engage/adopting-secure-enterprise-linux-desktop" class="p-button">Adopting a secure enterprise Linux desktop</a>
+      </p>
+      <p>
+        <a href="/desktop/organisations">Find out more&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
+        alt="",
+        width="250",
+        height="270",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% with colour="white", bordered="false" %}{% include "shared/_call-sales.html" %}{% endwith %}
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/general" data-form-id="1253" data-lp-id="1409" data-return-url="https://ubuntu.com/desktop/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+{% endblock %}

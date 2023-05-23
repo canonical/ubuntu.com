@@ -1,103 +1,127 @@
 {% extends "landscape/base_landscape.html" %}
 
 {% block title %}Compare Landscape editions{% endblock %}
-{% block meta_description %}Features and pricing for Landscape SaaS and self hosted Landscape{% endblock meta_description %}
+{% block meta_description %}Features and pricing for each Landscape edition: Landscape SaaS, self hosted Landscape, and Managed Landscape{% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1pESmRniuiaDHkbzY_60GlOJdCiH2pZ9erI9KV49eDyM/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
 <section class="p-strip">
   <div class="u-fixed-width u-sv4">
-    <h1 class="u-sv4">Choose the best Landscape for you:</h1>
+    <h1>Choose the best Landscape for you</h1>
+    <p class="u-sv4">Landscape is available with an <a href="/pro">Ubuntu Pro</a> subscription. Self-hosted Landscape has a free tier for up to 10 machines for personal use, or evaluation purposes. Landscape SaaS does not have a free tier at this time.</p>
     <table class="p-table">
       <thead>
         <tr>
           <th style="font-size: 20px;">Feature</th>
           <th class="u-align--center"><span style="font-size: 20px;">Landscape SaaS</span> <br> No server software to maintain</th>
-          <th class="u-align--center"><span style="font-size: 20px;">Self-hosted Landscape</span> <br>Runs behind your firewall</th>
+          <th class="u-align--center"><span style="font-size: 20px;">Self-hosted Landscape</span> <br>Runs on-prem or in any cloud</th>
+          <th class="u-align--center"><span style="font-size: 20px;">Managed Landscape</span>
+            <br>
+            <span>Runs anywhere, <a href="https://ubuntu.com/landscape/managed">learn more</a></span> 
+            <br/>
+            <a href="/contact-us/form?product=landscape" class="p-button--positive is-small js-invoke-modal" data-form-location="/shared/forms/interactive/landscape-managed" data-form-id="5054" data-lp-id="" data-return-url="/landscape/pricing#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">Get Managed Landscape</a>
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>Software and inventory management</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Security patches and notices</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>System monitoring and custom reporting</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Inventory management</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Compliance management</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Role based access control</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+        </tr>
+        <tr>
+          <td>Manage all guest machines of a virtualisation host (KVM, VMWare, LXD, etc.)</td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>SSO with UbuntuOne</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>3rd party SSO integration</td>
           <td></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Custom software repositories</td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Private repository hosting</td>
           <td></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
-          <td>Unlimited Virtual Machine guests</td>
+          <td>Managed by Canonical</td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
           <td></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
-          <td>Unlimited Ubuntu KVM guest support</td>
+          <td>Manage 40,000 machines with an SLA</td>
           <td></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
-          <td>Unlimited Ubuntu LXD guest support</td>
+          <td>Works in air gapped environments</td>
           <td></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
-        </tr>
-        <tr>
-          <td>Air gapped</td>
-          <td></td>
-          <td class="u-align--center"><i class="p-icon--success"></i></td>
+          <td class="u-align--center"><i class="p-icon--success">Included</i></td>
         </tr>
         <tr>
           <td>Pricing</td>
-          <td><a href="/pro/subscribe">Pricing calculator for Ubuntu Pro</a></td>
+          <td>Landscape SaaS is included with any Ubuntu Pro subscription.</td>
           <td>Free for up to 10 machines for personal use, or evaluation purposes.<br /><br />Beyond the free tier, <a href="/pro">Ubuntu Pro</a> is required for more than 10 machines on self-hosted Landscape</td>
+          <td>Canonical's standard <a href="/managed/apps">Managed Apps</a> pricing applies</td>
         </tr>
-        <tr>
-          <td></td>
-          <td>Landscape SaaS is included with <a href="/pro">Ubuntu Pro</a></td>
-          <td><a href="/landscape/install">Set up your self-hosted Landscape</a></td>
-        </tr>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td><a href="/pro/subscribe">Pricing calculator for Ubuntu Pro</a></td>
+            <td><a href="/landscape/install">Install self-hosted Landscape</a></td>
+            <td><a href="/contact-us/form?product=landscape" class="p-button--positive is-dense js-invoke-modal" data-form-location="/shared/forms/interactive/landscape-managed" data-form-id="5054" data-lp-id="" data-return-url="/landscape/pricing#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">Get Managed Landscape</a></td>
+          </tr>
+        </tfoot>
       </tbody>
     </table>
   </div>
@@ -109,7 +133,7 @@
       <div>
         <h2>Speak to a member of our team</h2>
         <p>If you want to learn more about Landscape or our professional services options, contact us to discuss your needs.</p>
-        <p><a href="#get-in-touch" class="p-button--positive js-invoke-modal">Contact us</a></p>
+        <p><a href="/contact-us/form?product=landscape" class="p-button--positive js-invoke-modal">Contact us</a></p>
       </div>
     </div>
     <div class="col-5 u-hide--small u-hide--medium u-align--right">

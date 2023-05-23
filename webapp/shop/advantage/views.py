@@ -1,4 +1,5 @@
 # Packages
+import json
 from typing import List
 
 import flask
@@ -33,8 +34,42 @@ from webapp.shop.schemas import (
 )
 
 
+@shop_decorator(area="advantage", response="html")
+def pro_page_view(advantage_mapper, **kwargs):
+    """
+    Renders the /pro page. If there is a logged in user it checks for active
+    subscriptions so we can display a contact form, otherwise renders the page
+    without any form. Anonymous requests don't see the form either.
+    """
+    show_beta_request = False
+    user = user_info(flask.session)
+    if user:
+        try:
+            subscriptions = advantage_mapper.get_user_subscriptions(
+                email=None, marketplaces=["canonical-ua"]
+            )
+            for subscription in subscriptions:
+                if (
+                    subscription.marketplace == "canonical-ua"
+                    and subscription.statuses["has_access_to_support"]
+                ):
+                    show_beta_request = True
+                    break
+        except Exception:
+            flask.current_app.extensions["sentry"].captureException(
+                extra={
+                    "message": "Could not get user subscriptions on pro page"
+                }
+            )
+
+    return flask.render_template(
+        "pro/index.html",
+        show_beta_request=show_beta_request,
+    )
+
+
 @shop_decorator(area="advantage", permission="user", response="html")
-def advantage_view(advantage_mapper, **kwargs):
+def advantage_view(advantage_mapper, is_in_maintenance, **kwargs):
     is_technical = False
     try:
         advantage_mapper.get_purchase_account("canonical-ua")
@@ -45,17 +80,36 @@ def advantage_view(advantage_mapper, **kwargs):
         is_technical = True
 
     return flask.render_template(
-        "advantage/index.html", is_technical=is_technical
+        "advantage/index.html",
+        is_technical=is_technical,
+        is_in_maintenance=is_in_maintenance,
     )
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
 @use_kwargs({"email": String()}, location="query")
-def get_user_subscriptions(advantage_mapper, **kwargs):
-    email = kwargs.get("email")
-    user_subscriptions = advantage_mapper.get_user_subscriptions(email)
+def get_user_subscriptions(
+    advantage_mapper: AdvantageMapper,
+    is_in_maintenance: bool,
+    is_community_member: bool,
+    **kwargs,
+):
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=kwargs.get("email"),
+        is_in_maintenance=is_in_maintenance,
+        is_community_member=is_community_member,
+    )
 
     return flask.jsonify(to_dict(user_subscriptions))
+
+
+@shop_decorator(area="advantage", permission="user", response="json")
+@use_kwargs({"email": String()}, location="query")
+def get_annotated_subscriptions(advantage_mapper: AdvantageMapper, **kwargs):
+    email = kwargs.get("email")
+    subscriptions = advantage_mapper.get_annotated_subscriptions(email)
+
+    return flask.jsonify(to_dict(subscriptions))
 
 
 @shop_decorator(area="advantage", permission="user", response="json")
@@ -304,11 +358,13 @@ def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
 @shop_decorator(area="advantage", response="json")
 @use_kwargs(account_purhcase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
-    account_id = kwargs.get("account_id")
+    account_id = kwargs.get("account_id") or flask.session.get(
+        "guest_account_id"
+    )
     customer_info = kwargs.get("customer_info")
     marketplace = kwargs.get("marketplace", "canonical-ua")
 
-    if account_id is None:
+    if not account_id:
         try:
             account = advantage_mapper.get_or_create_user_account(
                 marketplace, customer_info, kwargs.get("captcha_value")
@@ -316,6 +372,7 @@ def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
             account_id = account.id
             if account.token is not None:
                 flask.session["guest_authentication_token"] = account.token
+                flask.session["guest_account_id"] = account.id
         except AccessForbiddenError:
             response = {"error": "User has no permission to purchase"}
             return flask.jsonify(response), 403
@@ -624,4 +681,42 @@ def blender_thanks_view(**kwargs):
     return flask.render_template(
         "advantage/subscribe/blender/thank-you.html",
         email=kwargs.get("email"),
+    )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def activate_magic_attach(advantage_mapper, **kwargs):
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+    try:
+        activation_status = advantage_mapper.activate_magic_attach(
+            contract_id=flask.request.form.get("contractID"),
+            user_code=flask.request.form.get("userCode").upper(),
+            client_ip=client_ip,
+        )
+        return flask.render_template(
+            "/pro/attach/confirmation.html", status=activation_status
+        )
+    except Exception as e:
+        return flask.render_template(
+            "/pro/attach/confirmation.html",
+            status=json.loads(e.response.content),
+        )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+@use_kwargs({"email": String(), "subscription": String()}, location="query")
+def magic_attach_view(advantage_mapper: AdvantageMapper, **kwargs):
+    email = kwargs.get("email")
+    selected_id = kwargs.get("subscription")
+
+    user_subscriptions = advantage_mapper.get_user_subscriptions(
+        email=email, marketplaces=["canonical-ua"]
+    )
+
+    return flask.render_template(
+        "pro/attach/index.html",
+        subscriptions=user_subscriptions,
+        selected_id=selected_id,
     )

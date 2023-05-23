@@ -1,37 +1,36 @@
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useQueryClient } from "react-query";
+import usePortal from "react-useportal";
+import { Formik } from "formik";
+import { debounce } from "lodash";
+import * as Yup from "yup";
 import {
   ActionButton,
   Button,
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, useEffect, useState, useMemo } from "react";
-import usePortal from "react-useportal";
-import { Formik } from "formik";
-import * as Yup from "yup";
-import { debounce } from "lodash";
-
-import SubscriptionCancel from "../SubscriptionCancel";
-import FormikField from "../../FormikField";
-import { SelectedId } from "../Content/types";
+import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { UserSubscription } from "advantage/api/types";
 import {
+  usePreviewResizeContract,
   useResizeContract,
   useUserSubscriptions,
-  usePreviewResizeContract,
 } from "advantage/react/hooks";
+import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
+import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
 import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
-import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
 import {
-  isBlenderSubscription,
   currencyFormatter,
   formatDate,
   getNextCycleStart,
+  isBlenderSubscription,
 } from "advantage/react/utils";
-import usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
-import { ResizeContractResponse } from "advantage/react/hooks/useResizeContract";
-import { PreviewResizeContractResponse } from "advantage/react/hooks/usePreviewResizeContract";
-import { useQueryClient } from "react-query";
-import { UserSubscription } from "advantage/api/types";
-import { UserSubscriptionPeriod } from "advantage/api/enum";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import usePollPurchaseStatus from "advantage/subscribe/checkout/hooks/usePollPurchaseStatus";
+import FormikField from "../../FormikField";
+import { SelectedId } from "../Content/types";
+import SubscriptionCancel from "../SubscriptionCancel";
 
 type Props = {
   onClose: () => void;
@@ -89,6 +88,7 @@ const generateError = (error: Error | null) => {
 type ResizeSummaryProps = {
   oldNumberOfMachines: number;
   newNumberOfMachines: number;
+  currentNumberOfMachines: number;
   isBlender: boolean;
   unitName: string;
   price: UserSubscription["price"];
@@ -101,6 +101,7 @@ type ResizeSummaryProps = {
 const ResizeSummary = ({
   oldNumberOfMachines,
   newNumberOfMachines,
+  currentNumberOfMachines,
   unitName,
   price,
   period,
@@ -108,12 +109,12 @@ const ResizeSummary = ({
   preview,
   isPreviewLoading,
 }: ResizeSummaryProps) => {
-  const absoluteDelta = Math.abs(newNumberOfMachines - oldNumberOfMachines);
+  const absoluteDelta = Math.abs(newNumberOfMachines - currentNumberOfMachines);
   if (absoluteDelta === 0) {
     return null;
   }
 
-  const isDecreasing = newNumberOfMachines - oldNumberOfMachines < 0;
+  const isDecreasing = newNumberOfMachines - currentNumberOfMachines < 0;
   const isMonthly = period === UserSubscriptionPeriod.Monthly;
   const unitPrice = (price ?? 0) / 100 / oldNumberOfMachines;
 
@@ -129,6 +130,12 @@ const ResizeSummary = ({
             You will be charged{" "}
             <b>{currencyFormatter.format(preview.amountDue / 100)}</b> when you
             click Resize.
+            <br />
+          </>
+        ) : null}
+        {!isPreviewLoading && !preview ? (
+          <>
+            You will be charged nothing.
             <br />
           </>
         ) : null}
@@ -208,7 +215,7 @@ const SubscriptionEdit = ({
     error: pendingPurchaseError,
     isLoading: isPendingPurchaseLoading,
     isSuccess: isPendingPurchaseSuccess,
-  } = usePendingPurchase();
+  } = usePollPurchaseStatus();
   const isResizing = resizeContract.isLoading || isPendingPurchaseLoading;
   const isResized = resizeContract.isSuccess && isPendingPurchaseSuccess;
   const error =
@@ -333,7 +340,10 @@ const SubscriptionEdit = ({
                   wrapperClassName="u-sv3"
                 />
                 <ResizeSummary
-                  oldNumberOfMachines={subscription.current_number_of_machines}
+                  oldNumberOfMachines={subscription.number_of_machines}
+                  currentNumberOfMachines={
+                    subscription.current_number_of_machines
+                  }
                   newNumberOfMachines={values.size}
                   isBlender={isBlender}
                   unitName={unitName}

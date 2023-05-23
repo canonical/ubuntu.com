@@ -6,7 +6,7 @@ context:
   copydoc: https://assets.ubuntu.com/v1/403799c7-Modern+Slavery+Statement+-+2022.pdf
 ---
 
-# Modern Slavery Statement - 2022
+# Modern Slavery Statement - 2023
 
 ## What is modern slavery?
 
@@ -14,17 +14,17 @@ Modern slavery is the illegal exploitation of people for personal or commercial 
 
 This statement sets out the steps Canonical has taken during its financial year to ensure that slavery and human trafficking is not taking place in its supply chain. This statement is made pursuant to section 54 of the Modern Slavery Act 2015.
 
-## Who we are-our structure and supply chains
+## Who we are - our structure and supply chains
 
-770 personnel and 7 offices.
+950+ personnel and 7 offices.
 
-Canonical is the company behind the Ubuntu open source operating system. Canonical’s mission is to make open source software available to people everywhere. Canonical delivers services which include, software development and support.
+Canonical is the company behind the Ubuntu open source operating system. Canonical's mission is to make open source software available to people everywhere. Canonical delivers services which include, software development and support.
 
-As an organisation Canonical’s internal activities include engineering, support, project management and commercial operation services - legal, finance, HR and sales and business operations.
+As an organisation Canonical's internal activities include engineering, support, project management and commercial operation services - legal, finance, HR and sales and business operations.
 
 Canonical procures services from a number of external third parties to support its activities and services.
 
-Canonical Group Limited and Canonical UK Limited are English subsidiaries of Canonical Holdings Limited and a number of affiliated entities provide services. A full list of Canonical entities can be found at [https://www.ubuntu.com/legal/companies](https://www.ubuntu.com/legal/companies). This statement relates to Canonical Group Limited and Canonical UK Limited.
+Canonical Group Limited and Canonical UK Limited are English subsidiaries of Canonical Limited and a number of affiliated entities provide services. A full list of Canonical entities can be found at [https://www.ubuntu.com/legal/companies](https://www.ubuntu.com/legal/companies). This statement relates to Canonical Group Limited and Canonical UK Limited.
 
 ## Our procedures
 
@@ -42,9 +42,9 @@ Canonical recognises that modern slavery is a complex supply chain issue and con
 
 ## Financial Year
 
-Canonical’s financial year end is 31st December.
+Canonical's financial year end is 31st December.
 
-This statement covers the financial year ending 31st December 2021.
+This statement covers the financial year ending 31st December 2022.
 
 ## Approval
 
@@ -52,7 +52,7 @@ This statement is signed by the director of Canonical Group Limited and Canonica
 
 **Neil French**<br />
 **Canonical**<br />
-**January 2022**
+**February 2023**
 
 <div class="p-top">
   <a href="#" class="p-top__link">Back to top</a>

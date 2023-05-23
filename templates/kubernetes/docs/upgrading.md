@@ -22,9 +22,9 @@ toc: False
   </div>
   <div class="p-notification__meta">
     <div class="p-notification__actions">
-      <a class='p-notification__action' href='/kubernetes/docs/1.24/upgrading'>Upgrade to 1.24 </a>
-      <a class='p-notification__action' href='/kubernetes/docs/1.23/upgrading'>Upgrade to 1.23 </a>
-      <a class='p-notification__action' href='/kubernetes/docs/1.22/upgrading'>Upgrade to 1.22 </a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.27/upgrading'>Upgrade to 1.27 </a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.26/upgrading'>Upgrade to 1.26 </a>
+      <a class='p-notification__action' href='/kubernetes/docs/1.25/upgrading'>Upgrade to 1.25 </a>
     </div>
   </div>
 </div>
@@ -82,12 +82,15 @@ documentation for the version you are upgrading to.
 
 ### Supported versions
 
-- [Upgrading from 1.23.x to 1.24.x](/kubernetes/docs/1.24/upgrading)
-- [Upgrading from 1.22.x to 1.23.x](/kubernetes/docs/1.23/upgrading)
-- [Upgrading from 1.21.x to 1.22.x](/kubernetes/docs/1.22/upgrading)
+- [Upgrading from 1.26.x to 1.27.x](/kubernetes/docs/1.27/upgrading)
+- [Upgrading from 1.25.x to 1.26.x](/kubernetes/docs/1.26/upgrading)
+- [Upgrading from 1.24.x to 1.25.x](/kubernetes/docs/1.25/upgrading)
 
 ### Older versions
 
+- [Upgrading from 1.23.x to 1.24.x](/kubernetes/docs/1.24/upgrading)
+- [Upgrading from 1.22.x to 1.23.x](/kubernetes/docs/1.23/upgrading)
+- [Upgrading from 1.21.x to 1.22.x](/kubernetes/docs/1.22/upgrading)
 - [Upgrading from 1.20.x to 1.21.x](/kubernetes/docs/1.21/upgrading)
 - [Upgrading from 1.19.x to 1.20.x](/kubernetes/docs/1.20/upgrading)
 - [Upgrading from 1.18.x to 1.19.x](/kubernetes/docs/1.19/upgrading)
@@ -106,57 +109,6 @@ juju status
 ... should indicate that all units are active and the correct version of **Kubernetes** is running.
 
 It is recommended that you run a [cluster validation][validation] to ensure that the cluster is fully functional.
-
-
-## Known Issues
-
-A [current bug](https://github.com/kubernetes/kubernetes/issues/70044) in Kubernetes could prevent the upgrade from properly deleting old pods. You can see such an issue here:
-
-```bash
-kubectl get po --all-namespaces
-```
-
-```
-NAMESPACE                         NAME                                                          READY   STATUS        RESTARTS   AGE
-default                           nginx-ingress-kubernetes-worker-controller-r8d2v              0/1     Terminating   0          17m
-ingress-nginx-kubernetes-worker   default-http-backend-kubernetes-worker-5d9bb77bc5-76c8w       1/1     Running       0          10m
-ingress-nginx-kubernetes-worker   nginx-ingress-controller-kubernetes-worker-5dcf47fc4c-q9mh6   1/1     Running       0          10m
-kube-system                       heapster-v1.6.0-beta.1-6db4b87d-phjvb                         4/4     Running       0          16m
-kube-system                       kube-dns-596fbb8fbd-bp8lz                                     3/3     Running       0          18m
-kube-system                       kubernetes-dashboard-67d4c89764-nwxss                         1/1     Running       0          18m
-kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx                         2/2     Running       0          17m
-kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running       0          17m
-```
-
-In this case the  `nginx-ingress-kubernetes-worker-controller-r8d2v` has been stuck in the `Terminating` state for roughly 10 minutes. The workaround for such a problem is to force a deletion:
-
-```bash
-kubectl delete po/nginx-ingress-kubernetes-worker-controller-r8d2v --force --grace-period=0
-```
-
-This will result in output similar to the following:
-
-```
-warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
-pod "nginx-ingress-kubernetes-worker-controller-r8d2v" force deleted
-```
-
-You should verify that the pod has been sucessfully removed:
-
-```bash
-kubectl get po --all-namespaces
-```
-
-```
-NAMESPACE                         NAME                                                          READY   STATUS    RESTARTS   AGE
-ingress-nginx-kubernetes-worker   default-http-backend-kubernetes-worker-5d9bb77bc5-76c8w       1/1     Running   0          11m
-ingress-nginx-kubernetes-worker   nginx-ingress-controller-kubernetes-worker-5dcf47fc4c-q9mh6   1/1     Running   0          11m
-kube-system                       heapster-v1.6.0-beta.1-6db4b87d-phjvb                         4/4     Running   0          17m
-kube-system                       kube-dns-596fbb8fbd-bp8lz                                     3/3     Running   0          19m
-kube-system                       kubernetes-dashboard-67d4c89764-nwxss                         1/1     Running   0          19m
-kube-system                       metrics-server-v0.3.1-67bb5c8d7-x9nzx                         2/2     Running   0          18m
-kube-system                       monitoring-influxdb-grafana-v4-65cc9bb8c8-mwvcm               2/2     Running   0          18m
-```
 
 
  <!--LINKS-->

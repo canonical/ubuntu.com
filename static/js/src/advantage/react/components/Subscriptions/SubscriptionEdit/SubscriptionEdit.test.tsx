@@ -1,26 +1,25 @@
 import React from "react";
-import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { mount } from "enzyme";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-
-import SubscriptionEdit, { generateSchema } from "./SubscriptionEdit";
-import { QueryClient, QueryClientProvider } from "react-query";
+import * as contracts from "advantage/api/contracts";
 import { LastPurchaseIds, UserSubscription } from "advantage/api/types";
+import * as usePollPurchaseStatus from "advantage/subscribe/checkout/hooks/usePollPurchaseStatus";
 import {
   lastPurchaseIdsFactory,
   userSubscriptionFactory,
   userSubscriptionStatusesFactory,
 } from "advantage/tests/factories/api";
-import * as contracts from "advantage/api/contracts";
-import * as usePendingPurchase from "advantage/subscribe/react/hooks/usePendingPurchase";
+import SubscriptionEdit, { generateSchema } from "./SubscriptionEdit";
 
 describe("SubscriptionEdit", () => {
   let queryClient: QueryClient;
   let subscription: UserSubscription;
   let resizeContractSpy: jest.SpyInstance;
   let getPurchaseSpy: jest.SpyInstance;
-  let usePendingPurchaseSpy: jest.SpyInstance;
+  let usePollPurchaseStatusSpy: jest.SpyInstance;
   let lastPurchaseIds: LastPurchaseIds;
 
   beforeEach(async () => {
@@ -29,8 +28,8 @@ describe("SubscriptionEdit", () => {
     getPurchaseSpy = jest.spyOn(contracts, "getPurchase");
     getPurchaseSpy.mockImplementation(() => Promise.resolve({}));
     // Mock the pending purchases hook so that stripe does not need to be set up.
-    usePendingPurchaseSpy = jest.spyOn(usePendingPurchase, "default");
-    usePendingPurchaseSpy.mockImplementation(() => ({
+    usePollPurchaseStatusSpy = jest.spyOn(usePollPurchaseStatus, "default");
+    usePollPurchaseStatusSpy.mockImplementation(() => ({
       setPendingPurchaseID: jest.fn(),
     }));
     queryClient = new QueryClient();
@@ -134,7 +133,7 @@ describe("SubscriptionEdit", () => {
   it("resizes the subscription when the form is submitted", async () => {
     resizeContractSpy.mockImplementation(() => Promise.resolve({ id: 123 }));
     const setPendingPurchaseID = jest.fn();
-    usePendingPurchaseSpy.mockImplementation(() => ({
+    usePollPurchaseStatusSpy.mockImplementation(() => ({
       isSuccess: true,
       setPendingPurchaseID,
     }));
@@ -162,7 +161,7 @@ describe("SubscriptionEdit", () => {
   it("disables submit and cancel buttons when the form is submitted", async () => {
     resizeContractSpy.mockImplementation(() => new Promise(jest.fn()));
     const setPendingPurchaseID = jest.fn();
-    usePendingPurchaseSpy.mockImplementation(() => ({
+    usePollPurchaseStatusSpy.mockImplementation(() => ({
       isSuccess: true,
       setPendingPurchaseID,
     }));
@@ -192,7 +191,7 @@ describe("SubscriptionEdit", () => {
     getPurchaseSpy.mockImplementation(() =>
       Promise.resolve({ stripeInvoices: [{ status: "done" }] })
     );
-    usePendingPurchaseSpy.mockImplementation(() => ({
+    usePollPurchaseStatusSpy.mockImplementation(() => ({
       isSuccess: true,
       setPendingPurchaseID: jest.fn(),
     }));
@@ -236,7 +235,7 @@ describe("SubscriptionEdit", () => {
     getPurchaseSpy.mockImplementation(() =>
       Promise.resolve({ stripeInvoices: [{ status: "done" }] })
     );
-    usePendingPurchaseSpy.mockImplementation(() => ({
+    usePollPurchaseStatusSpy.mockImplementation(() => ({
       isSuccess: true,
       setPendingPurchaseID: jest.fn(),
     }));

@@ -5,6 +5,7 @@ import {
   serverAndDesktopReleases,
   kernelReleases,
   kernelReleaseSchedule,
+  kernelReleases2204,
   kernelReleases2004,
   kernelReleases1804,
   kernelReleases1604,
@@ -25,6 +26,7 @@ import {
   kernelReleaseNames,
   kernelVersionNames,
   kernelReleaseScheduleNames,
+  kernelReleaseNames2204,
   kernelReleaseNames2004,
   kernelReleaseNames1804,
   kernelReleaseNames1604,
@@ -72,6 +74,14 @@ function buildCharts() {
       kernelStatus,
       kernelReleases,
       kernelVersionNames
+    );
+  }
+  if (document.querySelector("#kernel2204")) {
+    createChart(
+      "#kernel2204",
+      kernelReleaseNames2204,
+      kernelStatus,
+      kernelReleases2204
     );
   }
   if (document.querySelector("#kernel2004")) {
@@ -167,6 +177,10 @@ function clearCharts() {
   if (kernelEol) {
     kernelEol.innerHTML = "";
   }
+  const kernel2204 = document.querySelector("#kernel2204");
+  if (kernel2204) {
+    kernel2204.innerHTML = "";
+  }
   const kernel2004 = document.querySelector("#kernel2004");
   if (kernel2004) {
     kernel2004.innerHTML = "";
@@ -205,7 +219,7 @@ function clearCharts() {
   }
 }
 
-var mediumBreakpoint = 875;
+var mediumBreakpoint = 620;
 
 // A bit of a hack, but chart doesn't load with full year axis on first load,
 // It has to be loaded once, and then again

@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html prefix="og: http://ogp.me/ns#" class="{% block extra_html_class %}{% endblock %}" lang="en" dir="ltr">
+<html prefix="og: http://ogp.me/ns#" class="{% block extra_html_class %}{% endblock %}" lang="{% block meta_lang %}en{% endblock %}" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,10 @@
   <script src="https://assets.ubuntu.com/v1/703e23c9-lazysizes+noscript+native-loading.5.1.2.min.js" defer></script>
 
   <script src="{{ versioned_static('js/dist/main.js') }}" defer></script>
+  <script src="{{ versioned_static('js/src/infer-preferred-language.js')}}"></script>
+
+  <script defer data-domain="ubuntu.com" data-include="/pro, /pro/dashboard, /pro/subscribe, /account/checkout" src="https://plausible.io/js/script.exclusions.js"></script>
+  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 
   <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}">
   <link rel="stylesheet" type="text/css" media="print" href="{{ versioned_static('css/print.css') }}">
@@ -22,8 +26,6 @@
 
   <link rel="shortcut icon" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" type="image/x-icon">
   <link rel="apple-touch-icon" href="https://assets.ubuntu.com/v1/17b68252-apple-touch-icon-180x180-precomposed-ubuntu.png">
-
-  <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}">
 
   {% block head_extra %}{% endblock %}
 
@@ -68,7 +70,7 @@
 <body class="{% block body_class %}{% endblock %}">
   <!-- google tag manager -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe>
   </noscript>
   <!-- end google tag manager -->
 
@@ -94,13 +96,22 @@
         </div>
       </div>
     </div>
-    <div id="main-content" class="inner-wrapper">
+    <div id="unsubscribed" class="p-strip u-no-padding--top">
+      <div class="u-fixed-width">
+        <div class="p-notification--positive u-no-margin--bottom">
+          <div class="p-notification__content">
+            <p class="p-notification__message">You have successfully unsubscribed! <a href="#" onclick="location.href = ''; return false;"><i class="p-notification__close">Close</i></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <main id="main-content" class="inner-wrapper">
       {% block content_head %}{% endblock %}
       {% block content_container %}
       {% block outer_content %}
       {% endblock outer_content %}
       {% endblock content_container %}
-    </div><!-- /.inner-wrapper -->
+    </main><!-- /.inner-wrapper -->
   </div><!-- /.wrapper -->
 
   <!-- footer content goes here -->

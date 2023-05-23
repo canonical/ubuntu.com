@@ -1,11 +1,7 @@
 import React, { useContext } from "react";
 import classNames from "classnames";
 import { Col, RadioInput, Row } from "@canonical/react-components";
-import {
-  Features,
-  isPublicCloud,
-  ProductTypes,
-} from "advantage/subscribe/react/utils/utils";
+import { Features, ProductTypes } from "advantage/subscribe/react/utils/utils";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
 
 const Feature = () => {
@@ -26,7 +22,6 @@ const Feature = () => {
       className={classNames({
         row: true,
         "p-divider": true,
-        "u-disable": isPublicCloud(productType),
       })}
       data-testid="wrapper"
     >
@@ -150,12 +145,11 @@ const Feature = () => {
             className={classNames({
               "p-card--radio--column": true,
               "is-selected": feature === Features.infra,
-              "u-disable": infraOnlyDisabled,
             })}
-            data-testid="infra-only"
           >
             <label className="p-radio u-align-text--center">
               <input
+                data-testid="infra-only"
                 className="p-radio__input"
                 autoComplete="off"
                 type="radio"
@@ -163,6 +157,7 @@ const Feature = () => {
                 value={Features.infra}
                 checked={feature === Features.infra}
                 onChange={handleChange}
+                disabled={infraOnlyDisabled}
               />
               <span className="p-radio__label" id={`infra-label`}>
                 <RadioInput
@@ -171,6 +166,7 @@ const Feature = () => {
                   checked={feature === Features.infra}
                   value={Features.infra}
                   onChange={handleChange}
+                  disabled={infraOnlyDisabled}
                 />
                 <div className="included">
                   <i className="p-icon--success"></i>Included

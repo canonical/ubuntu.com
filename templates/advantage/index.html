@@ -1,14 +1,14 @@
 {% extends "advantage/base_advantage.html" %}
 
 {% block title %}{% if user_info %}Ubuntu Pro Dashboard{% else %}Ubuntu Pro{% endif %}{% endblock %}
-{% block meta_description %}Ubuntu Pro offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Extended Security Maintenance to address security and compliance concerns.{% endblock %}
+{% block meta_description %}Ubuntu Pro offers a single, per-node packaging of the most comprehensive software, security and IaaS support in the industry, with OpenStack support, Kubernetes support included, and Livepatch, Landscape and Expanded Security Maintenance to address security and compliance concerns.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1So3n5HEpBX39xxEkkChnve09gKSr9TgYUcbfdOTCevk/edit{% endblock meta_copydoc %}
 
 {% block content %}
 
 {% if user_info %}
   <section class="p-strip--suru-topped u-no-padding--bottom">
-    {% if is_maintenance %}
+    {% if is_in_maintenance %}
     <div class="row">
       <div class="col-12">
         <div class="p-notification--caution">
@@ -38,7 +38,9 @@
       {% if not is_technical %}
         <div class="col-7 u-vertically-center u-align--right">
           <div>
-            <a class="p-button--positive" href="/pro/subscribe">Buy new subscription</a>
+            {% if not is_in_maintenance %}
+              <a class="p-button--positive" href="/pro/subscribe">Buy new subscription</a>
+            {% endif %}
             <a class="p-button" href="/account/invoices">Invoices</a>
             <a class="p-button" href="/account/payment-methods">Payment methods</a>
           </div>

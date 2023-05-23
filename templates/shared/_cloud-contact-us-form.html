@@ -9,7 +9,8 @@
     <div class="col-8">
       <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}">
         <fieldset class="u-no-margin--bottom">
-          <h3>About you</h3>
+          <legend class="u-off-screen">About you</legend>
+          <h2 class="p-heading--3">About you</h2>
           <ul class="p-list">
             <li class="p-list__item">
               <label for="firstName">First name:</label>
@@ -32,6 +33,7 @@
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">About your company</legend>
           <h3>About your company</h3>
           <ul class="p-list">
             <li class="p-list__item">
@@ -45,6 +47,7 @@
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">Your comments</legend>
           <h3>Your comments</h3>
           <ul class="p-list">
             <li class="p-list__item">
@@ -54,6 +57,7 @@
           </ul>
         </fieldset>
         <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">Privacy policy</legend>
           <ul class="p-list">
             <li class="p-list__item">
               <label class="p-checkbox">
@@ -91,10 +95,11 @@
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
           <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
         </fieldset>
       </form>
     </div>
-    
+
     <div class="col-4">
       <div class="p-card">
         <h3 class="p-card__title">Any questions? Call us</h3>

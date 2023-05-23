@@ -28,15 +28,10 @@ configured as follows:
     juju deploy keepalived
     ```
 
-1. Add the required relations:
+1. Relate `keepalived` to `kubeapi-load-balancer`:
     ```bash
-    juju add-relation keepalived:juju-info kubeapi-load-balancer:juju-info
-    juju add-relation keepalived:lb-sink kubeapi-load-balancer:website
-    juju add-relation keepalived:loadbalancer kubernetes-control-plane:loadbalancer
-    juju add-relation keepalived:website kubernetes-worker:kube-api-endpoint
+    juju integrate keepalived:juju-info kubeapi-load-balancer:juju-info
     ```
-    This redirects both the Kubernetes master and worker units to point at the keepalived
-    service rather than the api-endpoint directly.
 
 1. Configure the keepalived application. You should substitute a suitable IP address and
      FQDN in the example below:
@@ -62,18 +57,17 @@ configured as follows:
     juju config kubernetes-control-plane extra_sans="$VIP $VIP_HOSTNAME"
     ```
 
+1. Configure kubernetes-control-plane to use the VIP as the advertised Kubernetes API endpoint:
+    ```bash
+    juju config kubernetes-control-plane loadbalancer-ips="$VIP"
+    ```
+
 1. Wait for the new service to settle. You can check the status of the `keepalived`
     application by running:
     ```bash
     juju status keepalived
     ```
     Once the application reports a 'ready' status, continue to the next step.
-
-1. Remove unneeded relations:
-    ```bash
-    juju remove-relation kubernetes-worker:kube-api-endpoint kubeapi-load-balancer:website
-    juju remove-relation kubernetes-control-plane:loadbalancer kubeapi-load-balancer:loadbalancer
-    ```
 
 1. Scale up the `kubeapi-load-balancer`. You can specify as many units as your situation requires.
     In this example, we add two additional units for a total of three:

@@ -72,6 +72,34 @@
   </div>
   <div class="row u-equal-height">
     <div class="col-8">
+      <h2>Real-time kernel</h2>
+      <p>Support for real-time compute  by integrating PREEMPT_RT patches:</p>
+      <ul class="p-list">
+        <li class="p-list__item is-ticked">More preemptive than mainline Linux</li>
+        <li class="p-list__item is-ticked">Ultra low-latency for mission critical applications</li>
+        <li class="p-list__item is-ticked">Bounded response times for stringent latency requirements</li>
+      </ul>
+      <p>
+        <a href="/blog/real-time-ubuntu-is-now-generally-available">Learn more about the real-time kernel&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/9df98616-Ubuntu_Real-time_kernel_white.png",
+        alt="",
+        width="510",
+        height="414",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <hr class="p-separator" />
+  </div>
+  <div class="row u-equal-height">
+    <div class="col-8">
       <h2>Secure boot</h2>
       <p>Ubuntu Core 20 authenticates the boot process by default. Authentication is based on the verification of digital signatures. This means:</p>
       <ul class="p-list">
@@ -164,7 +192,7 @@
         <li class="p-list__item is-ticked">Improve out-of-the-box experience for end-user</li>
       </ul>
       <p>
-        <a href="">Learn more about validation sets&nbsp;&rsaquo;</a>
+        <a href="https://snapcraft.io/docs/validation-sets">Learn more about validation sets&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-4 u-align--center u-vertically-center u-hide--medium u-hide--small">
@@ -252,9 +280,9 @@
           </div>
         </div>
 
-        <div tabindex="0" role="tabpanel" id="snapd-tab" aria-labelledby="snapd-tab-cta" hidden="hidden">
+        <div tabindex="0" role="tabpanel" id="snapd-tab" aria-labelledby="snapd-tab-cta" aria-hidden="hidden">
           <div class="row u-equal-height">
-            <div class="col-8">
+            <div class="col-8 p-divider__block">
             <h3>Snapd</h3>
             <p>Snapd is the background service that manages and maintains installed snaps. Alongside its various service and management functions, snapd:</p>
             <ul class="p-list">
@@ -268,7 +296,7 @@
             </div>
             <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
                 {{ image (
-                  url="https://assets.ubuntu.com/v1/c5cb0f8e-picto-ubuntu.svg",
+                  url="https://assets.ubuntu.com/v1/0ed605c0-ubuntu-cof-120.svg",
                   alt="",
                   width="120",
                   height="120",
@@ -280,9 +308,9 @@
           </div>
         </div>
 
-        <div tabindex="0" role="tabpanel" id="snapcraft-tab" aria-labelledby="snapcraft-tab-cta" hidden="hidden">
+        <div tabindex="0" role="tabpanel" id="snapcraft-tab" aria-labelledby="snapcraft-tab-cta" aria-hidden="hidden">
           <div class="row u-equal-height">
-            <div class="col-8">
+            <div class="col-8 p-divider__block">
               <h3>Snapcraft</h3>
               <p>Snapcraft is a powerful and easy to use tool for building and publishing snaps. It helps you: </p>
               <ul class="p-list">
@@ -296,7 +324,7 @@
             </div>
             <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
                 {{ image (
-                  url="https://assets.ubuntu.com/v1/146d23a2-snapcraft-logo-bird.svg",
+                  url="https://assets.ubuntu.com/v1/86b8b783-snapcraft-logo-120.svg",
                   alt="",
                   width="120",
                   height="114",

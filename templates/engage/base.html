@@ -73,7 +73,7 @@
       {% endif %}
     </div>
     {% if metadata["image"] != '' %}
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+    <div class="col-5 u-hide--small u-hide--medium u-vertically-center u-align--center">
       <img src="{{metadata['image']}}" alt="" width="{{metadata['image_width']}}"/>
     </div>
     {% endif %}
@@ -135,7 +135,7 @@
 <!-- Youtube webinars -->
 <section class="p-strip is-shallow" id="youtube-section">
   <div class="row" id="webinar">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ metadata['youtube_id'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe title="Webinar" width="560" height="315" src="https://www.youtube.com/embed/{{ metadata['youtube_id'] }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}
@@ -144,7 +144,7 @@
 <!-- Vimeo webinars -->
 <section class="p-strip is-shallow" id="vimeo-section">
   <div class="row" id="webinar">
-    <iframe src="https://player.vimeo.com/video/{{ metadata['vimeo_id'] }}" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <iframe title="Webinar" src="https://player.vimeo.com/video/{{ metadata['vimeo_id'] }}" width="560" height="315" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 </section>
 {% endif %}

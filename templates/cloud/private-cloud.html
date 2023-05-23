@@ -11,13 +11,13 @@
   <div class="row">
     <div class="col-7">
       <h1>What is private cloud?</h1>
-      <p>Private cloud is a cloud computing environment that is exclusively dedicated to a single entity or a service. It runs on the organisation's premises or in an external data centre. It is managed by the organisation's operations team or a managed service provider.</p>
+      <p>Private cloud is a <a href="/cloud/cloud-computing">cloud computing</a> environment that is exclusively dedicated to a single entity or a service. It runs on the organisation's premises or in an external data centre. It is managed by the organisation's operations team or a managed service provider.</p>
       <p>Private clouds prove to be more cost-effective than public clouds when running workloads in the long term and at scale. They are a building block in hybrid cloud and multi-cloud architectures, enabling bare metal, virtualisation, storage, container and serverless services.</p>
       <p>
-        <a href="/openstack">Build cost-effective private cloud on Ubuntu&nbsp;&rsaquo;</a>
+        <a class="p-button--positive" href="/engage/openstack-ebook-beginners">Build your own cloud today</a>
       </p>
     </div>
-    <div class="col-5 u-hide--small u-vertically-center u-align--center">
+    <div class="col-5 u-hide--small u-hide--medium u-vertically-center u-align--center">
       {{ image (
         url="https://assets.ubuntu.com/v1/c5b21ec2-Private+Cloud.svg",
         alt="Private Cloud",
@@ -426,34 +426,46 @@
 <section class="p-strip--light">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h2>All you need for your private cloud</h2>
+      <h2 class="u-sv2">All you need for your private cloud</h2>
     </div>
   </div>
   <div class="row u-equal-height">
     <div class="p-card col-6">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/6a983826-Openstack+Logo.svg" alt="OpenStack Logo" width="32" height="32" /> 
-          <h4 class="p-heading-icon__title">Charmed OpenStack</h4>
-        </div>
+      <div class="p-card__image">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/8c223290-Canonical-OpenStack-2022-LRG.png",
+          alt="",
+          width="300",
+          height="92",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
       <hr/>
       <div class="p-card__content">
-        <p>Charmed OpenStack is a pure upstream OpenStack distribution engineered for the best price-performance with full enterprise support for your production-grade private cloud.</p>
-        <p><a href="/openstack/features">Learn more about Charmed OpenStack&nbsp;&rsaquo;</a></p>
+        <p>Canonical OpenStack is an enterprise cloud platform engineered for price-performance that serves as a cost-effective extension to hyperscale infrastructure.</p>
+        <p><a href="/openstack">Learn more about Canonical OpenStack&nbsp;&rsaquo;</a></p>
       </div>
     </div>
     <div class="p-card col-6">
-      <div class="p-heading-icon--small">
-        <div class="p-heading-icon__header">
-          <img class= "p-heading-icon__img" src="https://assets.ubuntu.com/v1/5f3d3c45-maas-logo-cropped.svg" alt="" width="32" height="32" />
-          <h4 class="p-heading-icon__title">MAAS</h4>
-        </div>
+      <div class="p-card__image">
+        {{
+          image (
+          url="https://assets.ubuntu.com/v1/5cdf69d6-Ubuntu+Pro.svg",
+          alt="",
+          width="300",
+          height="78",
+          hi_def=True,
+          loading="lazy"
+          ) | safe
+        }}
       </div>
       <hr/>
       <div class="p-card__content">
-        <p>Build a bare metal cloud with MAAS. Deploy any OS on any hardware in minutes via API, just like in the cloud.</p>
-        <p><a href="https://maas.io/">Learn more about MAAS&nbsp;&rsaquo;</a></p>
+        <p>Ubuntu Pro is the most comprehensive subscription for open-source software security and compliance.</p>
+        <p><a href="/pro">Learn more about Ubuntu Pro&nbsp;&rsaquo;</a></p>
       </div>
     </div>
   </div>

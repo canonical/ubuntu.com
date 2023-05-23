@@ -1,0 +1,201 @@
+{% extends "landscape/base_landscape.html" %}
+
+{% block title %} Managed Landscape {% endblock %}
+{% block meta_description %} Managed Landscape is for customers that need the flexibility of self-hosted Landscape, and the convenience and assurance of a software as a service solution. {% endblock meta_description %}
+{% block meta_copydoc %} https://docs.google.com/document/d/1MycPWcmMveCZxrGtn7ASc0myWNxPzLTciHfQIA6kPZ4/edit# {% endblock meta_copydoc %}
+
+{% block content %}
+<article class="p-strip is-deep u-no-padding--top">
+  <section class="p-strip is-deep">
+    <div class="row">
+      <div class="col-3">
+        <h1 class="p-heading--2"><strong>Managed Landscape</strong></h1>
+      </div>
+      <div class="col-9">
+        <p class="p-heading--2">Software as a service convenience, <br class="u-hide--small">in an environment you control</p>
+        <p>Manage machines at scale without worrying about tooling. Let Canonical handle Landscape's installation, patching, scaling and maintenance.</p>
+        <p>
+          <a class="p-button--positive js-invoke-modal" href="/landscape/managed#get-in-touch">Contact us</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="u-fixed-width">
+      <hr class="u-no-margin--bottom">
+      <div class="p-strip is-shallow u-no-padding--top">
+        <h2 class="p-muted-heading">We take care of the installation <br class="u-hide--small"> and maintenance</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-medium-2 col-start-large-4 col-3">
+        <p class="p-heading--2">Up to 99.9% uptime</p>
+        <p>Backed by an SLA.</p>
+      </div>
+      <div class="col-medium-2 col-3">
+        <p class="p-heading--2">24/7 <br> monitoring</p>
+        <p>Active management and break/fix response by Canonical engineers.</p>
+      </div>
+      <div class="col-medium-2 col-3">
+        <p class="p-heading--2">High <br> availability</p>
+        <p>Fault-tolerant and ready for real-world challenges.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="p-strip is-deep u-no-padding--top">
+    <hr class="u-no-margin--bottom is-fixed-width u-hide--small u-hide--medium">
+    <div class="row">
+      <div class="col-3">
+        <h2 class="p-muted-heading">Why <br class="u-hide--small u-hide--medium"> Managed Landscape</h2>
+        <hr class="is-fixed-width u-no-margin--bottom u-hide--large">
+
+      </div>
+      <div class="col-9">
+        <div class="p-strip u-no-padding--top is-shallow">
+          <h3 class="p-heading--2">Any-cloud ready</h3>
+        </div>
+        <p>Managed Landscape can be deployed in high availability across multiple machines, anywhere. Whether you are running your workloads across multiple clouds or a hybrid cloud with your own infrastructure, Managed Landscape can easily provide a scalable and reliable service to maintain your Ubuntu environment.</p>
+      </div>
+    </div>
+      <div class="p-strip is-shallow u-no-padding--top">
+        <div class="row">
+          <div class="col-small-1 col-2 col-start-large-2 col-medium-1 u-sv-3">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/38ac7357-openstack-logo.png",
+              alt="Openstack",
+              width="432",
+              height="432",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-small-1 col-2 col-medium-1 u-sv-3">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/865293a8-microsoft-azure--logo.png",
+              alt="Microsoft Azure",
+              width="288",
+              height="288",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-small-1 col-2 col-medium-1 u-sv-3">
+            {{ 
+              image (
+              url="https://assets.ubuntu.com/v1/b2952436-aws-logo.svg",
+              alt="Amazon Web Services",
+              width="158",
+              height="158",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-small-1 col-2 col-medium-1 u-sv-3">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/8347ea7c-vmware-logo.png",
+              alt="VMWare",
+              width="288",
+              height="289",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+          <div class="col-small-1 col-2 col-medium-1 u-sv-3">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/120a5c4b-google-cloud-stacked-logo.png",
+              alt="Google Cloud Platform",
+              width="432",
+              height="432",
+              hi_def=True,
+              loading="lazy"
+              ) | safe
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-9 col-start-large-4">
+          <div class="p-strip u-no-padding--top">
+            <hr class="is-fixed-width u-no-margin--bottom ">
+            <div class="p-strip u-no-padding--top is-shallow">
+              <h3 class="p-heading--2">Bring your own <br class="u-hide--small"> identity and access management platform</h3>
+            </div>
+              <p>Landscape supports OpenID Connect (OIDC) to authenticate users, and integrates enterprise identity providers like Azure AD, Google, Okta, IBM, and more.</p>
+          </div>
+          <hr class="u-no-margin--bottom">
+          <div class="p-strip u-no-padding--top is-shallow">
+            <h3 class="p-heading--2">Mirror Canonical's repositories, <br class="u-hide--small"> host private repositories</h3>
+          </div>
+          <p>Landscape simplifies the task of scheduling software updates, and provides a mirroring mechanism to deliver software updates at scale, over your local network (LAN).</p>
+          <p>Organisations developing proprietary software on Ubuntu benefit from Managed Landscape's support for private repositories.</p>
+      </div>
+  </section>
+
+  <section class="p-strip is-deep u-no-padding--top">
+    <div class="row">
+      <hr class="u-no-margin--bottom">
+      <div class="col-6 col-medium-3 p-strip is-shallow u-no-padding--top ">
+        <h2>Pricing that is clear and transparent</h2>
+      </div>
+      <div class="col-6 col-medium-3">
+        <p>Our Field Engineering team can recommend the number and type of machines your Managed Landscape deployment would need.</p>
+        <p>
+          <a href="/landscape/managed#get-in-touch">Get started with a free quote and architecture assessment</a>
+        </p>
+      </div>
+    </div>
+      <div class="row">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Per Landscape virtual machine/year</th>
+              <th>Per Landscape physical machine/year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Managed Landscape on public clouds, VMware, OpenStack or LXD</th>
+              <td>$3,099</td>
+              <td>$6,861</td>
+            </tr>
+            <tr>
+              <th>Managed Landscape on bare metal</th>
+              <td>N/A</td>
+              <td>$9,470</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </section>
+  
+  <hr class="u-no-margin--bottom is-fixed-width">
+  <section class="p-strip is-deep">
+    <div class="row">
+      <div class="col-6 col-medium-3">
+        <h2>Got questions?</h2>
+      </div>
+      <div class="col-6 col-medium-3">
+        <p>Landscape's API can bridge any requirements our dashboard may not natively address.</p>
+        <p>
+          <a href="/landscape/managed#get-in-touch">Contact us about your unique requirements</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</article>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/landscape-managed" data-form-id="5054" data-lp-id="" data-return-url="/landscape/managed#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+
+<script src="/static/js/src/landscape-form.js"></script>
+{% endblock content %}

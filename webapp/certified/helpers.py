@@ -7,6 +7,7 @@ def get_download_url(model_details):
     """
     platform_category = model_details.get("category", "").lower()
     architecture = model_details.get("architecture", "").lower()
+    make = model_details.get("make", "").lower()
 
     if model_details.get("level") == "Enabled":
         # Enabled systems use oem images without download links.
@@ -16,6 +17,9 @@ def get_download_url(model_details):
         return "https://ubuntu.com/download/desktop"
 
     if "core" in platform_category:
+        if make == "xilinx":
+            return "https://ubuntu.com/download/amd-xilinx"
+
         return "https://ubuntu.com/download/iot/"
 
     if "server" in platform_category:

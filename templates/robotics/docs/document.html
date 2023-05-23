@@ -1,0 +1,11 @@
+{% with
+    document=document,
+    nav_items=nav_items,
+    search_action="/robotics/docs/search",
+    siteSearch="https://ubuntu.com/robotics/docs",
+    placeholder="Search on Robotics Docs",
+    navigation=navigation
+  %}
+    {% include "templates/docs/shared/_docs.html" %}
+  {% endwith %}
+  

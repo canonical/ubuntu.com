@@ -1,578 +1,631 @@
 <section class="p-strip--light is-bordered">
+  <div class="u-fixed-width">
+    <h2>Kernel release schedule</h2>
+  </div>
   <div class="row">
-    <div class="col-8">
-      <h2>Kernel release schedule</h2>
+  <div class="col-3">
+      <ul class="p-tabs--vertical on-paper js-tabbed-content u-no-margin--left u-no-padding--left" role="tablist" style="margin-top:1.5rem;">
+        <li><button class="p-tabs__item" role="tab" id="support-all-tab" aria-controls="support-all">All releases</button></li>
+        <li><button class="p-tabs__item" role="tab" id="support-lts-tab" aria-selected="false" aria-controls="support-lts">All LTS releases</button></li>
+        <li><button class="p-tabs__item" role="tab" id="support-22-04-tab" aria-selected="false" aria-controls="support-22-04">22.04 LTS</button></li>
+        <li><button class="p-tabs__item" role="tab" id="support-20-04-tab" aria-selected="false" aria-controls="support-20-04">20.04 LTS</button></li>
+        <li><button class="p-tabs__item" role="tab" id="support-18-04-tab" aria-selected="false"  aria-controls="support-18-04">18.04 LTS</button></li>
+        <li><button class="p-tabs__item" role="tab" id="support-16-04-tab" aria-selected="false"  aria-controls="support-16-04">16.04 LTS</button></li>
+        <li><button class="p-tabs__item" role="tab" id="support-14-04-tab" aria-selected="false" aria-controls="support-14-04">14.04 LTS</button></li>
+      </ul>
+    </div>
+    <div class="col-9" tabindex="0" id="support-22-04" role="tabpanel" aria-labelledby="support-22-04-tab">
+      <div class="u-hide--small" id="kernel2204"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+            <th scope="col">Expanded security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 22.04.0 LTS (v5.15)</strong></td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            <td>Apr 2032</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.1 LTS (v5.15)</strong></td>
+            <td>Aug 2022</td>
+            <td>Apr 2027</td>
+            <td>Apr 2032</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.2 LTS (v5.19)</strong></td>
+            <td>Feb 2023</td>
+            <td>Jul 2023</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <div class="js-tab-container" {% if selected_tab %}data-js-selected-tab="{{ selected_tab }}"{% endif %}>
-        <nav class="p-tabs">
-          <ul class="p-tabs__list" role="tablist">
-            <li class="p-tabs__item" role="presentation">
-              <a href="#support-all" class="p-tabs__link" role="tab" id="support-all-tab" {% if selected_tab == "support-all-tab" %}aria-selected="true"{% endif %} aria-controls="support-all">All releases</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#support-lts" class="p-tabs__link" role="tab" id="support-lts-tab" {% if selected_tab == "support-lts-tab" %}aria-selected="true"{% endif %}aria-controls="support-lts">All LTS releases</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#support-20-04" class="p-tabs__link" role="tab" id="support-20-04-tab" {% if selected_tab == "support-20-04-tab" %}aria-selected="true"{% endif %}aria-controls="support-20-04">20.04 LTS</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#support-18-04" class="p-tabs__link" role="tab" id="support-18-04-tab" {% if selected_tab == "support-18-04-tab" %}aria-selected="true"{% endif %} aria-controls="support-18-04">18.04 LTS</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#support-16-04" class="p-tabs__link" role="tab" id="support-16-04-tab" {% if selected_tab == "support-16-04-tab" %}aria-selected="true"{% endif %} aria-controls="support-16-04">16.04 LTS</a>
-            </li>
-            <li class="p-tabs__item" role="presentation">
-              <a href="#support-14-04" class="p-tabs__link" role="tab" id="support-14-04-tab"
-              {% if selected_tab == "support-14-04-tab" %}aria-selected="true"{% endif %}  aria-controls="support-14-04">14.04 LTS</a>
-            </li>
-          </ul>
-        </nav>
+    <div class="col-9" tabindex="0" id="support-20-04" role="tabpanel" aria-labelledby="support-20-04-tab">
+      <div class="u-hide--small" id="kernel2004"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+            <th scope="col">Expanded security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 20.04.5 LTS (v5.15)</strong></td>
+            <td>Aug 2022</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.4 LTS (v5.13)</strong></td>
+            <td>Feb 2022</td>
+            <td>Aug 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.3 LTS (v5.11)</strong></td>
+            <td>Aug 2021</td>
+            <td>Feb 2022</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.2 LTS (v5.8)</strong></td>
+            <td>Feb 2021</td>
+            <td>Aug 2021</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.1 LTS (v5.4)</strong></td>
+            <td>Jul 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.0 LTS (v5.4)</strong></td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+            <td>Apr 2030</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="p-tabs__content" id="support-20-04" role="tabpanel" aria-labelledby="support-20-04-tab">
-          <div class="u-hide--small" id="kernel2004"></div>
-          <table class="u-hide--medium u-hide--large">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <th scope="col">Released</th>
-                <th scope="col">End of Life</th>
-                <th scope="col">Extended security maintenance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Ubuntu 20.04.5 LTS</strong></td>
-                <td>Aug 2022</td>
-                <td>Apr 2025</td>
-                <td>Apr 2030</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.4 LTS</strong></td>
-                <td>Feb 2022</td>
-                <td>Aug 2022</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.3 LTS</strong></td>
-                <td>Aug 2021</td>
-                <td>Feb 2022</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.2 LTS</strong></td>
-                <td>Feb 2021</td>
-                <td>Aug 2021</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.1 LTS</strong></td>
-                <td>Jul 2020</td>
-                <td>Apr 2025</td>
-                <td>Apr 2030</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.0 LTS</strong></td>
-                <td>Apr 2020</td>
-                <td>Apr 2025</td>
-                <td>Apr 2030</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="col-9" tabindex="0" id="support-18-04" role="tabpanel" aria-labelledby="support-18-04-tab">
+      <div class="u-hide--small" id="kernel1804"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+            <th scope="col">Expanded security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 18.04.5 LTS (v5.4)</strong></td>
+            <td>Aug 2020</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.4 LTS (v5.3)</strong></td>
+            <td>Feb 2020</td>
+            <td>Aug 2020</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.3 LTS  (v5.0)</strong></td>
+            <td>Aug 2019</td>
+            <td>Feb 2020</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
+            <td>Feb 2019</td>
+            <td>Aug 2019</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
+            <td>Jul 2018</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+            <td>Apr 2028</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="p-tabs__content" id="support-18-04" role="tabpanel" aria-labelledby="support-18-04-tab">
-          <div class="u-hide--small" id="kernel1804"></div>
-          <table class="u-hide--medium u-hide--large">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <th scope="col">Released</th>
-                <th scope="col">End of Life</th>
-                <th scope="col">Extended security maintenance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Ubuntu 18.04.5 LTS</strong></td>
-                <td>Aug 2020</td>
-                <td>Apr 2023</td>
-                <td>Apr 2028</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.4 LTS (v5.3)</strong></td>
-                <td>Feb 2020</td>
-                <td>Aug 2020</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.3 LTS  (v5.0)</strong></td>
-                <td>Aug 2019</td>
-                <td>Feb 2020</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
-                <td>Feb 2019</td>
-                <td>Aug 2019</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
-                <td>Jul 2018</td>
-                <td>Apr 2023</td>
-                <td>Apr 2028</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
-                <td>Apr 2018</td>
-                <td>Apr 2023</td>
-                <td>Apr 2028</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="col-9" tabindex="0" id="support-16-04" role="tabpanel" aria-labelledby="support-16-04-tab">
+      <div class="u-hide--small" id="kernel1604"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+            <th scope="col">Expanded security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
+            <td>Aug 2018</td>
+            <td>Apr 2021</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
+            <td>Feb 2018</td>
+            <td>Jul 2018</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
+            <td>Aug 2017</td>
+            <td>Jan 2018</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
+            <td>Feb 2017</td>
+            <td>Jul 2017</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
+            <td>Aug 2016</td>
+            <td>Apr 2021</td>
+            <td>Apr 2024</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+            <td>Apr 2024</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="p-tabs__content" id="support-16-04" role="tabpanel" aria-labelledby="support-16-04-tab">
-          <div class="u-hide--small" id="kernel1604"></div>
-          <table class="u-hide--medium u-hide--large">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <th scope="col">Released</th>
-                <th scope="col">End of Life</th>
-                <th scope="col">Extended security maintenance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
-                <td>Aug 2018</td>
-                <td>Apr 2021</td>
-                <td>Apr 2024</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
-                <td>Feb 2018</td>
-                <td>Jul 2018</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
-                <td>Aug 2017</td>
-                <td>Jan 2018</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
-                <td>Feb 2017</td>
-                <td>Jul 2017</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
-                <td>Aug 2016</td>
-                <td>Apr 2021</td>
-                <td>Apr 2024</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
-                <td>Apr 2016</td>
-                <td>Apr 2021</td>
-                <td>Apr 2024</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="col-9" tabindex="0" id="support-14-04" role="tabpanel" aria-labelledby="support-14-04-tab">
+      <div class="u-hide--small" id="kernel1404"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+            <th scope="col">Expanded security maintenance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 14.04.5 LTS (v4.4)</strong></td>
+            <td>Aug 2016</td>
+            <td>Apr 2019</td>
+            <td>Apr 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
+            <td>Feb 2016</td>
+            <td>Jul 2016</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
+            <td>Aug 2015</td>
+            <td>Jul 2016</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
+            <td>Feb 2015</td>
+            <td>Jul 2016</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
+            <td>Aug 2014</td>
+            <td>Apr 2019</td>
+            <td>Apr 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
+            <td>Apr 2014</td>
+            <td>Apr 2019</td>
+            <td>Apr 2022</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="p-tabs__content" id="support-14-04" role="tabpanel" aria-labelledby="support-14-04-tab">
-          <div class="u-hide--small" id="kernel1404"></div>
-          <table class="u-hide--medium u-hide--large">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <th scope="col">Released</th>
-                <th scope="col">End of Life</th>
-                <th scope="col">Extended security maintenance</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Ubuntu 14.04.5 LTS (v4.4)</strong></td>
-                <td>Aug 2016</td>
-                <td>Apr 2019</td>
-                <td>Apr 2022</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
-                <td>Feb 2016</td>
-                <td>Jul 2016</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
-                <td>Aug 2015</td>
-                <td>Jul 2016</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
-                <td>Feb 2015</td>
-                <td>Jul 2016</td>
-                <td>&nbsp;</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
-                <td>Aug 2014</td>
-                <td>Apr 2019</td>
-                <td>Apr 2022</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
-                <td>Apr 2014</td>
-                <td>Apr 2019</td>
-                <td>Apr 2022</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="col-9" tabindex="0" id="support-lts" role="tabpanel" aria-labelledby="support-lts-tab">
+      <div class="u-hide--small" id="kernellts"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Released</th>
+            <th scope="col">CVE/Critical fixes only</th>
+            <th scope="col">End of Life</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
+            <td>Apr 2014</td>
+            <td>Apr 2016</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
+            <td>Aug 2014</td>
+            <td>Apr 2016</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
+            <td>Feb 2015</td>
+            <td>May 2015</td>
+            <td>Jul 2016</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
+            <td>Aug 2015</td>
+            <td>&nbsp;</td>
+            <td>Jul 2016</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
+            <td>Feb 2016</td>
+            <td>&nbsp;</td>
+            <td>Jul 2016</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
+            <td>Apr 2016</td>
+            <td>Apr 2018</td>
+            <td>Mar 2023</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.5 LTS (v4.4)</strong></td>
+            <td>Aug 2016</td>
+            <td>Apr 2018</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
+            <td>Aug 2016</td>
+            <td>Apr 2018</td>
+            <td>Apr 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
+            <td>Feb 2017</td>
+            <td>&nbsp;</td>
+            <td>Jul 2017</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
+            <td>Aug 2017</td>
+            <td>&nbsp;</td>
+            <td>Jan 2018</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
+            <td>Feb 2018</td>
+            <td>&nbsp;</td>
+            <td>Jul 2018</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
+            <td>Apr 2018</td>
+            <td>Apr 2020</td>
+            <td>Mar 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
+            <td>Jul 2018</td>
+            <td>Apr 2020</td>
+            <td>Apr 2023</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
+            <td>Aug 2018</td>
+            <td>Apr 2020</td>
+            <td>Apr 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
+            <td>Feb 2019</td>
+            <td>&nbsp;</td>
+            <td>Jul 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.3 LTS (v5.0)</strong></td>
+            <td>Aug 2019</td>
+            <td>&nbsp;</td>
+            <td>Jan 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.4 LTS (v5.3)</strong></td>
+            <td>Feb 2020</td>
+            <td>&nbsp;</td>
+            <td>Jul 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.0 LTS (v5.4)</strong></td>
+            <td>Apr 2020</td>
+            <td>Apr 2022</td>
+            <td>Apr 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.1 LTS (v5.4)</strong></td>
+            <td>Jul 2020</td>
+            <td>Apr 2022</td>
+            <td>Apr 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.5 LTS (v5.4)</strong></td>
+            <td>Aug 2020</td>
+            <td>Apr 2022</td>
+            <td>Apr 2023</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.2 LTS (v5.8)</strong></td>
+            <td>Feb 2021</td>
+            <td>&nbsp;</td>
+            <td>Aug 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.3 LTS (v5.11)</strong></td>
+            <td>Aug 2021</td>
+            <td>&nbsp;</td>
+            <td>Feb 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.4 LTS (v5.13)</strong></td>
+            <td>Feb 2022</td>
+            <td>&nbsp;</td>
+            <td>Jul 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.0 LTS (v5.15)</strong></td>
+            <td>Apr 2022</td>
+            <td>Apr 2024</td>
+            <td>Apr 2027</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.5 LTS (v5.15)</strong></td>
+            <td>Aug 2022</td>
+            <td>Aug 2024</td>
+            <td>Apr 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.1 LTS (v5.15)</strong></td>
+            <td>Aug 2022</td>
+            <td>Apr 2024</td>
+            <td>Apr 2027</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.2 LTS (v5.19)</strong></td>
+            <td>Feb 2023</td>
+            <td>&nbsp;</td>
+            <td>Jul 2023</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
 
-        <div class="p-tabs__content" id="support-lts" role="tabpanel" aria-labelledby="support-lts-tab">
-          <div class="u-hide--small" id="kernellts"></div>
-          <table class="u-hide--medium u-hide--large">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <th scope="col">Released</th>
-                <th scope="col">CVE/Critical fixes only</th>
-                <th scope="col">End of Life</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
-                <td>Apr 2014</td>
-                <td>Apr 2016</td>
-                <td>Apr 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
-                <td>Aug 2014</td>
-                <td>Apr 2016</td>
-                <td>Apr 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
-                <td>Feb 2015</td>
-                <td>May 2015</td>
-                <td>Jul 2016</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
-                <td>Aug 2015</td>
-                <td>&nbsp;</td>
-                <td>Jul 2016</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
-                <td>Feb 2016</td>
-                <td>&nbsp;</td>
-                <td>Jul 2016</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
-                <td>Apr 2016</td>
-                <td>Apr 2018</td>
-                <td>Mar 2023</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.5 LTS (v4.4)</strong></td>
-                <td>Aug 2016</td>
-                <td>Apr 2018</td>
-                <td>Apr 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
-                <td>Aug 2016</td>
-                <td>Apr 2018</td>
-                <td>Apr 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
-                <td>Feb 2017</td>
-                <td>&nbsp;</td>
-                <td>Jul 2017</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
-                <td>Aug 2017</td>
-                <td>&nbsp;</td>
-                <td>Jan 2018</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
-                <td>Feb 2018</td>
-                <td>&nbsp;</td>
-                <td>Jul 2018</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
-                <td>Apr 2018</td>
-                <td>Apr 2020</td>
-                <td>Mar 2025</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
-                <td>Jul 2018</td>
-                <td>Apr 2020</td>
-                <td>Apr 2023</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
-                <td>Aug 2018</td>
-                <td>Apr 2020</td>
-                <td>Apr 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
-                <td>Feb 2019</td>
-                <td>&nbsp;</td>
-                <td>Jul 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.3 LTS (v5.0)</strong></td>
-                <td>Aug 2019</td>
-                <td>&nbsp;</td>
-                <td>Jan 2020</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.4 LTS (v5.3)</strong></td>
-                <td>Feb 2020</td>
-                <td>&nbsp;</td>
-                <td>Jul 2020</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.0 LTS</strong></td>
-                <td>Apr 2020</td>
-                <td>Apr 2022</td>
-                <td>Apr 2025</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.1 LTS</strong></td>
-                <td>Jul 2020</td>
-                <td>Apr 2022</td>
-                <td>Apr 2025</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.5 LTS</strong></td>
-                <td>Aug 2020</td>
-                <td>Apr 2022</td>
-                <td>Apr 2023</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.2 LTS</strong></td>
-                <td>Feb 2021</td>
-                <td>&nbsp;</td>
-                <td>Aug 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.3 LTS</strong></td>
-                <td>Aug 2021</td>
-                <td>&nbsp;</td>
-                <td>Feb 2022</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.4 LTS</strong></td>
-                <td>Feb 2022</td>
-                <td>&nbsp;</td>
-                <td>Jul 2022</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.5 LTS (v5.15)</strong></td>
-                <td>Aug 2022</td>
-                <td>Aug 2024</td>
-                <td>Apr 2025</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="p-tabs__content" id="support-all" role="tabpanel" aria-labelledby="support-all-tab">
-          <div class="u-hide--small" id="kernelall"></div>
-          <table class="u-hide--medium u-hide--large">
-            <thead>
-              <tr>
-                <td>&nbsp;</td>
-                <th scope="col">Early preview</th>
-                <th scope="col">Released</th>
-                <th scope="col">End of Life</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
-                <td>Jan 2014</td>
-                <td>Apr 2014</td>
-                <td>Apr 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
-                <td>May 2014</td>
-                <td>Aug 2014</td>
-                <td>Apr 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2015</td>
-                <td>Jul 2016</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
-                <td>&nbsp;</td>
-                <td>Aug 2015</td>
-                <td>Jul 2016</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2016</td>
-                <td>Jul 2016</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
-                <td>Jan 2016</td>
-                <td>Apr 2016</td>
-                <td>Apr 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 14.04.5 LTS (v4.4)</strong></td>
-                <td>May 2016</td>
-                <td>Aug 2016</td>
-                <td>Apr 2019</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
-                <td>May 2016</td>
-                <td>Aug 2016</td>
-                <td>Apr 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2017</td>
-                <td>Jul 2017</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
-                <td>&nbsp;</td>
-                <td>Aug 2017</td>
-                <td>Jan 2018</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2018</td>
-                <td>Jul 2018</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
-                <td>Jan 2018</td>
-                <td>Apr 2018</td>
-                <td>Apr 2023</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
-                <td>Apr 2018</td>
-                <td>Jul 2018</td>
-                <td>Apr 2023</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
-                <td>May 2018</td>
-                <td>Aug 2018</td>
-                <td>Apr 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2019</td>
-                <td>Aug 2019</td>
-              </tr>
-              <tr>
-                <td>Ubuntu 19.04 (v5.0)</td>
-                <td>&nbsp;</td>
-                <td>Apr 2019</td>
-                <td>Jan 2020</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.3 LTS (v5.0)</strong></td>
-                <td>&nbsp;</td>
-                <td>Aug 2019</td>
-                <td>Feb 2020</td>
-              </tr>
-              <tr>
-                <td>Ubuntu 19.10 (v5.3)</td>
-                <td>&nbsp;</td>
-                <td>Oct 2019</td>
-                <td>Jul 2020</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.4 LTS (v5.3)</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2020</td>
-                <td>Jul 2020</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.0 LTS</strong></td>
-                <td>Jan 2020</td>
-                <td>Apr 2020</td>
-                <td>Apr 2025</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.1 LTS</strong></td>
-                <td>Apr 2020</td>
-                <td>Jul 2020</td>
-                <td>Apr 2025</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 18.04.5 LTS</strong></td>
-                <td>May 2020</td>
-                <td>Aug 2020</td>
-                <td>Apr 2023</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.2 LTS</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2021</td>
-                <td>Aug 2021</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.3 LTS</strong></td>
-                <td>&nbsp;</td>
-                <td>Aug 2021</td>
-                <td>Feb 2022</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.4 LTS</strong></td>
-                <td>&nbsp;</td>
-                <td>Feb 2022</td>
-                <td>Aug 2022</td>
-              </tr>
-              <tr>
-                <td><strong>Ubuntu 20.04.5 LTS (v5.15)</strong></td>
-                <td>May 2022</td>
-                <td>Aug 2022</td>
-                <td>Apr 2025</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="col-9" tabindex="0" id="support-all" role="tabpanel" aria-labelledby="support-all-tab">
+      <div class="u-hide--small" id="kernelall"></div>
+      <table class="u-hide--medium u-hide--large">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <th scope="col">Early preview</th>
+            <th scope="col">Released</th>
+            <th scope="col">End of Life</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ubuntu 14.04.0 LTS (v3.13)</strong></td>
+            <td>Jan 2014</td>
+            <td>Apr 2014</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.1 LTS (v3.13)</strong></td>
+            <td>May 2014</td>
+            <td>Aug 2014</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.2 LTS (v3.16)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2015</td>
+            <td>Jul 2016</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.3 LTS (v3.19)</strong></td>
+            <td>&nbsp;</td>
+            <td>Aug 2015</td>
+            <td>Jul 2016</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.4 LTS (v4.2)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2016</td>
+            <td>Jul 2016</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.0 LTS (v4.4)</strong></td>
+            <td>Jan 2016</td>
+            <td>Apr 2016</td>
+            <td>Apr 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 14.04.5 LTS (v4.4)</strong></td>
+            <td>May 2016</td>
+            <td>Aug 2016</td>
+            <td>Apr 2019</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.1 LTS (v4.4)</strong></td>
+            <td>May 2016</td>
+            <td>Aug 2016</td>
+            <td>Apr 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.2 LTS (v4.8)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2017</td>
+            <td>Jul 2017</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.3 LTS (v4.10)</strong></td>
+            <td>&nbsp;</td>
+            <td>Aug 2017</td>
+            <td>Jan 2018</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.4 LTS (v4.13)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2018</td>
+            <td>Jul 2018</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.0 LTS (v4.15)</strong></td>
+            <td>Jan 2018</td>
+            <td>Apr 2018</td>
+            <td>Apr 2023</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.1 LTS (v4.15)</strong></td>
+            <td>Apr 2018</td>
+            <td>Jul 2018</td>
+            <td>Apr 2023</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 16.04.5 LTS (v4.15)</strong></td>
+            <td>May 2018</td>
+            <td>Aug 2018</td>
+            <td>Apr 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.2 LTS (v4.18)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2019</td>
+            <td>Aug 2019</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 19.04 (v5.0)</td>
+            <td>&nbsp;</td>
+            <td>Apr 2019</td>
+            <td>Jan 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.3 LTS (v5.0)</strong></td>
+            <td>&nbsp;</td>
+            <td>Aug 2019</td>
+            <td>Feb 2020</td>
+          </tr>
+          <tr>
+            <td>Ubuntu 19.10 (v5.3)</td>
+            <td>&nbsp;</td>
+            <td>Oct 2019</td>
+            <td>Jul 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.4 LTS (v5.3)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2020</td>
+            <td>Jul 2020</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.0 LTS (v5.4)</strong></td>
+            <td>Jan 2020</td>
+            <td>Apr 2020</td>
+            <td>Apr 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.1 LTS (v5.4)</strong></td>
+            <td>Apr 2020</td>
+            <td>Jul 2020</td>
+            <td>Apr 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 18.04.5 LTS (v5.4)</strong></td>
+            <td>May 2020</td>
+            <td>Aug 2020</td>
+            <td>Apr 2023</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.2 LTS (v5.8)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2021</td>
+            <td>Aug 2021</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.3 LTS (v5.11)</strong></td>
+            <td>&nbsp;</td>
+            <td>Aug 2021</td>
+            <td>Feb 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.4 LTS (v5.13)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2022</td>
+            <td>Aug 2022</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.0 LTS (v5.15)</strong></td>
+            <td>Jan 2022</td>
+            <td>Apr 2022</td>
+            <td>Apr 2027</td>
+            </tr>
+          <tr>
+            <td><strong>Ubuntu 20.04.5 LTS (v5.15)</strong></td>
+            <td>May 2022</td>
+            <td>Aug 2022</td>
+            <td>Apr 2025</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.1 LTS (v5.15)</strong></td>
+            <td>&nbsp;</td>
+            <td>Aug 2022</td>
+            <td>Apr 2027</td>
+          </tr>
+          <tr>
+            <td><strong>Ubuntu 22.04.2 LTS (v5.19)</strong></td>
+            <td>&nbsp;</td>
+            <td>Feb 2023</td>
+            <td>Jul 2023</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.7.0/d3.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
 <script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
-<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
-
+<script src="{{ versioned_static('js/dist/tabbedContent.js') }}"></script>

@@ -76,10 +76,10 @@ snap-store-proxy/0*  active    idle   11       18.144.52.58    80/tcp  \
 Run the required commands on `kubernetes-control-plane` and `kubernetes-worker` units:
 
 ```bash
-juju run --application kubernetes-control-plane \
+juju exec --application kubernetes-control-plane \
   'curl -s http://18.144.52.58/v2/auth/store/assertions | sudo snap ack /dev/stdin ; \
   sudo snap set core proxy.store=<STORE_ID>'
-juju run --application kubernetes-worker \
+juju exec --application kubernetes-worker \
   'curl -s http://18.144.52.58/v2/auth/store/assertions | sudo snap ack /dev/stdin ; \
   sudo snap set core proxy.store=<STORE_ID>'
 ```
@@ -90,9 +90,9 @@ Use `snap-proxy override` to lock a snap channel to a particular revision. For
 example:
 
 ```bash
-$ juju run --unit snap-store-proxy/0 'sudo snap-proxy override kubectl 1.16/stable=1342'
+$ juju exec --unit snap-store-proxy/0 'sudo snap-proxy override kubectl 1.16/stable=1342'
 kubectl 1.16/stable amd64 1342
-$ juju run --unit snap-store-proxy/0 'sudo snap-proxy list-overrides kubectl'
+$ juju exec --unit snap-store-proxy/0 'sudo snap-proxy list-overrides kubectl'
 kubectl 1.16/stable amd64 1342 (upstream 1309)
 ```
 

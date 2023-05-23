@@ -24,7 +24,7 @@
       </p>
     </div>
     <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
-      {{ 
+      {{
         image (
         url="https://assets.ubuntu.com/v1/0d564c55-managed-observability.svg",
         alt="Managed observability",
@@ -44,7 +44,7 @@
       <p class="p-logo-section__title u-align--center u-sv3">WE MANAGE CLOUDS FOR WORLD LEADERS</p>
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/25de1877-Tele2_logo.svg",
             alt="",
@@ -57,7 +57,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/3d15019a-Telefonica.png",
             alt="",
@@ -70,7 +70,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/ba1af5b7-Rabobank.png",
             alt="",
@@ -83,7 +83,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/231a1b4b-Lexis+Nexis.png",
             alt="",
@@ -96,7 +96,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/b8e1b994-Onetrail.png",
             alt="",
@@ -109,7 +109,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/3595713f-barnes-and-noble-logo.png",
             alt="",
@@ -122,7 +122,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/2616b34f-ACI-Universal-Payments.svg",
             alt="",
@@ -135,7 +135,7 @@
           }}
         </div>
         <div class="p-logo-section__item">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/cf962284-docapost.png",
             alt="",
@@ -165,17 +165,18 @@
       <div class="p-card">
         <div class="p-heading-icon--small">
           <div class="p-heading-icon__header">
-            {{ 
+            {{
               image (
               url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
               alt="",
               width="171",
               height="150",
               hi_def=True,
-              loading="lazy"
+              loading="lazy",
+              attrs={"class": "p-heading-icon__img"},
               ) | safe
             }}
-            <p>Industry report</p>
+            <p class="p-heading-icon__title p-heading--6">Industry report</p>
           </div>
         </div>
         <p class="p-card__content">
@@ -200,7 +201,7 @@
       </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
-      {{ 
+      {{
         image (
         url="https://assets.ubuntu.com/v1/50dea393-fixes+in+24hrs.svg",
         alt="",
@@ -283,7 +284,7 @@
   <div class="row">
     <div class="col-8">
       <h3>Reliable monitoring tools you can count on</h3>
-      <p>All Canonical managed services come with Extended Security Maintenance: future-proofed open-source observability run at scale, reliably.</p>
+      <p>All Canonical managed services come with Expanded Security Maintenance: future-proofed open-source observability run at scale, reliably.</p>
       <p>
         <a href="/observability/contact-us" class="p-button--positive js-invoke-modal">Contact us</a>
       </p>
@@ -394,20 +395,74 @@
 
 <section class="p-strip">
   <div class="row">
-    <div class="col-8">
+    <div class="col-5">
       <h3 class="p-heading--2">Multi-cloud ready</h3>
+    </div>
+    <div class="col-7">
       <p>We manage your monitoring tools anywhere for you. Whether you are running your workloads across multiple clouds or might need to leverage a multi-cloud environment in the future, we can easily scale our managed service to adapt to your IT strategy.</p>
     </div>
     <div class="u-fixed-width">
       <div class="p-logo-section">
         <div class="p-logo-section__items">
           <div class="p-logo-section__item">
-            {{ 
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/5d01375a-google-cloud-logo.png",
+              alt="Google Cloud Platform",
+              width="316",
+              height="316",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/1a2ca878-kubernetes-logomark-logo.png",
+              alt="Kubernetes",
+              width="316",
+              height="316",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
               image (
-              url="https://assets.ubuntu.com/v1/901d5a91-Google+Cloud.png",
+              url="https://assets.ubuntu.com/v1/bdadf238-oracle-cloud.png",
+              alt="Oracle cloud",
+              width="316",
+              height="316",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image (
+              url="https://assets.ubuntu.com/v1/c7b9a434-microsoft-azure-logomark-new.png",
               alt="",
-              width="292",
-              height="290",
+              width="316",
+              height="316",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"},
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/87b04c6a-vmware-logo.png",
+              alt="VMWARE",
+              width="316",
+              height="316",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-logo-section__logo"}
@@ -415,12 +470,12 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ 
-              image (
-              url="https://assets.ubuntu.com/v1/43d45da9-Anbox-logo-aws.png",
-              alt="",
-              width="310",
-              height="310",
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/6d16204d-openstack-logomark-logo.png",
+              alt="Openstack",
+              width="316",
+              height="316",
               hi_def=True,
               loading="lazy",
               attrs={"class": "p-logo-section__logo"}
@@ -428,79 +483,28 @@
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ 
+            {{
               image (
-              url="https://assets.ubuntu.com/v1/fc61db3b-Anbox-logo-azure.png",
-              alt="",
-              width="310",
-              height="310",
+              url="https://assets.ubuntu.com/v1/505ecea2-maas-logo-stacked.png",
+              alt="MAAS",
+              width="316",
+              height="316",
               hi_def=True,
-              loading="lazy",
+              loading="auto",
               attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/5daf7029-Openstack_logo.png",
-              alt="",
-              width="292",
-              height="292",
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/0070b81e-aws-logo.png",
+              alt="AWS",
+              width="316",
+              height="316",
               hi_def=True,
               loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ 
-              image (
-              url="https://assets.ubuntu.com/v1/5dfc272a-vmware_logo.png",
-              alt="",
-              width="292",
-              height="292",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ 
-              image (
-              url="https://assets.ubuntu.com/v1/f1d885ce-Oracle-cloud.png",
-              alt="",
-              width="522",
-              height="161",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ 
-              image (
-              url="https://assets.ubuntu.com/v1/53d93b1d-Anbox-logo-maas.png",
-              alt="",
-              width="310",
-              height="310",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ 
-              image (
-              url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
-              alt="",
-              width="62",
-              height="60",
-              hi_def=True,
-              loading="lazy",
-              attrs={"class": "p-logo-section__logo"}
+              attrs={"class": "p-logo-section__logo"},
               ) | safe
             }}
           </div>
@@ -514,7 +518,7 @@
   <div class="u-fixed-width">
     <h3>Powerful monitoring, simple and predictable price, cost-efficient</h3>
     <p>We manage the best open source monitoring tools at both the host and the guest levels. <strong>Charges are for the hosts running the monitoring tools themselves.</strong> We do not charge for the systems you monitor with the tools we manage for you!</p>
-  </div>    
+  </div>
   <div class="u-fixed-width">
     <table>
       <thead>

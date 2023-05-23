@@ -60,7 +60,7 @@ Note that actually deploying these charms with storage may take some time, but y
 The `ceph-osd` and `ceph-mon` deployments should then be connected:
 
 ```bash
-juju add-relation ceph-osd ceph-mon
+juju integrate ceph-osd ceph-mon
 ```
 
 If you wish to include CephFS support, which allows for ReadWriteMany volumes,
@@ -68,7 +68,7 @@ you can also deploy and relate `ceph-fs`:
 
 ```bash
 juju deploy -n1 ceph-fs
-juju add-relation ceph-fs ceph-mon
+juju integrate ceph-fs ceph-mon
 ```
 
 **Charmed Kubernetes** will then deploy the CephFS provisioner pod
@@ -109,7 +109,7 @@ initContainers:
 Making **Charmed Kubernetes** aware of your **Ceph** cluster requires a **Juju** relation.
 
 ```bash
-juju add-relation ceph-mon:client kubernetes-control-plane
+juju integrate ceph-mon:client kubernetes-control-plane
 ```
 
 ### Create storage pools
@@ -125,17 +125,17 @@ If you're happy with this, you can skip the section.  Otherwise, if you want to
 change these, you can delete the pools:
 
 ```bash
-juju run --unit ceph-mon/0 "ceph tell mon.\* injectargs '--mon-allow-pool-delete=true'"
+juju exec --unit ceph-mon/0 "ceph tell mon.\* injectargs '--mon-allow-pool-delete=true'"
 
-juju run-action ceph-mon/0 delete-pool name=xfs-pool --wait
-juju run-action ceph-mon/0 delete-pool name=ext4-pool --wait
+juju run ceph-mon/0 delete-pool name=xfs-pool
+juju run ceph-mon/0 delete-pool name=ext4-pool
 ```
 
 Then recreate them, using the options listed from the `list-actions` command ran
 earlier.  For example:
 
 ```bash
-juju run-action ceph-mon/0 create-pool name=xfs-pool replicas=6 --wait
+juju run ceph-mon/0 create-pool name=xfs-pool replicas=6
 ```
 
 ```yaml
@@ -150,7 +150,7 @@ unit-ceph-mon-0:
 ```
 
 ```bash
-juju run-action ceph-mon/0 create-pool name=ext4-pool replicas=6 --wait
+juju run ceph-mon/0 create-pool name=ext4-pool replicas=6
 ```
 
 ```yaml
@@ -243,7 +243,7 @@ juju deploy nfs --constraints root-disk=200G
 The NFS units can be related directly to the **Kubernetes** workers:
 
 ```bash
- juju add-relation nfs kubernetes-worker
+ juju integrate nfs kubernetes-worker
 ```
 
 ### Verification

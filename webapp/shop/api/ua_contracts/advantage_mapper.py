@@ -10,6 +10,7 @@ from webapp.shop.api.ua_contracts.models import (
 )
 from webapp.shop.api.ua_contracts.primitives import (
     Account,
+    AnnotatedContractItem,
     Contract,
     Subscription,
     User,
@@ -29,6 +30,7 @@ from webapp.shop.api.ua_contracts.parsers import (
     parse_offers,
 )
 from webapp.shop.api.ua_contracts.schema import (
+    AnnotatedContractItemsSchema,
     PurchaseSchema,
     AccountSchema,
     InvoiceSchema,
@@ -46,10 +48,27 @@ class AdvantageMapper:
         return AccountSchema(many=True).load(response.get("accounts", []))
 
     def get_account_contracts(
-        self, account_id: str, include_active_machines: bool = False
+        self,
+        account_id: str,
+        product_tags: str = "ua,classic,pro,blender",
+        include_active_machines: bool = False,
     ) -> List[Contract]:
         response = self.ua_contracts_api.get_account_contracts(
-            account_id, include_active_machines
+            account_id, product_tags, include_active_machines
+        )
+        contracts = response.get("contracts", [])
+
+        return parse_contracts(contracts)
+
+    def get_all_account_contracts(self, account_id: str) -> List[Contract]:
+        response = self.ua_contracts_api.get_all_account_contracts(account_id)
+        contracts = response.get("contracts", [])
+
+        return parse_contracts(contracts)
+
+    def get_activation_key_contracts(self, account_id: str) -> List[Contract]:
+        response = self.ua_contracts_api.get_activation_key_contracts(
+            account_id
         )
         contracts = response.get("contracts", [])
 
@@ -188,26 +207,37 @@ class AdvantageMapper:
 
         return EnsurePurchaseAccountSchema().load(response)
 
-    def get_user_subscriptions(self, email: str) -> List[UserSubscription]:
+    def get_user_subscriptions(
+        self,
+        email: str,
+        marketplaces: List = ["canonical-ua", "blender"],
+        is_in_maintenance: bool = False,
+        is_community_member: bool = False,
+    ) -> List[UserSubscription]:
         listings = {}
-        for marketplace in ["canonical-ua", "blender"]:
+        product_tags = []
+        for marketplace in marketplaces:
             marketplace_listings = self.get_product_listings(
                 marketplace,
                 filters={"include-hidden": "true"},
             )
             listings.update(marketplace_listings)
-
+            if marketplace == "canonical-ua":
+                product_tags.extend(["ua", "classic", "pro"])
+            elif marketplace == "blender":
+                product_tags.append("blender")
         accounts = self.get_accounts(email=email)
 
         user_summary = []
         for account in accounts:
             contracts = self.get_account_contracts(
                 account_id=account.id,
+                product_tags=",".join(product_tags),
                 include_active_machines=True,
             )
             subscriptions = []
             if account.role != "technical":
-                for marketplace in ["canonical-ua", "blender"]:
+                for marketplace in marketplaces:
                     market_subscriptions = self.get_account_subscriptions(
                         account_id=account.id,
                         marketplace=marketplace,
@@ -222,7 +252,27 @@ class AdvantageMapper:
                 }
             )
 
-        return build_user_subscriptions(user_summary, listings)
+        user_subscriptions = build_user_subscriptions(user_summary, listings)
+
+        # overrides
+        for user_subscription in user_subscriptions:
+            is_stripe_sub = user_subscription.type in ["yearly", "monthly"]
+            if is_stripe_sub and is_in_maintenance:
+                user_subscription.statuses["is_upsizeable"] = False
+                user_subscription.statuses["is_downsizeable"] = False
+                user_subscription.statuses["is_cancellable"] = False
+            if is_community_member and user_subscription.type == "free":
+                user_subscription.number_of_machines = 50
+
+        return user_subscriptions
+
+    def get_annotated_subscriptions(
+        self, email: str
+    ) -> List[AnnotatedContractItem]:
+        resp = self.ua_contracts_api.get_annotated_contract_items(email=email)
+        items = AnnotatedContractItemsSchema(many=True).load(resp)
+
+        return items
 
     def get_or_create_user_account(
         self, marketplace, customer_info, captcha_value
@@ -352,3 +402,12 @@ class AdvantageMapper:
         )
 
         return PurchaseSchema().load(purchase)
+
+    def activate_magic_attach(
+        self, user_code: str, contract_id: str, client_ip: int
+    ):
+        headers = {} if client_ip else {"X-Forwarded-For": client_ip}
+        return self.ua_contracts_api.post_magic_attach(
+            request_body={"userCode": user_code, "contractID": contract_id},
+            headers=headers,
+        )

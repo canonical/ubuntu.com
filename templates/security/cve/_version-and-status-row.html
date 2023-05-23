@@ -16,7 +16,7 @@
   </div>
   <div class="col-3">
     {% if show_labels %}
-      <label for="version">Status</label>
+      <label for="status">Status</label>
     {% endif %}
     <select name="status" class="js-status-input" {% if show_labels %}id="status"{% endif %}>
       {% with statuses=statuses, index=index %}
@@ -26,9 +26,9 @@
   </div>
   <div class="col-3">
     {% if show_labels %}
-      <label>&nbsp;</label>
+      <div style="margin-bottom:0.6rem;margin-top:0;max-width:40rem;padding-top:0.4rem;">&nbsp;</div>
     {% endif %}
-    <button class="js-remove-row" {% if index == 0 %}disabled{% endif %}>&minus;</button>
-    <button class="js-add-row" disabled>&plus;</button>
+    <button class="js-remove-row" {% if index == 0 %}disabled{% endif %} aria-label="remove">&minus;</button>
+    <button class="js-add-row" disabled aria-label="add">&plus;</button>
   </div>
 </div>

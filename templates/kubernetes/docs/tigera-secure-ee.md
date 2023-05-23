@@ -143,16 +143,13 @@ Disable the built-in elasticsearch operator:
 juju config tigera-secure-ee enable-elasticsearch-operator=false
 ```
 
-Then follow this guide from Tigera:
-[Using your own ElasticSearch for logs][tigera byo-elasticsearch]
-
 ## Accessing cnx-manager
 
 The cnx-manager service is exposed as a NodePort on port 30003. Run the
 following command to open port 30003 on the workers:
 
 ```bash
-juju run --application kubernetes-worker open-port 30003
+juju exec --application kubernetes-worker open-port 30003
 ```
 
 Then connect to `https://<kubernetes-worker-ip>:30003` in your web browser. Use
@@ -165,7 +162,7 @@ The kibana service is exposed as a NodePort on port 30601. Run the following
 command to open port 30601 on the workers:
 
 ```bash
-juju run --application kubernetes-worker open-port 30601
+juju exec --application kubernetes-worker open-port 30601
 ```
 
 <div class="p-notification--caution is-inline">
@@ -216,7 +213,7 @@ docker.io/alpine:3.7
 And configure Tigera Secure EE to use the registry with this shell script:
 
 ```bash
-export IP=`juju run --unit docker-registry/0 'network-get website --ingress-address'`
+export IP=`juju exec --unit docker-registry/0 'network-get website --ingress-address'`
 export PORT=`juju config docker-registry registry-port`
 export REGISTRY=$IP:$PORT
 juju config tigera-secure-ee registry=$REGISTRY
@@ -226,7 +223,6 @@ juju config tigera-secure-ee registry=$REGISTRY
 
 [tigera-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/tigera-overlay.yaml
 [elasticsearch-operator]: https://github.com/upmc-enterprises/elasticsearch-operator
-[tigera byo-elasticsearch]: https://docs.tigera.io/v2.2/getting-started/kubernetes/installation/byo-elasticsearch
 [storage]: /kubernetes/docs/storage
 [private docker registry]: /kubernetes/docs/docker-registry
 

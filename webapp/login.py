@@ -5,21 +5,22 @@ import flask
 import flask_openid
 import talisker.requests
 from pymacaroons import Macaroon
+from django_openid_auth.teams import TeamsRequest, TeamsResponse
 
-# Local
 from webapp.macaroons import (
     binary_serialize_macaroons,
     MacaroonRequest,
     MacaroonResponse,
 )
 
+COMMUNITY_TEAM = "ubuntumembers"
 
 login_url = os.getenv("CANONICAL_LOGIN_URL", "https://login.ubuntu.com")
 
 open_id = flask_openid.OpenID(
     store_factory=lambda: None,
     safe_roots=[],
-    extension_responses=[MacaroonResponse],
+    extension_responses=[MacaroonResponse, TeamsResponse],
 )
 session = talisker.requests.get_session()
 
@@ -35,6 +36,9 @@ def user_info(user_session):
             "fullname": user_session["openid"]["fullname"],
             "email": user_session["openid"]["email"],
             "authentication_token": user_session["authentication_token"],
+            "is_community_member": (
+                user_session["openid"].get("is_community_member", False)
+            ),
         }
     else:
         return None
@@ -79,7 +83,13 @@ def login_handler():
         login_url,
         ask_for=["email", "nickname", "image"],
         ask_for_optional=["fullname"],
-        extensions=[openid_macaroon],
+        extensions=[
+            openid_macaroon,
+            TeamsRequest(
+                query_membership=[COMMUNITY_TEAM],
+                lp_ns_uri="http://ns.launchpad.net/2007/openid-teams",
+            ),
+        ],
     )
 
 
@@ -105,12 +115,15 @@ def after_login(resp):
     if not resp.nickname:
         return flask.redirect(login_url)
 
+    is_community_member = COMMUNITY_TEAM in resp.extensions["lp"].is_member
+
     flask.session["openid"] = {
         "identity_url": resp.identity_url,
         "nickname": resp.nickname,
         "fullname": resp.fullname,
         "image": resp.image,
         "email": resp.email,
+        "is_community_member": is_community_member,
     }
 
     return flask.redirect(open_id.get_next_url())

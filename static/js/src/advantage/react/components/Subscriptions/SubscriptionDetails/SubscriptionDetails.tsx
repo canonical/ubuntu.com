@@ -1,30 +1,31 @@
+import React, { forwardRef, useCallback, useEffect, useState } from "react";
+import usePortal from "react-useportal";
+import classNames from "classnames";
 import {
   Button,
   Notification,
   NotificationProps,
   Spinner,
 } from "@canonical/react-components";
-import React, { useCallback, forwardRef, useEffect, useState } from "react";
-import classNames from "classnames";
-import usePortal from "react-useportal";
-
-import SubscriptionCancel from "../SubscriptionCancel";
-import DetailsContent from "./DetailsContent";
-import SubscriptionEdit from "../SubscriptionEdit";
-import { useUserSubscriptions } from "advantage/react/hooks";
-import { selectSubscriptionById } from "advantage/react/hooks/useUserSubscriptions";
+import { UserSubscriptionType } from "advantage/api/enum";
 import {
-  isFreeSubscription,
+  selectSubscriptionById,
+  useUserSubscriptions,
+} from "advantage/react/hooks/useUserSubscriptions";
+import {
+  formatDate,
   getNextCycleStart,
   isBlenderSubscription,
-  formatDate,
+  isFreeSubscription,
 } from "advantage/react/utils";
+import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
+import { SelectedId } from "../Content/types";
 import ExpiryNotification from "../ExpiryNotification";
 import { ExpiryNotificationSize } from "../ExpiryNotification/ExpiryNotification";
-import { SelectedId } from "../Content/types";
-import { sendAnalyticsEvent } from "advantage/react/utils/sendAnalyticsEvent";
-import RenewalModal from "../RenewalModal";
-import { UserSubscriptionType } from "advantage/api/enum";
+import RenewalButton from "../RenewalButton";
+import SubscriptionCancel from "../SubscriptionCancel";
+import SubscriptionEdit from "../SubscriptionEdit";
+import DetailsContent from "./DetailsContent";
 
 type Props = {
   modalActive?: boolean;
@@ -52,7 +53,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
     }, []);
     const [editing, setEditing] = useState(false);
     const [showingCancel, setShowingCancel] = useState(false);
-    const [showingRenewalModal, setShowingRenewalModal] = useState(false);
     const [notification, setNotification] = useState<NotificationProps | null>(
       null
     );
@@ -183,34 +183,38 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
               <>
                 {subscription.statuses.has_access_to_support &&
                 subscription.type !== UserSubscriptionType.Trial ? (
+                  <>
+                    <Button
+                      appearance="positive"
+                      className="p-subscriptions__details-action"
+                      data-test="support-button"
+                      disabled={editing}
+                      element="a"
+                      href="https://portal.support.canonical.com/"
+                    >
+                      Support portal
+                    </Button>
+                  </>
+                ) : null}
+                {subscription.marketplace == "canonical-ua" ? (
                   <Button
-                    appearance="positive"
                     className="p-subscriptions__details-action"
-                    data-test="support-button"
+                    data-test="attach-button"
                     disabled={editing}
                     element="a"
-                    href="https://portal.support.canonical.com/"
+                    href={
+                      "/pro/attach?subscription=" + subscription.contract_id
+                    }
                   >
-                    Support portal
+                    Attach a machine
                   </Button>
                 ) : null}
                 {subscription.statuses.is_renewable ? (
-                  <Button
-                    appearance="neutral"
-                    className="p-subscriptions__details-action"
-                    data-test="renew-button"
-                    disabled={editing}
-                    onClick={() => {
-                      setShowingRenewalModal(true);
-                      sendAnalyticsEvent({
-                        eventCategory: "Advantage",
-                        eventAction: "subscription-renewal-modal",
-                        eventLabel: "subscription renewal modal opened",
-                      });
-                    }}
-                  >
-                    Renew subscription&hellip;
-                  </Button>
+                  <RenewalButton
+                    subscription={subscription}
+                    action="renewal"
+                    editing={editing}
+                  />
                 ) : null}
                 {subscription.statuses.is_trialled ? (
                   <Button
@@ -247,6 +251,16 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
                     />
                   </Portal>
                 )}
+                {(subscription.statuses.is_expired ||
+                  subscription.statuses.is_in_grace_period) &&
+                  (subscription.type == "monthly" ||
+                    subscription.type == "yearly") && (
+                    <RenewalButton
+                      subscription={subscription}
+                      editing={editing}
+                      action="purchase"
+                    />
+                  )}
                 {isResizable ? (
                   <Button
                     appearance="neutral"
@@ -296,14 +310,6 @@ export const SubscriptionDetails = forwardRef<HTMLDivElement, Props>(
             />
           )}
         </section>
-        {showingRenewalModal ? (
-          <RenewalModal
-            subscription={subscription}
-            closeModal={() => {
-              setShowingRenewalModal(false);
-            }}
-          />
-        ) : null}
       </div>
     );
   }

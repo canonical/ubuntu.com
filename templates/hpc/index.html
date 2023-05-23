@@ -21,7 +21,7 @@
       </div>
       <div class="col-5 u-hide--small u-align--center">
         <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element" src="https://www.youtube.com/embed/tGIobcyKViI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe title="What is HPC?" class="u-embedded-media__element" src="https://www.youtube.com/embed/tGIobcyKViI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="u-fixed-width">
       <div class="p-logo-section">
         <p class="p-logo-section__title u-align--center">Advancing high-performance workloads</p>
-        <div class="p-logo-section__items">       
+        <div class="p-logo-section__items">
           <div class="p-logo-section__item">
             {{
                 image (
@@ -109,7 +109,7 @@
                 attrs={"class": "p-logo-section__logo"}
             ) | safe
             }}
-          </div>          
+          </div>
         </div>
       </div>
     </div>
@@ -235,7 +235,7 @@
           <strong>Ubuntu is the distro for HPC, HPDA and AI/ML </strong>
         </p>
         <p>
-          Ubuntu is the ultimate distribution for HPC. Recent kernel , LTS releases with 5-year support, maintenance and bug fixes, extendable to 10 years.  An extensive list of packages available across its repositories, giving you a unified source for installation. Available for local installation or public clouds. Perfect for long-running environments. 
+          Ubuntu is the ultimate distribution for HPC. Recent kernel , LTS releases with 5-year support, maintenance and bug fixes, extendable to 10 years.  An extensive list of packages available across its repositories, giving you a unified source for installation. Available for local installation or public clouds. Perfect for long-running environments.
         </p>
       </div>
     </div>
@@ -268,7 +268,7 @@
           <strong>Juju and Charms: deploy, maintain and operate, on autopilot</strong>
         </p>
         <p>
-          Simplify the delivery of HPC clusters. Charmed HPC software solutions could be just the thing you need to ease cluster operation and monitoring. 
+          Simplify the delivery of HPC clusters. Charmed HPC software solutions could be just the thing you need to ease cluster operation and monitoring.
         </p>
         <p>
           Juju charms help you simplify operations by assisting in the installation, maintenance and integration of applications.
@@ -308,7 +308,7 @@
         </p>
       </div>
     </div>
-  </section> 
+  </section>
 
   <section class="p-strip u-no-padding--bottom">
     <div class="u-fixed-width">
@@ -369,11 +369,11 @@
           <strong>Ceph: a scale out solution</strong>
         </p>
         <p>
-          CephFS delivers a scale-out parallel file system for workloads requiring POSIX support. Deliver archival tiers, where supported, with object storage. 
+          CephFS delivers a scale-out parallel file system for workloads requiring POSIX support. Deliver archival tiers, where supported, with object storage.
         </p>
       </div>
     </div>
-  </section>  
+  </section>
 
   <section class="p-strip--suru-blog-header is-dark">
     <div class="row p-divider is-dark">
@@ -387,7 +387,8 @@
                 width="171",
                 height="150",
                 hi_def=True,
-                loading="lazy"
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"}
                 ) | safe
               }}
             </div>
@@ -409,7 +410,8 @@
                 width="171",
                 height="150",
                 hi_def=True,
-                loading="lazy"
+                loading="lazy",
+                attrs={"class": "p-heading-icon__img"}
                 ) | safe
               }}
             </div>
@@ -419,7 +421,7 @@
           </div>
           <p>The Wellcome Sanger Institute is a global centre of excellence for genomic research. As capacity needs grew from 3 PB to over 20 PB, the Institute turned to Canonical for high-level Ceph support, providing direct access to Canonical's engineering teams to resolve the more complex issues.</p>
           <p><a href="/engage/wellcome-sanger-case-study" class="p-button">Read the story&nbsp;&rsaquo;</a></p>
-        </div>        
+        </div>
       </div>
     </div>
   </section>
@@ -586,7 +588,7 @@
   {% with section_classes='p-strip--light', heading_topic='HPC', tag_name='hpc', tag_id='3877', limit='4' %}
     {% include "shared/_latest_news_strip.html" %}
   {% endwith %}
-  
+
   <section class="p-strip">
     <div class="row u-vertically-center">
       <div class="col-5 u-hide--medium u-hide--small u-align--center">

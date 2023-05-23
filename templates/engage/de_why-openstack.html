@@ -1,0 +1,177 @@
+{% extends "openstack/_base_openstack.html" %}
+
+{% block title %}Warum OpenStack | Ubuntu{% endblock %}
+{% block meta_lang %}de{% endblock %}
+
+{% block meta_description %}
+OpenStack ist die weltweit führende Open-Source-Cloud-Plattform für den Aufbau kostengünstiger Infrastrukturen. Entdecken Sie, wo Sie mit der Nutzung von OpenStack für Ihr Unternehmen beginnen können.
+{% endblock meta_description %}
+
+{% block meta_copydoc %}
+https://docs.google.com/document/d/1Nvam2qif5UPjTyUPWxhJo1XPiFDM-Eb5FxfSWCbNX8c
+{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip--suru-topped">
+  <div class="row">
+    <div class="col-7">
+      <h1>OpenStack: Was ist das und warum wird es benötigt?</h1>
+      <p>Es ist eine Herausforderung, die Cloud-Wartungskosten Ihres Unternehmens zu optimieren und eine Infrastruktur aufzubauen, die mit Hyperscalern konkurrenzfähig ist.</p>
+      <p>Mit OpenStack &mdash; der weltweit führenden Open-Source-Cloud-Plattform - lassen sich im Vergleich zu Hyperscalern bis zu 65 % der Kosten einsparen.</p>
+      <p>Sie wird von führenden Branchenakteuren unterstützt und von Tausenden von Unternehmen auf der ganzen Welt erfolgreich eingesetzt.</p>
+      <p>Sie sind sich nicht sicher, wo Sie anfangen sollen?</p>
+      <p>
+        <button class="p-button--positive js-invoke-modal" href="/openstack/contact-us">Kontakt</button>
+      </p>
+    </div>
+    <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small"> 
+      {{ image (
+        url="https://assets.ubuntu.com/v1/3409bb95-OpenStack-Logo-Vertical-white.svg",
+        alt="",
+        width="300",
+        height="145",
+        hi_def=True,
+        loading="auto"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip--suru-blog-header is-shallow" id="case-study">
+  <div class="row u-vertically-center">
+    <div class="col-6 col-medium-3">
+     <h2 class="p-heading--3 u-sv1">Firmus definiert Cloud-Nachhaltigkeit neu mit einem hocheffizienten Rechenzentrum, das mit netzgebundener erneuerbarer Energie betrieben wird</h2>
+     <p>
+       <a class="p-button--positive" href="https://pages.ubuntu.com/rs/066-EOV-335/images/Firmus+Case+study.pdf+?_ga=2.233998550.99652456.1662360547-1232158778.1655899900">Read case study</a> (auf Englisch)
+     </p>
+    </div>
+    <div class="col-6 u-align--center u-vertically-center col-medium-3 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/2a4cf06c-Firmus+building.jpg",
+        alt="",
+        width="1024",
+        height="662",
+        hi_def=True,
+        loading="lazy",
+        attrs={"style":"padding: 2rem"}
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-4 u-align--center u-vertically-center col-medium-3 u-hide--small">
+        {{
+            image (
+            url="https://assets.ubuntu.com/v1/fdb3193d-openstack-more-secure.svg",
+            alt="",
+            width="263",
+            height="150",
+            hi_def=True,
+            loading="lazy"
+            ) | safe
+        }}
+    </div>
+    <div class="col-8 col-medium-3">
+      <h2>Datenblatt</h2>
+      <h4>Charmed OpenStack</h4>
+      <p>Automatisierung optimiert Kosten und Nutzen Ihrer Cloud. Eine hochverfügbare Production-Cloud, lokal installiert in kürzester Zeit durch das Expert Delivery Team von Canonical. Canonical installiert und wartet jede Cloud mit Hilfe einer Cloud Control Plane, die Ihre Plattform auf Basis einer Beschreibung Ihrer Umgebung und Architektur installiert und komplett konfiguriert.</p>
+      <p>
+        Laden Sie <a href="https://assets.ubuntu.com/v1/26ccb08b-Private-Cloud-Build_DE.pdf">das Datenblatt herunter und erfahren Sie mehr&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8 col-medium-3">
+      <h2>Business Impact Brief</h2>
+      <h4>Eine Analyse von 451 Take</h4>
+      <p>Mit optimaler Auslastung ihrer Cloud-Kapazitäten und hoher Effizienz schaffen Unternehmen die besten Voraussetzungen, um mit einer Private Cloud Kosten- und Nutzenvorteile gegenüber einer Public Cloud zu erzielen.</p>
+      <p>
+        Laden Sie <a href="https://assets.ubuntu.com/v1/09378668-WP_451_Research_Preisanalyse_OpenStack_DE.pdf">den Business Impact Brief herunter und erfahren Sie mehr&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-4 u-align--center u-vertically-center col-medium-3 u-hide--small">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/a55f3f9e-451%20research%20logo.svg",
+        alt="",
+        width="523",
+        height="137",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+<section class="p-strip--light">
+  <div class="row">
+		<div class="col-4 u-vertically-center u-align--center col-medium-3 u-hide--small">
+			{{ image (
+        url="https://assets.ubuntu.com/v1/168111aa-Cloud+migration.svg",
+        alt="",
+        width="272",
+        height="272",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+		</div>
+    <div class="col-8">
+			<h2>Ein Cloud-Migrations-Leitfaden für Unternehmen</h2>
+			<h4>Wissen, wo anzufangen</h4>
+			<p>Erhöhte Developer-Agility, nahtlose Skalierbarkeit und vereinfachte Business-Continuity machen die Cloud zu einem hochattraktiven Vorhaben für fast alle  Organisationen. Allerdings ist die Cloud-Migration nicht ohne Herausforderungen. Die Verfügbarkeit während der Umstellung zu erhalten kann sich als schwierig erweisen, genauso wie die Sicherstellung der Integration mit existierenden Systemen und selbst das Finden nötiger Cloud-Expertise.</p>
+			<p>Welche Cloud-Architektur ist die beste für Ihr Unternehmen? Was sind die typischen Cloud-Computing-Modelle? Wie kann man mit wenig Aufwand in die Cloud migrieren?</p>
+			<p>
+        Laden Sie <a href="https://pages.ubuntu.com/rs/066-EOV-335/images/DE_Business_Guide_to_Cloud_Migration_WP.pdf">das Whitepaper herunter und erfahren Sie mehr&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h2>OpenStack Support</h2>
+      <p>Die Veröffentlichung von <a href="/openstack">OpenStack</a> folgt dem Ubuntu-Rhythmus.  Das bedeutet, dass zweimal im Jahr haben wir eine neue Version von OpenStack: im April und im Oktober. Sie werden mit neuen Versionen von Ubuntu als Pakete im <a href="https://packages.ubuntu.com/?_ga=2.68798033.1927821797.1671184811-1232158778.1655899900"></a>Ubuntu-Archiv</a> ausgeliefert:</p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+      {% include "/about/openstack-release-cycle.html" %}
+    <p>
+      <a href="/about/release-cycle#openstack-release-cycle">Learn more&nbsp;&rsaquo;</a>
+    </p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-8">
+      <h2>Kontaktieren Sie uns</h2>
+      <p>Lassen Sie uns gemeinsam daran arbeiten, die Vorteile der Nutzung von Charmed OpenStack in Ihrer Organisation zu erweitern.</p>
+      <p>
+        <a href="/openstack#get-in-touch" class="p-button--positive js-invoke-modal">Kontakt</a>
+      </p>
+    </div>
+    <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      {{ image (
+        url="https://assets.ubuntu.com/v1/24a03775-Contact+us.svg",
+        alt="",
+        width="240",
+        height="171",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+<!-- Set default Marketo information for contact form below-->
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/openstack" data-form-id="4578" data-lp-id="2086" data-return-url="/openstack/thank-you" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.2/d3.min.js" defer></script>
+<script src="{{ versioned_static('js/dist/release-chart.js') }}" defer></script>
+{% endblock content %}

@@ -1,6 +1,9 @@
 from distutils.util import strtobool
 import os
 from functools import wraps
+from datetime import datetime
+from dateutil.parser import parse
+import pytz
 
 import flask
 import talisker.requests
@@ -8,7 +11,6 @@ import talisker.requests
 from webapp.shop.api.ua_contracts.api import UAContractsAPI
 from webapp.shop.api.ua_contracts.advantage_mapper import AdvantageMapper
 from webapp.shop.api.badgr.api import BadgrAPI
-from webapp.shop.api.edx.api import EdxAPI
 from webapp.shop.api.trueability.api import TrueAbilityAPI
 from webapp.login import user_info
 from requests import Session
@@ -17,7 +19,7 @@ from requests import Session
 AREA_LIST = {
     "account": "Account pages",
     "advantage": "UA pages",
-    "cube": "Cube",
+    "cred": "Credentials",
 }
 
 PERMISSION_LIST = {
@@ -38,6 +40,7 @@ MARKETING_FLAGS = {
     "gbraid": "google-gbraid-id",
     "wbraid": "google-wbraid-id",
     "fbclid": "facebook-click-id",
+    "referrer": "referrer",
 }
 
 SERVICES = {
@@ -55,6 +58,11 @@ SERVICES = {
     },
 }
 
+MAINTENANCE_URLS = [
+    "/pro/subscribe",
+    "/pro/maintenance-check",
+]
+
 
 def shop_decorator(area=None, permission=None, response="json", redirect=None):
     permission = permission if permission in PERMISSION_LIST else None
@@ -63,7 +71,6 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
     session = talisker.requests.get_session()
     badgr_session = init_badgr_session(area)
-    edx_session = init_edx_session(area)
     trueability_session = init_trueability_session(area)
 
     def decorator(func):
@@ -77,9 +84,22 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                     flask.session[metadata_key] = value
 
             # shop under maintenance
-            if flask.request.path == "/pro/subscribe" and strtobool(
-                os.getenv("STORE_MAINTENANCE", "false")
-            ):
+            maintenance = strtobool(os.getenv("STORE_MAINTENANCE", "false"))
+            is_in_timeframe = False
+            store_maintenance_start = os.getenv("STORE_MAINTENANCE_START")
+            store_maintenance_end = os.getenv("STORE_MAINTENANCE_END")
+
+            if store_maintenance_start and store_maintenance_end:
+                maintenance_start = parse(os.getenv("STORE_MAINTENANCE_START"))
+                maintenance_end = parse(os.getenv("STORE_MAINTENANCE_END"))
+                time_now = datetime.utcnow().replace(tzinfo=pytz.utc)
+                is_in_timeframe = (
+                    maintenance_start <= time_now < maintenance_end
+                )
+
+            is_in_maintenance = maintenance and is_in_timeframe
+
+            if flask.request.path in MAINTENANCE_URLS and is_in_maintenance:
                 return flask.render_template("advantage/maintenance.html")
 
             # if logged in, get rid of guest token
@@ -104,7 +124,7 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
 
             if permission == "user" and response == "html":
                 if not user_token:
-                    redirect_path = redirect or flask.request.path
+                    redirect_path = redirect or flask.request.full_path
 
                     return flask.redirect(f"/login?next={redirect_path}")
 
@@ -116,6 +136,11 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 user_token, guest_token, response, session
             )
             advantage_mapper = AdvantageMapper(ua_contracts_api)
+            is_community_member = False
+            if user_info(flask.session):
+                is_community_member = user_info(flask.session).get(
+                    "is_community_member", False
+                )
 
             return func(
                 badgr_issuer=os.getenv(
@@ -127,10 +152,11 @@ def shop_decorator(area=None, permission=None, response="json", redirect=None):
                 ua_contracts_api=ua_contracts_api,
                 advantage_mapper=advantage_mapper,
                 badgr_api=get_badgr_api_instance(area, badgr_session),
-                edx_api=get_edx_api_instance(area, edx_session),
                 trueability_api=get_trueability_api_instance(
                     area, trueability_session
                 ),
+                is_in_maintenance=is_in_maintenance,
+                is_community_member=is_community_member,
                 *args,
                 **kwargs,
             )
@@ -159,7 +185,7 @@ def canonical_staff():
 
 
 def init_badgr_session(area) -> Session:
-    if area != "cube":
+    if area != "cred":
         return None
 
     badgr_session = Session()
@@ -168,28 +194,8 @@ def init_badgr_session(area) -> Session:
     return badgr_session
 
 
-def init_edx_session(area) -> Session:
-    if area != "cube":
-        return None
-
-    # This API lives under a sub-domain of ubuntu.com but requests to
-    # it still need proxying, so we configure the session manually to
-    # avoid it loading the configurations from environment variables,
-    # since those default to not proxy requests for ubuntu.com sub-domains
-    # and that is the intended behaviour for most of our apps
-    proxies = {
-        "http": os.getenv("HTTP_PROXY"),
-        "https": os.getenv("HTTPS_PROXY"),
-    }
-    edx_session = Session()
-    edx_session.proxies.update(proxies)
-    talisker.requests.configure(edx_session)
-
-    return edx_session
-
-
 def init_trueability_session(area) -> Session:
-    if area != "cube":
+    if area != "cred":
         return None
 
     trueability_session = Session()
@@ -202,14 +208,14 @@ def get_redirect_default(area) -> str:
     redirect_path = "/account"
     if area == "advantage":
         redirect_path = "/pro/dashboard"
-    elif area == "cube":
-        redirect_path = "/cube/microcerts"
+    elif area == "cred":
+        redirect_path = "/credentials"
 
     return redirect_path
 
 
 def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
-    if area != "cube":
+    if area != "cred":
         return None
 
     return BadgrAPI(
@@ -220,20 +226,8 @@ def get_badgr_api_instance(area, badgr_session) -> BadgrAPI:
     )
 
 
-def get_edx_api_instance(area, edx_session) -> EdxAPI:
-    if area != "cube":
-        return None
-
-    return EdxAPI(
-        os.getenv("CUBE_EDX_URL", "https://cube.ubuntu.com"),
-        os.getenv("CUBE_EDX_CLIENT_ID"),
-        os.getenv("CUBE_EDX_CLIENT_SECRET"),
-        edx_session,
-    )
-
-
 def get_trueability_api_instance(area, trueability_session) -> TrueAbilityAPI:
-    if area != "cube":
+    if area != "cred":
         return None
 
     return TrueAbilityAPI(

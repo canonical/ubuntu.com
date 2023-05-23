@@ -9,20 +9,17 @@
 {% block content %}
 
 <section class="p-strip--suru-topped is-dark is-bordered">
-  {% if not ("2022-09-06" | date_has_passed) %}
-    {% include "shared/_charmed-kubeflow-beta-banner.html" %}
-  {% endif %}
   <div class="row u-equal-height">
     <div class="col-6">
       <h1>AI on Ubuntu: the path<br>to production</h1>
       <h4>The best data science and MLops tools across your infra</h4>
       <p>Develop AI models on high-end Ubuntu workstations. Train on racks of bare-metal or public clouds with hardware acceleration. Deploy to cloud, edge and IoT. All on Ubuntu.</p>
       <p>
-        <a href="https://charmed-kubeflow.io/docs/install" class="p-button--positive">Install Kubeflow</a>
-        <a href="/ai/services" class="p-button">Discover our AI services</a>
+        <a href="/engage/mlops-guide" class="p-button--positive">Read our guide to MLOps</a>
+        <a href="https://assets.ubuntu.com/v1/429359fe-MLOps%20advisory%20DS%2029.11.22.pdf" class="p-button">Discover our AI consultancy</a>
       </p>
     </div>
-    <div class="col-6 u-vertically-center u-align--center">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/cc376f8c-AI-models.svg",
         alt="",
@@ -48,7 +45,8 @@
             width="130",
             height="17",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
             }}
         </div>
@@ -59,7 +57,8 @@
             width="130",
             height="25",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
@@ -70,7 +69,8 @@
             width="130",
             height="25",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
@@ -81,7 +81,8 @@
               width="130",
               height="90",
               hi_def=True,
-              loading="lazy"
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
         </div>
@@ -101,56 +102,61 @@
         <div class="p-logo-section__items u-align--left">
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/8ee86883-jupyter-logo.png",
-              alt="Jupyter",
-              width="55",
-              height="64",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/d6a20f43-keras.png",
-              alt="Keras",
-              width="110",
-              height="32",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/f4ffa06e-scikit-learn-logo.png",
-              alt="Scikit Learn",
-              width="98",
-              height="48",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/8b1f29ef-tensor_2.png",
+              url="https://assets.ubuntu.com/v1/2842a636-tensor-flow-logo.svg",
               alt="TensorFlow",
-              width="177",
-              height="32",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/f3dd556d-Pytorch_logo.png",
-              alt="PyTorch",
-              width="122",
-              height="30",
+              url="https://assets.ubuntu.com/v1/4a40f049-jupyter_logo.svg",
+              alt="Jupyter",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/89baba26-keras_logo.svg",
+              alt="Keras",
+              width="159",
+              height="158",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/b12c771f-scikit-learn-logo.svg",
+              alt="Scikit Learn",
+              width="159",
+              height="158",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/f0a9ed33-pytorch_logo.svg",
+              alt="PyTorch",
+              width="144",
+              height="144",
+              hi_def=True,
+              loading="lazy",
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
@@ -168,56 +174,56 @@
         <div class="p-logo-section__items u-align--left">
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/3224ee3e-seldon.png",
+              url="https://assets.ubuntu.com/v1/f988bb24-seldon-logo.svg",
               alt="Seldon",
-              width="139",
-              height="35",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/5e6a97ad-kfserving.png",
+              url="https://assets.ubuntu.com/v1/dd599628-kfserving-logo.svg",
               alt="KFServing",
-              width="141",
-              height="28",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/653daa8b-onnx-logo.png",
+              url="https://assets.ubuntu.com/v1/172ba86b-onnx-logo.svg",
               alt="Onnx",
-              width="117",
-              height="30",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/8f97d534-tensor_rt.png",
+              url="https://assets.ubuntu.com/v1/5c484303-tensortRT-logo.svg",
               alt="TensorRt",
-              width="106",
-              height="48",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/2af7ca99-xgboost-logo.png",
+              url="https://assets.ubuntu.com/v1/97451d76-dmlc-xgboost-logo.svg",
               alt="XGBoost",
-              width="69",
-              height="20",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
@@ -237,45 +243,45 @@
         <div class="p-logo-section__items u-align--left">
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/b1f04506-Kubeflow-Logo-RGB.svg",
+              url="https://assets.ubuntu.com/v1/b730ace5-kubeflow-logo.svg",
               alt="Kubeflow",
-              width="138",
-              height="32",
+              width="158",
+              height="159",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/da0946e1-mlflow.png",
-              alt="ML-Flow",
-              width="104",
-              height="40",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/6577232a-pachyderm-logo.svg",
-              alt="Pachyderm",
-              width="177",
-              height="38",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/3d65e5fe-juju_black-orange_hex.svg",
+              url="https://assets.ubuntu.com/v1/835a5d08-Juju.png",
               alt="Juju",
-              width="89",
-              height="32",
+              width="316",
+              height="316",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/abdcff3a-pachyderm-logo.svg",
+              alt="Pachyderm",
+              width="158",
+              height="159",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"}
+              ) | safe
+            }}
+          </div>
+          <div class="p-logo-section__item">
+            {{ image (
+              url="https://assets.ubuntu.com/v1/7d84f656-mlflow-logo.svg",
+              alt="ML-Flow",
+              width="158",
+              height="158",
+              hi_def=True,
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
@@ -293,56 +299,23 @@
         <div class="p-logo-section__items u-align--left">
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/34b3ddce-Apache_Spark.png",
-              alt="",
-              width="61",
-              height="32",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/c2a4ebd4-Kafka.svg",
+              url="https://assets.ubuntu.com/v1/fabdefb7-kafka+logo.png",
               alt="Kafka",
-              width="78",
-              height="36",
+              width="252",
+              height="253",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/853e440f-Cassandra.svg",
-              alt="Cassandra",
-              width="96",
-              height="64",
+              url="https://assets.ubuntu.com/v1/967d5d93-apache-spark-logo.svg",
+              alt="Apache Spark",
+              width="158",
+              height="157",
               hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/93da3292-Elastic_logo.png",
-              alt="Elastic",
-              width="117",
-              height="40",
-              hi_def=True,
-              loading="lazy"
-              ) | safe
-            }}
-          </div>
-          <div class="p-logo-section__item">
-            {{ image (
-              url="https://assets.ubuntu.com/v1/2aae3674-Hadoop.svg",
-              alt="Hadoop",
-              width="165",
-              height="40",
-              hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
@@ -362,45 +335,45 @@
         <div class="p-logo-section__items u-align--left">
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/52d4cc16-Nvidia_Logo_Horizontal.svg",
+              url="https://assets.ubuntu.com/v1/d2ed7c63-nvidia-logo.svg",
               alt="Nvidia",
-              width="167",
-              height="32",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/7b141b13-partner-logo-amd.svg",
+              url="https://assets.ubuntu.com/v1/6b82d1e3-amd-logo.svg",
               alt="AMD",
-              width="123",
-              height="30",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/e0ef0377-intel-logo-2-1.png",
+              url="https://assets.ubuntu.com/v1/bf838af9-intel-new-logo.svg",
               alt="Intel",
-              width="72",
-              height="28",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/4efbd291-Arm_logo_blue_cropped.svg",
+              url="https://assets.ubuntu.com/v1/50ac62e7-arm-logo.svg",
               alt="ARM",
-              width="78",
-              height="24",
+              width="159",
+              height="158",
               hi_def=True,
-              loading="lazy"
+              attrs={"class": "p-logo-section__logo"}
               ) | safe
             }}
           </div>
@@ -418,10 +391,10 @@
         <div class="p-logo-section__items u-align--left">
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/38697bf3-server_brand-dark-grey.svg",
+              url="https://assets.ubuntu.com/v1/2f0c1694-server brand.svg",
               alt="Server brand",
-              width="45",
-              height="48",
+              width="158",
+              height="158",
               hi_def=True,
               loading="lazy"
               ) | safe
@@ -429,10 +402,10 @@
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/7ecbaf72-OpenStack_openstack-logo.svg",
+              url="https://assets.ubuntu.com/v1/53da813f-openstack-logomark-logo.svg",
               alt="Openstack",
-              width="49",
-              height="48",
+              width="159",
+              height="158",
               hi_def=True,
               loading="lazy"
               ) | safe
@@ -440,10 +413,10 @@
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
+              url="https://assets.ubuntu.com/v1/b2952436-aws-logo.svg",
               alt="AWS",
-              width="67",
-              height="40",
+              width="159",
+              height="158",
               hi_def=True,
               loading="lazy"
               ) | safe
@@ -451,10 +424,10 @@
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/e5f6bd10-Google_Cloud_Platform-Logo.png",
+              url="https://assets.ubuntu.com/v1/f0cf1fa3-google-cloud-logo.svg",
               alt="Google Cloud",
-              width="179",
-              height="28",
+              width="158",
+              height="158",
               hi_def=True,
               loading="lazy"
               ) | safe
@@ -462,10 +435,10 @@
           </div>
           <div class="p-logo-section__item">
             {{ image (
-              url="https://assets.ubuntu.com/v1/da9a1344-Microsoft-Azure-logo_stacked_transparent.png",
+              url="https://assets.ubuntu.com/v1/82c52642-microsoft-azure.svg",
               alt="Microsoft Azure",
-              width="112",
-              height="32",
+              width="158",
+              height="158",
               hi_def=True,
               loading="lazy"
               ) | safe
@@ -492,7 +465,7 @@
         <a href="https://charmed-kubeflow.io/#get-in-touch">Contact us&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-6 u-vertically-center u-align--center">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/25baf3c4-Kubeflow-Topology.svg",
         alt="Kubeflow Topology",
@@ -508,12 +481,12 @@
     <hr class="p-separator">
   </div>
   <div class="row u-equal-height">
-    <div class="col-6 u-vertically-center u-align--center">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
-        url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
-        alt="Ubuntu Advantage",
-        width="300",
-        height="324",
+        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
+        alt="",
+        width="250",
+        height="270",
         hi_def=True,
         loading="lazy"
         ) | safe
@@ -551,10 +524,10 @@
         <a href="/blog/deploying-kubeflow-everywhere">Kubeflow at the edge&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-6 u-vertically-center u-align--center">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
         url="https://assets.ubuntu.com/v1/3f81159f-Kubeflow+to+the+edge3.svg",
-        alt="Kubeflow to the ",
+        alt="",
         width="300",
         height="293",
         hi_def=True,
@@ -597,7 +570,7 @@
           <div class="p-heading-icon__header">
             {{ image (
               url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
-              alt="Document icon",
+              alt="",
               width="32",
               height="28",
               hi_def=True,
@@ -617,7 +590,7 @@
           <div class="p-heading-icon__header">
             {{ image (
               url="https://assets.ubuntu.com/v1/df54bb6a-document-open-icon.svg",
-              alt="Document icon",
+              alt="",
               width="32",
               height="28",
               hi_def=True,
@@ -663,10 +636,10 @@
       <p><a href="http://charmed-kubeflow.io/docs/install" class="p-button--positive">Test drive Charmed Kubeflow now</a></p>
       <p>Or <a href="/ai/contact-us?product=ai-index">contact our experts</a> to get started with consulting, training or outsourced operations.</p>
     </div>
-    <div class="col-6 u-vertically-center u-align--center">
+    <div class="col-6 u-vertically-center u-align--center u-hide--small u-hide--medium">
       {{ image (
       url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-      alt="Kubeflow Topology",
+      alt="",
       width="281",
       height="200",
       hi_def=True,

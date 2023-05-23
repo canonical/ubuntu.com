@@ -1,5 +1,4 @@
 20.10/?: "/download"
-18.04/?: "/download"
 404/?: "/"
 500/?: "/"
 2009/.+/: "/blog"
@@ -135,6 +134,7 @@ certified/desktop/models/?: "/certified?category=Desktop&category=Laptop"
 certified/server/models/?: "/certified?category=Server"
 certified/iot/models/?: "/certified?category=Device"
 certified/soc/models/?: "/certified?category=SoC"
+certified/why-certified/?: "/certified/why-certify"
 certification/?: "/certified"
 
 cc/?: "/security/certifications"
@@ -481,9 +481,12 @@ engage/custom-ubuntu-pro-image-on-azure: "/engage/unlisted/custom-ubuntu-pro-ima
 engage/ShellOnboarding: "/engage/unlisted/shell-onboarding"
 engage/AT&TProOnboarding: "/engage/unlisted/at&t-onboarding"
 engage/smart-start-whitepaper/?: "/engage/4-ways-to-accelerate-time-to-market-for-iot-devices"
+engage/snapd-whitepaper: /engage/ota-updates-iot-guide
 engage/cloud-pricing-report-2021/?: "/engage/cloud-pricing-report"
 engage/cloud-pricing-report-2022/?: "/engage/cloud-pricing-report"
 engage/vmware-to-charmed-openstack/?: "/engage/from-vmware-to-open-source"
+engage/openstack-made-easy/?: "/engage/openstack-ebook-beginners"
+engage/openstack-ebook/?: "/engage/openstack-ebook-beginners"
 enterprise-canonical-kubernetes/?: "https://assets.ubuntu.com/v1/Enterprise-Canonical-Kubernetes.pdf"
 es/?: "/"
 esm/?: "/security/esm"
@@ -503,7 +506,6 @@ GetUbuntu/?: "/download"
 hardware-summit/?: "/blog/canonical-hosts-leading-odms-at-ubuntu-hardware-summit/"
 hardy/?: "https://wiki.ubuntu.com/HardyHeron"
 how-can-it-be-free/?: "/desktop"
-humans.txt?: "/static/files/humans.txt"
 hybrid-cloud/?: "/cloud"
 i-cloud-jumpstart/?: "/openstack/training"
 i-cloud/?: "/openstack"
@@ -536,6 +538,7 @@ iot/edgex/?: "/internet-of-things/edgex"
 iot/networking/?: "/internet-of-thing/networking"
 iot/smart-city/?: "/internet-of-thing/smart-city"
 iot/management/?: "/internet-of-thing/management"
+iot/nvidia/contact-us/?: "/internet-of-things/nvidia/contact-us"
 IoT/?: "/internet-of-things"
 IOT/?: "/internet-of-things"
 iot-appstore/?: "/internet-of-things/appstore"
@@ -561,30 +564,38 @@ legal/dataprivacy(?P<page>.*)/?: "/legal/data-privacy{page}"
 legal/data-privacy-enquiry/?: "/legal/data-privacy/enquiry"
 legal/contributors/licence-agreement-faq/?: "/legal/contributors/faq"
 legal/contributors/submit/?: "/legal/contributors/agreement"
-legal/bootstack/service-description/?:  "/legal/managed-services-description"
-legal/bootstack/privacy/?:  "/legal/managed-services-privacy"
+legal/bootstack/service-description/?:  "/legal/ubuntu-pro-description"
+legal/bootstack/privacy/?:  "/legal/ubuntu-pro-description"
 legal/dataprivacy/snap-store/? : "/legal/data-privacy/snap-store"
 legal/dataprivacy/sso/? : "/legal/data-privacy/sso"
 legal/data-privacy/third-parties?: "/legal/data-privacy"
 legal/data-privacy/webinar/2018-04-01?:  "/legal/data-privacy/webinar"
 legal/IP/?:    "/legal/intellectual-property-policy"
-legal/managed-services?: "/legal/ubuntu-advantage-service-description"
-legal/managed-services-description?: "/legal/ubuntu-advantage-service-description"
-legal/managed-services-privacy?: "/legal/ubuntu-advantage-service-description"
-legal/managed-services/privacy?:  "/legal/ubuntu-advantage-service-description"
-legal/managed-services/service-description?:  "/legal/ubuntu-advantage-service-description"
+legal/managed-services?: "/legal/ubuntu-pro-description"
+legal/managed-services-description?: "/legal/ubuntu-pro-description"
+legal/managed-services-privacy?: "/legal/ubuntu-pro-description"
+legal/managed-services/privacy?:  "/legal/ubuntu-pro-description"
+legal/managed-services/service-description?:  "/legal/ubuntu-pro-description"
 legal/online-accounts/?: "/legal/online-account-terms"
 legal/privacy-policy/?: "/legal/data-privacy"
 legal/privacy-policy/third-parties/?: "/legal/data-privacy"
 legal/service-terms(?P<page>.*)/?: "/legal/ubuntu-advantage-service-terms{page}"
 legal/terms-and-policies/privacy-policy?: "/legal/data-privacy"
-legal/ubuntu-advantage/service-description: "/legal/ubuntu-advantage-service-description"
-legal/ubuntu-advantage/service-description-ja/2017-06-27: "/legal/ubuntu-advantage/service-description-ja/2017-02-09"
-legal/ubuntu-advantage/ua-terms-ja/?: "/legal/ubuntu-advantage-service-terms/ja"
+legal/ubuntu-advantage/?: "/legal/ubuntu-pro"
+legal/ubuntu-advantage/service-description: "/legal/ubuntu-pro-description"
+legal/ubuntu-advantage/service-description-ja/2017-06-27: "/legal/ubuntu-pro-description/ja"
+legal/ubuntu-advantage/service-description-ja/2017-02-09: "/legal/ubuntu-pro-description/ja"
+legal/ubuntu-advantage/ua-terms-ja/?: "/legal/ubuntu-pro-service-terms/ja"
 legal/short-terms(?P<page>.*)/?: "/legal/ubuntu-advantage-service-terms/{page}"
-legal/short-terms-ja: "/legal/ubuntu-advantage-service-terms/ja"
-legal/ubuntu-advantage/ua-terms/?: "/legal/ubuntu-advantage-service-terms"
-legal/ubuntu-advantage/assurance/?: "/legal/ubuntu-advantage-assurance"
+legal/short-terms-ja/?: "/legal/ubuntu-pro-description/ja"
+legal/ubuntu-advantage/service-description/?: /legal/ubuntu-pro-description
+legal/ubuntu-advantage-service-description: /legal/ubuntu-pro-description
+legal/ubuntu-advantage/ua-terms/?: "/legal/ubuntu-pro-service-terms"
+legal/ubuntu-advantage-service-terms/?: "/legal/ubuntu-pro-service-terms"
+legal/ubuntu-advantage-service-terms/ja?: "/legal/ubuntu-pro-description/ja"
+legal/ubuntu-advantage/assurance/?: "/legal/ubuntu-pro-assurance"
+legal/ubuntu-advantage-assurance/?: "/legal/ubuntu-pro-assurance"
+legal/ubuntu-advantage/personal/?: "/legal/ubuntu-pro/personal"
 legal/terms-and-policies/terms/?: "/legal/terms"
 legal/terms-and-policies/trademarks/?: "/legal/trademarks"
 legal/terms-and-policies/intellectual-property-policy/?: "/legal/intellectual-property-policy"
@@ -813,7 +824,7 @@ tuxaward/?: "/blog/ubuntu-wins-tux-award/"
 ua/?: "/support"
 ua-assurance-terms/?: "/legal/ubuntu-advantage-assurance"
 ua-dell-tc/?: "/legal/ua-dell-tc"
-ua-servicedescription/?: "/legal/ubuntu-advantage-service-description"
+ua-servicedescription/?: "/legal/ubuntu-pro-description"
 ubuntu-advantage/?: "/support"
 ubuntu-advantage-storage/?: "/ceph"
 ubuntu-core/?: "/core"
@@ -845,7 +856,7 @@ whitepapers/beta/robotics/?: "/engage/robot-operating-system-choice"
 wiki.*/?: "https://wiki.ubuntu.com/"
 yourcloud/?: "/openstack/managed"
 ziskejte/prechod910/?: "/download"
-uasd/?: "/legal/ubuntu-advantage-service-description"
+uasd/?: "/legal/ubuntu-pro-description"
 (usn/)?(USN|usn)-?(?P<page>[0-9]+-[0-9]+)/?: "/security/notices/USN-{page}/"
 usn/?: "/security/notices"
 usn/rss\.xml: "/security/notices/rss.xml"
@@ -853,6 +864,13 @@ usn/rss\.xml: "/security/notices/rss.xml"
 (?P<page>.+)/: "/{page}"
 telecommunications/?: "/telco"
 telcos/?: "/telco"
+
+# Community
+community/canonical/?: "/community/governance/canonical"
+community/code-of-conduct/?: "/community/governance/code-of-conduct"
+community/debian/?: "/community/governance/debian"
+community/diversity/?: "/community/governance/diversity"
+community/mission/?: "/community/governance/mission"
 
 # Blog redirects
 blog/search/?: /search
@@ -905,8 +923,6 @@ resources/?: "/blog"
 # From https://pastebin.canonical.com/p/3TXyyNkWkg/
 search/google-appliance/(?P<query>.*)/?: /search?q={query}
 news/pressreleasearchive/?: https://canonical.com/press-centre
-legal/ubuntu-advantage/service-description/?: /legal/ubuntu-pro-description
-legal/ubuntu-advantage-service-description: /legal/ubuntu-pro-description
 download/desktop/questions/?: /download/desktop/thank-you
 
 # Tutorials section
@@ -940,30 +956,35 @@ server/guide: /server/docs
 blog/topic/(?P<path>.*): /blog/topics/{path}
 blog/topic: /blog
 
-# Marketing redirects to become pages in time
-nvidia: /engage/ubuntu-at-nvidia-gtc-2021
+# Blog slug renames
+/blog/cloud-repatriation: /blog/cloud-repatriation-reasons
 
 # Move /securtiy/cve to /security/cves
 security/cve: /security/cves
 security/cve/sitemap(?P<suffix>.*).xml: /security/cves/sitemap{suffix}.xml
 
 # Shop redirects
-/advantage/purchase-account: "/account/purchase-account"
-/advantage/customer-info/(?P<account_id>.*): "/account/customer-info/{account_id}"
-/advantage/customer-info: "/account/customer-info"
-/advantage/customer-info-anon: "/account/customer-info-anon"
-/advantage/purchases/(?P<purchase_id>.*): /account/purchases/{purchase_id}
-/advantage/(?P<tx_type>.*)/(?P<tx_id>.*)/invoices/(?P<invoice_id>.*): "/account/{tx_type}/{tx_id}/invoices/{invoice_id}"
-/advantage/last-purchase-ids/(?P<account_id>.*): "/account/last-purchase-ids/{account_id}"
+advantage/purchase-account: "/account/purchase-account"
+advantage/customer-info/(?P<account_id>.*): "/account/customer-info/{account_id}"
+advantage/customer-info: "/account/customer-info"
+advantage/customer-info-anon: "/account/customer-info-anon"
+advantage/purchases/(?P<purchase_id>.*): /account/purchases/{purchase_id}
+advantage/(?P<tx_type>.*)/(?P<tx_id>.*)/invoices/(?P<invoice_id>.*): "/account/{tx_type}/{tx_id}/invoices/{invoice_id}"
+advantage/last-purchase-ids/(?P<account_id>.*): "/account/last-purchase-ids/{account_id}"
+advantage/attach: "/pro/attach"
 
-/advantage: "/pro"
-/advantage/(?P<path>.*): "/pro/{path}"
-/pro/get-in-touch: "/pro#get-in-touch"
+advantage: "/pro"
+advantage/(?P<path>.*): "/pro/{path}"
+pro/get-in-touch: "/pro#get-in-touch"
+pro/beta: "/pro/tutorial"
 
 # USN redirects
-/security/notices/months(/.*)?/?: /security/notices
-/security/notices/releases(/.*)?/?: /security/notices
-/security/notices/usn/atom.xml: /security/notices/atom.xml
-/security/notices/usn/rss.xml: /security/notices/rss.xml
-/security/notices/usn/(usn-|USN-)(?P<usn_id>.*)/?: /security/notices/USN-{usn_id}
-/security/notices/(usn/)?(?P<usn_id>[\d]{4}-[\d]{1,2})/?: /security/notices/USN-{usn_id}
+security/notices/months(/.*)?/?: /security/notices
+security/notices/releases(/.*)?/?: /security/notices
+security/notices/usn/atom.xml: /security/notices/atom.xml
+security/notices/usn/rss.xml: /security/notices/rss.xml
+security/notices/usn/(usn-|USN-)(?P<usn_id>.*)/?: /security/notices/USN-{usn_id}
+security/notices/(usn/)?(?P<usn_id>[\d]{4}-[\d]{1,2})/?: /security/notices/USN-{usn_id}
+
+# Fix search results https://github.com/canonical/ubuntu.com/issues/12510
+pricing/desktops: "/pricing/desktop"

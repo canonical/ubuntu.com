@@ -7,6 +7,9 @@
 
 {% block content %}
 <section class="p-strip--suru-bottomed">
+  {% if schedule_banner("2023-03-08", "2023-03-22") %}
+    {% include "shared/_charmed-kubeflow-beta-banner.html" %}
+  {% endif %}
   <div class="row u-vertically-center">
     <div class="col-7">
       <h1>Enterprise MLOps solutions</h1>
@@ -19,12 +22,12 @@
     </div>
     <div class="col-4 u-hide--medium u-hide--small u-align--center">
       {{ image (
-        url="https://assets.ubuntu.com/v1/71baccc3-ubuntu-advantage-circular.svg",
+        url="https://assets.ubuntu.com/v1/83e7ce7c-ubuntu-pro-circular.png",
         alt="",
-        width="252",
-        height="273",
+        width="250",
+        height="270",
         hi_def=True,
-        loading="auto"
+        loading="lazy"
         ) | safe
       }}
     </div>
@@ -149,7 +152,7 @@
       }}
     </div>
   </section>
-  
+
   <section class="p-strip">
     <div class="row u-vertically-center">
       <div class="col-4 u-hide--medium u-hide--small u-align--center">
@@ -175,7 +178,7 @@
       </div>
     </div>
   </section>
-  
+
   <section class="p-strip--light">
     <div class="row u-vertically-center">
       <div class="col-7">
@@ -226,11 +229,11 @@
         </div>
       </div>
     </div>
-    
+
     <div class="u-fixed-width">
       <hr class="p-separator" />
     </div>
-    
+
     <div class="row">
       <div class="p-logo-section">
         <div class="p-logo-section__items">
@@ -310,14 +313,13 @@
       </div>
     </div>
   </section>
-  
+
   {% include "ai/shared/_learn-more.html" %}
-  
+
   {% with first_item="_cloud_bootstack", second_item="_cloud_ubuntu_advantage", third_item="_kubeflow_news_signup" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
-  
+
   <!-- Set default Marketo information for contact form below-->
   <div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/kubeflow" data-form-id="3231" data-lp-id="6279" data-return-url="https://ubuntu.com/ai/thank-you?product=ai-managed" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
   </div>
-  
+
   {% endblock content %}
-  

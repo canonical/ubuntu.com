@@ -1,3 +1,4 @@
+import "infer-preferred-language.js";
 import setupIntlTelInput from "./intlTelInput.js";
 
 (function () {
@@ -395,10 +396,17 @@ import setupIntlTelInput from "./intlTelInput.js";
               case "checkbox":
                 if (input.checked) {
                   var subSectionText = "";
-                  var subSection = input
-                    .closest('[class*="col-"]')
-                    .querySelector(".js-sub-section");
-                  if (subSection) {
+
+                  // Forms that have column separation
+                  if (
+                    input.closest('[class*="col-"]') &&
+                    input
+                      .closest('[class*="col-"]')
+                      .querySelector(".js-sub-section")
+                  ) {
+                    var subSection = input
+                      .closest('[class*="col-"]')
+                      .querySelector(".js-sub-section");
                     subSectionText = subSection.innerText + ": ";
                   }
 
@@ -436,7 +444,6 @@ import setupIntlTelInput from "./intlTelInput.js";
             }
           });
         });
-
         return message;
       }
 
@@ -518,6 +525,21 @@ import setupIntlTelInput from "./intlTelInput.js";
 
       // Setup dial code dropdown options (intlTelInput.js)
       setupIntlTelInput(phoneInput);
+
+      // Set preferredLanguage hidden input
+      function setpreferredLanguage() {
+        // eslint-disable-next-line
+        const preferredLanguage = getPrimaryParentLanguage();
+        const preferredLanguageInput = contactModal.querySelector(
+          "#preferredLanguage"
+        );
+
+        if (preferredLanguageInput) {
+          preferredLanguageInput.value = preferredLanguage || "";
+        }
+      }
+
+      setpreferredLanguage();
 
       function fireLoadedEvent() {
         var event = new CustomEvent("contactModalLoaded");

@@ -1,0 +1,357 @@
+{% extends "azure/base_azure.html" %}
+
+{% block title %}Ubuntu Pro FIPS for GCP{% endblock %}
+{% block meta_description %}Ubuntu Pro FIPS for Google Cloud is an Ubuntu Pro image with FIPS certified modules enabled by default for FedRAMP, HIPAA, PCI and ISO compliance. Ubuntu Pro FIPS images are secure and optimised for production on public cloud.{% endblock %}
+{% block meta_copydoc %}https://docs.google.com/document/d/1Djxdzjy78bau8ELM4-MNGoM2YRa_QjpN1xJ4H4GjFyw/edit#heading=h.c6wjbvvp8mcm{% endblock meta_copydoc %}
+
+{% block content %}
+<section class="p-strip u-no-padding--top u-no-padding--bottom">
+  <div class="p-strip--suru-topped">
+    <div class="row u-equal-height">
+      <div class="col-7 col-medium-4">
+        <h1>Ubuntu Pro FIPS for Google Cloud compliance</h1>
+        <h2 class="p-heading--3">For Google Cloud compliance in production environments.</h2>
+        <p>Ubuntu Pro FIPS is the first and only FIPS 140-2 certified image for Google Cloud. Built upon the enhanced stability and security features of <a href="/pro">Ubuntu Pro</a>, Ubuntu FIPS is a critical foundation for federal programs and government contractors.</p>
+      </div>
+      <div class="col-5 u-align--center u-vertically-center u-hide--medium u-hide--small">
+        {{
+          image(
+            url="https://assets.ubuntu.com/v1/6e176d9a-Google+Cloud+stacked.svg",
+            alt="",
+            width="250",
+            height="200",
+            hi_def=True,
+            loading="auto",
+          ) | safe
+        }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>What's in Ubuntu Pro FIPS?</h2>
+      <ul class="p-matrix u-clearfix">
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">FIPS compliant by default</h3>
+            <div class="p-matrix__desc">
+              <p>FIPS 140-2 Level 1 modules pre-enabled out of the box with Ubuntu Pro FIPS. No extra configuration steps required.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">FedRAMP compliance</h3>
+            <div class="p-matrix__desc">
+              <p>Operate environments under the FedRAMP compliance regime, with FIPS 140-2 Level 1 certified modules.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">CIS and DISA STIG</h3>
+            <div class="p-matrix__desc">
+              <p>Automated auditing and remediation for the DISA For companies looking to leverage industry benchmarks for hardening, Ubuntu Pro makes two leading <a href="/security/certifications/docs/disa-stig/installation">implementation guides</a> available.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">HIPAA, PCI, ISO compliance</h3>
+            <div class="p-matrix__desc">
+              <p>Healthcare, financial services, insurance and other organisations that operate in heavily-regulated industries ensure compliance with HIPAA, PCI and ISO.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Predictable and Secure</h3>
+            <div class="p-matrix__desc">
+              <p>Ubuntu Pro FIPS is based on <a href="/gcp/pro">Ubuntu Pro premium images</a>, with Google Cloud optimisations built-in and the most comprehensive open-source security coverage in the industry.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Common Criteria EAL2 certification</h3>
+            <div class="p-matrix__desc">
+              <p>Ubuntu Pro FIPS has been evaluated to assurance level EAL2, with Common Criteria certification.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Open-source security</h3>
+            <div class="p-matrix__desc">
+              <p>Ubuntu Pro adds security coverage for the most important open-source applications like Apache Kafka, NGINX, MongoDB, Redis, PostgreSQL and more.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">10-year lifetime</h3>
+            <div class="p-matrix__desc">
+              <p>Canonical backs Ubuntu Pro FIPS for 10 years, ensuring security updates are available throughout, with a guaranteed upgrade path.</p>
+            </div>
+          </div>
+        </li>
+        <li class="p-matrix__item">
+          <div class="p-matrix__content">
+            <h3 class="p-matrix__title">Priced for the cloud</h3>
+            <div class="p-matrix__desc">
+              <p>Ubuntu Pro FIPS pricing tracks the underlying compute cost, starting at under $0.01 for the smallest f1-micro instance type, and ramping down to less than 1% of hourly compute.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <a href="/gcp#get-in-touch" class="p-button--positive js-invoke-modal">Let's talk about Ubuntu FIPS</a>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <h2>Launch Ubuntu Pro FIPS for Google Cloud</h2>
+    </div>
+  </div>
+  <div class="row p-divider">
+    <div class="col-6 p-divider__block">
+      <h4>Ubuntu Pro FIPS 18.04 LTS</h4>
+      <p>Ubuntu Pro FIPS 18.04 LTS includes a Google Cloud-optimised FIPS-certified 4.15 kernel and other FIPS certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2028.</p>
+      <p><a href="https://console.cloud.google.com/compute/" class="p-button--positive"><span>Launch now</span></a></p>
+    </div>
+    <div class="col-6 p-divider__block">
+      <h4>Ubuntu Pro FIPS 20.04 LTS</h4>
+      <p>Ubuntu 16.04 LTS includes FIPS-certified 5.4  kernel and other FIPS certified modules pre-enabled out of the box. Ubuntu Pro FIPS provides expanded security maintenance through April 2030.</p>
+      <p><a href="https://console.cloud.google.com/compute/" class="p-button--positive"><span>Launch now</span></a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row u-equal-height u-vertically-center">
+    <div class="col-12">
+      <h2>Google Cloud compliance made easy</h2>
+      <p><strong>Ubuntu Pro FIPS Google Cloud compliance made easy</strong></p>
+      <p>With Google Cloud, US government agencies and their partners have been able to combine unparalleled flexibility, breakthrough innovation, world class security and Google Cloud compliance. However when it comes to running a secure and compliant enterprise Linux on Google Cloud, IT departments are often left with expensive options that sacrifice innovation for compliance. Watch this video on demand to see how easy for government agencies to consume Linux on Google Cloud.</p>
+     <p><a href="https://ubuntu.com/blog/enable-fips-on-google-cloud" class="p-button--positive">Read the blog</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      <h2>FIPS certified Ubuntu components for Google Cloud</h2>
+      <table class="p-table--mobile-card">
+        <thead>
+          <tr>
+            <th class="u-align--right" style="width: 9%;">Ubuntu LTS</th>
+            <th style="width: 30%;">FIPS certified component</th>
+            <th>Description</th>
+            <th class="u-align--right" style="width: 10%;">Version</th>
+            <th class="u-align--right" style="width: 15%;">CMVP Certificate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">Google Cloud Kernel</td>
+            <td data-heading="Description">Kernel optimised for use in Google Cloud clouds</td>
+            <td class="u-align--right" data-heading="Version">4.15</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3954">3954</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">OpenSSL</td>
+            <td data-heading="Description">General purpose cryptographic library that includes TLS implementation</td>
+            <td class="u-align--right" data-heading="Version">1.1.1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3622">3622</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">OpenSSH client</td>
+            <td data-heading="Description">SSH client application for operating systems</td>
+            <td class="u-align--right" data-heading="Version">7.9p1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3633">3633</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">OpenSSH server</td>
+            <td data-heading="Description">SSH server application for operating systems</td>
+            <td class="u-align--right" data-heading="Version">7.9p1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3632">3632</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">StrongSWAN</td>
+            <td data-heading="Description">IPSec based VPN solution library</td>
+            <td class="u-align--right" class="u-align--right" data-heading="Version">5.6.2</td>
+            <td class="u-align--right" class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3648">3648</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">18.04</td>
+            <td data-heading="FIPS certified component">Libgcrypt</td>
+            <td data-heading="Description">The GNUPG cryptographic general purpose library (provides fully certified full disk encryption)</td>
+            <td class="u-align--right" data-heading="Version">1.8.1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/Certificate/3748">3748</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <table class="p-table--mobile-card">
+        <thead>
+          <tr>
+            <th class="u-align--right" style="width: 9%;">Ubuntu LTS</th>
+            <th style="width: 30%;">FIPS certified component</th>
+            <th>Description</th>
+            <th class="u-align--right" style="width: 10%;">Version</th>
+            <th class="u-align--right" style="width: 15%;">CMVP Certificate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">Linux kernel (generic)</td>
+            <td data-heading="Description">The Linux kernel cryptographic library</td>
+            <td class="u-align--right" data-heading="Version">5.4.0-1021</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4127">4127</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">OpenSSL, OpenSSH client, OpenSSH server</td>
+            <td data-heading="Description">General purpose cryptographic library that includes TLS implementation</td>
+            <td class="u-align--right" data-heading="Version">1:8.2p1</td>
+            <td class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/3966">3966</a></td>
+          </tr>
+          <tr>
+            <td class="u-align--right" class="u-align--right" data-heading="Ubuntu LTS">20.04</td>
+            <td data-heading="FIPS certified component">StrongSWAN</td>
+            <td data-heading="Description">IPSec based VPN solution library</td>
+            <td class="u-align--right" class="u-align--right" data-heading="Version">5.8.2</td>
+            <td class="u-align--right" class="u-align--right" data-heading="CMVP Certificate"><a href="https://csrc.nist.gov/projects/cryptographic-module-validation-program/certificate/4046">4046</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <p><a href="https://assets.ubuntu.com/v1/8ad870d4-Ubuntu-Pro-FIPS-for-Google-Cloud-compliance-DS-14-12.22.pdf">Read the Ubuntu Pro FIPS datasheet&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+
+  <div class="u-fixed-width">
+    <hr class="p-separator">
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h2>Pricing</h2>
+      <table class="p-table--mobile-card">
+        <thead>
+          <tr>
+            <th>Machine type</th>
+            <th>vCPUs</th>
+            <th class="u-align--right" style="width: 7%;">Memory</th>
+            <th class="u-align--right" style="width: 7%;">VM cost</th>
+            <th class="u-align--right">Ubuntu Pro cost</th>
+            <th class="u-align--right">Total cost (/hour)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-heading="Machine type">n1-standard-1</td>
+            <td data-heading="vCPUs">1</td>
+            <td data-heading="Memory" class="u-align--right">3.75GB</td>
+            <td data-heading="VM cost" class="u-align--right">$0.047</td>
+            <td data-heading="Ubuntu Pro cost" class="u-align--right">$0.002</td>
+            <td data-heading="Total cost (/hour)" class="u-align--right">$0.049</td>
+          </tr>
+          <tr>
+            <td data-heading="Machine type">e2-standard-2</td>
+            <td data-heading="vCPUs">2</td>
+            <td data-heading="Memory" class="u-align--right">8GB</td>
+            <td data-heading="VM cost" class="u-align--right">$0.067</td>
+            <td data-heading="Ubuntu Pro cost" class="u-align--right">$0.004</td>
+            <td data-heading="Total cost (/hour)" class="u-align--right">$0.071</td>
+          </tr>
+          <tr>
+            <td data-heading="Machine type">n2d-standard-4</td>
+            <td data-heading="vCPUs">4</td>
+            <td data-heading="Memory" class="u-align--right">16GB</td>
+            <td data-heading="VM cost" class="u-align--right">$0.169</td>
+            <td data-heading="Ubuntu Pro cost" class="u-align--right">$0.008</td>
+            <td data-heading="Total cost (/hour)" class="u-align--right">$0.177</td>
+          </tr>
+          <tr>
+            <td data-heading="Machine type">n2-standard-8</td>
+            <td data-heading="vCPUs">8</td>
+            <td data-heading="Memory" class="u-align--right">32GB</td>
+            <td data-heading="VM cost" class="u-align--right">$0.389</td>
+            <td data-heading="Ubuntu Pro cost" class="u-align--right">$0.014</td>
+            <td data-heading="Total cost (/hour)" class="u-align--right">$0.403</td>
+          </tr>
+          <tr>
+            <td data-heading="Machine type">n2d-standard-16</td>
+            <td data-heading="vCPUs">16</td>
+            <td data-heading="Memory" class="u-align--right">64GB</td>
+            <td data-heading="VM cost" class="u-align--right">$0.676</td>
+            <td data-heading="Ubuntu Pro cost" class="u-align--right">$0.26</td>
+            <td data-heading="Total cost (/hour)" class="u-align--right">$0.702</td>
+          </tr>
+          <tr>
+            <td data-heading="Machine type">e2-standard-32</td>
+            <td data-heading="vCPUs">32</td>
+            <td data-heading="Memory" class="u-align--right">128GB</td>
+            <td data-heading="VM cost" class="u-align--right">$1.072</td>
+            <td data-heading="Ubuntu Pro cost" class="u-align--right">$0.050</td>
+            <td data-heading="Total cost (/hour)" class="u-align--right">$0.122</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>For complete pricing, see <a href="https://cloud.google.com/compute/disks-image-pricing#premiumimages">Ubuntu Pro pricing on the Google Cloud&nbsp;&rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2>Get Ubuntu Pro FIPS on Google Cloud now:</h2>
+  </div>
+  <div class="u-fixed-width u-float--left">
+    <button href="https://console.cloud.google.com/compute">18.04 LTS</button>
+    <button href="https://console.cloud.google.com/compute">20.04 LTS</button>
+    <button href="https://console.cloud.google.com/compute">22.04 LTS</button>
+  </div>
+  <div class="row">
+    <p class="u-no-margin--bottom"><strong>More about Ubuntu Pro FIPS:</strong> <a href="https://assets.ubuntu.com/v1/8ad870d4-Ubuntu-Pro-FIPS-for-Google-Cloud-compliance-DS-14-12.22.pdf">Read the datasheet</a></p>
+  </div>
+</section>
+
+<section class="p-strip is-bordered">
+  <div class="row u-vertically-center">
+    <div class="col-6">
+      <h2>Google Cloud compliance and the most comprehensive open-source security coverage &mdash; that's Ubuntu Pro</h2>
+      <p>Ubuntu Pro FIPS images are based on Ubuntu Pro premium images, with security coverage included for the entire collection of software packages shipped with Ubuntu, tracking high and critical CVEs. This makes it ideal for companies that have embraced open source for their new products and need to ensure security for production and mission-critical workloads.</a></p>
+      <p>
+        <a href="/gcp/pro" class="p-button">Learn more about Ubuntu Pro on Google Cloud&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 u-align--center">
+      {{
+        image(
+          url="https://assets.ubuntu.com/v1/69d31769-updates-security-maintenance.svg",
+          alt="",
+          height="238",
+          width="238",
+          hi_def=True,
+          loading="lazy",
+        ) | safe
+      }}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

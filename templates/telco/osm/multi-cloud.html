@@ -1,4 +1,4 @@
-{% extends "telco/osm/index.html" %}
+{% extends "telco/osm/_base_osm.html" %}
 
 {% block title %}Multi-cloud orchestration{% endblock %}
 
@@ -77,7 +77,7 @@
                 —account_type &lt;vim_type&gt; \
                 —auth_url &lt;vim_url&gt; \
                 —user &lt;account_name&gt; \
-                —password &lt;account_password&gt; \ 
+                —password &lt;account_password&gt; \
                 —tenant &lt;admin&gt; \
                 —description &lt;VIM description&gt; \
                 —config '{&lt;region_name, flavor_info, security_groups&gt;}'
@@ -151,17 +151,18 @@
     <div class="col-4">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/6e184942-Webinar.svg",
             alt="webinar",
             width="171",
             height="150",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h4 class="p-heading-icon__title p-heading--5">VIDEO TUTORIAL</h4>
+          <h4 class="p-heading-icon__title p-muted-heading">Video tutorial</h4>
         </div>
       </div>
       <a href="https://www.youtube.com/watch?v=5JG2lHGiZbE">Introduction to Charmed OSM</a>
@@ -169,17 +170,18 @@
     <div class="col-4">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
             alt="whitepaper",
             width="171",
             height="150",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h4 class="p-heading-icon__title p-heading--5">TUTORIAL</h4>
+          <h4 class="p-heading-icon__title p-muted-heading">Tutorial</h4>
         </div>
       </div>
       <a href="https://juju.is/tutorials/charmed-osm-get-started#1-introduction">Installing Charmed OSM</a>
@@ -187,17 +189,18 @@
     <div class="col-4">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/5edefef9-Datasheet.svg",
             alt="datasheet",
             width="171",
             height="150",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h4 class="p-heading-icon__title p-heading--5">WHITEPAPER</h4>
+          <h4 class="p-heading-icon__title p-muted-heading">Whitepaper</h4>
         </div>
       </div>
       <a href="/engage/telco-network-functions-whitepaper">Building and orchestrating network functions</a>
@@ -208,17 +211,18 @@
     <div class="col-4">
       <div class="p-heading-icon">
         <div class="p-heading-icon__header">
-          {{ 
+          {{
             image (
             url="https://assets.ubuntu.com/v1/b061c401-White+paper.svg",
             alt="whitepaper",
             width="171",
             height="150",
             hi_def=True,
-            loading="lazy"
+            loading="lazy",
+            attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h4 class="p-heading-icon__title p-heading--5">WEB PAGE</h4>
+          <h4 class="p-heading-icon__title p-muted-heading">Web page</h4>
         </div>
       </div>
       <a href="/telco/osm/onboarding-network-functions">Onboarding Network Functions to Charmed OSM</a>

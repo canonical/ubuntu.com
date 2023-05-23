@@ -1,12 +1,24 @@
 import React, { useContext } from "react";
 import { Col, Row, Select, StatusLabel } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
-import { isMonthlyAvailable, Periods } from "../../utils/utils";
+import {
+  IoTDevices,
+  isMonthlyAvailable,
+  Periods,
+  ProductTypes,
+} from "../../utils/utils";
 import { currencyFormatter } from "advantage/react/utils";
-import PaymentModal from "../PaymentModal";
+import PaymentButton from "../PaymentButton";
 
 const ProductSummary = () => {
-  const { quantity, period, setPeriod, product } = useContext(FormContext);
+  const {
+    quantity,
+    period,
+    setPeriod,
+    product,
+    iotDevice,
+    productType,
+  } = useContext(FormContext);
   const handlePeriodChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPeriod(event.target.value as Periods);
     localStorage.setItem(
@@ -14,8 +26,11 @@ const ProductSummary = () => {
       JSON.stringify(event.target.value as Periods)
     );
   };
-
-  const isHidden = !product || !quantity || quantity < 1;
+  const isHidden =
+    !product ||
+    !quantity ||
+    quantity < 1 ||
+    (productType === ProductTypes.iotDevice && iotDevice === IoTDevices.core);
 
   return (
     <>
@@ -26,16 +41,16 @@ const ProductSummary = () => {
         id="summary-section"
       >
         <Row className="u-sv3">
-          <Col size={6} className="p-text--x-small-capitalised">
+          <Col size={6} className="p-text--small-caps">
             Subscription
           </Col>
-          <Col size={2} className="u-align--right p-text--x-small-capitalised">
+          <Col size={2} className="u-align--right p-text--small-caps">
             Quantity
           </Col>
-          <Col size={2} className="p-text--x-small-capitalised">
+          <Col size={2} className="p-text--small-caps">
             Billing
           </Col>
-          <Col size={2} className="u-align--right p-text--x-small-capitalised">
+          <Col size={2} className="u-align--right p-text--small-caps">
             Total
           </Col>
           <hr />
@@ -96,7 +111,7 @@ const ProductSummary = () => {
                 Free trial available
               </StatusLabel>
             ) : null}
-            <PaymentModal isHidden={isHidden} />
+            <PaymentButton />
           </Col>
         </Row>
       </section>
@@ -156,7 +171,7 @@ const ProductSummary = () => {
             </p>
           </Col>
           <Col size={12}>
-            <PaymentModal isHidden={isHidden} />
+            <PaymentButton />
           </Col>
           {product?.canBeTrialled ? (
             <Col size={12}>

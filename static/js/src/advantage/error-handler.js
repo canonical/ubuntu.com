@@ -44,8 +44,6 @@ const INCORRECT_NUMBER_CODES = [
   "incomplete_number",
 ];
 
-const INCORRECT_VAT_CODES = ["tax_id_invalid"];
-
 const INCORRECT_ZIP_CODES = ["incorrect_zip", "incomplete_zip"];
 
 const PAYMENT_ERRORS = [
@@ -83,7 +81,7 @@ function customErrorResponse(errorData) {
     error.message =
       "That expiry date is incorrect. Check the date and try again.";
     error.type = "card";
-  } else if (INCORRECT_VAT_CODES.includes(code)) {
+  } else if (code === "tax_id_invalid") {
     error.message =
       "That VAT number is invalid. Check the number and try again.";
     error.type = "vat";
@@ -167,7 +165,7 @@ export function parseForErrorObject(data) {
     data.message.includes("please login")
   ) {
     errorObject = {
-      message: `An Ubuntu One account with this email address exists. Please <a href='/login'>sign in</a> to your account first.`,
+      message: `An Ubuntu Pro account with this email address exists. Please <a href='/login'>sign in</a> or <a href='/login'>register</a> with your Ubuntu One account.`,
       type: "notification",
     };
   } else {
@@ -203,8 +201,11 @@ export function getErrorMessage(error) {
   if (INCORRECT_EXPIRY_CODES.includes(code)) {
     return "That expiry date is incorrect. Check the date and try again.";
   }
-  if (INCORRECT_VAT_CODES.includes(code)) {
+  if (code === "tax_id_invalid") {
     return "That VAT number is invalid. Check the number and try again.";
+  }
+  if (code === "tax_id_cannot_be_validated") {
+    return "VAT number could not be validated at this time, please try again later or contact customer success if the problem persists.";
   }
   if (code === "card_not_supported") {
     return "That card doesn’t allow this kind of payment. Please contact your card issuer, or try a different card.";

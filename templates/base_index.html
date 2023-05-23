@@ -30,12 +30,12 @@
   </div>
 </section>
 
-<section class="p-strip is-shallow notice">
-  <div class="row">
-    <div class="p-heading-icon">
-      <div class="p-heading-icon__header">
-        <img src="https://assets.ubuntu.com/v1/5a869d54-centos.png" alt="" class="p-heading-icon__img" >
-        <h2 class="p-heading--4 p-heading-icon__title" style="padding-top:0.4rem"><a href="/blog/migrating-to-ubuntu-lts-six-facts-for-centos-users">CentOS users, 6 things to know when considering a migration to Ubuntu LTS&nbsp;&rsaquo;</a></h2>
+<section class="p-strip notice u-no-padding--bottom">
+  <div class="u-fixed-width">
+    <div class="p-notification--information u-no-margin--bottom">
+      <div class="p-notification__content">
+        <h5 class="p-notification__title"><a href="/blog/18-04-end-of-standard-support">End of standard support for 18.04 LTS - 31 May 2023</a></h5>
+        <p class="p-notification__message"><span>Upgrade to the latest Ubuntu LTS or get extended coverage until 2028 with Ubuntu Pro</span></p>
       </div>
     </div>
   </div>
@@ -45,13 +45,14 @@
 {% endblock notices_content %}
 
 <section class="p-strip u-no-padding--bottom">
+  <hr class="is-fixed-width">
   <div class="row">
     <div class="col-6 col-medium-4">
       <h2>Modern enterprise open&nbsp;source</h2>
-      <p class="p-heading--4">Publisher of Ubuntu.<br /> Security. Support. Managed Services.</p>
+      <p class="p-heading--4">Security, support, and managed services from the publisher of Ubuntu.</p>
       <p>
-        <a class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" href="/contact-us">
-          Contact Canonical
+        <a class="p-button--positive" href="/pro">
+          Get Ubuntu Pro
         </a>
       </p>
     </div>
@@ -99,7 +100,7 @@
       </p>
       <ul class="p-inline-list">
         <li class="p-inline-list__item">
-          <a href="/contact-us" class="js-invoke-modal">
+          <a href="/contact-us" class="js-invoke-modal" data-testid="interactive-form-link">
             Let's talk open source&nbsp;&rsaquo;
           </a>
         </li>
@@ -138,7 +139,7 @@
       Open source security
     </h2>
     <p class="p-heading--4">
-      More than Linux. <a href="/security/certifications">Security and compliance</a> for the full stack.
+      <a href="/pro">Ubuntu Pro</a> is more than Linux. <a href="/security/certifications">Security and compliance</a> for the full stack.
     </p>
     <p>
       Secure your open source apps. Patch the full stack, from kernel to library and applications, for CVE compliance. Governments and auditors certify Ubuntu for FedRAMP, FISMA and HITECH.
@@ -388,18 +389,6 @@
           {{ image (
             url="https://assets.ubuntu.com/v1/2ef9f6ff-spotify-logo.png",
             alt="Spotify",
-            width="288",
-            height="288",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"}
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{ image (
-            url="https://assets.ubuntu.com/v1/92cf9e91-walmart-logo.png",
-            alt="Walmart",
             width="288",
             height="288",
             hi_def=True,
@@ -742,6 +731,9 @@
         </li>
         <li class="p-list__item is-ticked">
           FIPS certifiable embedded Linux
+        </li>
+        <li class="p-list__item is-ticked">
+          <a href="/blog/real-time-ubuntu-is-now-generally-available">Support for real-time compute</a>
         </li>
       </ul>
       <ul class="p-inline-list">
@@ -1329,24 +1321,6 @@
 {% endblock footer_content %}
 
 <script>
-  function getPrimaryParentLanguage() {
-    /**
-    * Get the primary parent language
-    *
-    * Get the user's default language, and if it's a sub-language,
-    * infer the parent language - e.g. for "en-GB", infer "en"
-    */
-    var language = navigator.language || navigator.userLanguage || navigator.browserLanguage || navigator.systemLanguage;
-
-    if (language.indexOf('-') !== -1 ) {
-      if (language !== "zh-TW") {
-        language = language.split('-')[0];
-      }
-    }
-
-    return language
-  };
-
   // get the users language and remove any extra detail suffix (e.g. -gb)
   var primaryParentLanguage = getPrimaryParentLanguage();
 
@@ -1375,6 +1349,10 @@
     if (window.ActiveXObject) {
       xhr = new ActiveXObject('Microsoft.XMLHTTP');
     }
+    var fetchUserCountry = new XMLHttpRequest();
+    if (window.ActiveXObject) {
+      fetchUserCountry = new ActiveXObject('Microsoft.XMLHTTP');
+    }
 
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE) {
@@ -1382,16 +1360,37 @@
           var takeovers = JSON.parse(xhr.responseText);
 
           // Get the selected takeovers based on the primary language
-          var selectedTakeovers = takeovers.filter(function(item) {
-            return item.lang === primaryParentLanguage || item.lang === ""
-          })
+          if (
+            fetchUserCountry.readyState == XMLHttpRequest.DONE &&
+            fetchUserCountry.status == 200
+          ) {
+            var userCountry = JSON.parse(fetchUserCountry.responseText).country_code;
+            var selectedTakeovers = takeovers.filter(function (item) {
+              if (item.target_country && item.target_country == userCountry) {
+                return true;
+              } else if (item.lang === primaryParentLanguage || item.lang === "") {
+                return true;
+              } else {
+                return false;
+              }
+            });
+          } else {
+            var selectedTakeovers = takeovers.filter(function (item) {
+              if (item.lang === primaryParentLanguage || item.lang === "") {
+                return true;
+              } else {
+                return false;
+              }
+            });
+          }
 
           if (selectedTakeovers && selectedTakeovers.length > 0) {
             var selectedIndex = null;
 
-            if (window.localStorage.getItem('selected_takeover_index') !== null) {
+            if (window.localStorage.getItem("selected_takeover_index") !== null) {
               // If we previously visited a takeover, increment the number to show the next takeover
-              var nextIndex = parseInt(window.localStorage.getItem('selected_takeover_index')) + 1
+              var nextIndex =
+                parseInt(window.localStorage.getItem("selected_takeover_index")) + 1;
               selectedIndex = nextIndex < selectedTakeovers.length ? nextIndex : 0;
             } else {
               // Otherwise, randomly choose one of the takeovers and store it for next time
@@ -1400,8 +1399,10 @@
             showTakeover(selectedTakeovers, selectedIndex);
 
             // Store the current takeover index
-            localStorage.setItem('selected_takeover_index', selectedIndex)
+            localStorage.setItem("selected_takeover_index", selectedIndex);
           }
+
+
         } else {
           takeoverAnimation.className = takeoverAnimation.className.replace(" is-loading", "");
           takeoverAnimation.className +=  " is-loaded";
@@ -1411,6 +1412,8 @@
 
     xhr.open("GET", "/takeovers.json", true);
     xhr.send();
+    fetchUserCountry.open("GET", "/user-country.json", true);
+    fetchUserCountry.send();
     takeoverAnimation.className +=  " is-loading";
   }
 

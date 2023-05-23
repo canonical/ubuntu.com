@@ -1,141 +1,57 @@
 {% extends "dell/base_dell.html" %}
 
-{% block title %}Dell EMC and Ubuntu{% endblock %}
-{% block meta_description %}From desktop to the edge, from the data centre to multi-cloud environments — Dell EMC and Canonical bring you open source solutions that work out-of-the-box.{% endblock %}
+{% block title %}Dell Technologies and Canonical{% endblock %}
+{% block meta_description %}From desktop to the edge, from the data centre to multi-cloud environments — Dell Technologies and Canonical bring you open source solutions that work out-of-the-box.{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1ZZQdZt2HFiLwjYYGsb-q7Zncdj0kdv0RBxFm7cz7Gu8/edit#{% endblock meta_copydoc %}
 
 {% block content %}
 
-<section class="p-strip is-bordered u-no-padding--top u-no-padding--bottom">
-  <div class="p-strip--suru-topped">
+<section class="p-strip--suru-shape-dark is-dark" style="background-size: 100%">
     <div class="row">
-      <div class="col-6 u-vertically-center">
+      <div class="col-6" style="display: flex; flex-direction: column; align-self: center;">
         <h1>
-          Dell EMC and Ubuntu
+          Dell Technologies and Canonical
         </h1>
-        <p class="p-heading--4">
-          From desktop to the edge, from the data centre to multi-cloud environments &mdash; Dell EMC and Canonical bring you open&nbsp;source solutions that work out-of-the-box.
+        <p>
+          From desktop to the edge, from the data centre to multi-cloud environments, from infrastructure to applications &mdash; Dell Technologies and Canonical bring you a portfolio of open-source solutions and services that address today's most pressing customer requirements and deliver tangible, cost-effective business outcomes.
         </p>
         <p>
-          <a class="p-button--positive js-invoke-modal u-no-margin--bottom" href="/dell/contact-us" data-testid="interactive-form-link">
+          <a class="p-button--positive u-no-margin--bottom" href="/dell/contact-us">
             Get in touch
           </a>
         </p>
       </div>
-      <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/82db81d1-DELL+EMC+++Ubuntu.svg",
-            alt="",
-            width="226",
-            height="195",
-            hi_def=True,
-            loading="auto",
-          ) | safe
-        }}
+      <div class="col-6 u-hide--medium u-hide--small">
+        <div class="p-aspect-ratio-image--dell-claim"></div>
       </div>
     </div>
-  </div>
 </section>
 
 <section class="p-strip">
   <div class="row">
     <div class="col-6">
       <h2>
-        In the data centre
+        About the partnership
       </h2>
-      <h3>
-        Dell servers provisioning with MAAS
-      </h3>
-      <p>
-        At the heart of the data centre and a key component to building a hybrid strategy, Dell PowerEdge servers come certified with Ubuntu as the operating system.  Offering the performance and versatility to get the most from your infrastructure, Dell's flexible designs offer a range of options for price, functionality and scalability to meet your workload needs. Those servers can be provisioned with <a href="https://maas.io">MAAS</a> for a cloud-like experience and enhanced automation.
-      </p>
-      <p>
-        <a class="p-button" href="/certified?category=Server&vendor=Dell&vendor_page=True">
-          <span>
-            View Dell's certified server options
-          </span>
-        </a>
-      </p>
-      <p>
-        <a href="/engage/maas-hardware-testing">
-          Read our whitepaper about MAAS&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/40d4f11a-servers.svg",
-          alt="",
-          width="250",
-          height="172",
-          hi_def=True,
-          loading="auto",
-        ) | safe
-      }}
-    </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row">
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/96d35aa4-certified-kubernetes-logo.svg",
-          alt="",
-          width="173",
-          height="233",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
     </div>
     <div class="col-6">
-      <h3>
-        Deploy containers at scale with Charmed Kubernetes
-      </h3>
       <p>
-        You can go confidently into production as we have completed extensive validation, testing and certification to identify the best-fit Dell hardware for container-based solutions. Use Dell EMC PowerEdge servers and Ceph software-defined storage running Ubuntu Server and Canonical's <a href="/kubernetes">Charmed Kubernetes</a> to help you manage the complexities of multiple containers across multiple servers. And if you prefer to focus on your business, we can set up your k8s cluster and <a href="/kubernetes/managed">manage Kubernetes</a> for you, handing back control when you are ready.
-      </p>
-      <p>
-        <a href="/engage/dell-k8s-reference-architecture">
-          See the Reference Architecture components&nbsp;&rsaquo;
-        </a>
+        In 2009 industry leaders Canonical and Dell Technologies formed a global partnership with a common mission to offer enterprise and commercial customers validated and supported open-source solutions built upon certified Dell infrastructure.
       </p>
     </div>
-  </div>
-
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
-  <div class="row">
-    <div class="col-6">
-      <h3>
-        Enterprise clouds with OpenStack
-      </h3>
-      <p>
-        Over 50% of all OpenStack deployments use Ubuntu and Dell is the most-used hardware for deploying OpenStack. Together we have designed, built, tested and certified a private cloud offering so you can move quickly, cost-effectively and reliably from pure virtualisation solution to a production-grade cloud platform like OpenStack.  Whether you are experienced and want to operate your OpenStack on your own, or need a fully managed option, you can choose the OpenStack package that best fits your needs.
-      </p>
-      <p>
-        <a class="p-button" href="/engage/dell-openstack-reference-architecture">
-          View the OpenStack cloud components
-        </a>
-      </p>
-      <p>
-        <a href="/engage/vmware-to-openstack">
-          Watch our "From VMWare to Canonical OpenStack" webinar&nbsp;&rsaquo;
-        </a>
-      </p>
-    </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      <div class="row u-align--center">
-        <div class="col-start-large-2 col-3">
-          {% include "openstack/shared/_openstack-pie-chart.html" %}
+      <div class="row">
+        <div class="col-6">
+          <div class="p-aspect-ratio-image--partnership u-hide--medium u-hide--small">
+          </div>
+        </div>
+        <div class="col-6 col-medium-12">
+          <p>
+            Canonical &mdash; the company behind Ubuntu; the most popular operating system across cloud, core, and edge &mdash; and Dell Technologies have created a series of feature-rich reference architectures applicable across industries and delivering superior customer experiences and value.
+          </p>
+          <p>
+            To complement the portfolio of joint solutions, Canonical and Dell Technologies offer professional services including consulting, deployment and managed services to ensure a quicker and seamless time to production.
+          </p>
+          <p>Customers can acquire Canonical support subscriptions, services and solutions for cloud, Kubernetes, AI/ML, storage and edge directly from Dell enabling a single source for Dell customers.</p>
         </div>
       </div>
     </div>
@@ -144,144 +60,265 @@
 
 <section class="p-strip--light">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 col-medium-3">
       <h2>
-        At the edge
+        Enterprise business
       </h2>
-      <h3>
-        Redefine intelligence at the edge
-      </h3>
+      <div class="p-aspect-ratio-image--enterprise-business"></div>
+    </div>
+    <div class="col-6 col-medium-3">
       <p>
-        Edge computing is transforming all sectors from robotics to 5G infrastructure. Ubuntu is the standard for <a href="/internet-of-things">Linux for edge deployments</a>, bringing efficiencies with regular updates, robust security, and enhanced controls. Combine this with Dell Edge Gateways, that are engineered for the extreme environment and can withstand even the harshest of conditions, making them a premium gateway option.
+        As enterprises evolve their IT to take advantage of new technologies and growing demands, Canonical and Dell Technologies have partnered to simplify this evolution and reduce the cost and complexities of implementing a modern architecture.
       </p>
       <p>
-        <a class="p-button" href="/certified?vendor=Dell&q=edge+gateway">
-          <span>
-            Ubuntu certified Dell Edge Gateways
-          </span>
-        </a>
+        Founded on a base of <a href="/certified?q=dell">certification</a> across Dell's entire PowerEdge portfolio, Canonical and Dell Technologies have jointly engineered validated <a href="https://infohub.delltechnologies.com/t/canonical-kubernetes/">reference architectures</a> that provide enterprises the foundation to run their business upon and embrace areas like AI/ML, Big Data, Dev/SecOps and much more! 
       </p>
       <p>
-        <a href="https://www.dell.com/en-us/work/shop/gateways-embedded-computing/sf/edge-gateway">
-          <span>
-            Learn more about Edge Gateways
-          </span>
-        </a>
-      </p>
-      <p>
-        <a href="https://www.brighttalk.com/webcast/6793/362197">
-          <span>
-            Webinar: A guide to edge computing
-          </span>
-        </a>
+        To simplify the acquisition of these solutions, customers can purchase Canonical support and services through Dell or choose Dell's own branded-support for Canonical Ubuntu at the time of purchase.
       </p>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c00eea7b-2C-Enterprise+management.svg",
-          alt="",
-          width="306",
-          height="183",
-          hi_def=True,
-          loading="lazy"
-        ) | safe
-      }}
     </div>
   </div>
 </section>
 
-<section class="p-strip">
+
+<section class="p-strip--light is-shallow u-no-padding--top">
+	<div class="row">
+		<hr class="u-no-margin--bottom" />
+		<div class="col-6 col-medium-3">
+			<h2>Desktop solutions</h2>
+		</div>
+		<div class="col-6 col-medium-3">
+      <div class="p-aspect-ratio-image--desktop-solutions">
+      </div>
+      <p>Dell Linux desktops, laptops and workstations are built with the developer in mind. Powered by Ubuntu they include the tools and libraries needed for a productive cloud, AI and IoT development experience.</p>
+      <p>Over 160 Dell laptop, desktop, and workstation models ship with Ubuntu preinstalled for an optimised, secure and constantly updated platform.</p>
+      <p>For our joint software developer community, the Dell XPS 13 Plus developer edition is now <a href="https://www.dell.com/community/Developer-Blogs/Dell-XPS-13-Plus-developer-edition-with-Ubuntu-22-04-LTS-pre/ba-p/8255332">available</a> with Ubuntu 22.04 LTS preinstalled.</p>
+      <p>
+        <a href="/certification?category=Desktop&vendor=Dell&vendor_page=True">See all Ubuntu certified Dell desktops&nbsp;&rsaquo;</a>
+			</p>
+		</div>
+	</div>
+</section>
+
+<section class="p-strip--light is-shallow">
+  <div class="u-fixed-width">
+    <div class="u-align--center u-vertically-center p-strip--dark u-no-padding--bottom">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/f2b3150b-Untitled.png",
+        alt="",
+        width="650",
+        height="544",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
+    </div>
+    </div>
+</section>
+
+<section class="p-strip--light u-no-padding--top">
+	<div class="row">
+		<hr class="u-no-margin--bottom u-no-margin--top" />
+		<div class="col-6 col-medium-3">
+			<h2>Data science workstations</h2>
+		</div>
+		<div class="col-6 col-medium-3">
+      <p>Data scientists need powerful computing resources to extract valuable insights from vast amounts of data.</p>
+      <p>Dell's Precision line, the world's number one workstation provider, has come together with Canonical to deliver a fully integrated AI hardware and software solutions.</p>
+      <p>
+        <a href="https://www.dell.com/en-uk/dt/ai-technologies/index.htm">Discover Dell's AI workstations&nbsp;&rsaquo;</a>
+      </p>
+		</div>
+	</div>
+</section>
+
+<section class="p-strip--dell-blue is-deep">
   <div class="row">
     <div class="col-6">
-      <h2>
-        On the desktop
-      </h2>
-      <h3>
-        Roll-out Ubuntu developer laptops and desktops in your organisation
-      </h3>
+      <h2>Canonical at<br />Dell Technologies World</h2>
+      <p>We are proud to have sponsored the last DTW in Las Vegas in 2022, where we discussed how to provide customers with solutions that capitalize on the benefits of open source built upon Dell's industry-leading infrastructure.</p>
+    </div>
+    <div class="col-6 embedded-media">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/9yvAM8MHQAw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip--light">
+  <div class="row">
+    <hr class="u-no-margin--bottom u-no-margin--top" />
+    <div class="col-3">
       <p>
-        Dell Linux desktops, laptops and workstations are built with the developer in mind. Powered by Ubuntu they include the tools and libraries needed for a productive cloud, AI and IOT development experience. Over 160 Dell laptop, desktop and workstation models ship with Ubuntu preinstalled for an optimised, secure and constantly updated platform. Ranging from value-priced to premium systems, all options are certified and ship with Ubuntu.
-      </p>
-      <p>
-        <a href="/certification?category=Desktop&vendor=Dell&vendor_page=True">
-          See all Ubuntu certified Dell desktops&nbsp;&rsaquo;
-        </a>
+        <a href="https://www.brighttalk.com/search/?q=canonical+dell&start=0&size=25&type=webcast&duration=0..&rank=-webcast_relevance">Watch our joint webinars&nbsp;&rsaquo;</a>
       </p>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{ image (
-        url="https://assets.ubuntu.com/v1/fa57dc30-desktop-22.04-laptop.png",
+    <div class="col-3 p-card--dell p-card--dell-ceph">
+      <i class="p-icon--video-play"></i><br />
+      <h4><strong><a href="/engage/webinar-ceph-modern-data-center" class="p-link--inverted">Ceph in the modern data center</a></strong></h4>
+      <p>Manage exponential data growth with Canonical Charmed Ceph and Dell PowerEdge Servers</p>
+    </div>
+    <div class="col-3 p-card--dell p-card--dell-wsl">
+      <i class="p-icon--video-play"></i><br />
+      <h4><strong><a href="/engage/ubuntu-on-wsl-faq-for-data-scientists-and-developers" class="p-link--inverted">Ubuntu on WSL for Data Scientists and Developers</a></strong></h4>
+      <p>Leverage the power of an Ubuntu development environment on Windows using WSL on Dell hardware</p>
+    </div>
+    <div class="col-3 p-card--dell p-card--dell-data-science">
+      <i class="p-icon--video-play"></i><br />
+      <h4><strong><a href="/engage/data-science-workstations" class="p-link--inverted">Data Science Workstations</a></strong></h4>
+      <p>Take a deep dive into how workstations enable the AI journey in this four-part webinar series</p>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip u-no-padding--bottom">
+  <div class="row">
+    <h5 class="p-text--x-small-capitalised">RESOURCES</h5>
+    <hr />
+    <div class="u-vertically-center u-align--center p-strip--light u-no-padding--bottom u-no-padding--top u-hide--small u-hide--medium">
+      {{
+        image (
+        url="https://assets.ubuntu.com/v1/69f7f01d-dell-servers-cropped (1).png",
         alt="",
-        width="1000",
-        height="578",
+        width="650",
+        height="327",
         hi_def=True,
         loading="lazy"
         ) | safe
       }}
     </div>
   </div>
+</section>
 
-  <div class="u-fixed-width">
-    <hr class="p-separator">
-  </div>
-
+<section class="p-strip is-shallow">
   <div class="row">
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/0ba3e83b-machine-learning-family.png?w=345",
-          alt="",
-          width="345",
-          height="288",
-          hi_def=True,
-          loading="lazy",
-        ) | safe
-      }}
+		<hr class="is-fixed-width u-no-margin--bottom" />
+		<div class="col-6">
+			<h2>Certified hardware</h2>
+		</div>
+		<div class="col-6">
+      <p>Ubuntu certified hardware has passed our extensive testing and review process, ensuring that Ubuntu runs well out of the box, ready for your organisation. We work closely with Dell to make Ubuntu available on a wide range of its hardware.</p>
+      <p class="u-no-padding--bottom">See Dell's certified hardware:</p>
+      <ul class="p-inline-list--middot">
+        <li class="p-inline-list__item">
+          <a href="/certified/laptops?q=&limit=20&vendor=Dell">Laptops</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/certified/desktops?q=&limit=20&vendor=Dell">Desktops</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/certified/servers?q=&limit=20&vendor=Dell+Technologies">Servers</a>
+        </li>
+        <li class="p-inline-list__item">
+          <a href="/certified/devices?q=&limit=20&vendor=Dell">Devices</a>
+        </li>
+      </ul>
+		</div>
+	</div>
+</section>
+
+<section class="p-strip is-shallow">
+  <div class="row u-no-padding--top">
+    <hr class="u-no-margin--bottom" />
+    <div class="col-6 col-medium-3">
+      <h2>Reference architecture</h2>
     </div>
-    <div class="col-6">
-      <h3>
-        Power your AI ambitions
-      </h3>
-      <p>
-        With Ubuntu 18.04 LTS factory installed, Dell Precision workstations deliver the power to deploy and manage cognitive technology platforms, including machine learning, artificial intelligence and deep learning. Featuring extensive memory and outstanding processors and graphics, Dell AI-ready workstations are both flexible and affordable. They're ready out-of-the-box in a certified platform with accelerated hardware so that you can work at full speed on your AI ambitions without risk and with peace of mind.
-      </p>
-      <p>
-        <a href="https://www.dellemc.com/en-gb/ai-technologies/index.htm">
-          Discover Dell's AI workstations
-        </a>
-      </p>
+    <div class="col-6 col-medium-3">
+      <div>
+        <div class="p-aspect-ratio-image--2-3" style="background-image: url('https://assets.ubuntu.com/v1/cb3ad1d2-reference-archtecture-dell (1).png');"></div>
+        <p>Dell and Canonical designed this architecture guide for making it easy for customers to build their own operational readiness cluster and design their initial offerings.</p>
+        <ul class="p-list--divided-bulleted">
+          <li class="p-list__item"><a href="https://infohub.delltechnologies.com/t/reference-architecture-canonical-charmed-openstack-ussuri-on-dell-emc-hardware/">OpenStack Reference Architecture</a></li>
+          <li class="p-list__item"><a href="https://infohub.delltechnologies.com/t/reference-architecture-canonical-charmed-ceph-on-dell-emc-poweedge-hardware-capacity-oriented/">Ceph Reference Architecture</a></li>
+          <li class="p-list__item"><a href="https://infohub.delltechnologies.com/section-assets/canonical-kubernetes-solution-brief-dellemc">Kubernetes Solutions Brief</a></li>
+          <li class="p-list__item no-border"><a href="https://infohub.delltechnologies.com/section-assets/reference-architecture-for-kubeflow-using-charmed-kubernetes">AI/ML Kubeflow Reference Architecture</a></li>
+        </ul>
+      </div>
+    </div>
     </div>
   </div>
 </section>
 
-<section class="p-strip--light u-no-margin--bottom">
-  <div class="row u-equal-height">
-    <div class="col-6">
-      <h2>
-        The building blocks for your digital transformation
-      </h2>
-      <p class="p-heading--4">
-        Dell and Ubuntu can provide you with everything you need to transform your enterprise's IT.
-      </p>
-      <p style="margin-top: 2rem;">
-        <a class="p-button--positive js-invoke-modal" href="/dell/contact-us">
-          Get in touch today
-        </a>
-      </p>
+<section class="p-strip is-shallow">
+  <div class="row u-no-padding--top">
+    <hr class="u-no-margin--bottom" />
+    <div class="col-6 col-medium-3">
+      <h2>Canonical at a glance</h2>
     </div>
-    <div class="col-6 u-hide--medium u-hide--small u-align--center u-vertically-center">
-      {{
-        image(
-          url="https://assets.ubuntu.com/v1/c4b290c8-Contact+us.svg",
-          alt="",
-          width="250",
-          height="178",
-          hi_def=True,
-          loading="lazy",
-          attrs={"class": "u-hide--small"},
-        ) | safe
-      }}
+    <div class="col-6 col-medium-3">
+      <div>
+        <div class="p-aspect-ratio-image--2-3" style="background-image: url('https://assets.ubuntu.com/v1/e7ddfcd4-canonical-glance-dellpsd (1).png');">
+        </div>
+        <p>Download this summary portfolio and discover how to help your customers with Canonical and Dell joint offers.</p>
+        <a href="/engage/dell-battle-card" class="p-button">Download portfolio&nbsp;<i class="p-icon--begin-downloading"></i></a>
+        </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-strip">
+  <div class="row">
+    <hr class="u-no-margin--bottom u-no-margin--top" />
+    <div class="col-3">
+      <h5 class="p-muted-heading">FROM OUR BLOG</h5>
+    </div>
+    <div class="col-9">
+      <div>
+        <h2><a href="https://canonical.com/blog/canonical-and-dell-emc-provide-certified-production-ready-kubernetes-solution">Dell XPS 13 Plus Developer Edition <br class="u-hide--medium u-hide--small">now certified with Ubuntu 22.04 LTS</a></h2>
+        <p>
+          <button class="p-chip--information" onclick="location.href='/blog/tag/dell-xps'">
+            <span class="p-chip__value">Dell XPS</span>
+          </button>
+          <button class="p-chip--information" onclick="location.href='/blog/tag/ubuntu-desktop'">
+            <span class="p-chip__value">Ubuntu Desktop</span>
+          </button>
+        </p>
+      </div>
+      <hr class="u-fixed-width" style="margin-top: 4rem" />
+      <div>
+        <h2><a href="/blog/dell-emc-poweredge-and-canonical-charmed-ceph">Dell PowerEdge and Canonical Charmed Ceph, <br class="u-hide--medium u-hide--small">a proven solution</a></h2>
+        <p>
+          <button onclick="location.href='/blog/dell-emc-poweredge-and-canonical-charmed-ceph'" class="p-chip--information">
+            <span class="p-chip__value">Ceph</span>
+          </button>
+          <button onclick="location.href='/blog/tag/storage'" class="p-chip--information">
+            <span class="p-chip__value">Storage</span>
+          </button>
+        </p>
+      </div>
+      <hr class="u-fixed-width" style="margin-top: 4rem" />
+      <div>
+        <h2><a href="/blog/dell-xps-13-plus-developer-edition-now-certified-with-ubuntu-22-04-lts">Canonical and Dell provide certified, <br class="u-hide--medium u-hide--small">production-ready Kubernetes solution</a></h2>
+        <p>
+          <button onclick="location.href='https://canonical.com/blog/canonical-and-dell-emc-provide-certified-production-ready-kubernetes-solution'" class="p-chip--information">
+            <span class="p-chip__value">Charmed Kubernetes</span>
+          </button>
+          <button onclick="location.href='https://canonical.com/blog/tag/kubernetes'" class="p-chip--information">
+            <span class="p-chip__value">Kubernetes</span>
+          </button>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="p-strip--suru--light is-deep u-no-padding--top">
+  <div class="row">
+    <hr class="u-no-padding--top u-no-padding--bottom" />
+    <div class="col-3">
+      <h5 class="p-muted-heading">CONTACT</h5>
+    </div>
+    <div class="col-9">
+      <div>
+        <h2>Do you want more information about the Canonical and Dell Technologies partnership or how to purchase our joint solutions? Contact us!</h2>
+        <h3 class="p-heading--2">
+          <a href="/dell/contact-us">Send us a message&nbsp;&rsaquo;</a>
+        </h3>
+      </div>
     </div>
   </div>
 </section>

@@ -1,4 +1,3 @@
-
 ---
 wrapper_template: "templates/docs/markdown.html"
 markdown_includes:
@@ -14,7 +13,25 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-## 1.25+ck2 Bugfix release 
+# 1.25+ck3 Bugfix release
+
+### December 1, 2022 - `charmed-kubernetes --channel 1.25/stable`
+
+## Fixes
+
+Notable fixes in this release include:
+
+- Kubernetes Control Plane [LP#1991957](https://bugs.launchpad.net/bugs/1991957)
+
+  Resolves an issue deploying the charm on Bionic, constituting the last supported release
+  of this charm into this ubuntu series.
+
+- Kubernetes Control Plane [LP#1994203](https://bugs.launchpad.net/bugs/1994203)
+
+  Resolves an issue deploying the charm into a jammy lxd container, where a missing
+  path definition to `/etc/fstab` interrupted the configure kubelet hook.
+
+# 1.25+ck2 Bugfix release 
 
 #### September 30, 2022 - `charmed-kubernetes --channel 1.25/stable`
 

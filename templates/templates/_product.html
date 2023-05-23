@@ -44,7 +44,7 @@
       <div class="u-fixed-width">
         <h2>{% block video_title %}{% endblock %}</h2>
         <div class="u-embedded-media">
-          <iframe class="u-embedded-media__element" width="453" height="255" src="{% block video_url %}{% endblock %}" frameborder="0" allowfullscreen></iframe>
+          <iframe title="{% block video_title %}{% endblock %}" class="u-embedded-media__element" width="453" height="255" src="{% block video_url %}{% endblock %}" frameborder="0" allowfullscreen></iframe>
         </div>
       </div>
     </section>

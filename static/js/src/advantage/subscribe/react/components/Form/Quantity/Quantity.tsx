@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
-import classNames from "classnames";
 import { Col, Input, Row } from "@canonical/react-components";
 import { FormContext } from "advantage/subscribe/react/utils/FormContext";
-import { isPublicCloud } from "advantage/subscribe/react/utils/utils";
 
 const Quantity = () => {
-  const { quantity, setQuantity, productType } = useContext(FormContext);
+  const { quantity, setQuantity } = useContext(FormContext);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (Number(event.target.value) > 0) {
@@ -20,12 +18,7 @@ const Quantity = () => {
   };
 
   return (
-    <div
-      className={classNames({
-        "u-disable": isPublicCloud(productType),
-      })}
-      data-testid="wrapper"
-    >
+    <div data-testid="wrapper">
       <Row>
         <Col size={2}>
           <Input
@@ -41,6 +34,7 @@ const Quantity = () => {
             value={quantity}
             pattern="\d+"
             style={{ minWidth: "unset", width: "4rem" }}
+            aria-label="For how many machines"
           />
         </Col>
       </Row>

@@ -32,10 +32,10 @@ please refer to their own documentation for details.
 **etcd** is a distributed key/value store. To create a snapshot, all that is required is to run the `snapshot` action on one of the units running **etcd**:
 
 ```bash
-juju run-action etcd/0 snapshot keys-version=v3 --wait
+juju run etcd/0 snapshot keys-version=v3
 ```
 
-By specifying `--wait`, the console will wait to return the result of running the action, which in this case includes the path and filename of the generated snapshot file. For example:
+The console will wait to return the result of running the action, which in this case includes the path and filename of the generated snapshot file. For example:
 
 ```yaml
 unit-etcd-0:
@@ -94,20 +94,20 @@ The `--config` option is required to specify the same channel of etcd as the ori
 Next we upload and identify the snapshot file to this new unit:
 
 ```bash
-juju attach new-etcd snapshot=./etcd-snapshot-2018-09-26-18.04.02.tar.gz
+juju attach-resource new-etcd snapshot=./etcd-snapshot-2018-09-26-18.04.02.tar.gz
 ```
 
 Then run the restore action:
 
 ```bash
-juju run-action new-etcd/0 restore --wait
+juju run new-etcd/0 restore
 ```
 
 Once the restore action has finished, you should see output confirming that the operation is `completed`. The new etcd application will need to be connected to the rest of the deployment:
 
 ```bash
-juju add-relation new-etcd [calico|flannel|$cni]
-juju add-relation new-etcd kubernetes-control-plane
+juju integrate new-etcd [calico|flannel|$cni]
+juju integrate new-etcd kubernetes-control-plane
 ```
 
 To restore the cluster capabilities of etcd, you can now add more units:
@@ -119,7 +119,7 @@ juju add-unit new-etcd -n 2
 Once the deployment has settled and all `new-etcd` units report ready, verify the cluster health with:
 
 ```bash
- juju run-action new-etcd/0 health --wait
+ juju run new-etcd/0 health
 ```
 
 which should return something similar to:

@@ -1,0 +1,337 @@
+<section class="p-strip">
+  <div class="row">
+    <div class="col-8">
+      <h1>{{h1}}</h1>
+      <p class="p-heading--4">{{intro_text}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <form action="/marketo/submit" method="post" id="mktoForm_{{formid}}" onsubmit="getCustomFields()">
+        <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">Tell us about your project and team</legend>
+          <h2 class="p-heading--3">Tell us about your project</h2>
+          <textarea id="about-your-project"
+            placeholder="What do you want to achieve, which applications and languages do you use, and what's your team's setup?"
+            rows="3"></textarea>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom" id="ubuntu-versions">
+          <legend class="u-off-screen">If you use Ubuntu, which version or versions are you using?</legend>
+          <h2 class="p-heading--3">If you use Ubuntu, which version(s) are you using?</h2>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <strong>LTS within standard support</strong>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="22-04" class="p-checkbox__input" value="22.04 LTS">
+                <span class="p-checkbox__label" id="22-04">22.04 LTS</span>
+              </label>
+
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="20-04" class="p-checkbox__input" value="20.04 LTS">
+                <span class="p-checkbox__label" id="20-04">20.04 LTS</span>
+              </label>
+
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="18-04" class="p-checkbox__input" value="18.04 LTS">
+                <span class="p-checkbox__label" id="18-04">18.04 LTS</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <strong>LTS during extended support</strong>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="16-04" class="p-checkbox__input" value="16.04 LTS">
+                <span class="p-checkbox__label" id="16-04">16.04 LTS</span>
+              </label>
+
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="14-04" class="p-checkbox__input" value="14.04 LTS">
+                <span class="p-checkbox__label" id="14-04">14.04 LTS</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <strong>Outdated or non-LTS releases</strong>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="22-10" class="p-checkbox__input"
+                  value="22.10 (interim release)">
+                <span class="p-checkbox__label" id="22-10">22.10 (interim release)</span>
+              </label>
+
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="21-04" class="p-checkbox__input"
+                  value="21.04 (interim release)">
+                <span class="p-checkbox__label" id="21-04">21.04 (interim release)</span>
+              </label>
+
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="12-04" class="p-checkbox__input" value="12.04 LTS">
+                <span class="p-checkbox__label" id="12-04">12.04 LTS</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <strong>Other</strong>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="dont-use-ubuntu-today" class="p-checkbox__input"
+                  value="I don't use Ubuntu today">
+                <span class="p-checkbox__label" id="dont-use-ubuntu-today">I don't use
+                  Ubuntu today</span>
+              </label>
+
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
+                <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom" id="how-do-you-consume-open-source">
+          <legend class="u-off-screen">How do you consume open source?</legend>
+          <h2 class="p-heading--3">How do you consume open source?</h2>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3 u-no-padding--bottom">
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="ubuntu-repositories" class="p-checkbox__input"
+                  value="Ubuntu repositories">
+                <span class="p-checkbox__label" id="ubuntu-repositories">Ubuntu repositories</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="github-upstream" class="p-checkbox__input"
+                  value="Github/Upstream">
+                <span class="p-checkbox__label" id="github-upstream">Github/Upstream</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="internally-approved-repository" class="p-checkbox__input"
+                  value="Internally approved repository">
+                <span class="p-checkbox__label" id="internally-approved-repository">Internally approved repository</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
+                <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom" id="hardening-requirements">
+          <legend class="u-off-screen">Do you have specific compliance or hardening requirements?</legend>
+          <h2 class="p-heading--3">Do you have specific compliance or hardening requirements?</h2>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="pci" class="p-checkbox__input" value="PCI-DSS">
+                <span class="p-checkbox__label" id="pci">PCI-DSS</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hipaa" class="p-checkbox__input" value="HIPAA">
+                <span class="p-checkbox__label" id="hipaa">HIPAA</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="fisma" class="p-checkbox__input" value="FISMA">
+                <span class="p-checkbox__label" id="fisma">FISMA</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="fips-140" class="p-checkbox__input" value="FIPS 140">
+                <span class="p-checkbox__label" id="fips-140">FIPS 140</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="ncsc" class="p-checkbox__input" value="NCSC">
+                <span class="p-checkbox__label" id="ncsc">NCSC</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="disa-stig" class="p-checkbox__input" value="DISA-STIG">
+                <span class="p-checkbox__label" id="disa-stig">DISA-STIG</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="fedramp" class="p-checkbox__input" value="FedRAMP">
+                <span class="p-checkbox__label" id="fedramp">FedRAMP</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="cis-benchmark" class="p-checkbox__input" value="CIS Benchmark">
+                <span class="p-checkbox__label" id="cis-benchmark">CIS Benchmark</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom" id="responsible-for-tracking">
+          <legend class="u-off-screen">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</legend>
+          <h2 class="p-heading--3">Who is responsible for tracking, testing and applying CVE patches in a timely manner?</h2>
+          <div class="row u-no-padding">
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="pindividual-developers" class="p-checkbox__input"
+                  value="Individual developers">
+                <span class="p-checkbox__label" id="pindividual-developers">Individual developers</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="project-team" class="p-checkbox__input"
+                  value="The project team">
+                <span class="p-checkbox__label" id="project-team">The project team</span>
+              </label>
+            </div>
+            <div class="col-4 u-sv3">
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="3rd-party" class="p-checkbox__input" value="3rd party vendor">
+                <span class="p-checkbox__label" id="3rd-party">3rd party vendor</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="i-dont-know" class="p-checkbox__input" value="I don't know">
+                <span class="p-checkbox__label" id="i-dont-know">I don't know</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">What advice are you looking for?</legend>
+          <h2 class="p-heading--3">What advice are you looking for?</h2>
+          <textarea id="advice" aria-label="Tell us about your challenge and your goals"
+            placeholder="Tell us about your challenge and your goals" rows="3"></textarea>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">About you</legend>
+          <h2 class="p-heading--3">About you</h2>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label for="firstName">First name:</label>
+              <input required id="firstName" name="firstName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="lastName">Last name:</label>
+              <input required id="lastName" name="lastName" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="email">Email address:</label>
+              <input required id="email" name="email" maxlength="255" type="email"
+                pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" />
+            </li>
+            <li class="p-list__item">
+              <label for="phone">Mobile/cell phone number:</label>
+              <input required id="phone" name="phone" maxlength="255" type="tel" />
+            </li>
+            <!-- country -->
+            {% include "shared/forms/_country.html" %}
+          </ul>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">About your company</legend>
+          <h2 class="p-heading--3">About your company</h2>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label for="company">Company name:</label>
+              <input required id="company" name="company" maxlength="255" type="text" />
+            </li>
+            <li class="p-list__item">
+              <label for="jobTitle">Job title:</label>
+              <input required id="jobTitle" name="title" maxlength="255" type="text" />
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset class="u-no-margin--bottom">
+          <legend class="u-off-screen">Privacy policy</legend>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <label class="p-checkbox">
+                <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn"
+                  name="canonicalUpdatesOptIn" type="checkbox">
+                <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive
+                  information about Canonical's products and services.</span>
+              </label>
+            </li>
+            <li class="p-list__item">
+              In submitting this form, I confirm that I have read and agree to <a
+                href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a
+                href="/legal/data-privacy">Privacy Policy</a>.
+            </li>
+            {# These are honey pot fields to catch bots #}
+            <li class="u-off-screen">
+              <label class="website" for="website">Website:</label>
+              <input name="website" type="text" class="website" autocomplete="off" value="" id="website"
+                tabindex="-1" />
+            </li>
+            <li class="u-off-screen">
+              <label class="name" for="name">Name:</label>
+              <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+            </li>
+            {# End of honey pots #}
+          </ul>
+          <ul class="p-list">
+            <li class="p-list__item">
+              <button type="submit" class="p-button--positive" id="form-submit"
+                onclick="dataLayer.push({'event' : 'GAEvent', 'eventCategory' : 'Form', 'eventAction' : 'cloud contact-us', 'eventLabel' : '{{product}}', 'eventValue' : undefined });">Submit</button>
+            </li>
+          </ul>
+          <!-- hidden fields -->
+          <div class="u-hide">
+            <label for="Comments_from_lead__c">Custom fields</label>
+            <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="1" maxlength="5000"></textarea>
+          </div>
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="{{formid}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="{{returnURL}}" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c"
+            value="yes" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content"
+            value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+          <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Encode_Comments_from_lead__c" id="Encode_Comments_from_lead__c" value="no" />
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="col-4">
+      <div class="p-card">
+        <h2 class="p-heading--3 p-card__title">Any questions? Call us</h2>
+        {% include "shared/_call-sales-long.html" %}
+      </div>
+      <div class="p-card">
+        <h2 class="p-heading--3 p-card__title">Need help with Ubuntu?</h2>
+        <p>If you are just looking for some free support for yourself, you can try:</p>
+        <ul class="p-list--divided">
+          <li class="p-list__item"><a href="https://askubuntu.com/">Ask Ubuntu</a></li>
+          <li class="p-list__item"><a href="https://ubuntuforums.org/">The Ubuntu forum</a></li>
+          <li class="p-list__item"><a href="https://help.ubuntu.com/">Help docs</a></li>
+        </ul>
+      </div>
+    </div>
+</section>
+<script>
+  function getCustomFields() {
+    // disable submit button when form is submitted to stop duplicates
+    document.getElementById("form-submit").setAttribute("disabled", "true");
+
+    // If you use Ubuntu, which version(s) are you using?
+    const ubuntuVersionsFieldset = document.getElementById("ubuntu-versions");
+    // How do you consume open source?
+    const consumeOpenSourceFieldset = document.getElementById("how-do-you-consume-open-source");
+    // Do you have specific compliance or hardening requirements?
+    const hardeningRequirementsFieldset = document.getElementById("hardening-requirements");
+    // Who is responsible for tracking, testing and applying CVE patches in a timely manner?
+    const responsibleForTracking = document.getElementById("responsible-for-tracking")
+
+    const data = {
+      "Tell us about your project": document.getElementById("about-your-project").value,
+      "If you use Ubuntu, which version(s) are you using?": getCheckboxItemsAsCSV(ubuntuVersionsFieldset),
+      "How do you consume open source?": getCheckboxItemsAsCSV(consumeOpenSourceFieldset),
+      "Do you have specific compliance or hardening requirements?": getCheckboxItemsAsCSV(hardeningRequirementsFieldset),
+      "Who is responsible for tracking, testing and applying CVE patches in a timely manner?": getCheckboxItemsAsCSV(responsibleForTracking),
+      "What advice are you looking for": document.getElementById("advice").value,
+    }
+
+    const textarea = document.getElementById("Comments_from_lead__c");
+    textarea.value = JSON.stringify(data);
+  }
+
+  function getCheckboxItemsAsCSV(fieldset) {
+    const checkboxes = Array.from(fieldset.querySelectorAll("input[class='p-checkbox__input']"));
+    return checkboxes.filter(item => item.checked).map(item => item.value).join(", ");
+  }
+</script>

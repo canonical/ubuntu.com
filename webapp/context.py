@@ -4,7 +4,6 @@ import datetime
 import calendar
 import logging
 import json
-import numpy
 from urllib.parse import parse_qs, urlencode
 
 # Packages
@@ -19,14 +18,9 @@ logger = logging.getLogger(__name__)
 
 api_session = CachedSession(fallback_cache_duration=3600)
 
-
 # Read navigation.yaml
 with open("navigation.yaml") as navigation_file:
     nav_sections = yaml.load(navigation_file.read(), Loader=yaml.FullLoader)
-
-# Read meganav.yaml
-with open("meganav.yaml") as meganav_file:
-    meganav = yaml.load(meganav_file.read(), Loader=yaml.FullLoader)
 
 
 # Process data from YAML files
@@ -42,21 +36,6 @@ def releases():
 
     with open("releases.yaml") as releases:
         return yaml.load(releases, Loader=yaml.FullLoader)
-
-
-def get_meganav(section):
-    """
-    Set "meganav_section" as global template variable
-    """
-
-    sections = {}
-    meganav_sections = copy.deepcopy(meganav)
-
-    for section_name, meganav_section in meganav_sections.items():
-        if section_name == section:
-            sections = meganav_section
-
-    return {"sections": sections}
 
 
 def get_navigation(path):
@@ -137,10 +116,6 @@ def descending_years(end_year):
     return range(now.year, end_year, -1)
 
 
-def split_list(array, parts):
-    return numpy.array_split(array, parts)
-
-
 def get_json_feed(url, offset=0, limit=None):
     """
     Get the entries in a JSON feed
@@ -161,3 +136,22 @@ def get_json_feed(url, offset=0, limit=None):
         return False
 
     return content[offset:end]
+
+
+def schedule_banner(start_date: str, end_date: str):
+    try:
+        end = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+        start = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+        present = datetime.datetime.now()
+        return start <= present < end
+    except ValueError:
+        return False
+
+
+def date_has_passed(date_str):
+    try:
+        date = datetime.strptime(date_str, "%Y-%m-%d")
+        present = datetime.now()
+        return present > date
+    except ValueError:
+        return False

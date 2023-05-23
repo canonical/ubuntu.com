@@ -1,4 +1,4 @@
-{% extends "download/_base_download.html" %}
+{% extends "download/iot/_base_iot.html" %}
 
 {% block title %}Download Ubuntu for IoT boards | Download{% endblock %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1Sxdl5cGGe1wbHmKB2eL2zQLfVW3KBea02a2FIGx3VdQ/edit{% endblock meta_copydoc %}
@@ -23,10 +23,10 @@
               height="40",
               hi_def=True,
               loading="auto",
-              attrs={"class": "p-heading-icon__img", style: "margin-top: .5rem"},
+              attrs={"class": "p-heading-icon__img"},
             ) | safe
           }}
-          <h2 class="p-heading-icon__title" style="line-height: 4rem;">Ubuntu for Raspberry Pi</h2>
+          <h2 class="p-heading-icon__title p-heading--3">Ubuntu for Raspberry Pi</h2>
         </div>
       </div>
       <p>
@@ -141,11 +141,10 @@
         <a class="p-button--positive" href="/certified">Get Certified Hardware</a>
       </div>
       <div class="col-4 u-align--center u-hide--medium u-hide--small">
-        {{
-          image (
-          url="https://assets.ubuntu.com/v1/20a610ea-Ubuntu_Certified_Hardware_partner.svg",
+        {{ image (
+          url="https://assets.ubuntu.com/v1/d9c2c5bf-ubuntu_certified.png",
           alt="",
-          width="102",
+          width="106",
           height="150",
           hi_def=True,
           loading="lazy"
@@ -156,8 +155,8 @@
   </section>
 
   <section id="core" class="p-strip--light">
-    <div class="row u-equal-height">
-      <div class="col-8">
+    <div class="row u-equal-height p-divider">
+      <div class="col-7">
         <h3 class="p-heading--2">Ubuntu Core</h3>
         <p>
           Ubuntu Core is a lean, strictly confined and fully transactional operating system. We designed it from the ground up, to focus on security and simplified maintenance, for appliances and large device networks. Ubuntu Core is powered by snaps - the universal Linux packaging format.
@@ -166,13 +165,13 @@
           <a class="p-button is-inline" style="margin-left: 0;" href="/core">Learn more about Ubuntu Core</a><br class="u-hide--large u-hide--medium" /><a href="/download/kvm">Install on your workstation in a KVM&nbsp;&rsaquo;</a>
         </p>
       </div>
-      <div class="col-4 u-vertically-center u-hide--medium u-hide--small u-align--center">
+      <div class="col-5 p-divider__block u-vertically-center u-hide--medium u-hide--small u-align--center">
         {{
           image(
-            url="https://assets.ubuntu.com/v1/805f2b3a-core_black-orange_st_hex.svg",
-            alt="Ubuntu Core",
-            width="125",
-            height="168",
+            url="https://assets.ubuntu.com/v1/0bdfaf89-ubuntu-core-logo-45.svg",
+            alt="Canonical Ubuntu Core logo",
+            width="315",
+            height="45",
             hi_def=True,
             loading="lazy"
           ) | safe
@@ -246,7 +245,7 @@
             loading="auto"
             ) | safe
           }}
-          <p><a href="/download/amd-xilinx">Install Ubuntu Core 20&nbsp;&rsaquo;</a></p>
+          <p><a href="/download/amd-xilinx">Install Ubuntu Desktop&nbsp;&rsaquo;</a></p>
         </div>
         <div class="col-4">
           {{ image (
@@ -259,7 +258,7 @@
             ) | safe
           }}
           <p>
-            <a href="/download/iot/intel-iotg">Install Ubuntu Desktop&nbsp;&rsaquo;</a>
+            <a href="/download/iot/intel-iotg">Install Ubuntu Core 20&nbsp;&rsaquo;</a>
           </p>
         </div>
       </div>
@@ -271,7 +270,7 @@
         </p>
       </div>
     </section>
-  
+
     <div class="u-fixed-width">
       <hr />
     </div>

@@ -3,9 +3,9 @@
 - [Overview](/kubernetes/docs/overview)
 
 ## Supported versions
+- [1.27](/kubernetes/docs/1.27/components)
+- [1.26](/kubernetes/docs/1.26/components)
 - [1.25](/kubernetes/docs/1.25/components)
-- [1.24](/kubernetes/docs/1.24/components)
-- [1.23](/kubernetes/docs/1.23/components)
 - [Version info](/kubernetes/docs/supported-versions)
 
 ## Install
@@ -29,6 +29,7 @@
 - [Flannel](/kubernetes/docs/cni-flannel)
 - [Calico](/kubernetes/docs/cni-calico)
 - [Canal](/kubernetes/docs/cni-canal)
+- [Cilium](/kubernetes/docs/cni-cilium)
 - [Kube OVN](/kubernetes/docs/cni-kube-ovn)
 - [Tigera Secure EE](/kubernetes/docs/tigera-secure-ee)
 - [Multus](/kubernetes/docs/cni-multus)
@@ -40,6 +41,10 @@
 ## Container Runtimes
 - [Containerd & Docker](/kubernetes/docs/container-runtime)
 - [Kata](/kubernetes/docs/kata)
+- [VM workloads (KubeVirt)](/kubernetes/docs/kubevirt)
+
+## Scheduling
+- [Volcano](/kubernetes/docs/volcano)
 
 ## Operations
 - [Basic operations](/kubernetes/docs/operations)
@@ -54,7 +59,6 @@
 - [Cluster autoscaler](/kubernetes/docs/autoscaler)
 - [Validation](/kubernetes/docs/validation)
 - [Decommissioning](/kubernetes/docs/decommissioning)
-- [Security](/kubernetes/docs/security)
 - [Authentication with LDAP](/kubernetes/docs/ldap)
 - [Private Docker Registry](/kubernetes/docs/docker-registry)
 - [Configuring proxies](/kubernetes/docs/proxies)
@@ -63,8 +67,10 @@
 - [Troubleshooting](/kubernetes/docs/troubleshooting)
 
 ## Security
+- [Overview](/kubernetes/docs/security)
 - [Authorisation and authentication](/kubernetes/docs/auth)
 - [Using Vault as a CA](/kubernetes/docs/using-vault)
+- [OPA Gatekeeper](/kubernetes/docs/gatekeeper)
 - [Encryption at rest](/kubernetes/docs/encryption-at-rest)
 - [Certificates and trust](/kubernetes/docs/certs-and-trust)
 - [CIS compliance](/kubernetes/docs/cis-compliance)

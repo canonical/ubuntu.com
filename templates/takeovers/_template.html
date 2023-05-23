@@ -2,6 +2,7 @@
   <div class="row u-equal-height">
     <div class="{% if equal_cols == 'false' %}col-7{% else %}col-6{% endif %} u-vertically-center">
       {% if stacked_image %}
+        <!-- FIXME: why using heading icon component if there is no title in the component? -->
         <div class="u-hide u-show--small p-heading-icon--large">
           <div class="p-heading-icon__header is-stacked">
             <img class="p-heading-icon__img " src="{{ header_image }}" alt="">
@@ -41,7 +42,7 @@
         {% endif %}
         {#
           To make it look as close as possible to homepage takeover we can't use image-template
-          the homepage takeover uses JS to populate the HTML attributes 
+          the homepage takeover uses JS to populate the HTML attributes
         #}
         <img src="{{ header_image }}" alt="" width="{{ image_width }}" height="{{ image_height }}">
       </div>

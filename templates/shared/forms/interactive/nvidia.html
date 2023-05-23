@@ -1,0 +1,368 @@
+<div class="p-modal" id="contact-modal">
+    <div class="p-modal__dialog" role="dialog" aria-labelledby="modal-title" aria-describedby="modal-description">
+      <header class="p-modal__header" style="display: block; border-bottom: 0;">
+        <button class="p-modal__close" aria-label="Close active modal" style="margin-left: -1rem">Close</button>
+        <h2 class="p-modal__title u-sv1" id="modal-title">Let's get your AI project ready to launch!</h2>
+      </header>
+      <p>Canonical partners with NVIDIA to offer turnkey AI solutions to enterprises.</p>
+      <p>Tell us about your project so we can bring the right Canonical team members to the conversation to help you.</p>
+      <div class="js-pagination js-pagination--1">
+        <div class="js-formfield">
+          <h3 class="p-heading--5">What is your role in your organisation?</h3>
+          <div class="u-fixed-width">
+            <div>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-developer-engineer" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-developer-engineer">Developer/Engineer</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-research-engineer" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-research-engineer">Research engineer</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-data-scientist" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-data-scientist">Data scientist</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-manager" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-manager">Manager</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-director" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-director">Director</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-cto-cio" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-cto-cio">CTO/CIO</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="role-ceo-founder" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="role-ceo-founder">CEO/Founder</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="js-formfield">
+          <h3 class="p-heading--5">What best represents your organisation?</h3>
+          <div class="u-fixed-width">
+            <div>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="organisation-leverage" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="organisation-leverage">We leverage (or would like to leverage) NVIDIA hardware and Canonical / Ubuntu solutions</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="organisation-isv" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="organisation-isv">We build solutions on top of NVIDIA and Ubuntu platforms (ISV)</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="organisation-var" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="organisation-var">We are a value added reseller (VAR)</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="organisation-gsi" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="organisation-gsi">We are a system integrator (GSI)</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="organisation-hardware-systems" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="organisation-hardware-systems">We build hardware systems (OEM/ODM)</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="organisation-miscellaneous" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="organisation-miscellaneous">Miscellaneous</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="js-formfield">
+          <h3 class="p-heading--5">What NVIDIA hardware are you using or plan to use? (multiple choices)</h3>
+          <div class="u-fixed-width">
+            <div>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-datacenter-gpu" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-datacenter-gpu">Datacenter GPUs</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-workstation-gpu" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-workstation-gpu">Workstation GPUs</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-gpu-in-a-cloud" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-gpu-in-a-cloud">I work with GPUs, but they are all in a cloud</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-bluefield-dpus" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-bluefield-dpus">Bluefield DPUs</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-nvidia-connectx" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-nvidia-connectx">NVIDIA ConnectX</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-nvidia-dgx" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-nvidia-dgx">NVIDIA DGX</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-egx-systems" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-egx-systems">EGX systems</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-spectrum-nics" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-spectrum-nics">Spectrum NICs</span>
+              </label>
+              <label class="p-checkbox">
+                <input type="checkbox" aria-labelledby="hardware-mobile-socs" class="p-checkbox__input">
+                <span class="p-checkbox__label" id="hardware-mobile-socs">Mobile SoCs (Tegra/Jetson/DRIVE)</span>
+              </label>
+              <div class="js-other-container">
+                <label class="p-checkbox">
+                  <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="hardware-other">
+                  <span class="p-checkbox__label" id="hardware-other">Other</span>
+                </label>
+                <input type="text" id="hardware-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other hardware">
+              </div>
+            </div>
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--5">What industry vertical best describes your use-case? (multiple choices)</h3>
+            <div class="u-fixed-width">
+              <div>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-agriculture" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-agriculture">Agriculture</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-automotive" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-automotive">Automotive</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-energy" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-energy">Energy</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-education" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-education">Education</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-financial-services" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-financial-services">Financial services</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-healthcare" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-healthcare"> Healthcare</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-hpc" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-hpc">HPC</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-manufacturing" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-manufacturing"> Manufacturing</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-media" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-media">Media</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-public-sector" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-public-sector">Public sector</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-retail" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-retail">Retail</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-technology" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-technology">Technology</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="use-case-telecom" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="use-case-telecom">Telecom</span>
+                </label>
+                <div class="js-other-container">
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input js-other-container__checkbox" type="checkbox" aria-labelledby="use-case-other">
+                    <span class="p-checkbox__label" id="use-case-other">Other</span>
+                  </label>
+                  <input type="text" id="use-case-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other use case">
+                </div>
+              </div>
+            </div>
+            <div class="js-formfield">
+              <h3 class="p-heading--5">Are you familiar with NVIDIA AI for Enterprise solutions?</h3>
+              <div class="u-fixed-width">
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="familiar-nvidia-ai-yes" class="u-no-margin--bottom" name="familiar-nvidia-ai" value="Yes">
+                  <span class="p-radio__label" id="familiar-nvidia-ai-yes" class="u-no-margin--bottom">Yes</span>
+                </label>
+                <label class="p-radio">
+                  <input class="p-radio__input" type="radio" aria-labelledby="tfamiliar-nvidia-ai-no" name="familiar-nvidia-ai" value="No">
+                  <span class="p-radio__label" id="familiar-nvidia-ai-no">No</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="js-formfield">
+            <h3 class="p-heading--5">What Canonical/NVIDIA solutions would you be interested in?(multiple choices)</h3>
+            <div class="u-fixed-width">
+              <div>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-os" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-os">Operating system & GPU driver support</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-virtualisation" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-virtualisation">Virtualisation : vGPU and MIG-based solutions</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-networking" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-networking">Networking : Offload, storage, accelerations</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-ai-ml-training" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-ai-ml-training">AI/ML training or inference</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-datacenter" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-datacenter">Provisioning a datacenter (on-prem or hybrid)</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-container -orchestration" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-container-orchestration">Container orchestration</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-mlops" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-mlops">MLOps</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions--nvidia-enterprise" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-nvidia-enterprise">NVIDIA AI for Enterprise</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" aria-labelledby="solutions-mofed-support" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-mofed-support">MOFED support</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" name="solutions-nvidia-doca" aria-labelledby="solutions-nvidia-doca" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-nvidia-doca">NVIDIA DOCA</span>
+                </label>
+                <label class="p-checkbox">
+                  <input type="checkbox" name="solutions-nvidia-triton" aria-labelledby="solutions-nvidia-triton" class="p-checkbox__input">
+                  <span class="p-checkbox__label" id="solutions-nvidia-triton">NVIDIA Triton</span>
+                </label>
+                <div class="js-other-container">
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input js-other-container__checkbox" name="solutions-other" type="checkbox" aria-labelledby="solutions-other">
+                    <span class="p-checkbox__label" id="solutions-other">Other</span>
+                  </label>
+                  <input type="text" id="solutions-other-specified"
+                  name="solutions-other-specified" class="js-other-container__input" placeholder="Please specify" style="opacity: 0; margin-top: .25rem;" aria-label="Other solution">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row u-no-padding js-formfield">
+          <h3 class="p-heading--5">
+            Tell us more about your project. What are some of your challenges when building your product and taking it to market?
+          </h3>
+          <textarea name="summarize-your-project" id="summarize-your-project" aria-label="Tell us more about your project. What are some of your challenges when building your product and taking it to market?" rows="3" placeholder=""></textarea>
+        </div>
+        <div class="pagination">
+          <a class="p-button--positive pagination__link--next" href="">Next</a>
+        </div>
+      </div>
+      <div class="js-pagination js-pagination--2 u-hide">
+        <h3 class="p-heading--5">How should we get in touch?</h3>
+        <div class="row u-no-padding">
+          <div class="col-6">
+            <form action="/marketo/submit" method="post" id="mktoForm_%% formid %%" class="modal-form">
+              <ul class="p-list">
+                <li class="p-list__item">
+                  <label for="firstName">First name:</label>
+                  <input required id="firstName" name="firstName" maxlength="255" type="text" required="required" />
+                </li>
+                <li class="p-list__item">
+                  <label for="lastName">Last name:</label>
+                  <input required id="lastName" name="lastName" maxlength="255" type="text" required="required" />
+                </li>
+                <li class="p-list__item">
+                  <label for="email">Work email:</label>
+                  <input required id="email" name="email" maxlength="255" type="email" pattern="^[^ ]+@[^ ]+\.[a-z]{2,26}$" required="required" />
+                </li>
+                <li class="p-list__item">
+                  <label for="phone">Mobile/cell phone number:</label>
+                  <input required id="phone" name="phone" maxlength="255" type="tel" required="required" />
+                </li>
+                <li class="p-list__item">
+                  <label class="p-checkbox">
+                    <input class="p-checkbox__input" value="yes" aria-labelledby="canonicalUpdatesOptIn" name="canonicalUpdatesOptIn" type="checkbox">
+                    <span class="p-checkbox__label" id="canonicalUpdatesOptIn">I agree to receive information about Canonical's products and services.</span>
+                  </label>
+                </li>
+                <li class="p-list__item">In submitting this form, I confirm that I have read and agree to <a href="/legal/data-privacy/contact">Canonical's Privacy Notice</a> and <a href="/legal/data-privacy">Privacy Policy</a>.</li>
+                {# These are honey pot fields to catch bots #}
+                <li class="u-off-screen">
+                  <label class="website" for="website">Website:</label>
+                  <input name="website" type="text" class="website" autocomplete="off" value="" id="website" tabindex="-1" />
+                </li>
+                <li class="u-off-screen">
+                  <label class="name" for="name">Name:</label>
+                  <input name="name" type="text" class="name" autocomplete="off" value="" id="name" tabindex="-1" />
+                </li>
+                {# End of honey pots #}
+              </ul>
+
+              <div class="u-hide">
+                <h3>Your comments</h3>
+                <ul class="p-list">
+                  <li class="p-list__item">
+                    <label for="Comments_from_lead__c">What would you like to talk to us about?</label>
+                    <textarea id="Comments_from_lead__c" name="Comments_from_lead__c" rows="5" maxlength="2000"></textarea>
+                  </li>
+                </ul>
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="formid" value="%% formid %%" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="returnURL" value="%% returnURL %%" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Consent_to_Processing__c" value="yes" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_campaign" id="utm_campaign" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_medium" id="utm_medium" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_source" id="utm_source" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_content" id="utm_content" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="utm_term" id="utm_term" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="GCLID__c" id="GCLID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="Facebook_Click_ID__c" id="Facebook_Click_ID__c" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" id="preferredLanguage" name="preferredLanguage" maxlength="255" value="" />
+                <input type="hidden" aria-hidden="true" aria-label="hidden field" name="productContext" id="product-context" value="{{ product }}" />
+              </div>
+
+              <div class="pagination">
+                <a class="pagination__link--previous p-button" href="">Previous</a>
+                <button type="submit" class="pagination__link--next p-button--positive" aria-label="Submit">Let's discuss</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="js-pagination js-pagination--3 u-hide">
+        <div class="row u-no-padding u-equal-height">
+          <div class="col-7">
+            <h3 class="p-heading--2">Thank you for enquiring</h3>
+            <p class="p-heading--4">A member of our team will be in touch within one working day.</p>
+          </div>
+          <div class="col-5 u-vertically-center u-hide--medium u-hide--small u-align--center">
+            {{
+              image(
+              url="https://assets.ubuntu.com/v1/cbae9a60-thank_you_orange_cmyk.svg",
+              alt="smile",
+              width="200",
+              height="200",
+              hi_def=True,
+              loading="auto",
+              ) | safe
+            }}
+          </div>
+        </div>
+        <a class="js-close p-button" href="">Close</a>
+      </div>
+    </div>
+  </div>

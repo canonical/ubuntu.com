@@ -420,3 +420,21 @@ if (accountContainer) {
       );
     });
 }
+
+// TEMP FIX - PETE F 15.05.23
+// UPDATES 'UBUNTU ADVANTAGE' TO 'UBUNTU PRO' IN THE MEGANAV UNTIL
+// WE MERGE THE NEW MEGANAV
+function replaceUbuntuAdvantage() {
+  const globalNav = document.querySelector("#canonical-global-nav");
+  const targetElementsArray = globalNav.querySelectorAll(
+    "[href='https://ubuntu.com/support']"
+  );
+  targetElementsArray.forEach(function (element) {
+    if (element.children.length) {
+      element.querySelector("h4").innerText = "Ubuntu Pro ›";
+    } else {
+      element.innerText = "Ubuntu Pro";
+    }
+  });
+}
+replaceUbuntuAdvantage();

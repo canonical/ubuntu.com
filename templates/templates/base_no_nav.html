@@ -23,7 +23,6 @@
     <link rel="apple-touch-icon" sizes="114x114" href="https://assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="https://assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png" />
     <link rel="apple-touch-icon" href="https://assets.ubuntu.com/v1/c39e0fed-apple-touch-icon.png" />
-    <link type="text/plain" rel="author" href="{{ versioned_static('files/humans.txt') }}" />
 
     <!-- stylesheets -->
     <link rel="stylesheet" type="text/css" media="screen" href="{{ versioned_static('css/styles.css') }}" />
@@ -44,7 +43,7 @@
   <body style="padding-top: 0;">
     <!-- google tag manager -->
     <noscript>
-      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      <iframe title="Google Tag Manager" src="https://www.googletagmanager.com/ns.html?id=GTM-K92JCQ" height="0" width="0" style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- end google tag manager -->
 
@@ -61,13 +60,13 @@
     </header>
 
     <div class="wrapper u-no-margin--top">
-      <div id="main-content" class="inner-wrapper">
+      <main id="main-content" class="inner-wrapper">
         {% block content_head %}{% endblock %}
         {% block content_container %}
           {% block outer_content %}
           {% endblock outer_content %}
         {% endblock content_container %}
-      </div><!-- /.inner-wrapper -->
+      </main><!-- /.inner-wrapper -->
     </div><!-- /.wrapper -->
 
   </body>

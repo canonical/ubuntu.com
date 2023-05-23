@@ -16,7 +16,7 @@ coverage.{% endblock meta_description %}
       <h1>Performant open source with Managed Apps</h1>
       <p class="p-heading--4">One vendor, easy deployment, guaranteed uptime</p>
       <p>
-        <a href="/managed/contact-us" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link">Free deployment assessment</a>
+        <a href="/managed/contact-us" class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" data-form-location="/shared/forms/interactive/managed-apps.html" data-form-id="3545" data-lp-id="3828" data-return-url="https://ubuntu.com/managed/apps#success" data-lp-url="https://pages.ubuntu.com/things-contact-us.html">Free deployment assessment</a>
       </p>
     </div>
     <div class="col-6 u-embedded-media u-align--center">
@@ -53,26 +53,6 @@ coverage.{% endblock meta_description %}
         <div style="min-width: 50%">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/c530ca79-Cassandra_logo.svg",
-          alt="Apache Cassandra",
-          width="144",
-          height="90",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style":"height:80px; width:auto; margin-bottom: 1rem;" },
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading"><a href="/managed/cassandra">Cassandra databases ready for scale</a></p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
           url="https://assets.ubuntu.com/v1/c182bf3c-apps_postgres.png",
           alt="Postgres",
           width="100",
@@ -93,28 +73,8 @@ coverage.{% endblock meta_description %}
         <div style="min-width: 50%">
         {{
           image(
-          url="https://assets.ubuntu.com/v1/11e66fc8-Opensearch_Logo.svg",
-          alt="OpenSearch",
-          width="200",
-          height="40",
-          hi_def=True,
-          loading="lazy",
-          attrs={"style": "margin-top:.8rem;"},
-          ) | safe
-        }}
-        </div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading">Low latency queries for high volume workloads</p>
-          </div>
-        </div>
-      </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%">
-        {{
-          image(
           url="https://assets.ubuntu.com/v1/176a11dd-opensource-MANO.svg",
-          alt="OpenStack Mano",
+          alt="Open Source MANO",
           width="144",
           height="52",
           hi_def=True,
@@ -125,7 +85,7 @@ coverage.{% endblock meta_description %}
         </div>
         <div class="p-matrix__content u-align--center">
           <div class="p-matrix__desc">
-            <p class="p-muted-heading" style="margin-left: 1rem"><a href="https://ubuntu.com/blog/managed-apps-charmed-osm">Simplified NFV adoption</a></p>
+            <p class="p-muted-heading" style="margin-left: 1rem"><a href="/blog/managed-apps-charmed-osm">Simplified NFV adoption</a></p>
           </div>
         </div>
       </li>
@@ -169,23 +129,11 @@ coverage.{% endblock meta_description %}
           </div>
         </div>
       </li>
-      <li class="p-matrix__item u-align--center">
-        <div style="min-width: 50%; margin-top: 2.4rem; margin-bottom: 2rem;">
-        <strong>
-          MongoDB CE
-        </strong>
-	</div>
-        <div class="p-matrix__content u-align--center">
-          <div class="p-matrix__desc">
-            <p class="p-muted-heading">The webscale database</p>
-          </div>
-        </div>
-      </li>
       <li class="p-matrix__item u-hide--small"></li>
     </ul>
     <div class="row">
       <div class="col-8">
-        <p><a href="/managed/contact-us" class="p-button">Contact us</a></p>
+        <p><a href="/managed/contact-us" class="p-button js-invoke-modal">Contact us</a></p>
       </div>
     </div>
   </div>
@@ -303,15 +251,15 @@ coverage.{% endblock meta_description %}
 <section class="p-strip">
   <div class="u-fixed-width">
     <div class="p-logo-section">
-      <h2 class="p-logo-section__title u-align--center">Run your apps anywhere</h2>
+      <h2 class="p-logo-section__title u-align--left">Run your apps anywhere</h2>
       <div class="p-logo-section__items">
         <div class="p-logo-section__item">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/42299ebc-google-cloud.png",
+            url="https://assets.ubuntu.com/v1/5d01375a-google-cloud-logo.png",
             alt="Google Cloud Platform",
-            width="68",
-            height="50",
+            width="316",
+            height="316",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"},
@@ -321,10 +269,36 @@ coverage.{% endblock meta_description %}
         <div class="p-logo-section__item">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/dba11aee-kubernetes.svg",
+            url="https://assets.ubuntu.com/v1/1a2ca878-kubernetes-logomark-logo.png",
             alt="Kubernetes",
-            width="62",
-            height="60",
+            width="316",
+            height="316",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/bdadf238-oracle-cloud.png",
+            alt="Oracle cloud",
+            width="316",
+            height="316",
+            hi_def=True,
+            loading="lazy",
+            attrs={"class": "p-logo-section__logo"},
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image (
+            url="https://assets.ubuntu.com/v1/c7b9a434-microsoft-azure-logomark-new.png",
+            alt="",
+            width="316",
+            height="316",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"},
@@ -334,75 +308,49 @@ coverage.{% endblock meta_description %}
         <div class="p-logo-section__item">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/a82add58-profile-aws.svg",
-            alt="AWS",
-            width="85",
-            height="50",
+            url="https://assets.ubuntu.com/v1/87b04c6a-vmware-logo.png",
+            alt="VMWARE",
+            width="316",
+            height="316",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
             image(
-            url="https://assets.ubuntu.com/v1/01cfe6d9-profile-azure.svg",
-            alt="Azure",
-            width="65",
-            height="50",
+            url="https://assets.ubuntu.com/v1/6d16204d-openstack-logomark-logo.png",
+            alt="Openstack",
+            width="316",
+            height="316",
             hi_def=True,
             loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
+            attrs={"class": "p-logo-section__logo"}
             ) | safe
           }}
         </div>
         <div class="p-logo-section__item">
           {{
-            image(
-            url="https://assets.ubuntu.com/v1/623e36f9-OpenStack_Logo_Mark+%281%29.svg",
-            alt="OpenStack",
-            width="60",
-            height="50",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo", "style": "max-height:90px;"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/d584bd83-logo-vmware.svg",
-            alt="VMware",
-            width="144",
-            height="22",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/f1d885ce-Oracle-cloud.png?w=144",
-            alt="Oracle Cloud",
-            width="144",
-            height="44",
-            hi_def=True,
-            loading="lazy",
-            attrs={"class": "p-logo-section__logo"},
-            ) | safe
-          }}
-        </div>
-        <div class="p-logo-section__item">
-          {{
-            image(
-            url="https://assets.ubuntu.com/v1/33409c7b-logo-maas.svg",
+            image (
+            url="https://assets.ubuntu.com/v1/505ecea2-maas-logo-stacked.png",
             alt="MAAS",
-            width="144",
-            height="47",
+            width="316",
+            height="316",
+            hi_def=True,
+            loading="auto",
+            attrs={"class": "p-logo-section__logo"}
+            ) | safe
+          }}
+        </div>
+        <div class="p-logo-section__item">
+          {{
+            image(
+            url="https://assets.ubuntu.com/v1/0070b81e-aws-logo.png",
+            alt="AWS",
+            width="316",
+            height="316",
             hi_def=True,
             loading="lazy",
             attrs={"class": "p-logo-section__logo"},
@@ -424,7 +372,7 @@ coverage.{% endblock meta_description %}
   </div>
   <div class="row">
     <div class="col-8">
-      <p><a href="/managed/contact-us" class="p-button">Contact us</a></p>
+      <p><a href="/managed/contact-us" class="p-button js-invoke-modal">Contact us</a></p>
     </div>
   </div>
   <div class="row p-divider">
@@ -548,7 +496,7 @@ coverage.{% endblock meta_description %}
       <p><a href="/engage/managed-apps-webinar">Watch the full webinar on demand now&nbsp;&rsaquo;</a></p>
     </div>
     <div class="col-6">
-      <iframe src="https://player.vimeo.com/video/456162146" width="500" height="300" frameborder="0"
+      <iframe title="How does Canonical's managed service for cloud applications help reduce costs?" src="https://player.vimeo.com/video/456162146" width="500" height="300" frameborder="0"
         allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
   </div>
@@ -659,7 +607,7 @@ coverage.{% endblock meta_description %}
 
 {% with first_item="_cloud_ubuntu_advantage", second_item="_cloud_contact_us", third_item="_cloud_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
-<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-apps.html"
+<div class="u-hide" id="contact-form-container" data-form-location="/shared/forms/interactive/managed-apps-contact-us.html"
   data-form-id="3545" data-lp-id="3828" data-return-url="https://ubuntu.com/managed/thank-you"
   data-lp-url="https://pages.ubuntu.com/things-contact-us.html">
 </div>

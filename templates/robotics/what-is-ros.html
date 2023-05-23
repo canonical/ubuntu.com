@@ -1,6 +1,5 @@
 {% extends "robotics/base_robotics.html" %}
 
-
 {% block title %}What is ROS?{% endblock %}
 {% block meta_description %}With hundreds of thousands of drones and robots deployed the world over, Ubuntu Core is the perfect robust, reliable and secure OS for the robotics sector. {% endblock meta_description %}
 {% block meta_copydoc %}https://docs.google.com/document/d/1yX2Ikcn1fgIKX3el8fKWQt7SGxSwY633TfW5V1lwUuc/edit{% endblock meta_copydoc %}
@@ -8,8 +7,12 @@
 {% block content %}
 
 <section class="p-strip--suru-topped">
+  {% with product = "robotics company" %}
+    {% include "shared/_18-04-eol-banner.html" %}
+  {% endwith %}
+
   <div class="row u-equal-height">
-    <div class="col-8">
+    <div class="col-6">
       <h1>What is ROS</h1>
       <p class="p-heading--4">ROS is powering the future of robotics in industry, in the enterprise and for developers</p>
       <p>Ubuntu has been the primary platform for ROS from the very beginning, thanks to its flexibility and user-friendliness.</p>
@@ -20,28 +23,21 @@
           Get started with ROS
         </a>
       </p>
+      <p>
+        <a href="/engage/Deploying-ros-applications-Developer-guide">
+          Discover how to deploy ROS applications with snaps&nbsp;&rsaquo;
+        </a>
+      </p>
     </div>
-    <div class="col-4 u-hide--small u-vertically-center u-align--center">
+    <div class="col-6 u-hide--small u-hide--medium u-vertically-center u-align--center">
       <div>
         {{
           image(
-            url="https://assets.ubuntu.com/v1/8da00274-open-robotics.png",
-            alt="",
-            height="61",
-            width="214",
+            url="https://assets.ubuntu.com/v1/610cb685-canonical+open_robotics.svg",
+            alt="Canonical + Open Robotics",
+            height="273",
+            width="277",
             hi_def=True,
-            attrs={"style": "margin-bottom: 1rem;"},
-            loading="auto",
-          ) | safe
-        }}
-        {{
-          image(
-            url="https://assets.ubuntu.com/v1/5d6da5c4-logo-canonical-aubergine.svg",
-            alt="",
-            height="29",
-            width="214",
-            hi_def=True,
-            attrs={"style": "margin-top: 1rem;"},
             loading="auto",
           ) | safe
         }}
@@ -219,7 +215,7 @@
       <p><a class="p-button--positive" href="https://roscon.ros.org/2020/">Come to ROSCon</a></p>
       <p><a href="/robotics/community">Learn more about the community&nbsp;&rsaquo;</a></p>
     </div>
-    <div class="col-4 u-hide--small">
+    <div class="col-4 u-hide--medium u-hide--small">
       {{
         image(
           url="https://assets.ubuntu.com/v1/69237fec-ROS-10-years.png",

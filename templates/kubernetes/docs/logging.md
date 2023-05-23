@@ -13,24 +13,17 @@ layout: [base, ubuntu-com]
 toc: False
 ---
 
-<div class="p-notification--information is-inline">
-  <div markdown="1" class="p-notification__content">
-    <span class="p-notification__title">Note:</span>
-    <p class="p-notification__message">This documentation assumes you are using version 2.4.0 or later of
-    <strong>Juju</strong>. If you are using an earlier version you should check
-    the <a href="https://juju.is/docs/olm/juju-logs">
-    relevant <emphasis>Juju</emphasis> documentation</a> as some of the associated
-    commands have changed.</p>
-  </div>
-</div>
+Broadly, there are two types of logs you may be interested in. On cluster for
+the applications you are running inside your cluster, and at an infrastructure
+level for the applications which are responsible for running the cluster
+itself.
 
-Broadly, there are two types of logs you may be interested in. On cluster or
-node level; for the applications you are running inside your cluster, and at an
-infrastructure level, the applications which are responsible for running the
-cluster itself. As **Charmed Kubernetes** is pure Kubernetes, you can use
-any of the tools and techniques to examine cluster logs as [described in the
-Kubernetes documentation][k8-logs]. Additionally, you can deploy Graylog
-alongside your cluster - please see the [section on Graylog below](#graylog).
+As **Charmed Kubernetes** is pure Kubernetes, you can use any of the tools and
+techniques to examine cluster logs as described in the
+[Kubernetes documentation][k8-logs]. Security related logging is enabled by
+default and is described in more detail in the [Audit logging][ck8s-audit-logs]
+section. Additionally, you can deploy Graylog alongside your cluster - please
+see the [section on Graylog below](#graylog).
 
 For the infrastructure, your **Charmed Kubernetes** deployment has centralised
 logging set up by default. Each unit in your cluster automatically sends
@@ -170,7 +163,6 @@ the following:
 The recommended way to retrieve logs from your cluster is to use a combination
 of **Elasticsearch**, **Graylog** and **Filebeat**. These provide a dashboard
 from which you can monitor both machine-level and cluster-level logs.
-See the [quickstart guide][quickstart] for more details on installing **Charmed Kubernetes**.
 
 ### Installation
 
@@ -181,30 +173,30 @@ bundle along with the following overlay file
 ```yaml
 applications:
   apache2:
-    charm: cs:bionic/apache2
+    charm: apache2
     num_units: 1
     expose: true
     options:
       enable_modules: "headers proxy_html proxy_http"
   elasticsearch:
-    charm: cs:bionic/elasticsearch
+    charm: elasticsearch
     constraints: mem=7G root-disk=16G
     num_units: 1
     options:
       apt-repository: "deb https://artifacts.elastic.co/packages/6.x/apt stable main"
   filebeat:
-    charm: cs:bionic/filebeat
+    charm: filebeat
     options:
       install_sources: "deb https://artifacts.elastic.co/packages/6.x/apt stable main"
       kube_logs: True
   graylog:
-    charm: cs:bionic/graylog
+    charm: graylog
     constraints: mem=7G root-disk=16G
     num_units: 1
     options:
       channel: "3/stable"
   mongodb:
-    charm: cs:bionic/mongodb
+    charm: mongodb
     num_units: 1
     options:
       extra_daemon_options: "--bind_ip_all"
@@ -221,7 +213,7 @@ To use this overlay with the **Charmed Kubernetes** bundle, specify it
 during deploy like this:
 
 ```bash
-juju deploy charmed-kubernetes --overlay ~/path/logging-egf-overlay.yaml
+juju deploy charmed-kubernetes --overlay logging-egf-overlay.yaml
 ```
 
 If you wish to add Graylog logging to an existing deployment, you can export a
@@ -230,7 +222,7 @@ the overlay:
 
 ```bash
 juju export-bundle --filename mybundle.yaml
-juju deploy ./mybundle.yaml --overlay ~/path/logging-egf-overlay.yaml
+juju deploy ./mybundle.yaml --overlay logging-egf-overlay.yaml
 ```
 
 At this point, all the applications can communicate with each other. To enable
@@ -247,7 +239,7 @@ template ([download it here][graylog-vhost]):
 Use the above template to configure `apache2` like this:
 
 ```bash
-juju config apache2 vhost_http_template="$(base64 ~/path/graylog-vhost.tmpl)"
+juju config apache2 vhost_http_template="$(base64 graylog-vhost.tmpl)"
 ```
 
 ### Using Graylog
@@ -258,7 +250,7 @@ address and Graylog admin password so you can login:
 ```bash
 juju status --format yaml apache2/0 | grep public-address
     public-address: <your-apache2-ip>
-juju run-action --wait graylog/0 show-admin-password
+juju run graylog/0 show-admin-password
     admin-password: <your-graylog-password>
 ```
 
@@ -289,12 +281,12 @@ view.
 
 <!--LINKS -->
 
-[quickstart]: /kubernetes/docs/quickstart
 [juju-logging]: https://juju.is/docs/olm/juju-logs
 [k8-logs]: https://kubernetes.io/docs/concepts/cluster-administration/logging/
+[ck8s-audit-logs]: /kubernetes/docs/audit-logging
 [logging-egf-overlay]: https://raw.githubusercontent.com/charmed-kubernetes/bundle/main/overlays/logging-egf-overlay.yaml
 [graylog-vhost]: https://raw.githubusercontent.com/charmed-kubernetes/kubernetes-docs/master/assets/graylog-vhost.tmpl
-[graylog-dashboards]: http://docs.graylog.org/en/3.0/pages/dashboards.html
+[graylog-dashboards]: https://go2docs.graylog.org/5-0/interacting_with_your_log_data/dashboards.html
 
 <!-- FEEDBACK -->
 <div class="p-notification--information">

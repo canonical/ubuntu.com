@@ -144,6 +144,8 @@ cloud:
   children:
     - title: Overview
       path: /cloud
+    - title: What is cloud computing
+      path: /cloud/cloud-computing
     - title: What is private cloud
       path: /cloud/private-cloud
     - title: What is hybrid cloud
@@ -333,6 +335,8 @@ pro:
       path: /support
     - title: Pricing
       path: /pricing/pro
+    - title: Tutorial
+      path: /pro/tutorial
     - title: Discourse
       path: https://discourse.ubuntu.com/c/ubuntu-pro
 
@@ -355,6 +359,12 @@ data:
   children:
     - title: Kafka
       path: /data/kafka
+    - title: Spark
+      path: /data/spark
+    - title: MongoDB
+      path: /data/mongodb
+    - title: OpenSearch
+      path: /data/opensearch
 
 download:
   title: Downloads
@@ -393,8 +403,8 @@ legal:
       path: /legal/data-privacy
     - title: Trademarks
       path: /legal/trademarks
-    - title: Ubuntu Advantage
-      path: /legal/ubuntu-advantage
+    - title: Ubuntu Pro
+      path: /legal/ubuntu-pro
     - title: Contributors
       path: /legal/contributors
 
@@ -445,18 +455,12 @@ community:
   children:
     - title: Overview
       path: /community
-    - title: Canonical
-      path: /community/canonical
-    - title: Code of Conduct
-      path: /community/code-of-conduct
-    - title: Debian
-      path: /community/debian
-    - title: Diversity
-      path: /community/diversity
     - title: Governance
       path: /community/governance
-    - title: Mission
-      path: /community/mission
+    - title: Contribute
+      path: /community/contribute
+    - title: Support
+      path: /community/support
 
 engage:
   title: Engage
@@ -490,7 +494,7 @@ pricing:
     - title: Consulting
       path: /pricing/consulting
     - title: Desktops
-      path: /pricing/desktops
+      path: /pricing/desktop
     - title: Devices
       path: /pricing/devices
 
@@ -537,6 +541,8 @@ robotics:
       path: /robotics/what-is-ros
     - title: Community
       path: /robotics/community
+    - title: Docs
+      path: /robotics/docs
 
 credentials:
   title: Credentials
@@ -563,6 +569,8 @@ gcp:
       path: /gcp
     - title: Pro
       path: /gcp/pro
+    - title: FIPS
+      path: /gcp/fips
 
 ubuntu1604:
   title: 16-04
@@ -573,6 +581,18 @@ ubuntu1604:
       path: /16-04
     - title: Azure
       path: /16-04/azure
+
+ubuntu1804:
+  title: 18.04
+  path: /18-04
+
+  children:
+    - title: Overview
+      path: /18-04
+    - title: Azure
+      path: /18-04/azure
+    - title: GCP
+      path: /18-04/gcp
 
 telco:
   title: Telco
@@ -599,8 +619,8 @@ certification:
   children:
     - title: Overview
       path: /certified
-    - title: Why Certified?
-      path: /certified/why-certified
+    - title: Why certify?
+      path: /certified/why-certify
     - title: Laptops
       path: /certified/laptops
     - title: Desktops
@@ -629,12 +649,14 @@ landscape:
       path: /landscape
     - title: Features
       path: /landscape/features
+    - title: Managed
+      path: /landscape/managed
     - title: Pricing
       path: /landscape/pricing
     - title: Install
       path: /landscape/install
     - title: Docs
-      path: https://docs.ubuntu.com/landscape/en/
+      path: /landscape/docs
     - title: Log in to Landscape
       path: https://landscape.canonical.com/login/authenticate
 

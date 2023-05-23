@@ -17,6 +17,7 @@ let entries = {
   chassisAnimation: "./static/js/src/chassis-animation.js",
   cve: "./static/js/src/cve/cve.js",
   advantageAccountUsers: "./static/js/src/advantage/users/app.jsx",
+  shopCheckout: "./static/js/src/advantage/subscribe/checkout/app.tsx",
   advantageOffers: "./static/js/src/advantage/offers/app.jsx",
   openstackChart: "./static/js/src/openstack-chart.js",
   uaSubscribe: "./static/js/src/advantage/subscribe/react/app.jsx",
@@ -28,6 +29,7 @@ let entries = {
   utmInheritance: "./static/js/src/utm-inheritance.js",
   "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
+  "credEnterprisePurchasing": "./static/js/src/advantage/credentials/app.tsx"
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";

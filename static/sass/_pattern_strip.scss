@@ -16,6 +16,7 @@
   @include ubuntu-p-strip-suru-square-lightsuru;
   @include ubuntu-p-strip-suru-square-suru;
   @include ubuntu-p-strip-x-deep;
+  @include ubuntu-p-strip-suru-shape;
 }
 
 @mixin ubuntu-p-strip-suru {
@@ -626,7 +627,7 @@
 
     background-position: top left, top right, center 66.5%, left top;
     background-repeat: no-repeat;
-    background-size: 63% 97%, 100% 66%, 100% 30%, 100% 76.5%;
+    background-size: 63% 97%, 100% 66%, 100% 31%, 100% 76.5%;
     color: $color-light;
     padding-bottom: 10rem;
     padding-top: 6rem;
@@ -991,7 +992,7 @@
 }
 
 @mixin ubuntu-p-strip-x-deep {
-  .p-strip.is-x-deep {
+  [class*="p-strip"].is-x-deep {
     $spv--strip-x-deep-top: $spv--strip-deep + $spv--x-large;
     $spv--strip-x-deep-bottom: $spv--strip-deep + 2 * $spv--x-large;
 
@@ -1000,5 +1001,25 @@
     @media (min-width: $breakpoint-large) {
       padding: $spv--strip-x-deep-top 0 $spv--strip-x-deep-bottom;
     }
+  }
+}
+
+@mixin ubuntu-p-strip-suru-shape {
+  .p-strip--suru-shape-light {
+    @extend %vf-strip;
+
+    background: url("https://assets.ubuntu.com/v1/18717572-05_suru2_light_glow_8K_edited.png")
+      70% bottom;
+    background-size: cover;
+  }
+
+  .p-strip--suru-shape-dark {
+    @extend %vf-strip;
+
+    background: url("https://assets.ubuntu.com/v1/78c0cbe3-05_suru2_dark_2K.jpg")
+      100% 0;
+    background-color: #2c2c2c;
+    background-size: cover;
+    color: $color-x-light;
   }
 }

@@ -67,7 +67,6 @@ This includes:
 
 Note that this may include other applications which you may have installed, such as Elasticsearch, Prometheus, Nagios, Helm, etc.
 
-<a id='upgrading-containerd'> </a>
 
 ### Upgrading Containerd
 
@@ -210,7 +209,7 @@ is no need to set a specific channel or version for this charm.
 
 ### Upgrading the **kubernetes-master** units
 
-As noted at the beginning of this page, `kubernetes-master` has been renamed `kubernetes-control-plane`. Following the upgrade, the deployed charm will **STILL** be known as `kubernetes-master` to Juju, as it is impossible to change the name of deployed charms. 
+As noted at the beginning of this page, `kubernetes-master` has been renamed `kubernetes-control-plane`. Following the upgrade, the deployed charm will **STILL** be known as `kubernetes-master` to Juju, as it is impossible to change the name of deployed charms.
 
 To start upgrading the Kubernetes master units, first upgrade the charm:
 
@@ -344,7 +343,7 @@ juju run-action kubernetes-worker/1 upgrade
 
 ## Upgrading the Machine's Series
 
-All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/upgrading-series).
+All of the charms support [upgrading the machine's series via Juju](https://juju.is/docs/olm/manage-machines#heading--upgrade-the-ubuntu-series-of-a-machine).
 As each machine is upgraded, the applications on that machine will be stopped and the unit will
 go into a `blocked` status until the upgrade is complete. For the worker units, pods will be drained
 from the node and onto one of the other nodes at the start of the upgrade, and the node will be removed

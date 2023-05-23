@@ -1,4 +1,5 @@
 from typing import List
+from dataclasses import dataclass
 
 from webapp.shop.api.ua_contracts.models import Entitlement
 
@@ -15,6 +16,7 @@ class Renewal:
         new_contract_start: str,
         price: int,
         currency: str,
+        number_of_machines: int,
     ):
         self.id = id
         self.contract_id = contract_id
@@ -25,6 +27,7 @@ class Renewal:
         self.price = price
         self.currency = currency
         self.new_contract_start = new_contract_start
+        self.number_of_machines = number_of_machines
 
 
 class ContractItem:
@@ -155,3 +158,40 @@ class User:
 
     def set_user_role_on_account(self, user_role_on_account):
         self.user_role_on_account = user_role_on_account
+
+
+@dataclass
+class AnnotatedContractItem:
+    id: int
+    account_id: str
+    role: str
+    support_level: str
+    product_id: str
+    product_name: str
+    type: str
+    start_date: str
+    number_of_machines: int
+    number_of_active_machines: int
+    current_number_of_machines: int
+    marketplace: str
+    price: int
+    currency: str
+    entitlements: List[Entitlement]
+    contract_id: str = None
+    subscription_id: str = None
+    offer_id: str = None
+    end_date: str = None
+    period: str = None
+    renewal_id: str = None
+    listing_id: str = None
+    token: str = None
+    is_expiring: bool = False
+    is_expired: bool = False
+    should_present_auto_renewal: bool = False
+    in_grace_period: bool = False
+    is_upsizeable: bool = False
+    is_downsizeable: bool = False
+    is_subscription_active: bool = False
+    is_subscription_auto_renewing: bool = False
+    is_renewable: bool = False
+    is_renewal_actionable: bool = False

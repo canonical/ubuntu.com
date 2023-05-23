@@ -31,6 +31,7 @@ The currently supported base CNI solutions for **Charmed Kubernetes** are:
 
  -   [Calico][calico]
  -   [Canal][canal]
+ -   [Cilium][cilium]
  -   [Flannel][flannel]
  -   [Kube-OVN][kube-ovn]
  -   [Tigera Secure EE][tigera]
@@ -52,6 +53,7 @@ Kubernetes, such a migration should be manageable with no downtime.
 
 [calico]: /kubernetes/docs/cni-calico
 [canal]: /kubernetes/docs/cni-canal
+[cilium]: /kubernetes/docs/cni-cilium
 [flannel]: /kubernetes/docs/cni-flannel
 [kube-ovn]: /kubernetes/docs/cni-kube-ovn
 [tigera]: /kubernetes/docs/tigera-secure-ee

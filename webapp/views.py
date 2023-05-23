@@ -3,6 +3,7 @@ import math
 import os
 import re
 import html
+import datetime
 
 # Packages
 import dateutil
@@ -503,7 +504,6 @@ def engage_thank_you(engage_pages):
     """
 
     def render_template(language, page):
-
         if language:
             path = f"/engage/{language}/{page}"
         else:
@@ -677,6 +677,18 @@ def openstack_engage(engage_pages):
     return openstack_resource_data
 
 
+def german_why_openstack():
+    return flask.render_template("engage/de_why-openstack.html")
+
+
+def french_why_openstack():
+    return flask.render_template("engage/fr_why-openstack.html")
+
+
+def spanish_why_openstack():
+    return flask.render_template("engage/es_why-openstack.html")
+
+
 def build_tutorials_query(tutorials_docs):
     def tutorials_query():
         topic = flask.request.args.get("topic", default="", type=str)
@@ -708,7 +720,6 @@ class BlogView(flask.views.View):
 
 class BlogRedirects(BlogView):
     def dispatch_request(self, slug):
-
         slug = quote(slug, safe="/:?&")
         context = self.blog_views.get_article(slug)
 
@@ -719,6 +730,37 @@ class BlogRedirects(BlogView):
         group = context["article"].get("group")
         if isinstance(group, dict) and group["id"] == 2100:
             return flask.redirect(f"https://canonical.com/blog/{slug}")
+
+        # Set blog notice date
+        blog_notice = {}
+        created_at, updated_at = dateutil.parser.parse(
+            context["article"]["date_gmt"]
+        ), dateutil.parser.parse(context["article"]["modified_gmt"])
+
+        date_now = datetime.datetime.now()
+
+        created_at_difference = dateutil.relativedelta.relativedelta(
+            date_now, created_at
+        ).years
+
+        updated_at_difference = dateutil.relativedelta.relativedelta(
+            date_now, updated_at
+        ).years
+
+        # Check if date was published or updated over a year
+        if created_at_difference >= 1 and updated_at_difference >= 1:
+            #  Decide whether to show updated or published date difference
+            if (
+                updated_at
+                > dateutil.relativedelta.relativedelta(days=+1) + created_at
+            ):
+                blog_notice["updated"] = True
+                blog_notice["difference_in_years"] = updated_at_difference
+            else:
+                blog_notice["updated"] = False
+                blog_notice["difference_in_years"] = created_at_difference
+
+        context["blog_notice"] = blog_notice
 
         return flask.render_template("blog/article.html", **context)
 
@@ -832,6 +874,25 @@ def marketo_submit():
     if client_ip and ":" not in client_ip:
         visitor_data["leadClientIpAddress"] = client_ip
 
+    enrichment_fields = None
+
+    # Enrichment data for global enrichment form (id:4198)
+    if "email" in form_fields:
+        enrichment_fields = {
+            "email": form_fields["email"],
+            "acquisition_url": referrer,
+        }
+
+    if "preferredLanguage" in form_fields:
+        enrichment_fields["preferredLanguage"] = form_fields[
+            "preferredLanguage"
+        ]
+        form_fields.pop("preferredLanguage")
+
+    if "country" in form_fields:
+        enrichment_fields["country"] = form_fields["country"]
+        form_fields.pop("country")
+
     payload = {
         "formId": form_fields.pop("formid"),
         "input": [
@@ -842,15 +903,6 @@ def marketo_submit():
             }
         ],
     }
-
-    enrichment_fields = None
-
-    if "email" in form_fields:
-        # Enrichment data for global enrichment form (id:4198)
-        enrichment_fields = {
-            "email": form_fields["email"],
-            "acquisition_url": referrer,
-        }
 
     try:
         ip_location = ip_reader.get(client_ip)
@@ -962,3 +1014,100 @@ def thank_you():
     return flask.render_template(
         "thank-you.html", referrer=flask.request.args.get("referrer")
     )
+
+
+def get_user_country_by_ip():
+    client_ip = flask.request.headers.get(
+        "X-Real-IP", flask.request.remote_addr
+    )
+    ip_location = ip_reader.get(client_ip)
+
+    try:
+        country_code = ip_location["country"]["iso_code"]
+    except KeyError:
+        # geolite2 can't identify IP address
+        country_code = None
+    except Exception as error:
+        # Errors not documented in the geolite2 module
+        country_code = None
+        flask.current_app.extensions["sentry"].captureException(
+            extra={"ip_location object": ip_location, "error": error}
+        )
+
+    response = flask.jsonify(
+        {
+            "client_ip": client_ip,
+            "country_code": country_code,
+        }
+    )
+    response.cache_control.private = True
+
+    return response
+
+
+def subscription_centre():
+    sfdcLeadId = flask.request.args.get("id")
+    return_url = flask.request.form.get("returnURL")
+
+    if sfdcLeadId is None:
+        return flask.redirect("/blog")
+
+    if flask.request.method == "POST":
+        if not return_url:
+            subscription_centre_submit(sfdcLeadId, False)
+            return flask.redirect(
+                f"{flask.request.path}?id={sfdcLeadId}#updated"
+            )
+        else:
+            subscription_centre_submit(sfdcLeadId, True)
+            return flask.redirect(f"/{return_url}")
+
+    with open("subscriptions.yaml") as subscriptions:
+        subscriptions = yaml.load(subscriptions, Loader=yaml.FullLoader)
+
+    try:
+        response = marketo_api.request(
+            "GET",
+            "/rest/v1/leads.json",
+            {
+                "filterType": "sfdcLeadId",
+                "filterValues": sfdcLeadId,
+                "fields": "prototype_interests,canonicalUpdatesOptIn",
+            },
+        )
+        data = response.json()
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()
+
+    return flask.render_template(
+        "subscription-centre/index.html",
+        categories=subscriptions,
+        interests=data["result"][0]["prototype_interests"],
+        updatesOptIn=data["result"][0]["canonicalUpdatesOptIn"],
+    )
+
+
+def subscription_centre_submit(sfdcLeadId, unsubscribe):
+    updatesOptIn = flask.request.form.get("generalUpdates") or False
+    tagListArray = flask.request.form.getlist("tags")
+    tagListString = ",".join(tagListArray)
+
+    payload = {
+        "lookupField": "sfdcLeadId",
+        "input": [
+            {
+                "sfdcLeadId": sfdcLeadId,
+                "prototype_interests": tagListString,
+                "canonicalUpdatesOptIn": updatesOptIn,
+                "unsubscribed": unsubscribe,
+            }
+        ],
+    }
+
+    try:
+        response = marketo_api.request(
+            "POST", "/rest/v1/leads.json", json=payload
+        )
+        return response
+    except HTTPError:
+        flask.current_app.extensions["sentry"].captureException()

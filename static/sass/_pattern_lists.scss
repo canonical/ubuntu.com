@@ -3,12 +3,13 @@
   @include ubuntu-p-is-trisected;
   @include ubuntu-p-nested-counter-lists;
   @include ubuntu-p-inline-definition-list;
-  @include ubuntu-p-stepped-list;
   @include ubuntu-p-ordered-legal-list;
   @include ubuntu-p-list-small;
   @include ubuntu-p-form-list-ticked;
   @include ubuntu-p-list-divided-with-bullets;
   @include ubuntu-p-step-counter;
+  @include ubuntu-p-list-ticked;
+  @include ubuntu-p-list-horizontal-divided;
 }
 
 @mixin ubuntu-p-inline-list-icons {
@@ -151,40 +152,6 @@
   }
 }
 
-@mixin ubuntu-p-stepped-list {
-  // XXX Scott - 19 August 2019
-  // This block can be removed when the following issues are resolved:
-  // https://github.com/canonical-web-and-design/vanilla-framework/issues/2489
-  // https://github.com/canonical-web-and-design/vanilla-framework/issues/2518
-  h3.p-stepped-list__title, //sass-lint:disable-line no-qualifying-elements
-  p.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
-    display: inline-block;
-    padding-left: 2rem;
-    position: relative;
-
-    &::before {
-      display: inline-block;
-      left: 0;
-      position: absolute;
-    }
-  }
-
-  h3.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
-    padding-left: 3.5rem;
-  }
-
-  p.p-stepped-list__title {
-    //sass-lint:disable-line no-qualifying-elements
-    padding-left: 2rem;
-
-    &::before {
-      width: 1.5rem;
-    }
-  }
-}
-
 @mixin ubuntu-p-ordered-legal-list {
   .p-list--ordered-legal {
     counter-reset: item;
@@ -302,6 +269,10 @@
     .p-list__item {
       margin-left: -1rem;
       padding-left: 1rem;
+
+      &::after {
+        left: $sph--large;
+      }
     }
   }
 
@@ -311,10 +282,6 @@
 
   ul.p-list--divided.has-bullets {
     list-style: disc;
-  }
-
-  .p-list--divided .p-list__item::after {
-    left: $sph--large;
   }
 }
 
@@ -331,5 +298,80 @@
     padding: $disk-padding;
     text-align: center;
     width: calc(#{map-get($line-heights, default-text)} + #{2 * $disk-padding});
+  }
+}
+
+@mixin ubuntu-p-list-ticked {
+  .p-list--ticked {
+    @extend %vf-clearfix;
+    @extend %vf-list;
+
+    .p-list__item {
+      @extend %vf-list-item;
+
+      border-bottom: 1px solid $colors--light-theme--border-default;
+      padding-left: 2rem;
+      position: relative;
+
+      &::before {
+        @extend %icon;
+        @include vf-icon-success-grey($color-mid-dark);
+
+        content: "";
+        left: 0;
+        position: absolute;
+        top: 0.9rem;
+      }
+
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+@mixin ubuntu-p-list-horizontal-divided {
+  .p-list--horizontal-divided {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .p-list__item {
+      align-items: center;
+      border-bottom: 1px solid $colors--light-theme--border-default;
+      display: flex;
+      padding: 1rem 0;
+
+      @media only screen and (min-width: $breakpoint-medium) {
+        border-bottom: 0;
+        border-right: 1px solid $colors--light-theme--border-default;
+        display: inline-flex;
+        padding: 0 2rem;
+      }
+
+      &:first-child {
+        padding-top: 0;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          padding-left: 0;
+        }
+      }
+
+      &:last-child {
+        border-bottom: 0;
+
+        @media only screen and (min-width: $breakpoint-medium) {
+          border-right: 0;
+        }
+      }
+
+      img {
+        margin-right: 1.5rem;
+
+        @media only screen and (max-width: $breakpoint-medium) {
+          display: none;
+        }
+      }
+    }
   }
 }
