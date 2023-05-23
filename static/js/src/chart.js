@@ -278,12 +278,14 @@ export function createChart(
   var rowHeight = 32;
   var timeDomainStart;
   var timeDomainEnd;
+  var earliestStartDate = d3.min(tasks, (d) => d.startDate);
+  var latestEndDate = d3.max(tasks, (d) => d.endDate);
   if (removePadding) {
-    timeDomainStart = tasks[0].startDate;
-    timeDomainEnd = tasks[tasks.length - 1].endDate;
+    timeDomainStart = earliestStartDate;
+    timeDomainEnd = latestEndDate;
   } else {
-    timeDomainStart = d3.timeYear.offset(tasks[0].startDate, -1);
-    timeDomainEnd = d3.timeYear.offset(tasks[tasks.length - 1].endDate, +1);
+    timeDomainStart = d3.timeYear.offset(earliestStartDate, -1);
+    timeDomainEnd = d3.timeYear.offset(latestEndDate, +1);
   }
   var height = taskTypes.length * rowHeight;
   var containerWidth = document.querySelector(chartSelector).clientWidth;
