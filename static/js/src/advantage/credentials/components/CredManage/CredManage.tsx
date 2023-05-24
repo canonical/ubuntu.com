@@ -184,7 +184,7 @@ const CredManage = () => {
     if (tab == 2) {
       changeTableData(
         filterData.filter((keyItem: ActivationKey) => {
-          return !keyIsArchivable(keyItem["key"]);
+          return !keyIsUnused(keyItem["key"]);
         })
       );
     }
