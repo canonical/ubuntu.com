@@ -158,7 +158,9 @@ def cred_your_exams(ua_contracts_api, trueability_api, **kwargs):
         for exam_contract in exam_contracts:
             name = exam_contract["cueContext"]["courseID"]
             name = EXAM_NAMES.get(name, name)
-            contract_item_id = exam_contract["id"]
+            contract_item_id = (
+                exam_contract.get("id") or exam_contract["contractItem"]["id"]
+            )
             if "reservation" in exam_contract["cueContext"]:
                 response = trueability_api.get_assessment_reservation(
                     exam_contract["cueContext"]["reservation"]["IDs"][-1]
@@ -380,7 +382,7 @@ def cred_provision(ua_contracts_api, trueability_api, **_):
 
     exam_contract = None
     for item in exam_contracts:
-        if contract_item_id == item["id"]:
+        if contract_item_id == (item.get("id") or item["contractItem"]["id"]):
             exam_contract = item
             break
 
