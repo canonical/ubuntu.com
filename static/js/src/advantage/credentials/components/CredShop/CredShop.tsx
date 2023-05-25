@@ -24,9 +24,11 @@ const CredShop = () => {
   const parsedCheckoutData = JSON.parse(checkoutData);
   const initQuantity: number = parsedCheckoutData?.quantity;
   const [quantity, setQuantity] = useState(initQuantity ?? 1);
-  const handleChange: React.ChangeEventHandler = (event: React.ChangeEvent) => {
+  const handleChange: React.ChangeEventHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     event.preventDefault();
-    setQuantity(event.target.value);
+    setQuantity(parseInt(event.target.value));
   };
   return (
     <>
