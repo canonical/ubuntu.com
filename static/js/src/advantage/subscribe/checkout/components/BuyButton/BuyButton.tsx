@@ -272,7 +272,6 @@ const BuyButton = ({ setError, quantity, product, action }: Props) => {
         if (request.readyState === 4) {
           localStorage.removeItem("shop-checkout-data");
           if (product.marketplace == "canonical-cube") {
-            console.log("Reaches here 1");
             location.href = `/credentials/shop/order-thank-you?productName=${encodeURIComponent(
               product.name
             )}&quantity=${quantity}`;
