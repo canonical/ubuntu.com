@@ -394,38 +394,21 @@
     <div class="u-fixed-width">
       <h2>OpenStack release cycle</h2>
 
-      <p>The <a href="/openstack">OpenStack</a> release cadence follows the Ubuntu release cadence. This means that new versions of OpenStack are released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.</p>
+      <p><a href="/openstack">OpenStack</a> release cadence follows Ubuntu release cadence. This means that a new version of OpenStack is released twice a year: in April and in October. Those are shipped with new versions of Ubuntu as packages in the <a href="https://packages.ubuntu.com/">Ubuntu Archive</a>.</p>
 
-      <p>However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provide access to newer versions of OpenStack on Ubuntu LTS.</p>
+      <p>However, since Canonical recommends using only LTS versions of Ubuntu in production environments, this limits available OpenStack versions to one by default. Therefore, Canonical maintains an additional archive &ndash; <a href="https://wiki.ubuntu.com/OpenStack/CloudArchive">Ubuntu Cloud Archive</a> &ndash; to provide access to non-default versions of OpenStack on Ubuntu LTS.</p>
 
-      <p>As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard security maintenance and <a href="/security/esm">Expanded Security Maintenance (ESM)</a> available to <a href="/pro">Ubuntu Pro and Ubuntu Pro (Infra-only)</a> customers. In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only, except for some versions that are supported for 36 months under Ubuntu Advantage for Infrastructure (UA-I).</p>
+      <p>As a result, OpenStack versions that are shipped on Ubuntu LTS by default (aka OpenStack LTS versions) benefit from Canonical's commitment around the Ubuntu Archive, including 5 years of standard support and Expanded Security Maintenance (ESM). In turn, OpenStack versions which are shipped on Ubuntu LTS through the Ubuntu Cloud Archive are supported by Canonical for 18 months only, except for some versions that are supported for 36 months under Ubuntu Advantage for Infrastructure (UA-I).</p>
 
-      <p>Cloud Archive are maintained by Canonical for 18 months only, except for some versions that are maintained for 36 months under Ubuntu Pro and Ubuntu Pro (Infra-only)</p>
+      <p>Upgrades between consecutive OpenStack versions are fully supported. Users can first upgrade to newer OpenStack versions until the next OpenStack LTS version. Then they can upgrade the underlying Ubuntu operating system. In order to ensure smooth upgrades of OpenStack on Ubuntu, Canonical provides the automation framework based on the <a href="/openstack/features">OpenStack Charms</a> project.</p>
 
-    </div>
-    
-    <div class="u-fixed-width">
-      <h2>Charmed OpenStack</h2>
-      
-      <p>OpenStack clouds deployed through <a href="/openstack/consulting">Private Cloud Build</a> or validated through <a href="/openstack/consulting">Cloud Validation</a> consulting engagement (aka Charmed OpenStack clouds) can also benefit from <a href="/legal/ubuntu-pro-description#uprosd-full-openstack-support">Full OpenStack support</a> under <a>Ubuntu Pro + Support and Ubuntu Pro (Infra-only) + Support</a>. Full OpenStack support is provided for all OpenStack versions available in the Ubuntu Archive and Ubuntu Cloud Archive during their lifespan under standard security maintenance (18, 36 or 60 months depending on the version).</p>
-      
-      <p>The Charmed OpenStack support lifecycle on Ubuntu can be represented this way:</p>
+      <p>The OpenStack support lifecycle on Ubuntu can be represented this way:</p>
     </div>
 
     {% include "/about/openstack-release-cycle.html" %}
 
     <div class="u-fixed-width">
       <p>For more information on supported versions, see <a href="/openstack/docs/supported-versions">Charmed OpenStack documentation</a>.</p>
-    </div>
-
-    <div class="u-fixed-width">
-      <h2>MicroStack</h2>
-
-      <p>OpenStack clouds deployed with <a href="https://microstack.run">MicroStack</a> can also benefit from <a href="/legal/ubuntu-pro-description#uprosd-full-openstack-support">Full OpenStack support</a> under <a>Ubuntu Pro + Support and Ubuntu Pro (Infra-only) + Support</a>. Since MicroStack does not use OpenStack packages directly, but rather uses snaps and open container initiative (OCI) images, its support lifecycle is different from Charmed OpenStack.</p>
-    
-      <p>The first supported version of OpenStack in MicroStack is Antelope. It will be supported until April 2026. Every LTS version of OpenStack will benefit from 10 years of support moving forward. Every second, non LTS version of OpenStack will benefit from 3 years of support moving forward. Only every second version of OpenStack will be supported moving forward. Users will be able to securely upgrade between supported versions of OpenStack using the Skip Level Upgrade Release Process (SLURP) mechanism for 2 years after the next LTS version release.</p>
-    
-      <p>MicroStack support lifecycle on Ubuntu can be represented this way:</p>
     </div>
   </div>
 </section>
