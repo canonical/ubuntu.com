@@ -37,7 +37,7 @@
   </div>
 </section>
 
-<section class="p-strip--light is-bordered">
+<section class="p-strip--light u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2>Single-node, multi-node or large-scale cluster?</h2>
     <p><strong>Choose the OpenStack installation option that suits you best:</strong></p>
@@ -55,69 +55,29 @@
       </div>
     </div>
   </div>
-  <div class="u-fixed-width">
-    <div tabindex="0" role="tabpanel" aria-labelledby="single-node-deployment">
-      <div class="row">
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">One physical machine needed</li>
-            <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
-            <li class="p-list__item is-ticked">Core services included</li>
-            <li class="p-list__item is-ticked">All services on a single node</li>
-          </ul>
-        </div>
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Opinionated OpenStack</li>
-            <li class="p-list__item is-ticked">Straightforward installation</li>
-            <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div tabindex="0" role="tabpanel" aria-labelledby="multi-node-deployment" hidden="true">
-      <div class="row">
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">At least two physical machines needed</li>
-            <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
-            <li class="p-list__item is-ticked">Core services included</li>
-            <li class="p-list__item is-ticked">One control node, many compute/storage nodes</li>
-          </ul>
-        </div>
-        <div class="col-6">
-          <ul class="p-list">
-            <li class="p-list__item is-ticked">Opinionated OpenStack</li>
-            <li class="p-list__item is-ticked">Straightforward installation</li>
-            <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-      <div tabindex="0" role="tabpanel" aria-labelledby="large-scale-deployment" hidden="true">
-        <div class="row">
-          <div class="col-6">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">At least six physical machines needed</li>
-              <li class="p-list__item is-ticked">Uses <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a></li>
-              <li class="p-list__item is-ticked">Core and additional services included</li>
-              <li class="p-list__item is-ticked">Architectural freedom, full HA option</li>
-            </ul>
-          </div>
-          <div class="col-6">
-            <ul class="p-list">
-              <li class="p-list__item is-ticked">Composable OpenStack</li>
-              <li class="p-list__item is-ticked">Fully automated installation and day-2 operations</li>
-              <li class="p-list__item is-ticked">Enterprise private cloud</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+</section>
 
-<section class="p-strip is-bordered" id="single-node-deployment">
-  <div class="u-fixed-width">
+<section tabindex="0" role="tabpanel" id="single-node-deployment">
+  <div class="p-strip--light is-bordered u-no-padding--top">
+    <div class="row">
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">One physical machine needed</li>
+          <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
+          <li class="p-list__item is-ticked">Core services included</li>
+          <li class="p-list__item is-ticked">All services on a single node</li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Opinionated OpenStack</li>
+          <li class="p-list__item is-ticked">Straightforward installation</li>
+          <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="p-strip u-fixed-width">
     <h2>Single-node OpenStack deployment</h2>
     <p class="u-sv3">These instructions use <a href="https://snapcraft.io/microstack">MicroStack</a> &dash; OpenStack in a snap, MicroStack is a pure upstream OpenStack distribution designed for small scale and edge deployments, that can be installed and maintained with a minimal effort.</p>
     <div class="p-notification is-inline">
@@ -128,13 +88,32 @@
     </div>
 
     {{ single_node | safe }}
-
+    
     <p>To learn more about MicroStack, visit <a href="https://microstack.run">https://microstack.run</a>.</p>
   </div>
 </section>
 
-<section class="p-strip is-bordered" id="multi-node-deployment" hidden="true">
-  <div class="u-fixed-width">
+<section tabindex="0" role="tabpanel" id="multi-node-deployment" aria-hidden="true">
+  <div class="p-strip--light is-bordered u-no-padding--top">
+    <div class="row">
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">At least two physical machines needed</li>
+          <li class="p-list__item is-ticked">Uses MicroStack &ndash; OpenStack in a snap</li>
+          <li class="p-list__item is-ticked">Core services included</li>
+          <li class="p-list__item is-ticked">One control node, many compute/storage nodes</li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Opinionated OpenStack</li>
+          <li class="p-list__item is-ticked">Straightforward installation</li>
+          <li class="p-list__item is-ticked">OpenStack "on-rails"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="p-strip u-fixed-width">
     <h2>Multi-node OpenStack deployment</h2>
     <p>These instructions use <a href="https://snapcraft.io/microstack">MicroStack</a> &dash; in a snap. MicroStack is a pure upstream OpenStack distribution, designed for small scale and edge deployments, that can be installed and maintained with a minimal effort.</p>
     <div class="p-notification is-inline">
@@ -149,9 +128,28 @@
   <p>To learn more about MicroStack, visit <a href="https://microstack.run">https://microstack.run</a>.</p>
 </section>
 
-<section class="p-strip is-bordered" id="large-scale-deployment" hidden="true">
-  <div class="u-fixed-width">
-    <div tabindex="0" role="tabpanel" id="large-scale-deployment" aria-labelledby="large-scale-deployment" hidden="hidden">
+<section tabindex="0" role="tabpanel" id="large-scale-deployment" aria-labelledby="large-scale-deployment" aria-hidden="hidden">
+  <div class="p-strip--light is-bordered u-no-padding--top">
+    <div class="row">
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">At least six physical machines needed</li>
+          <li class="p-list__item is-ticked">Uses <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a></li>
+          <li class="p-list__item is-ticked">Core and additional services included</li>
+          <li class="p-list__item is-ticked">Architectural freedom, full HA option</li>
+        </ul>
+      </div>
+      <div class="col-6">
+        <ul class="p-list">
+          <li class="p-list__item is-ticked">Composable OpenStack</li>
+          <li class="p-list__item is-ticked">Fully automated installation and day-2 operations</li>
+          <li class="p-list__item is-ticked">Enterprise private cloud</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="p-strip u-fixed-width">
+    <div>
       <h2>Large-scale deployment</h2>
       <p>
         These instructions use <a href="https://docs.openstack.org/charm-guide/latest/">OpenStack Charms</a>. OpenStack Charms are the foundation of Canonical’s <a href="https://ubuntu.com/openstack">Charmed OpenStack</a> distribution which is an enterprise private cloud, designed to run mission-critical workloads.

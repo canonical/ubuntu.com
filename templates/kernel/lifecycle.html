@@ -97,8 +97,8 @@
   </div>
 </section>
 
-{% with selected_tab="support-all-tab" %}
-  {% include "shared/_kernel-support-schedule.html" %}
-{% endwith %}
+{% include "shared/_kernel-support-schedule.html" %}
+
+<script src="{{ versioned_static('js/dist/tabotronic.js') }}" defer></script>
 
 {% endblock %}
