@@ -1323,3 +1323,15 @@ hr.p-separator.is-shallow {
 .u-aspect-ratio--3-2 {
   aspect-ratio: 3/2;
 }
+
+.amd-xilinx-table {
+  th:nth-child(2) {
+    width: 65%;
+  }
+
+  @media screen and (max-width: $breakpoint-small - 1) {
+    th:nth-child(2) {
+      width: 50%;
+    }
+  }
+}
