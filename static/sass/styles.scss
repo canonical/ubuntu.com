@@ -1362,3 +1362,15 @@ hr.p-separator.is-shallow {
     margin-bottom: $sp-xxx-large;
   }
 }
+
+.amd-xilinx-table {
+  th:nth-child(2) {
+    width: 65%;
+  }
+
+  @media screen and (max-width: $breakpoint-small - 1) {
+    th:nth-child(2) {
+      width: 50%;
+    }
+  }
+}
