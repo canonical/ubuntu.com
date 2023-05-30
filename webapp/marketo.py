@@ -65,4 +65,4 @@ class MarketoAPI:
             "input": leads,
 
         }
-        return self.request("POST", f"/rest/v1/leads.json", json=data)
+        return self.request("POST", "/rest/v1/leads.json", json=data)
