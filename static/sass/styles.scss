@@ -22,6 +22,8 @@
 
 @import "vanilla-placeholders";
 
+@import "flickity/dist/flickity";
+
 $color-shadow: rgba(0, 0, 0, 0.5) !default;
 
 // import site specific patterns and overrides
@@ -36,6 +38,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @import "pattern_buttons";
 @import "pattern_calculator";
 @import "pattern_card";
+@import "pattern_carousel";
 @import "pattern_checkout";
 @import "pattern_certification-results";
 @import "pattern_chart";
@@ -137,6 +140,7 @@ $color-shadow: rgba(0, 0, 0, 0.5) !default;
 @include vf-p-icon-restart;
 @include vf-p-icon-begin-downloading;
 @include vf-p-icon-video-play;
+@include openstack-carousel;
 
 // Layouts:
 @import "layout-legal-pages";

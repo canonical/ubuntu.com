@@ -88,18 +88,14 @@
 <section class="p-strip--suru-bottomed">
   <div class="row u-equal-height">
     <div class="col-8">
-      <h1>Enterprise OpenStack for multi-cloud operations</h1>
-      <p>Multi-cloud operations are more cost-effective with a private cloud. Private cloud is more cost-effective with Charmed OpenStack.</p>
-      <p>Save up to 65% compared to hyperscalers.</p>
+      <h1>Canonical OpenStack</h1>
+      <p>Enterprise cloud platform engineered for price-performance</p>
+      <p>Multi-cloud operations are more cost-effective with a private your own cloud. Your own cloud is more cost-effective with Canonical's Charmed OpenStack.</p>
       <p>
-        <a class="p-button--positive js-invoke-modal" data-testid="interactive-form-link" href="/openstack/contact-us?product=openstack">
-          Get in touch
-        </a>
+        <a class="p-button--positive" href="#get-your-openstack">Get OpenStack</a>
       </p>
       <p>
-        <a href="/engage/cloud-pricing-report-2021">
-          Read our cloud pricing report&nbsp;&rsaquo;
-        </a>
+        <a href="/engage/cloud-pricing-report">Save up to two-thirds compared to hyperscalers&nbsp;&rsaquo;</a>
       </p>
     </div>
     <div class="col-4 u-vertically-center u-hide--medium u-hide--small">
@@ -313,24 +309,23 @@
 <section class="p-strip">
   <div class="row">
     <div class="col-6">
-      <h2>Engineered for price&ndash;performance</h2>
+      <h2>Price-performance guaranteed</h2>
       <h3 class="p-heading--4">Designed to be economical in every way</h3>
       <p>Smart operations, optimal architecture, better pricing.</p>
-      <p>All of this to ensure TCO reduction of your cloud, while expanding your budget for innovation.</p>
+      <p>All of this to ensure cloud TCO reduction, while expanding your budget for innovation.</p>
       <a href="https://assets.ubuntu.com/v1/75255f98-Charmed.OpenStack_07.07.22.pdf">Download the datasheet&nbsp;&rsaquo;</a>
-      
     </div>
     <div class="col-6 u-hide--small u-align--center">
-
-          {{ image (
-            url="https://assets.ubuntu.com/v1/c27c93b9-Openstack+figure+1+2.svg",
-            alt="",
-            width="571",
-            height="350",
-            hi_def=True,
-            loading="auto|lazy"
-            ) | safe
-          }}
+      {{ 
+        image (
+        url="https://assets.ubuntu.com/v1/c27c93b9-Openstack+figure+1+2.svg",
+        alt="",
+        width="571",
+        height="350",
+        hi_def=True,
+        loading="lazy"
+        ) | safe
+      }}
     </div>
   </div>
 </section>
@@ -403,9 +398,7 @@
       <p>The future of infrastructure is <a href="/cloud/multi-cloud">multi-cloud</a>.</p>
       <p>Using private and public cloud infrastructure at the same time allows you to optimise your CapEx and OpEx costs.</p>
       <p>
-        <a class="p-button--positive" href="/engage/multi-cloud-business-guide">
-          Learn how to optimise infrastructure costs
-        </a>
+        <a class="p-button--positive" href="/engage/cloud-cost-optimisation-best-practices">Optimise your cloud costs</a>
       </p>
     </div>
   </div>
@@ -416,7 +409,7 @@
     <div class="col-6">
       <h2>Cheaper VMs</h2>
       <h3 class="p-heading--4">Machines cost less if they run in your cloud</h3>
-      <p>Compare the prices of sample VMs running on a baseline Charmed OpenStack cloud over a three-year period. The calculations include hardware costs, typical hosting charges and <a href="/openstack/managed">fully-managed service</a>*.</p>
+      <p>Compare the prices of sample VMs running on a baseline Charmed OpenStack cloud over a three-year period. The calculations include hardware costs, typical hosting charges and a <a href="/openstack/managed">fully-managed service</a>*.</p>
       <a class="u-sv2" href="/openstack/tco-calculator">Check pricing for other VMs&nbsp;&rsaquo;</a>
       <p>* Exact prices may vary depending on the used hardware, cloud configuration, local hosting charges and salary costs.</p>
     </div>
@@ -543,25 +536,64 @@
 </section>
 
 <section class="p-strip">
-
   <div class="u-fixed-width">
-    <h2>Fixed-price delivery</h2>
-    <p class="p-heading--4">Consulting packages tailored to your needs</p>
-    <p>No hidden costs. No surprises. Everything is clear from the beginning. We design the cloud. We build the cloud.</p>
-    <p>Choose your package:</p>
+    <h2 id="get-your-openstack">Get your OpenStack</h2>
+    <p>Find the option that suits you best:</p>
   </div>
-
-  {% include "shared/pricing/_openstack-packages.html" %}
-
   <div class="u-fixed-width">
-    <p>
-      <a href="https://assets.ubuntu.com/v1/d4766546-Private-Cloud-Build_Datasheet.pdf" class="p-button">
-        Download the datasheet
-      </a>
-    </p>
-    <p>
-      <a href="/openstack/consulting">Learn more about our consulting packages&nbsp;&rsaquo;</a>
-    </p>
+    <h3 class="p-heading--4">Who will manage your OpenStack?</h3>
+  </div>
+  <div class="row">
+    <div class="col-6 p-card" >
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/81e3bf86-We+operate+your+Kubernetes.svg" alt="">
+      <hr class="u-sv1">
+      <h4>Canonical-managed OpenStack</h4>
+      <p class="p-card__content u-sv2">We deploy OpenStack for you and manage it 24/7. This includes typical daily maintenance tasks, incident and problem resolution, recurring upgrades and more. You will rest assured that your cloud is in good hands and benefit from a public cloud-like experience.</p>
+      <p>
+        <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-managed OpenStack</a>
+      </p>
+      <p>
+        <a href="/openstack/managed">Learn more about Canonical-managed OpenStack&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 p-card" >
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/7f65439f-dev-at-laptop.svg" alt="">
+      <hr class="u-sv1">
+      <h4>Self-managed OpenStack</h4>
+      <p class="p-card__content u-sv2">You manage OpenStack yourself. We can still assist you with the design, help you make the right hardware choices, deploy OpenStack for you, provide full commercial support and get your team up to speed with professional training courses.</p>
+      <p>
+        <a class="p-button--positive" href="">Manage OpenStack yourself</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <h3 class="p-heading--4">Who will deploy your OpenStack?</h3>
+  </div>
+  <div class="row">
+    <div class="col-6 p-card">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/dbd97444-partner-with-us.svg" alt="">
+      <hr class="u-sv1">
+      <h4>Canonical-deployed OpenStack</h4>
+      <p class="p-card__content u-sv2">We deploy OpenStack for you. Together, we find the design that suits your use case best. We will share our best practices and reference hardware specifications. We will only hand over the cloud to you once we ensure the deployment process is fully automated and repeatable.</p>
+      <p>
+        <a class="p-button--positive" href="/openstack/contact-us">Order Canonical-deployed OpenStack</a>
+      </p>
+      <p>
+        <a href="/openstack/consulting">Learn more about Canonical-deployed OpenStack&nbsp;&rsaquo;</a>
+      </p>
+    </div>
+    <div class="col-6 p-card">
+      <img class="p-card__thumbnail" src="https://assets.ubuntu.com/v1/ada1d5b5-operate.svg" alt="">
+      <hr class="u-sv1">
+      <h4>Self-deployed OpenStack</h4>
+      <p class="p-card__content u-sv2">You deploy OpenStack yourself. You will rely on public-facing materials only, such as product documentation, whitepapers, etc. Self-deployed clouds based on <a href="https://microstack.run">MicroStack</a> also qualify for full commercial support undder any <a href="/pro">Ubuntu Pro + Support subscription</a>.</p>
+      <p>
+        <a class="p-button--positive" href="/openstack/contact-us">Deploy OpenStack yourself</a>
+      </p>
+    </div>
+  </div>
+  <div class="u-fixed-width">
+    <p>Need something else? Visit our <a href="/openstack/support">OpenStack suppoort page</a> for other possible options and plans.</p>
   </div>
 </section>
 
@@ -668,24 +700,9 @@
   <div class="u-fixed-width">
     <h2 class="u-sv2">Endorsed by customers, globally</h2>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <blockquote class="p-pull-quote has-image">
-        <img class="p-pull-quote__image" src="https://assets.ubuntu.com/v1/d0bd83b2-531-5319609_nayatel-logo-png-transparent-png.png" alt="nayatel">
-        <p class="p-pull-quote__quote">Most of the open source vendors we looked at charged steep per core or per server licence fees, which would have meant escalating costs as we scaled up. Canonical was the exception.</p>
-        <cite class="p-pull-quote__citation">Jahanzeb, VP Operations at Nayatel</cite>
-      </blockquote>
-      <a href="/engage/nayatel-casestudy-charmed-openstack">Read the case study&nbsp;&rsaquo;</a>
-    </div>
-    <div class="col-6">
-      <blockquote class="p-pull-quote has-image">
-        <img class="p-pull-quote__image" src="https://assets.ubuntu.com/v1/7c97efb0-BT_logo.svg" alt="BT">
-        <p class="p-pull-quote__quote">Canonical is providing us with the 'cloud-native' foundation that enables us to create a smart and fully converged network.</p>
-        <cite class="p-pull-quote__citation">Neil J. McRae, Group Chief Architect at BT</cite>
-      </blockquote>
-      <a href="/blog/bt-turns-to-canonical-ubuntu-to-enable-next-generation-5g-cloud-core">Read the announcement&nbsp;&rsaquo;</a>
-    </div>
-  </div>
+
+  {% include '/openstack/_testimonials.html' %}
+
 </section>
 
 <section class="p-strip">
@@ -863,7 +880,35 @@
   </section>
 
   <script src="{{ versioned_static('js/dist/cloud-price-slider.js') }}" defer></script>
+  <script src="{{ versioned_static('js/dist/flickity.pkgd.min.js') }}"></script>
+  <script>
+    initCarousel('#testimonials', '#testimonials-next', '#testimonials-previous');
 
+    function initCarousel(carouselSelector, nextCTAselector, previousCTAselector) {
+  console.log("here")
+  var nextCTA = document.querySelector(nextCTAselector);
+  var previousCTA = document.querySelector(previousCTAselector);
+  var carousel = new Flickity(carouselSelector, {
+    imagesLoaded: true,
+    prevNextButtons: false,
+    wrapAround: true,
+  });
+
+  if (nextCTA) {
+    nextCTA.addEventListener("click", function (e) {
+      e.preventDefault();
+      carousel.next();
+    });
+  }
+
+  if (previousCTA) {
+    previousCTA.addEventListener("click", function (e) {
+      e.preventDefault();
+      carousel.previous();
+    });
+  }
+}
+  </script>
   {% with first_item="_openstack_next_step", second_item="_openstack_documentation", third_item="_openstack_further_reading" %}{% include "shared/contextual_footers/_contextual_footer.html" %}{% endwith %}
 
   <!-- Set default Marketo information for contact form below-->
