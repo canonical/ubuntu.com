@@ -45,7 +45,7 @@ As an Ubuntu Pro or Ubuntu Pro (Infra-only) customer, with or without support, y
     4. Access to certified CIS Benchmark tooling Level 1 and 2 for Ubuntu 18.04 LTS and 16.04 LTS 
     5. Ubuntu Security Guide (USG) for Ubuntu 20.04 LTS which includes certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
     6. Ubuntu Security Guide (USG) Ubuntu 22.04 LTS (coming soon) which will include certified DISA-STIG profiles and CIS benchmark tooling Level 1 and 2
-4. <a id="uprosd-landscape" href="https://landscape.canonical.com/">Landscape</a>[]() and knowledge base access
+4. <a id="uprosd-landscape" href="https://landscape.canonical.com/">Landscape and knowledge base access</a>
     1. Access to Canonical's Landscape systems management and the knowledge base
 5. <a id="uprosd-livepatch" href="/livepatch">Kernel Livepatch</a>
     1. Access to Canonical's kernel livepatch client and security livepatches for selected High and Critical kernel CVEs
@@ -103,11 +103,11 @@ As a weekday or 24/7 support customer, you are entitled to all of the benefits o
         3. OpenStack support includes access to use available Canonical provided Microsoft-certified drivers in Windows Guest instances
         4. <span id="uprosd-full-openstack-support">Full OpenStack support</span>
             1. Requirements:
-                1. OpenStack Charms -based deployments:
+                1. OpenStack Charms-based deployments:
                    1. In addition to the requirements set out above, hardware must meet the minimum criteria as specified by Canonical as part of the [Private Cloud Build](https://ubuntu.com/openstack/consulting) or [Cloud Validation](https://ubuntu.com/openstack/consulting) consulting engagements
-                   2. The OpenStack Cloud was deployed via a [Private Cloud Build](https://ubuntu.com/openstack/consulting) or was validated by Canonical through [Cloud Validation](https://ubuntu.com/openstack/consulting)
+                   2. The OpenStack Cloud was deployed by Canonical via a [Private Cloud Build](https://ubuntu.com/openstack/consulting) or was validated by Canonical through [Cloud Validation](https://ubuntu.com/openstack/consulting)
                 2. MicroStack-based deployments:
-                   1. In addition to the requirements set out above, hardware must meet the minimum criteria as specified in [MicroStack documentation](https://microstack.run/docs)
+                   1. In addition to the requirements set out above, hardware must meet the minimum criteria as specified in [MicroStack documentation](https://microstack.run/docs/enterprise-reqs)
                    2. The OpenStack Cloud was deployed with [MicroStack](https://microstack.run/)
             2. Scope:
                 1. Support for the Charms deployed
