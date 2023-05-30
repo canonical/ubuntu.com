@@ -317,17 +317,16 @@
     // Who is responsible for tracking, testing and applying CVE patches in a timely manner?
     const responsibleForTracking = document.getElementById("responsible-for-tracking")
 
-    const data = {
-      "Tell us about your project": document.getElementById("about-your-project").value,
-      "If you use Ubuntu, which version(s) are you using?": getCheckboxItemsAsCSV(ubuntuVersionsFieldset),
-      "How do you consume open source?": getCheckboxItemsAsCSV(consumeOpenSourceFieldset),
-      "Do you have specific compliance or hardening requirements?": getCheckboxItemsAsCSV(hardeningRequirementsFieldset),
-      "Who is responsible for tracking, testing and applying CVE patches in a timely manner?": getCheckboxItemsAsCSV(responsibleForTracking),
-      "What advice are you looking for": document.getElementById("advice").value,
-    }
+    const data = `Tell us about your project: ${document.getElementById("about-your-project").value}.\n
+      If you use Ubuntu, which version(s) are you using?: ${getCheckboxItemsAsCSV(ubuntuVersionsFieldset)}.\n
+      How do you consume open source?: ${getCheckboxItemsAsCSV(consumeOpenSourceFieldset)}.\n
+      Do you have specific compliance or hardening requirements?: ${getCheckboxItemsAsCSV(hardeningRequirementsFieldset)}.\n
+      Who is responsible for tracking, testing and applying CVE patches in a timely manner?: ${getCheckboxItemsAsCSV(responsibleForTracking)}.\n
+      What advice are you looking for: ${document.getElementById("advice").value}.\n
+    `
 
     const textarea = document.getElementById("Comments_from_lead__c");
-    textarea.value = JSON.stringify(data);
+    textarea.value = data;
   }
 
   function getCheckboxItemsAsCSV(fieldset) {
