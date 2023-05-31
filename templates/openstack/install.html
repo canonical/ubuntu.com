@@ -37,7 +37,7 @@
   </div>
 </section>
 
-<section class="p-strip--light u-no-padding--bottom">
+<section class="p-strip u-no-padding--bottom">
   <div class="u-fixed-width">
     <h2>Single-node, multi-node or large-scale cluster?</h2>
     <p><strong>Choose the option that suits you best:</strong></p>
@@ -58,8 +58,9 @@
 </section>
 
 <section tabindex="0" role="tabpanel" id="single-node-mode" aria-labelledby="single-node-mode-tab">
-  <div class="p-strip--light is-shallow u-no-padding--top">
+  <div class="p-strip is-shallow u-no-padding--top">
     <div class="row">
+      <h2>Single-node mode</h2>
       <div class="col-6">
         <ul class="p-list">
           <li class="p-list__item is-ticked">Uses MicroStack</li>
@@ -69,18 +70,17 @@
       </div>
     </div>
   </div>
-  <div class="p-strip--light u-no-padding--top">
+  <div class="p-strip u-no-padding--top">
     <div class="row">
-      <h2>Single-node mode</h2>
-
       {{ single_node | safe }}
     </div>
   </div>
 </section>
 
 <section tabindex="0" role="tabpanel" id="multi-node-mode" aria-hidden="true" aria-labelledby="multi-node-mode-tab">
-  <div class="p-strip--light is-shallow u-no-padding--top">
+  <div class="p-strip is-shallow u-no-padding--top">
     <div class="row">
+      <h2>Multi-node mode</h2>
       <div class="col-6">
         <ul class="p-list">
           <li class="p-list__item is-ticked">Uses MicroStack</li>
@@ -90,18 +90,17 @@
       </div>
     </div>
   </div>
-  <div class="p-strip--light u-no-padding--top">
+  <div class="p-strip u-no-padding--top">
     <div class="row">
-      <h2>Multi-node mode</h2>
-
       {{multi_node | safe}}
-
     </div>
+  </div>
 </section>
 
 <section tabindex="0" role="tabpanel" id="multi-node-mode-with-bare-metal-automation" aria-labelledby="multi-node-mode-with-bare-metal-automation-tab" aria-hidden="hidden">
-  <div class="p-strip--light is-shallow u-no-padding--top">
+  <div class="p-strip is-shallow u-no-padding--top">
     <div class="row">
+      <h2>Multi-node mode with bare metal automation</h2>
       <div class="col-6">
         <ul class="p-list">
           <li class="p-list__item is-ticked">Uses OpenStack Charms</li>
@@ -111,9 +110,8 @@
       </div>
     </div>
   </div>
-  <div class="p-strip--light u-no-padding--top">
+  <div class="p-strip u-no-padding--top">
     <div class="row">
-      <h2>Multi-node mode with bare metal automation</h2>
       <p>
         Check the <a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/">OpenStack Charms Deployment Guide</a> for detailed instructions on how to set up OpenStack in multi-node mode with bare metal automation using OpenStack Charms.
       </p>
@@ -121,7 +119,7 @@
   </div>
 </section>
 
-<section class="p-strip is-bordered u-fixed-width">
+<section class="p-strip is-bordered">
     <div class="u-fixed-width">
       <h2>Take the next step</h2>
       <p>Is your OpenStack already up and running? If so, we hope you liked it and are now ready to take the next step.</p>
