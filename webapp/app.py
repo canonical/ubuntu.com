@@ -89,6 +89,7 @@ from webapp.shop.cred.views import (
     cred_submit_form,
     cred_syllabus_data,
     cred_your_exams,
+    cred_beta_activation,
     get_activation_keys,
     rotate_activation_key,
 )
@@ -899,6 +900,11 @@ app.add_url_rule(
     "/credentials/keys/activate",
     view_func=activate_activation_key,
     methods=["POST"],
+)
+app.add_url_rule(
+    "/credentials/beta/activation",
+    view_func=cred_beta_activation,
+    methods=["GET", "POST"],
 )
 
 # Charmed OpenStack docs
