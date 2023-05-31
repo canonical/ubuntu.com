@@ -9,7 +9,7 @@ import {
 } from "@canonical/react-components";
 import { currencyFormatter } from "advantage/react/utils";
 
-const CredShop = () => {
+const CredKeyShop = () => {
   const CUEExamKey = {
     id: "cue-activation-key",
     longId: "lAMGrt4buzUR0-faJqg-Ot6dgNLn7ubIpWiyDgOrsDCg",
@@ -98,4 +98,4 @@ const CredShop = () => {
     </>
   );
 };
-export default CredShop;
+export default CredKeyShop;
