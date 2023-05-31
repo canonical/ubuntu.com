@@ -63,6 +63,5 @@ class MarketoAPI:
             "action": "updateOnly",
             "lookupField": "email",
             "input": leads,
-
         }
         return self.request("POST", "/rest/v1/leads.json", json=data)

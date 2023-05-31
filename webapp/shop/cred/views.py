@@ -667,11 +667,7 @@ def cred_beta_activation(**_):
 
         leads = []
         for email, key in zip(emails, keys):
-            leads.append({
-                "email": email,
-                "cred_activation_key": key
-
-            })
+            leads.append({"email": email, "cred_activation_key": key})
 
         marketo_api.update_leads(leads)
 
