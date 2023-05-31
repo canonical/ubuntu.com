@@ -4,16 +4,29 @@
 
 {% block outer_content %}
   {% block content %}
-  <div id="react-root">
-    <section class="p-strip u-no-padding--top">
-      <div class="row">
-        <div class="col-12 u-no-margin--bottom p-card">
-          <i class="p-icon--spinner u-animation--spin"></i> Loading&hellip;
+  <section class="p-strip">
+    <div class="u-fixed-width">
+      <h2>Activate your Ubuntu Pro subscription</h2>
+      <p>
+        You are currently signed in as {{ name }}. Make sure it is the
+        account you will be using to manage your subscription. If not, <a href="https://login.ubuntu.com/+login">log in
+        to a different account</a>.
+      </p>
+      <p>
+        Your product key should be in the confirmation email you received
+        after buying your Ubuntu Pro Desktop subscription.
+      </p>
+      <p>The activation key should look like this: 123CODE.</p>
+      <form class="p-form p-form--inline">
+        <div class="p-form__group">
+          <label for="username-inline" class="p-form__label">Enter your code</label>
+          <div class="p-form__control">
+            <input type="text" id="pro-activate-input" class="p-form__control" name="username-inline" placeholder="Ex: 123CODE" required="" aria-describedby="exampleHelpTextMessage">
+          </div>
         </div>
-      </div>
-    </section>
-  </div>
-  <script src="{{ versioned_static('js/dist/proActivate.js') }}" type="module" defer ></script> 
-  
+        <button class="p-button--positive">Activate</button>
+      </form>
+    </div>
+  </section>
   {% endblock %}
 {% endblock %}
