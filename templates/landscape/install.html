@@ -63,7 +63,7 @@
                 <p>Install 15 mins</p>
               </div>
               <div class="config-time" style="--config-time: 30">
-                <p>Config time varies</p>
+                <p>Config 30 minutes</p>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@
                 <p>Install 30 mins</p>
               </div>
               <div class="config-time" style="--config-time: 30">
-                <p>Config 30 <em>hours</em></p>
+                <p>Config time varies</p>
               </div>
             </div>
           </div>
@@ -372,11 +372,12 @@ SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install prerequisites</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y curl software-properties-common</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y wget software-properties-common</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Set your hostname using variables</p>
+                  <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server, and set the HOSTNAME and DOMAIN variables based on the FQDN.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>FQDN=landscape.yourdomain.com
 HOSTNAME=landscape
@@ -717,7 +718,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Deploy the charm</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-client --config account-name='standalone' --config --tags='' --config script-users='nobody,landscape,root' --config ping-url="http://${LANDSCAPE_FQDN}/ping" --config url="https://${LANDSCAPE_FQDN}/message-system"</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-client --config account-name='standalone' --config tags='' --config script-users='nobody,landscape,root' --config ping-url="http://${LANDSCAPE_FQDN}/ping" --config url="https://${LANDSCAPE_FQDN}/message-system"</code></pre>
                   </div>
                 </li>
               </ol>
