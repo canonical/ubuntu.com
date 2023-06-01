@@ -30,6 +30,22 @@ const CredKeyShop = () => {
     event.preventDefault();
     setQuantity(parseInt(event.target.value));
   };
+  const handleSubmit = (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    localStorage.setItem(
+      "shop-checkout-data",
+      JSON.stringify({
+        product: CUEExamKey,
+        quantity: quantity,
+        action: "purchase",
+      })
+    );
+    location.href = "/account/checkout";
+  };
   return (
     <>
       <Strip>
@@ -38,7 +54,7 @@ const CredKeyShop = () => {
         </Row>
         <Row>
           <Col size={6}>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Input
                 type="number"
                 id="keyQuantity"
@@ -75,21 +91,7 @@ const CredKeyShop = () => {
             )}
           </Col>
           <Col size={3}>
-            <Button
-              appearance="positive"
-              onClick={(e) => {
-                e.preventDefault();
-                localStorage.setItem(
-                  "shop-checkout-data",
-                  JSON.stringify({
-                    product: CUEExamKey,
-                    quantity: quantity,
-                    action: "purchase",
-                  })
-                );
-                location.href = "/account/checkout";
-              }}
-            >
+            <Button appearance="positive" type="submit" onClick={handleSubmit}>
               Buy Now
             </Button>
           </Col>
