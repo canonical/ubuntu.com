@@ -30,7 +30,7 @@ let entries = {
   utmInheritance: "./static/js/src/utm-inheritance.js",
   "kernel-form": "./static/js/src/kernel-form.js",
   "random-partner-logos": "./static/js/src/random-partner-logos.js",
-  "credEnterprisePurchasing": "./static/js/src/advantage/credentials/app.tsx",
+  "credEnterprisePurchasing": "./static/js/src/advantage/credentials/app.tsx"
 };
 
 const isDev = process && process.env && process.env.NODE_ENV === "development";
