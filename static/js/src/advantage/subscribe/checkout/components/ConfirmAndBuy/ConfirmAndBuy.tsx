@@ -106,7 +106,7 @@ const ConfirmAndBuy = ({ product, action }: Props) => {
         name="captchaValue"
         validate={() => {
           if (!window.captcha) {
-            return "Captch field is required.";
+            return "Captcha field is required.";
           }
           return;
         }}
