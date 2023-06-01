@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Col, RadioInput, Row, Strip } from "@canonical/react-components";
+import {
+  Button,
+  Col,
+  RadioInput,
+  Row,
+  Strip,
+} from "@canonical/react-components";
 import classNames from "classnames";
 import { currencyFormatter } from "advantage/react/utils";
 
@@ -62,66 +68,103 @@ const CredExamShop = () => {
     setExam(parseInt(event.target.value));
     localStorage.setItem("exam-selector", JSON.stringify(event?.target.value));
   };
-
+  const handleSubmit = (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+    localStorage.setItem(
+      "shop-checkout-data",
+      JSON.stringify({
+        product: ExamProducts[exam],
+        quantity: 1,
+        action: "purchase",
+      })
+    );
+    location.href = "/account/checkout";
+  };
   return (
-    <Strip className="product-selector">
-      <Row>
-        <h2>Select an exam to purchase</h2>
-      </Row>
-      <Row>
-        {ExamProducts.map((examElement, examIndex) => {
-          return (
-            <Col size={4} key={examIndex}>
-              <div
-                className={classNames({
-                  "p-card--radio--column": true,
-                  "is-selected": exam == examIndex,
-                })}
-              >
-                <label className="p-radio">
-                  <input
-                    className="p-radio__input"
-                    autoComplete="off"
-                    type="radio"
-                    aria-labelledby={examElement.id + "-label"}
-                    value={examIndex}
-                    checked={exam == examIndex}
-                    onChange={handleChange}
-                    disabled={examElement.private}
-                  />
-                  <span className="p-radio__label">
-                    <RadioInput
-                      labelClassName="inner-label"
-                      label={examElement.name}
-                      checked={exam == examIndex}
+    <>
+      <Strip className="product-selector">
+        <Row>
+          <h2>Select an exam to purchase</h2>
+        </Row>
+        <Row>
+          {ExamProducts.map((examElement, examIndex) => {
+            return (
+              <Col size={4} key={examIndex}>
+                <div
+                  className={classNames({
+                    "p-card--radio--column": true,
+                    "is-selected": exam == examIndex,
+                  })}
+                >
+                  <label className="p-radio">
+                    <input
+                      className="p-radio__input"
+                      autoComplete="off"
+                      type="radio"
+                      aria-labelledby={examElement.id + "-label"}
                       value={examIndex}
+                      checked={exam == examIndex}
                       onChange={handleChange}
                       disabled={examElement.private}
                     />
-                    <hr />
-                    <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
-                      {examElement.metadata[0].value}
-                    </p>
-                    <hr />
-                    <h5
-                      className="u-align--right"
-                      style={{ paddingRight: "1rem" }}
-                    >
-                      {examElement.private
-                        ? "Coming Soon!"
-                        : "Price: " +
-                          currencyFormatter.format(
-                            examElement.price.value / 100
-                          )}
-                    </h5>
-                  </span>
-                </label>
-              </div>
-            </Col>
-          );
-        })}
-      </Row>
-    </Strip>
+                    <span className="p-radio__label">
+                      <RadioInput
+                        labelClassName="inner-label"
+                        label={examElement.name}
+                        checked={exam == examIndex}
+                        value={examIndex}
+                        onChange={handleChange}
+                        disabled={examElement.private}
+                      />
+                      <hr />
+                      <p style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
+                        {examElement.metadata[0].value}
+                      </p>
+                      <hr />
+                      <h5
+                        className="u-align--right"
+                        style={{ paddingRight: "1rem" }}
+                      >
+                        {examElement.private
+                          ? "Coming Soon!"
+                          : "Price: " +
+                            currencyFormatter.format(
+                              examElement.price.value / 100
+                            )}
+                      </h5>
+                    </span>
+                  </label>
+                </div>
+              </Col>
+            );
+          })}
+        </Row>
+      </Strip>
+      <section className="p-strip--light is-shallow p-shop-cart">
+        <Row className="u-sv3">
+          <Col size={6} className="p-heading--2">
+            Your Order
+          </Col>
+        </Row>
+        <Row className="u-sv3">
+          <Col size={6}>{ExamProducts[exam].name}</Col>
+          <Col size={3}>
+            {currencyFormatter.format(
+              (ExamProducts[exam]?.price.value ?? 0) / 100 ?? 0
+            )}
+          </Col>
+          <Col size={3}>
+            <Button appearance="positive" onClick={handleSubmit}>
+              Buy Now
+            </Button>
+          </Col>
+        </Row>
+      </section>
+    </>
   );
 };
 export default CredExamShop;
