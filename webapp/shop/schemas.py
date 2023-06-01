@@ -53,7 +53,7 @@ class PurchaseTotalSchema(Schema):
     total = Int(required=True)
 
 
-account_purhcase = {
+account_purchase = {
     "account_id": String(),
     "customer_info": Nested(CustomerInfo),
     "products": List(Nested(ProductListing)),

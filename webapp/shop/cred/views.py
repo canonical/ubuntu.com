@@ -649,9 +649,11 @@ def rotate_activation_key(ua_contracts_api, **kwargs):
 def activate_activation_key(ua_contracts_api, **kwargs):
     data = flask.request.json
     activation_key = data["activationKey"]
+    account_id = data["accountID"]
     return ua_contracts_api.activate_activation_key(
         {
             "activationKey": activation_key,
+            "accountID": account_id,
         }
     )
 

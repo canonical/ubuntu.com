@@ -30,7 +30,7 @@ from webapp.shop.schemas import (
     put_contract_entitlements,
     post_auto_renewal_settings,
     post_offer_schema,
-    account_purhcase,
+    account_purchase,
 )
 
 
@@ -356,7 +356,7 @@ def post_advantage_subscriptions(advantage_mapper, ua_contracts_api, **kwargs):
 
 
 @shop_decorator(area="advantage", response="json")
-@use_kwargs(account_purhcase, location="json")
+@use_kwargs(account_purchase, location="json")
 def post_advantage_purchase(advantage_mapper: AdvantageMapper, **kwargs):
     account_id = kwargs.get("account_id") or flask.session.get(
         "guest_account_id"

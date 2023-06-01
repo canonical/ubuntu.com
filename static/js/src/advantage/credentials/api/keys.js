@@ -1,4 +1,4 @@
-export async function listAllKeys(contractId) {
+export async function listAllKeys() {
   let response = await fetch(`/credentials/keys/list`, {
     method: "GET",
     headers: {
@@ -25,7 +25,7 @@ export async function rotateKey(activationKey) {
   return data;
 }
 
-export async function activateKey(activationKey) {
+export async function activateKey(activationKey, accountId) {
   let response = await fetch("/credentials/keys/activate", {
     method: "POST",
     headers: {
@@ -34,7 +34,7 @@ export async function activateKey(activationKey) {
     },
     body: JSON.stringify({
       activationKey: activationKey,
-      productID: "cube-admintasks",
+      accountID: accountId,
     }),
   });
   const data = await response.json();
