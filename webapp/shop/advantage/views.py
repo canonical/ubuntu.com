@@ -19,6 +19,7 @@ from webapp.shop.api.ua_contracts.helpers import (
 from webapp.shop.api.ua_contracts.api import (
     UAContractsUserHasNoAccount,
     AccessForbiddenError,
+    UAContractsAPIErrorView,
 )
 
 from webapp.shop.schemas import (
@@ -48,6 +49,44 @@ def get_activate_view(advantage_mapper, **kwargs):
         "pro/activate.html",
         name=name,
     )
+
+
+@shop_decorator(area="advantage", permission="user", response="html")
+def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
+    account = None
+    try:
+        account = advantage_mapper.get_purchase_account("canonical-ua")
+        if account:
+            name = account.name
+    except AccessForbiddenError:
+        return flask.render_template("account/forbidden.html")
+
+    if flask.request.method == "POST":
+        pro_activation_key = flask.request.form.get("pro-activation-key")
+        try:
+            activation_response = ua_contracts_api.activate_activation_key(
+                {
+                    "activationKey": pro_activation_key,
+                }
+            )
+            return flask.render_template(
+                "/pro/activate.html",
+                name=name,
+                notification_class="positive",
+                notification_title="Success",
+                notification_message="Your subscription has been activated.",
+            )
+        except UAContractsAPIErrorView as error:
+            activation_response = json.loads(error.response.text).get(
+                "message"
+            )
+            return flask.render_template(
+                "/pro/activate.html",
+                name=name,
+                notification_class="negative",
+                notification_title="Something went wrong",
+                notification_message=activation_response,
+            )
 
 
 @shop_decorator(area="advantage", response="html")

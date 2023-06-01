@@ -5,6 +5,22 @@
 {% block outer_content %}
   {% block content %}
   <section class="p-strip">
+    {% if notification_message %}
+    <div class="u-fixed-width">
+      <div class="p-notification--{{ notification_class }}" id="notification">
+        <div class="p-notification__content">
+          <h5 class="p-notification__title">{{ notification_title }}</h5>
+          <p class="p-notification__message">{{ notification_message }}</p>
+        </div>
+        <div class="p-notification__meta">
+          <div class="p-notification__actions">
+            <a class="p-notification__action p-button" href="/pro/activate">Try another key</a>
+            <a class="p-notification__action p-button" href="/pro/dashboard">Go to dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
     <div class="u-fixed-width">
       <h2>Activate your Ubuntu Pro subscription</h2>
       <p>
@@ -17,14 +33,14 @@
         after buying your Ubuntu Pro Desktop subscription.
       </p>
       <p>The activation key should look like this: 123CODE.</p>
-      <form class="p-form p-form--inline">
+      <form class="p-form p-form--inline" action="{{ url_for('pro_activate_activation_key') }}" method="POST">
         <div class="p-form__group">
-          <label for="username-inline" class="p-form__label">Enter your code</label>
+          <label for="pro-activation-key" class="p-form__label">Enter your code</label>
           <div class="p-form__control">
-            <input type="text" id="pro-activate-input" class="p-form__control" name="username-inline" placeholder="Ex: 123CODE" required="" aria-describedby="exampleHelpTextMessage">
+            <input type="text" id="pro-activation-key" class="p-form__control" name="pro-activation-key" autocomplete="off" placeholder="Ex: 123CODE" required="" aria-describedby="pro-activate-input">
           </div>
         </div>
-        <button class="p-button--positive">Activate</button>
+        <button class="p-button--positive" type="submit" name="submit">Activate</button>
       </form>
     </div>
   </section>
