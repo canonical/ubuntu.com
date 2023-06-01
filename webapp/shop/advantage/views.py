@@ -58,6 +58,7 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
         account = advantage_mapper.get_purchase_account("canonical-ua")
         if account:
             name = account.name
+            accountId = account.id
     except AccessForbiddenError:
         return flask.render_template("account/forbidden.html")
 
@@ -66,6 +67,7 @@ def pro_activate_activation_key(ua_contracts_api, advantage_mapper, **kwargs):
         try:
             activation_response = ua_contracts_api.activate_activation_key(
                 {
+                    "accountID": accountId,
                     "activationKey": pro_activation_key,
                 }
             )
