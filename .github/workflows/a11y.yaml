@@ -22,10 +22,10 @@ jobs:
           python-version: "3.10"
 
       - name: Install python dependencies
-        run: pip3 install filelock && pip3 install -r requirements.txt
+        run: pip3 install -r requirements.txt
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
           env: UBUNTU_USERNAME=peter.makowski+100@canonical.com,UBUNTU_PASSWORD=jibfdq5hmq,MARKETO_CLIENT_ID=${{secrets.MARKETO_CLIENT_ID}},MARKETO_CLIENT_SECRET=${{secrets.MARKETO_CLIENT_SECRET}},MARKETO_AUTHORISED_USER=${{secrets.MARKETO_AUTHORISED_USER}},MARKETO_TOKEN=${{secrets.MARKETO_TOKEN}}
           build: yarn run build
