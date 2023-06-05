@@ -259,7 +259,7 @@ is covered in the [proxy documentation][].
 
 <!-- LINKS -->
 [LXD-image]: https://linuxcontainers.org/lxd/docs/master/image-handling
-[maas-images]: https://maas.io/docs/snap/3.1/ui/using-image-streams
+[maas-images]: https://maas.io/docs/how-to-use-standard-images
 [simplestreams]: https://juju.is/docs/olm/cloud-image-metadata
 [bundles]: /kubernetes/docs/supported-versions
 [1.23-components]: /kubernetes/docs/1.23/components#snaps
