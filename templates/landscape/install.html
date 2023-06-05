@@ -80,7 +80,7 @@
                 <p>Install 30 mins</p>
               </div>
               <div class="config-time" style="--config-time: 30">
-                <p>Config 30 <em>hours</em></p>
+                <p>Config time varies</p>
               </div>
             </div>
           </div>
@@ -202,43 +202,31 @@
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install prerequisites</p>
                   <div class="p-code-snippet">
-                      <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y iptables iptables-persistent snapd ubuntu-advantage-tools curl</code></pre>
+                      <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y snapd ubuntu-advantage-tools curl</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install Juju</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --classic</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install juju --channel latest/stable && mkdir -p ~/.local/share</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
-                  <p class="u-no-padding--top">Initialize LXD</p>
+                  <p class="u-no-padding--top">Install LXD</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo lxd init --auto</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Identify the default network adapter and its IP address</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>read -r INTERFACE INTERFACE_IP &lt; &lt;(ip -4 route ls | awk '$1=="default"{x=$5" "$9}END{print x}')</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Set the appropriate MTU size for the LXD Bridge</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>lxc network set lxdbr0 bridge.mtu=$(ip link show $INTERFACE | awk '/mtu/ {print $5}')</code></pre>
-                  </div>
-                </li>
-                <li class="p-list__item">
-                  <p class="u-no-padding--top">Permit the network traffic with iptables rules</p>
-                  <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo iptables -I FORWARD 1 -i lxdbr0 -o $INTERFACE -j ACCEPT -m comment --comment "Permit LXD bridge to $INTERFACE" && sudo iptables -I FORWARD 1 -i $INTERFACE -o lxdbr0 -j ACCEPT -m comment --comment "Permit $INTERFACE to LXD bridge" && sudo iptables -I INPUT 1 -i lxdbr0 -j ACCEPT -m comment --comment "Permit incoming on lxdbr0" && sudo iptables -I OUTPUT 1 -o lxdbr0 -j ACCEPT -m comment --comment "Permit outgoing on lxdbr0"</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install lxd --channel latest/stable && sudo snap refresh lxd --channel latest/stable</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Bootstrap Juju</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost lxdlandscape</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>juju bootstrap localhost landscape-controller</code></pre>
+                  </div>
+                </li>
+                <li class="p-list__item">
+                  <p class="u-no-padding--top">Add Juju Model</p>
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block is-wrapped"><code>juju add-model landscape-model</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -260,15 +248,15 @@
                   </div>
                 </li>
                 <li class="p-list__item">
-                  <p class="u-no-padding--top">Route ports 80 and 443 to HAProxy</p>
+                  <p class="u-no-padding--top">Identify the HAProxy instance ID</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>for PORT in 443 80; do sudo iptables -t nat -I PREROUTING -i "$INTERFACE" -p tcp -d "$INTERFACE_IP" --dport $PORT -j DNAT --to-destination "$HAPROXY_UNIT_IP":$PORT -m comment --comment haproxy; done</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>read -r HAPROXY_INSTANCE_ID &lt; &lt;(juju status haproxy --format=json | sed -n 's/.*"instance-id":"\([^"]*\).*/\1/p')</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
-                  <p class="u-no-padding--top">Save the firewall rules</p>
+                  <p class="u-no-padding--top">Route ports 80 and 443 to HAProxy</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo netfilter-persistent save</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>for PORT in 443 80; do lxc config device add $HAPROXY_INSTANCE_ID tcp${PORT}proxyv4 proxy listen=tcp:0.0.0.0:${PORT} connect=tcp:${HAPROXY_UNIT_IP}:${PORT}</code></pre>
                   </div>
                 </li>
               </ol>
@@ -293,24 +281,31 @@
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>sudo snap install certbot --classic</code></pre>
                   </div>
+                </li>
                 <li class="p-list__item">
-                  <p class="u-no-padding--top">Get a valid SSL certificate for the FQDN of your server: landscape.yourdomain.com</p>
+                  <p class="u-no-padding--top">Set an FQDN variable</p>
+                  <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server.</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d landscape.yourdomain.com --manual --preferred-challenges dns certonly</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>FQDN=landscape.yourdomain.com</code></pre>
+                  </div>
+                </li>
+                <li class="p-list__item">
+                  <p class="u-no-padding--top">Get a valid SSL certificate</p>
+                  <div class="p-code-snippet">
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo certbot -d $FQDN --manual --preferred-challenges dns certonly</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">base64 encode the full certificate chain with no line breaks</p>
                   <div class="p-code-snippet">
-                    <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server.</p>
-                    <pre class="p-code-snippet__block is-wrapped"><code>FULLCHAIN=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/fullchain.pem)</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>FULLCHAIN=$(sudo base64 -w 0 /etc/letsencrypt/live/${FQDN}/fullchain.pem)</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">base64 encode the private key file with no line breaks</p>
                   <div class="p-code-snippet">
                     <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server.</p>
-                    <pre class="p-code-snippet__block is-wrapped"><code>PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/landscape.yourdomain.com/privkey.pem)</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>PRIVKEY=$(sudo base64 -w 0 /etc/letsencrypt/live/${FQDN}/privkey.pem)</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
@@ -377,11 +372,12 @@ SMTP_PASSWORD='YOUR_API_KEY_GOES_HERE'</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Install prerequisites</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y curl software-properties-common</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>sudo apt update && sudo apt install -y wget software-properties-common</code></pre>
                   </div>
                 </li>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Set your hostname using variables</p>
+                  <p>Replace <strong>landscape.yourdomain.com</strong> with the FQDN pointing to your server, and set the HOSTNAME and DOMAIN variables based on the FQDN.</p>
                   <div class="p-code-snippet">
                     <pre class="p-code-snippet__block is-wrapped"><code>FQDN=landscape.yourdomain.com
 HOSTNAME=landscape
@@ -722,7 +718,7 @@ LANDSCAPE_COMPUTER_TITLE='My Computer'</code></pre>
                 <li class="p-list__item">
                   <p class="u-no-padding--top">Deploy the charm</p>
                   <div class="p-code-snippet">
-                    <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-client --config account-name='standalone' --config --tags='' --config script-users='nobody,landscape,root' --config ping-url="http://${LANDSCAPE_FQDN}/ping" --config url="https://${LANDSCAPE_FQDN}/message-system"</code></pre>
+                    <pre class="p-code-snippet__block is-wrapped"><code>juju deploy landscape-client --config account-name='standalone' --config tags='' --config script-users='nobody,landscape,root' --config ping-url="http://${LANDSCAPE_FQDN}/ping" --config url="https://${LANDSCAPE_FQDN}/message-system"</code></pre>
                   </div>
                 </li>
               </ol>
